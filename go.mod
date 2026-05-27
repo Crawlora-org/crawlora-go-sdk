@@ -1,3 +1,3 @@
-module github.com/crawlora/crawlora-go-sdk
+module github.com/Crawlora-org/crawlora-go-sdk
 
 go 1.22

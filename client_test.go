@@ -1,10 +1,13 @@
 package crawlora
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 )
 
@@ -67,5 +70,158 @@ func TestTextResponse(t *testing.T) {
 	}
 	if out != "hello" {
 		t.Fatalf("out = %#v", out)
+	}
+}
+
+func TestRequestOptionsHeadersAndUserAgent(t *testing.T) {
+	var gotHeader, gotUA string
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		gotHeader = r.Header.Get("x-test")
+		gotUA = r.Header.Get("User-Agent")
+		w.Header().Set("content-type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{}})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
+	if _, err := client.Bing.Search(context.Background(), Params{"q": "coffee"}, WithRequestHeader("x-test", "yes")); err != nil {
+		t.Fatalf("search: %v", err)
+	}
+	if gotHeader != "yes" {
+		t.Fatalf("x-test = %q", gotHeader)
+	}
+	if gotUA != "crawlora-go-sdk/"+Version {
+		t.Fatalf("User-Agent = %q", gotUA)
+	}
+}
+
+func TestQuerySerializationKeepsFalseZero(t *testing.T) {
+	var gotQuery string
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		gotQuery = r.URL.RawQuery
+		w.Header().Set("content-type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{}})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
+	_, err := client.Request(context.Background(), "datasets-google-map-businesses-search", Params{
+		"q":           "coffee",
+		"page":        0,
+		"has_website": false,
+	})
+	if err != nil {
+		t.Fatalf("search: %v", err)
+	}
+	if !strings.Contains(gotQuery, "page=0") {
+		t.Fatalf("expected page=0 in %q", gotQuery)
+	}
+	if !strings.Contains(gotQuery, "has_website=false") {
+		t.Fatalf("expected has_website=false in %q", gotQuery)
+	}
+}
+
+func TestQuerySerializationRepeatsArrays(t *testing.T) {
+	var gotQuery string
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		gotQuery = r.URL.RawQuery
+		w.Header().Set("content-type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{}})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
+	_, err := client.Request(context.Background(), "tripadvisor-search", Params{
+		"q":              "hotel",
+		"amenities":      []int{1, 2},
+		"online_options": []string{"3", "4"},
+	})
+	if err != nil {
+		t.Fatalf("search: %v", err)
+	}
+	if !strings.Contains(gotQuery, "amenities=1") || !strings.Contains(gotQuery, "amenities=2") {
+		t.Fatalf("expected repeated amenities in %q", gotQuery)
+	}
+	if !strings.Contains(gotQuery, "online_options=3") || !strings.Contains(gotQuery, "online_options=4") {
+		t.Fatalf("expected repeated online_options in %q", gotQuery)
+	}
+}
+
+func TestAPIErrorIncludesStatusCodeAndBody(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("content-type", "application/json")
+		w.WriteHeader(http.StatusTooManyRequests)
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 429, "msg": "rate limited"})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
+	_, err := client.Bing.Search(context.Background(), Params{"q": "coffee"})
+	var apiErr *Error
+	if !errors.As(err, &apiErr) {
+		t.Fatalf("expected *Error, got %T %v", err, err)
+	}
+	if apiErr.Status != http.StatusTooManyRequests || apiErr.Code != 429 || apiErr.Error() != "rate limited" {
+		t.Fatalf("unexpected error %#v", apiErr)
+	}
+	if apiErr.RawBody == "" {
+		t.Fatal("expected raw body")
+	}
+}
+
+func TestRetriesRetryableStatus(t *testing.T) {
+	calls := 0
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		calls++
+		w.Header().Set("content-type", "application/json")
+		if calls == 1 {
+			w.WriteHeader(http.StatusServiceUnavailable)
+			_ = json.NewEncoder(w).Encode(map[string]any{"code": 503, "msg": "try again"})
+			return
+		}
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{"ok": true}})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"), WithRetries(1), WithRetryDelay(0))
+	if _, err := client.Bing.Search(context.Background(), Params{"q": "coffee"}); err != nil {
+		t.Fatalf("search: %v", err)
+	}
+	if calls != 2 {
+		t.Fatalf("calls = %d", calls)
+	}
+}
+
+func TestMultipartUpload(t *testing.T) {
+	var gotContentType string
+	var gotBody string
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		gotContentType = r.Header.Get("content-type")
+		buf := new(bytes.Buffer)
+		_, _ = buf.ReadFrom(r.Body)
+		gotBody = buf.String()
+		w.Header().Set("content-type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{}})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
+	if _, err := client.Google.Lens(context.Background(), Params{"image": []byte("image-bytes")}); err != nil {
+		t.Fatalf("lens: %v", err)
+	}
+	if !strings.HasPrefix(gotContentType, "multipart/form-data") {
+		t.Fatalf("content-type = %q", gotContentType)
+	}
+	if !strings.Contains(gotBody, "image-bytes") {
+		t.Fatalf("multipart body missing image bytes: %q", gotBody)
+	}
+}
+
+func TestOperationMetadataCount(t *testing.T) {
+	if len(operations) != operationCount {
+		t.Fatalf("operations = %d, operationCount = %d", len(operations), operationCount)
+	}
+	if operationCount != 318 {
+		t.Fatalf("operationCount = %d", operationCount)
 	}
 }

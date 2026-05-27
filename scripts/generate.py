@@ -71,6 +71,8 @@ def param_slice(params):
     for param in params:
         collection = param.get("collectionFormat", "")
         typ = param.get("type", "")
+        required = "true" if param.get("required") else "false"
+        enum_values = param.get("enum") or []
         items.append(
             "parameterDefinition{Name: "
             + go_string(param["name"])
@@ -78,6 +80,10 @@ def param_slice(params):
             + go_string(collection)
             + ", Type: "
             + go_string(typ)
+            + ", Required: "
+            + required
+            + ", Enum: "
+            + go_string_slice([str(v) for v in enum_values])
             + "}"
         )
     return "[]parameterDefinition{" + ", ".join(items) + "}"
@@ -100,6 +106,8 @@ def definition(method, path, operation):
         f"QueryParams: {param_slice(query_params)}, "
         f"FormParams: {param_slice(form_params)}, "
         f"BodyParam: {go_string(body_param)}, "
+        f"Consumes: {go_string_slice(operation.get('consumes', []))}, "
+        f"Produces: {go_string_slice(operation.get('produces', []))}, "
         f"Security: {go_string_slice(security)}, "
         "}"
     )
@@ -139,6 +147,8 @@ def main():
         "\tName string",
         "\tCollectionFormat string",
         "\tType string",
+        "\tRequired bool",
+        "\tEnum []string",
         "}",
         "",
         "type operationDefinition struct {",
@@ -148,8 +158,12 @@ def main():
         "\tQueryParams []parameterDefinition",
         "\tFormParams []parameterDefinition",
         "\tBodyParam string",
+        "\tConsumes []string",
+        "\tProduces []string",
         "\tSecurity []string",
         "}",
+        "",
+        f"const operationCount = {sum(len(methods) for methods in spec['paths'].values())}",
         "",
         "var operations = map[string]operationDefinition{",
     ]
@@ -166,8 +180,8 @@ def main():
         lines.append(f"type {group_name}Service struct {{ client *Client }}")
         lines.append("")
         for method_name, operation_id in methods.items():
-            lines.append(f"func (s *{group_name}Service) {method_name}(ctx context.Context, params Params) (any, error) {{")
-            lines.append(f"\treturn s.client.Request(ctx, {go_string(operation_id)}, params)")
+            lines.append(f"func (s *{group_name}Service) {method_name}(ctx context.Context, params Params, opts ...RequestOption) (any, error) {{")
+            lines.append(f"\treturn s.client.Request(ctx, {go_string(operation_id)}, params, opts...)")
             lines.append("}")
             lines.append("")
     (ROOT / "operations_generated.go").write_text("\n".join(lines))

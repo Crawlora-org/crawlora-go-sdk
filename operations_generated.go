@@ -8,6 +8,8 @@ type parameterDefinition struct {
 	Name             string
 	CollectionFormat string
 	Type             string
+	Required         bool
+	Enum             []string
 }
 
 type operationDefinition struct {
@@ -17,328 +19,332 @@ type operationDefinition struct {
 	QueryParams []parameterDefinition
 	FormParams  []parameterDefinition
 	BodyParam   string
+	Consumes    []string
+	Produces    []string
 	Security    []string
 }
 
+const operationCount = 318
+
 var operations = map[string]operationDefinition{
-	"airbnb-room":                                operationDefinition{Method: "GET", Path: "/airbnb/room/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"airbnb-room-calendar":                       operationDefinition{Method: "GET", Path: "/airbnb/room/{id}/calendar", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"airbnb-room-reviews":                        operationDefinition{Method: "GET", Path: "/airbnb/room/{id}/reviews", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"airbnb-search":                              operationDefinition{Method: "GET", Path: "/airbnb/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "location", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "check_in", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "check_out", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "adults", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "currency", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "ne_lat", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "ne_lng", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "sw_lat", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "sw_lng", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "zoom", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"amazon-product":                             operationDefinition{Method: "GET", Path: "/amazon/product/{asin}", PathParams: []string{"asin"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "currency", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"amazon-search":                              operationDefinition{Method: "GET", Path: "/amazon/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "k", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "s", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"amazon-suggest":                             operationDefinition{Method: "GET", Path: "/amazon/suggest/{keyword}", PathParams: []string{"keyword"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"apple-podcasts-charts":                      operationDefinition{Method: "GET", Path: "/apple-podcasts/charts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "collection", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "category", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"apple-podcasts-episodes-search":             operationDefinition{Method: "GET", Path: "/apple-podcasts/episodes/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"apple-podcasts-search":                      operationDefinition{Method: "GET", Path: "/apple-podcasts/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"apple-podcasts-show":                        operationDefinition{Method: "GET", Path: "/apple-podcasts/show/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"apple-podcasts-show-episodes":               operationDefinition{Method: "GET", Path: "/apple-podcasts/show/{id}/episodes", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"appstore-app":                               operationDefinition{Method: "GET", Path: "/appstore/app", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "app_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "ratings", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"appstore-developer":                         operationDefinition{Method: "GET", Path: "/appstore/developer/{dev_id}", PathParams: []string{"dev_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"appstore-list":                              operationDefinition{Method: "GET", Path: "/appstore/list", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "collection", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "category", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "num", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "full_detail", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"appstore-privacy":                           operationDefinition{Method: "GET", Path: "/appstore/privacy/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"appstore-ratings":                           operationDefinition{Method: "GET", Path: "/appstore/ratings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "app_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"appstore-reviews":                           operationDefinition{Method: "GET", Path: "/appstore/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "app_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "sort", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"appstore-search":                            operationDefinition{Method: "GET", Path: "/appstore/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "num", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "ids_only", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"appstore-similar":                           operationDefinition{Method: "GET", Path: "/appstore/similar", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "app_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"appstore-suggest":                           operationDefinition{Method: "GET", Path: "/appstore/suggest/{term}", PathParams: []string{"term"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"appstore-version-history":                   operationDefinition{Method: "GET", Path: "/appstore/version-history/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"billing-me":                                 operationDefinition{Method: "GET", Path: "/billing/me", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"billing-me-checkout":                        operationDefinition{Method: "POST", Path: "/billing/me/checkout", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Security: []string{"ApiKeyAuth"}},
-	"billing-me-events":                          operationDefinition{Method: "GET", Path: "/billing/me/events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "from", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "to", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "endpoint", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "request_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "event_status", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "billable", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"billing-me-periods":                         operationDefinition{Method: "GET", Path: "/billing/me/periods", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"billing-me-period":                          operationDefinition{Method: "GET", Path: "/billing/me/periods/{period_key}", PathParams: []string{"period_key"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"billing-me-period-statement":                operationDefinition{Method: "GET", Path: "/billing/me/periods/{period_key}/statement", PathParams: []string{"period_key"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "include_events", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "event_limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"billing-me-period-statement-download":       operationDefinition{Method: "GET", Path: "/billing/me/periods/{period_key}/statement/download", PathParams: []string{"period_key"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"billing-me-portal":                          operationDefinition{Method: "POST", Path: "/billing/me/portal", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Security: []string{"ApiKeyAuth"}},
-	"bing-images":                                operationDefinition{Method: "GET", Path: "/bing/images", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"bing-news":                                  operationDefinition{Method: "GET", Path: "/bing/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"bing-search":                                operationDefinition{Method: "GET", Path: "/bing/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"bing-suggest":                               operationDefinition{Method: "GET", Path: "/bing/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"bing-videos":                                operationDefinition{Method: "GET", Path: "/bing/videos", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"brave-images":                               operationDefinition{Method: "GET", Path: "/brave/images", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"brave-news":                                 operationDefinition{Method: "GET", Path: "/brave/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "time_range", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "date_from", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "date_to", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"brave-search":                               operationDefinition{Method: "GET", Path: "/brave/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "time_range", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "date_from", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "date_to", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"brave-suggest":                              operationDefinition{Method: "GET", Path: "/brave/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"brave-videos":                               operationDefinition{Method: "GET", Path: "/brave/videos", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "time_range", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "date_from", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "date_to", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-categories":                       operationDefinition{Method: "GET", Path: "/coingecko/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-category-coins":                   operationDefinition{Method: "GET", Path: "/coingecko/category/{slug}/coins", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-chains":                           operationDefinition{Method: "GET", Path: "/coingecko/chains", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-chain":                            operationDefinition{Method: "GET", Path: "/coingecko/chains/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-coin":                             operationDefinition{Method: "GET", Path: "/coingecko/coin/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-coin-analysis":                    operationDefinition{Method: "GET", Path: "/coingecko/coin/{id}/analysis", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "range", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "include_annotations", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-exchange":                         operationDefinition{Method: "GET", Path: "/coingecko/exchange/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-exchanges":                        operationDefinition{Method: "GET", Path: "/coingecko/exchanges", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "kind", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-gainers-losers":                   operationDefinition{Method: "GET", Path: "/coingecko/gainers-losers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-global":                           operationDefinition{Method: "GET", Path: "/coingecko/global", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-global-charts":                    operationDefinition{Method: "GET", Path: "/coingecko/global/charts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "kind", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "range", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-learn-articles":                   operationDefinition{Method: "GET", Path: "/coingecko/learn/articles", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-markets":                          operationDefinition{Method: "GET", Path: "/coingecko/markets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-new-coins":                        operationDefinition{Method: "GET", Path: "/coingecko/new-coins", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-news":                             operationDefinition{Method: "GET", Path: "/coingecko/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-nft-category":                     operationDefinition{Method: "GET", Path: "/coingecko/nft/category/{slug}", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-nfts":                             operationDefinition{Method: "GET", Path: "/coingecko/nfts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-search":                           operationDefinition{Method: "GET", Path: "/coingecko/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-token-unlocks":                    operationDefinition{Method: "GET", Path: "/coingecko/token-unlocks", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-treasuries":                       operationDefinition{Method: "GET", Path: "/coingecko/treasuries", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "asset", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "holder_type", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"coingecko-trending":                         operationDefinition{Method: "GET", Path: "/coingecko/trending", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"web-contact":                                operationDefinition{Method: "POST", Path: "/contact", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", Security: []string{"ApiKeyAuth"}},
-	"crunchbase-organization":                    operationDefinition{Method: "GET", Path: "/crunchbase/organization/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"crunchbase-person":                          operationDefinition{Method: "GET", Path: "/crunchbase/person/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"datasets-list":                              operationDefinition{Method: "GET", Path: "/datasets", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"datasets-google-map-businesses-facets":      operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "category", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "state", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "county", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "city", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "town", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "min_rating", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "min_review_count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "has_website", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "has_phone", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "lat", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "lon", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "radius_m", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "sort", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"datasets-google-map-businesses-item":        operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/items/{place_id}", PathParams: []string{"place_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"datasets-google-map-businesses-nearby":      operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/nearby", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "lon", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "radius_m", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "category", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "min_rating", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "min_review_count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "page_size", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"datasets-google-map-businesses-search":      operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "category", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "state", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "county", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "city", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "town", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "min_rating", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "min_review_count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "has_website", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "has_phone", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "lat", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "lon", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "radius_m", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "sort", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "page_size", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"ebay-item":                                  operationDefinition{Method: "GET", Path: "/ebay/item/{item_id}", PathParams: []string{"item_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"ebay-search":                                operationDefinition{Method: "POST", Path: "/ebay/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", Security: []string{"ApiKeyAuth"}},
-	"ebay-seller":                                operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}", PathParams: []string{"seller"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"ebay-seller-about":                          operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}/about", PathParams: []string{"seller"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"ebay-seller-feedback":                       operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}/feedback", PathParams: []string{"seller"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "per_page", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"ebay-seller-shop":                           operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}/shop", PathParams: []string{"seller"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"etsy-listing":                               operationDefinition{Method: "GET", Path: "/etsy/listing/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"etsy-search":                                operationDefinition{Method: "GET", Path: "/etsy/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"etsy-shop":                                  operationDefinition{Method: "GET", Path: "/etsy/shop/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"facebook-page":                              operationDefinition{Method: "GET", Path: "/facebook/{page}", PathParams: []string{"page"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"geocoding-lookup":                           operationDefinition{Method: "GET", Path: "/geocoding/lookup", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "osm_ids", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "accept_language", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "addressdetails", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "extratags", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "namedetails", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"geocoding-reverse":                          operationDefinition{Method: "GET", Path: "/geocoding/reverse", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "lon", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "zoom", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "accept_language", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "addressdetails", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "extratags", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "namedetails", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"geocoding-search":                           operationDefinition{Method: "GET", Path: "/geocoding/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "street", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "city", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "county", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "state", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "postalcode", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "countrycodes", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "accept_language", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "addressdetails", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "extratags", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "namedetails", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-analyst-articles":            operationDefinition{Method: "GET", Path: "/google/finance/analyst-articles/{quote}", PathParams: []string{"quote"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-chart":                       operationDefinition{Method: "GET", Path: "/google/finance/chart/{quote}", PathParams: []string{"quote"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "window", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-classification":              operationDefinition{Method: "GET", Path: "/google/finance/classification/{quote}", PathParams: []string{"quote"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-company":                     operationDefinition{Method: "GET", Path: "/google/finance/company/{quote}", PathParams: []string{"quote"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-context":                     operationDefinition{Method: "GET", Path: "/google/finance/context", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-financials":                  operationDefinition{Method: "GET", Path: "/google/finance/financials/{quote}", PathParams: []string{"quote"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-markets-category-news":       operationDefinition{Method: "GET", Path: "/google/finance/markets/categories/{category}/news", PathParams: []string{"category"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-markets-category-stocks":     operationDefinition{Method: "GET", Path: "/google/finance/markets/categories/{category}/stocks", PathParams: []string{"category"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-markets-earnings":            operationDefinition{Method: "GET", Path: "/google/finance/markets/earnings", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-markets-featured":            operationDefinition{Method: "GET", Path: "/google/finance/markets/featured", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-markets-headline":            operationDefinition{Method: "GET", Path: "/google/finance/markets/headline", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-markets-indices":             operationDefinition{Method: "GET", Path: "/google/finance/markets/indices", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-markets-movers":              operationDefinition{Method: "GET", Path: "/google/finance/markets/movers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "categories", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-markets-top":                 operationDefinition{Method: "GET", Path: "/google/finance/markets/top", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "metric", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-markets-trending":            operationDefinition{Method: "GET", Path: "/google/finance/markets/trending", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-news":                        operationDefinition{Method: "GET", Path: "/google/finance/news/{quote}", PathParams: []string{"quote"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-quote":                       operationDefinition{Method: "GET", Path: "/google/finance/quote/{quote}", PathParams: []string{"quote"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-related":                     operationDefinition{Method: "GET", Path: "/google/finance/related/{quote}", PathParams: []string{"quote"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-search":                      operationDefinition{Method: "GET", Path: "/google/finance/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-finance-ticker":                      operationDefinition{Method: "GET", Path: "/google/finance/ticker/{ticker}", PathParams: []string{"ticker"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "window", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-image":                               operationDefinition{Method: "POST", Path: "/google/image", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "searchOption", Security: []string{"ApiKeyAuth"}},
-	"google-jobs":                                operationDefinition{Method: "POST", Path: "/google/jobs", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", Security: []string{"ApiKeyAuth"}},
-	"google-lens":                                operationDefinition{Method: "POST", Path: "/google/lens", PathParams: []string{}, QueryParams: nil, FormParams: []parameterDefinition{parameterDefinition{Name: "image", CollectionFormat: "", Type: "file"}}, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-map-place":                           operationDefinition{Method: "GET", Path: "/google/map/place/{place_id}", PathParams: []string{"place_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-map-search":                          operationDefinition{Method: "POST", Path: "/google/map/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "mapSearchOption", Security: []string{"ApiKeyAuth"}},
-	"google-news-deprecated":                     operationDefinition{Method: "POST", Path: "/google/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "searchOption", Security: []string{"ApiKeyAuth"}},
-	"google-search":                              operationDefinition{Method: "POST", Path: "/google/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "searchOption", Security: []string{"ApiKeyAuth"}},
-	"google-shopping":                            operationDefinition{Method: "POST", Path: "/google/shopping", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "searchOption", Security: []string{"ApiKeyAuth"}},
-	"google-shopping-detail":                     operationDefinition{Method: "POST", Path: "/google/shopping/detail", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "ShoppingItemDetailOption", Security: []string{"ApiKeyAuth"}},
-	"google-suggest":                             operationDefinition{Method: "GET", Path: "/google/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-trends-categories":                   operationDefinition{Method: "GET", Path: "/google/trends/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-trends-enums":                        operationDefinition{Method: "GET", Path: "/google/trends/enums", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-trends-explore":                      operationDefinition{Method: "POST", Path: "/google/trends/explore", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Security: []string{"ApiKeyAuth"}},
-	"google-trends-explore-interest-by-region":   operationDefinition{Method: "POST", Path: "/google/trends/explore/interest-by-region", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Security: []string{"ApiKeyAuth"}},
-	"google-trends-explore-interest-over-time":   operationDefinition{Method: "POST", Path: "/google/trends/explore/interest-over-time", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Security: []string{"ApiKeyAuth"}},
-	"google-trends-explore-related-topics":       operationDefinition{Method: "POST", Path: "/google/trends/explore/related-topics", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Security: []string{"ApiKeyAuth"}},
-	"google-trends-explore-rising-queries":       operationDefinition{Method: "POST", Path: "/google/trends/explore/rising-queries", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Security: []string{"ApiKeyAuth"}},
-	"google-trends-explore-top-queries":          operationDefinition{Method: "POST", Path: "/google/trends/explore/top-queries", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Security: []string{"ApiKeyAuth"}},
-	"google-trends-locations":                    operationDefinition{Method: "GET", Path: "/google/trends/locations", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-trends-trending":                     operationDefinition{Method: "GET", Path: "/google/trends/trending", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "geo", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "hl", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "tz", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "window", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "time_range", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "category", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "status", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "sort_by", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"google-trends-trending-detail":              operationDefinition{Method: "POST", Path: "/google/trends/trending/detail", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Security: []string{"ApiKeyAuth"}},
-	"googleplay-app":                             operationDefinition{Method: "GET", Path: "/googleplay/app", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"googleplay-categories":                      operationDefinition{Method: "GET", Path: "/googleplay/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"googleplay-datasafety":                      operationDefinition{Method: "GET", Path: "/googleplay/datasafety", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"googleplay-developer":                       operationDefinition{Method: "GET", Path: "/googleplay/developer/{dev_id}", PathParams: []string{"dev_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "num", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "full_detail", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"googleplay-list":                            operationDefinition{Method: "GET", Path: "/googleplay/list", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "collection", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "category", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "age", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "num", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "full_detail", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"googleplay-permissions":                     operationDefinition{Method: "GET", Path: "/googleplay/permissions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "short", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"googleplay-reviews":                         operationDefinition{Method: "GET", Path: "/googleplay/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "sort", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "num", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "paginate", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "next_pagination_token", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"googleplay-search":                          operationDefinition{Method: "GET", Path: "/googleplay/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "num", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "full_detail", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "price", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"googleplay-similar":                         operationDefinition{Method: "GET", Path: "/googleplay/similar", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "num", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "full_detail", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"googleplay-suggest":                         operationDefinition{Method: "GET", Path: "/googleplay/suggest/{term}", PathParams: []string{"term"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"instagram-post":                             operationDefinition{Method: "GET", Path: "/instagram/post/{id}/{post_id}", PathParams: []string{"id", "post_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"instagram-profile":                          operationDefinition{Method: "GET", Path: "/instagram/profile/{username}", PathParams: []string{"username"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"instagram-reels":                            operationDefinition{Method: "GET", Path: "/instagram/reels/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "max_id", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-age-certifications":               operationDefinition{Method: "GET", Path: "/justwatch/age-certifications", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-discover":                         operationDefinition{Method: "GET", Path: "/justwatch/discover", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "genres", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "providers", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "monetization_types", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "year_min", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "year_max", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-episode-by-id":                    operationDefinition{Method: "GET", Path: "/justwatch/episode/by-id", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-episode-offers":                   operationDefinition{Method: "GET", Path: "/justwatch/episode/offers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "countries", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-genre-titles":                     operationDefinition{Method: "GET", Path: "/justwatch/genre/titles", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "genre", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-genres":                           operationDefinition{Method: "GET", Path: "/justwatch/genres", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-monetization-titles":              operationDefinition{Method: "GET", Path: "/justwatch/monetization/titles", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "monetization_type", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-new":                              operationDefinition{Method: "GET", Path: "/justwatch/new", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-popular":                          operationDefinition{Method: "GET", Path: "/justwatch/popular", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-provider-titles":                  operationDefinition{Method: "GET", Path: "/justwatch/provider/titles", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "provider", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-providers":                        operationDefinition{Method: "GET", Path: "/justwatch/providers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-search":                           operationDefinition{Method: "GET", Path: "/justwatch/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-season-by-id":                     operationDefinition{Method: "GET", Path: "/justwatch/season/by-id", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-season-episodes":                  operationDefinition{Method: "GET", Path: "/justwatch/season/episodes", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "season_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-show-seasons":                     operationDefinition{Method: "GET", Path: "/justwatch/show/seasons", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "show_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-title":                            operationDefinition{Method: "GET", Path: "/justwatch/title", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "url", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-title-analysis":                   operationDefinition{Method: "GET", Path: "/justwatch/title/analysis", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "url", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-title-by-id":                      operationDefinition{Method: "GET", Path: "/justwatch/title/by-id", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-title-media":                      operationDefinition{Method: "GET", Path: "/justwatch/title/media", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-title-offers":                     operationDefinition{Method: "GET", Path: "/justwatch/title/offers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "countries", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"justwatch-title-similar":                    operationDefinition{Method: "GET", Path: "/justwatch/title/similar", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"linkedin-company":                           operationDefinition{Method: "GET", Path: "/linkedin/company/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"linkedin-product":                           operationDefinition{Method: "GET", Path: "/linkedin/product/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"linkedin-showcase":                          operationDefinition{Method: "GET", Path: "/linkedin/showcase/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"ping":                                       operationDefinition{Method: "GET", Path: "/ping", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{}},
-	"producthunt-category":                       operationDefinition{Method: "GET", Path: "/producthunt/category/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"producthunt-category-products":              operationDefinition{Method: "GET", Path: "/producthunt/category/{slug}/products", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "featured_only", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "order", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "page_size", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "tags", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"producthunt-leaderboard":                    operationDefinition{Method: "GET", Path: "/producthunt/leaderboard", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "scope", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "date", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "year", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "month", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "day", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "week", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "featured", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "order", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"producthunt-product":                        operationDefinition{Method: "GET", Path: "/producthunt/product/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"producthunt-about":                          operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/about", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"producthunt-alternatives":                   operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/alternatives", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "first", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "order", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "tags", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"producthunt-comments":                       operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/comments", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "order", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "filter", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "threads_cursor", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "replies_cursor", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "include_thread_for_comment_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "exclude_thread_for_comment_id", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"producthunt-customers":                      operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/customers", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "order", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "page_size", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"producthunt-launches":                       operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/launches", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "order", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"producthunt-makers":                         operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/makers", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"producthunt-reviews":                        operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/reviews", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"producthunt-search":                         operationDefinition{Method: "GET", Path: "/producthunt/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "featured", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "topics", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"ready":                                      operationDefinition{Method: "GET", Path: "/ready", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{}},
-	"referrals-click":                            operationDefinition{Method: "POST", Path: "/referrals/click", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Security: []string{}},
-	"referrals-me":                               operationDefinition{Method: "GET", Path: "/referrals/me", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"JWTAuth"}},
-	"referrals-me-events":                        operationDefinition{Method: "GET", Path: "/referrals/me/events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"JWTAuth"}},
-	"similarweb-search":                          operationDefinition{Method: "GET", Path: "/similarweb/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"similarweb-web":                             operationDefinition{Method: "GET", Path: "/similarweb/web/{domain}", PathParams: []string{"domain"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-podcasts-categories":                operationDefinition{Method: "GET", Path: "/spotify-podcasts/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page_offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "page_limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "section_offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "section_limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-podcasts-charts":                    operationDefinition{Method: "GET", Path: "/spotify-podcasts/charts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "chart", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "region", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-podcasts-episode":                   operationDefinition{Method: "GET", Path: "/spotify-podcasts/episode", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-podcasts-home":                      operationDefinition{Method: "GET", Path: "/spotify-podcasts/home", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page_offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "page_limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "section_offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "section_limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-podcasts-search":                    operationDefinition{Method: "GET", Path: "/spotify-podcasts/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "number_of_top_results", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "include_pre_releases", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_album_pre_releases", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_audiobooks", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_authors", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-podcasts-show":                      operationDefinition{Method: "GET", Path: "/spotify-podcasts/show", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "include_content_capability_trait", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-podcasts-show-episodes":             operationDefinition{Method: "GET", Path: "/spotify-podcasts/show/episodes", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-podcasts-show-recommendations":      operationDefinition{Method: "GET", Path: "/spotify-podcasts/show/recommendations", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-album":                              operationDefinition{Method: "GET", Path: "/spotify/album", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-album-tracks":                       operationDefinition{Method: "GET", Path: "/spotify/album/tracks", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-albums-search":                      operationDefinition{Method: "GET", Path: "/spotify/albums/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "number_of_top_results", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "include_audiobooks", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_pre_releases", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_album_pre_releases", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_authors", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-artist":                             operationDefinition{Method: "GET", Path: "/spotify/artist", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-artist-albums":                      operationDefinition{Method: "GET", Path: "/spotify/artist/albums", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "order", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-artist-playlists":                   operationDefinition{Method: "GET", Path: "/spotify/artist/playlists", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-artist-related":                     operationDefinition{Method: "GET", Path: "/spotify/artist/related", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-artists-search":                     operationDefinition{Method: "GET", Path: "/spotify/artists/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-audiobook":                          operationDefinition{Method: "GET", Path: "/spotify/audiobook", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-audiobook-chapters":                 operationDefinition{Method: "GET", Path: "/spotify/audiobook/chapters", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-audiobooks-search":                  operationDefinition{Method: "GET", Path: "/spotify/audiobooks/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "number_of_top_results", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "include_audiobooks", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_pre_releases", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_album_pre_releases", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_authors", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-chapter":                            operationDefinition{Method: "GET", Path: "/spotify/chapter", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-episodes-search":                    operationDefinition{Method: "GET", Path: "/spotify/episodes/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-featured-charts-by-country":         operationDefinition{Method: "GET", Path: "/spotify/featured-charts-by-country", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country_code", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "content_id", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-genre":                              operationDefinition{Method: "GET", Path: "/spotify/genre", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page_offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "page_limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "section_offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "section_limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-home":                               operationDefinition{Method: "GET", Path: "/spotify/home", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "time_zone", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "sp_t", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "facet", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "section_items_limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-playlist":                           operationDefinition{Method: "GET", Path: "/spotify/playlist", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "enable_watch_feed_entrypoint", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-playlists-search":                   operationDefinition{Method: "GET", Path: "/spotify/playlists/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "number_of_top_results", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "include_audiobooks", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_pre_releases", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_album_pre_releases", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_authors", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-popular-by-country":                 operationDefinition{Method: "GET", Path: "/spotify/popular-by-country", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country_code", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-profile":                            operationDefinition{Method: "GET", Path: "/spotify/profile", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "username", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "url", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "playlist_limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "artist_limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "episode_limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-profile-followers":                  operationDefinition{Method: "GET", Path: "/spotify/profile/followers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "username", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "url", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-profile-playlists":                  operationDefinition{Method: "GET", Path: "/spotify/profile/playlists", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "username", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "url", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-profiles-search":                    operationDefinition{Method: "GET", Path: "/spotify/profiles/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "number_of_top_results", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "include_audiobooks", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_pre_releases", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_album_pre_releases", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_authors", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-search":                             operationDefinition{Method: "GET", Path: "/spotify/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "number_of_top_results", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "include_audiobooks", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_artist_has_concerts_field", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_pre_releases", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_album_pre_releases", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_authors", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "is_prefix", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-section":                            operationDefinition{Method: "GET", Path: "/spotify/section", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-shows-search":                       operationDefinition{Method: "GET", Path: "/spotify/shows/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-track":                              operationDefinition{Method: "GET", Path: "/spotify/track", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-track-recommended":                  operationDefinition{Method: "GET", Path: "/spotify/track/recommended", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-track-similar-albums":               operationDefinition{Method: "GET", Path: "/spotify/track/similar-albums", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "albums_only", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"spotify-tracks-search":                      operationDefinition{Method: "GET", Path: "/spotify/tracks/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "number_of_top_results", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "include_audiobooks", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_pre_releases", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_album_pre_releases", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_authors", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-category":                            operationDefinition{Method: "GET", Path: "/tiktok/category", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-video-comments":                      operationDefinition{Method: "GET", Path: "/tiktok/comments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "aweme_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-explore":                             operationDefinition{Method: "GET", Path: "/tiktok/explore/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-challenge":                           operationDefinition{Method: "GET", Path: "/tiktok/hashtag/{name}", PathParams: []string{"name"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-challenge-list":                      operationDefinition{Method: "GET", Path: "/tiktok/hashtags", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-popular-trend-country-industry-meta": operationDefinition{Method: "GET", Path: "/tiktok/popular-trend/country-industry-meta", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-popular-trend-creator":               operationDefinition{Method: "GET", Path: "/tiktok/popular-trend/creator", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "sort_by", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "creator_country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "audience_count", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-popular-trend-video":                 operationDefinition{Method: "GET", Path: "/tiktok/popular-trend/video", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "country_code", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "order_by", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "period", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-post":                                operationDefinition{Method: "GET", Path: "/tiktok/post/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-profile-post":                        operationDefinition{Method: "GET", Path: "/tiktok/posts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "secUid", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "sort_type", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-profile":                             operationDefinition{Method: "GET", Path: "/tiktok/profile/{handler}", PathParams: []string{"handler"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-search":                              operationDefinition{Method: "GET", Path: "/tiktok/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "keyword", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-search-hashtag":                      operationDefinition{Method: "GET", Path: "/tiktok/search/hashtag", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "keyword", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-search-user":                         operationDefinition{Method: "GET", Path: "/tiktok/search/user", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "keyword", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-top-ads-analysis":                    operationDefinition{Method: "GET", Path: "/tiktok/top-ads/analysis", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "material_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "metric", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "period_type", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-top-ads-detail":                      operationDefinition{Method: "GET", Path: "/tiktok/top-ads/detail", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "material_id", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-top-ads-filters":                     operationDefinition{Method: "GET", Path: "/tiktok/top-ads/filters", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-top-ads-list":                        operationDefinition{Method: "GET", Path: "/tiktok/top-ads/list", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "period", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "order_by", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country_code", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "keyword", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "industry", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "objective", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "ad_language", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "pattern_label", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "duration", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "like", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "ad_format", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-top-ads-location-info":               operationDefinition{Method: "GET", Path: "/tiktok/top-ads/location-info", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "module", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-top-ads-locations":                   operationDefinition{Method: "GET", Path: "/tiktok/top-ads/locations", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-top-ads-recommend":                   operationDefinition{Method: "GET", Path: "/tiktok/top-ads/recommend", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "material_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-top-ads-safety":                      operationDefinition{Method: "GET", Path: "/tiktok/top-ads/safety", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-top-ads-spotlight":                   operationDefinition{Method: "GET", Path: "/tiktok/top-ads/spotlight", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-top-ads-suggestions":                 operationDefinition{Method: "GET", Path: "/tiktok/top-ads/suggestions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "scenario", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tiktok-trending":                            operationDefinition{Method: "GET", Path: "/tiktok/trending", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tripadvisor-autocomplete":                   operationDefinition{Method: "GET", Path: "/tripadvisor/autocomplete", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "locale", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "scope_geo_id", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "search_session_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "typeahead_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "route_uid", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tripadvisor-enums":                          operationDefinition{Method: "GET", Path: "/tripadvisor/enums", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tripadvisor-hotels":                         operationDefinition{Method: "GET", Path: "/tripadvisor/hotels", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "geo_id", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "filter_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "class", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "amenities", CollectionFormat: "multi", Type: "array"}, parameterDefinition{Name: "price_min", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "price_max", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "pricing_mode", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "travelers_choice", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "travelers_choice_botb", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "currency", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "sort", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tripadvisor-place":                          operationDefinition{Method: "GET", Path: "/tripadvisor/place", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tripadvisor-reviews":                        operationDefinition{Method: "GET", Path: "/tripadvisor/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "url", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "sort_type", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "sort_by", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "ratings", CollectionFormat: "multi", Type: "array"}, parameterDefinition{Name: "do_machine_translation", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "photos_per_review_limit", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"tripadvisor-search":                         operationDefinition{Method: "GET", Path: "/tripadvisor/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "geo_id", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "filter_id", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "class", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "amenities", CollectionFormat: "multi", Type: "array"}, parameterDefinition{Name: "price_min", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "price_max", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "pricing_mode", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "travelers_choice", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "travelers_choice_botb", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "restaurant_date", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "restaurant_time", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "restaurant_guests", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "establishment_types", CollectionFormat: "multi", Type: "array"}, parameterDefinition{Name: "online_options", CollectionFormat: "multi", Type: "array"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "locale", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "currency", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "sort", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"trustpilot-business-search":                 operationDefinition{Method: "GET", Path: "/trustpilot/business-units/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "page_size", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"trustpilot-business":                        operationDefinition{Method: "GET", Path: "/trustpilot/business/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"trustpilot-business-related":                operationDefinition{Method: "GET", Path: "/trustpilot/business/{slug}/related", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"trustpilot-business-reviews":                operationDefinition{Method: "GET", Path: "/trustpilot/business/{slug}/reviews", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "stars", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "verified", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "replied", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "date_from", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "date_to", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"trustpilot-categories":                      operationDefinition{Method: "GET", Path: "/trustpilot/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"trustpilot-category-search":                 operationDefinition{Method: "GET", Path: "/trustpilot/categories/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "locale", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "size", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"trustpilot-category":                        operationDefinition{Method: "GET", Path: "/trustpilot/category/{slug}", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"usage-me-endpoints":                         operationDefinition{Method: "GET", Path: "/usage/me/endpoints", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "range", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "from", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "to", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"JWTAuth"}},
-	"usage-me-overview":                          operationDefinition{Method: "GET", Path: "/usage/me/overview", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "range", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "from", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "to", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"JWTAuth"}},
-	"usage-me-recent-ips":                        operationDefinition{Method: "GET", Path: "/usage/me/recent-ips", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "range", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "from", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "to", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"JWTAuth"}},
-	"usage-me-timeseries":                        operationDefinition{Method: "GET", Path: "/usage/me/timeseries", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "range", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "bucket", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "endpoint", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "from", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "to", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"JWTAuth"}},
-	"user-me":                                    operationDefinition{Method: "GET", Path: "/user/me", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"JWTAuth"}},
-	"user-me-api-keys":                           operationDefinition{Method: "GET", Path: "/user/me/api-keys", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"JWTAuth"}},
-	"user-me-api-keys-rotate":                    operationDefinition{Method: "POST", Path: "/user/me/api-keys/rotate", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"JWTAuth"}},
-	"user-me-api-keys-reveal":                    operationDefinition{Method: "POST", Path: "/user/me/api-keys/{id}/reveal", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"JWTAuth"}},
-	"web-parse":                                  operationDefinition{Method: "POST", Path: "/web/", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "parseWebOption", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-calendars":                    operationDefinition{Method: "GET", Path: "/yahoo-finance/calendars", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-calendar":                     operationDefinition{Method: "GET", Path: "/yahoo-finance/calendars/{type}", PathParams: []string{"type"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "start", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "end", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "market_cap", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "filter_most_active", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-download":                     operationDefinition{Method: "POST", Path: "/yahoo-finance/download", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-industries":                   operationDefinition{Method: "GET", Path: "/yahoo-finance/industries", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-industry":                     operationDefinition{Method: "GET", Path: "/yahoo-finance/industries/{key}", PathParams: []string{"key"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-market-status":                operationDefinition{Method: "GET", Path: "/yahoo-finance/market/{market}/status", PathParams: []string{"market"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-market-summary":               operationDefinition{Method: "GET", Path: "/yahoo-finance/market/{market}/summary", PathParams: []string{"market"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-screener-custom":              operationDefinition{Method: "POST", Path: "/yahoo-finance/screener", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-screener":                     operationDefinition{Method: "GET", Path: "/yahoo-finance/screener/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "sort_field", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "sort_asc", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-screeners":                    operationDefinition{Method: "GET", Path: "/yahoo-finance/screeners", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-search":                       operationDefinition{Method: "GET", Path: "/yahoo-finance/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "quotes_count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "news_count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "lists_count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "include_research", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "enable_fuzzy_query", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-sectors":                      operationDefinition{Method: "GET", Path: "/yahoo-finance/sectors", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-sector":                       operationDefinition{Method: "GET", Path: "/yahoo-finance/sectors/{key}", PathParams: []string{"key"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-actions":               operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/actions", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-analysts":              operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/analysts", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-calendar":              operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/calendar", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-capital-gains":         operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/capital-gains", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-dividends":             operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/dividends", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-earnings":              operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/earnings", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-earnings-dates":        operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/earnings-dates", PathParams: []string{"symbol"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-financials":            operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/financials", PathParams: []string{"symbol"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "statement", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "period", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-funds":                 operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/funds", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-history":               operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/history", PathParams: []string{"symbol"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "period", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "start", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "end", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "interval", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "include_prepost", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "include_actions", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "auto_adjust", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "back_adjust", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "keepna", CollectionFormat: "", Type: "boolean"}, parameterDefinition{Name: "rounding", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-history-metadata":      operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/history-metadata", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-holders":               operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/holders", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-info":                  operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/info", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-isin":                  operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/isin", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-news":                  operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/news", PathParams: []string{"symbol"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "tab", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-options":               operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/options", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-options-expiration":    operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/options/{expiration}", PathParams: []string{"symbol", "expiration"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-quote":                 operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/quote", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-sec-filings":           operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/sec-filings", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-shares":                operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/shares", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-shares-full":           operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/shares-full", PathParams: []string{"symbol"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "start", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "end", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-splits":                operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/splits", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-sustainability":        operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/sustainability", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-ticker-valuation":             operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/valuation", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"yahoo-finance-trending":                     operationDefinition{Method: "GET", Path: "/yahoo-finance/trending/{region}", PathParams: []string{"region"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"youtube-captions":                           operationDefinition{Method: "GET", Path: "/youtube/captions/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"youtube-channel-playlists":                  operationDefinition{Method: "GET", Path: "/youtube/channel/{id}/playlists", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "continuation_token", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"youtube-channel-search":                     operationDefinition{Method: "GET", Path: "/youtube/channel/{id}/search", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "continuation_token", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"youtube-channel-shorts":                     operationDefinition{Method: "GET", Path: "/youtube/channel/{id}/shorts", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"youtube-channel-videos":                     operationDefinition{Method: "GET", Path: "/youtube/channel/{id}/videos", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "continuation_token", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"youtube-comments":                           operationDefinition{Method: "GET", Path: "/youtube/comments/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "continuation_token", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"youtube-playlist":                           operationDefinition{Method: "GET", Path: "/youtube/playlist/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "continuation_token", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"youtube-profile":                            operationDefinition{Method: "GET", Path: "/youtube/profile/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"youtube-search":                             operationDefinition{Method: "GET", Path: "/youtube/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "search_query", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "continuation_token", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "sort_by", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "upload_date", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "duration", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "features", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "params", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"youtube-tag":                                operationDefinition{Method: "GET", Path: "/youtube/tag/{tag}", PathParams: []string{"tag"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "type", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "continuation_token", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"youtube-transcript":                         operationDefinition{Method: "GET", Path: "/youtube/transcript/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "translate_to", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "format", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "timestamps", CollectionFormat: "", Type: "boolean"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"youtube-transcript-languages":               operationDefinition{Method: "GET", Path: "/youtube/transcript/{id}/languages", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"youtube-video":                              operationDefinition{Method: "GET", Path: "/youtube/video/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"zillow-autocomplete":                        operationDefinition{Method: "GET", Path: "/zillow/autocomplete", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "status", CollectionFormat: "", Type: "string"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"zillow-property":                            operationDefinition{Method: "GET", Path: "/zillow/property/{zpid}", PathParams: []string{"zpid"}, QueryParams: nil, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
-	"zillow-search":                              operationDefinition{Method: "GET", Path: "/zillow/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "location", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "status", CollectionFormat: "", Type: "string"}, parameterDefinition{Name: "region_id", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "region_type", CollectionFormat: "", Type: "integer"}, parameterDefinition{Name: "west", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "east", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "south", CollectionFormat: "", Type: "number"}, parameterDefinition{Name: "north", CollectionFormat: "", Type: "number"}}, FormParams: nil, BodyParam: "", Security: []string{"ApiKeyAuth"}},
+	"airbnb-room":                                operationDefinition{Method: "GET", Path: "/airbnb/room/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"airbnb-room-calendar":                       operationDefinition{Method: "GET", Path: "/airbnb/room/{id}/calendar", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"airbnb-room-reviews":                        operationDefinition{Method: "GET", Path: "/airbnb/room/{id}/reviews", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"airbnb-search":                              operationDefinition{Method: "GET", Path: "/airbnb/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "location", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "check_in", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "check_out", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "adults", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ne_lat", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "ne_lng", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "sw_lat", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "sw_lng", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "zoom", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"amazon-product":                             operationDefinition{Method: "GET", Path: "/amazon/product/{asin}", PathParams: []string{"asin"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"en_US"}}, parameterDefinition{Name: "currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"USD"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"amazon-search":                              operationDefinition{Method: "GET", Path: "/amazon/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "k", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "s", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"amazon-suggest":                             operationDefinition{Method: "GET", Path: "/amazon/suggest/{keyword}", PathParams: []string{"keyword"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"apple-podcasts-charts":                      operationDefinition{Method: "GET", Path: "/apple-podcasts/charts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "collection", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"apple-podcasts-episodes-search":             operationDefinition{Method: "GET", Path: "/apple-podcasts/episodes/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"apple-podcasts-search":                      operationDefinition{Method: "GET", Path: "/apple-podcasts/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"apple-podcasts-show":                        operationDefinition{Method: "GET", Path: "/apple-podcasts/show/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"apple-podcasts-show-episodes":               operationDefinition{Method: "GET", Path: "/apple-podcasts/show/{id}/episodes", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"appstore-app":                               operationDefinition{Method: "GET", Path: "/appstore/app", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "app_id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ratings", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"appstore-developer":                         operationDefinition{Method: "GET", Path: "/appstore/developer/{dev_id}", PathParams: []string{"dev_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"appstore-list":                              operationDefinition{Method: "GET", Path: "/appstore/list", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "collection", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "num", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "full_detail", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"appstore-privacy":                           operationDefinition{Method: "GET", Path: "/appstore/privacy/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"appstore-ratings":                           operationDefinition{Method: "GET", Path: "/appstore/ratings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "app_id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"appstore-reviews":                           operationDefinition{Method: "GET", Path: "/appstore/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "app_id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"mostRecent", "mostHelpful"}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"appstore-search":                            operationDefinition{Method: "GET", Path: "/appstore/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ids_only", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"appstore-similar":                           operationDefinition{Method: "GET", Path: "/appstore/similar", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "app_id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"appstore-suggest":                           operationDefinition{Method: "GET", Path: "/appstore/suggest/{term}", PathParams: []string{"term"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"appstore-version-history":                   operationDefinition{Method: "GET", Path: "/appstore/version-history/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"billing-me":                                 operationDefinition{Method: "GET", Path: "/billing/me", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"billing-me-checkout":                        operationDefinition{Method: "POST", Path: "/billing/me/checkout", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"billing-me-events":                          operationDefinition{Method: "GET", Path: "/billing/me/events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "from", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "endpoint", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "request_id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "event_status", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"reserved", "charged", "non_billable", "failed"}}, parameterDefinition{Name: "billable", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"billing-me-periods":                         operationDefinition{Method: "GET", Path: "/billing/me/periods", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"billing-me-period":                          operationDefinition{Method: "GET", Path: "/billing/me/periods/{period_key}", PathParams: []string{"period_key"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"billing-me-period-statement":                operationDefinition{Method: "GET", Path: "/billing/me/periods/{period_key}/statement", PathParams: []string{"period_key"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "include_events", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "event_limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"billing-me-period-statement-download":       operationDefinition{Method: "GET", Path: "/billing/me/periods/{period_key}/statement/download", PathParams: []string{"period_key"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"billing-me-portal":                          operationDefinition{Method: "POST", Path: "/billing/me/portal", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bing-images":                                operationDefinition{Method: "GET", Path: "/bing/images", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bing-news":                                  operationDefinition{Method: "GET", Path: "/bing/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bing-search":                                operationDefinition{Method: "GET", Path: "/bing/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bing-suggest":                               operationDefinition{Method: "GET", Path: "/bing/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bing-videos":                                operationDefinition{Method: "GET", Path: "/bing/videos", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"brave-images":                               operationDefinition{Method: "GET", Path: "/brave/images", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"brave-news":                                 operationDefinition{Method: "GET", Path: "/brave/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}, parameterDefinition{Name: "time_range", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"any", "day", "week", "month", "year", "custom"}}, parameterDefinition{Name: "date_from", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"brave-search":                               operationDefinition{Method: "GET", Path: "/brave/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}, parameterDefinition{Name: "time_range", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"any", "day", "week", "month", "year", "custom"}}, parameterDefinition{Name: "date_from", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"brave-suggest":                              operationDefinition{Method: "GET", Path: "/brave/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"brave-videos":                               operationDefinition{Method: "GET", Path: "/brave/videos", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}, parameterDefinition{Name: "time_range", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"any", "day", "week", "month", "year", "custom"}}, parameterDefinition{Name: "date_from", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-categories":                       operationDefinition{Method: "GET", Path: "/coingecko/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-category-coins":                   operationDefinition{Method: "GET", Path: "/coingecko/category/{slug}/coins", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-chains":                           operationDefinition{Method: "GET", Path: "/coingecko/chains", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-chain":                            operationDefinition{Method: "GET", Path: "/coingecko/chains/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-coin":                             operationDefinition{Method: "GET", Path: "/coingecko/coin/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-coin-analysis":                    operationDefinition{Method: "GET", Path: "/coingecko/coin/{id}/analysis", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}, parameterDefinition{Name: "range", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"24h", "max"}}, parameterDefinition{Name: "include_annotations", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-exchange":                         operationDefinition{Method: "GET", Path: "/coingecko/exchange/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-exchanges":                        operationDefinition{Method: "GET", Path: "/coingecko/exchanges", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "kind", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"spot", "dex", "derivatives", "perp_dex"}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-gainers-losers":                   operationDefinition{Method: "GET", Path: "/coingecko/gainers-losers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-global":                           operationDefinition{Method: "GET", Path: "/coingecko/global", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-global-charts":                    operationDefinition{Method: "GET", Path: "/coingecko/global/charts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "kind", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"total_market_cap", "bitcoin_dominance", "altcoin_market_cap", "defi_market_cap"}}, parameterDefinition{Name: "range", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"24h", "7d", "14d", "30d", "90d", "1y", "max"}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-learn-articles":                   operationDefinition{Method: "GET", Path: "/coingecko/learn/articles", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "latest", "airdrop-guides", "coins-and-tokens", "guides", "wallets-and-bridges", "api", "reviews"}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-markets":                          operationDefinition{Method: "GET", Path: "/coingecko/markets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-new-coins":                        operationDefinition{Method: "GET", Path: "/coingecko/new-coins", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-news":                             operationDefinition{Method: "GET", Path: "/coingecko/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-nft-category":                     operationDefinition{Method: "GET", Path: "/coingecko/nft/category/{slug}", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-nfts":                             operationDefinition{Method: "GET", Path: "/coingecko/nfts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-search":                           operationDefinition{Method: "GET", Path: "/coingecko/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-token-unlocks":                    operationDefinition{Method: "GET", Path: "/coingecko/token-unlocks", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-treasuries":                       operationDefinition{Method: "GET", Path: "/coingecko/treasuries", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "asset", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "bitcoin", "ethereum", "solana", "bnb", "xrp", "tron"}}, parameterDefinition{Name: "holder_type", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "companies", "governments"}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"coingecko-trending":                         operationDefinition{Method: "GET", Path: "/coingecko/trending", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"web-contact":                                operationDefinition{Method: "POST", Path: "/contact", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"crunchbase-organization":                    operationDefinition{Method: "GET", Path: "/crunchbase/organization/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"crunchbase-person":                          operationDefinition{Method: "GET", Path: "/crunchbase/person/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-list":                              operationDefinition{Method: "GET", Path: "/datasets", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-google-map-businesses-facets":      operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "county", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "town", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_website", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_phone", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lon", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_m", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-google-map-businesses-item":        operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/items/{place_id}", PathParams: []string{"place_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-google-map-businesses-nearby":      operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/nearby", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "radius_m", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "category", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-google-map-businesses-search":      operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "county", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "town", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_website", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_phone", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lon", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_m", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ebay-item":                                  operationDefinition{Method: "GET", Path: "/ebay/item/{item_id}", PathParams: []string{"item_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ebay-search":                                operationDefinition{Method: "POST", Path: "/ebay/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ebay-seller":                                operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}", PathParams: []string{"seller"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ebay-seller-about":                          operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}/about", PathParams: []string{"seller"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ebay-seller-feedback":                       operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}/feedback", PathParams: []string{"seller"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"24", "48", "72"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ebay-seller-shop":                           operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}/shop", PathParams: []string{"seller"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"etsy-listing":                               operationDefinition{Method: "GET", Path: "/etsy/listing/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"etsy-search":                                operationDefinition{Method: "GET", Path: "/etsy/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"etsy-shop":                                  operationDefinition{Method: "GET", Path: "/etsy/shop/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"facebook-page":                              operationDefinition{Method: "GET", Path: "/facebook/{page}", PathParams: []string{"page"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"geocoding-lookup":                           operationDefinition{Method: "GET", Path: "/geocoding/lookup", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "osm_ids", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "accept_language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"geocoding-reverse":                          operationDefinition{Method: "GET", Path: "/geocoding/reverse", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "zoom", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "accept_language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"geocoding-search":                           operationDefinition{Method: "GET", Path: "/geocoding/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "street", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "county", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "postalcode", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "countrycodes", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "accept_language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-analyst-articles":            operationDefinition{Method: "GET", Path: "/google/finance/analyst-articles/{quote}", PathParams: []string{"quote"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-chart":                       operationDefinition{Method: "GET", Path: "/google/finance/chart/{quote}", PathParams: []string{"quote"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "window", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-classification":              operationDefinition{Method: "GET", Path: "/google/finance/classification/{quote}", PathParams: []string{"quote"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-company":                     operationDefinition{Method: "GET", Path: "/google/finance/company/{quote}", PathParams: []string{"quote"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-context":                     operationDefinition{Method: "GET", Path: "/google/finance/context", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-financials":                  operationDefinition{Method: "GET", Path: "/google/finance/financials/{quote}", PathParams: []string{"quote"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-markets-category-news":       operationDefinition{Method: "GET", Path: "/google/finance/markets/categories/{category}/news", PathParams: []string{"category"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-markets-category-stocks":     operationDefinition{Method: "GET", Path: "/google/finance/markets/categories/{category}/stocks", PathParams: []string{"category"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-markets-earnings":            operationDefinition{Method: "GET", Path: "/google/finance/markets/earnings", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-markets-featured":            operationDefinition{Method: "GET", Path: "/google/finance/markets/featured", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-markets-headline":            operationDefinition{Method: "GET", Path: "/google/finance/markets/headline", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-markets-indices":             operationDefinition{Method: "GET", Path: "/google/finance/markets/indices", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-markets-movers":              operationDefinition{Method: "GET", Path: "/google/finance/markets/movers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "categories", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-markets-top":                 operationDefinition{Method: "GET", Path: "/google/finance/markets/top", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "metric", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-markets-trending":            operationDefinition{Method: "GET", Path: "/google/finance/markets/trending", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-news":                        operationDefinition{Method: "GET", Path: "/google/finance/news/{quote}", PathParams: []string{"quote"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-quote":                       operationDefinition{Method: "GET", Path: "/google/finance/quote/{quote}", PathParams: []string{"quote"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-related":                     operationDefinition{Method: "GET", Path: "/google/finance/related/{quote}", PathParams: []string{"quote"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-search":                      operationDefinition{Method: "GET", Path: "/google/finance/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-finance-ticker":                      operationDefinition{Method: "GET", Path: "/google/finance/ticker/{ticker}", PathParams: []string{"ticker"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "window", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-image":                               operationDefinition{Method: "POST", Path: "/google/image", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "searchOption", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-jobs":                                operationDefinition{Method: "POST", Path: "/google/jobs", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-lens":                                operationDefinition{Method: "POST", Path: "/google/lens", PathParams: []string{}, QueryParams: nil, FormParams: []parameterDefinition{parameterDefinition{Name: "image", CollectionFormat: "", Type: "file", Required: true, Enum: []string{}}}, BodyParam: "", Consumes: []string{"multipart/form-data"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-map-place":                           operationDefinition{Method: "GET", Path: "/google/map/place/{place_id}", PathParams: []string{"place_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-map-search":                          operationDefinition{Method: "POST", Path: "/google/map/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "mapSearchOption", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-news-deprecated":                     operationDefinition{Method: "POST", Path: "/google/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "searchOption", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-search":                              operationDefinition{Method: "POST", Path: "/google/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "searchOption", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-shopping":                            operationDefinition{Method: "POST", Path: "/google/shopping", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "searchOption", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-shopping-detail":                     operationDefinition{Method: "POST", Path: "/google/shopping/detail", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "ShoppingItemDetailOption", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-suggest":                             operationDefinition{Method: "GET", Path: "/google/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-trends-categories":                   operationDefinition{Method: "GET", Path: "/google/trends/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-trends-enums":                        operationDefinition{Method: "GET", Path: "/google/trends/enums", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-trends-explore":                      operationDefinition{Method: "POST", Path: "/google/trends/explore", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-trends-explore-interest-by-region":   operationDefinition{Method: "POST", Path: "/google/trends/explore/interest-by-region", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-trends-explore-interest-over-time":   operationDefinition{Method: "POST", Path: "/google/trends/explore/interest-over-time", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-trends-explore-related-topics":       operationDefinition{Method: "POST", Path: "/google/trends/explore/related-topics", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-trends-explore-rising-queries":       operationDefinition{Method: "POST", Path: "/google/trends/explore/rising-queries", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-trends-explore-top-queries":          operationDefinition{Method: "POST", Path: "/google/trends/explore/top-queries", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-trends-locations":                    operationDefinition{Method: "GET", Path: "/google/trends/locations", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-trends-trending":                     operationDefinition{Method: "GET", Path: "/google/trends/trending", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "geo", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"AF", "AX", "AL", "DZ", "AS", "AD", "AO", "AI", "AQ", "AG", "AR", "AM", "AW", "AU", "AT", "AZ", "BS", "BH", "BD", "BB", "BY", "BE", "BZ", "BJ", "BM", "BT", "BO", "BA", "BW", "BV", "BR", "IO", "VG", "BN", "BG", "BF", "BI", "KH", "CM", "CA", "CV", "BQ", "KY", "CF", "TD", "CL", "CN", "CX", "CC", "CO", "KM", "CG", "CD", "CK", "CR", "CI", "HR", "CU", "CW", "CY", "CZ", "DK", "DJ", "DM", "DO", "EC", "EG", "SV", "GQ", "ER", "EE", "SZ", "ET", "FK", "FO", "FJ", "FI", "FR", "GF", "PF", "TF", "GA", "GM", "GE", "DE", "GH", "GI", "GR", "GL", "GD", "GP", "GU", "GT", "GG", "GN", "GW", "GY", "HT", "HM", "HN", "HK", "HU", "IS", "IN", "ID", "IR", "IQ", "IE", "IM", "IL", "IT", "JM", "JP", "JE", "JO", "KZ", "KE", "KI", "XK", "KW", "KG", "LA", "LV", "LB", "LS", "LR", "LY", "LI", "LT", "LU", "MO", "MG", "MW", "MY", "MV", "ML", "MT", "MH", "MQ", "MR", "MU", "YT", "MX", "FM", "MD", "MC", "MN", "ME", "MS", "MA", "MZ", "MM", "NA", "NR", "NP", "NL", "NC", "NZ", "NI", "NE", "NG", "NU", "NF", "KP", "MK", "MP", "NO", "OM", "PK", "PW", "PS", "PA", "PG", "PY", "PE", "PH", "PN", "PL", "PT", "PR", "QA", "RE", "RO", "RU", "RW", "WS", "SM", "ST", "SA", "SN", "RS", "SC", "SL", "SG", "SX", "SK", "SI", "SB", "SO", "ZA", "GS", "KR", "SS", "ES", "LK", "BL", "SH", "KN", "LC", "MF", "PM", "VC", "SD", "SR", "SJ", "SE", "CH", "SY", "TW", "TJ", "TZ", "TH", "TL", "TG", "TK", "TO", "TT", "TN", "TR", "TM", "TC", "TV", "UM", "VI", "UG", "UA", "AE", "GB", "US", "UY", "UZ", "VU", "VA", "VE", "VN", "WF", "EH", "YE", "ZM", "ZW"}}, parameterDefinition{Name: "hl", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tz", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "window", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"4h", "24h", "48h", "7d"}}, parameterDefinition{Name: "time_range", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"4h", "24h", "48h", "7d"}}, parameterDefinition{Name: "category", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"0", "3", "47", "44", "22", "12", "5", "7", "71", "8", "45", "65", "11", "13", "958", "19", "16", "299", "14", "66", "29", "533", "174", "18", "20", "67"}}, parameterDefinition{Name: "status", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "active", "ended"}}, parameterDefinition{Name: "sort_by", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "title", "recency", "search_volume"}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-trends-trending-detail":              operationDefinition{Method: "POST", Path: "/google/trends/trending/detail", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"googleplay-app":                             operationDefinition{Method: "GET", Path: "/googleplay/app", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"googleplay-categories":                      operationDefinition{Method: "GET", Path: "/googleplay/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"googleplay-datasafety":                      operationDefinition{Method: "GET", Path: "/googleplay/datasafety", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"googleplay-developer":                       operationDefinition{Method: "GET", Path: "/googleplay/developer/{dev_id}", PathParams: []string{"dev_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "num", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "full_detail", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"googleplay-list":                            operationDefinition{Method: "GET", Path: "/googleplay/list", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "collection", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "age", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "num", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "full_detail", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"googleplay-permissions":                     operationDefinition{Method: "GET", Path: "/googleplay/permissions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "short", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"googleplay-reviews":                         operationDefinition{Method: "GET", Path: "/googleplay/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sort", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "num", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "paginate", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "next_pagination_token", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"googleplay-search":                          operationDefinition{Method: "GET", Path: "/googleplay/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "full_detail", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "price", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"googleplay-similar":                         operationDefinition{Method: "GET", Path: "/googleplay/similar", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "full_detail", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"googleplay-suggest":                         operationDefinition{Method: "GET", Path: "/googleplay/suggest/{term}", PathParams: []string{"term"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"instagram-post":                             operationDefinition{Method: "GET", Path: "/instagram/post/{id}/{post_id}", PathParams: []string{"id", "post_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"instagram-profile":                          operationDefinition{Method: "GET", Path: "/instagram/profile/{username}", PathParams: []string{"username"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"instagram-reels":                            operationDefinition{Method: "GET", Path: "/instagram/reels/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "max_id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-age-certifications":               operationDefinition{Method: "GET", Path: "/justwatch/age-certifications", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-discover":                         operationDefinition{Method: "GET", Path: "/justwatch/discover", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "movie", "show"}}, parameterDefinition{Name: "genres", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "providers", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "monetization_types", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"FLATRATE", "FREE", "ADS", "RENT", "BUY"}}, parameterDefinition{Name: "year_min", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "year_max", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-episode-by-id":                    operationDefinition{Method: "GET", Path: "/justwatch/episode/by-id", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-episode-offers":                   operationDefinition{Method: "GET", Path: "/justwatch/episode/offers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "countries", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-genre-titles":                     operationDefinition{Method: "GET", Path: "/justwatch/genre/titles", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "genre", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "movie", "show"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-genres":                           operationDefinition{Method: "GET", Path: "/justwatch/genres", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-monetization-titles":              operationDefinition{Method: "GET", Path: "/justwatch/monetization/titles", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "monetization_type", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"FLATRATE", "FREE", "ADS", "RENT", "BUY"}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "movie", "show"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-new":                              operationDefinition{Method: "GET", Path: "/justwatch/new", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "movie", "show"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-popular":                          operationDefinition{Method: "GET", Path: "/justwatch/popular", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "movie", "show"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-provider-titles":                  operationDefinition{Method: "GET", Path: "/justwatch/provider/titles", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "provider", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "movie", "show"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-providers":                        operationDefinition{Method: "GET", Path: "/justwatch/providers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-search":                           operationDefinition{Method: "GET", Path: "/justwatch/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-season-by-id":                     operationDefinition{Method: "GET", Path: "/justwatch/season/by-id", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-season-episodes":                  operationDefinition{Method: "GET", Path: "/justwatch/season/episodes", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "season_id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-show-seasons":                     operationDefinition{Method: "GET", Path: "/justwatch/show/seasons", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "show_id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-title":                            operationDefinition{Method: "GET", Path: "/justwatch/title", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-title-analysis":                   operationDefinition{Method: "GET", Path: "/justwatch/title/analysis", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-title-by-id":                      operationDefinition{Method: "GET", Path: "/justwatch/title/by-id", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-title-media":                      operationDefinition{Method: "GET", Path: "/justwatch/title/media", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-title-offers":                     operationDefinition{Method: "GET", Path: "/justwatch/title/offers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "countries", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"justwatch-title-similar":                    operationDefinition{Method: "GET", Path: "/justwatch/title/similar", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"linkedin-company":                           operationDefinition{Method: "GET", Path: "/linkedin/company/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"linkedin-product":                           operationDefinition{Method: "GET", Path: "/linkedin/product/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"linkedin-showcase":                          operationDefinition{Method: "GET", Path: "/linkedin/showcase/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ping":                                       operationDefinition{Method: "GET", Path: "/ping", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{}},
+	"producthunt-category":                       operationDefinition{Method: "GET", Path: "/producthunt/category/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"producthunt-category-products":              operationDefinition{Method: "GET", Path: "/producthunt/category/{slug}/products", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "featured_only", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "order", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "tags", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"producthunt-leaderboard":                    operationDefinition{Method: "GET", Path: "/producthunt/leaderboard", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "scope", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"daily", "weekly", "monthly", "yearly"}}, parameterDefinition{Name: "date", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "year", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "month", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "day", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "week", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "featured", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "order", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"producthunt-product":                        operationDefinition{Method: "GET", Path: "/producthunt/product/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"producthunt-about":                          operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/about", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"producthunt-alternatives":                   operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/alternatives", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "first", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "order", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tags", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"producthunt-comments":                       operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/comments", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "order", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "filter", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "threads_cursor", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "replies_cursor", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_thread_for_comment_id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "exclude_thread_for_comment_id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"producthunt-customers":                      operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/customers", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "order", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"customers", "latest_launch"}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"producthunt-launches":                       operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/launches", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "order", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"producthunt-makers":                         operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/makers", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"producthunt-reviews":                        operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/reviews", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"producthunt-search":                         operationDefinition{Method: "GET", Path: "/producthunt/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"product", "user", "launch"}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "featured", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "topics", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ready":                                      operationDefinition{Method: "GET", Path: "/ready", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{}},
+	"referrals-click":                            operationDefinition{Method: "POST", Path: "/referrals/click", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{}},
+	"referrals-me":                               operationDefinition{Method: "GET", Path: "/referrals/me", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
+	"referrals-me-events":                        operationDefinition{Method: "GET", Path: "/referrals/me/events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
+	"similarweb-search":                          operationDefinition{Method: "GET", Path: "/similarweb/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"similarweb-web":                             operationDefinition{Method: "GET", Path: "/similarweb/web/{domain}", PathParams: []string{"domain"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-podcasts-categories":                operationDefinition{Method: "GET", Path: "/spotify-podcasts/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "section_offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "section_limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-podcasts-charts":                    operationDefinition{Method: "GET", Path: "/spotify-podcasts/charts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "chart", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "region", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-podcasts-episode":                   operationDefinition{Method: "GET", Path: "/spotify-podcasts/episode", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-podcasts-home":                      operationDefinition{Method: "GET", Path: "/spotify-podcasts/home", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "section_offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "section_limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-podcasts-search":                    operationDefinition{Method: "GET", Path: "/spotify-podcasts/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "number_of_top_results", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_pre_releases", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_album_pre_releases", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_audiobooks", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_authors", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-podcasts-show":                      operationDefinition{Method: "GET", Path: "/spotify-podcasts/show", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_content_capability_trait", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-podcasts-show-episodes":             operationDefinition{Method: "GET", Path: "/spotify-podcasts/show/episodes", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-podcasts-show-recommendations":      operationDefinition{Method: "GET", Path: "/spotify-podcasts/show/recommendations", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-album":                              operationDefinition{Method: "GET", Path: "/spotify/album", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-album-tracks":                       operationDefinition{Method: "GET", Path: "/spotify/album/tracks", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-albums-search":                      operationDefinition{Method: "GET", Path: "/spotify/albums/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "number_of_top_results", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_audiobooks", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_pre_releases", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_album_pre_releases", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_authors", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-artist":                             operationDefinition{Method: "GET", Path: "/spotify/artist", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-artist-albums":                      operationDefinition{Method: "GET", Path: "/spotify/artist/albums", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "order", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-artist-playlists":                   operationDefinition{Method: "GET", Path: "/spotify/artist/playlists", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-artist-related":                     operationDefinition{Method: "GET", Path: "/spotify/artist/related", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-artists-search":                     operationDefinition{Method: "GET", Path: "/spotify/artists/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-audiobook":                          operationDefinition{Method: "GET", Path: "/spotify/audiobook", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-audiobook-chapters":                 operationDefinition{Method: "GET", Path: "/spotify/audiobook/chapters", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-audiobooks-search":                  operationDefinition{Method: "GET", Path: "/spotify/audiobooks/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "number_of_top_results", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_audiobooks", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_pre_releases", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_album_pre_releases", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_authors", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-chapter":                            operationDefinition{Method: "GET", Path: "/spotify/chapter", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-episodes-search":                    operationDefinition{Method: "GET", Path: "/spotify/episodes/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-featured-charts-by-country":         operationDefinition{Method: "GET", Path: "/spotify/featured-charts-by-country", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country_code", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "content_id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-genre":                              operationDefinition{Method: "GET", Path: "/spotify/genre", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "section_offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "section_limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-home":                               operationDefinition{Method: "GET", Path: "/spotify/home", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "time_zone", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sp_t", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "facet", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "section_items_limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-playlist":                           operationDefinition{Method: "GET", Path: "/spotify/playlist", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "enable_watch_feed_entrypoint", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-playlists-search":                   operationDefinition{Method: "GET", Path: "/spotify/playlists/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "number_of_top_results", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_audiobooks", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_pre_releases", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_album_pre_releases", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_authors", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-popular-by-country":                 operationDefinition{Method: "GET", Path: "/spotify/popular-by-country", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country_code", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-profile":                            operationDefinition{Method: "GET", Path: "/spotify/profile", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "username", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "playlist_limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "artist_limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "episode_limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-profile-followers":                  operationDefinition{Method: "GET", Path: "/spotify/profile/followers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "username", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-profile-playlists":                  operationDefinition{Method: "GET", Path: "/spotify/profile/playlists", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "username", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-profiles-search":                    operationDefinition{Method: "GET", Path: "/spotify/profiles/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "number_of_top_results", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_audiobooks", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_pre_releases", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_album_pre_releases", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_authors", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-search":                             operationDefinition{Method: "GET", Path: "/spotify/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "number_of_top_results", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_audiobooks", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_artist_has_concerts_field", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_pre_releases", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_album_pre_releases", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_authors", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_prefix", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-section":                            operationDefinition{Method: "GET", Path: "/spotify/section", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-shows-search":                       operationDefinition{Method: "GET", Path: "/spotify/shows/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-track":                              operationDefinition{Method: "GET", Path: "/spotify/track", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-track-recommended":                  operationDefinition{Method: "GET", Path: "/spotify/track/recommended", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-track-similar-albums":               operationDefinition{Method: "GET", Path: "/spotify/track/similar-albums", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "albums_only", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"spotify-tracks-search":                      operationDefinition{Method: "GET", Path: "/spotify/tracks/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "number_of_top_results", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_audiobooks", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_pre_releases", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_album_pre_releases", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_authors", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-category":                            operationDefinition{Method: "GET", Path: "/tiktok/category", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-video-comments":                      operationDefinition{Method: "GET", Path: "/tiktok/comments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "aweme_id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-explore":                             operationDefinition{Method: "GET", Path: "/tiktok/explore/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-challenge":                           operationDefinition{Method: "GET", Path: "/tiktok/hashtag/{name}", PathParams: []string{"name"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-challenge-list":                      operationDefinition{Method: "GET", Path: "/tiktok/hashtags", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-popular-trend-country-industry-meta": operationDefinition{Method: "GET", Path: "/tiktok/popular-trend/country-industry-meta", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-popular-trend-creator":               operationDefinition{Method: "GET", Path: "/tiktok/popular-trend/creator", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_by", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"follower", "engagement", "avg_views"}}, parameterDefinition{Name: "creator_country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "audience_count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"1", "2", "3", "4"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-popular-trend-video":                 operationDefinition{Method: "GET", Path: "/tiktok/popular-trend/video", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country_code", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "order_by", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"vv", "like", "comment", "repost"}}, parameterDefinition{Name: "period", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"7", "30"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-post":                                operationDefinition{Method: "GET", Path: "/tiktok/post/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-profile-post":                        operationDefinition{Method: "GET", Path: "/tiktok/posts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "secUid", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_type", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"0", "1", "2"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-profile":                             operationDefinition{Method: "GET", Path: "/tiktok/profile/{handler}", PathParams: []string{"handler"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-search":                              operationDefinition{Method: "GET", Path: "/tiktok/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "keyword", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-search-hashtag":                      operationDefinition{Method: "GET", Path: "/tiktok/search/hashtag", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "keyword", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-search-user":                         operationDefinition{Method: "GET", Path: "/tiktok/search/user", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "keyword", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cursor", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-top-ads-analysis":                    operationDefinition{Method: "GET", Path: "/tiktok/top-ads/analysis", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "material_id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "metric", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"retain_ctr", "retain_cvr", "click_cnt", "convert_cnt", "play_retain_cnt"}}, parameterDefinition{Name: "period_type", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"7", "30", "180"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-top-ads-detail":                      operationDefinition{Method: "GET", Path: "/tiktok/top-ads/detail", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "material_id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-top-ads-filters":                     operationDefinition{Method: "GET", Path: "/tiktok/top-ads/filters", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-top-ads-list":                        operationDefinition{Method: "GET", Path: "/tiktok/top-ads/list", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "period", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"7", "30", "180"}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "order_by", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"for_you", "impression", "ctr", "play_2s_rate", "play_6s_rate", "cvr", "like"}}, parameterDefinition{Name: "country_code", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "keyword", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "industry", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "objective", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ad_language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "pattern_label", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "duration", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"time-2", "time-3", "time-4", "time-5", "time-6", "time-7"}}, parameterDefinition{Name: "like", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"1", "2", "3", "4", "5"}}, parameterDefinition{Name: "ad_format", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"1", "2"}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-top-ads-location-info":               operationDefinition{Method: "GET", Path: "/tiktok/top-ads/location-info", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "module", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-top-ads-locations":                   operationDefinition{Method: "GET", Path: "/tiktok/top-ads/locations", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-top-ads-recommend":                   operationDefinition{Method: "GET", Path: "/tiktok/top-ads/recommend", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "material_id", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-top-ads-safety":                      operationDefinition{Method: "GET", Path: "/tiktok/top-ads/safety", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-top-ads-spotlight":                   operationDefinition{Method: "GET", Path: "/tiktok/top-ads/spotlight", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-top-ads-suggestions":                 operationDefinition{Method: "GET", Path: "/tiktok/top-ads/suggestions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "scenario", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tiktok-trending":                            operationDefinition{Method: "GET", Path: "/tiktok/trending", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tripadvisor-autocomplete":                   operationDefinition{Method: "GET", Path: "/tripadvisor/autocomplete", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "locale", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "scope_geo_id", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "search_session_id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "typeahead_id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "route_uid", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tripadvisor-enums":                          operationDefinition{Method: "GET", Path: "/tripadvisor/enums", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tripadvisor-hotels":                         operationDefinition{Method: "GET", Path: "/tripadvisor/hotels", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "geo_id", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "filter_id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "class", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "amenities", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "price_min", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "price_max", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "pricing_mode", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "travelers_choice", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "travelers_choice_botb", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tripadvisor-place":                          operationDefinition{Method: "GET", Path: "/tripadvisor/place", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tripadvisor-reviews":                        operationDefinition{Method: "GET", Path: "/tripadvisor/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_type", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_by", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ratings", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "do_machine_translation", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "photos_per_review_limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tripadvisor-search":                         operationDefinition{Method: "GET", Path: "/tripadvisor/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "geo_id", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "filter_id", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "class", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "amenities", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "price_min", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "price_max", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "pricing_mode", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "travelers_choice", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "travelers_choice_botb", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "restaurant_date", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "restaurant_time", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "restaurant_guests", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "establishment_types", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "online_options", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "locale", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "currency", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"trustpilot-business-search":                 operationDefinition{Method: "GET", Path: "/trustpilot/business-units/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"trustpilot-business":                        operationDefinition{Method: "GET", Path: "/trustpilot/business/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"trustpilot-business-related":                operationDefinition{Method: "GET", Path: "/trustpilot/business/{slug}/related", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"trustpilot-business-reviews":                operationDefinition{Method: "GET", Path: "/trustpilot/business/{slug}/reviews", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "stars", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "verified", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "replied", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_from", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"trustpilot-categories":                      operationDefinition{Method: "GET", Path: "/trustpilot/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"trustpilot-category-search":                 operationDefinition{Method: "GET", Path: "/trustpilot/categories/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "locale", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "size", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"trustpilot-category":                        operationDefinition{Method: "GET", Path: "/trustpilot/category/{slug}", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"usage-me-endpoints":                         operationDefinition{Method: "GET", Path: "/usage/me/endpoints", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "range", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"period", "day", "week", "month", "custom"}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "from", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
+	"usage-me-overview":                          operationDefinition{Method: "GET", Path: "/usage/me/overview", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "range", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"period", "day", "week", "month", "custom"}}, parameterDefinition{Name: "from", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
+	"usage-me-recent-ips":                        operationDefinition{Method: "GET", Path: "/usage/me/recent-ips", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "range", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"period", "day", "week", "month", "custom"}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "from", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
+	"usage-me-timeseries":                        operationDefinition{Method: "GET", Path: "/usage/me/timeseries", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "range", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"period", "day", "week", "month", "custom"}}, parameterDefinition{Name: "bucket", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day"}}, parameterDefinition{Name: "endpoint", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "from", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
+	"user-me":                                    operationDefinition{Method: "GET", Path: "/user/me", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
+	"user-me-api-keys":                           operationDefinition{Method: "GET", Path: "/user/me/api-keys", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
+	"user-me-api-keys-rotate":                    operationDefinition{Method: "POST", Path: "/user/me/api-keys/rotate", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
+	"user-me-api-keys-reveal":                    operationDefinition{Method: "POST", Path: "/user/me/api-keys/{id}/reveal", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
+	"web-parse":                                  operationDefinition{Method: "POST", Path: "/web/", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "parseWebOption", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-calendars":                    operationDefinition{Method: "GET", Path: "/yahoo-finance/calendars", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-calendar":                     operationDefinition{Method: "GET", Path: "/yahoo-finance/calendars/{type}", PathParams: []string{"type"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "start", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "end", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "market_cap", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "filter_most_active", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-download":                     operationDefinition{Method: "POST", Path: "/yahoo-finance/download", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-industries":                   operationDefinition{Method: "GET", Path: "/yahoo-finance/industries", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-industry":                     operationDefinition{Method: "GET", Path: "/yahoo-finance/industries/{key}", PathParams: []string{"key"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-market-status":                operationDefinition{Method: "GET", Path: "/yahoo-finance/market/{market}/status", PathParams: []string{"market"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-market-summary":               operationDefinition{Method: "GET", Path: "/yahoo-finance/market/{market}/summary", PathParams: []string{"market"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-screener-custom":              operationDefinition{Method: "POST", Path: "/yahoo-finance/screener", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-screener":                     operationDefinition{Method: "GET", Path: "/yahoo-finance/screener/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_field", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_asc", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-screeners":                    operationDefinition{Method: "GET", Path: "/yahoo-finance/screeners", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-search":                       operationDefinition{Method: "GET", Path: "/yahoo-finance/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "quotes_count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "news_count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "lists_count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_research", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "enable_fuzzy_query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-sectors":                      operationDefinition{Method: "GET", Path: "/yahoo-finance/sectors", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-sector":                       operationDefinition{Method: "GET", Path: "/yahoo-finance/sectors/{key}", PathParams: []string{"key"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-actions":               operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/actions", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-analysts":              operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/analysts", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-calendar":              operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/calendar", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-capital-gains":         operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/capital-gains", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-dividends":             operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/dividends", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-earnings":              operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/earnings", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-earnings-dates":        operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/earnings-dates", PathParams: []string{"symbol"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-financials":            operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/financials", PathParams: []string{"symbol"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "statement", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "period", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-funds":                 operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/funds", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-history":               operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/history", PathParams: []string{"symbol"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "period", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "start", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "end", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "interval", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_prepost", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_actions", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "auto_adjust", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "back_adjust", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "keepna", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "rounding", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-history-metadata":      operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/history-metadata", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-holders":               operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/holders", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-info":                  operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/info", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-isin":                  operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/isin", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-news":                  operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/news", PathParams: []string{"symbol"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "tab", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-options":               operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/options", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-options-expiration":    operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/options/{expiration}", PathParams: []string{"symbol", "expiration"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-quote":                 operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/quote", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-sec-filings":           operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/sec-filings", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-shares":                operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/shares", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-shares-full":           operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/shares-full", PathParams: []string{"symbol"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "start", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "end", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-splits":                operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/splits", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-sustainability":        operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/sustainability", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-ticker-valuation":             operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/valuation", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-trending":                     operationDefinition{Method: "GET", Path: "/yahoo-finance/trending/{region}", PathParams: []string{"region"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "count", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"youtube-captions":                           operationDefinition{Method: "GET", Path: "/youtube/captions/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"youtube-channel-playlists":                  operationDefinition{Method: "GET", Path: "/youtube/channel/{id}/playlists", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "continuation_token", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"youtube-channel-search":                     operationDefinition{Method: "GET", Path: "/youtube/channel/{id}/search", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "continuation_token", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"youtube-channel-shorts":                     operationDefinition{Method: "GET", Path: "/youtube/channel/{id}/shorts", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"youtube-channel-videos":                     operationDefinition{Method: "GET", Path: "/youtube/channel/{id}/videos", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "continuation_token", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"youtube-comments":                           operationDefinition{Method: "GET", Path: "/youtube/comments/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "continuation_token", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"youtube-playlist":                           operationDefinition{Method: "GET", Path: "/youtube/playlist/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "continuation_token", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"youtube-profile":                            operationDefinition{Method: "GET", Path: "/youtube/profile/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"youtube-search":                             operationDefinition{Method: "GET", Path: "/youtube/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "search_query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "continuation_token", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"video", "channel", "playlist", "movie"}}, parameterDefinition{Name: "sort_by", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "upload_date", "view_count", "rating"}}, parameterDefinition{Name: "upload_date", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"last_hour", "today", "this_week", "this_month", "this_year"}}, parameterDefinition{Name: "duration", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"short", "medium", "long"}}, parameterDefinition{Name: "features", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "params", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"youtube-tag":                                operationDefinition{Method: "GET", Path: "/youtube/tag/{tag}", PathParams: []string{"tag"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "type", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "shorts"}}, parameterDefinition{Name: "continuation_token", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"youtube-transcript":                         operationDefinition{Method: "GET", Path: "/youtube/transcript/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lang", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "translate_to", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "format", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"json", "text", "srt", "vtt"}}, parameterDefinition{Name: "timestamps", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json", "text/plain"}, Security: []string{"ApiKeyAuth"}},
+	"youtube-transcript-languages":               operationDefinition{Method: "GET", Path: "/youtube/transcript/{id}/languages", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"youtube-video":                              operationDefinition{Method: "GET", Path: "/youtube/video/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"zillow-autocomplete":                        operationDefinition{Method: "GET", Path: "/zillow/autocomplete", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "status", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"zillow-property":                            operationDefinition{Method: "GET", Path: "/zillow/property/{zpid}", PathParams: []string{"zpid"}, QueryParams: nil, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"zillow-search":                              operationDefinition{Method: "GET", Path: "/zillow/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "location", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "status", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "region_id", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "region_type", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "west", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "east", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "south", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "north", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 }
 
 type Services struct {
@@ -419,1340 +425,1340 @@ func initServices(c *Client) Services {
 
 type AirbnbService struct{ client *Client }
 
-func (s *AirbnbService) Room(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "airbnb-room", params)
+func (s *AirbnbService) Room(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "airbnb-room", params, opts...)
 }
 
-func (s *AirbnbService) RoomCalendar(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "airbnb-room-calendar", params)
+func (s *AirbnbService) RoomCalendar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "airbnb-room-calendar", params, opts...)
 }
 
-func (s *AirbnbService) RoomReviews(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "airbnb-room-reviews", params)
+func (s *AirbnbService) RoomReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "airbnb-room-reviews", params, opts...)
 }
 
-func (s *AirbnbService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "airbnb-search", params)
+func (s *AirbnbService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "airbnb-search", params, opts...)
 }
 
 type AmazonService struct{ client *Client }
 
-func (s *AmazonService) Product(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "amazon-product", params)
+func (s *AmazonService) Product(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "amazon-product", params, opts...)
 }
 
-func (s *AmazonService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "amazon-search", params)
+func (s *AmazonService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "amazon-search", params, opts...)
 }
 
-func (s *AmazonService) Suggest(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "amazon-suggest", params)
+func (s *AmazonService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "amazon-suggest", params, opts...)
 }
 
 type ApplePodcastsService struct{ client *Client }
 
-func (s *ApplePodcastsService) Charts(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "apple-podcasts-charts", params)
+func (s *ApplePodcastsService) Charts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "apple-podcasts-charts", params, opts...)
 }
 
-func (s *ApplePodcastsService) EpisodesSearch(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "apple-podcasts-episodes-search", params)
+func (s *ApplePodcastsService) EpisodesSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "apple-podcasts-episodes-search", params, opts...)
 }
 
-func (s *ApplePodcastsService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "apple-podcasts-search", params)
+func (s *ApplePodcastsService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "apple-podcasts-search", params, opts...)
 }
 
-func (s *ApplePodcastsService) Show(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "apple-podcasts-show", params)
+func (s *ApplePodcastsService) Show(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "apple-podcasts-show", params, opts...)
 }
 
-func (s *ApplePodcastsService) ShowEpisodes(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "apple-podcasts-show-episodes", params)
+func (s *ApplePodcastsService) ShowEpisodes(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "apple-podcasts-show-episodes", params, opts...)
 }
 
 type AppStoreService struct{ client *Client }
 
-func (s *AppStoreService) App(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "appstore-app", params)
+func (s *AppStoreService) App(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "appstore-app", params, opts...)
 }
 
-func (s *AppStoreService) Developer(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "appstore-developer", params)
+func (s *AppStoreService) Developer(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "appstore-developer", params, opts...)
 }
 
-func (s *AppStoreService) List(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "appstore-list", params)
+func (s *AppStoreService) List(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "appstore-list", params, opts...)
 }
 
-func (s *AppStoreService) Privacy(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "appstore-privacy", params)
+func (s *AppStoreService) Privacy(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "appstore-privacy", params, opts...)
 }
 
-func (s *AppStoreService) Ratings(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "appstore-ratings", params)
+func (s *AppStoreService) Ratings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "appstore-ratings", params, opts...)
 }
 
-func (s *AppStoreService) Reviews(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "appstore-reviews", params)
+func (s *AppStoreService) Reviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "appstore-reviews", params, opts...)
 }
 
-func (s *AppStoreService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "appstore-search", params)
+func (s *AppStoreService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "appstore-search", params, opts...)
 }
 
-func (s *AppStoreService) Similar(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "appstore-similar", params)
+func (s *AppStoreService) Similar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "appstore-similar", params, opts...)
 }
 
-func (s *AppStoreService) Suggest(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "appstore-suggest", params)
+func (s *AppStoreService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "appstore-suggest", params, opts...)
 }
 
-func (s *AppStoreService) VersionHistory(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "appstore-version-history", params)
+func (s *AppStoreService) VersionHistory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "appstore-version-history", params, opts...)
 }
 
 type BillingService struct{ client *Client }
 
-func (s *BillingService) Me(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "billing-me", params)
+func (s *BillingService) Me(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "billing-me", params, opts...)
 }
 
-func (s *BillingService) MeCheckout(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "billing-me-checkout", params)
+func (s *BillingService) MeCheckout(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "billing-me-checkout", params, opts...)
 }
 
-func (s *BillingService) MeEvents(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "billing-me-events", params)
+func (s *BillingService) MeEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "billing-me-events", params, opts...)
 }
 
-func (s *BillingService) MePeriods(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "billing-me-periods", params)
+func (s *BillingService) MePeriods(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "billing-me-periods", params, opts...)
 }
 
-func (s *BillingService) MePeriod(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "billing-me-period", params)
+func (s *BillingService) MePeriod(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "billing-me-period", params, opts...)
 }
 
-func (s *BillingService) MePeriodStatement(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "billing-me-period-statement", params)
+func (s *BillingService) MePeriodStatement(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "billing-me-period-statement", params, opts...)
 }
 
-func (s *BillingService) MePeriodStatementDownload(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "billing-me-period-statement-download", params)
+func (s *BillingService) MePeriodStatementDownload(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "billing-me-period-statement-download", params, opts...)
 }
 
-func (s *BillingService) MePortal(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "billing-me-portal", params)
+func (s *BillingService) MePortal(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "billing-me-portal", params, opts...)
 }
 
 type BingService struct{ client *Client }
 
-func (s *BingService) Images(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "bing-images", params)
+func (s *BingService) Images(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bing-images", params, opts...)
 }
 
-func (s *BingService) News(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "bing-news", params)
+func (s *BingService) News(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bing-news", params, opts...)
 }
 
-func (s *BingService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "bing-search", params)
+func (s *BingService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bing-search", params, opts...)
 }
 
-func (s *BingService) Suggest(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "bing-suggest", params)
+func (s *BingService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bing-suggest", params, opts...)
 }
 
-func (s *BingService) Videos(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "bing-videos", params)
+func (s *BingService) Videos(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bing-videos", params, opts...)
 }
 
 type BraveService struct{ client *Client }
 
-func (s *BraveService) Images(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "brave-images", params)
+func (s *BraveService) Images(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "brave-images", params, opts...)
 }
 
-func (s *BraveService) News(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "brave-news", params)
+func (s *BraveService) News(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "brave-news", params, opts...)
 }
 
-func (s *BraveService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "brave-search", params)
+func (s *BraveService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "brave-search", params, opts...)
 }
 
-func (s *BraveService) Suggest(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "brave-suggest", params)
+func (s *BraveService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "brave-suggest", params, opts...)
 }
 
-func (s *BraveService) Videos(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "brave-videos", params)
+func (s *BraveService) Videos(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "brave-videos", params, opts...)
 }
 
 type CoinGeckoService struct{ client *Client }
 
-func (s *CoinGeckoService) Categories(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-categories", params)
+func (s *CoinGeckoService) Categories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-categories", params, opts...)
 }
 
-func (s *CoinGeckoService) CategoryCoins(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-category-coins", params)
+func (s *CoinGeckoService) CategoryCoins(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-category-coins", params, opts...)
 }
 
-func (s *CoinGeckoService) Chains(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-chains", params)
+func (s *CoinGeckoService) Chains(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-chains", params, opts...)
 }
 
-func (s *CoinGeckoService) Chain(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-chain", params)
+func (s *CoinGeckoService) Chain(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-chain", params, opts...)
 }
 
-func (s *CoinGeckoService) Coin(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-coin", params)
+func (s *CoinGeckoService) Coin(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-coin", params, opts...)
 }
 
-func (s *CoinGeckoService) CoinAnalysis(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-coin-analysis", params)
+func (s *CoinGeckoService) CoinAnalysis(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-coin-analysis", params, opts...)
 }
 
-func (s *CoinGeckoService) Exchange(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-exchange", params)
+func (s *CoinGeckoService) Exchange(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-exchange", params, opts...)
 }
 
-func (s *CoinGeckoService) Exchanges(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-exchanges", params)
+func (s *CoinGeckoService) Exchanges(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-exchanges", params, opts...)
 }
 
-func (s *CoinGeckoService) GainersLosers(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-gainers-losers", params)
+func (s *CoinGeckoService) GainersLosers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-gainers-losers", params, opts...)
 }
 
-func (s *CoinGeckoService) Global(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-global", params)
+func (s *CoinGeckoService) Global(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-global", params, opts...)
 }
 
-func (s *CoinGeckoService) GlobalCharts(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-global-charts", params)
+func (s *CoinGeckoService) GlobalCharts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-global-charts", params, opts...)
 }
 
-func (s *CoinGeckoService) LearnArticles(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-learn-articles", params)
+func (s *CoinGeckoService) LearnArticles(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-learn-articles", params, opts...)
 }
 
-func (s *CoinGeckoService) Markets(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-markets", params)
+func (s *CoinGeckoService) Markets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-markets", params, opts...)
 }
 
-func (s *CoinGeckoService) NewCoins(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-new-coins", params)
+func (s *CoinGeckoService) NewCoins(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-new-coins", params, opts...)
 }
 
-func (s *CoinGeckoService) News(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-news", params)
+func (s *CoinGeckoService) News(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-news", params, opts...)
 }
 
-func (s *CoinGeckoService) NftCategory(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-nft-category", params)
+func (s *CoinGeckoService) NftCategory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-nft-category", params, opts...)
 }
 
-func (s *CoinGeckoService) Nfts(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-nfts", params)
+func (s *CoinGeckoService) Nfts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-nfts", params, opts...)
 }
 
-func (s *CoinGeckoService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-search", params)
+func (s *CoinGeckoService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-search", params, opts...)
 }
 
-func (s *CoinGeckoService) TokenUnlocks(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-token-unlocks", params)
+func (s *CoinGeckoService) TokenUnlocks(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-token-unlocks", params, opts...)
 }
 
-func (s *CoinGeckoService) Treasuries(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-treasuries", params)
+func (s *CoinGeckoService) Treasuries(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-treasuries", params, opts...)
 }
 
-func (s *CoinGeckoService) Trending(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "coingecko-trending", params)
+func (s *CoinGeckoService) Trending(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "coingecko-trending", params, opts...)
 }
 
 type WebService struct{ client *Client }
 
-func (s *WebService) Contact(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "web-contact", params)
+func (s *WebService) Contact(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "web-contact", params, opts...)
 }
 
-func (s *WebService) Parse(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "web-parse", params)
+func (s *WebService) Parse(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "web-parse", params, opts...)
 }
 
 type CrunchbaseService struct{ client *Client }
 
-func (s *CrunchbaseService) Organization(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "crunchbase-organization", params)
+func (s *CrunchbaseService) Organization(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "crunchbase-organization", params, opts...)
 }
 
-func (s *CrunchbaseService) Person(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "crunchbase-person", params)
+func (s *CrunchbaseService) Person(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "crunchbase-person", params, opts...)
 }
 
 type DatasetsService struct{ client *Client }
 
-func (s *DatasetsService) List(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "datasets-list", params)
+func (s *DatasetsService) List(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-list", params, opts...)
 }
 
-func (s *DatasetsService) GoogleMapBusinessesFacets(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "datasets-google-map-businesses-facets", params)
+func (s *DatasetsService) GoogleMapBusinessesFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-google-map-businesses-facets", params, opts...)
 }
 
-func (s *DatasetsService) GoogleMapBusinessesItem(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "datasets-google-map-businesses-item", params)
+func (s *DatasetsService) GoogleMapBusinessesItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-google-map-businesses-item", params, opts...)
 }
 
-func (s *DatasetsService) GoogleMapBusinessesNearby(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "datasets-google-map-businesses-nearby", params)
+func (s *DatasetsService) GoogleMapBusinessesNearby(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-google-map-businesses-nearby", params, opts...)
 }
 
-func (s *DatasetsService) GoogleMapBusinessesSearch(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "datasets-google-map-businesses-search", params)
+func (s *DatasetsService) GoogleMapBusinessesSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-google-map-businesses-search", params, opts...)
 }
 
 type EBayService struct{ client *Client }
 
-func (s *EBayService) EbayItem(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "ebay-item", params)
+func (s *EBayService) EbayItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ebay-item", params, opts...)
 }
 
-func (s *EBayService) EbaySearch(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "ebay-search", params)
+func (s *EBayService) EbaySearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ebay-search", params, opts...)
 }
 
-func (s *EBayService) EbaySeller(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "ebay-seller", params)
+func (s *EBayService) EbaySeller(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ebay-seller", params, opts...)
 }
 
-func (s *EBayService) EbaySellerAbout(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "ebay-seller-about", params)
+func (s *EBayService) EbaySellerAbout(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ebay-seller-about", params, opts...)
 }
 
-func (s *EBayService) EbaySellerFeedback(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "ebay-seller-feedback", params)
+func (s *EBayService) EbaySellerFeedback(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ebay-seller-feedback", params, opts...)
 }
 
-func (s *EBayService) EbaySellerShop(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "ebay-seller-shop", params)
+func (s *EBayService) EbaySellerShop(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ebay-seller-shop", params, opts...)
 }
 
 type EtsyService struct{ client *Client }
 
-func (s *EtsyService) Listing(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "etsy-listing", params)
+func (s *EtsyService) Listing(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "etsy-listing", params, opts...)
 }
 
-func (s *EtsyService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "etsy-search", params)
+func (s *EtsyService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "etsy-search", params, opts...)
 }
 
-func (s *EtsyService) Shop(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "etsy-shop", params)
+func (s *EtsyService) Shop(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "etsy-shop", params, opts...)
 }
 
 type FacebookService struct{ client *Client }
 
-func (s *FacebookService) Page(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "facebook-page", params)
+func (s *FacebookService) Page(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "facebook-page", params, opts...)
 }
 
 type GeocodingService struct{ client *Client }
 
-func (s *GeocodingService) Lookup(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "geocoding-lookup", params)
+func (s *GeocodingService) Lookup(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "geocoding-lookup", params, opts...)
 }
 
-func (s *GeocodingService) Reverse(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "geocoding-reverse", params)
+func (s *GeocodingService) Reverse(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "geocoding-reverse", params, opts...)
 }
 
-func (s *GeocodingService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "geocoding-search", params)
+func (s *GeocodingService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "geocoding-search", params, opts...)
 }
 
 type GoogleService struct{ client *Client }
 
-func (s *GoogleService) FinanceAnalystArticles(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-analyst-articles", params)
+func (s *GoogleService) FinanceAnalystArticles(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-analyst-articles", params, opts...)
 }
 
-func (s *GoogleService) FinanceChart(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-chart", params)
+func (s *GoogleService) FinanceChart(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-chart", params, opts...)
 }
 
-func (s *GoogleService) FinanceClassification(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-classification", params)
+func (s *GoogleService) FinanceClassification(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-classification", params, opts...)
 }
 
-func (s *GoogleService) FinanceCompany(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-company", params)
+func (s *GoogleService) FinanceCompany(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-company", params, opts...)
 }
 
-func (s *GoogleService) FinanceContext(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-context", params)
+func (s *GoogleService) FinanceContext(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-context", params, opts...)
 }
 
-func (s *GoogleService) FinanceFinancials(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-financials", params)
+func (s *GoogleService) FinanceFinancials(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-financials", params, opts...)
 }
 
-func (s *GoogleService) FinanceMarketsCategoryNews(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-markets-category-news", params)
+func (s *GoogleService) FinanceMarketsCategoryNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-markets-category-news", params, opts...)
 }
 
-func (s *GoogleService) FinanceMarketsCategoryStocks(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-markets-category-stocks", params)
+func (s *GoogleService) FinanceMarketsCategoryStocks(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-markets-category-stocks", params, opts...)
 }
 
-func (s *GoogleService) FinanceMarketsEarnings(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-markets-earnings", params)
+func (s *GoogleService) FinanceMarketsEarnings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-markets-earnings", params, opts...)
 }
 
-func (s *GoogleService) FinanceMarketsFeatured(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-markets-featured", params)
+func (s *GoogleService) FinanceMarketsFeatured(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-markets-featured", params, opts...)
 }
 
-func (s *GoogleService) FinanceMarketsHeadline(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-markets-headline", params)
+func (s *GoogleService) FinanceMarketsHeadline(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-markets-headline", params, opts...)
 }
 
-func (s *GoogleService) FinanceMarketsIndices(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-markets-indices", params)
+func (s *GoogleService) FinanceMarketsIndices(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-markets-indices", params, opts...)
 }
 
-func (s *GoogleService) FinanceMarketsMovers(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-markets-movers", params)
+func (s *GoogleService) FinanceMarketsMovers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-markets-movers", params, opts...)
 }
 
-func (s *GoogleService) FinanceMarketsTop(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-markets-top", params)
+func (s *GoogleService) FinanceMarketsTop(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-markets-top", params, opts...)
 }
 
-func (s *GoogleService) FinanceMarketsTrending(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-markets-trending", params)
+func (s *GoogleService) FinanceMarketsTrending(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-markets-trending", params, opts...)
 }
 
-func (s *GoogleService) FinanceNews(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-news", params)
+func (s *GoogleService) FinanceNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-news", params, opts...)
 }
 
-func (s *GoogleService) FinanceQuote(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-quote", params)
+func (s *GoogleService) FinanceQuote(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-quote", params, opts...)
 }
 
-func (s *GoogleService) FinanceRelated(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-related", params)
+func (s *GoogleService) FinanceRelated(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-related", params, opts...)
 }
 
-func (s *GoogleService) FinanceSearch(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-search", params)
+func (s *GoogleService) FinanceSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-search", params, opts...)
 }
 
-func (s *GoogleService) FinanceTicker(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-finance-ticker", params)
+func (s *GoogleService) FinanceTicker(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-finance-ticker", params, opts...)
 }
 
-func (s *GoogleService) Image(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-image", params)
+func (s *GoogleService) Image(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-image", params, opts...)
 }
 
-func (s *GoogleService) Jobs(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-jobs", params)
+func (s *GoogleService) Jobs(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-jobs", params, opts...)
 }
 
-func (s *GoogleService) Lens(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-lens", params)
+func (s *GoogleService) Lens(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-lens", params, opts...)
 }
 
-func (s *GoogleService) MapPlace(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-map-place", params)
+func (s *GoogleService) MapPlace(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-map-place", params, opts...)
 }
 
-func (s *GoogleService) MapSearch(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-map-search", params)
+func (s *GoogleService) MapSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-map-search", params, opts...)
 }
 
-func (s *GoogleService) NewsDeprecated(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-news-deprecated", params)
+func (s *GoogleService) NewsDeprecated(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-news-deprecated", params, opts...)
 }
 
-func (s *GoogleService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-search", params)
+func (s *GoogleService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-search", params, opts...)
 }
 
-func (s *GoogleService) Shopping(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-shopping", params)
+func (s *GoogleService) Shopping(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-shopping", params, opts...)
 }
 
-func (s *GoogleService) ShoppingDetail(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-shopping-detail", params)
+func (s *GoogleService) ShoppingDetail(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-shopping-detail", params, opts...)
 }
 
-func (s *GoogleService) Suggest(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-suggest", params)
+func (s *GoogleService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-suggest", params, opts...)
 }
 
-func (s *GoogleService) TrendsCategories(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-trends-categories", params)
+func (s *GoogleService) TrendsCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-trends-categories", params, opts...)
 }
 
-func (s *GoogleService) TrendsEnums(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-trends-enums", params)
+func (s *GoogleService) TrendsEnums(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-trends-enums", params, opts...)
 }
 
-func (s *GoogleService) TrendsExplore(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-trends-explore", params)
+func (s *GoogleService) TrendsExplore(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-trends-explore", params, opts...)
 }
 
-func (s *GoogleService) TrendsExploreInterestByRegion(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-trends-explore-interest-by-region", params)
+func (s *GoogleService) TrendsExploreInterestByRegion(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-trends-explore-interest-by-region", params, opts...)
 }
 
-func (s *GoogleService) TrendsExploreInterestOverTime(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-trends-explore-interest-over-time", params)
+func (s *GoogleService) TrendsExploreInterestOverTime(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-trends-explore-interest-over-time", params, opts...)
 }
 
-func (s *GoogleService) TrendsExploreRelatedTopics(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-trends-explore-related-topics", params)
+func (s *GoogleService) TrendsExploreRelatedTopics(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-trends-explore-related-topics", params, opts...)
 }
 
-func (s *GoogleService) TrendsExploreRisingQueries(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-trends-explore-rising-queries", params)
+func (s *GoogleService) TrendsExploreRisingQueries(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-trends-explore-rising-queries", params, opts...)
 }
 
-func (s *GoogleService) TrendsExploreTopQueries(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-trends-explore-top-queries", params)
+func (s *GoogleService) TrendsExploreTopQueries(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-trends-explore-top-queries", params, opts...)
 }
 
-func (s *GoogleService) TrendsLocations(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-trends-locations", params)
+func (s *GoogleService) TrendsLocations(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-trends-locations", params, opts...)
 }
 
-func (s *GoogleService) TrendsTrending(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-trends-trending", params)
+func (s *GoogleService) TrendsTrending(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-trends-trending", params, opts...)
 }
 
-func (s *GoogleService) TrendsTrendingDetail(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "google-trends-trending-detail", params)
+func (s *GoogleService) TrendsTrendingDetail(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-trends-trending-detail", params, opts...)
 }
 
 type GooglePlayService struct{ client *Client }
 
-func (s *GooglePlayService) App(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "googleplay-app", params)
+func (s *GooglePlayService) App(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "googleplay-app", params, opts...)
 }
 
-func (s *GooglePlayService) Categories(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "googleplay-categories", params)
+func (s *GooglePlayService) Categories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "googleplay-categories", params, opts...)
 }
 
-func (s *GooglePlayService) Datasafety(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "googleplay-datasafety", params)
+func (s *GooglePlayService) Datasafety(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "googleplay-datasafety", params, opts...)
 }
 
-func (s *GooglePlayService) Developer(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "googleplay-developer", params)
+func (s *GooglePlayService) Developer(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "googleplay-developer", params, opts...)
 }
 
-func (s *GooglePlayService) List(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "googleplay-list", params)
+func (s *GooglePlayService) List(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "googleplay-list", params, opts...)
 }
 
-func (s *GooglePlayService) Permissions(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "googleplay-permissions", params)
+func (s *GooglePlayService) Permissions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "googleplay-permissions", params, opts...)
 }
 
-func (s *GooglePlayService) Reviews(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "googleplay-reviews", params)
+func (s *GooglePlayService) Reviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "googleplay-reviews", params, opts...)
 }
 
-func (s *GooglePlayService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "googleplay-search", params)
+func (s *GooglePlayService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "googleplay-search", params, opts...)
 }
 
-func (s *GooglePlayService) Similar(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "googleplay-similar", params)
+func (s *GooglePlayService) Similar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "googleplay-similar", params, opts...)
 }
 
-func (s *GooglePlayService) Suggest(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "googleplay-suggest", params)
+func (s *GooglePlayService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "googleplay-suggest", params, opts...)
 }
 
 type InstagramService struct{ client *Client }
 
-func (s *InstagramService) Post(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "instagram-post", params)
+func (s *InstagramService) Post(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "instagram-post", params, opts...)
 }
 
-func (s *InstagramService) Profile(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "instagram-profile", params)
+func (s *InstagramService) Profile(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "instagram-profile", params, opts...)
 }
 
-func (s *InstagramService) Reels(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "instagram-reels", params)
+func (s *InstagramService) Reels(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "instagram-reels", params, opts...)
 }
 
 type JustWatchService struct{ client *Client }
 
-func (s *JustWatchService) JustwatchAgeCertifications(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-age-certifications", params)
+func (s *JustWatchService) JustwatchAgeCertifications(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-age-certifications", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchDiscover(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-discover", params)
+func (s *JustWatchService) JustwatchDiscover(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-discover", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchEpisodeById(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-episode-by-id", params)
+func (s *JustWatchService) JustwatchEpisodeById(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-episode-by-id", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchEpisodeOffers(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-episode-offers", params)
+func (s *JustWatchService) JustwatchEpisodeOffers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-episode-offers", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchGenreTitles(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-genre-titles", params)
+func (s *JustWatchService) JustwatchGenreTitles(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-genre-titles", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchGenres(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-genres", params)
+func (s *JustWatchService) JustwatchGenres(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-genres", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchMonetizationTitles(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-monetization-titles", params)
+func (s *JustWatchService) JustwatchMonetizationTitles(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-monetization-titles", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchNew(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-new", params)
+func (s *JustWatchService) JustwatchNew(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-new", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchPopular(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-popular", params)
+func (s *JustWatchService) JustwatchPopular(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-popular", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchProviderTitles(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-provider-titles", params)
+func (s *JustWatchService) JustwatchProviderTitles(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-provider-titles", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchProviders(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-providers", params)
+func (s *JustWatchService) JustwatchProviders(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-providers", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchSearch(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-search", params)
+func (s *JustWatchService) JustwatchSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-search", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchSeasonById(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-season-by-id", params)
+func (s *JustWatchService) JustwatchSeasonById(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-season-by-id", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchSeasonEpisodes(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-season-episodes", params)
+func (s *JustWatchService) JustwatchSeasonEpisodes(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-season-episodes", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchShowSeasons(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-show-seasons", params)
+func (s *JustWatchService) JustwatchShowSeasons(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-show-seasons", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchTitle(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-title", params)
+func (s *JustWatchService) JustwatchTitle(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-title", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchTitleAnalysis(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-title-analysis", params)
+func (s *JustWatchService) JustwatchTitleAnalysis(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-title-analysis", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchTitleById(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-title-by-id", params)
+func (s *JustWatchService) JustwatchTitleById(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-title-by-id", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchTitleMedia(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-title-media", params)
+func (s *JustWatchService) JustwatchTitleMedia(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-title-media", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchTitleOffers(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-title-offers", params)
+func (s *JustWatchService) JustwatchTitleOffers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-title-offers", params, opts...)
 }
 
-func (s *JustWatchService) JustwatchTitleSimilar(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "justwatch-title-similar", params)
+func (s *JustWatchService) JustwatchTitleSimilar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "justwatch-title-similar", params, opts...)
 }
 
 type LinkedInService struct{ client *Client }
 
-func (s *LinkedInService) LinkedinCompany(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "linkedin-company", params)
+func (s *LinkedInService) LinkedinCompany(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "linkedin-company", params, opts...)
 }
 
-func (s *LinkedInService) LinkedinProduct(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "linkedin-product", params)
+func (s *LinkedInService) LinkedinProduct(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "linkedin-product", params, opts...)
 }
 
-func (s *LinkedInService) LinkedinShowcase(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "linkedin-showcase", params)
+func (s *LinkedInService) LinkedinShowcase(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "linkedin-showcase", params, opts...)
 }
 
 type MetaService struct{ client *Client }
 
-func (s *MetaService) Ping(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "ping", params)
+func (s *MetaService) Ping(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ping", params, opts...)
 }
 
-func (s *MetaService) Ready(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "ready", params)
+func (s *MetaService) Ready(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ready", params, opts...)
 }
 
 type ProductHuntService struct{ client *Client }
 
-func (s *ProductHuntService) Category(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "producthunt-category", params)
+func (s *ProductHuntService) Category(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "producthunt-category", params, opts...)
 }
 
-func (s *ProductHuntService) CategoryProducts(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "producthunt-category-products", params)
+func (s *ProductHuntService) CategoryProducts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "producthunt-category-products", params, opts...)
 }
 
-func (s *ProductHuntService) Leaderboard(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "producthunt-leaderboard", params)
+func (s *ProductHuntService) Leaderboard(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "producthunt-leaderboard", params, opts...)
 }
 
-func (s *ProductHuntService) Product(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "producthunt-product", params)
+func (s *ProductHuntService) Product(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "producthunt-product", params, opts...)
 }
 
-func (s *ProductHuntService) About(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "producthunt-about", params)
+func (s *ProductHuntService) About(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "producthunt-about", params, opts...)
 }
 
-func (s *ProductHuntService) Alternatives(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "producthunt-alternatives", params)
+func (s *ProductHuntService) Alternatives(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "producthunt-alternatives", params, opts...)
 }
 
-func (s *ProductHuntService) Comments(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "producthunt-comments", params)
+func (s *ProductHuntService) Comments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "producthunt-comments", params, opts...)
 }
 
-func (s *ProductHuntService) Customers(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "producthunt-customers", params)
+func (s *ProductHuntService) Customers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "producthunt-customers", params, opts...)
 }
 
-func (s *ProductHuntService) Launches(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "producthunt-launches", params)
+func (s *ProductHuntService) Launches(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "producthunt-launches", params, opts...)
 }
 
-func (s *ProductHuntService) Makers(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "producthunt-makers", params)
+func (s *ProductHuntService) Makers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "producthunt-makers", params, opts...)
 }
 
-func (s *ProductHuntService) Reviews(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "producthunt-reviews", params)
+func (s *ProductHuntService) Reviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "producthunt-reviews", params, opts...)
 }
 
-func (s *ProductHuntService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "producthunt-search", params)
+func (s *ProductHuntService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "producthunt-search", params, opts...)
 }
 
 type ReferralsService struct{ client *Client }
 
-func (s *ReferralsService) Click(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "referrals-click", params)
+func (s *ReferralsService) Click(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "referrals-click", params, opts...)
 }
 
-func (s *ReferralsService) Me(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "referrals-me", params)
+func (s *ReferralsService) Me(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "referrals-me", params, opts...)
 }
 
-func (s *ReferralsService) MeEvents(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "referrals-me-events", params)
+func (s *ReferralsService) MeEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "referrals-me-events", params, opts...)
 }
 
 type SimilarWebService struct{ client *Client }
 
-func (s *SimilarWebService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "similarweb-search", params)
+func (s *SimilarWebService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "similarweb-search", params, opts...)
 }
 
-func (s *SimilarWebService) Web(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "similarweb-web", params)
+func (s *SimilarWebService) Web(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "similarweb-web", params, opts...)
 }
 
 type SpotifyPodcastsService struct{ client *Client }
 
-func (s *SpotifyPodcastsService) Categories(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-podcasts-categories", params)
+func (s *SpotifyPodcastsService) Categories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-podcasts-categories", params, opts...)
 }
 
-func (s *SpotifyPodcastsService) Charts(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-podcasts-charts", params)
+func (s *SpotifyPodcastsService) Charts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-podcasts-charts", params, opts...)
 }
 
-func (s *SpotifyPodcastsService) Episode(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-podcasts-episode", params)
+func (s *SpotifyPodcastsService) Episode(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-podcasts-episode", params, opts...)
 }
 
-func (s *SpotifyPodcastsService) Home(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-podcasts-home", params)
+func (s *SpotifyPodcastsService) Home(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-podcasts-home", params, opts...)
 }
 
-func (s *SpotifyPodcastsService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-podcasts-search", params)
+func (s *SpotifyPodcastsService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-podcasts-search", params, opts...)
 }
 
-func (s *SpotifyPodcastsService) Show(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-podcasts-show", params)
+func (s *SpotifyPodcastsService) Show(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-podcasts-show", params, opts...)
 }
 
-func (s *SpotifyPodcastsService) ShowEpisodes(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-podcasts-show-episodes", params)
+func (s *SpotifyPodcastsService) ShowEpisodes(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-podcasts-show-episodes", params, opts...)
 }
 
-func (s *SpotifyPodcastsService) ShowRecommendations(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-podcasts-show-recommendations", params)
+func (s *SpotifyPodcastsService) ShowRecommendations(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-podcasts-show-recommendations", params, opts...)
 }
 
 type SpotifyService struct{ client *Client }
 
-func (s *SpotifyService) Album(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-album", params)
+func (s *SpotifyService) Album(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-album", params, opts...)
 }
 
-func (s *SpotifyService) AlbumTracks(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-album-tracks", params)
+func (s *SpotifyService) AlbumTracks(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-album-tracks", params, opts...)
 }
 
-func (s *SpotifyService) AlbumsSearch(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-albums-search", params)
+func (s *SpotifyService) AlbumsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-albums-search", params, opts...)
 }
 
-func (s *SpotifyService) Artist(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-artist", params)
+func (s *SpotifyService) Artist(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-artist", params, opts...)
 }
 
-func (s *SpotifyService) ArtistAlbums(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-artist-albums", params)
+func (s *SpotifyService) ArtistAlbums(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-artist-albums", params, opts...)
 }
 
-func (s *SpotifyService) ArtistPlaylists(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-artist-playlists", params)
+func (s *SpotifyService) ArtistPlaylists(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-artist-playlists", params, opts...)
 }
 
-func (s *SpotifyService) ArtistRelated(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-artist-related", params)
+func (s *SpotifyService) ArtistRelated(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-artist-related", params, opts...)
 }
 
-func (s *SpotifyService) ArtistsSearch(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-artists-search", params)
+func (s *SpotifyService) ArtistsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-artists-search", params, opts...)
 }
 
-func (s *SpotifyService) Audiobook(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-audiobook", params)
+func (s *SpotifyService) Audiobook(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-audiobook", params, opts...)
 }
 
-func (s *SpotifyService) AudiobookChapters(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-audiobook-chapters", params)
+func (s *SpotifyService) AudiobookChapters(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-audiobook-chapters", params, opts...)
 }
 
-func (s *SpotifyService) AudiobooksSearch(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-audiobooks-search", params)
+func (s *SpotifyService) AudiobooksSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-audiobooks-search", params, opts...)
 }
 
-func (s *SpotifyService) Chapter(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-chapter", params)
+func (s *SpotifyService) Chapter(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-chapter", params, opts...)
 }
 
-func (s *SpotifyService) EpisodesSearch(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-episodes-search", params)
+func (s *SpotifyService) EpisodesSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-episodes-search", params, opts...)
 }
 
-func (s *SpotifyService) FeaturedChartsByCountry(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-featured-charts-by-country", params)
+func (s *SpotifyService) FeaturedChartsByCountry(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-featured-charts-by-country", params, opts...)
 }
 
-func (s *SpotifyService) Genre(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-genre", params)
+func (s *SpotifyService) Genre(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-genre", params, opts...)
 }
 
-func (s *SpotifyService) Home(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-home", params)
+func (s *SpotifyService) Home(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-home", params, opts...)
 }
 
-func (s *SpotifyService) Playlist(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-playlist", params)
+func (s *SpotifyService) Playlist(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-playlist", params, opts...)
 }
 
-func (s *SpotifyService) PlaylistsSearch(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-playlists-search", params)
+func (s *SpotifyService) PlaylistsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-playlists-search", params, opts...)
 }
 
-func (s *SpotifyService) PopularByCountry(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-popular-by-country", params)
+func (s *SpotifyService) PopularByCountry(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-popular-by-country", params, opts...)
 }
 
-func (s *SpotifyService) Profile(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-profile", params)
+func (s *SpotifyService) Profile(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-profile", params, opts...)
 }
 
-func (s *SpotifyService) ProfileFollowers(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-profile-followers", params)
+func (s *SpotifyService) ProfileFollowers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-profile-followers", params, opts...)
 }
 
-func (s *SpotifyService) ProfilePlaylists(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-profile-playlists", params)
+func (s *SpotifyService) ProfilePlaylists(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-profile-playlists", params, opts...)
 }
 
-func (s *SpotifyService) ProfilesSearch(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-profiles-search", params)
+func (s *SpotifyService) ProfilesSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-profiles-search", params, opts...)
 }
 
-func (s *SpotifyService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-search", params)
+func (s *SpotifyService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-search", params, opts...)
 }
 
-func (s *SpotifyService) Section(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-section", params)
+func (s *SpotifyService) Section(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-section", params, opts...)
 }
 
-func (s *SpotifyService) ShowsSearch(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-shows-search", params)
+func (s *SpotifyService) ShowsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-shows-search", params, opts...)
 }
 
-func (s *SpotifyService) Track(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-track", params)
+func (s *SpotifyService) Track(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-track", params, opts...)
 }
 
-func (s *SpotifyService) TrackRecommended(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-track-recommended", params)
+func (s *SpotifyService) TrackRecommended(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-track-recommended", params, opts...)
 }
 
-func (s *SpotifyService) TrackSimilarAlbums(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-track-similar-albums", params)
+func (s *SpotifyService) TrackSimilarAlbums(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-track-similar-albums", params, opts...)
 }
 
-func (s *SpotifyService) TracksSearch(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "spotify-tracks-search", params)
+func (s *SpotifyService) TracksSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "spotify-tracks-search", params, opts...)
 }
 
 type TikTokService struct{ client *Client }
 
-func (s *TikTokService) Category(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-category", params)
+func (s *TikTokService) Category(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-category", params, opts...)
 }
 
-func (s *TikTokService) VideoComments(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-video-comments", params)
+func (s *TikTokService) VideoComments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-video-comments", params, opts...)
 }
 
-func (s *TikTokService) Explore(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-explore", params)
+func (s *TikTokService) Explore(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-explore", params, opts...)
 }
 
-func (s *TikTokService) Challenge(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-challenge", params)
+func (s *TikTokService) Challenge(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-challenge", params, opts...)
 }
 
-func (s *TikTokService) ChallengeList(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-challenge-list", params)
+func (s *TikTokService) ChallengeList(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-challenge-list", params, opts...)
 }
 
-func (s *TikTokService) PopularTrendCountryIndustryMeta(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-popular-trend-country-industry-meta", params)
+func (s *TikTokService) PopularTrendCountryIndustryMeta(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-popular-trend-country-industry-meta", params, opts...)
 }
 
-func (s *TikTokService) PopularTrendCreator(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-popular-trend-creator", params)
+func (s *TikTokService) PopularTrendCreator(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-popular-trend-creator", params, opts...)
 }
 
-func (s *TikTokService) PopularTrendVideo(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-popular-trend-video", params)
+func (s *TikTokService) PopularTrendVideo(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-popular-trend-video", params, opts...)
 }
 
-func (s *TikTokService) Post(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-post", params)
+func (s *TikTokService) Post(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-post", params, opts...)
 }
 
-func (s *TikTokService) ProfilePost(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-profile-post", params)
+func (s *TikTokService) ProfilePost(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-profile-post", params, opts...)
 }
 
-func (s *TikTokService) Profile(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-profile", params)
+func (s *TikTokService) Profile(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-profile", params, opts...)
 }
 
-func (s *TikTokService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-search", params)
+func (s *TikTokService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-search", params, opts...)
 }
 
-func (s *TikTokService) SearchHashtag(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-search-hashtag", params)
+func (s *TikTokService) SearchHashtag(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-search-hashtag", params, opts...)
 }
 
-func (s *TikTokService) SearchUser(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-search-user", params)
+func (s *TikTokService) SearchUser(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-search-user", params, opts...)
 }
 
-func (s *TikTokService) TopAdsAnalysis(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-analysis", params)
+func (s *TikTokService) TopAdsAnalysis(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-analysis", params, opts...)
 }
 
-func (s *TikTokService) TopAdsDetail(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-detail", params)
+func (s *TikTokService) TopAdsDetail(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-detail", params, opts...)
 }
 
-func (s *TikTokService) TopAdsFilters(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-filters", params)
+func (s *TikTokService) TopAdsFilters(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-filters", params, opts...)
 }
 
-func (s *TikTokService) TopAdsList(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-list", params)
+func (s *TikTokService) TopAdsList(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-list", params, opts...)
 }
 
-func (s *TikTokService) TopAdsLocationInfo(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-location-info", params)
+func (s *TikTokService) TopAdsLocationInfo(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-location-info", params, opts...)
 }
 
-func (s *TikTokService) TopAdsLocations(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-locations", params)
+func (s *TikTokService) TopAdsLocations(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-locations", params, opts...)
 }
 
-func (s *TikTokService) TopAdsRecommend(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-recommend", params)
+func (s *TikTokService) TopAdsRecommend(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-recommend", params, opts...)
 }
 
-func (s *TikTokService) TopAdsSafety(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-safety", params)
+func (s *TikTokService) TopAdsSafety(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-safety", params, opts...)
 }
 
-func (s *TikTokService) TopAdsSpotlight(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-spotlight", params)
+func (s *TikTokService) TopAdsSpotlight(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-spotlight", params, opts...)
 }
 
-func (s *TikTokService) TopAdsSuggestions(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-suggestions", params)
+func (s *TikTokService) TopAdsSuggestions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-suggestions", params, opts...)
 }
 
-func (s *TikTokService) Trending(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tiktok-trending", params)
+func (s *TikTokService) Trending(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tiktok-trending", params, opts...)
 }
 
 type TripAdvisorService struct{ client *Client }
 
-func (s *TripAdvisorService) TripadvisorAutocomplete(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tripadvisor-autocomplete", params)
+func (s *TripAdvisorService) TripadvisorAutocomplete(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tripadvisor-autocomplete", params, opts...)
 }
 
-func (s *TripAdvisorService) TripadvisorEnums(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tripadvisor-enums", params)
+func (s *TripAdvisorService) TripadvisorEnums(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tripadvisor-enums", params, opts...)
 }
 
-func (s *TripAdvisorService) TripadvisorHotels(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tripadvisor-hotels", params)
+func (s *TripAdvisorService) TripadvisorHotels(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tripadvisor-hotels", params, opts...)
 }
 
-func (s *TripAdvisorService) TripadvisorPlace(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tripadvisor-place", params)
+func (s *TripAdvisorService) TripadvisorPlace(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tripadvisor-place", params, opts...)
 }
 
-func (s *TripAdvisorService) TripadvisorReviews(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tripadvisor-reviews", params)
+func (s *TripAdvisorService) TripadvisorReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tripadvisor-reviews", params, opts...)
 }
 
-func (s *TripAdvisorService) TripadvisorSearch(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "tripadvisor-search", params)
+func (s *TripAdvisorService) TripadvisorSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tripadvisor-search", params, opts...)
 }
 
 type TrustpilotService struct{ client *Client }
 
-func (s *TrustpilotService) BusinessSearch(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "trustpilot-business-search", params)
+func (s *TrustpilotService) BusinessSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "trustpilot-business-search", params, opts...)
 }
 
-func (s *TrustpilotService) Business(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "trustpilot-business", params)
+func (s *TrustpilotService) Business(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "trustpilot-business", params, opts...)
 }
 
-func (s *TrustpilotService) BusinessRelated(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "trustpilot-business-related", params)
+func (s *TrustpilotService) BusinessRelated(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "trustpilot-business-related", params, opts...)
 }
 
-func (s *TrustpilotService) BusinessReviews(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "trustpilot-business-reviews", params)
+func (s *TrustpilotService) BusinessReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "trustpilot-business-reviews", params, opts...)
 }
 
-func (s *TrustpilotService) Categories(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "trustpilot-categories", params)
+func (s *TrustpilotService) Categories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "trustpilot-categories", params, opts...)
 }
 
-func (s *TrustpilotService) CategorySearch(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "trustpilot-category-search", params)
+func (s *TrustpilotService) CategorySearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "trustpilot-category-search", params, opts...)
 }
 
-func (s *TrustpilotService) Category(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "trustpilot-category", params)
+func (s *TrustpilotService) Category(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "trustpilot-category", params, opts...)
 }
 
 type UsageService struct{ client *Client }
 
-func (s *UsageService) MeEndpoints(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "usage-me-endpoints", params)
+func (s *UsageService) MeEndpoints(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "usage-me-endpoints", params, opts...)
 }
 
-func (s *UsageService) MeOverview(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "usage-me-overview", params)
+func (s *UsageService) MeOverview(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "usage-me-overview", params, opts...)
 }
 
-func (s *UsageService) MeRecentIps(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "usage-me-recent-ips", params)
+func (s *UsageService) MeRecentIps(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "usage-me-recent-ips", params, opts...)
 }
 
-func (s *UsageService) MeTimeseries(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "usage-me-timeseries", params)
+func (s *UsageService) MeTimeseries(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "usage-me-timeseries", params, opts...)
 }
 
 type UserService struct{ client *Client }
 
-func (s *UserService) Me(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "user-me", params)
+func (s *UserService) Me(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "user-me", params, opts...)
 }
 
-func (s *UserService) MeApiKeys(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "user-me-api-keys", params)
+func (s *UserService) MeApiKeys(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "user-me-api-keys", params, opts...)
 }
 
-func (s *UserService) MeApiKeysRotate(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "user-me-api-keys-rotate", params)
+func (s *UserService) MeApiKeysRotate(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "user-me-api-keys-rotate", params, opts...)
 }
 
-func (s *UserService) MeApiKeysReveal(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "user-me-api-keys-reveal", params)
+func (s *UserService) MeApiKeysReveal(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "user-me-api-keys-reveal", params, opts...)
 }
 
 type YahooFinanceService struct{ client *Client }
 
-func (s *YahooFinanceService) Calendars(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-calendars", params)
+func (s *YahooFinanceService) Calendars(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-calendars", params, opts...)
 }
 
-func (s *YahooFinanceService) Calendar(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-calendar", params)
+func (s *YahooFinanceService) Calendar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-calendar", params, opts...)
 }
 
-func (s *YahooFinanceService) Download(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-download", params)
+func (s *YahooFinanceService) Download(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-download", params, opts...)
 }
 
-func (s *YahooFinanceService) Industries(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-industries", params)
+func (s *YahooFinanceService) Industries(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-industries", params, opts...)
 }
 
-func (s *YahooFinanceService) Industry(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-industry", params)
+func (s *YahooFinanceService) Industry(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-industry", params, opts...)
 }
 
-func (s *YahooFinanceService) MarketStatus(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-market-status", params)
+func (s *YahooFinanceService) MarketStatus(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-market-status", params, opts...)
 }
 
-func (s *YahooFinanceService) MarketSummary(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-market-summary", params)
+func (s *YahooFinanceService) MarketSummary(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-market-summary", params, opts...)
 }
 
-func (s *YahooFinanceService) ScreenerCustom(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-screener-custom", params)
+func (s *YahooFinanceService) ScreenerCustom(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-screener-custom", params, opts...)
 }
 
-func (s *YahooFinanceService) Screener(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-screener", params)
+func (s *YahooFinanceService) Screener(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-screener", params, opts...)
 }
 
-func (s *YahooFinanceService) Screeners(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-screeners", params)
+func (s *YahooFinanceService) Screeners(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-screeners", params, opts...)
 }
 
-func (s *YahooFinanceService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-search", params)
+func (s *YahooFinanceService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-search", params, opts...)
 }
 
-func (s *YahooFinanceService) Sectors(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-sectors", params)
+func (s *YahooFinanceService) Sectors(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-sectors", params, opts...)
 }
 
-func (s *YahooFinanceService) Sector(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-sector", params)
+func (s *YahooFinanceService) Sector(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-sector", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerActions(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-actions", params)
+func (s *YahooFinanceService) TickerActions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-actions", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerAnalysts(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-analysts", params)
+func (s *YahooFinanceService) TickerAnalysts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-analysts", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerCalendar(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-calendar", params)
+func (s *YahooFinanceService) TickerCalendar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-calendar", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerCapitalGains(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-capital-gains", params)
+func (s *YahooFinanceService) TickerCapitalGains(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-capital-gains", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerDividends(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-dividends", params)
+func (s *YahooFinanceService) TickerDividends(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-dividends", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerEarnings(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-earnings", params)
+func (s *YahooFinanceService) TickerEarnings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-earnings", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerEarningsDates(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-earnings-dates", params)
+func (s *YahooFinanceService) TickerEarningsDates(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-earnings-dates", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerFinancials(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-financials", params)
+func (s *YahooFinanceService) TickerFinancials(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-financials", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerFunds(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-funds", params)
+func (s *YahooFinanceService) TickerFunds(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-funds", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerHistory(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-history", params)
+func (s *YahooFinanceService) TickerHistory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-history", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerHistoryMetadata(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-history-metadata", params)
+func (s *YahooFinanceService) TickerHistoryMetadata(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-history-metadata", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerHolders(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-holders", params)
+func (s *YahooFinanceService) TickerHolders(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-holders", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerInfo(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-info", params)
+func (s *YahooFinanceService) TickerInfo(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-info", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerIsin(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-isin", params)
+func (s *YahooFinanceService) TickerIsin(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-isin", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerNews(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-news", params)
+func (s *YahooFinanceService) TickerNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-news", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerOptions(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-options", params)
+func (s *YahooFinanceService) TickerOptions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-options", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerOptionsExpiration(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-options-expiration", params)
+func (s *YahooFinanceService) TickerOptionsExpiration(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-options-expiration", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerQuote(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-quote", params)
+func (s *YahooFinanceService) TickerQuote(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-quote", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerSecFilings(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-sec-filings", params)
+func (s *YahooFinanceService) TickerSecFilings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-sec-filings", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerShares(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-shares", params)
+func (s *YahooFinanceService) TickerShares(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-shares", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerSharesFull(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-shares-full", params)
+func (s *YahooFinanceService) TickerSharesFull(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-shares-full", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerSplits(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-splits", params)
+func (s *YahooFinanceService) TickerSplits(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-splits", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerSustainability(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-sustainability", params)
+func (s *YahooFinanceService) TickerSustainability(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-sustainability", params, opts...)
 }
 
-func (s *YahooFinanceService) TickerValuation(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-valuation", params)
+func (s *YahooFinanceService) TickerValuation(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-valuation", params, opts...)
 }
 
-func (s *YahooFinanceService) Trending(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "yahoo-finance-trending", params)
+func (s *YahooFinanceService) Trending(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-trending", params, opts...)
 }
 
 type YouTubeService struct{ client *Client }
 
-func (s *YouTubeService) Captions(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "youtube-captions", params)
+func (s *YouTubeService) Captions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "youtube-captions", params, opts...)
 }
 
-func (s *YouTubeService) ChannelPlaylists(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "youtube-channel-playlists", params)
+func (s *YouTubeService) ChannelPlaylists(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "youtube-channel-playlists", params, opts...)
 }
 
-func (s *YouTubeService) ChannelSearch(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "youtube-channel-search", params)
+func (s *YouTubeService) ChannelSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "youtube-channel-search", params, opts...)
 }
 
-func (s *YouTubeService) ChannelShorts(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "youtube-channel-shorts", params)
+func (s *YouTubeService) ChannelShorts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "youtube-channel-shorts", params, opts...)
 }
 
-func (s *YouTubeService) ChannelVideos(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "youtube-channel-videos", params)
+func (s *YouTubeService) ChannelVideos(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "youtube-channel-videos", params, opts...)
 }
 
-func (s *YouTubeService) Comments(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "youtube-comments", params)
+func (s *YouTubeService) Comments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "youtube-comments", params, opts...)
 }
 
-func (s *YouTubeService) Playlist(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "youtube-playlist", params)
+func (s *YouTubeService) Playlist(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "youtube-playlist", params, opts...)
 }
 
-func (s *YouTubeService) Profile(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "youtube-profile", params)
+func (s *YouTubeService) Profile(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "youtube-profile", params, opts...)
 }
 
-func (s *YouTubeService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "youtube-search", params)
+func (s *YouTubeService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "youtube-search", params, opts...)
 }
 
-func (s *YouTubeService) Tag(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "youtube-tag", params)
+func (s *YouTubeService) Tag(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "youtube-tag", params, opts...)
 }
 
-func (s *YouTubeService) Transcript(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "youtube-transcript", params)
+func (s *YouTubeService) Transcript(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "youtube-transcript", params, opts...)
 }
 
-func (s *YouTubeService) TranscriptLanguages(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "youtube-transcript-languages", params)
+func (s *YouTubeService) TranscriptLanguages(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "youtube-transcript-languages", params, opts...)
 }
 
-func (s *YouTubeService) Video(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "youtube-video", params)
+func (s *YouTubeService) Video(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "youtube-video", params, opts...)
 }
 
 type ZillowService struct{ client *Client }
 
-func (s *ZillowService) Autocomplete(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "zillow-autocomplete", params)
+func (s *ZillowService) Autocomplete(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "zillow-autocomplete", params, opts...)
 }
 
-func (s *ZillowService) Property(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "zillow-property", params)
+func (s *ZillowService) Property(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "zillow-property", params, opts...)
 }
 
-func (s *ZillowService) Search(ctx context.Context, params Params) (any, error) {
-	return s.client.Request(ctx, "zillow-search", params)
+func (s *ZillowService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "zillow-search", params, opts...)
 }
