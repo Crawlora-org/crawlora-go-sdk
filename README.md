@@ -106,17 +106,6 @@ The module path is stable for Go package discovery. Future releases should keep
 `main`, the current beta tag, and the moving `latest` tag aligned with the
 promoted SDK commit.
 
-## Regeneration
-
-The committed `openapi/public.json` is the SDK contract source. Regenerate after
-updating that file:
-
-```sh
-python3 scripts/generate.py
-gofmt -w operations_generated.go
-go test ./...
-```
-
 ## Optional Live Smoke Test
 
 Default tests use local mock servers. The programs under `examples/` can be used
