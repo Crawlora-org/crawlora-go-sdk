@@ -5,7 +5,7 @@ Git-installable beta SDK for the public Crawlora API.
 ## Install
 
 ```sh
-go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.4
+go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.5
 ```
 
 ## Usage
@@ -79,6 +79,17 @@ raw body, and the underlying transport error when one exists.
 
 This SDK is currently released as Git beta tags. Pin an explicit tag in
 applications and upgrade intentionally.
+
+## Registry Readiness
+
+Go consumers use this repository directly as a Go module:
+
+```sh
+go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.5
+```
+
+The module path is stable for Go package discovery and future releases should
+continue tagging the same commit that is pushed to `main`.
 
 ## Regeneration
 

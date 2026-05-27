@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.2.0-sdk.5
+
+- Prepared the SDK for future module and registry-facing documentation.
+- Added package documentation and refreshed beta install references.
+
 ## v1.2.0-sdk.4
 
 - Added release-readiness files, CI, license, and fuller public README guidance.
