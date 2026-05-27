@@ -5,7 +5,7 @@ Git-installable beta SDK for the public Crawlora API.
 ## Install
 
 ```sh
-go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.7
+go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.8
 ```
 
 ## Usage
@@ -65,13 +65,6 @@ text, err := client.YouTube.Transcript(ctx, crawlora.Params{
 }, crawlora.WithResponseType(crawlora.ResponseText), crawlora.WithRequestTimeout(10*time.Second))
 ```
 
-Multipart upload endpoints accept byte slices, file paths, or `io.Reader`
-values:
-
-```go
-result, err := client.Google.Lens(ctx, crawlora.Params{"image": []byte("image-bytes")})
-```
-
 API failures return `*crawlora.Error` with HTTP status, API code, parsed body,
 raw body, and the underlying transport error when one exists.
 
@@ -82,7 +75,6 @@ Runnable examples live under `examples/`:
 ```sh
 CRAWLORA_API_KEY=... go run ./examples/bing-search
 CRAWLORA_API_KEY=... CRAWLORA_YOUTUBE_VIDEO_ID=... go run ./examples/youtube-transcript
-CRAWLORA_API_KEY=... CRAWLORA_LENS_IMAGE=./image.jpg go run ./examples/google-lens-upload
 ```
 
 Each example also accepts `CRAWLORA_BASE_URL` for staging or local API testing.
@@ -99,7 +91,7 @@ applications and upgrade intentionally.
 Go consumers use this repository directly as a Go module:
 
 ```sh
-go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.7
+go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.8
 ```
 
 The module path is stable for Go package discovery and future releases should

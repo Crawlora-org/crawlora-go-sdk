@@ -243,37 +243,18 @@ func TestRetriesRetryableStatus(t *testing.T) {
 	}
 }
 
-func TestMultipartUpload(t *testing.T) {
-	var gotContentType string
-	var gotBody string
-	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		gotContentType = r.Header.Get("content-type")
-		buf := new(bytes.Buffer)
-		_, _ = buf.ReadFrom(r.Body)
-		gotBody = buf.String()
-		w.Header().Set("content-type", "application/json")
-		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{}})
-	}))
-	defer server.Close()
-
-	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
-	if _, err := client.Google.Lens(context.Background(), Params{"image": []byte("image-bytes")}); err != nil {
-		t.Fatalf("lens: %v", err)
-	}
-	if !strings.HasPrefix(gotContentType, "multipart/form-data") {
-		t.Fatalf("content-type = %q", gotContentType)
-	}
-	if !strings.Contains(gotBody, "image-bytes") {
-		t.Fatalf("multipart body missing image bytes: %q", gotBody)
-	}
-}
-
 func TestOperationMetadataCount(t *testing.T) {
 	if len(operations) != operationCount {
 		t.Fatalf("operations = %d, operationCount = %d", len(operations), operationCount)
 	}
-	if operationCount != 318 {
+	if operationCount != 303 {
 		t.Fatalf("operationCount = %d", operationCount)
+	}
+}
+
+func TestDeprecatedEndpointsAreNotGenerated(t *testing.T) {
+	if _, ok := operations["google-lens"]; ok {
+		t.Fatal("google-lens should not be generated")
 	}
 }
 

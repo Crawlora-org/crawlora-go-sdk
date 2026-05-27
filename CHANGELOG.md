@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.2.0-sdk.8
+
+- Regenerated from the SDK spec that excludes deprecated endpoints.
+- Removed the deprecated Google Lens example and generated SDK surface.
+
 ## v1.2.0-sdk.7
 
 - Added fail-fast validation for required query, form, and body parameters.

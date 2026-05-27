@@ -26,7 +26,7 @@ type operationDefinition struct {
 	Security     []string
 }
 
-const operationCount = 318
+const operationCount = 303
 
 var operations = map[string]operationDefinition{
 	"airbnb-room":                                operationDefinition{Method: "GET", Path: "/airbnb/room/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -90,9 +90,6 @@ var operations = map[string]operationDefinition{
 	"coingecko-token-unlocks":                    operationDefinition{Method: "GET", Path: "/coingecko/token-unlocks", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"coingecko-treasuries":                       operationDefinition{Method: "GET", Path: "/coingecko/treasuries", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "asset", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "bitcoin", "ethereum", "solana", "bnb", "xrp", "tron"}}, parameterDefinition{Name: "holder_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "companies", "governments"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"coingecko-trending":                         operationDefinition{Method: "GET", Path: "/coingecko/trending", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"web-contact":                                operationDefinition{Method: "POST", Path: "/contact", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"crunchbase-organization":                    operationDefinition{Method: "GET", Path: "/crunchbase/organization/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"crunchbase-person":                          operationDefinition{Method: "GET", Path: "/crunchbase/person/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-list":                              operationDefinition{Method: "GET", Path: "/datasets", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-google-map-businesses-facets":      operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "county", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "town", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_website", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_phone", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-google-map-businesses-item":        operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/items/{place_id}", PathParams: []string{"place_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -104,10 +101,6 @@ var operations = map[string]operationDefinition{
 	"ebay-seller-about":                          operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}/about", PathParams: []string{"seller"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"ebay-seller-feedback":                       operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}/feedback", PathParams: []string{"seller"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"24", "48", "72"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"ebay-seller-shop":                           operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}/shop", PathParams: []string{"seller"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"etsy-listing":                               operationDefinition{Method: "GET", Path: "/etsy/listing/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"etsy-search":                                operationDefinition{Method: "GET", Path: "/etsy/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"etsy-shop":                                  operationDefinition{Method: "GET", Path: "/etsy/shop/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"facebook-page":                              operationDefinition{Method: "GET", Path: "/facebook/{page}", PathParams: []string{"page"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"geocoding-lookup":                           operationDefinition{Method: "GET", Path: "/geocoding/lookup", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "osm_ids", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "accept_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"geocoding-reverse":                          operationDefinition{Method: "GET", Path: "/geocoding/reverse", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "zoom", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "accept_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"geocoding-search":                           operationDefinition{Method: "GET", Path: "/geocoding/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "street", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "county", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "postalcode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "countrycodes", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "accept_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -131,15 +124,10 @@ var operations = map[string]operationDefinition{
 	"google-finance-related":                     operationDefinition{Method: "GET", Path: "/google/finance/related/{quote}", PathParams: []string{"quote"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-finance-search":                      operationDefinition{Method: "GET", Path: "/google/finance/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-finance-ticker":                      operationDefinition{Method: "GET", Path: "/google/finance/ticker/{ticker}", PathParams: []string{"ticker"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "window", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"google-image":                               operationDefinition{Method: "POST", Path: "/google/image", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "searchOption", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-jobs":                                operationDefinition{Method: "POST", Path: "/google/jobs", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"google-lens":                                operationDefinition{Method: "POST", Path: "/google/lens", PathParams: []string{}, QueryParams: nil, FormParams: []parameterDefinition{parameterDefinition{Name: "image", In: "formData", CollectionFormat: "", Type: "file", Required: true, Enum: []string{}}}, BodyParam: "", BodyRequired: false, Consumes: []string{"multipart/form-data"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-map-place":                           operationDefinition{Method: "GET", Path: "/google/map/place/{place_id}", PathParams: []string{"place_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-map-search":                          operationDefinition{Method: "POST", Path: "/google/map/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "mapSearchOption", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"google-news-deprecated":                     operationDefinition{Method: "POST", Path: "/google/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "searchOption", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-search":                              operationDefinition{Method: "POST", Path: "/google/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "searchOption", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"google-shopping":                            operationDefinition{Method: "POST", Path: "/google/shopping", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "searchOption", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"google-shopping-detail":                     operationDefinition{Method: "POST", Path: "/google/shopping/detail", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "ShoppingItemDetailOption", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-suggest":                             operationDefinition{Method: "GET", Path: "/google/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-trends-categories":                   operationDefinition{Method: "GET", Path: "/google/trends/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-trends-enums":                        operationDefinition{Method: "GET", Path: "/google/trends/enums", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -196,7 +184,6 @@ var operations = map[string]operationDefinition{
 	"producthunt-product":                        operationDefinition{Method: "GET", Path: "/producthunt/product/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"producthunt-about":                          operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/about", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"producthunt-alternatives":                   operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/alternatives", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "first", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tags", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"producthunt-comments":                       operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/comments", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "filter", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "threads_cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "replies_cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_thread_for_comment_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "exclude_thread_for_comment_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"producthunt-customers":                      operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/customers", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"customers", "latest_launch"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"producthunt-launches":                       operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/launches", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"producthunt-makers":                         operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/makers", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -253,7 +240,6 @@ var operations = map[string]operationDefinition{
 	"tiktok-challenge-list":                      operationDefinition{Method: "GET", Path: "/tiktok/hashtags", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"tiktok-popular-trend-country-industry-meta": operationDefinition{Method: "GET", Path: "/tiktok/popular-trend/country-industry-meta", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"tiktok-popular-trend-creator":               operationDefinition{Method: "GET", Path: "/tiktok/popular-trend/creator", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"follower", "engagement", "avg_views"}}, parameterDefinition{Name: "creator_country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "audience_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"1", "2", "3", "4"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"tiktok-popular-trend-video":                 operationDefinition{Method: "GET", Path: "/tiktok/popular-trend/video", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "order_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"vv", "like", "comment", "repost"}}, parameterDefinition{Name: "period", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"7", "30"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"tiktok-post":                                operationDefinition{Method: "GET", Path: "/tiktok/post/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"tiktok-profile-post":                        operationDefinition{Method: "GET", Path: "/tiktok/posts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "secUid", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_type", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"0", "1", "2"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"tiktok-profile":                             operationDefinition{Method: "GET", Path: "/tiktok/profile/{handler}", PathParams: []string{"handler"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -292,7 +278,6 @@ var operations = map[string]operationDefinition{
 	"user-me-api-keys":                           operationDefinition{Method: "GET", Path: "/user/me/api-keys", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
 	"user-me-api-keys-rotate":                    operationDefinition{Method: "POST", Path: "/user/me/api-keys/rotate", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
 	"user-me-api-keys-reveal":                    operationDefinition{Method: "POST", Path: "/user/me/api-keys/{id}/reveal", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
-	"web-parse":                                  operationDefinition{Method: "POST", Path: "/web/", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "parseWebOption", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"yahoo-finance-calendars":                    operationDefinition{Method: "GET", Path: "/yahoo-finance/calendars", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"yahoo-finance-calendar":                     operationDefinition{Method: "GET", Path: "/yahoo-finance/calendars/{type}", PathParams: []string{"type"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "start", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "end", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "market_cap", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "filter_most_active", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"yahoo-finance-download":                     operationDefinition{Method: "POST", Path: "/yahoo-finance/download", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -358,12 +343,8 @@ type Services struct {
 	Bing            *BingService
 	Brave           *BraveService
 	CoinGecko       *CoinGeckoService
-	Web             *WebService
-	Crunchbase      *CrunchbaseService
 	Datasets        *DatasetsService
 	EBay            *EBayService
-	Etsy            *EtsyService
-	Facebook        *FacebookService
 	Geocoding       *GeocodingService
 	Google          *GoogleService
 	GooglePlay      *GooglePlayService
@@ -396,12 +377,8 @@ func initServices(c *Client) Services {
 		Bing:            &BingService{client: c},
 		Brave:           &BraveService{client: c},
 		CoinGecko:       &CoinGeckoService{client: c},
-		Web:             &WebService{client: c},
-		Crunchbase:      &CrunchbaseService{client: c},
 		Datasets:        &DatasetsService{client: c},
 		EBay:            &EBayService{client: c},
-		Etsy:            &EtsyService{client: c},
-		Facebook:        &FacebookService{client: c},
 		Geocoding:       &GeocodingService{client: c},
 		Google:          &GoogleService{client: c},
 		GooglePlay:      &GooglePlayService{client: c},
@@ -1444,66 +1421,6 @@ func (s *CoinGeckoService) TrendingTyped(ctx context.Context, params CoinGeckoTr
 	return s.client.Request(ctx, "coingecko-trending", paramsFromStruct(params), opts...)
 }
 
-type WebService struct{ client *Client }
-
-func (s *WebService) Contact(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
-	return s.client.Request(ctx, "web-contact", params, opts...)
-}
-
-type WebContactParams struct {
-	Option any `crawlora:"option"`
-}
-
-type WebContactResponse = any
-
-func (s *WebService) ContactTyped(ctx context.Context, params WebContactParams, opts ...RequestOption) (WebContactResponse, error) {
-	return s.client.Request(ctx, "web-contact", paramsFromStruct(params), opts...)
-}
-
-func (s *WebService) Parse(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
-	return s.client.Request(ctx, "web-parse", params, opts...)
-}
-
-type WebParseParams struct {
-	ParseWebOption any `crawlora:"parseWebOption"`
-}
-
-type WebParseResponse = any
-
-func (s *WebService) ParseTyped(ctx context.Context, params WebParseParams, opts ...RequestOption) (WebParseResponse, error) {
-	return s.client.Request(ctx, "web-parse", paramsFromStruct(params), opts...)
-}
-
-type CrunchbaseService struct{ client *Client }
-
-func (s *CrunchbaseService) Organization(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
-	return s.client.Request(ctx, "crunchbase-organization", params, opts...)
-}
-
-type CrunchbaseOrganizationParams struct {
-	Id string `crawlora:"id"`
-}
-
-type CrunchbaseOrganizationResponse = any
-
-func (s *CrunchbaseService) OrganizationTyped(ctx context.Context, params CrunchbaseOrganizationParams, opts ...RequestOption) (CrunchbaseOrganizationResponse, error) {
-	return s.client.Request(ctx, "crunchbase-organization", paramsFromStruct(params), opts...)
-}
-
-func (s *CrunchbaseService) Person(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
-	return s.client.Request(ctx, "crunchbase-person", params, opts...)
-}
-
-type CrunchbasePersonParams struct {
-	Id string `crawlora:"id"`
-}
-
-type CrunchbasePersonResponse = any
-
-func (s *CrunchbaseService) PersonTyped(ctx context.Context, params CrunchbasePersonParams, opts ...RequestOption) (CrunchbasePersonResponse, error) {
-	return s.client.Request(ctx, "crunchbase-person", paramsFromStruct(params), opts...)
-}
-
 type DatasetsService struct{ client *Client }
 
 func (s *DatasetsService) List(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1700,67 +1617,6 @@ type EBayEbaySellerShopResponse = any
 
 func (s *EBayService) EbaySellerShopTyped(ctx context.Context, params EBayEbaySellerShopParams, opts ...RequestOption) (EBayEbaySellerShopResponse, error) {
 	return s.client.Request(ctx, "ebay-seller-shop", paramsFromStruct(params), opts...)
-}
-
-type EtsyService struct{ client *Client }
-
-func (s *EtsyService) Listing(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
-	return s.client.Request(ctx, "etsy-listing", params, opts...)
-}
-
-type EtsyListingParams struct {
-	Id string `crawlora:"id"`
-}
-
-type EtsyListingResponse = any
-
-func (s *EtsyService) ListingTyped(ctx context.Context, params EtsyListingParams, opts ...RequestOption) (EtsyListingResponse, error) {
-	return s.client.Request(ctx, "etsy-listing", paramsFromStruct(params), opts...)
-}
-
-func (s *EtsyService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
-	return s.client.Request(ctx, "etsy-search", params, opts...)
-}
-
-type EtsySearchParams struct {
-	Q    string `crawlora:"q"`
-	Page *int   `crawlora:"page,omitempty"`
-}
-
-type EtsySearchResponse = any
-
-func (s *EtsyService) SearchTyped(ctx context.Context, params EtsySearchParams, opts ...RequestOption) (EtsySearchResponse, error) {
-	return s.client.Request(ctx, "etsy-search", paramsFromStruct(params), opts...)
-}
-
-func (s *EtsyService) Shop(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
-	return s.client.Request(ctx, "etsy-shop", params, opts...)
-}
-
-type EtsyShopParams struct {
-	Id string `crawlora:"id"`
-}
-
-type EtsyShopResponse = any
-
-func (s *EtsyService) ShopTyped(ctx context.Context, params EtsyShopParams, opts ...RequestOption) (EtsyShopResponse, error) {
-	return s.client.Request(ctx, "etsy-shop", paramsFromStruct(params), opts...)
-}
-
-type FacebookService struct{ client *Client }
-
-func (s *FacebookService) Page(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
-	return s.client.Request(ctx, "facebook-page", params, opts...)
-}
-
-type FacebookPageParams struct {
-	Page string `crawlora:"page"`
-}
-
-type FacebookPageResponse = any
-
-func (s *FacebookService) PageTyped(ctx context.Context, params FacebookPageParams, opts ...RequestOption) (FacebookPageResponse, error) {
-	return s.client.Request(ctx, "facebook-page", paramsFromStruct(params), opts...)
 }
 
 type GeocodingService struct{ client *Client }
@@ -2115,20 +1971,6 @@ func (s *GoogleService) FinanceTickerTyped(ctx context.Context, params GoogleFin
 	return s.client.Request(ctx, "google-finance-ticker", paramsFromStruct(params), opts...)
 }
 
-func (s *GoogleService) Image(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
-	return s.client.Request(ctx, "google-image", params, opts...)
-}
-
-type GoogleImageParams struct {
-	SearchOption any `crawlora:"searchOption"`
-}
-
-type GoogleImageResponse = any
-
-func (s *GoogleService) ImageTyped(ctx context.Context, params GoogleImageParams, opts ...RequestOption) (GoogleImageResponse, error) {
-	return s.client.Request(ctx, "google-image", paramsFromStruct(params), opts...)
-}
-
 func (s *GoogleService) Jobs(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-jobs", params, opts...)
 }
@@ -2141,20 +1983,6 @@ type GoogleJobsResponse = any
 
 func (s *GoogleService) JobsTyped(ctx context.Context, params GoogleJobsParams, opts ...RequestOption) (GoogleJobsResponse, error) {
 	return s.client.Request(ctx, "google-jobs", paramsFromStruct(params), opts...)
-}
-
-func (s *GoogleService) Lens(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
-	return s.client.Request(ctx, "google-lens", params, opts...)
-}
-
-type GoogleLensParams struct {
-	Image any `crawlora:"image"`
-}
-
-type GoogleLensResponse = any
-
-func (s *GoogleService) LensTyped(ctx context.Context, params GoogleLensParams, opts ...RequestOption) (GoogleLensResponse, error) {
-	return s.client.Request(ctx, "google-lens", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) MapPlace(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2185,20 +2013,6 @@ func (s *GoogleService) MapSearchTyped(ctx context.Context, params GoogleMapSear
 	return s.client.Request(ctx, "google-map-search", paramsFromStruct(params), opts...)
 }
 
-func (s *GoogleService) NewsDeprecated(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
-	return s.client.Request(ctx, "google-news-deprecated", params, opts...)
-}
-
-type GoogleNewsDeprecatedParams struct {
-	SearchOption any `crawlora:"searchOption"`
-}
-
-type GoogleNewsDeprecatedResponse = any
-
-func (s *GoogleService) NewsDeprecatedTyped(ctx context.Context, params GoogleNewsDeprecatedParams, opts ...RequestOption) (GoogleNewsDeprecatedResponse, error) {
-	return s.client.Request(ctx, "google-news-deprecated", paramsFromStruct(params), opts...)
-}
-
 func (s *GoogleService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-search", params, opts...)
 }
@@ -2211,34 +2025,6 @@ type GoogleSearchResponse = any
 
 func (s *GoogleService) SearchTyped(ctx context.Context, params GoogleSearchParams, opts ...RequestOption) (GoogleSearchResponse, error) {
 	return s.client.Request(ctx, "google-search", paramsFromStruct(params), opts...)
-}
-
-func (s *GoogleService) Shopping(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
-	return s.client.Request(ctx, "google-shopping", params, opts...)
-}
-
-type GoogleShoppingParams struct {
-	SearchOption any `crawlora:"searchOption"`
-}
-
-type GoogleShoppingResponse = any
-
-func (s *GoogleService) ShoppingTyped(ctx context.Context, params GoogleShoppingParams, opts ...RequestOption) (GoogleShoppingResponse, error) {
-	return s.client.Request(ctx, "google-shopping", paramsFromStruct(params), opts...)
-}
-
-func (s *GoogleService) ShoppingDetail(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
-	return s.client.Request(ctx, "google-shopping-detail", params, opts...)
-}
-
-type GoogleShoppingDetailParams struct {
-	ShoppingItemDetailOption any `crawlora:"ShoppingItemDetailOption"`
-}
-
-type GoogleShoppingDetailResponse = any
-
-func (s *GoogleService) ShoppingDetailTyped(ctx context.Context, params GoogleShoppingDetailParams, opts ...RequestOption) (GoogleShoppingDetailResponse, error) {
-	return s.client.Request(ctx, "google-shopping-detail", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3158,28 +2944,6 @@ type ProductHuntAlternativesResponse = any
 
 func (s *ProductHuntService) AlternativesTyped(ctx context.Context, params ProductHuntAlternativesParams, opts ...RequestOption) (ProductHuntAlternativesResponse, error) {
 	return s.client.Request(ctx, "producthunt-alternatives", paramsFromStruct(params), opts...)
-}
-
-func (s *ProductHuntService) Comments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
-	return s.client.Request(ctx, "producthunt-comments", params, opts...)
-}
-
-type ProductHuntCommentsParams struct {
-	Id                        string  `crawlora:"id"`
-	Page                      *int    `crawlora:"page,omitempty"`
-	Limit                     *int    `crawlora:"limit,omitempty"`
-	Order                     *string `crawlora:"order,omitempty"`
-	Filter                    *string `crawlora:"filter,omitempty"`
-	ThreadsCursor             *string `crawlora:"threads_cursor,omitempty"`
-	RepliesCursor             *string `crawlora:"replies_cursor,omitempty"`
-	IncludeThreadForCommentId *string `crawlora:"include_thread_for_comment_id,omitempty"`
-	ExcludeThreadForCommentId *string `crawlora:"exclude_thread_for_comment_id,omitempty"`
-}
-
-type ProductHuntCommentsResponse = any
-
-func (s *ProductHuntService) CommentsTyped(ctx context.Context, params ProductHuntCommentsParams, opts ...RequestOption) (ProductHuntCommentsResponse, error) {
-	return s.client.Request(ctx, "producthunt-comments", paramsFromStruct(params), opts...)
 }
 
 func (s *ProductHuntService) Customers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4111,24 +3875,6 @@ type TikTokPopularTrendCreatorResponse = any
 
 func (s *TikTokService) PopularTrendCreatorTyped(ctx context.Context, params TikTokPopularTrendCreatorParams, opts ...RequestOption) (TikTokPopularTrendCreatorResponse, error) {
 	return s.client.Request(ctx, "tiktok-popular-trend-creator", paramsFromStruct(params), opts...)
-}
-
-func (s *TikTokService) PopularTrendVideo(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
-	return s.client.Request(ctx, "tiktok-popular-trend-video", params, opts...)
-}
-
-type TikTokPopularTrendVideoParams struct {
-	Page        *int    `crawlora:"page,omitempty"`
-	Limit       *int    `crawlora:"limit,omitempty"`
-	CountryCode *string `crawlora:"country_code,omitempty"`
-	OrderBy     *string `crawlora:"order_by,omitempty"`
-	Period      *int    `crawlora:"period,omitempty"`
-}
-
-type TikTokPopularTrendVideoResponse = any
-
-func (s *TikTokService) PopularTrendVideoTyped(ctx context.Context, params TikTokPopularTrendVideoParams, opts ...RequestOption) (TikTokPopularTrendVideoResponse, error) {
-	return s.client.Request(ctx, "tiktok-popular-trend-video", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) Post(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
