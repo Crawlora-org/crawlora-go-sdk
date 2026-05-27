@@ -5,6 +5,12 @@ Git-installable beta SDK for the public Crawlora API.
 ## Install
 
 ```sh
+go get github.com/Crawlora-org/crawlora-go-sdk@latest
+```
+
+For reproducible builds, pin the current beta release tag:
+
+```sh
 go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.8
 ```
 
@@ -83,7 +89,9 @@ variables are not set.
 
 ## Versioning
 
-This SDK is currently released as Git beta tags. Pin an explicit tag in
+This SDK is currently released as Git beta tags. The moving `latest` tag tracks
+the current promoted beta, while explicit tags such as `v1.2.0-sdk.8` remain
+available for reproducible builds. Pin an explicit tag in production
 applications and upgrade intentionally.
 
 ## Registry Readiness
@@ -91,11 +99,12 @@ applications and upgrade intentionally.
 Go consumers use this repository directly as a Go module:
 
 ```sh
-go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.8
+go get github.com/Crawlora-org/crawlora-go-sdk@latest
 ```
 
-The module path is stable for Go package discovery and future releases should
-continue tagging the same commit that is pushed to `main`.
+The module path is stable for Go package discovery. Future releases should keep
+`main`, the current beta tag, and the moving `latest` tag aligned with the
+promoted SDK commit.
 
 ## Regeneration
 
