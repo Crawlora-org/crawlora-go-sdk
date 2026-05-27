@@ -6,7 +6,7 @@ import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_SPEC = ROOT.parent / "webscraping-api" / "dist" / "openapi.public.json"
+DEFAULT_SPEC = ROOT / "openapi" / "public.json"
 SPEC_PATH = Path(os.environ.get("CRAWLORA_OPENAPI_SPEC", DEFAULT_SPEC))
 TAG_GROUP_OVERRIDES = {
     "AppStore": "AppStore",
@@ -110,7 +110,9 @@ def main():
         raise SystemExit(f"public OpenAPI spec not found: {SPEC_PATH}")
     spec = json.loads(SPEC_PATH.read_text())
     (ROOT / "openapi").mkdir(exist_ok=True)
-    shutil.copyfile(SPEC_PATH, ROOT / "openapi" / "public.json")
+    target_spec = ROOT / "openapi" / "public.json"
+    if SPEC_PATH.resolve() != target_spec.resolve():
+        shutil.copyfile(SPEC_PATH, target_spec)
 
     operations = {}
     groups = {}
