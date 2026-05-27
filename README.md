@@ -5,7 +5,7 @@ Git-installable beta SDK for the public Crawlora API.
 ## Install
 
 ```sh
-go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.5
+go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.6
 ```
 
 ## Usage
@@ -75,6 +75,20 @@ result, err := client.Google.Lens(ctx, crawlora.Params{"image": []byte("image-by
 API failures return `*crawlora.Error` with HTTP status, API code, parsed body,
 raw body, and the underlying transport error when one exists.
 
+## Examples
+
+Runnable examples live under `examples/`:
+
+```sh
+CRAWLORA_API_KEY=... go run ./examples/bing-search
+CRAWLORA_API_KEY=... CRAWLORA_YOUTUBE_VIDEO_ID=... go run ./examples/youtube-transcript
+CRAWLORA_API_KEY=... CRAWLORA_LENS_IMAGE=./image.jpg go run ./examples/google-lens-upload
+```
+
+Each example also accepts `CRAWLORA_BASE_URL` for staging or local API testing.
+The examples exit without making a request when the required live environment
+variables are not set.
+
 ## Versioning
 
 This SDK is currently released as Git beta tags. Pin an explicit tag in
@@ -85,7 +99,7 @@ applications and upgrade intentionally.
 Go consumers use this repository directly as a Go module:
 
 ```sh
-go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.5
+go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.6
 ```
 
 The module path is stable for Go package discovery and future releases should
@@ -104,6 +118,6 @@ go test ./...
 
 ## Optional Live Smoke Test
 
-Default tests use local mock servers. For live API checks, set
-`CRAWLORA_API_KEY` in your own environment and call a low-cost endpoint manually.
-Live calls are not part of default CI.
+Default tests use local mock servers. The programs under `examples/` can be used
+as optional live smoke tests when `CRAWLORA_API_KEY` is available. Live calls are
+not part of default CI.

@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.2.0-sdk.6
+
+- Added runnable Bing search, YouTube transcript, and Google Lens upload
+  examples.
+- Documented optional live smoke-test commands without requiring live API
+  credentials in default tests.
+
 ## v1.2.0-sdk.5
 
 - Prepared the SDK for future module and registry-facing documentation.
