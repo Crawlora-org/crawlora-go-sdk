@@ -225,3 +225,47 @@ func TestOperationMetadataCount(t *testing.T) {
 		t.Fatalf("operationCount = %d", operationCount)
 	}
 }
+
+func TestTypedEndpointQueryParams(t *testing.T) {
+	var gotPath string
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		gotPath = r.URL.String()
+		w.Header().Set("content-type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{"ok": true}})
+	}))
+	defer server.Close()
+
+	count := 0
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
+	if _, err := client.Bing.SearchTyped(context.Background(), BingSearchParams{
+		Q:     "coffee",
+		Count: &count,
+	}); err != nil {
+		t.Fatalf("typed search: %v", err)
+	}
+	if gotPath != "/api/v1/bing/search?count=0&q=coffee" {
+		t.Fatalf("path = %q", gotPath)
+	}
+}
+
+func TestTypedEndpointJSONBody(t *testing.T) {
+	var gotBody string
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		buf := new(bytes.Buffer)
+		_, _ = buf.ReadFrom(r.Body)
+		gotBody = buf.String()
+		w.Header().Set("content-type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{}})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
+	if _, err := client.Google.SearchTyped(context.Background(), GoogleSearchParams{
+		SearchOption: map[string]any{"q": "coffee"},
+	}); err != nil {
+		t.Fatalf("typed google search: %v", err)
+	}
+	if gotBody != `{"q":"coffee"}` {
+		t.Fatalf("body = %q", gotBody)
+	}
+}

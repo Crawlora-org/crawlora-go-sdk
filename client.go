@@ -19,7 +19,7 @@ import (
 )
 
 const DefaultBaseURL = "https://api.crawlora.net/api/v1"
-const Version = "1.2.0-sdk.2"
+const Version = "1.2.0-sdk.3"
 
 const (
 	ResponseAuto = "auto"
@@ -49,6 +49,80 @@ type requestConfig struct {
 	Headers      map[string]string
 	ResponseType string
 	Timeout      time.Duration
+}
+
+func paramsFromStruct(input any) Params {
+	if input == nil {
+		return nil
+	}
+	if params, ok := input.(Params); ok {
+		return params
+	}
+	value := reflect.ValueOf(input)
+	if value.Kind() == reflect.Pointer {
+		if value.IsNil() {
+			return nil
+		}
+		value = value.Elem()
+	}
+	if value.Kind() != reflect.Struct {
+		return Params{"body": input}
+	}
+	typ := value.Type()
+	params := Params{}
+	for i := 0; i < value.NumField(); i++ {
+		field := typ.Field(i)
+		tag := field.Tag.Get("crawlora")
+		if tag == "" || tag == "-" {
+			continue
+		}
+		tagParts := strings.Split(tag, ",")
+		name := tagParts[0]
+		if name == "" {
+			continue
+		}
+		fieldValue := value.Field(i)
+		if tagHasOption(tagParts, "omitempty") && isEmptyValue(fieldValue) {
+			continue
+		}
+		if fieldValue.Kind() == reflect.Pointer {
+			if fieldValue.IsNil() {
+				continue
+			}
+			fieldValue = fieldValue.Elem()
+		}
+		if fieldValue.CanInterface() {
+			params[name] = fieldValue.Interface()
+		}
+	}
+	return params
+}
+
+func tagHasOption(parts []string, option string) bool {
+	for _, part := range parts[1:] {
+		if part == option {
+			return true
+		}
+	}
+	return false
+}
+
+func isEmptyValue(value reflect.Value) bool {
+	switch value.Kind() {
+	case reflect.Array, reflect.Map, reflect.Slice, reflect.String:
+		return value.Len() == 0
+	case reflect.Bool:
+		return !value.Bool()
+	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+		return value.Int() == 0
+	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64, reflect.Uintptr:
+		return value.Uint() == 0
+	case reflect.Float32, reflect.Float64:
+		return value.Float() == 0
+	case reflect.Interface, reflect.Pointer:
+		return value.IsNil()
+	}
+	return false
 }
 
 type Error struct {

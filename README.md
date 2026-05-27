@@ -5,7 +5,7 @@ Git-only beta SDK for the public Crawlora API.
 ## Install
 
 ```sh
-go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.2
+go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.3
 ```
 
 ## Usage
@@ -13,6 +13,16 @@ go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.2
 ```go
 client := crawlora.NewClient(crawlora.WithAPIKey("..."))
 result, err := client.Bing.Search(ctx, crawlora.Params{"q": "coffee shops", "count": 10})
+```
+
+Typed endpoint variants are generated for every operation:
+
+```go
+count := 10
+result, err := client.Bing.SearchTyped(ctx, crawlora.BingSearchParams{
+    Q:     "coffee shops",
+    Count: &count,
+})
 ```
 
 ## Configuration

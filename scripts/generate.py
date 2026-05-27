@@ -64,6 +64,48 @@ def go_string_slice(values):
     return "[]string{" + ", ".join(go_string(v) for v in values) + "}"
 
 
+def go_identifier(value):
+    name = pascal(words(value))
+    if not name:
+        name = "Value"
+    if name[0].isdigit():
+        name = "Value" + name
+    return name
+
+
+def go_type(param):
+    typ = param.get("type", "")
+    if param.get("in") == "formData" and typ == "file":
+        return "any"
+    if param.get("in") == "body":
+        return "any"
+    if typ == "integer":
+        return "int"
+    if typ == "number":
+        return "float64"
+    if typ == "boolean":
+        return "bool"
+    if typ == "array":
+        item_type = go_type(param.get("items", {"type": "string"}))
+        return "[]" + item_type
+    return "string"
+
+
+def typed_field(param, used):
+    base = go_identifier(param["name"])
+    name = base
+    i = 2
+    while name in used:
+        name = f"{base}{i}"
+        i += 1
+    used.add(name)
+    typ = go_type(param)
+    optional = not param.get("required") and not typ.startswith("[]") and typ != "any"
+    if optional:
+        typ = "*" + typ
+    return name, typ, param["name"], optional
+
+
 def param_slice(params):
     if not params:
         return "nil"
@@ -113,6 +155,20 @@ def definition(method, path, operation):
     )
 
 
+def operation_params(operation):
+    return [
+        p
+        for p in operation.get("parameters", [])
+        if p.get("in") in {"path", "query", "formData", "body"}
+    ]
+
+
+def response_ref(operation):
+    schema = operation.get("responses", {}).get("200", {}).get("schema") or {}
+    ref = schema.get("$ref", "")
+    return ref.rsplit("/", 1)[-1] if ref else ""
+
+
 def main():
     if not SPEC_PATH.exists():
         raise SystemExit(f"public OpenAPI spec not found: {SPEC_PATH}")
@@ -123,6 +179,7 @@ def main():
         shutil.copyfile(SPEC_PATH, target_spec)
 
     operations = {}
+    typed_operations = {}
     groups = {}
     used_by_group = {}
     for path, methods in sorted(spec["paths"].items()):
@@ -135,6 +192,11 @@ def main():
             method_name = alias(operation_id, tag, used_by_group[group_name])
             groups[group_name][method_name] = operation_id
             operations[operation_id] = definition(method, path, operation)
+            typed_operations[operation_id] = {
+                "type_base": group_name + method_name,
+                "params": operation_params(operation),
+                "response_ref": response_ref(operation),
+            }
 
     lines = [
         "package crawlora",
@@ -182,6 +244,21 @@ def main():
         for method_name, operation_id in methods.items():
             lines.append(f"func (s *{group_name}Service) {method_name}(ctx context.Context, params Params, opts ...RequestOption) (any, error) {{")
             lines.append(f"\treturn s.client.Request(ctx, {go_string(operation_id)}, params, opts...)")
+            lines.append("}")
+            lines.append("")
+            type_base = typed_operations[operation_id]["type_base"]
+            lines.append(f"type {type_base}Params struct {{")
+            used_fields = set()
+            for param in typed_operations[operation_id]["params"]:
+                field_name, field_type, param_name, optional = typed_field(param, used_fields)
+                tag = param_name + (",omitempty" if optional else "")
+                lines.append(f"\t{field_name} {field_type} `crawlora:{go_string(tag)}`")
+            lines.append("}")
+            lines.append("")
+            lines.append(f"type {type_base}Response = any")
+            lines.append("")
+            lines.append(f"func (s *{group_name}Service) {method_name}Typed(ctx context.Context, params {type_base}Params, opts ...RequestOption) ({type_base}Response, error) {{")
+            lines.append(f"\treturn s.client.Request(ctx, {go_string(operation_id)}, paramsFromStruct(params), opts...)")
             lines.append("}")
             lines.append("")
     (ROOT / "operations_generated.go").write_text("\n".join(lines))

@@ -429,16 +429,67 @@ func (s *AirbnbService) Room(ctx context.Context, params Params, opts ...Request
 	return s.client.Request(ctx, "airbnb-room", params, opts...)
 }
 
+type AirbnbRoomParams struct {
+	Id string `crawlora:"id"`
+}
+
+type AirbnbRoomResponse = any
+
+func (s *AirbnbService) RoomTyped(ctx context.Context, params AirbnbRoomParams, opts ...RequestOption) (AirbnbRoomResponse, error) {
+	return s.client.Request(ctx, "airbnb-room", paramsFromStruct(params), opts...)
+}
+
 func (s *AirbnbService) RoomCalendar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "airbnb-room-calendar", params, opts...)
+}
+
+type AirbnbRoomCalendarParams struct {
+	Id string `crawlora:"id"`
+}
+
+type AirbnbRoomCalendarResponse = any
+
+func (s *AirbnbService) RoomCalendarTyped(ctx context.Context, params AirbnbRoomCalendarParams, opts ...RequestOption) (AirbnbRoomCalendarResponse, error) {
+	return s.client.Request(ctx, "airbnb-room-calendar", paramsFromStruct(params), opts...)
 }
 
 func (s *AirbnbService) RoomReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "airbnb-room-reviews", params, opts...)
 }
 
+type AirbnbRoomReviewsParams struct {
+	Id   string `crawlora:"id"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type AirbnbRoomReviewsResponse = any
+
+func (s *AirbnbService) RoomReviewsTyped(ctx context.Context, params AirbnbRoomReviewsParams, opts ...RequestOption) (AirbnbRoomReviewsResponse, error) {
+	return s.client.Request(ctx, "airbnb-room-reviews", paramsFromStruct(params), opts...)
+}
+
 func (s *AirbnbService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "airbnb-search", params, opts...)
+}
+
+type AirbnbSearchParams struct {
+	Location string   `crawlora:"location"`
+	CheckIn  *string  `crawlora:"check_in,omitempty"`
+	CheckOut *string  `crawlora:"check_out,omitempty"`
+	Adults   *int     `crawlora:"adults,omitempty"`
+	Page     *int     `crawlora:"page,omitempty"`
+	Currency *string  `crawlora:"currency,omitempty"`
+	NeLat    *float64 `crawlora:"ne_lat,omitempty"`
+	NeLng    *float64 `crawlora:"ne_lng,omitempty"`
+	SwLat    *float64 `crawlora:"sw_lat,omitempty"`
+	SwLng    *float64 `crawlora:"sw_lng,omitempty"`
+	Zoom     *int     `crawlora:"zoom,omitempty"`
+}
+
+type AirbnbSearchResponse = any
+
+func (s *AirbnbService) SearchTyped(ctx context.Context, params AirbnbSearchParams, opts ...RequestOption) (AirbnbSearchResponse, error) {
+	return s.client.Request(ctx, "airbnb-search", paramsFromStruct(params), opts...)
 }
 
 type AmazonService struct{ client *Client }
@@ -447,12 +498,46 @@ func (s *AmazonService) Product(ctx context.Context, params Params, opts ...Requ
 	return s.client.Request(ctx, "amazon-product", params, opts...)
 }
 
+type AmazonProductParams struct {
+	Asin     string  `crawlora:"asin"`
+	Language *string `crawlora:"language,omitempty"`
+	Currency *string `crawlora:"currency,omitempty"`
+}
+
+type AmazonProductResponse = any
+
+func (s *AmazonService) ProductTyped(ctx context.Context, params AmazonProductParams, opts ...RequestOption) (AmazonProductResponse, error) {
+	return s.client.Request(ctx, "amazon-product", paramsFromStruct(params), opts...)
+}
+
 func (s *AmazonService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "amazon-search", params, opts...)
 }
 
+type AmazonSearchParams struct {
+	K    string  `crawlora:"k"`
+	S    *string `crawlora:"s,omitempty"`
+	Page *int    `crawlora:"page,omitempty"`
+}
+
+type AmazonSearchResponse = any
+
+func (s *AmazonService) SearchTyped(ctx context.Context, params AmazonSearchParams, opts ...RequestOption) (AmazonSearchResponse, error) {
+	return s.client.Request(ctx, "amazon-search", paramsFromStruct(params), opts...)
+}
+
 func (s *AmazonService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "amazon-suggest", params, opts...)
+}
+
+type AmazonSuggestParams struct {
+	Keyword string `crawlora:"keyword"`
+}
+
+type AmazonSuggestResponse = any
+
+func (s *AmazonService) SuggestTyped(ctx context.Context, params AmazonSuggestParams, opts ...RequestOption) (AmazonSuggestResponse, error) {
+	return s.client.Request(ctx, "amazon-suggest", paramsFromStruct(params), opts...)
 }
 
 type ApplePodcastsService struct{ client *Client }
@@ -461,20 +546,86 @@ func (s *ApplePodcastsService) Charts(ctx context.Context, params Params, opts .
 	return s.client.Request(ctx, "apple-podcasts-charts", params, opts...)
 }
 
+type ApplePodcastsChartsParams struct {
+	Collection *string `crawlora:"collection,omitempty"`
+	Category   *int    `crawlora:"category,omitempty"`
+	Country    *string `crawlora:"country,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+}
+
+type ApplePodcastsChartsResponse = any
+
+func (s *ApplePodcastsService) ChartsTyped(ctx context.Context, params ApplePodcastsChartsParams, opts ...RequestOption) (ApplePodcastsChartsResponse, error) {
+	return s.client.Request(ctx, "apple-podcasts-charts", paramsFromStruct(params), opts...)
+}
+
 func (s *ApplePodcastsService) EpisodesSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "apple-podcasts-episodes-search", params, opts...)
+}
+
+type ApplePodcastsEpisodesSearchParams struct {
+	Term    string  `crawlora:"term"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+	Limit   *int    `crawlora:"limit,omitempty"`
+	Page    *int    `crawlora:"page,omitempty"`
+}
+
+type ApplePodcastsEpisodesSearchResponse = any
+
+func (s *ApplePodcastsService) EpisodesSearchTyped(ctx context.Context, params ApplePodcastsEpisodesSearchParams, opts ...RequestOption) (ApplePodcastsEpisodesSearchResponse, error) {
+	return s.client.Request(ctx, "apple-podcasts-episodes-search", paramsFromStruct(params), opts...)
 }
 
 func (s *ApplePodcastsService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "apple-podcasts-search", params, opts...)
 }
 
+type ApplePodcastsSearchParams struct {
+	Term    string  `crawlora:"term"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+	Limit   *int    `crawlora:"limit,omitempty"`
+	Page    *int    `crawlora:"page,omitempty"`
+}
+
+type ApplePodcastsSearchResponse = any
+
+func (s *ApplePodcastsService) SearchTyped(ctx context.Context, params ApplePodcastsSearchParams, opts ...RequestOption) (ApplePodcastsSearchResponse, error) {
+	return s.client.Request(ctx, "apple-podcasts-search", paramsFromStruct(params), opts...)
+}
+
 func (s *ApplePodcastsService) Show(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "apple-podcasts-show", params, opts...)
 }
 
+type ApplePodcastsShowParams struct {
+	Id      string  `crawlora:"id"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type ApplePodcastsShowResponse = any
+
+func (s *ApplePodcastsService) ShowTyped(ctx context.Context, params ApplePodcastsShowParams, opts ...RequestOption) (ApplePodcastsShowResponse, error) {
+	return s.client.Request(ctx, "apple-podcasts-show", paramsFromStruct(params), opts...)
+}
+
 func (s *ApplePodcastsService) ShowEpisodes(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "apple-podcasts-show-episodes", params, opts...)
+}
+
+type ApplePodcastsShowEpisodesParams struct {
+	Id      string  `crawlora:"id"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+	Limit   *int    `crawlora:"limit,omitempty"`
+}
+
+type ApplePodcastsShowEpisodesResponse = any
+
+func (s *ApplePodcastsService) ShowEpisodesTyped(ctx context.Context, params ApplePodcastsShowEpisodesParams, opts ...RequestOption) (ApplePodcastsShowEpisodesResponse, error) {
+	return s.client.Request(ctx, "apple-podcasts-show-episodes", paramsFromStruct(params), opts...)
 }
 
 type AppStoreService struct{ client *Client }
@@ -483,40 +634,172 @@ func (s *AppStoreService) App(ctx context.Context, params Params, opts ...Reques
 	return s.client.Request(ctx, "appstore-app", params, opts...)
 }
 
+type AppStoreAppParams struct {
+	Id      *string `crawlora:"id,omitempty"`
+	AppId   *string `crawlora:"app_id,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+	Ratings *bool   `crawlora:"ratings,omitempty"`
+}
+
+type AppStoreAppResponse = any
+
+func (s *AppStoreService) AppTyped(ctx context.Context, params AppStoreAppParams, opts ...RequestOption) (AppStoreAppResponse, error) {
+	return s.client.Request(ctx, "appstore-app", paramsFromStruct(params), opts...)
+}
+
 func (s *AppStoreService) Developer(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "appstore-developer", params, opts...)
+}
+
+type AppStoreDeveloperParams struct {
+	DevId   string  `crawlora:"dev_id"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type AppStoreDeveloperResponse = any
+
+func (s *AppStoreService) DeveloperTyped(ctx context.Context, params AppStoreDeveloperParams, opts ...RequestOption) (AppStoreDeveloperResponse, error) {
+	return s.client.Request(ctx, "appstore-developer", paramsFromStruct(params), opts...)
 }
 
 func (s *AppStoreService) List(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "appstore-list", params, opts...)
 }
 
+type AppStoreListParams struct {
+	Collection *string `crawlora:"collection,omitempty"`
+	Category   *int    `crawlora:"category,omitempty"`
+	Country    *string `crawlora:"country,omitempty"`
+	Lang       *string `crawlora:"lang,omitempty"`
+	Num        *int    `crawlora:"num,omitempty"`
+	FullDetail *bool   `crawlora:"full_detail,omitempty"`
+}
+
+type AppStoreListResponse = any
+
+func (s *AppStoreService) ListTyped(ctx context.Context, params AppStoreListParams, opts ...RequestOption) (AppStoreListResponse, error) {
+	return s.client.Request(ctx, "appstore-list", paramsFromStruct(params), opts...)
+}
+
 func (s *AppStoreService) Privacy(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "appstore-privacy", params, opts...)
+}
+
+type AppStorePrivacyParams struct {
+	Id      string  `crawlora:"id"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type AppStorePrivacyResponse = any
+
+func (s *AppStoreService) PrivacyTyped(ctx context.Context, params AppStorePrivacyParams, opts ...RequestOption) (AppStorePrivacyResponse, error) {
+	return s.client.Request(ctx, "appstore-privacy", paramsFromStruct(params), opts...)
 }
 
 func (s *AppStoreService) Ratings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "appstore-ratings", params, opts...)
 }
 
+type AppStoreRatingsParams struct {
+	Id      *string `crawlora:"id,omitempty"`
+	AppId   *string `crawlora:"app_id,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type AppStoreRatingsResponse = any
+
+func (s *AppStoreService) RatingsTyped(ctx context.Context, params AppStoreRatingsParams, opts ...RequestOption) (AppStoreRatingsResponse, error) {
+	return s.client.Request(ctx, "appstore-ratings", paramsFromStruct(params), opts...)
+}
+
 func (s *AppStoreService) Reviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "appstore-reviews", params, opts...)
+}
+
+type AppStoreReviewsParams struct {
+	Id      *string `crawlora:"id,omitempty"`
+	AppId   *string `crawlora:"app_id,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Page    *int    `crawlora:"page,omitempty"`
+	Sort    *string `crawlora:"sort,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type AppStoreReviewsResponse = any
+
+func (s *AppStoreService) ReviewsTyped(ctx context.Context, params AppStoreReviewsParams, opts ...RequestOption) (AppStoreReviewsResponse, error) {
+	return s.client.Request(ctx, "appstore-reviews", paramsFromStruct(params), opts...)
 }
 
 func (s *AppStoreService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "appstore-search", params, opts...)
 }
 
+type AppStoreSearchParams struct {
+	Term    string  `crawlora:"term"`
+	Num     *int    `crawlora:"num,omitempty"`
+	Page    *int    `crawlora:"page,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+	IdsOnly *bool   `crawlora:"ids_only,omitempty"`
+}
+
+type AppStoreSearchResponse = any
+
+func (s *AppStoreService) SearchTyped(ctx context.Context, params AppStoreSearchParams, opts ...RequestOption) (AppStoreSearchResponse, error) {
+	return s.client.Request(ctx, "appstore-search", paramsFromStruct(params), opts...)
+}
+
 func (s *AppStoreService) Similar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "appstore-similar", params, opts...)
+}
+
+type AppStoreSimilarParams struct {
+	Id      *string `crawlora:"id,omitempty"`
+	AppId   *string `crawlora:"app_id,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type AppStoreSimilarResponse = any
+
+func (s *AppStoreService) SimilarTyped(ctx context.Context, params AppStoreSimilarParams, opts ...RequestOption) (AppStoreSimilarResponse, error) {
+	return s.client.Request(ctx, "appstore-similar", paramsFromStruct(params), opts...)
 }
 
 func (s *AppStoreService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "appstore-suggest", params, opts...)
 }
 
+type AppStoreSuggestParams struct {
+	Term    string  `crawlora:"term"`
+	Country *string `crawlora:"country,omitempty"`
+}
+
+type AppStoreSuggestResponse = any
+
+func (s *AppStoreService) SuggestTyped(ctx context.Context, params AppStoreSuggestParams, opts ...RequestOption) (AppStoreSuggestResponse, error) {
+	return s.client.Request(ctx, "appstore-suggest", paramsFromStruct(params), opts...)
+}
+
 func (s *AppStoreService) VersionHistory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "appstore-version-history", params, opts...)
+}
+
+type AppStoreVersionHistoryParams struct {
+	Id      string  `crawlora:"id"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type AppStoreVersionHistoryResponse = any
+
+func (s *AppStoreService) VersionHistoryTyped(ctx context.Context, params AppStoreVersionHistoryParams, opts ...RequestOption) (AppStoreVersionHistoryResponse, error) {
+	return s.client.Request(ctx, "appstore-version-history", paramsFromStruct(params), opts...)
 }
 
 type BillingService struct{ client *Client }
@@ -525,32 +808,119 @@ func (s *BillingService) Me(ctx context.Context, params Params, opts ...RequestO
 	return s.client.Request(ctx, "billing-me", params, opts...)
 }
 
+type BillingMeParams struct {
+}
+
+type BillingMeResponse = any
+
+func (s *BillingService) MeTyped(ctx context.Context, params BillingMeParams, opts ...RequestOption) (BillingMeResponse, error) {
+	return s.client.Request(ctx, "billing-me", paramsFromStruct(params), opts...)
+}
+
 func (s *BillingService) MeCheckout(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "billing-me-checkout", params, opts...)
+}
+
+type BillingMeCheckoutParams struct {
+	Request any `crawlora:"request"`
+}
+
+type BillingMeCheckoutResponse = any
+
+func (s *BillingService) MeCheckoutTyped(ctx context.Context, params BillingMeCheckoutParams, opts ...RequestOption) (BillingMeCheckoutResponse, error) {
+	return s.client.Request(ctx, "billing-me-checkout", paramsFromStruct(params), opts...)
 }
 
 func (s *BillingService) MeEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "billing-me-events", params, opts...)
 }
 
+type BillingMeEventsParams struct {
+	Limit       *int    `crawlora:"limit,omitempty"`
+	From        *string `crawlora:"from,omitempty"`
+	To          *string `crawlora:"to,omitempty"`
+	Endpoint    *string `crawlora:"endpoint,omitempty"`
+	RequestId   *string `crawlora:"request_id,omitempty"`
+	EventStatus *string `crawlora:"event_status,omitempty"`
+	Billable    *bool   `crawlora:"billable,omitempty"`
+}
+
+type BillingMeEventsResponse = any
+
+func (s *BillingService) MeEventsTyped(ctx context.Context, params BillingMeEventsParams, opts ...RequestOption) (BillingMeEventsResponse, error) {
+	return s.client.Request(ctx, "billing-me-events", paramsFromStruct(params), opts...)
+}
+
 func (s *BillingService) MePeriods(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "billing-me-periods", params, opts...)
+}
+
+type BillingMePeriodsParams struct {
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type BillingMePeriodsResponse = any
+
+func (s *BillingService) MePeriodsTyped(ctx context.Context, params BillingMePeriodsParams, opts ...RequestOption) (BillingMePeriodsResponse, error) {
+	return s.client.Request(ctx, "billing-me-periods", paramsFromStruct(params), opts...)
 }
 
 func (s *BillingService) MePeriod(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "billing-me-period", params, opts...)
 }
 
+type BillingMePeriodParams struct {
+	PeriodKey string `crawlora:"period_key"`
+}
+
+type BillingMePeriodResponse = any
+
+func (s *BillingService) MePeriodTyped(ctx context.Context, params BillingMePeriodParams, opts ...RequestOption) (BillingMePeriodResponse, error) {
+	return s.client.Request(ctx, "billing-me-period", paramsFromStruct(params), opts...)
+}
+
 func (s *BillingService) MePeriodStatement(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "billing-me-period-statement", params, opts...)
+}
+
+type BillingMePeriodStatementParams struct {
+	PeriodKey     string `crawlora:"period_key"`
+	IncludeEvents *bool  `crawlora:"include_events,omitempty"`
+	EventLimit    *int   `crawlora:"event_limit,omitempty"`
+}
+
+type BillingMePeriodStatementResponse = any
+
+func (s *BillingService) MePeriodStatementTyped(ctx context.Context, params BillingMePeriodStatementParams, opts ...RequestOption) (BillingMePeriodStatementResponse, error) {
+	return s.client.Request(ctx, "billing-me-period-statement", paramsFromStruct(params), opts...)
 }
 
 func (s *BillingService) MePeriodStatementDownload(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "billing-me-period-statement-download", params, opts...)
 }
 
+type BillingMePeriodStatementDownloadParams struct {
+	PeriodKey string `crawlora:"period_key"`
+}
+
+type BillingMePeriodStatementDownloadResponse = any
+
+func (s *BillingService) MePeriodStatementDownloadTyped(ctx context.Context, params BillingMePeriodStatementDownloadParams, opts ...RequestOption) (BillingMePeriodStatementDownloadResponse, error) {
+	return s.client.Request(ctx, "billing-me-period-statement-download", paramsFromStruct(params), opts...)
+}
+
 func (s *BillingService) MePortal(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "billing-me-portal", params, opts...)
+}
+
+type BillingMePortalParams struct {
+	Request any `crawlora:"request"`
+}
+
+type BillingMePortalResponse = any
+
+func (s *BillingService) MePortalTyped(ctx context.Context, params BillingMePortalParams, opts ...RequestOption) (BillingMePortalResponse, error) {
+	return s.client.Request(ctx, "billing-me-portal", paramsFromStruct(params), opts...)
 }
 
 type BingService struct{ client *Client }
@@ -559,20 +929,89 @@ func (s *BingService) Images(ctx context.Context, params Params, opts ...Request
 	return s.client.Request(ctx, "bing-images", params, opts...)
 }
 
+type BingImagesParams struct {
+	Q       string  `crawlora:"q"`
+	Page    *int    `crawlora:"page,omitempty"`
+	Count   *int    `crawlora:"count,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type BingImagesResponse = any
+
+func (s *BingService) ImagesTyped(ctx context.Context, params BingImagesParams, opts ...RequestOption) (BingImagesResponse, error) {
+	return s.client.Request(ctx, "bing-images", paramsFromStruct(params), opts...)
+}
+
 func (s *BingService) News(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "bing-news", params, opts...)
+}
+
+type BingNewsParams struct {
+	Q       string  `crawlora:"q"`
+	Page    *int    `crawlora:"page,omitempty"`
+	Count   *int    `crawlora:"count,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type BingNewsResponse = any
+
+func (s *BingService) NewsTyped(ctx context.Context, params BingNewsParams, opts ...RequestOption) (BingNewsResponse, error) {
+	return s.client.Request(ctx, "bing-news", paramsFromStruct(params), opts...)
 }
 
 func (s *BingService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "bing-search", params, opts...)
 }
 
+type BingSearchParams struct {
+	Q       string  `crawlora:"q"`
+	Page    *int    `crawlora:"page,omitempty"`
+	Count   *int    `crawlora:"count,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type BingSearchResponse = any
+
+func (s *BingService) SearchTyped(ctx context.Context, params BingSearchParams, opts ...RequestOption) (BingSearchResponse, error) {
+	return s.client.Request(ctx, "bing-search", paramsFromStruct(params), opts...)
+}
+
 func (s *BingService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "bing-suggest", params, opts...)
 }
 
+type BingSuggestParams struct {
+	Q       string  `crawlora:"q"`
+	Count   *int    `crawlora:"count,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type BingSuggestResponse = any
+
+func (s *BingService) SuggestTyped(ctx context.Context, params BingSuggestParams, opts ...RequestOption) (BingSuggestResponse, error) {
+	return s.client.Request(ctx, "bing-suggest", paramsFromStruct(params), opts...)
+}
+
 func (s *BingService) Videos(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "bing-videos", params, opts...)
+}
+
+type BingVideosParams struct {
+	Q       string  `crawlora:"q"`
+	Page    *int    `crawlora:"page,omitempty"`
+	Count   *int    `crawlora:"count,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type BingVideosResponse = any
+
+func (s *BingService) VideosTyped(ctx context.Context, params BingVideosParams, opts ...RequestOption) (BingVideosResponse, error) {
+	return s.client.Request(ctx, "bing-videos", paramsFromStruct(params), opts...)
 }
 
 type BraveService struct{ client *Client }
@@ -581,20 +1020,97 @@ func (s *BraveService) Images(ctx context.Context, params Params, opts ...Reques
 	return s.client.Request(ctx, "brave-images", params, opts...)
 }
 
+type BraveImagesParams struct {
+	Q       string  `crawlora:"q"`
+	Offset  *int    `crawlora:"offset,omitempty"`
+	Count   *int    `crawlora:"count,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type BraveImagesResponse = any
+
+func (s *BraveService) ImagesTyped(ctx context.Context, params BraveImagesParams, opts ...RequestOption) (BraveImagesResponse, error) {
+	return s.client.Request(ctx, "brave-images", paramsFromStruct(params), opts...)
+}
+
 func (s *BraveService) News(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "brave-news", params, opts...)
+}
+
+type BraveNewsParams struct {
+	Q         string  `crawlora:"q"`
+	Offset    *int    `crawlora:"offset,omitempty"`
+	Count     *int    `crawlora:"count,omitempty"`
+	Country   *string `crawlora:"country,omitempty"`
+	Lang      *string `crawlora:"lang,omitempty"`
+	TimeRange *string `crawlora:"time_range,omitempty"`
+	DateFrom  *string `crawlora:"date_from,omitempty"`
+	DateTo    *string `crawlora:"date_to,omitempty"`
+}
+
+type BraveNewsResponse = any
+
+func (s *BraveService) NewsTyped(ctx context.Context, params BraveNewsParams, opts ...RequestOption) (BraveNewsResponse, error) {
+	return s.client.Request(ctx, "brave-news", paramsFromStruct(params), opts...)
 }
 
 func (s *BraveService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "brave-search", params, opts...)
 }
 
+type BraveSearchParams struct {
+	Q         string  `crawlora:"q"`
+	Offset    *int    `crawlora:"offset,omitempty"`
+	Country   *string `crawlora:"country,omitempty"`
+	Lang      *string `crawlora:"lang,omitempty"`
+	TimeRange *string `crawlora:"time_range,omitempty"`
+	DateFrom  *string `crawlora:"date_from,omitempty"`
+	DateTo    *string `crawlora:"date_to,omitempty"`
+}
+
+type BraveSearchResponse = any
+
+func (s *BraveService) SearchTyped(ctx context.Context, params BraveSearchParams, opts ...RequestOption) (BraveSearchResponse, error) {
+	return s.client.Request(ctx, "brave-search", paramsFromStruct(params), opts...)
+}
+
 func (s *BraveService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "brave-suggest", params, opts...)
 }
 
+type BraveSuggestParams struct {
+	Q       string  `crawlora:"q"`
+	Count   *int    `crawlora:"count,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type BraveSuggestResponse = any
+
+func (s *BraveService) SuggestTyped(ctx context.Context, params BraveSuggestParams, opts ...RequestOption) (BraveSuggestResponse, error) {
+	return s.client.Request(ctx, "brave-suggest", paramsFromStruct(params), opts...)
+}
+
 func (s *BraveService) Videos(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "brave-videos", params, opts...)
+}
+
+type BraveVideosParams struct {
+	Q         string  `crawlora:"q"`
+	Offset    *int    `crawlora:"offset,omitempty"`
+	Count     *int    `crawlora:"count,omitempty"`
+	Country   *string `crawlora:"country,omitempty"`
+	Lang      *string `crawlora:"lang,omitempty"`
+	TimeRange *string `crawlora:"time_range,omitempty"`
+	DateFrom  *string `crawlora:"date_from,omitempty"`
+	DateTo    *string `crawlora:"date_to,omitempty"`
+}
+
+type BraveVideosResponse = any
+
+func (s *BraveService) VideosTyped(ctx context.Context, params BraveVideosParams, opts ...RequestOption) (BraveVideosResponse, error) {
+	return s.client.Request(ctx, "brave-videos", paramsFromStruct(params), opts...)
 }
 
 type CoinGeckoService struct{ client *Client }
@@ -603,84 +1119,327 @@ func (s *CoinGeckoService) Categories(ctx context.Context, params Params, opts .
 	return s.client.Request(ctx, "coingecko-categories", params, opts...)
 }
 
+type CoinGeckoCategoriesParams struct {
+	Limit      *int    `crawlora:"limit,omitempty"`
+	VsCurrency *string `crawlora:"vs_currency,omitempty"`
+}
+
+type CoinGeckoCategoriesResponse = any
+
+func (s *CoinGeckoService) CategoriesTyped(ctx context.Context, params CoinGeckoCategoriesParams, opts ...RequestOption) (CoinGeckoCategoriesResponse, error) {
+	return s.client.Request(ctx, "coingecko-categories", paramsFromStruct(params), opts...)
+}
+
 func (s *CoinGeckoService) CategoryCoins(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-category-coins", params, opts...)
+}
+
+type CoinGeckoCategoryCoinsParams struct {
+	Slug       string  `crawlora:"slug"`
+	Page       *int    `crawlora:"page,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	VsCurrency *string `crawlora:"vs_currency,omitempty"`
+}
+
+type CoinGeckoCategoryCoinsResponse = any
+
+func (s *CoinGeckoService) CategoryCoinsTyped(ctx context.Context, params CoinGeckoCategoryCoinsParams, opts ...RequestOption) (CoinGeckoCategoryCoinsResponse, error) {
+	return s.client.Request(ctx, "coingecko-category-coins", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) Chains(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-chains", params, opts...)
 }
 
+type CoinGeckoChainsParams struct {
+	Limit      *int    `crawlora:"limit,omitempty"`
+	VsCurrency *string `crawlora:"vs_currency,omitempty"`
+}
+
+type CoinGeckoChainsResponse = any
+
+func (s *CoinGeckoService) ChainsTyped(ctx context.Context, params CoinGeckoChainsParams, opts ...RequestOption) (CoinGeckoChainsResponse, error) {
+	return s.client.Request(ctx, "coingecko-chains", paramsFromStruct(params), opts...)
+}
+
 func (s *CoinGeckoService) Chain(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-chain", params, opts...)
+}
+
+type CoinGeckoChainParams struct {
+	Id         string  `crawlora:"id"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	VsCurrency *string `crawlora:"vs_currency,omitempty"`
+}
+
+type CoinGeckoChainResponse = any
+
+func (s *CoinGeckoService) ChainTyped(ctx context.Context, params CoinGeckoChainParams, opts ...RequestOption) (CoinGeckoChainResponse, error) {
+	return s.client.Request(ctx, "coingecko-chain", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) Coin(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-coin", params, opts...)
 }
 
+type CoinGeckoCoinParams struct {
+	Id         string  `crawlora:"id"`
+	VsCurrency *string `crawlora:"vs_currency,omitempty"`
+}
+
+type CoinGeckoCoinResponse = any
+
+func (s *CoinGeckoService) CoinTyped(ctx context.Context, params CoinGeckoCoinParams, opts ...RequestOption) (CoinGeckoCoinResponse, error) {
+	return s.client.Request(ctx, "coingecko-coin", paramsFromStruct(params), opts...)
+}
+
 func (s *CoinGeckoService) CoinAnalysis(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-coin-analysis", params, opts...)
+}
+
+type CoinGeckoCoinAnalysisParams struct {
+	Id                 string  `crawlora:"id"`
+	VsCurrency         *string `crawlora:"vs_currency,omitempty"`
+	Range              *string `crawlora:"range,omitempty"`
+	IncludeAnnotations *bool   `crawlora:"include_annotations,omitempty"`
+}
+
+type CoinGeckoCoinAnalysisResponse = any
+
+func (s *CoinGeckoService) CoinAnalysisTyped(ctx context.Context, params CoinGeckoCoinAnalysisParams, opts ...RequestOption) (CoinGeckoCoinAnalysisResponse, error) {
+	return s.client.Request(ctx, "coingecko-coin-analysis", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) Exchange(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-exchange", params, opts...)
 }
 
+type CoinGeckoExchangeParams struct {
+	Id         string  `crawlora:"id"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	VsCurrency *string `crawlora:"vs_currency,omitempty"`
+}
+
+type CoinGeckoExchangeResponse = any
+
+func (s *CoinGeckoService) ExchangeTyped(ctx context.Context, params CoinGeckoExchangeParams, opts ...RequestOption) (CoinGeckoExchangeResponse, error) {
+	return s.client.Request(ctx, "coingecko-exchange", paramsFromStruct(params), opts...)
+}
+
 func (s *CoinGeckoService) Exchanges(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-exchanges", params, opts...)
+}
+
+type CoinGeckoExchangesParams struct {
+	Kind       *string `crawlora:"kind,omitempty"`
+	Page       *int    `crawlora:"page,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	VsCurrency *string `crawlora:"vs_currency,omitempty"`
+}
+
+type CoinGeckoExchangesResponse = any
+
+func (s *CoinGeckoService) ExchangesTyped(ctx context.Context, params CoinGeckoExchangesParams, opts ...RequestOption) (CoinGeckoExchangesResponse, error) {
+	return s.client.Request(ctx, "coingecko-exchanges", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) GainersLosers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-gainers-losers", params, opts...)
 }
 
+type CoinGeckoGainersLosersParams struct {
+	Limit      *int    `crawlora:"limit,omitempty"`
+	VsCurrency *string `crawlora:"vs_currency,omitempty"`
+}
+
+type CoinGeckoGainersLosersResponse = any
+
+func (s *CoinGeckoService) GainersLosersTyped(ctx context.Context, params CoinGeckoGainersLosersParams, opts ...RequestOption) (CoinGeckoGainersLosersResponse, error) {
+	return s.client.Request(ctx, "coingecko-gainers-losers", paramsFromStruct(params), opts...)
+}
+
 func (s *CoinGeckoService) Global(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-global", params, opts...)
+}
+
+type CoinGeckoGlobalParams struct {
+}
+
+type CoinGeckoGlobalResponse = any
+
+func (s *CoinGeckoService) GlobalTyped(ctx context.Context, params CoinGeckoGlobalParams, opts ...RequestOption) (CoinGeckoGlobalResponse, error) {
+	return s.client.Request(ctx, "coingecko-global", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) GlobalCharts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-global-charts", params, opts...)
 }
 
+type CoinGeckoGlobalChartsParams struct {
+	Kind  *string `crawlora:"kind,omitempty"`
+	Range *string `crawlora:"range,omitempty"`
+	Limit *int    `crawlora:"limit,omitempty"`
+}
+
+type CoinGeckoGlobalChartsResponse = any
+
+func (s *CoinGeckoService) GlobalChartsTyped(ctx context.Context, params CoinGeckoGlobalChartsParams, opts ...RequestOption) (CoinGeckoGlobalChartsResponse, error) {
+	return s.client.Request(ctx, "coingecko-global-charts", paramsFromStruct(params), opts...)
+}
+
 func (s *CoinGeckoService) LearnArticles(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-learn-articles", params, opts...)
+}
+
+type CoinGeckoLearnArticlesParams struct {
+	Category *string `crawlora:"category,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+}
+
+type CoinGeckoLearnArticlesResponse = any
+
+func (s *CoinGeckoService) LearnArticlesTyped(ctx context.Context, params CoinGeckoLearnArticlesParams, opts ...RequestOption) (CoinGeckoLearnArticlesResponse, error) {
+	return s.client.Request(ctx, "coingecko-learn-articles", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) Markets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-markets", params, opts...)
 }
 
+type CoinGeckoMarketsParams struct {
+	Page       *int    `crawlora:"page,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	VsCurrency *string `crawlora:"vs_currency,omitempty"`
+}
+
+type CoinGeckoMarketsResponse = any
+
+func (s *CoinGeckoService) MarketsTyped(ctx context.Context, params CoinGeckoMarketsParams, opts ...RequestOption) (CoinGeckoMarketsResponse, error) {
+	return s.client.Request(ctx, "coingecko-markets", paramsFromStruct(params), opts...)
+}
+
 func (s *CoinGeckoService) NewCoins(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-new-coins", params, opts...)
+}
+
+type CoinGeckoNewCoinsParams struct {
+	Page       *int    `crawlora:"page,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	VsCurrency *string `crawlora:"vs_currency,omitempty"`
+}
+
+type CoinGeckoNewCoinsResponse = any
+
+func (s *CoinGeckoService) NewCoinsTyped(ctx context.Context, params CoinGeckoNewCoinsParams, opts ...RequestOption) (CoinGeckoNewCoinsResponse, error) {
+	return s.client.Request(ctx, "coingecko-new-coins", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) News(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-news", params, opts...)
 }
 
+type CoinGeckoNewsParams struct {
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type CoinGeckoNewsResponse = any
+
+func (s *CoinGeckoService) NewsTyped(ctx context.Context, params CoinGeckoNewsParams, opts ...RequestOption) (CoinGeckoNewsResponse, error) {
+	return s.client.Request(ctx, "coingecko-news", paramsFromStruct(params), opts...)
+}
+
 func (s *CoinGeckoService) NftCategory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-nft-category", params, opts...)
+}
+
+type CoinGeckoNftCategoryParams struct {
+	Slug       string  `crawlora:"slug"`
+	Page       *int    `crawlora:"page,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	VsCurrency *string `crawlora:"vs_currency,omitempty"`
+}
+
+type CoinGeckoNftCategoryResponse = any
+
+func (s *CoinGeckoService) NftCategoryTyped(ctx context.Context, params CoinGeckoNftCategoryParams, opts ...RequestOption) (CoinGeckoNftCategoryResponse, error) {
+	return s.client.Request(ctx, "coingecko-nft-category", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) Nfts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-nfts", params, opts...)
 }
 
+type CoinGeckoNftsParams struct {
+	Page       *int    `crawlora:"page,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	VsCurrency *string `crawlora:"vs_currency,omitempty"`
+}
+
+type CoinGeckoNftsResponse = any
+
+func (s *CoinGeckoService) NftsTyped(ctx context.Context, params CoinGeckoNftsParams, opts ...RequestOption) (CoinGeckoNftsResponse, error) {
+	return s.client.Request(ctx, "coingecko-nfts", paramsFromStruct(params), opts...)
+}
+
 func (s *CoinGeckoService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-search", params, opts...)
+}
+
+type CoinGeckoSearchParams struct {
+	Q     string `crawlora:"q"`
+	Limit *int   `crawlora:"limit,omitempty"`
+}
+
+type CoinGeckoSearchResponse = any
+
+func (s *CoinGeckoService) SearchTyped(ctx context.Context, params CoinGeckoSearchParams, opts ...RequestOption) (CoinGeckoSearchResponse, error) {
+	return s.client.Request(ctx, "coingecko-search", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) TokenUnlocks(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-token-unlocks", params, opts...)
 }
 
+type CoinGeckoTokenUnlocksParams struct {
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type CoinGeckoTokenUnlocksResponse = any
+
+func (s *CoinGeckoService) TokenUnlocksTyped(ctx context.Context, params CoinGeckoTokenUnlocksParams, opts ...RequestOption) (CoinGeckoTokenUnlocksResponse, error) {
+	return s.client.Request(ctx, "coingecko-token-unlocks", paramsFromStruct(params), opts...)
+}
+
 func (s *CoinGeckoService) Treasuries(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-treasuries", params, opts...)
 }
 
+type CoinGeckoTreasuriesParams struct {
+	Asset      *string `crawlora:"asset,omitempty"`
+	HolderType *string `crawlora:"holder_type,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	VsCurrency *string `crawlora:"vs_currency,omitempty"`
+}
+
+type CoinGeckoTreasuriesResponse = any
+
+func (s *CoinGeckoService) TreasuriesTyped(ctx context.Context, params CoinGeckoTreasuriesParams, opts ...RequestOption) (CoinGeckoTreasuriesResponse, error) {
+	return s.client.Request(ctx, "coingecko-treasuries", paramsFromStruct(params), opts...)
+}
+
 func (s *CoinGeckoService) Trending(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "coingecko-trending", params, opts...)
+}
+
+type CoinGeckoTrendingParams struct {
+	Limit      *int    `crawlora:"limit,omitempty"`
+	VsCurrency *string `crawlora:"vs_currency,omitempty"`
+}
+
+type CoinGeckoTrendingResponse = any
+
+func (s *CoinGeckoService) TrendingTyped(ctx context.Context, params CoinGeckoTrendingParams, opts ...RequestOption) (CoinGeckoTrendingResponse, error) {
+	return s.client.Request(ctx, "coingecko-trending", paramsFromStruct(params), opts...)
 }
 
 type WebService struct{ client *Client }
@@ -689,8 +1448,28 @@ func (s *WebService) Contact(ctx context.Context, params Params, opts ...Request
 	return s.client.Request(ctx, "web-contact", params, opts...)
 }
 
+type WebContactParams struct {
+	Option any `crawlora:"option"`
+}
+
+type WebContactResponse = any
+
+func (s *WebService) ContactTyped(ctx context.Context, params WebContactParams, opts ...RequestOption) (WebContactResponse, error) {
+	return s.client.Request(ctx, "web-contact", paramsFromStruct(params), opts...)
+}
+
 func (s *WebService) Parse(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "web-parse", params, opts...)
+}
+
+type WebParseParams struct {
+	ParseWebOption any `crawlora:"parseWebOption"`
+}
+
+type WebParseResponse = any
+
+func (s *WebService) ParseTyped(ctx context.Context, params WebParseParams, opts ...RequestOption) (WebParseResponse, error) {
+	return s.client.Request(ctx, "web-parse", paramsFromStruct(params), opts...)
 }
 
 type CrunchbaseService struct{ client *Client }
@@ -699,8 +1478,28 @@ func (s *CrunchbaseService) Organization(ctx context.Context, params Params, opt
 	return s.client.Request(ctx, "crunchbase-organization", params, opts...)
 }
 
+type CrunchbaseOrganizationParams struct {
+	Id string `crawlora:"id"`
+}
+
+type CrunchbaseOrganizationResponse = any
+
+func (s *CrunchbaseService) OrganizationTyped(ctx context.Context, params CrunchbaseOrganizationParams, opts ...RequestOption) (CrunchbaseOrganizationResponse, error) {
+	return s.client.Request(ctx, "crunchbase-organization", paramsFromStruct(params), opts...)
+}
+
 func (s *CrunchbaseService) Person(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "crunchbase-person", params, opts...)
+}
+
+type CrunchbasePersonParams struct {
+	Id string `crawlora:"id"`
+}
+
+type CrunchbasePersonResponse = any
+
+func (s *CrunchbaseService) PersonTyped(ctx context.Context, params CrunchbasePersonParams, opts ...RequestOption) (CrunchbasePersonResponse, error) {
+	return s.client.Request(ctx, "crunchbase-person", paramsFromStruct(params), opts...)
 }
 
 type DatasetsService struct{ client *Client }
@@ -709,20 +1508,107 @@ func (s *DatasetsService) List(ctx context.Context, params Params, opts ...Reque
 	return s.client.Request(ctx, "datasets-list", params, opts...)
 }
 
+type DatasetsListParams struct {
+}
+
+type DatasetsListResponse = any
+
+func (s *DatasetsService) ListTyped(ctx context.Context, params DatasetsListParams, opts ...RequestOption) (DatasetsListResponse, error) {
+	return s.client.Request(ctx, "datasets-list", paramsFromStruct(params), opts...)
+}
+
 func (s *DatasetsService) GoogleMapBusinessesFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "datasets-google-map-businesses-facets", params, opts...)
+}
+
+type DatasetsGoogleMapBusinessesFacetsParams struct {
+	Facet          string   `crawlora:"facet"`
+	Q              *string  `crawlora:"q,omitempty"`
+	Category       *string  `crawlora:"category,omitempty"`
+	Country        *string  `crawlora:"country,omitempty"`
+	State          *string  `crawlora:"state,omitempty"`
+	County         *string  `crawlora:"county,omitempty"`
+	City           *string  `crawlora:"city,omitempty"`
+	Town           *string  `crawlora:"town,omitempty"`
+	MinRating      *float64 `crawlora:"min_rating,omitempty"`
+	MinReviewCount *int     `crawlora:"min_review_count,omitempty"`
+	HasWebsite     *bool    `crawlora:"has_website,omitempty"`
+	HasPhone       *bool    `crawlora:"has_phone,omitempty"`
+	Lat            *float64 `crawlora:"lat,omitempty"`
+	Lon            *float64 `crawlora:"lon,omitempty"`
+	RadiusM        *int     `crawlora:"radius_m,omitempty"`
+	Sort           *string  `crawlora:"sort,omitempty"`
+}
+
+type DatasetsGoogleMapBusinessesFacetsResponse = any
+
+func (s *DatasetsService) GoogleMapBusinessesFacetsTyped(ctx context.Context, params DatasetsGoogleMapBusinessesFacetsParams, opts ...RequestOption) (DatasetsGoogleMapBusinessesFacetsResponse, error) {
+	return s.client.Request(ctx, "datasets-google-map-businesses-facets", paramsFromStruct(params), opts...)
 }
 
 func (s *DatasetsService) GoogleMapBusinessesItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "datasets-google-map-businesses-item", params, opts...)
 }
 
+type DatasetsGoogleMapBusinessesItemParams struct {
+	PlaceId string `crawlora:"place_id"`
+}
+
+type DatasetsGoogleMapBusinessesItemResponse = any
+
+func (s *DatasetsService) GoogleMapBusinessesItemTyped(ctx context.Context, params DatasetsGoogleMapBusinessesItemParams, opts ...RequestOption) (DatasetsGoogleMapBusinessesItemResponse, error) {
+	return s.client.Request(ctx, "datasets-google-map-businesses-item", paramsFromStruct(params), opts...)
+}
+
 func (s *DatasetsService) GoogleMapBusinessesNearby(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "datasets-google-map-businesses-nearby", params, opts...)
 }
 
+type DatasetsGoogleMapBusinessesNearbyParams struct {
+	Lat            float64  `crawlora:"lat"`
+	Lon            float64  `crawlora:"lon"`
+	RadiusM        int      `crawlora:"radius_m"`
+	Category       *string  `crawlora:"category,omitempty"`
+	MinRating      *float64 `crawlora:"min_rating,omitempty"`
+	MinReviewCount *int     `crawlora:"min_review_count,omitempty"`
+	Page           *int     `crawlora:"page,omitempty"`
+	PageSize       *int     `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsGoogleMapBusinessesNearbyResponse = any
+
+func (s *DatasetsService) GoogleMapBusinessesNearbyTyped(ctx context.Context, params DatasetsGoogleMapBusinessesNearbyParams, opts ...RequestOption) (DatasetsGoogleMapBusinessesNearbyResponse, error) {
+	return s.client.Request(ctx, "datasets-google-map-businesses-nearby", paramsFromStruct(params), opts...)
+}
+
 func (s *DatasetsService) GoogleMapBusinessesSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "datasets-google-map-businesses-search", params, opts...)
+}
+
+type DatasetsGoogleMapBusinessesSearchParams struct {
+	Q              *string  `crawlora:"q,omitempty"`
+	Category       *string  `crawlora:"category,omitempty"`
+	Country        *string  `crawlora:"country,omitempty"`
+	State          *string  `crawlora:"state,omitempty"`
+	County         *string  `crawlora:"county,omitempty"`
+	City           *string  `crawlora:"city,omitempty"`
+	Town           *string  `crawlora:"town,omitempty"`
+	MinRating      *float64 `crawlora:"min_rating,omitempty"`
+	MinReviewCount *int     `crawlora:"min_review_count,omitempty"`
+	HasWebsite     *bool    `crawlora:"has_website,omitempty"`
+	HasPhone       *bool    `crawlora:"has_phone,omitempty"`
+	Lat            *float64 `crawlora:"lat,omitempty"`
+	Lon            *float64 `crawlora:"lon,omitempty"`
+	RadiusM        *int     `crawlora:"radius_m,omitempty"`
+	Sort           *string  `crawlora:"sort,omitempty"`
+	Page           *int     `crawlora:"page,omitempty"`
+	PageSize       *int     `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsGoogleMapBusinessesSearchResponse = any
+
+func (s *DatasetsService) GoogleMapBusinessesSearchTyped(ctx context.Context, params DatasetsGoogleMapBusinessesSearchParams, opts ...RequestOption) (DatasetsGoogleMapBusinessesSearchResponse, error) {
+	return s.client.Request(ctx, "datasets-google-map-businesses-search", paramsFromStruct(params), opts...)
 }
 
 type EBayService struct{ client *Client }
@@ -731,24 +1617,87 @@ func (s *EBayService) EbayItem(ctx context.Context, params Params, opts ...Reque
 	return s.client.Request(ctx, "ebay-item", params, opts...)
 }
 
+type EBayEbayItemParams struct {
+	ItemId string `crawlora:"item_id"`
+}
+
+type EBayEbayItemResponse = any
+
+func (s *EBayService) EbayItemTyped(ctx context.Context, params EBayEbayItemParams, opts ...RequestOption) (EBayEbayItemResponse, error) {
+	return s.client.Request(ctx, "ebay-item", paramsFromStruct(params), opts...)
+}
+
 func (s *EBayService) EbaySearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "ebay-search", params, opts...)
+}
+
+type EBayEbaySearchParams struct {
+	Option any `crawlora:"option"`
+}
+
+type EBayEbaySearchResponse = any
+
+func (s *EBayService) EbaySearchTyped(ctx context.Context, params EBayEbaySearchParams, opts ...RequestOption) (EBayEbaySearchResponse, error) {
+	return s.client.Request(ctx, "ebay-search", paramsFromStruct(params), opts...)
 }
 
 func (s *EBayService) EbaySeller(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "ebay-seller", params, opts...)
 }
 
+type EBayEbaySellerParams struct {
+	Seller string `crawlora:"seller"`
+}
+
+type EBayEbaySellerResponse = any
+
+func (s *EBayService) EbaySellerTyped(ctx context.Context, params EBayEbaySellerParams, opts ...RequestOption) (EBayEbaySellerResponse, error) {
+	return s.client.Request(ctx, "ebay-seller", paramsFromStruct(params), opts...)
+}
+
 func (s *EBayService) EbaySellerAbout(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "ebay-seller-about", params, opts...)
+}
+
+type EBayEbaySellerAboutParams struct {
+	Seller string `crawlora:"seller"`
+}
+
+type EBayEbaySellerAboutResponse = any
+
+func (s *EBayService) EbaySellerAboutTyped(ctx context.Context, params EBayEbaySellerAboutParams, opts ...RequestOption) (EBayEbaySellerAboutResponse, error) {
+	return s.client.Request(ctx, "ebay-seller-about", paramsFromStruct(params), opts...)
 }
 
 func (s *EBayService) EbaySellerFeedback(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "ebay-seller-feedback", params, opts...)
 }
 
+type EBayEbaySellerFeedbackParams struct {
+	Seller  string `crawlora:"seller"`
+	Page    *int   `crawlora:"page,omitempty"`
+	PerPage *int   `crawlora:"per_page,omitempty"`
+}
+
+type EBayEbaySellerFeedbackResponse = any
+
+func (s *EBayService) EbaySellerFeedbackTyped(ctx context.Context, params EBayEbaySellerFeedbackParams, opts ...RequestOption) (EBayEbaySellerFeedbackResponse, error) {
+	return s.client.Request(ctx, "ebay-seller-feedback", paramsFromStruct(params), opts...)
+}
+
 func (s *EBayService) EbaySellerShop(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "ebay-seller-shop", params, opts...)
+}
+
+type EBayEbaySellerShopParams struct {
+	Seller string `crawlora:"seller"`
+	Page   *int   `crawlora:"page,omitempty"`
+}
+
+type EBayEbaySellerShopResponse = any
+
+func (s *EBayService) EbaySellerShopTyped(ctx context.Context, params EBayEbaySellerShopParams, opts ...RequestOption) (EBayEbaySellerShopResponse, error) {
+	return s.client.Request(ctx, "ebay-seller-shop", paramsFromStruct(params), opts...)
 }
 
 type EtsyService struct{ client *Client }
@@ -757,12 +1706,43 @@ func (s *EtsyService) Listing(ctx context.Context, params Params, opts ...Reques
 	return s.client.Request(ctx, "etsy-listing", params, opts...)
 }
 
+type EtsyListingParams struct {
+	Id string `crawlora:"id"`
+}
+
+type EtsyListingResponse = any
+
+func (s *EtsyService) ListingTyped(ctx context.Context, params EtsyListingParams, opts ...RequestOption) (EtsyListingResponse, error) {
+	return s.client.Request(ctx, "etsy-listing", paramsFromStruct(params), opts...)
+}
+
 func (s *EtsyService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "etsy-search", params, opts...)
 }
 
+type EtsySearchParams struct {
+	Q    string `crawlora:"q"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type EtsySearchResponse = any
+
+func (s *EtsyService) SearchTyped(ctx context.Context, params EtsySearchParams, opts ...RequestOption) (EtsySearchResponse, error) {
+	return s.client.Request(ctx, "etsy-search", paramsFromStruct(params), opts...)
+}
+
 func (s *EtsyService) Shop(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "etsy-shop", params, opts...)
+}
+
+type EtsyShopParams struct {
+	Id string `crawlora:"id"`
+}
+
+type EtsyShopResponse = any
+
+func (s *EtsyService) ShopTyped(ctx context.Context, params EtsyShopParams, opts ...RequestOption) (EtsyShopResponse, error) {
+	return s.client.Request(ctx, "etsy-shop", paramsFromStruct(params), opts...)
 }
 
 type FacebookService struct{ client *Client }
@@ -771,18 +1751,80 @@ func (s *FacebookService) Page(ctx context.Context, params Params, opts ...Reque
 	return s.client.Request(ctx, "facebook-page", params, opts...)
 }
 
+type FacebookPageParams struct {
+	Page string `crawlora:"page"`
+}
+
+type FacebookPageResponse = any
+
+func (s *FacebookService) PageTyped(ctx context.Context, params FacebookPageParams, opts ...RequestOption) (FacebookPageResponse, error) {
+	return s.client.Request(ctx, "facebook-page", paramsFromStruct(params), opts...)
+}
+
 type GeocodingService struct{ client *Client }
 
 func (s *GeocodingService) Lookup(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "geocoding-lookup", params, opts...)
 }
 
+type GeocodingLookupParams struct {
+	OsmIds         string  `crawlora:"osm_ids"`
+	AcceptLanguage *string `crawlora:"accept_language,omitempty"`
+	Addressdetails *bool   `crawlora:"addressdetails,omitempty"`
+	Extratags      *bool   `crawlora:"extratags,omitempty"`
+	Namedetails    *bool   `crawlora:"namedetails,omitempty"`
+}
+
+type GeocodingLookupResponse = any
+
+func (s *GeocodingService) LookupTyped(ctx context.Context, params GeocodingLookupParams, opts ...RequestOption) (GeocodingLookupResponse, error) {
+	return s.client.Request(ctx, "geocoding-lookup", paramsFromStruct(params), opts...)
+}
+
 func (s *GeocodingService) Reverse(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "geocoding-reverse", params, opts...)
 }
 
+type GeocodingReverseParams struct {
+	Lat            float64 `crawlora:"lat"`
+	Lon            float64 `crawlora:"lon"`
+	Zoom           *int    `crawlora:"zoom,omitempty"`
+	AcceptLanguage *string `crawlora:"accept_language,omitempty"`
+	Addressdetails *bool   `crawlora:"addressdetails,omitempty"`
+	Extratags      *bool   `crawlora:"extratags,omitempty"`
+	Namedetails    *bool   `crawlora:"namedetails,omitempty"`
+}
+
+type GeocodingReverseResponse = any
+
+func (s *GeocodingService) ReverseTyped(ctx context.Context, params GeocodingReverseParams, opts ...RequestOption) (GeocodingReverseResponse, error) {
+	return s.client.Request(ctx, "geocoding-reverse", paramsFromStruct(params), opts...)
+}
+
 func (s *GeocodingService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "geocoding-search", params, opts...)
+}
+
+type GeocodingSearchParams struct {
+	Q              *string `crawlora:"q,omitempty"`
+	Street         *string `crawlora:"street,omitempty"`
+	City           *string `crawlora:"city,omitempty"`
+	County         *string `crawlora:"county,omitempty"`
+	State          *string `crawlora:"state,omitempty"`
+	Country        *string `crawlora:"country,omitempty"`
+	Postalcode     *string `crawlora:"postalcode,omitempty"`
+	Limit          *int    `crawlora:"limit,omitempty"`
+	Countrycodes   *string `crawlora:"countrycodes,omitempty"`
+	AcceptLanguage *string `crawlora:"accept_language,omitempty"`
+	Addressdetails *bool   `crawlora:"addressdetails,omitempty"`
+	Extratags      *bool   `crawlora:"extratags,omitempty"`
+	Namedetails    *bool   `crawlora:"namedetails,omitempty"`
+}
+
+type GeocodingSearchResponse = any
+
+func (s *GeocodingService) SearchTyped(ctx context.Context, params GeocodingSearchParams, opts ...RequestOption) (GeocodingSearchResponse, error) {
+	return s.client.Request(ctx, "geocoding-search", paramsFromStruct(params), opts...)
 }
 
 type GoogleService struct{ client *Client }
@@ -791,164 +1833,586 @@ func (s *GoogleService) FinanceAnalystArticles(ctx context.Context, params Param
 	return s.client.Request(ctx, "google-finance-analyst-articles", params, opts...)
 }
 
+type GoogleFinanceAnalystArticlesParams struct {
+	Quote string `crawlora:"quote"`
+}
+
+type GoogleFinanceAnalystArticlesResponse = any
+
+func (s *GoogleService) FinanceAnalystArticlesTyped(ctx context.Context, params GoogleFinanceAnalystArticlesParams, opts ...RequestOption) (GoogleFinanceAnalystArticlesResponse, error) {
+	return s.client.Request(ctx, "google-finance-analyst-articles", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) FinanceChart(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-chart", params, opts...)
+}
+
+type GoogleFinanceChartParams struct {
+	Quote  string  `crawlora:"quote"`
+	Window *string `crawlora:"window,omitempty"`
+}
+
+type GoogleFinanceChartResponse = any
+
+func (s *GoogleService) FinanceChartTyped(ctx context.Context, params GoogleFinanceChartParams, opts ...RequestOption) (GoogleFinanceChartResponse, error) {
+	return s.client.Request(ctx, "google-finance-chart", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceClassification(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-classification", params, opts...)
 }
 
+type GoogleFinanceClassificationParams struct {
+	Quote string `crawlora:"quote"`
+}
+
+type GoogleFinanceClassificationResponse = any
+
+func (s *GoogleService) FinanceClassificationTyped(ctx context.Context, params GoogleFinanceClassificationParams, opts ...RequestOption) (GoogleFinanceClassificationResponse, error) {
+	return s.client.Request(ctx, "google-finance-classification", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) FinanceCompany(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-company", params, opts...)
+}
+
+type GoogleFinanceCompanyParams struct {
+	Quote string `crawlora:"quote"`
+}
+
+type GoogleFinanceCompanyResponse = any
+
+func (s *GoogleService) FinanceCompanyTyped(ctx context.Context, params GoogleFinanceCompanyParams, opts ...RequestOption) (GoogleFinanceCompanyResponse, error) {
+	return s.client.Request(ctx, "google-finance-company", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceContext(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-context", params, opts...)
 }
 
+type GoogleFinanceContextParams struct {
+	Q string `crawlora:"q"`
+}
+
+type GoogleFinanceContextResponse = any
+
+func (s *GoogleService) FinanceContextTyped(ctx context.Context, params GoogleFinanceContextParams, opts ...RequestOption) (GoogleFinanceContextResponse, error) {
+	return s.client.Request(ctx, "google-finance-context", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) FinanceFinancials(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-financials", params, opts...)
+}
+
+type GoogleFinanceFinancialsParams struct {
+	Quote string `crawlora:"quote"`
+}
+
+type GoogleFinanceFinancialsResponse = any
+
+func (s *GoogleService) FinanceFinancialsTyped(ctx context.Context, params GoogleFinanceFinancialsParams, opts ...RequestOption) (GoogleFinanceFinancialsResponse, error) {
+	return s.client.Request(ctx, "google-finance-financials", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceMarketsCategoryNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-markets-category-news", params, opts...)
 }
 
+type GoogleFinanceMarketsCategoryNewsParams struct {
+	Category string `crawlora:"category"`
+	Offset   *int   `crawlora:"offset,omitempty"`
+}
+
+type GoogleFinanceMarketsCategoryNewsResponse = any
+
+func (s *GoogleService) FinanceMarketsCategoryNewsTyped(ctx context.Context, params GoogleFinanceMarketsCategoryNewsParams, opts ...RequestOption) (GoogleFinanceMarketsCategoryNewsResponse, error) {
+	return s.client.Request(ctx, "google-finance-markets-category-news", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) FinanceMarketsCategoryStocks(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-markets-category-stocks", params, opts...)
+}
+
+type GoogleFinanceMarketsCategoryStocksParams struct {
+	Category string `crawlora:"category"`
+	Offset   *int   `crawlora:"offset,omitempty"`
+}
+
+type GoogleFinanceMarketsCategoryStocksResponse = any
+
+func (s *GoogleService) FinanceMarketsCategoryStocksTyped(ctx context.Context, params GoogleFinanceMarketsCategoryStocksParams, opts ...RequestOption) (GoogleFinanceMarketsCategoryStocksResponse, error) {
+	return s.client.Request(ctx, "google-finance-markets-category-stocks", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceMarketsEarnings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-markets-earnings", params, opts...)
 }
 
+type GoogleFinanceMarketsEarningsParams struct {
+}
+
+type GoogleFinanceMarketsEarningsResponse = any
+
+func (s *GoogleService) FinanceMarketsEarningsTyped(ctx context.Context, params GoogleFinanceMarketsEarningsParams, opts ...RequestOption) (GoogleFinanceMarketsEarningsResponse, error) {
+	return s.client.Request(ctx, "google-finance-markets-earnings", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) FinanceMarketsFeatured(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-markets-featured", params, opts...)
+}
+
+type GoogleFinanceMarketsFeaturedParams struct {
+}
+
+type GoogleFinanceMarketsFeaturedResponse = any
+
+func (s *GoogleService) FinanceMarketsFeaturedTyped(ctx context.Context, params GoogleFinanceMarketsFeaturedParams, opts ...RequestOption) (GoogleFinanceMarketsFeaturedResponse, error) {
+	return s.client.Request(ctx, "google-finance-markets-featured", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceMarketsHeadline(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-markets-headline", params, opts...)
 }
 
+type GoogleFinanceMarketsHeadlineParams struct {
+}
+
+type GoogleFinanceMarketsHeadlineResponse = any
+
+func (s *GoogleService) FinanceMarketsHeadlineTyped(ctx context.Context, params GoogleFinanceMarketsHeadlineParams, opts ...RequestOption) (GoogleFinanceMarketsHeadlineResponse, error) {
+	return s.client.Request(ctx, "google-finance-markets-headline", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) FinanceMarketsIndices(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-markets-indices", params, opts...)
+}
+
+type GoogleFinanceMarketsIndicesParams struct {
+}
+
+type GoogleFinanceMarketsIndicesResponse = any
+
+func (s *GoogleService) FinanceMarketsIndicesTyped(ctx context.Context, params GoogleFinanceMarketsIndicesParams, opts ...RequestOption) (GoogleFinanceMarketsIndicesResponse, error) {
+	return s.client.Request(ctx, "google-finance-markets-indices", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceMarketsMovers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-markets-movers", params, opts...)
 }
 
+type GoogleFinanceMarketsMoversParams struct {
+	Categories *string `crawlora:"categories,omitempty"`
+	Count      *int    `crawlora:"count,omitempty"`
+	Offset     *int    `crawlora:"offset,omitempty"`
+}
+
+type GoogleFinanceMarketsMoversResponse = any
+
+func (s *GoogleService) FinanceMarketsMoversTyped(ctx context.Context, params GoogleFinanceMarketsMoversParams, opts ...RequestOption) (GoogleFinanceMarketsMoversResponse, error) {
+	return s.client.Request(ctx, "google-finance-markets-movers", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) FinanceMarketsTop(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-markets-top", params, opts...)
+}
+
+type GoogleFinanceMarketsTopParams struct {
+	Metric *int `crawlora:"metric,omitempty"`
+	Page   *int `crawlora:"page,omitempty"`
+}
+
+type GoogleFinanceMarketsTopResponse = any
+
+func (s *GoogleService) FinanceMarketsTopTyped(ctx context.Context, params GoogleFinanceMarketsTopParams, opts ...RequestOption) (GoogleFinanceMarketsTopResponse, error) {
+	return s.client.Request(ctx, "google-finance-markets-top", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceMarketsTrending(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-markets-trending", params, opts...)
 }
 
+type GoogleFinanceMarketsTrendingParams struct {
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type GoogleFinanceMarketsTrendingResponse = any
+
+func (s *GoogleService) FinanceMarketsTrendingTyped(ctx context.Context, params GoogleFinanceMarketsTrendingParams, opts ...RequestOption) (GoogleFinanceMarketsTrendingResponse, error) {
+	return s.client.Request(ctx, "google-finance-markets-trending", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) FinanceNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-news", params, opts...)
+}
+
+type GoogleFinanceNewsParams struct {
+	Quote string `crawlora:"quote"`
+	Limit *int   `crawlora:"limit,omitempty"`
+}
+
+type GoogleFinanceNewsResponse = any
+
+func (s *GoogleService) FinanceNewsTyped(ctx context.Context, params GoogleFinanceNewsParams, opts ...RequestOption) (GoogleFinanceNewsResponse, error) {
+	return s.client.Request(ctx, "google-finance-news", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceQuote(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-quote", params, opts...)
 }
 
+type GoogleFinanceQuoteParams struct {
+	Quote string `crawlora:"quote"`
+}
+
+type GoogleFinanceQuoteResponse = any
+
+func (s *GoogleService) FinanceQuoteTyped(ctx context.Context, params GoogleFinanceQuoteParams, opts ...RequestOption) (GoogleFinanceQuoteResponse, error) {
+	return s.client.Request(ctx, "google-finance-quote", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) FinanceRelated(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-related", params, opts...)
+}
+
+type GoogleFinanceRelatedParams struct {
+	Quote string `crawlora:"quote"`
+}
+
+type GoogleFinanceRelatedResponse = any
+
+func (s *GoogleService) FinanceRelatedTyped(ctx context.Context, params GoogleFinanceRelatedParams, opts ...RequestOption) (GoogleFinanceRelatedResponse, error) {
+	return s.client.Request(ctx, "google-finance-related", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-search", params, opts...)
 }
 
+type GoogleFinanceSearchParams struct {
+	Q string `crawlora:"q"`
+}
+
+type GoogleFinanceSearchResponse = any
+
+func (s *GoogleService) FinanceSearchTyped(ctx context.Context, params GoogleFinanceSearchParams, opts ...RequestOption) (GoogleFinanceSearchResponse, error) {
+	return s.client.Request(ctx, "google-finance-search", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) FinanceTicker(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-finance-ticker", params, opts...)
+}
+
+type GoogleFinanceTickerParams struct {
+	Ticker string  `crawlora:"ticker"`
+	Window *string `crawlora:"window,omitempty"`
+}
+
+type GoogleFinanceTickerResponse = any
+
+func (s *GoogleService) FinanceTickerTyped(ctx context.Context, params GoogleFinanceTickerParams, opts ...RequestOption) (GoogleFinanceTickerResponse, error) {
+	return s.client.Request(ctx, "google-finance-ticker", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) Image(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-image", params, opts...)
 }
 
+type GoogleImageParams struct {
+	SearchOption any `crawlora:"searchOption"`
+}
+
+type GoogleImageResponse = any
+
+func (s *GoogleService) ImageTyped(ctx context.Context, params GoogleImageParams, opts ...RequestOption) (GoogleImageResponse, error) {
+	return s.client.Request(ctx, "google-image", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) Jobs(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-jobs", params, opts...)
+}
+
+type GoogleJobsParams struct {
+	Option any `crawlora:"option"`
+}
+
+type GoogleJobsResponse = any
+
+func (s *GoogleService) JobsTyped(ctx context.Context, params GoogleJobsParams, opts ...RequestOption) (GoogleJobsResponse, error) {
+	return s.client.Request(ctx, "google-jobs", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) Lens(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-lens", params, opts...)
 }
 
+type GoogleLensParams struct {
+	Image any `crawlora:"image"`
+}
+
+type GoogleLensResponse = any
+
+func (s *GoogleService) LensTyped(ctx context.Context, params GoogleLensParams, opts ...RequestOption) (GoogleLensResponse, error) {
+	return s.client.Request(ctx, "google-lens", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) MapPlace(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-map-place", params, opts...)
+}
+
+type GoogleMapPlaceParams struct {
+	PlaceId string `crawlora:"place_id"`
+}
+
+type GoogleMapPlaceResponse = any
+
+func (s *GoogleService) MapPlaceTyped(ctx context.Context, params GoogleMapPlaceParams, opts ...RequestOption) (GoogleMapPlaceResponse, error) {
+	return s.client.Request(ctx, "google-map-place", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) MapSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-map-search", params, opts...)
 }
 
+type GoogleMapSearchParams struct {
+	MapSearchOption any `crawlora:"mapSearchOption"`
+}
+
+type GoogleMapSearchResponse = any
+
+func (s *GoogleService) MapSearchTyped(ctx context.Context, params GoogleMapSearchParams, opts ...RequestOption) (GoogleMapSearchResponse, error) {
+	return s.client.Request(ctx, "google-map-search", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) NewsDeprecated(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-news-deprecated", params, opts...)
+}
+
+type GoogleNewsDeprecatedParams struct {
+	SearchOption any `crawlora:"searchOption"`
+}
+
+type GoogleNewsDeprecatedResponse = any
+
+func (s *GoogleService) NewsDeprecatedTyped(ctx context.Context, params GoogleNewsDeprecatedParams, opts ...RequestOption) (GoogleNewsDeprecatedResponse, error) {
+	return s.client.Request(ctx, "google-news-deprecated", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-search", params, opts...)
 }
 
+type GoogleSearchParams struct {
+	SearchOption any `crawlora:"searchOption"`
+}
+
+type GoogleSearchResponse = any
+
+func (s *GoogleService) SearchTyped(ctx context.Context, params GoogleSearchParams, opts ...RequestOption) (GoogleSearchResponse, error) {
+	return s.client.Request(ctx, "google-search", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) Shopping(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-shopping", params, opts...)
+}
+
+type GoogleShoppingParams struct {
+	SearchOption any `crawlora:"searchOption"`
+}
+
+type GoogleShoppingResponse = any
+
+func (s *GoogleService) ShoppingTyped(ctx context.Context, params GoogleShoppingParams, opts ...RequestOption) (GoogleShoppingResponse, error) {
+	return s.client.Request(ctx, "google-shopping", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) ShoppingDetail(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-shopping-detail", params, opts...)
 }
 
+type GoogleShoppingDetailParams struct {
+	ShoppingItemDetailOption any `crawlora:"ShoppingItemDetailOption"`
+}
+
+type GoogleShoppingDetailResponse = any
+
+func (s *GoogleService) ShoppingDetailTyped(ctx context.Context, params GoogleShoppingDetailParams, opts ...RequestOption) (GoogleShoppingDetailResponse, error) {
+	return s.client.Request(ctx, "google-shopping-detail", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-suggest", params, opts...)
+}
+
+type GoogleSuggestParams struct {
+	Q       string  `crawlora:"q"`
+	Count   *int    `crawlora:"count,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type GoogleSuggestResponse = any
+
+func (s *GoogleService) SuggestTyped(ctx context.Context, params GoogleSuggestParams, opts ...RequestOption) (GoogleSuggestResponse, error) {
+	return s.client.Request(ctx, "google-suggest", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) TrendsCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-trends-categories", params, opts...)
 }
 
+type GoogleTrendsCategoriesParams struct {
+}
+
+type GoogleTrendsCategoriesResponse = any
+
+func (s *GoogleService) TrendsCategoriesTyped(ctx context.Context, params GoogleTrendsCategoriesParams, opts ...RequestOption) (GoogleTrendsCategoriesResponse, error) {
+	return s.client.Request(ctx, "google-trends-categories", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) TrendsEnums(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-trends-enums", params, opts...)
+}
+
+type GoogleTrendsEnumsParams struct {
+}
+
+type GoogleTrendsEnumsResponse = any
+
+func (s *GoogleService) TrendsEnumsTyped(ctx context.Context, params GoogleTrendsEnumsParams, opts ...RequestOption) (GoogleTrendsEnumsResponse, error) {
+	return s.client.Request(ctx, "google-trends-enums", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) TrendsExplore(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-trends-explore", params, opts...)
 }
 
+type GoogleTrendsExploreParams struct {
+	Request any `crawlora:"request"`
+}
+
+type GoogleTrendsExploreResponse = any
+
+func (s *GoogleService) TrendsExploreTyped(ctx context.Context, params GoogleTrendsExploreParams, opts ...RequestOption) (GoogleTrendsExploreResponse, error) {
+	return s.client.Request(ctx, "google-trends-explore", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) TrendsExploreInterestByRegion(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-trends-explore-interest-by-region", params, opts...)
+}
+
+type GoogleTrendsExploreInterestByRegionParams struct {
+	Request any `crawlora:"request"`
+}
+
+type GoogleTrendsExploreInterestByRegionResponse = any
+
+func (s *GoogleService) TrendsExploreInterestByRegionTyped(ctx context.Context, params GoogleTrendsExploreInterestByRegionParams, opts ...RequestOption) (GoogleTrendsExploreInterestByRegionResponse, error) {
+	return s.client.Request(ctx, "google-trends-explore-interest-by-region", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) TrendsExploreInterestOverTime(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-trends-explore-interest-over-time", params, opts...)
 }
 
+type GoogleTrendsExploreInterestOverTimeParams struct {
+	Request any `crawlora:"request"`
+}
+
+type GoogleTrendsExploreInterestOverTimeResponse = any
+
+func (s *GoogleService) TrendsExploreInterestOverTimeTyped(ctx context.Context, params GoogleTrendsExploreInterestOverTimeParams, opts ...RequestOption) (GoogleTrendsExploreInterestOverTimeResponse, error) {
+	return s.client.Request(ctx, "google-trends-explore-interest-over-time", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) TrendsExploreRelatedTopics(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-trends-explore-related-topics", params, opts...)
+}
+
+type GoogleTrendsExploreRelatedTopicsParams struct {
+	Request any `crawlora:"request"`
+}
+
+type GoogleTrendsExploreRelatedTopicsResponse = any
+
+func (s *GoogleService) TrendsExploreRelatedTopicsTyped(ctx context.Context, params GoogleTrendsExploreRelatedTopicsParams, opts ...RequestOption) (GoogleTrendsExploreRelatedTopicsResponse, error) {
+	return s.client.Request(ctx, "google-trends-explore-related-topics", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) TrendsExploreRisingQueries(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-trends-explore-rising-queries", params, opts...)
 }
 
+type GoogleTrendsExploreRisingQueriesParams struct {
+	Request any `crawlora:"request"`
+}
+
+type GoogleTrendsExploreRisingQueriesResponse = any
+
+func (s *GoogleService) TrendsExploreRisingQueriesTyped(ctx context.Context, params GoogleTrendsExploreRisingQueriesParams, opts ...RequestOption) (GoogleTrendsExploreRisingQueriesResponse, error) {
+	return s.client.Request(ctx, "google-trends-explore-rising-queries", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) TrendsExploreTopQueries(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-trends-explore-top-queries", params, opts...)
+}
+
+type GoogleTrendsExploreTopQueriesParams struct {
+	Request any `crawlora:"request"`
+}
+
+type GoogleTrendsExploreTopQueriesResponse = any
+
+func (s *GoogleService) TrendsExploreTopQueriesTyped(ctx context.Context, params GoogleTrendsExploreTopQueriesParams, opts ...RequestOption) (GoogleTrendsExploreTopQueriesResponse, error) {
+	return s.client.Request(ctx, "google-trends-explore-top-queries", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) TrendsLocations(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-trends-locations", params, opts...)
 }
 
+type GoogleTrendsLocationsParams struct {
+}
+
+type GoogleTrendsLocationsResponse = any
+
+func (s *GoogleService) TrendsLocationsTyped(ctx context.Context, params GoogleTrendsLocationsParams, opts ...RequestOption) (GoogleTrendsLocationsResponse, error) {
+	return s.client.Request(ctx, "google-trends-locations", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) TrendsTrending(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-trends-trending", params, opts...)
 }
 
+type GoogleTrendsTrendingParams struct {
+	Geo       *string `crawlora:"geo,omitempty"`
+	Hl        *string `crawlora:"hl,omitempty"`
+	Tz        *int    `crawlora:"tz,omitempty"`
+	Window    *string `crawlora:"window,omitempty"`
+	TimeRange *string `crawlora:"time_range,omitempty"`
+	Category  *int    `crawlora:"category,omitempty"`
+	Status    *string `crawlora:"status,omitempty"`
+	SortBy    *string `crawlora:"sort_by,omitempty"`
+	Limit     *int    `crawlora:"limit,omitempty"`
+}
+
+type GoogleTrendsTrendingResponse = any
+
+func (s *GoogleService) TrendsTrendingTyped(ctx context.Context, params GoogleTrendsTrendingParams, opts ...RequestOption) (GoogleTrendsTrendingResponse, error) {
+	return s.client.Request(ctx, "google-trends-trending", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) TrendsTrendingDetail(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-trends-trending-detail", params, opts...)
+}
+
+type GoogleTrendsTrendingDetailParams struct {
+	Request any `crawlora:"request"`
+}
+
+type GoogleTrendsTrendingDetailResponse = any
+
+func (s *GoogleService) TrendsTrendingDetailTyped(ctx context.Context, params GoogleTrendsTrendingDetailParams, opts ...RequestOption) (GoogleTrendsTrendingDetailResponse, error) {
+	return s.client.Request(ctx, "google-trends-trending-detail", paramsFromStruct(params), opts...)
 }
 
 type GooglePlayService struct{ client *Client }
@@ -957,40 +2421,174 @@ func (s *GooglePlayService) App(ctx context.Context, params Params, opts ...Requ
 	return s.client.Request(ctx, "googleplay-app", params, opts...)
 }
 
+type GooglePlayAppParams struct {
+	AppId   string  `crawlora:"app_id"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type GooglePlayAppResponse = any
+
+func (s *GooglePlayService) AppTyped(ctx context.Context, params GooglePlayAppParams, opts ...RequestOption) (GooglePlayAppResponse, error) {
+	return s.client.Request(ctx, "googleplay-app", paramsFromStruct(params), opts...)
+}
+
 func (s *GooglePlayService) Categories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "googleplay-categories", params, opts...)
+}
+
+type GooglePlayCategoriesParams struct {
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type GooglePlayCategoriesResponse = any
+
+func (s *GooglePlayService) CategoriesTyped(ctx context.Context, params GooglePlayCategoriesParams, opts ...RequestOption) (GooglePlayCategoriesResponse, error) {
+	return s.client.Request(ctx, "googleplay-categories", paramsFromStruct(params), opts...)
 }
 
 func (s *GooglePlayService) Datasafety(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "googleplay-datasafety", params, opts...)
 }
 
+type GooglePlayDatasafetyParams struct {
+	AppId string  `crawlora:"app_id"`
+	Lang  *string `crawlora:"lang,omitempty"`
+}
+
+type GooglePlayDatasafetyResponse = any
+
+func (s *GooglePlayService) DatasafetyTyped(ctx context.Context, params GooglePlayDatasafetyParams, opts ...RequestOption) (GooglePlayDatasafetyResponse, error) {
+	return s.client.Request(ctx, "googleplay-datasafety", paramsFromStruct(params), opts...)
+}
+
 func (s *GooglePlayService) Developer(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "googleplay-developer", params, opts...)
+}
+
+type GooglePlayDeveloperParams struct {
+	DevId      string  `crawlora:"dev_id"`
+	Num        *int    `crawlora:"num,omitempty"`
+	Country    *string `crawlora:"country,omitempty"`
+	Lang       *string `crawlora:"lang,omitempty"`
+	FullDetail *bool   `crawlora:"full_detail,omitempty"`
+}
+
+type GooglePlayDeveloperResponse = any
+
+func (s *GooglePlayService) DeveloperTyped(ctx context.Context, params GooglePlayDeveloperParams, opts ...RequestOption) (GooglePlayDeveloperResponse, error) {
+	return s.client.Request(ctx, "googleplay-developer", paramsFromStruct(params), opts...)
 }
 
 func (s *GooglePlayService) List(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "googleplay-list", params, opts...)
 }
 
+type GooglePlayListParams struct {
+	Collection *string `crawlora:"collection,omitempty"`
+	Category   *string `crawlora:"category,omitempty"`
+	Age        *string `crawlora:"age,omitempty"`
+	Num        *int    `crawlora:"num,omitempty"`
+	Country    *string `crawlora:"country,omitempty"`
+	Lang       *string `crawlora:"lang,omitempty"`
+	FullDetail *bool   `crawlora:"full_detail,omitempty"`
+}
+
+type GooglePlayListResponse = any
+
+func (s *GooglePlayService) ListTyped(ctx context.Context, params GooglePlayListParams, opts ...RequestOption) (GooglePlayListResponse, error) {
+	return s.client.Request(ctx, "googleplay-list", paramsFromStruct(params), opts...)
+}
+
 func (s *GooglePlayService) Permissions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "googleplay-permissions", params, opts...)
+}
+
+type GooglePlayPermissionsParams struct {
+	AppId   string  `crawlora:"app_id"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+	Short   *bool   `crawlora:"short,omitempty"`
+}
+
+type GooglePlayPermissionsResponse = any
+
+func (s *GooglePlayService) PermissionsTyped(ctx context.Context, params GooglePlayPermissionsParams, opts ...RequestOption) (GooglePlayPermissionsResponse, error) {
+	return s.client.Request(ctx, "googleplay-permissions", paramsFromStruct(params), opts...)
 }
 
 func (s *GooglePlayService) Reviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "googleplay-reviews", params, opts...)
 }
 
+type GooglePlayReviewsParams struct {
+	AppId               string  `crawlora:"app_id"`
+	Sort                *string `crawlora:"sort,omitempty"`
+	Num                 *int    `crawlora:"num,omitempty"`
+	Country             *string `crawlora:"country,omitempty"`
+	Lang                *string `crawlora:"lang,omitempty"`
+	Paginate            *bool   `crawlora:"paginate,omitempty"`
+	NextPaginationToken *string `crawlora:"next_pagination_token,omitempty"`
+}
+
+type GooglePlayReviewsResponse = any
+
+func (s *GooglePlayService) ReviewsTyped(ctx context.Context, params GooglePlayReviewsParams, opts ...RequestOption) (GooglePlayReviewsResponse, error) {
+	return s.client.Request(ctx, "googleplay-reviews", paramsFromStruct(params), opts...)
+}
+
 func (s *GooglePlayService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "googleplay-search", params, opts...)
+}
+
+type GooglePlaySearchParams struct {
+	Term       string  `crawlora:"term"`
+	Num        *int    `crawlora:"num,omitempty"`
+	Country    *string `crawlora:"country,omitempty"`
+	Lang       *string `crawlora:"lang,omitempty"`
+	FullDetail *bool   `crawlora:"full_detail,omitempty"`
+	Price      *string `crawlora:"price,omitempty"`
+}
+
+type GooglePlaySearchResponse = any
+
+func (s *GooglePlayService) SearchTyped(ctx context.Context, params GooglePlaySearchParams, opts ...RequestOption) (GooglePlaySearchResponse, error) {
+	return s.client.Request(ctx, "googleplay-search", paramsFromStruct(params), opts...)
 }
 
 func (s *GooglePlayService) Similar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "googleplay-similar", params, opts...)
 }
 
+type GooglePlaySimilarParams struct {
+	AppId      string  `crawlora:"app_id"`
+	Num        *int    `crawlora:"num,omitempty"`
+	Country    *string `crawlora:"country,omitempty"`
+	Lang       *string `crawlora:"lang,omitempty"`
+	FullDetail *bool   `crawlora:"full_detail,omitempty"`
+}
+
+type GooglePlaySimilarResponse = any
+
+func (s *GooglePlayService) SimilarTyped(ctx context.Context, params GooglePlaySimilarParams, opts ...RequestOption) (GooglePlaySimilarResponse, error) {
+	return s.client.Request(ctx, "googleplay-similar", paramsFromStruct(params), opts...)
+}
+
 func (s *GooglePlayService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "googleplay-suggest", params, opts...)
+}
+
+type GooglePlaySuggestParams struct {
+	Term    string  `crawlora:"term"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type GooglePlaySuggestResponse = any
+
+func (s *GooglePlayService) SuggestTyped(ctx context.Context, params GooglePlaySuggestParams, opts ...RequestOption) (GooglePlaySuggestResponse, error) {
+	return s.client.Request(ctx, "googleplay-suggest", paramsFromStruct(params), opts...)
 }
 
 type InstagramService struct{ client *Client }
@@ -999,12 +2597,44 @@ func (s *InstagramService) Post(ctx context.Context, params Params, opts ...Requ
 	return s.client.Request(ctx, "instagram-post", params, opts...)
 }
 
+type InstagramPostParams struct {
+	Id     string `crawlora:"id"`
+	PostId string `crawlora:"post_id"`
+}
+
+type InstagramPostResponse = any
+
+func (s *InstagramService) PostTyped(ctx context.Context, params InstagramPostParams, opts ...RequestOption) (InstagramPostResponse, error) {
+	return s.client.Request(ctx, "instagram-post", paramsFromStruct(params), opts...)
+}
+
 func (s *InstagramService) Profile(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "instagram-profile", params, opts...)
 }
 
+type InstagramProfileParams struct {
+	Username string `crawlora:"username"`
+}
+
+type InstagramProfileResponse = any
+
+func (s *InstagramService) ProfileTyped(ctx context.Context, params InstagramProfileParams, opts ...RequestOption) (InstagramProfileResponse, error) {
+	return s.client.Request(ctx, "instagram-profile", paramsFromStruct(params), opts...)
+}
+
 func (s *InstagramService) Reels(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "instagram-reels", params, opts...)
+}
+
+type InstagramReelsParams struct {
+	Id    string  `crawlora:"id"`
+	MaxId *string `crawlora:"max_id,omitempty"`
+}
+
+type InstagramReelsResponse = any
+
+func (s *InstagramService) ReelsTyped(ctx context.Context, params InstagramReelsParams, opts ...RequestOption) (InstagramReelsResponse, error) {
+	return s.client.Request(ctx, "instagram-reels", paramsFromStruct(params), opts...)
 }
 
 type JustWatchService struct{ client *Client }
@@ -1013,84 +2643,344 @@ func (s *JustWatchService) JustwatchAgeCertifications(ctx context.Context, param
 	return s.client.Request(ctx, "justwatch-age-certifications", params, opts...)
 }
 
+type JustWatchJustwatchAgeCertificationsParams struct {
+	Country *string `crawlora:"country,omitempty"`
+}
+
+type JustWatchJustwatchAgeCertificationsResponse = any
+
+func (s *JustWatchService) JustwatchAgeCertificationsTyped(ctx context.Context, params JustWatchJustwatchAgeCertificationsParams, opts ...RequestOption) (JustWatchJustwatchAgeCertificationsResponse, error) {
+	return s.client.Request(ctx, "justwatch-age-certifications", paramsFromStruct(params), opts...)
+}
+
 func (s *JustWatchService) JustwatchDiscover(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-discover", params, opts...)
+}
+
+type JustWatchJustwatchDiscoverParams struct {
+	Country           *string `crawlora:"country,omitempty"`
+	Language          *string `crawlora:"language,omitempty"`
+	Limit             *int    `crawlora:"limit,omitempty"`
+	Type              *string `crawlora:"type,omitempty"`
+	Genres            *string `crawlora:"genres,omitempty"`
+	Providers         *string `crawlora:"providers,omitempty"`
+	MonetizationTypes *string `crawlora:"monetization_types,omitempty"`
+	YearMin           *int    `crawlora:"year_min,omitempty"`
+	YearMax           *int    `crawlora:"year_max,omitempty"`
+}
+
+type JustWatchJustwatchDiscoverResponse = any
+
+func (s *JustWatchService) JustwatchDiscoverTyped(ctx context.Context, params JustWatchJustwatchDiscoverParams, opts ...RequestOption) (JustWatchJustwatchDiscoverResponse, error) {
+	return s.client.Request(ctx, "justwatch-discover", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchEpisodeById(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-episode-by-id", params, opts...)
 }
 
+type JustWatchJustwatchEpisodeByIdParams struct {
+	Id       string  `crawlora:"id"`
+	Country  *string `crawlora:"country,omitempty"`
+	Language *string `crawlora:"language,omitempty"`
+}
+
+type JustWatchJustwatchEpisodeByIdResponse = any
+
+func (s *JustWatchService) JustwatchEpisodeByIdTyped(ctx context.Context, params JustWatchJustwatchEpisodeByIdParams, opts ...RequestOption) (JustWatchJustwatchEpisodeByIdResponse, error) {
+	return s.client.Request(ctx, "justwatch-episode-by-id", paramsFromStruct(params), opts...)
+}
+
 func (s *JustWatchService) JustwatchEpisodeOffers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-episode-offers", params, opts...)
+}
+
+type JustWatchJustwatchEpisodeOffersParams struct {
+	Id        string  `crawlora:"id"`
+	Countries *string `crawlora:"countries,omitempty"`
+	Language  *string `crawlora:"language,omitempty"`
+}
+
+type JustWatchJustwatchEpisodeOffersResponse = any
+
+func (s *JustWatchService) JustwatchEpisodeOffersTyped(ctx context.Context, params JustWatchJustwatchEpisodeOffersParams, opts ...RequestOption) (JustWatchJustwatchEpisodeOffersResponse, error) {
+	return s.client.Request(ctx, "justwatch-episode-offers", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchGenreTitles(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-genre-titles", params, opts...)
 }
 
+type JustWatchJustwatchGenreTitlesParams struct {
+	Genre    string  `crawlora:"genre"`
+	Country  *string `crawlora:"country,omitempty"`
+	Language *string `crawlora:"language,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+	Type     *string `crawlora:"type,omitempty"`
+}
+
+type JustWatchJustwatchGenreTitlesResponse = any
+
+func (s *JustWatchService) JustwatchGenreTitlesTyped(ctx context.Context, params JustWatchJustwatchGenreTitlesParams, opts ...RequestOption) (JustWatchJustwatchGenreTitlesResponse, error) {
+	return s.client.Request(ctx, "justwatch-genre-titles", paramsFromStruct(params), opts...)
+}
+
 func (s *JustWatchService) JustwatchGenres(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-genres", params, opts...)
+}
+
+type JustWatchJustwatchGenresParams struct {
+	Language *string `crawlora:"language,omitempty"`
+}
+
+type JustWatchJustwatchGenresResponse = any
+
+func (s *JustWatchService) JustwatchGenresTyped(ctx context.Context, params JustWatchJustwatchGenresParams, opts ...RequestOption) (JustWatchJustwatchGenresResponse, error) {
+	return s.client.Request(ctx, "justwatch-genres", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchMonetizationTitles(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-monetization-titles", params, opts...)
 }
 
+type JustWatchJustwatchMonetizationTitlesParams struct {
+	MonetizationType string  `crawlora:"monetization_type"`
+	Country          *string `crawlora:"country,omitempty"`
+	Language         *string `crawlora:"language,omitempty"`
+	Limit            *int    `crawlora:"limit,omitempty"`
+	Type             *string `crawlora:"type,omitempty"`
+}
+
+type JustWatchJustwatchMonetizationTitlesResponse = any
+
+func (s *JustWatchService) JustwatchMonetizationTitlesTyped(ctx context.Context, params JustWatchJustwatchMonetizationTitlesParams, opts ...RequestOption) (JustWatchJustwatchMonetizationTitlesResponse, error) {
+	return s.client.Request(ctx, "justwatch-monetization-titles", paramsFromStruct(params), opts...)
+}
+
 func (s *JustWatchService) JustwatchNew(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-new", params, opts...)
+}
+
+type JustWatchJustwatchNewParams struct {
+	Country  *string `crawlora:"country,omitempty"`
+	Language *string `crawlora:"language,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+	Type     *string `crawlora:"type,omitempty"`
+}
+
+type JustWatchJustwatchNewResponse = any
+
+func (s *JustWatchService) JustwatchNewTyped(ctx context.Context, params JustWatchJustwatchNewParams, opts ...RequestOption) (JustWatchJustwatchNewResponse, error) {
+	return s.client.Request(ctx, "justwatch-new", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchPopular(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-popular", params, opts...)
 }
 
+type JustWatchJustwatchPopularParams struct {
+	Country  *string `crawlora:"country,omitempty"`
+	Language *string `crawlora:"language,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+	Type     *string `crawlora:"type,omitempty"`
+}
+
+type JustWatchJustwatchPopularResponse = any
+
+func (s *JustWatchService) JustwatchPopularTyped(ctx context.Context, params JustWatchJustwatchPopularParams, opts ...RequestOption) (JustWatchJustwatchPopularResponse, error) {
+	return s.client.Request(ctx, "justwatch-popular", paramsFromStruct(params), opts...)
+}
+
 func (s *JustWatchService) JustwatchProviderTitles(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-provider-titles", params, opts...)
+}
+
+type JustWatchJustwatchProviderTitlesParams struct {
+	Provider string  `crawlora:"provider"`
+	Country  *string `crawlora:"country,omitempty"`
+	Language *string `crawlora:"language,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+	Type     *string `crawlora:"type,omitempty"`
+}
+
+type JustWatchJustwatchProviderTitlesResponse = any
+
+func (s *JustWatchService) JustwatchProviderTitlesTyped(ctx context.Context, params JustWatchJustwatchProviderTitlesParams, opts ...RequestOption) (JustWatchJustwatchProviderTitlesResponse, error) {
+	return s.client.Request(ctx, "justwatch-provider-titles", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchProviders(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-providers", params, opts...)
 }
 
+type JustWatchJustwatchProvidersParams struct {
+	Country *string `crawlora:"country,omitempty"`
+}
+
+type JustWatchJustwatchProvidersResponse = any
+
+func (s *JustWatchService) JustwatchProvidersTyped(ctx context.Context, params JustWatchJustwatchProvidersParams, opts ...RequestOption) (JustWatchJustwatchProvidersResponse, error) {
+	return s.client.Request(ctx, "justwatch-providers", paramsFromStruct(params), opts...)
+}
+
 func (s *JustWatchService) JustwatchSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-search", params, opts...)
+}
+
+type JustWatchJustwatchSearchParams struct {
+	Query    string  `crawlora:"query"`
+	Country  *string `crawlora:"country,omitempty"`
+	Language *string `crawlora:"language,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+}
+
+type JustWatchJustwatchSearchResponse = any
+
+func (s *JustWatchService) JustwatchSearchTyped(ctx context.Context, params JustWatchJustwatchSearchParams, opts ...RequestOption) (JustWatchJustwatchSearchResponse, error) {
+	return s.client.Request(ctx, "justwatch-search", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchSeasonById(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-season-by-id", params, opts...)
 }
 
+type JustWatchJustwatchSeasonByIdParams struct {
+	Id       string  `crawlora:"id"`
+	Country  *string `crawlora:"country,omitempty"`
+	Language *string `crawlora:"language,omitempty"`
+}
+
+type JustWatchJustwatchSeasonByIdResponse = any
+
+func (s *JustWatchService) JustwatchSeasonByIdTyped(ctx context.Context, params JustWatchJustwatchSeasonByIdParams, opts ...RequestOption) (JustWatchJustwatchSeasonByIdResponse, error) {
+	return s.client.Request(ctx, "justwatch-season-by-id", paramsFromStruct(params), opts...)
+}
+
 func (s *JustWatchService) JustwatchSeasonEpisodes(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-season-episodes", params, opts...)
+}
+
+type JustWatchJustwatchSeasonEpisodesParams struct {
+	SeasonId string  `crawlora:"season_id"`
+	Country  *string `crawlora:"country,omitempty"`
+	Language *string `crawlora:"language,omitempty"`
+}
+
+type JustWatchJustwatchSeasonEpisodesResponse = any
+
+func (s *JustWatchService) JustwatchSeasonEpisodesTyped(ctx context.Context, params JustWatchJustwatchSeasonEpisodesParams, opts ...RequestOption) (JustWatchJustwatchSeasonEpisodesResponse, error) {
+	return s.client.Request(ctx, "justwatch-season-episodes", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchShowSeasons(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-show-seasons", params, opts...)
 }
 
+type JustWatchJustwatchShowSeasonsParams struct {
+	ShowId   string  `crawlora:"show_id"`
+	Country  *string `crawlora:"country,omitempty"`
+	Language *string `crawlora:"language,omitempty"`
+}
+
+type JustWatchJustwatchShowSeasonsResponse = any
+
+func (s *JustWatchService) JustwatchShowSeasonsTyped(ctx context.Context, params JustWatchJustwatchShowSeasonsParams, opts ...RequestOption) (JustWatchJustwatchShowSeasonsResponse, error) {
+	return s.client.Request(ctx, "justwatch-show-seasons", paramsFromStruct(params), opts...)
+}
+
 func (s *JustWatchService) JustwatchTitle(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-title", params, opts...)
+}
+
+type JustWatchJustwatchTitleParams struct {
+	Path *string `crawlora:"path,omitempty"`
+	Url  *string `crawlora:"url,omitempty"`
+}
+
+type JustWatchJustwatchTitleResponse = any
+
+func (s *JustWatchService) JustwatchTitleTyped(ctx context.Context, params JustWatchJustwatchTitleParams, opts ...RequestOption) (JustWatchJustwatchTitleResponse, error) {
+	return s.client.Request(ctx, "justwatch-title", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchTitleAnalysis(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-title-analysis", params, opts...)
 }
 
+type JustWatchJustwatchTitleAnalysisParams struct {
+	Path *string `crawlora:"path,omitempty"`
+	Url  *string `crawlora:"url,omitempty"`
+}
+
+type JustWatchJustwatchTitleAnalysisResponse = any
+
+func (s *JustWatchService) JustwatchTitleAnalysisTyped(ctx context.Context, params JustWatchJustwatchTitleAnalysisParams, opts ...RequestOption) (JustWatchJustwatchTitleAnalysisResponse, error) {
+	return s.client.Request(ctx, "justwatch-title-analysis", paramsFromStruct(params), opts...)
+}
+
 func (s *JustWatchService) JustwatchTitleById(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-title-by-id", params, opts...)
+}
+
+type JustWatchJustwatchTitleByIdParams struct {
+	Id       string  `crawlora:"id"`
+	Country  *string `crawlora:"country,omitempty"`
+	Language *string `crawlora:"language,omitempty"`
+}
+
+type JustWatchJustwatchTitleByIdResponse = any
+
+func (s *JustWatchService) JustwatchTitleByIdTyped(ctx context.Context, params JustWatchJustwatchTitleByIdParams, opts ...RequestOption) (JustWatchJustwatchTitleByIdResponse, error) {
+	return s.client.Request(ctx, "justwatch-title-by-id", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchTitleMedia(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-title-media", params, opts...)
 }
 
+type JustWatchJustwatchTitleMediaParams struct {
+	Id       string  `crawlora:"id"`
+	Country  *string `crawlora:"country,omitempty"`
+	Language *string `crawlora:"language,omitempty"`
+}
+
+type JustWatchJustwatchTitleMediaResponse = any
+
+func (s *JustWatchService) JustwatchTitleMediaTyped(ctx context.Context, params JustWatchJustwatchTitleMediaParams, opts ...RequestOption) (JustWatchJustwatchTitleMediaResponse, error) {
+	return s.client.Request(ctx, "justwatch-title-media", paramsFromStruct(params), opts...)
+}
+
 func (s *JustWatchService) JustwatchTitleOffers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-title-offers", params, opts...)
 }
 
+type JustWatchJustwatchTitleOffersParams struct {
+	Id        string  `crawlora:"id"`
+	Countries *string `crawlora:"countries,omitempty"`
+	Language  *string `crawlora:"language,omitempty"`
+}
+
+type JustWatchJustwatchTitleOffersResponse = any
+
+func (s *JustWatchService) JustwatchTitleOffersTyped(ctx context.Context, params JustWatchJustwatchTitleOffersParams, opts ...RequestOption) (JustWatchJustwatchTitleOffersResponse, error) {
+	return s.client.Request(ctx, "justwatch-title-offers", paramsFromStruct(params), opts...)
+}
+
 func (s *JustWatchService) JustwatchTitleSimilar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "justwatch-title-similar", params, opts...)
+}
+
+type JustWatchJustwatchTitleSimilarParams struct {
+	Id       string  `crawlora:"id"`
+	Country  *string `crawlora:"country,omitempty"`
+	Language *string `crawlora:"language,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+}
+
+type JustWatchJustwatchTitleSimilarResponse = any
+
+func (s *JustWatchService) JustwatchTitleSimilarTyped(ctx context.Context, params JustWatchJustwatchTitleSimilarParams, opts ...RequestOption) (JustWatchJustwatchTitleSimilarResponse, error) {
+	return s.client.Request(ctx, "justwatch-title-similar", paramsFromStruct(params), opts...)
 }
 
 type LinkedInService struct{ client *Client }
@@ -1099,12 +2989,42 @@ func (s *LinkedInService) LinkedinCompany(ctx context.Context, params Params, op
 	return s.client.Request(ctx, "linkedin-company", params, opts...)
 }
 
+type LinkedInLinkedinCompanyParams struct {
+	Id string `crawlora:"id"`
+}
+
+type LinkedInLinkedinCompanyResponse = any
+
+func (s *LinkedInService) LinkedinCompanyTyped(ctx context.Context, params LinkedInLinkedinCompanyParams, opts ...RequestOption) (LinkedInLinkedinCompanyResponse, error) {
+	return s.client.Request(ctx, "linkedin-company", paramsFromStruct(params), opts...)
+}
+
 func (s *LinkedInService) LinkedinProduct(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "linkedin-product", params, opts...)
 }
 
+type LinkedInLinkedinProductParams struct {
+	Id string `crawlora:"id"`
+}
+
+type LinkedInLinkedinProductResponse = any
+
+func (s *LinkedInService) LinkedinProductTyped(ctx context.Context, params LinkedInLinkedinProductParams, opts ...RequestOption) (LinkedInLinkedinProductResponse, error) {
+	return s.client.Request(ctx, "linkedin-product", paramsFromStruct(params), opts...)
+}
+
 func (s *LinkedInService) LinkedinShowcase(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "linkedin-showcase", params, opts...)
+}
+
+type LinkedInLinkedinShowcaseParams struct {
+	Id string `crawlora:"id"`
+}
+
+type LinkedInLinkedinShowcaseResponse = any
+
+func (s *LinkedInService) LinkedinShowcaseTyped(ctx context.Context, params LinkedInLinkedinShowcaseParams, opts ...RequestOption) (LinkedInLinkedinShowcaseResponse, error) {
+	return s.client.Request(ctx, "linkedin-showcase", paramsFromStruct(params), opts...)
 }
 
 type MetaService struct{ client *Client }
@@ -1113,8 +3033,26 @@ func (s *MetaService) Ping(ctx context.Context, params Params, opts ...RequestOp
 	return s.client.Request(ctx, "ping", params, opts...)
 }
 
+type MetaPingParams struct {
+}
+
+type MetaPingResponse = any
+
+func (s *MetaService) PingTyped(ctx context.Context, params MetaPingParams, opts ...RequestOption) (MetaPingResponse, error) {
+	return s.client.Request(ctx, "ping", paramsFromStruct(params), opts...)
+}
+
 func (s *MetaService) Ready(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "ready", params, opts...)
+}
+
+type MetaReadyParams struct {
+}
+
+type MetaReadyResponse = any
+
+func (s *MetaService) ReadyTyped(ctx context.Context, params MetaReadyParams, opts ...RequestOption) (MetaReadyResponse, error) {
+	return s.client.Request(ctx, "ready", paramsFromStruct(params), opts...)
 }
 
 type ProductHuntService struct{ client *Client }
@@ -1123,48 +3061,203 @@ func (s *ProductHuntService) Category(ctx context.Context, params Params, opts .
 	return s.client.Request(ctx, "producthunt-category", params, opts...)
 }
 
+type ProductHuntCategoryParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type ProductHuntCategoryResponse = any
+
+func (s *ProductHuntService) CategoryTyped(ctx context.Context, params ProductHuntCategoryParams, opts ...RequestOption) (ProductHuntCategoryResponse, error) {
+	return s.client.Request(ctx, "producthunt-category", paramsFromStruct(params), opts...)
+}
+
 func (s *ProductHuntService) CategoryProducts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "producthunt-category-products", params, opts...)
+}
+
+type ProductHuntCategoryProductsParams struct {
+	Slug         string  `crawlora:"slug"`
+	FeaturedOnly *bool   `crawlora:"featured_only,omitempty"`
+	Order        *string `crawlora:"order,omitempty"`
+	Page         *int    `crawlora:"page,omitempty"`
+	PageSize     *int    `crawlora:"page_size,omitempty"`
+	Tags         *string `crawlora:"tags,omitempty"`
+}
+
+type ProductHuntCategoryProductsResponse = any
+
+func (s *ProductHuntService) CategoryProductsTyped(ctx context.Context, params ProductHuntCategoryProductsParams, opts ...RequestOption) (ProductHuntCategoryProductsResponse, error) {
+	return s.client.Request(ctx, "producthunt-category-products", paramsFromStruct(params), opts...)
 }
 
 func (s *ProductHuntService) Leaderboard(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "producthunt-leaderboard", params, opts...)
 }
 
+type ProductHuntLeaderboardParams struct {
+	Scope    *string `crawlora:"scope,omitempty"`
+	Date     *string `crawlora:"date,omitempty"`
+	Year     *int    `crawlora:"year,omitempty"`
+	Month    *int    `crawlora:"month,omitempty"`
+	Day      *int    `crawlora:"day,omitempty"`
+	Week     *int    `crawlora:"week,omitempty"`
+	Featured *bool   `crawlora:"featured,omitempty"`
+	Order    *string `crawlora:"order,omitempty"`
+	Cursor   *string `crawlora:"cursor,omitempty"`
+}
+
+type ProductHuntLeaderboardResponse = any
+
+func (s *ProductHuntService) LeaderboardTyped(ctx context.Context, params ProductHuntLeaderboardParams, opts ...RequestOption) (ProductHuntLeaderboardResponse, error) {
+	return s.client.Request(ctx, "producthunt-leaderboard", paramsFromStruct(params), opts...)
+}
+
 func (s *ProductHuntService) Product(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "producthunt-product", params, opts...)
+}
+
+type ProductHuntProductParams struct {
+	Id string `crawlora:"id"`
+}
+
+type ProductHuntProductResponse = any
+
+func (s *ProductHuntService) ProductTyped(ctx context.Context, params ProductHuntProductParams, opts ...RequestOption) (ProductHuntProductResponse, error) {
+	return s.client.Request(ctx, "producthunt-product", paramsFromStruct(params), opts...)
 }
 
 func (s *ProductHuntService) About(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "producthunt-about", params, opts...)
 }
 
+type ProductHuntAboutParams struct {
+	Id string `crawlora:"id"`
+}
+
+type ProductHuntAboutResponse = any
+
+func (s *ProductHuntService) AboutTyped(ctx context.Context, params ProductHuntAboutParams, opts ...RequestOption) (ProductHuntAboutResponse, error) {
+	return s.client.Request(ctx, "producthunt-about", paramsFromStruct(params), opts...)
+}
+
 func (s *ProductHuntService) Alternatives(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "producthunt-alternatives", params, opts...)
+}
+
+type ProductHuntAlternativesParams struct {
+	Id     string  `crawlora:"id"`
+	First  *int    `crawlora:"first,omitempty"`
+	Cursor *string `crawlora:"cursor,omitempty"`
+	Order  *string `crawlora:"order,omitempty"`
+	Tags   *string `crawlora:"tags,omitempty"`
+}
+
+type ProductHuntAlternativesResponse = any
+
+func (s *ProductHuntService) AlternativesTyped(ctx context.Context, params ProductHuntAlternativesParams, opts ...RequestOption) (ProductHuntAlternativesResponse, error) {
+	return s.client.Request(ctx, "producthunt-alternatives", paramsFromStruct(params), opts...)
 }
 
 func (s *ProductHuntService) Comments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "producthunt-comments", params, opts...)
 }
 
+type ProductHuntCommentsParams struct {
+	Id                        string  `crawlora:"id"`
+	Page                      *int    `crawlora:"page,omitempty"`
+	Limit                     *int    `crawlora:"limit,omitempty"`
+	Order                     *string `crawlora:"order,omitempty"`
+	Filter                    *string `crawlora:"filter,omitempty"`
+	ThreadsCursor             *string `crawlora:"threads_cursor,omitempty"`
+	RepliesCursor             *string `crawlora:"replies_cursor,omitempty"`
+	IncludeThreadForCommentId *string `crawlora:"include_thread_for_comment_id,omitempty"`
+	ExcludeThreadForCommentId *string `crawlora:"exclude_thread_for_comment_id,omitempty"`
+}
+
+type ProductHuntCommentsResponse = any
+
+func (s *ProductHuntService) CommentsTyped(ctx context.Context, params ProductHuntCommentsParams, opts ...RequestOption) (ProductHuntCommentsResponse, error) {
+	return s.client.Request(ctx, "producthunt-comments", paramsFromStruct(params), opts...)
+}
+
 func (s *ProductHuntService) Customers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "producthunt-customers", params, opts...)
+}
+
+type ProductHuntCustomersParams struct {
+	Id       string  `crawlora:"id"`
+	Order    *string `crawlora:"order,omitempty"`
+	Page     *int    `crawlora:"page,omitempty"`
+	PageSize *int    `crawlora:"page_size,omitempty"`
+}
+
+type ProductHuntCustomersResponse = any
+
+func (s *ProductHuntService) CustomersTyped(ctx context.Context, params ProductHuntCustomersParams, opts ...RequestOption) (ProductHuntCustomersResponse, error) {
+	return s.client.Request(ctx, "producthunt-customers", paramsFromStruct(params), opts...)
 }
 
 func (s *ProductHuntService) Launches(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "producthunt-launches", params, opts...)
 }
 
+type ProductHuntLaunchesParams struct {
+	Id     string  `crawlora:"id"`
+	Cursor *string `crawlora:"cursor,omitempty"`
+	Order  *string `crawlora:"order,omitempty"`
+}
+
+type ProductHuntLaunchesResponse = any
+
+func (s *ProductHuntService) LaunchesTyped(ctx context.Context, params ProductHuntLaunchesParams, opts ...RequestOption) (ProductHuntLaunchesResponse, error) {
+	return s.client.Request(ctx, "producthunt-launches", paramsFromStruct(params), opts...)
+}
+
 func (s *ProductHuntService) Makers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "producthunt-makers", params, opts...)
+}
+
+type ProductHuntMakersParams struct {
+	Id     string  `crawlora:"id"`
+	Cursor *string `crawlora:"cursor,omitempty"`
+}
+
+type ProductHuntMakersResponse = any
+
+func (s *ProductHuntService) MakersTyped(ctx context.Context, params ProductHuntMakersParams, opts ...RequestOption) (ProductHuntMakersResponse, error) {
+	return s.client.Request(ctx, "producthunt-makers", paramsFromStruct(params), opts...)
 }
 
 func (s *ProductHuntService) Reviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "producthunt-reviews", params, opts...)
 }
 
+type ProductHuntReviewsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type ProductHuntReviewsResponse = any
+
+func (s *ProductHuntService) ReviewsTyped(ctx context.Context, params ProductHuntReviewsParams, opts ...RequestOption) (ProductHuntReviewsResponse, error) {
+	return s.client.Request(ctx, "producthunt-reviews", paramsFromStruct(params), opts...)
+}
+
 func (s *ProductHuntService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "producthunt-search", params, opts...)
+}
+
+type ProductHuntSearchParams struct {
+	Query    string  `crawlora:"query"`
+	Type     *string `crawlora:"type,omitempty"`
+	Page     *int    `crawlora:"page,omitempty"`
+	Featured *bool   `crawlora:"featured,omitempty"`
+	Topics   *string `crawlora:"topics,omitempty"`
+}
+
+type ProductHuntSearchResponse = any
+
+func (s *ProductHuntService) SearchTyped(ctx context.Context, params ProductHuntSearchParams, opts ...RequestOption) (ProductHuntSearchResponse, error) {
+	return s.client.Request(ctx, "producthunt-search", paramsFromStruct(params), opts...)
 }
 
 type ReferralsService struct{ client *Client }
@@ -1173,12 +3266,41 @@ func (s *ReferralsService) Click(ctx context.Context, params Params, opts ...Req
 	return s.client.Request(ctx, "referrals-click", params, opts...)
 }
 
+type ReferralsClickParams struct {
+	Request any `crawlora:"request"`
+}
+
+type ReferralsClickResponse = any
+
+func (s *ReferralsService) ClickTyped(ctx context.Context, params ReferralsClickParams, opts ...RequestOption) (ReferralsClickResponse, error) {
+	return s.client.Request(ctx, "referrals-click", paramsFromStruct(params), opts...)
+}
+
 func (s *ReferralsService) Me(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "referrals-me", params, opts...)
 }
 
+type ReferralsMeParams struct {
+}
+
+type ReferralsMeResponse = any
+
+func (s *ReferralsService) MeTyped(ctx context.Context, params ReferralsMeParams, opts ...RequestOption) (ReferralsMeResponse, error) {
+	return s.client.Request(ctx, "referrals-me", paramsFromStruct(params), opts...)
+}
+
 func (s *ReferralsService) MeEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "referrals-me-events", params, opts...)
+}
+
+type ReferralsMeEventsParams struct {
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type ReferralsMeEventsResponse = any
+
+func (s *ReferralsService) MeEventsTyped(ctx context.Context, params ReferralsMeEventsParams, opts ...RequestOption) (ReferralsMeEventsResponse, error) {
+	return s.client.Request(ctx, "referrals-me-events", paramsFromStruct(params), opts...)
 }
 
 type SimilarWebService struct{ client *Client }
@@ -1187,8 +3309,28 @@ func (s *SimilarWebService) Search(ctx context.Context, params Params, opts ...R
 	return s.client.Request(ctx, "similarweb-search", params, opts...)
 }
 
+type SimilarWebSearchParams struct {
+	Q string `crawlora:"q"`
+}
+
+type SimilarWebSearchResponse = any
+
+func (s *SimilarWebService) SearchTyped(ctx context.Context, params SimilarWebSearchParams, opts ...RequestOption) (SimilarWebSearchResponse, error) {
+	return s.client.Request(ctx, "similarweb-search", paramsFromStruct(params), opts...)
+}
+
 func (s *SimilarWebService) Web(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "similarweb-web", params, opts...)
+}
+
+type SimilarWebWebParams struct {
+	Domain string `crawlora:"domain"`
+}
+
+type SimilarWebWebResponse = any
+
+func (s *SimilarWebService) WebTyped(ctx context.Context, params SimilarWebWebParams, opts ...RequestOption) (SimilarWebWebResponse, error) {
+	return s.client.Request(ctx, "similarweb-web", paramsFromStruct(params), opts...)
 }
 
 type SpotifyPodcastsService struct{ client *Client }
@@ -1197,32 +3339,138 @@ func (s *SpotifyPodcastsService) Categories(ctx context.Context, params Params, 
 	return s.client.Request(ctx, "spotify-podcasts-categories", params, opts...)
 }
 
+type SpotifyPodcastsCategoriesParams struct {
+	Uri                            *string `crawlora:"uri,omitempty"`
+	PageOffset                     *int    `crawlora:"page_offset,omitempty"`
+	PageLimit                      *int    `crawlora:"page_limit,omitempty"`
+	SectionOffset                  *int    `crawlora:"section_offset,omitempty"`
+	SectionLimit                   *int    `crawlora:"section_limit,omitempty"`
+	IncludeEpisodeContentRatingsV2 *bool   `crawlora:"include_episode_content_ratings_v2,omitempty"`
+}
+
+type SpotifyPodcastsCategoriesResponse = any
+
+func (s *SpotifyPodcastsService) CategoriesTyped(ctx context.Context, params SpotifyPodcastsCategoriesParams, opts ...RequestOption) (SpotifyPodcastsCategoriesResponse, error) {
+	return s.client.Request(ctx, "spotify-podcasts-categories", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyPodcastsService) Charts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-podcasts-charts", params, opts...)
+}
+
+type SpotifyPodcastsChartsParams struct {
+	Chart  *string `crawlora:"chart,omitempty"`
+	Region *string `crawlora:"region,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+}
+
+type SpotifyPodcastsChartsResponse = any
+
+func (s *SpotifyPodcastsService) ChartsTyped(ctx context.Context, params SpotifyPodcastsChartsParams, opts ...RequestOption) (SpotifyPodcastsChartsResponse, error) {
+	return s.client.Request(ctx, "spotify-podcasts-charts", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyPodcastsService) Episode(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-podcasts-episode", params, opts...)
 }
 
+type SpotifyPodcastsEpisodeParams struct {
+	Uri *string `crawlora:"uri,omitempty"`
+	Id  *string `crawlora:"id,omitempty"`
+}
+
+type SpotifyPodcastsEpisodeResponse = any
+
+func (s *SpotifyPodcastsService) EpisodeTyped(ctx context.Context, params SpotifyPodcastsEpisodeParams, opts ...RequestOption) (SpotifyPodcastsEpisodeResponse, error) {
+	return s.client.Request(ctx, "spotify-podcasts-episode", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyPodcastsService) Home(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-podcasts-home", params, opts...)
+}
+
+type SpotifyPodcastsHomeParams struct {
+	Uri                            *string `crawlora:"uri,omitempty"`
+	PageOffset                     *int    `crawlora:"page_offset,omitempty"`
+	PageLimit                      *int    `crawlora:"page_limit,omitempty"`
+	SectionOffset                  *int    `crawlora:"section_offset,omitempty"`
+	SectionLimit                   *int    `crawlora:"section_limit,omitempty"`
+	IncludeEpisodeContentRatingsV2 *bool   `crawlora:"include_episode_content_ratings_v2,omitempty"`
+}
+
+type SpotifyPodcastsHomeResponse = any
+
+func (s *SpotifyPodcastsService) HomeTyped(ctx context.Context, params SpotifyPodcastsHomeParams, opts ...RequestOption) (SpotifyPodcastsHomeResponse, error) {
+	return s.client.Request(ctx, "spotify-podcasts-home", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyPodcastsService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-podcasts-search", params, opts...)
 }
 
+type SpotifyPodcastsSearchParams struct {
+	Q                              string `crawlora:"q"`
+	Offset                         *int   `crawlora:"offset,omitempty"`
+	Limit                          *int   `crawlora:"limit,omitempty"`
+	NumberOfTopResults             *int   `crawlora:"number_of_top_results,omitempty"`
+	IncludePreReleases             *bool  `crawlora:"include_pre_releases,omitempty"`
+	IncludeAlbumPreReleases        *bool  `crawlora:"include_album_pre_releases,omitempty"`
+	IncludeAudiobooks              *bool  `crawlora:"include_audiobooks,omitempty"`
+	IncludeAuthors                 *bool  `crawlora:"include_authors,omitempty"`
+	IncludeEpisodeContentRatingsV2 *bool  `crawlora:"include_episode_content_ratings_v2,omitempty"`
+}
+
+type SpotifyPodcastsSearchResponse = any
+
+func (s *SpotifyPodcastsService) SearchTyped(ctx context.Context, params SpotifyPodcastsSearchParams, opts ...RequestOption) (SpotifyPodcastsSearchResponse, error) {
+	return s.client.Request(ctx, "spotify-podcasts-search", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyPodcastsService) Show(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-podcasts-show", params, opts...)
+}
+
+type SpotifyPodcastsShowParams struct {
+	Uri                            *string `crawlora:"uri,omitempty"`
+	IncludeContentCapabilityTrait  *bool   `crawlora:"include_content_capability_trait,omitempty"`
+	IncludeEpisodeContentRatingsV2 *bool   `crawlora:"include_episode_content_ratings_v2,omitempty"`
+}
+
+type SpotifyPodcastsShowResponse = any
+
+func (s *SpotifyPodcastsService) ShowTyped(ctx context.Context, params SpotifyPodcastsShowParams, opts ...RequestOption) (SpotifyPodcastsShowResponse, error) {
+	return s.client.Request(ctx, "spotify-podcasts-show", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyPodcastsService) ShowEpisodes(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-podcasts-show-episodes", params, opts...)
 }
 
+type SpotifyPodcastsShowEpisodesParams struct {
+	Uri                            *string `crawlora:"uri,omitempty"`
+	Offset                         *int    `crawlora:"offset,omitempty"`
+	Limit                          *int    `crawlora:"limit,omitempty"`
+	IncludeEpisodeContentRatingsV2 *bool   `crawlora:"include_episode_content_ratings_v2,omitempty"`
+}
+
+type SpotifyPodcastsShowEpisodesResponse = any
+
+func (s *SpotifyPodcastsService) ShowEpisodesTyped(ctx context.Context, params SpotifyPodcastsShowEpisodesParams, opts ...RequestOption) (SpotifyPodcastsShowEpisodesResponse, error) {
+	return s.client.Request(ctx, "spotify-podcasts-show-episodes", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyPodcastsService) ShowRecommendations(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-podcasts-show-recommendations", params, opts...)
+}
+
+type SpotifyPodcastsShowRecommendationsParams struct {
+	Uri *string `crawlora:"uri,omitempty"`
+}
+
+type SpotifyPodcastsShowRecommendationsResponse = any
+
+func (s *SpotifyPodcastsService) ShowRecommendationsTyped(ctx context.Context, params SpotifyPodcastsShowRecommendationsParams, opts ...RequestOption) (SpotifyPodcastsShowRecommendationsResponse, error) {
+	return s.client.Request(ctx, "spotify-podcasts-show-recommendations", paramsFromStruct(params), opts...)
 }
 
 type SpotifyService struct{ client *Client }
@@ -1231,120 +3479,532 @@ func (s *SpotifyService) Album(ctx context.Context, params Params, opts ...Reque
 	return s.client.Request(ctx, "spotify-album", params, opts...)
 }
 
+type SpotifyAlbumParams struct {
+	Uri    *string `crawlora:"uri,omitempty"`
+	Id     *string `crawlora:"id,omitempty"`
+	Offset *int    `crawlora:"offset,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+}
+
+type SpotifyAlbumResponse = any
+
+func (s *SpotifyService) AlbumTyped(ctx context.Context, params SpotifyAlbumParams, opts ...RequestOption) (SpotifyAlbumResponse, error) {
+	return s.client.Request(ctx, "spotify-album", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyService) AlbumTracks(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-album-tracks", params, opts...)
+}
+
+type SpotifyAlbumTracksParams struct {
+	Uri    *string `crawlora:"uri,omitempty"`
+	Id     *string `crawlora:"id,omitempty"`
+	Offset *int    `crawlora:"offset,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+}
+
+type SpotifyAlbumTracksResponse = any
+
+func (s *SpotifyService) AlbumTracksTyped(ctx context.Context, params SpotifyAlbumTracksParams, opts ...RequestOption) (SpotifyAlbumTracksResponse, error) {
+	return s.client.Request(ctx, "spotify-album-tracks", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) AlbumsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-albums-search", params, opts...)
 }
 
+type SpotifyAlbumsSearchParams struct {
+	Q                              string `crawlora:"q"`
+	Offset                         *int   `crawlora:"offset,omitempty"`
+	Limit                          *int   `crawlora:"limit,omitempty"`
+	NumberOfTopResults             *int   `crawlora:"number_of_top_results,omitempty"`
+	IncludeAudiobooks              *bool  `crawlora:"include_audiobooks,omitempty"`
+	IncludePreReleases             *bool  `crawlora:"include_pre_releases,omitempty"`
+	IncludeAlbumPreReleases        *bool  `crawlora:"include_album_pre_releases,omitempty"`
+	IncludeAuthors                 *bool  `crawlora:"include_authors,omitempty"`
+	IncludeEpisodeContentRatingsV2 *bool  `crawlora:"include_episode_content_ratings_v2,omitempty"`
+}
+
+type SpotifyAlbumsSearchResponse = any
+
+func (s *SpotifyService) AlbumsSearchTyped(ctx context.Context, params SpotifyAlbumsSearchParams, opts ...RequestOption) (SpotifyAlbumsSearchResponse, error) {
+	return s.client.Request(ctx, "spotify-albums-search", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyService) Artist(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-artist", params, opts...)
+}
+
+type SpotifyArtistParams struct {
+	Uri *string `crawlora:"uri,omitempty"`
+	Id  *string `crawlora:"id,omitempty"`
+}
+
+type SpotifyArtistResponse = any
+
+func (s *SpotifyService) ArtistTyped(ctx context.Context, params SpotifyArtistParams, opts ...RequestOption) (SpotifyArtistResponse, error) {
+	return s.client.Request(ctx, "spotify-artist", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) ArtistAlbums(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-artist-albums", params, opts...)
 }
 
+type SpotifyArtistAlbumsParams struct {
+	Uri    *string `crawlora:"uri,omitempty"`
+	Id     *string `crawlora:"id,omitempty"`
+	Type   *string `crawlora:"type,omitempty"`
+	Order  *string `crawlora:"order,omitempty"`
+	Offset *int    `crawlora:"offset,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+}
+
+type SpotifyArtistAlbumsResponse = any
+
+func (s *SpotifyService) ArtistAlbumsTyped(ctx context.Context, params SpotifyArtistAlbumsParams, opts ...RequestOption) (SpotifyArtistAlbumsResponse, error) {
+	return s.client.Request(ctx, "spotify-artist-albums", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyService) ArtistPlaylists(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-artist-playlists", params, opts...)
+}
+
+type SpotifyArtistPlaylistsParams struct {
+	Uri *string `crawlora:"uri,omitempty"`
+	Id  *string `crawlora:"id,omitempty"`
+}
+
+type SpotifyArtistPlaylistsResponse = any
+
+func (s *SpotifyService) ArtistPlaylistsTyped(ctx context.Context, params SpotifyArtistPlaylistsParams, opts ...RequestOption) (SpotifyArtistPlaylistsResponse, error) {
+	return s.client.Request(ctx, "spotify-artist-playlists", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) ArtistRelated(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-artist-related", params, opts...)
 }
 
+type SpotifyArtistRelatedParams struct {
+	Uri *string `crawlora:"uri,omitempty"`
+	Id  *string `crawlora:"id,omitempty"`
+}
+
+type SpotifyArtistRelatedResponse = any
+
+func (s *SpotifyService) ArtistRelatedTyped(ctx context.Context, params SpotifyArtistRelatedParams, opts ...RequestOption) (SpotifyArtistRelatedResponse, error) {
+	return s.client.Request(ctx, "spotify-artist-related", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyService) ArtistsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-artists-search", params, opts...)
+}
+
+type SpotifyArtistsSearchParams struct {
+	Q      string `crawlora:"q"`
+	Offset *int   `crawlora:"offset,omitempty"`
+	Limit  *int   `crawlora:"limit,omitempty"`
+}
+
+type SpotifyArtistsSearchResponse = any
+
+func (s *SpotifyService) ArtistsSearchTyped(ctx context.Context, params SpotifyArtistsSearchParams, opts ...RequestOption) (SpotifyArtistsSearchResponse, error) {
+	return s.client.Request(ctx, "spotify-artists-search", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) Audiobook(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-audiobook", params, opts...)
 }
 
+type SpotifyAudiobookParams struct {
+	Uri *string `crawlora:"uri,omitempty"`
+	Id  *string `crawlora:"id,omitempty"`
+}
+
+type SpotifyAudiobookResponse = any
+
+func (s *SpotifyService) AudiobookTyped(ctx context.Context, params SpotifyAudiobookParams, opts ...RequestOption) (SpotifyAudiobookResponse, error) {
+	return s.client.Request(ctx, "spotify-audiobook", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyService) AudiobookChapters(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-audiobook-chapters", params, opts...)
+}
+
+type SpotifyAudiobookChaptersParams struct {
+	Uri    *string `crawlora:"uri,omitempty"`
+	Id     *string `crawlora:"id,omitempty"`
+	Offset *int    `crawlora:"offset,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+}
+
+type SpotifyAudiobookChaptersResponse = any
+
+func (s *SpotifyService) AudiobookChaptersTyped(ctx context.Context, params SpotifyAudiobookChaptersParams, opts ...RequestOption) (SpotifyAudiobookChaptersResponse, error) {
+	return s.client.Request(ctx, "spotify-audiobook-chapters", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) AudiobooksSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-audiobooks-search", params, opts...)
 }
 
+type SpotifyAudiobooksSearchParams struct {
+	Q                              string `crawlora:"q"`
+	Offset                         *int   `crawlora:"offset,omitempty"`
+	Limit                          *int   `crawlora:"limit,omitempty"`
+	NumberOfTopResults             *int   `crawlora:"number_of_top_results,omitempty"`
+	IncludeAudiobooks              *bool  `crawlora:"include_audiobooks,omitempty"`
+	IncludePreReleases             *bool  `crawlora:"include_pre_releases,omitempty"`
+	IncludeAlbumPreReleases        *bool  `crawlora:"include_album_pre_releases,omitempty"`
+	IncludeAuthors                 *bool  `crawlora:"include_authors,omitempty"`
+	IncludeEpisodeContentRatingsV2 *bool  `crawlora:"include_episode_content_ratings_v2,omitempty"`
+}
+
+type SpotifyAudiobooksSearchResponse = any
+
+func (s *SpotifyService) AudiobooksSearchTyped(ctx context.Context, params SpotifyAudiobooksSearchParams, opts ...RequestOption) (SpotifyAudiobooksSearchResponse, error) {
+	return s.client.Request(ctx, "spotify-audiobooks-search", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyService) Chapter(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-chapter", params, opts...)
+}
+
+type SpotifyChapterParams struct {
+	Uri *string `crawlora:"uri,omitempty"`
+	Id  *string `crawlora:"id,omitempty"`
+}
+
+type SpotifyChapterResponse = any
+
+func (s *SpotifyService) ChapterTyped(ctx context.Context, params SpotifyChapterParams, opts ...RequestOption) (SpotifyChapterResponse, error) {
+	return s.client.Request(ctx, "spotify-chapter", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) EpisodesSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-episodes-search", params, opts...)
 }
 
+type SpotifyEpisodesSearchParams struct {
+	Q      string `crawlora:"q"`
+	Offset *int   `crawlora:"offset,omitempty"`
+	Limit  *int   `crawlora:"limit,omitempty"`
+}
+
+type SpotifyEpisodesSearchResponse = any
+
+func (s *SpotifyService) EpisodesSearchTyped(ctx context.Context, params SpotifyEpisodesSearchParams, opts ...RequestOption) (SpotifyEpisodesSearchResponse, error) {
+	return s.client.Request(ctx, "spotify-episodes-search", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyService) FeaturedChartsByCountry(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-featured-charts-by-country", params, opts...)
+}
+
+type SpotifyFeaturedChartsByCountryParams struct {
+	CountryCode *string `crawlora:"country_code,omitempty"`
+	ContentId   *string `crawlora:"content_id,omitempty"`
+}
+
+type SpotifyFeaturedChartsByCountryResponse = any
+
+func (s *SpotifyService) FeaturedChartsByCountryTyped(ctx context.Context, params SpotifyFeaturedChartsByCountryParams, opts ...RequestOption) (SpotifyFeaturedChartsByCountryResponse, error) {
+	return s.client.Request(ctx, "spotify-featured-charts-by-country", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) Genre(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-genre", params, opts...)
 }
 
+type SpotifyGenreParams struct {
+	Uri                            *string `crawlora:"uri,omitempty"`
+	PageOffset                     *int    `crawlora:"page_offset,omitempty"`
+	PageLimit                      *int    `crawlora:"page_limit,omitempty"`
+	SectionOffset                  *int    `crawlora:"section_offset,omitempty"`
+	SectionLimit                   *int    `crawlora:"section_limit,omitempty"`
+	IncludeEpisodeContentRatingsV2 *bool   `crawlora:"include_episode_content_ratings_v2,omitempty"`
+}
+
+type SpotifyGenreResponse = any
+
+func (s *SpotifyService) GenreTyped(ctx context.Context, params SpotifyGenreParams, opts ...RequestOption) (SpotifyGenreResponse, error) {
+	return s.client.Request(ctx, "spotify-genre", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyService) Home(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-home", params, opts...)
+}
+
+type SpotifyHomeParams struct {
+	TimeZone                       *string `crawlora:"time_zone,omitempty"`
+	SpT                            *string `crawlora:"sp_t,omitempty"`
+	Facet                          *string `crawlora:"facet,omitempty"`
+	SectionItemsLimit              *int    `crawlora:"section_items_limit,omitempty"`
+	IncludeEpisodeContentRatingsV2 *bool   `crawlora:"include_episode_content_ratings_v2,omitempty"`
+}
+
+type SpotifyHomeResponse = any
+
+func (s *SpotifyService) HomeTyped(ctx context.Context, params SpotifyHomeParams, opts ...RequestOption) (SpotifyHomeResponse, error) {
+	return s.client.Request(ctx, "spotify-home", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) Playlist(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-playlist", params, opts...)
 }
 
+type SpotifyPlaylistParams struct {
+	Uri                            *string `crawlora:"uri,omitempty"`
+	Id                             *string `crawlora:"id,omitempty"`
+	Offset                         *int    `crawlora:"offset,omitempty"`
+	Limit                          *int    `crawlora:"limit,omitempty"`
+	EnableWatchFeedEntrypoint      *bool   `crawlora:"enable_watch_feed_entrypoint,omitempty"`
+	IncludeEpisodeContentRatingsV2 *bool   `crawlora:"include_episode_content_ratings_v2,omitempty"`
+}
+
+type SpotifyPlaylistResponse = any
+
+func (s *SpotifyService) PlaylistTyped(ctx context.Context, params SpotifyPlaylistParams, opts ...RequestOption) (SpotifyPlaylistResponse, error) {
+	return s.client.Request(ctx, "spotify-playlist", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyService) PlaylistsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-playlists-search", params, opts...)
+}
+
+type SpotifyPlaylistsSearchParams struct {
+	Q                              string `crawlora:"q"`
+	Offset                         *int   `crawlora:"offset,omitempty"`
+	Limit                          *int   `crawlora:"limit,omitempty"`
+	NumberOfTopResults             *int   `crawlora:"number_of_top_results,omitempty"`
+	IncludeAudiobooks              *bool  `crawlora:"include_audiobooks,omitempty"`
+	IncludePreReleases             *bool  `crawlora:"include_pre_releases,omitempty"`
+	IncludeAlbumPreReleases        *bool  `crawlora:"include_album_pre_releases,omitempty"`
+	IncludeAuthors                 *bool  `crawlora:"include_authors,omitempty"`
+	IncludeEpisodeContentRatingsV2 *bool  `crawlora:"include_episode_content_ratings_v2,omitempty"`
+}
+
+type SpotifyPlaylistsSearchResponse = any
+
+func (s *SpotifyService) PlaylistsSearchTyped(ctx context.Context, params SpotifyPlaylistsSearchParams, opts ...RequestOption) (SpotifyPlaylistsSearchResponse, error) {
+	return s.client.Request(ctx, "spotify-playlists-search", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) PopularByCountry(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-popular-by-country", params, opts...)
 }
 
+type SpotifyPopularByCountryParams struct {
+	CountryCode *string `crawlora:"country_code,omitempty"`
+}
+
+type SpotifyPopularByCountryResponse = any
+
+func (s *SpotifyService) PopularByCountryTyped(ctx context.Context, params SpotifyPopularByCountryParams, opts ...RequestOption) (SpotifyPopularByCountryResponse, error) {
+	return s.client.Request(ctx, "spotify-popular-by-country", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyService) Profile(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-profile", params, opts...)
+}
+
+type SpotifyProfileParams struct {
+	Username      *string `crawlora:"username,omitempty"`
+	Uri           *string `crawlora:"uri,omitempty"`
+	Url           *string `crawlora:"url,omitempty"`
+	PlaylistLimit *int    `crawlora:"playlist_limit,omitempty"`
+	ArtistLimit   *int    `crawlora:"artist_limit,omitempty"`
+	EpisodeLimit  *int    `crawlora:"episode_limit,omitempty"`
+}
+
+type SpotifyProfileResponse = any
+
+func (s *SpotifyService) ProfileTyped(ctx context.Context, params SpotifyProfileParams, opts ...RequestOption) (SpotifyProfileResponse, error) {
+	return s.client.Request(ctx, "spotify-profile", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) ProfileFollowers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-profile-followers", params, opts...)
 }
 
+type SpotifyProfileFollowersParams struct {
+	Username *string `crawlora:"username,omitempty"`
+	Uri      *string `crawlora:"uri,omitempty"`
+	Url      *string `crawlora:"url,omitempty"`
+	Offset   *int    `crawlora:"offset,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+}
+
+type SpotifyProfileFollowersResponse = any
+
+func (s *SpotifyService) ProfileFollowersTyped(ctx context.Context, params SpotifyProfileFollowersParams, opts ...RequestOption) (SpotifyProfileFollowersResponse, error) {
+	return s.client.Request(ctx, "spotify-profile-followers", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyService) ProfilePlaylists(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-profile-playlists", params, opts...)
+}
+
+type SpotifyProfilePlaylistsParams struct {
+	Username *string `crawlora:"username,omitempty"`
+	Uri      *string `crawlora:"uri,omitempty"`
+	Url      *string `crawlora:"url,omitempty"`
+	Offset   *int    `crawlora:"offset,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+}
+
+type SpotifyProfilePlaylistsResponse = any
+
+func (s *SpotifyService) ProfilePlaylistsTyped(ctx context.Context, params SpotifyProfilePlaylistsParams, opts ...RequestOption) (SpotifyProfilePlaylistsResponse, error) {
+	return s.client.Request(ctx, "spotify-profile-playlists", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) ProfilesSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-profiles-search", params, opts...)
 }
 
+type SpotifyProfilesSearchParams struct {
+	Q                              string `crawlora:"q"`
+	Offset                         *int   `crawlora:"offset,omitempty"`
+	Limit                          *int   `crawlora:"limit,omitempty"`
+	NumberOfTopResults             *int   `crawlora:"number_of_top_results,omitempty"`
+	IncludeAudiobooks              *bool  `crawlora:"include_audiobooks,omitempty"`
+	IncludePreReleases             *bool  `crawlora:"include_pre_releases,omitempty"`
+	IncludeAlbumPreReleases        *bool  `crawlora:"include_album_pre_releases,omitempty"`
+	IncludeAuthors                 *bool  `crawlora:"include_authors,omitempty"`
+	IncludeEpisodeContentRatingsV2 *bool  `crawlora:"include_episode_content_ratings_v2,omitempty"`
+}
+
+type SpotifyProfilesSearchResponse = any
+
+func (s *SpotifyService) ProfilesSearchTyped(ctx context.Context, params SpotifyProfilesSearchParams, opts ...RequestOption) (SpotifyProfilesSearchResponse, error) {
+	return s.client.Request(ctx, "spotify-profiles-search", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-search", params, opts...)
+}
+
+type SpotifySearchParams struct {
+	Q                              string `crawlora:"q"`
+	Offset                         *int   `crawlora:"offset,omitempty"`
+	Limit                          *int   `crawlora:"limit,omitempty"`
+	NumberOfTopResults             *int   `crawlora:"number_of_top_results,omitempty"`
+	IncludeAudiobooks              *bool  `crawlora:"include_audiobooks,omitempty"`
+	IncludeArtistHasConcertsField  *bool  `crawlora:"include_artist_has_concerts_field,omitempty"`
+	IncludePreReleases             *bool  `crawlora:"include_pre_releases,omitempty"`
+	IncludeAlbumPreReleases        *bool  `crawlora:"include_album_pre_releases,omitempty"`
+	IncludeAuthors                 *bool  `crawlora:"include_authors,omitempty"`
+	IncludeEpisodeContentRatingsV2 *bool  `crawlora:"include_episode_content_ratings_v2,omitempty"`
+	IsPrefix                       *bool  `crawlora:"is_prefix,omitempty"`
+}
+
+type SpotifySearchResponse = any
+
+func (s *SpotifyService) SearchTyped(ctx context.Context, params SpotifySearchParams, opts ...RequestOption) (SpotifySearchResponse, error) {
+	return s.client.Request(ctx, "spotify-search", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) Section(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-section", params, opts...)
 }
 
+type SpotifySectionParams struct {
+	Uri                            *string `crawlora:"uri,omitempty"`
+	Offset                         *int    `crawlora:"offset,omitempty"`
+	Limit                          *int    `crawlora:"limit,omitempty"`
+	IncludeEpisodeContentRatingsV2 *bool   `crawlora:"include_episode_content_ratings_v2,omitempty"`
+}
+
+type SpotifySectionResponse = any
+
+func (s *SpotifyService) SectionTyped(ctx context.Context, params SpotifySectionParams, opts ...RequestOption) (SpotifySectionResponse, error) {
+	return s.client.Request(ctx, "spotify-section", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyService) ShowsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-shows-search", params, opts...)
+}
+
+type SpotifyShowsSearchParams struct {
+	Q      string `crawlora:"q"`
+	Offset *int   `crawlora:"offset,omitempty"`
+	Limit  *int   `crawlora:"limit,omitempty"`
+}
+
+type SpotifyShowsSearchResponse = any
+
+func (s *SpotifyService) ShowsSearchTyped(ctx context.Context, params SpotifyShowsSearchParams, opts ...RequestOption) (SpotifyShowsSearchResponse, error) {
+	return s.client.Request(ctx, "spotify-shows-search", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) Track(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-track", params, opts...)
 }
 
+type SpotifyTrackParams struct {
+	Uri *string `crawlora:"uri,omitempty"`
+	Id  *string `crawlora:"id,omitempty"`
+}
+
+type SpotifyTrackResponse = any
+
+func (s *SpotifyService) TrackTyped(ctx context.Context, params SpotifyTrackParams, opts ...RequestOption) (SpotifyTrackResponse, error) {
+	return s.client.Request(ctx, "spotify-track", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyService) TrackRecommended(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-track-recommended", params, opts...)
+}
+
+type SpotifyTrackRecommendedParams struct {
+	Uri   *string `crawlora:"uri,omitempty"`
+	Id    *string `crawlora:"id,omitempty"`
+	Limit *int    `crawlora:"limit,omitempty"`
+}
+
+type SpotifyTrackRecommendedResponse = any
+
+func (s *SpotifyService) TrackRecommendedTyped(ctx context.Context, params SpotifyTrackRecommendedParams, opts ...RequestOption) (SpotifyTrackRecommendedResponse, error) {
+	return s.client.Request(ctx, "spotify-track-recommended", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) TrackSimilarAlbums(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-track-similar-albums", params, opts...)
 }
 
+type SpotifyTrackSimilarAlbumsParams struct {
+	Uri        *string `crawlora:"uri,omitempty"`
+	Id         *string `crawlora:"id,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	AlbumsOnly *bool   `crawlora:"albums_only,omitempty"`
+}
+
+type SpotifyTrackSimilarAlbumsResponse = any
+
+func (s *SpotifyService) TrackSimilarAlbumsTyped(ctx context.Context, params SpotifyTrackSimilarAlbumsParams, opts ...RequestOption) (SpotifyTrackSimilarAlbumsResponse, error) {
+	return s.client.Request(ctx, "spotify-track-similar-albums", paramsFromStruct(params), opts...)
+}
+
 func (s *SpotifyService) TracksSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "spotify-tracks-search", params, opts...)
+}
+
+type SpotifyTracksSearchParams struct {
+	Q                              string `crawlora:"q"`
+	Offset                         *int   `crawlora:"offset,omitempty"`
+	Limit                          *int   `crawlora:"limit,omitempty"`
+	NumberOfTopResults             *int   `crawlora:"number_of_top_results,omitempty"`
+	IncludeAudiobooks              *bool  `crawlora:"include_audiobooks,omitempty"`
+	IncludePreReleases             *bool  `crawlora:"include_pre_releases,omitempty"`
+	IncludeAlbumPreReleases        *bool  `crawlora:"include_album_pre_releases,omitempty"`
+	IncludeAuthors                 *bool  `crawlora:"include_authors,omitempty"`
+	IncludeEpisodeContentRatingsV2 *bool  `crawlora:"include_episode_content_ratings_v2,omitempty"`
+}
+
+type SpotifyTracksSearchResponse = any
+
+func (s *SpotifyService) TracksSearchTyped(ctx context.Context, params SpotifyTracksSearchParams, opts ...RequestOption) (SpotifyTracksSearchResponse, error) {
+	return s.client.Request(ctx, "spotify-tracks-search", paramsFromStruct(params), opts...)
 }
 
 type TikTokService struct{ client *Client }
@@ -1353,100 +4013,379 @@ func (s *TikTokService) Category(ctx context.Context, params Params, opts ...Req
 	return s.client.Request(ctx, "tiktok-category", params, opts...)
 }
 
+type TikTokCategoryParams struct {
+}
+
+type TikTokCategoryResponse = any
+
+func (s *TikTokService) CategoryTyped(ctx context.Context, params TikTokCategoryParams, opts ...RequestOption) (TikTokCategoryResponse, error) {
+	return s.client.Request(ctx, "tiktok-category", paramsFromStruct(params), opts...)
+}
+
 func (s *TikTokService) VideoComments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-video-comments", params, opts...)
+}
+
+type TikTokVideoCommentsParams struct {
+	AwemeId string `crawlora:"aweme_id"`
+	Cursor  *int   `crawlora:"cursor,omitempty"`
+}
+
+type TikTokVideoCommentsResponse = any
+
+func (s *TikTokService) VideoCommentsTyped(ctx context.Context, params TikTokVideoCommentsParams, opts ...RequestOption) (TikTokVideoCommentsResponse, error) {
+	return s.client.Request(ctx, "tiktok-video-comments", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) Explore(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-explore", params, opts...)
 }
 
+type TikTokExploreParams struct {
+	Id int `crawlora:"id"`
+}
+
+type TikTokExploreResponse = any
+
+func (s *TikTokService) ExploreTyped(ctx context.Context, params TikTokExploreParams, opts ...RequestOption) (TikTokExploreResponse, error) {
+	return s.client.Request(ctx, "tiktok-explore", paramsFromStruct(params), opts...)
+}
+
 func (s *TikTokService) Challenge(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-challenge", params, opts...)
+}
+
+type TikTokChallengeParams struct {
+	Name string `crawlora:"name"`
+}
+
+type TikTokChallengeResponse = any
+
+func (s *TikTokService) ChallengeTyped(ctx context.Context, params TikTokChallengeParams, opts ...RequestOption) (TikTokChallengeResponse, error) {
+	return s.client.Request(ctx, "tiktok-challenge", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) ChallengeList(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-challenge-list", params, opts...)
 }
 
+type TikTokChallengeListParams struct {
+	Id     string `crawlora:"id"`
+	Cursor *int   `crawlora:"cursor,omitempty"`
+}
+
+type TikTokChallengeListResponse = any
+
+func (s *TikTokService) ChallengeListTyped(ctx context.Context, params TikTokChallengeListParams, opts ...RequestOption) (TikTokChallengeListResponse, error) {
+	return s.client.Request(ctx, "tiktok-challenge-list", paramsFromStruct(params), opts...)
+}
+
 func (s *TikTokService) PopularTrendCountryIndustryMeta(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-popular-trend-country-industry-meta", params, opts...)
+}
+
+type TikTokPopularTrendCountryIndustryMetaParams struct {
+}
+
+type TikTokPopularTrendCountryIndustryMetaResponse = any
+
+func (s *TikTokService) PopularTrendCountryIndustryMetaTyped(ctx context.Context, params TikTokPopularTrendCountryIndustryMetaParams, opts ...RequestOption) (TikTokPopularTrendCountryIndustryMetaResponse, error) {
+	return s.client.Request(ctx, "tiktok-popular-trend-country-industry-meta", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) PopularTrendCreator(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-popular-trend-creator", params, opts...)
 }
 
+type TikTokPopularTrendCreatorParams struct {
+	Page           *int    `crawlora:"page,omitempty"`
+	Limit          *int    `crawlora:"limit,omitempty"`
+	SortBy         *string `crawlora:"sort_by,omitempty"`
+	CreatorCountry *string `crawlora:"creator_country,omitempty"`
+	AudienceCount  *int    `crawlora:"audience_count,omitempty"`
+}
+
+type TikTokPopularTrendCreatorResponse = any
+
+func (s *TikTokService) PopularTrendCreatorTyped(ctx context.Context, params TikTokPopularTrendCreatorParams, opts ...RequestOption) (TikTokPopularTrendCreatorResponse, error) {
+	return s.client.Request(ctx, "tiktok-popular-trend-creator", paramsFromStruct(params), opts...)
+}
+
 func (s *TikTokService) PopularTrendVideo(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-popular-trend-video", params, opts...)
+}
+
+type TikTokPopularTrendVideoParams struct {
+	Page        *int    `crawlora:"page,omitempty"`
+	Limit       *int    `crawlora:"limit,omitempty"`
+	CountryCode *string `crawlora:"country_code,omitempty"`
+	OrderBy     *string `crawlora:"order_by,omitempty"`
+	Period      *int    `crawlora:"period,omitempty"`
+}
+
+type TikTokPopularTrendVideoResponse = any
+
+func (s *TikTokService) PopularTrendVideoTyped(ctx context.Context, params TikTokPopularTrendVideoParams, opts ...RequestOption) (TikTokPopularTrendVideoResponse, error) {
+	return s.client.Request(ctx, "tiktok-popular-trend-video", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) Post(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-post", params, opts...)
 }
 
+type TikTokPostParams struct {
+	Id string `crawlora:"id"`
+}
+
+type TikTokPostResponse = any
+
+func (s *TikTokService) PostTyped(ctx context.Context, params TikTokPostParams, opts ...RequestOption) (TikTokPostResponse, error) {
+	return s.client.Request(ctx, "tiktok-post", paramsFromStruct(params), opts...)
+}
+
 func (s *TikTokService) ProfilePost(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-profile-post", params, opts...)
+}
+
+type TikTokProfilePostParams struct {
+	SecUid   string `crawlora:"secUid"`
+	Cursor   *int   `crawlora:"cursor,omitempty"`
+	SortType *int   `crawlora:"sort_type,omitempty"`
+}
+
+type TikTokProfilePostResponse = any
+
+func (s *TikTokService) ProfilePostTyped(ctx context.Context, params TikTokProfilePostParams, opts ...RequestOption) (TikTokProfilePostResponse, error) {
+	return s.client.Request(ctx, "tiktok-profile-post", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) Profile(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-profile", params, opts...)
 }
 
+type TikTokProfileParams struct {
+	Handler string `crawlora:"handler"`
+}
+
+type TikTokProfileResponse = any
+
+func (s *TikTokService) ProfileTyped(ctx context.Context, params TikTokProfileParams, opts ...RequestOption) (TikTokProfileResponse, error) {
+	return s.client.Request(ctx, "tiktok-profile", paramsFromStruct(params), opts...)
+}
+
 func (s *TikTokService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-search", params, opts...)
+}
+
+type TikTokSearchParams struct {
+	Keyword string `crawlora:"keyword"`
+	Cursor  *int   `crawlora:"cursor,omitempty"`
+	Count   *int   `crawlora:"count,omitempty"`
+}
+
+type TikTokSearchResponse = any
+
+func (s *TikTokService) SearchTyped(ctx context.Context, params TikTokSearchParams, opts ...RequestOption) (TikTokSearchResponse, error) {
+	return s.client.Request(ctx, "tiktok-search", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) SearchHashtag(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-search-hashtag", params, opts...)
 }
 
+type TikTokSearchHashtagParams struct {
+	Keyword string `crawlora:"keyword"`
+	Cursor  *int   `crawlora:"cursor,omitempty"`
+	Count   *int   `crawlora:"count,omitempty"`
+}
+
+type TikTokSearchHashtagResponse = any
+
+func (s *TikTokService) SearchHashtagTyped(ctx context.Context, params TikTokSearchHashtagParams, opts ...RequestOption) (TikTokSearchHashtagResponse, error) {
+	return s.client.Request(ctx, "tiktok-search-hashtag", paramsFromStruct(params), opts...)
+}
+
 func (s *TikTokService) SearchUser(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-search-user", params, opts...)
+}
+
+type TikTokSearchUserParams struct {
+	Keyword string `crawlora:"keyword"`
+	Cursor  *int   `crawlora:"cursor,omitempty"`
+}
+
+type TikTokSearchUserResponse = any
+
+func (s *TikTokService) SearchUserTyped(ctx context.Context, params TikTokSearchUserParams, opts ...RequestOption) (TikTokSearchUserResponse, error) {
+	return s.client.Request(ctx, "tiktok-search-user", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) TopAdsAnalysis(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-top-ads-analysis", params, opts...)
 }
 
+type TikTokTopAdsAnalysisParams struct {
+	MaterialId string  `crawlora:"material_id"`
+	Metric     *string `crawlora:"metric,omitempty"`
+	PeriodType *int    `crawlora:"period_type,omitempty"`
+}
+
+type TikTokTopAdsAnalysisResponse = any
+
+func (s *TikTokService) TopAdsAnalysisTyped(ctx context.Context, params TikTokTopAdsAnalysisParams, opts ...RequestOption) (TikTokTopAdsAnalysisResponse, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-analysis", paramsFromStruct(params), opts...)
+}
+
 func (s *TikTokService) TopAdsDetail(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-top-ads-detail", params, opts...)
+}
+
+type TikTokTopAdsDetailParams struct {
+	MaterialId string `crawlora:"material_id"`
+}
+
+type TikTokTopAdsDetailResponse = any
+
+func (s *TikTokService) TopAdsDetailTyped(ctx context.Context, params TikTokTopAdsDetailParams, opts ...RequestOption) (TikTokTopAdsDetailResponse, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-detail", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) TopAdsFilters(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-top-ads-filters", params, opts...)
 }
 
+type TikTokTopAdsFiltersParams struct {
+}
+
+type TikTokTopAdsFiltersResponse = any
+
+func (s *TikTokService) TopAdsFiltersTyped(ctx context.Context, params TikTokTopAdsFiltersParams, opts ...RequestOption) (TikTokTopAdsFiltersResponse, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-filters", paramsFromStruct(params), opts...)
+}
+
 func (s *TikTokService) TopAdsList(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-top-ads-list", params, opts...)
+}
+
+type TikTokTopAdsListParams struct {
+	Period       *int    `crawlora:"period,omitempty"`
+	Page         *int    `crawlora:"page,omitempty"`
+	Limit        *int    `crawlora:"limit,omitempty"`
+	OrderBy      *string `crawlora:"order_by,omitempty"`
+	CountryCode  *string `crawlora:"country_code,omitempty"`
+	Keyword      *string `crawlora:"keyword,omitempty"`
+	Industry     *string `crawlora:"industry,omitempty"`
+	Objective    *string `crawlora:"objective,omitempty"`
+	AdLanguage   *string `crawlora:"ad_language,omitempty"`
+	PatternLabel *string `crawlora:"pattern_label,omitempty"`
+	Duration     *string `crawlora:"duration,omitempty"`
+	Like         *string `crawlora:"like,omitempty"`
+	AdFormat     *string `crawlora:"ad_format,omitempty"`
+}
+
+type TikTokTopAdsListResponse = any
+
+func (s *TikTokService) TopAdsListTyped(ctx context.Context, params TikTokTopAdsListParams, opts ...RequestOption) (TikTokTopAdsListResponse, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-list", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) TopAdsLocationInfo(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-top-ads-location-info", params, opts...)
 }
 
+type TikTokTopAdsLocationInfoParams struct {
+	Module *int `crawlora:"module,omitempty"`
+}
+
+type TikTokTopAdsLocationInfoResponse = any
+
+func (s *TikTokService) TopAdsLocationInfoTyped(ctx context.Context, params TikTokTopAdsLocationInfoParams, opts ...RequestOption) (TikTokTopAdsLocationInfoResponse, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-location-info", paramsFromStruct(params), opts...)
+}
+
 func (s *TikTokService) TopAdsLocations(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-top-ads-locations", params, opts...)
+}
+
+type TikTokTopAdsLocationsParams struct {
+}
+
+type TikTokTopAdsLocationsResponse = any
+
+func (s *TikTokService) TopAdsLocationsTyped(ctx context.Context, params TikTokTopAdsLocationsParams, opts ...RequestOption) (TikTokTopAdsLocationsResponse, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-locations", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) TopAdsRecommend(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-top-ads-recommend", params, opts...)
 }
 
+type TikTokTopAdsRecommendParams struct {
+	MaterialId string `crawlora:"material_id"`
+	Page       *int   `crawlora:"page,omitempty"`
+	Limit      *int   `crawlora:"limit,omitempty"`
+}
+
+type TikTokTopAdsRecommendResponse = any
+
+func (s *TikTokService) TopAdsRecommendTyped(ctx context.Context, params TikTokTopAdsRecommendParams, opts ...RequestOption) (TikTokTopAdsRecommendResponse, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-recommend", paramsFromStruct(params), opts...)
+}
+
 func (s *TikTokService) TopAdsSafety(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-top-ads-safety", params, opts...)
+}
+
+type TikTokTopAdsSafetyParams struct {
+}
+
+type TikTokTopAdsSafetyResponse = any
+
+func (s *TikTokService) TopAdsSafetyTyped(ctx context.Context, params TikTokTopAdsSafetyParams, opts ...RequestOption) (TikTokTopAdsSafetyResponse, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-safety", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) TopAdsSpotlight(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-top-ads-spotlight", params, opts...)
 }
 
+type TikTokTopAdsSpotlightParams struct {
+	Page  *int `crawlora:"page,omitempty"`
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type TikTokTopAdsSpotlightResponse = any
+
+func (s *TikTokService) TopAdsSpotlightTyped(ctx context.Context, params TikTokTopAdsSpotlightParams, opts ...RequestOption) (TikTokTopAdsSpotlightResponse, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-spotlight", paramsFromStruct(params), opts...)
+}
+
 func (s *TikTokService) TopAdsSuggestions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-top-ads-suggestions", params, opts...)
 }
 
+type TikTokTopAdsSuggestionsParams struct {
+	Count    *int `crawlora:"count,omitempty"`
+	Scenario *int `crawlora:"scenario,omitempty"`
+}
+
+type TikTokTopAdsSuggestionsResponse = any
+
+func (s *TikTokService) TopAdsSuggestionsTyped(ctx context.Context, params TikTokTopAdsSuggestionsParams, opts ...RequestOption) (TikTokTopAdsSuggestionsResponse, error) {
+	return s.client.Request(ctx, "tiktok-top-ads-suggestions", paramsFromStruct(params), opts...)
+}
+
 func (s *TikTokService) Trending(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-trending", params, opts...)
+}
+
+type TikTokTrendingParams struct {
+}
+
+type TikTokTrendingResponse = any
+
+func (s *TikTokService) TrendingTyped(ctx context.Context, params TikTokTrendingParams, opts ...RequestOption) (TikTokTrendingResponse, error) {
+	return s.client.Request(ctx, "tiktok-trending", paramsFromStruct(params), opts...)
 }
 
 type TripAdvisorService struct{ client *Client }
@@ -1455,24 +4394,131 @@ func (s *TripAdvisorService) TripadvisorAutocomplete(ctx context.Context, params
 	return s.client.Request(ctx, "tripadvisor-autocomplete", params, opts...)
 }
 
+type TripAdvisorTripadvisorAutocompleteParams struct {
+	Q               string  `crawlora:"q"`
+	Limit           *int    `crawlora:"limit,omitempty"`
+	Locale          *string `crawlora:"locale,omitempty"`
+	ScopeGeoId      *int    `crawlora:"scope_geo_id,omitempty"`
+	Type            *string `crawlora:"type,omitempty"`
+	SearchSessionId *string `crawlora:"search_session_id,omitempty"`
+	TypeaheadId     *string `crawlora:"typeahead_id,omitempty"`
+	RouteUid        *string `crawlora:"route_uid,omitempty"`
+}
+
+type TripAdvisorTripadvisorAutocompleteResponse = any
+
+func (s *TripAdvisorService) TripadvisorAutocompleteTyped(ctx context.Context, params TripAdvisorTripadvisorAutocompleteParams, opts ...RequestOption) (TripAdvisorTripadvisorAutocompleteResponse, error) {
+	return s.client.Request(ctx, "tripadvisor-autocomplete", paramsFromStruct(params), opts...)
+}
+
 func (s *TripAdvisorService) TripadvisorEnums(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tripadvisor-enums", params, opts...)
+}
+
+type TripAdvisorTripadvisorEnumsParams struct {
+}
+
+type TripAdvisorTripadvisorEnumsResponse = any
+
+func (s *TripAdvisorService) TripadvisorEnumsTyped(ctx context.Context, params TripAdvisorTripadvisorEnumsParams, opts ...RequestOption) (TripAdvisorTripadvisorEnumsResponse, error) {
+	return s.client.Request(ctx, "tripadvisor-enums", paramsFromStruct(params), opts...)
 }
 
 func (s *TripAdvisorService) TripadvisorHotels(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tripadvisor-hotels", params, opts...)
 }
 
+type TripAdvisorTripadvisorHotelsParams struct {
+	GeoId               int     `crawlora:"geo_id"`
+	FilterId            *string `crawlora:"filter_id,omitempty"`
+	Class               *int    `crawlora:"class,omitempty"`
+	Amenities           []int   `crawlora:"amenities"`
+	PriceMin            *int    `crawlora:"price_min,omitempty"`
+	PriceMax            *int    `crawlora:"price_max,omitempty"`
+	PricingMode         *string `crawlora:"pricing_mode,omitempty"`
+	TravelersChoice     *bool   `crawlora:"travelers_choice,omitempty"`
+	TravelersChoiceBotb *bool   `crawlora:"travelers_choice_botb,omitempty"`
+	Currency            *string `crawlora:"currency,omitempty"`
+	Offset              *int    `crawlora:"offset,omitempty"`
+	Limit               *int    `crawlora:"limit,omitempty"`
+	Sort                *string `crawlora:"sort,omitempty"`
+}
+
+type TripAdvisorTripadvisorHotelsResponse = any
+
+func (s *TripAdvisorService) TripadvisorHotelsTyped(ctx context.Context, params TripAdvisorTripadvisorHotelsParams, opts ...RequestOption) (TripAdvisorTripadvisorHotelsResponse, error) {
+	return s.client.Request(ctx, "tripadvisor-hotels", paramsFromStruct(params), opts...)
+}
+
 func (s *TripAdvisorService) TripadvisorPlace(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tripadvisor-place", params, opts...)
+}
+
+type TripAdvisorTripadvisorPlaceParams struct {
+	Url *string `crawlora:"url,omitempty"`
+	Id  *string `crawlora:"id,omitempty"`
+}
+
+type TripAdvisorTripadvisorPlaceResponse = any
+
+func (s *TripAdvisorService) TripadvisorPlaceTyped(ctx context.Context, params TripAdvisorTripadvisorPlaceParams, opts ...RequestOption) (TripAdvisorTripadvisorPlaceResponse, error) {
+	return s.client.Request(ctx, "tripadvisor-place", paramsFromStruct(params), opts...)
 }
 
 func (s *TripAdvisorService) TripadvisorReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tripadvisor-reviews", params, opts...)
 }
 
+type TripAdvisorTripadvisorReviewsParams struct {
+	Id                   *string `crawlora:"id,omitempty"`
+	Url                  *string `crawlora:"url,omitempty"`
+	Page                 *int    `crawlora:"page,omitempty"`
+	Limit                *int    `crawlora:"limit,omitempty"`
+	Language             *string `crawlora:"language,omitempty"`
+	SortType             *string `crawlora:"sort_type,omitempty"`
+	SortBy               *string `crawlora:"sort_by,omitempty"`
+	Ratings              []int   `crawlora:"ratings"`
+	DoMachineTranslation *bool   `crawlora:"do_machine_translation,omitempty"`
+	PhotosPerReviewLimit *int    `crawlora:"photos_per_review_limit,omitempty"`
+}
+
+type TripAdvisorTripadvisorReviewsResponse = any
+
+func (s *TripAdvisorService) TripadvisorReviewsTyped(ctx context.Context, params TripAdvisorTripadvisorReviewsParams, opts ...RequestOption) (TripAdvisorTripadvisorReviewsResponse, error) {
+	return s.client.Request(ctx, "tripadvisor-reviews", paramsFromStruct(params), opts...)
+}
+
 func (s *TripAdvisorService) TripadvisorSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tripadvisor-search", params, opts...)
+}
+
+type TripAdvisorTripadvisorSearchParams struct {
+	GeoId               int     `crawlora:"geo_id"`
+	Type                string  `crawlora:"type"`
+	FilterId            *string `crawlora:"filter_id,omitempty"`
+	Class               *int    `crawlora:"class,omitempty"`
+	Amenities           []int   `crawlora:"amenities"`
+	PriceMin            *int    `crawlora:"price_min,omitempty"`
+	PriceMax            *int    `crawlora:"price_max,omitempty"`
+	PricingMode         *string `crawlora:"pricing_mode,omitempty"`
+	TravelersChoice     *bool   `crawlora:"travelers_choice,omitempty"`
+	TravelersChoiceBotb *bool   `crawlora:"travelers_choice_botb,omitempty"`
+	RestaurantDate      *string `crawlora:"restaurant_date,omitempty"`
+	RestaurantTime      *string `crawlora:"restaurant_time,omitempty"`
+	RestaurantGuests    *int    `crawlora:"restaurant_guests,omitempty"`
+	EstablishmentTypes  []int   `crawlora:"establishment_types"`
+	OnlineOptions       []int   `crawlora:"online_options"`
+	Offset              *int    `crawlora:"offset,omitempty"`
+	Limit               *int    `crawlora:"limit,omitempty"`
+	Locale              *string `crawlora:"locale,omitempty"`
+	Currency            *string `crawlora:"currency,omitempty"`
+	Sort                *string `crawlora:"sort,omitempty"`
+}
+
+type TripAdvisorTripadvisorSearchResponse = any
+
+func (s *TripAdvisorService) TripadvisorSearchTyped(ctx context.Context, params TripAdvisorTripadvisorSearchParams, opts ...RequestOption) (TripAdvisorTripadvisorSearchResponse, error) {
+	return s.client.Request(ctx, "tripadvisor-search", paramsFromStruct(params), opts...)
 }
 
 type TrustpilotService struct{ client *Client }
@@ -1481,28 +4527,112 @@ func (s *TrustpilotService) BusinessSearch(ctx context.Context, params Params, o
 	return s.client.Request(ctx, "trustpilot-business-search", params, opts...)
 }
 
+type TrustpilotBusinessSearchParams struct {
+	Q        string  `crawlora:"q"`
+	Country  *string `crawlora:"country,omitempty"`
+	Page     *int    `crawlora:"page,omitempty"`
+	PageSize *int    `crawlora:"page_size,omitempty"`
+}
+
+type TrustpilotBusinessSearchResponse = any
+
+func (s *TrustpilotService) BusinessSearchTyped(ctx context.Context, params TrustpilotBusinessSearchParams, opts ...RequestOption) (TrustpilotBusinessSearchResponse, error) {
+	return s.client.Request(ctx, "trustpilot-business-search", paramsFromStruct(params), opts...)
+}
+
 func (s *TrustpilotService) Business(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "trustpilot-business", params, opts...)
+}
+
+type TrustpilotBusinessParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type TrustpilotBusinessResponse = any
+
+func (s *TrustpilotService) BusinessTyped(ctx context.Context, params TrustpilotBusinessParams, opts ...RequestOption) (TrustpilotBusinessResponse, error) {
+	return s.client.Request(ctx, "trustpilot-business", paramsFromStruct(params), opts...)
 }
 
 func (s *TrustpilotService) BusinessRelated(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "trustpilot-business-related", params, opts...)
 }
 
+type TrustpilotBusinessRelatedParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type TrustpilotBusinessRelatedResponse = any
+
+func (s *TrustpilotService) BusinessRelatedTyped(ctx context.Context, params TrustpilotBusinessRelatedParams, opts ...RequestOption) (TrustpilotBusinessRelatedResponse, error) {
+	return s.client.Request(ctx, "trustpilot-business-related", paramsFromStruct(params), opts...)
+}
+
 func (s *TrustpilotService) BusinessReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "trustpilot-business-reviews", params, opts...)
+}
+
+type TrustpilotBusinessReviewsParams struct {
+	Slug     string  `crawlora:"slug"`
+	Page     *int    `crawlora:"page,omitempty"`
+	Stars    *int    `crawlora:"stars,omitempty"`
+	Verified *bool   `crawlora:"verified,omitempty"`
+	Replied  *bool   `crawlora:"replied,omitempty"`
+	Language *string `crawlora:"language,omitempty"`
+	Q        *string `crawlora:"q,omitempty"`
+	DateFrom *string `crawlora:"date_from,omitempty"`
+	DateTo   *string `crawlora:"date_to,omitempty"`
+}
+
+type TrustpilotBusinessReviewsResponse = any
+
+func (s *TrustpilotService) BusinessReviewsTyped(ctx context.Context, params TrustpilotBusinessReviewsParams, opts ...RequestOption) (TrustpilotBusinessReviewsResponse, error) {
+	return s.client.Request(ctx, "trustpilot-business-reviews", paramsFromStruct(params), opts...)
 }
 
 func (s *TrustpilotService) Categories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "trustpilot-categories", params, opts...)
 }
 
+type TrustpilotCategoriesParams struct {
+}
+
+type TrustpilotCategoriesResponse = any
+
+func (s *TrustpilotService) CategoriesTyped(ctx context.Context, params TrustpilotCategoriesParams, opts ...RequestOption) (TrustpilotCategoriesResponse, error) {
+	return s.client.Request(ctx, "trustpilot-categories", paramsFromStruct(params), opts...)
+}
+
 func (s *TrustpilotService) CategorySearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "trustpilot-category-search", params, opts...)
 }
 
+type TrustpilotCategorySearchParams struct {
+	Q       string  `crawlora:"q"`
+	Country *string `crawlora:"country,omitempty"`
+	Locale  *string `crawlora:"locale,omitempty"`
+	Size    *int    `crawlora:"size,omitempty"`
+}
+
+type TrustpilotCategorySearchResponse = any
+
+func (s *TrustpilotService) CategorySearchTyped(ctx context.Context, params TrustpilotCategorySearchParams, opts ...RequestOption) (TrustpilotCategorySearchResponse, error) {
+	return s.client.Request(ctx, "trustpilot-category-search", paramsFromStruct(params), opts...)
+}
+
 func (s *TrustpilotService) Category(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "trustpilot-category", params, opts...)
+}
+
+type TrustpilotCategoryParams struct {
+	Slug string `crawlora:"slug"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type TrustpilotCategoryResponse = any
+
+func (s *TrustpilotService) CategoryTyped(ctx context.Context, params TrustpilotCategoryParams, opts ...RequestOption) (TrustpilotCategoryResponse, error) {
+	return s.client.Request(ctx, "trustpilot-category", paramsFromStruct(params), opts...)
 }
 
 type UsageService struct{ client *Client }
@@ -1511,16 +4641,68 @@ func (s *UsageService) MeEndpoints(ctx context.Context, params Params, opts ...R
 	return s.client.Request(ctx, "usage-me-endpoints", params, opts...)
 }
 
+type UsageMeEndpointsParams struct {
+	Range *string `crawlora:"range,omitempty"`
+	Limit *int    `crawlora:"limit,omitempty"`
+	From  *string `crawlora:"from,omitempty"`
+	To    *string `crawlora:"to,omitempty"`
+}
+
+type UsageMeEndpointsResponse = any
+
+func (s *UsageService) MeEndpointsTyped(ctx context.Context, params UsageMeEndpointsParams, opts ...RequestOption) (UsageMeEndpointsResponse, error) {
+	return s.client.Request(ctx, "usage-me-endpoints", paramsFromStruct(params), opts...)
+}
+
 func (s *UsageService) MeOverview(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "usage-me-overview", params, opts...)
+}
+
+type UsageMeOverviewParams struct {
+	Range *string `crawlora:"range,omitempty"`
+	From  *string `crawlora:"from,omitempty"`
+	To    *string `crawlora:"to,omitempty"`
+}
+
+type UsageMeOverviewResponse = any
+
+func (s *UsageService) MeOverviewTyped(ctx context.Context, params UsageMeOverviewParams, opts ...RequestOption) (UsageMeOverviewResponse, error) {
+	return s.client.Request(ctx, "usage-me-overview", paramsFromStruct(params), opts...)
 }
 
 func (s *UsageService) MeRecentIps(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "usage-me-recent-ips", params, opts...)
 }
 
+type UsageMeRecentIpsParams struct {
+	Range *string `crawlora:"range,omitempty"`
+	Limit *int    `crawlora:"limit,omitempty"`
+	From  *string `crawlora:"from,omitempty"`
+	To    *string `crawlora:"to,omitempty"`
+}
+
+type UsageMeRecentIpsResponse = any
+
+func (s *UsageService) MeRecentIpsTyped(ctx context.Context, params UsageMeRecentIpsParams, opts ...RequestOption) (UsageMeRecentIpsResponse, error) {
+	return s.client.Request(ctx, "usage-me-recent-ips", paramsFromStruct(params), opts...)
+}
+
 func (s *UsageService) MeTimeseries(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "usage-me-timeseries", params, opts...)
+}
+
+type UsageMeTimeseriesParams struct {
+	Range    *string `crawlora:"range,omitempty"`
+	Bucket   *string `crawlora:"bucket,omitempty"`
+	Endpoint *string `crawlora:"endpoint,omitempty"`
+	From     *string `crawlora:"from,omitempty"`
+	To       *string `crawlora:"to,omitempty"`
+}
+
+type UsageMeTimeseriesResponse = any
+
+func (s *UsageService) MeTimeseriesTyped(ctx context.Context, params UsageMeTimeseriesParams, opts ...RequestOption) (UsageMeTimeseriesResponse, error) {
+	return s.client.Request(ctx, "usage-me-timeseries", paramsFromStruct(params), opts...)
 }
 
 type UserService struct{ client *Client }
@@ -1529,16 +4711,53 @@ func (s *UserService) Me(ctx context.Context, params Params, opts ...RequestOpti
 	return s.client.Request(ctx, "user-me", params, opts...)
 }
 
+type UserMeParams struct {
+}
+
+type UserMeResponse = any
+
+func (s *UserService) MeTyped(ctx context.Context, params UserMeParams, opts ...RequestOption) (UserMeResponse, error) {
+	return s.client.Request(ctx, "user-me", paramsFromStruct(params), opts...)
+}
+
 func (s *UserService) MeApiKeys(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "user-me-api-keys", params, opts...)
+}
+
+type UserMeApiKeysParams struct {
+}
+
+type UserMeApiKeysResponse = any
+
+func (s *UserService) MeApiKeysTyped(ctx context.Context, params UserMeApiKeysParams, opts ...RequestOption) (UserMeApiKeysResponse, error) {
+	return s.client.Request(ctx, "user-me-api-keys", paramsFromStruct(params), opts...)
 }
 
 func (s *UserService) MeApiKeysRotate(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "user-me-api-keys-rotate", params, opts...)
 }
 
+type UserMeApiKeysRotateParams struct {
+}
+
+type UserMeApiKeysRotateResponse = any
+
+func (s *UserService) MeApiKeysRotateTyped(ctx context.Context, params UserMeApiKeysRotateParams, opts ...RequestOption) (UserMeApiKeysRotateResponse, error) {
+	return s.client.Request(ctx, "user-me-api-keys-rotate", paramsFromStruct(params), opts...)
+}
+
 func (s *UserService) MeApiKeysReveal(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "user-me-api-keys-reveal", params, opts...)
+}
+
+type UserMeApiKeysRevealParams struct {
+	Id string `crawlora:"id"`
+}
+
+type UserMeApiKeysRevealResponse = any
+
+func (s *UserService) MeApiKeysRevealTyped(ctx context.Context, params UserMeApiKeysRevealParams, opts ...RequestOption) (UserMeApiKeysRevealResponse, error) {
+	return s.client.Request(ctx, "user-me-api-keys-reveal", paramsFromStruct(params), opts...)
 }
 
 type YahooFinanceService struct{ client *Client }
@@ -1547,152 +4766,563 @@ func (s *YahooFinanceService) Calendars(ctx context.Context, params Params, opts
 	return s.client.Request(ctx, "yahoo-finance-calendars", params, opts...)
 }
 
+type YahooFinanceCalendarsParams struct {
+}
+
+type YahooFinanceCalendarsResponse = any
+
+func (s *YahooFinanceService) CalendarsTyped(ctx context.Context, params YahooFinanceCalendarsParams, opts ...RequestOption) (YahooFinanceCalendarsResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-calendars", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) Calendar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-calendar", params, opts...)
+}
+
+type YahooFinanceCalendarParams struct {
+	Type             string   `crawlora:"type"`
+	Start            *string  `crawlora:"start,omitempty"`
+	End              *string  `crawlora:"end,omitempty"`
+	Limit            *int     `crawlora:"limit,omitempty"`
+	Offset           *int     `crawlora:"offset,omitempty"`
+	MarketCap        *float64 `crawlora:"market_cap,omitempty"`
+	FilterMostActive *bool    `crawlora:"filter_most_active,omitempty"`
+}
+
+type YahooFinanceCalendarResponse = any
+
+func (s *YahooFinanceService) CalendarTyped(ctx context.Context, params YahooFinanceCalendarParams, opts ...RequestOption) (YahooFinanceCalendarResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-calendar", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) Download(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-download", params, opts...)
 }
 
+type YahooFinanceDownloadParams struct {
+	Request any `crawlora:"request"`
+}
+
+type YahooFinanceDownloadResponse = any
+
+func (s *YahooFinanceService) DownloadTyped(ctx context.Context, params YahooFinanceDownloadParams, opts ...RequestOption) (YahooFinanceDownloadResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-download", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) Industries(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-industries", params, opts...)
+}
+
+type YahooFinanceIndustriesParams struct {
+}
+
+type YahooFinanceIndustriesResponse = any
+
+func (s *YahooFinanceService) IndustriesTyped(ctx context.Context, params YahooFinanceIndustriesParams, opts ...RequestOption) (YahooFinanceIndustriesResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-industries", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) Industry(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-industry", params, opts...)
 }
 
+type YahooFinanceIndustryParams struct {
+	Key string `crawlora:"key"`
+}
+
+type YahooFinanceIndustryResponse = any
+
+func (s *YahooFinanceService) IndustryTyped(ctx context.Context, params YahooFinanceIndustryParams, opts ...RequestOption) (YahooFinanceIndustryResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-industry", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) MarketStatus(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-market-status", params, opts...)
+}
+
+type YahooFinanceMarketStatusParams struct {
+	Market string `crawlora:"market"`
+}
+
+type YahooFinanceMarketStatusResponse = any
+
+func (s *YahooFinanceService) MarketStatusTyped(ctx context.Context, params YahooFinanceMarketStatusParams, opts ...RequestOption) (YahooFinanceMarketStatusResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-market-status", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) MarketSummary(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-market-summary", params, opts...)
 }
 
+type YahooFinanceMarketSummaryParams struct {
+	Market string `crawlora:"market"`
+}
+
+type YahooFinanceMarketSummaryResponse = any
+
+func (s *YahooFinanceService) MarketSummaryTyped(ctx context.Context, params YahooFinanceMarketSummaryParams, opts ...RequestOption) (YahooFinanceMarketSummaryResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-market-summary", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) ScreenerCustom(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-screener-custom", params, opts...)
+}
+
+type YahooFinanceScreenerCustomParams struct {
+	Request any `crawlora:"request"`
+}
+
+type YahooFinanceScreenerCustomResponse = any
+
+func (s *YahooFinanceService) ScreenerCustomTyped(ctx context.Context, params YahooFinanceScreenerCustomParams, opts ...RequestOption) (YahooFinanceScreenerCustomResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-screener-custom", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) Screener(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-screener", params, opts...)
 }
 
+type YahooFinanceScreenerParams struct {
+	Id        string  `crawlora:"id"`
+	Count     *int    `crawlora:"count,omitempty"`
+	Offset    *int    `crawlora:"offset,omitempty"`
+	SortField *string `crawlora:"sort_field,omitempty"`
+	SortAsc   *bool   `crawlora:"sort_asc,omitempty"`
+}
+
+type YahooFinanceScreenerResponse = any
+
+func (s *YahooFinanceService) ScreenerTyped(ctx context.Context, params YahooFinanceScreenerParams, opts ...RequestOption) (YahooFinanceScreenerResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-screener", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) Screeners(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-screeners", params, opts...)
+}
+
+type YahooFinanceScreenersParams struct {
+}
+
+type YahooFinanceScreenersResponse = any
+
+func (s *YahooFinanceService) ScreenersTyped(ctx context.Context, params YahooFinanceScreenersParams, opts ...RequestOption) (YahooFinanceScreenersResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-screeners", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-search", params, opts...)
 }
 
+type YahooFinanceSearchParams struct {
+	Q                string `crawlora:"q"`
+	QuotesCount      *int   `crawlora:"quotes_count,omitempty"`
+	NewsCount        *int   `crawlora:"news_count,omitempty"`
+	ListsCount       *int   `crawlora:"lists_count,omitempty"`
+	IncludeResearch  *bool  `crawlora:"include_research,omitempty"`
+	EnableFuzzyQuery *bool  `crawlora:"enable_fuzzy_query,omitempty"`
+}
+
+type YahooFinanceSearchResponse = any
+
+func (s *YahooFinanceService) SearchTyped(ctx context.Context, params YahooFinanceSearchParams, opts ...RequestOption) (YahooFinanceSearchResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-search", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) Sectors(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-sectors", params, opts...)
+}
+
+type YahooFinanceSectorsParams struct {
+}
+
+type YahooFinanceSectorsResponse = any
+
+func (s *YahooFinanceService) SectorsTyped(ctx context.Context, params YahooFinanceSectorsParams, opts ...RequestOption) (YahooFinanceSectorsResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-sectors", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) Sector(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-sector", params, opts...)
 }
 
+type YahooFinanceSectorParams struct {
+	Key string `crawlora:"key"`
+}
+
+type YahooFinanceSectorResponse = any
+
+func (s *YahooFinanceService) SectorTyped(ctx context.Context, params YahooFinanceSectorParams, opts ...RequestOption) (YahooFinanceSectorResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-sector", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) TickerActions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-actions", params, opts...)
+}
+
+type YahooFinanceTickerActionsParams struct {
+	Symbol string `crawlora:"symbol"`
+}
+
+type YahooFinanceTickerActionsResponse = any
+
+func (s *YahooFinanceService) TickerActionsTyped(ctx context.Context, params YahooFinanceTickerActionsParams, opts ...RequestOption) (YahooFinanceTickerActionsResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-actions", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerAnalysts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-analysts", params, opts...)
 }
 
+type YahooFinanceTickerAnalystsParams struct {
+	Symbol string `crawlora:"symbol"`
+}
+
+type YahooFinanceTickerAnalystsResponse = any
+
+func (s *YahooFinanceService) TickerAnalystsTyped(ctx context.Context, params YahooFinanceTickerAnalystsParams, opts ...RequestOption) (YahooFinanceTickerAnalystsResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-analysts", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) TickerCalendar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-calendar", params, opts...)
+}
+
+type YahooFinanceTickerCalendarParams struct {
+	Symbol string `crawlora:"symbol"`
+}
+
+type YahooFinanceTickerCalendarResponse = any
+
+func (s *YahooFinanceService) TickerCalendarTyped(ctx context.Context, params YahooFinanceTickerCalendarParams, opts ...RequestOption) (YahooFinanceTickerCalendarResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-calendar", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerCapitalGains(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-capital-gains", params, opts...)
 }
 
+type YahooFinanceTickerCapitalGainsParams struct {
+	Symbol string `crawlora:"symbol"`
+}
+
+type YahooFinanceTickerCapitalGainsResponse = any
+
+func (s *YahooFinanceService) TickerCapitalGainsTyped(ctx context.Context, params YahooFinanceTickerCapitalGainsParams, opts ...RequestOption) (YahooFinanceTickerCapitalGainsResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-capital-gains", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) TickerDividends(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-dividends", params, opts...)
+}
+
+type YahooFinanceTickerDividendsParams struct {
+	Symbol string `crawlora:"symbol"`
+}
+
+type YahooFinanceTickerDividendsResponse = any
+
+func (s *YahooFinanceService) TickerDividendsTyped(ctx context.Context, params YahooFinanceTickerDividendsParams, opts ...RequestOption) (YahooFinanceTickerDividendsResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-dividends", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerEarnings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-earnings", params, opts...)
 }
 
+type YahooFinanceTickerEarningsParams struct {
+	Symbol string `crawlora:"symbol"`
+}
+
+type YahooFinanceTickerEarningsResponse = any
+
+func (s *YahooFinanceService) TickerEarningsTyped(ctx context.Context, params YahooFinanceTickerEarningsParams, opts ...RequestOption) (YahooFinanceTickerEarningsResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-earnings", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) TickerEarningsDates(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-earnings-dates", params, opts...)
+}
+
+type YahooFinanceTickerEarningsDatesParams struct {
+	Symbol string `crawlora:"symbol"`
+	Limit  *int   `crawlora:"limit,omitempty"`
+	Offset *int   `crawlora:"offset,omitempty"`
+}
+
+type YahooFinanceTickerEarningsDatesResponse = any
+
+func (s *YahooFinanceService) TickerEarningsDatesTyped(ctx context.Context, params YahooFinanceTickerEarningsDatesParams, opts ...RequestOption) (YahooFinanceTickerEarningsDatesResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-earnings-dates", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerFinancials(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-financials", params, opts...)
 }
 
+type YahooFinanceTickerFinancialsParams struct {
+	Symbol    string  `crawlora:"symbol"`
+	Statement *string `crawlora:"statement,omitempty"`
+	Period    *string `crawlora:"period,omitempty"`
+}
+
+type YahooFinanceTickerFinancialsResponse = any
+
+func (s *YahooFinanceService) TickerFinancialsTyped(ctx context.Context, params YahooFinanceTickerFinancialsParams, opts ...RequestOption) (YahooFinanceTickerFinancialsResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-financials", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) TickerFunds(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-funds", params, opts...)
+}
+
+type YahooFinanceTickerFundsParams struct {
+	Symbol string `crawlora:"symbol"`
+}
+
+type YahooFinanceTickerFundsResponse = any
+
+func (s *YahooFinanceService) TickerFundsTyped(ctx context.Context, params YahooFinanceTickerFundsParams, opts ...RequestOption) (YahooFinanceTickerFundsResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-funds", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerHistory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-history", params, opts...)
 }
 
+type YahooFinanceTickerHistoryParams struct {
+	Symbol         string  `crawlora:"symbol"`
+	Period         *string `crawlora:"period,omitempty"`
+	Start          *string `crawlora:"start,omitempty"`
+	End            *string `crawlora:"end,omitempty"`
+	Interval       *string `crawlora:"interval,omitempty"`
+	IncludePrepost *bool   `crawlora:"include_prepost,omitempty"`
+	IncludeActions *bool   `crawlora:"include_actions,omitempty"`
+	AutoAdjust     *bool   `crawlora:"auto_adjust,omitempty"`
+	BackAdjust     *bool   `crawlora:"back_adjust,omitempty"`
+	Keepna         *bool   `crawlora:"keepna,omitempty"`
+	Rounding       *bool   `crawlora:"rounding,omitempty"`
+}
+
+type YahooFinanceTickerHistoryResponse = any
+
+func (s *YahooFinanceService) TickerHistoryTyped(ctx context.Context, params YahooFinanceTickerHistoryParams, opts ...RequestOption) (YahooFinanceTickerHistoryResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-history", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) TickerHistoryMetadata(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-history-metadata", params, opts...)
+}
+
+type YahooFinanceTickerHistoryMetadataParams struct {
+	Symbol string `crawlora:"symbol"`
+}
+
+type YahooFinanceTickerHistoryMetadataResponse = any
+
+func (s *YahooFinanceService) TickerHistoryMetadataTyped(ctx context.Context, params YahooFinanceTickerHistoryMetadataParams, opts ...RequestOption) (YahooFinanceTickerHistoryMetadataResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-history-metadata", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerHolders(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-holders", params, opts...)
 }
 
+type YahooFinanceTickerHoldersParams struct {
+	Symbol string `crawlora:"symbol"`
+}
+
+type YahooFinanceTickerHoldersResponse = any
+
+func (s *YahooFinanceService) TickerHoldersTyped(ctx context.Context, params YahooFinanceTickerHoldersParams, opts ...RequestOption) (YahooFinanceTickerHoldersResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-holders", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) TickerInfo(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-info", params, opts...)
+}
+
+type YahooFinanceTickerInfoParams struct {
+	Symbol string `crawlora:"symbol"`
+}
+
+type YahooFinanceTickerInfoResponse = any
+
+func (s *YahooFinanceService) TickerInfoTyped(ctx context.Context, params YahooFinanceTickerInfoParams, opts ...RequestOption) (YahooFinanceTickerInfoResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-info", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerIsin(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-isin", params, opts...)
 }
 
+type YahooFinanceTickerIsinParams struct {
+	Symbol string `crawlora:"symbol"`
+}
+
+type YahooFinanceTickerIsinResponse = any
+
+func (s *YahooFinanceService) TickerIsinTyped(ctx context.Context, params YahooFinanceTickerIsinParams, opts ...RequestOption) (YahooFinanceTickerIsinResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-isin", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) TickerNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-news", params, opts...)
+}
+
+type YahooFinanceTickerNewsParams struct {
+	Symbol string  `crawlora:"symbol"`
+	Count  *int    `crawlora:"count,omitempty"`
+	Tab    *string `crawlora:"tab,omitempty"`
+}
+
+type YahooFinanceTickerNewsResponse = any
+
+func (s *YahooFinanceService) TickerNewsTyped(ctx context.Context, params YahooFinanceTickerNewsParams, opts ...RequestOption) (YahooFinanceTickerNewsResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-news", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerOptions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-options", params, opts...)
 }
 
+type YahooFinanceTickerOptionsParams struct {
+	Symbol string `crawlora:"symbol"`
+}
+
+type YahooFinanceTickerOptionsResponse = any
+
+func (s *YahooFinanceService) TickerOptionsTyped(ctx context.Context, params YahooFinanceTickerOptionsParams, opts ...RequestOption) (YahooFinanceTickerOptionsResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-options", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) TickerOptionsExpiration(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-options-expiration", params, opts...)
+}
+
+type YahooFinanceTickerOptionsExpirationParams struct {
+	Symbol     string `crawlora:"symbol"`
+	Expiration string `crawlora:"expiration"`
+}
+
+type YahooFinanceTickerOptionsExpirationResponse = any
+
+func (s *YahooFinanceService) TickerOptionsExpirationTyped(ctx context.Context, params YahooFinanceTickerOptionsExpirationParams, opts ...RequestOption) (YahooFinanceTickerOptionsExpirationResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-options-expiration", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerQuote(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-quote", params, opts...)
 }
 
+type YahooFinanceTickerQuoteParams struct {
+	Symbol string `crawlora:"symbol"`
+}
+
+type YahooFinanceTickerQuoteResponse = any
+
+func (s *YahooFinanceService) TickerQuoteTyped(ctx context.Context, params YahooFinanceTickerQuoteParams, opts ...RequestOption) (YahooFinanceTickerQuoteResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-quote", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) TickerSecFilings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-sec-filings", params, opts...)
+}
+
+type YahooFinanceTickerSecFilingsParams struct {
+	Symbol string `crawlora:"symbol"`
+}
+
+type YahooFinanceTickerSecFilingsResponse = any
+
+func (s *YahooFinanceService) TickerSecFilingsTyped(ctx context.Context, params YahooFinanceTickerSecFilingsParams, opts ...RequestOption) (YahooFinanceTickerSecFilingsResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-sec-filings", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerShares(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-shares", params, opts...)
 }
 
+type YahooFinanceTickerSharesParams struct {
+	Symbol string `crawlora:"symbol"`
+}
+
+type YahooFinanceTickerSharesResponse = any
+
+func (s *YahooFinanceService) TickerSharesTyped(ctx context.Context, params YahooFinanceTickerSharesParams, opts ...RequestOption) (YahooFinanceTickerSharesResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-shares", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) TickerSharesFull(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-shares-full", params, opts...)
+}
+
+type YahooFinanceTickerSharesFullParams struct {
+	Symbol string  `crawlora:"symbol"`
+	Start  *string `crawlora:"start,omitempty"`
+	End    *string `crawlora:"end,omitempty"`
+}
+
+type YahooFinanceTickerSharesFullResponse = any
+
+func (s *YahooFinanceService) TickerSharesFullTyped(ctx context.Context, params YahooFinanceTickerSharesFullParams, opts ...RequestOption) (YahooFinanceTickerSharesFullResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-shares-full", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerSplits(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-splits", params, opts...)
 }
 
+type YahooFinanceTickerSplitsParams struct {
+	Symbol string `crawlora:"symbol"`
+}
+
+type YahooFinanceTickerSplitsResponse = any
+
+func (s *YahooFinanceService) TickerSplitsTyped(ctx context.Context, params YahooFinanceTickerSplitsParams, opts ...RequestOption) (YahooFinanceTickerSplitsResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-splits", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) TickerSustainability(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-sustainability", params, opts...)
+}
+
+type YahooFinanceTickerSustainabilityParams struct {
+	Symbol string `crawlora:"symbol"`
+}
+
+type YahooFinanceTickerSustainabilityResponse = any
+
+func (s *YahooFinanceService) TickerSustainabilityTyped(ctx context.Context, params YahooFinanceTickerSustainabilityParams, opts ...RequestOption) (YahooFinanceTickerSustainabilityResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-sustainability", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerValuation(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-ticker-valuation", params, opts...)
 }
 
+type YahooFinanceTickerValuationParams struct {
+	Symbol string `crawlora:"symbol"`
+}
+
+type YahooFinanceTickerValuationResponse = any
+
+func (s *YahooFinanceService) TickerValuationTyped(ctx context.Context, params YahooFinanceTickerValuationParams, opts ...RequestOption) (YahooFinanceTickerValuationResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-ticker-valuation", paramsFromStruct(params), opts...)
+}
+
 func (s *YahooFinanceService) Trending(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "yahoo-finance-trending", params, opts...)
+}
+
+type YahooFinanceTrendingParams struct {
+	Region string `crawlora:"region"`
+	Count  *int   `crawlora:"count,omitempty"`
+}
+
+type YahooFinanceTrendingResponse = any
+
+func (s *YahooFinanceService) TrendingTyped(ctx context.Context, params YahooFinanceTrendingParams, opts ...RequestOption) (YahooFinanceTrendingResponse, error) {
+	return s.client.Request(ctx, "yahoo-finance-trending", paramsFromStruct(params), opts...)
 }
 
 type YouTubeService struct{ client *Client }
@@ -1701,52 +5331,203 @@ func (s *YouTubeService) Captions(ctx context.Context, params Params, opts ...Re
 	return s.client.Request(ctx, "youtube-captions", params, opts...)
 }
 
+type YouTubeCaptionsParams struct {
+	Id   string  `crawlora:"id"`
+	Lang *string `crawlora:"lang,omitempty"`
+}
+
+type YouTubeCaptionsResponse = any
+
+func (s *YouTubeService) CaptionsTyped(ctx context.Context, params YouTubeCaptionsParams, opts ...RequestOption) (YouTubeCaptionsResponse, error) {
+	return s.client.Request(ctx, "youtube-captions", paramsFromStruct(params), opts...)
+}
+
 func (s *YouTubeService) ChannelPlaylists(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "youtube-channel-playlists", params, opts...)
+}
+
+type YouTubeChannelPlaylistsParams struct {
+	Id                string  `crawlora:"id"`
+	ContinuationToken *string `crawlora:"continuation_token,omitempty"`
+}
+
+type YouTubeChannelPlaylistsResponse = any
+
+func (s *YouTubeService) ChannelPlaylistsTyped(ctx context.Context, params YouTubeChannelPlaylistsParams, opts ...RequestOption) (YouTubeChannelPlaylistsResponse, error) {
+	return s.client.Request(ctx, "youtube-channel-playlists", paramsFromStruct(params), opts...)
 }
 
 func (s *YouTubeService) ChannelSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "youtube-channel-search", params, opts...)
 }
 
+type YouTubeChannelSearchParams struct {
+	Id                string  `crawlora:"id"`
+	Q                 string  `crawlora:"q"`
+	ContinuationToken *string `crawlora:"continuation_token,omitempty"`
+}
+
+type YouTubeChannelSearchResponse = any
+
+func (s *YouTubeService) ChannelSearchTyped(ctx context.Context, params YouTubeChannelSearchParams, opts ...RequestOption) (YouTubeChannelSearchResponse, error) {
+	return s.client.Request(ctx, "youtube-channel-search", paramsFromStruct(params), opts...)
+}
+
 func (s *YouTubeService) ChannelShorts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "youtube-channel-shorts", params, opts...)
+}
+
+type YouTubeChannelShortsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type YouTubeChannelShortsResponse = any
+
+func (s *YouTubeService) ChannelShortsTyped(ctx context.Context, params YouTubeChannelShortsParams, opts ...RequestOption) (YouTubeChannelShortsResponse, error) {
+	return s.client.Request(ctx, "youtube-channel-shorts", paramsFromStruct(params), opts...)
 }
 
 func (s *YouTubeService) ChannelVideos(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "youtube-channel-videos", params, opts...)
 }
 
+type YouTubeChannelVideosParams struct {
+	Id                string  `crawlora:"id"`
+	ContinuationToken *string `crawlora:"continuation_token,omitempty"`
+}
+
+type YouTubeChannelVideosResponse = any
+
+func (s *YouTubeService) ChannelVideosTyped(ctx context.Context, params YouTubeChannelVideosParams, opts ...RequestOption) (YouTubeChannelVideosResponse, error) {
+	return s.client.Request(ctx, "youtube-channel-videos", paramsFromStruct(params), opts...)
+}
+
 func (s *YouTubeService) Comments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "youtube-comments", params, opts...)
+}
+
+type YouTubeCommentsParams struct {
+	Id                string  `crawlora:"id"`
+	ContinuationToken *string `crawlora:"continuation_token,omitempty"`
+}
+
+type YouTubeCommentsResponse = any
+
+func (s *YouTubeService) CommentsTyped(ctx context.Context, params YouTubeCommentsParams, opts ...RequestOption) (YouTubeCommentsResponse, error) {
+	return s.client.Request(ctx, "youtube-comments", paramsFromStruct(params), opts...)
 }
 
 func (s *YouTubeService) Playlist(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "youtube-playlist", params, opts...)
 }
 
+type YouTubePlaylistParams struct {
+	Id                string  `crawlora:"id"`
+	ContinuationToken *string `crawlora:"continuation_token,omitempty"`
+}
+
+type YouTubePlaylistResponse = any
+
+func (s *YouTubeService) PlaylistTyped(ctx context.Context, params YouTubePlaylistParams, opts ...RequestOption) (YouTubePlaylistResponse, error) {
+	return s.client.Request(ctx, "youtube-playlist", paramsFromStruct(params), opts...)
+}
+
 func (s *YouTubeService) Profile(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "youtube-profile", params, opts...)
+}
+
+type YouTubeProfileParams struct {
+	Id string `crawlora:"id"`
+}
+
+type YouTubeProfileResponse = any
+
+func (s *YouTubeService) ProfileTyped(ctx context.Context, params YouTubeProfileParams, opts ...RequestOption) (YouTubeProfileResponse, error) {
+	return s.client.Request(ctx, "youtube-profile", paramsFromStruct(params), opts...)
 }
 
 func (s *YouTubeService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "youtube-search", params, opts...)
 }
 
+type YouTubeSearchParams struct {
+	Q                 *string `crawlora:"q,omitempty"`
+	SearchQuery       *string `crawlora:"search_query,omitempty"`
+	ContinuationToken *string `crawlora:"continuation_token,omitempty"`
+	Type              *string `crawlora:"type,omitempty"`
+	SortBy            *string `crawlora:"sort_by,omitempty"`
+	UploadDate        *string `crawlora:"upload_date,omitempty"`
+	Duration          *string `crawlora:"duration,omitempty"`
+	Features          *string `crawlora:"features,omitempty"`
+	Params            *string `crawlora:"params,omitempty"`
+}
+
+type YouTubeSearchResponse = any
+
+func (s *YouTubeService) SearchTyped(ctx context.Context, params YouTubeSearchParams, opts ...RequestOption) (YouTubeSearchResponse, error) {
+	return s.client.Request(ctx, "youtube-search", paramsFromStruct(params), opts...)
+}
+
 func (s *YouTubeService) Tag(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "youtube-tag", params, opts...)
+}
+
+type YouTubeTagParams struct {
+	Tag               string  `crawlora:"tag"`
+	Type              *string `crawlora:"type,omitempty"`
+	ContinuationToken *string `crawlora:"continuation_token,omitempty"`
+}
+
+type YouTubeTagResponse = any
+
+func (s *YouTubeService) TagTyped(ctx context.Context, params YouTubeTagParams, opts ...RequestOption) (YouTubeTagResponse, error) {
+	return s.client.Request(ctx, "youtube-tag", paramsFromStruct(params), opts...)
 }
 
 func (s *YouTubeService) Transcript(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "youtube-transcript", params, opts...)
 }
 
+type YouTubeTranscriptParams struct {
+	Id          string  `crawlora:"id"`
+	Lang        *string `crawlora:"lang,omitempty"`
+	TranslateTo *string `crawlora:"translate_to,omitempty"`
+	Format      *string `crawlora:"format,omitempty"`
+	Timestamps  *bool   `crawlora:"timestamps,omitempty"`
+}
+
+type YouTubeTranscriptResponse = any
+
+func (s *YouTubeService) TranscriptTyped(ctx context.Context, params YouTubeTranscriptParams, opts ...RequestOption) (YouTubeTranscriptResponse, error) {
+	return s.client.Request(ctx, "youtube-transcript", paramsFromStruct(params), opts...)
+}
+
 func (s *YouTubeService) TranscriptLanguages(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "youtube-transcript-languages", params, opts...)
 }
 
+type YouTubeTranscriptLanguagesParams struct {
+	Id string `crawlora:"id"`
+}
+
+type YouTubeTranscriptLanguagesResponse = any
+
+func (s *YouTubeService) TranscriptLanguagesTyped(ctx context.Context, params YouTubeTranscriptLanguagesParams, opts ...RequestOption) (YouTubeTranscriptLanguagesResponse, error) {
+	return s.client.Request(ctx, "youtube-transcript-languages", paramsFromStruct(params), opts...)
+}
+
 func (s *YouTubeService) Video(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "youtube-video", params, opts...)
+}
+
+type YouTubeVideoParams struct {
+	Id string `crawlora:"id"`
+}
+
+type YouTubeVideoResponse = any
+
+func (s *YouTubeService) VideoTyped(ctx context.Context, params YouTubeVideoParams, opts ...RequestOption) (YouTubeVideoResponse, error) {
+	return s.client.Request(ctx, "youtube-video", paramsFromStruct(params), opts...)
 }
 
 type ZillowService struct{ client *Client }
@@ -1755,10 +5536,50 @@ func (s *ZillowService) Autocomplete(ctx context.Context, params Params, opts ..
 	return s.client.Request(ctx, "zillow-autocomplete", params, opts...)
 }
 
+type ZillowAutocompleteParams struct {
+	Query  string  `crawlora:"query"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+	Status *string `crawlora:"status,omitempty"`
+}
+
+type ZillowAutocompleteResponse = any
+
+func (s *ZillowService) AutocompleteTyped(ctx context.Context, params ZillowAutocompleteParams, opts ...RequestOption) (ZillowAutocompleteResponse, error) {
+	return s.client.Request(ctx, "zillow-autocomplete", paramsFromStruct(params), opts...)
+}
+
 func (s *ZillowService) Property(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "zillow-property", params, opts...)
 }
 
+type ZillowPropertyParams struct {
+	Zpid string `crawlora:"zpid"`
+}
+
+type ZillowPropertyResponse = any
+
+func (s *ZillowService) PropertyTyped(ctx context.Context, params ZillowPropertyParams, opts ...RequestOption) (ZillowPropertyResponse, error) {
+	return s.client.Request(ctx, "zillow-property", paramsFromStruct(params), opts...)
+}
+
 func (s *ZillowService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "zillow-search", params, opts...)
+}
+
+type ZillowSearchParams struct {
+	Location   string   `crawlora:"location"`
+	Page       *int     `crawlora:"page,omitempty"`
+	Status     *string  `crawlora:"status,omitempty"`
+	RegionId   *int     `crawlora:"region_id,omitempty"`
+	RegionType *int     `crawlora:"region_type,omitempty"`
+	West       *float64 `crawlora:"west,omitempty"`
+	East       *float64 `crawlora:"east,omitempty"`
+	South      *float64 `crawlora:"south,omitempty"`
+	North      *float64 `crawlora:"north,omitempty"`
+}
+
+type ZillowSearchResponse = any
+
+func (s *ZillowService) SearchTyped(ctx context.Context, params ZillowSearchParams, opts ...RequestOption) (ZillowSearchResponse, error) {
+	return s.client.Request(ctx, "zillow-search", paramsFromStruct(params), opts...)
 }
