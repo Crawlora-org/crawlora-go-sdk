@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.2.0-sdk.7
+
+- Added fail-fast validation for required query, form, and body parameters.
+- Normalized negative retry settings and made JWT auth scheme detection
+  case-insensitive.
+
 ## v1.2.0-sdk.6
 
 - Added runnable Bing search, YouTube transcript, and Google Lens upload

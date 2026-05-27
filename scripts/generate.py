@@ -118,6 +118,8 @@ def param_slice(params):
         items.append(
             "parameterDefinition{Name: "
             + go_string(param["name"])
+            + ", In: "
+            + go_string(param.get("in", ""))
             + ", CollectionFormat: "
             + go_string(collection)
             + ", Type: "
@@ -148,6 +150,7 @@ def definition(method, path, operation):
         f"QueryParams: {param_slice(query_params)}, "
         f"FormParams: {param_slice(form_params)}, "
         f"BodyParam: {go_string(body_param)}, "
+        f"BodyRequired: {'true' if any(p.get('in') == 'body' and p.get('required') for p in params) else 'false'}, "
         f"Consumes: {go_string_slice(operation.get('consumes', []))}, "
         f"Produces: {go_string_slice(operation.get('produces', []))}, "
         f"Security: {go_string_slice(security)}, "
@@ -207,6 +210,7 @@ def main():
         "",
         "type parameterDefinition struct {",
         "\tName string",
+        "\tIn string",
         "\tCollectionFormat string",
         "\tType string",
         "\tRequired bool",
@@ -220,6 +224,7 @@ def main():
         "\tQueryParams []parameterDefinition",
         "\tFormParams []parameterDefinition",
         "\tBodyParam string",
+        "\tBodyRequired bool",
         "\tConsumes []string",
         "\tProduces []string",
         "\tSecurity []string",

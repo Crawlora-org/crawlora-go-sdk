@@ -19,7 +19,7 @@ import (
 )
 
 const DefaultBaseURL = "https://api.crawlora.net/api/v1"
-const Version = "1.2.0-sdk.6"
+const Version = "1.2.0-sdk.7"
 
 const (
 	ResponseAuto = "auto"
@@ -160,6 +160,12 @@ func NewClient(opts ...Option) *Client {
 		opt(c)
 	}
 	c.BaseURL = strings.TrimRight(c.BaseURL, "/")
+	if c.Retries < 0 {
+		c.Retries = 0
+	}
+	if c.RetryDelay < 0 {
+		c.RetryDelay = 0
+	}
 	c.Services = initServices(c)
 	return c
 }
@@ -285,7 +291,7 @@ func (c *Client) send(ctx context.Context, operation operationDefinition, params
 		case "JWTAuth":
 			if c.JWTToken != "" {
 				token := c.JWTToken
-				if !strings.HasPrefix(token, "Token ") && !strings.HasPrefix(token, "Bearer ") {
+				if !hasAuthScheme(token) {
 					token = "Token " + token
 				}
 				req.Header.Set("Authorization", token)
@@ -320,6 +326,9 @@ func (c *Client) send(ctx context.Context, operation operationDefinition, params
 }
 
 func buildRequest(baseURL string, operation operationDefinition, params Params) (string, io.Reader, string, error) {
+	if err := validateRequiredParams(operation, params); err != nil {
+		return "", nil, "", err
+	}
 	path := operation.Path
 	for _, name := range operation.PathParams {
 		value, ok := params[name]
@@ -385,6 +394,42 @@ func buildRequest(baseURL string, operation operationDefinition, params Params) 
 	return requestURL, nil, "", nil
 }
 
+func validateRequiredParams(operation operationDefinition, params Params) error {
+	for _, name := range operation.PathParams {
+		if missingParam(params[name]) {
+			return fmt.Errorf("missing required path parameter: %s", name)
+		}
+	}
+	for _, parameter := range operation.QueryParams {
+		if parameter.Required && missingParam(params[parameter.Name]) {
+			return fmt.Errorf("missing required %s parameter: %s", parameter.In, parameter.Name)
+		}
+	}
+	for _, parameter := range operation.FormParams {
+		if parameter.Required && missingParam(params[parameter.Name]) {
+			return fmt.Errorf("missing required %s parameter: %s", parameter.In, parameter.Name)
+		}
+	}
+	if operation.BodyRequired && missingParam(params[operation.BodyParam]) && missingParam(params["body"]) {
+		return fmt.Errorf("missing required body parameter: %s", operation.BodyParam)
+	}
+	return nil
+}
+
+func missingParam(value any) bool {
+	if value == nil {
+		return true
+	}
+	rv := reflect.ValueOf(value)
+	switch rv.Kind() {
+	case reflect.String:
+		return rv.Len() == 0
+	case reflect.Slice, reflect.Array:
+		return rv.Len() == 0
+	}
+	return false
+}
+
 func writeFilePart(writer *multipart.Writer, name string, value any) error {
 	switch v := value.(type) {
 	case []byte:
@@ -448,6 +493,11 @@ func parseResponse(body []byte, contentType string, responseType string) any {
 
 func shouldRetry(status int) bool {
 	return status == 408 || status == 409 || status == 425 || status == 429 || status >= 500
+}
+
+func hasAuthScheme(token string) bool {
+	return len(token) >= 6 && strings.EqualFold(token[:6], "Token ") ||
+		len(token) >= 7 && strings.EqualFold(token[:7], "Bearer ")
 }
 
 func isRetryableError(err error) bool {

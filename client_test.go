@@ -56,6 +56,55 @@ func TestJWTAuth(t *testing.T) {
 	}
 }
 
+func TestJWTAuthSchemeIsCaseInsensitive(t *testing.T) {
+	var gotAuth string
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		gotAuth = r.Header.Get("Authorization")
+		w.Header().Set("content-type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{}})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithJWTToken("bearer jwt_test"))
+	if _, err := client.User.Me(context.Background(), nil); err != nil {
+		t.Fatalf("me: %v", err)
+	}
+	if gotAuth != "bearer jwt_test" {
+		t.Fatalf("Authorization = %q", gotAuth)
+	}
+}
+
+func TestMissingRequiredParamsFailBeforeRequest(t *testing.T) {
+	calls := 0
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		calls++
+		w.Header().Set("content-type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{}})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
+	if _, err := client.Bing.Search(context.Background(), Params{}); err == nil || !strings.Contains(err.Error(), "missing required query parameter: q") {
+		t.Fatalf("missing query error = %v", err)
+	}
+	if _, err := client.Google.Search(context.Background(), Params{}); err == nil || !strings.Contains(err.Error(), "missing required body parameter: searchOption") {
+		t.Fatalf("missing body error = %v", err)
+	}
+	if calls != 0 {
+		t.Fatalf("network calls = %d", calls)
+	}
+}
+
+func TestNegativeRetryOptionsAreNormalized(t *testing.T) {
+	client := NewClient(WithRetries(-3), WithRetryDelay(-1))
+	if client.Retries != 0 {
+		t.Fatalf("Retries = %d", client.Retries)
+	}
+	if client.RetryDelay != 0 {
+		t.Fatalf("RetryDelay = %v", client.RetryDelay)
+	}
+}
+
 func TestTextResponse(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("content-type", "text/plain")
@@ -133,6 +182,8 @@ func TestQuerySerializationRepeatsArrays(t *testing.T) {
 	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
 	_, err := client.Request(context.Background(), "tripadvisor-search", Params{
 		"q":              "hotel",
+		"geo_id":         "293919",
+		"type":           "hotel",
 		"amenities":      []int{1, 2},
 		"online_options": []string{"3", "4"},
 	})
