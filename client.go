@@ -19,7 +19,7 @@ import (
 )
 
 const DefaultBaseURL = "https://api.crawlora.net/api/v1"
-const Version = "1.2.0-sdk.8"
+const Version = "1.2.0-sdk.9"
 
 const (
 	ResponseAuto = "auto"
@@ -309,7 +309,15 @@ func (c *Client) send(ctx context.Context, operation operationDefinition, params
 	if err != nil {
 		return nil, &Error{Message: "crawlora response read error", Err: err}
 	}
-	parsed := parseResponse(responseBody, resp.Header.Get("content-type"), cfg.ResponseType)
+	parsed, parseErr := parseResponse(responseBody, resp.Header.Get("content-type"), cfg.ResponseType)
+	if parseErr != nil {
+		return nil, &Error{
+			Status:  resp.StatusCode,
+			Message: "crawlora JSON parse error",
+			RawBody: string(responseBody),
+			Err:     parseErr,
+		}
+	}
 	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
 		apiErr := &Error{Status: resp.StatusCode, Body: parsed, RawBody: string(responseBody)}
 		if body, ok := parsed.(map[string]any); ok {
@@ -327,6 +335,9 @@ func (c *Client) send(ctx context.Context, operation operationDefinition, params
 
 func buildRequest(baseURL string, operation operationDefinition, params Params) (string, io.Reader, string, error) {
 	if err := validateRequiredParams(operation, params); err != nil {
+		return "", nil, "", err
+	}
+	if err := validateEnumParams(operation, params); err != nil {
 		return "", nil, "", err
 	}
 	path := operation.Path
@@ -416,6 +427,36 @@ func validateRequiredParams(operation operationDefinition, params Params) error 
 	return nil
 }
 
+func validateEnumParams(operation operationDefinition, params Params) error {
+	for _, parameter := range operation.QueryParams {
+		if err := validateEnumParam(parameter, params[parameter.Name]); err != nil {
+			return err
+		}
+	}
+	for _, parameter := range operation.FormParams {
+		if err := validateEnumParam(parameter, params[parameter.Name]); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func validateEnumParam(parameter parameterDefinition, value any) error {
+	if len(parameter.Enum) == 0 || missingParam(value) {
+		return nil
+	}
+	allowed := map[string]struct{}{}
+	for _, enumValue := range parameter.Enum {
+		allowed[enumValue] = struct{}{}
+	}
+	for _, item := range queryValues(value) {
+		if _, ok := allowed[item]; !ok {
+			return fmt.Errorf("invalid %s parameter %s: expected one of %s", parameter.In, parameter.Name, strings.Join(parameter.Enum, ", "))
+		}
+	}
+	return nil
+}
+
 func missingParam(value any) bool {
 	if value == nil {
 		return true
@@ -478,17 +519,21 @@ func queryValues(value any) []string {
 	return []string{fmt.Sprint(value)}
 }
 
-func parseResponse(body []byte, contentType string, responseType string) any {
+func parseResponse(body []byte, contentType string, responseType string) (any, error) {
 	if responseType == ResponseText {
-		return string(body)
+		return string(body), nil
 	}
 	if responseType == ResponseJSON || strings.Contains(strings.ToLower(contentType), "application/json") {
 		var out any
-		if err := json.Unmarshal(body, &out); err == nil {
-			return out
+		if len(body) == 0 {
+			return nil, nil
 		}
+		if err := json.Unmarshal(body, &out); err != nil {
+			return nil, err
+		}
+		return out, nil
 	}
-	return string(body)
+	return string(body), nil
 }
 
 func shouldRetry(status int) bool {

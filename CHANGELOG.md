@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.2.0-sdk.9
+
+- Added fail-fast enum validation for generated query and form parameters.
+- Wrapped malformed JSON responses in SDK errors with response status and raw
+  body details.
+
 ## v1.2.0-sdk.8
 
 - Regenerated from the SDK spec that excludes deprecated endpoints.

@@ -64,6 +64,11 @@ def go_string_slice(values):
     return "[]string{" + ", ".join(go_string(v) for v in values) + "}"
 
 
+def enum_values(param):
+    values = param.get("enum") or param.get("items", {}).get("enum") or []
+    return [str(v) for v in values]
+
+
 def go_identifier(value):
     name = pascal(words(value))
     if not name:
@@ -114,7 +119,6 @@ def param_slice(params):
         collection = param.get("collectionFormat", "")
         typ = param.get("type", "")
         required = "true" if param.get("required") else "false"
-        enum_values = param.get("enum") or []
         items.append(
             "parameterDefinition{Name: "
             + go_string(param["name"])
@@ -127,7 +131,7 @@ def param_slice(params):
             + ", Required: "
             + required
             + ", Enum: "
-            + go_string_slice([str(v) for v in enum_values])
+            + go_string_slice(enum_values(param))
             + "}"
         )
     return "[]parameterDefinition{" + ", ".join(items) + "}"

@@ -95,6 +95,49 @@ func TestMissingRequiredParamsFailBeforeRequest(t *testing.T) {
 	}
 }
 
+func TestInvalidEnumParamsFailBeforeRequest(t *testing.T) {
+	calls := 0
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		calls++
+		w.Header().Set("content-type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{}})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
+	_, err := client.Request(context.Background(), "amazon-product", Params{
+		"asin":     "B000000000",
+		"language": "fr_FR",
+	})
+	if err == nil || !strings.Contains(err.Error(), "invalid query parameter language: expected one of en_US") {
+		t.Fatalf("enum error = %v", err)
+	}
+	if calls != 0 {
+		t.Fatalf("network calls = %d", calls)
+	}
+}
+
+func TestValidEnumParamSerializes(t *testing.T) {
+	var gotQuery string
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		gotQuery = r.URL.RawQuery
+		w.Header().Set("content-type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{}})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
+	if _, err := client.Request(context.Background(), "amazon-product", Params{
+		"asin":     "B000000000",
+		"language": "en_US",
+	}); err != nil {
+		t.Fatalf("product: %v", err)
+	}
+	if !strings.Contains(gotQuery, "language=en_US") {
+		t.Fatalf("expected language enum in %q", gotQuery)
+	}
+}
+
 func TestNegativeRetryOptionsAreNormalized(t *testing.T) {
 	client := NewClient(WithRetries(-3), WithRetryDelay(-1))
 	if client.Retries != 0 {
@@ -217,6 +260,27 @@ func TestAPIErrorIncludesStatusCodeAndBody(t *testing.T) {
 	}
 	if apiErr.RawBody == "" {
 		t.Fatal("expected raw body")
+	}
+}
+
+func TestInvalidJSONResponseIsWrapped(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("content-type", "application/json")
+		_, _ = w.Write([]byte("{not-json"))
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
+	_, err := client.Bing.Search(context.Background(), Params{"q": "coffee"})
+	var apiErr *Error
+	if !errors.As(err, &apiErr) {
+		t.Fatalf("expected *Error, got %T %v", err, err)
+	}
+	if apiErr.Status != http.StatusOK || apiErr.Error() != "crawlora JSON parse error" || apiErr.Err == nil {
+		t.Fatalf("unexpected parse error %#v", apiErr)
+	}
+	if apiErr.RawBody != "{not-json" {
+		t.Fatalf("raw body = %q", apiErr.RawBody)
 	}
 }
 
