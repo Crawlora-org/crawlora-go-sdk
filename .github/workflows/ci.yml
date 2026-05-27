@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+      - name: Regenerate SDK
+        run: |
+          python3 scripts/generate.py
+          gofmt -w operations_generated.go
+      - name: Check generated files
+        run: git diff --exit-code
+      - name: Test
+        run: go test ./...
+      - name: Vet
+        run: go vet ./...
