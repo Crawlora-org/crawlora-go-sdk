@@ -19,7 +19,7 @@ import (
 )
 
 const DefaultBaseURL = "https://api.crawlora.net/api/v1"
-const Version = "1.2.0-sdk.9"
+const Version = "1.2.0-sdk.10"
 
 const (
 	ResponseAuto = "auto"
@@ -225,6 +225,23 @@ func WithRequestTimeout(timeout time.Duration) RequestOption {
 
 func (c *Client) Operation(ctx context.Context, operationID string, params Params, opts ...RequestOption) (any, error) {
 	return c.Request(ctx, operationID, params, opts...)
+}
+
+func requestTyped[T any](c *Client, ctx context.Context, operationID string, params Params, opts ...RequestOption) (T, error) {
+	var zero T
+	out, err := c.Request(ctx, operationID, params, opts...)
+	if err != nil {
+		return zero, err
+	}
+	body, err := json.Marshal(out)
+	if err != nil {
+		return zero, &Error{Message: "crawlora typed response encode error", Err: err}
+	}
+	var typed T
+	if err := json.Unmarshal(body, &typed); err != nil {
+		return zero, &Error{Message: "crawlora typed response decode error", Err: err}
+	}
+	return typed, nil
 }
 
 func (c *Client) Request(ctx context.Context, operationID string, params Params, opts ...RequestOption) (any, error) {

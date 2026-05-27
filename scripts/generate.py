@@ -78,11 +78,46 @@ def go_identifier(value):
     return name
 
 
+def schema_type_name(value):
+    return "Model" + go_identifier(value)
+
+
+def ref_type(ref):
+    return schema_type_name(ref.rsplit("/", 1)[-1]) if ref else "any"
+
+
+def go_schema_type(schema):
+    if not schema:
+        return "any"
+    if "$ref" in schema:
+        return ref_type(schema["$ref"])
+    if "allOf" in schema:
+        parts = [go_schema_type(part) for part in schema.get("allOf", [])]
+        concrete = [part for part in parts if part != "any"]
+        return concrete[0] if len(concrete) == 1 else "any"
+    typ = schema.get("type", "")
+    if typ == "integer":
+        return "int"
+    if typ == "number":
+        return "float64"
+    if typ == "boolean":
+        return "bool"
+    if typ == "array":
+        return "[]" + go_schema_type(schema.get("items", {"type": "string"}))
+    if typ == "object":
+        if schema.get("additionalProperties"):
+            additional = schema.get("additionalProperties")
+            value_type = go_schema_type(additional) if isinstance(additional, dict) else "any"
+            return "map[string]" + value_type
+        return "map[string]any"
+    return "string" if typ == "string" or schema.get("enum") else "any"
+
+
 def go_type(param):
+    if param.get("in") == "body":
+        return go_schema_type(param.get("schema"))
     typ = param.get("type", "")
     if param.get("in") == "formData" and typ == "file":
-        return "any"
-    if param.get("in") == "body":
         return "any"
     if typ == "integer":
         return "int"
@@ -176,6 +211,42 @@ def response_ref(operation):
     return ref.rsplit("/", 1)[-1] if ref else ""
 
 
+def response_type(operation):
+    schema = operation.get("responses", {}).get("200", {}).get("schema") or {}
+    return go_schema_type(schema)
+
+
+def model_field(param_name, schema, required, used):
+    base = go_identifier(param_name)
+    name = base
+    i = 2
+    while name in used:
+        name = f"{base}{i}"
+        i += 1
+    used.add(name)
+    tag = param_name if required else param_name + ",omitempty"
+    return name, go_schema_type(schema), tag
+
+
+def model_definitions(definitions):
+    lines = []
+    for schema_name, schema in sorted(definitions.items()):
+        type_name = schema_type_name(schema_name)
+        if schema.get("type") == "object" and schema.get("properties"):
+            required = set(schema.get("required") or [])
+            used = set()
+            lines.append(f"type {type_name} struct {{")
+            for prop_name, prop_schema in sorted(schema.get("properties", {}).items()):
+                field_name, field_type, tag = model_field(prop_name, prop_schema, prop_name in required, used)
+                lines.append(f"\t{field_name} {field_type} `json:{go_string(tag)}`")
+            lines.append("}")
+            lines.append("")
+            continue
+        lines.append(f"type {type_name} = {go_schema_type(schema)}")
+        lines.append("")
+    return lines
+
+
 def main():
     if not SPEC_PATH.exists():
         raise SystemExit(f"public OpenAPI spec not found: {SPEC_PATH}")
@@ -202,7 +273,7 @@ def main():
             typed_operations[operation_id] = {
                 "type_base": group_name + method_name,
                 "params": operation_params(operation),
-                "response_ref": response_ref(operation),
+                "response_type": response_type(operation),
             }
 
     lines = [
@@ -234,6 +305,7 @@ def main():
         "\tSecurity []string",
         "}",
         "",
+        *model_definitions(spec.get("definitions", {})),
         f"const operationCount = {sum(len(methods) for methods in spec['paths'].values())}",
         "",
         "var operations = map[string]operationDefinition{",
@@ -264,10 +336,10 @@ def main():
                 lines.append(f"\t{field_name} {field_type} `crawlora:{go_string(tag)}`")
             lines.append("}")
             lines.append("")
-            lines.append(f"type {type_base}Response = any")
+            lines.append(f"type {type_base}Response = {typed_operations[operation_id]['response_type']}")
             lines.append("")
             lines.append(f"func (s *{group_name}Service) {method_name}Typed(ctx context.Context, params {type_base}Params, opts ...RequestOption) ({type_base}Response, error) {{")
-            lines.append(f"\treturn s.client.Request(ctx, {go_string(operation_id)}, paramsFromStruct(params), opts...)")
+            lines.append(f"\treturn requestTyped[{type_base}Response](s.client, ctx, {go_string(operation_id)}, paramsFromStruct(params), opts...)")
             lines.append("}")
             lines.append("")
     (ROOT / "operations_generated.go").write_text("\n".join(lines))

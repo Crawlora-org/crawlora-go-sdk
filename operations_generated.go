@@ -26,6 +26,8612 @@ type operationDefinition struct {
 	Security     []string
 }
 
+type ModelAirbnbCalendarMonth struct {
+	Month string `json:"month,omitempty"`
+	Year  int    `json:"year,omitempty"`
+}
+
+type ModelAirbnbCalendarResponse struct {
+	Id     string                     `json:"id,omitempty"`
+	Months []ModelAirbnbCalendarMonth `json:"months,omitempty"`
+}
+
+type ModelAirbnbListingItem struct {
+	Host        string  `json:"host,omitempty"`
+	Id          string  `json:"id,omitempty"`
+	Image       string  `json:"image,omitempty"`
+	Latitude    float64 `json:"latitude,omitempty"`
+	Location    string  `json:"location,omitempty"`
+	Longitude   float64 `json:"longitude,omitempty"`
+	Price       float64 `json:"price,omitempty"`
+	Rating      float64 `json:"rating,omitempty"`
+	ReviewCount int     `json:"review_count,omitempty"`
+	Title       string  `json:"title,omitempty"`
+	Url         string  `json:"url,omitempty"`
+}
+
+type ModelAirbnbReviewItem struct {
+	Author string  `json:"author,omitempty"`
+	Date   string  `json:"date,omitempty"`
+	Rating float64 `json:"rating,omitempty"`
+	Text   string  `json:"text,omitempty"`
+}
+
+type ModelAirbnbReviewsResponse struct {
+	Id      string                  `json:"id,omitempty"`
+	Page    int                     `json:"page,omitempty"`
+	Reviews []ModelAirbnbReviewItem `json:"reviews,omitempty"`
+}
+
+type ModelAirbnbRoomResponse struct {
+	Amenities   []string `json:"amenities,omitempty"`
+	Description string   `json:"description,omitempty"`
+	Host        string   `json:"host,omitempty"`
+	Id          string   `json:"id,omitempty"`
+	Image       string   `json:"image,omitempty"`
+	Latitude    float64  `json:"latitude,omitempty"`
+	Location    string   `json:"location,omitempty"`
+	Longitude   float64  `json:"longitude,omitempty"`
+	Price       float64  `json:"price,omitempty"`
+	Rating      float64  `json:"rating,omitempty"`
+	ReviewCount int      `json:"review_count,omitempty"`
+	Title       string   `json:"title,omitempty"`
+	Url         string   `json:"url,omitempty"`
+}
+
+type ModelAirbnbSearchResponse struct {
+	Location string                   `json:"location,omitempty"`
+	Page     int                      `json:"page,omitempty"`
+	Results  []ModelAirbnbListingItem `json:"results,omitempty"`
+}
+
+type ModelAmazonProduct struct {
+	About                     string                     `json:"about,omitempty"`
+	Asin                      string                     `json:"asin,omitempty"`
+	Availability              bool                       `json:"availability,omitempty"`
+	BrandLink                 string                     `json:"brand_link,omitempty"`
+	BrandName                 string                     `json:"brand_name,omitempty"`
+	CustomersSay              string                     `json:"customers_say,omitempty"`
+	Description               string                     `json:"description,omitempty"`
+	Images                    []string                   `json:"images,omitempty"`
+	IsFreeDelivery            bool                       `json:"is_free_delivery,omitempty"`
+	IsFreeReturn              bool                       `json:"is_free_return,omitempty"`
+	Link                      string                     `json:"link,omitempty"`
+	NumberOfBoughtInLastMonth int                        `json:"number_of_bought_in_last_month,omitempty"`
+	Overview                  map[string]string          `json:"overview,omitempty"`
+	Price                     float64                    `json:"price,omitempty"`
+	Rating                    float64                    `json:"rating,omitempty"`
+	RatingHist                map[string]float64         `json:"rating_hist,omitempty"`
+	ReviewCount               int                        `json:"review_count,omitempty"`
+	ReviewImages              []ModelAmazonReviewImage   `json:"review_images,omitempty"`
+	ReviewInsights            []ModelAmazonReviewInsight `json:"review_insights,omitempty"`
+	Reviews                   []ModelAmazonReview        `json:"reviews,omitempty"`
+	SellerLink                string                     `json:"seller_link,omitempty"`
+	SellerName                string                     `json:"seller_name,omitempty"`
+	Title                     string                     `json:"title,omitempty"`
+}
+
+type ModelAmazonReview struct {
+	Content          string  `json:"content,omitempty"`
+	Country          string  `json:"country,omitempty"`
+	HelpfulCount     int     `json:"helpful_count,omitempty"`
+	Link             string  `json:"link,omitempty"`
+	Rating           float64 `json:"rating,omitempty"`
+	ReviewDate       string  `json:"review_date,omitempty"`
+	Title            string  `json:"title,omitempty"`
+	UserLink         string  `json:"user_link,omitempty"`
+	UserName         string  `json:"user_name,omitempty"`
+	VerifiedPurchase bool    `json:"verified_purchase,omitempty"`
+}
+
+type ModelAmazonReviewImage struct {
+	ReviewId  string `json:"review_id,omitempty"`
+	Thumbnail string `json:"thumbnail,omitempty"`
+	Url       string `json:"url,omitempty"`
+}
+
+type ModelAmazonReviewInsight struct {
+	Label          string `json:"label,omitempty"`
+	MentionPercent int    `json:"mention_percent,omitempty"`
+	Mentions       int    `json:"mentions,omitempty"`
+	Sentiment      string `json:"sentiment,omitempty"`
+	Summary        string `json:"summary,omitempty"`
+}
+
+type ModelAmazonSearchResponseItem struct {
+	Asin                      string  `json:"asin,omitempty"`
+	Image                     string  `json:"image,omitempty"`
+	IsFreeDelivery            bool    `json:"is_free_delivery,omitempty"`
+	IsSponsored               bool    `json:"is_sponsored,omitempty"`
+	Link                      string  `json:"link,omitempty"`
+	ListPrice                 float64 `json:"list_price,omitempty"`
+	MoreChoice                string  `json:"more_choice,omitempty"`
+	NumberOfBoughtInLastMonth int     `json:"number_of_bought_in_last_month,omitempty"`
+	Price                     float64 `json:"price,omitempty"`
+	Rating                    float64 `json:"rating,omitempty"`
+	ReviewCount               int     `json:"review_count,omitempty"`
+	Title                     string  `json:"title,omitempty"`
+}
+
+type ModelAmazonProductResponseDoc struct {
+	Code int                `json:"code,omitempty"`
+	Data ModelAmazonProduct `json:"data,omitempty"`
+	Msg  string             `json:"msg,omitempty"`
+}
+
+type ModelAmazonSearchResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data []ModelAmazonSearchResponseItem `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelAmazonSuggestResponseDoc struct {
+	Code int      `json:"code,omitempty"`
+	Data []string `json:"data,omitempty"`
+	Msg  string   `json:"msg,omitempty"`
+}
+
+type ModelApiComponentStatus struct {
+	Error string `json:"error,omitempty"`
+	Ready bool   `json:"ready,omitempty"`
+}
+
+type ModelApiPingResponseDoc struct {
+	Code int                `json:"code,omitempty"`
+	Data ModelBuildinfoInfo `json:"data,omitempty"`
+	Msg  string             `json:"msg,omitempty"`
+}
+
+type ModelApiReadinessResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelApiReadinessState `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelApiReadinessState struct {
+	CheckedAt  string                             `json:"checked_at,omitempty"`
+	Components map[string]ModelApiComponentStatus `json:"components,omitempty"`
+	Ready      bool                               `json:"ready,omitempty"`
+}
+
+type ModelAppResponse struct {
+	Code int `json:"code,omitempty"`
+	Data any `json:"data,omitempty"`
+	Msg  any `json:"msg,omitempty"`
+}
+
+type ModelApplepodcastsGenre struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelApplepodcastsPodcastChartItem struct {
+	ArtistName  string  `json:"artist_name,omitempty"`
+	ArtistUrl   string  `json:"artist_url,omitempty"`
+	ArtworkUrl  string  `json:"artwork_url,omitempty"`
+	Currency    string  `json:"currency,omitempty"`
+	Description string  `json:"description,omitempty"`
+	Free        bool    `json:"free,omitempty"`
+	Genre       string  `json:"genre,omitempty"`
+	GenreId     int     `json:"genre_id,omitempty"`
+	Id          int     `json:"id,omitempty"`
+	Name        string  `json:"name,omitempty"`
+	Price       float64 `json:"price,omitempty"`
+	ReleaseDate string  `json:"release_date,omitempty"`
+	Url         string  `json:"url,omitempty"`
+}
+
+type ModelApplepodcastsPodcastEpisode struct {
+	ArtworkUrl160         string                    `json:"artwork_url_160,omitempty"`
+	ArtworkUrl60          string                    `json:"artwork_url_60,omitempty"`
+	ArtworkUrl600         string                    `json:"artwork_url_600,omitempty"`
+	ClosedCaptioning      string                    `json:"closed_captioning,omitempty"`
+	ContentAdvisoryRating string                    `json:"content_advisory_rating,omitempty"`
+	Country               string                    `json:"country,omitempty"`
+	Description           string                    `json:"description,omitempty"`
+	DurationMillis        int                       `json:"duration_millis,omitempty"`
+	EpisodeContentType    string                    `json:"episode_content_type,omitempty"`
+	EpisodeFileExtension  string                    `json:"episode_file_extension,omitempty"`
+	EpisodeGuid           string                    `json:"episode_guid,omitempty"`
+	EpisodeUrl            string                    `json:"episode_url,omitempty"`
+	FeedUrl               string                    `json:"feed_url,omitempty"`
+	Genres                []ModelApplepodcastsGenre `json:"genres,omitempty"`
+	Id                    int                       `json:"id,omitempty"`
+	PreviewUrl            string                    `json:"preview_url,omitempty"`
+	ReleaseDate           string                    `json:"release_date,omitempty"`
+	ShortDescription      string                    `json:"short_description,omitempty"`
+	ShowId                int                       `json:"show_id,omitempty"`
+	ShowName              string                    `json:"show_name,omitempty"`
+	ShowUrl               string                    `json:"show_url,omitempty"`
+	Title                 string                    `json:"title,omitempty"`
+	Url                   string                    `json:"url,omitempty"`
+}
+
+type ModelApplepodcastsPodcastShow struct {
+	ArtistId               int      `json:"artist_id,omitempty"`
+	ArtistName             string   `json:"artist_name,omitempty"`
+	ArtistUrl              string   `json:"artist_url,omitempty"`
+	ArtworkUrl100          string   `json:"artwork_url_100,omitempty"`
+	ArtworkUrl30           string   `json:"artwork_url_30,omitempty"`
+	ArtworkUrl60           string   `json:"artwork_url_60,omitempty"`
+	ArtworkUrl600          string   `json:"artwork_url_600,omitempty"`
+	CollectionExplicitness string   `json:"collection_explicitness,omitempty"`
+	CollectionName         string   `json:"collection_name,omitempty"`
+	ContentAdvisoryRating  string   `json:"content_advisory_rating,omitempty"`
+	Country                string   `json:"country,omitempty"`
+	Currency               string   `json:"currency,omitempty"`
+	FeedUrl                string   `json:"feed_url,omitempty"`
+	GenreIds               []string `json:"genre_ids,omitempty"`
+	Genres                 []string `json:"genres,omitempty"`
+	Id                     int      `json:"id,omitempty"`
+	PrimaryGenreName       string   `json:"primary_genre_name,omitempty"`
+	ReleaseDate            string   `json:"release_date,omitempty"`
+	TrackCount             int      `json:"track_count,omitempty"`
+	TrackExplicitness      string   `json:"track_explicitness,omitempty"`
+	TrackName              string   `json:"track_name,omitempty"`
+	Url                    string   `json:"url,omitempty"`
+}
+
+type ModelApplepodcastsShowEpisodesResult struct {
+	Episodes []ModelApplepodcastsPodcastEpisode `json:"episodes,omitempty"`
+	Show     ModelApplepodcastsPodcastShow      `json:"show,omitempty"`
+}
+
+type ModelApplepodcastsChartsResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data []ModelApplepodcastsPodcastChartItem `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelApplepodcastsEpisodeSearchResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data []ModelApplepodcastsPodcastEpisode `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelApplepodcastsSearchResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data []ModelApplepodcastsPodcastShow `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelApplepodcastsShowEpisodesResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelApplepodcastsShowEpisodesResult `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelApplepodcastsShowResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelApplepodcastsPodcastShow `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelAppstoreApp struct {
+	AppId                 string         `json:"app_id,omitempty"`
+	AppletvScreenshots    []string       `json:"appletv_screenshots,omitempty"`
+	ContentRating         string         `json:"content_rating,omitempty"`
+	Currency              string         `json:"currency,omitempty"`
+	CurrentVersionReviews int            `json:"current_version_reviews,omitempty"`
+	CurrentVersionScore   float64        `json:"current_version_score,omitempty"`
+	Description           string         `json:"description,omitempty"`
+	Developer             string         `json:"developer,omitempty"`
+	DeveloperId           int            `json:"developer_id,omitempty"`
+	DeveloperUrl          string         `json:"developer_url,omitempty"`
+	DeveloperWebsite      string         `json:"developer_website,omitempty"`
+	Free                  bool           `json:"free,omitempty"`
+	GenreIds              []string       `json:"genre_ids,omitempty"`
+	Genres                []string       `json:"genres,omitempty"`
+	Histogram             map[string]int `json:"histogram,omitempty"`
+	Icon                  string         `json:"icon,omitempty"`
+	Id                    int            `json:"id,omitempty"`
+	IpadScreenshots       []string       `json:"ipad_screenshots,omitempty"`
+	Languages             []string       `json:"languages,omitempty"`
+	Price                 float64        `json:"price,omitempty"`
+	PrimaryGenre          string         `json:"primary_genre,omitempty"`
+	PrimaryGenreId        int            `json:"primary_genre_id,omitempty"`
+	Ratings               int            `json:"ratings,omitempty"`
+	ReleaseNotes          string         `json:"release_notes,omitempty"`
+	Released              string         `json:"released,omitempty"`
+	RequiredOsVersion     string         `json:"required_os_version,omitempty"`
+	Reviews               int            `json:"reviews,omitempty"`
+	Score                 float64        `json:"score,omitempty"`
+	Screenshots           []string       `json:"screenshots,omitempty"`
+	Size                  string         `json:"size,omitempty"`
+	SupportedDevices      []string       `json:"supported_devices,omitempty"`
+	Title                 string         `json:"title,omitempty"`
+	Updated               string         `json:"updated,omitempty"`
+	Url                   string         `json:"url,omitempty"`
+	Version               string         `json:"version,omitempty"`
+}
+
+type ModelAppstorePrivacyCategory struct {
+	DataCategory string   `json:"data_category,omitempty"`
+	DataTypes    []string `json:"data_types,omitempty"`
+	Identifier   string   `json:"identifier,omitempty"`
+}
+
+type ModelAppstorePrivacyDetails struct {
+	ManagePrivacyChoicesUrl string                     `json:"manage_privacy_choices_url,omitempty"`
+	PrivacyPolicyUrl        string                     `json:"privacy_policy_url,omitempty"`
+	PrivacyTypes            []ModelAppstorePrivacyType `json:"privacy_types,omitempty"`
+}
+
+type ModelAppstorePrivacyPurpose struct {
+	DataCategories []ModelAppstorePrivacyCategory `json:"data_categories,omitempty"`
+	Identifier     string                         `json:"identifier,omitempty"`
+	Purpose        string                         `json:"purpose,omitempty"`
+}
+
+type ModelAppstorePrivacyType struct {
+	DataCategories []ModelAppstorePrivacyCategory `json:"data_categories,omitempty"`
+	Description    string                         `json:"description,omitempty"`
+	Identifier     string                         `json:"identifier,omitempty"`
+	PrivacyType    string                         `json:"privacy_type,omitempty"`
+	Purposes       []ModelAppstorePrivacyPurpose  `json:"purposes,omitempty"`
+}
+
+type ModelAppstoreRatingsResult struct {
+	Histogram map[string]int `json:"histogram,omitempty"`
+	Ratings   int            `json:"ratings,omitempty"`
+}
+
+type ModelAppstoreReview struct {
+	Id       string `json:"id,omitempty"`
+	Score    int    `json:"score,omitempty"`
+	Text     string `json:"text,omitempty"`
+	Title    string `json:"title,omitempty"`
+	Updated  string `json:"updated,omitempty"`
+	Url      string `json:"url,omitempty"`
+	UserName string `json:"user_name,omitempty"`
+	UserUrl  string `json:"user_url,omitempty"`
+	Version  string `json:"version,omitempty"`
+}
+
+type ModelAppstoreSuggestion struct {
+	Term string `json:"term,omitempty"`
+}
+
+type ModelAppstoreVersionHistoryItem struct {
+	ReleaseDate      string `json:"release_date,omitempty"`
+	ReleaseNotes     string `json:"release_notes,omitempty"`
+	ReleaseTimestamp string `json:"release_timestamp,omitempty"`
+	VersionDisplay   string `json:"version_display,omitempty"`
+}
+
+type ModelAppstoreAppDetailsResponseDoc struct {
+	Code int              `json:"code,omitempty"`
+	Data ModelAppstoreApp `json:"data,omitempty"`
+	Msg  string           `json:"msg,omitempty"`
+}
+
+type ModelAppstoreDeveloperResponseDoc struct {
+	Code int                `json:"code,omitempty"`
+	Data []ModelAppstoreApp `json:"data,omitempty"`
+	Msg  string             `json:"msg,omitempty"`
+}
+
+type ModelAppstoreListResultsResponseDoc struct {
+	Code int    `json:"code,omitempty"`
+	Data []any  `json:"data,omitempty"`
+	Msg  string `json:"msg,omitempty"`
+}
+
+type ModelAppstorePrivacyResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelAppstorePrivacyDetails `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelAppstoreRatingsResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelAppstoreRatingsResult `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelAppstoreReviewsResponseDoc struct {
+	Code int                   `json:"code,omitempty"`
+	Data []ModelAppstoreReview `json:"data,omitempty"`
+	Msg  string                `json:"msg,omitempty"`
+}
+
+type ModelAppstoreSearchResultsResponseDoc struct {
+	Code int    `json:"code,omitempty"`
+	Data []any  `json:"data,omitempty"`
+	Msg  string `json:"msg,omitempty"`
+}
+
+type ModelAppstoreSimilarResponseDoc struct {
+	Code int                `json:"code,omitempty"`
+	Data []ModelAppstoreApp `json:"data,omitempty"`
+	Msg  string             `json:"msg,omitempty"`
+}
+
+type ModelAppstoreSuggestResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data []ModelAppstoreSuggestion `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelAppstoreVersionHistoryResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data []ModelAppstoreVersionHistoryItem `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelBillingAdminPlanChangeRequestDoc struct {
+	Currency          string `json:"currency,omitempty"`
+	MonthlyPriceCents int    `json:"monthly_price_cents,omitempty"`
+	Plan              string `json:"plan"`
+}
+
+type ModelBillingAdminPlanChangeResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelBillingBillingSnapshotDoc `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelBillingBillingConsistencyEndpointBreakdownDoc struct {
+	ActualCredits   int    `json:"actual_credits,omitempty"`
+	ActualOverage   int    `json:"actual_overage,omitempty"`
+	Endpoint        string `json:"endpoint,omitempty"`
+	ExpectedCredits int    `json:"expected_credits,omitempty"`
+	ExpectedOverage int    `json:"expected_overage,omitempty"`
+}
+
+type ModelBillingBillingConsistencyIssueDoc struct {
+	ActualCredits     int                                                  `json:"actual_credits,omitempty"`
+	ActualOverage     int                                                  `json:"actual_overage,omitempty"`
+	CreatedAt         string                                               `json:"created_at,omitempty"`
+	Detail            string                                               `json:"detail,omitempty"`
+	EndpointBreakdown []ModelBillingBillingConsistencyEndpointBreakdownDoc `json:"endpoint_breakdown,omitempty"`
+	ExpectedCredits   int                                                  `json:"expected_credits,omitempty"`
+	ExpectedOverage   int                                                  `json:"expected_overage,omitempty"`
+	FrozenAt          string                                               `json:"frozen_at,omitempty"`
+	IssueId           string                                               `json:"issue_id,omitempty"`
+	IssueType         string                                               `json:"issue_type,omitempty"`
+	PeriodKey         string                                               `json:"period_key,omitempty"`
+	RepairMethod      string                                               `json:"repair_method,omitempty"`
+	RepairPath        string                                               `json:"repair_path,omitempty"`
+	RequestId         string                                               `json:"request_id,omitempty"`
+	Severity          string                                               `json:"severity,omitempty"`
+	SourceUpdatedAt   string                                               `json:"source_updated_at,omitempty"`
+	StatementId       string                                               `json:"statement_id,omitempty"`
+	StripeInvoiceId   string                                               `json:"stripe_invoice_id,omitempty"`
+	SuggestedAction   string                                               `json:"suggested_action,omitempty"`
+	UserId            string                                               `json:"user_id,omitempty"`
+}
+
+type ModelBillingBillingConsistencyReportDoc struct {
+	CheckedFrom      string                                   `json:"checked_from,omitempty"`
+	CheckedTo        string                                   `json:"checked_to,omitempty"`
+	CountsBySeverity map[string]int                           `json:"counts_by_severity,omitempty"`
+	CountsByType     map[string]int                           `json:"counts_by_type,omitempty"`
+	GeneratedAt      string                                   `json:"generated_at,omitempty"`
+	Issues           []ModelBillingBillingConsistencyIssueDoc `json:"issues,omitempty"`
+}
+
+type ModelBillingBillingConsistencyResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelBillingBillingConsistencyReportDoc `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
+}
+
+type ModelBillingBillingEndpointLedgerDoc struct {
+	ChargedRequests     int    `json:"charged_requests,omitempty"`
+	Credits             int    `json:"credits,omitempty"`
+	Endpoint            string `json:"endpoint,omitempty"`
+	FailedRequests      int    `json:"failed_requests,omitempty"`
+	NonBillableRequests int    `json:"non_billable_requests,omitempty"`
+	Overage             int    `json:"overage,omitempty"`
+	Requests            int    `json:"requests,omitempty"`
+}
+
+type ModelBillingBillingEventDoc struct {
+	Billable               bool   `json:"billable,omitempty"`
+	ChargedAt              string `json:"charged_at,omitempty"`
+	CreatedAt              string `json:"created_at,omitempty"`
+	CreditCost             int    `json:"credit_cost,omitempty"`
+	CreditsRemainingAfter  int    `json:"credits_remaining_after,omitempty"`
+	CreditsRemainingBefore int    `json:"credits_remaining_before,omitempty"`
+	CreditsUsedAfter       int    `json:"credits_used_after,omitempty"`
+	CreditsUsedBefore      int    `json:"credits_used_before,omitempty"`
+	DailyKey               string `json:"daily_key,omitempty"`
+	Endpoint               string `json:"endpoint,omitempty"`
+	EventStatus            string `json:"event_status,omitempty"`
+	FailureReason          string `json:"failure_reason,omitempty"`
+	FinalizedAt            string `json:"finalized_at,omitempty"`
+	IdempotencyKey         string `json:"idempotency_key,omitempty"`
+	Method                 string `json:"method,omitempty"`
+	NonBillableReason      string `json:"non_billable_reason,omitempty"`
+	OverageCreditsDelta    int    `json:"overage_credits_delta,omitempty"`
+	PeriodKey              string `json:"period_key,omitempty"`
+	Plan                   string `json:"plan,omitempty"`
+	PrincipalType          string `json:"principal_type,omitempty"`
+	RequestId              string `json:"request_id,omitempty"`
+	RoutePattern           string `json:"route_pattern,omitempty"`
+	StatusCode             int    `json:"status_code,omitempty"`
+	UserId                 string `json:"user_id,omitempty"`
+}
+
+type ModelBillingBillingEventsResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data []ModelBillingBillingEventDoc `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelBillingBillingFinanceAgingBucketDoc struct {
+	AmountRemainingCents int    `json:"amount_remaining_cents,omitempty"`
+	Bucket               string `json:"bucket,omitempty"`
+	InvoiceCount         int    `json:"invoice_count,omitempty"`
+}
+
+type ModelBillingBillingFinanceAgingResponseDoc struct {
+	Code int                                        `json:"code,omitempty"`
+	Data []ModelBillingBillingFinanceAgingBucketDoc `json:"data,omitempty"`
+	Msg  string                                     `json:"msg,omitempty"`
+}
+
+type ModelBillingBillingFinanceOverviewDoc struct {
+	ActiveCustomers             int                                          `json:"active_customers,omitempty"`
+	AtRiskMrrCents              int                                          `json:"at_risk_mrr_cents,omitempty"`
+	BookedExpectedTotalCents    int                                          `json:"booked_expected_total_cents,omitempty"`
+	BookedOverageCents          int                                          `json:"booked_overage_cents,omitempty"`
+	BookedSubscriptionCents     int                                          `json:"booked_subscription_cents,omitempty"`
+	CashCollectedCents          int                                          `json:"cash_collected_cents,omitempty"`
+	Currency                    string                                       `json:"currency,omitempty"`
+	CurrentOutstandingArCents   int                                          `json:"current_outstanding_ar_cents,omitempty"`
+	GracePeriodCustomers        int                                          `json:"grace_period_customers,omitempty"`
+	InvoiceCount                int                                          `json:"invoice_count,omitempty"`
+	InvoicedAmountDueCents      int                                          `json:"invoiced_amount_due_cents,omitempty"`
+	MismatchInvoiceCount        int                                          `json:"mismatch_invoice_count,omitempty"`
+	MismatchTotalCents          int                                          `json:"mismatch_total_cents,omitempty"`
+	MrrCents                    int                                          `json:"mrr_cents,omitempty"`
+	PaidInvoiceCount            int                                          `json:"paid_invoice_count,omitempty"`
+	PastDueCustomers            int                                          `json:"past_due_customers,omitempty"`
+	PaymentFailedInvoiceCount   int                                          `json:"payment_failed_invoice_count,omitempty"`
+	PlanBreakdown               []ModelBillingBillingFinancePlanBreakdownDoc `json:"plan_breakdown,omitempty"`
+	StripeActualCreditNoteCents int                                          `json:"stripe_actual_credit_note_cents,omitempty"`
+	StripeActualDiscountCents   int                                          `json:"stripe_actual_discount_cents,omitempty"`
+	StripeActualNetCashCents    int                                          `json:"stripe_actual_net_cash_cents,omitempty"`
+	StripeActualRefundCents     int                                          `json:"stripe_actual_refund_cents,omitempty"`
+	StripeActualTaxCents        int                                          `json:"stripe_actual_tax_cents,omitempty"`
+	StripeActualTotalCents      int                                          `json:"stripe_actual_total_cents,omitempty"`
+	UncollectibleInvoiceCount   int                                          `json:"uncollectible_invoice_count,omitempty"`
+	VoidedInvoiceCount          int                                          `json:"voided_invoice_count,omitempty"`
+}
+
+type ModelBillingBillingFinanceOverviewResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelBillingBillingFinanceOverviewDoc `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
+}
+
+type ModelBillingBillingFinancePeriodItemDoc struct {
+	AmountPaidCents             int    `json:"amount_paid_cents,omitempty"`
+	AmountRemainingCents        int    `json:"amount_remaining_cents,omitempty"`
+	Customers                   int    `json:"customers,omitempty"`
+	ExpectedTotalAmountCents    int    `json:"expected_total_amount_cents,omitempty"`
+	InvoiceAmountDueCents       int    `json:"invoice_amount_due_cents,omitempty"`
+	InvoiceCount                int    `json:"invoice_count,omitempty"`
+	MismatchInvoiceCount        int    `json:"mismatch_invoice_count,omitempty"`
+	MismatchTotalCents          int    `json:"mismatch_total_cents,omitempty"`
+	OverageAmountCents          int    `json:"overage_amount_cents,omitempty"`
+	PaidInvoiceCount            int    `json:"paid_invoice_count,omitempty"`
+	PaymentFailedInvoiceCount   int    `json:"payment_failed_invoice_count,omitempty"`
+	PeriodKey                   string `json:"period_key,omitempty"`
+	StripeActualCreditNoteCents int    `json:"stripe_actual_credit_note_cents,omitempty"`
+	StripeActualDiscountCents   int    `json:"stripe_actual_discount_cents,omitempty"`
+	StripeActualNetCashCents    int    `json:"stripe_actual_net_cash_cents,omitempty"`
+	StripeActualRefundCents     int    `json:"stripe_actual_refund_cents,omitempty"`
+	StripeActualTaxCents        int    `json:"stripe_actual_tax_cents,omitempty"`
+	StripeActualTotalCents      int    `json:"stripe_actual_total_cents,omitempty"`
+	SubscriptionAmountCents     int    `json:"subscription_amount_cents,omitempty"`
+}
+
+type ModelBillingBillingFinancePeriodsResponseDoc struct {
+	Code int                                       `json:"code,omitempty"`
+	Data []ModelBillingBillingFinancePeriodItemDoc `json:"data,omitempty"`
+	Msg  string                                    `json:"msg,omitempty"`
+}
+
+type ModelBillingBillingFinancePlanBreakdownDoc struct {
+	ActiveCustomers             int    `json:"active_customers,omitempty"`
+	AtRiskMrrCents              int    `json:"at_risk_mrr_cents,omitempty"`
+	BookedExpectedTotalCents    int    `json:"booked_expected_total_cents,omitempty"`
+	BookedOverageCents          int    `json:"booked_overage_cents,omitempty"`
+	BookedSubscriptionCents     int    `json:"booked_subscription_cents,omitempty"`
+	CashCollectedCents          int    `json:"cash_collected_cents,omitempty"`
+	CurrentOutstandingArCents   int    `json:"current_outstanding_ar_cents,omitempty"`
+	Customers                   int    `json:"customers,omitempty"`
+	GracePeriodCustomers        int    `json:"grace_period_customers,omitempty"`
+	InvoiceCount                int    `json:"invoice_count,omitempty"`
+	InvoicedAmountDueCents      int    `json:"invoiced_amount_due_cents,omitempty"`
+	MismatchInvoiceCount        int    `json:"mismatch_invoice_count,omitempty"`
+	MismatchTotalCents          int    `json:"mismatch_total_cents,omitempty"`
+	MrrCents                    int    `json:"mrr_cents,omitempty"`
+	PaidInvoiceCount            int    `json:"paid_invoice_count,omitempty"`
+	PastDueCustomers            int    `json:"past_due_customers,omitempty"`
+	PaymentFailedInvoiceCount   int    `json:"payment_failed_invoice_count,omitempty"`
+	Plan                        string `json:"plan,omitempty"`
+	StripeActualCreditNoteCents int    `json:"stripe_actual_credit_note_cents,omitempty"`
+	StripeActualDiscountCents   int    `json:"stripe_actual_discount_cents,omitempty"`
+	StripeActualNetCashCents    int    `json:"stripe_actual_net_cash_cents,omitempty"`
+	StripeActualRefundCents     int    `json:"stripe_actual_refund_cents,omitempty"`
+	StripeActualTaxCents        int    `json:"stripe_actual_tax_cents,omitempty"`
+	StripeActualTotalCents      int    `json:"stripe_actual_total_cents,omitempty"`
+	UncollectibleInvoiceCount   int    `json:"uncollectible_invoice_count,omitempty"`
+	VoidedInvoiceCount          int    `json:"voided_invoice_count,omitempty"`
+}
+
+type ModelBillingBillingPeriodCloseErrorDoc struct {
+	Error     string `json:"error,omitempty"`
+	PeriodKey string `json:"period_key,omitempty"`
+	UserId    string `json:"user_id,omitempty"`
+}
+
+type ModelBillingBillingPeriodCloseSummaryDoc struct {
+	Closed           int                                      `json:"closed,omitempty"`
+	Errors           []ModelBillingBillingPeriodCloseErrorDoc `json:"errors,omitempty"`
+	Failed           int                                      `json:"failed,omitempty"`
+	Scanned          int                                      `json:"scanned,omitempty"`
+	Skipped          int                                      `json:"skipped,omitempty"`
+	SnapshotSkipped  int                                      `json:"snapshot_skipped,omitempty"`
+	SnapshotsCreated int                                      `json:"snapshots_created,omitempty"`
+}
+
+type ModelBillingBillingPeriodCloseSummaryResponseDoc struct {
+	Code int                                      `json:"code,omitempty"`
+	Data ModelBillingBillingPeriodCloseSummaryDoc `json:"data,omitempty"`
+	Msg  string                                   `json:"msg,omitempty"`
+}
+
+type ModelBillingBillingPeriodLedgerDoc struct {
+	ChargedRequests                   int                                    `json:"charged_requests,omitempty"`
+	ClosedAt                          string                                 `json:"closed_at,omitempty"`
+	CreditsUsed                       int                                    `json:"credits_used,omitempty"`
+	Currency                          string                                 `json:"currency,omitempty"`
+	EndpointBreakdown                 []ModelBillingBillingEndpointLedgerDoc `json:"endpoint_breakdown,omitempty"`
+	ExpectedSubscriptionAmountCents   int                                    `json:"expected_subscription_amount_cents,omitempty"`
+	ExpectedTotalAmountCents          int                                    `json:"expected_total_amount_cents,omitempty"`
+	FailedRequests                    int                                    `json:"failed_requests,omitempty"`
+	GeneratedAt                       string                                 `json:"generated_at,omitempty"`
+	IncludedCredits                   int                                    `json:"included_credits,omitempty"`
+	MismatchFlags                     []string                               `json:"mismatch_flags,omitempty"`
+	MismatchTotalCents                int                                    `json:"mismatch_total_cents,omitempty"`
+	NonBillableRequests               int                                    `json:"non_billable_requests,omitempty"`
+	OverageAmountCents                int                                    `json:"overage_amount_cents,omitempty"`
+	OverageCredits                    int                                    `json:"overage_credits,omitempty"`
+	OveragePricePer1000               float64                                `json:"overage_price_per_1000,omitempty"`
+	PeriodEnd                         string                                 `json:"period_end,omitempty"`
+	PeriodKey                         string                                 `json:"period_key,omitempty"`
+	PeriodStart                       string                                 `json:"period_start,omitempty"`
+	Plan                              string                                 `json:"plan,omitempty"`
+	PricingSource                     string                                 `json:"pricing_source,omitempty"`
+	Status                            string                                 `json:"status,omitempty"`
+	StripeActualAmountDueCents        int                                    `json:"stripe_actual_amount_due_cents,omitempty"`
+	StripeActualAmountPaidCents       int                                    `json:"stripe_actual_amount_paid_cents,omitempty"`
+	StripeActualAmountRemainingCents  int                                    `json:"stripe_actual_amount_remaining_cents,omitempty"`
+	StripeActualCreditNoteCents       int                                    `json:"stripe_actual_credit_note_cents,omitempty"`
+	StripeActualDiscountCents         int                                    `json:"stripe_actual_discount_cents,omitempty"`
+	StripeActualNetCashCents          int                                    `json:"stripe_actual_net_cash_cents,omitempty"`
+	StripeActualOneTimeCents          int                                    `json:"stripe_actual_one_time_cents,omitempty"`
+	StripeActualOverageCents          int                                    `json:"stripe_actual_overage_cents,omitempty"`
+	StripeActualProrationCents        int                                    `json:"stripe_actual_proration_cents,omitempty"`
+	StripeActualRefundCents           int                                    `json:"stripe_actual_refund_cents,omitempty"`
+	StripeActualSubscriptionCents     int                                    `json:"stripe_actual_subscription_cents,omitempty"`
+	StripeActualTaxCents              int                                    `json:"stripe_actual_tax_cents,omitempty"`
+	StripeActualTotalCents            int                                    `json:"stripe_actual_total_cents,omitempty"`
+	StripeCustomerId                  string                                 `json:"stripe_customer_id,omitempty"`
+	StripeInvoiceAmountDue            int                                    `json:"stripe_invoice_amount_due,omitempty"`
+	StripeInvoiceAmountPaid           int                                    `json:"stripe_invoice_amount_paid,omitempty"`
+	StripeInvoiceAmountRemaining      int                                    `json:"stripe_invoice_amount_remaining,omitempty"`
+	StripeInvoiceCurrency             string                                 `json:"stripe_invoice_currency,omitempty"`
+	StripeInvoiceDueDate              string                                 `json:"stripe_invoice_due_date,omitempty"`
+	StripeInvoiceEffectiveDueDate     string                                 `json:"stripe_invoice_effective_due_date,omitempty"`
+	StripeInvoiceFinalizedAt          string                                 `json:"stripe_invoice_finalized_at,omitempty"`
+	StripeInvoiceHostedUrl            string                                 `json:"stripe_invoice_hosted_url,omitempty"`
+	StripeInvoiceId                   string                                 `json:"stripe_invoice_id,omitempty"`
+	StripeInvoiceLastEventCreated     string                                 `json:"stripe_invoice_last_event_created,omitempty"`
+	StripeInvoiceLastEventId          string                                 `json:"stripe_invoice_last_event_id,omitempty"`
+	StripeInvoiceNumber               string                                 `json:"stripe_invoice_number,omitempty"`
+	StripeInvoicePaidAt               string                                 `json:"stripe_invoice_paid_at,omitempty"`
+	StripeInvoicePaymentFailedAt      string                                 `json:"stripe_invoice_payment_failed_at,omitempty"`
+	StripeInvoicePdf                  string                                 `json:"stripe_invoice_pdf,omitempty"`
+	StripeInvoicePeriodEnd            string                                 `json:"stripe_invoice_period_end,omitempty"`
+	StripeInvoicePeriodStart          string                                 `json:"stripe_invoice_period_start,omitempty"`
+	StripeInvoiceReconciliationError  string                                 `json:"stripe_invoice_reconciliation_error,omitempty"`
+	StripeInvoiceReconciliationStatus string                                 `json:"stripe_invoice_reconciliation_status,omitempty"`
+	StripeInvoiceStatus               string                                 `json:"stripe_invoice_status,omitempty"`
+	StripeMeterEventIdentifier        string                                 `json:"stripe_meter_event_identifier,omitempty"`
+	StripeMeterEventName              string                                 `json:"stripe_meter_event_name,omitempty"`
+	StripeSnapshotUpdatedAt           string                                 `json:"stripe_snapshot_updated_at,omitempty"`
+	StripeSyncAttempts                int                                    `json:"stripe_sync_attempts,omitempty"`
+	StripeSyncError                   string                                 `json:"stripe_sync_error,omitempty"`
+	StripeSyncFirstAttemptAt          string                                 `json:"stripe_sync_first_attempt_at,omitempty"`
+	StripeSyncLastAttemptAt           string                                 `json:"stripe_sync_last_attempt_at,omitempty"`
+	StripeSyncStatus                  string                                 `json:"stripe_sync_status,omitempty"`
+	StripeSyncedAt                    string                                 `json:"stripe_synced_at,omitempty"`
+	SubscriptionPriceCents            int                                    `json:"subscription_price_cents,omitempty"`
+	UpdatedAt                         string                                 `json:"updated_at,omitempty"`
+	UserId                            string                                 `json:"user_id,omitempty"`
+}
+
+type ModelBillingBillingPeriodLedgerResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelBillingBillingPeriodLedgerDoc `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelBillingBillingPeriodLedgersResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data []ModelBillingBillingPeriodLedgerDoc `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelBillingBillingPeriodStatementDoc struct {
+	AccountsReceivable ModelBillingBillingStatementAccountsReceivableDoc     `json:"accounts_receivable,omitempty"`
+	AdjustmentEvents   []ModelBillingBillingStatementAdjustmentEvidenceDoc   `json:"adjustment_events,omitempty"`
+	EndpointBreakdown  []ModelBillingBillingEndpointLedgerDoc                `json:"endpoint_breakdown,omitempty"`
+	Events             []ModelBillingBillingStatementEventItemDoc            `json:"events,omitempty"`
+	Expected           ModelBillingBillingStatementExpectedRevenueDoc        `json:"expected,omitempty"`
+	GeneratedAt        string                                                `json:"generated_at,omitempty"`
+	Invoice            ModelBillingBillingStatementInvoiceEvidenceDoc        `json:"invoice,omitempty"`
+	InvoiceEvents      []ModelBillingBillingStatementInvoiceEventEvidenceDoc `json:"invoice_events,omitempty"`
+	Mismatch           ModelBillingBillingStatementMismatchDoc               `json:"mismatch,omitempty"`
+	Period             ModelBillingBillingStatementPeriodDoc                 `json:"period,omitempty"`
+	Plan               string                                                `json:"plan,omitempty"`
+	Repair             ModelBillingBillingStatementRepairDoc                 `json:"repair,omitempty"`
+	Snapshot           ModelBillingBillingStatementSnapshotMetadataDoc       `json:"snapshot,omitempty"`
+	StripeActual       ModelBillingBillingStatementStripeActualDoc           `json:"stripe_actual,omitempty"`
+	User               ModelBillingBillingStatementUserDoc                   `json:"user,omitempty"`
+}
+
+type ModelBillingBillingPeriodStatementResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelBillingBillingPeriodStatementDoc `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
+}
+
+type ModelBillingBillingPeriodStatementSnapshotSummaryDoc struct {
+	AdjustmentEventCount    int    `json:"adjustment_event_count,omitempty"`
+	CanonicalJsonSha256     string `json:"canonical_json_sha256,omitempty"`
+	EventCount              int    `json:"event_count,omitempty"`
+	FrozenAt                string `json:"frozen_at,omitempty"`
+	GeneratedAt             string `json:"generated_at,omitempty"`
+	GeneratedBy             string `json:"generated_by,omitempty"`
+	InvoiceEventCount       int    `json:"invoice_event_count,omitempty"`
+	PeriodKey               string `json:"period_key,omitempty"`
+	Plan                    string `json:"plan,omitempty"`
+	Revision                int    `json:"revision,omitempty"`
+	SourceLedgerUpdatedAt   string `json:"source_ledger_updated_at,omitempty"`
+	SourceSnapshotUpdatedAt string `json:"source_snapshot_updated_at,omitempty"`
+	StatementId             string `json:"statement_id,omitempty"`
+	StatementVersion        string `json:"statement_version,omitempty"`
+	Status                  string `json:"status,omitempty"`
+	UserId                  string `json:"user_id,omitempty"`
+}
+
+type ModelBillingBillingPeriodStatementSnapshotsResponseDoc struct {
+	Code int                                                    `json:"code,omitempty"`
+	Data []ModelBillingBillingPeriodStatementSnapshotSummaryDoc `json:"data,omitempty"`
+	Msg  string                                                 `json:"msg,omitempty"`
+}
+
+type ModelBillingBillingPeriodStatementVerificationDoc struct {
+	CanonicalJsonByteCount int    `json:"canonical_json_byte_count,omitempty"`
+	ComputedSha256         string `json:"computed_sha256,omitempty"`
+	FrozenAt               string `json:"frozen_at,omitempty"`
+	PeriodKey              string `json:"period_key,omitempty"`
+	Revision               int    `json:"revision,omitempty"`
+	StatementId            string `json:"statement_id,omitempty"`
+	StatementVersion       string `json:"statement_version,omitempty"`
+	StoredSha256           string `json:"stored_sha256,omitempty"`
+	UserId                 string `json:"user_id,omitempty"`
+	Valid                  bool   `json:"valid,omitempty"`
+}
+
+type ModelBillingBillingPeriodStatementVerificationResponseDoc struct {
+	Code int                                               `json:"code,omitempty"`
+	Data ModelBillingBillingPeriodStatementVerificationDoc `json:"data,omitempty"`
+	Msg  string                                            `json:"msg,omitempty"`
+}
+
+type ModelBillingBillingSnapshotDoc struct {
+	AllowOverage                    bool   `json:"allow_overage,omitempty"`
+	CreditsRemaining                int    `json:"credits_remaining,omitempty"`
+	CreditsUsed                     int    `json:"credits_used,omitempty"`
+	Currency                        string `json:"currency,omitempty"`
+	DailyCreditLimit                int    `json:"daily_credit_limit,omitempty"`
+	DailyCreditsRemaining           int    `json:"daily_credits_remaining,omitempty"`
+	DailyCreditsUsed                int    `json:"daily_credits_used,omitempty"`
+	DailyKey                        string `json:"daily_key,omitempty"`
+	ExpectedSubscriptionAmountCents int    `json:"expected_subscription_amount_cents,omitempty"`
+	ExpectedTotalAmountCents        int    `json:"expected_total_amount_cents,omitempty"`
+	HardLimit                       bool   `json:"hard_limit,omitempty"`
+	IncludedCredits                 int    `json:"included_credits,omitempty"`
+	OverageCredits                  int    `json:"overage_credits,omitempty"`
+	PeriodEnd                       string `json:"period_end,omitempty"`
+	PeriodKey                       string `json:"period_key,omitempty"`
+	PeriodStart                     string `json:"period_start,omitempty"`
+	Plan                            string `json:"plan,omitempty"`
+	PricingSource                   string `json:"pricing_source,omitempty"`
+	SubscriptionPriceCents          int    `json:"subscription_price_cents,omitempty"`
+	UserId                          string `json:"user_id,omitempty"`
+}
+
+type ModelBillingBillingStateDoc struct {
+	AllowOverage                    bool   `json:"allow_overage,omitempty"`
+	CreatedAt                       string `json:"created_at,omitempty"`
+	CreditsRemaining                int    `json:"credits_remaining,omitempty"`
+	CreditsUsed                     int    `json:"credits_used,omitempty"`
+	Currency                        string `json:"currency,omitempty"`
+	DailyCreditLimit                int    `json:"daily_credit_limit,omitempty"`
+	DailyCreditsRemaining           int    `json:"daily_credits_remaining,omitempty"`
+	DailyCreditsUsed                int    `json:"daily_credits_used,omitempty"`
+	DailyKey                        string `json:"daily_key,omitempty"`
+	ExpectedSubscriptionAmountCents int    `json:"expected_subscription_amount_cents,omitempty"`
+	ExpectedTotalAmountCents        int    `json:"expected_total_amount_cents,omitempty"`
+	HardLimit                       bool   `json:"hard_limit,omitempty"`
+	IncludedCredits                 int    `json:"included_credits,omitempty"`
+	OverageCredits                  int    `json:"overage_credits,omitempty"`
+	PeriodEnd                       string `json:"period_end,omitempty"`
+	PeriodKey                       string `json:"period_key,omitempty"`
+	PeriodStart                     string `json:"period_start,omitempty"`
+	Plan                            string `json:"plan,omitempty"`
+	PricingSource                   string `json:"pricing_source,omitempty"`
+	SubscriptionPriceCents          int    `json:"subscription_price_cents,omitempty"`
+	UpdatedAt                       string `json:"updated_at,omitempty"`
+	UserId                          string `json:"user_id,omitempty"`
+}
+
+type ModelBillingBillingStateResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelBillingBillingStateDoc `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelBillingBillingStatementAccountsReceivableDoc struct {
+	AmountDueCents       int    `json:"amount_due_cents,omitempty"`
+	AmountPaidCents      int    `json:"amount_paid_cents,omitempty"`
+	AmountRemainingCents int    `json:"amount_remaining_cents,omitempty"`
+	DueDate              string `json:"due_date,omitempty"`
+	EffectiveDueDate     string `json:"effective_due_date,omitempty"`
+	FinalizedAt          string `json:"finalized_at,omitempty"`
+	InvoiceStatus        string `json:"invoice_status,omitempty"`
+	PaidAt               string `json:"paid_at,omitempty"`
+	PaymentFailedAt      string `json:"payment_failed_at,omitempty"`
+}
+
+type ModelBillingBillingStatementAdjustmentEvidenceDoc struct {
+	AmountCents          int    `json:"amount_cents,omitempty"`
+	Currency             string `json:"currency,omitempty"`
+	Error                string `json:"error,omitempty"`
+	EventCreated         string `json:"event_created,omitempty"`
+	EventId              string `json:"event_id,omitempty"`
+	EventType            string `json:"event_type,omitempty"`
+	Kind                 string `json:"kind,omitempty"`
+	MatchStatus          string `json:"match_status,omitempty"`
+	ProcessedAt          string `json:"processed_at,omitempty"`
+	ReconciliationStatus string `json:"reconciliation_status,omitempty"`
+	RepairAttempts       int    `json:"repair_attempts,omitempty"`
+	RepairLastError      string `json:"repair_last_error,omitempty"`
+	RepairStatus         string `json:"repair_status,omitempty"`
+	ResourceId           string `json:"resource_id,omitempty"`
+	ResourceStatus       string `json:"resource_status,omitempty"`
+	StripeInvoiceId      string `json:"stripe_invoice_id,omitempty"`
+}
+
+type ModelBillingBillingStatementAdminEvidenceDoc struct {
+	AdjustmentEvents []ModelBillingBillingStatementAdjustmentEvidenceDoc   `json:"adjustment_events,omitempty"`
+	Invoice          ModelBillingBillingStatementInvoiceEvidenceDoc        `json:"invoice,omitempty"`
+	InvoiceEvents    []ModelBillingBillingStatementInvoiceEventEvidenceDoc `json:"invoice_events,omitempty"`
+	Repair           ModelBillingBillingStatementRepairDoc                 `json:"repair,omitempty"`
+}
+
+type ModelBillingBillingStatementEventItemDoc struct {
+	Billable          bool   `json:"billable,omitempty"`
+	CreatedAt         string `json:"created_at,omitempty"`
+	CreditCost        int    `json:"credit_cost,omitempty"`
+	Endpoint          string `json:"endpoint,omitempty"`
+	EventStatus       string `json:"event_status,omitempty"`
+	NonBillableReason string `json:"non_billable_reason,omitempty"`
+	RequestId         string `json:"request_id,omitempty"`
+	StatusCode        int    `json:"status_code,omitempty"`
+}
+
+type ModelBillingBillingStatementEvidencePackDoc struct {
+	AdminEvidence     ModelBillingBillingStatementAdminEvidenceDoc         `json:"admin_evidence,omitempty"`
+	CustomerStatement ModelBillingBillingPeriodStatementDoc                `json:"customer_statement,omitempty"`
+	Snapshot          ModelBillingBillingPeriodStatementSnapshotSummaryDoc `json:"snapshot,omitempty"`
+	Verification      ModelBillingBillingPeriodStatementVerificationDoc    `json:"verification,omitempty"`
+}
+
+type ModelBillingBillingStatementExpectedRevenueDoc struct {
+	CreditsUsed                     int     `json:"credits_used,omitempty"`
+	Currency                        string  `json:"currency,omitempty"`
+	ExpectedSubscriptionAmountCents int     `json:"expected_subscription_amount_cents,omitempty"`
+	ExpectedTotalAmountCents        int     `json:"expected_total_amount_cents,omitempty"`
+	IncludedCredits                 int     `json:"included_credits,omitempty"`
+	OverageAmountCents              int     `json:"overage_amount_cents,omitempty"`
+	OverageCredits                  int     `json:"overage_credits,omitempty"`
+	OveragePricePer1000             float64 `json:"overage_price_per_1000,omitempty"`
+	PricingSource                   string  `json:"pricing_source,omitempty"`
+	SubscriptionPriceCents          int     `json:"subscription_price_cents,omitempty"`
+}
+
+type ModelBillingBillingStatementInvoiceEventEvidenceDoc struct {
+	Error                string `json:"error,omitempty"`
+	EventCreated         string `json:"event_created,omitempty"`
+	EventId              string `json:"event_id,omitempty"`
+	EventType            string `json:"event_type,omitempty"`
+	MatchStatus          string `json:"match_status,omitempty"`
+	ProcessedAt          string `json:"processed_at,omitempty"`
+	ReconciliationStatus string `json:"reconciliation_status,omitempty"`
+	RepairAttempts       int    `json:"repair_attempts,omitempty"`
+	RepairLastError      string `json:"repair_last_error,omitempty"`
+	RepairStatus         string `json:"repair_status,omitempty"`
+	StripeInvoiceId      string `json:"stripe_invoice_id,omitempty"`
+	StripeInvoiceStatus  string `json:"stripe_invoice_status,omitempty"`
+}
+
+type ModelBillingBillingStatementInvoiceEvidenceDoc struct {
+	AmountDueCents       int                                    `json:"amount_due_cents,omitempty"`
+	AmountPaidCents      int                                    `json:"amount_paid_cents,omitempty"`
+	AmountRemainingCents int                                    `json:"amount_remaining_cents,omitempty"`
+	Currency             string                                 `json:"currency,omitempty"`
+	DueDate              string                                 `json:"due_date,omitempty"`
+	EffectiveDueDate     string                                 `json:"effective_due_date,omitempty"`
+	FinalizedAt          string                                 `json:"finalized_at,omitempty"`
+	HostedInvoiceUrl     string                                 `json:"hosted_invoice_url,omitempty"`
+	InvoicePdf           string                                 `json:"invoice_pdf,omitempty"`
+	LineItems            []ModelBillingStripeInvoiceLineItemDoc `json:"line_items,omitempty"`
+	MismatchFlags        []string                               `json:"mismatch_flags,omitempty"`
+	MismatchTotalCents   int                                    `json:"mismatch_total_cents,omitempty"`
+	PaidAt               string                                 `json:"paid_at,omitempty"`
+	PeriodEnd            string                                 `json:"period_end,omitempty"`
+	PeriodStart          string                                 `json:"period_start,omitempty"`
+	ReconciliationStatus string                                 `json:"reconciliation_status,omitempty"`
+	RepairAttempts       int                                    `json:"repair_attempts,omitempty"`
+	RepairError          string                                 `json:"repair_error,omitempty"`
+	RepairStatus         string                                 `json:"repair_status,omitempty"`
+	StripeInvoiceId      string                                 `json:"stripe_invoice_id,omitempty"`
+	StripeInvoiceNumber  string                                 `json:"stripe_invoice_number,omitempty"`
+	StripeInvoiceStatus  string                                 `json:"stripe_invoice_status,omitempty"`
+}
+
+type ModelBillingBillingStatementMismatchDoc struct {
+	MismatchFlags      []string `json:"mismatch_flags,omitempty"`
+	MismatchTotalCents int      `json:"mismatch_total_cents,omitempty"`
+}
+
+type ModelBillingBillingStatementPeriodDoc struct {
+	ClosedAt    string `json:"closed_at,omitempty"`
+	PeriodEnd   string `json:"period_end,omitempty"`
+	PeriodKey   string `json:"period_key,omitempty"`
+	PeriodStart string `json:"period_start,omitempty"`
+	Status      string `json:"status,omitempty"`
+}
+
+type ModelBillingBillingStatementRepairDoc struct {
+	RepairAttempts      int    `json:"repair_attempts,omitempty"`
+	RepairLastAttemptAt string `json:"repair_last_attempt_at,omitempty"`
+	RepairLastError     string `json:"repair_last_error,omitempty"`
+	RepairStatus        string `json:"repair_status,omitempty"`
+	StripeSyncAttempts  int    `json:"stripe_sync_attempts,omitempty"`
+	StripeSyncError     string `json:"stripe_sync_error,omitempty"`
+	StripeSyncStatus    string `json:"stripe_sync_status,omitempty"`
+	StripeSyncedAt      string `json:"stripe_synced_at,omitempty"`
+}
+
+type ModelBillingBillingStatementSnapshotMetadataDoc struct {
+	CanonicalJsonSha256     string `json:"canonical_json_sha256,omitempty"`
+	FrozenAt                string `json:"frozen_at,omitempty"`
+	GeneratedAt             string `json:"generated_at,omitempty"`
+	Revision                int    `json:"revision,omitempty"`
+	SnapshotStatus          string `json:"snapshot_status,omitempty"`
+	SourceLedgerUpdatedAt   string `json:"source_ledger_updated_at,omitempty"`
+	SourceSnapshotUpdatedAt string `json:"source_snapshot_updated_at,omitempty"`
+	StatementId             string `json:"statement_id,omitempty"`
+	StatementVersion        string `json:"statement_version,omitempty"`
+}
+
+type ModelBillingBillingStatementStripeActualDoc struct {
+	AmountDueCents       int    `json:"amount_due_cents,omitempty"`
+	AmountPaidCents      int    `json:"amount_paid_cents,omitempty"`
+	AmountRemainingCents int    `json:"amount_remaining_cents,omitempty"`
+	CreditNoteCents      int    `json:"credit_note_cents,omitempty"`
+	Currency             string `json:"currency,omitempty"`
+	DiscountCents        int    `json:"discount_cents,omitempty"`
+	NetCashCents         int    `json:"net_cash_cents,omitempty"`
+	OneTimeCents         int    `json:"one_time_cents,omitempty"`
+	OverageCents         int    `json:"overage_cents,omitempty"`
+	ProrationCents       int    `json:"proration_cents,omitempty"`
+	RefundCents          int    `json:"refund_cents,omitempty"`
+	SnapshotUpdatedAt    string `json:"snapshot_updated_at,omitempty"`
+	SubscriptionCents    int    `json:"subscription_cents,omitempty"`
+	TaxCents             int    `json:"tax_cents,omitempty"`
+	TotalCents           int    `json:"total_cents,omitempty"`
+}
+
+type ModelBillingBillingStatementUserDoc struct {
+	Email            string `json:"email,omitempty"`
+	Plan             string `json:"plan,omitempty"`
+	StripeCustomerId string `json:"stripe_customer_id,omitempty"`
+	UserId           string `json:"user_id,omitempty"`
+	Username         string `json:"username,omitempty"`
+}
+
+type ModelBillingBillingSummaryItemDoc struct {
+	Billable            bool   `json:"billable,omitempty"`
+	ChargedRequests     int    `json:"charged_requests,omitempty"`
+	Credits             int    `json:"credits,omitempty"`
+	Endpoint            string `json:"endpoint,omitempty"`
+	FailedRequests      int    `json:"failed_requests,omitempty"`
+	NonBillableRequests int    `json:"non_billable_requests,omitempty"`
+	Overage             int    `json:"overage,omitempty"`
+	Plan                string `json:"plan,omitempty"`
+	Requests            int    `json:"requests,omitempty"`
+}
+
+type ModelBillingBillingSummaryResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data []ModelBillingBillingSummaryItemDoc `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelBillingStripeAdjustmentEventDoc struct {
+	AmountCents                int      `json:"amount_cents,omitempty"`
+	ChargeId                   string   `json:"charge_id,omitempty"`
+	Currency                   string   `json:"currency,omitempty"`
+	Error                      string   `json:"error,omitempty"`
+	EventCreated               string   `json:"event_created,omitempty"`
+	EventId                    string   `json:"event_id,omitempty"`
+	EventType                  string   `json:"event_type,omitempty"`
+	InvoicePaymentIds          []string `json:"invoice_payment_ids,omitempty"`
+	Kind                       string   `json:"kind,omitempty"`
+	MatchStatus                string   `json:"match_status,omitempty"`
+	MatchedPeriodKey           string   `json:"matched_period_key,omitempty"`
+	MatchedStripeInvoiceId     string   `json:"matched_stripe_invoice_id,omitempty"`
+	MatchedUserId              string   `json:"matched_user_id,omitempty"`
+	PaymentIntentId            string   `json:"payment_intent_id,omitempty"`
+	PostPaymentCreditNoteCents int      `json:"post_payment_credit_note_cents,omitempty"`
+	PrePaymentCreditNoteCents  int      `json:"pre_payment_credit_note_cents,omitempty"`
+	ProcessedAt                string   `json:"processed_at,omitempty"`
+	ReconciliationStatus       string   `json:"reconciliation_status,omitempty"`
+	RefundCents                int      `json:"refund_cents,omitempty"`
+	RepairAttempts             int      `json:"repair_attempts,omitempty"`
+	RepairLastAttemptAt        string   `json:"repair_last_attempt_at,omitempty"`
+	RepairLastError            string   `json:"repair_last_error,omitempty"`
+	RepairSource               string   `json:"repair_source,omitempty"`
+	RepairStatus               string   `json:"repair_status,omitempty"`
+	ResourceId                 string   `json:"resource_id,omitempty"`
+	ResourceStatus             string   `json:"resource_status,omitempty"`
+	StripeCustomerId           string   `json:"stripe_customer_id,omitempty"`
+	StripeInvoiceId            string   `json:"stripe_invoice_id,omitempty"`
+}
+
+type ModelBillingStripeAdjustmentEventsResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data []ModelBillingStripeAdjustmentEventDoc `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelBillingStripeAdjustmentReconcileErrorDoc struct {
+	Error           string `json:"error,omitempty"`
+	EventId         string `json:"event_id,omitempty"`
+	ResourceId      string `json:"resource_id,omitempty"`
+	StripeInvoiceId string `json:"stripe_invoice_id,omitempty"`
+}
+
+type ModelBillingStripeAdjustmentReconcileSummaryDoc struct {
+	Errors    []ModelBillingStripeAdjustmentReconcileErrorDoc `json:"errors,omitempty"`
+	Failed    int                                             `json:"failed,omitempty"`
+	Matched   int                                             `json:"matched,omitempty"`
+	Scanned   int                                             `json:"scanned,omitempty"`
+	Skipped   int                                             `json:"skipped,omitempty"`
+	Unmatched int                                             `json:"unmatched,omitempty"`
+}
+
+type ModelBillingStripeAdjustmentReconcileSummaryResponseDoc struct {
+	Code int                                             `json:"code,omitempty"`
+	Data ModelBillingStripeAdjustmentReconcileSummaryDoc `json:"data,omitempty"`
+	Msg  string                                          `json:"msg,omitempty"`
+}
+
+type ModelBillingStripeCheckoutRequestDoc struct {
+	CancelUrl  string `json:"cancel_url,omitempty"`
+	Plan       string `json:"plan,omitempty"`
+	SuccessUrl string `json:"success_url,omitempty"`
+}
+
+type ModelBillingStripeInvoiceEventDoc struct {
+	AmountDue                  int                                    `json:"amount_due,omitempty"`
+	AmountPaid                 int                                    `json:"amount_paid,omitempty"`
+	AmountRemaining            int                                    `json:"amount_remaining,omitempty"`
+	ChargeId                   string                                 `json:"charge_id,omitempty"`
+	Currency                   string                                 `json:"currency,omitempty"`
+	DiscountCents              int                                    `json:"discount_cents,omitempty"`
+	DueDate                    string                                 `json:"due_date,omitempty"`
+	Error                      string                                 `json:"error,omitempty"`
+	EventCreated               string                                 `json:"event_created,omitempty"`
+	EventId                    string                                 `json:"event_id,omitempty"`
+	EventType                  string                                 `json:"event_type,omitempty"`
+	HostedInvoiceUrl           string                                 `json:"hosted_invoice_url,omitempty"`
+	InvoicePaymentIds          []string                               `json:"invoice_payment_ids,omitempty"`
+	InvoicePdf                 string                                 `json:"invoice_pdf,omitempty"`
+	LineItems                  []ModelBillingStripeInvoiceLineItemDoc `json:"line_items,omitempty"`
+	MatchStatus                string                                 `json:"match_status,omitempty"`
+	MatchedPeriodKey           string                                 `json:"matched_period_key,omitempty"`
+	MatchedUserId              string                                 `json:"matched_user_id,omitempty"`
+	PaymentIntentId            string                                 `json:"payment_intent_id,omitempty"`
+	PeriodEnd                  string                                 `json:"period_end,omitempty"`
+	PeriodStart                string                                 `json:"period_start,omitempty"`
+	PostPaymentCreditNoteCents int                                    `json:"post_payment_credit_note_cents,omitempty"`
+	PrePaymentCreditNoteCents  int                                    `json:"pre_payment_credit_note_cents,omitempty"`
+	ProcessedAt                string                                 `json:"processed_at,omitempty"`
+	ReconciliationStatus       string                                 `json:"reconciliation_status,omitempty"`
+	RepairAttempts             int                                    `json:"repair_attempts,omitempty"`
+	RepairLastAttemptAt        string                                 `json:"repair_last_attempt_at,omitempty"`
+	RepairLastError            string                                 `json:"repair_last_error,omitempty"`
+	RepairSource               string                                 `json:"repair_source,omitempty"`
+	RepairStatus               string                                 `json:"repair_status,omitempty"`
+	StripeCustomerId           string                                 `json:"stripe_customer_id,omitempty"`
+	StripeInvoiceId            string                                 `json:"stripe_invoice_id,omitempty"`
+	StripeInvoiceNumber        string                                 `json:"stripe_invoice_number,omitempty"`
+	StripeInvoiceStatus        string                                 `json:"stripe_invoice_status,omitempty"`
+	SubtotalCents              int                                    `json:"subtotal_cents,omitempty"`
+	SubtotalExcludingTaxCents  int                                    `json:"subtotal_excluding_tax_cents,omitempty"`
+	TaxCents                   int                                    `json:"tax_cents,omitempty"`
+	TotalCents                 int                                    `json:"total_cents,omitempty"`
+	TotalExcludingTaxCents     int                                    `json:"total_excluding_tax_cents,omitempty"`
+}
+
+type ModelBillingStripeInvoiceEventsResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data []ModelBillingStripeInvoiceEventDoc `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelBillingStripeInvoiceLineItemDoc struct {
+	AmountCents int    `json:"amount_cents,omitempty"`
+	Category    string `json:"category,omitempty"`
+	Currency    string `json:"currency,omitempty"`
+	Description string `json:"description,omitempty"`
+	LineId      string `json:"line_id,omitempty"`
+	PeriodEnd   string `json:"period_end,omitempty"`
+	PeriodStart string `json:"period_start,omitempty"`
+	Proration   bool   `json:"proration,omitempty"`
+	SourceRef   string `json:"source_ref,omitempty"`
+	Type        string `json:"type,omitempty"`
+}
+
+type ModelBillingStripeInvoiceReconcileErrorDoc struct {
+	Error           string `json:"error,omitempty"`
+	EventId         string `json:"event_id,omitempty"`
+	StripeInvoiceId string `json:"stripe_invoice_id,omitempty"`
+}
+
+type ModelBillingStripeInvoiceReconcileSummaryDoc struct {
+	Errors    []ModelBillingStripeInvoiceReconcileErrorDoc `json:"errors,omitempty"`
+	Failed    int                                          `json:"failed,omitempty"`
+	Matched   int                                          `json:"matched,omitempty"`
+	Scanned   int                                          `json:"scanned,omitempty"`
+	Skipped   int                                          `json:"skipped,omitempty"`
+	Unmatched int                                          `json:"unmatched,omitempty"`
+}
+
+type ModelBillingStripeInvoiceReconcileSummaryResponseDoc struct {
+	Code int                                          `json:"code,omitempty"`
+	Data ModelBillingStripeInvoiceReconcileSummaryDoc `json:"data,omitempty"`
+	Msg  string                                       `json:"msg,omitempty"`
+}
+
+type ModelBillingStripeInvoiceSnapshotDetailDoc struct {
+	AdjustmentEvents []ModelBillingStripeAdjustmentEventDoc `json:"adjustment_events,omitempty"`
+	InvoiceEvents    []ModelBillingStripeInvoiceEventDoc    `json:"invoice_events,omitempty"`
+	Ledger           ModelBillingBillingPeriodLedgerDoc     `json:"ledger,omitempty"`
+	Snapshot         ModelBillingStripeInvoiceSnapshotDoc   `json:"snapshot,omitempty"`
+}
+
+type ModelBillingStripeInvoiceSnapshotDetailResponseDoc struct {
+	Code int                                        `json:"code,omitempty"`
+	Data ModelBillingStripeInvoiceSnapshotDetailDoc `json:"data,omitempty"`
+	Msg  string                                     `json:"msg,omitempty"`
+}
+
+type ModelBillingStripeInvoiceSnapshotDoc struct {
+	ActualOneTimeCents         int                                    `json:"actual_one_time_cents,omitempty"`
+	ActualOverageCents         int                                    `json:"actual_overage_cents,omitempty"`
+	ActualProrationCents       int                                    `json:"actual_proration_cents,omitempty"`
+	ActualSubscriptionCents    int                                    `json:"actual_subscription_cents,omitempty"`
+	AmountDueCents             int                                    `json:"amount_due_cents,omitempty"`
+	AmountPaidCents            int                                    `json:"amount_paid_cents,omitempty"`
+	AmountRemainingCents       int                                    `json:"amount_remaining_cents,omitempty"`
+	ChargeId                   string                                 `json:"charge_id,omitempty"`
+	CreatedAt                  string                                 `json:"created_at,omitempty"`
+	Currency                   string                                 `json:"currency,omitempty"`
+	DiscountCents              int                                    `json:"discount_cents,omitempty"`
+	DueDate                    string                                 `json:"due_date,omitempty"`
+	EffectiveDueDate           string                                 `json:"effective_due_date,omitempty"`
+	ExpectedTotalCents         int                                    `json:"expected_total_cents,omitempty"`
+	FinalizedAt                string                                 `json:"finalized_at,omitempty"`
+	HostedInvoiceUrl           string                                 `json:"hosted_invoice_url,omitempty"`
+	InvoicePaymentIds          []string                               `json:"invoice_payment_ids,omitempty"`
+	InvoicePdf                 string                                 `json:"invoice_pdf,omitempty"`
+	LastEventCreated           string                                 `json:"last_event_created,omitempty"`
+	LastEventId                string                                 `json:"last_event_id,omitempty"`
+	LineItems                  []ModelBillingStripeInvoiceLineItemDoc `json:"line_items,omitempty"`
+	MatchedPeriodKey           string                                 `json:"matched_period_key,omitempty"`
+	MatchedUserId              string                                 `json:"matched_user_id,omitempty"`
+	MismatchFlags              []string                               `json:"mismatch_flags,omitempty"`
+	MismatchTotalCents         int                                    `json:"mismatch_total_cents,omitempty"`
+	NetCashCents               int                                    `json:"net_cash_cents,omitempty"`
+	PaidAt                     string                                 `json:"paid_at,omitempty"`
+	PaymentIntentId            string                                 `json:"payment_intent_id,omitempty"`
+	PeriodEnd                  string                                 `json:"period_end,omitempty"`
+	PeriodStart                string                                 `json:"period_start,omitempty"`
+	Plan                       string                                 `json:"plan,omitempty"`
+	PostPaymentCreditNoteCents int                                    `json:"post_payment_credit_note_cents,omitempty"`
+	PrePaymentCreditNoteCents  int                                    `json:"pre_payment_credit_note_cents,omitempty"`
+	ReconciliationStatus       string                                 `json:"reconciliation_status,omitempty"`
+	RefundCents                int                                    `json:"refund_cents,omitempty"`
+	RepairAttempts             int                                    `json:"repair_attempts,omitempty"`
+	RepairError                string                                 `json:"repair_error,omitempty"`
+	RepairLastAttemptAt        string                                 `json:"repair_last_attempt_at,omitempty"`
+	RepairLastSuccessAt        string                                 `json:"repair_last_success_at,omitempty"`
+	RepairStatus               string                                 `json:"repair_status,omitempty"`
+	StripeCustomerId           string                                 `json:"stripe_customer_id,omitempty"`
+	StripeInvoiceId            string                                 `json:"stripe_invoice_id,omitempty"`
+	StripeInvoiceNumber        string                                 `json:"stripe_invoice_number,omitempty"`
+	StripeInvoiceStatus        string                                 `json:"stripe_invoice_status,omitempty"`
+	SubtotalCents              int                                    `json:"subtotal_cents,omitempty"`
+	SubtotalExcludingTaxCents  int                                    `json:"subtotal_excluding_tax_cents,omitempty"`
+	TaxCents                   int                                    `json:"tax_cents,omitempty"`
+	TotalCents                 int                                    `json:"total_cents,omitempty"`
+	TotalExcludingTaxCents     int                                    `json:"total_excluding_tax_cents,omitempty"`
+	UpdatedAt                  string                                 `json:"updated_at,omitempty"`
+}
+
+type ModelBillingStripeInvoiceSnapshotsResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data []ModelBillingStripeInvoiceSnapshotDoc `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelBillingStripeMismatchSummaryDoc struct {
+	AutoRepairable []ModelBillingStripeMismatchSummaryItemDoc `json:"auto_repairable,omitempty"`
+	ManualReview   []ModelBillingStripeMismatchSummaryItemDoc `json:"manual_review,omitempty"`
+}
+
+type ModelBillingStripeMismatchSummaryItemDoc struct {
+	ActualTotalCents   int    `json:"actual_total_cents,omitempty"`
+	DeltaTotalCents    int    `json:"delta_total_cents,omitempty"`
+	ExpectedTotalCents int    `json:"expected_total_cents,omitempty"`
+	InvoiceCount       int    `json:"invoice_count,omitempty"`
+	MismatchFlag       string `json:"mismatch_flag,omitempty"`
+}
+
+type ModelBillingStripeMismatchSummaryResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelBillingStripeMismatchSummaryDoc `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelBillingStripeOverageSyncErrorDoc struct {
+	Error     string `json:"error,omitempty"`
+	PeriodKey string `json:"period_key,omitempty"`
+	UserId    string `json:"user_id,omitempty"`
+}
+
+type ModelBillingStripeOverageSyncSummaryDoc struct {
+	Ambiguous   int                                     `json:"ambiguous,omitempty"`
+	Errors      []ModelBillingStripeOverageSyncErrorDoc `json:"errors,omitempty"`
+	Failed      int                                     `json:"failed,omitempty"`
+	NotRequired int                                     `json:"not_required,omitempty"`
+	Scanned     int                                     `json:"scanned,omitempty"`
+	Skipped     int                                     `json:"skipped,omitempty"`
+	Synced      int                                     `json:"synced,omitempty"`
+}
+
+type ModelBillingStripeOverageSyncSummaryResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelBillingStripeOverageSyncSummaryDoc `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
+}
+
+type ModelBillingStripePortalRequestDoc struct {
+	ReturnUrl string `json:"return_url,omitempty"`
+}
+
+type ModelBillingStripeRepairBacklogBucketDoc struct {
+	ByAttemptBucket []ModelBillingStripeRepairStatusCountDoc `json:"by_attempt_bucket,omitempty"`
+	BySource        []ModelBillingStripeRepairStatusCountDoc `json:"by_source,omitempty"`
+	ByStatus        []ModelBillingStripeRepairStatusCountDoc `json:"by_status,omitempty"`
+	Total           int                                      `json:"total,omitempty"`
+}
+
+type ModelBillingStripeRepairBacklogSummaryDoc struct {
+	AdjustmentEvents        ModelBillingStripeRepairBacklogBucketDoc `json:"adjustment_events,omitempty"`
+	AutoRetryExhaustedCount int                                      `json:"auto_retry_exhausted_count,omitempty"`
+	InvoiceEvents           ModelBillingStripeRepairBacklogBucketDoc `json:"invoice_events,omitempty"`
+	RecentErrors            []ModelBillingStripeRepairRecentErrorDoc `json:"recent_errors,omitempty"`
+	Snapshots               ModelBillingStripeRepairBacklogBucketDoc `json:"snapshots,omitempty"`
+}
+
+type ModelBillingStripeRepairBacklogSummaryResponseDoc struct {
+	Code int                                       `json:"code,omitempty"`
+	Data ModelBillingStripeRepairBacklogSummaryDoc `json:"data,omitempty"`
+	Msg  string                                    `json:"msg,omitempty"`
+}
+
+type ModelBillingStripeRepairErrorDoc struct {
+	CandidateKind string `json:"candidate_kind,omitempty"`
+	Error         string `json:"error,omitempty"`
+	EventId       string `json:"event_id,omitempty"`
+	InvoiceId     string `json:"invoice_id,omitempty"`
+	ResourceId    string `json:"resource_id,omitempty"`
+}
+
+type ModelBillingStripeRepairRecentErrorDoc struct {
+	CandidateKind       string `json:"candidate_kind,omitempty"`
+	EventId             string `json:"event_id,omitempty"`
+	InvoiceId           string `json:"invoice_id,omitempty"`
+	RepairAttempts      int    `json:"repair_attempts,omitempty"`
+	RepairLastAttemptAt string `json:"repair_last_attempt_at,omitempty"`
+	RepairLastError     string `json:"repair_last_error,omitempty"`
+	RepairStatus        string `json:"repair_status,omitempty"`
+	ResourceId          string `json:"resource_id,omitempty"`
+}
+
+type ModelBillingStripeRepairResetDoc struct {
+	CandidateKind          string `json:"candidate_kind,omitempty"`
+	EventId                string `json:"event_id,omitempty"`
+	InvoiceId              string `json:"invoice_id,omitempty"`
+	PreviousRepairAttempts int    `json:"previous_repair_attempts,omitempty"`
+	PreviousRepairStatus   string `json:"previous_repair_status,omitempty"`
+	RepairAttempts         int    `json:"repair_attempts,omitempty"`
+	RepairSource           string `json:"repair_source,omitempty"`
+	RepairStatus           string `json:"repair_status,omitempty"`
+	ResetAt                string `json:"reset_at,omitempty"`
+}
+
+type ModelBillingStripeRepairResetRequestDoc struct {
+	CandidateKind string `json:"candidate_kind"`
+	EventId       string `json:"event_id,omitempty"`
+	InvoiceId     string `json:"invoice_id,omitempty"`
+}
+
+type ModelBillingStripeRepairResetResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelBillingStripeRepairResetDoc `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelBillingStripeRepairStatusCountDoc struct {
+	Count int    `json:"count,omitempty"`
+	Key   string `json:"key,omitempty"`
+}
+
+type ModelBillingStripeRepairSummaryDoc struct {
+	AdjustmentRepaired int                                `json:"adjustment_repaired,omitempty"`
+	Errors             []ModelBillingStripeRepairErrorDoc `json:"errors,omitempty"`
+	Failed             int                                `json:"failed,omitempty"`
+	InvoiceRepaired    int                                `json:"invoice_repaired,omitempty"`
+	Scanned            int                                `json:"scanned,omitempty"`
+	Skipped            int                                `json:"skipped,omitempty"`
+	Succeeded          int                                `json:"succeeded,omitempty"`
+}
+
+type ModelBillingStripeRepairSummaryResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelBillingStripeRepairSummaryDoc `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelBillingStripeSessionDoc struct {
+	Id  string `json:"id,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
+type ModelBillingStripeSessionResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelBillingStripeSessionDoc `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelBingContextAttribute struct {
+	Label string `json:"label,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelBingImageResult struct {
+	Height    int    `json:"height,omitempty"`
+	ImageUrl  string `json:"image_url,omitempty"`
+	Position  int    `json:"position,omitempty"`
+	Source    string `json:"source,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Thumbnail string `json:"thumbnail,omitempty"`
+	Title     string `json:"title,omitempty"`
+	Url       string `json:"url,omitempty"`
+	Width     int    `json:"width,omitempty"`
+}
+
+type ModelBingImagesResponse struct {
+	Pagination ModelBingSearchPagination `json:"pagination,omitempty"`
+	Results    []ModelBingImageResult    `json:"results,omitempty"`
+}
+
+type ModelBingNewsResponse struct {
+	Pagination ModelBingSearchPagination `json:"pagination,omitempty"`
+	Results    []ModelBingNewsResult     `json:"results,omitempty"`
+}
+
+type ModelBingNewsResult struct {
+	Age          string `json:"age,omitempty"`
+	AgeTimestamp int    `json:"age_timestamp,omitempty"`
+	Description  string `json:"description,omitempty"`
+	Position     int    `json:"position,omitempty"`
+	RelatedCount int    `json:"related_count,omitempty"`
+	Source       string `json:"source,omitempty"`
+	Thumbnail    string `json:"thumbnail,omitempty"`
+	Title        string `json:"title,omitempty"`
+	Url          string `json:"url,omitempty"`
+}
+
+type ModelBingSearchContext struct {
+	Attributes  []ModelBingContextAttribute `json:"attributes,omitempty"`
+	Description string                      `json:"description,omitempty"`
+	Image       string                      `json:"image,omitempty"`
+	Subtitle    string                      `json:"subtitle,omitempty"`
+	Title       string                      `json:"title,omitempty"`
+	Url         string                      `json:"url,omitempty"`
+}
+
+type ModelBingSearchPagination struct {
+	Count        int `json:"count,omitempty"`
+	NextPage     int `json:"next_page,omitempty"`
+	Page         int `json:"page,omitempty"`
+	PreviousPage int `json:"previous_page,omitempty"`
+}
+
+type ModelBingSearchResponse struct {
+	Context        ModelBingSearchContext    `json:"context,omitempty"`
+	News           []ModelBingNewsResult     `json:"news,omitempty"`
+	Pagination     ModelBingSearchPagination `json:"pagination,omitempty"`
+	PeopleAlsoAsk  []string                  `json:"people_also_ask,omitempty"`
+	RelatedQueries []string                  `json:"related_queries,omitempty"`
+	Results        []ModelBingSearchResult   `json:"results,omitempty"`
+	Videos         []ModelBingVideoResult    `json:"videos,omitempty"`
+}
+
+type ModelBingSearchResult struct {
+	Age          string `json:"age,omitempty"`
+	AgeTimestamp int    `json:"age_timestamp,omitempty"`
+	Description  string `json:"description,omitempty"`
+	DisplayUrl   string `json:"display_url,omitempty"`
+	Favicon      string `json:"favicon,omitempty"`
+	Hostname     string `json:"hostname,omitempty"`
+	Position     int    `json:"position,omitempty"`
+	Title        string `json:"title,omitempty"`
+	Url          string `json:"url,omitempty"`
+}
+
+type ModelBingSuggestResponse struct {
+	Query       string                      `json:"query,omitempty"`
+	Suggestions []ModelBingSuggestionResult `json:"suggestions,omitempty"`
+}
+
+type ModelBingSuggestionResult struct {
+	Position int    `json:"position,omitempty"`
+	Query    string `json:"query,omitempty"`
+}
+
+type ModelBingVideoResult struct {
+	Age          string `json:"age,omitempty"`
+	AgeTimestamp int    `json:"age_timestamp,omitempty"`
+	Creator      string `json:"creator,omitempty"`
+	Duration     string `json:"duration,omitempty"`
+	Platform     string `json:"platform,omitempty"`
+	Position     int    `json:"position,omitempty"`
+	Thumbnail    string `json:"thumbnail,omitempty"`
+	Title        string `json:"title,omitempty"`
+	Url          string `json:"url,omitempty"`
+	Views        string `json:"views,omitempty"`
+}
+
+type ModelBingVideosResponse struct {
+	Pagination ModelBingSearchPagination `json:"pagination,omitempty"`
+	Results    []ModelBingVideoResult    `json:"results,omitempty"`
+}
+
+type ModelBingImagesResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelBingImagesResponse `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelBingNewsResponseDoc struct {
+	Code int                   `json:"code,omitempty"`
+	Data ModelBingNewsResponse `json:"data,omitempty"`
+	Msg  string                `json:"msg,omitempty"`
+}
+
+type ModelBingSearchResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelBingSearchResponse `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelBingSuggestResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelBingSuggestResponse `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelBingVideosResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelBingVideosResponse `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelBraveDiscussion struct {
+	Age          string `json:"age,omitempty"`
+	CommentCount int    `json:"comment_count,omitempty"`
+	Description  string `json:"description,omitempty"`
+	Favicon      string `json:"favicon,omitempty"`
+	Forum        string `json:"forum,omitempty"`
+	Hostname     string `json:"hostname,omitempty"`
+	Path         string `json:"path,omitempty"`
+	Position     int    `json:"position,omitempty"`
+	Score        int    `json:"score,omitempty"`
+	Title        string `json:"title,omitempty"`
+	TopComment   string `json:"top_comment,omitempty"`
+	Url          string `json:"url,omitempty"`
+}
+
+type ModelBraveImageResult struct {
+	Age       string `json:"age,omitempty"`
+	Height    int    `json:"height,omitempty"`
+	ImageUrl  string `json:"image_url,omitempty"`
+	Position  int    `json:"position,omitempty"`
+	Source    string `json:"source,omitempty"`
+	Thumbnail string `json:"thumbnail,omitempty"`
+	Title     string `json:"title,omitempty"`
+	Url       string `json:"url,omitempty"`
+	Width     int    `json:"width,omitempty"`
+}
+
+type ModelBraveImagesResponse struct {
+	Pagination ModelBraveSearchPagination `json:"pagination,omitempty"`
+	Results    []ModelBraveImageResult    `json:"results,omitempty"`
+}
+
+type ModelBraveKnowledgeCard struct {
+	Category        string                          `json:"category,omitempty"`
+	Description     string                          `json:"description,omitempty"`
+	Image           string                          `json:"image,omitempty"`
+	LongDescription string                          `json:"long_description,omitempty"`
+	Provider        ModelBraveKnowledgeCardProvider `json:"provider,omitempty"`
+	Title           string                          `json:"title,omitempty"`
+	Url             string                          `json:"url,omitempty"`
+}
+
+type ModelBraveKnowledgeCardProvider struct {
+	Icon string `json:"icon,omitempty"`
+	Name string `json:"name,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelBraveNewsResponse struct {
+	Pagination ModelBraveSearchPagination `json:"pagination,omitempty"`
+	Results    []ModelBraveNewsResult     `json:"results,omitempty"`
+}
+
+type ModelBraveNewsResult struct {
+	Age         string `json:"age,omitempty"`
+	Description string `json:"description,omitempty"`
+	Favicon     string `json:"favicon,omitempty"`
+	Hostname    string `json:"hostname,omitempty"`
+	Path        string `json:"path,omitempty"`
+	Position    int    `json:"position,omitempty"`
+	Source      string `json:"source,omitempty"`
+	Thumbnail   string `json:"thumbnail,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelBraveSearchPagination struct {
+	NextOffset     int `json:"next_offset,omitempty"`
+	Offset         int `json:"offset,omitempty"`
+	PreviousOffset int `json:"previous_offset,omitempty"`
+}
+
+type ModelBraveSearchResponse struct {
+	Discussions    []ModelBraveDiscussion     `json:"discussions,omitempty"`
+	KnowledgeCard  ModelBraveKnowledgeCard    `json:"knowledge_card,omitempty"`
+	Pagination     ModelBraveSearchPagination `json:"pagination,omitempty"`
+	RelatedQueries []string                   `json:"related_queries,omitempty"`
+	Results        []ModelBraveSearchResult   `json:"results,omitempty"`
+	Videos         []ModelBraveVideoResult    `json:"videos,omitempty"`
+}
+
+type ModelBraveSearchResult struct {
+	Age         string `json:"age,omitempty"`
+	Description string `json:"description,omitempty"`
+	Favicon     string `json:"favicon,omitempty"`
+	Hostname    string `json:"hostname,omitempty"`
+	Path        string `json:"path,omitempty"`
+	Position    int    `json:"position,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelBraveSuggestResponse struct {
+	Query       string                       `json:"query,omitempty"`
+	Suggestions []ModelBraveSuggestionResult `json:"suggestions,omitempty"`
+}
+
+type ModelBraveSuggestionResult struct {
+	Position int    `json:"position,omitempty"`
+	Query    string `json:"query,omitempty"`
+}
+
+type ModelBraveVideoResult struct {
+	Age         string `json:"age,omitempty"`
+	Creator     string `json:"creator,omitempty"`
+	Description string `json:"description,omitempty"`
+	Duration    string `json:"duration,omitempty"`
+	Favicon     string `json:"favicon,omitempty"`
+	Hostname    string `json:"hostname,omitempty"`
+	Path        string `json:"path,omitempty"`
+	Platform    string `json:"platform,omitempty"`
+	Position    int    `json:"position,omitempty"`
+	Thumbnail   string `json:"thumbnail,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Url         string `json:"url,omitempty"`
+	Views       string `json:"views,omitempty"`
+}
+
+type ModelBraveVideosResponse struct {
+	Pagination ModelBraveSearchPagination `json:"pagination,omitempty"`
+	Results    []ModelBraveVideoResult    `json:"results,omitempty"`
+}
+
+type ModelBraveImagesResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelBraveImagesResponse `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelBraveNewsResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelBraveNewsResponse `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelBraveSearchResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelBraveSearchResponse `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelBraveSuggestResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelBraveSuggestResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelBraveVideosResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelBraveVideosResponse `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelBuildinfoInfo struct {
+	Api         string `json:"api,omitempty"`
+	BuildTime   string `json:"build_time,omitempty"`
+	Commit      string `json:"commit,omitempty"`
+	CommitShort string `json:"commit_short,omitempty"`
+	Dirty       bool   `json:"dirty,omitempty"`
+	Service     string `json:"service,omitempty"`
+	Status      string `json:"status,omitempty"`
+	Version     string `json:"version,omitempty"`
+}
+
+type ModelCoingeckoAnalysisResponse struct {
+	AbsoluteChange        float64                    `json:"absolute_change,omitempty"`
+	Annotations           []map[string]any           `json:"annotations,omitempty"`
+	AnnotationsPointCount int                        `json:"annotations_point_count,omitempty"`
+	AnnotationsSourceUrl  string                     `json:"annotations_source_url,omitempty"`
+	FetchedAt             string                     `json:"fetched_at,omitempty"`
+	FirstPrice            float64                    `json:"first_price,omitempty"`
+	HighLowRangePercent   float64                    `json:"high_low_range_percent,omitempty"`
+	Id                    string                     `json:"id,omitempty"`
+	LastPrice             float64                    `json:"last_price,omitempty"`
+	MaxPrice              float64                    `json:"max_price,omitempty"`
+	MinPrice              float64                    `json:"min_price,omitempty"`
+	PercentChange         float64                    `json:"percent_change,omitempty"`
+	Points                []ModelCoingeckoChartPoint `json:"points,omitempty"`
+	PointsCount           int                        `json:"points_count,omitempty"`
+	Range                 string                     `json:"range,omitempty"`
+	SourceUrl             string                     `json:"source_url,omitempty"`
+	VsCurrency            string                     `json:"vs_currency,omitempty"`
+}
+
+type ModelCoingeckoCategoriesResponse struct {
+	Categories []ModelCoingeckoCategoryRow `json:"categories,omitempty"`
+	FetchedAt  string                      `json:"fetched_at,omitempty"`
+	Limit      int                         `json:"limit,omitempty"`
+	SourceUrl  string                      `json:"source_url,omitempty"`
+	VsCurrency string                      `json:"vs_currency,omitempty"`
+}
+
+type ModelCoingeckoCategoryCoinRow struct {
+	Change1hPercent       float64 `json:"change_1h_percent,omitempty"`
+	Change24hPercent      float64 `json:"change_24h_percent,omitempty"`
+	Change30dPercent      float64 `json:"change_30d_percent,omitempty"`
+	Change7dPercent       float64 `json:"change_7d_percent,omitempty"`
+	FullyDilutedValuation float64 `json:"fully_diluted_valuation,omitempty"`
+	Id                    string  `json:"id,omitempty"`
+	ImageUrl              string  `json:"image_url,omitempty"`
+	MarketCap             float64 `json:"market_cap,omitempty"`
+	MarketCapFdvRatio     float64 `json:"market_cap_fdv_ratio,omitempty"`
+	Name                  string  `json:"name,omitempty"`
+	Price                 float64 `json:"price,omitempty"`
+	Rank                  int     `json:"rank,omitempty"`
+	Symbol                string  `json:"symbol,omitempty"`
+	Url                   string  `json:"url,omitempty"`
+	Volume24h             float64 `json:"volume_24h,omitempty"`
+}
+
+type ModelCoingeckoCategoryCoinsResponse struct {
+	Coins      []ModelCoingeckoCategoryCoinRow `json:"coins,omitempty"`
+	FetchedAt  string                          `json:"fetched_at,omitempty"`
+	Limit      int                             `json:"limit,omitempty"`
+	Name       string                          `json:"name,omitempty"`
+	Page       int                             `json:"page,omitempty"`
+	Slug       string                          `json:"slug,omitempty"`
+	SourceUrl  string                          `json:"source_url,omitempty"`
+	VsCurrency string                          `json:"vs_currency,omitempty"`
+}
+
+type ModelCoingeckoCategoryRow struct {
+	Change1hPercent  float64 `json:"change_1h_percent,omitempty"`
+	Change24hPercent float64 `json:"change_24h_percent,omitempty"`
+	Change7dPercent  float64 `json:"change_7d_percent,omitempty"`
+	CoinCount        int     `json:"coin_count,omitempty"`
+	Id               string  `json:"id,omitempty"`
+	MarketCap        float64 `json:"market_cap,omitempty"`
+	Name             string  `json:"name,omitempty"`
+	Rank             int     `json:"rank,omitempty"`
+	Slug             string  `json:"slug,omitempty"`
+	Url              string  `json:"url,omitempty"`
+	Volume24h        float64 `json:"volume_24h,omitempty"`
+}
+
+type ModelCoingeckoChainDetailResponse struct {
+	Coins       []ModelCoingeckoCategoryCoinRow  `json:"coins,omitempty"`
+	Collections []ModelCoingeckoNftcollectionRow `json:"collections,omitempty"`
+	Exchanges   []ModelCoingeckoChainExchangeRow `json:"exchanges,omitempty"`
+	FetchedAt   string                           `json:"fetched_at,omitempty"`
+	Id          string                           `json:"id,omitempty"`
+	Limit       int                              `json:"limit,omitempty"`
+	Name        string                           `json:"name,omitempty"`
+	SourceUrl   string                           `json:"source_url,omitempty"`
+	VsCurrency  string                           `json:"vs_currency,omitempty"`
+}
+
+type ModelCoingeckoChainExchangeRow struct {
+	Id                 string  `json:"id,omitempty"`
+	ImageUrl           string  `json:"image_url,omitempty"`
+	MarketSharePercent float64 `json:"market_share_percent,omitempty"`
+	Name               string  `json:"name,omitempty"`
+	Rank               int     `json:"rank,omitempty"`
+	Url                string  `json:"url,omitempty"`
+	Volume24h          float64 `json:"volume_24h,omitempty"`
+	Volume24hText      string  `json:"volume_24h_text,omitempty"`
+}
+
+type ModelCoingeckoChainRow struct {
+	Change24hPercent float64  `json:"change_24h_percent,omitempty"`
+	Change30dPercent float64  `json:"change_30d_percent,omitempty"`
+	Change7dPercent  float64  `json:"change_7d_percent,omitempty"`
+	CoinCount        int      `json:"coin_count,omitempty"`
+	DominancePercent float64  `json:"dominance_percent,omitempty"`
+	Id               string   `json:"id,omitempty"`
+	ImageUrl         string   `json:"image_url,omitempty"`
+	Name             string   `json:"name,omitempty"`
+	Rank             int      `json:"rank,omitempty"`
+	TopGainers       []string `json:"top_gainers,omitempty"`
+	Tvl              float64  `json:"tvl,omitempty"`
+	Url              string   `json:"url,omitempty"`
+	Volume24h        float64  `json:"volume_24h,omitempty"`
+}
+
+type ModelCoingeckoChainsResponse struct {
+	Chains     []ModelCoingeckoChainRow `json:"chains,omitempty"`
+	FetchedAt  string                   `json:"fetched_at,omitempty"`
+	Limit      int                      `json:"limit,omitempty"`
+	SourceUrl  string                   `json:"source_url,omitempty"`
+	VsCurrency string                   `json:"vs_currency,omitempty"`
+}
+
+type ModelCoingeckoChartPoint struct {
+	Datetime  string  `json:"datetime,omitempty"`
+	Price     float64 `json:"price,omitempty"`
+	Timestamp int     `json:"timestamp,omitempty"`
+}
+
+type ModelCoingeckoCoinResponse struct {
+	Categories            []string          `json:"categories,omitempty"`
+	Change1hPercent       float64           `json:"change_1h_percent,omitempty"`
+	Change24hPercent      float64           `json:"change_24h_percent,omitempty"`
+	Change7dPercent       float64           `json:"change_7d_percent,omitempty"`
+	CirculatingSupply     float64           `json:"circulating_supply,omitempty"`
+	FetchedAt             string            `json:"fetched_at,omitempty"`
+	FullyDilutedValuation float64           `json:"fully_diluted_valuation,omitempty"`
+	Id                    string            `json:"id,omitempty"`
+	Links                 map[string]string `json:"links,omitempty"`
+	MarketCap             float64           `json:"market_cap,omitempty"`
+	MaxSupply             float64           `json:"max_supply,omitempty"`
+	Name                  string            `json:"name,omitempty"`
+	Price                 float64           `json:"price,omitempty"`
+	Rank                  int               `json:"rank,omitempty"`
+	SourceUrl             string            `json:"source_url,omitempty"`
+	Symbol                string            `json:"symbol,omitempty"`
+	TotalSupply           float64           `json:"total_supply,omitempty"`
+	Volume24h             float64           `json:"volume_24h,omitempty"`
+}
+
+type ModelCoingeckoExchangeDetailResponse struct {
+	FetchedAt     string                            `json:"fetched_at,omitempty"`
+	Id            string                            `json:"id,omitempty"`
+	Kind          string                            `json:"kind,omitempty"`
+	Limit         int                               `json:"limit,omitempty"`
+	Markets       []ModelCoingeckoExchangeMarketRow `json:"markets,omitempty"`
+	Name          string                            `json:"name,omitempty"`
+	SourceUrl     string                            `json:"source_url,omitempty"`
+	TrustScore    float64                           `json:"trust_score,omitempty"`
+	Volume24h     float64                           `json:"volume_24h,omitempty"`
+	Volume24hText string                            `json:"volume_24h_text,omitempty"`
+	VsCurrency    string                            `json:"vs_currency,omitempty"`
+}
+
+type ModelCoingeckoExchangeMarketRow struct {
+	CoinId             string  `json:"coin_id,omitempty"`
+	CoinName           string  `json:"coin_name,omitempty"`
+	CoinSymbol         string  `json:"coin_symbol,omitempty"`
+	CoinUrl            string  `json:"coin_url,omitempty"`
+	DepthMinus2Percent float64 `json:"depth_minus_2_percent,omitempty"`
+	DepthPlus2Percent  float64 `json:"depth_plus_2_percent,omitempty"`
+	LastUpdated        string  `json:"last_updated,omitempty"`
+	Pair               string  `json:"pair,omitempty"`
+	Price              float64 `json:"price,omitempty"`
+	Rank               int     `json:"rank,omitempty"`
+	SpreadPercent      float64 `json:"spread_percent,omitempty"`
+	Volume24h          float64 `json:"volume_24h,omitempty"`
+	VolumePercent      float64 `json:"volume_percent,omitempty"`
+}
+
+type ModelCoingeckoExchangeRow struct {
+	Id            string  `json:"id,omitempty"`
+	ImageUrl      string  `json:"image_url,omitempty"`
+	Kind          string  `json:"kind,omitempty"`
+	Name          string  `json:"name,omitempty"`
+	Rank          int     `json:"rank,omitempty"`
+	TrustScore    float64 `json:"trust_score,omitempty"`
+	Url           string  `json:"url,omitempty"`
+	Volume24h     float64 `json:"volume_24h,omitempty"`
+	Volume24hText string  `json:"volume_24h_text,omitempty"`
+}
+
+type ModelCoingeckoExchangesResponse struct {
+	Exchanges  []ModelCoingeckoExchangeRow `json:"exchanges,omitempty"`
+	FetchedAt  string                      `json:"fetched_at,omitempty"`
+	Kind       string                      `json:"kind,omitempty"`
+	Limit      int                         `json:"limit,omitempty"`
+	Page       int                         `json:"page,omitempty"`
+	SourceUrl  string                      `json:"source_url,omitempty"`
+	VsCurrency string                      `json:"vs_currency,omitempty"`
+}
+
+type ModelCoingeckoGainerLoserRow struct {
+	Change24hPercent float64 `json:"change_24h_percent,omitempty"`
+	Id               string  `json:"id,omitempty"`
+	ImageUrl         string  `json:"image_url,omitempty"`
+	Name             string  `json:"name,omitempty"`
+	Price            float64 `json:"price,omitempty"`
+	Rank             int     `json:"rank,omitempty"`
+	Symbol           string  `json:"symbol,omitempty"`
+	Url              string  `json:"url,omitempty"`
+	Volume24h        float64 `json:"volume_24h,omitempty"`
+}
+
+type ModelCoingeckoGainersLosersResponse struct {
+	FetchedAt  string                         `json:"fetched_at,omitempty"`
+	Gainers    []ModelCoingeckoGainerLoserRow `json:"gainers,omitempty"`
+	Limit      int                            `json:"limit,omitempty"`
+	Losers     []ModelCoingeckoGainerLoserRow `json:"losers,omitempty"`
+	SourceUrl  string                         `json:"source_url,omitempty"`
+	VsCurrency string                         `json:"vs_currency,omitempty"`
+}
+
+type ModelCoingeckoGlobalChartPoint struct {
+	Datetime  string  `json:"datetime,omitempty"`
+	Timestamp int     `json:"timestamp,omitempty"`
+	Value     float64 `json:"value,omitempty"`
+}
+
+type ModelCoingeckoGlobalChartSeries struct {
+	Name   string                           `json:"name,omitempty"`
+	Points []ModelCoingeckoGlobalChartPoint `json:"points,omitempty"`
+}
+
+type ModelCoingeckoGlobalChartsResponse struct {
+	FetchedAt string                            `json:"fetched_at,omitempty"`
+	Kind      string                            `json:"kind,omitempty"`
+	Limit     int                               `json:"limit,omitempty"`
+	Range     string                            `json:"range,omitempty"`
+	Series    []ModelCoingeckoGlobalChartSeries `json:"series,omitempty"`
+	SourceUrl string                            `json:"source_url,omitempty"`
+}
+
+type ModelCoingeckoGlobalResponse struct {
+	BitcoinDominancePercent   float64 `json:"bitcoin_dominance_percent,omitempty"`
+	BitcoinMarketCapUsd       float64 `json:"bitcoin_market_cap_usd,omitempty"`
+	CategoriesTracked         int     `json:"categories_tracked,omitempty"`
+	CoinsTracked              int     `json:"coins_tracked,omitempty"`
+	EthereumDominancePercent  float64 `json:"ethereum_dominance_percent,omitempty"`
+	ExchangesTracked          int     `json:"exchanges_tracked,omitempty"`
+	FetchedAt                 string  `json:"fetched_at,omitempty"`
+	MarketCapChange1yPercent  float64 `json:"market_cap_change_1y_percent,omitempty"`
+	MarketCapChange24hPercent float64 `json:"market_cap_change_24h_percent,omitempty"`
+	MarketCapUsd              float64 `json:"market_cap_usd,omitempty"`
+	SourceUrl                 string  `json:"source_url,omitempty"`
+	StablecoinMarketCapUsd    float64 `json:"stablecoin_market_cap_usd,omitempty"`
+	StablecoinSharePercent    float64 `json:"stablecoin_share_percent,omitempty"`
+}
+
+type ModelCoingeckoLearnArticle struct {
+	Author        string  `json:"author,omitempty"`
+	Category      string  `json:"category,omitempty"`
+	Excerpt       string  `json:"excerpt,omitempty"`
+	ImageUrl      string  `json:"image_url,omitempty"`
+	PublishedDate string  `json:"published_date,omitempty"`
+	RatingScore   float64 `json:"rating_score,omitempty"`
+	RatingText    string  `json:"rating_text,omitempty"`
+	RatingVotes   int     `json:"rating_votes,omitempty"`
+	Title         string  `json:"title,omitempty"`
+	Url           string  `json:"url,omitempty"`
+}
+
+type ModelCoingeckoLearnArticlesResponse struct {
+	Articles  []ModelCoingeckoLearnArticle `json:"articles,omitempty"`
+	Category  string                       `json:"category,omitempty"`
+	FetchedAt string                       `json:"fetched_at,omitempty"`
+	Limit     int                          `json:"limit,omitempty"`
+	SourceUrl string                       `json:"source_url,omitempty"`
+}
+
+type ModelCoingeckoMarketCoin struct {
+	Change1hPercent  float64 `json:"change_1h_percent,omitempty"`
+	Change24hPercent float64 `json:"change_24h_percent,omitempty"`
+	Change7dPercent  float64 `json:"change_7d_percent,omitempty"`
+	Id               string  `json:"id,omitempty"`
+	ImageUrl         string  `json:"image_url,omitempty"`
+	MarketCap        float64 `json:"market_cap,omitempty"`
+	Name             string  `json:"name,omitempty"`
+	Price            float64 `json:"price,omitempty"`
+	Rank             int     `json:"rank,omitempty"`
+	Symbol           string  `json:"symbol,omitempty"`
+	Url              string  `json:"url,omitempty"`
+	Volume24h        float64 `json:"volume_24h,omitempty"`
+}
+
+type ModelCoingeckoMarketsResponse struct {
+	Coins      []ModelCoingeckoMarketCoin `json:"coins,omitempty"`
+	FetchedAt  string                     `json:"fetched_at,omitempty"`
+	Limit      int                        `json:"limit,omitempty"`
+	Page       int                        `json:"page,omitempty"`
+	SourceUrl  string                     `json:"source_url,omitempty"`
+	VsCurrency string                     `json:"vs_currency,omitempty"`
+}
+
+type ModelCoingeckoNftcategoryResponse struct {
+	Collections []ModelCoingeckoNftcollectionRow `json:"collections,omitempty"`
+	FetchedAt   string                           `json:"fetched_at,omitempty"`
+	Limit       int                              `json:"limit,omitempty"`
+	Name        string                           `json:"name,omitempty"`
+	Page        int                              `json:"page,omitempty"`
+	Slug        string                           `json:"slug,omitempty"`
+	SourceUrl   string                           `json:"source_url,omitempty"`
+	VsCurrency  string                           `json:"vs_currency,omitempty"`
+}
+
+type ModelCoingeckoNftcollectionRow struct {
+	Chain            string  `json:"chain,omitempty"`
+	Change24hPercent float64 `json:"change_24h_percent,omitempty"`
+	Change30dPercent float64 `json:"change_30d_percent,omitempty"`
+	Change7dPercent  float64 `json:"change_7d_percent,omitempty"`
+	FloorPriceNative float64 `json:"floor_price_native,omitempty"`
+	FloorPriceUsd    float64 `json:"floor_price_usd,omitempty"`
+	Id               string  `json:"id,omitempty"`
+	ImageUrl         string  `json:"image_url,omitempty"`
+	MarketCapNative  float64 `json:"market_cap_native,omitempty"`
+	MarketCapUsd     float64 `json:"market_cap_usd,omitempty"`
+	Name             string  `json:"name,omitempty"`
+	Rank             int     `json:"rank,omitempty"`
+	Sales24h         int     `json:"sales_24h,omitempty"`
+	Url              string  `json:"url,omitempty"`
+	Volume24hNative  float64 `json:"volume_24h_native,omitempty"`
+	Volume24hUsd     float64 `json:"volume_24h_usd,omitempty"`
+}
+
+type ModelCoingeckoNftsResponse struct {
+	Collections []ModelCoingeckoNftcollectionRow `json:"collections,omitempty"`
+	FetchedAt   string                           `json:"fetched_at,omitempty"`
+	Limit       int                              `json:"limit,omitempty"`
+	Page        int                              `json:"page,omitempty"`
+	SourceUrl   string                           `json:"source_url,omitempty"`
+	VsCurrency  string                           `json:"vs_currency,omitempty"`
+}
+
+type ModelCoingeckoNewCoinRow struct {
+	Chain                 string  `json:"chain,omitempty"`
+	Change1hPercent       float64 `json:"change_1h_percent,omitempty"`
+	Change24hPercent      float64 `json:"change_24h_percent,omitempty"`
+	FullyDilutedValuation float64 `json:"fully_diluted_valuation,omitempty"`
+	Id                    string  `json:"id,omitempty"`
+	ImageUrl              string  `json:"image_url,omitempty"`
+	LastAdded             string  `json:"last_added,omitempty"`
+	Name                  string  `json:"name,omitempty"`
+	Price                 float64 `json:"price,omitempty"`
+	Rank                  int     `json:"rank,omitempty"`
+	Symbol                string  `json:"symbol,omitempty"`
+	Url                   string  `json:"url,omitempty"`
+	Volume24h             float64 `json:"volume_24h,omitempty"`
+}
+
+type ModelCoingeckoNewCoinsResponse struct {
+	Coins      []ModelCoingeckoNewCoinRow `json:"coins,omitempty"`
+	FetchedAt  string                     `json:"fetched_at,omitempty"`
+	Limit      int                        `json:"limit,omitempty"`
+	Page       int                        `json:"page,omitempty"`
+	SourceUrl  string                     `json:"source_url,omitempty"`
+	VsCurrency string                     `json:"vs_currency,omitempty"`
+}
+
+type ModelCoingeckoNewsArticle struct {
+	Coins         []ModelCoingeckoNewsCoin `json:"coins,omitempty"`
+	ImageUrl      string                   `json:"image_url,omitempty"`
+	PublishedText string                   `json:"published_text,omitempty"`
+	Publisher     string                   `json:"publisher,omitempty"`
+	Summary       string                   `json:"summary,omitempty"`
+	Title         string                   `json:"title,omitempty"`
+	Url           string                   `json:"url,omitempty"`
+}
+
+type ModelCoingeckoNewsCoin struct {
+	ChangePercent float64 `json:"change_percent,omitempty"`
+	Id            string  `json:"id,omitempty"`
+	Name          string  `json:"name,omitempty"`
+	Symbol        string  `json:"symbol,omitempty"`
+	Url           string  `json:"url,omitempty"`
+}
+
+type ModelCoingeckoNewsResponse struct {
+	Articles  []ModelCoingeckoNewsArticle `json:"articles,omitempty"`
+	FetchedAt string                      `json:"fetched_at,omitempty"`
+	Limit     int                         `json:"limit,omitempty"`
+	SourceUrl string                      `json:"source_url,omitempty"`
+}
+
+type ModelCoingeckoSearchAssetPlatform struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelCoingeckoSearchCategory struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelCoingeckoSearchCoin struct {
+	Id            string `json:"id,omitempty"`
+	ImageUrl      string `json:"image_url,omitempty"`
+	MarketCapRank int    `json:"market_cap_rank,omitempty"`
+	Name          string `json:"name,omitempty"`
+	Symbol        string `json:"symbol,omitempty"`
+	Url           string `json:"url,omitempty"`
+}
+
+type ModelCoingeckoSearchMarket struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Type string `json:"type,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelCoingeckoSearchNftcontract struct {
+	Address         string `json:"address,omitempty"`
+	AssetPlatformId string `json:"asset_platform_id,omitempty"`
+	Id              string `json:"id,omitempty"`
+	Name            string `json:"name,omitempty"`
+	Symbol          string `json:"symbol,omitempty"`
+	Url             string `json:"url,omitempty"`
+}
+
+type ModelCoingeckoSearchPost struct {
+	Description string `json:"description,omitempty"`
+	Id          string `json:"id,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelCoingeckoSearchResponse struct {
+	AssetPlatforms []ModelCoingeckoSearchAssetPlatform `json:"asset_platforms,omitempty"`
+	Categories     []ModelCoingeckoSearchCategory      `json:"categories,omitempty"`
+	Coins          []ModelCoingeckoSearchCoin          `json:"coins,omitempty"`
+	FetchedAt      string                              `json:"fetched_at,omitempty"`
+	Limit          int                                 `json:"limit,omitempty"`
+	Markets        []ModelCoingeckoSearchMarket        `json:"markets,omitempty"`
+	NftContracts   []ModelCoingeckoSearchNftcontract   `json:"nft_contracts,omitempty"`
+	Posts          []ModelCoingeckoSearchPost          `json:"posts,omitempty"`
+	Query          string                              `json:"query,omitempty"`
+	SourceUrl      string                              `json:"source_url,omitempty"`
+}
+
+type ModelCoingeckoTokenUnlockRow struct {
+	Change1hPercent    float64 `json:"change_1h_percent,omitempty"`
+	Change24hPercent   float64 `json:"change_24h_percent,omitempty"`
+	Change7dPercent    float64 `json:"change_7d_percent,omitempty"`
+	Id                 string  `json:"id,omitempty"`
+	ImageUrl           string  `json:"image_url,omitempty"`
+	MarketCap          float64 `json:"market_cap,omitempty"`
+	Name               string  `json:"name,omitempty"`
+	NextUnlockAmount   float64 `json:"next_unlock_amount,omitempty"`
+	NextUnlockPercent  float64 `json:"next_unlock_percent,omitempty"`
+	NextUnlockSymbol   string  `json:"next_unlock_symbol,omitempty"`
+	NextUnlockTimeLeft string  `json:"next_unlock_time_left,omitempty"`
+	NextUnlockValueUsd float64 `json:"next_unlock_value_usd,omitempty"`
+	Price              float64 `json:"price,omitempty"`
+	Rank               int     `json:"rank,omitempty"`
+	ReleasedPercent    float64 `json:"released_percent,omitempty"`
+	Symbol             string  `json:"symbol,omitempty"`
+	Url                string  `json:"url,omitempty"`
+}
+
+type ModelCoingeckoTokenUnlocksResponse struct {
+	Coins     []ModelCoingeckoTokenUnlockRow `json:"coins,omitempty"`
+	FetchedAt string                         `json:"fetched_at,omitempty"`
+	Limit     int                            `json:"limit,omitempty"`
+	SourceUrl string                         `json:"source_url,omitempty"`
+}
+
+type ModelCoingeckoTreasuriesResponse struct {
+	Asset      string                            `json:"asset,omitempty"`
+	Entities   []ModelCoingeckoTreasuryEntityRow `json:"entities,omitempty"`
+	FetchedAt  string                            `json:"fetched_at,omitempty"`
+	HolderType string                            `json:"holder_type,omitempty"`
+	Limit      int                               `json:"limit,omitempty"`
+	SourceUrl  string                            `json:"source_url,omitempty"`
+	VsCurrency string                            `json:"vs_currency,omitempty"`
+}
+
+type ModelCoingeckoTreasuryEntityRow struct {
+	Activity30d   string  `json:"activity_30d,omitempty"`
+	Country       string  `json:"country,omitempty"`
+	EntityType    string  `json:"entity_type,omitempty"`
+	Id            string  `json:"id,omitempty"`
+	Mnav          float64 `json:"mnav,omitempty"`
+	Name          string  `json:"name,omitempty"`
+	Rank          int     `json:"rank,omitempty"`
+	Ticker        string  `json:"ticker,omitempty"`
+	TodayValueUsd float64 `json:"today_value_usd,omitempty"`
+	TopHoldings   string  `json:"top_holdings,omitempty"`
+	TotalCostUsd  float64 `json:"total_cost_usd,omitempty"`
+	Url           string  `json:"url,omitempty"`
+}
+
+type ModelCoingeckoTrendingCategory struct {
+	Change1hPercent  float64 `json:"change_1h_percent,omitempty"`
+	Change24hPercent float64 `json:"change_24h_percent,omitempty"`
+	Change7dPercent  float64 `json:"change_7d_percent,omitempty"`
+	Id               string  `json:"id,omitempty"`
+	Name             string  `json:"name,omitempty"`
+	Slug             string  `json:"slug,omitempty"`
+	Url              string  `json:"url,omitempty"`
+}
+
+type ModelCoingeckoTrendingCoin struct {
+	Change1hPercent  float64 `json:"change_1h_percent,omitempty"`
+	Change24hPercent float64 `json:"change_24h_percent,omitempty"`
+	Change7dPercent  float64 `json:"change_7d_percent,omitempty"`
+	Id               string  `json:"id,omitempty"`
+	Name             string  `json:"name,omitempty"`
+	Price            float64 `json:"price,omitempty"`
+	Symbol           string  `json:"symbol,omitempty"`
+	Url              string  `json:"url,omitempty"`
+}
+
+type ModelCoingeckoTrendingResponse struct {
+	Categories []ModelCoingeckoTrendingCategory `json:"categories,omitempty"`
+	Coins      []ModelCoingeckoTrendingCoin     `json:"coins,omitempty"`
+	FetchedAt  string                           `json:"fetched_at,omitempty"`
+	Limit      int                              `json:"limit,omitempty"`
+	SourceUrl  string                           `json:"source_url,omitempty"`
+	VsCurrency string                           `json:"vs_currency,omitempty"`
+}
+
+type ModelCoingeckoAnalysisResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelCoingeckoAnalysisResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoCategoriesResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelCoingeckoCategoriesResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoCategoryCoinsResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelCoingeckoCategoryCoinsResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoChainDetailResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelCoingeckoChainDetailResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoChainsResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelCoingeckoChainsResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoCoinResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelCoingeckoCoinResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoExchangeDetailResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelCoingeckoExchangeDetailResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoExchangesResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelCoingeckoExchangesResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoGainersLosersResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelCoingeckoGainersLosersResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoGlobalChartsResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelCoingeckoGlobalChartsResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoGlobalResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelCoingeckoGlobalResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoLearnArticlesResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelCoingeckoLearnArticlesResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoMarketsResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelCoingeckoMarketsResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoNewCoinsResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelCoingeckoNewCoinsResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoNewsResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelCoingeckoNewsResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoNftCategoryResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelCoingeckoNftcategoryResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoNftsResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelCoingeckoNftsResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoSearchResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelCoingeckoSearchResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoTokenUnlocksResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelCoingeckoTokenUnlocksResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoTreasuriesResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelCoingeckoTreasuriesResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelCoingeckoTrendingResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelCoingeckoTrendingResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelContactContact struct {
+	Emails  []string       `json:"emails,omitempty"`
+	Socials map[string]any `json:"socials,omitempty"`
+	Url     string         `json:"url,omitempty"`
+}
+
+type ModelContactContactOption struct {
+	Url string `json:"url"`
+}
+
+type ModelDatasetsDatasetInfo struct {
+	Capabilities []string `json:"capabilities,omitempty"`
+	Description  string   `json:"description,omitempty"`
+	Id           string   `json:"id,omitempty"`
+	Name         string   `json:"name,omitempty"`
+}
+
+type ModelDatasetsDatasetListResponse struct {
+	Items []ModelDatasetsDatasetInfo `json:"items,omitempty"`
+}
+
+type ModelDatasetsGoogleBusinessFacetResponse struct {
+	Dataset string                                  `json:"dataset,omitempty"`
+	Facet   string                                  `json:"facet,omitempty"`
+	Items   []ModelEsGoogleBusinessDatasetFacetItem `json:"items,omitempty"`
+}
+
+type ModelDatasetsGoogleBusinessSearchResponse struct {
+	Dataset  string                             `json:"dataset,omitempty"`
+	Items    []ModelEsGoogleBusinessDatasetItem `json:"items,omitempty"`
+	Page     int                                `json:"page,omitempty"`
+	PageSize int                                `json:"page_size,omitempty"`
+	Sort     string                             `json:"sort,omitempty"`
+	Total    int                                `json:"total,omitempty"`
+}
+
+type ModelDatasetsGoogleMapBusinessResponseDoc struct {
+	Code int                   `json:"code,omitempty"`
+	Data ModelEsGoogleBusiness `json:"data,omitempty"`
+	Msg  string                `json:"msg,omitempty"`
+}
+
+type ModelDatasetsGoogleMapBusinessesFacetResponseDoc struct {
+	Code int                                      `json:"code,omitempty"`
+	Data ModelDatasetsGoogleBusinessFacetResponse `json:"data,omitempty"`
+	Msg  string                                   `json:"msg,omitempty"`
+}
+
+type ModelDatasetsGoogleMapBusinessesSearchResponseDoc struct {
+	Code int                                       `json:"code,omitempty"`
+	Data ModelDatasetsGoogleBusinessSearchResponse `json:"data,omitempty"`
+	Msg  string                                    `json:"msg,omitempty"`
+}
+
+type ModelDatasetsListResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelDatasetsDatasetListResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelEbayItem struct {
+	Availability             string             `json:"availability,omitempty"`
+	Condition                string             `json:"condition,omitempty"`
+	Description              string             `json:"description,omitempty"`
+	Images                   []string           `json:"images,omitempty"`
+	ItemFeedbackCount        int                `json:"item_feedback_count,omitempty"`
+	ItemId                   string             `json:"item_id,omitempty"`
+	ItemSpecifics            map[string]string  `json:"item_specifics,omitempty"`
+	Link                     string             `json:"link,omitempty"`
+	Location                 string             `json:"location,omitempty"`
+	Price                    float64            `json:"price,omitempty"`
+	PriceText                string             `json:"price_text,omitempty"`
+	Rating                   float64            `json:"rating,omitempty"`
+	RatingCount              int                `json:"rating_count,omitempty"`
+	SaleStatus               string             `json:"sale_status,omitempty"`
+	SellerCategories         []string           `json:"seller_categories,omitempty"`
+	SellerDescription        string             `json:"seller_description,omitempty"`
+	SellerDetailedRatings    map[string]float64 `json:"seller_detailed_ratings,omitempty"`
+	SellerFeedbackScore      int                `json:"seller_feedback_score,omitempty"`
+	SellerFollowers          int                `json:"seller_followers,omitempty"`
+	SellerItemsSold          int                `json:"seller_items_sold,omitempty"`
+	SellerLink               string             `json:"seller_link,omitempty"`
+	SellerLogoUrl            string             `json:"seller_logo_url,omitempty"`
+	SellerMemberSince        string             `json:"seller_member_since,omitempty"`
+	SellerName               string             `json:"seller_name,omitempty"`
+	SellerPositiveFeedback   float64            `json:"seller_positive_feedback,omitempty"`
+	SellerStoreName          string             `json:"seller_store_name,omitempty"`
+	SellerTotalFeedbackCount int                `json:"seller_total_feedback_count,omitempty"`
+	Shipping                 string             `json:"shipping,omitempty"`
+	Title                    string             `json:"title,omitempty"`
+}
+
+type ModelEbaySearchItem struct {
+	BidCount                 int     `json:"bid_count,omitempty"`
+	Caption                  string  `json:"caption,omitempty"`
+	Image                    string  `json:"image,omitempty"`
+	IsAuthenticityGuaranteed bool    `json:"is_authenticity_guaranteed,omitempty"`
+	ItemId                   string  `json:"item_id,omitempty"`
+	Link                     string  `json:"link,omitempty"`
+	Location                 string  `json:"location,omitempty"`
+	Logistic                 string  `json:"logistic,omitempty"`
+	OfferNote                string  `json:"offer_note,omitempty"`
+	Price                    float64 `json:"price,omitempty"`
+	PriceFrom                float64 `json:"price_from,omitempty"`
+	PriceTo                  float64 `json:"price_to,omitempty"`
+	Rating                   float64 `json:"rating,omitempty"`
+	RatingNum                int     `json:"rating_num,omitempty"`
+	Seller                   string  `json:"seller,omitempty"`
+	SoldCount                int     `json:"sold_count,omitempty"`
+	SubTitle                 string  `json:"sub_title,omitempty"`
+	Title                    string  `json:"title,omitempty"`
+	WatcherCount             int     `json:"watcher_count,omitempty"`
+}
+
+type ModelEbaySearchOption struct {
+	Keyword     string `json:"keyword"`
+	Limit       int    `json:"limit,omitempty"`
+	ListingType string `json:"listing_type,omitempty"`
+	Page        int    `json:"page,omitempty"`
+}
+
+type ModelEbaySearchResp struct {
+	HasMore bool                  `json:"has_more,omitempty"`
+	Page    int                   `json:"page,omitempty"`
+	Result  []ModelEbaySearchItem `json:"result,omitempty"`
+	Total   int                   `json:"total,omitempty"`
+}
+
+type ModelEbaySeller struct {
+	Description             string             `json:"description,omitempty"`
+	DetailedSellerRatings   map[string]float64 `json:"detailed_seller_ratings,omitempty"`
+	DisplayName             string             `json:"display_name,omitempty"`
+	FeedbackCount           int                `json:"feedback_count,omitempty"`
+	FeedbackSummary         map[string]int     `json:"feedback_summary,omitempty"`
+	Followers               int                `json:"followers,omitempty"`
+	ItemsSold               int                `json:"items_sold,omitempty"`
+	Location                string             `json:"location,omitempty"`
+	MemberSince             string             `json:"member_since,omitempty"`
+	PositiveFeedbackPercent float64            `json:"positive_feedback_percent,omitempty"`
+	ProfileUrl              string             `json:"profile_url,omitempty"`
+	Seller                  string             `json:"seller,omitempty"`
+	StoreName               string             `json:"store_name,omitempty"`
+	StoreUrl                string             `json:"store_url,omitempty"`
+}
+
+type ModelEbaySellerAbout struct {
+	BannerUrl               string                         `json:"banner_url,omitempty"`
+	Categories              []ModelEbaySellerAboutCategory `json:"categories,omitempty"`
+	ContactSellerUrl        string                         `json:"contact_seller_url,omitempty"`
+	Description             string                         `json:"description,omitempty"`
+	Followers               int                            `json:"followers,omitempty"`
+	ItemsSold               int                            `json:"items_sold,omitempty"`
+	Location                string                         `json:"location,omitempty"`
+	LogoUrl                 string                         `json:"logo_url,omitempty"`
+	MemberSince             string                         `json:"member_since,omitempty"`
+	PositiveFeedbackPercent float64                        `json:"positive_feedback_percent,omitempty"`
+	Seller                  string                         `json:"seller,omitempty"`
+	StoreName               string                         `json:"store_name,omitempty"`
+	StoreUrl                string                         `json:"store_url,omitempty"`
+	TopRatedSeller          bool                           `json:"top_rated_seller,omitempty"`
+	TopRatedSellerSummary   string                         `json:"top_rated_seller_summary,omitempty"`
+}
+
+type ModelEbaySellerAboutCategory struct {
+	Name          string                            `json:"name,omitempty"`
+	Subcategories []ModelEbaySellerAboutSubcategory `json:"subcategories,omitempty"`
+	Url           string                            `json:"url,omitempty"`
+}
+
+type ModelEbaySellerAboutSubcategory struct {
+	Name string `json:"name,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelEbaySellerFeedback struct {
+	Description             string                  `json:"description,omitempty"`
+	DetailedSellerRatings   map[string]float64      `json:"detailed_seller_ratings,omitempty"`
+	Followers               int                     `json:"followers,omitempty"`
+	HasMore                 bool                    `json:"has_more,omitempty"`
+	ItemsSold               int                     `json:"items_sold,omitempty"`
+	NextPage                int                     `json:"next_page,omitempty"`
+	OverallRatingSummary    map[string]int          `json:"overall_rating_summary,omitempty"`
+	Page                    int                     `json:"page,omitempty"`
+	PerPage                 int                     `json:"per_page,omitempty"`
+	PositiveFeedbackPercent float64                 `json:"positive_feedback_percent,omitempty"`
+	Reviews                 []ModelEbaySellerReview `json:"reviews,omitempty"`
+	Seller                  string                  `json:"seller,omitempty"`
+	StoreName               string                  `json:"store_name,omitempty"`
+	StoreUrl                string                  `json:"store_url,omitempty"`
+	TotalFeedbackCount      int                     `json:"total_feedback_count,omitempty"`
+}
+
+type ModelEbaySellerReview struct {
+	Buyer            string `json:"buyer,omitempty"`
+	BuyerFeedback    int    `json:"buyer_feedback,omitempty"`
+	Comment          string `json:"comment,omitempty"`
+	Period           string `json:"period,omitempty"`
+	Rating           string `json:"rating,omitempty"`
+	VerifiedPurchase bool   `json:"verified_purchase,omitempty"`
+}
+
+type ModelEbayItemResponseDoc struct {
+	Code int           `json:"code,omitempty"`
+	Data ModelEbayItem `json:"data,omitempty"`
+	Msg  any           `json:"msg,omitempty"`
+}
+
+type ModelEbaySearchResponseDoc struct {
+	Code int                 `json:"code,omitempty"`
+	Data ModelEbaySearchResp `json:"data,omitempty"`
+	Msg  any                 `json:"msg,omitempty"`
+}
+
+type ModelEbaySellerAboutResponseDoc struct {
+	Code int                  `json:"code,omitempty"`
+	Data ModelEbaySellerAbout `json:"data,omitempty"`
+	Msg  any                  `json:"msg,omitempty"`
+}
+
+type ModelEbaySellerFeedbackResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelEbaySellerFeedback `json:"data,omitempty"`
+	Msg  any                     `json:"msg,omitempty"`
+}
+
+type ModelEbaySellerResponseDoc struct {
+	Code int             `json:"code,omitempty"`
+	Data ModelEbaySeller `json:"data,omitempty"`
+	Msg  any             `json:"msg,omitempty"`
+}
+
+type ModelEbaySellerShopResponseDoc struct {
+	Code int                 `json:"code,omitempty"`
+	Data ModelEbaySearchResp `json:"data,omitempty"`
+	Msg  any                 `json:"msg,omitempty"`
+}
+
+type ModelEsGeoPoint struct {
+	Lat float64 `json:"lat,omitempty"`
+	Lon float64 `json:"lon,omitempty"`
+}
+
+type ModelEsGoogleBusiness struct {
+	Address          string                        `json:"address,omitempty"`
+	Amenities        []string                      `json:"amenities,omitempty"`
+	Category         []string                      `json:"category,omitempty"`
+	City             string                        `json:"city,omitempty"`
+	Contact          ModelContactContact           `json:"contact,omitempty"`
+	ContactIsUpdated bool                          `json:"contact_is_updated,omitempty"`
+	Country          string                        `json:"country,omitempty"`
+	County           string                        `json:"county,omitempty"`
+	CreatedAt        string                        `json:"created_at,omitempty"`
+	Description      string                        `json:"description,omitempty"`
+	Geo              ModelEsGeoPoint               `json:"geo,omitempty"`
+	GeoIsUpdated     bool                          `json:"geo_is_updated,omitempty"`
+	Id               string                        `json:"id,omitempty"`
+	Image            string                        `json:"image,omitempty"`
+	Locations        []string                      `json:"locations,omitempty"`
+	Name             string                        `json:"name,omitempty"`
+	Phone            string                        `json:"phone,omitempty"`
+	PlaceId          string                        `json:"place_id,omitempty"`
+	Rating           float64                       `json:"rating,omitempty"`
+	ReviewCount      int                           `json:"review_count,omitempty"`
+	Similarweb       ModelSimilarwebSimilarWebResp `json:"similarweb,omitempty"`
+	State            string                        `json:"state,omitempty"`
+	Town             string                        `json:"town,omitempty"`
+	UpdatedAt        string                        `json:"updated_at,omitempty"`
+	Url              string                        `json:"url,omitempty"`
+	Website          string                        `json:"website,omitempty"`
+	WebsiteStatus    ModelEsWebsiteStatus          `json:"website_status,omitempty"`
+}
+
+type ModelEsGoogleBusinessDatasetFacetItem struct {
+	Count int    `json:"count,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelEsGoogleBusinessDatasetItem struct {
+	Address          string                        `json:"address,omitempty"`
+	Amenities        []string                      `json:"amenities,omitempty"`
+	Category         []string                      `json:"category,omitempty"`
+	City             string                        `json:"city,omitempty"`
+	Contact          ModelContactContact           `json:"contact,omitempty"`
+	ContactIsUpdated bool                          `json:"contact_is_updated,omitempty"`
+	Country          string                        `json:"country,omitempty"`
+	County           string                        `json:"county,omitempty"`
+	CreatedAt        string                        `json:"created_at,omitempty"`
+	Description      string                        `json:"description,omitempty"`
+	DistanceM        float64                       `json:"distance_m,omitempty"`
+	Geo              ModelEsGeoPoint               `json:"geo,omitempty"`
+	GeoIsUpdated     bool                          `json:"geo_is_updated,omitempty"`
+	Id               string                        `json:"id,omitempty"`
+	Image            string                        `json:"image,omitempty"`
+	Locations        []string                      `json:"locations,omitempty"`
+	Name             string                        `json:"name,omitempty"`
+	Phone            string                        `json:"phone,omitempty"`
+	PlaceId          string                        `json:"place_id,omitempty"`
+	Rating           float64                       `json:"rating,omitempty"`
+	ReviewCount      int                           `json:"review_count,omitempty"`
+	Similarweb       ModelSimilarwebSimilarWebResp `json:"similarweb,omitempty"`
+	State            string                        `json:"state,omitempty"`
+	Town             string                        `json:"town,omitempty"`
+	UpdatedAt        string                        `json:"updated_at,omitempty"`
+	Url              string                        `json:"url,omitempty"`
+	Website          string                        `json:"website,omitempty"`
+	WebsiteStatus    ModelEsWebsiteStatus          `json:"website_status,omitempty"`
+}
+
+type ModelEsWebsiteStatus struct {
+	CheckedAt     string `json:"checked_at,omitempty"`
+	DnsResolvable bool   `json:"dns_resolvable,omitempty"`
+	Error         string `json:"error,omitempty"`
+	HttpReachable bool   `json:"http_reachable,omitempty"`
+	StatusCode    int    `json:"status_code,omitempty"`
+	Url           string `json:"url,omitempty"`
+}
+
+type ModelFinanceAbout struct {
+	About        string `json:"about,omitempty"`
+	Ceo          string `json:"ceo,omitempty"`
+	Employees    int    `json:"employees,omitempty"`
+	Founded      string `json:"founded,omitempty"`
+	Headquarters string `json:"headquarters,omitempty"`
+	Website      string `json:"website,omitempty"`
+}
+
+type ModelFinanceBalanceSheet struct {
+	CashAndShortTermChangeYy    float64 `json:"cash_and_short_term_change_yy,omitempty"`
+	CashAndShortTermInvestments float64 `json:"cash_and_short_term_investments,omitempty"`
+	PriceToBook                 float64 `json:"price_to_book,omitempty"`
+	Quarter                     int     `json:"quarter,omitempty"`
+	ReturnOnAssets              float64 `json:"return_on_assets,omitempty"`
+	ReturnOnCapital             float64 `json:"return_on_capital,omitempty"`
+	SharesOutstanding           float64 `json:"shares_outstanding,omitempty"`
+	TotalAssets                 float64 `json:"total_assets,omitempty"`
+	TotalAssetsChangeYy         float64 `json:"total_assets_change_yy,omitempty"`
+	TotalEquity                 float64 `json:"total_equity,omitempty"`
+	TotalLiabilities            float64 `json:"total_liabilities,omitempty"`
+	TotalLiabilitiesChangeYy    float64 `json:"total_liabilities_change_yy,omitempty"`
+	Year                        int     `json:"year,omitempty"`
+}
+
+type ModelFinanceCashFlow struct {
+	CashFromFinancing          float64 `json:"cash_from_financing,omitempty"`
+	CashFromFinancingChangeYy  float64 `json:"cash_from_financing_change_yy,omitempty"`
+	CashFromInvesting          float64 `json:"cash_from_investing,omitempty"`
+	CashFromInvestingChangeYy  float64 `json:"cash_from_investing_change_yy,omitempty"`
+	CashFromOperations         float64 `json:"cash_from_operations,omitempty"`
+	CashFromOperationsChangeYy float64 `json:"cash_from_operations_change_yy,omitempty"`
+	FreeCashFlow               float64 `json:"free_cash_flow,omitempty"`
+	FreeCashFlowChangeYy       float64 `json:"free_cash_flow_change_yy,omitempty"`
+	NetChangeInCash            float64 `json:"net_change_in_cash,omitempty"`
+	NetChangeInCashChangeYy    float64 `json:"net_change_in_cash_change_yy,omitempty"`
+	NetIncome                  float64 `json:"net_income,omitempty"`
+	NetIncomeChangeYy          float64 `json:"net_income_change_yy,omitempty"`
+	Quarter                    int     `json:"quarter,omitempty"`
+	Year                       int     `json:"year,omitempty"`
+}
+
+type ModelFinanceCategoryNewsResponse struct {
+	Category string                       `json:"category,omitempty"`
+	Items    []ModelFinanceFinanceArticle `json:"items,omitempty"`
+	Offset   int                          `json:"offset,omitempty"`
+}
+
+type ModelFinanceCategoryStocksResponse struct {
+	Category string                   `json:"category,omitempty"`
+	Items    []ModelFinanceInstrument `json:"items,omitempty"`
+	Offset   int                      `json:"offset,omitempty"`
+}
+
+type ModelFinanceChartResponse struct {
+	Instrument    ModelFinanceInstrument `json:"instrument,omitempty"`
+	Points        []ModelFinanceTicker   `json:"points,omitempty"`
+	PreviousClose float64                `json:"previous_close,omitempty"`
+	Window        string                 `json:"window,omitempty"`
+}
+
+type ModelFinanceClassificationResponse struct {
+	Categories []string               `json:"categories,omitempty"`
+	Instrument ModelFinanceInstrument `json:"instrument,omitempty"`
+}
+
+type ModelFinanceCompanyInfo struct {
+	Ceo              string  `json:"ceo,omitempty"`
+	Description      string  `json:"description,omitempty"`
+	Employees        int     `json:"employees,omitempty"`
+	FiftyTwoWeekHigh float64 `json:"fifty_two_week_high,omitempty"`
+	FiftyTwoWeekLow  float64 `json:"fifty_two_week_low,omitempty"`
+	Headquarters     string  `json:"headquarters,omitempty"`
+	High             float64 `json:"high,omitempty"`
+	Low              float64 `json:"low,omitempty"`
+	MarketCap        float64 `json:"market_cap,omitempty"`
+	Open             float64 `json:"open,omitempty"`
+	PeRatio          float64 `json:"pe_ratio,omitempty"`
+	Sector           string  `json:"sector,omitempty"`
+	Volume           int     `json:"volume,omitempty"`
+}
+
+type ModelFinanceContextResponse struct {
+	Items []ModelFinanceInstrument `json:"items,omitempty"`
+	Query string                   `json:"query,omitempty"`
+}
+
+type ModelFinanceEarningsCalendarResponse struct {
+	Items []ModelFinanceEarningsEvent `json:"items,omitempty"`
+}
+
+type ModelFinanceEarningsEvent struct {
+	CompanyName     string                 `json:"company_name,omitempty"`
+	ConferencePhone string                 `json:"conference_phone,omitempty"`
+	ConferenceUrl   string                 `json:"conference_url,omitempty"`
+	EventTime       string                 `json:"event_time,omitempty"`
+	EventUnix       int                    `json:"event_unix,omitempty"`
+	FiscalPeriod    string                 `json:"fiscal_period,omitempty"`
+	Instrument      ModelFinanceInstrument `json:"instrument,omitempty"`
+}
+
+type ModelFinanceFinanceArticle struct {
+	PublishedAt   string                   `json:"published_at,omitempty"`
+	PublishedUnix int                      `json:"published_unix,omitempty"`
+	Related       []ModelFinanceInstrument `json:"related,omitempty"`
+	Source        string                   `json:"source,omitempty"`
+	ThumbnailUrl  string                   `json:"thumbnail_url,omitempty"`
+	Title         string                   `json:"title,omitempty"`
+	Url           string                   `json:"url,omitempty"`
+}
+
+type ModelFinanceFinancialPeriod struct {
+	CapitalExpenditure float64 `json:"capital_expenditure,omitempty"`
+	Ebitda             float64 `json:"ebitda,omitempty"`
+	Eps                float64 `json:"eps,omitempty"`
+	EpsDiluted         float64 `json:"eps_diluted,omitempty"`
+	FreeCashFlow       float64 `json:"free_cash_flow,omitempty"`
+	NetIncome          float64 `json:"net_income,omitempty"`
+	OperatingCashFlow  float64 `json:"operating_cash_flow,omitempty"`
+	OperatingIncome    float64 `json:"operating_income,omitempty"`
+	OperatingMargin    float64 `json:"operating_margin,omitempty"`
+	PeRatio            float64 `json:"pe_ratio,omitempty"`
+	Period             string  `json:"period,omitempty"`
+	PeriodEnd          string  `json:"period_end,omitempty"`
+	ProfitMargin       float64 `json:"profit_margin,omitempty"`
+	Revenue            float64 `json:"revenue,omitempty"`
+	RevenueGrowthYoy   float64 `json:"revenue_growth_yoy,omitempty"`
+	SharesOutstanding  float64 `json:"shares_outstanding,omitempty"`
+	TotalAssets        float64 `json:"total_assets,omitempty"`
+	TotalEquity        float64 `json:"total_equity,omitempty"`
+	TotalLiabilities   float64 `json:"total_liabilities,omitempty"`
+}
+
+type ModelFinanceFinancialsResponse struct {
+	Annual    []ModelFinanceFinancialPeriod `json:"annual,omitempty"`
+	Currency  string                        `json:"currency,omitempty"`
+	Quarterly []ModelFinanceFinancialPeriod `json:"quarterly,omitempty"`
+}
+
+type ModelFinanceHeadlineResponse struct {
+	Article ModelFinanceFinanceArticle `json:"article,omitempty"`
+}
+
+type ModelFinanceIncomeStatement struct {
+	EarningsPerShare         float64 `json:"earnings_per_share,omitempty"`
+	EarningsPerShareChangeYy float64 `json:"earnings_per_share_change_yy,omitempty"`
+	Ebitda                   float64 `json:"ebitda,omitempty"`
+	EbitdaChangeYy           float64 `json:"ebitda_change_yy,omitempty"`
+	EffectiveTaxRate         float64 `json:"effective_tax_rate,omitempty"`
+	NetIncome                float64 `json:"net_income,omitempty"`
+	NetIncomeChangeYy        float64 `json:"net_income_change_yy,omitempty"`
+	NetProfitMargin          float64 `json:"net_profit_margin,omitempty"`
+	NetProfitMarginChangeYy  float64 `json:"net_profit_margin_change_yy,omitempty"`
+	OperatingExpense         float64 `json:"operating_expense,omitempty"`
+	OperatingExpenseChangeYy float64 `json:"operating_expense_change_yy,omitempty"`
+	Quarter                  int     `json:"quarter,omitempty"`
+	Revenue                  float64 `json:"revenue,omitempty"`
+	RevenueChangeYy          float64 `json:"revenue_change_yy,omitempty"`
+	Year                     int     `json:"year,omitempty"`
+}
+
+type ModelFinanceInstrument struct {
+	AfterHours     ModelFinancePriceChange `json:"after_hours,omitempty"`
+	Change         float64                 `json:"change,omitempty"`
+	ChangePercent  float64                 `json:"change_percent,omitempty"`
+	Country        string                  `json:"country,omitempty"`
+	Currency       string                  `json:"currency,omitempty"`
+	Exchange       string                  `json:"exchange,omitempty"`
+	GoogleId       string                  `json:"google_id,omitempty"`
+	Identifier     string                  `json:"identifier,omitempty"`
+	LastUpdateUnix int                     `json:"last_update_unix,omitempty"`
+	Name           string                  `json:"name,omitempty"`
+	PreviousClose  float64                 `json:"previous_close,omitempty"`
+	Price          float64                 `json:"price,omitempty"`
+	Ticker         string                  `json:"ticker,omitempty"`
+	Timezone       string                  `json:"timezone,omitempty"`
+	Type           string                  `json:"type,omitempty"`
+}
+
+type ModelFinanceInvestment struct {
+	BalanceSheet    []ModelFinanceBalanceSheet    `json:"balance_sheet,omitempty"`
+	CashFlow        []ModelFinanceCashFlow        `json:"cash_flow,omitempty"`
+	IncomeStatement []ModelFinanceIncomeStatement `json:"income_statement,omitempty"`
+}
+
+type ModelFinanceKeyStats struct {
+	AvgVolume          int               `json:"avg_volume,omitempty"`
+	ClimateChangeScore string            `json:"climate_change_score,omitempty"`
+	Currency           string            `json:"currency,omitempty"`
+	DayRange           ModelFinanceRange `json:"day_range,omitempty"`
+	DividendYield      float64           `json:"dividend_yield,omitempty"`
+	MarketCap          int               `json:"market_cap,omitempty"`
+	PeRatio            float64           `json:"pe_ratio,omitempty"`
+	PreviousClose      float64           `json:"previous_close,omitempty"`
+	PrimaryExchange    string            `json:"primary_exchange,omitempty"`
+	Tags               []string          `json:"tags,omitempty"`
+	YearRange          ModelFinanceRange `json:"year_range,omitempty"`
+}
+
+type ModelFinanceMarketMoversResponse struct {
+	Categories []int                    `json:"categories,omitempty"`
+	Count      int                      `json:"count,omitempty"`
+	Items      []ModelFinanceInstrument `json:"items,omitempty"`
+	Offset     int                      `json:"offset,omitempty"`
+}
+
+type ModelFinanceNews struct {
+	Source string `json:"source,omitempty"`
+	Time   string `json:"time,omitempty"`
+	Title  string `json:"title,omitempty"`
+	Url    string `json:"url,omitempty"`
+}
+
+type ModelFinancePriceChange struct {
+	Change        float64 `json:"change,omitempty"`
+	ChangePercent float64 `json:"change_percent,omitempty"`
+	Price         float64 `json:"price,omitempty"`
+}
+
+type ModelFinanceQuoteResp struct {
+	About      ModelFinanceAbout      `json:"about,omitempty"`
+	Investment ModelFinanceInvestment `json:"investment,omitempty"`
+	KeyStats   ModelFinanceKeyStats   `json:"key_stats,omitempty"`
+	News       []ModelFinanceNews     `json:"news,omitempty"`
+	Tickers    []ModelFinanceTicker   `json:"tickers,omitempty"`
+	Title      string                 `json:"title,omitempty"`
+}
+
+type ModelFinanceRange struct {
+	From float64 `json:"from,omitempty"`
+	To   float64 `json:"to,omitempty"`
+}
+
+type ModelFinanceRelatedResponse struct {
+	Instrument ModelFinanceInstrument   `json:"instrument,omitempty"`
+	Items      []ModelFinanceInstrument `json:"items,omitempty"`
+}
+
+type ModelFinanceStockData struct {
+	Change      float64 `json:"change,omitempty"`
+	CompanyName string  `json:"company_name,omitempty"`
+	Currency    string  `json:"currency,omitempty"`
+	Exchange    string  `json:"exchange,omitempty"`
+	Percentage  float64 `json:"percentage,omitempty"`
+	Price       float64 `json:"price,omitempty"`
+	Ticker      string  `json:"ticker,omitempty"`
+}
+
+type ModelFinanceTicker struct {
+	Price  float64 `json:"price,omitempty"`
+	Time   string  `json:"time,omitempty"`
+	Volume int     `json:"volume,omitempty"`
+}
+
+type ModelFinanceTopStocksResponse struct {
+	Items  []ModelFinanceInstrument `json:"items,omitempty"`
+	Metric int                      `json:"metric,omitempty"`
+	Page   int                      `json:"page,omitempty"`
+}
+
+type ModelFinanceArticlesResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data []ModelFinanceFinanceArticle `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelFinanceCategoryNewsResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelFinanceCategoryNewsResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelFinanceCategoryStocksResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelFinanceCategoryStocksResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelFinanceChartResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelFinanceChartResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelFinanceClassificationResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelFinanceClassificationResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelFinanceCompanyResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelFinanceCompanyInfo `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelFinanceContextResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelFinanceContextResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelFinanceEarningsResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelFinanceEarningsCalendarResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelFinanceFinancialsResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelFinanceFinancialsResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelFinanceHeadlineResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelFinanceHeadlineResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelFinanceInstrumentsResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data []ModelFinanceInstrument `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelFinanceMarketMoversResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelFinanceMarketMoversResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelFinanceQuoteResponseDoc struct {
+	Code int                   `json:"code,omitempty"`
+	Data ModelFinanceQuoteResp `json:"data,omitempty"`
+	Msg  string                `json:"msg,omitempty"`
+}
+
+type ModelFinanceRelatedResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelFinanceRelatedResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelFinanceSearchResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data []ModelFinanceStockData `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelFinanceTickerResponseDoc struct {
+	Code int                  `json:"code,omitempty"`
+	Data []ModelFinanceTicker `json:"data,omitempty"`
+	Msg  string               `json:"msg,omitempty"`
+}
+
+type ModelFinanceTopStocksResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelFinanceTopStocksResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelGeocodingAddress struct {
+	Iso31662Lvl4  string `json:"ISO3166-2-lvl4,omitempty"`
+	Iso31662Lvl6  string `json:"ISO3166-2-lvl6,omitempty"`
+	City          string `json:"city,omitempty"`
+	Country       string `json:"country,omitempty"`
+	CountryCode   string `json:"country_code,omitempty"`
+	County        string `json:"county,omitempty"`
+	HouseNumber   string `json:"house_number,omitempty"`
+	Neighbourhood string `json:"neighbourhood,omitempty"`
+	Office        string `json:"office,omitempty"`
+	Postcode      string `json:"postcode,omitempty"`
+	Road          string `json:"road,omitempty"`
+	State         string `json:"state,omitempty"`
+	StateDistrict string `json:"state_district,omitempty"`
+	Suburb        string `json:"suburb,omitempty"`
+	Town          string `json:"town,omitempty"`
+	Village       string `json:"village,omitempty"`
+}
+
+type ModelGeocodingLookupResponse struct {
+	Query   string                `json:"query,omitempty"`
+	Results []ModelGeocodingPlace `json:"results,omitempty"`
+}
+
+type ModelGeocodingPlace struct {
+	Address     ModelGeocodingAddress `json:"address,omitempty"`
+	Addresstype string                `json:"addresstype,omitempty"`
+	Boundingbox []string              `json:"boundingbox,omitempty"`
+	Category    string                `json:"category,omitempty"`
+	DisplayName string                `json:"display_name,omitempty"`
+	Extratags   map[string]string     `json:"extratags,omitempty"`
+	Importance  float64               `json:"importance,omitempty"`
+	Lat         string                `json:"lat,omitempty"`
+	Licence     string                `json:"licence,omitempty"`
+	Lon         string                `json:"lon,omitempty"`
+	Name        string                `json:"name,omitempty"`
+	Namedetails map[string]string     `json:"namedetails,omitempty"`
+	OsmId       int                   `json:"osm_id,omitempty"`
+	OsmType     string                `json:"osm_type,omitempty"`
+	PlaceId     int                   `json:"place_id,omitempty"`
+	PlaceRank   int                   `json:"place_rank,omitempty"`
+	Type        string                `json:"type,omitempty"`
+}
+
+type ModelGeocodingSearchResponse struct {
+	Query   string                `json:"query,omitempty"`
+	Results []ModelGeocodingPlace `json:"results,omitempty"`
+}
+
+type ModelGeocodingLookupResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelGeocodingLookupResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelGeocodingReverseResponseDoc struct {
+	Code int                 `json:"code,omitempty"`
+	Data ModelGeocodingPlace `json:"data,omitempty"`
+	Msg  string              `json:"msg,omitempty"`
+}
+
+type ModelGeocodingSearchResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelGeocodingSearchResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelGoogleJobItem struct {
+	Company    string `json:"company,omitempty"`
+	Employment string `json:"employment,omitempty"`
+	Location   string `json:"location,omitempty"`
+	PostedAt   string `json:"posted_at,omitempty"`
+	Snippet    string `json:"snippet,omitempty"`
+	Source     string `json:"source,omitempty"`
+	Title      string `json:"title,omitempty"`
+	Url        string `json:"url,omitempty"`
+}
+
+type ModelGoogleJobsOption struct {
+	Location string `json:"location,omitempty"`
+	Page     int    `json:"page,omitempty"`
+	Query    string `json:"query"`
+}
+
+type ModelGoogleJobsResponse struct {
+	Location string               `json:"location,omitempty"`
+	Page     int                  `json:"page,omitempty"`
+	Query    string               `json:"query,omitempty"`
+	Results  []ModelGoogleJobItem `json:"results,omitempty"`
+}
+
+type ModelGoogleKgAttrItem struct {
+	Id    string `json:"id,omitempty"`
+	Label string `json:"label,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelGoogleKnowledgeGraph struct {
+	Attributes    []ModelGoogleKgAttrItem `json:"attributes,omitempty"`
+	Description   string                  `json:"description,omitempty"`
+	SubTitle      string                  `json:"sub_title,omitempty"`
+	Title         string                  `json:"title,omitempty"`
+	WikipediaLink string                  `json:"wikipedia_link,omitempty"`
+}
+
+type ModelGoogleMapSearchOption struct {
+	Country  string `json:"country,omitempty"`
+	Keyword  string `json:"keyword,omitempty"`
+	Language string `json:"language,omitempty"`
+}
+
+type ModelGooglePeopleAlsoAskItem struct {
+	Answer   string `json:"answer,omitempty"`
+	Date     string `json:"date,omitempty"`
+	Link     string `json:"link,omitempty"`
+	Question string `json:"question,omitempty"`
+	Title    string `json:"title,omitempty"`
+}
+
+type ModelGooglePlace struct {
+	Address     string   `json:"address,omitempty"`
+	Amenities   []string `json:"amenities,omitempty"`
+	Category    []string `json:"category,omitempty"`
+	Description string   `json:"description,omitempty"`
+	Image       string   `json:"image,omitempty"`
+	Latitude    float64  `json:"latitude,omitempty"`
+	Locations   []string `json:"locations,omitempty"`
+	Longitude   float64  `json:"longitude,omitempty"`
+	Name        string   `json:"name,omitempty"`
+	Phone       string   `json:"phone,omitempty"`
+	PlaceId     string   `json:"place_id,omitempty"`
+	Rating      float64  `json:"rating,omitempty"`
+	ReviewCount int      `json:"review_count,omitempty"`
+	Url         string   `json:"url,omitempty"`
+	Website     string   `json:"website,omitempty"`
+}
+
+type ModelGoogleSearchItem struct {
+	Snippet     string `json:"Snippet,omitempty"`
+	Icon        string `json:"icon,omitempty"`
+	Link        string `json:"link,omitempty"`
+	Position    int    `json:"position,omitempty"`
+	Time        string `json:"time,omitempty"`
+	Title       string `json:"title,omitempty"`
+	WebsiteName string `json:"website_name,omitempty"`
+}
+
+type ModelGoogleSearchOption struct {
+	Country  string `json:"country"`
+	Keyword  string `json:"keyword"`
+	Language string `json:"language"`
+	Limit    int    `json:"limit,omitempty"`
+	Page     int    `json:"page,omitempty"`
+}
+
+type ModelGoogleSearchResp struct {
+	KnowledgeGraph      ModelGoogleKnowledgeGraph      `json:"knowledge_graph,omitempty"`
+	PeopleAlsoAsk       []ModelGooglePeopleAlsoAskItem `json:"people_also_ask,omitempty"`
+	PeopleAlsoSearchFor []string                       `json:"people_also_search_for,omitempty"`
+	RelatedSearches     []string                       `json:"related_searches,omitempty"`
+	Result              []ModelGoogleSearchItem        `json:"result,omitempty"`
+}
+
+type ModelGoogleShoppingItemDetailOption struct {
+	Cid string `json:"cid,omitempty"`
+	Gid string `json:"gid,omitempty"`
+	Oid string `json:"oid"`
+}
+
+type ModelGoogleSuggestResponse struct {
+	Query       string                        `json:"query,omitempty"`
+	Suggestions []ModelGoogleSuggestionResult `json:"suggestions,omitempty"`
+}
+
+type ModelGoogleSuggestionResult struct {
+	Position int    `json:"position,omitempty"`
+	Query    string `json:"query,omitempty"`
+}
+
+type ModelGoogleMapPlaceResponseDoc struct {
+	Code int              `json:"code,omitempty"`
+	Data ModelGooglePlace `json:"data,omitempty"`
+	Msg  string           `json:"msg,omitempty"`
+}
+
+type ModelGoogleMapSearchResponseDoc struct {
+	Code int                `json:"code,omitempty"`
+	Data []ModelGooglePlace `json:"data,omitempty"`
+	Msg  string             `json:"msg,omitempty"`
+}
+
+type ModelGoogleSearchResponseDoc struct {
+	Code int                   `json:"code,omitempty"`
+	Data ModelGoogleSearchResp `json:"data,omitempty"`
+	Msg  string                `json:"msg,omitempty"`
+}
+
+type ModelGoogleSuggestResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelGoogleSuggestResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelGoogleplayApp struct {
+	AdSupported               bool                      `json:"ad_supported,omitempty"`
+	AndroidMaxVersion         string                    `json:"android_max_version,omitempty"`
+	AndroidVersion            string                    `json:"android_version,omitempty"`
+	AndroidVersionText        string                    `json:"android_version_text,omitempty"`
+	AppId                     string                    `json:"app_id,omitempty"`
+	Available                 bool                      `json:"available,omitempty"`
+	Categories                []ModelGoogleplayCategory `json:"categories,omitempty"`
+	Comments                  []string                  `json:"comments,omitempty"`
+	ContentRating             string                    `json:"content_rating,omitempty"`
+	ContentRatingDescription  string                    `json:"content_rating_description,omitempty"`
+	Currency                  string                    `json:"currency,omitempty"`
+	Description               string                    `json:"description,omitempty"`
+	DescriptionHtml           string                    `json:"description_html,omitempty"`
+	Developer                 string                    `json:"developer,omitempty"`
+	DeveloperAddress          string                    `json:"developer_address,omitempty"`
+	DeveloperEmail            string                    `json:"developer_email,omitempty"`
+	DeveloperId               string                    `json:"developer_id,omitempty"`
+	DeveloperInternalId       string                    `json:"developer_internal_id,omitempty"`
+	DeveloperLegalAddress     string                    `json:"developer_legal_address,omitempty"`
+	DeveloperLegalEmail       string                    `json:"developer_legal_email,omitempty"`
+	DeveloperLegalName        string                    `json:"developer_legal_name,omitempty"`
+	DeveloperLegalPhoneNumber string                    `json:"developer_legal_phone_number,omitempty"`
+	DeveloperWebsite          string                    `json:"developer_website,omitempty"`
+	DiscountEndDate           string                    `json:"discount_end_date,omitempty"`
+	EarlyAccessEnabled        bool                      `json:"early_access_enabled,omitempty"`
+	Features                  []ModelGoogleplayFeature  `json:"features,omitempty"`
+	Free                      bool                      `json:"free,omitempty"`
+	Genre                     string                    `json:"genre,omitempty"`
+	GenreId                   string                    `json:"genre_id,omitempty"`
+	HeaderImage               string                    `json:"header_image,omitempty"`
+	Histogram                 map[string]any            `json:"histogram,omitempty"`
+	IapRange                  string                    `json:"iap_range,omitempty"`
+	Icon                      string                    `json:"icon,omitempty"`
+	Installs                  string                    `json:"installs,omitempty"`
+	IsAvailableInPlayPass     bool                      `json:"is_available_in_play_pass,omitempty"`
+	MaxInstalls               int                       `json:"max_installs,omitempty"`
+	MinInstalls               int                       `json:"min_installs,omitempty"`
+	OffersIap                 bool                      `json:"offers_iap,omitempty"`
+	OriginalPrice             float64                   `json:"original_price,omitempty"`
+	Preregister               bool                      `json:"preregister,omitempty"`
+	PreviewVideo              string                    `json:"preview_video,omitempty"`
+	Price                     float64                   `json:"price,omitempty"`
+	PriceText                 string                    `json:"price_text,omitempty"`
+	PrivacyPolicy             string                    `json:"privacy_policy,omitempty"`
+	Ratings                   int                       `json:"ratings,omitempty"`
+	RecentChanges             string                    `json:"recent_changes,omitempty"`
+	Released                  string                    `json:"released,omitempty"`
+	Reviews                   int                       `json:"reviews,omitempty"`
+	Score                     float64                   `json:"score,omitempty"`
+	ScoreText                 string                    `json:"score_text,omitempty"`
+	Screenshots               []string                  `json:"screenshots,omitempty"`
+	Summary                   string                    `json:"summary,omitempty"`
+	Title                     string                    `json:"title,omitempty"`
+	Updated                   int                       `json:"updated,omitempty"`
+	Url                       string                    `json:"url,omitempty"`
+	Version                   string                    `json:"version,omitempty"`
+	Video                     string                    `json:"video,omitempty"`
+	VideoImage                string                    `json:"video_image,omitempty"`
+}
+
+type ModelGoogleplayAppDetailsResponse struct {
+	Code int                `json:"code,omitempty"`
+	Data ModelGoogleplayApp `json:"data,omitempty"`
+	Msg  string             `json:"msg,omitempty"`
+}
+
+type ModelGoogleplayCategory struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelGoogleplayDataSafetyEntry struct {
+	Data     string `json:"data,omitempty"`
+	Optional bool   `json:"optional,omitempty"`
+	Purpose  string `json:"purpose,omitempty"`
+	Type     string `json:"type,omitempty"`
+}
+
+type ModelGoogleplayDataSafetyResult struct {
+	CollectedData     []ModelGoogleplayDataSafetyEntry  `json:"collected_data,omitempty"`
+	PrivacyPolicyUrl  string                            `json:"privacy_policy_url,omitempty"`
+	SecurityPractices []ModelGoogleplaySecurityPractice `json:"security_practices,omitempty"`
+	SharedData        []ModelGoogleplayDataSafetyEntry  `json:"shared_data,omitempty"`
+}
+
+type ModelGoogleplayFeature struct {
+	Description string `json:"description,omitempty"`
+	Title       string `json:"title,omitempty"`
+}
+
+type ModelGoogleplayReview struct {
+	Criterias []ModelGoogleplayReviewCriteria `json:"criterias,omitempty"`
+	Date      string                          `json:"date,omitempty"`
+	Id        string                          `json:"id,omitempty"`
+	ReplyDate string                          `json:"reply_date,omitempty"`
+	ReplyText string                          `json:"reply_text,omitempty"`
+	Score     int                             `json:"score,omitempty"`
+	ScoreText string                          `json:"score_text,omitempty"`
+	Text      string                          `json:"text,omitempty"`
+	ThumbsUp  int                             `json:"thumbs_up,omitempty"`
+	Title     string                          `json:"title,omitempty"`
+	Url       string                          `json:"url,omitempty"`
+	UserImage string                          `json:"user_image,omitempty"`
+	UserName  string                          `json:"user_name,omitempty"`
+	Version   string                          `json:"version,omitempty"`
+}
+
+type ModelGoogleplayReviewCriteria struct {
+	Criteria string `json:"criteria,omitempty"`
+	Rating   int    `json:"rating,omitempty"`
+}
+
+type ModelGoogleplayReviewsResult struct {
+	Data                []ModelGoogleplayReview `json:"data,omitempty"`
+	NextPaginationToken string                  `json:"next_pagination_token,omitempty"`
+}
+
+type ModelGoogleplaySecurityPractice struct {
+	Description string `json:"description,omitempty"`
+	Practice    string `json:"practice,omitempty"`
+}
+
+type ModelGoogleplaySuggestion struct {
+	Term string `json:"term,omitempty"`
+}
+
+type ModelGoogleplayCategoriesResponseDoc struct {
+	Code int      `json:"code,omitempty"`
+	Data []string `json:"data,omitempty"`
+	Msg  string   `json:"msg,omitempty"`
+}
+
+type ModelGoogleplayDataSafetyResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelGoogleplayDataSafetyResult `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelGoogleplayDeveloperResultsResponseDoc struct {
+	Code int    `json:"code,omitempty"`
+	Data []any  `json:"data,omitempty"`
+	Msg  string `json:"msg,omitempty"`
+}
+
+type ModelGoogleplayListResultsResponseDoc struct {
+	Code int    `json:"code,omitempty"`
+	Data []any  `json:"data,omitempty"`
+	Msg  string `json:"msg,omitempty"`
+}
+
+type ModelGoogleplayPermissionsResultsResponseDoc struct {
+	Code int    `json:"code,omitempty"`
+	Data []any  `json:"data,omitempty"`
+	Msg  string `json:"msg,omitempty"`
+}
+
+type ModelGoogleplayReviewsResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelGoogleplayReviewsResult `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelGoogleplaySearchResultsResponseDoc struct {
+	Code int    `json:"code,omitempty"`
+	Data []any  `json:"data,omitempty"`
+	Msg  string `json:"msg,omitempty"`
+}
+
+type ModelGoogleplaySimilarResultsResponseDoc struct {
+	Code int    `json:"code,omitempty"`
+	Data []any  `json:"data,omitempty"`
+	Msg  string `json:"msg,omitempty"`
+}
+
+type ModelGoogleplaySuggestResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data []ModelGoogleplaySuggestion `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelInstagramBusinessAddress struct {
+	CityName      string  `json:"city_name,omitempty"`
+	Latitude      float64 `json:"latitude,omitempty"`
+	Longitude     float64 `json:"longitude,omitempty"`
+	StreetAddress string  `json:"street_address,omitempty"`
+	ZipCode       string  `json:"zip_code,omitempty"`
+}
+
+type ModelInstagramCaption struct {
+	Text string             `json:"text,omitempty"`
+	User ModelInstagramUser `json:"user,omitempty"`
+}
+
+type ModelInstagramClipsMetadata struct {
+	AudioType         string                          `json:"audio_type,omitempty"`
+	IsSharedToFb      bool                            `json:"is_shared_to_fb,omitempty"`
+	OriginalSoundInfo ModelInstagramOriginalSoundInfo `json:"original_sound_info,omitempty"`
+}
+
+type ModelInstagramIgartist struct {
+	Id       string `json:"id,omitempty"`
+	Username string `json:"username,omitempty"`
+}
+
+type ModelInstagramIgcaption struct {
+	CreatedAt int    `json:"created_at,omitempty"`
+	Pk        string `json:"pk,omitempty"`
+	Text      string `json:"text,omitempty"`
+}
+
+type ModelInstagramIgowner struct {
+	Id            string `json:"id,omitempty"`
+	IsPrivate     bool   `json:"is_private,omitempty"`
+	Pk            string `json:"pk,omitempty"`
+	ProfilePicUrl string `json:"profile_pic_url,omitempty"`
+	Username      string `json:"username,omitempty"`
+}
+
+type ModelInstagramIguser struct {
+	FullName      string `json:"full_name,omitempty"`
+	Id            string `json:"id,omitempty"`
+	IsPrivate     bool   `json:"is_private,omitempty"`
+	IsVerified    bool   `json:"is_verified,omitempty"`
+	Pk            string `json:"pk,omitempty"`
+	ProfilePicUrl string `json:"profile_pic_url,omitempty"`
+	Username      string `json:"username,omitempty"`
+}
+
+type ModelInstagramImageCandidate struct {
+	Height int    `json:"height,omitempty"`
+	Url    string `json:"url,omitempty"`
+	Width  int    `json:"width,omitempty"`
+}
+
+type ModelInstagramImageVersions struct {
+	Candidates []ModelInstagramImageCandidate `json:"candidates,omitempty"`
+}
+
+type ModelInstagramImageVersions2 struct {
+	Candidates []ModelInstagramImageCandidate `json:"candidates,omitempty"`
+}
+
+type ModelInstagramItem struct {
+	Media ModelInstagramMedia `json:"media,omitempty"`
+}
+
+type ModelInstagramMedia struct {
+	Caption        ModelInstagramCaption       `json:"caption,omitempty"`
+	Code           string                      `json:"code,omitempty"`
+	CommentCount   int                         `json:"comment_count,omitempty"`
+	DisplayUri     string                      `json:"display_uri,omitempty"`
+	Id             string                      `json:"id,omitempty"`
+	ImageVersions2 ModelInstagramImageVersions `json:"image_versions2,omitempty"`
+	LikeCount      int                         `json:"like_count,omitempty"`
+	MediaType      int                         `json:"media_type,omitempty"`
+	PlayCount      int                         `json:"play_count,omitempty"`
+	TakenAt        int                         `json:"taken_at,omitempty"`
+}
+
+type ModelInstagramMediaItem struct {
+	AccessibilityCaption string                       `json:"accessibility_caption,omitempty"`
+	Caption              ModelInstagramIgcaption      `json:"caption,omitempty"`
+	ClipsMetadata        ModelInstagramClipsMetadata  `json:"clips_metadata,omitempty"`
+	Code                 string                       `json:"code,omitempty"`
+	CommentCount         int                          `json:"comment_count,omitempty"`
+	DisplayUri           string                       `json:"display_uri,omitempty"`
+	HasAudio             bool                         `json:"has_audio,omitempty"`
+	Id                   string                       `json:"id,omitempty"`
+	ImageVersions2       ModelInstagramImageVersions2 `json:"image_versions2,omitempty"`
+	LikeCount            int                          `json:"like_count,omitempty"`
+	Link                 string                       `json:"link,omitempty"`
+	MediaType            int                          `json:"media_type,omitempty"`
+	OriginalHeight       int                          `json:"original_height,omitempty"`
+	OriginalWidth        int                          `json:"original_width,omitempty"`
+	Owner                ModelInstagramIgowner        `json:"owner,omitempty"`
+	Pk                   string                       `json:"pk,omitempty"`
+	ProductType          string                       `json:"product_type,omitempty"`
+	TakenAt              int                          `json:"taken_at,omitempty"`
+	User                 ModelInstagramIguser         `json:"user,omitempty"`
+	VideoVersions        []ModelInstagramVideoVersion `json:"video_versions,omitempty"`
+	ViewCount            int                          `json:"view_count,omitempty"`
+}
+
+type ModelInstagramOriginalSoundInfo struct {
+	AudioAssetId       string                 `json:"audio_asset_id,omitempty"`
+	IgArtist           ModelInstagramIgartist `json:"ig_artist,omitempty"`
+	IsExplicit         bool                   `json:"is_explicit,omitempty"`
+	OriginalAudioTitle string                 `json:"original_audio_title,omitempty"`
+	ShouldMuteAudio    bool                   `json:"should_mute_audio,omitempty"`
+}
+
+type ModelInstagramPagingInfo struct {
+	MaxId         string `json:"max_id,omitempty"`
+	MoreAvailable bool   `json:"more_available,omitempty"`
+}
+
+type ModelInstagramPost struct {
+	Caption      string               `json:"caption,omitempty"`
+	Children     []ModelInstagramPost `json:"children,omitempty"`
+	CommentCount int                  `json:"comment_count,omitempty"`
+	Height       int                  `json:"height,omitempty"`
+	Id           string               `json:"id,omitempty"`
+	IsVideo      bool                 `json:"is_video,omitempty"`
+	LikeCount    int                  `json:"like_count,omitempty"`
+	MediaUrl     string               `json:"media_url,omitempty"`
+	ProductType  string               `json:"product_type,omitempty"`
+	Shortcode    string               `json:"shortcode,omitempty"`
+	TakenAt      string               `json:"taken_at,omitempty"`
+	VideoUrl     string               `json:"video_url,omitempty"`
+	ViewCount    int                  `json:"view_count,omitempty"`
+	Width        int                  `json:"width,omitempty"`
+}
+
+type ModelInstagramReelResponse struct {
+	Items      []ModelInstagramItem     `json:"items,omitempty"`
+	PagingInfo ModelInstagramPagingInfo `json:"paging_info,omitempty"`
+}
+
+type ModelInstagramRelatedProfile struct {
+	FullName      string `json:"full_name,omitempty"`
+	Id            string `json:"id,omitempty"`
+	IsPrivate     bool   `json:"is_private,omitempty"`
+	IsVerified    bool   `json:"is_verified,omitempty"`
+	ProfilePicUrl string `json:"profile_pic_url,omitempty"`
+	Username      string `json:"username,omitempty"`
+}
+
+type ModelInstagramUser struct {
+	FullName string `json:"full_name,omitempty"`
+	Id       string `json:"id,omitempty"`
+	Username string `json:"username,omitempty"`
+}
+
+type ModelInstagramUserProfile struct {
+	BioLinks        []string                       `json:"bio_links,omitempty"`
+	Biography       string                         `json:"biography,omitempty"`
+	CategoryName    string                         `json:"category_name,omitempty"`
+	ExternalUrl     string                         `json:"external_url,omitempty"`
+	Fbid            string                         `json:"fbid,omitempty"`
+	FollowersCount  int                            `json:"followers_count,omitempty"`
+	FollowingCount  int                            `json:"following_count,omitempty"`
+	FullName        string                         `json:"full_name,omitempty"`
+	Id              string                         `json:"id,omitempty"`
+	IsPrivate       bool                           `json:"is_private,omitempty"`
+	IsVerified      bool                           `json:"is_verified,omitempty"`
+	Location        ModelInstagramBusinessAddress  `json:"location,omitempty"`
+	Posts           []ModelInstagramPost           `json:"posts,omitempty"`
+	PostsCount      int                            `json:"posts_count,omitempty"`
+	ProfilePicUrl   string                         `json:"profile_pic_url,omitempty"`
+	RelatedProfiles []ModelInstagramRelatedProfile `json:"related_profiles,omitempty"`
+	Username        string                         `json:"username,omitempty"`
+}
+
+type ModelInstagramVideoVersion struct {
+	Height int    `json:"height,omitempty"`
+	Type   int    `json:"type,omitempty"`
+	Url    string `json:"url,omitempty"`
+	Width  int    `json:"width,omitempty"`
+}
+
+type ModelInstagramPostResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelInstagramMediaItem `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelInstagramProfileResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelInstagramUserProfile `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelInstagramReelsResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelInstagramReelResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelJustwatchAgeCertification struct {
+	TechnicalName string `json:"technical_name,omitempty"`
+}
+
+type ModelJustwatchAgeCertificationsResponse struct {
+	AgeCertifications []ModelJustwatchAgeCertification `json:"age_certifications,omitempty"`
+	Country           string                           `json:"country,omitempty"`
+}
+
+type ModelJustwatchAnalysisResponse struct {
+	Summary ModelJustwatchAnalysisSummary `json:"summary,omitempty"`
+	Title   ModelJustwatchTitleResponse   `json:"title,omitempty"`
+}
+
+type ModelJustwatchAnalysisSummary struct {
+	Available          bool                                `json:"available,omitempty"`
+	BestBuy            ModelJustwatchOffer                 `json:"best_buy,omitempty"`
+	BestFree           ModelJustwatchOffer                 `json:"best_free,omitempty"`
+	BestRent           ModelJustwatchOffer                 `json:"best_rent,omitempty"`
+	BestSubscription   ModelJustwatchOffer                 `json:"best_subscription,omitempty"`
+	FormatCounts       map[string]int                      `json:"format_counts,omitempty"`
+	MonetizationCounts map[string]int                      `json:"monetization_counts,omitempty"`
+	PriceRanges        map[string]ModelJustwatchPriceRange `json:"price_ranges,omitempty"`
+	ProviderCount      int                                 `json:"provider_count,omitempty"`
+	TotalOffers        int                                 `json:"total_offers,omitempty"`
+}
+
+type ModelJustwatchBackdrop struct {
+	Url string `json:"url,omitempty"`
+}
+
+type ModelJustwatchClip struct {
+	ExternalId string `json:"external_id,omitempty"`
+	Provider   string `json:"provider,omitempty"`
+	Url        string `json:"url,omitempty"`
+}
+
+type ModelJustwatchCredit struct {
+	CharacterName string `json:"character_name,omitempty"`
+	Name          string `json:"name,omitempty"`
+	PersonId      int    `json:"person_id,omitempty"`
+	Role          string `json:"role,omitempty"`
+}
+
+type ModelJustwatchDiscoverResponse struct {
+	Country           string                      `json:"country,omitempty"`
+	Genres            []string                    `json:"genres,omitempty"`
+	Language          string                      `json:"language,omitempty"`
+	MonetizationTypes []string                    `json:"monetization_types,omitempty"`
+	Providers         []string                    `json:"providers,omitempty"`
+	Results           []ModelJustwatchSearchTitle `json:"results,omitempty"`
+	Type              string                      `json:"type,omitempty"`
+	YearMax           int                         `json:"year_max,omitempty"`
+	YearMin           int                         `json:"year_min,omitempty"`
+}
+
+type ModelJustwatchEpisodeByIdresponse struct {
+	Country  string                       `json:"country,omitempty"`
+	Episode  ModelJustwatchEpisodeSummary `json:"episode,omitempty"`
+	Language string                       `json:"language,omitempty"`
+}
+
+type ModelJustwatchEpisodeCountryOffers struct {
+	Country string                       `json:"country,omitempty"`
+	Episode ModelJustwatchEpisodeSummary `json:"episode,omitempty"`
+	Offers  []ModelJustwatchOffer        `json:"offers,omitempty"`
+}
+
+type ModelJustwatchEpisodeOffersResponse struct {
+	Countries []ModelJustwatchEpisodeCountryOffers `json:"countries,omitempty"`
+	Id        string                               `json:"id,omitempty"`
+	Language  string                               `json:"language,omitempty"`
+}
+
+type ModelJustwatchEpisodeSummary struct {
+	Description   string                `json:"description,omitempty"`
+	EpisodeNumber int                   `json:"episode_number,omitempty"`
+	Id            string                `json:"id,omitempty"`
+	ObjectId      int                   `json:"object_id,omitempty"`
+	ObjectType    string                `json:"object_type,omitempty"`
+	Offers        []ModelJustwatchOffer `json:"offers,omitempty"`
+	Path          string                `json:"path,omitempty"`
+	PosterUrl     string                `json:"poster_url,omitempty"`
+	Title         string                `json:"title,omitempty"`
+	Url           string                `json:"url,omitempty"`
+	Year          int                   `json:"year,omitempty"`
+}
+
+type ModelJustwatchGenre struct {
+	ShortName   string `json:"short_name,omitempty"`
+	Translation string `json:"translation,omitempty"`
+}
+
+type ModelJustwatchGenreTitlesResponse struct {
+	Country  string                      `json:"country,omitempty"`
+	Genre    string                      `json:"genre,omitempty"`
+	Language string                      `json:"language,omitempty"`
+	Results  []ModelJustwatchSearchTitle `json:"results,omitempty"`
+	Type     string                      `json:"type,omitempty"`
+}
+
+type ModelJustwatchGenresResponse struct {
+	Genres   []ModelJustwatchGenre `json:"genres,omitempty"`
+	Language string                `json:"language,omitempty"`
+}
+
+type ModelJustwatchMonetizationTitlesResponse struct {
+	Country          string                      `json:"country,omitempty"`
+	Language         string                      `json:"language,omitempty"`
+	MonetizationType string                      `json:"monetization_type,omitempty"`
+	Results          []ModelJustwatchSearchTitle `json:"results,omitempty"`
+	Type             string                      `json:"type,omitempty"`
+}
+
+type ModelJustwatchNewTitlesResponse struct {
+	Country  string                      `json:"country,omitempty"`
+	Language string                      `json:"language,omitempty"`
+	Results  []ModelJustwatchSearchTitle `json:"results,omitempty"`
+	Type     string                      `json:"type,omitempty"`
+}
+
+type ModelJustwatchOffer struct {
+	Availability      string  `json:"availability,omitempty"`
+	Category          string  `json:"category,omitempty"`
+	Currency          string  `json:"currency,omitempty"`
+	MonetizationType  string  `json:"monetization_type,omitempty"`
+	PresentationType  string  `json:"presentation_type,omitempty"`
+	Price             float64 `json:"price,omitempty"`
+	Provider          string  `json:"provider,omitempty"`
+	ProviderId        int     `json:"provider_id,omitempty"`
+	ProviderShort     string  `json:"provider_short,omitempty"`
+	ProviderTechnical string  `json:"provider_technical,omitempty"`
+	Url               string  `json:"url,omitempty"`
+}
+
+type ModelJustwatchPopularResponse struct {
+	Country  string                      `json:"country,omitempty"`
+	Language string                      `json:"language,omitempty"`
+	Results  []ModelJustwatchSearchTitle `json:"results,omitempty"`
+	Type     string                      `json:"type,omitempty"`
+}
+
+type ModelJustwatchPriceRange struct {
+	Currency string  `json:"currency,omitempty"`
+	Max      float64 `json:"max,omitempty"`
+	Min      float64 `json:"min,omitempty"`
+}
+
+type ModelJustwatchProvider struct {
+	ClearName     string `json:"clear_name,omitempty"`
+	IconUrl       string `json:"icon_url,omitempty"`
+	Id            int    `json:"id,omitempty"`
+	ShortName     string `json:"short_name,omitempty"`
+	TechnicalName string `json:"technical_name,omitempty"`
+}
+
+type ModelJustwatchProviderTitlesResponse struct {
+	Country  string                      `json:"country,omitempty"`
+	Language string                      `json:"language,omitempty"`
+	Provider string                      `json:"provider,omitempty"`
+	Results  []ModelJustwatchSearchTitle `json:"results,omitempty"`
+	Type     string                      `json:"type,omitempty"`
+}
+
+type ModelJustwatchProvidersResponse struct {
+	Country   string                   `json:"country,omitempty"`
+	Providers []ModelJustwatchProvider `json:"providers,omitempty"`
+}
+
+type ModelJustwatchScoring struct {
+	BestRating      string  `json:"best_rating,omitempty"`
+	CertifiedFresh  bool    `json:"certified_fresh,omitempty"`
+	ImdbScore       float64 `json:"imdb_score,omitempty"`
+	ImdbVotes       int     `json:"imdb_votes,omitempty"`
+	JustwatchRating float64 `json:"justwatch_rating,omitempty"`
+	RatingCount     int     `json:"rating_count,omitempty"`
+	TmdbPopularity  float64 `json:"tmdb_popularity,omitempty"`
+	TmdbScore       float64 `json:"tmdb_score,omitempty"`
+	TomatoMeter     int     `json:"tomato_meter,omitempty"`
+}
+
+type ModelJustwatchSearchResponse struct {
+	Country  string                      `json:"country,omitempty"`
+	Language string                      `json:"language,omitempty"`
+	Query    string                      `json:"query,omitempty"`
+	Results  []ModelJustwatchSearchTitle `json:"results,omitempty"`
+}
+
+type ModelJustwatchSearchTitle struct {
+	Id         string                `json:"id,omitempty"`
+	ObjectId   int                   `json:"object_id,omitempty"`
+	ObjectType string                `json:"object_type,omitempty"`
+	Offers     []ModelJustwatchOffer `json:"offers,omitempty"`
+	Path       string                `json:"path,omitempty"`
+	PosterUrl  string                `json:"poster_url,omitempty"`
+	Title      string                `json:"title,omitempty"`
+	Url        string                `json:"url,omitempty"`
+	Year       int                   `json:"year,omitempty"`
+}
+
+type ModelJustwatchSeasonByIdresponse struct {
+	Country  string                      `json:"country,omitempty"`
+	Language string                      `json:"language,omitempty"`
+	Season   ModelJustwatchSeasonSummary `json:"season,omitempty"`
+}
+
+type ModelJustwatchSeasonEpisodesResponse struct {
+	Country  string                         `json:"country,omitempty"`
+	Episodes []ModelJustwatchEpisodeSummary `json:"episodes,omitempty"`
+	Language string                         `json:"language,omitempty"`
+	Season   ModelJustwatchSeasonSummary    `json:"season,omitempty"`
+}
+
+type ModelJustwatchSeasonSummary struct {
+	Description  string `json:"description,omitempty"`
+	Id           string `json:"id,omitempty"`
+	ObjectId     int    `json:"object_id,omitempty"`
+	ObjectType   string `json:"object_type,omitempty"`
+	Path         string `json:"path,omitempty"`
+	PosterUrl    string `json:"poster_url,omitempty"`
+	SeasonNumber int    `json:"season_number,omitempty"`
+	Title        string `json:"title,omitempty"`
+	Url          string `json:"url,omitempty"`
+	Year         int    `json:"year,omitempty"`
+}
+
+type ModelJustwatchShowSeasonsResponse struct {
+	Country  string                        `json:"country,omitempty"`
+	Language string                        `json:"language,omitempty"`
+	Seasons  []ModelJustwatchSeasonSummary `json:"seasons,omitempty"`
+	Show     ModelJustwatchTitleResponse   `json:"show,omitempty"`
+}
+
+type ModelJustwatchSimilarTitlesResponse struct {
+	Country  string                      `json:"country,omitempty"`
+	Id       string                      `json:"id,omitempty"`
+	Language string                      `json:"language,omitempty"`
+	Results  []ModelJustwatchSearchTitle `json:"results,omitempty"`
+}
+
+type ModelJustwatchTitleCountryOffers struct {
+	Country string                      `json:"country,omitempty"`
+	Offers  []ModelJustwatchOffer       `json:"offers,omitempty"`
+	Title   ModelJustwatchTitleResponse `json:"title,omitempty"`
+}
+
+type ModelJustwatchTitleMediaResponse struct {
+	Backdrops []ModelJustwatchBackdrop `json:"backdrops,omitempty"`
+	Clips     []ModelJustwatchClip     `json:"clips,omitempty"`
+	Country   string                   `json:"country,omitempty"`
+	Credits   []ModelJustwatchCredit   `json:"credits,omitempty"`
+	Id        string                   `json:"id,omitempty"`
+	Language  string                   `json:"language,omitempty"`
+	Title     string                   `json:"title,omitempty"`
+}
+
+type ModelJustwatchTitleOffersResponse struct {
+	Countries []ModelJustwatchTitleCountryOffers `json:"countries,omitempty"`
+	Id        string                             `json:"id,omitempty"`
+	Language  string                             `json:"language,omitempty"`
+}
+
+type ModelJustwatchTitleResponse struct {
+	ContentRating string                `json:"content_rating,omitempty"`
+	Description   string                `json:"description,omitempty"`
+	Genres        []string              `json:"genres,omitempty"`
+	Id            string                `json:"id,omitempty"`
+	ObjectId      int                   `json:"object_id,omitempty"`
+	ObjectType    string                `json:"object_type,omitempty"`
+	Offers        []ModelJustwatchOffer `json:"offers,omitempty"`
+	Path          string                `json:"path,omitempty"`
+	PosterUrl     string                `json:"poster_url,omitempty"`
+	ReleaseDate   string                `json:"release_date,omitempty"`
+	Runtime       string                `json:"runtime,omitempty"`
+	Scoring       ModelJustwatchScoring `json:"scoring,omitempty"`
+	Title         string                `json:"title,omitempty"`
+	Url           string                `json:"url,omitempty"`
+	Year          int                   `json:"year,omitempty"`
+}
+
+type ModelJustwatchAgeCertificationsResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelJustwatchAgeCertificationsResponse `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
+}
+
+type ModelJustwatchAnalysisResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelJustwatchAnalysisResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelJustwatchDiscoverResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelJustwatchDiscoverResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelJustwatchEpisodeByIdresponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelJustwatchEpisodeByIdresponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelJustwatchEpisodeOffersResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelJustwatchEpisodeOffersResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelJustwatchGenreTitlesResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelJustwatchGenreTitlesResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelJustwatchGenresResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelJustwatchGenresResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelJustwatchMonetizationTitlesResponseDoc struct {
+	Code int                                      `json:"code,omitempty"`
+	Data ModelJustwatchMonetizationTitlesResponse `json:"data,omitempty"`
+	Msg  string                                   `json:"msg,omitempty"`
+}
+
+type ModelJustwatchNewTitlesResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelJustwatchNewTitlesResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelJustwatchPopularResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelJustwatchPopularResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelJustwatchProviderTitlesResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelJustwatchProviderTitlesResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelJustwatchProvidersResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelJustwatchProvidersResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelJustwatchSearchResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelJustwatchSearchResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelJustwatchSeasonByIdresponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelJustwatchSeasonByIdresponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelJustwatchSeasonEpisodesResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelJustwatchSeasonEpisodesResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelJustwatchShowSeasonsResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelJustwatchShowSeasonsResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelJustwatchSimilarTitlesResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelJustwatchSimilarTitlesResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelJustwatchTitleMediaResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelJustwatchTitleMediaResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelJustwatchTitleOffersResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelJustwatchTitleOffersResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelJustwatchTitleResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelJustwatchTitleResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelLinkedinCustomer struct {
+	FollowerCount int    `json:"follower_count,omitempty"`
+	Industry      string `json:"industry,omitempty"`
+	Link          string `json:"link,omitempty"`
+	Logo          string `json:"logo,omitempty"`
+	Name          string `json:"name,omitempty"`
+}
+
+type ModelLinkedinLinkedinCompanyResponse struct {
+	About                    string                  `json:"about,omitempty"`
+	AffiliatedPages          []ModelLinkedinPage     `json:"affiliated_pages,omitempty"`
+	CompanySize              string                  `json:"company_size,omitempty"`
+	FollowerCount            int                     `json:"follower_count,omitempty"`
+	FoundedOn                int                     `json:"founded_on,omitempty"`
+	Headline                 string                  `json:"headline,omitempty"`
+	Headquarters             string                  `json:"headquarters,omitempty"`
+	Industry                 string                  `json:"industry,omitempty"`
+	Link                     string                  `json:"link,omitempty"`
+	Locations                []ModelLinkedinLocation `json:"locations,omitempty"`
+	Logo                     string                  `json:"logo,omitempty"`
+	Name                     string                  `json:"name,omitempty"`
+	NumOfEmployeesOnLinkedin int                     `json:"num_of_employees_on_linkedin,omitempty"`
+	SimilarPages             []ModelLinkedinPage     `json:"similar_pages,omitempty"`
+	Specialties              string                  `json:"specialties,omitempty"`
+	Type                     string                  `json:"type,omitempty"`
+	Updates                  []ModelLinkedinUpdate   `json:"updates,omitempty"`
+	Website                  string                  `json:"website,omitempty"`
+}
+
+type ModelLinkedinLinkedinProductResponse struct {
+	About             string                  `json:"about,omitempty"`
+	CategoryLink      string                  `json:"category_link,omitempty"`
+	CategoryName      string                  `json:"category_name,omitempty"`
+	CoverImage        string                  `json:"cover_image,omitempty"`
+	ExternalLink      string                  `json:"external_link,omitempty"`
+	FeaturedCustomers []ModelLinkedinCustomer `json:"featured_customers,omitempty"`
+	Link              string                  `json:"link,omitempty"`
+	Logo              string                  `json:"logo,omitempty"`
+	Medias            []ModelLinkedinMedia    `json:"medias,omitempty"`
+	Name              string                  `json:"name,omitempty"`
+	OrganizationLink  string                  `json:"organization_link,omitempty"`
+	OrganizationName  string                  `json:"organization_name,omitempty"`
+	OtherProducts     []ModelLinkedinProduct  `json:"other_products,omitempty"`
+	SimilarProducts   []ModelLinkedinProduct  `json:"similar_products,omitempty"`
+}
+
+type ModelLinkedinLocation struct {
+	Address   string `json:"address,omitempty"`
+	IsPrimary bool   `json:"is_primary,omitempty"`
+}
+
+type ModelLinkedinMedia struct {
+	Link string `json:"link,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelLinkedinPage struct {
+	Address  string `json:"address,omitempty"`
+	Industry string `json:"industry,omitempty"`
+	Link     string `json:"link,omitempty"`
+	Name     string `json:"name,omitempty"`
+}
+
+type ModelLinkedinProduct struct {
+	CategoryLink string `json:"category_link,omitempty"`
+	CategoryName string `json:"category_name,omitempty"`
+	Link         string `json:"link,omitempty"`
+	Logo         string `json:"logo,omitempty"`
+	Name         string `json:"name,omitempty"`
+}
+
+type ModelLinkedinUpdate struct {
+	Author         string   `json:"author,omitempty"`
+	AuthorLink     string   `json:"author_link,omitempty"`
+	Images         []string `json:"images,omitempty"`
+	IsReposted     bool     `json:"is_reposted,omitempty"`
+	Logo           string   `json:"logo,omitempty"`
+	NumOfComments  int      `json:"num_of_comments,omitempty"`
+	NumOfReactions int      `json:"num_of_reactions,omitempty"`
+	PostLink       string   `json:"post_link,omitempty"`
+	PublishedAt    string   `json:"published_at,omitempty"`
+	Summary        string   `json:"summary,omitempty"`
+	Videos         []string `json:"videos,omitempty"`
+}
+
+type ModelLinkedinCompanyResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelLinkedinLinkedinCompanyResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelLinkedinProductResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelLinkedinLinkedinProductResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelLinkedinShowcaseResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelLinkedinLinkedinCompanyResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelPopularTrendCountryIndustryMeta struct {
+	Country  []ModelPopularTrendCountryIndustryMetaItem `json:"country,omitempty"`
+	Industry []ModelPopularTrendCountryIndustryMetaItem `json:"industry,omitempty"`
+}
+
+type ModelPopularTrendCountryIndustryMetaItem struct {
+	Id    string `json:"id,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelPopularTrendCreatorTrendResp struct {
+	Code      int            `json:"code,omitempty"`
+	Data      map[string]any `json:"data,omitempty"`
+	Msg       string         `json:"msg,omitempty"`
+	RequestId string         `json:"request_id,omitempty"`
+}
+
+type ModelPopularTrendTopAdsAnalysisPoint struct {
+	Second int     `json:"second,omitempty"`
+	Value  float64 `json:"value,omitempty"`
+}
+
+type ModelPopularTrendTopAdsAnalysisResp struct {
+	Code      int            `json:"code,omitempty"`
+	Data      map[string]any `json:"data,omitempty"`
+	Msg       string         `json:"msg,omitempty"`
+	RequestId string         `json:"request_id,omitempty"`
+}
+
+type ModelPopularTrendTopAdsDetailResp struct {
+	Code      int                             `json:"code,omitempty"`
+	Data      ModelPopularTrendTopAdsMaterial `json:"data,omitempty"`
+	Msg       string                          `json:"msg,omitempty"`
+	RequestId string                          `json:"request_id,omitempty"`
+}
+
+type ModelPopularTrendTopAdsFilterItem struct {
+	HasConversion bool           `json:"has_conversion,omitempty"`
+	Id            map[string]any `json:"id,omitempty"`
+	Label         string         `json:"label,omitempty"`
+	ParentId      map[string]any `json:"parent_id,omitempty"`
+	Value         string         `json:"value,omitempty"`
+}
+
+type ModelPopularTrendTopAdsFiltersResp struct {
+	Code      int            `json:"code,omitempty"`
+	Data      map[string]any `json:"data,omitempty"`
+	Msg       string         `json:"msg,omitempty"`
+	RequestId string         `json:"request_id,omitempty"`
+}
+
+type ModelPopularTrendTopAdsListResp struct {
+	Code      int            `json:"code,omitempty"`
+	Data      map[string]any `json:"data,omitempty"`
+	Msg       string         `json:"msg,omitempty"`
+	RequestId string         `json:"request_id,omitempty"`
+}
+
+type ModelPopularTrendTopAdsLocationInfoResp struct {
+	Code      int            `json:"code,omitempty"`
+	Data      map[string]any `json:"data,omitempty"`
+	Msg       string         `json:"msg,omitempty"`
+	RequestId string         `json:"request_id,omitempty"`
+}
+
+type ModelPopularTrendTopAdsLocationsResp struct {
+	Code      int            `json:"code,omitempty"`
+	Data      map[string]any `json:"data,omitempty"`
+	Msg       string         `json:"msg,omitempty"`
+	RequestId string         `json:"request_id,omitempty"`
+}
+
+type ModelPopularTrendTopAdsMaterial struct {
+	AdTitle       string                              `json:"ad_title,omitempty"`
+	BrandName     string                              `json:"brand_name,omitempty"`
+	Comment       int                                 `json:"comment,omitempty"`
+	Cost          int                                 `json:"cost,omitempty"`
+	CountryCode   []string                            `json:"country_code,omitempty"`
+	Ctr           float64                             `json:"ctr,omitempty"`
+	Favorite      bool                                `json:"favorite,omitempty"`
+	HasSummary    bool                                `json:"has_summary,omitempty"`
+	Highlight     string                              `json:"highlight,omitempty"`
+	HighlightText string                              `json:"highlight_text,omitempty"`
+	Id            string                              `json:"id,omitempty"`
+	IndustryKey   string                              `json:"industry_key,omitempty"`
+	IsSearch      bool                                `json:"is_search,omitempty"`
+	KeywordList   []string                            `json:"keyword_list,omitempty"`
+	LandingPage   string                              `json:"landing_page,omitempty"`
+	Like          int                                 `json:"like,omitempty"`
+	ObjectiveKey  string                              `json:"objective_key,omitempty"`
+	Objectives    []ModelPopularTrendTopAdsFilterItem `json:"objectives,omitempty"`
+	PatternLabel  []ModelPopularTrendTopAdsFilterItem `json:"pattern_label,omitempty"`
+	Share         int                                 `json:"share,omitempty"`
+	Source        string                              `json:"source,omitempty"`
+	SourceKey     int                                 `json:"source_key,omitempty"`
+	VideoInfo     ModelPopularTrendTopAdsVideoInfo    `json:"video_info,omitempty"`
+	VoiceOver     bool                                `json:"voice_over,omitempty"`
+}
+
+type ModelPopularTrendTopAdsPagination struct {
+	HasMore    bool `json:"has_more,omitempty"`
+	Page       int  `json:"page,omitempty"`
+	Size       int  `json:"size,omitempty"`
+	Total      int  `json:"total,omitempty"`
+	TotalCount int  `json:"total_count,omitempty"`
+}
+
+type ModelPopularTrendTopAdsRecommendResp struct {
+	Code      int            `json:"code,omitempty"`
+	Data      map[string]any `json:"data,omitempty"`
+	Msg       string         `json:"msg,omitempty"`
+	RequestId string         `json:"request_id,omitempty"`
+}
+
+type ModelPopularTrendTopAdsSafetyResp struct {
+	Code      int            `json:"code,omitempty"`
+	Data      map[string]any `json:"data,omitempty"`
+	Msg       string         `json:"msg,omitempty"`
+	RequestId string         `json:"request_id,omitempty"`
+}
+
+type ModelPopularTrendTopAdsSpotlightResp struct {
+	Code      int            `json:"code,omitempty"`
+	Data      map[string]any `json:"data,omitempty"`
+	Msg       string         `json:"msg,omitempty"`
+	RequestId string         `json:"request_id,omitempty"`
+}
+
+type ModelPopularTrendTopAdsSuggestionsResp struct {
+	Code      int            `json:"code,omitempty"`
+	Data      map[string]any `json:"data,omitempty"`
+	Msg       string         `json:"msg,omitempty"`
+	RequestId string         `json:"request_id,omitempty"`
+}
+
+type ModelPopularTrendTopAdsVideoInfo struct {
+	Cover    string            `json:"cover,omitempty"`
+	Duration float64           `json:"duration,omitempty"`
+	Height   int               `json:"height,omitempty"`
+	Vid      string            `json:"vid,omitempty"`
+	VideoUrl map[string]string `json:"video_url,omitempty"`
+	Width    int               `json:"width,omitempty"`
+}
+
+type ModelPopulartrendCountryIndustryMetaResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelPopularTrendCountryIndustryMeta `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelPopulartrendCreatorTrendResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelPopularTrendCreatorTrendResp `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelPopulartrendTopAdsAnalysisResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelPopularTrendTopAdsAnalysisResp `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelPopulartrendTopAdsDetailResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelPopularTrendTopAdsDetailResp `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelPopulartrendTopAdsFiltersResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelPopularTrendTopAdsFiltersResp `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelPopulartrendTopAdsListResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelPopularTrendTopAdsListResp `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelPopulartrendTopAdsLocationInfoResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelPopularTrendTopAdsLocationInfoResp `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
+}
+
+type ModelPopulartrendTopAdsLocationsResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelPopularTrendTopAdsLocationsResp `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelPopulartrendTopAdsRecommendResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelPopularTrendTopAdsRecommendResp `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelPopulartrendTopAdsSafetyResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelPopularTrendTopAdsSafetyResp `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelPopulartrendTopAdsSpotlightResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelPopularTrendTopAdsSpotlightResp `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelPopulartrendTopAdsSuggestionsResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelPopularTrendTopAdsSuggestionsResp `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelProducthuntLeaderboardAdItem struct {
+	ChannelKind    string                            `json:"channel_kind,omitempty"`
+	Id             string                            `json:"id,omitempty"`
+	LargeAssetUuid string                            `json:"large_asset_uuid,omitempty"`
+	Name           string                            `json:"name,omitempty"`
+	Post           ModelProducthuntLeaderboardAdPost `json:"post,omitempty"`
+	SmallAssetUuid string                            `json:"small_asset_uuid,omitempty"`
+	Subject        string                            `json:"subject,omitempty"`
+	Tagline        string                            `json:"tagline,omitempty"`
+	ThumbnailUuid  string                            `json:"thumbnail_uuid,omitempty"`
+	Url            string                            `json:"url,omitempty"`
+	VariationId    string                            `json:"variation_id,omitempty"`
+}
+
+type ModelProducthuntLeaderboardAdPost struct {
+	CommentsCount         int                                            `json:"comments_count,omitempty"`
+	CreatedAt             string                                         `json:"created_at,omitempty"`
+	DisabledWhenScheduled bool                                           `json:"disabled_when_scheduled,omitempty"`
+	EmbargoPreviewAt      string                                         `json:"embargo_preview_at,omitempty"`
+	FeaturedAt            string                                         `json:"featured_at,omitempty"`
+	FeaturedComment       ModelProducthuntProductCategoryAdComment       `json:"featured_comment,omitempty"`
+	HasVoted              bool                                           `json:"has_voted,omitempty"`
+	HideVotesCount        bool                                           `json:"hide_votes_count,omitempty"`
+	Id                    string                                         `json:"id,omitempty"`
+	LatestScore           int                                            `json:"latest_score,omitempty"`
+	LaunchDayScore        int                                            `json:"launch_day_score,omitempty"`
+	Name                  string                                         `json:"name,omitempty"`
+	Product               ModelProducthuntLeaderboardProductRef          `json:"product,omitempty"`
+	RandomizationStatus   ModelProducthuntLeaderboardRandomizationStatus `json:"randomization_status,omitempty"`
+	Slug                  string                                         `json:"slug,omitempty"`
+	Topics                []ModelProducthuntLeaderboardTopic             `json:"topics,omitempty"`
+	UpdatedAt             string                                         `json:"updated_at,omitempty"`
+}
+
+type ModelProducthuntLeaderboardGhostItem struct {
+	Id      string `json:"id,omitempty"`
+	Subject string `json:"subject,omitempty"`
+}
+
+type ModelProducthuntLeaderboardItem struct {
+	Ad      ModelProducthuntLeaderboardAdItem    `json:"ad,omitempty"`
+	GhostAd ModelProducthuntLeaderboardGhostItem `json:"ghost_ad,omitempty"`
+	Post    ModelProducthuntLeaderboardPostItem  `json:"post,omitempty"`
+	Type    string                               `json:"type,omitempty"`
+}
+
+type ModelProducthuntLeaderboardPage struct {
+	Connection       string                            `json:"connection,omitempty"`
+	Day              int                               `json:"day,omitempty"`
+	EndCursor        string                            `json:"end_cursor,omitempty"`
+	Featured         bool                              `json:"featured,omitempty"`
+	GoldenKittyYears []int                             `json:"golden_kitty_years,omitempty"`
+	HasNextPage      bool                              `json:"has_next_page,omitempty"`
+	Items            []ModelProducthuntLeaderboardItem `json:"items,omitempty"`
+	Month            int                               `json:"month,omitempty"`
+	Order            string                            `json:"order,omitempty"`
+	RawPageInfo      map[string]any                    `json:"raw_page_info,omitempty"`
+	Scope            string                            `json:"scope,omitempty"`
+	TotalCount       int                               `json:"total_count,omitempty"`
+	Week             int                               `json:"week,omitempty"`
+	Year             int                               `json:"year,omitempty"`
+}
+
+type ModelProducthuntLeaderboardPostItem struct {
+	CommentsCount         int                                            `json:"comments_count,omitempty"`
+	CreatedAt             string                                         `json:"created_at,omitempty"`
+	DailyRank             int                                            `json:"daily_rank,omitempty"`
+	DisabledWhenScheduled bool                                           `json:"disabled_when_scheduled,omitempty"`
+	EmbargoPreviewAt      string                                         `json:"embargo_preview_at,omitempty"`
+	FeaturedAt            string                                         `json:"featured_at,omitempty"`
+	FriendVotersCount     int                                            `json:"friend_voters_count,omitempty"`
+	HasVoted              bool                                           `json:"has_voted,omitempty"`
+	HideVotesCount        bool                                           `json:"hide_votes_count,omitempty"`
+	Id                    string                                         `json:"id,omitempty"`
+	IsSubscribed          bool                                           `json:"is_subscribed,omitempty"`
+	LatestScore           int                                            `json:"latest_score,omitempty"`
+	LaunchDayScore        int                                            `json:"launch_day_score,omitempty"`
+	MonthlyRank           int                                            `json:"monthly_rank,omitempty"`
+	Name                  string                                         `json:"name,omitempty"`
+	Product               ModelProducthuntLeaderboardProductRef          `json:"product,omitempty"`
+	ProductState          string                                         `json:"product_state,omitempty"`
+	RandomizationStatus   ModelProducthuntLeaderboardRandomizationStatus `json:"randomization_status,omitempty"`
+	ScheduledAt           string                                         `json:"scheduled_at,omitempty"`
+	ShortenedUrl          string                                         `json:"shortened_url,omitempty"`
+	Slug                  string                                         `json:"slug,omitempty"`
+	Tagline               string                                         `json:"tagline,omitempty"`
+	ThumbnailImageUuid    string                                         `json:"thumbnail_image_uuid,omitempty"`
+	Topics                []ModelProducthuntLeaderboardTopic             `json:"topics,omitempty"`
+	UpdatedAt             string                                         `json:"updated_at,omitempty"`
+	WeeklyRank            int                                            `json:"weekly_rank,omitempty"`
+}
+
+type ModelProducthuntLeaderboardProductRef struct {
+	Id               string `json:"id,omitempty"`
+	IsNoLongerOnline bool   `json:"is_no_longer_online,omitempty"`
+	IsSubscribed     bool   `json:"is_subscribed,omitempty"`
+	IsTopProduct     bool   `json:"is_top_product,omitempty"`
+	LogoUuid         string `json:"logo_uuid,omitempty"`
+	Name             string `json:"name,omitempty"`
+	Slug             string `json:"slug,omitempty"`
+}
+
+type ModelProducthuntLeaderboardRandomizationStatus struct {
+	Active           bool   `json:"active,omitempty"`
+	NextTransitionAt string `json:"next_transition_at,omitempty"`
+	RandomDay        bool   `json:"random_day,omitempty"`
+	RandomizeOrder   bool   `json:"randomize_order,omitempty"`
+}
+
+type ModelProducthuntLeaderboardTopic struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelProducthuntProduct struct {
+	Categories      []string                         `json:"categories,omitempty"`
+	DailyRank       int                              `json:"daily_rank,omitempty"`
+	DatePublished   string                           `json:"date_published,omitempty"`
+	Description     string                           `json:"description,omitempty"`
+	FollowersCount  int                              `json:"followers_count,omitempty"`
+	Id              string                           `json:"id,omitempty"`
+	MonthlyRank     int                              `json:"monthly_rank,omitempty"`
+	Name            string                           `json:"name,omitempty"`
+	Rating          float64                          `json:"rating,omitempty"`
+	ReviewCount     int                              `json:"review_count,omitempty"`
+	SimilarProducts []ModelProducthuntSimilarProduct `json:"similar_products,omitempty"`
+	SocialLinks     []string                         `json:"social_links,omitempty"`
+	Tagline         string                           `json:"tagline,omitempty"`
+	Website         string                           `json:"website,omitempty"`
+	WeeklyRank      int                              `json:"weekly_rank,omitempty"`
+}
+
+type ModelProducthuntProductAboutAd struct {
+	ChannelKind    string `json:"channel_kind,omitempty"`
+	Id             string `json:"id,omitempty"`
+	LargeAssetUuid string `json:"large_asset_uuid,omitempty"`
+	Name           string `json:"name,omitempty"`
+	SmallAssetUuid string `json:"small_asset_uuid,omitempty"`
+	Subject        string `json:"subject,omitempty"`
+	Tagline        string `json:"tagline,omitempty"`
+	ThumbnailUuid  string `json:"thumbnail_uuid,omitempty"`
+	Url            string `json:"url,omitempty"`
+	VariationId    string `json:"variation_id,omitempty"`
+}
+
+type ModelProducthuntProductAboutDiscussionForum struct {
+	Id         string                                         `json:"id,omitempty"`
+	Path       string                                         `json:"path,omitempty"`
+	Threads    []ModelProducthuntProductAboutDiscussionThread `json:"threads,omitempty"`
+	TotalCount int                                            `json:"total_count,omitempty"`
+}
+
+type ModelProducthuntProductAboutDiscussionThread struct {
+	CommentableId      string                               `json:"commentable_id,omitempty"`
+	CommentsCount      int                                  `json:"comments_count,omitempty"`
+	CreatedAt          string                               `json:"created_at,omitempty"`
+	DescriptionPreview string                               `json:"description_preview,omitempty"`
+	Forum              ModelProducthuntProductAboutForumRef `json:"forum,omitempty"`
+	HasVoted           bool                                 `json:"has_voted,omitempty"`
+	Id                 string                               `json:"id,omitempty"`
+	IsFeatured         bool                                 `json:"is_featured,omitempty"`
+	IsPinned           bool                                 `json:"is_pinned,omitempty"`
+	Path               string                               `json:"path,omitempty"`
+	Slug               string                               `json:"slug,omitempty"`
+	Title              string                               `json:"title,omitempty"`
+	User               ModelProducthuntProductCategoryUser  `json:"user,omitempty"`
+	VotesCount         int                                  `json:"votes_count,omitempty"`
+}
+
+type ModelProducthuntProductAboutForumRef struct {
+	Id      string                                   `json:"id,omitempty"`
+	Path    string                                   `json:"path,omitempty"`
+	Slug    string                                   `json:"slug,omitempty"`
+	Subject ModelProducthuntProductAboutForumSubject `json:"subject,omitempty"`
+}
+
+type ModelProducthuntProductAboutForumSubject struct {
+	Id               string `json:"id,omitempty"`
+	IsNoLongerOnline bool   `json:"is_no_longer_online,omitempty"`
+	LogoUuid         string `json:"logo_uuid,omitempty"`
+	Name             string `json:"name,omitempty"`
+}
+
+type ModelProducthuntProductAboutGhostAd struct {
+	Id      string `json:"id,omitempty"`
+	Subject string `json:"subject,omitempty"`
+}
+
+type ModelProducthuntProductAboutLatestLaunch struct {
+	Id                 string `json:"id,omitempty"`
+	IsMaker            bool   `json:"is_maker,omitempty"`
+	LaunchNumber       int    `json:"launch_number,omitempty"`
+	LaunchedThisWeek   bool   `json:"launched_this_week,omitempty"`
+	LaunchingToday     bool   `json:"launching_today,omitempty"`
+	Name               string `json:"name,omitempty"`
+	ProductState       string `json:"product_state,omitempty"`
+	ScheduledAt        string `json:"scheduled_at,omitempty"`
+	Slug               string `json:"slug,omitempty"`
+	Tagline            string `json:"tagline,omitempty"`
+	ThumbnailImageUuid string `json:"thumbnail_image_uuid,omitempty"`
+}
+
+type ModelProducthuntProductAboutLaunch struct {
+	Ad1                   ModelProducthuntProductAboutGhostAd        `json:"ad1,omitempty"`
+	Ad2                   ModelProducthuntProductAboutGhostAd        `json:"ad2,omitempty"`
+	Badges                []ModelProducthuntProductCategoryListBadge `json:"badges,omitempty"`
+	CanDeputyManage       bool                                       `json:"can_deputy_manage,omitempty"`
+	CanManage             bool                                       `json:"can_manage,omitempty"`
+	CommentsCount         int                                        `json:"comments_count,omitempty"`
+	CreatedAt             string                                     `json:"created_at,omitempty"`
+	DailyRank             int                                        `json:"daily_rank,omitempty"`
+	Description           string                                     `json:"description,omitempty"`
+	DetailedReviews       []ModelProducthuntProductAboutShoutout     `json:"detailed_reviews,omitempty"`
+	DisabledWhenScheduled bool                                       `json:"disabled_when_scheduled,omitempty"`
+	EmbargoPreviewAt      string                                     `json:"embargo_preview_at,omitempty"`
+	Featured              bool                                       `json:"featured,omitempty"`
+	FeaturedAt            string                                     `json:"featured_at,omitempty"`
+	HasVoted              bool                                       `json:"has_voted,omitempty"`
+	HideVotesCount        bool                                       `json:"hide_votes_count,omitempty"`
+	Id                    string                                     `json:"id,omitempty"`
+	IsArchived            bool                                       `json:"is_archived,omitempty"`
+	IsAvailable           bool                                       `json:"is_available,omitempty"`
+	IsHunter              bool                                       `json:"is_hunter,omitempty"`
+	IsMaker               bool                                       `json:"is_maker,omitempty"`
+	IsTopLaunch           bool                                       `json:"is_top_launch,omitempty"`
+	LatestScore           int                                        `json:"latest_score,omitempty"`
+	LaunchDayScore        int                                        `json:"launch_day_score,omitempty"`
+	LaunchNumber          int                                        `json:"launch_number,omitempty"`
+	LaunchState           string                                     `json:"launch_state,omitempty"`
+	LaunchedThisWeek      bool                                       `json:"launched_this_week,omitempty"`
+	LaunchingToday        bool                                       `json:"launching_today,omitempty"`
+	Links                 []ModelProducthuntProductAboutLink         `json:"links,omitempty"`
+	Makers                []ModelProducthuntProductAboutUser         `json:"makers,omitempty"`
+	Media                 []ModelProducthuntProductAboutMedia        `json:"media,omitempty"`
+	Meta                  ModelProducthuntProductAboutMeta           `json:"meta,omitempty"`
+	ModerationReason      string                                     `json:"moderation_reason,omitempty"`
+	Name                  string                                     `json:"name,omitempty"`
+	PricingType           string                                     `json:"pricing_type,omitempty"`
+	PrimaryLink           ModelProducthuntProductAboutPrimaryLink    `json:"primary_link,omitempty"`
+	Product               ModelProducthuntProductAboutLaunchProduct  `json:"product,omitempty"`
+	ProductState          string                                     `json:"product_state,omitempty"`
+	Promo                 map[string]any                             `json:"promo,omitempty"`
+	RedirectToProduct     ModelProducthuntLeaderboardProductRef      `json:"redirect_to_product,omitempty"`
+	ScheduledAt           string                                     `json:"scheduled_at,omitempty"`
+	Slug                  string                                     `json:"slug,omitempty"`
+	Tagline               string                                     `json:"tagline,omitempty"`
+	ThumbnailImageUuid    string                                     `json:"thumbnail_image_uuid,omitempty"`
+	Topics                []ModelProducthuntProductCategoryRef       `json:"topics,omitempty"`
+	TrashedAt             string                                     `json:"trashed_at,omitempty"`
+	UpdatedAt             string                                     `json:"updated_at,omitempty"`
+	Url                   string                                     `json:"url,omitempty"`
+	User                  ModelProducthuntProductAboutUser           `json:"user,omitempty"`
+	WeeklyRank            int                                        `json:"weekly_rank,omitempty"`
+}
+
+type ModelProducthuntProductAboutLaunchFlags struct {
+	Id               string `json:"id,omitempty"`
+	LaunchedThisWeek bool   `json:"launched_this_week,omitempty"`
+	LaunchingToday   bool   `json:"launching_today,omitempty"`
+}
+
+type ModelProducthuntProductAboutLaunchProduct struct {
+	CanClaim                 bool                                         `json:"can_claim,omitempty"`
+	CanEdit                  bool                                         `json:"can_edit,omitempty"`
+	CleanUrl                 string                                       `json:"clean_url,omitempty"`
+	DetailedReview           map[string]any                               `json:"detailed_review,omitempty"`
+	FirstLaunch              bool                                         `json:"first_launch,omitempty"`
+	Id                       string                                       `json:"id,omitempty"`
+	IsClaimed                bool                                         `json:"is_claimed,omitempty"`
+	IsNoLongerOnline         bool                                         `json:"is_no_longer_online,omitempty"`
+	IsSubscribed             bool                                         `json:"is_subscribed,omitempty"`
+	IsTopProduct             bool                                         `json:"is_top_product,omitempty"`
+	IsViewerTeamMember       map[string]any                               `json:"is_viewer_team_member,omitempty"`
+	LatestLaunch             ModelProducthuntProductAboutLaunchFlags      `json:"latest_launch,omitempty"`
+	LogoUuid                 string                                       `json:"logo_uuid,omitempty"`
+	Name                     string                                       `json:"name,omitempty"`
+	PostsCount               int                                          `json:"posts_count,omitempty"`
+	ProConTags               []ModelProducthuntProductDetailedReviewTag   `json:"pro_con_tags,omitempty"`
+	ReviewQuestions          []ModelProducthuntProductAboutReviewQuestion `json:"review_questions,omitempty"`
+	ReviewsRating            float64                                      `json:"reviews_rating,omitempty"`
+	Slug                     string                                       `json:"slug,omitempty"`
+	Tagline                  string                                       `json:"tagline,omitempty"`
+	ViewerPendingTeamRequest map[string]any                               `json:"viewer_pending_team_request,omitempty"`
+	WebsiteDomain            string                                       `json:"website_domain,omitempty"`
+	WebsiteUrl               string                                       `json:"website_url,omitempty"`
+}
+
+type ModelProducthuntProductAboutLink struct {
+	Devices      []string `json:"devices,omitempty"`
+	Id           string   `json:"id,omitempty"`
+	RedirectPath string   `json:"redirect_path,omitempty"`
+	StoreName    string   `json:"store_name,omitempty"`
+	WebsiteName  string   `json:"website_name,omitempty"`
+}
+
+type ModelProducthuntProductAboutMedia struct {
+	Id                  string `json:"id,omitempty"`
+	ImageUuid           string `json:"image_uuid,omitempty"`
+	InteractiveDemoId   string `json:"interactive_demo_id,omitempty"`
+	InteractiveDemoType string `json:"interactive_demo_type,omitempty"`
+	MediaType           string `json:"media_type,omitempty"`
+	OriginalHeight      int    `json:"original_height,omitempty"`
+	OriginalWidth       int    `json:"original_width,omitempty"`
+	Platform            string `json:"platform,omitempty"`
+	ThumbnailHeight     int    `json:"thumbnail_height,omitempty"`
+	ThumbnailWidth      int    `json:"thumbnail_width,omitempty"`
+	Url                 string `json:"url,omitempty"`
+	VideoId             string `json:"video_id,omitempty"`
+}
+
+type ModelProducthuntProductAboutMentionedProduct struct {
+	Id               string `json:"id,omitempty"`
+	IsNoLongerOnline bool   `json:"is_no_longer_online,omitempty"`
+	LogoUuid         string `json:"logo_uuid,omitempty"`
+	Name             string `json:"name,omitempty"`
+	Path             string `json:"path,omitempty"`
+	Slug             string `json:"slug,omitempty"`
+	Tagline          string `json:"tagline,omitempty"`
+}
+
+type ModelProducthuntProductAboutMeta struct {
+	Title string `json:"title,omitempty"`
+}
+
+type ModelProducthuntProductAboutPage struct {
+	Ad                  ModelProducthuntProductAboutAd      `json:"ad,omitempty"`
+	Launch              ModelProducthuntProductAboutLaunch  `json:"launch,omitempty"`
+	PageVariantTypename string                              `json:"page_variant_typename,omitempty"`
+	Product             ModelProducthuntProductAboutProduct `json:"product,omitempty"`
+	ProductId           string                              `json:"product_id,omitempty"`
+	Viewer              ModelProducthuntProductAboutViewer  `json:"viewer,omitempty"`
+}
+
+type ModelProducthuntProductAboutPageVariant struct {
+	LaunchId string `json:"launch_id,omitempty"`
+	Typename string `json:"typename,omitempty"`
+}
+
+type ModelProducthuntProductAboutPost struct {
+	Badges                []ModelProducthuntProductCategoryListBadge     `json:"badges,omitempty"`
+	CommentsCount         int                                            `json:"comments_count,omitempty"`
+	CreatedAt             string                                         `json:"created_at,omitempty"`
+	DailyRank             int                                            `json:"daily_rank,omitempty"`
+	DisabledWhenScheduled bool                                           `json:"disabled_when_scheduled,omitempty"`
+	EmbargoPreviewAt      string                                         `json:"embargo_preview_at,omitempty"`
+	FeaturedAt            string                                         `json:"featured_at,omitempty"`
+	HasVoted              bool                                           `json:"has_voted,omitempty"`
+	HideVotesCount        bool                                           `json:"hide_votes_count,omitempty"`
+	Id                    string                                         `json:"id,omitempty"`
+	LatestScore           int                                            `json:"latest_score,omitempty"`
+	LaunchDayScore        int                                            `json:"launch_day_score,omitempty"`
+	MonthlyRank           int                                            `json:"monthly_rank,omitempty"`
+	Name                  string                                         `json:"name,omitempty"`
+	Product               ModelProducthuntLeaderboardProductRef          `json:"product,omitempty"`
+	ProductState          string                                         `json:"product_state,omitempty"`
+	RandomizationStatus   ModelProducthuntLeaderboardRandomizationStatus `json:"randomization_status,omitempty"`
+	RedirectToProduct     ModelProducthuntLeaderboardProductRef          `json:"redirect_to_product,omitempty"`
+	ShortenedUrl          string                                         `json:"shortened_url,omitempty"`
+	Slug                  string                                         `json:"slug,omitempty"`
+	Tagline               string                                         `json:"tagline,omitempty"`
+	ThumbnailImageUuid    string                                         `json:"thumbnail_image_uuid,omitempty"`
+	UpdatedAt             string                                         `json:"updated_at,omitempty"`
+	WeeklyRank            int                                            `json:"weekly_rank,omitempty"`
+}
+
+type ModelProducthuntProductAboutPrimaryLink struct {
+	Id  string `json:"id,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
+type ModelProducthuntProductAboutProduct struct {
+	Badges           []ModelProducthuntProductCategoryListBadge   `json:"badges,omitempty"`
+	DetailedReview   map[string]any                               `json:"detailed_review,omitempty"`
+	DiscussionForum  ModelProducthuntProductAboutDiscussionForum  `json:"discussion_forum,omitempty"`
+	FollowersCount   int                                          `json:"followers_count,omitempty"`
+	Id               string                                       `json:"id,omitempty"`
+	IsNoLongerOnline bool                                         `json:"is_no_longer_online,omitempty"`
+	IsSubscribed     bool                                         `json:"is_subscribed,omitempty"`
+	LatestLaunch     ModelProducthuntProductAboutLatestLaunch     `json:"latest_launch,omitempty"`
+	LogoUuid         string                                       `json:"logo_uuid,omitempty"`
+	Media            []ModelProducthuntProductAboutMedia          `json:"media,omitempty"`
+	Name             string                                       `json:"name,omitempty"`
+	PageVariant      ModelProducthuntProductAboutPageVariant      `json:"page_variant,omitempty"`
+	Posts            []ModelProducthuntProductAboutPost           `json:"posts,omitempty"`
+	PostsCount       int                                          `json:"posts_count,omitempty"`
+	ProConTags       []ModelProducthuntProductDetailedReviewTag   `json:"pro_con_tags,omitempty"`
+	ReviewQuestions  []ModelProducthuntProductAboutReviewQuestion `json:"review_questions,omitempty"`
+	ReviewsRating    float64                                      `json:"reviews_rating,omitempty"`
+	Screenshots      []ModelProducthuntProductAboutScreenshot     `json:"screenshots,omitempty"`
+	Slug             string                                       `json:"slug,omitempty"`
+	Tagline          string                                       `json:"tagline,omitempty"`
+	Url              string                                       `json:"url,omitempty"`
+}
+
+type ModelProducthuntProductAboutReviewQuestion struct {
+	Category string `json:"category,omitempty"`
+	Id       string `json:"id,omitempty"`
+	Question string `json:"question,omitempty"`
+}
+
+type ModelProducthuntProductAboutScreenshot struct {
+	Id             string `json:"id,omitempty"`
+	ImageUuid      string `json:"image_uuid,omitempty"`
+	MediaType      string `json:"media_type,omitempty"`
+	OriginalHeight int    `json:"original_height,omitempty"`
+	OriginalWidth  int    `json:"original_width,omitempty"`
+}
+
+type ModelProducthuntProductAboutShoutout struct {
+	AlternativeProducts []ModelProducthuntProductAboutMentionedProduct `json:"alternative_products,omitempty"`
+	Id                  string                                         `json:"id,omitempty"`
+	Product             ModelProducthuntProductAboutMentionedProduct   `json:"product,omitempty"`
+	ShoutoutNote        string                                         `json:"shoutout_note,omitempty"`
+}
+
+type ModelProducthuntProductAboutUser struct {
+	AvatarUrl string `json:"avatar_url,omitempty"`
+	Headline  string `json:"headline,omitempty"`
+	Id        string `json:"id,omitempty"`
+	Name      string `json:"name,omitempty"`
+	Username  string `json:"username,omitempty"`
+}
+
+type ModelProducthuntProductAboutViewer struct {
+	IsFeaturedPostMaker bool           `json:"is_featured_post_maker,omitempty"`
+	RecentLaunch        map[string]any `json:"recent_launch,omitempty"`
+}
+
+type ModelProducthuntProductAlternativeBadge struct {
+	Date     string `json:"date,omitempty"`
+	Id       string `json:"id,omitempty"`
+	Period   string `json:"period,omitempty"`
+	Position int    `json:"position,omitempty"`
+	PostName string `json:"post_name,omitempty"`
+	PostSlug string `json:"post_slug,omitempty"`
+}
+
+type ModelProducthuntProductAlternativeDiscussion struct {
+	CommentsCount      int                                               `json:"comments_count,omitempty"`
+	CreatedAt          string                                            `json:"created_at,omitempty"`
+	DescriptionPreview string                                            `json:"description_preview,omitempty"`
+	HasVoted           bool                                              `json:"has_voted,omitempty"`
+	Id                 string                                            `json:"id,omitempty"`
+	Path               string                                            `json:"path,omitempty"`
+	Pinned             bool                                              `json:"pinned,omitempty"`
+	PrimaryForum       ModelProducthuntProductAlternativeDiscussionForum `json:"primary_forum,omitempty"`
+	Slug               string                                            `json:"slug,omitempty"`
+	Title              string                                            `json:"title,omitempty"`
+	User               ModelProducthuntProductAlternativeDiscussionUser  `json:"user,omitempty"`
+	VotesCount         int                                               `json:"votes_count,omitempty"`
+}
+
+type ModelProducthuntProductAlternativeDiscussionForum struct {
+	Id          string `json:"id,omitempty"`
+	Slug        string `json:"slug,omitempty"`
+	SubjectId   string `json:"subject_id,omitempty"`
+	SubjectName string `json:"subject_name,omitempty"`
+}
+
+type ModelProducthuntProductAlternativeDiscussionUser struct {
+	AvatarUrl string `json:"avatar_url,omitempty"`
+	Id        string `json:"id,omitempty"`
+	Name      string `json:"name,omitempty"`
+	Username  string `json:"username,omitempty"`
+}
+
+type ModelProducthuntProductAlternativeItem struct {
+	CategoryScore   float64                                   `json:"category_score,omitempty"`
+	CategoryWeight  float64                                   `json:"category_weight,omitempty"`
+	CombinedScore   float64                                   `json:"combined_score,omitempty"`
+	EmbeddingScore  float64                                   `json:"embedding_score,omitempty"`
+	EmbeddingWeight float64                                   `json:"embedding_weight,omitempty"`
+	Id              string                                    `json:"id,omitempty"`
+	Product         ModelProducthuntProductAlternativeProduct `json:"product,omitempty"`
+	RatingScore     float64                                   `json:"rating_score,omitempty"`
+	RatingWeight    float64                                   `json:"rating_weight,omitempty"`
+}
+
+type ModelProducthuntProductAlternativeProduct struct {
+	Badges         []ModelProducthuntProductAlternativeBadge        `json:"badges,omitempty"`
+	Categories     []string                                         `json:"categories,omitempty"`
+	FollowersCount int                                              `json:"followers_count,omitempty"`
+	Id             string                                           `json:"id,omitempty"`
+	IsSubscribed   bool                                             `json:"is_subscribed,omitempty"`
+	IsTopProduct   bool                                             `json:"is_top_product,omitempty"`
+	LogoUuid       string                                           `json:"logo_uuid,omitempty"`
+	Name           string                                           `json:"name,omitempty"`
+	ReviewsCount   int                                              `json:"reviews_count,omitempty"`
+	ReviewsRating  float64                                          `json:"reviews_rating,omitempty"`
+	Slug           string                                           `json:"slug,omitempty"`
+	StructuredData ModelProducthuntProductAlternativeStructuredData `json:"structured_data,omitempty"`
+	Tagline        string                                           `json:"tagline,omitempty"`
+	Tags           []string                                         `json:"tags,omitempty"`
+}
+
+type ModelProducthuntProductAlternativeStructuredData struct {
+	ApplicationCategory string   `json:"application_category,omitempty"`
+	Context             string   `json:"context,omitempty"`
+	DateModified        string   `json:"date_modified,omitempty"`
+	DatePublished       string   `json:"date_published,omitempty"`
+	Description         string   `json:"description,omitempty"`
+	Id                  string   `json:"id,omitempty"`
+	Image               string   `json:"image,omitempty"`
+	Name                string   `json:"name,omitempty"`
+	OperatingSystem     string   `json:"operating_system,omitempty"`
+	Screenshot          []string `json:"screenshot,omitempty"`
+	Url                 string   `json:"url,omitempty"`
+}
+
+type ModelProducthuntProductAlternativeTag struct {
+	Count int    `json:"count,omitempty"`
+	Name  string `json:"name,omitempty"`
+}
+
+type ModelProducthuntProductAlternativesPage struct {
+	AlternativeTags                 []ModelProducthuntProductAlternativeTag        `json:"alternative_tags,omitempty"`
+	AlternativesMarkdownDescription string                                         `json:"alternatives_markdown_description,omitempty"`
+	Categories                      []string                                       `json:"categories,omitempty"`
+	Discussions                     []ModelProducthuntProductAlternativeDiscussion `json:"discussions,omitempty"`
+	DiscussionsHasNextPage          bool                                           `json:"discussions_has_next_page,omitempty"`
+	EndCursor                       string                                         `json:"end_cursor,omitempty"`
+	FollowersCount                  int                                            `json:"followers_count,omitempty"`
+	HasNextPage                     bool                                           `json:"has_next_page,omitempty"`
+	Items                           []ModelProducthuntProductAlternativeItem       `json:"items,omitempty"`
+	Name                            string                                         `json:"name,omitempty"`
+	ProductId                       string                                         `json:"product_id,omitempty"`
+	Slug                            string                                         `json:"slug,omitempty"`
+	TotalCount                      int                                            `json:"total_count,omitempty"`
+}
+
+type ModelProducthuntProductCategoryAd struct {
+	ChannelKind    string                                `json:"channel_kind,omitempty"`
+	Id             string                                `json:"id,omitempty"`
+	LargeAssetUuid string                                `json:"large_asset_uuid,omitempty"`
+	Name           string                                `json:"name,omitempty"`
+	Post           ModelProducthuntProductCategoryAdPost `json:"post,omitempty"`
+	SmallAssetUuid string                                `json:"small_asset_uuid,omitempty"`
+	Subject        string                                `json:"subject,omitempty"`
+	Tagline        string                                `json:"tagline,omitempty"`
+	ThumbnailUuid  string                                `json:"thumbnail_uuid,omitempty"`
+	Url            string                                `json:"url,omitempty"`
+	VariationId    string                                `json:"variation_id,omitempty"`
+}
+
+type ModelProducthuntProductCategoryAdComment struct {
+	BodyText  string                              `json:"body_text,omitempty"`
+	Id        string                              `json:"id,omitempty"`
+	IsPinned  bool                                `json:"is_pinned,omitempty"`
+	Path      string                              `json:"path,omitempty"`
+	SubjectId string                              `json:"subject_id,omitempty"`
+	User      ModelProducthuntProductCategoryUser `json:"user,omitempty"`
+}
+
+type ModelProducthuntProductCategoryAdPost struct {
+	CommentsCount         int                                                `json:"comments_count,omitempty"`
+	CreatedAt             string                                             `json:"created_at,omitempty"`
+	DisabledWhenScheduled bool                                               `json:"disabled_when_scheduled,omitempty"`
+	EmbargoPreviewAt      string                                             `json:"embargo_preview_at,omitempty"`
+	FeaturedAt            string                                             `json:"featured_at,omitempty"`
+	FeaturedComment       ModelProducthuntProductCategoryAdComment           `json:"featured_comment,omitempty"`
+	HasVoted              bool                                               `json:"has_voted,omitempty"`
+	HideVotesCount        bool                                               `json:"hide_votes_count,omitempty"`
+	Id                    string                                             `json:"id,omitempty"`
+	LatestScore           int                                                `json:"latest_score,omitempty"`
+	LaunchDayScore        int                                                `json:"launch_day_score,omitempty"`
+	Name                  string                                             `json:"name,omitempty"`
+	ProductId             string                                             `json:"product_id,omitempty"`
+	ProductSlug           string                                             `json:"product_slug,omitempty"`
+	ProductSubscribed     bool                                               `json:"product_subscribed,omitempty"`
+	RandomizationStatus   ModelProducthuntProductCategoryRandomizationStatus `json:"randomization_status,omitempty"`
+	Slug                  string                                             `json:"slug,omitempty"`
+	Topics                []ModelProducthuntProductCategoryTopic             `json:"topics,omitempty"`
+	UpdatedAt             string                                             `json:"updated_at,omitempty"`
+}
+
+type ModelProducthuntProductCategoryAnswer struct {
+	Body    ModelProducthuntProductCategoryMarkdown `json:"body,omitempty"`
+	Id      string                                  `json:"id,omitempty"`
+	Sources []ModelProducthuntProductCategorySource `json:"sources,omitempty"`
+}
+
+type ModelProducthuntProductCategoryFounderPost struct {
+	Badges             []ModelProducthuntProductCategoryListBadge `json:"badges,omitempty"`
+	Id                 string                                     `json:"id,omitempty"`
+	Name               string                                     `json:"name,omitempty"`
+	ProductId          string                                     `json:"product_id,omitempty"`
+	ProductSlug        string                                     `json:"product_slug,omitempty"`
+	ProductState       string                                     `json:"product_state,omitempty"`
+	Slug               string                                     `json:"slug,omitempty"`
+	ThumbnailImageUuid string                                     `json:"thumbnail_image_uuid,omitempty"`
+}
+
+type ModelProducthuntProductCategoryFounderShoutout struct {
+	FromPost  ModelProducthuntProductCategoryFounderPost `json:"from_post,omitempty"`
+	Id        string                                     `json:"id,omitempty"`
+	ProductId string                                     `json:"product_id,omitempty"`
+}
+
+type ModelProducthuntProductCategoryHeroProduct struct {
+	Id               string `json:"id,omitempty"`
+	IsNoLongerOnline bool   `json:"is_no_longer_online,omitempty"`
+	LogoUuid         string `json:"logo_uuid,omitempty"`
+	Name             string `json:"name,omitempty"`
+}
+
+type ModelProducthuntProductCategoryLatestLaunch struct {
+	Id          string `json:"id,omitempty"`
+	ScheduledAt string `json:"scheduled_at,omitempty"`
+}
+
+type ModelProducthuntProductCategoryListBadge struct {
+	Category string `json:"category,omitempty"`
+	Date     string `json:"date,omitempty"`
+	Id       string `json:"id,omitempty"`
+	Period   string `json:"period,omitempty"`
+	Position int    `json:"position,omitempty"`
+	PostId   string `json:"post_id,omitempty"`
+	PostName string `json:"post_name,omitempty"`
+	PostSlug string `json:"post_slug,omitempty"`
+	Year     string `json:"year,omitempty"`
+}
+
+type ModelProducthuntProductCategoryListProduct struct {
+	Badges               []ModelProducthuntProductCategoryListBadge       `json:"badges,omitempty"`
+	Categories           []ModelProducthuntProductCategoryRef             `json:"categories,omitempty"`
+	DetailedReviewsCount int                                              `json:"detailed_reviews_count,omitempty"`
+	FollowersCount       int                                              `json:"followers_count,omitempty"`
+	FounderReviewsCount  int                                              `json:"founder_reviews_count,omitempty"`
+	FounderShoutouts     []ModelProducthuntProductCategoryFounderShoutout `json:"founder_shoutouts,omitempty"`
+	Id                   string                                           `json:"id,omitempty"`
+	IsNoLongerOnline     bool                                             `json:"is_no_longer_online,omitempty"`
+	IsSubscribed         bool                                             `json:"is_subscribed,omitempty"`
+	IsTopProduct         bool                                             `json:"is_top_product,omitempty"`
+	LatestLaunch         ModelProducthuntProductCategoryLatestLaunch      `json:"latest_launch,omitempty"`
+	LogoUuid             string                                           `json:"logo_uuid,omitempty"`
+	Name                 string                                           `json:"name,omitempty"`
+	PostsCount           int                                              `json:"posts_count,omitempty"`
+	ReviewsCount         int                                              `json:"reviews_count,omitempty"`
+	ReviewsRating        float64                                          `json:"reviews_rating,omitempty"`
+	Slug                 string                                           `json:"slug,omitempty"`
+	StructuredData       ModelProducthuntProductAlternativeStructuredData `json:"structured_data,omitempty"`
+	Tagline              string                                           `json:"tagline,omitempty"`
+	Tags                 []string                                         `json:"tags,omitempty"`
+}
+
+type ModelProducthuntProductCategoryMarkdown struct {
+	Markdown string `json:"markdown,omitempty"`
+	Text     string `json:"text,omitempty"`
+}
+
+type ModelProducthuntProductCategoryPage struct {
+	Description            string                                         `json:"description,omitempty"`
+	Discussions            []ModelProducthuntProductAlternativeDiscussion `json:"discussions,omitempty"`
+	DiscussionsHasNextPage bool                                           `json:"discussions_has_next_page,omitempty"`
+	ExpandableHtml         string                                         `json:"expandable_html,omitempty"`
+	HeroProducts           []ModelProducthuntProductCategoryHeroProduct   `json:"hero_products,omitempty"`
+	HeroProductsCount      int                                            `json:"hero_products_count,omitempty"`
+	Id                     string                                         `json:"id,omitempty"`
+	LastUpdatedAt          string                                         `json:"last_updated_at,omitempty"`
+	MetaTitle              string                                         `json:"meta_title,omitempty"`
+	Name                   string                                         `json:"name,omitempty"`
+	Parent                 ModelProducthuntProductCategoryParent          `json:"parent,omitempty"`
+	Path                   string                                         `json:"path,omitempty"`
+	Questions              []ModelProducthuntProductCategoryQuestion      `json:"questions,omitempty"`
+	RawRelevantReviews     []map[string]any                               `json:"raw_relevant_reviews,omitempty"`
+	RecentLaunchesCount    int                                            `json:"recent_launches_count,omitempty"`
+	RecentSummary          ModelProducthuntProductCategoryRecentSummary   `json:"recent_summary,omitempty"`
+	ReviewsCount           int                                            `json:"reviews_count,omitempty"`
+	Slug                   string                                         `json:"slug,omitempty"`
+	SubCategories          []ModelProducthuntProductCategoryRef           `json:"sub_categories,omitempty"`
+	TargetedAd             ModelProducthuntProductCategoryAd              `json:"targeted_ad,omitempty"`
+}
+
+type ModelProducthuntProductCategoryParent struct {
+	Id            string                               `json:"id,omitempty"`
+	Name          string                               `json:"name,omitempty"`
+	Path          string                               `json:"path,omitempty"`
+	SubCategories []ModelProducthuntProductCategoryRef `json:"sub_categories,omitempty"`
+}
+
+type ModelProducthuntProductCategoryProductsPage struct {
+	AiSummary       string                                       `json:"ai_summary,omitempty"`
+	CategoryTags    []ModelProducthuntProductAlternativeTag      `json:"category_tags,omitempty"`
+	Connection      string                                       `json:"connection,omitempty"`
+	Description     string                                       `json:"description,omitempty"`
+	EndCursor       string                                       `json:"end_cursor,omitempty"`
+	FeaturedOnly    bool                                         `json:"featured_only,omitempty"`
+	HasNextPage     bool                                         `json:"has_next_page,omitempty"`
+	HasPreviousPage bool                                         `json:"has_previous_page,omitempty"`
+	Id              string                                       `json:"id,omitempty"`
+	Items           []ModelProducthuntProductCategoryListProduct `json:"items,omitempty"`
+	LastUpdatedAt   string                                       `json:"last_updated_at,omitempty"`
+	Name            string                                       `json:"name,omitempty"`
+	Order           string                                       `json:"order,omitempty"`
+	Page            int                                          `json:"page,omitempty"`
+	PageSize        int                                          `json:"page_size,omitempty"`
+	Path            string                                       `json:"path,omitempty"`
+	Slug            string                                       `json:"slug,omitempty"`
+	Tags            []string                                     `json:"tags,omitempty"`
+	TotalCount      int                                          `json:"total_count,omitempty"`
+}
+
+type ModelProducthuntProductCategoryQuestion struct {
+	Body      ModelProducthuntProductCategoryMarkdown `json:"body,omitempty"`
+	Id        string                                  `json:"id,omitempty"`
+	TopAnswer ModelProducthuntProductCategoryAnswer   `json:"top_answer,omitempty"`
+}
+
+type ModelProducthuntProductCategoryRandomizationStatus struct {
+	Active           bool   `json:"active,omitempty"`
+	NextTransitionAt string `json:"next_transition_at,omitempty"`
+	RandomDay        bool   `json:"random_day,omitempty"`
+}
+
+type ModelProducthuntProductCategoryRecentSummary struct {
+	Products []ModelProducthuntProductCategorySummaryProduct `json:"products,omitempty"`
+	Summary  string                                          `json:"summary,omitempty"`
+}
+
+type ModelProducthuntProductCategoryRef struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Path string `json:"path,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelProducthuntProductCategorySource struct {
+	Badges    []string                            `json:"badges,omitempty"`
+	Id        string                              `json:"id,omitempty"`
+	Path      string                              `json:"path,omitempty"`
+	SubjectId string                              `json:"subject_id,omitempty"`
+	Type      string                              `json:"type,omitempty"`
+	User      ModelProducthuntProductCategoryUser `json:"user,omitempty"`
+	VisibleAt string                              `json:"visible_at,omitempty"`
+}
+
+type ModelProducthuntProductCategorySummaryProduct struct {
+	Badges           []ModelProducthuntProductAlternativeBadge   `json:"badges,omitempty"`
+	Categories       []ModelProducthuntProductCategoryRef        `json:"categories,omitempty"`
+	FollowersCount   int                                         `json:"followers_count,omitempty"`
+	Id               string                                      `json:"id,omitempty"`
+	IsNoLongerOnline bool                                        `json:"is_no_longer_online,omitempty"`
+	IsSubscribed     bool                                        `json:"is_subscribed,omitempty"`
+	IsTopProduct     bool                                        `json:"is_top_product,omitempty"`
+	LatestLaunch     ModelProducthuntProductCategoryLatestLaunch `json:"latest_launch,omitempty"`
+	LogoUuid         string                                      `json:"logo_uuid,omitempty"`
+	Name             string                                      `json:"name,omitempty"`
+	ReviewsCount     int                                         `json:"reviews_count,omitempty"`
+	ReviewsRating    float64                                     `json:"reviews_rating,omitempty"`
+	Slug             string                                      `json:"slug,omitempty"`
+	Tagline          string                                      `json:"tagline,omitempty"`
+	Tags             []string                                    `json:"tags,omitempty"`
+}
+
+type ModelProducthuntProductCategoryTopic struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelProducthuntProductCategoryUser struct {
+	AvatarUrl string `json:"avatar_url,omitempty"`
+	Id        string `json:"id,omitempty"`
+	Name      string `json:"name,omitempty"`
+	Username  string `json:"username,omitempty"`
+}
+
+type ModelProducthuntProductCustomersPage struct {
+	Connection      string                                       `json:"connection,omitempty"`
+	EndCursor       string                                       `json:"end_cursor,omitempty"`
+	HasNextPage     bool                                         `json:"has_next_page,omitempty"`
+	HasPreviousPage bool                                         `json:"has_previous_page,omitempty"`
+	Items           []ModelProducthuntProductCategoryListProduct `json:"items,omitempty"`
+	Name            string                                       `json:"name,omitempty"`
+	Order           string                                       `json:"order,omitempty"`
+	Page            int                                          `json:"page,omitempty"`
+	PageSize        int                                          `json:"page_size,omitempty"`
+	PagesCount      int                                          `json:"pages_count,omitempty"`
+	ProductId       string                                       `json:"product_id,omitempty"`
+	RawPageInfo     map[string]any                               `json:"raw_page_info,omitempty"`
+	Slug            string                                       `json:"slug,omitempty"`
+	TotalCount      int                                          `json:"total_count,omitempty"`
+}
+
+type ModelProducthuntProductDetailedReview struct {
+	AlternativeProducts     []ModelProducthuntProductDetailedReviewProduct        `json:"alternative_products,omitempty"`
+	AlternativesFeedback    string                                                `json:"alternatives_feedback,omitempty"`
+	CanDestroy              bool                                                  `json:"can_destroy,omitempty"`
+	CanModerate             bool                                                  `json:"can_moderate,omitempty"`
+	CanReply                bool                                                  `json:"can_reply,omitempty"`
+	CanUpdate               bool                                                  `json:"can_update,omitempty"`
+	CommentsCount           int                                                   `json:"comments_count,omitempty"`
+	CreatedAt               string                                                `json:"created_at,omitempty"`
+	CustomizationRating     int                                                   `json:"customization_rating,omitempty"`
+	EaseOfUseRating         int                                                   `json:"ease_of_use_rating,omitempty"`
+	FollowProduct           ModelProducthuntProductDetailedReviewFollowProduct    `json:"follow_product,omitempty"`
+	FromPost                ModelProducthuntProductDetailedReviewPost             `json:"from_post,omitempty"`
+	HasVoted                bool                                                  `json:"has_voted,omitempty"`
+	Id                      string                                                `json:"id,omitempty"`
+	ImpressionCount         int                                                   `json:"impression_count,omitempty"`
+	IsHidden                bool                                                  `json:"is_hidden,omitempty"`
+	LlmContentQualityGrade  string                                                `json:"llm_content_quality_grade,omitempty"`
+	LlmContentQualityReason string                                                `json:"llm_content_quality_reason,omitempty"`
+	NegativeFeedback        string                                                `json:"negative_feedback,omitempty"`
+	OverallExperience       string                                                `json:"overall_experience,omitempty"`
+	OverallRating           int                                                   `json:"overall_rating,omitempty"`
+	PositiveFeedback        string                                                `json:"positive_feedback,omitempty"`
+	Product                 ModelProducthuntProductDetailedReviewProduct          `json:"product,omitempty"`
+	QuestionAnswers         []ModelProducthuntProductDetailedReviewQuestionAnswer `json:"question_answers,omitempty"`
+	ReliabilityRating       int                                                   `json:"reliability_rating,omitempty"`
+	ReviewType              string                                                `json:"review_type,omitempty"`
+	SelectedCons            []ModelProducthuntProductDetailedReviewTag            `json:"selected_cons,omitempty"`
+	SelectedPros            []ModelProducthuntProductDetailedReviewTag            `json:"selected_pros,omitempty"`
+	Status                  string                                                `json:"status,omitempty"`
+	ThreadsEndCursor        string                                                `json:"threads_end_cursor,omitempty"`
+	ThreadsHasNextPage      bool                                                  `json:"threads_has_next_page,omitempty"`
+	ThreadsTotalCount       int                                                   `json:"threads_total_count,omitempty"`
+	User                    ModelProducthuntProductDetailedReviewUser             `json:"user,omitempty"`
+	ValueForMoneyRating     int                                                   `json:"value_for_money_rating,omitempty"`
+	VotesCount              int                                                   `json:"votes_count,omitempty"`
+}
+
+type ModelProducthuntProductDetailedReviewFollowProduct struct {
+	Id               string `json:"id,omitempty"`
+	IsNoLongerOnline bool   `json:"is_no_longer_online,omitempty"`
+	IsSubscribed     bool   `json:"is_subscribed,omitempty"`
+	LogoUuid         string `json:"logo_uuid,omitempty"`
+	Name             string `json:"name,omitempty"`
+	Slug             string `json:"slug,omitempty"`
+}
+
+type ModelProducthuntProductDetailedReviewPost struct {
+	Badges              []ModelProducthuntProductCategoryListBadge `json:"badges,omitempty"`
+	Id                  string                                     `json:"id,omitempty"`
+	IsTopLaunch         bool                                       `json:"is_top_launch,omitempty"`
+	LatestScore         int                                        `json:"latest_score,omitempty"`
+	Name                string                                     `json:"name,omitempty"`
+	ProductId           string                                     `json:"product_id,omitempty"`
+	ProductIsTopProduct bool                                       `json:"product_is_top_product,omitempty"`
+	ProductSlug         string                                     `json:"product_slug,omitempty"`
+	ProductState        string                                     `json:"product_state,omitempty"`
+	Slug                string                                     `json:"slug,omitempty"`
+	ThumbnailImageUuid  string                                     `json:"thumbnail_image_uuid,omitempty"`
+}
+
+type ModelProducthuntProductDetailedReviewProduct struct {
+	Id               string `json:"id,omitempty"`
+	IsNoLongerOnline bool   `json:"is_no_longer_online,omitempty"`
+	LogoUuid         string `json:"logo_uuid,omitempty"`
+	Name             string `json:"name,omitempty"`
+	Slug             string `json:"slug,omitempty"`
+}
+
+type ModelProducthuntProductDetailedReviewQuestionAnswer struct {
+	Answer     string `json:"answer,omitempty"`
+	Id         string `json:"id,omitempty"`
+	Question   string `json:"question,omitempty"`
+	QuestionId string `json:"question_id,omitempty"`
+}
+
+type ModelProducthuntProductDetailedReviewTag struct {
+	Count int    `json:"count,omitempty"`
+	Id    string `json:"id,omitempty"`
+	Name  string `json:"name,omitempty"`
+	Type  string `json:"type,omitempty"`
+}
+
+type ModelProducthuntProductDetailedReviewUser struct {
+	AvatarUrl             string                                       `json:"avatar_url,omitempty"`
+	Headline              string                                       `json:"headline,omitempty"`
+	Id                    string                                       `json:"id,omitempty"`
+	IsAccountVerified     bool                                         `json:"is_account_verified,omitempty"`
+	IsAmbassador          bool                                         `json:"is_ambassador,omitempty"`
+	IsFollowed            bool                                         `json:"is_followed,omitempty"`
+	Name                  string                                       `json:"name,omitempty"`
+	ReviewsCount          int                                          `json:"reviews_count,omitempty"`
+	SelectedBylineProduct ModelProducthuntProductDetailedReviewProduct `json:"selected_byline_product,omitempty"`
+	TopHunterBadge        map[string]any                               `json:"top_hunter_badge,omitempty"`
+	TopLaunchBadge        map[string]any                               `json:"top_launch_badge,omitempty"`
+	TopProductBadge       map[string]any                               `json:"top_product_badge,omitempty"`
+	Username              string                                       `json:"username,omitempty"`
+}
+
+type ModelProducthuntProductDetailedReviewsPage struct {
+	Connection                  string                                  `json:"connection,omitempty"`
+	DetailedReview              map[string]any                          `json:"detailed_review,omitempty"`
+	DetailedReviewsCount        int                                     `json:"detailed_reviews_count,omitempty"`
+	EndCursor                   string                                  `json:"end_cursor,omitempty"`
+	FounderDetailedReviewsCount int                                     `json:"founder_detailed_reviews_count,omitempty"`
+	HasNextPage                 bool                                    `json:"has_next_page,omitempty"`
+	IsMaker                     bool                                    `json:"is_maker,omitempty"`
+	IsTrashed                   bool                                    `json:"is_trashed,omitempty"`
+	Items                       []ModelProducthuntProductDetailedReview `json:"items,omitempty"`
+	Name                        string                                  `json:"name,omitempty"`
+	OtherDetailedReviewsCount   int                                     `json:"other_detailed_reviews_count,omitempty"`
+	ProductId                   string                                  `json:"product_id,omitempty"`
+	RawPageInfo                 map[string]any                          `json:"raw_page_info,omitempty"`
+	ReviewsCount                int                                     `json:"reviews_count,omitempty"`
+	ReviewsRating               float64                                 `json:"reviews_rating,omitempty"`
+	ReviewsRecentRating         float64                                 `json:"reviews_recent_rating,omitempty"`
+	Slug                        string                                  `json:"slug,omitempty"`
+	TotalCount                  int                                     `json:"total_count,omitempty"`
+}
+
+type ModelProducthuntProductLaunchesPage struct {
+	Connection  string                             `json:"connection,omitempty"`
+	EndCursor   string                             `json:"end_cursor,omitempty"`
+	HasNextPage bool                               `json:"has_next_page,omitempty"`
+	Items       []ModelProducthuntProductAboutPost `json:"items,omitempty"`
+	Name        string                             `json:"name,omitempty"`
+	Order       string                             `json:"order,omitempty"`
+	ProductId   string                             `json:"product_id,omitempty"`
+	RawPageInfo map[string]any                     `json:"raw_page_info,omitempty"`
+	Slug        string                             `json:"slug,omitempty"`
+	TotalCount  int                                `json:"total_count,omitempty"`
+}
+
+type ModelProducthuntProductMaker struct {
+	AvatarUrl      string                             `json:"avatar_url,omitempty"`
+	FollowersCount int                                `json:"followers_count,omitempty"`
+	Headline       string                             `json:"headline,omitempty"`
+	Id             string                             `json:"id,omitempty"`
+	IsFollowed     bool                               `json:"is_followed,omitempty"`
+	MadePosts      []ModelProducthuntProductMakerPost `json:"made_posts,omitempty"`
+	Name           string                             `json:"name,omitempty"`
+	Username       string                             `json:"username,omitempty"`
+}
+
+type ModelProducthuntProductMakerPost struct {
+	Id                 string `json:"id,omitempty"`
+	Name               string `json:"name,omitempty"`
+	ProductId          string `json:"product_id,omitempty"`
+	ProductSlug        string `json:"product_slug,omitempty"`
+	ProductState       string `json:"product_state,omitempty"`
+	Slug               string `json:"slug,omitempty"`
+	ThumbnailImageUuid string `json:"thumbnail_image_uuid,omitempty"`
+}
+
+type ModelProducthuntProductMakersPage struct {
+	CanClaim                 bool                           `json:"can_claim,omitempty"`
+	Connection               string                         `json:"connection,omitempty"`
+	EndCursor                string                         `json:"end_cursor,omitempty"`
+	HasNextPage              bool                           `json:"has_next_page,omitempty"`
+	IsClaimed                bool                           `json:"is_claimed,omitempty"`
+	IsTrashed                bool                           `json:"is_trashed,omitempty"`
+	Items                    []ModelProducthuntProductMaker `json:"items,omitempty"`
+	Name                     string                         `json:"name,omitempty"`
+	ProductId                string                         `json:"product_id,omitempty"`
+	RawPageInfo              map[string]any                 `json:"raw_page_info,omitempty"`
+	Slug                     string                         `json:"slug,omitempty"`
+	TotalCount               int                            `json:"total_count,omitempty"`
+	ViewerPendingTeamRequest map[string]any                 `json:"viewer_pending_team_request,omitempty"`
+}
+
+type ModelProducthuntSimilarProduct struct {
+	Categories  []string `json:"categories,omitempty"`
+	Id          string   `json:"id,omitempty"`
+	Name        string   `json:"name,omitempty"`
+	Rating      float64  `json:"rating,omitempty"`
+	ReviewCount int      `json:"review_count,omitempty"`
+}
+
+type ModelProducthuntAboutResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelProducthuntProductAboutPage `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelProducthuntAlternativesResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelProducthuntProductAlternativesPage `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
+}
+
+type ModelProducthuntCategoryProductsResponseDoc struct {
+	Code int                                         `json:"code,omitempty"`
+	Data ModelProducthuntProductCategoryProductsPage `json:"data,omitempty"`
+	Msg  string                                      `json:"msg,omitempty"`
+}
+
+type ModelProducthuntCategoryResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelProducthuntProductCategoryPage `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelProducthuntCustomersResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelProducthuntProductCustomersPage `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelProducthuntLaunchesResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelProducthuntProductLaunchesPage `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelProducthuntLeaderboardResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelProducthuntLeaderboardPage `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelProducthuntMakersResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelProducthuntProductMakersPage `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelProducthuntProductResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelProducthuntProduct `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelProducthuntReviewsResponseDoc struct {
+	Code int                                        `json:"code,omitempty"`
+	Data ModelProducthuntProductDetailedReviewsPage `json:"data,omitempty"`
+	Msg  string                                     `json:"msg,omitempty"`
+}
+
+type ModelProducthuntSearchAggregationsDoc struct {
+	Topics []ModelProducthuntSearchTopicDoc `json:"topics,omitempty"`
+}
+
+type ModelProducthuntSearchDataDoc struct {
+	Aggregations ModelProducthuntSearchAggregationsDoc `json:"aggregations,omitempty"`
+	Edges        []ModelProducthuntSearchEdgeDoc       `json:"edges,omitempty"`
+	PageInfo     ModelProducthuntSearchPageInfoDoc     `json:"pageInfo,omitempty"`
+	PagesCount   int                                   `json:"pagesCount,omitempty"`
+}
+
+type ModelProducthuntSearchEdgeDoc struct {
+	Node map[string]any `json:"node,omitempty"`
+}
+
+type ModelProducthuntSearchPageInfoDoc struct {
+	HasNextPage     bool `json:"hasNextPage,omitempty"`
+	HasPreviousPage bool `json:"hasPreviousPage,omitempty"`
+	Page            int  `json:"page,omitempty"`
+}
+
+type ModelProducthuntSearchResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelProducthuntSearchDataDoc `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelProducthuntSearchTopicDoc struct {
+	Count int            `json:"count,omitempty"`
+	Topic map[string]any `json:"topic,omitempty"`
+}
+
+type ModelReferralsAdminReferralAttributionDoc struct {
+	Attribution ModelReferralsAdminReferralAttributionRecordDoc `json:"attribution,omitempty"`
+	Rewards     []ModelReferralsAdminReferralRewardDoc          `json:"rewards,omitempty"`
+}
+
+type ModelReferralsAdminReferralAttributionRecordDoc struct {
+	ClickId            string   `json:"click_id,omitempty"`
+	Code               string   `json:"code,omitempty"`
+	CreatedAt          string   `json:"created_at,omitempty"`
+	Error              string   `json:"error,omitempty"`
+	ExpiresAt          string   `json:"expires_at,omitempty"`
+	FirstPaidInvoiceId string   `json:"first_paid_invoice_id,omitempty"`
+	Id                 string   `json:"id,omitempty"`
+	LandingPath        string   `json:"landing_path,omitempty"`
+	QualifiedAt        string   `json:"qualified_at,omitempty"`
+	ReferredUserId     string   `json:"referred_user_id,omitempty"`
+	ReferrerUserId     string   `json:"referrer_user_id,omitempty"`
+	ReviewReason       string   `json:"review_reason,omitempty"`
+	ReviewedAt         string   `json:"reviewed_at,omitempty"`
+	ReviewedBy         string   `json:"reviewed_by,omitempty"`
+	RewardedAt         string   `json:"rewarded_at,omitempty"`
+	RiskFlags          []string `json:"risk_flags,omitempty"`
+	SkipReason         string   `json:"skip_reason,omitempty"`
+	Status             string   `json:"status,omitempty"`
+	StripeEventId      string   `json:"stripe_event_id,omitempty"`
+	StripeInvoiceId    string   `json:"stripe_invoice_id,omitempty"`
+	UtmCampaign        string   `json:"utm_campaign,omitempty"`
+	UtmMedium          string   `json:"utm_medium,omitempty"`
+	UtmSource          string   `json:"utm_source,omitempty"`
+}
+
+type ModelReferralsAdminReferralDetailResponseDoc struct {
+	Attribution ModelReferralsAdminReferralAttributionRecordDoc `json:"attribution,omitempty"`
+	Rewards     []ModelReferralsAdminReferralRewardDoc          `json:"rewards,omitempty"`
+}
+
+type ModelReferralsAdminReferralRecoveryResponseDoc struct {
+	Attempted int      `json:"attempted,omitempty"`
+	Errors    []string `json:"errors,omitempty"`
+	Recovered int      `json:"recovered,omitempty"`
+}
+
+type ModelReferralsAdminReferralRejectRequestDoc struct {
+	Reason string `json:"reason,omitempty"`
+}
+
+type ModelReferralsAdminReferralReviewResponseDoc struct {
+	Attribution ModelReferralsAdminReferralAttributionRecordDoc `json:"attribution,omitempty"`
+	Rewards     []ModelReferralsAdminReferralRewardDoc          `json:"rewards,omitempty"`
+}
+
+type ModelReferralsAdminReferralRewardDoc struct {
+	AttributionId     string `json:"attribution_id,omitempty"`
+	CreatedAt         string `json:"created_at,omitempty"`
+	Credits           int    `json:"credits,omitempty"`
+	CreditsGrantError string `json:"credits_grant_error,omitempty"`
+	CreditsGrantKey   string `json:"credits_grant_key,omitempty"`
+	CreditsGrantedAt  string `json:"credits_granted_at,omitempty"`
+	Id                string `json:"id,omitempty"`
+	Role              string `json:"role,omitempty"`
+	StripeInvoiceId   string `json:"stripe_invoice_id,omitempty"`
+	UserId            string `json:"user_id,omitempty"`
+}
+
+type ModelReferralsAdminReferralStatsResponseDoc struct {
+	AttributedSignups  int     `json:"attributed_signups,omitempty"`
+	CappedReferrals    int     `json:"capped_referrals,omitempty"`
+	Clicks             int     `json:"clicks,omitempty"`
+	QualificationRate  float64 `json:"qualification_rate,omitempty"`
+	QualifiedReferrals int     `json:"qualified_referrals,omitempty"`
+	RejectedReferrals  int     `json:"rejected_referrals,omitempty"`
+	ReviewRequired     int     `json:"review_required,omitempty"`
+	RewardRate         float64 `json:"reward_rate,omitempty"`
+	RewardedReferrals  int     `json:"rewarded_referrals,omitempty"`
+	SignupRate         float64 `json:"signup_rate,omitempty"`
+}
+
+type ModelReferralsAdminReferralsListResponseDoc struct {
+	Items []ModelReferralsAdminReferralAttributionDoc `json:"items,omitempty"`
+}
+
+type ModelReferralsReferralAttributionDoc struct {
+	Campaign      string `json:"campaign,omitempty"`
+	Code          string `json:"code,omitempty"`
+	CreatedAt     string `json:"created_at,omitempty"`
+	ExpiresAt     string `json:"expires_at,omitempty"`
+	Id            string `json:"id,omitempty"`
+	QualifiedAt   string `json:"qualified_at,omitempty"`
+	RewardCredits int    `json:"reward_credits,omitempty"`
+	RewardedAt    string `json:"rewarded_at,omitempty"`
+	Role          string `json:"role,omitempty"`
+	Status        string `json:"status,omitempty"`
+}
+
+type ModelReferralsReferralClickRequestDoc struct {
+	ClickId     string `json:"click_id,omitempty"`
+	Code        string `json:"code,omitempty"`
+	LandingPath string `json:"landing_path,omitempty"`
+	UtmCampaign string `json:"utm_campaign,omitempty"`
+	UtmMedium   string `json:"utm_medium,omitempty"`
+	UtmSource   string `json:"utm_source,omitempty"`
+}
+
+type ModelReferralsReferralClickResponseDoc struct {
+	ClickId string `json:"click_id,omitempty"`
+	Code    string `json:"code,omitempty"`
+}
+
+type ModelReferralsReferralsEventsResponseDoc struct {
+	Items []ModelReferralsReferralAttributionDoc `json:"items,omitempty"`
+}
+
+type ModelReferralsReferralsMeResponseDoc struct {
+	AttributionWindowDays    int                                    `json:"attribution_window_days,omitempty"`
+	Code                     string                                 `json:"code,omitempty"`
+	Items                    []ModelReferralsReferralAttributionDoc `json:"items,omitempty"`
+	MonthlyReferrerRewardCap int                                    `json:"monthly_referrer_reward_cap,omitempty"`
+	ReferredRewardCredits    int                                    `json:"referred_reward_credits,omitempty"`
+	RewardCredits            int                                    `json:"reward_credits,omitempty"`
+	SharePath                string                                 `json:"share_path,omitempty"`
+	Stats                    ModelReferralsReferralsStatsDoc        `json:"stats,omitempty"`
+}
+
+type ModelReferralsReferralsStatsDoc struct {
+	Attributed     int `json:"attributed,omitempty"`
+	Capped         int `json:"capped,omitempty"`
+	Expired        int `json:"expired,omitempty"`
+	Qualified      int `json:"qualified,omitempty"`
+	Rejected       int `json:"rejected,omitempty"`
+	ReviewRequired int `json:"review_required,omitempty"`
+	Rewarded       int `json:"rewarded,omitempty"`
+}
+
+type ModelSimilarwebSearchResp struct {
+	Apps      map[string]any   `json:"apps,omitempty"`
+	Companies []map[string]any `json:"companies,omitempty"`
+	Websites  []map[string]any `json:"websites,omitempty"`
+}
+
+type ModelSimilarwebSimilarWebResp struct {
+	Category               string           `json:"Category,omitempty"`
+	CategoryRank           map[string]any   `json:"CategoryRank,omitempty"`
+	Competitors            map[string]any   `json:"Competitors,omitempty"`
+	Countries              []map[string]any `json:"Countries,omitempty"`
+	CountryRank            map[string]any   `json:"CountryRank,omitempty"`
+	Description            string           `json:"Description,omitempty"`
+	Engagments             map[string]any   `json:"Engagments,omitempty"`
+	EstimatedMonthlyVisits map[string]any   `json:"EstimatedMonthlyVisits,omitempty"`
+	GlobalCategoryRank     any              `json:"GlobalCategoryRank,omitempty"`
+	GlobalRank             map[string]any   `json:"GlobalRank,omitempty"`
+	IsDataFromGa           bool             `json:"IsDataFromGa,omitempty"`
+	IsSmall                bool             `json:"IsSmall,omitempty"`
+	LargeScreenshot        string           `json:"LargeScreenshot,omitempty"`
+	Notification           map[string]any   `json:"Notification,omitempty"`
+	Policy                 int              `json:"Policy,omitempty"`
+	SiteName               string           `json:"SiteName,omitempty"`
+	SnapshotDate           string           `json:"SnapshotDate,omitempty"`
+	Title                  string           `json:"Title,omitempty"`
+	TopCountryShares       []map[string]any `json:"TopCountryShares,omitempty"`
+	TopKeywords            []map[string]any `json:"TopKeywords,omitempty"`
+	TrafficSources         map[string]any   `json:"TrafficSources,omitempty"`
+	Version                int              `json:"Version,omitempty"`
+}
+
+type ModelSimilarwebSearchResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelSimilarwebSearchResp `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelSimilarwebWebResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelSimilarwebSimilarWebResp `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelSpotifyAlbumMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+	TrackCount    int    `json:"trackCount,omitempty"`
+}
+
+type ModelSpotifyAlbumResponse struct {
+	AlbumType   string                            `json:"albumType,omitempty"`
+	Artists     []ModelSpotifySearchResultSummary `json:"artists,omitempty"`
+	Copyrights  []string                          `json:"copyrights,omitempty"`
+	DurationMs  int                               `json:"durationMs,omitempty"`
+	ExternalUrl string                            `json:"externalUrl,omitempty"`
+	Id          string                            `json:"id,omitempty"`
+	ImageUrl    string                            `json:"imageUrl,omitempty"`
+	Images      []ModelSpotifyImageAsset          `json:"images,omitempty"`
+	IsExplicit  bool                              `json:"isExplicit,omitempty"`
+	IsPlayable  bool                              `json:"isPlayable,omitempty"`
+	Limit       int                               `json:"limit,omitempty"`
+	Meta        ModelSpotifyAlbumMeta             `json:"meta,omitempty"`
+	Name        string                            `json:"name,omitempty"`
+	Offset      int                               `json:"offset,omitempty"`
+	ReleaseDate string                            `json:"releaseDate,omitempty"`
+	ShareUrl    string                            `json:"shareUrl,omitempty"`
+	TotalTracks int                               `json:"totalTracks,omitempty"`
+	Tracks      []ModelSpotifySearchResultSummary `json:"tracks,omitempty"`
+	Type        string                            `json:"type,omitempty"`
+	Uri         string                            `json:"uri,omitempty"`
+}
+
+type ModelSpotifyArtistAlbumsMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	Count         int    `json:"count,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+}
+
+type ModelSpotifyArtistAlbumsResponse struct {
+	Id     string                            `json:"id,omitempty"`
+	Items  []ModelSpotifySearchResultSummary `json:"items,omitempty"`
+	Limit  int                               `json:"limit,omitempty"`
+	Meta   ModelSpotifyArtistAlbumsMeta      `json:"meta,omitempty"`
+	Offset int                               `json:"offset,omitempty"`
+	Order  string                            `json:"order,omitempty"`
+	Total  int                               `json:"total,omitempty"`
+	Type   string                            `json:"type,omitempty"`
+	Uri    string                            `json:"uri,omitempty"`
+}
+
+type ModelSpotifyArtistCollectionMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	Count         int    `json:"count,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+}
+
+type ModelSpotifyArtistCollectionResponse struct {
+	Id    string                            `json:"id,omitempty"`
+	Items []ModelSpotifySearchResultSummary `json:"items,omitempty"`
+	Meta  ModelSpotifyArtistCollectionMeta  `json:"meta,omitempty"`
+	Uri   string                            `json:"uri,omitempty"`
+}
+
+type ModelSpotifyArtistMeta struct {
+	AppVersion       string `json:"appVersion,omitempty"`
+	DiscographyCount int    `json:"discographyCount,omitempty"`
+	FetchedAt        string `json:"fetchedAt,omitempty"`
+	OperationName    string `json:"operationName,omitempty"`
+	PlaylistCount    int    `json:"playlistCount,omitempty"`
+	RelatedCount     int    `json:"relatedCount,omitempty"`
+	TopTrackCount    int    `json:"topTrackCount,omitempty"`
+}
+
+type ModelSpotifyArtistResponse struct {
+	Biography    string                            `json:"biography,omitempty"`
+	Discography  []ModelSpotifySearchResultSummary `json:"discography,omitempty"`
+	ExternalUrl  string                            `json:"externalUrl,omitempty"`
+	Followers    int                               `json:"followers,omitempty"`
+	Id           string                            `json:"id,omitempty"`
+	ImageUrl     string                            `json:"imageUrl,omitempty"`
+	Images       []ModelSpotifyImageAsset          `json:"images,omitempty"`
+	Meta         ModelSpotifyArtistMeta            `json:"meta,omitempty"`
+	MonthlyUsers int                               `json:"monthlyUsers,omitempty"`
+	Name         string                            `json:"name,omitempty"`
+	Playlists    []ModelSpotifySearchResultSummary `json:"playlists,omitempty"`
+	Related      []ModelSpotifySearchResultSummary `json:"related,omitempty"`
+	ShareUrl     string                            `json:"shareUrl,omitempty"`
+	TopTracks    []ModelSpotifySearchResultSummary `json:"topTracks,omitempty"`
+	Type         string                            `json:"type,omitempty"`
+	Uri          string                            `json:"uri,omitempty"`
+	Verified     bool                              `json:"verified,omitempty"`
+}
+
+type ModelSpotifyAudiobookChaptersMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	Count         int    `json:"count,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+}
+
+type ModelSpotifyAudiobookChaptersResponse struct {
+	Chapters []ModelSpotifyPodcastEpisodeSummary `json:"chapters,omitempty"`
+	Id       string                              `json:"id,omitempty"`
+	Limit    int                                 `json:"limit,omitempty"`
+	Meta     ModelSpotifyAudiobookChaptersMeta   `json:"meta,omitempty"`
+	Offset   int                                 `json:"offset,omitempty"`
+	Total    int                                 `json:"total,omitempty"`
+	Uri      string                              `json:"uri,omitempty"`
+}
+
+type ModelSpotifyAudiobookMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+}
+
+type ModelSpotifyAudiobookResponse struct {
+	Authors       []string                  `json:"authors,omitempty"`
+	Description   string                    `json:"description,omitempty"`
+	ExternalUrl   string                    `json:"externalUrl,omitempty"`
+	Id            string                    `json:"id,omitempty"`
+	ImageUrl      string                    `json:"imageUrl,omitempty"`
+	Images        []ModelSpotifyImageAsset  `json:"images,omitempty"`
+	IsExplicit    bool                      `json:"isExplicit,omitempty"`
+	MediaType     string                    `json:"mediaType,omitempty"`
+	Meta          ModelSpotifyAudiobookMeta `json:"meta,omitempty"`
+	Name          string                    `json:"name,omitempty"`
+	Narrators     []string                  `json:"narrators,omitempty"`
+	Publisher     string                    `json:"publisher,omitempty"`
+	TotalChapters int                       `json:"totalChapters,omitempty"`
+	Type          string                    `json:"type,omitempty"`
+	Uri           string                    `json:"uri,omitempty"`
+}
+
+type ModelSpotifyBrowsePageItem struct {
+	Description string                   `json:"description,omitempty"`
+	ExternalUrl string                   `json:"externalUrl,omitempty"`
+	ImageUrl    string                   `json:"imageUrl,omitempty"`
+	Images      []ModelSpotifyImageAsset `json:"images,omitempty"`
+	Publisher   string                   `json:"publisher,omitempty"`
+	Subtitle    string                   `json:"subtitle,omitempty"`
+	Title       string                   `json:"title,omitempty"`
+	Type        string                   `json:"type,omitempty"`
+	Uri         string                   `json:"uri,omitempty"`
+}
+
+type ModelSpotifyBrowsePageMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+	SectionCount  int    `json:"sectionCount,omitempty"`
+}
+
+type ModelSpotifyBrowsePageResponse struct {
+	Meta     ModelSpotifyBrowsePageMeta      `json:"meta,omitempty"`
+	Sections []ModelSpotifyBrowsePageSection `json:"sections,omitempty"`
+	Subtitle string                          `json:"subtitle,omitempty"`
+	Title    string                          `json:"title,omitempty"`
+	Type     string                          `json:"type,omitempty"`
+	Uri      string                          `json:"uri,omitempty"`
+}
+
+type ModelSpotifyBrowsePageSection struct {
+	Items      []ModelSpotifyBrowsePageItem `json:"items,omitempty"`
+	Subtitle   string                       `json:"subtitle,omitempty"`
+	Title      string                       `json:"title,omitempty"`
+	TotalCount int                          `json:"totalCount,omitempty"`
+	Type       string                       `json:"type,omitempty"`
+	Uri        string                       `json:"uri,omitempty"`
+}
+
+type ModelSpotifyBrowseSectionMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	Count         int    `json:"count,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+}
+
+type ModelSpotifyBrowseSectionResponse struct {
+	Items      []ModelSpotifyBrowsePageItem  `json:"items,omitempty"`
+	Limit      int                           `json:"limit,omitempty"`
+	Meta       ModelSpotifyBrowseSectionMeta `json:"meta,omitempty"`
+	Offset     int                           `json:"offset,omitempty"`
+	Subtitle   string                        `json:"subtitle,omitempty"`
+	Title      string                        `json:"title,omitempty"`
+	TotalCount int                           `json:"totalCount,omitempty"`
+	Type       string                        `json:"type,omitempty"`
+	Uri        string                        `json:"uri,omitempty"`
+}
+
+type ModelSpotifyChartItem struct {
+	Description        string `json:"description,omitempty"`
+	EpisodeDescription string `json:"episodeDescription,omitempty"`
+	EpisodeExternalUrl string `json:"episodeExternalUrl,omitempty"`
+	EpisodeImageUrl    string `json:"episodeImageUrl,omitempty"`
+	EpisodeName        string `json:"episodeName,omitempty"`
+	EpisodeUri         string `json:"episodeUri,omitempty"`
+	ExternalUrl        string `json:"externalUrl,omitempty"`
+	ImageUrl           string `json:"imageUrl,omitempty"`
+	Name               string `json:"name,omitempty"`
+	Publisher          string `json:"publisher,omitempty"`
+	Rank               int    `json:"rank,omitempty"`
+	RankMove           string `json:"rankMove,omitempty"`
+	ShowDescription    string `json:"showDescription,omitempty"`
+	ShowExternalUrl    string `json:"showExternalUrl,omitempty"`
+	ShowImageUrl       string `json:"showImageUrl,omitempty"`
+	ShowName           string `json:"showName,omitempty"`
+	ShowPublisher      string `json:"showPublisher,omitempty"`
+	ShowUri            string `json:"showUri,omitempty"`
+	Uri                string `json:"uri,omitempty"`
+}
+
+type ModelSpotifyChartMeta struct {
+	Count     int    `json:"count,omitempty"`
+	FetchedAt string `json:"fetchedAt,omitempty"`
+	SourceUrl string `json:"sourceUrl,omitempty"`
+}
+
+type ModelSpotifyChartResponse struct {
+	Chart      string                  `json:"chart,omitempty"`
+	ChartName  string                  `json:"chartName,omitempty"`
+	ChartType  string                  `json:"chartType,omitempty"`
+	Items      []ModelSpotifyChartItem `json:"items,omitempty"`
+	Limit      int                     `json:"limit,omitempty"`
+	Meta       ModelSpotifyChartMeta   `json:"meta,omitempty"`
+	Region     string                  `json:"region,omitempty"`
+	RegionName string                  `json:"regionName,omitempty"`
+}
+
+type ModelSpotifyCountryHubContentId struct {
+	Id    string `json:"id,omitempty"`
+	Title string `json:"title,omitempty"`
+}
+
+type ModelSpotifyCountryHubContentMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	ItemCount     int    `json:"itemCount,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+}
+
+type ModelSpotifyCountryHubContentResponse struct {
+	ContentId           string                            `json:"contentId,omitempty"`
+	CountryCode         string                            `json:"countryCode,omitempty"`
+	CountryName         string                            `json:"countryName,omitempty"`
+	HexColor            string                            `json:"hexColor,omitempty"`
+	Items               []ModelSpotifyCountryHubItem      `json:"items,omitempty"`
+	Meta                ModelSpotifyCountryHubContentMeta `json:"meta,omitempty"`
+	SupportedContentIds []ModelSpotifyCountryHubContentId `json:"supportedContentIds,omitempty"`
+	SupportedCountries  []ModelSpotifyPopularCountry      `json:"supportedCountries,omitempty"`
+	Title               string                            `json:"title,omitempty"`
+}
+
+type ModelSpotifyCountryHubItem struct {
+	Album       ModelSpotifySearchResultSummary   `json:"album,omitempty"`
+	Artists     []ModelSpotifySearchResultSummary `json:"artists,omitempty"`
+	Attributes  map[string]string                 `json:"attributes,omitempty"`
+	Description string                            `json:"description,omitempty"`
+	ExternalUrl string                            `json:"externalUrl,omitempty"`
+	ImageUrl    string                            `json:"imageUrl,omitempty"`
+	Images      []ModelSpotifyImageAsset          `json:"images,omitempty"`
+	Owner       ModelSpotifySearchResultSummary   `json:"owner,omitempty"`
+	Subtitle    string                            `json:"subtitle,omitempty"`
+	Title       string                            `json:"title,omitempty"`
+	Type        string                            `json:"type,omitempty"`
+	Uri         string                            `json:"uri,omitempty"`
+}
+
+type ModelSpotifyCountryHubMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	ItemCount     int    `json:"itemCount,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+	SectionCount  int    `json:"sectionCount,omitempty"`
+}
+
+type ModelSpotifyCountryHubResponse struct {
+	CountryCode        string                          `json:"countryCode,omitempty"`
+	CountryName        string                          `json:"countryName,omitempty"`
+	HexColor           string                          `json:"hexColor,omitempty"`
+	Meta               ModelSpotifyCountryHubMeta      `json:"meta,omitempty"`
+	Sections           []ModelSpotifyCountryHubSection `json:"sections,omitempty"`
+	SupportedCountries []ModelSpotifyPopularCountry    `json:"supportedCountries,omitempty"`
+}
+
+type ModelSpotifyCountryHubSection struct {
+	ContentId  string                       `json:"contentId,omitempty"`
+	Items      []ModelSpotifyCountryHubItem `json:"items,omitempty"`
+	Title      string                       `json:"title,omitempty"`
+	TotalCount int                          `json:"totalCount,omitempty"`
+}
+
+type ModelSpotifyHomeMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+	SectionCount  int    `json:"sectionCount,omitempty"`
+}
+
+type ModelSpotifyHomeResponse struct {
+	Facet    string                          `json:"facet,omitempty"`
+	Greeting string                          `json:"greeting,omitempty"`
+	Meta     ModelSpotifyHomeMeta            `json:"meta,omitempty"`
+	Sections []ModelSpotifyBrowsePageSection `json:"sections,omitempty"`
+	TimeZone string                          `json:"timeZone,omitempty"`
+}
+
+type ModelSpotifyImageAsset struct {
+	Height int    `json:"height,omitempty"`
+	Url    string `json:"url,omitempty"`
+	Width  int    `json:"width,omitempty"`
+}
+
+type ModelSpotifyPlaylistMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	EpisodeCount  int    `json:"episodeCount,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	ItemCount     int    `json:"itemCount,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+	TrackCount    int    `json:"trackCount,omitempty"`
+}
+
+type ModelSpotifyPlaylistResponse struct {
+	Collaborative bool                              `json:"collaborative,omitempty"`
+	Description   string                            `json:"description,omitempty"`
+	Episodes      []ModelSpotifySearchResultSummary `json:"episodes,omitempty"`
+	ExternalUrl   string                            `json:"externalUrl,omitempty"`
+	Followers     int                               `json:"followers,omitempty"`
+	Id            string                            `json:"id,omitempty"`
+	ImageUrl      string                            `json:"imageUrl,omitempty"`
+	Images        []ModelSpotifyImageAsset          `json:"images,omitempty"`
+	Items         []ModelSpotifySearchResultSummary `json:"items,omitempty"`
+	Limit         int                               `json:"limit,omitempty"`
+	Meta          ModelSpotifyPlaylistMeta          `json:"meta,omitempty"`
+	Name          string                            `json:"name,omitempty"`
+	Offset        int                               `json:"offset,omitempty"`
+	Owner         ModelSpotifySearchResultSummary   `json:"owner,omitempty"`
+	ShareUrl      string                            `json:"shareUrl,omitempty"`
+	Total         int                               `json:"total,omitempty"`
+	Tracks        []ModelSpotifySearchResultSummary `json:"tracks,omitempty"`
+	Type          string                            `json:"type,omitempty"`
+	Uri           string                            `json:"uri,omitempty"`
+}
+
+type ModelSpotifyPodcastEpisodeMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+	SourceUrl     string `json:"sourceUrl,omitempty"`
+}
+
+type ModelSpotifyPodcastEpisodeResponse struct {
+	Description          string                                `json:"description,omitempty"`
+	DurationMs           int                                   `json:"durationMs,omitempty"`
+	ExternalUrl          string                                `json:"externalUrl,omitempty"`
+	HtmlDescription      string                                `json:"htmlDescription,omitempty"`
+	Id                   string                                `json:"id,omitempty"`
+	ImageUrl             string                                `json:"imageUrl,omitempty"`
+	Images               []ModelSpotifyImageAsset              `json:"images,omitempty"`
+	IsExplicit           bool                                  `json:"isExplicit,omitempty"`
+	IsPaywallContent     bool                                  `json:"isPaywallContent,omitempty"`
+	IsPlayable           bool                                  `json:"isPlayable,omitempty"`
+	MediaTypes           []string                              `json:"mediaTypes,omitempty"`
+	Meta                 ModelSpotifyPodcastEpisodeMeta        `json:"meta,omitempty"`
+	Name                 string                                `json:"name,omitempty"`
+	PlayabilityReason    string                                `json:"playabilityReason,omitempty"`
+	PreviewAudioUrl      string                                `json:"previewAudioUrl,omitempty"`
+	PreviewAudioUrls     []string                              `json:"previewAudioUrls,omitempty"`
+	PreviewVideoUrl      string                                `json:"previewVideoUrl,omitempty"`
+	ReleaseDate          string                                `json:"releaseDate,omitempty"`
+	ReleaseDatePrecision string                                `json:"releaseDatePrecision,omitempty"`
+	ShareUrl             string                                `json:"shareUrl,omitempty"`
+	Show                 ModelSpotifyPodcastEpisodeShowSummary `json:"show,omitempty"`
+	TranscriptCount      int                                   `json:"transcriptCount,omitempty"`
+	Type                 string                                `json:"type,omitempty"`
+	UnplayabilityReasons []string                              `json:"unplayabilityReasons,omitempty"`
+	Uri                  string                                `json:"uri,omitempty"`
+	VideoThumbnailUrl    string                                `json:"videoThumbnailUrl,omitempty"`
+	VideoThumbnails      []ModelSpotifyImageAsset              `json:"videoThumbnails,omitempty"`
+}
+
+type ModelSpotifyPodcastEpisodeShowSummary struct {
+	Description string                   `json:"description,omitempty"`
+	ExternalUrl string                   `json:"externalUrl,omitempty"`
+	Id          string                   `json:"id,omitempty"`
+	ImageUrl    string                   `json:"imageUrl,omitempty"`
+	Images      []ModelSpotifyImageAsset `json:"images,omitempty"`
+	MediaType   string                   `json:"mediaType,omitempty"`
+	Name        string                   `json:"name,omitempty"`
+	Publisher   string                   `json:"publisher,omitempty"`
+	ShowTypes   []string                 `json:"showTypes,omitempty"`
+	Type        string                   `json:"type,omitempty"`
+	Uri         string                   `json:"uri,omitempty"`
+}
+
+type ModelSpotifyPodcastEpisodeSummary struct {
+	Description string                   `json:"description,omitempty"`
+	DurationMs  int                      `json:"durationMs,omitempty"`
+	ExternalUrl string                   `json:"externalUrl,omitempty"`
+	ImageUrl    string                   `json:"imageUrl,omitempty"`
+	Images      []ModelSpotifyImageAsset `json:"images,omitempty"`
+	IsExplicit  bool                     `json:"isExplicit,omitempty"`
+	IsPlayable  bool                     `json:"isPlayable,omitempty"`
+	Name        string                   `json:"name,omitempty"`
+	ReleaseDate string                   `json:"releaseDate,omitempty"`
+	Type        string                   `json:"type,omitempty"`
+	Uri         string                   `json:"uri,omitempty"`
+}
+
+type ModelSpotifyPodcastEpisodesMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+}
+
+type ModelSpotifyPodcastEpisodesResponse struct {
+	Episodes []ModelSpotifyPodcastEpisodeSummary `json:"episodes,omitempty"`
+	Limit    int                                 `json:"limit,omitempty"`
+	Meta     ModelSpotifyPodcastEpisodesMeta     `json:"meta,omitempty"`
+	Offset   int                                 `json:"offset,omitempty"`
+	Total    int                                 `json:"total,omitempty"`
+	Uri      string                              `json:"uri,omitempty"`
+}
+
+type ModelSpotifyPopularCountry struct {
+	Code string `json:"code,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelSpotifyRecommendationSummary struct {
+	Description string                   `json:"description,omitempty"`
+	ExternalUrl string                   `json:"externalUrl,omitempty"`
+	ImageUrl    string                   `json:"imageUrl,omitempty"`
+	Images      []ModelSpotifyImageAsset `json:"images,omitempty"`
+	Publisher   string                   `json:"publisher,omitempty"`
+	Subtitle    string                   `json:"subtitle,omitempty"`
+	Title       string                   `json:"title,omitempty"`
+	Type        string                   `json:"type,omitempty"`
+	Uri         string                   `json:"uri,omitempty"`
+}
+
+type ModelSpotifySearchMeta struct {
+	AlbumCount     int    `json:"albumCount,omitempty"`
+	AppVersion     string `json:"appVersion,omitempty"`
+	ArtistCount    int    `json:"artistCount,omitempty"`
+	AudiobookCount int    `json:"audiobookCount,omitempty"`
+	EpisodeCount   int    `json:"episodeCount,omitempty"`
+	FetchedAt      string `json:"fetchedAt,omitempty"`
+	OperationName  string `json:"operationName,omitempty"`
+	PlaylistCount  int    `json:"playlistCount,omitempty"`
+	ResultCount    int    `json:"resultCount,omitempty"`
+	ShowCount      int    `json:"showCount,omitempty"`
+	TopCount       int    `json:"topCount,omitempty"`
+	TrackCount     int    `json:"trackCount,omitempty"`
+	UserCount      int    `json:"userCount,omitempty"`
+}
+
+type ModelSpotifySearchPodcastsMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	EpisodeCount  int    `json:"episodeCount,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+	ShowCount     int    `json:"showCount,omitempty"`
+	TopCount      int    `json:"topCount,omitempty"`
+}
+
+type ModelSpotifySearchPodcastsResponse struct {
+	Episodes   []ModelSpotifyPodcastEpisodeSummary `json:"episodes,omitempty"`
+	Limit      int                                 `json:"limit,omitempty"`
+	Meta       ModelSpotifySearchPodcastsMeta      `json:"meta,omitempty"`
+	Offset     int                                 `json:"offset,omitempty"`
+	SearchTerm string                              `json:"searchTerm,omitempty"`
+	Shows      []ModelSpotifyRecommendationSummary `json:"shows,omitempty"`
+	TopResults []ModelSpotifySearchResultSummary   `json:"topResults,omitempty"`
+}
+
+type ModelSpotifySearchResponse struct {
+	Albums     []ModelSpotifySearchResultSummary `json:"albums,omitempty"`
+	Artists    []ModelSpotifySearchResultSummary `json:"artists,omitempty"`
+	Audiobooks []ModelSpotifySearchResultSummary `json:"audiobooks,omitempty"`
+	Episodes   []ModelSpotifySearchResultSummary `json:"episodes,omitempty"`
+	Limit      int                               `json:"limit,omitempty"`
+	Meta       ModelSpotifySearchMeta            `json:"meta,omitempty"`
+	Offset     int                               `json:"offset,omitempty"`
+	Playlists  []ModelSpotifySearchResultSummary `json:"playlists,omitempty"`
+	Results    []ModelSpotifySearchResultSummary `json:"results,omitempty"`
+	SearchTerm string                            `json:"searchTerm,omitempty"`
+	Shows      []ModelSpotifySearchResultSummary `json:"shows,omitempty"`
+	TopResults []ModelSpotifySearchResultSummary `json:"topResults,omitempty"`
+	Tracks     []ModelSpotifySearchResultSummary `json:"tracks,omitempty"`
+	Users      []ModelSpotifySearchResultSummary `json:"users,omitempty"`
+}
+
+type ModelSpotifySearchResultSummary struct {
+	Description string                   `json:"description,omitempty"`
+	ExternalUrl string                   `json:"externalUrl,omitempty"`
+	ImageUrl    string                   `json:"imageUrl,omitempty"`
+	Images      []ModelSpotifyImageAsset `json:"images,omitempty"`
+	Publisher   string                   `json:"publisher,omitempty"`
+	Subtitle    string                   `json:"subtitle,omitempty"`
+	Title       string                   `json:"title,omitempty"`
+	Type        string                   `json:"type,omitempty"`
+	Uri         string                   `json:"uri,omitempty"`
+}
+
+type ModelSpotifyShowMetadataMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+}
+
+type ModelSpotifyShowMetadataResponse struct {
+	Description   string                       `json:"description,omitempty"`
+	ExternalUrl   string                       `json:"externalUrl,omitempty"`
+	ImageUrl      string                       `json:"imageUrl,omitempty"`
+	Images        []ModelSpotifyImageAsset     `json:"images,omitempty"`
+	IsExplicit    bool                         `json:"isExplicit,omitempty"`
+	MediaType     string                       `json:"mediaType,omitempty"`
+	Meta          ModelSpotifyShowMetadataMeta `json:"meta,omitempty"`
+	Name          string                       `json:"name,omitempty"`
+	Publisher     string                       `json:"publisher,omitempty"`
+	TotalEpisodes int                          `json:"totalEpisodes,omitempty"`
+	Type          string                       `json:"type,omitempty"`
+	Uri           string                       `json:"uri,omitempty"`
+}
+
+type ModelSpotifyShowRecommendationsMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	Count         int    `json:"count,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+}
+
+type ModelSpotifyShowRecommendationsResponse struct {
+	Meta            ModelSpotifyShowRecommendationsMeta `json:"meta,omitempty"`
+	Recommendations []ModelSpotifyRecommendationSummary `json:"recommendations,omitempty"`
+	Uri             string                              `json:"uri,omitempty"`
+}
+
+type ModelSpotifyTrackMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+}
+
+type ModelSpotifyTrackRecommendedMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	Count         int    `json:"count,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+}
+
+type ModelSpotifyTrackRecommendedResponse struct {
+	Limit           int                                 `json:"limit,omitempty"`
+	Meta            ModelSpotifyTrackRecommendedMeta    `json:"meta,omitempty"`
+	Recommendations []ModelSpotifyRecommendationSummary `json:"recommendations,omitempty"`
+	Uri             string                              `json:"uri,omitempty"`
+}
+
+type ModelSpotifyTrackResponse struct {
+	Album                ModelSpotifySearchResultSummary   `json:"album,omitempty"`
+	Artists              []ModelSpotifySearchResultSummary `json:"artists,omitempty"`
+	DiscNumber           int                               `json:"discNumber,omitempty"`
+	DurationMs           int                               `json:"durationMs,omitempty"`
+	ExternalUrl          string                            `json:"externalUrl,omitempty"`
+	Id                   string                            `json:"id,omitempty"`
+	ImageUrl             string                            `json:"imageUrl,omitempty"`
+	Images               []ModelSpotifyImageAsset          `json:"images,omitempty"`
+	IsExplicit           bool                              `json:"isExplicit,omitempty"`
+	IsPlayable           bool                              `json:"isPlayable,omitempty"`
+	Meta                 ModelSpotifyTrackMeta             `json:"meta,omitempty"`
+	Name                 string                            `json:"name,omitempty"`
+	PlayabilityReason    string                            `json:"playabilityReason,omitempty"`
+	Playcount            string                            `json:"playcount,omitempty"`
+	PreviewAudioUrl      string                            `json:"previewAudioUrl,omitempty"`
+	PreviewAudioUrls     []string                          `json:"previewAudioUrls,omitempty"`
+	ShareUrl             string                            `json:"shareUrl,omitempty"`
+	TrackNumber          int                               `json:"trackNumber,omitempty"`
+	Type                 string                            `json:"type,omitempty"`
+	UnplayabilityReasons []string                          `json:"unplayabilityReasons,omitempty"`
+	Uri                  string                            `json:"uri,omitempty"`
+}
+
+type ModelSpotifyTrackSimilarAlbumsMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	Count         int    `json:"count,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+}
+
+type ModelSpotifyTrackSimilarAlbumsResponse struct {
+	Albums     []ModelSpotifySearchResultSummary  `json:"albums,omitempty"`
+	AlbumsOnly bool                               `json:"albumsOnly,omitempty"`
+	Limit      int                                `json:"limit,omitempty"`
+	Meta       ModelSpotifyTrackSimilarAlbumsMeta `json:"meta,omitempty"`
+	Uri        string                             `json:"uri,omitempty"`
+}
+
+type ModelSpotifyUserProfileFollowersResponse struct {
+	Limit    int                              `json:"limit,omitempty"`
+	Meta     ModelSpotifyUserProfileMeta      `json:"meta,omitempty"`
+	Offset   int                              `json:"offset,omitempty"`
+	Profiles []ModelSpotifyUserProfileSummary `json:"profiles,omitempty"`
+	Total    int                              `json:"total,omitempty"`
+	Uri      string                           `json:"uri,omitempty"`
+	Username string                           `json:"username,omitempty"`
+}
+
+type ModelSpotifyUserProfileMeta struct {
+	AppVersion    string `json:"appVersion,omitempty"`
+	ArtistCount   int    `json:"artistCount,omitempty"`
+	FetchedAt     string `json:"fetchedAt,omitempty"`
+	OperationName string `json:"operationName,omitempty"`
+	PlaylistCount int    `json:"playlistCount,omitempty"`
+	ProfileCount  int    `json:"profileCount,omitempty"`
+}
+
+type ModelSpotifyUserProfilePlaylist struct {
+	ExternalUrl    string `json:"externalUrl,omitempty"`
+	FollowersCount int    `json:"followersCount,omitempty"`
+	Id             string `json:"id,omitempty"`
+	ImageUrl       string `json:"imageUrl,omitempty"`
+	IsFollowing    bool   `json:"isFollowing,omitempty"`
+	Name           string `json:"name,omitempty"`
+	OwnerName      string `json:"ownerName,omitempty"`
+	OwnerUri       string `json:"ownerUri,omitempty"`
+	OwnerUrl       string `json:"ownerUrl,omitempty"`
+	OwnerUsername  string `json:"ownerUsername,omitempty"`
+	Uri            string `json:"uri,omitempty"`
+}
+
+type ModelSpotifyUserProfilePlaylistsResponse struct {
+	Limit                     int                               `json:"limit,omitempty"`
+	Meta                      ModelSpotifyUserProfileMeta       `json:"meta,omitempty"`
+	Offset                    int                               `json:"offset,omitempty"`
+	PublicPlaylists           []ModelSpotifyUserProfilePlaylist `json:"publicPlaylists,omitempty"`
+	TotalPublicPlaylistsCount int                               `json:"totalPublicPlaylistsCount,omitempty"`
+	Uri                       string                            `json:"uri,omitempty"`
+	Username                  string                            `json:"username,omitempty"`
+}
+
+type ModelSpotifyUserProfileResponse struct {
+	AllowFollows              bool                              `json:"allowFollows,omitempty"`
+	Color                     int                               `json:"color,omitempty"`
+	ExternalUrl               string                            `json:"externalUrl,omitempty"`
+	FollowersCount            int                               `json:"followersCount,omitempty"`
+	FollowingCount            int                               `json:"followingCount,omitempty"`
+	HasSpotifyImage           bool                              `json:"hasSpotifyImage,omitempty"`
+	HasSpotifyName            bool                              `json:"hasSpotifyName,omitempty"`
+	ImageUrl                  string                            `json:"imageUrl,omitempty"`
+	IsCurrentUser             bool                              `json:"isCurrentUser,omitempty"`
+	IsVerified                bool                              `json:"isVerified,omitempty"`
+	Meta                      ModelSpotifyUserProfileMeta       `json:"meta,omitempty"`
+	Name                      string                            `json:"name,omitempty"`
+	PublicPlaylists           []ModelSpotifyUserProfilePlaylist `json:"publicPlaylists,omitempty"`
+	RecentlyPlayedArtists     []ModelSpotifyUserProfileSummary  `json:"recentlyPlayedArtists,omitempty"`
+	ShowFollows               bool                              `json:"showFollows,omitempty"`
+	TopArtists                ModelSpotifyUserProfileTopArtists `json:"topArtists,omitempty"`
+	TotalPublicPlaylistsCount int                               `json:"totalPublicPlaylistsCount,omitempty"`
+	Uri                       string                            `json:"uri,omitempty"`
+	Username                  string                            `json:"username,omitempty"`
+}
+
+type ModelSpotifyUserProfileSummary struct {
+	Color          int    `json:"color,omitempty"`
+	ExternalUrl    string `json:"externalUrl,omitempty"`
+	FollowersCount int    `json:"followersCount,omitempty"`
+	ImageUrl       string `json:"imageUrl,omitempty"`
+	IsFollowing    bool   `json:"isFollowing,omitempty"`
+	Name           string `json:"name,omitempty"`
+	Uri            string `json:"uri,omitempty"`
+	Username       string `json:"username,omitempty"`
+}
+
+type ModelSpotifyUserProfileTopArtists struct {
+	ImageUrl          string `json:"imageUrl,omitempty"`
+	Subtitle          string `json:"subtitle,omitempty"`
+	Title             string `json:"title,omitempty"`
+	TopArtistsPageUri string `json:"topArtistsPageUri,omitempty"`
+}
+
+type ModelSpotifyAlbumResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelSpotifyAlbumResponse `json:"data,omitempty"`
+	Msg  any                       `json:"msg,omitempty"`
+}
+
+type ModelSpotifyArtistAlbumsResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelSpotifyArtistAlbumsResponse `json:"data,omitempty"`
+	Msg  any                              `json:"msg,omitempty"`
+}
+
+type ModelSpotifyArtistCollectionResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelSpotifyArtistCollectionResponse `json:"data,omitempty"`
+	Msg  any                                  `json:"msg,omitempty"`
+}
+
+type ModelSpotifyArtistResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelSpotifyArtistResponse `json:"data,omitempty"`
+	Msg  any                        `json:"msg,omitempty"`
+}
+
+type ModelSpotifyAudiobookChaptersResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelSpotifyAudiobookChaptersResponse `json:"data,omitempty"`
+	Msg  any                                   `json:"msg,omitempty"`
+}
+
+type ModelSpotifyAudiobookResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelSpotifyAudiobookResponse `json:"data,omitempty"`
+	Msg  any                           `json:"msg,omitempty"`
+}
+
+type ModelSpotifyBrowsePageResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelSpotifyBrowsePageResponse `json:"data,omitempty"`
+	Msg  any                            `json:"msg,omitempty"`
+}
+
+type ModelSpotifyBrowseSectionResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelSpotifyBrowseSectionResponse `json:"data,omitempty"`
+	Msg  any                               `json:"msg,omitempty"`
+}
+
+type ModelSpotifyChartsResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelSpotifyChartResponse `json:"data,omitempty"`
+	Msg  any                       `json:"msg,omitempty"`
+}
+
+type ModelSpotifyCountryHubContentResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelSpotifyCountryHubContentResponse `json:"data,omitempty"`
+	Msg  any                                   `json:"msg,omitempty"`
+}
+
+type ModelSpotifyCountryHubResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelSpotifyCountryHubResponse `json:"data,omitempty"`
+	Msg  any                            `json:"msg,omitempty"`
+}
+
+type ModelSpotifyEpisodeResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelSpotifyPodcastEpisodeResponse `json:"data,omitempty"`
+	Msg  any                                `json:"msg,omitempty"`
+}
+
+type ModelSpotifyHomeResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelSpotifyHomeResponse `json:"data,omitempty"`
+	Msg  any                      `json:"msg,omitempty"`
+}
+
+type ModelSpotifyPlaylistResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelSpotifyPlaylistResponse `json:"data,omitempty"`
+	Msg  any                          `json:"msg,omitempty"`
+}
+
+type ModelSpotifySearchCatalogResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelSpotifySearchResponse `json:"data,omitempty"`
+	Msg  any                        `json:"msg,omitempty"`
+}
+
+type ModelSpotifySearchResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelSpotifySearchPodcastsResponse `json:"data,omitempty"`
+	Msg  any                                `json:"msg,omitempty"`
+}
+
+type ModelSpotifyShowEpisodesResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelSpotifyPodcastEpisodesResponse `json:"data,omitempty"`
+	Msg  any                                 `json:"msg,omitempty"`
+}
+
+type ModelSpotifyShowRecommendationsResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelSpotifyShowRecommendationsResponse `json:"data,omitempty"`
+	Msg  any                                     `json:"msg,omitempty"`
+}
+
+type ModelSpotifyShowResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelSpotifyShowMetadataResponse `json:"data,omitempty"`
+	Msg  any                              `json:"msg,omitempty"`
+}
+
+type ModelSpotifyTrackRecommendedResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelSpotifyTrackRecommendedResponse `json:"data,omitempty"`
+	Msg  any                                  `json:"msg,omitempty"`
+}
+
+type ModelSpotifyTrackResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelSpotifyTrackResponse `json:"data,omitempty"`
+	Msg  any                       `json:"msg,omitempty"`
+}
+
+type ModelSpotifyTrackSimilarAlbumsResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelSpotifyTrackSimilarAlbumsResponse `json:"data,omitempty"`
+	Msg  any                                    `json:"msg,omitempty"`
+}
+
+type ModelSpotifyUserProfileFollowersResponseDoc struct {
+	Code int                                      `json:"code,omitempty"`
+	Data ModelSpotifyUserProfileFollowersResponse `json:"data,omitempty"`
+	Msg  any                                      `json:"msg,omitempty"`
+}
+
+type ModelSpotifyUserProfilePlaylistsResponseDoc struct {
+	Code int                                      `json:"code,omitempty"`
+	Data ModelSpotifyUserProfilePlaylistsResponse `json:"data,omitempty"`
+	Msg  any                                      `json:"msg,omitempty"`
+}
+
+type ModelSpotifyUserProfileResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelSpotifyUserProfileResponse `json:"data,omitempty"`
+	Msg  any                             `json:"msg,omitempty"`
+}
+
+type ModelTiktokCategory struct {
+	Name string `json:"name,omitempty"`
+	Type string `json:"type,omitempty"`
+}
+
+type ModelTiktokChallengeDetailResp struct {
+	ChallengeInfo any            `json:"challengeInfo,omitempty"`
+	Extra         map[string]any `json:"extra,omitempty"`
+	LogPb         map[string]any `json:"log_pb,omitempty"`
+	ShareMeta     map[string]any `json:"shareMeta,omitempty"`
+	StatusCode    int            `json:"statusCode,omitempty"`
+	StatusCode2   int            `json:"status_code,omitempty"`
+	StatusMsg     string         `json:"status_msg,omitempty"`
+}
+
+type ModelTiktokChallengeListResp struct {
+	Cursor      string         `json:"cursor,omitempty"`
+	Extra       map[string]any `json:"extra,omitempty"`
+	HasMore     bool           `json:"hasMore,omitempty"`
+	ItemList    []any          `json:"itemList,omitempty"`
+	LogPb       map[string]any `json:"log_pb,omitempty"`
+	StatusCode  int            `json:"statusCode,omitempty"`
+	StatusCode2 int            `json:"status_code,omitempty"`
+	StatusMsg   string         `json:"status_msg,omitempty"`
+}
+
+type ModelTiktokCommentResp struct {
+	AliasCommentDeleted bool           `json:"alias_comment_deleted,omitempty"`
+	Comments            []any          `json:"comments,omitempty"`
+	Cursor              int            `json:"cursor,omitempty"`
+	Extra               map[string]any `json:"extra,omitempty"`
+	HasFilteredComments int            `json:"has_filtered_comments,omitempty"`
+	HasMore             int            `json:"has_more,omitempty"`
+	LogPb               map[string]any `json:"log_pb,omitempty"`
+	ReplyStyle          int            `json:"reply_style,omitempty"`
+	StatusCode          int            `json:"status_code,omitempty"`
+	StatusMsg           string         `json:"status_msg,omitempty"`
+	TopGifts            any            `json:"top_gifts,omitempty"`
+	Total               int            `json:"total,omitempty"`
+}
+
+type ModelTiktokExploreResp struct {
+	Cursor      string         `json:"cursor,omitempty"`
+	Extra       map[string]any `json:"extra,omitempty"`
+	HasMore     bool           `json:"hasMore,omitempty"`
+	ItemList    []any          `json:"itemList,omitempty"`
+	LogPb       map[string]any `json:"log_pb,omitempty"`
+	StatusCode  int            `json:"statusCode,omitempty"`
+	StatusCode2 int            `json:"status_code,omitempty"`
+	StatusMsg   string         `json:"status_msg,omitempty"`
+}
+
+type ModelTiktokProfile struct {
+	Stats ModelTiktokProfileStats `json:"stats,omitempty"`
+	User  ModelTiktokUser         `json:"user,omitempty"`
+}
+
+type ModelTiktokProfileStats struct {
+	DiggCount      int `json:"diggCount,omitempty"`
+	FollowerCount  int `json:"followerCount,omitempty"`
+	FollowingCount int `json:"followingCount,omitempty"`
+	FriendCount    int `json:"friendCount,omitempty"`
+	Heart          int `json:"heart,omitempty"`
+	HeartCount     int `json:"heartCount,omitempty"`
+	VideoCount     int `json:"videoCount,omitempty"`
+}
+
+type ModelTiktokSearchHashtagResp struct {
+	ChallengeList []any          `json:"challenge_list,omitempty"`
+	Cursor        int            `json:"cursor,omitempty"`
+	Extra         any            `json:"extra,omitempty"`
+	HasMore       int            `json:"has_more,omitempty"`
+	InputKeyword  string         `json:"input_keyword,omitempty"`
+	LogPb         map[string]any `json:"log_pb,omitempty"`
+	MusicList     any            `json:"music_list,omitempty"`
+	Qc            string         `json:"qc,omitempty"`
+	Rid           string         `json:"rid,omitempty"`
+	StatusCode    int            `json:"status_code,omitempty"`
+	StatusMsg     string         `json:"status_msg,omitempty"`
+	Type          int            `json:"type,omitempty"`
+	UserList      any            `json:"user_list,omitempty"`
+}
+
+type ModelTiktokSearchResp struct {
+	Cursor       int            `json:"cursor,omitempty"`
+	Data         []any          `json:"data,omitempty"`
+	Extra        any            `json:"extra,omitempty"`
+	FeedbackType string         `json:"feedback_type,omitempty"`
+	HasMore      int            `json:"has_more,omitempty"`
+	InputKeyword string         `json:"input_keyword,omitempty"`
+	ItemList     []any          `json:"itemList,omitempty"`
+	LogPb        map[string]any `json:"log_pb,omitempty"`
+	Qc           string         `json:"qc,omitempty"`
+	Rid          string         `json:"rid,omitempty"`
+	StatusCode   int            `json:"status_code,omitempty"`
+	StatusMsg    string         `json:"status_msg,omitempty"`
+	Type         int            `json:"type,omitempty"`
+}
+
+type ModelTiktokSearchUserResp struct {
+	ChallengeList      any            `json:"challenge_list,omitempty"`
+	Cursor             int            `json:"cursor,omitempty"`
+	Extra              any            `json:"extra,omitempty"`
+	FeedbackType       string         `json:"feedback_type,omitempty"`
+	GlobalDoodleConfig any            `json:"global_doodle_config,omitempty"`
+	HasMore            int            `json:"has_more,omitempty"`
+	InputKeyword       string         `json:"input_keyword,omitempty"`
+	LogPb              map[string]any `json:"log_pb,omitempty"`
+	MusicList          any            `json:"music_list,omitempty"`
+	Qc                 string         `json:"qc,omitempty"`
+	Rid                string         `json:"rid,omitempty"`
+	StatusCode         int            `json:"status_code,omitempty"`
+	StatusMsg          string         `json:"status_msg,omitempty"`
+	Type               int            `json:"type,omitempty"`
+	UserList           []any          `json:"user_list,omitempty"`
+}
+
+type ModelTiktokTrendingResp struct {
+	Cursor         string         `json:"cursor,omitempty"`
+	Extra          map[string]any `json:"extra,omitempty"`
+	HasMore        bool           `json:"hasMore,omitempty"`
+	ItemList       []any          `json:"itemList,omitempty"`
+	LogPb          map[string]any `json:"log_pb,omitempty"`
+	StatusCode     int            `json:"statusCode,omitempty"`
+	StatusMsg      string         `json:"statusMsg,omitempty"`
+	StatusCode2    int            `json:"status_code,omitempty"`
+	StatusMsg2     string         `json:"status_msg,omitempty"`
+	TrendingTopics []any          `json:"trendingTopics,omitempty"`
+}
+
+type ModelTiktokUser struct {
+	AvatarLarger     string         `json:"avatarLarger,omitempty"`
+	BioLink          map[string]any `json:"bioLink,omitempty"`
+	CommerceUserInfo map[string]any `json:"commerceUserInfo,omitempty"`
+	CreateTime       int            `json:"createTime,omitempty"`
+	Id               string         `json:"id,omitempty"`
+	IsOrganization   int            `json:"isOrganization,omitempty"`
+	Language         string         `json:"language,omitempty"`
+	Nickname         string         `json:"nickname,omitempty"`
+	PrivateAccount   bool           `json:"privateAccount,omitempty"`
+	Region           string         `json:"region,omitempty"`
+	SecUid           string         `json:"secUid,omitempty"`
+	Secret           bool           `json:"secret,omitempty"`
+	Signature        string         `json:"signature,omitempty"`
+	TtSeller         bool           `json:"ttSeller,omitempty"`
+	UniqueId         string         `json:"uniqueId,omitempty"`
+	Verified         bool           `json:"verified,omitempty"`
+}
+
+type ModelTiktokUserPostLinkResp struct {
+	Cursor     string         `json:"cursor,omitempty"`
+	Extra      map[string]any `json:"extra,omitempty"`
+	HasMore    bool           `json:"hasMore,omitempty"`
+	ItemList   []any          `json:"itemList,omitempty"`
+	LogPb      map[string]any `json:"log_pb,omitempty"`
+	StatusCode int            `json:"status_code,omitempty"`
+	StatusMsg  string         `json:"status_msg,omitempty"`
+}
+
+type ModelTiktokVideoDetailResp struct {
+	Extra      map[string]any `json:"extra,omitempty"`
+	ItemInfo   any            `json:"itemInfo,omitempty"`
+	LogPb      map[string]any `json:"log_pb,omitempty"`
+	ShareMeta  map[string]any `json:"shareMeta,omitempty"`
+	StatusCode int            `json:"status_code,omitempty"`
+	StatusMsg  string         `json:"status_msg,omitempty"`
+}
+
+type ModelTiktokCategoryResponseDoc struct {
+	Code int                   `json:"code,omitempty"`
+	Data []ModelTiktokCategory `json:"data,omitempty"`
+	Msg  string                `json:"msg,omitempty"`
+}
+
+type ModelTiktokChallengeListResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelTiktokChallengeListResp `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelTiktokChallengeResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelTiktokChallengeDetailResp `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelTiktokCommentsResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelTiktokCommentResp `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelTiktokExploreResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelTiktokExploreResp `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelTiktokPostResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelTiktokVideoDetailResp `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelTiktokProfilePostResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelTiktokUserPostLinkResp `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelTiktokProfileResponseDoc struct {
+	Code int                `json:"code,omitempty"`
+	Data ModelTiktokProfile `json:"data,omitempty"`
+	Msg  string             `json:"msg,omitempty"`
+}
+
+type ModelTiktokSearchHashtagResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelTiktokSearchHashtagResp `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelTiktokSearchResponseDoc struct {
+	Code int                   `json:"code,omitempty"`
+	Data ModelTiktokSearchResp `json:"data,omitempty"`
+	Msg  string                `json:"msg,omitempty"`
+}
+
+type ModelTiktokSearchUserResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelTiktokSearchUserResp `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelTiktokTrendingResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelTiktokTrendingResp `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelTrendsExploreQueriesResponse struct {
+	Category  int                       `json:"category,omitempty"`
+	Geo       string                    `json:"geo,omitempty"`
+	Hl        string                    `json:"hl,omitempty"`
+	Keywords  []string                  `json:"keywords,omitempty"`
+	Property  string                    `json:"property,omitempty"`
+	Queries   []ModelTrendsRelatedGroup `json:"queries,omitempty"`
+	QueryType string                    `json:"query_type,omitempty"`
+	TimeRange string                    `json:"time_range,omitempty"`
+	Type      string                    `json:"type,omitempty"`
+	Tz        int                       `json:"tz,omitempty"`
+}
+
+type ModelTrendsExploreRequest struct {
+	Category  int      `json:"category,omitempty"`
+	Geo       string   `json:"geo,omitempty"`
+	Hl        string   `json:"hl,omitempty"`
+	Keywords  []string `json:"keywords,omitempty"`
+	Property  string   `json:"property,omitempty"`
+	TimeRange string   `json:"time_range,omitempty"`
+	Type      string   `json:"type,omitempty"`
+	Tz        int      `json:"tz,omitempty"`
+}
+
+type ModelTrendsExploreResponse struct {
+	Category         int                         `json:"category,omitempty"`
+	Geo              string                      `json:"geo,omitempty"`
+	Hl               string                      `json:"hl,omitempty"`
+	InterestByRegion []ModelTrendsRegionInterest `json:"interest_by_region,omitempty"`
+	InterestOverTime []ModelTrendsInterestPoint  `json:"interest_over_time,omitempty"`
+	Keywords         []string                    `json:"keywords,omitempty"`
+	Property         string                      `json:"property,omitempty"`
+	RelatedQueries   []ModelTrendsRelatedGroup   `json:"related_queries,omitempty"`
+	RelatedTopics    []ModelTrendsRelatedGroup   `json:"related_topics,omitempty"`
+	RisingQueries    []ModelTrendsRelatedGroup   `json:"rising_queries,omitempty"`
+	TimeRange        string                      `json:"time_range,omitempty"`
+	TopQueries       []ModelTrendsRelatedGroup   `json:"top_queries,omitempty"`
+	Type             string                      `json:"type,omitempty"`
+	Tz               int                         `json:"tz,omitempty"`
+}
+
+type ModelTrendsInterestByRegionResponse struct {
+	Category         int                         `json:"category,omitempty"`
+	Geo              string                      `json:"geo,omitempty"`
+	Hl               string                      `json:"hl,omitempty"`
+	InterestByRegion []ModelTrendsRegionInterest `json:"interest_by_region,omitempty"`
+	Keywords         []string                    `json:"keywords,omitempty"`
+	Property         string                      `json:"property,omitempty"`
+	TimeRange        string                      `json:"time_range,omitempty"`
+	Type             string                      `json:"type,omitempty"`
+	Tz               int                         `json:"tz,omitempty"`
+}
+
+type ModelTrendsInterestOverTimeResponse struct {
+	Category         int                        `json:"category,omitempty"`
+	Geo              string                     `json:"geo,omitempty"`
+	Hl               string                     `json:"hl,omitempty"`
+	InterestOverTime []ModelTrendsInterestPoint `json:"interest_over_time,omitempty"`
+	Keywords         []string                   `json:"keywords,omitempty"`
+	Property         string                     `json:"property,omitempty"`
+	TimeRange        string                     `json:"time_range,omitempty"`
+	Type             string                     `json:"type,omitempty"`
+	Tz               int                        `json:"tz,omitempty"`
+}
+
+type ModelTrendsInterestPoint struct {
+	FormattedAxisTime string                  `json:"formatted_axis_time,omitempty"`
+	FormattedTime     string                  `json:"formatted_time,omitempty"`
+	Time              string                  `json:"time,omitempty"`
+	Values            []ModelTrendsTrendValue `json:"values,omitempty"`
+}
+
+type ModelTrendsRegionInterest struct {
+	GeoCode string                  `json:"geo_code,omitempty"`
+	GeoName string                  `json:"geo_name,omitempty"`
+	Values  []ModelTrendsTrendValue `json:"values,omitempty"`
+}
+
+type ModelTrendsRelatedGroup struct {
+	Items   []ModelTrendsRelatedItem `json:"items,omitempty"`
+	Keyword string                   `json:"keyword,omitempty"`
+}
+
+type ModelTrendsRelatedItem struct {
+	FormattedValue string `json:"formatted_value,omitempty"`
+	Link           string `json:"link,omitempty"`
+	Query          string `json:"query,omitempty"`
+	TopicMid       string `json:"topic_mid,omitempty"`
+	TopicTitle     string `json:"topic_title,omitempty"`
+	TopicType      string `json:"topic_type,omitempty"`
+	Value          int    `json:"value,omitempty"`
+}
+
+type ModelTrendsRelatedTopicsResponse struct {
+	Category      int                       `json:"category,omitempty"`
+	Geo           string                    `json:"geo,omitempty"`
+	Hl            string                    `json:"hl,omitempty"`
+	Keywords      []string                  `json:"keywords,omitempty"`
+	Property      string                    `json:"property,omitempty"`
+	RelatedTopics []ModelTrendsRelatedGroup `json:"related_topics,omitempty"`
+	TimeRange     string                    `json:"time_range,omitempty"`
+	Type          string                    `json:"type,omitempty"`
+	Tz            int                       `json:"tz,omitempty"`
+}
+
+type ModelTrendsTrendCategory struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelTrendsTrendValue struct {
+	FormattedValue string `json:"formatted_value,omitempty"`
+	HasData        bool   `json:"has_data,omitempty"`
+	Keyword        string `json:"keyword,omitempty"`
+	Value          int    `json:"value,omitempty"`
+}
+
+type ModelTrendsTrendingArticle struct {
+	Source string `json:"source,omitempty"`
+	Time   string `json:"time,omitempty"`
+	Title  string `json:"title,omitempty"`
+	Url    string `json:"url,omitempty"`
+}
+
+type ModelTrendsTrendingDetailRequest struct {
+	Category  int    `json:"category,omitempty"`
+	Geo       string `json:"geo,omitempty"`
+	Hl        string `json:"hl,omitempty"`
+	Property  string `json:"property,omitempty"`
+	Query     string `json:"query,omitempty"`
+	TimeRange string `json:"time_range,omitempty"`
+	Type      string `json:"type,omitempty"`
+	Tz        int    `json:"tz,omitempty"`
+}
+
+type ModelTrendsTrendingItem struct {
+	Articles     []ModelTrendsTrendingArticle `json:"articles,omitempty"`
+	ExploreUrl   string                       `json:"explore_url,omitempty"`
+	Query        string                       `json:"query,omitempty"`
+	Rank         int                          `json:"rank,omitempty"`
+	RelatedTerms []string                     `json:"related_terms,omitempty"`
+	ShareUrl     string                       `json:"share_url,omitempty"`
+	StartedUnix  int                          `json:"started_unix,omitempty"`
+	Status       string                       `json:"status,omitempty"`
+	Title        string                       `json:"title,omitempty"`
+	Traffic      string                       `json:"traffic,omitempty"`
+	UpdatedUnix  int                          `json:"updated_unix,omitempty"`
+}
+
+type ModelTrendsTrendingResponse struct {
+	Category  int                       `json:"category,omitempty"`
+	Geo       string                    `json:"geo,omitempty"`
+	Hl        string                    `json:"hl,omitempty"`
+	Items     []ModelTrendsTrendingItem `json:"items,omitempty"`
+	SortBy    string                    `json:"sort_by,omitempty"`
+	Status    string                    `json:"status,omitempty"`
+	TimeRange string                    `json:"time_range,omitempty"`
+	Tz        int                       `json:"tz,omitempty"`
+	Window    string                    `json:"window,omitempty"`
+}
+
+type ModelTrendsTrendsCategoriesResponse struct {
+	Categories []ModelTrendsTrendCategory `json:"categories,omitempty"`
+}
+
+type ModelTrendsTrendsEnumsResponse struct {
+	ExploreTimeRanges  []string                   `json:"explore_time_ranges,omitempty"`
+	Locations          []string                   `json:"locations,omitempty"`
+	SearchTypes        []string                   `json:"search_types,omitempty"`
+	TrendStatuses      []string                   `json:"trend_statuses,omitempty"`
+	TrendingCategories []ModelTrendsTrendCategory `json:"trending_categories,omitempty"`
+	TrendingSortBys    []string                   `json:"trending_sort_bys,omitempty"`
+	TrendingTimeRanges []string                   `json:"trending_time_ranges,omitempty"`
+}
+
+type ModelTrendsTrendsLocationsResponse struct {
+	Locations []string `json:"locations,omitempty"`
+}
+
+type ModelTrendsExploreQueriesResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelTrendsExploreQueriesResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelTrendsExploreResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelTrendsExploreResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelTrendsInterestByRegionResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelTrendsInterestByRegionResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelTrendsInterestOverTimeResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelTrendsInterestOverTimeResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelTrendsRelatedTopicsResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelTrendsRelatedTopicsResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelTrendsTrendingResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelTrendsTrendingResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelTrendsTrendsCategoriesResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelTrendsTrendsCategoriesResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelTrendsTrendsEnumsResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelTrendsTrendsEnumsResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelTrendsTrendsLocationsResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelTrendsTrendsLocationsResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelTripadvisorAutocompleteResponse struct {
+	Locale     string                       `json:"locale,omitempty"`
+	Query      string                       `json:"query,omitempty"`
+	Results    []ModelTripadvisorSearchItem `json:"results,omitempty"`
+	ScopeGeoId int                          `json:"scope_geo_id,omitempty"`
+}
+
+type ModelTripadvisorEnumsResponse struct {
+	AttractionCategories   []string          `json:"attraction_categories,omitempty"`
+	AttractionCategoryIds  map[string]string `json:"attraction_category_ids,omitempty"`
+	Currencies             []string          `json:"currencies,omitempty"`
+	FilterIds              []string          `json:"filter_ids,omitempty"`
+	HotelAmenities         []int             `json:"hotel_amenities,omitempty"`
+	HotelClasses           []int             `json:"hotel_classes,omitempty"`
+	Languages              []string          `json:"languages,omitempty"`
+	ListingTypes           []string          `json:"listing_types,omitempty"`
+	Locales                []string          `json:"locales,omitempty"`
+	PricingModes           []string          `json:"pricing_modes,omitempty"`
+	RestaurantOptions      []int             `json:"restaurant_options,omitempty"`
+	RestaurantTypes        []int             `json:"restaurant_types,omitempty"`
+	Sorts                  []string          `json:"sorts,omitempty"`
+	UnsupportedEntityTypes []string          `json:"unsupported_entity_types,omitempty"`
+}
+
+type ModelTripadvisorHotelItem struct {
+	Address       string   `json:"address,omitempty"`
+	Currency      string   `json:"currency,omitempty"`
+	Id            string   `json:"id,omitempty"`
+	Image         string   `json:"image,omitempty"`
+	Latitude      float64  `json:"latitude,omitempty"`
+	Longitude     float64  `json:"longitude,omitempty"`
+	Parent        string   `json:"parent,omitempty"`
+	Phone         string   `json:"phone,omitempty"`
+	Price         string   `json:"price,omitempty"`
+	Provider      string   `json:"provider,omitempty"`
+	Rank          int      `json:"rank,omitempty"`
+	RankLabel     string   `json:"rank_label,omitempty"`
+	Rating        float64  `json:"rating,omitempty"`
+	ReviewCount   int      `json:"review_count,omitempty"`
+	ReviewRating  float64  `json:"review_rating,omitempty"`
+	ReviewSnippet string   `json:"review_snippet,omitempty"`
+	ReviewTitle   string   `json:"review_title,omitempty"`
+	StarRating    float64  `json:"star_rating,omitempty"`
+	Tags          []string `json:"tags,omitempty"`
+	Title         string   `json:"title,omitempty"`
+	Type          string   `json:"type,omitempty"`
+	Url           string   `json:"url,omitempty"`
+}
+
+type ModelTripadvisorHotelListResponse struct {
+	Currency    string                      `json:"currency,omitempty"`
+	FullMatches int                         `json:"full_matches,omitempty"`
+	GeoId       int                         `json:"geo_id,omitempty"`
+	Limit       int                         `json:"limit,omitempty"`
+	Offset      int                         `json:"offset,omitempty"`
+	Results     []ModelTripadvisorHotelItem `json:"results,omitempty"`
+	Sort        string                      `json:"sort,omitempty"`
+	Total       int                         `json:"total,omitempty"`
+}
+
+type ModelTripadvisorNestedSearchItem struct {
+	Query string `json:"query,omitempty"`
+	Title string `json:"title,omitempty"`
+	Type  string `json:"type,omitempty"`
+	Url   string `json:"url,omitempty"`
+}
+
+type ModelTripadvisorPlaceAddressParts struct {
+	Country    string `json:"country,omitempty"`
+	Locality   string `json:"locality,omitempty"`
+	PostalCode string `json:"postal_code,omitempty"`
+	Region     string `json:"region,omitempty"`
+	Street     string `json:"street,omitempty"`
+}
+
+type ModelTripadvisorPlaceImage struct {
+	Caption string `json:"caption,omitempty"`
+	Height  int    `json:"height,omitempty"`
+	Url     string `json:"url,omitempty"`
+	Width   int    `json:"width,omitempty"`
+}
+
+type ModelTripadvisorPlaceItem struct {
+	Address       string   `json:"address,omitempty"`
+	BookingUrl    string   `json:"booking_url,omitempty"`
+	Categories    []string `json:"categories,omitempty"`
+	Cuisines      []string `json:"cuisines,omitempty"`
+	Currency      string   `json:"currency,omitempty"`
+	Id            string   `json:"id,omitempty"`
+	Image         string   `json:"image,omitempty"`
+	Latitude      float64  `json:"latitude,omitempty"`
+	Longitude     float64  `json:"longitude,omitempty"`
+	Parent        string   `json:"parent,omitempty"`
+	Phone         string   `json:"phone,omitempty"`
+	Price         string   `json:"price,omitempty"`
+	PriceLevel    string   `json:"price_level,omitempty"`
+	Provider      string   `json:"provider,omitempty"`
+	Rank          int      `json:"rank,omitempty"`
+	RankLabel     string   `json:"rank_label,omitempty"`
+	Rating        float64  `json:"rating,omitempty"`
+	ReviewCount   int      `json:"review_count,omitempty"`
+	ReviewRating  float64  `json:"review_rating,omitempty"`
+	ReviewSnippet string   `json:"review_snippet,omitempty"`
+	ReviewTitle   string   `json:"review_title,omitempty"`
+	StarRating    float64  `json:"star_rating,omitempty"`
+	Tags          []string `json:"tags,omitempty"`
+	Title         string   `json:"title,omitempty"`
+	Type          string   `json:"type,omitempty"`
+	Url           string   `json:"url,omitempty"`
+}
+
+type ModelTripadvisorPlaceLink struct {
+	Label string `json:"label,omitempty"`
+	Type  string `json:"type,omitempty"`
+	Url   string `json:"url,omitempty"`
+}
+
+type ModelTripadvisorPlaceResponse struct {
+	Address      string                            `json:"address,omitempty"`
+	AddressParts ModelTripadvisorPlaceAddressParts `json:"address_parts,omitempty"`
+	Amenities    []string                          `json:"amenities,omitempty"`
+	Awards       []string                          `json:"awards,omitempty"`
+	Breadcrumbs  []string                          `json:"breadcrumbs,omitempty"`
+	CanonicalUrl string                            `json:"canonical_url,omitempty"`
+	Categories   []string                          `json:"categories,omitempty"`
+	Cuisines     []string                          `json:"cuisines,omitempty"`
+	Description  string                            `json:"description,omitempty"`
+	Features     []string                          `json:"features,omitempty"`
+	GeoId        string                            `json:"geo_id,omitempty"`
+	Id           string                            `json:"id,omitempty"`
+	Image        string                            `json:"image,omitempty"`
+	Images       []ModelTripadvisorPlaceImage      `json:"images,omitempty"`
+	Latitude     float64                           `json:"latitude,omitempty"`
+	Links        []ModelTripadvisorPlaceLink       `json:"links,omitempty"`
+	Longitude    float64                           `json:"longitude,omitempty"`
+	OpeningHours []string                          `json:"opening_hours,omitempty"`
+	Phone        string                            `json:"phone,omitempty"`
+	PriceLevel   string                            `json:"price_level,omitempty"`
+	PriceRange   string                            `json:"price_range,omitempty"`
+	Rank         int                               `json:"rank,omitempty"`
+	RankLabel    string                            `json:"rank_label,omitempty"`
+	Rating       float64                           `json:"rating,omitempty"`
+	Reviews      int                               `json:"reviews,omitempty"`
+	Summary      string                            `json:"summary,omitempty"`
+	Tags         []string                          `json:"tags,omitempty"`
+	Title        string                            `json:"title,omitempty"`
+	Type         string                            `json:"type,omitempty"`
+	Url          string                            `json:"url,omitempty"`
+	WebsiteUrl   string                            `json:"website_url,omitempty"`
+}
+
+type ModelTripadvisorReviewItem struct {
+	Author           string   `json:"author,omitempty"`
+	AuthorAvatar     string   `json:"author_avatar,omitempty"`
+	AuthorHometown   string   `json:"author_hometown,omitempty"`
+	AuthorId         string   `json:"author_id,omitempty"`
+	AuthorUrl        string   `json:"author_url,omitempty"`
+	CreatedDate      string   `json:"created_date,omitempty"`
+	Date             string   `json:"date,omitempty"`
+	Helpful          int      `json:"helpful,omitempty"`
+	Id               string   `json:"id,omitempty"`
+	Language         string   `json:"language,omitempty"`
+	OriginalLanguage string   `json:"original_language,omitempty"`
+	Photos           []string `json:"photos,omitempty"`
+	Rating           float64  `json:"rating,omitempty"`
+	StayDate         string   `json:"stay_date,omitempty"`
+	Text             string   `json:"text,omitempty"`
+	Title            string   `json:"title,omitempty"`
+	TripType         string   `json:"trip_type,omitempty"`
+	Url              string   `json:"url,omitempty"`
+}
+
+type ModelTripadvisorReviewsResponse struct {
+	Id       string                       `json:"id,omitempty"`
+	Language string                       `json:"language,omitempty"`
+	Limit    int                          `json:"limit,omitempty"`
+	Page     int                          `json:"page,omitempty"`
+	Reviews  []ModelTripadvisorReviewItem `json:"reviews,omitempty"`
+	Total    int                          `json:"total,omitempty"`
+	Url      string                       `json:"url,omitempty"`
+}
+
+type ModelTripadvisorSearchItem struct {
+	DocumentId    string                             `json:"document_id,omitempty"`
+	Id            string                             `json:"id,omitempty"`
+	Image         string                             `json:"image,omitempty"`
+	Latitude      float64                            `json:"latitude,omitempty"`
+	Longitude     float64                            `json:"longitude,omitempty"`
+	NestedResults []ModelTripadvisorNestedSearchItem `json:"nested_results,omitempty"`
+	Parent        string                             `json:"parent,omitempty"`
+	Title         string                             `json:"title,omitempty"`
+	Type          string                             `json:"type,omitempty"`
+	Url           string                             `json:"url,omitempty"`
+}
+
+type ModelTripadvisorSearchResponse struct {
+	Currency         string                      `json:"currency,omitempty"`
+	GeoId            int                         `json:"geo_id,omitempty"`
+	Limit            int                         `json:"limit,omitempty"`
+	Locale           string                      `json:"locale,omitempty"`
+	Offset           int                         `json:"offset,omitempty"`
+	Results          []ModelTripadvisorPlaceItem `json:"results,omitempty"`
+	Sort             string                      `json:"sort,omitempty"`
+	Source           string                      `json:"source,omitempty"`
+	Type             string                      `json:"type,omitempty"`
+	UnsupportedTypes []string                    `json:"unsupported_types,omitempty"`
+}
+
+type ModelTripadvisorTripadvisorAutocompleteResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelTripadvisorAutocompleteResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelTripadvisorTripadvisorEnumsResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelTripadvisorEnumsResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelTripadvisorTripadvisorHotelsResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelTripadvisorHotelListResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelTripadvisorTripadvisorReviewsResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelTripadvisorReviewsResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelTripadvisorTripadvisorSearchResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelTripadvisorSearchResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelTrustpilotBusinessAbout struct {
+	BusinessCountryCode string                         `json:"business_country_code,omitempty"`
+	Contact             ModelTrustpilotBusinessContact `json:"contact,omitempty"`
+	DescriptionHtml     string                         `json:"description_html,omitempty"`
+	DescriptionText     string                         `json:"description_text,omitempty"`
+	FacebookUrl         string                         `json:"facebook_url,omitempty"`
+	HasCompanyElements  bool                           `json:"has_company_elements,omitempty"`
+	InformationSource   string                         `json:"information_source,omitempty"`
+	PromotionPoints     []string                       `json:"promotion_points,omitempty"`
+	PromotionTitle      string                         `json:"promotion_title,omitempty"`
+}
+
+type ModelTrustpilotBusinessActivity struct {
+	ClaimedDate                 string                              `json:"claimed_date,omitempty"`
+	HasBusinessUnitMergeHistory bool                                `json:"has_business_unit_merge_history,omitempty"`
+	HasSubscription             bool                                `json:"has_subscription,omitempty"`
+	IsAskingForReviews          bool                                `json:"is_asking_for_reviews,omitempty"`
+	IsClaimed                   bool                                `json:"is_claimed,omitempty"`
+	IsUsingAiResponses          bool                                `json:"is_using_ai_responses,omitempty"`
+	IsUsingPaidFeatures         bool                                `json:"is_using_paid_features,omitempty"`
+	PreviouslyClaimed           bool                                `json:"previously_claimed,omitempty"`
+	Verification                ModelTrustpilotBusinessVerification `json:"verification,omitempty"`
+}
+
+type ModelTrustpilotBusinessBreadcrumb struct {
+	Id    string `json:"id,omitempty"`
+	Level string `json:"level,omitempty"`
+	Name  string `json:"name,omitempty"`
+}
+
+type ModelTrustpilotBusinessCategory struct {
+	Cardinality int    `json:"cardinality,omitempty"`
+	Id          string `json:"id,omitempty"`
+	IsPrimary   bool   `json:"is_primary,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Rank        int    `json:"rank,omitempty"`
+}
+
+type ModelTrustpilotBusinessCompanyReply struct {
+	Message         string `json:"message,omitempty"`
+	PublishedAtText string `json:"published_at_text,omitempty"`
+	UpdatedAtText   string `json:"updated_at_text,omitempty"`
+}
+
+type ModelTrustpilotBusinessContact struct {
+	Address string `json:"address,omitempty"`
+	City    string `json:"city,omitempty"`
+	Country string `json:"country,omitempty"`
+	Email   string `json:"email,omitempty"`
+	Phone   string `json:"phone,omitempty"`
+	ZipCode string `json:"zip_code,omitempty"`
+}
+
+type ModelTrustpilotBusinessPageLanguage struct {
+	IsoLanguage  string `json:"iso_language,omitempty"`
+	LanguageCode string `json:"language_code,omitempty"`
+	Locale       string `json:"locale,omitempty"`
+	Uri          string `json:"uri,omitempty"`
+}
+
+type ModelTrustpilotBusinessPageMeta struct {
+	CanonicalUrl string                                `json:"canonical_url,omitempty"`
+	Domain       string                                `json:"domain,omitempty"`
+	Languages    []ModelTrustpilotBusinessPageLanguage `json:"languages,omitempty"`
+	Locale       string                                `json:"locale,omitempty"`
+}
+
+type ModelTrustpilotBusinessRatingHistogram struct {
+	Five  int `json:"five,omitempty"`
+	Four  int `json:"four,omitempty"`
+	One   int `json:"one,omitempty"`
+	Three int `json:"three,omitempty"`
+	Total int `json:"total,omitempty"`
+	Two   int `json:"two,omitempty"`
+}
+
+type ModelTrustpilotBusinessRelatedResponse struct {
+	Business ModelTrustpilotBusinessHeader    `json:"business,omitempty"`
+	Items    []ModelTrustpilotRelatedBusiness `json:"items,omitempty"`
+}
+
+type ModelTrustpilotBusinessReplyMetrics struct {
+	AverageDaysToReply         float64 `json:"average_days_to_reply,omitempty"`
+	LastReplyToNegativeReview  string  `json:"last_reply_to_negative_review,omitempty"`
+	NegativeReviewsWithReplies int     `json:"negative_reviews_with_replies,omitempty"`
+	ReplyPercentage            float64 `json:"reply_percentage,omitempty"`
+	TotalNegativeReviews       int     `json:"total_negative_reviews,omitempty"`
+}
+
+type ModelTrustpilotBusinessResponse struct {
+	About            ModelTrustpilotBusinessAbout           `json:"about,omitempty"`
+	Breadcrumbs      []ModelTrustpilotBusinessBreadcrumb    `json:"breadcrumbs,omitempty"`
+	Categories       []ModelTrustpilotBusinessCategory      `json:"categories,omitempty"`
+	Claimed          bool                                   `json:"claimed,omitempty"`
+	CompanyActivity  ModelTrustpilotBusinessActivity        `json:"company_activity,omitempty"`
+	Name             string                                 `json:"name,omitempty"`
+	PageMeta         ModelTrustpilotBusinessPageMeta        `json:"page_meta,omitempty"`
+	PaidSubscription bool                                   `json:"paid_subscription,omitempty"`
+	Rating           float64                                `json:"rating,omitempty"`
+	RatingHistogram  ModelTrustpilotBusinessRatingHistogram `json:"rating_histogram,omitempty"`
+	ReplyMetrics     ModelTrustpilotBusinessReplyMetrics    `json:"reply_metrics,omitempty"`
+	ReviewCount      int                                    `json:"review_count,omitempty"`
+	ReviewSummary    ModelTrustpilotBusinessReviewSummary   `json:"review_summary,omitempty"`
+	ReviewTopics     []ModelTrustpilotBusinessReviewTopic   `json:"review_topics,omitempty"`
+	Slug             string                                 `json:"slug,omitempty"`
+	TrustScore       float64                                `json:"trust_score,omitempty"`
+	TrustpilotUrl    string                                 `json:"trustpilot_url,omitempty"`
+	WebsiteUrl       string                                 `json:"website_url,omitempty"`
+}
+
+type ModelTrustpilotBusinessReviewItem struct {
+	AuthorCountry     string                              `json:"author_country,omitempty"`
+	AuthorName        string                              `json:"author_name,omitempty"`
+	AuthorReviewCount int                                 `json:"author_review_count,omitempty"`
+	Body              string                              `json:"body,omitempty"`
+	CompanyReply      ModelTrustpilotBusinessCompanyReply `json:"company_reply,omitempty"`
+	ExperiencedAtText string                              `json:"experienced_at_text,omitempty"`
+	Id                string                              `json:"id,omitempty"`
+	Invited           bool                                `json:"invited,omitempty"`
+	Labels            ModelTrustpilotBusinessReviewLabels `json:"labels,omitempty"`
+	PublishedAtText   string                              `json:"published_at_text,omitempty"`
+	Rating            int                                 `json:"rating,omitempty"`
+	Title             string                              `json:"title,omitempty"`
+	UpdatedAtText     string                              `json:"updated_at_text,omitempty"`
+	Verified          bool                                `json:"verified,omitempty"`
+}
+
+type ModelTrustpilotBusinessReviewLabels struct {
+	Filtered           bool   `json:"filtered,omitempty"`
+	Merged             string `json:"merged,omitempty"`
+	Pending            bool   `json:"pending,omitempty"`
+	ReviewSource       string `json:"review_source,omitempty"`
+	VerificationLevel  string `json:"verification_level,omitempty"`
+	VerificationSource string `json:"verification_source,omitempty"`
+}
+
+type ModelTrustpilotBusinessReviewSummary struct {
+	ModelVersion string `json:"model_version,omitempty"`
+	Status       string `json:"status,omitempty"`
+	Summary      string `json:"summary,omitempty"`
+	UpdatedAt    string `json:"updated_at,omitempty"`
+}
+
+type ModelTrustpilotBusinessReviewTopic struct {
+	ModelVersion string `json:"model_version,omitempty"`
+	Order        int    `json:"order,omitempty"`
+	Summary      string `json:"summary,omitempty"`
+	Topic        string `json:"topic,omitempty"`
+	UpdatedAt    string `json:"updated_at,omitempty"`
+}
+
+type ModelTrustpilotBusinessReviewsAppliedFilters struct {
+	Language string `json:"language,omitempty"`
+	Query    string `json:"query,omitempty"`
+	Replied  bool   `json:"replied,omitempty"`
+	Stars    int    `json:"stars,omitempty"`
+	Verified bool   `json:"verified,omitempty"`
+}
+
+type ModelTrustpilotBusinessReviewsPagination struct {
+	HasNextPage  bool `json:"has_next_page,omitempty"`
+	NextPage     int  `json:"next_page,omitempty"`
+	Page         int  `json:"page,omitempty"`
+	PerPage      int  `json:"per_page,omitempty"`
+	TotalPages   int  `json:"total_pages,omitempty"`
+	TotalReviews int  `json:"total_reviews,omitempty"`
+}
+
+type ModelTrustpilotBusinessReviewsResponse struct {
+	AppliedFilters ModelTrustpilotBusinessReviewsAppliedFilters `json:"applied_filters,omitempty"`
+	Business       ModelTrustpilotBusinessHeader                `json:"business,omitempty"`
+	Items          []ModelTrustpilotBusinessReviewItem          `json:"items,omitempty"`
+	Pagination     ModelTrustpilotBusinessReviewsPagination     `json:"pagination,omitempty"`
+}
+
+type ModelTrustpilotBusinessVerification struct {
+	VerifiedByGoogle      bool `json:"verified_by_google,omitempty"`
+	VerifiedPaymentMethod bool `json:"verified_payment_method,omitempty"`
+	VerifiedUserIdentity  bool `json:"verified_user_identity,omitempty"`
+}
+
+type ModelTrustpilotCategoriesResponse struct {
+	Groups []ModelTrustpilotCategoryGroup `json:"groups,omitempty"`
+}
+
+type ModelTrustpilotCategoryBusiness struct {
+	BusinessUnitId  string                                  `json:"business_unit_id,omitempty"`
+	Categories      []ModelTrustpilotCategoryBusinessTag    `json:"categories,omitempty"`
+	DisplayName     string                                  `json:"display_name,omitempty"`
+	Email           string                                  `json:"email,omitempty"`
+	IdentifyingName string                                  `json:"identifying_name,omitempty"`
+	Location        ModelTrustpilotCategoryBusinessLocation `json:"location,omitempty"`
+	LogoUrl         string                                  `json:"logo_url,omitempty"`
+	Phone           string                                  `json:"phone,omitempty"`
+	Recommended     bool                                    `json:"recommended,omitempty"`
+	ReviewCount     int                                     `json:"review_count,omitempty"`
+	Stars           float64                                 `json:"stars,omitempty"`
+	TrustScore      float64                                 `json:"trust_score,omitempty"`
+	TrustpilotUrl   string                                  `json:"trustpilot_url,omitempty"`
+	WebsiteUrl      string                                  `json:"website_url,omitempty"`
+}
+
+type ModelTrustpilotCategoryBusinessLocation struct {
+	Address string `json:"address,omitempty"`
+	City    string `json:"city,omitempty"`
+	Country string `json:"country,omitempty"`
+	ZipCode string `json:"zip_code,omitempty"`
+}
+
+type ModelTrustpilotCategoryBusinessTag struct {
+	CategoryId  string `json:"category_id,omitempty"`
+	DisplayName string `json:"display_name,omitempty"`
+	IsPredicted bool   `json:"is_predicted,omitempty"`
+	IsPrimary   bool   `json:"is_primary,omitempty"`
+}
+
+type ModelTrustpilotCategoryGroup struct {
+	Items []ModelTrustpilotCategoryLink `json:"items,omitempty"`
+	Name  string                        `json:"name,omitempty"`
+	Slug  string                        `json:"slug,omitempty"`
+	Url   string                        `json:"url,omitempty"`
+}
+
+type ModelTrustpilotCategoryLink struct {
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelTrustpilotCategoryPagination struct {
+	HasNextPage bool `json:"has_next_page,omitempty"`
+	NextPage    int  `json:"next_page,omitempty"`
+	Page        int  `json:"page,omitempty"`
+	PerPage     int  `json:"per_page,omitempty"`
+	TotalHits   int  `json:"total_hits,omitempty"`
+	TotalPages  int  `json:"total_pages,omitempty"`
+}
+
+type ModelTrustpilotCategoryResponse struct {
+	Breadcrumbs               []ModelTrustpilotCategoryLink     `json:"breadcrumbs,omitempty"`
+	Country                   string                            `json:"country,omitempty"`
+	Items                     []ModelTrustpilotCategoryBusiness `json:"items,omitempty"`
+	Name                      string                            `json:"name,omitempty"`
+	NewestCompanies           []ModelTrustpilotCategoryBusiness `json:"newest_companies,omitempty"`
+	Page                      int                               `json:"page,omitempty"`
+	Pagination                ModelTrustpilotCategoryPagination `json:"pagination,omitempty"`
+	RecentlyReviewedCompanies []ModelTrustpilotCategoryBusiness `json:"recently_reviewed_companies,omitempty"`
+	RelatedCategories         []ModelTrustpilotCategoryLink     `json:"related_categories,omitempty"`
+	Slug                      string                            `json:"slug,omitempty"`
+	Sort                      string                            `json:"sort,omitempty"`
+	TrustpilotUrl             string                            `json:"trustpilot_url,omitempty"`
+}
+
+type ModelTrustpilotCategorySearchResponse struct {
+	Categories []ModelTrustpilotCategorySearchResult `json:"categories,omitempty"`
+	Country    string                                `json:"country,omitempty"`
+	Locale     string                                `json:"locale,omitempty"`
+	Query      string                                `json:"query,omitempty"`
+	Size       int                                   `json:"size,omitempty"`
+}
+
+type ModelTrustpilotCategorySearchResult struct {
+	CategoryId         string `json:"category_id,omitempty"`
+	DisplayName        string `json:"display_name,omitempty"`
+	TopLevelCategoryId string `json:"top_level_category_id,omitempty"`
+}
+
+type ModelTrustpilotRelatedBusiness struct {
+	BusinessUnitId  string  `json:"business_unit_id,omitempty"`
+	DisplayName     string  `json:"display_name,omitempty"`
+	IdentifyingName string  `json:"identifying_name,omitempty"`
+	LogoUrl         string  `json:"logo_url,omitempty"`
+	ReviewCount     int     `json:"review_count,omitempty"`
+	Source          string  `json:"source,omitempty"`
+	Stars           float64 `json:"stars,omitempty"`
+	TrustScore      float64 `json:"trust_score,omitempty"`
+	TrustpilotUrl   string  `json:"trustpilot_url,omitempty"`
+}
+
+type ModelTrustpilotSearchAddress struct {
+	ApproximateArea ModelTrustpilotSearchAreaBounds  `json:"approximate_area,omitempty"`
+	City            string                           `json:"city,omitempty"`
+	Coordinates     ModelTrustpilotSearchCoordinates `json:"coordinates,omitempty"`
+	Country         string                           `json:"country,omitempty"`
+	CountryCode     string                           `json:"country_code,omitempty"`
+	Postcode        string                           `json:"postcode,omitempty"`
+	Street          string                           `json:"street,omitempty"`
+}
+
+type ModelTrustpilotSearchAreaBounds struct {
+	NorthWest ModelTrustpilotSearchCoordinates `json:"north_west,omitempty"`
+	SouthEast ModelTrustpilotSearchCoordinates `json:"south_east,omitempty"`
+}
+
+type ModelTrustpilotSearchCategory struct {
+	Id      string `json:"id,omitempty"`
+	Name    string `json:"name,omitempty"`
+	Primary bool   `json:"primary,omitempty"`
+}
+
+type ModelTrustpilotSearchCoordinates struct {
+	Lat float64 `json:"lat,omitempty"`
+	Lon float64 `json:"lon,omitempty"`
+}
+
+type ModelTrustpilotSearchResponse struct {
+	Country    string                        `json:"country,omitempty"`
+	Items      []ModelTrustpilotSearchResult `json:"items,omitempty"`
+	Page       int                           `json:"page,omitempty"`
+	PageSize   int                           `json:"page_size,omitempty"`
+	Query      string                        `json:"query,omitempty"`
+	SearchMode string                        `json:"search_mode,omitempty"`
+	TotalHits  int                           `json:"total_hits,omitempty"`
+	TotalPages int                           `json:"total_pages,omitempty"`
+}
+
+type ModelTrustpilotSearchResult struct {
+	Address              ModelTrustpilotSearchAddress    `json:"address,omitempty"`
+	BusinessUnitId       string                          `json:"business_unit_id,omitempty"`
+	Categories           []ModelTrustpilotSearchCategory `json:"categories,omitempty"`
+	CountryCode          string                          `json:"country_code,omitempty"`
+	DisplayName          string                          `json:"display_name,omitempty"`
+	Email                string                          `json:"email,omitempty"`
+	IdentifyingName      string                          `json:"identifying_name,omitempty"`
+	LogoUrl              string                          `json:"logo_url,omitempty"`
+	Phone                string                          `json:"phone,omitempty"`
+	PredictedTopCategory ModelTrustpilotSearchCategory   `json:"predicted_top_category,omitempty"`
+	ReviewCount          int                             `json:"review_count,omitempty"`
+	Stars                float64                         `json:"stars,omitempty"`
+	TrustScore           float64                         `json:"trust_score,omitempty"`
+	TrustpilotUrl        string                          `json:"trustpilot_url,omitempty"`
+	Verified             bool                            `json:"verified,omitempty"`
+	WebsiteUrl           string                          `json:"website_url,omitempty"`
+}
+
+type ModelTrustpilotBusinessHeader struct {
+	Claimed       bool    `json:"claimed,omitempty"`
+	Name          string  `json:"name,omitempty"`
+	Rating        float64 `json:"rating,omitempty"`
+	ReviewCount   int     `json:"review_count,omitempty"`
+	Slug          string  `json:"slug,omitempty"`
+	TrustScore    float64 `json:"trust_score,omitempty"`
+	TrustpilotUrl string  `json:"trustpilot_url,omitempty"`
+	WebsiteUrl    string  `json:"website_url,omitempty"`
+}
+
+type ModelTrustpilotBusinessProfileResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelTrustpilotBusinessResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelTrustpilotBusinessRelatedResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelTrustpilotBusinessRelatedResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelTrustpilotBusinessReviewsResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelTrustpilotBusinessReviewsResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelTrustpilotBusinessSearchResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelTrustpilotSearchResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelTrustpilotCategoriesResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelTrustpilotCategoriesResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelTrustpilotCategoryResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelTrustpilotCategoryResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelTrustpilotCategorySearchResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelTrustpilotCategorySearchResponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
+}
+
+type ModelUsageUsageBillingStateDoc struct {
+	AllowOverage                    bool   `json:"allow_overage,omitempty"`
+	CreatedAt                       string `json:"created_at,omitempty"`
+	CreditsRemaining                int    `json:"credits_remaining,omitempty"`
+	CreditsUsed                     int    `json:"credits_used,omitempty"`
+	Currency                        string `json:"currency,omitempty"`
+	DailyCreditLimit                int    `json:"daily_credit_limit,omitempty"`
+	DailyCreditsRemaining           int    `json:"daily_credits_remaining,omitempty"`
+	DailyCreditsUsed                int    `json:"daily_credits_used,omitempty"`
+	DailyKey                        string `json:"daily_key,omitempty"`
+	ExpectedSubscriptionAmountCents int    `json:"expected_subscription_amount_cents,omitempty"`
+	ExpectedTotalAmountCents        int    `json:"expected_total_amount_cents,omitempty"`
+	HardLimit                       bool   `json:"hard_limit,omitempty"`
+	IncludedCredits                 int    `json:"included_credits,omitempty"`
+	OverageCredits                  int    `json:"overage_credits,omitempty"`
+	PeriodEnd                       string `json:"period_end,omitempty"`
+	PeriodKey                       string `json:"period_key,omitempty"`
+	PeriodStart                     string `json:"period_start,omitempty"`
+	Plan                            string `json:"plan,omitempty"`
+	PricingSource                   string `json:"pricing_source,omitempty"`
+	SubscriptionPriceCents          int    `json:"subscription_price_cents,omitempty"`
+	UpdatedAt                       string `json:"updated_at,omitempty"`
+	UserId                          string `json:"user_id,omitempty"`
+}
+
+type ModelUsageUsageEndpointItemDoc struct {
+	ChargedRequests     int    `json:"charged_requests,omitempty"`
+	Credits             int    `json:"credits,omitempty"`
+	Endpoint            string `json:"endpoint,omitempty"`
+	FailedRequests      int    `json:"failed_requests,omitempty"`
+	NonBillableRequests int    `json:"non_billable_requests,omitempty"`
+	Overage             int    `json:"overage,omitempty"`
+	Requests            int    `json:"requests,omitempty"`
+}
+
+type ModelUsageUsageEndpointsDoc struct {
+	From  string                           `json:"from,omitempty"`
+	Items []ModelUsageUsageEndpointItemDoc `json:"items,omitempty"`
+	Range string                           `json:"range,omitempty"`
+	To    string                           `json:"to,omitempty"`
+}
+
+type ModelUsageUsageEndpointsResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelUsageUsageEndpointsDoc `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelUsageUsageOverviewDoc struct {
+	Billing  ModelUsageUsageBillingStateDoc   `json:"billing,omitempty"`
+	From     string                           `json:"from,omitempty"`
+	Range    string                           `json:"range,omitempty"`
+	Requests ModelUsageUsageRequestSummaryDoc `json:"requests,omitempty"`
+	To       string                           `json:"to,omitempty"`
+	Usage    ModelUsageUsageWindowSummaryDoc  `json:"usage,omitempty"`
+}
+
+type ModelUsageUsageOverviewResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelUsageUsageOverviewDoc `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelUsageUsageRecentIpitemDoc struct {
+	ErrorCount    int    `json:"error_count,omitempty"`
+	Ip            string `json:"ip,omitempty"`
+	LastSeenAt    string `json:"last_seen_at,omitempty"`
+	LastUserAgent string `json:"last_user_agent,omitempty"`
+	RequestCount  int    `json:"request_count,omitempty"`
+	SuccessCount  int    `json:"success_count,omitempty"`
+}
+
+type ModelUsageUsageRecentIpsDoc struct {
+	From  string                           `json:"from,omitempty"`
+	Items []ModelUsageUsageRecentIpitemDoc `json:"items,omitempty"`
+	Range string                           `json:"range,omitempty"`
+	To    string                           `json:"to,omitempty"`
+}
+
+type ModelUsageUsageRecentIpsResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelUsageUsageRecentIpsDoc `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelUsageUsageRequestSummaryDoc struct {
+	AvgLatencyMs    float64 `json:"avg_latency_ms,omitempty"`
+	DistinctIpCount int     `json:"distinct_ip_count,omitempty"`
+	ErrorRequests   int     `json:"error_requests,omitempty"`
+	LastRequestAt   string  `json:"last_request_at,omitempty"`
+	Requests        int     `json:"requests,omitempty"`
+	SuccessRequests int     `json:"success_requests,omitempty"`
+}
+
+type ModelUsageUsageTimeseriesDoc struct {
+	Bucket string                             `json:"bucket,omitempty"`
+	From   string                             `json:"from,omitempty"`
+	Items  []ModelUsageUsageTimeseriesItemDoc `json:"items,omitempty"`
+	Range  string                             `json:"range,omitempty"`
+	To     string                             `json:"to,omitempty"`
+}
+
+type ModelUsageUsageTimeseriesItemDoc struct {
+	BucketEnd           string `json:"bucket_end,omitempty"`
+	BucketStart         string `json:"bucket_start,omitempty"`
+	ChargedRequests     int    `json:"charged_requests,omitempty"`
+	Credits             int    `json:"credits,omitempty"`
+	FailedRequests      int    `json:"failed_requests,omitempty"`
+	NonBillableRequests int    `json:"non_billable_requests,omitempty"`
+	Overage             int    `json:"overage,omitempty"`
+	Requests            int    `json:"requests,omitempty"`
+}
+
+type ModelUsageUsageTimeseriesResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelUsageUsageTimeseriesDoc `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelUsageUsageWindowSummaryDoc struct {
+	ChargedRequests     int `json:"charged_requests,omitempty"`
+	Credits             int `json:"credits,omitempty"`
+	FailedRequests      int `json:"failed_requests,omitempty"`
+	NonBillableRequests int `json:"non_billable_requests,omitempty"`
+	Overage             int `json:"overage,omitempty"`
+	Requests            int `json:"requests,omitempty"`
+}
+
+type ModelUserUserApikeyItemDoc struct {
+	CreatedAt  string `json:"created_at,omitempty"`
+	ExpiresAt  string `json:"expires_at,omitempty"`
+	Id         string `json:"id,omitempty"`
+	KeyPrefix  string `json:"key_prefix,omitempty"`
+	KeySuffix  string `json:"key_suffix,omitempty"`
+	LastUsedAt string `json:"last_used_at,omitempty"`
+	LastUsedIp string `json:"last_used_ip,omitempty"`
+	MaskedKey  string `json:"masked_key,omitempty"`
+	RotatedAt  string `json:"rotated_at,omitempty"`
+	Source     string `json:"source,omitempty"`
+	Status     string `json:"status,omitempty"`
+	UpdatedAt  string `json:"updated_at,omitempty"`
+}
+
+type ModelUserUserApikeysDoc struct {
+	Items []ModelUserUserApikeyItemDoc `json:"items,omitempty"`
+}
+
+type ModelUserUserApikeysResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelUserUserApikeysDoc `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelUserUserMeDoc struct {
+	Email    string `json:"email,omitempty"`
+	Id       string `json:"id,omitempty"`
+	Plan     string `json:"plan,omitempty"`
+	Username string `json:"username,omitempty"`
+}
+
+type ModelUserUserMeResponseDoc struct {
+	Code int                `json:"code,omitempty"`
+	Data ModelUserUserMeDoc `json:"data,omitempty"`
+	Msg  string             `json:"msg,omitempty"`
+}
+
+type ModelUserUserRevealApikeyDoc struct {
+	ApiKey string                     `json:"api_key,omitempty"`
+	Key    ModelUserUserApikeyItemDoc `json:"key,omitempty"`
+}
+
+type ModelUserUserRevealApikeyResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelUserUserRevealApikeyDoc `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelUserUserRotateApikeyDoc struct {
+	ActiveKey          ModelUserUserApikeyItemDoc `json:"active_key,omitempty"`
+	GracePeriodSeconds int                        `json:"grace_period_seconds,omitempty"`
+	NewApiKey          string                     `json:"new_api_key,omitempty"`
+	PreviousKey        ModelUserUserApikeyItemDoc `json:"previous_key,omitempty"`
+}
+
+type ModelUserUserRotateApikeyResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelUserUserRotateApikeyDoc `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelWebParseWebOption struct {
+	Enablejs bool   `json:"enablejs,omitempty"`
+	Format   string `json:"format,omitempty"`
+	Url      string `json:"url"`
+}
+
+type ModelYahoofinanceActionEvents struct {
+	CapitalGains []map[string]any `json:"capital_gains,omitempty"`
+	Dividends    []map[string]any `json:"dividends,omitempty"`
+	Splits       []map[string]any `json:"splits,omitempty"`
+}
+
+type ModelYahoofinanceCalendarResponse struct {
+	End    string           `json:"end,omitempty"`
+	Limit  int              `json:"limit,omitempty"`
+	Offset int              `json:"offset,omitempty"`
+	Rows   []map[string]any `json:"rows,omitempty"`
+	Start  string           `json:"start,omitempty"`
+	Type   string           `json:"type,omitempty"`
+}
+
+type ModelYahoofinanceCalendarsResponse struct {
+	Calendars []string `json:"calendars,omitempty"`
+}
+
+type ModelYahoofinanceDomainListResponse struct {
+	Items []ModelYahoofinanceDomainRef `json:"items,omitempty"`
+}
+
+type ModelYahoofinanceDomainRef struct {
+	Key  string `json:"key,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelYahoofinanceDownloadRequest struct {
+	AutoAdjust     bool     `json:"auto_adjust,omitempty"`
+	BackAdjust     bool     `json:"back_adjust,omitempty"`
+	End            string   `json:"end,omitempty"`
+	IncludeActions bool     `json:"include_actions,omitempty"`
+	IncludePrepost bool     `json:"include_prepost,omitempty"`
+	Interval       string   `json:"interval,omitempty"`
+	Keepna         bool     `json:"keepna,omitempty"`
+	Period         string   `json:"period,omitempty"`
+	Rounding       bool     `json:"rounding,omitempty"`
+	Start          string   `json:"start,omitempty"`
+	Symbols        []string `json:"symbols"`
+}
+
+type ModelYahoofinanceDownloadResponse struct {
+	Results []ModelYahoofinanceDownloadResult `json:"results,omitempty"`
+}
+
+type ModelYahoofinanceDownloadResult struct {
+	Error   string                           `json:"error,omitempty"`
+	History ModelYahoofinanceHistoryResponse `json:"history,omitempty"`
+	Symbol  string                           `json:"symbol,omitempty"`
+}
+
+type ModelYahoofinanceEarningsDatesResponse struct {
+	Limit  int              `json:"limit,omitempty"`
+	Offset int              `json:"offset,omitempty"`
+	Rows   []map[string]any `json:"rows,omitempty"`
+	Symbol string           `json:"symbol,omitempty"`
+}
+
+type ModelYahoofinanceFinancialsResponse struct {
+	Modules   map[string]any `json:"modules,omitempty"`
+	Period    string         `json:"period,omitempty"`
+	Statement string         `json:"statement,omitempty"`
+	Symbol    string         `json:"symbol,omitempty"`
+}
+
+type ModelYahoofinanceHistoryMetadataResponse struct {
+	Meta   map[string]any `json:"meta,omitempty"`
+	Symbol string         `json:"symbol,omitempty"`
+}
+
+type ModelYahoofinanceHistoryResponse struct {
+	Events ModelYahoofinanceActionEvents `json:"events,omitempty"`
+	Meta   map[string]any                `json:"meta,omitempty"`
+	Points []ModelYahoofinancePricePoint `json:"points,omitempty"`
+	Symbol string                        `json:"symbol,omitempty"`
+}
+
+type ModelYahoofinanceIsinresponse struct {
+	Isin   string `json:"isin,omitempty"`
+	Symbol string `json:"symbol,omitempty"`
+}
+
+type ModelYahoofinanceIndustryResponse struct {
+	Key                    string           `json:"key,omitempty"`
+	Name                   string           `json:"name,omitempty"`
+	Overview               map[string]any   `json:"overview,omitempty"`
+	ResearchReports        []map[string]any `json:"research_reports,omitempty"`
+	SectorKey              string           `json:"sector_key,omitempty"`
+	SectorName             string           `json:"sector_name,omitempty"`
+	Symbol                 string           `json:"symbol,omitempty"`
+	TopCompanies           []map[string]any `json:"top_companies,omitempty"`
+	TopGrowthCompanies     []map[string]any `json:"top_growth_companies,omitempty"`
+	TopPerformingCompanies []map[string]any `json:"top_performing_companies,omitempty"`
+}
+
+type ModelYahoofinanceInfoResponse struct {
+	Modules map[string]any `json:"modules,omitempty"`
+	Symbol  string         `json:"symbol,omitempty"`
+}
+
+type ModelYahoofinanceMarketStatusResponse struct {
+	Market string         `json:"market,omitempty"`
+	Status map[string]any `json:"status,omitempty"`
+}
+
+type ModelYahoofinanceMarketSummaryResponse struct {
+	Market  string           `json:"market,omitempty"`
+	Summary []map[string]any `json:"summary,omitempty"`
+}
+
+type ModelYahoofinanceModuleResponse struct {
+	Modules map[string]any `json:"modules,omitempty"`
+	Symbol  string         `json:"symbol,omitempty"`
+}
+
+type ModelYahoofinanceOptionExpiration struct {
+	Calls          []map[string]any `json:"calls,omitempty"`
+	ExpirationDate int              `json:"expiration_date,omitempty"`
+	Puts           []map[string]any `json:"puts,omitempty"`
+}
+
+type ModelYahoofinanceOptionsResponse struct {
+	ExpirationDates []int                               `json:"expiration_dates,omitempty"`
+	Options         []ModelYahoofinanceOptionExpiration `json:"options,omitempty"`
+	Symbol          string                              `json:"symbol,omitempty"`
+	Underlying      map[string]any                      `json:"underlying,omitempty"`
+}
+
+type ModelYahoofinancePricePoint struct {
+	AdjClose  float64 `json:"adj_close,omitempty"`
+	Close     float64 `json:"close,omitempty"`
+	Datetime  string  `json:"datetime,omitempty"`
+	High      float64 `json:"high,omitempty"`
+	Low       float64 `json:"low,omitempty"`
+	Open      float64 `json:"open,omitempty"`
+	Timestamp int     `json:"timestamp,omitempty"`
+	Volume    int     `json:"volume,omitempty"`
+}
+
+type ModelYahoofinanceQuoteResponse struct {
+	Quotes  []map[string]any `json:"quotes,omitempty"`
+	Symbols []string         `json:"symbols,omitempty"`
+}
+
+type ModelYahoofinanceScreenerRequest struct {
+	Count     int            `json:"count,omitempty"`
+	Offset    int            `json:"offset,omitempty"`
+	Query     map[string]any `json:"query"`
+	QuoteType string         `json:"quote_type,omitempty"`
+	SortAsc   bool           `json:"sort_asc,omitempty"`
+	SortField string         `json:"sort_field,omitempty"`
+}
+
+type ModelYahoofinanceScreenerResponse struct {
+	Description string           `json:"description,omitempty"`
+	Id          string           `json:"id,omitempty"`
+	Meta        map[string]any   `json:"meta,omitempty"`
+	Quotes      []map[string]any `json:"quotes,omitempty"`
+	Title       string           `json:"title,omitempty"`
+	Total       int              `json:"total,omitempty"`
+}
+
+type ModelYahoofinanceScreenersResponse struct {
+	Screeners []string `json:"screeners,omitempty"`
+}
+
+type ModelYahoofinanceSearchResponse struct {
+	Lists    []map[string]any `json:"lists,omitempty"`
+	News     []map[string]any `json:"news,omitempty"`
+	Query    string           `json:"query,omitempty"`
+	Quotes   []map[string]any `json:"quotes,omitempty"`
+	Research []map[string]any `json:"research,omitempty"`
+}
+
+type ModelYahoofinanceSectorResponse struct {
+	Industries      []map[string]any  `json:"industries,omitempty"`
+	Key             string            `json:"key,omitempty"`
+	Name            string            `json:"name,omitempty"`
+	Overview        map[string]any    `json:"overview,omitempty"`
+	ResearchReports []map[string]any  `json:"research_reports,omitempty"`
+	Symbol          string            `json:"symbol,omitempty"`
+	TopCompanies    []map[string]any  `json:"top_companies,omitempty"`
+	TopEtfs         map[string]string `json:"top_etfs,omitempty"`
+	TopMutualFunds  map[string]string `json:"top_mutual_funds,omitempty"`
+}
+
+type ModelYahoofinanceSharesFullResponse struct {
+	End    string           `json:"end,omitempty"`
+	Points []map[string]any `json:"points,omitempty"`
+	Start  string           `json:"start,omitempty"`
+	Symbol string           `json:"symbol,omitempty"`
+}
+
+type ModelYahoofinanceSharesResponse struct {
+	Shares map[string]any `json:"shares,omitempty"`
+	Symbol string         `json:"symbol,omitempty"`
+}
+
+type ModelYahoofinanceTrendingResponse struct {
+	Count         int      `json:"count,omitempty"`
+	JobTimestamp  int      `json:"job_timestamp,omitempty"`
+	Region        string   `json:"region,omitempty"`
+	StartInterval int      `json:"start_interval,omitempty"`
+	Symbols       []string `json:"symbols,omitempty"`
+}
+
+type ModelYahoofinanceValuationResponse struct {
+	Headers []string         `json:"headers,omitempty"`
+	Rows    []map[string]any `json:"rows,omitempty"`
+	Symbol  string           `json:"symbol,omitempty"`
+}
+
+type ModelYahoofinanceActionsResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelYahoofinanceActionEvents `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceCalendarResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelYahoofinanceCalendarResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceCalendarsResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelYahoofinanceCalendarsResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceDomainListResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelYahoofinanceDomainListResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceDownloadResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelYahoofinanceDownloadResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceEarningsDatesResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelYahoofinanceEarningsDatesResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceFinancialsResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelYahoofinanceFinancialsResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceHistoryMetadataResponseDoc struct {
+	Code int                                      `json:"code,omitempty"`
+	Data ModelYahoofinanceHistoryMetadataResponse `json:"data,omitempty"`
+	Msg  string                                   `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceHistoryResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelYahoofinanceHistoryResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceIndustryResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelYahoofinanceIndustryResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceInfoResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelYahoofinanceInfoResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceIsinResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelYahoofinanceIsinresponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceMarketStatusResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelYahoofinanceMarketStatusResponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceMarketSummaryResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelYahoofinanceMarketSummaryResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceModuleResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelYahoofinanceModuleResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceOptionsResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelYahoofinanceOptionsResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceQuoteResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelYahoofinanceQuoteResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceScreenerResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelYahoofinanceScreenerResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceScreenersResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelYahoofinanceScreenersResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceSearchResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelYahoofinanceSearchResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceSectorResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelYahoofinanceSectorResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceSharesFullResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelYahoofinanceSharesFullResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceSharesResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelYahoofinanceSharesResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceTrendingResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelYahoofinanceTrendingResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceValuationResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelYahoofinanceValuationResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelYoutubeCaption struct {
+	Duration float64 `json:"duration,omitempty"`
+	Start    float64 `json:"start,omitempty"`
+	Text     string  `json:"text,omitempty"`
+}
+
+type ModelYoutubeChannelFeedResponse struct {
+	ChannelId         string                   `json:"channel_id,omitempty"`
+	ChannelTitle      string                   `json:"channel_title,omitempty"`
+	ChannelUrl        string                   `json:"channel_url,omitempty"`
+	ContinuationToken string                   `json:"continuation_token,omitempty"`
+	Handle            string                   `json:"handle,omitempty"`
+	Items             []ModelYoutubeSearchItem `json:"items,omitempty"`
+	Query             string                   `json:"query,omitempty"`
+	Thumbnail         string                   `json:"thumbnail,omitempty"`
+}
+
+type ModelYoutubeChannelShort struct {
+	Position  int    `json:"position,omitempty"`
+	Thumbnail string `json:"thumbnail,omitempty"`
+	Title     string `json:"title,omitempty"`
+	Url       string `json:"url,omitempty"`
+	VideoId   string `json:"video_id,omitempty"`
+	ViewCount string `json:"view_count,omitempty"`
+}
+
+type ModelYoutubeChannelShortsResponse struct {
+	ChannelId    string                     `json:"channel_id,omitempty"`
+	ChannelTitle string                     `json:"channel_title,omitempty"`
+	ChannelUrl   string                     `json:"channel_url,omitempty"`
+	Handle       string                     `json:"handle,omitempty"`
+	Shorts       []ModelYoutubeChannelShort `json:"shorts,omitempty"`
+	Thumbnail    string                     `json:"thumbnail,omitempty"`
+}
+
+type ModelYoutubeComment struct {
+	ChannelId         string `json:"channel_id,omitempty"`
+	CommentId         string `json:"comment_id,omitempty"`
+	Content           string `json:"content,omitempty"`
+	ContinuationToken string `json:"continuation_token,omitempty"`
+	LikesCount        int    `json:"likes_count,omitempty"`
+	PublishedTime     string `json:"published_time,omitempty"`
+	ReplyCount        int    `json:"reply_count,omitempty"`
+	UserName          string `json:"user_name,omitempty"`
+}
+
+type ModelYoutubeCommentResponse struct {
+	Comments          []ModelYoutubeComment `json:"comments,omitempty"`
+	ContinuationToken string                `json:"continuation_token,omitempty"`
+}
+
+type ModelYoutubePlaylistResponse struct {
+	ChannelId         string                   `json:"channel_id,omitempty"`
+	ChannelTitle      string                   `json:"channel_title,omitempty"`
+	ContinuationToken string                   `json:"continuation_token,omitempty"`
+	Items             []ModelYoutubeSearchItem `json:"items,omitempty"`
+	PlaylistId        string                   `json:"playlist_id,omitempty"`
+	Thumbnail         string                   `json:"thumbnail,omitempty"`
+	Title             string                   `json:"title,omitempty"`
+	Url               string                   `json:"url,omitempty"`
+	VideoCount        string                   `json:"video_count,omitempty"`
+}
+
+type ModelYoutubeProfile struct {
+	Bio         string                   `json:"bio,omitempty"`
+	ChannelId   string                   `json:"channel_id,omitempty"`
+	ChannelName string                   `json:"channel_name,omitempty"`
+	ChannelUrl  string                   `json:"channel_url,omitempty"`
+	CreatedAt   string                   `json:"created_at,omitempty"`
+	Id          string                   `json:"id,omitempty"`
+	JoinedDate  string                   `json:"joined_date,omitempty"`
+	Links       []string                 `json:"links,omitempty"`
+	ProfilePic  string                   `json:"profile_pic,omitempty"`
+	Region      string                   `json:"region,omitempty"`
+	Stats       ModelYoutubeProfileStats `json:"stats,omitempty"`
+	UpdatedAt   string                   `json:"updated_at,omitempty"`
+}
+
+type ModelYoutubeProfileStats struct {
+	FollowersCount int `json:"followers_count,omitempty"`
+	VideosCount    int `json:"videos_count,omitempty"`
+	ViewsCount     int `json:"views_count,omitempty"`
+}
+
+type ModelYoutubeSearchItem struct {
+	Badges             []string `json:"badges,omitempty"`
+	ChannelId          string   `json:"channel_id,omitempty"`
+	ChannelThumbnail   string   `json:"channel_thumbnail,omitempty"`
+	ChannelTitle       string   `json:"channel_title,omitempty"`
+	DescriptionSnippet string   `json:"description_snippet,omitempty"`
+	Duration           string   `json:"duration,omitempty"`
+	DurationSeconds    int      `json:"duration_seconds,omitempty"`
+	Handle             string   `json:"handle,omitempty"`
+	IsLive             bool     `json:"is_live,omitempty"`
+	IsShort            bool     `json:"is_short,omitempty"`
+	IsVerified         bool     `json:"is_verified,omitempty"`
+	PlaylistId         string   `json:"playlist_id,omitempty"`
+	Position           int      `json:"position,omitempty"`
+	PublishedText      string   `json:"published_text,omitempty"`
+	ShortViewCount     string   `json:"short_view_count,omitempty"`
+	SubscriberCount    string   `json:"subscriber_count,omitempty"`
+	Thumbnail          string   `json:"thumbnail,omitempty"`
+	Title              string   `json:"title,omitempty"`
+	Type               string   `json:"type,omitempty"`
+	Url                string   `json:"url,omitempty"`
+	VideoCount         string   `json:"video_count,omitempty"`
+	VideoId            string   `json:"video_id,omitempty"`
+	ViewCount          string   `json:"view_count,omitempty"`
+}
+
+type ModelYoutubeSearchResponse struct {
+	ContinuationToken string                   `json:"continuation_token,omitempty"`
+	EstimatedResults  int                      `json:"estimated_results,omitempty"`
+	Items             []ModelYoutubeSearchItem `json:"items,omitempty"`
+	Query             string                   `json:"query,omitempty"`
+}
+
+type ModelYoutubeTagResp struct {
+	ContinuationToken string                    `json:"continuation_token,omitempty"`
+	Meta              ModelYoutubeTagMeta       `json:"meta,omitempty"`
+	Videos            []ModelYoutubeVideoDetail `json:"videos,omitempty"`
+}
+
+type ModelYoutubeTranscriptLanguage struct {
+	IsGenerated    bool   `json:"is_generated,omitempty"`
+	IsTranslatable bool   `json:"is_translatable,omitempty"`
+	Language       string `json:"language,omitempty"`
+	LanguageCode   string `json:"language_code,omitempty"`
+}
+
+type ModelYoutubeTranscriptResponse struct {
+	IsGenerated         bool                            `json:"is_generated,omitempty"`
+	Language            string                          `json:"language,omitempty"`
+	LanguageCode        string                          `json:"language_code,omitempty"`
+	Segments            []ModelYoutubeTranscriptSegment `json:"segments,omitempty"`
+	Text                string                          `json:"text,omitempty"`
+	TranslationLanguage string                          `json:"translation_language,omitempty"`
+	VideoId             string                          `json:"video_id,omitempty"`
+}
+
+type ModelYoutubeTranscriptSegment struct {
+	Duration float64 `json:"duration,omitempty"`
+	Start    float64 `json:"start,omitempty"`
+	Text     string  `json:"text,omitempty"`
+}
+
+type ModelYoutubeVideoDetail struct {
+	ChannelId       string  `json:"channel_id,omitempty"`
+	ChannelTitle    string  `json:"channel_title,omitempty"`
+	CommentsCount   int     `json:"comments_count,omitempty"`
+	Description     string  `json:"description,omitempty"`
+	DislikesCount   int     `json:"dislikes_count,omitempty"`
+	DurationSeconds float64 `json:"duration_seconds,omitempty"`
+	Id              string  `json:"id,omitempty"`
+	LikesCount      int     `json:"likes_count,omitempty"`
+	PublishedAt     string  `json:"published_at,omitempty"`
+	Title           string  `json:"title,omitempty"`
+	ViewsCount      int     `json:"views_count,omitempty"`
+}
+
+type ModelYoutubeCaptionsResponseDoc struct {
+	Code int                   `json:"code,omitempty"`
+	Data []ModelYoutubeCaption `json:"data,omitempty"`
+	Msg  string                `json:"msg,omitempty"`
+}
+
+type ModelYoutubeChannelFeedResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelYoutubeChannelFeedResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelYoutubeChannelSearchResponseDataDoc struct {
+	ChannelId         string                   `json:"channel_id,omitempty"`
+	ChannelTitle      string                   `json:"channel_title,omitempty"`
+	ChannelUrl        string                   `json:"channel_url,omitempty"`
+	ContinuationToken string                   `json:"continuation_token,omitempty"`
+	Handle            string                   `json:"handle,omitempty"`
+	Items             []ModelYoutubeSearchItem `json:"items,omitempty"`
+	Query             string                   `json:"query,omitempty"`
+	Thumbnail         string                   `json:"thumbnail,omitempty"`
+}
+
+type ModelYoutubeChannelSearchResponseDoc struct {
+	Code int                                      `json:"code,omitempty"`
+	Data ModelYoutubeChannelSearchResponseDataDoc `json:"data,omitempty"`
+	Msg  string                                   `json:"msg,omitempty"`
+}
+
+type ModelYoutubeChannelShortsResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelYoutubeChannelShortsResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelYoutubeCommentsResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelYoutubeCommentResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelYoutubePlaylistResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelYoutubePlaylistResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelYoutubeProfileResponseDoc struct {
+	Code int                 `json:"code,omitempty"`
+	Data ModelYoutubeProfile `json:"data,omitempty"`
+	Msg  string              `json:"msg,omitempty"`
+}
+
+type ModelYoutubeSearchResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelYoutubeSearchResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelYoutubeTagMeta struct {
+	ChannelsCount int `json:"channelsCount,omitempty"`
+	VideosCount   int `json:"videosCount,omitempty"`
+}
+
+type ModelYoutubeTagResponseDoc struct {
+	Code int                 `json:"code,omitempty"`
+	Data ModelYoutubeTagResp `json:"data,omitempty"`
+	Msg  string              `json:"msg,omitempty"`
+}
+
+type ModelYoutubeTranscriptLanguagesResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data []ModelYoutubeTranscriptLanguage `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelYoutubeTranscriptResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelYoutubeTranscriptResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelYoutubeVideoResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelYoutubeVideoDetail `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelZillowAutocompleteItem struct {
+	City              string   `json:"city,omitempty"`
+	County            string   `json:"county,omitempty"`
+	Id                string   `json:"id,omitempty"`
+	Latitude          float64  `json:"latitude,omitempty"`
+	Longitude         float64  `json:"longitude,omitempty"`
+	NearMe            bool     `json:"near_me,omitempty"`
+	Plid              string   `json:"plid,omitempty"`
+	RegionDisplayIds  []string `json:"region_display_ids,omitempty"`
+	RegionId          int      `json:"region_id,omitempty"`
+	RegionIds         []int    `json:"region_ids,omitempty"`
+	RegionType        int      `json:"region_type,omitempty"`
+	RegionTypes       []int    `json:"region_types,omitempty"`
+	SchoolDistrictIds []int    `json:"school_district_ids,omitempty"`
+	SchoolIds         []int    `json:"school_ids,omitempty"`
+	State             string   `json:"state,omitempty"`
+	SubType           string   `json:"sub_type,omitempty"`
+	ViewLatitudeDelta float64  `json:"view_latitude_delta,omitempty"`
+}
+
+type ModelZillowAutocompleteResponse struct {
+	Query     string                        `json:"query,omitempty"`
+	RequestId string                        `json:"request_id,omitempty"`
+	Results   []ModelZillowAutocompleteItem `json:"results,omitempty"`
+}
+
+type ModelZillowPropertyAddressParts struct {
+	City         string `json:"city,omitempty"`
+	County       string `json:"county,omitempty"`
+	Neighborhood string `json:"neighborhood,omitempty"`
+	State        string `json:"state,omitempty"`
+	Street       string `json:"street,omitempty"`
+	Subdivision  string `json:"subdivision,omitempty"`
+	Zipcode      string `json:"zipcode,omitempty"`
+}
+
+type ModelZillowPropertyAgent struct {
+	Email string `json:"email,omitempty"`
+	Name  string `json:"name,omitempty"`
+	Phone string `json:"phone,omitempty"`
+	Type  string `json:"type,omitempty"`
+}
+
+type ModelZillowPropertyArea struct {
+	Text  string  `json:"text,omitempty"`
+	Unit  string  `json:"unit,omitempty"`
+	Value float64 `json:"value,omitempty"`
+}
+
+type ModelZillowPropertyFact struct {
+	Key   string `json:"key,omitempty"`
+	Label string `json:"label,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelZillowPropertyFacts struct {
+	AccessibilityFeatures []string                  `json:"accessibility_features,omitempty"`
+	Additional            []ModelZillowPropertyFact `json:"additional,omitempty"`
+	Appliances            []string                  `json:"appliances,omitempty"`
+	ArchitecturalStyle    string                    `json:"architectural_style,omitempty"`
+	Basement              string                    `json:"basement,omitempty"`
+	Bathrooms             float64                   `json:"bathrooms,omitempty"`
+	BathroomsFull         int                       `json:"bathrooms_full,omitempty"`
+	BathroomsHalf         int                       `json:"bathrooms_half,omitempty"`
+	BathroomsOneQuarter   int                       `json:"bathrooms_one_quarter,omitempty"`
+	BathroomsThreeQuarter int                       `json:"bathrooms_three_quarter,omitempty"`
+	Bedrooms              float64                   `json:"bedrooms,omitempty"`
+	BuilderModel          string                    `json:"builder_model,omitempty"`
+	BuilderName           string                    `json:"builder_name,omitempty"`
+	CommunityFeatures     []string                  `json:"community_features,omitempty"`
+	ConstructionMaterials []string                  `json:"construction_materials,omitempty"`
+	Cooling               []string                  `json:"cooling,omitempty"`
+	ExteriorFeatures      []string                  `json:"exterior_features,omitempty"`
+	FireplaceFeatures     []string                  `json:"fireplace_features,omitempty"`
+	Flooring              []string                  `json:"flooring,omitempty"`
+	FoundationDetails     []string                  `json:"foundation_details,omitempty"`
+	GarageSpaces          float64                   `json:"garage_spaces,omitempty"`
+	HasFireplace          bool                      `json:"has_fireplace,omitempty"`
+	Heating               []string                  `json:"heating,omitempty"`
+	HoaFee                string                    `json:"hoa_fee,omitempty"`
+	HomeType              string                    `json:"home_type,omitempty"`
+	LaundryFeatures       []string                  `json:"laundry_features,omitempty"`
+	Levels                []string                  `json:"levels,omitempty"`
+	LivingArea            ModelZillowPropertyArea   `json:"living_area,omitempty"`
+	LotSize               ModelZillowPropertyArea   `json:"lot_size,omitempty"`
+	LotSizeDimensions     string                    `json:"lot_size_dimensions,omitempty"`
+	ParcelNumber          string                    `json:"parcel_number,omitempty"`
+	ParkingCapacity       int                       `json:"parking_capacity,omitempty"`
+	ParkingFeatures       []string                  `json:"parking_features,omitempty"`
+	PatioAndPorchFeatures []string                  `json:"patio_and_porch_features,omitempty"`
+	PoolFeatures          []string                  `json:"pool_features,omitempty"`
+	PropertySubType       []string                  `json:"property_sub_type,omitempty"`
+	Roof                  string                    `json:"roof,omitempty"`
+	Rooms                 []string                  `json:"rooms,omitempty"`
+	SecurityFeatures      []string                  `json:"security_features,omitempty"`
+	Sewer                 []string                  `json:"sewer,omitempty"`
+	SpaFeatures           []string                  `json:"spa_features,omitempty"`
+	Stories               float64                   `json:"stories,omitempty"`
+	StructureType         string                    `json:"structure_type,omitempty"`
+	TaxAnnualAmount       float64                   `json:"tax_annual_amount,omitempty"`
+	TaxAssessedValue      float64                   `json:"tax_assessed_value,omitempty"`
+	Utilities             []string                  `json:"utilities,omitempty"`
+	View                  []string                  `json:"view,omitempty"`
+	WaterSource           []string                  `json:"water_source,omitempty"`
+	WaterfrontFeatures    []string                  `json:"waterfront_features,omitempty"`
+	YearBuilt             int                       `json:"year_built,omitempty"`
+	Zoning                string                    `json:"zoning,omitempty"`
+}
+
+type ModelZillowPropertyHistory struct {
+	Price []ModelZillowPropertyPriceHistoryEntry `json:"price,omitempty"`
+	Tax   []ModelZillowPropertyTaxHistoryEntry   `json:"tax,omitempty"`
+}
+
+type ModelZillowPropertyItem struct {
+	Address        string   `json:"address,omitempty"`
+	Baths          float64  `json:"baths,omitempty"`
+	Beds           float64  `json:"beds,omitempty"`
+	BrokerName     string   `json:"broker_name,omitempty"`
+	Currency       string   `json:"currency,omitempty"`
+	DaysOnZillow   int      `json:"days_on_zillow,omitempty"`
+	DetailText     string   `json:"detail_text,omitempty"`
+	Has3dModel     bool     `json:"has_3d_model,omitempty"`
+	HasVideo       bool     `json:"has_video,omitempty"`
+	HomeStatus     string   `json:"home_status,omitempty"`
+	HomeType       string   `json:"home_type,omitempty"`
+	Image          string   `json:"image,omitempty"`
+	IsShowcase     bool     `json:"is_showcase,omitempty"`
+	Latitude       float64  `json:"latitude,omitempty"`
+	ListingSubType []string `json:"listing_sub_type,omitempty"`
+	LivingArea     float64  `json:"living_area,omitempty"`
+	Longitude      float64  `json:"longitude,omitempty"`
+	LotArea        float64  `json:"lot_area,omitempty"`
+	LotAreaUnit    string   `json:"lot_area_unit,omitempty"`
+	Photos         []string `json:"photos,omitempty"`
+	Price          float64  `json:"price,omitempty"`
+	PriceText      string   `json:"price_text,omitempty"`
+	RentZestimate  float64  `json:"rent_zestimate,omitempty"`
+	StatusText     string   `json:"status_text,omitempty"`
+	Url            string   `json:"url,omitempty"`
+	Zestimate      float64  `json:"zestimate,omitempty"`
+	Zpid           string   `json:"zpid,omitempty"`
+}
+
+type ModelZillowPropertyListing struct {
+	AgentName         string                         `json:"agent_name,omitempty"`
+	Agents            []ModelZillowPropertyAgent     `json:"agents,omitempty"`
+	AttributionText   string                         `json:"attribution_text,omitempty"`
+	BrokerName        string                         `json:"broker_name,omitempty"`
+	BrokerPhone       string                         `json:"broker_phone,omitempty"`
+	DatePosted        string                         `json:"date_posted,omitempty"`
+	DateUpdated       string                         `json:"date_updated,omitempty"`
+	DaysOnZillow      int                            `json:"days_on_zillow,omitempty"`
+	ListingId         string                         `json:"listing_id,omitempty"`
+	MlsId             string                         `json:"mls_id,omitempty"`
+	OpenHouses        []ModelZillowPropertyOpenHouse `json:"open_houses,omitempty"`
+	Provider          string                         `json:"provider,omitempty"`
+	ProviderListingId string                         `json:"provider_listing_id,omitempty"`
+	Source            string                         `json:"source,omitempty"`
+	Status            string                         `json:"status,omitempty"`
+	SubTypes          []string                       `json:"sub_types,omitempty"`
+	TimeOnZillow      string                         `json:"time_on_zillow,omitempty"`
+	Type              string                         `json:"type,omitempty"`
+}
+
+type ModelZillowPropertyMedia struct {
+	Has3dModel     bool                       `json:"has_3d_model,omitempty"`
+	HasVideo       bool                       `json:"has_video,omitempty"`
+	PhotoCount     int                        `json:"photo_count,omitempty"`
+	Photos         []ModelZillowPropertyPhoto `json:"photos,omitempty"`
+	PrimaryImage   string                     `json:"primary_image,omitempty"`
+	VideoUrl       string                     `json:"video_url,omitempty"`
+	VirtualTourUrl string                     `json:"virtual_tour_url,omitempty"`
+}
+
+type ModelZillowPropertyNearby struct {
+	Address    string  `json:"address,omitempty"`
+	Baths      float64 `json:"baths,omitempty"`
+	Beds       float64 `json:"beds,omitempty"`
+	HomeStatus string  `json:"home_status,omitempty"`
+	LivingArea float64 `json:"living_area,omitempty"`
+	Price      float64 `json:"price,omitempty"`
+	PriceText  string  `json:"price_text,omitempty"`
+	Url        string  `json:"url,omitempty"`
+	Zpid       string  `json:"zpid,omitempty"`
+}
+
+type ModelZillowPropertyOpenHouse struct {
+	EndTime   string `json:"end_time,omitempty"`
+	StartTime string `json:"start_time,omitempty"`
+	Text      string `json:"text,omitempty"`
+}
+
+type ModelZillowPropertyPhoto struct {
+	Height int    `json:"height,omitempty"`
+	Source string `json:"source,omitempty"`
+	Url    string `json:"url,omitempty"`
+	Width  int    `json:"width,omitempty"`
+}
+
+type ModelZillowPropertyPriceHistoryEntry struct {
+	BuyerAgent  string  `json:"buyer_agent,omitempty"`
+	Change      float64 `json:"change,omitempty"`
+	Date        string  `json:"date,omitempty"`
+	Event       string  `json:"event,omitempty"`
+	Price       float64 `json:"price,omitempty"`
+	PriceText   string  `json:"price_text,omitempty"`
+	SellerAgent string  `json:"seller_agent,omitempty"`
+	Source      string  `json:"source,omitempty"`
+	Time        int     `json:"time,omitempty"`
+}
+
+type ModelZillowPropertyPricing struct {
+	Currency                string  `json:"currency,omitempty"`
+	EstimatedMonthlyPayment float64 `json:"estimated_monthly_payment,omitempty"`
+	MonthlyHoaFee           float64 `json:"monthly_hoa_fee,omitempty"`
+	Price                   float64 `json:"price,omitempty"`
+	PricePerSquareFoot      float64 `json:"price_per_square_foot,omitempty"`
+	PriceText               string  `json:"price_text,omitempty"`
+	PropertyTaxRate         float64 `json:"property_tax_rate,omitempty"`
+	RentZestimate           float64 `json:"rent_zestimate,omitempty"`
+	Zestimate               float64 `json:"zestimate,omitempty"`
+}
+
+type ModelZillowPropertyResponse struct {
+	Address        string                          `json:"address,omitempty"`
+	AddressParts   ModelZillowPropertyAddressParts `json:"address_parts,omitempty"`
+	Baths          float64                         `json:"baths,omitempty"`
+	Beds           float64                         `json:"beds,omitempty"`
+	BrokerName     string                          `json:"broker_name,omitempty"`
+	Currency       string                          `json:"currency,omitempty"`
+	DaysOnZillow   int                             `json:"days_on_zillow,omitempty"`
+	Description    string                          `json:"description,omitempty"`
+	DetailText     string                          `json:"detail_text,omitempty"`
+	Facts          ModelZillowPropertyFacts        `json:"facts,omitempty"`
+	Has3dModel     bool                            `json:"has_3d_model,omitempty"`
+	HasVideo       bool                            `json:"has_video,omitempty"`
+	History        ModelZillowPropertyHistory      `json:"history,omitempty"`
+	HomeStatus     string                          `json:"home_status,omitempty"`
+	HomeType       string                          `json:"home_type,omitempty"`
+	Image          string                          `json:"image,omitempty"`
+	IsShowcase     bool                            `json:"is_showcase,omitempty"`
+	Latitude       float64                         `json:"latitude,omitempty"`
+	Listing        ModelZillowPropertyListing      `json:"listing,omitempty"`
+	ListingSubType []string                        `json:"listing_sub_type,omitempty"`
+	LivingArea     float64                         `json:"living_area,omitempty"`
+	Longitude      float64                         `json:"longitude,omitempty"`
+	LotArea        float64                         `json:"lot_area,omitempty"`
+	LotAreaUnit    string                          `json:"lot_area_unit,omitempty"`
+	Media          ModelZillowPropertyMedia        `json:"media,omitempty"`
+	Nearby         []ModelZillowPropertyNearby     `json:"nearby,omitempty"`
+	Photos         []string                        `json:"photos,omitempty"`
+	Price          float64                         `json:"price,omitempty"`
+	PriceText      string                          `json:"price_text,omitempty"`
+	Pricing        ModelZillowPropertyPricing      `json:"pricing,omitempty"`
+	RentZestimate  float64                         `json:"rent_zestimate,omitempty"`
+	Schools        []ModelZillowPropertySchool     `json:"schools,omitempty"`
+	StatusText     string                          `json:"status_text,omitempty"`
+	Url            string                          `json:"url,omitempty"`
+	Zestimate      float64                         `json:"zestimate,omitempty"`
+	Zpid           string                          `json:"zpid,omitempty"`
+}
+
+type ModelZillowPropertySchool struct {
+	Assigned bool    `json:"assigned,omitempty"`
+	Distance float64 `json:"distance,omitempty"`
+	District string  `json:"district,omitempty"`
+	Grades   string  `json:"grades,omitempty"`
+	Id       string  `json:"id,omitempty"`
+	Level    string  `json:"level,omitempty"`
+	Link     string  `json:"link,omitempty"`
+	Name     string  `json:"name,omitempty"`
+	Rating   float64 `json:"rating,omitempty"`
+	Type     string  `json:"type,omitempty"`
+}
+
+type ModelZillowPropertyTaxHistoryEntry struct {
+	TaxIncrease   float64 `json:"tax_increase,omitempty"`
+	TaxPaid       float64 `json:"tax_paid,omitempty"`
+	Time          int     `json:"time,omitempty"`
+	Value         float64 `json:"value,omitempty"`
+	ValueIncrease float64 `json:"value_increase,omitempty"`
+	Year          int     `json:"year,omitempty"`
+}
+
+type ModelZillowSearchResponse struct {
+	Location string                    `json:"location,omitempty"`
+	Page     int                       `json:"page,omitempty"`
+	Results  []ModelZillowPropertyItem `json:"results,omitempty"`
+}
+
 const operationCount = 303
 
 var operations = map[string]operationDefinition{
@@ -412,10 +9018,10 @@ type AirbnbRoomParams struct {
 	Id string `crawlora:"id"`
 }
 
-type AirbnbRoomResponse = any
+type AirbnbRoomResponse = ModelAirbnbRoomResponse
 
 func (s *AirbnbService) RoomTyped(ctx context.Context, params AirbnbRoomParams, opts ...RequestOption) (AirbnbRoomResponse, error) {
-	return s.client.Request(ctx, "airbnb-room", paramsFromStruct(params), opts...)
+	return requestTyped[AirbnbRoomResponse](s.client, ctx, "airbnb-room", paramsFromStruct(params), opts...)
 }
 
 func (s *AirbnbService) RoomCalendar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -426,10 +9032,10 @@ type AirbnbRoomCalendarParams struct {
 	Id string `crawlora:"id"`
 }
 
-type AirbnbRoomCalendarResponse = any
+type AirbnbRoomCalendarResponse = ModelAirbnbCalendarResponse
 
 func (s *AirbnbService) RoomCalendarTyped(ctx context.Context, params AirbnbRoomCalendarParams, opts ...RequestOption) (AirbnbRoomCalendarResponse, error) {
-	return s.client.Request(ctx, "airbnb-room-calendar", paramsFromStruct(params), opts...)
+	return requestTyped[AirbnbRoomCalendarResponse](s.client, ctx, "airbnb-room-calendar", paramsFromStruct(params), opts...)
 }
 
 func (s *AirbnbService) RoomReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -441,10 +9047,10 @@ type AirbnbRoomReviewsParams struct {
 	Page *int   `crawlora:"page,omitempty"`
 }
 
-type AirbnbRoomReviewsResponse = any
+type AirbnbRoomReviewsResponse = ModelAirbnbReviewsResponse
 
 func (s *AirbnbService) RoomReviewsTyped(ctx context.Context, params AirbnbRoomReviewsParams, opts ...RequestOption) (AirbnbRoomReviewsResponse, error) {
-	return s.client.Request(ctx, "airbnb-room-reviews", paramsFromStruct(params), opts...)
+	return requestTyped[AirbnbRoomReviewsResponse](s.client, ctx, "airbnb-room-reviews", paramsFromStruct(params), opts...)
 }
 
 func (s *AirbnbService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -465,10 +9071,10 @@ type AirbnbSearchParams struct {
 	Zoom     *int     `crawlora:"zoom,omitempty"`
 }
 
-type AirbnbSearchResponse = any
+type AirbnbSearchResponse = ModelAirbnbSearchResponse
 
 func (s *AirbnbService) SearchTyped(ctx context.Context, params AirbnbSearchParams, opts ...RequestOption) (AirbnbSearchResponse, error) {
-	return s.client.Request(ctx, "airbnb-search", paramsFromStruct(params), opts...)
+	return requestTyped[AirbnbSearchResponse](s.client, ctx, "airbnb-search", paramsFromStruct(params), opts...)
 }
 
 type AmazonService struct{ client *Client }
@@ -483,10 +9089,10 @@ type AmazonProductParams struct {
 	Currency *string `crawlora:"currency,omitempty"`
 }
 
-type AmazonProductResponse = any
+type AmazonProductResponse = ModelAmazonProductResponseDoc
 
 func (s *AmazonService) ProductTyped(ctx context.Context, params AmazonProductParams, opts ...RequestOption) (AmazonProductResponse, error) {
-	return s.client.Request(ctx, "amazon-product", paramsFromStruct(params), opts...)
+	return requestTyped[AmazonProductResponse](s.client, ctx, "amazon-product", paramsFromStruct(params), opts...)
 }
 
 func (s *AmazonService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -499,10 +9105,10 @@ type AmazonSearchParams struct {
 	Page *int    `crawlora:"page,omitempty"`
 }
 
-type AmazonSearchResponse = any
+type AmazonSearchResponse = ModelAmazonSearchResponseDoc
 
 func (s *AmazonService) SearchTyped(ctx context.Context, params AmazonSearchParams, opts ...RequestOption) (AmazonSearchResponse, error) {
-	return s.client.Request(ctx, "amazon-search", paramsFromStruct(params), opts...)
+	return requestTyped[AmazonSearchResponse](s.client, ctx, "amazon-search", paramsFromStruct(params), opts...)
 }
 
 func (s *AmazonService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -513,10 +9119,10 @@ type AmazonSuggestParams struct {
 	Keyword string `crawlora:"keyword"`
 }
 
-type AmazonSuggestResponse = any
+type AmazonSuggestResponse = ModelAmazonSuggestResponseDoc
 
 func (s *AmazonService) SuggestTyped(ctx context.Context, params AmazonSuggestParams, opts ...RequestOption) (AmazonSuggestResponse, error) {
-	return s.client.Request(ctx, "amazon-suggest", paramsFromStruct(params), opts...)
+	return requestTyped[AmazonSuggestResponse](s.client, ctx, "amazon-suggest", paramsFromStruct(params), opts...)
 }
 
 type ApplePodcastsService struct{ client *Client }
@@ -532,10 +9138,10 @@ type ApplePodcastsChartsParams struct {
 	Limit      *int    `crawlora:"limit,omitempty"`
 }
 
-type ApplePodcastsChartsResponse = any
+type ApplePodcastsChartsResponse = ModelApplepodcastsChartsResponseDoc
 
 func (s *ApplePodcastsService) ChartsTyped(ctx context.Context, params ApplePodcastsChartsParams, opts ...RequestOption) (ApplePodcastsChartsResponse, error) {
-	return s.client.Request(ctx, "apple-podcasts-charts", paramsFromStruct(params), opts...)
+	return requestTyped[ApplePodcastsChartsResponse](s.client, ctx, "apple-podcasts-charts", paramsFromStruct(params), opts...)
 }
 
 func (s *ApplePodcastsService) EpisodesSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -550,10 +9156,10 @@ type ApplePodcastsEpisodesSearchParams struct {
 	Page    *int    `crawlora:"page,omitempty"`
 }
 
-type ApplePodcastsEpisodesSearchResponse = any
+type ApplePodcastsEpisodesSearchResponse = ModelApplepodcastsEpisodeSearchResponseDoc
 
 func (s *ApplePodcastsService) EpisodesSearchTyped(ctx context.Context, params ApplePodcastsEpisodesSearchParams, opts ...RequestOption) (ApplePodcastsEpisodesSearchResponse, error) {
-	return s.client.Request(ctx, "apple-podcasts-episodes-search", paramsFromStruct(params), opts...)
+	return requestTyped[ApplePodcastsEpisodesSearchResponse](s.client, ctx, "apple-podcasts-episodes-search", paramsFromStruct(params), opts...)
 }
 
 func (s *ApplePodcastsService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -568,10 +9174,10 @@ type ApplePodcastsSearchParams struct {
 	Page    *int    `crawlora:"page,omitempty"`
 }
 
-type ApplePodcastsSearchResponse = any
+type ApplePodcastsSearchResponse = ModelApplepodcastsSearchResponseDoc
 
 func (s *ApplePodcastsService) SearchTyped(ctx context.Context, params ApplePodcastsSearchParams, opts ...RequestOption) (ApplePodcastsSearchResponse, error) {
-	return s.client.Request(ctx, "apple-podcasts-search", paramsFromStruct(params), opts...)
+	return requestTyped[ApplePodcastsSearchResponse](s.client, ctx, "apple-podcasts-search", paramsFromStruct(params), opts...)
 }
 
 func (s *ApplePodcastsService) Show(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -584,10 +9190,10 @@ type ApplePodcastsShowParams struct {
 	Lang    *string `crawlora:"lang,omitempty"`
 }
 
-type ApplePodcastsShowResponse = any
+type ApplePodcastsShowResponse = ModelApplepodcastsShowResponseDoc
 
 func (s *ApplePodcastsService) ShowTyped(ctx context.Context, params ApplePodcastsShowParams, opts ...RequestOption) (ApplePodcastsShowResponse, error) {
-	return s.client.Request(ctx, "apple-podcasts-show", paramsFromStruct(params), opts...)
+	return requestTyped[ApplePodcastsShowResponse](s.client, ctx, "apple-podcasts-show", paramsFromStruct(params), opts...)
 }
 
 func (s *ApplePodcastsService) ShowEpisodes(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -601,10 +9207,10 @@ type ApplePodcastsShowEpisodesParams struct {
 	Limit   *int    `crawlora:"limit,omitempty"`
 }
 
-type ApplePodcastsShowEpisodesResponse = any
+type ApplePodcastsShowEpisodesResponse = ModelApplepodcastsShowEpisodesResponseDoc
 
 func (s *ApplePodcastsService) ShowEpisodesTyped(ctx context.Context, params ApplePodcastsShowEpisodesParams, opts ...RequestOption) (ApplePodcastsShowEpisodesResponse, error) {
-	return s.client.Request(ctx, "apple-podcasts-show-episodes", paramsFromStruct(params), opts...)
+	return requestTyped[ApplePodcastsShowEpisodesResponse](s.client, ctx, "apple-podcasts-show-episodes", paramsFromStruct(params), opts...)
 }
 
 type AppStoreService struct{ client *Client }
@@ -621,10 +9227,10 @@ type AppStoreAppParams struct {
 	Ratings *bool   `crawlora:"ratings,omitempty"`
 }
 
-type AppStoreAppResponse = any
+type AppStoreAppResponse = ModelAppstoreAppDetailsResponseDoc
 
 func (s *AppStoreService) AppTyped(ctx context.Context, params AppStoreAppParams, opts ...RequestOption) (AppStoreAppResponse, error) {
-	return s.client.Request(ctx, "appstore-app", paramsFromStruct(params), opts...)
+	return requestTyped[AppStoreAppResponse](s.client, ctx, "appstore-app", paramsFromStruct(params), opts...)
 }
 
 func (s *AppStoreService) Developer(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -637,10 +9243,10 @@ type AppStoreDeveloperParams struct {
 	Lang    *string `crawlora:"lang,omitempty"`
 }
 
-type AppStoreDeveloperResponse = any
+type AppStoreDeveloperResponse = ModelAppstoreDeveloperResponseDoc
 
 func (s *AppStoreService) DeveloperTyped(ctx context.Context, params AppStoreDeveloperParams, opts ...RequestOption) (AppStoreDeveloperResponse, error) {
-	return s.client.Request(ctx, "appstore-developer", paramsFromStruct(params), opts...)
+	return requestTyped[AppStoreDeveloperResponse](s.client, ctx, "appstore-developer", paramsFromStruct(params), opts...)
 }
 
 func (s *AppStoreService) List(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -656,10 +9262,10 @@ type AppStoreListParams struct {
 	FullDetail *bool   `crawlora:"full_detail,omitempty"`
 }
 
-type AppStoreListResponse = any
+type AppStoreListResponse = ModelAppstoreListResultsResponseDoc
 
 func (s *AppStoreService) ListTyped(ctx context.Context, params AppStoreListParams, opts ...RequestOption) (AppStoreListResponse, error) {
-	return s.client.Request(ctx, "appstore-list", paramsFromStruct(params), opts...)
+	return requestTyped[AppStoreListResponse](s.client, ctx, "appstore-list", paramsFromStruct(params), opts...)
 }
 
 func (s *AppStoreService) Privacy(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -672,10 +9278,10 @@ type AppStorePrivacyParams struct {
 	Lang    *string `crawlora:"lang,omitempty"`
 }
 
-type AppStorePrivacyResponse = any
+type AppStorePrivacyResponse = ModelAppstorePrivacyResponseDoc
 
 func (s *AppStoreService) PrivacyTyped(ctx context.Context, params AppStorePrivacyParams, opts ...RequestOption) (AppStorePrivacyResponse, error) {
-	return s.client.Request(ctx, "appstore-privacy", paramsFromStruct(params), opts...)
+	return requestTyped[AppStorePrivacyResponse](s.client, ctx, "appstore-privacy", paramsFromStruct(params), opts...)
 }
 
 func (s *AppStoreService) Ratings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -689,10 +9295,10 @@ type AppStoreRatingsParams struct {
 	Lang    *string `crawlora:"lang,omitempty"`
 }
 
-type AppStoreRatingsResponse = any
+type AppStoreRatingsResponse = ModelAppstoreRatingsResponseDoc
 
 func (s *AppStoreService) RatingsTyped(ctx context.Context, params AppStoreRatingsParams, opts ...RequestOption) (AppStoreRatingsResponse, error) {
-	return s.client.Request(ctx, "appstore-ratings", paramsFromStruct(params), opts...)
+	return requestTyped[AppStoreRatingsResponse](s.client, ctx, "appstore-ratings", paramsFromStruct(params), opts...)
 }
 
 func (s *AppStoreService) Reviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -708,10 +9314,10 @@ type AppStoreReviewsParams struct {
 	Lang    *string `crawlora:"lang,omitempty"`
 }
 
-type AppStoreReviewsResponse = any
+type AppStoreReviewsResponse = ModelAppstoreReviewsResponseDoc
 
 func (s *AppStoreService) ReviewsTyped(ctx context.Context, params AppStoreReviewsParams, opts ...RequestOption) (AppStoreReviewsResponse, error) {
-	return s.client.Request(ctx, "appstore-reviews", paramsFromStruct(params), opts...)
+	return requestTyped[AppStoreReviewsResponse](s.client, ctx, "appstore-reviews", paramsFromStruct(params), opts...)
 }
 
 func (s *AppStoreService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -727,10 +9333,10 @@ type AppStoreSearchParams struct {
 	IdsOnly *bool   `crawlora:"ids_only,omitempty"`
 }
 
-type AppStoreSearchResponse = any
+type AppStoreSearchResponse = ModelAppstoreSearchResultsResponseDoc
 
 func (s *AppStoreService) SearchTyped(ctx context.Context, params AppStoreSearchParams, opts ...RequestOption) (AppStoreSearchResponse, error) {
-	return s.client.Request(ctx, "appstore-search", paramsFromStruct(params), opts...)
+	return requestTyped[AppStoreSearchResponse](s.client, ctx, "appstore-search", paramsFromStruct(params), opts...)
 }
 
 func (s *AppStoreService) Similar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -744,10 +9350,10 @@ type AppStoreSimilarParams struct {
 	Lang    *string `crawlora:"lang,omitempty"`
 }
 
-type AppStoreSimilarResponse = any
+type AppStoreSimilarResponse = ModelAppstoreSimilarResponseDoc
 
 func (s *AppStoreService) SimilarTyped(ctx context.Context, params AppStoreSimilarParams, opts ...RequestOption) (AppStoreSimilarResponse, error) {
-	return s.client.Request(ctx, "appstore-similar", paramsFromStruct(params), opts...)
+	return requestTyped[AppStoreSimilarResponse](s.client, ctx, "appstore-similar", paramsFromStruct(params), opts...)
 }
 
 func (s *AppStoreService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -759,10 +9365,10 @@ type AppStoreSuggestParams struct {
 	Country *string `crawlora:"country,omitempty"`
 }
 
-type AppStoreSuggestResponse = any
+type AppStoreSuggestResponse = ModelAppstoreSuggestResponseDoc
 
 func (s *AppStoreService) SuggestTyped(ctx context.Context, params AppStoreSuggestParams, opts ...RequestOption) (AppStoreSuggestResponse, error) {
-	return s.client.Request(ctx, "appstore-suggest", paramsFromStruct(params), opts...)
+	return requestTyped[AppStoreSuggestResponse](s.client, ctx, "appstore-suggest", paramsFromStruct(params), opts...)
 }
 
 func (s *AppStoreService) VersionHistory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -775,10 +9381,10 @@ type AppStoreVersionHistoryParams struct {
 	Lang    *string `crawlora:"lang,omitempty"`
 }
 
-type AppStoreVersionHistoryResponse = any
+type AppStoreVersionHistoryResponse = ModelAppstoreVersionHistoryResponseDoc
 
 func (s *AppStoreService) VersionHistoryTyped(ctx context.Context, params AppStoreVersionHistoryParams, opts ...RequestOption) (AppStoreVersionHistoryResponse, error) {
-	return s.client.Request(ctx, "appstore-version-history", paramsFromStruct(params), opts...)
+	return requestTyped[AppStoreVersionHistoryResponse](s.client, ctx, "appstore-version-history", paramsFromStruct(params), opts...)
 }
 
 type BillingService struct{ client *Client }
@@ -790,10 +9396,10 @@ func (s *BillingService) Me(ctx context.Context, params Params, opts ...RequestO
 type BillingMeParams struct {
 }
 
-type BillingMeResponse = any
+type BillingMeResponse = ModelBillingBillingStateResponseDoc
 
 func (s *BillingService) MeTyped(ctx context.Context, params BillingMeParams, opts ...RequestOption) (BillingMeResponse, error) {
-	return s.client.Request(ctx, "billing-me", paramsFromStruct(params), opts...)
+	return requestTyped[BillingMeResponse](s.client, ctx, "billing-me", paramsFromStruct(params), opts...)
 }
 
 func (s *BillingService) MeCheckout(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -801,13 +9407,13 @@ func (s *BillingService) MeCheckout(ctx context.Context, params Params, opts ...
 }
 
 type BillingMeCheckoutParams struct {
-	Request any `crawlora:"request"`
+	Request ModelBillingStripeCheckoutRequestDoc `crawlora:"request"`
 }
 
-type BillingMeCheckoutResponse = any
+type BillingMeCheckoutResponse = ModelBillingStripeSessionResponseDoc
 
 func (s *BillingService) MeCheckoutTyped(ctx context.Context, params BillingMeCheckoutParams, opts ...RequestOption) (BillingMeCheckoutResponse, error) {
-	return s.client.Request(ctx, "billing-me-checkout", paramsFromStruct(params), opts...)
+	return requestTyped[BillingMeCheckoutResponse](s.client, ctx, "billing-me-checkout", paramsFromStruct(params), opts...)
 }
 
 func (s *BillingService) MeEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -824,10 +9430,10 @@ type BillingMeEventsParams struct {
 	Billable    *bool   `crawlora:"billable,omitempty"`
 }
 
-type BillingMeEventsResponse = any
+type BillingMeEventsResponse = ModelBillingBillingEventsResponseDoc
 
 func (s *BillingService) MeEventsTyped(ctx context.Context, params BillingMeEventsParams, opts ...RequestOption) (BillingMeEventsResponse, error) {
-	return s.client.Request(ctx, "billing-me-events", paramsFromStruct(params), opts...)
+	return requestTyped[BillingMeEventsResponse](s.client, ctx, "billing-me-events", paramsFromStruct(params), opts...)
 }
 
 func (s *BillingService) MePeriods(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -838,10 +9444,10 @@ type BillingMePeriodsParams struct {
 	Limit *int `crawlora:"limit,omitempty"`
 }
 
-type BillingMePeriodsResponse = any
+type BillingMePeriodsResponse = ModelBillingBillingPeriodLedgersResponseDoc
 
 func (s *BillingService) MePeriodsTyped(ctx context.Context, params BillingMePeriodsParams, opts ...RequestOption) (BillingMePeriodsResponse, error) {
-	return s.client.Request(ctx, "billing-me-periods", paramsFromStruct(params), opts...)
+	return requestTyped[BillingMePeriodsResponse](s.client, ctx, "billing-me-periods", paramsFromStruct(params), opts...)
 }
 
 func (s *BillingService) MePeriod(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -852,10 +9458,10 @@ type BillingMePeriodParams struct {
 	PeriodKey string `crawlora:"period_key"`
 }
 
-type BillingMePeriodResponse = any
+type BillingMePeriodResponse = ModelBillingBillingPeriodLedgerResponseDoc
 
 func (s *BillingService) MePeriodTyped(ctx context.Context, params BillingMePeriodParams, opts ...RequestOption) (BillingMePeriodResponse, error) {
-	return s.client.Request(ctx, "billing-me-period", paramsFromStruct(params), opts...)
+	return requestTyped[BillingMePeriodResponse](s.client, ctx, "billing-me-period", paramsFromStruct(params), opts...)
 }
 
 func (s *BillingService) MePeriodStatement(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -868,10 +9474,10 @@ type BillingMePeriodStatementParams struct {
 	EventLimit    *int   `crawlora:"event_limit,omitempty"`
 }
 
-type BillingMePeriodStatementResponse = any
+type BillingMePeriodStatementResponse = ModelBillingBillingPeriodStatementResponseDoc
 
 func (s *BillingService) MePeriodStatementTyped(ctx context.Context, params BillingMePeriodStatementParams, opts ...RequestOption) (BillingMePeriodStatementResponse, error) {
-	return s.client.Request(ctx, "billing-me-period-statement", paramsFromStruct(params), opts...)
+	return requestTyped[BillingMePeriodStatementResponse](s.client, ctx, "billing-me-period-statement", paramsFromStruct(params), opts...)
 }
 
 func (s *BillingService) MePeriodStatementDownload(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -882,10 +9488,10 @@ type BillingMePeriodStatementDownloadParams struct {
 	PeriodKey string `crawlora:"period_key"`
 }
 
-type BillingMePeriodStatementDownloadResponse = any
+type BillingMePeriodStatementDownloadResponse = string
 
 func (s *BillingService) MePeriodStatementDownloadTyped(ctx context.Context, params BillingMePeriodStatementDownloadParams, opts ...RequestOption) (BillingMePeriodStatementDownloadResponse, error) {
-	return s.client.Request(ctx, "billing-me-period-statement-download", paramsFromStruct(params), opts...)
+	return requestTyped[BillingMePeriodStatementDownloadResponse](s.client, ctx, "billing-me-period-statement-download", paramsFromStruct(params), opts...)
 }
 
 func (s *BillingService) MePortal(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -893,13 +9499,13 @@ func (s *BillingService) MePortal(ctx context.Context, params Params, opts ...Re
 }
 
 type BillingMePortalParams struct {
-	Request any `crawlora:"request"`
+	Request ModelBillingStripePortalRequestDoc `crawlora:"request"`
 }
 
-type BillingMePortalResponse = any
+type BillingMePortalResponse = ModelBillingStripeSessionResponseDoc
 
 func (s *BillingService) MePortalTyped(ctx context.Context, params BillingMePortalParams, opts ...RequestOption) (BillingMePortalResponse, error) {
-	return s.client.Request(ctx, "billing-me-portal", paramsFromStruct(params), opts...)
+	return requestTyped[BillingMePortalResponse](s.client, ctx, "billing-me-portal", paramsFromStruct(params), opts...)
 }
 
 type BingService struct{ client *Client }
@@ -916,10 +9522,10 @@ type BingImagesParams struct {
 	Lang    *string `crawlora:"lang,omitempty"`
 }
 
-type BingImagesResponse = any
+type BingImagesResponse = ModelBingImagesResponseDoc
 
 func (s *BingService) ImagesTyped(ctx context.Context, params BingImagesParams, opts ...RequestOption) (BingImagesResponse, error) {
-	return s.client.Request(ctx, "bing-images", paramsFromStruct(params), opts...)
+	return requestTyped[BingImagesResponse](s.client, ctx, "bing-images", paramsFromStruct(params), opts...)
 }
 
 func (s *BingService) News(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -934,10 +9540,10 @@ type BingNewsParams struct {
 	Lang    *string `crawlora:"lang,omitempty"`
 }
 
-type BingNewsResponse = any
+type BingNewsResponse = ModelBingNewsResponseDoc
 
 func (s *BingService) NewsTyped(ctx context.Context, params BingNewsParams, opts ...RequestOption) (BingNewsResponse, error) {
-	return s.client.Request(ctx, "bing-news", paramsFromStruct(params), opts...)
+	return requestTyped[BingNewsResponse](s.client, ctx, "bing-news", paramsFromStruct(params), opts...)
 }
 
 func (s *BingService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -952,10 +9558,10 @@ type BingSearchParams struct {
 	Lang    *string `crawlora:"lang,omitempty"`
 }
 
-type BingSearchResponse = any
+type BingSearchResponse = ModelBingSearchResponseDoc
 
 func (s *BingService) SearchTyped(ctx context.Context, params BingSearchParams, opts ...RequestOption) (BingSearchResponse, error) {
-	return s.client.Request(ctx, "bing-search", paramsFromStruct(params), opts...)
+	return requestTyped[BingSearchResponse](s.client, ctx, "bing-search", paramsFromStruct(params), opts...)
 }
 
 func (s *BingService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -969,10 +9575,10 @@ type BingSuggestParams struct {
 	Lang    *string `crawlora:"lang,omitempty"`
 }
 
-type BingSuggestResponse = any
+type BingSuggestResponse = ModelBingSuggestResponseDoc
 
 func (s *BingService) SuggestTyped(ctx context.Context, params BingSuggestParams, opts ...RequestOption) (BingSuggestResponse, error) {
-	return s.client.Request(ctx, "bing-suggest", paramsFromStruct(params), opts...)
+	return requestTyped[BingSuggestResponse](s.client, ctx, "bing-suggest", paramsFromStruct(params), opts...)
 }
 
 func (s *BingService) Videos(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -987,10 +9593,10 @@ type BingVideosParams struct {
 	Lang    *string `crawlora:"lang,omitempty"`
 }
 
-type BingVideosResponse = any
+type BingVideosResponse = ModelBingVideosResponseDoc
 
 func (s *BingService) VideosTyped(ctx context.Context, params BingVideosParams, opts ...RequestOption) (BingVideosResponse, error) {
-	return s.client.Request(ctx, "bing-videos", paramsFromStruct(params), opts...)
+	return requestTyped[BingVideosResponse](s.client, ctx, "bing-videos", paramsFromStruct(params), opts...)
 }
 
 type BraveService struct{ client *Client }
@@ -1007,10 +9613,10 @@ type BraveImagesParams struct {
 	Lang    *string `crawlora:"lang,omitempty"`
 }
 
-type BraveImagesResponse = any
+type BraveImagesResponse = ModelBraveImagesResponseDoc
 
 func (s *BraveService) ImagesTyped(ctx context.Context, params BraveImagesParams, opts ...RequestOption) (BraveImagesResponse, error) {
-	return s.client.Request(ctx, "brave-images", paramsFromStruct(params), opts...)
+	return requestTyped[BraveImagesResponse](s.client, ctx, "brave-images", paramsFromStruct(params), opts...)
 }
 
 func (s *BraveService) News(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1028,10 +9634,10 @@ type BraveNewsParams struct {
 	DateTo    *string `crawlora:"date_to,omitempty"`
 }
 
-type BraveNewsResponse = any
+type BraveNewsResponse = ModelBraveNewsResponseDoc
 
 func (s *BraveService) NewsTyped(ctx context.Context, params BraveNewsParams, opts ...RequestOption) (BraveNewsResponse, error) {
-	return s.client.Request(ctx, "brave-news", paramsFromStruct(params), opts...)
+	return requestTyped[BraveNewsResponse](s.client, ctx, "brave-news", paramsFromStruct(params), opts...)
 }
 
 func (s *BraveService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1048,10 +9654,10 @@ type BraveSearchParams struct {
 	DateTo    *string `crawlora:"date_to,omitempty"`
 }
 
-type BraveSearchResponse = any
+type BraveSearchResponse = ModelBraveSearchResponseDoc
 
 func (s *BraveService) SearchTyped(ctx context.Context, params BraveSearchParams, opts ...RequestOption) (BraveSearchResponse, error) {
-	return s.client.Request(ctx, "brave-search", paramsFromStruct(params), opts...)
+	return requestTyped[BraveSearchResponse](s.client, ctx, "brave-search", paramsFromStruct(params), opts...)
 }
 
 func (s *BraveService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1065,10 +9671,10 @@ type BraveSuggestParams struct {
 	Lang    *string `crawlora:"lang,omitempty"`
 }
 
-type BraveSuggestResponse = any
+type BraveSuggestResponse = ModelBraveSuggestResponseDoc
 
 func (s *BraveService) SuggestTyped(ctx context.Context, params BraveSuggestParams, opts ...RequestOption) (BraveSuggestResponse, error) {
-	return s.client.Request(ctx, "brave-suggest", paramsFromStruct(params), opts...)
+	return requestTyped[BraveSuggestResponse](s.client, ctx, "brave-suggest", paramsFromStruct(params), opts...)
 }
 
 func (s *BraveService) Videos(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1086,10 +9692,10 @@ type BraveVideosParams struct {
 	DateTo    *string `crawlora:"date_to,omitempty"`
 }
 
-type BraveVideosResponse = any
+type BraveVideosResponse = ModelBraveVideosResponseDoc
 
 func (s *BraveService) VideosTyped(ctx context.Context, params BraveVideosParams, opts ...RequestOption) (BraveVideosResponse, error) {
-	return s.client.Request(ctx, "brave-videos", paramsFromStruct(params), opts...)
+	return requestTyped[BraveVideosResponse](s.client, ctx, "brave-videos", paramsFromStruct(params), opts...)
 }
 
 type CoinGeckoService struct{ client *Client }
@@ -1103,10 +9709,10 @@ type CoinGeckoCategoriesParams struct {
 	VsCurrency *string `crawlora:"vs_currency,omitempty"`
 }
 
-type CoinGeckoCategoriesResponse = any
+type CoinGeckoCategoriesResponse = ModelCoingeckoCategoriesResponseDoc
 
 func (s *CoinGeckoService) CategoriesTyped(ctx context.Context, params CoinGeckoCategoriesParams, opts ...RequestOption) (CoinGeckoCategoriesResponse, error) {
-	return s.client.Request(ctx, "coingecko-categories", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoCategoriesResponse](s.client, ctx, "coingecko-categories", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) CategoryCoins(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1120,10 +9726,10 @@ type CoinGeckoCategoryCoinsParams struct {
 	VsCurrency *string `crawlora:"vs_currency,omitempty"`
 }
 
-type CoinGeckoCategoryCoinsResponse = any
+type CoinGeckoCategoryCoinsResponse = ModelCoingeckoCategoryCoinsResponseDoc
 
 func (s *CoinGeckoService) CategoryCoinsTyped(ctx context.Context, params CoinGeckoCategoryCoinsParams, opts ...RequestOption) (CoinGeckoCategoryCoinsResponse, error) {
-	return s.client.Request(ctx, "coingecko-category-coins", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoCategoryCoinsResponse](s.client, ctx, "coingecko-category-coins", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) Chains(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1135,10 +9741,10 @@ type CoinGeckoChainsParams struct {
 	VsCurrency *string `crawlora:"vs_currency,omitempty"`
 }
 
-type CoinGeckoChainsResponse = any
+type CoinGeckoChainsResponse = ModelCoingeckoChainsResponseDoc
 
 func (s *CoinGeckoService) ChainsTyped(ctx context.Context, params CoinGeckoChainsParams, opts ...RequestOption) (CoinGeckoChainsResponse, error) {
-	return s.client.Request(ctx, "coingecko-chains", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoChainsResponse](s.client, ctx, "coingecko-chains", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) Chain(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1151,10 +9757,10 @@ type CoinGeckoChainParams struct {
 	VsCurrency *string `crawlora:"vs_currency,omitempty"`
 }
 
-type CoinGeckoChainResponse = any
+type CoinGeckoChainResponse = ModelCoingeckoChainDetailResponseDoc
 
 func (s *CoinGeckoService) ChainTyped(ctx context.Context, params CoinGeckoChainParams, opts ...RequestOption) (CoinGeckoChainResponse, error) {
-	return s.client.Request(ctx, "coingecko-chain", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoChainResponse](s.client, ctx, "coingecko-chain", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) Coin(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1166,10 +9772,10 @@ type CoinGeckoCoinParams struct {
 	VsCurrency *string `crawlora:"vs_currency,omitempty"`
 }
 
-type CoinGeckoCoinResponse = any
+type CoinGeckoCoinResponse = ModelCoingeckoCoinResponseDoc
 
 func (s *CoinGeckoService) CoinTyped(ctx context.Context, params CoinGeckoCoinParams, opts ...RequestOption) (CoinGeckoCoinResponse, error) {
-	return s.client.Request(ctx, "coingecko-coin", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoCoinResponse](s.client, ctx, "coingecko-coin", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) CoinAnalysis(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1183,10 +9789,10 @@ type CoinGeckoCoinAnalysisParams struct {
 	IncludeAnnotations *bool   `crawlora:"include_annotations,omitempty"`
 }
 
-type CoinGeckoCoinAnalysisResponse = any
+type CoinGeckoCoinAnalysisResponse = ModelCoingeckoAnalysisResponseDoc
 
 func (s *CoinGeckoService) CoinAnalysisTyped(ctx context.Context, params CoinGeckoCoinAnalysisParams, opts ...RequestOption) (CoinGeckoCoinAnalysisResponse, error) {
-	return s.client.Request(ctx, "coingecko-coin-analysis", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoCoinAnalysisResponse](s.client, ctx, "coingecko-coin-analysis", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) Exchange(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1199,10 +9805,10 @@ type CoinGeckoExchangeParams struct {
 	VsCurrency *string `crawlora:"vs_currency,omitempty"`
 }
 
-type CoinGeckoExchangeResponse = any
+type CoinGeckoExchangeResponse = ModelCoingeckoExchangeDetailResponseDoc
 
 func (s *CoinGeckoService) ExchangeTyped(ctx context.Context, params CoinGeckoExchangeParams, opts ...RequestOption) (CoinGeckoExchangeResponse, error) {
-	return s.client.Request(ctx, "coingecko-exchange", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoExchangeResponse](s.client, ctx, "coingecko-exchange", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) Exchanges(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1216,10 +9822,10 @@ type CoinGeckoExchangesParams struct {
 	VsCurrency *string `crawlora:"vs_currency,omitempty"`
 }
 
-type CoinGeckoExchangesResponse = any
+type CoinGeckoExchangesResponse = ModelCoingeckoExchangesResponseDoc
 
 func (s *CoinGeckoService) ExchangesTyped(ctx context.Context, params CoinGeckoExchangesParams, opts ...RequestOption) (CoinGeckoExchangesResponse, error) {
-	return s.client.Request(ctx, "coingecko-exchanges", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoExchangesResponse](s.client, ctx, "coingecko-exchanges", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) GainersLosers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1231,10 +9837,10 @@ type CoinGeckoGainersLosersParams struct {
 	VsCurrency *string `crawlora:"vs_currency,omitempty"`
 }
 
-type CoinGeckoGainersLosersResponse = any
+type CoinGeckoGainersLosersResponse = ModelCoingeckoGainersLosersResponseDoc
 
 func (s *CoinGeckoService) GainersLosersTyped(ctx context.Context, params CoinGeckoGainersLosersParams, opts ...RequestOption) (CoinGeckoGainersLosersResponse, error) {
-	return s.client.Request(ctx, "coingecko-gainers-losers", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoGainersLosersResponse](s.client, ctx, "coingecko-gainers-losers", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) Global(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1244,10 +9850,10 @@ func (s *CoinGeckoService) Global(ctx context.Context, params Params, opts ...Re
 type CoinGeckoGlobalParams struct {
 }
 
-type CoinGeckoGlobalResponse = any
+type CoinGeckoGlobalResponse = ModelCoingeckoGlobalResponseDoc
 
 func (s *CoinGeckoService) GlobalTyped(ctx context.Context, params CoinGeckoGlobalParams, opts ...RequestOption) (CoinGeckoGlobalResponse, error) {
-	return s.client.Request(ctx, "coingecko-global", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoGlobalResponse](s.client, ctx, "coingecko-global", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) GlobalCharts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1260,10 +9866,10 @@ type CoinGeckoGlobalChartsParams struct {
 	Limit *int    `crawlora:"limit,omitempty"`
 }
 
-type CoinGeckoGlobalChartsResponse = any
+type CoinGeckoGlobalChartsResponse = ModelCoingeckoGlobalChartsResponseDoc
 
 func (s *CoinGeckoService) GlobalChartsTyped(ctx context.Context, params CoinGeckoGlobalChartsParams, opts ...RequestOption) (CoinGeckoGlobalChartsResponse, error) {
-	return s.client.Request(ctx, "coingecko-global-charts", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoGlobalChartsResponse](s.client, ctx, "coingecko-global-charts", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) LearnArticles(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1275,10 +9881,10 @@ type CoinGeckoLearnArticlesParams struct {
 	Limit    *int    `crawlora:"limit,omitempty"`
 }
 
-type CoinGeckoLearnArticlesResponse = any
+type CoinGeckoLearnArticlesResponse = ModelCoingeckoLearnArticlesResponseDoc
 
 func (s *CoinGeckoService) LearnArticlesTyped(ctx context.Context, params CoinGeckoLearnArticlesParams, opts ...RequestOption) (CoinGeckoLearnArticlesResponse, error) {
-	return s.client.Request(ctx, "coingecko-learn-articles", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoLearnArticlesResponse](s.client, ctx, "coingecko-learn-articles", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) Markets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1291,10 +9897,10 @@ type CoinGeckoMarketsParams struct {
 	VsCurrency *string `crawlora:"vs_currency,omitempty"`
 }
 
-type CoinGeckoMarketsResponse = any
+type CoinGeckoMarketsResponse = ModelCoingeckoMarketsResponseDoc
 
 func (s *CoinGeckoService) MarketsTyped(ctx context.Context, params CoinGeckoMarketsParams, opts ...RequestOption) (CoinGeckoMarketsResponse, error) {
-	return s.client.Request(ctx, "coingecko-markets", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoMarketsResponse](s.client, ctx, "coingecko-markets", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) NewCoins(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1307,10 +9913,10 @@ type CoinGeckoNewCoinsParams struct {
 	VsCurrency *string `crawlora:"vs_currency,omitempty"`
 }
 
-type CoinGeckoNewCoinsResponse = any
+type CoinGeckoNewCoinsResponse = ModelCoingeckoNewCoinsResponseDoc
 
 func (s *CoinGeckoService) NewCoinsTyped(ctx context.Context, params CoinGeckoNewCoinsParams, opts ...RequestOption) (CoinGeckoNewCoinsResponse, error) {
-	return s.client.Request(ctx, "coingecko-new-coins", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoNewCoinsResponse](s.client, ctx, "coingecko-new-coins", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) News(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1321,10 +9927,10 @@ type CoinGeckoNewsParams struct {
 	Limit *int `crawlora:"limit,omitempty"`
 }
 
-type CoinGeckoNewsResponse = any
+type CoinGeckoNewsResponse = ModelCoingeckoNewsResponseDoc
 
 func (s *CoinGeckoService) NewsTyped(ctx context.Context, params CoinGeckoNewsParams, opts ...RequestOption) (CoinGeckoNewsResponse, error) {
-	return s.client.Request(ctx, "coingecko-news", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoNewsResponse](s.client, ctx, "coingecko-news", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) NftCategory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1338,10 +9944,10 @@ type CoinGeckoNftCategoryParams struct {
 	VsCurrency *string `crawlora:"vs_currency,omitempty"`
 }
 
-type CoinGeckoNftCategoryResponse = any
+type CoinGeckoNftCategoryResponse = ModelCoingeckoNftCategoryResponseDoc
 
 func (s *CoinGeckoService) NftCategoryTyped(ctx context.Context, params CoinGeckoNftCategoryParams, opts ...RequestOption) (CoinGeckoNftCategoryResponse, error) {
-	return s.client.Request(ctx, "coingecko-nft-category", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoNftCategoryResponse](s.client, ctx, "coingecko-nft-category", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) Nfts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1354,10 +9960,10 @@ type CoinGeckoNftsParams struct {
 	VsCurrency *string `crawlora:"vs_currency,omitempty"`
 }
 
-type CoinGeckoNftsResponse = any
+type CoinGeckoNftsResponse = ModelCoingeckoNftsResponseDoc
 
 func (s *CoinGeckoService) NftsTyped(ctx context.Context, params CoinGeckoNftsParams, opts ...RequestOption) (CoinGeckoNftsResponse, error) {
-	return s.client.Request(ctx, "coingecko-nfts", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoNftsResponse](s.client, ctx, "coingecko-nfts", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1369,10 +9975,10 @@ type CoinGeckoSearchParams struct {
 	Limit *int   `crawlora:"limit,omitempty"`
 }
 
-type CoinGeckoSearchResponse = any
+type CoinGeckoSearchResponse = ModelCoingeckoSearchResponseDoc
 
 func (s *CoinGeckoService) SearchTyped(ctx context.Context, params CoinGeckoSearchParams, opts ...RequestOption) (CoinGeckoSearchResponse, error) {
-	return s.client.Request(ctx, "coingecko-search", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoSearchResponse](s.client, ctx, "coingecko-search", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) TokenUnlocks(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1383,10 +9989,10 @@ type CoinGeckoTokenUnlocksParams struct {
 	Limit *int `crawlora:"limit,omitempty"`
 }
 
-type CoinGeckoTokenUnlocksResponse = any
+type CoinGeckoTokenUnlocksResponse = ModelCoingeckoTokenUnlocksResponseDoc
 
 func (s *CoinGeckoService) TokenUnlocksTyped(ctx context.Context, params CoinGeckoTokenUnlocksParams, opts ...RequestOption) (CoinGeckoTokenUnlocksResponse, error) {
-	return s.client.Request(ctx, "coingecko-token-unlocks", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoTokenUnlocksResponse](s.client, ctx, "coingecko-token-unlocks", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) Treasuries(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1400,10 +10006,10 @@ type CoinGeckoTreasuriesParams struct {
 	VsCurrency *string `crawlora:"vs_currency,omitempty"`
 }
 
-type CoinGeckoTreasuriesResponse = any
+type CoinGeckoTreasuriesResponse = ModelCoingeckoTreasuriesResponseDoc
 
 func (s *CoinGeckoService) TreasuriesTyped(ctx context.Context, params CoinGeckoTreasuriesParams, opts ...RequestOption) (CoinGeckoTreasuriesResponse, error) {
-	return s.client.Request(ctx, "coingecko-treasuries", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoTreasuriesResponse](s.client, ctx, "coingecko-treasuries", paramsFromStruct(params), opts...)
 }
 
 func (s *CoinGeckoService) Trending(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1415,10 +10021,10 @@ type CoinGeckoTrendingParams struct {
 	VsCurrency *string `crawlora:"vs_currency,omitempty"`
 }
 
-type CoinGeckoTrendingResponse = any
+type CoinGeckoTrendingResponse = ModelCoingeckoTrendingResponseDoc
 
 func (s *CoinGeckoService) TrendingTyped(ctx context.Context, params CoinGeckoTrendingParams, opts ...RequestOption) (CoinGeckoTrendingResponse, error) {
-	return s.client.Request(ctx, "coingecko-trending", paramsFromStruct(params), opts...)
+	return requestTyped[CoinGeckoTrendingResponse](s.client, ctx, "coingecko-trending", paramsFromStruct(params), opts...)
 }
 
 type DatasetsService struct{ client *Client }
@@ -1430,10 +10036,10 @@ func (s *DatasetsService) List(ctx context.Context, params Params, opts ...Reque
 type DatasetsListParams struct {
 }
 
-type DatasetsListResponse = any
+type DatasetsListResponse = ModelDatasetsListResponseDoc
 
 func (s *DatasetsService) ListTyped(ctx context.Context, params DatasetsListParams, opts ...RequestOption) (DatasetsListResponse, error) {
-	return s.client.Request(ctx, "datasets-list", paramsFromStruct(params), opts...)
+	return requestTyped[DatasetsListResponse](s.client, ctx, "datasets-list", paramsFromStruct(params), opts...)
 }
 
 func (s *DatasetsService) GoogleMapBusinessesFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1459,10 +10065,10 @@ type DatasetsGoogleMapBusinessesFacetsParams struct {
 	Sort           *string  `crawlora:"sort,omitempty"`
 }
 
-type DatasetsGoogleMapBusinessesFacetsResponse = any
+type DatasetsGoogleMapBusinessesFacetsResponse = ModelDatasetsGoogleMapBusinessesFacetResponseDoc
 
 func (s *DatasetsService) GoogleMapBusinessesFacetsTyped(ctx context.Context, params DatasetsGoogleMapBusinessesFacetsParams, opts ...RequestOption) (DatasetsGoogleMapBusinessesFacetsResponse, error) {
-	return s.client.Request(ctx, "datasets-google-map-businesses-facets", paramsFromStruct(params), opts...)
+	return requestTyped[DatasetsGoogleMapBusinessesFacetsResponse](s.client, ctx, "datasets-google-map-businesses-facets", paramsFromStruct(params), opts...)
 }
 
 func (s *DatasetsService) GoogleMapBusinessesItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1473,10 +10079,10 @@ type DatasetsGoogleMapBusinessesItemParams struct {
 	PlaceId string `crawlora:"place_id"`
 }
 
-type DatasetsGoogleMapBusinessesItemResponse = any
+type DatasetsGoogleMapBusinessesItemResponse = ModelDatasetsGoogleMapBusinessResponseDoc
 
 func (s *DatasetsService) GoogleMapBusinessesItemTyped(ctx context.Context, params DatasetsGoogleMapBusinessesItemParams, opts ...RequestOption) (DatasetsGoogleMapBusinessesItemResponse, error) {
-	return s.client.Request(ctx, "datasets-google-map-businesses-item", paramsFromStruct(params), opts...)
+	return requestTyped[DatasetsGoogleMapBusinessesItemResponse](s.client, ctx, "datasets-google-map-businesses-item", paramsFromStruct(params), opts...)
 }
 
 func (s *DatasetsService) GoogleMapBusinessesNearby(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1494,10 +10100,10 @@ type DatasetsGoogleMapBusinessesNearbyParams struct {
 	PageSize       *int     `crawlora:"page_size,omitempty"`
 }
 
-type DatasetsGoogleMapBusinessesNearbyResponse = any
+type DatasetsGoogleMapBusinessesNearbyResponse = ModelDatasetsGoogleMapBusinessesSearchResponseDoc
 
 func (s *DatasetsService) GoogleMapBusinessesNearbyTyped(ctx context.Context, params DatasetsGoogleMapBusinessesNearbyParams, opts ...RequestOption) (DatasetsGoogleMapBusinessesNearbyResponse, error) {
-	return s.client.Request(ctx, "datasets-google-map-businesses-nearby", paramsFromStruct(params), opts...)
+	return requestTyped[DatasetsGoogleMapBusinessesNearbyResponse](s.client, ctx, "datasets-google-map-businesses-nearby", paramsFromStruct(params), opts...)
 }
 
 func (s *DatasetsService) GoogleMapBusinessesSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1524,10 +10130,10 @@ type DatasetsGoogleMapBusinessesSearchParams struct {
 	PageSize       *int     `crawlora:"page_size,omitempty"`
 }
 
-type DatasetsGoogleMapBusinessesSearchResponse = any
+type DatasetsGoogleMapBusinessesSearchResponse = ModelDatasetsGoogleMapBusinessesSearchResponseDoc
 
 func (s *DatasetsService) GoogleMapBusinessesSearchTyped(ctx context.Context, params DatasetsGoogleMapBusinessesSearchParams, opts ...RequestOption) (DatasetsGoogleMapBusinessesSearchResponse, error) {
-	return s.client.Request(ctx, "datasets-google-map-businesses-search", paramsFromStruct(params), opts...)
+	return requestTyped[DatasetsGoogleMapBusinessesSearchResponse](s.client, ctx, "datasets-google-map-businesses-search", paramsFromStruct(params), opts...)
 }
 
 type EBayService struct{ client *Client }
@@ -1540,10 +10146,10 @@ type EBayEbayItemParams struct {
 	ItemId string `crawlora:"item_id"`
 }
 
-type EBayEbayItemResponse = any
+type EBayEbayItemResponse = ModelEbayItemResponseDoc
 
 func (s *EBayService) EbayItemTyped(ctx context.Context, params EBayEbayItemParams, opts ...RequestOption) (EBayEbayItemResponse, error) {
-	return s.client.Request(ctx, "ebay-item", paramsFromStruct(params), opts...)
+	return requestTyped[EBayEbayItemResponse](s.client, ctx, "ebay-item", paramsFromStruct(params), opts...)
 }
 
 func (s *EBayService) EbaySearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1551,13 +10157,13 @@ func (s *EBayService) EbaySearch(ctx context.Context, params Params, opts ...Req
 }
 
 type EBayEbaySearchParams struct {
-	Option any `crawlora:"option"`
+	Option ModelEbaySearchOption `crawlora:"option"`
 }
 
-type EBayEbaySearchResponse = any
+type EBayEbaySearchResponse = ModelEbaySearchResponseDoc
 
 func (s *EBayService) EbaySearchTyped(ctx context.Context, params EBayEbaySearchParams, opts ...RequestOption) (EBayEbaySearchResponse, error) {
-	return s.client.Request(ctx, "ebay-search", paramsFromStruct(params), opts...)
+	return requestTyped[EBayEbaySearchResponse](s.client, ctx, "ebay-search", paramsFromStruct(params), opts...)
 }
 
 func (s *EBayService) EbaySeller(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1568,10 +10174,10 @@ type EBayEbaySellerParams struct {
 	Seller string `crawlora:"seller"`
 }
 
-type EBayEbaySellerResponse = any
+type EBayEbaySellerResponse = ModelEbaySellerResponseDoc
 
 func (s *EBayService) EbaySellerTyped(ctx context.Context, params EBayEbaySellerParams, opts ...RequestOption) (EBayEbaySellerResponse, error) {
-	return s.client.Request(ctx, "ebay-seller", paramsFromStruct(params), opts...)
+	return requestTyped[EBayEbaySellerResponse](s.client, ctx, "ebay-seller", paramsFromStruct(params), opts...)
 }
 
 func (s *EBayService) EbaySellerAbout(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1582,10 +10188,10 @@ type EBayEbaySellerAboutParams struct {
 	Seller string `crawlora:"seller"`
 }
 
-type EBayEbaySellerAboutResponse = any
+type EBayEbaySellerAboutResponse = ModelEbaySellerAboutResponseDoc
 
 func (s *EBayService) EbaySellerAboutTyped(ctx context.Context, params EBayEbaySellerAboutParams, opts ...RequestOption) (EBayEbaySellerAboutResponse, error) {
-	return s.client.Request(ctx, "ebay-seller-about", paramsFromStruct(params), opts...)
+	return requestTyped[EBayEbaySellerAboutResponse](s.client, ctx, "ebay-seller-about", paramsFromStruct(params), opts...)
 }
 
 func (s *EBayService) EbaySellerFeedback(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1598,10 +10204,10 @@ type EBayEbaySellerFeedbackParams struct {
 	PerPage *int   `crawlora:"per_page,omitempty"`
 }
 
-type EBayEbaySellerFeedbackResponse = any
+type EBayEbaySellerFeedbackResponse = ModelEbaySellerFeedbackResponseDoc
 
 func (s *EBayService) EbaySellerFeedbackTyped(ctx context.Context, params EBayEbaySellerFeedbackParams, opts ...RequestOption) (EBayEbaySellerFeedbackResponse, error) {
-	return s.client.Request(ctx, "ebay-seller-feedback", paramsFromStruct(params), opts...)
+	return requestTyped[EBayEbaySellerFeedbackResponse](s.client, ctx, "ebay-seller-feedback", paramsFromStruct(params), opts...)
 }
 
 func (s *EBayService) EbaySellerShop(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1613,10 +10219,10 @@ type EBayEbaySellerShopParams struct {
 	Page   *int   `crawlora:"page,omitempty"`
 }
 
-type EBayEbaySellerShopResponse = any
+type EBayEbaySellerShopResponse = ModelEbaySellerShopResponseDoc
 
 func (s *EBayService) EbaySellerShopTyped(ctx context.Context, params EBayEbaySellerShopParams, opts ...RequestOption) (EBayEbaySellerShopResponse, error) {
-	return s.client.Request(ctx, "ebay-seller-shop", paramsFromStruct(params), opts...)
+	return requestTyped[EBayEbaySellerShopResponse](s.client, ctx, "ebay-seller-shop", paramsFromStruct(params), opts...)
 }
 
 type GeocodingService struct{ client *Client }
@@ -1633,10 +10239,10 @@ type GeocodingLookupParams struct {
 	Namedetails    *bool   `crawlora:"namedetails,omitempty"`
 }
 
-type GeocodingLookupResponse = any
+type GeocodingLookupResponse = ModelGeocodingLookupResponseDoc
 
 func (s *GeocodingService) LookupTyped(ctx context.Context, params GeocodingLookupParams, opts ...RequestOption) (GeocodingLookupResponse, error) {
-	return s.client.Request(ctx, "geocoding-lookup", paramsFromStruct(params), opts...)
+	return requestTyped[GeocodingLookupResponse](s.client, ctx, "geocoding-lookup", paramsFromStruct(params), opts...)
 }
 
 func (s *GeocodingService) Reverse(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1653,10 +10259,10 @@ type GeocodingReverseParams struct {
 	Namedetails    *bool   `crawlora:"namedetails,omitempty"`
 }
 
-type GeocodingReverseResponse = any
+type GeocodingReverseResponse = ModelGeocodingReverseResponseDoc
 
 func (s *GeocodingService) ReverseTyped(ctx context.Context, params GeocodingReverseParams, opts ...RequestOption) (GeocodingReverseResponse, error) {
-	return s.client.Request(ctx, "geocoding-reverse", paramsFromStruct(params), opts...)
+	return requestTyped[GeocodingReverseResponse](s.client, ctx, "geocoding-reverse", paramsFromStruct(params), opts...)
 }
 
 func (s *GeocodingService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1679,10 +10285,10 @@ type GeocodingSearchParams struct {
 	Namedetails    *bool   `crawlora:"namedetails,omitempty"`
 }
 
-type GeocodingSearchResponse = any
+type GeocodingSearchResponse = ModelGeocodingSearchResponseDoc
 
 func (s *GeocodingService) SearchTyped(ctx context.Context, params GeocodingSearchParams, opts ...RequestOption) (GeocodingSearchResponse, error) {
-	return s.client.Request(ctx, "geocoding-search", paramsFromStruct(params), opts...)
+	return requestTyped[GeocodingSearchResponse](s.client, ctx, "geocoding-search", paramsFromStruct(params), opts...)
 }
 
 type GoogleService struct{ client *Client }
@@ -1695,10 +10301,10 @@ type GoogleFinanceAnalystArticlesParams struct {
 	Quote string `crawlora:"quote"`
 }
 
-type GoogleFinanceAnalystArticlesResponse = any
+type GoogleFinanceAnalystArticlesResponse = ModelFinanceArticlesResponseDoc
 
 func (s *GoogleService) FinanceAnalystArticlesTyped(ctx context.Context, params GoogleFinanceAnalystArticlesParams, opts ...RequestOption) (GoogleFinanceAnalystArticlesResponse, error) {
-	return s.client.Request(ctx, "google-finance-analyst-articles", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceAnalystArticlesResponse](s.client, ctx, "google-finance-analyst-articles", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceChart(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1710,10 +10316,10 @@ type GoogleFinanceChartParams struct {
 	Window *string `crawlora:"window,omitempty"`
 }
 
-type GoogleFinanceChartResponse = any
+type GoogleFinanceChartResponse = ModelFinanceChartResponseDoc
 
 func (s *GoogleService) FinanceChartTyped(ctx context.Context, params GoogleFinanceChartParams, opts ...RequestOption) (GoogleFinanceChartResponse, error) {
-	return s.client.Request(ctx, "google-finance-chart", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceChartResponse](s.client, ctx, "google-finance-chart", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceClassification(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1724,10 +10330,10 @@ type GoogleFinanceClassificationParams struct {
 	Quote string `crawlora:"quote"`
 }
 
-type GoogleFinanceClassificationResponse = any
+type GoogleFinanceClassificationResponse = ModelFinanceClassificationResponseDoc
 
 func (s *GoogleService) FinanceClassificationTyped(ctx context.Context, params GoogleFinanceClassificationParams, opts ...RequestOption) (GoogleFinanceClassificationResponse, error) {
-	return s.client.Request(ctx, "google-finance-classification", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceClassificationResponse](s.client, ctx, "google-finance-classification", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceCompany(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1738,10 +10344,10 @@ type GoogleFinanceCompanyParams struct {
 	Quote string `crawlora:"quote"`
 }
 
-type GoogleFinanceCompanyResponse = any
+type GoogleFinanceCompanyResponse = ModelFinanceCompanyResponseDoc
 
 func (s *GoogleService) FinanceCompanyTyped(ctx context.Context, params GoogleFinanceCompanyParams, opts ...RequestOption) (GoogleFinanceCompanyResponse, error) {
-	return s.client.Request(ctx, "google-finance-company", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceCompanyResponse](s.client, ctx, "google-finance-company", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceContext(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1752,10 +10358,10 @@ type GoogleFinanceContextParams struct {
 	Q string `crawlora:"q"`
 }
 
-type GoogleFinanceContextResponse = any
+type GoogleFinanceContextResponse = ModelFinanceContextResponseDoc
 
 func (s *GoogleService) FinanceContextTyped(ctx context.Context, params GoogleFinanceContextParams, opts ...RequestOption) (GoogleFinanceContextResponse, error) {
-	return s.client.Request(ctx, "google-finance-context", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceContextResponse](s.client, ctx, "google-finance-context", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceFinancials(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1766,10 +10372,10 @@ type GoogleFinanceFinancialsParams struct {
 	Quote string `crawlora:"quote"`
 }
 
-type GoogleFinanceFinancialsResponse = any
+type GoogleFinanceFinancialsResponse = ModelFinanceFinancialsResponseDoc
 
 func (s *GoogleService) FinanceFinancialsTyped(ctx context.Context, params GoogleFinanceFinancialsParams, opts ...RequestOption) (GoogleFinanceFinancialsResponse, error) {
-	return s.client.Request(ctx, "google-finance-financials", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceFinancialsResponse](s.client, ctx, "google-finance-financials", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceMarketsCategoryNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1781,10 +10387,10 @@ type GoogleFinanceMarketsCategoryNewsParams struct {
 	Offset   *int   `crawlora:"offset,omitempty"`
 }
 
-type GoogleFinanceMarketsCategoryNewsResponse = any
+type GoogleFinanceMarketsCategoryNewsResponse = ModelFinanceCategoryNewsResponseDoc
 
 func (s *GoogleService) FinanceMarketsCategoryNewsTyped(ctx context.Context, params GoogleFinanceMarketsCategoryNewsParams, opts ...RequestOption) (GoogleFinanceMarketsCategoryNewsResponse, error) {
-	return s.client.Request(ctx, "google-finance-markets-category-news", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceMarketsCategoryNewsResponse](s.client, ctx, "google-finance-markets-category-news", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceMarketsCategoryStocks(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1796,10 +10402,10 @@ type GoogleFinanceMarketsCategoryStocksParams struct {
 	Offset   *int   `crawlora:"offset,omitempty"`
 }
 
-type GoogleFinanceMarketsCategoryStocksResponse = any
+type GoogleFinanceMarketsCategoryStocksResponse = ModelFinanceCategoryStocksResponseDoc
 
 func (s *GoogleService) FinanceMarketsCategoryStocksTyped(ctx context.Context, params GoogleFinanceMarketsCategoryStocksParams, opts ...RequestOption) (GoogleFinanceMarketsCategoryStocksResponse, error) {
-	return s.client.Request(ctx, "google-finance-markets-category-stocks", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceMarketsCategoryStocksResponse](s.client, ctx, "google-finance-markets-category-stocks", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceMarketsEarnings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1809,10 +10415,10 @@ func (s *GoogleService) FinanceMarketsEarnings(ctx context.Context, params Param
 type GoogleFinanceMarketsEarningsParams struct {
 }
 
-type GoogleFinanceMarketsEarningsResponse = any
+type GoogleFinanceMarketsEarningsResponse = ModelFinanceEarningsResponseDoc
 
 func (s *GoogleService) FinanceMarketsEarningsTyped(ctx context.Context, params GoogleFinanceMarketsEarningsParams, opts ...RequestOption) (GoogleFinanceMarketsEarningsResponse, error) {
-	return s.client.Request(ctx, "google-finance-markets-earnings", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceMarketsEarningsResponse](s.client, ctx, "google-finance-markets-earnings", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceMarketsFeatured(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1822,10 +10428,10 @@ func (s *GoogleService) FinanceMarketsFeatured(ctx context.Context, params Param
 type GoogleFinanceMarketsFeaturedParams struct {
 }
 
-type GoogleFinanceMarketsFeaturedResponse = any
+type GoogleFinanceMarketsFeaturedResponse = ModelFinanceInstrumentsResponseDoc
 
 func (s *GoogleService) FinanceMarketsFeaturedTyped(ctx context.Context, params GoogleFinanceMarketsFeaturedParams, opts ...RequestOption) (GoogleFinanceMarketsFeaturedResponse, error) {
-	return s.client.Request(ctx, "google-finance-markets-featured", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceMarketsFeaturedResponse](s.client, ctx, "google-finance-markets-featured", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceMarketsHeadline(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1835,10 +10441,10 @@ func (s *GoogleService) FinanceMarketsHeadline(ctx context.Context, params Param
 type GoogleFinanceMarketsHeadlineParams struct {
 }
 
-type GoogleFinanceMarketsHeadlineResponse = any
+type GoogleFinanceMarketsHeadlineResponse = ModelFinanceHeadlineResponseDoc
 
 func (s *GoogleService) FinanceMarketsHeadlineTyped(ctx context.Context, params GoogleFinanceMarketsHeadlineParams, opts ...RequestOption) (GoogleFinanceMarketsHeadlineResponse, error) {
-	return s.client.Request(ctx, "google-finance-markets-headline", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceMarketsHeadlineResponse](s.client, ctx, "google-finance-markets-headline", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceMarketsIndices(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1848,10 +10454,10 @@ func (s *GoogleService) FinanceMarketsIndices(ctx context.Context, params Params
 type GoogleFinanceMarketsIndicesParams struct {
 }
 
-type GoogleFinanceMarketsIndicesResponse = any
+type GoogleFinanceMarketsIndicesResponse = ModelFinanceInstrumentsResponseDoc
 
 func (s *GoogleService) FinanceMarketsIndicesTyped(ctx context.Context, params GoogleFinanceMarketsIndicesParams, opts ...RequestOption) (GoogleFinanceMarketsIndicesResponse, error) {
-	return s.client.Request(ctx, "google-finance-markets-indices", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceMarketsIndicesResponse](s.client, ctx, "google-finance-markets-indices", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceMarketsMovers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1864,10 +10470,10 @@ type GoogleFinanceMarketsMoversParams struct {
 	Offset     *int    `crawlora:"offset,omitempty"`
 }
 
-type GoogleFinanceMarketsMoversResponse = any
+type GoogleFinanceMarketsMoversResponse = ModelFinanceMarketMoversResponseDoc
 
 func (s *GoogleService) FinanceMarketsMoversTyped(ctx context.Context, params GoogleFinanceMarketsMoversParams, opts ...RequestOption) (GoogleFinanceMarketsMoversResponse, error) {
-	return s.client.Request(ctx, "google-finance-markets-movers", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceMarketsMoversResponse](s.client, ctx, "google-finance-markets-movers", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceMarketsTop(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1879,10 +10485,10 @@ type GoogleFinanceMarketsTopParams struct {
 	Page   *int `crawlora:"page,omitempty"`
 }
 
-type GoogleFinanceMarketsTopResponse = any
+type GoogleFinanceMarketsTopResponse = ModelFinanceTopStocksResponseDoc
 
 func (s *GoogleService) FinanceMarketsTopTyped(ctx context.Context, params GoogleFinanceMarketsTopParams, opts ...RequestOption) (GoogleFinanceMarketsTopResponse, error) {
-	return s.client.Request(ctx, "google-finance-markets-top", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceMarketsTopResponse](s.client, ctx, "google-finance-markets-top", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceMarketsTrending(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1893,10 +10499,10 @@ type GoogleFinanceMarketsTrendingParams struct {
 	Limit *int `crawlora:"limit,omitempty"`
 }
 
-type GoogleFinanceMarketsTrendingResponse = any
+type GoogleFinanceMarketsTrendingResponse = ModelFinanceInstrumentsResponseDoc
 
 func (s *GoogleService) FinanceMarketsTrendingTyped(ctx context.Context, params GoogleFinanceMarketsTrendingParams, opts ...RequestOption) (GoogleFinanceMarketsTrendingResponse, error) {
-	return s.client.Request(ctx, "google-finance-markets-trending", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceMarketsTrendingResponse](s.client, ctx, "google-finance-markets-trending", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1908,10 +10514,10 @@ type GoogleFinanceNewsParams struct {
 	Limit *int   `crawlora:"limit,omitempty"`
 }
 
-type GoogleFinanceNewsResponse = any
+type GoogleFinanceNewsResponse = ModelFinanceArticlesResponseDoc
 
 func (s *GoogleService) FinanceNewsTyped(ctx context.Context, params GoogleFinanceNewsParams, opts ...RequestOption) (GoogleFinanceNewsResponse, error) {
-	return s.client.Request(ctx, "google-finance-news", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceNewsResponse](s.client, ctx, "google-finance-news", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceQuote(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1922,10 +10528,10 @@ type GoogleFinanceQuoteParams struct {
 	Quote string `crawlora:"quote"`
 }
 
-type GoogleFinanceQuoteResponse = any
+type GoogleFinanceQuoteResponse = ModelFinanceQuoteResponseDoc
 
 func (s *GoogleService) FinanceQuoteTyped(ctx context.Context, params GoogleFinanceQuoteParams, opts ...RequestOption) (GoogleFinanceQuoteResponse, error) {
-	return s.client.Request(ctx, "google-finance-quote", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceQuoteResponse](s.client, ctx, "google-finance-quote", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceRelated(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1936,10 +10542,10 @@ type GoogleFinanceRelatedParams struct {
 	Quote string `crawlora:"quote"`
 }
 
-type GoogleFinanceRelatedResponse = any
+type GoogleFinanceRelatedResponse = ModelFinanceRelatedResponseDoc
 
 func (s *GoogleService) FinanceRelatedTyped(ctx context.Context, params GoogleFinanceRelatedParams, opts ...RequestOption) (GoogleFinanceRelatedResponse, error) {
-	return s.client.Request(ctx, "google-finance-related", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceRelatedResponse](s.client, ctx, "google-finance-related", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1950,10 +10556,10 @@ type GoogleFinanceSearchParams struct {
 	Q string `crawlora:"q"`
 }
 
-type GoogleFinanceSearchResponse = any
+type GoogleFinanceSearchResponse = ModelFinanceSearchResponseDoc
 
 func (s *GoogleService) FinanceSearchTyped(ctx context.Context, params GoogleFinanceSearchParams, opts ...RequestOption) (GoogleFinanceSearchResponse, error) {
-	return s.client.Request(ctx, "google-finance-search", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceSearchResponse](s.client, ctx, "google-finance-search", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) FinanceTicker(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1965,10 +10571,10 @@ type GoogleFinanceTickerParams struct {
 	Window *string `crawlora:"window,omitempty"`
 }
 
-type GoogleFinanceTickerResponse = any
+type GoogleFinanceTickerResponse = ModelFinanceTickerResponseDoc
 
 func (s *GoogleService) FinanceTickerTyped(ctx context.Context, params GoogleFinanceTickerParams, opts ...RequestOption) (GoogleFinanceTickerResponse, error) {
-	return s.client.Request(ctx, "google-finance-ticker", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleFinanceTickerResponse](s.client, ctx, "google-finance-ticker", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) Jobs(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1976,13 +10582,13 @@ func (s *GoogleService) Jobs(ctx context.Context, params Params, opts ...Request
 }
 
 type GoogleJobsParams struct {
-	Option any `crawlora:"option"`
+	Option ModelGoogleJobsOption `crawlora:"option"`
 }
 
-type GoogleJobsResponse = any
+type GoogleJobsResponse = ModelGoogleJobsResponse
 
 func (s *GoogleService) JobsTyped(ctx context.Context, params GoogleJobsParams, opts ...RequestOption) (GoogleJobsResponse, error) {
-	return s.client.Request(ctx, "google-jobs", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleJobsResponse](s.client, ctx, "google-jobs", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) MapPlace(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -1993,10 +10599,10 @@ type GoogleMapPlaceParams struct {
 	PlaceId string `crawlora:"place_id"`
 }
 
-type GoogleMapPlaceResponse = any
+type GoogleMapPlaceResponse = ModelGoogleMapPlaceResponseDoc
 
 func (s *GoogleService) MapPlaceTyped(ctx context.Context, params GoogleMapPlaceParams, opts ...RequestOption) (GoogleMapPlaceResponse, error) {
-	return s.client.Request(ctx, "google-map-place", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleMapPlaceResponse](s.client, ctx, "google-map-place", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) MapSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2004,13 +10610,13 @@ func (s *GoogleService) MapSearch(ctx context.Context, params Params, opts ...Re
 }
 
 type GoogleMapSearchParams struct {
-	MapSearchOption any `crawlora:"mapSearchOption"`
+	MapSearchOption ModelGoogleMapSearchOption `crawlora:"mapSearchOption"`
 }
 
-type GoogleMapSearchResponse = any
+type GoogleMapSearchResponse = ModelGoogleMapSearchResponseDoc
 
 func (s *GoogleService) MapSearchTyped(ctx context.Context, params GoogleMapSearchParams, opts ...RequestOption) (GoogleMapSearchResponse, error) {
-	return s.client.Request(ctx, "google-map-search", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleMapSearchResponse](s.client, ctx, "google-map-search", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2018,13 +10624,13 @@ func (s *GoogleService) Search(ctx context.Context, params Params, opts ...Reque
 }
 
 type GoogleSearchParams struct {
-	SearchOption any `crawlora:"searchOption"`
+	SearchOption ModelGoogleSearchOption `crawlora:"searchOption"`
 }
 
-type GoogleSearchResponse = any
+type GoogleSearchResponse = ModelGoogleSearchResponseDoc
 
 func (s *GoogleService) SearchTyped(ctx context.Context, params GoogleSearchParams, opts ...RequestOption) (GoogleSearchResponse, error) {
-	return s.client.Request(ctx, "google-search", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleSearchResponse](s.client, ctx, "google-search", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2038,10 +10644,10 @@ type GoogleSuggestParams struct {
 	Lang    *string `crawlora:"lang,omitempty"`
 }
 
-type GoogleSuggestResponse = any
+type GoogleSuggestResponse = ModelGoogleSuggestResponseDoc
 
 func (s *GoogleService) SuggestTyped(ctx context.Context, params GoogleSuggestParams, opts ...RequestOption) (GoogleSuggestResponse, error) {
-	return s.client.Request(ctx, "google-suggest", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleSuggestResponse](s.client, ctx, "google-suggest", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) TrendsCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2051,10 +10657,10 @@ func (s *GoogleService) TrendsCategories(ctx context.Context, params Params, opt
 type GoogleTrendsCategoriesParams struct {
 }
 
-type GoogleTrendsCategoriesResponse = any
+type GoogleTrendsCategoriesResponse = ModelTrendsTrendsCategoriesResponseDoc
 
 func (s *GoogleService) TrendsCategoriesTyped(ctx context.Context, params GoogleTrendsCategoriesParams, opts ...RequestOption) (GoogleTrendsCategoriesResponse, error) {
-	return s.client.Request(ctx, "google-trends-categories", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleTrendsCategoriesResponse](s.client, ctx, "google-trends-categories", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) TrendsEnums(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2064,10 +10670,10 @@ func (s *GoogleService) TrendsEnums(ctx context.Context, params Params, opts ...
 type GoogleTrendsEnumsParams struct {
 }
 
-type GoogleTrendsEnumsResponse = any
+type GoogleTrendsEnumsResponse = ModelTrendsTrendsEnumsResponseDoc
 
 func (s *GoogleService) TrendsEnumsTyped(ctx context.Context, params GoogleTrendsEnumsParams, opts ...RequestOption) (GoogleTrendsEnumsResponse, error) {
-	return s.client.Request(ctx, "google-trends-enums", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleTrendsEnumsResponse](s.client, ctx, "google-trends-enums", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) TrendsExplore(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2075,13 +10681,13 @@ func (s *GoogleService) TrendsExplore(ctx context.Context, params Params, opts .
 }
 
 type GoogleTrendsExploreParams struct {
-	Request any `crawlora:"request"`
+	Request ModelTrendsExploreRequest `crawlora:"request"`
 }
 
-type GoogleTrendsExploreResponse = any
+type GoogleTrendsExploreResponse = ModelTrendsExploreResponseDoc
 
 func (s *GoogleService) TrendsExploreTyped(ctx context.Context, params GoogleTrendsExploreParams, opts ...RequestOption) (GoogleTrendsExploreResponse, error) {
-	return s.client.Request(ctx, "google-trends-explore", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleTrendsExploreResponse](s.client, ctx, "google-trends-explore", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) TrendsExploreInterestByRegion(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2089,13 +10695,13 @@ func (s *GoogleService) TrendsExploreInterestByRegion(ctx context.Context, param
 }
 
 type GoogleTrendsExploreInterestByRegionParams struct {
-	Request any `crawlora:"request"`
+	Request ModelTrendsExploreRequest `crawlora:"request"`
 }
 
-type GoogleTrendsExploreInterestByRegionResponse = any
+type GoogleTrendsExploreInterestByRegionResponse = ModelTrendsInterestByRegionResponseDoc
 
 func (s *GoogleService) TrendsExploreInterestByRegionTyped(ctx context.Context, params GoogleTrendsExploreInterestByRegionParams, opts ...RequestOption) (GoogleTrendsExploreInterestByRegionResponse, error) {
-	return s.client.Request(ctx, "google-trends-explore-interest-by-region", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleTrendsExploreInterestByRegionResponse](s.client, ctx, "google-trends-explore-interest-by-region", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) TrendsExploreInterestOverTime(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2103,13 +10709,13 @@ func (s *GoogleService) TrendsExploreInterestOverTime(ctx context.Context, param
 }
 
 type GoogleTrendsExploreInterestOverTimeParams struct {
-	Request any `crawlora:"request"`
+	Request ModelTrendsExploreRequest `crawlora:"request"`
 }
 
-type GoogleTrendsExploreInterestOverTimeResponse = any
+type GoogleTrendsExploreInterestOverTimeResponse = ModelTrendsInterestOverTimeResponseDoc
 
 func (s *GoogleService) TrendsExploreInterestOverTimeTyped(ctx context.Context, params GoogleTrendsExploreInterestOverTimeParams, opts ...RequestOption) (GoogleTrendsExploreInterestOverTimeResponse, error) {
-	return s.client.Request(ctx, "google-trends-explore-interest-over-time", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleTrendsExploreInterestOverTimeResponse](s.client, ctx, "google-trends-explore-interest-over-time", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) TrendsExploreRelatedTopics(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2117,13 +10723,13 @@ func (s *GoogleService) TrendsExploreRelatedTopics(ctx context.Context, params P
 }
 
 type GoogleTrendsExploreRelatedTopicsParams struct {
-	Request any `crawlora:"request"`
+	Request ModelTrendsExploreRequest `crawlora:"request"`
 }
 
-type GoogleTrendsExploreRelatedTopicsResponse = any
+type GoogleTrendsExploreRelatedTopicsResponse = ModelTrendsRelatedTopicsResponseDoc
 
 func (s *GoogleService) TrendsExploreRelatedTopicsTyped(ctx context.Context, params GoogleTrendsExploreRelatedTopicsParams, opts ...RequestOption) (GoogleTrendsExploreRelatedTopicsResponse, error) {
-	return s.client.Request(ctx, "google-trends-explore-related-topics", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleTrendsExploreRelatedTopicsResponse](s.client, ctx, "google-trends-explore-related-topics", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) TrendsExploreRisingQueries(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2131,13 +10737,13 @@ func (s *GoogleService) TrendsExploreRisingQueries(ctx context.Context, params P
 }
 
 type GoogleTrendsExploreRisingQueriesParams struct {
-	Request any `crawlora:"request"`
+	Request ModelTrendsExploreRequest `crawlora:"request"`
 }
 
-type GoogleTrendsExploreRisingQueriesResponse = any
+type GoogleTrendsExploreRisingQueriesResponse = ModelTrendsExploreQueriesResponseDoc
 
 func (s *GoogleService) TrendsExploreRisingQueriesTyped(ctx context.Context, params GoogleTrendsExploreRisingQueriesParams, opts ...RequestOption) (GoogleTrendsExploreRisingQueriesResponse, error) {
-	return s.client.Request(ctx, "google-trends-explore-rising-queries", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleTrendsExploreRisingQueriesResponse](s.client, ctx, "google-trends-explore-rising-queries", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) TrendsExploreTopQueries(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2145,13 +10751,13 @@ func (s *GoogleService) TrendsExploreTopQueries(ctx context.Context, params Para
 }
 
 type GoogleTrendsExploreTopQueriesParams struct {
-	Request any `crawlora:"request"`
+	Request ModelTrendsExploreRequest `crawlora:"request"`
 }
 
-type GoogleTrendsExploreTopQueriesResponse = any
+type GoogleTrendsExploreTopQueriesResponse = ModelTrendsExploreQueriesResponseDoc
 
 func (s *GoogleService) TrendsExploreTopQueriesTyped(ctx context.Context, params GoogleTrendsExploreTopQueriesParams, opts ...RequestOption) (GoogleTrendsExploreTopQueriesResponse, error) {
-	return s.client.Request(ctx, "google-trends-explore-top-queries", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleTrendsExploreTopQueriesResponse](s.client, ctx, "google-trends-explore-top-queries", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) TrendsLocations(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2161,10 +10767,10 @@ func (s *GoogleService) TrendsLocations(ctx context.Context, params Params, opts
 type GoogleTrendsLocationsParams struct {
 }
 
-type GoogleTrendsLocationsResponse = any
+type GoogleTrendsLocationsResponse = ModelTrendsTrendsLocationsResponseDoc
 
 func (s *GoogleService) TrendsLocationsTyped(ctx context.Context, params GoogleTrendsLocationsParams, opts ...RequestOption) (GoogleTrendsLocationsResponse, error) {
-	return s.client.Request(ctx, "google-trends-locations", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleTrendsLocationsResponse](s.client, ctx, "google-trends-locations", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) TrendsTrending(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2183,10 +10789,10 @@ type GoogleTrendsTrendingParams struct {
 	Limit     *int    `crawlora:"limit,omitempty"`
 }
 
-type GoogleTrendsTrendingResponse = any
+type GoogleTrendsTrendingResponse = ModelTrendsTrendingResponseDoc
 
 func (s *GoogleService) TrendsTrendingTyped(ctx context.Context, params GoogleTrendsTrendingParams, opts ...RequestOption) (GoogleTrendsTrendingResponse, error) {
-	return s.client.Request(ctx, "google-trends-trending", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleTrendsTrendingResponse](s.client, ctx, "google-trends-trending", paramsFromStruct(params), opts...)
 }
 
 func (s *GoogleService) TrendsTrendingDetail(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2194,13 +10800,13 @@ func (s *GoogleService) TrendsTrendingDetail(ctx context.Context, params Params,
 }
 
 type GoogleTrendsTrendingDetailParams struct {
-	Request any `crawlora:"request"`
+	Request ModelTrendsTrendingDetailRequest `crawlora:"request"`
 }
 
-type GoogleTrendsTrendingDetailResponse = any
+type GoogleTrendsTrendingDetailResponse = ModelTrendsExploreResponseDoc
 
 func (s *GoogleService) TrendsTrendingDetailTyped(ctx context.Context, params GoogleTrendsTrendingDetailParams, opts ...RequestOption) (GoogleTrendsTrendingDetailResponse, error) {
-	return s.client.Request(ctx, "google-trends-trending-detail", paramsFromStruct(params), opts...)
+	return requestTyped[GoogleTrendsTrendingDetailResponse](s.client, ctx, "google-trends-trending-detail", paramsFromStruct(params), opts...)
 }
 
 type GooglePlayService struct{ client *Client }
@@ -2215,10 +10821,10 @@ type GooglePlayAppParams struct {
 	Lang    *string `crawlora:"lang,omitempty"`
 }
 
-type GooglePlayAppResponse = any
+type GooglePlayAppResponse = ModelGoogleplayAppDetailsResponse
 
 func (s *GooglePlayService) AppTyped(ctx context.Context, params GooglePlayAppParams, opts ...RequestOption) (GooglePlayAppResponse, error) {
-	return s.client.Request(ctx, "googleplay-app", paramsFromStruct(params), opts...)
+	return requestTyped[GooglePlayAppResponse](s.client, ctx, "googleplay-app", paramsFromStruct(params), opts...)
 }
 
 func (s *GooglePlayService) Categories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2230,10 +10836,10 @@ type GooglePlayCategoriesParams struct {
 	Lang    *string `crawlora:"lang,omitempty"`
 }
 
-type GooglePlayCategoriesResponse = any
+type GooglePlayCategoriesResponse = ModelGoogleplayCategoriesResponseDoc
 
 func (s *GooglePlayService) CategoriesTyped(ctx context.Context, params GooglePlayCategoriesParams, opts ...RequestOption) (GooglePlayCategoriesResponse, error) {
-	return s.client.Request(ctx, "googleplay-categories", paramsFromStruct(params), opts...)
+	return requestTyped[GooglePlayCategoriesResponse](s.client, ctx, "googleplay-categories", paramsFromStruct(params), opts...)
 }
 
 func (s *GooglePlayService) Datasafety(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2245,10 +10851,10 @@ type GooglePlayDatasafetyParams struct {
 	Lang  *string `crawlora:"lang,omitempty"`
 }
 
-type GooglePlayDatasafetyResponse = any
+type GooglePlayDatasafetyResponse = ModelGoogleplayDataSafetyResponseDoc
 
 func (s *GooglePlayService) DatasafetyTyped(ctx context.Context, params GooglePlayDatasafetyParams, opts ...RequestOption) (GooglePlayDatasafetyResponse, error) {
-	return s.client.Request(ctx, "googleplay-datasafety", paramsFromStruct(params), opts...)
+	return requestTyped[GooglePlayDatasafetyResponse](s.client, ctx, "googleplay-datasafety", paramsFromStruct(params), opts...)
 }
 
 func (s *GooglePlayService) Developer(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2263,10 +10869,10 @@ type GooglePlayDeveloperParams struct {
 	FullDetail *bool   `crawlora:"full_detail,omitempty"`
 }
 
-type GooglePlayDeveloperResponse = any
+type GooglePlayDeveloperResponse = ModelGoogleplayDeveloperResultsResponseDoc
 
 func (s *GooglePlayService) DeveloperTyped(ctx context.Context, params GooglePlayDeveloperParams, opts ...RequestOption) (GooglePlayDeveloperResponse, error) {
-	return s.client.Request(ctx, "googleplay-developer", paramsFromStruct(params), opts...)
+	return requestTyped[GooglePlayDeveloperResponse](s.client, ctx, "googleplay-developer", paramsFromStruct(params), opts...)
 }
 
 func (s *GooglePlayService) List(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2283,10 +10889,10 @@ type GooglePlayListParams struct {
 	FullDetail *bool   `crawlora:"full_detail,omitempty"`
 }
 
-type GooglePlayListResponse = any
+type GooglePlayListResponse = ModelGoogleplayListResultsResponseDoc
 
 func (s *GooglePlayService) ListTyped(ctx context.Context, params GooglePlayListParams, opts ...RequestOption) (GooglePlayListResponse, error) {
-	return s.client.Request(ctx, "googleplay-list", paramsFromStruct(params), opts...)
+	return requestTyped[GooglePlayListResponse](s.client, ctx, "googleplay-list", paramsFromStruct(params), opts...)
 }
 
 func (s *GooglePlayService) Permissions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2300,10 +10906,10 @@ type GooglePlayPermissionsParams struct {
 	Short   *bool   `crawlora:"short,omitempty"`
 }
 
-type GooglePlayPermissionsResponse = any
+type GooglePlayPermissionsResponse = ModelGoogleplayPermissionsResultsResponseDoc
 
 func (s *GooglePlayService) PermissionsTyped(ctx context.Context, params GooglePlayPermissionsParams, opts ...RequestOption) (GooglePlayPermissionsResponse, error) {
-	return s.client.Request(ctx, "googleplay-permissions", paramsFromStruct(params), opts...)
+	return requestTyped[GooglePlayPermissionsResponse](s.client, ctx, "googleplay-permissions", paramsFromStruct(params), opts...)
 }
 
 func (s *GooglePlayService) Reviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2320,10 +10926,10 @@ type GooglePlayReviewsParams struct {
 	NextPaginationToken *string `crawlora:"next_pagination_token,omitempty"`
 }
 
-type GooglePlayReviewsResponse = any
+type GooglePlayReviewsResponse = ModelGoogleplayReviewsResponseDoc
 
 func (s *GooglePlayService) ReviewsTyped(ctx context.Context, params GooglePlayReviewsParams, opts ...RequestOption) (GooglePlayReviewsResponse, error) {
-	return s.client.Request(ctx, "googleplay-reviews", paramsFromStruct(params), opts...)
+	return requestTyped[GooglePlayReviewsResponse](s.client, ctx, "googleplay-reviews", paramsFromStruct(params), opts...)
 }
 
 func (s *GooglePlayService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2339,10 +10945,10 @@ type GooglePlaySearchParams struct {
 	Price      *string `crawlora:"price,omitempty"`
 }
 
-type GooglePlaySearchResponse = any
+type GooglePlaySearchResponse = ModelGoogleplaySearchResultsResponseDoc
 
 func (s *GooglePlayService) SearchTyped(ctx context.Context, params GooglePlaySearchParams, opts ...RequestOption) (GooglePlaySearchResponse, error) {
-	return s.client.Request(ctx, "googleplay-search", paramsFromStruct(params), opts...)
+	return requestTyped[GooglePlaySearchResponse](s.client, ctx, "googleplay-search", paramsFromStruct(params), opts...)
 }
 
 func (s *GooglePlayService) Similar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2357,10 +10963,10 @@ type GooglePlaySimilarParams struct {
 	FullDetail *bool   `crawlora:"full_detail,omitempty"`
 }
 
-type GooglePlaySimilarResponse = any
+type GooglePlaySimilarResponse = ModelGoogleplaySimilarResultsResponseDoc
 
 func (s *GooglePlayService) SimilarTyped(ctx context.Context, params GooglePlaySimilarParams, opts ...RequestOption) (GooglePlaySimilarResponse, error) {
-	return s.client.Request(ctx, "googleplay-similar", paramsFromStruct(params), opts...)
+	return requestTyped[GooglePlaySimilarResponse](s.client, ctx, "googleplay-similar", paramsFromStruct(params), opts...)
 }
 
 func (s *GooglePlayService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2373,10 +10979,10 @@ type GooglePlaySuggestParams struct {
 	Lang    *string `crawlora:"lang,omitempty"`
 }
 
-type GooglePlaySuggestResponse = any
+type GooglePlaySuggestResponse = ModelGoogleplaySuggestResponseDoc
 
 func (s *GooglePlayService) SuggestTyped(ctx context.Context, params GooglePlaySuggestParams, opts ...RequestOption) (GooglePlaySuggestResponse, error) {
-	return s.client.Request(ctx, "googleplay-suggest", paramsFromStruct(params), opts...)
+	return requestTyped[GooglePlaySuggestResponse](s.client, ctx, "googleplay-suggest", paramsFromStruct(params), opts...)
 }
 
 type InstagramService struct{ client *Client }
@@ -2390,10 +10996,10 @@ type InstagramPostParams struct {
 	PostId string `crawlora:"post_id"`
 }
 
-type InstagramPostResponse = any
+type InstagramPostResponse = ModelInstagramPostResponseDoc
 
 func (s *InstagramService) PostTyped(ctx context.Context, params InstagramPostParams, opts ...RequestOption) (InstagramPostResponse, error) {
-	return s.client.Request(ctx, "instagram-post", paramsFromStruct(params), opts...)
+	return requestTyped[InstagramPostResponse](s.client, ctx, "instagram-post", paramsFromStruct(params), opts...)
 }
 
 func (s *InstagramService) Profile(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2404,10 +11010,10 @@ type InstagramProfileParams struct {
 	Username string `crawlora:"username"`
 }
 
-type InstagramProfileResponse = any
+type InstagramProfileResponse = ModelInstagramProfileResponseDoc
 
 func (s *InstagramService) ProfileTyped(ctx context.Context, params InstagramProfileParams, opts ...RequestOption) (InstagramProfileResponse, error) {
-	return s.client.Request(ctx, "instagram-profile", paramsFromStruct(params), opts...)
+	return requestTyped[InstagramProfileResponse](s.client, ctx, "instagram-profile", paramsFromStruct(params), opts...)
 }
 
 func (s *InstagramService) Reels(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2419,10 +11025,10 @@ type InstagramReelsParams struct {
 	MaxId *string `crawlora:"max_id,omitempty"`
 }
 
-type InstagramReelsResponse = any
+type InstagramReelsResponse = ModelInstagramReelsResponseDoc
 
 func (s *InstagramService) ReelsTyped(ctx context.Context, params InstagramReelsParams, opts ...RequestOption) (InstagramReelsResponse, error) {
-	return s.client.Request(ctx, "instagram-reels", paramsFromStruct(params), opts...)
+	return requestTyped[InstagramReelsResponse](s.client, ctx, "instagram-reels", paramsFromStruct(params), opts...)
 }
 
 type JustWatchService struct{ client *Client }
@@ -2435,10 +11041,10 @@ type JustWatchJustwatchAgeCertificationsParams struct {
 	Country *string `crawlora:"country,omitempty"`
 }
 
-type JustWatchJustwatchAgeCertificationsResponse = any
+type JustWatchJustwatchAgeCertificationsResponse = ModelJustwatchAgeCertificationsResponseDoc
 
 func (s *JustWatchService) JustwatchAgeCertificationsTyped(ctx context.Context, params JustWatchJustwatchAgeCertificationsParams, opts ...RequestOption) (JustWatchJustwatchAgeCertificationsResponse, error) {
-	return s.client.Request(ctx, "justwatch-age-certifications", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchAgeCertificationsResponse](s.client, ctx, "justwatch-age-certifications", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchDiscover(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2457,10 +11063,10 @@ type JustWatchJustwatchDiscoverParams struct {
 	YearMax           *int    `crawlora:"year_max,omitempty"`
 }
 
-type JustWatchJustwatchDiscoverResponse = any
+type JustWatchJustwatchDiscoverResponse = ModelJustwatchDiscoverResponseDoc
 
 func (s *JustWatchService) JustwatchDiscoverTyped(ctx context.Context, params JustWatchJustwatchDiscoverParams, opts ...RequestOption) (JustWatchJustwatchDiscoverResponse, error) {
-	return s.client.Request(ctx, "justwatch-discover", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchDiscoverResponse](s.client, ctx, "justwatch-discover", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchEpisodeById(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2473,10 +11079,10 @@ type JustWatchJustwatchEpisodeByIdParams struct {
 	Language *string `crawlora:"language,omitempty"`
 }
 
-type JustWatchJustwatchEpisodeByIdResponse = any
+type JustWatchJustwatchEpisodeByIdResponse = ModelJustwatchEpisodeByIdresponseDoc
 
 func (s *JustWatchService) JustwatchEpisodeByIdTyped(ctx context.Context, params JustWatchJustwatchEpisodeByIdParams, opts ...RequestOption) (JustWatchJustwatchEpisodeByIdResponse, error) {
-	return s.client.Request(ctx, "justwatch-episode-by-id", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchEpisodeByIdResponse](s.client, ctx, "justwatch-episode-by-id", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchEpisodeOffers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2489,10 +11095,10 @@ type JustWatchJustwatchEpisodeOffersParams struct {
 	Language  *string `crawlora:"language,omitempty"`
 }
 
-type JustWatchJustwatchEpisodeOffersResponse = any
+type JustWatchJustwatchEpisodeOffersResponse = ModelJustwatchEpisodeOffersResponseDoc
 
 func (s *JustWatchService) JustwatchEpisodeOffersTyped(ctx context.Context, params JustWatchJustwatchEpisodeOffersParams, opts ...RequestOption) (JustWatchJustwatchEpisodeOffersResponse, error) {
-	return s.client.Request(ctx, "justwatch-episode-offers", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchEpisodeOffersResponse](s.client, ctx, "justwatch-episode-offers", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchGenreTitles(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2507,10 +11113,10 @@ type JustWatchJustwatchGenreTitlesParams struct {
 	Type     *string `crawlora:"type,omitempty"`
 }
 
-type JustWatchJustwatchGenreTitlesResponse = any
+type JustWatchJustwatchGenreTitlesResponse = ModelJustwatchGenreTitlesResponseDoc
 
 func (s *JustWatchService) JustwatchGenreTitlesTyped(ctx context.Context, params JustWatchJustwatchGenreTitlesParams, opts ...RequestOption) (JustWatchJustwatchGenreTitlesResponse, error) {
-	return s.client.Request(ctx, "justwatch-genre-titles", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchGenreTitlesResponse](s.client, ctx, "justwatch-genre-titles", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchGenres(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2521,10 +11127,10 @@ type JustWatchJustwatchGenresParams struct {
 	Language *string `crawlora:"language,omitempty"`
 }
 
-type JustWatchJustwatchGenresResponse = any
+type JustWatchJustwatchGenresResponse = ModelJustwatchGenresResponseDoc
 
 func (s *JustWatchService) JustwatchGenresTyped(ctx context.Context, params JustWatchJustwatchGenresParams, opts ...RequestOption) (JustWatchJustwatchGenresResponse, error) {
-	return s.client.Request(ctx, "justwatch-genres", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchGenresResponse](s.client, ctx, "justwatch-genres", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchMonetizationTitles(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2539,10 +11145,10 @@ type JustWatchJustwatchMonetizationTitlesParams struct {
 	Type             *string `crawlora:"type,omitempty"`
 }
 
-type JustWatchJustwatchMonetizationTitlesResponse = any
+type JustWatchJustwatchMonetizationTitlesResponse = ModelJustwatchMonetizationTitlesResponseDoc
 
 func (s *JustWatchService) JustwatchMonetizationTitlesTyped(ctx context.Context, params JustWatchJustwatchMonetizationTitlesParams, opts ...RequestOption) (JustWatchJustwatchMonetizationTitlesResponse, error) {
-	return s.client.Request(ctx, "justwatch-monetization-titles", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchMonetizationTitlesResponse](s.client, ctx, "justwatch-monetization-titles", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchNew(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2556,10 +11162,10 @@ type JustWatchJustwatchNewParams struct {
 	Type     *string `crawlora:"type,omitempty"`
 }
 
-type JustWatchJustwatchNewResponse = any
+type JustWatchJustwatchNewResponse = ModelJustwatchNewTitlesResponseDoc
 
 func (s *JustWatchService) JustwatchNewTyped(ctx context.Context, params JustWatchJustwatchNewParams, opts ...RequestOption) (JustWatchJustwatchNewResponse, error) {
-	return s.client.Request(ctx, "justwatch-new", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchNewResponse](s.client, ctx, "justwatch-new", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchPopular(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2573,10 +11179,10 @@ type JustWatchJustwatchPopularParams struct {
 	Type     *string `crawlora:"type,omitempty"`
 }
 
-type JustWatchJustwatchPopularResponse = any
+type JustWatchJustwatchPopularResponse = ModelJustwatchPopularResponseDoc
 
 func (s *JustWatchService) JustwatchPopularTyped(ctx context.Context, params JustWatchJustwatchPopularParams, opts ...RequestOption) (JustWatchJustwatchPopularResponse, error) {
-	return s.client.Request(ctx, "justwatch-popular", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchPopularResponse](s.client, ctx, "justwatch-popular", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchProviderTitles(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2591,10 +11197,10 @@ type JustWatchJustwatchProviderTitlesParams struct {
 	Type     *string `crawlora:"type,omitempty"`
 }
 
-type JustWatchJustwatchProviderTitlesResponse = any
+type JustWatchJustwatchProviderTitlesResponse = ModelJustwatchProviderTitlesResponseDoc
 
 func (s *JustWatchService) JustwatchProviderTitlesTyped(ctx context.Context, params JustWatchJustwatchProviderTitlesParams, opts ...RequestOption) (JustWatchJustwatchProviderTitlesResponse, error) {
-	return s.client.Request(ctx, "justwatch-provider-titles", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchProviderTitlesResponse](s.client, ctx, "justwatch-provider-titles", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchProviders(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2605,10 +11211,10 @@ type JustWatchJustwatchProvidersParams struct {
 	Country *string `crawlora:"country,omitempty"`
 }
 
-type JustWatchJustwatchProvidersResponse = any
+type JustWatchJustwatchProvidersResponse = ModelJustwatchProvidersResponseDoc
 
 func (s *JustWatchService) JustwatchProvidersTyped(ctx context.Context, params JustWatchJustwatchProvidersParams, opts ...RequestOption) (JustWatchJustwatchProvidersResponse, error) {
-	return s.client.Request(ctx, "justwatch-providers", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchProvidersResponse](s.client, ctx, "justwatch-providers", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2622,10 +11228,10 @@ type JustWatchJustwatchSearchParams struct {
 	Limit    *int    `crawlora:"limit,omitempty"`
 }
 
-type JustWatchJustwatchSearchResponse = any
+type JustWatchJustwatchSearchResponse = ModelJustwatchSearchResponseDoc
 
 func (s *JustWatchService) JustwatchSearchTyped(ctx context.Context, params JustWatchJustwatchSearchParams, opts ...RequestOption) (JustWatchJustwatchSearchResponse, error) {
-	return s.client.Request(ctx, "justwatch-search", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchSearchResponse](s.client, ctx, "justwatch-search", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchSeasonById(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2638,10 +11244,10 @@ type JustWatchJustwatchSeasonByIdParams struct {
 	Language *string `crawlora:"language,omitempty"`
 }
 
-type JustWatchJustwatchSeasonByIdResponse = any
+type JustWatchJustwatchSeasonByIdResponse = ModelJustwatchSeasonByIdresponseDoc
 
 func (s *JustWatchService) JustwatchSeasonByIdTyped(ctx context.Context, params JustWatchJustwatchSeasonByIdParams, opts ...RequestOption) (JustWatchJustwatchSeasonByIdResponse, error) {
-	return s.client.Request(ctx, "justwatch-season-by-id", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchSeasonByIdResponse](s.client, ctx, "justwatch-season-by-id", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchSeasonEpisodes(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2654,10 +11260,10 @@ type JustWatchJustwatchSeasonEpisodesParams struct {
 	Language *string `crawlora:"language,omitempty"`
 }
 
-type JustWatchJustwatchSeasonEpisodesResponse = any
+type JustWatchJustwatchSeasonEpisodesResponse = ModelJustwatchSeasonEpisodesResponseDoc
 
 func (s *JustWatchService) JustwatchSeasonEpisodesTyped(ctx context.Context, params JustWatchJustwatchSeasonEpisodesParams, opts ...RequestOption) (JustWatchJustwatchSeasonEpisodesResponse, error) {
-	return s.client.Request(ctx, "justwatch-season-episodes", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchSeasonEpisodesResponse](s.client, ctx, "justwatch-season-episodes", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchShowSeasons(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2670,10 +11276,10 @@ type JustWatchJustwatchShowSeasonsParams struct {
 	Language *string `crawlora:"language,omitempty"`
 }
 
-type JustWatchJustwatchShowSeasonsResponse = any
+type JustWatchJustwatchShowSeasonsResponse = ModelJustwatchShowSeasonsResponseDoc
 
 func (s *JustWatchService) JustwatchShowSeasonsTyped(ctx context.Context, params JustWatchJustwatchShowSeasonsParams, opts ...RequestOption) (JustWatchJustwatchShowSeasonsResponse, error) {
-	return s.client.Request(ctx, "justwatch-show-seasons", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchShowSeasonsResponse](s.client, ctx, "justwatch-show-seasons", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchTitle(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2685,10 +11291,10 @@ type JustWatchJustwatchTitleParams struct {
 	Url  *string `crawlora:"url,omitempty"`
 }
 
-type JustWatchJustwatchTitleResponse = any
+type JustWatchJustwatchTitleResponse = ModelJustwatchTitleResponseDoc
 
 func (s *JustWatchService) JustwatchTitleTyped(ctx context.Context, params JustWatchJustwatchTitleParams, opts ...RequestOption) (JustWatchJustwatchTitleResponse, error) {
-	return s.client.Request(ctx, "justwatch-title", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchTitleResponse](s.client, ctx, "justwatch-title", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchTitleAnalysis(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2700,10 +11306,10 @@ type JustWatchJustwatchTitleAnalysisParams struct {
 	Url  *string `crawlora:"url,omitempty"`
 }
 
-type JustWatchJustwatchTitleAnalysisResponse = any
+type JustWatchJustwatchTitleAnalysisResponse = ModelJustwatchAnalysisResponseDoc
 
 func (s *JustWatchService) JustwatchTitleAnalysisTyped(ctx context.Context, params JustWatchJustwatchTitleAnalysisParams, opts ...RequestOption) (JustWatchJustwatchTitleAnalysisResponse, error) {
-	return s.client.Request(ctx, "justwatch-title-analysis", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchTitleAnalysisResponse](s.client, ctx, "justwatch-title-analysis", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchTitleById(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2716,10 +11322,10 @@ type JustWatchJustwatchTitleByIdParams struct {
 	Language *string `crawlora:"language,omitempty"`
 }
 
-type JustWatchJustwatchTitleByIdResponse = any
+type JustWatchJustwatchTitleByIdResponse = ModelJustwatchTitleResponseDoc
 
 func (s *JustWatchService) JustwatchTitleByIdTyped(ctx context.Context, params JustWatchJustwatchTitleByIdParams, opts ...RequestOption) (JustWatchJustwatchTitleByIdResponse, error) {
-	return s.client.Request(ctx, "justwatch-title-by-id", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchTitleByIdResponse](s.client, ctx, "justwatch-title-by-id", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchTitleMedia(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2732,10 +11338,10 @@ type JustWatchJustwatchTitleMediaParams struct {
 	Language *string `crawlora:"language,omitempty"`
 }
 
-type JustWatchJustwatchTitleMediaResponse = any
+type JustWatchJustwatchTitleMediaResponse = ModelJustwatchTitleMediaResponseDoc
 
 func (s *JustWatchService) JustwatchTitleMediaTyped(ctx context.Context, params JustWatchJustwatchTitleMediaParams, opts ...RequestOption) (JustWatchJustwatchTitleMediaResponse, error) {
-	return s.client.Request(ctx, "justwatch-title-media", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchTitleMediaResponse](s.client, ctx, "justwatch-title-media", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchTitleOffers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2748,10 +11354,10 @@ type JustWatchJustwatchTitleOffersParams struct {
 	Language  *string `crawlora:"language,omitempty"`
 }
 
-type JustWatchJustwatchTitleOffersResponse = any
+type JustWatchJustwatchTitleOffersResponse = ModelJustwatchTitleOffersResponseDoc
 
 func (s *JustWatchService) JustwatchTitleOffersTyped(ctx context.Context, params JustWatchJustwatchTitleOffersParams, opts ...RequestOption) (JustWatchJustwatchTitleOffersResponse, error) {
-	return s.client.Request(ctx, "justwatch-title-offers", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchTitleOffersResponse](s.client, ctx, "justwatch-title-offers", paramsFromStruct(params), opts...)
 }
 
 func (s *JustWatchService) JustwatchTitleSimilar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2765,10 +11371,10 @@ type JustWatchJustwatchTitleSimilarParams struct {
 	Limit    *int    `crawlora:"limit,omitempty"`
 }
 
-type JustWatchJustwatchTitleSimilarResponse = any
+type JustWatchJustwatchTitleSimilarResponse = ModelJustwatchSimilarTitlesResponseDoc
 
 func (s *JustWatchService) JustwatchTitleSimilarTyped(ctx context.Context, params JustWatchJustwatchTitleSimilarParams, opts ...RequestOption) (JustWatchJustwatchTitleSimilarResponse, error) {
-	return s.client.Request(ctx, "justwatch-title-similar", paramsFromStruct(params), opts...)
+	return requestTyped[JustWatchJustwatchTitleSimilarResponse](s.client, ctx, "justwatch-title-similar", paramsFromStruct(params), opts...)
 }
 
 type LinkedInService struct{ client *Client }
@@ -2781,10 +11387,10 @@ type LinkedInLinkedinCompanyParams struct {
 	Id string `crawlora:"id"`
 }
 
-type LinkedInLinkedinCompanyResponse = any
+type LinkedInLinkedinCompanyResponse = ModelLinkedinCompanyResponseDoc
 
 func (s *LinkedInService) LinkedinCompanyTyped(ctx context.Context, params LinkedInLinkedinCompanyParams, opts ...RequestOption) (LinkedInLinkedinCompanyResponse, error) {
-	return s.client.Request(ctx, "linkedin-company", paramsFromStruct(params), opts...)
+	return requestTyped[LinkedInLinkedinCompanyResponse](s.client, ctx, "linkedin-company", paramsFromStruct(params), opts...)
 }
 
 func (s *LinkedInService) LinkedinProduct(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2795,10 +11401,10 @@ type LinkedInLinkedinProductParams struct {
 	Id string `crawlora:"id"`
 }
 
-type LinkedInLinkedinProductResponse = any
+type LinkedInLinkedinProductResponse = ModelLinkedinProductResponseDoc
 
 func (s *LinkedInService) LinkedinProductTyped(ctx context.Context, params LinkedInLinkedinProductParams, opts ...RequestOption) (LinkedInLinkedinProductResponse, error) {
-	return s.client.Request(ctx, "linkedin-product", paramsFromStruct(params), opts...)
+	return requestTyped[LinkedInLinkedinProductResponse](s.client, ctx, "linkedin-product", paramsFromStruct(params), opts...)
 }
 
 func (s *LinkedInService) LinkedinShowcase(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2809,10 +11415,10 @@ type LinkedInLinkedinShowcaseParams struct {
 	Id string `crawlora:"id"`
 }
 
-type LinkedInLinkedinShowcaseResponse = any
+type LinkedInLinkedinShowcaseResponse = ModelLinkedinShowcaseResponseDoc
 
 func (s *LinkedInService) LinkedinShowcaseTyped(ctx context.Context, params LinkedInLinkedinShowcaseParams, opts ...RequestOption) (LinkedInLinkedinShowcaseResponse, error) {
-	return s.client.Request(ctx, "linkedin-showcase", paramsFromStruct(params), opts...)
+	return requestTyped[LinkedInLinkedinShowcaseResponse](s.client, ctx, "linkedin-showcase", paramsFromStruct(params), opts...)
 }
 
 type MetaService struct{ client *Client }
@@ -2824,10 +11430,10 @@ func (s *MetaService) Ping(ctx context.Context, params Params, opts ...RequestOp
 type MetaPingParams struct {
 }
 
-type MetaPingResponse = any
+type MetaPingResponse = ModelApiPingResponseDoc
 
 func (s *MetaService) PingTyped(ctx context.Context, params MetaPingParams, opts ...RequestOption) (MetaPingResponse, error) {
-	return s.client.Request(ctx, "ping", paramsFromStruct(params), opts...)
+	return requestTyped[MetaPingResponse](s.client, ctx, "ping", paramsFromStruct(params), opts...)
 }
 
 func (s *MetaService) Ready(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2837,10 +11443,10 @@ func (s *MetaService) Ready(ctx context.Context, params Params, opts ...RequestO
 type MetaReadyParams struct {
 }
 
-type MetaReadyResponse = any
+type MetaReadyResponse = ModelApiReadinessResponseDoc
 
 func (s *MetaService) ReadyTyped(ctx context.Context, params MetaReadyParams, opts ...RequestOption) (MetaReadyResponse, error) {
-	return s.client.Request(ctx, "ready", paramsFromStruct(params), opts...)
+	return requestTyped[MetaReadyResponse](s.client, ctx, "ready", paramsFromStruct(params), opts...)
 }
 
 type ProductHuntService struct{ client *Client }
@@ -2853,10 +11459,10 @@ type ProductHuntCategoryParams struct {
 	Slug string `crawlora:"slug"`
 }
 
-type ProductHuntCategoryResponse = any
+type ProductHuntCategoryResponse = ModelProducthuntCategoryResponseDoc
 
 func (s *ProductHuntService) CategoryTyped(ctx context.Context, params ProductHuntCategoryParams, opts ...RequestOption) (ProductHuntCategoryResponse, error) {
-	return s.client.Request(ctx, "producthunt-category", paramsFromStruct(params), opts...)
+	return requestTyped[ProductHuntCategoryResponse](s.client, ctx, "producthunt-category", paramsFromStruct(params), opts...)
 }
 
 func (s *ProductHuntService) CategoryProducts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2872,10 +11478,10 @@ type ProductHuntCategoryProductsParams struct {
 	Tags         *string `crawlora:"tags,omitempty"`
 }
 
-type ProductHuntCategoryProductsResponse = any
+type ProductHuntCategoryProductsResponse = ModelProducthuntCategoryProductsResponseDoc
 
 func (s *ProductHuntService) CategoryProductsTyped(ctx context.Context, params ProductHuntCategoryProductsParams, opts ...RequestOption) (ProductHuntCategoryProductsResponse, error) {
-	return s.client.Request(ctx, "producthunt-category-products", paramsFromStruct(params), opts...)
+	return requestTyped[ProductHuntCategoryProductsResponse](s.client, ctx, "producthunt-category-products", paramsFromStruct(params), opts...)
 }
 
 func (s *ProductHuntService) Leaderboard(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2894,10 +11500,10 @@ type ProductHuntLeaderboardParams struct {
 	Cursor   *string `crawlora:"cursor,omitempty"`
 }
 
-type ProductHuntLeaderboardResponse = any
+type ProductHuntLeaderboardResponse = ModelProducthuntLeaderboardResponseDoc
 
 func (s *ProductHuntService) LeaderboardTyped(ctx context.Context, params ProductHuntLeaderboardParams, opts ...RequestOption) (ProductHuntLeaderboardResponse, error) {
-	return s.client.Request(ctx, "producthunt-leaderboard", paramsFromStruct(params), opts...)
+	return requestTyped[ProductHuntLeaderboardResponse](s.client, ctx, "producthunt-leaderboard", paramsFromStruct(params), opts...)
 }
 
 func (s *ProductHuntService) Product(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2908,10 +11514,10 @@ type ProductHuntProductParams struct {
 	Id string `crawlora:"id"`
 }
 
-type ProductHuntProductResponse = any
+type ProductHuntProductResponse = ModelProducthuntProductResponseDoc
 
 func (s *ProductHuntService) ProductTyped(ctx context.Context, params ProductHuntProductParams, opts ...RequestOption) (ProductHuntProductResponse, error) {
-	return s.client.Request(ctx, "producthunt-product", paramsFromStruct(params), opts...)
+	return requestTyped[ProductHuntProductResponse](s.client, ctx, "producthunt-product", paramsFromStruct(params), opts...)
 }
 
 func (s *ProductHuntService) About(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2922,10 +11528,10 @@ type ProductHuntAboutParams struct {
 	Id string `crawlora:"id"`
 }
 
-type ProductHuntAboutResponse = any
+type ProductHuntAboutResponse = ModelProducthuntAboutResponseDoc
 
 func (s *ProductHuntService) AboutTyped(ctx context.Context, params ProductHuntAboutParams, opts ...RequestOption) (ProductHuntAboutResponse, error) {
-	return s.client.Request(ctx, "producthunt-about", paramsFromStruct(params), opts...)
+	return requestTyped[ProductHuntAboutResponse](s.client, ctx, "producthunt-about", paramsFromStruct(params), opts...)
 }
 
 func (s *ProductHuntService) Alternatives(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2940,10 +11546,10 @@ type ProductHuntAlternativesParams struct {
 	Tags   *string `crawlora:"tags,omitempty"`
 }
 
-type ProductHuntAlternativesResponse = any
+type ProductHuntAlternativesResponse = ModelProducthuntAlternativesResponseDoc
 
 func (s *ProductHuntService) AlternativesTyped(ctx context.Context, params ProductHuntAlternativesParams, opts ...RequestOption) (ProductHuntAlternativesResponse, error) {
-	return s.client.Request(ctx, "producthunt-alternatives", paramsFromStruct(params), opts...)
+	return requestTyped[ProductHuntAlternativesResponse](s.client, ctx, "producthunt-alternatives", paramsFromStruct(params), opts...)
 }
 
 func (s *ProductHuntService) Customers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2957,10 +11563,10 @@ type ProductHuntCustomersParams struct {
 	PageSize *int    `crawlora:"page_size,omitempty"`
 }
 
-type ProductHuntCustomersResponse = any
+type ProductHuntCustomersResponse = ModelProducthuntCustomersResponseDoc
 
 func (s *ProductHuntService) CustomersTyped(ctx context.Context, params ProductHuntCustomersParams, opts ...RequestOption) (ProductHuntCustomersResponse, error) {
-	return s.client.Request(ctx, "producthunt-customers", paramsFromStruct(params), opts...)
+	return requestTyped[ProductHuntCustomersResponse](s.client, ctx, "producthunt-customers", paramsFromStruct(params), opts...)
 }
 
 func (s *ProductHuntService) Launches(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2973,10 +11579,10 @@ type ProductHuntLaunchesParams struct {
 	Order  *string `crawlora:"order,omitempty"`
 }
 
-type ProductHuntLaunchesResponse = any
+type ProductHuntLaunchesResponse = ModelProducthuntLaunchesResponseDoc
 
 func (s *ProductHuntService) LaunchesTyped(ctx context.Context, params ProductHuntLaunchesParams, opts ...RequestOption) (ProductHuntLaunchesResponse, error) {
-	return s.client.Request(ctx, "producthunt-launches", paramsFromStruct(params), opts...)
+	return requestTyped[ProductHuntLaunchesResponse](s.client, ctx, "producthunt-launches", paramsFromStruct(params), opts...)
 }
 
 func (s *ProductHuntService) Makers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -2988,10 +11594,10 @@ type ProductHuntMakersParams struct {
 	Cursor *string `crawlora:"cursor,omitempty"`
 }
 
-type ProductHuntMakersResponse = any
+type ProductHuntMakersResponse = ModelProducthuntMakersResponseDoc
 
 func (s *ProductHuntService) MakersTyped(ctx context.Context, params ProductHuntMakersParams, opts ...RequestOption) (ProductHuntMakersResponse, error) {
-	return s.client.Request(ctx, "producthunt-makers", paramsFromStruct(params), opts...)
+	return requestTyped[ProductHuntMakersResponse](s.client, ctx, "producthunt-makers", paramsFromStruct(params), opts...)
 }
 
 func (s *ProductHuntService) Reviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3002,10 +11608,10 @@ type ProductHuntReviewsParams struct {
 	Id string `crawlora:"id"`
 }
 
-type ProductHuntReviewsResponse = any
+type ProductHuntReviewsResponse = ModelProducthuntReviewsResponseDoc
 
 func (s *ProductHuntService) ReviewsTyped(ctx context.Context, params ProductHuntReviewsParams, opts ...RequestOption) (ProductHuntReviewsResponse, error) {
-	return s.client.Request(ctx, "producthunt-reviews", paramsFromStruct(params), opts...)
+	return requestTyped[ProductHuntReviewsResponse](s.client, ctx, "producthunt-reviews", paramsFromStruct(params), opts...)
 }
 
 func (s *ProductHuntService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3020,10 +11626,10 @@ type ProductHuntSearchParams struct {
 	Topics   *string `crawlora:"topics,omitempty"`
 }
 
-type ProductHuntSearchResponse = any
+type ProductHuntSearchResponse = ModelProducthuntSearchResponseDoc
 
 func (s *ProductHuntService) SearchTyped(ctx context.Context, params ProductHuntSearchParams, opts ...RequestOption) (ProductHuntSearchResponse, error) {
-	return s.client.Request(ctx, "producthunt-search", paramsFromStruct(params), opts...)
+	return requestTyped[ProductHuntSearchResponse](s.client, ctx, "producthunt-search", paramsFromStruct(params), opts...)
 }
 
 type ReferralsService struct{ client *Client }
@@ -3033,13 +11639,13 @@ func (s *ReferralsService) Click(ctx context.Context, params Params, opts ...Req
 }
 
 type ReferralsClickParams struct {
-	Request any `crawlora:"request"`
+	Request ModelReferralsReferralClickRequestDoc `crawlora:"request"`
 }
 
-type ReferralsClickResponse = any
+type ReferralsClickResponse = ModelReferralsReferralClickResponseDoc
 
 func (s *ReferralsService) ClickTyped(ctx context.Context, params ReferralsClickParams, opts ...RequestOption) (ReferralsClickResponse, error) {
-	return s.client.Request(ctx, "referrals-click", paramsFromStruct(params), opts...)
+	return requestTyped[ReferralsClickResponse](s.client, ctx, "referrals-click", paramsFromStruct(params), opts...)
 }
 
 func (s *ReferralsService) Me(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3049,10 +11655,10 @@ func (s *ReferralsService) Me(ctx context.Context, params Params, opts ...Reques
 type ReferralsMeParams struct {
 }
 
-type ReferralsMeResponse = any
+type ReferralsMeResponse = ModelReferralsReferralsMeResponseDoc
 
 func (s *ReferralsService) MeTyped(ctx context.Context, params ReferralsMeParams, opts ...RequestOption) (ReferralsMeResponse, error) {
-	return s.client.Request(ctx, "referrals-me", paramsFromStruct(params), opts...)
+	return requestTyped[ReferralsMeResponse](s.client, ctx, "referrals-me", paramsFromStruct(params), opts...)
 }
 
 func (s *ReferralsService) MeEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3063,10 +11669,10 @@ type ReferralsMeEventsParams struct {
 	Limit *int `crawlora:"limit,omitempty"`
 }
 
-type ReferralsMeEventsResponse = any
+type ReferralsMeEventsResponse = ModelReferralsReferralsEventsResponseDoc
 
 func (s *ReferralsService) MeEventsTyped(ctx context.Context, params ReferralsMeEventsParams, opts ...RequestOption) (ReferralsMeEventsResponse, error) {
-	return s.client.Request(ctx, "referrals-me-events", paramsFromStruct(params), opts...)
+	return requestTyped[ReferralsMeEventsResponse](s.client, ctx, "referrals-me-events", paramsFromStruct(params), opts...)
 }
 
 type SimilarWebService struct{ client *Client }
@@ -3079,10 +11685,10 @@ type SimilarWebSearchParams struct {
 	Q string `crawlora:"q"`
 }
 
-type SimilarWebSearchResponse = any
+type SimilarWebSearchResponse = ModelSimilarwebSearchResponseDoc
 
 func (s *SimilarWebService) SearchTyped(ctx context.Context, params SimilarWebSearchParams, opts ...RequestOption) (SimilarWebSearchResponse, error) {
-	return s.client.Request(ctx, "similarweb-search", paramsFromStruct(params), opts...)
+	return requestTyped[SimilarWebSearchResponse](s.client, ctx, "similarweb-search", paramsFromStruct(params), opts...)
 }
 
 func (s *SimilarWebService) Web(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3093,10 +11699,10 @@ type SimilarWebWebParams struct {
 	Domain string `crawlora:"domain"`
 }
 
-type SimilarWebWebResponse = any
+type SimilarWebWebResponse = ModelSimilarwebWebResponseDoc
 
 func (s *SimilarWebService) WebTyped(ctx context.Context, params SimilarWebWebParams, opts ...RequestOption) (SimilarWebWebResponse, error) {
-	return s.client.Request(ctx, "similarweb-web", paramsFromStruct(params), opts...)
+	return requestTyped[SimilarWebWebResponse](s.client, ctx, "similarweb-web", paramsFromStruct(params), opts...)
 }
 
 type SpotifyPodcastsService struct{ client *Client }
@@ -3114,10 +11720,10 @@ type SpotifyPodcastsCategoriesParams struct {
 	IncludeEpisodeContentRatingsV2 *bool   `crawlora:"include_episode_content_ratings_v2,omitempty"`
 }
 
-type SpotifyPodcastsCategoriesResponse = any
+type SpotifyPodcastsCategoriesResponse = ModelSpotifyBrowsePageResponseDoc
 
 func (s *SpotifyPodcastsService) CategoriesTyped(ctx context.Context, params SpotifyPodcastsCategoriesParams, opts ...RequestOption) (SpotifyPodcastsCategoriesResponse, error) {
-	return s.client.Request(ctx, "spotify-podcasts-categories", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyPodcastsCategoriesResponse](s.client, ctx, "spotify-podcasts-categories", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyPodcastsService) Charts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3130,10 +11736,10 @@ type SpotifyPodcastsChartsParams struct {
 	Limit  *int    `crawlora:"limit,omitempty"`
 }
 
-type SpotifyPodcastsChartsResponse = any
+type SpotifyPodcastsChartsResponse = ModelSpotifyChartsResponseDoc
 
 func (s *SpotifyPodcastsService) ChartsTyped(ctx context.Context, params SpotifyPodcastsChartsParams, opts ...RequestOption) (SpotifyPodcastsChartsResponse, error) {
-	return s.client.Request(ctx, "spotify-podcasts-charts", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyPodcastsChartsResponse](s.client, ctx, "spotify-podcasts-charts", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyPodcastsService) Episode(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3145,10 +11751,10 @@ type SpotifyPodcastsEpisodeParams struct {
 	Id  *string `crawlora:"id,omitempty"`
 }
 
-type SpotifyPodcastsEpisodeResponse = any
+type SpotifyPodcastsEpisodeResponse = ModelSpotifyEpisodeResponseDoc
 
 func (s *SpotifyPodcastsService) EpisodeTyped(ctx context.Context, params SpotifyPodcastsEpisodeParams, opts ...RequestOption) (SpotifyPodcastsEpisodeResponse, error) {
-	return s.client.Request(ctx, "spotify-podcasts-episode", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyPodcastsEpisodeResponse](s.client, ctx, "spotify-podcasts-episode", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyPodcastsService) Home(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3164,10 +11770,10 @@ type SpotifyPodcastsHomeParams struct {
 	IncludeEpisodeContentRatingsV2 *bool   `crawlora:"include_episode_content_ratings_v2,omitempty"`
 }
 
-type SpotifyPodcastsHomeResponse = any
+type SpotifyPodcastsHomeResponse = ModelSpotifyBrowsePageResponseDoc
 
 func (s *SpotifyPodcastsService) HomeTyped(ctx context.Context, params SpotifyPodcastsHomeParams, opts ...RequestOption) (SpotifyPodcastsHomeResponse, error) {
-	return s.client.Request(ctx, "spotify-podcasts-home", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyPodcastsHomeResponse](s.client, ctx, "spotify-podcasts-home", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyPodcastsService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3186,10 +11792,10 @@ type SpotifyPodcastsSearchParams struct {
 	IncludeEpisodeContentRatingsV2 *bool  `crawlora:"include_episode_content_ratings_v2,omitempty"`
 }
 
-type SpotifyPodcastsSearchResponse = any
+type SpotifyPodcastsSearchResponse = ModelSpotifySearchResponseDoc
 
 func (s *SpotifyPodcastsService) SearchTyped(ctx context.Context, params SpotifyPodcastsSearchParams, opts ...RequestOption) (SpotifyPodcastsSearchResponse, error) {
-	return s.client.Request(ctx, "spotify-podcasts-search", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyPodcastsSearchResponse](s.client, ctx, "spotify-podcasts-search", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyPodcastsService) Show(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3202,10 +11808,10 @@ type SpotifyPodcastsShowParams struct {
 	IncludeEpisodeContentRatingsV2 *bool   `crawlora:"include_episode_content_ratings_v2,omitempty"`
 }
 
-type SpotifyPodcastsShowResponse = any
+type SpotifyPodcastsShowResponse = ModelSpotifyShowResponseDoc
 
 func (s *SpotifyPodcastsService) ShowTyped(ctx context.Context, params SpotifyPodcastsShowParams, opts ...RequestOption) (SpotifyPodcastsShowResponse, error) {
-	return s.client.Request(ctx, "spotify-podcasts-show", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyPodcastsShowResponse](s.client, ctx, "spotify-podcasts-show", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyPodcastsService) ShowEpisodes(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3219,10 +11825,10 @@ type SpotifyPodcastsShowEpisodesParams struct {
 	IncludeEpisodeContentRatingsV2 *bool   `crawlora:"include_episode_content_ratings_v2,omitempty"`
 }
 
-type SpotifyPodcastsShowEpisodesResponse = any
+type SpotifyPodcastsShowEpisodesResponse = ModelSpotifyShowEpisodesResponseDoc
 
 func (s *SpotifyPodcastsService) ShowEpisodesTyped(ctx context.Context, params SpotifyPodcastsShowEpisodesParams, opts ...RequestOption) (SpotifyPodcastsShowEpisodesResponse, error) {
-	return s.client.Request(ctx, "spotify-podcasts-show-episodes", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyPodcastsShowEpisodesResponse](s.client, ctx, "spotify-podcasts-show-episodes", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyPodcastsService) ShowRecommendations(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3233,10 +11839,10 @@ type SpotifyPodcastsShowRecommendationsParams struct {
 	Uri *string `crawlora:"uri,omitempty"`
 }
 
-type SpotifyPodcastsShowRecommendationsResponse = any
+type SpotifyPodcastsShowRecommendationsResponse = ModelSpotifyShowRecommendationsResponseDoc
 
 func (s *SpotifyPodcastsService) ShowRecommendationsTyped(ctx context.Context, params SpotifyPodcastsShowRecommendationsParams, opts ...RequestOption) (SpotifyPodcastsShowRecommendationsResponse, error) {
-	return s.client.Request(ctx, "spotify-podcasts-show-recommendations", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyPodcastsShowRecommendationsResponse](s.client, ctx, "spotify-podcasts-show-recommendations", paramsFromStruct(params), opts...)
 }
 
 type SpotifyService struct{ client *Client }
@@ -3252,10 +11858,10 @@ type SpotifyAlbumParams struct {
 	Limit  *int    `crawlora:"limit,omitempty"`
 }
 
-type SpotifyAlbumResponse = any
+type SpotifyAlbumResponse = ModelSpotifyAlbumResponseDoc
 
 func (s *SpotifyService) AlbumTyped(ctx context.Context, params SpotifyAlbumParams, opts ...RequestOption) (SpotifyAlbumResponse, error) {
-	return s.client.Request(ctx, "spotify-album", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyAlbumResponse](s.client, ctx, "spotify-album", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) AlbumTracks(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3269,10 +11875,10 @@ type SpotifyAlbumTracksParams struct {
 	Limit  *int    `crawlora:"limit,omitempty"`
 }
 
-type SpotifyAlbumTracksResponse = any
+type SpotifyAlbumTracksResponse = ModelSpotifyAlbumResponseDoc
 
 func (s *SpotifyService) AlbumTracksTyped(ctx context.Context, params SpotifyAlbumTracksParams, opts ...RequestOption) (SpotifyAlbumTracksResponse, error) {
-	return s.client.Request(ctx, "spotify-album-tracks", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyAlbumTracksResponse](s.client, ctx, "spotify-album-tracks", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) AlbumsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3291,10 +11897,10 @@ type SpotifyAlbumsSearchParams struct {
 	IncludeEpisodeContentRatingsV2 *bool  `crawlora:"include_episode_content_ratings_v2,omitempty"`
 }
 
-type SpotifyAlbumsSearchResponse = any
+type SpotifyAlbumsSearchResponse = ModelSpotifySearchCatalogResponseDoc
 
 func (s *SpotifyService) AlbumsSearchTyped(ctx context.Context, params SpotifyAlbumsSearchParams, opts ...RequestOption) (SpotifyAlbumsSearchResponse, error) {
-	return s.client.Request(ctx, "spotify-albums-search", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyAlbumsSearchResponse](s.client, ctx, "spotify-albums-search", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) Artist(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3306,10 +11912,10 @@ type SpotifyArtistParams struct {
 	Id  *string `crawlora:"id,omitempty"`
 }
 
-type SpotifyArtistResponse = any
+type SpotifyArtistResponse = ModelSpotifyArtistResponseDoc
 
 func (s *SpotifyService) ArtistTyped(ctx context.Context, params SpotifyArtistParams, opts ...RequestOption) (SpotifyArtistResponse, error) {
-	return s.client.Request(ctx, "spotify-artist", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyArtistResponse](s.client, ctx, "spotify-artist", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) ArtistAlbums(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3325,10 +11931,10 @@ type SpotifyArtistAlbumsParams struct {
 	Limit  *int    `crawlora:"limit,omitempty"`
 }
 
-type SpotifyArtistAlbumsResponse = any
+type SpotifyArtistAlbumsResponse = ModelSpotifyArtistAlbumsResponseDoc
 
 func (s *SpotifyService) ArtistAlbumsTyped(ctx context.Context, params SpotifyArtistAlbumsParams, opts ...RequestOption) (SpotifyArtistAlbumsResponse, error) {
-	return s.client.Request(ctx, "spotify-artist-albums", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyArtistAlbumsResponse](s.client, ctx, "spotify-artist-albums", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) ArtistPlaylists(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3340,10 +11946,10 @@ type SpotifyArtistPlaylistsParams struct {
 	Id  *string `crawlora:"id,omitempty"`
 }
 
-type SpotifyArtistPlaylistsResponse = any
+type SpotifyArtistPlaylistsResponse = ModelSpotifyArtistCollectionResponseDoc
 
 func (s *SpotifyService) ArtistPlaylistsTyped(ctx context.Context, params SpotifyArtistPlaylistsParams, opts ...RequestOption) (SpotifyArtistPlaylistsResponse, error) {
-	return s.client.Request(ctx, "spotify-artist-playlists", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyArtistPlaylistsResponse](s.client, ctx, "spotify-artist-playlists", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) ArtistRelated(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3355,10 +11961,10 @@ type SpotifyArtistRelatedParams struct {
 	Id  *string `crawlora:"id,omitempty"`
 }
 
-type SpotifyArtistRelatedResponse = any
+type SpotifyArtistRelatedResponse = ModelSpotifyArtistCollectionResponseDoc
 
 func (s *SpotifyService) ArtistRelatedTyped(ctx context.Context, params SpotifyArtistRelatedParams, opts ...RequestOption) (SpotifyArtistRelatedResponse, error) {
-	return s.client.Request(ctx, "spotify-artist-related", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyArtistRelatedResponse](s.client, ctx, "spotify-artist-related", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) ArtistsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3371,10 +11977,10 @@ type SpotifyArtistsSearchParams struct {
 	Limit  *int   `crawlora:"limit,omitempty"`
 }
 
-type SpotifyArtistsSearchResponse = any
+type SpotifyArtistsSearchResponse = ModelSpotifySearchCatalogResponseDoc
 
 func (s *SpotifyService) ArtistsSearchTyped(ctx context.Context, params SpotifyArtistsSearchParams, opts ...RequestOption) (SpotifyArtistsSearchResponse, error) {
-	return s.client.Request(ctx, "spotify-artists-search", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyArtistsSearchResponse](s.client, ctx, "spotify-artists-search", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) Audiobook(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3386,10 +11992,10 @@ type SpotifyAudiobookParams struct {
 	Id  *string `crawlora:"id,omitempty"`
 }
 
-type SpotifyAudiobookResponse = any
+type SpotifyAudiobookResponse = ModelSpotifyAudiobookResponseDoc
 
 func (s *SpotifyService) AudiobookTyped(ctx context.Context, params SpotifyAudiobookParams, opts ...RequestOption) (SpotifyAudiobookResponse, error) {
-	return s.client.Request(ctx, "spotify-audiobook", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyAudiobookResponse](s.client, ctx, "spotify-audiobook", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) AudiobookChapters(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3403,10 +12009,10 @@ type SpotifyAudiobookChaptersParams struct {
 	Limit  *int    `crawlora:"limit,omitempty"`
 }
 
-type SpotifyAudiobookChaptersResponse = any
+type SpotifyAudiobookChaptersResponse = ModelSpotifyAudiobookChaptersResponseDoc
 
 func (s *SpotifyService) AudiobookChaptersTyped(ctx context.Context, params SpotifyAudiobookChaptersParams, opts ...RequestOption) (SpotifyAudiobookChaptersResponse, error) {
-	return s.client.Request(ctx, "spotify-audiobook-chapters", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyAudiobookChaptersResponse](s.client, ctx, "spotify-audiobook-chapters", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) AudiobooksSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3425,10 +12031,10 @@ type SpotifyAudiobooksSearchParams struct {
 	IncludeEpisodeContentRatingsV2 *bool  `crawlora:"include_episode_content_ratings_v2,omitempty"`
 }
 
-type SpotifyAudiobooksSearchResponse = any
+type SpotifyAudiobooksSearchResponse = ModelSpotifySearchCatalogResponseDoc
 
 func (s *SpotifyService) AudiobooksSearchTyped(ctx context.Context, params SpotifyAudiobooksSearchParams, opts ...RequestOption) (SpotifyAudiobooksSearchResponse, error) {
-	return s.client.Request(ctx, "spotify-audiobooks-search", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyAudiobooksSearchResponse](s.client, ctx, "spotify-audiobooks-search", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) Chapter(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3440,10 +12046,10 @@ type SpotifyChapterParams struct {
 	Id  *string `crawlora:"id,omitempty"`
 }
 
-type SpotifyChapterResponse = any
+type SpotifyChapterResponse = ModelSpotifyEpisodeResponseDoc
 
 func (s *SpotifyService) ChapterTyped(ctx context.Context, params SpotifyChapterParams, opts ...RequestOption) (SpotifyChapterResponse, error) {
-	return s.client.Request(ctx, "spotify-chapter", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyChapterResponse](s.client, ctx, "spotify-chapter", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) EpisodesSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3456,10 +12062,10 @@ type SpotifyEpisodesSearchParams struct {
 	Limit  *int   `crawlora:"limit,omitempty"`
 }
 
-type SpotifyEpisodesSearchResponse = any
+type SpotifyEpisodesSearchResponse = ModelSpotifySearchCatalogResponseDoc
 
 func (s *SpotifyService) EpisodesSearchTyped(ctx context.Context, params SpotifyEpisodesSearchParams, opts ...RequestOption) (SpotifyEpisodesSearchResponse, error) {
-	return s.client.Request(ctx, "spotify-episodes-search", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyEpisodesSearchResponse](s.client, ctx, "spotify-episodes-search", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) FeaturedChartsByCountry(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3471,10 +12077,10 @@ type SpotifyFeaturedChartsByCountryParams struct {
 	ContentId   *string `crawlora:"content_id,omitempty"`
 }
 
-type SpotifyFeaturedChartsByCountryResponse = any
+type SpotifyFeaturedChartsByCountryResponse = ModelSpotifyCountryHubContentResponseDoc
 
 func (s *SpotifyService) FeaturedChartsByCountryTyped(ctx context.Context, params SpotifyFeaturedChartsByCountryParams, opts ...RequestOption) (SpotifyFeaturedChartsByCountryResponse, error) {
-	return s.client.Request(ctx, "spotify-featured-charts-by-country", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyFeaturedChartsByCountryResponse](s.client, ctx, "spotify-featured-charts-by-country", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) Genre(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3490,10 +12096,10 @@ type SpotifyGenreParams struct {
 	IncludeEpisodeContentRatingsV2 *bool   `crawlora:"include_episode_content_ratings_v2,omitempty"`
 }
 
-type SpotifyGenreResponse = any
+type SpotifyGenreResponse = ModelSpotifyBrowsePageResponseDoc
 
 func (s *SpotifyService) GenreTyped(ctx context.Context, params SpotifyGenreParams, opts ...RequestOption) (SpotifyGenreResponse, error) {
-	return s.client.Request(ctx, "spotify-genre", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyGenreResponse](s.client, ctx, "spotify-genre", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) Home(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3508,10 +12114,10 @@ type SpotifyHomeParams struct {
 	IncludeEpisodeContentRatingsV2 *bool   `crawlora:"include_episode_content_ratings_v2,omitempty"`
 }
 
-type SpotifyHomeResponse = any
+type SpotifyHomeResponse = ModelSpotifyHomeResponseDoc
 
 func (s *SpotifyService) HomeTyped(ctx context.Context, params SpotifyHomeParams, opts ...RequestOption) (SpotifyHomeResponse, error) {
-	return s.client.Request(ctx, "spotify-home", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyHomeResponse](s.client, ctx, "spotify-home", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) Playlist(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3527,10 +12133,10 @@ type SpotifyPlaylistParams struct {
 	IncludeEpisodeContentRatingsV2 *bool   `crawlora:"include_episode_content_ratings_v2,omitempty"`
 }
 
-type SpotifyPlaylistResponse = any
+type SpotifyPlaylistResponse = ModelSpotifyPlaylistResponseDoc
 
 func (s *SpotifyService) PlaylistTyped(ctx context.Context, params SpotifyPlaylistParams, opts ...RequestOption) (SpotifyPlaylistResponse, error) {
-	return s.client.Request(ctx, "spotify-playlist", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyPlaylistResponse](s.client, ctx, "spotify-playlist", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) PlaylistsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3549,10 +12155,10 @@ type SpotifyPlaylistsSearchParams struct {
 	IncludeEpisodeContentRatingsV2 *bool  `crawlora:"include_episode_content_ratings_v2,omitempty"`
 }
 
-type SpotifyPlaylistsSearchResponse = any
+type SpotifyPlaylistsSearchResponse = ModelSpotifySearchCatalogResponseDoc
 
 func (s *SpotifyService) PlaylistsSearchTyped(ctx context.Context, params SpotifyPlaylistsSearchParams, opts ...RequestOption) (SpotifyPlaylistsSearchResponse, error) {
-	return s.client.Request(ctx, "spotify-playlists-search", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyPlaylistsSearchResponse](s.client, ctx, "spotify-playlists-search", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) PopularByCountry(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3563,10 +12169,10 @@ type SpotifyPopularByCountryParams struct {
 	CountryCode *string `crawlora:"country_code,omitempty"`
 }
 
-type SpotifyPopularByCountryResponse = any
+type SpotifyPopularByCountryResponse = ModelSpotifyCountryHubResponseDoc
 
 func (s *SpotifyService) PopularByCountryTyped(ctx context.Context, params SpotifyPopularByCountryParams, opts ...RequestOption) (SpotifyPopularByCountryResponse, error) {
-	return s.client.Request(ctx, "spotify-popular-by-country", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyPopularByCountryResponse](s.client, ctx, "spotify-popular-by-country", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) Profile(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3582,10 +12188,10 @@ type SpotifyProfileParams struct {
 	EpisodeLimit  *int    `crawlora:"episode_limit,omitempty"`
 }
 
-type SpotifyProfileResponse = any
+type SpotifyProfileResponse = ModelSpotifyUserProfileResponseDoc
 
 func (s *SpotifyService) ProfileTyped(ctx context.Context, params SpotifyProfileParams, opts ...RequestOption) (SpotifyProfileResponse, error) {
-	return s.client.Request(ctx, "spotify-profile", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyProfileResponse](s.client, ctx, "spotify-profile", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) ProfileFollowers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3600,10 +12206,10 @@ type SpotifyProfileFollowersParams struct {
 	Limit    *int    `crawlora:"limit,omitempty"`
 }
 
-type SpotifyProfileFollowersResponse = any
+type SpotifyProfileFollowersResponse = ModelSpotifyUserProfileFollowersResponseDoc
 
 func (s *SpotifyService) ProfileFollowersTyped(ctx context.Context, params SpotifyProfileFollowersParams, opts ...RequestOption) (SpotifyProfileFollowersResponse, error) {
-	return s.client.Request(ctx, "spotify-profile-followers", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyProfileFollowersResponse](s.client, ctx, "spotify-profile-followers", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) ProfilePlaylists(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3618,10 +12224,10 @@ type SpotifyProfilePlaylistsParams struct {
 	Limit    *int    `crawlora:"limit,omitempty"`
 }
 
-type SpotifyProfilePlaylistsResponse = any
+type SpotifyProfilePlaylistsResponse = ModelSpotifyUserProfilePlaylistsResponseDoc
 
 func (s *SpotifyService) ProfilePlaylistsTyped(ctx context.Context, params SpotifyProfilePlaylistsParams, opts ...RequestOption) (SpotifyProfilePlaylistsResponse, error) {
-	return s.client.Request(ctx, "spotify-profile-playlists", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyProfilePlaylistsResponse](s.client, ctx, "spotify-profile-playlists", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) ProfilesSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3640,10 +12246,10 @@ type SpotifyProfilesSearchParams struct {
 	IncludeEpisodeContentRatingsV2 *bool  `crawlora:"include_episode_content_ratings_v2,omitempty"`
 }
 
-type SpotifyProfilesSearchResponse = any
+type SpotifyProfilesSearchResponse = ModelSpotifySearchCatalogResponseDoc
 
 func (s *SpotifyService) ProfilesSearchTyped(ctx context.Context, params SpotifyProfilesSearchParams, opts ...RequestOption) (SpotifyProfilesSearchResponse, error) {
-	return s.client.Request(ctx, "spotify-profiles-search", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyProfilesSearchResponse](s.client, ctx, "spotify-profiles-search", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3664,10 +12270,10 @@ type SpotifySearchParams struct {
 	IsPrefix                       *bool  `crawlora:"is_prefix,omitempty"`
 }
 
-type SpotifySearchResponse = any
+type SpotifySearchResponse = ModelSpotifySearchCatalogResponseDoc
 
 func (s *SpotifyService) SearchTyped(ctx context.Context, params SpotifySearchParams, opts ...RequestOption) (SpotifySearchResponse, error) {
-	return s.client.Request(ctx, "spotify-search", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifySearchResponse](s.client, ctx, "spotify-search", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) Section(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3681,10 +12287,10 @@ type SpotifySectionParams struct {
 	IncludeEpisodeContentRatingsV2 *bool   `crawlora:"include_episode_content_ratings_v2,omitempty"`
 }
 
-type SpotifySectionResponse = any
+type SpotifySectionResponse = ModelSpotifyBrowseSectionResponseDoc
 
 func (s *SpotifyService) SectionTyped(ctx context.Context, params SpotifySectionParams, opts ...RequestOption) (SpotifySectionResponse, error) {
-	return s.client.Request(ctx, "spotify-section", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifySectionResponse](s.client, ctx, "spotify-section", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) ShowsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3697,10 +12303,10 @@ type SpotifyShowsSearchParams struct {
 	Limit  *int   `crawlora:"limit,omitempty"`
 }
 
-type SpotifyShowsSearchResponse = any
+type SpotifyShowsSearchResponse = ModelSpotifySearchCatalogResponseDoc
 
 func (s *SpotifyService) ShowsSearchTyped(ctx context.Context, params SpotifyShowsSearchParams, opts ...RequestOption) (SpotifyShowsSearchResponse, error) {
-	return s.client.Request(ctx, "spotify-shows-search", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyShowsSearchResponse](s.client, ctx, "spotify-shows-search", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) Track(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3712,10 +12318,10 @@ type SpotifyTrackParams struct {
 	Id  *string `crawlora:"id,omitempty"`
 }
 
-type SpotifyTrackResponse = any
+type SpotifyTrackResponse = ModelSpotifyTrackResponseDoc
 
 func (s *SpotifyService) TrackTyped(ctx context.Context, params SpotifyTrackParams, opts ...RequestOption) (SpotifyTrackResponse, error) {
-	return s.client.Request(ctx, "spotify-track", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyTrackResponse](s.client, ctx, "spotify-track", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) TrackRecommended(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3728,10 +12334,10 @@ type SpotifyTrackRecommendedParams struct {
 	Limit *int    `crawlora:"limit,omitempty"`
 }
 
-type SpotifyTrackRecommendedResponse = any
+type SpotifyTrackRecommendedResponse = ModelSpotifyTrackRecommendedResponseDoc
 
 func (s *SpotifyService) TrackRecommendedTyped(ctx context.Context, params SpotifyTrackRecommendedParams, opts ...RequestOption) (SpotifyTrackRecommendedResponse, error) {
-	return s.client.Request(ctx, "spotify-track-recommended", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyTrackRecommendedResponse](s.client, ctx, "spotify-track-recommended", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) TrackSimilarAlbums(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3745,10 +12351,10 @@ type SpotifyTrackSimilarAlbumsParams struct {
 	AlbumsOnly *bool   `crawlora:"albums_only,omitempty"`
 }
 
-type SpotifyTrackSimilarAlbumsResponse = any
+type SpotifyTrackSimilarAlbumsResponse = ModelSpotifyTrackSimilarAlbumsResponseDoc
 
 func (s *SpotifyService) TrackSimilarAlbumsTyped(ctx context.Context, params SpotifyTrackSimilarAlbumsParams, opts ...RequestOption) (SpotifyTrackSimilarAlbumsResponse, error) {
-	return s.client.Request(ctx, "spotify-track-similar-albums", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyTrackSimilarAlbumsResponse](s.client, ctx, "spotify-track-similar-albums", paramsFromStruct(params), opts...)
 }
 
 func (s *SpotifyService) TracksSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3767,10 +12373,10 @@ type SpotifyTracksSearchParams struct {
 	IncludeEpisodeContentRatingsV2 *bool  `crawlora:"include_episode_content_ratings_v2,omitempty"`
 }
 
-type SpotifyTracksSearchResponse = any
+type SpotifyTracksSearchResponse = ModelSpotifySearchCatalogResponseDoc
 
 func (s *SpotifyService) TracksSearchTyped(ctx context.Context, params SpotifyTracksSearchParams, opts ...RequestOption) (SpotifyTracksSearchResponse, error) {
-	return s.client.Request(ctx, "spotify-tracks-search", paramsFromStruct(params), opts...)
+	return requestTyped[SpotifyTracksSearchResponse](s.client, ctx, "spotify-tracks-search", paramsFromStruct(params), opts...)
 }
 
 type TikTokService struct{ client *Client }
@@ -3782,10 +12388,10 @@ func (s *TikTokService) Category(ctx context.Context, params Params, opts ...Req
 type TikTokCategoryParams struct {
 }
 
-type TikTokCategoryResponse = any
+type TikTokCategoryResponse = ModelTiktokCategoryResponseDoc
 
 func (s *TikTokService) CategoryTyped(ctx context.Context, params TikTokCategoryParams, opts ...RequestOption) (TikTokCategoryResponse, error) {
-	return s.client.Request(ctx, "tiktok-category", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokCategoryResponse](s.client, ctx, "tiktok-category", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) VideoComments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3797,10 +12403,10 @@ type TikTokVideoCommentsParams struct {
 	Cursor  *int   `crawlora:"cursor,omitempty"`
 }
 
-type TikTokVideoCommentsResponse = any
+type TikTokVideoCommentsResponse = ModelTiktokCommentsResponseDoc
 
 func (s *TikTokService) VideoCommentsTyped(ctx context.Context, params TikTokVideoCommentsParams, opts ...RequestOption) (TikTokVideoCommentsResponse, error) {
-	return s.client.Request(ctx, "tiktok-video-comments", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokVideoCommentsResponse](s.client, ctx, "tiktok-video-comments", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) Explore(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3811,10 +12417,10 @@ type TikTokExploreParams struct {
 	Id int `crawlora:"id"`
 }
 
-type TikTokExploreResponse = any
+type TikTokExploreResponse = ModelTiktokExploreResponseDoc
 
 func (s *TikTokService) ExploreTyped(ctx context.Context, params TikTokExploreParams, opts ...RequestOption) (TikTokExploreResponse, error) {
-	return s.client.Request(ctx, "tiktok-explore", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokExploreResponse](s.client, ctx, "tiktok-explore", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) Challenge(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3825,10 +12431,10 @@ type TikTokChallengeParams struct {
 	Name string `crawlora:"name"`
 }
 
-type TikTokChallengeResponse = any
+type TikTokChallengeResponse = ModelTiktokChallengeResponseDoc
 
 func (s *TikTokService) ChallengeTyped(ctx context.Context, params TikTokChallengeParams, opts ...RequestOption) (TikTokChallengeResponse, error) {
-	return s.client.Request(ctx, "tiktok-challenge", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokChallengeResponse](s.client, ctx, "tiktok-challenge", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) ChallengeList(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3840,10 +12446,10 @@ type TikTokChallengeListParams struct {
 	Cursor *int   `crawlora:"cursor,omitempty"`
 }
 
-type TikTokChallengeListResponse = any
+type TikTokChallengeListResponse = ModelTiktokChallengeListResponseDoc
 
 func (s *TikTokService) ChallengeListTyped(ctx context.Context, params TikTokChallengeListParams, opts ...RequestOption) (TikTokChallengeListResponse, error) {
-	return s.client.Request(ctx, "tiktok-challenge-list", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokChallengeListResponse](s.client, ctx, "tiktok-challenge-list", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) PopularTrendCountryIndustryMeta(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3853,10 +12459,10 @@ func (s *TikTokService) PopularTrendCountryIndustryMeta(ctx context.Context, par
 type TikTokPopularTrendCountryIndustryMetaParams struct {
 }
 
-type TikTokPopularTrendCountryIndustryMetaResponse = any
+type TikTokPopularTrendCountryIndustryMetaResponse = ModelPopulartrendCountryIndustryMetaResponseDoc
 
 func (s *TikTokService) PopularTrendCountryIndustryMetaTyped(ctx context.Context, params TikTokPopularTrendCountryIndustryMetaParams, opts ...RequestOption) (TikTokPopularTrendCountryIndustryMetaResponse, error) {
-	return s.client.Request(ctx, "tiktok-popular-trend-country-industry-meta", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokPopularTrendCountryIndustryMetaResponse](s.client, ctx, "tiktok-popular-trend-country-industry-meta", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) PopularTrendCreator(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3871,10 +12477,10 @@ type TikTokPopularTrendCreatorParams struct {
 	AudienceCount  *int    `crawlora:"audience_count,omitempty"`
 }
 
-type TikTokPopularTrendCreatorResponse = any
+type TikTokPopularTrendCreatorResponse = ModelPopulartrendCreatorTrendResponseDoc
 
 func (s *TikTokService) PopularTrendCreatorTyped(ctx context.Context, params TikTokPopularTrendCreatorParams, opts ...RequestOption) (TikTokPopularTrendCreatorResponse, error) {
-	return s.client.Request(ctx, "tiktok-popular-trend-creator", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokPopularTrendCreatorResponse](s.client, ctx, "tiktok-popular-trend-creator", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) Post(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3885,10 +12491,10 @@ type TikTokPostParams struct {
 	Id string `crawlora:"id"`
 }
 
-type TikTokPostResponse = any
+type TikTokPostResponse = ModelTiktokPostResponseDoc
 
 func (s *TikTokService) PostTyped(ctx context.Context, params TikTokPostParams, opts ...RequestOption) (TikTokPostResponse, error) {
-	return s.client.Request(ctx, "tiktok-post", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokPostResponse](s.client, ctx, "tiktok-post", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) ProfilePost(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3901,10 +12507,10 @@ type TikTokProfilePostParams struct {
 	SortType *int   `crawlora:"sort_type,omitempty"`
 }
 
-type TikTokProfilePostResponse = any
+type TikTokProfilePostResponse = ModelTiktokProfilePostResponseDoc
 
 func (s *TikTokService) ProfilePostTyped(ctx context.Context, params TikTokProfilePostParams, opts ...RequestOption) (TikTokProfilePostResponse, error) {
-	return s.client.Request(ctx, "tiktok-profile-post", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokProfilePostResponse](s.client, ctx, "tiktok-profile-post", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) Profile(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3915,10 +12521,10 @@ type TikTokProfileParams struct {
 	Handler string `crawlora:"handler"`
 }
 
-type TikTokProfileResponse = any
+type TikTokProfileResponse = ModelTiktokProfileResponseDoc
 
 func (s *TikTokService) ProfileTyped(ctx context.Context, params TikTokProfileParams, opts ...RequestOption) (TikTokProfileResponse, error) {
-	return s.client.Request(ctx, "tiktok-profile", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokProfileResponse](s.client, ctx, "tiktok-profile", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3931,10 +12537,10 @@ type TikTokSearchParams struct {
 	Count   *int   `crawlora:"count,omitempty"`
 }
 
-type TikTokSearchResponse = any
+type TikTokSearchResponse = ModelTiktokSearchResponseDoc
 
 func (s *TikTokService) SearchTyped(ctx context.Context, params TikTokSearchParams, opts ...RequestOption) (TikTokSearchResponse, error) {
-	return s.client.Request(ctx, "tiktok-search", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokSearchResponse](s.client, ctx, "tiktok-search", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) SearchHashtag(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3947,10 +12553,10 @@ type TikTokSearchHashtagParams struct {
 	Count   *int   `crawlora:"count,omitempty"`
 }
 
-type TikTokSearchHashtagResponse = any
+type TikTokSearchHashtagResponse = ModelTiktokSearchHashtagResponseDoc
 
 func (s *TikTokService) SearchHashtagTyped(ctx context.Context, params TikTokSearchHashtagParams, opts ...RequestOption) (TikTokSearchHashtagResponse, error) {
-	return s.client.Request(ctx, "tiktok-search-hashtag", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokSearchHashtagResponse](s.client, ctx, "tiktok-search-hashtag", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) SearchUser(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3962,10 +12568,10 @@ type TikTokSearchUserParams struct {
 	Cursor  *int   `crawlora:"cursor,omitempty"`
 }
 
-type TikTokSearchUserResponse = any
+type TikTokSearchUserResponse = ModelTiktokSearchUserResponseDoc
 
 func (s *TikTokService) SearchUserTyped(ctx context.Context, params TikTokSearchUserParams, opts ...RequestOption) (TikTokSearchUserResponse, error) {
-	return s.client.Request(ctx, "tiktok-search-user", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokSearchUserResponse](s.client, ctx, "tiktok-search-user", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) TopAdsAnalysis(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3978,10 +12584,10 @@ type TikTokTopAdsAnalysisParams struct {
 	PeriodType *int    `crawlora:"period_type,omitempty"`
 }
 
-type TikTokTopAdsAnalysisResponse = any
+type TikTokTopAdsAnalysisResponse = ModelPopulartrendTopAdsAnalysisResponseDoc
 
 func (s *TikTokService) TopAdsAnalysisTyped(ctx context.Context, params TikTokTopAdsAnalysisParams, opts ...RequestOption) (TikTokTopAdsAnalysisResponse, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-analysis", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokTopAdsAnalysisResponse](s.client, ctx, "tiktok-top-ads-analysis", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) TopAdsDetail(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -3992,10 +12598,10 @@ type TikTokTopAdsDetailParams struct {
 	MaterialId string `crawlora:"material_id"`
 }
 
-type TikTokTopAdsDetailResponse = any
+type TikTokTopAdsDetailResponse = ModelPopulartrendTopAdsDetailResponseDoc
 
 func (s *TikTokService) TopAdsDetailTyped(ctx context.Context, params TikTokTopAdsDetailParams, opts ...RequestOption) (TikTokTopAdsDetailResponse, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-detail", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokTopAdsDetailResponse](s.client, ctx, "tiktok-top-ads-detail", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) TopAdsFilters(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4005,10 +12611,10 @@ func (s *TikTokService) TopAdsFilters(ctx context.Context, params Params, opts .
 type TikTokTopAdsFiltersParams struct {
 }
 
-type TikTokTopAdsFiltersResponse = any
+type TikTokTopAdsFiltersResponse = ModelPopulartrendTopAdsFiltersResponseDoc
 
 func (s *TikTokService) TopAdsFiltersTyped(ctx context.Context, params TikTokTopAdsFiltersParams, opts ...RequestOption) (TikTokTopAdsFiltersResponse, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-filters", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokTopAdsFiltersResponse](s.client, ctx, "tiktok-top-ads-filters", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) TopAdsList(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4031,10 +12637,10 @@ type TikTokTopAdsListParams struct {
 	AdFormat     *string `crawlora:"ad_format,omitempty"`
 }
 
-type TikTokTopAdsListResponse = any
+type TikTokTopAdsListResponse = ModelPopulartrendTopAdsListResponseDoc
 
 func (s *TikTokService) TopAdsListTyped(ctx context.Context, params TikTokTopAdsListParams, opts ...RequestOption) (TikTokTopAdsListResponse, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-list", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokTopAdsListResponse](s.client, ctx, "tiktok-top-ads-list", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) TopAdsLocationInfo(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4045,10 +12651,10 @@ type TikTokTopAdsLocationInfoParams struct {
 	Module *int `crawlora:"module,omitempty"`
 }
 
-type TikTokTopAdsLocationInfoResponse = any
+type TikTokTopAdsLocationInfoResponse = ModelPopulartrendTopAdsLocationInfoResponseDoc
 
 func (s *TikTokService) TopAdsLocationInfoTyped(ctx context.Context, params TikTokTopAdsLocationInfoParams, opts ...RequestOption) (TikTokTopAdsLocationInfoResponse, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-location-info", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokTopAdsLocationInfoResponse](s.client, ctx, "tiktok-top-ads-location-info", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) TopAdsLocations(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4058,10 +12664,10 @@ func (s *TikTokService) TopAdsLocations(ctx context.Context, params Params, opts
 type TikTokTopAdsLocationsParams struct {
 }
 
-type TikTokTopAdsLocationsResponse = any
+type TikTokTopAdsLocationsResponse = ModelPopulartrendTopAdsLocationsResponseDoc
 
 func (s *TikTokService) TopAdsLocationsTyped(ctx context.Context, params TikTokTopAdsLocationsParams, opts ...RequestOption) (TikTokTopAdsLocationsResponse, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-locations", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokTopAdsLocationsResponse](s.client, ctx, "tiktok-top-ads-locations", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) TopAdsRecommend(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4074,10 +12680,10 @@ type TikTokTopAdsRecommendParams struct {
 	Limit      *int   `crawlora:"limit,omitempty"`
 }
 
-type TikTokTopAdsRecommendResponse = any
+type TikTokTopAdsRecommendResponse = ModelPopulartrendTopAdsRecommendResponseDoc
 
 func (s *TikTokService) TopAdsRecommendTyped(ctx context.Context, params TikTokTopAdsRecommendParams, opts ...RequestOption) (TikTokTopAdsRecommendResponse, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-recommend", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokTopAdsRecommendResponse](s.client, ctx, "tiktok-top-ads-recommend", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) TopAdsSafety(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4087,10 +12693,10 @@ func (s *TikTokService) TopAdsSafety(ctx context.Context, params Params, opts ..
 type TikTokTopAdsSafetyParams struct {
 }
 
-type TikTokTopAdsSafetyResponse = any
+type TikTokTopAdsSafetyResponse = ModelPopulartrendTopAdsSafetyResponseDoc
 
 func (s *TikTokService) TopAdsSafetyTyped(ctx context.Context, params TikTokTopAdsSafetyParams, opts ...RequestOption) (TikTokTopAdsSafetyResponse, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-safety", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokTopAdsSafetyResponse](s.client, ctx, "tiktok-top-ads-safety", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) TopAdsSpotlight(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4102,10 +12708,10 @@ type TikTokTopAdsSpotlightParams struct {
 	Limit *int `crawlora:"limit,omitempty"`
 }
 
-type TikTokTopAdsSpotlightResponse = any
+type TikTokTopAdsSpotlightResponse = ModelPopulartrendTopAdsSpotlightResponseDoc
 
 func (s *TikTokService) TopAdsSpotlightTyped(ctx context.Context, params TikTokTopAdsSpotlightParams, opts ...RequestOption) (TikTokTopAdsSpotlightResponse, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-spotlight", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokTopAdsSpotlightResponse](s.client, ctx, "tiktok-top-ads-spotlight", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) TopAdsSuggestions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4117,10 +12723,10 @@ type TikTokTopAdsSuggestionsParams struct {
 	Scenario *int `crawlora:"scenario,omitempty"`
 }
 
-type TikTokTopAdsSuggestionsResponse = any
+type TikTokTopAdsSuggestionsResponse = ModelPopulartrendTopAdsSuggestionsResponseDoc
 
 func (s *TikTokService) TopAdsSuggestionsTyped(ctx context.Context, params TikTokTopAdsSuggestionsParams, opts ...RequestOption) (TikTokTopAdsSuggestionsResponse, error) {
-	return s.client.Request(ctx, "tiktok-top-ads-suggestions", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokTopAdsSuggestionsResponse](s.client, ctx, "tiktok-top-ads-suggestions", paramsFromStruct(params), opts...)
 }
 
 func (s *TikTokService) Trending(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4130,10 +12736,10 @@ func (s *TikTokService) Trending(ctx context.Context, params Params, opts ...Req
 type TikTokTrendingParams struct {
 }
 
-type TikTokTrendingResponse = any
+type TikTokTrendingResponse = ModelTiktokTrendingResponseDoc
 
 func (s *TikTokService) TrendingTyped(ctx context.Context, params TikTokTrendingParams, opts ...RequestOption) (TikTokTrendingResponse, error) {
-	return s.client.Request(ctx, "tiktok-trending", paramsFromStruct(params), opts...)
+	return requestTyped[TikTokTrendingResponse](s.client, ctx, "tiktok-trending", paramsFromStruct(params), opts...)
 }
 
 type TripAdvisorService struct{ client *Client }
@@ -4153,10 +12759,10 @@ type TripAdvisorTripadvisorAutocompleteParams struct {
 	RouteUid        *string `crawlora:"route_uid,omitempty"`
 }
 
-type TripAdvisorTripadvisorAutocompleteResponse = any
+type TripAdvisorTripadvisorAutocompleteResponse = ModelTripadvisorTripadvisorAutocompleteResponseDoc
 
 func (s *TripAdvisorService) TripadvisorAutocompleteTyped(ctx context.Context, params TripAdvisorTripadvisorAutocompleteParams, opts ...RequestOption) (TripAdvisorTripadvisorAutocompleteResponse, error) {
-	return s.client.Request(ctx, "tripadvisor-autocomplete", paramsFromStruct(params), opts...)
+	return requestTyped[TripAdvisorTripadvisorAutocompleteResponse](s.client, ctx, "tripadvisor-autocomplete", paramsFromStruct(params), opts...)
 }
 
 func (s *TripAdvisorService) TripadvisorEnums(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4166,10 +12772,10 @@ func (s *TripAdvisorService) TripadvisorEnums(ctx context.Context, params Params
 type TripAdvisorTripadvisorEnumsParams struct {
 }
 
-type TripAdvisorTripadvisorEnumsResponse = any
+type TripAdvisorTripadvisorEnumsResponse = ModelTripadvisorTripadvisorEnumsResponseDoc
 
 func (s *TripAdvisorService) TripadvisorEnumsTyped(ctx context.Context, params TripAdvisorTripadvisorEnumsParams, opts ...RequestOption) (TripAdvisorTripadvisorEnumsResponse, error) {
-	return s.client.Request(ctx, "tripadvisor-enums", paramsFromStruct(params), opts...)
+	return requestTyped[TripAdvisorTripadvisorEnumsResponse](s.client, ctx, "tripadvisor-enums", paramsFromStruct(params), opts...)
 }
 
 func (s *TripAdvisorService) TripadvisorHotels(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4192,10 +12798,10 @@ type TripAdvisorTripadvisorHotelsParams struct {
 	Sort                *string `crawlora:"sort,omitempty"`
 }
 
-type TripAdvisorTripadvisorHotelsResponse = any
+type TripAdvisorTripadvisorHotelsResponse = ModelTripadvisorTripadvisorHotelsResponseDoc
 
 func (s *TripAdvisorService) TripadvisorHotelsTyped(ctx context.Context, params TripAdvisorTripadvisorHotelsParams, opts ...RequestOption) (TripAdvisorTripadvisorHotelsResponse, error) {
-	return s.client.Request(ctx, "tripadvisor-hotels", paramsFromStruct(params), opts...)
+	return requestTyped[TripAdvisorTripadvisorHotelsResponse](s.client, ctx, "tripadvisor-hotels", paramsFromStruct(params), opts...)
 }
 
 func (s *TripAdvisorService) TripadvisorPlace(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4207,10 +12813,10 @@ type TripAdvisorTripadvisorPlaceParams struct {
 	Id  *string `crawlora:"id,omitempty"`
 }
 
-type TripAdvisorTripadvisorPlaceResponse = any
+type TripAdvisorTripadvisorPlaceResponse = ModelTripadvisorPlaceResponse
 
 func (s *TripAdvisorService) TripadvisorPlaceTyped(ctx context.Context, params TripAdvisorTripadvisorPlaceParams, opts ...RequestOption) (TripAdvisorTripadvisorPlaceResponse, error) {
-	return s.client.Request(ctx, "tripadvisor-place", paramsFromStruct(params), opts...)
+	return requestTyped[TripAdvisorTripadvisorPlaceResponse](s.client, ctx, "tripadvisor-place", paramsFromStruct(params), opts...)
 }
 
 func (s *TripAdvisorService) TripadvisorReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4230,10 +12836,10 @@ type TripAdvisorTripadvisorReviewsParams struct {
 	PhotosPerReviewLimit *int    `crawlora:"photos_per_review_limit,omitempty"`
 }
 
-type TripAdvisorTripadvisorReviewsResponse = any
+type TripAdvisorTripadvisorReviewsResponse = ModelTripadvisorTripadvisorReviewsResponseDoc
 
 func (s *TripAdvisorService) TripadvisorReviewsTyped(ctx context.Context, params TripAdvisorTripadvisorReviewsParams, opts ...RequestOption) (TripAdvisorTripadvisorReviewsResponse, error) {
-	return s.client.Request(ctx, "tripadvisor-reviews", paramsFromStruct(params), opts...)
+	return requestTyped[TripAdvisorTripadvisorReviewsResponse](s.client, ctx, "tripadvisor-reviews", paramsFromStruct(params), opts...)
 }
 
 func (s *TripAdvisorService) TripadvisorSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4263,10 +12869,10 @@ type TripAdvisorTripadvisorSearchParams struct {
 	Sort                *string `crawlora:"sort,omitempty"`
 }
 
-type TripAdvisorTripadvisorSearchResponse = any
+type TripAdvisorTripadvisorSearchResponse = ModelTripadvisorTripadvisorSearchResponseDoc
 
 func (s *TripAdvisorService) TripadvisorSearchTyped(ctx context.Context, params TripAdvisorTripadvisorSearchParams, opts ...RequestOption) (TripAdvisorTripadvisorSearchResponse, error) {
-	return s.client.Request(ctx, "tripadvisor-search", paramsFromStruct(params), opts...)
+	return requestTyped[TripAdvisorTripadvisorSearchResponse](s.client, ctx, "tripadvisor-search", paramsFromStruct(params), opts...)
 }
 
 type TrustpilotService struct{ client *Client }
@@ -4282,10 +12888,10 @@ type TrustpilotBusinessSearchParams struct {
 	PageSize *int    `crawlora:"page_size,omitempty"`
 }
 
-type TrustpilotBusinessSearchResponse = any
+type TrustpilotBusinessSearchResponse = ModelTrustpilotBusinessSearchResponseDoc
 
 func (s *TrustpilotService) BusinessSearchTyped(ctx context.Context, params TrustpilotBusinessSearchParams, opts ...RequestOption) (TrustpilotBusinessSearchResponse, error) {
-	return s.client.Request(ctx, "trustpilot-business-search", paramsFromStruct(params), opts...)
+	return requestTyped[TrustpilotBusinessSearchResponse](s.client, ctx, "trustpilot-business-search", paramsFromStruct(params), opts...)
 }
 
 func (s *TrustpilotService) Business(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4296,10 +12902,10 @@ type TrustpilotBusinessParams struct {
 	Slug string `crawlora:"slug"`
 }
 
-type TrustpilotBusinessResponse = any
+type TrustpilotBusinessResponse = ModelTrustpilotBusinessProfileResponseDoc
 
 func (s *TrustpilotService) BusinessTyped(ctx context.Context, params TrustpilotBusinessParams, opts ...RequestOption) (TrustpilotBusinessResponse, error) {
-	return s.client.Request(ctx, "trustpilot-business", paramsFromStruct(params), opts...)
+	return requestTyped[TrustpilotBusinessResponse](s.client, ctx, "trustpilot-business", paramsFromStruct(params), opts...)
 }
 
 func (s *TrustpilotService) BusinessRelated(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4310,10 +12916,10 @@ type TrustpilotBusinessRelatedParams struct {
 	Slug string `crawlora:"slug"`
 }
 
-type TrustpilotBusinessRelatedResponse = any
+type TrustpilotBusinessRelatedResponse = ModelTrustpilotBusinessRelatedResponseDoc
 
 func (s *TrustpilotService) BusinessRelatedTyped(ctx context.Context, params TrustpilotBusinessRelatedParams, opts ...RequestOption) (TrustpilotBusinessRelatedResponse, error) {
-	return s.client.Request(ctx, "trustpilot-business-related", paramsFromStruct(params), opts...)
+	return requestTyped[TrustpilotBusinessRelatedResponse](s.client, ctx, "trustpilot-business-related", paramsFromStruct(params), opts...)
 }
 
 func (s *TrustpilotService) BusinessReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4332,10 +12938,10 @@ type TrustpilotBusinessReviewsParams struct {
 	DateTo   *string `crawlora:"date_to,omitempty"`
 }
 
-type TrustpilotBusinessReviewsResponse = any
+type TrustpilotBusinessReviewsResponse = ModelTrustpilotBusinessReviewsResponseDoc
 
 func (s *TrustpilotService) BusinessReviewsTyped(ctx context.Context, params TrustpilotBusinessReviewsParams, opts ...RequestOption) (TrustpilotBusinessReviewsResponse, error) {
-	return s.client.Request(ctx, "trustpilot-business-reviews", paramsFromStruct(params), opts...)
+	return requestTyped[TrustpilotBusinessReviewsResponse](s.client, ctx, "trustpilot-business-reviews", paramsFromStruct(params), opts...)
 }
 
 func (s *TrustpilotService) Categories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4345,10 +12951,10 @@ func (s *TrustpilotService) Categories(ctx context.Context, params Params, opts 
 type TrustpilotCategoriesParams struct {
 }
 
-type TrustpilotCategoriesResponse = any
+type TrustpilotCategoriesResponse = ModelTrustpilotCategoriesResponseDoc
 
 func (s *TrustpilotService) CategoriesTyped(ctx context.Context, params TrustpilotCategoriesParams, opts ...RequestOption) (TrustpilotCategoriesResponse, error) {
-	return s.client.Request(ctx, "trustpilot-categories", paramsFromStruct(params), opts...)
+	return requestTyped[TrustpilotCategoriesResponse](s.client, ctx, "trustpilot-categories", paramsFromStruct(params), opts...)
 }
 
 func (s *TrustpilotService) CategorySearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4362,10 +12968,10 @@ type TrustpilotCategorySearchParams struct {
 	Size    *int    `crawlora:"size,omitempty"`
 }
 
-type TrustpilotCategorySearchResponse = any
+type TrustpilotCategorySearchResponse = ModelTrustpilotCategorySearchResponseDoc
 
 func (s *TrustpilotService) CategorySearchTyped(ctx context.Context, params TrustpilotCategorySearchParams, opts ...RequestOption) (TrustpilotCategorySearchResponse, error) {
-	return s.client.Request(ctx, "trustpilot-category-search", paramsFromStruct(params), opts...)
+	return requestTyped[TrustpilotCategorySearchResponse](s.client, ctx, "trustpilot-category-search", paramsFromStruct(params), opts...)
 }
 
 func (s *TrustpilotService) Category(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4377,10 +12983,10 @@ type TrustpilotCategoryParams struct {
 	Page *int   `crawlora:"page,omitempty"`
 }
 
-type TrustpilotCategoryResponse = any
+type TrustpilotCategoryResponse = ModelTrustpilotCategoryResponseDoc
 
 func (s *TrustpilotService) CategoryTyped(ctx context.Context, params TrustpilotCategoryParams, opts ...RequestOption) (TrustpilotCategoryResponse, error) {
-	return s.client.Request(ctx, "trustpilot-category", paramsFromStruct(params), opts...)
+	return requestTyped[TrustpilotCategoryResponse](s.client, ctx, "trustpilot-category", paramsFromStruct(params), opts...)
 }
 
 type UsageService struct{ client *Client }
@@ -4396,10 +13002,10 @@ type UsageMeEndpointsParams struct {
 	To    *string `crawlora:"to,omitempty"`
 }
 
-type UsageMeEndpointsResponse = any
+type UsageMeEndpointsResponse = ModelUsageUsageEndpointsResponseDoc
 
 func (s *UsageService) MeEndpointsTyped(ctx context.Context, params UsageMeEndpointsParams, opts ...RequestOption) (UsageMeEndpointsResponse, error) {
-	return s.client.Request(ctx, "usage-me-endpoints", paramsFromStruct(params), opts...)
+	return requestTyped[UsageMeEndpointsResponse](s.client, ctx, "usage-me-endpoints", paramsFromStruct(params), opts...)
 }
 
 func (s *UsageService) MeOverview(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4412,10 +13018,10 @@ type UsageMeOverviewParams struct {
 	To    *string `crawlora:"to,omitempty"`
 }
 
-type UsageMeOverviewResponse = any
+type UsageMeOverviewResponse = ModelUsageUsageOverviewResponseDoc
 
 func (s *UsageService) MeOverviewTyped(ctx context.Context, params UsageMeOverviewParams, opts ...RequestOption) (UsageMeOverviewResponse, error) {
-	return s.client.Request(ctx, "usage-me-overview", paramsFromStruct(params), opts...)
+	return requestTyped[UsageMeOverviewResponse](s.client, ctx, "usage-me-overview", paramsFromStruct(params), opts...)
 }
 
 func (s *UsageService) MeRecentIps(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4429,10 +13035,10 @@ type UsageMeRecentIpsParams struct {
 	To    *string `crawlora:"to,omitempty"`
 }
 
-type UsageMeRecentIpsResponse = any
+type UsageMeRecentIpsResponse = ModelUsageUsageRecentIpsResponseDoc
 
 func (s *UsageService) MeRecentIpsTyped(ctx context.Context, params UsageMeRecentIpsParams, opts ...RequestOption) (UsageMeRecentIpsResponse, error) {
-	return s.client.Request(ctx, "usage-me-recent-ips", paramsFromStruct(params), opts...)
+	return requestTyped[UsageMeRecentIpsResponse](s.client, ctx, "usage-me-recent-ips", paramsFromStruct(params), opts...)
 }
 
 func (s *UsageService) MeTimeseries(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4447,10 +13053,10 @@ type UsageMeTimeseriesParams struct {
 	To       *string `crawlora:"to,omitempty"`
 }
 
-type UsageMeTimeseriesResponse = any
+type UsageMeTimeseriesResponse = ModelUsageUsageTimeseriesResponseDoc
 
 func (s *UsageService) MeTimeseriesTyped(ctx context.Context, params UsageMeTimeseriesParams, opts ...RequestOption) (UsageMeTimeseriesResponse, error) {
-	return s.client.Request(ctx, "usage-me-timeseries", paramsFromStruct(params), opts...)
+	return requestTyped[UsageMeTimeseriesResponse](s.client, ctx, "usage-me-timeseries", paramsFromStruct(params), opts...)
 }
 
 type UserService struct{ client *Client }
@@ -4462,10 +13068,10 @@ func (s *UserService) Me(ctx context.Context, params Params, opts ...RequestOpti
 type UserMeParams struct {
 }
 
-type UserMeResponse = any
+type UserMeResponse = ModelUserUserMeResponseDoc
 
 func (s *UserService) MeTyped(ctx context.Context, params UserMeParams, opts ...RequestOption) (UserMeResponse, error) {
-	return s.client.Request(ctx, "user-me", paramsFromStruct(params), opts...)
+	return requestTyped[UserMeResponse](s.client, ctx, "user-me", paramsFromStruct(params), opts...)
 }
 
 func (s *UserService) MeApiKeys(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4475,10 +13081,10 @@ func (s *UserService) MeApiKeys(ctx context.Context, params Params, opts ...Requ
 type UserMeApiKeysParams struct {
 }
 
-type UserMeApiKeysResponse = any
+type UserMeApiKeysResponse = ModelUserUserApikeysResponseDoc
 
 func (s *UserService) MeApiKeysTyped(ctx context.Context, params UserMeApiKeysParams, opts ...RequestOption) (UserMeApiKeysResponse, error) {
-	return s.client.Request(ctx, "user-me-api-keys", paramsFromStruct(params), opts...)
+	return requestTyped[UserMeApiKeysResponse](s.client, ctx, "user-me-api-keys", paramsFromStruct(params), opts...)
 }
 
 func (s *UserService) MeApiKeysRotate(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4488,10 +13094,10 @@ func (s *UserService) MeApiKeysRotate(ctx context.Context, params Params, opts .
 type UserMeApiKeysRotateParams struct {
 }
 
-type UserMeApiKeysRotateResponse = any
+type UserMeApiKeysRotateResponse = ModelUserUserRotateApikeyResponseDoc
 
 func (s *UserService) MeApiKeysRotateTyped(ctx context.Context, params UserMeApiKeysRotateParams, opts ...RequestOption) (UserMeApiKeysRotateResponse, error) {
-	return s.client.Request(ctx, "user-me-api-keys-rotate", paramsFromStruct(params), opts...)
+	return requestTyped[UserMeApiKeysRotateResponse](s.client, ctx, "user-me-api-keys-rotate", paramsFromStruct(params), opts...)
 }
 
 func (s *UserService) MeApiKeysReveal(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4502,10 +13108,10 @@ type UserMeApiKeysRevealParams struct {
 	Id string `crawlora:"id"`
 }
 
-type UserMeApiKeysRevealResponse = any
+type UserMeApiKeysRevealResponse = ModelUserUserRevealApikeyResponseDoc
 
 func (s *UserService) MeApiKeysRevealTyped(ctx context.Context, params UserMeApiKeysRevealParams, opts ...RequestOption) (UserMeApiKeysRevealResponse, error) {
-	return s.client.Request(ctx, "user-me-api-keys-reveal", paramsFromStruct(params), opts...)
+	return requestTyped[UserMeApiKeysRevealResponse](s.client, ctx, "user-me-api-keys-reveal", paramsFromStruct(params), opts...)
 }
 
 type YahooFinanceService struct{ client *Client }
@@ -4517,10 +13123,10 @@ func (s *YahooFinanceService) Calendars(ctx context.Context, params Params, opts
 type YahooFinanceCalendarsParams struct {
 }
 
-type YahooFinanceCalendarsResponse = any
+type YahooFinanceCalendarsResponse = ModelYahoofinanceCalendarsResponseDoc
 
 func (s *YahooFinanceService) CalendarsTyped(ctx context.Context, params YahooFinanceCalendarsParams, opts ...RequestOption) (YahooFinanceCalendarsResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-calendars", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceCalendarsResponse](s.client, ctx, "yahoo-finance-calendars", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) Calendar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4537,10 +13143,10 @@ type YahooFinanceCalendarParams struct {
 	FilterMostActive *bool    `crawlora:"filter_most_active,omitempty"`
 }
 
-type YahooFinanceCalendarResponse = any
+type YahooFinanceCalendarResponse = ModelYahoofinanceCalendarResponseDoc
 
 func (s *YahooFinanceService) CalendarTyped(ctx context.Context, params YahooFinanceCalendarParams, opts ...RequestOption) (YahooFinanceCalendarResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-calendar", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceCalendarResponse](s.client, ctx, "yahoo-finance-calendar", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) Download(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4548,13 +13154,13 @@ func (s *YahooFinanceService) Download(ctx context.Context, params Params, opts 
 }
 
 type YahooFinanceDownloadParams struct {
-	Request any `crawlora:"request"`
+	Request ModelYahoofinanceDownloadRequest `crawlora:"request"`
 }
 
-type YahooFinanceDownloadResponse = any
+type YahooFinanceDownloadResponse = ModelYahoofinanceDownloadResponseDoc
 
 func (s *YahooFinanceService) DownloadTyped(ctx context.Context, params YahooFinanceDownloadParams, opts ...RequestOption) (YahooFinanceDownloadResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-download", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceDownloadResponse](s.client, ctx, "yahoo-finance-download", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) Industries(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4564,10 +13170,10 @@ func (s *YahooFinanceService) Industries(ctx context.Context, params Params, opt
 type YahooFinanceIndustriesParams struct {
 }
 
-type YahooFinanceIndustriesResponse = any
+type YahooFinanceIndustriesResponse = ModelYahoofinanceDomainListResponseDoc
 
 func (s *YahooFinanceService) IndustriesTyped(ctx context.Context, params YahooFinanceIndustriesParams, opts ...RequestOption) (YahooFinanceIndustriesResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-industries", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceIndustriesResponse](s.client, ctx, "yahoo-finance-industries", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) Industry(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4578,10 +13184,10 @@ type YahooFinanceIndustryParams struct {
 	Key string `crawlora:"key"`
 }
 
-type YahooFinanceIndustryResponse = any
+type YahooFinanceIndustryResponse = ModelYahoofinanceIndustryResponseDoc
 
 func (s *YahooFinanceService) IndustryTyped(ctx context.Context, params YahooFinanceIndustryParams, opts ...RequestOption) (YahooFinanceIndustryResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-industry", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceIndustryResponse](s.client, ctx, "yahoo-finance-industry", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) MarketStatus(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4592,10 +13198,10 @@ type YahooFinanceMarketStatusParams struct {
 	Market string `crawlora:"market"`
 }
 
-type YahooFinanceMarketStatusResponse = any
+type YahooFinanceMarketStatusResponse = ModelYahoofinanceMarketStatusResponseDoc
 
 func (s *YahooFinanceService) MarketStatusTyped(ctx context.Context, params YahooFinanceMarketStatusParams, opts ...RequestOption) (YahooFinanceMarketStatusResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-market-status", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceMarketStatusResponse](s.client, ctx, "yahoo-finance-market-status", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) MarketSummary(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4606,10 +13212,10 @@ type YahooFinanceMarketSummaryParams struct {
 	Market string `crawlora:"market"`
 }
 
-type YahooFinanceMarketSummaryResponse = any
+type YahooFinanceMarketSummaryResponse = ModelYahoofinanceMarketSummaryResponseDoc
 
 func (s *YahooFinanceService) MarketSummaryTyped(ctx context.Context, params YahooFinanceMarketSummaryParams, opts ...RequestOption) (YahooFinanceMarketSummaryResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-market-summary", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceMarketSummaryResponse](s.client, ctx, "yahoo-finance-market-summary", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) ScreenerCustom(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4617,13 +13223,13 @@ func (s *YahooFinanceService) ScreenerCustom(ctx context.Context, params Params,
 }
 
 type YahooFinanceScreenerCustomParams struct {
-	Request any `crawlora:"request"`
+	Request ModelYahoofinanceScreenerRequest `crawlora:"request"`
 }
 
-type YahooFinanceScreenerCustomResponse = any
+type YahooFinanceScreenerCustomResponse = ModelYahoofinanceScreenerResponseDoc
 
 func (s *YahooFinanceService) ScreenerCustomTyped(ctx context.Context, params YahooFinanceScreenerCustomParams, opts ...RequestOption) (YahooFinanceScreenerCustomResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-screener-custom", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceScreenerCustomResponse](s.client, ctx, "yahoo-finance-screener-custom", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) Screener(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4638,10 +13244,10 @@ type YahooFinanceScreenerParams struct {
 	SortAsc   *bool   `crawlora:"sort_asc,omitempty"`
 }
 
-type YahooFinanceScreenerResponse = any
+type YahooFinanceScreenerResponse = ModelYahoofinanceScreenerResponseDoc
 
 func (s *YahooFinanceService) ScreenerTyped(ctx context.Context, params YahooFinanceScreenerParams, opts ...RequestOption) (YahooFinanceScreenerResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-screener", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceScreenerResponse](s.client, ctx, "yahoo-finance-screener", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) Screeners(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4651,10 +13257,10 @@ func (s *YahooFinanceService) Screeners(ctx context.Context, params Params, opts
 type YahooFinanceScreenersParams struct {
 }
 
-type YahooFinanceScreenersResponse = any
+type YahooFinanceScreenersResponse = ModelYahoofinanceScreenersResponseDoc
 
 func (s *YahooFinanceService) ScreenersTyped(ctx context.Context, params YahooFinanceScreenersParams, opts ...RequestOption) (YahooFinanceScreenersResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-screeners", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceScreenersResponse](s.client, ctx, "yahoo-finance-screeners", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4670,10 +13276,10 @@ type YahooFinanceSearchParams struct {
 	EnableFuzzyQuery *bool  `crawlora:"enable_fuzzy_query,omitempty"`
 }
 
-type YahooFinanceSearchResponse = any
+type YahooFinanceSearchResponse = ModelYahoofinanceSearchResponseDoc
 
 func (s *YahooFinanceService) SearchTyped(ctx context.Context, params YahooFinanceSearchParams, opts ...RequestOption) (YahooFinanceSearchResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-search", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceSearchResponse](s.client, ctx, "yahoo-finance-search", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) Sectors(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4683,10 +13289,10 @@ func (s *YahooFinanceService) Sectors(ctx context.Context, params Params, opts .
 type YahooFinanceSectorsParams struct {
 }
 
-type YahooFinanceSectorsResponse = any
+type YahooFinanceSectorsResponse = ModelYahoofinanceDomainListResponseDoc
 
 func (s *YahooFinanceService) SectorsTyped(ctx context.Context, params YahooFinanceSectorsParams, opts ...RequestOption) (YahooFinanceSectorsResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-sectors", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceSectorsResponse](s.client, ctx, "yahoo-finance-sectors", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) Sector(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4697,10 +13303,10 @@ type YahooFinanceSectorParams struct {
 	Key string `crawlora:"key"`
 }
 
-type YahooFinanceSectorResponse = any
+type YahooFinanceSectorResponse = ModelYahoofinanceSectorResponseDoc
 
 func (s *YahooFinanceService) SectorTyped(ctx context.Context, params YahooFinanceSectorParams, opts ...RequestOption) (YahooFinanceSectorResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-sector", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceSectorResponse](s.client, ctx, "yahoo-finance-sector", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerActions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4711,10 +13317,10 @@ type YahooFinanceTickerActionsParams struct {
 	Symbol string `crawlora:"symbol"`
 }
 
-type YahooFinanceTickerActionsResponse = any
+type YahooFinanceTickerActionsResponse = ModelYahoofinanceActionsResponseDoc
 
 func (s *YahooFinanceService) TickerActionsTyped(ctx context.Context, params YahooFinanceTickerActionsParams, opts ...RequestOption) (YahooFinanceTickerActionsResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-actions", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerActionsResponse](s.client, ctx, "yahoo-finance-ticker-actions", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerAnalysts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4725,10 +13331,10 @@ type YahooFinanceTickerAnalystsParams struct {
 	Symbol string `crawlora:"symbol"`
 }
 
-type YahooFinanceTickerAnalystsResponse = any
+type YahooFinanceTickerAnalystsResponse = ModelYahoofinanceModuleResponseDoc
 
 func (s *YahooFinanceService) TickerAnalystsTyped(ctx context.Context, params YahooFinanceTickerAnalystsParams, opts ...RequestOption) (YahooFinanceTickerAnalystsResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-analysts", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerAnalystsResponse](s.client, ctx, "yahoo-finance-ticker-analysts", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerCalendar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4739,10 +13345,10 @@ type YahooFinanceTickerCalendarParams struct {
 	Symbol string `crawlora:"symbol"`
 }
 
-type YahooFinanceTickerCalendarResponse = any
+type YahooFinanceTickerCalendarResponse = ModelYahoofinanceModuleResponseDoc
 
 func (s *YahooFinanceService) TickerCalendarTyped(ctx context.Context, params YahooFinanceTickerCalendarParams, opts ...RequestOption) (YahooFinanceTickerCalendarResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-calendar", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerCalendarResponse](s.client, ctx, "yahoo-finance-ticker-calendar", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerCapitalGains(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4753,10 +13359,10 @@ type YahooFinanceTickerCapitalGainsParams struct {
 	Symbol string `crawlora:"symbol"`
 }
 
-type YahooFinanceTickerCapitalGainsResponse = any
+type YahooFinanceTickerCapitalGainsResponse = ModelYahoofinanceActionsResponseDoc
 
 func (s *YahooFinanceService) TickerCapitalGainsTyped(ctx context.Context, params YahooFinanceTickerCapitalGainsParams, opts ...RequestOption) (YahooFinanceTickerCapitalGainsResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-capital-gains", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerCapitalGainsResponse](s.client, ctx, "yahoo-finance-ticker-capital-gains", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerDividends(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4767,10 +13373,10 @@ type YahooFinanceTickerDividendsParams struct {
 	Symbol string `crawlora:"symbol"`
 }
 
-type YahooFinanceTickerDividendsResponse = any
+type YahooFinanceTickerDividendsResponse = ModelYahoofinanceActionsResponseDoc
 
 func (s *YahooFinanceService) TickerDividendsTyped(ctx context.Context, params YahooFinanceTickerDividendsParams, opts ...RequestOption) (YahooFinanceTickerDividendsResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-dividends", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerDividendsResponse](s.client, ctx, "yahoo-finance-ticker-dividends", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerEarnings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4781,10 +13387,10 @@ type YahooFinanceTickerEarningsParams struct {
 	Symbol string `crawlora:"symbol"`
 }
 
-type YahooFinanceTickerEarningsResponse = any
+type YahooFinanceTickerEarningsResponse = ModelYahoofinanceModuleResponseDoc
 
 func (s *YahooFinanceService) TickerEarningsTyped(ctx context.Context, params YahooFinanceTickerEarningsParams, opts ...RequestOption) (YahooFinanceTickerEarningsResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-earnings", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerEarningsResponse](s.client, ctx, "yahoo-finance-ticker-earnings", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerEarningsDates(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4797,10 +13403,10 @@ type YahooFinanceTickerEarningsDatesParams struct {
 	Offset *int   `crawlora:"offset,omitempty"`
 }
 
-type YahooFinanceTickerEarningsDatesResponse = any
+type YahooFinanceTickerEarningsDatesResponse = ModelYahoofinanceEarningsDatesResponseDoc
 
 func (s *YahooFinanceService) TickerEarningsDatesTyped(ctx context.Context, params YahooFinanceTickerEarningsDatesParams, opts ...RequestOption) (YahooFinanceTickerEarningsDatesResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-earnings-dates", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerEarningsDatesResponse](s.client, ctx, "yahoo-finance-ticker-earnings-dates", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerFinancials(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4813,10 +13419,10 @@ type YahooFinanceTickerFinancialsParams struct {
 	Period    *string `crawlora:"period,omitempty"`
 }
 
-type YahooFinanceTickerFinancialsResponse = any
+type YahooFinanceTickerFinancialsResponse = ModelYahoofinanceFinancialsResponseDoc
 
 func (s *YahooFinanceService) TickerFinancialsTyped(ctx context.Context, params YahooFinanceTickerFinancialsParams, opts ...RequestOption) (YahooFinanceTickerFinancialsResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-financials", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerFinancialsResponse](s.client, ctx, "yahoo-finance-ticker-financials", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerFunds(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4827,10 +13433,10 @@ type YahooFinanceTickerFundsParams struct {
 	Symbol string `crawlora:"symbol"`
 }
 
-type YahooFinanceTickerFundsResponse = any
+type YahooFinanceTickerFundsResponse = ModelYahoofinanceModuleResponseDoc
 
 func (s *YahooFinanceService) TickerFundsTyped(ctx context.Context, params YahooFinanceTickerFundsParams, opts ...RequestOption) (YahooFinanceTickerFundsResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-funds", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerFundsResponse](s.client, ctx, "yahoo-finance-ticker-funds", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerHistory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4851,10 +13457,10 @@ type YahooFinanceTickerHistoryParams struct {
 	Rounding       *bool   `crawlora:"rounding,omitempty"`
 }
 
-type YahooFinanceTickerHistoryResponse = any
+type YahooFinanceTickerHistoryResponse = ModelYahoofinanceHistoryResponseDoc
 
 func (s *YahooFinanceService) TickerHistoryTyped(ctx context.Context, params YahooFinanceTickerHistoryParams, opts ...RequestOption) (YahooFinanceTickerHistoryResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-history", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerHistoryResponse](s.client, ctx, "yahoo-finance-ticker-history", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerHistoryMetadata(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4865,10 +13471,10 @@ type YahooFinanceTickerHistoryMetadataParams struct {
 	Symbol string `crawlora:"symbol"`
 }
 
-type YahooFinanceTickerHistoryMetadataResponse = any
+type YahooFinanceTickerHistoryMetadataResponse = ModelYahoofinanceHistoryMetadataResponseDoc
 
 func (s *YahooFinanceService) TickerHistoryMetadataTyped(ctx context.Context, params YahooFinanceTickerHistoryMetadataParams, opts ...RequestOption) (YahooFinanceTickerHistoryMetadataResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-history-metadata", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerHistoryMetadataResponse](s.client, ctx, "yahoo-finance-ticker-history-metadata", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerHolders(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4879,10 +13485,10 @@ type YahooFinanceTickerHoldersParams struct {
 	Symbol string `crawlora:"symbol"`
 }
 
-type YahooFinanceTickerHoldersResponse = any
+type YahooFinanceTickerHoldersResponse = ModelYahoofinanceModuleResponseDoc
 
 func (s *YahooFinanceService) TickerHoldersTyped(ctx context.Context, params YahooFinanceTickerHoldersParams, opts ...RequestOption) (YahooFinanceTickerHoldersResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-holders", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerHoldersResponse](s.client, ctx, "yahoo-finance-ticker-holders", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerInfo(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4893,10 +13499,10 @@ type YahooFinanceTickerInfoParams struct {
 	Symbol string `crawlora:"symbol"`
 }
 
-type YahooFinanceTickerInfoResponse = any
+type YahooFinanceTickerInfoResponse = ModelYahoofinanceInfoResponseDoc
 
 func (s *YahooFinanceService) TickerInfoTyped(ctx context.Context, params YahooFinanceTickerInfoParams, opts ...RequestOption) (YahooFinanceTickerInfoResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-info", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerInfoResponse](s.client, ctx, "yahoo-finance-ticker-info", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerIsin(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4907,10 +13513,10 @@ type YahooFinanceTickerIsinParams struct {
 	Symbol string `crawlora:"symbol"`
 }
 
-type YahooFinanceTickerIsinResponse = any
+type YahooFinanceTickerIsinResponse = ModelYahoofinanceIsinResponseDoc
 
 func (s *YahooFinanceService) TickerIsinTyped(ctx context.Context, params YahooFinanceTickerIsinParams, opts ...RequestOption) (YahooFinanceTickerIsinResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-isin", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerIsinResponse](s.client, ctx, "yahoo-finance-ticker-isin", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4923,10 +13529,10 @@ type YahooFinanceTickerNewsParams struct {
 	Tab    *string `crawlora:"tab,omitempty"`
 }
 
-type YahooFinanceTickerNewsResponse = any
+type YahooFinanceTickerNewsResponse = ModelYahoofinanceSearchResponseDoc
 
 func (s *YahooFinanceService) TickerNewsTyped(ctx context.Context, params YahooFinanceTickerNewsParams, opts ...RequestOption) (YahooFinanceTickerNewsResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-news", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerNewsResponse](s.client, ctx, "yahoo-finance-ticker-news", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerOptions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4937,10 +13543,10 @@ type YahooFinanceTickerOptionsParams struct {
 	Symbol string `crawlora:"symbol"`
 }
 
-type YahooFinanceTickerOptionsResponse = any
+type YahooFinanceTickerOptionsResponse = ModelYahoofinanceOptionsResponseDoc
 
 func (s *YahooFinanceService) TickerOptionsTyped(ctx context.Context, params YahooFinanceTickerOptionsParams, opts ...RequestOption) (YahooFinanceTickerOptionsResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-options", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerOptionsResponse](s.client, ctx, "yahoo-finance-ticker-options", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerOptionsExpiration(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4952,10 +13558,10 @@ type YahooFinanceTickerOptionsExpirationParams struct {
 	Expiration string `crawlora:"expiration"`
 }
 
-type YahooFinanceTickerOptionsExpirationResponse = any
+type YahooFinanceTickerOptionsExpirationResponse = ModelYahoofinanceOptionsResponseDoc
 
 func (s *YahooFinanceService) TickerOptionsExpirationTyped(ctx context.Context, params YahooFinanceTickerOptionsExpirationParams, opts ...RequestOption) (YahooFinanceTickerOptionsExpirationResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-options-expiration", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerOptionsExpirationResponse](s.client, ctx, "yahoo-finance-ticker-options-expiration", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerQuote(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4966,10 +13572,10 @@ type YahooFinanceTickerQuoteParams struct {
 	Symbol string `crawlora:"symbol"`
 }
 
-type YahooFinanceTickerQuoteResponse = any
+type YahooFinanceTickerQuoteResponse = ModelYahoofinanceQuoteResponseDoc
 
 func (s *YahooFinanceService) TickerQuoteTyped(ctx context.Context, params YahooFinanceTickerQuoteParams, opts ...RequestOption) (YahooFinanceTickerQuoteResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-quote", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerQuoteResponse](s.client, ctx, "yahoo-finance-ticker-quote", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerSecFilings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4980,10 +13586,10 @@ type YahooFinanceTickerSecFilingsParams struct {
 	Symbol string `crawlora:"symbol"`
 }
 
-type YahooFinanceTickerSecFilingsResponse = any
+type YahooFinanceTickerSecFilingsResponse = ModelYahoofinanceModuleResponseDoc
 
 func (s *YahooFinanceService) TickerSecFilingsTyped(ctx context.Context, params YahooFinanceTickerSecFilingsParams, opts ...RequestOption) (YahooFinanceTickerSecFilingsResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-sec-filings", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerSecFilingsResponse](s.client, ctx, "yahoo-finance-ticker-sec-filings", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerShares(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -4994,10 +13600,10 @@ type YahooFinanceTickerSharesParams struct {
 	Symbol string `crawlora:"symbol"`
 }
 
-type YahooFinanceTickerSharesResponse = any
+type YahooFinanceTickerSharesResponse = ModelYahoofinanceSharesResponseDoc
 
 func (s *YahooFinanceService) TickerSharesTyped(ctx context.Context, params YahooFinanceTickerSharesParams, opts ...RequestOption) (YahooFinanceTickerSharesResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-shares", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerSharesResponse](s.client, ctx, "yahoo-finance-ticker-shares", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerSharesFull(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5010,10 +13616,10 @@ type YahooFinanceTickerSharesFullParams struct {
 	End    *string `crawlora:"end,omitempty"`
 }
 
-type YahooFinanceTickerSharesFullResponse = any
+type YahooFinanceTickerSharesFullResponse = ModelYahoofinanceSharesFullResponseDoc
 
 func (s *YahooFinanceService) TickerSharesFullTyped(ctx context.Context, params YahooFinanceTickerSharesFullParams, opts ...RequestOption) (YahooFinanceTickerSharesFullResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-shares-full", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerSharesFullResponse](s.client, ctx, "yahoo-finance-ticker-shares-full", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerSplits(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5024,10 +13630,10 @@ type YahooFinanceTickerSplitsParams struct {
 	Symbol string `crawlora:"symbol"`
 }
 
-type YahooFinanceTickerSplitsResponse = any
+type YahooFinanceTickerSplitsResponse = ModelYahoofinanceActionsResponseDoc
 
 func (s *YahooFinanceService) TickerSplitsTyped(ctx context.Context, params YahooFinanceTickerSplitsParams, opts ...RequestOption) (YahooFinanceTickerSplitsResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-splits", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerSplitsResponse](s.client, ctx, "yahoo-finance-ticker-splits", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerSustainability(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5038,10 +13644,10 @@ type YahooFinanceTickerSustainabilityParams struct {
 	Symbol string `crawlora:"symbol"`
 }
 
-type YahooFinanceTickerSustainabilityResponse = any
+type YahooFinanceTickerSustainabilityResponse = ModelYahoofinanceModuleResponseDoc
 
 func (s *YahooFinanceService) TickerSustainabilityTyped(ctx context.Context, params YahooFinanceTickerSustainabilityParams, opts ...RequestOption) (YahooFinanceTickerSustainabilityResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-sustainability", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerSustainabilityResponse](s.client, ctx, "yahoo-finance-ticker-sustainability", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) TickerValuation(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5052,10 +13658,10 @@ type YahooFinanceTickerValuationParams struct {
 	Symbol string `crawlora:"symbol"`
 }
 
-type YahooFinanceTickerValuationResponse = any
+type YahooFinanceTickerValuationResponse = ModelYahoofinanceValuationResponseDoc
 
 func (s *YahooFinanceService) TickerValuationTyped(ctx context.Context, params YahooFinanceTickerValuationParams, opts ...RequestOption) (YahooFinanceTickerValuationResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-ticker-valuation", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTickerValuationResponse](s.client, ctx, "yahoo-finance-ticker-valuation", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) Trending(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5067,10 +13673,10 @@ type YahooFinanceTrendingParams struct {
 	Count  *int   `crawlora:"count,omitempty"`
 }
 
-type YahooFinanceTrendingResponse = any
+type YahooFinanceTrendingResponse = ModelYahoofinanceTrendingResponseDoc
 
 func (s *YahooFinanceService) TrendingTyped(ctx context.Context, params YahooFinanceTrendingParams, opts ...RequestOption) (YahooFinanceTrendingResponse, error) {
-	return s.client.Request(ctx, "yahoo-finance-trending", paramsFromStruct(params), opts...)
+	return requestTyped[YahooFinanceTrendingResponse](s.client, ctx, "yahoo-finance-trending", paramsFromStruct(params), opts...)
 }
 
 type YouTubeService struct{ client *Client }
@@ -5084,10 +13690,10 @@ type YouTubeCaptionsParams struct {
 	Lang *string `crawlora:"lang,omitempty"`
 }
 
-type YouTubeCaptionsResponse = any
+type YouTubeCaptionsResponse = ModelYoutubeCaptionsResponseDoc
 
 func (s *YouTubeService) CaptionsTyped(ctx context.Context, params YouTubeCaptionsParams, opts ...RequestOption) (YouTubeCaptionsResponse, error) {
-	return s.client.Request(ctx, "youtube-captions", paramsFromStruct(params), opts...)
+	return requestTyped[YouTubeCaptionsResponse](s.client, ctx, "youtube-captions", paramsFromStruct(params), opts...)
 }
 
 func (s *YouTubeService) ChannelPlaylists(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5099,10 +13705,10 @@ type YouTubeChannelPlaylistsParams struct {
 	ContinuationToken *string `crawlora:"continuation_token,omitempty"`
 }
 
-type YouTubeChannelPlaylistsResponse = any
+type YouTubeChannelPlaylistsResponse = ModelYoutubeChannelFeedResponseDoc
 
 func (s *YouTubeService) ChannelPlaylistsTyped(ctx context.Context, params YouTubeChannelPlaylistsParams, opts ...RequestOption) (YouTubeChannelPlaylistsResponse, error) {
-	return s.client.Request(ctx, "youtube-channel-playlists", paramsFromStruct(params), opts...)
+	return requestTyped[YouTubeChannelPlaylistsResponse](s.client, ctx, "youtube-channel-playlists", paramsFromStruct(params), opts...)
 }
 
 func (s *YouTubeService) ChannelSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5115,10 +13721,10 @@ type YouTubeChannelSearchParams struct {
 	ContinuationToken *string `crawlora:"continuation_token,omitempty"`
 }
 
-type YouTubeChannelSearchResponse = any
+type YouTubeChannelSearchResponse = ModelYoutubeChannelSearchResponseDoc
 
 func (s *YouTubeService) ChannelSearchTyped(ctx context.Context, params YouTubeChannelSearchParams, opts ...RequestOption) (YouTubeChannelSearchResponse, error) {
-	return s.client.Request(ctx, "youtube-channel-search", paramsFromStruct(params), opts...)
+	return requestTyped[YouTubeChannelSearchResponse](s.client, ctx, "youtube-channel-search", paramsFromStruct(params), opts...)
 }
 
 func (s *YouTubeService) ChannelShorts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5129,10 +13735,10 @@ type YouTubeChannelShortsParams struct {
 	Id string `crawlora:"id"`
 }
 
-type YouTubeChannelShortsResponse = any
+type YouTubeChannelShortsResponse = ModelYoutubeChannelShortsResponseDoc
 
 func (s *YouTubeService) ChannelShortsTyped(ctx context.Context, params YouTubeChannelShortsParams, opts ...RequestOption) (YouTubeChannelShortsResponse, error) {
-	return s.client.Request(ctx, "youtube-channel-shorts", paramsFromStruct(params), opts...)
+	return requestTyped[YouTubeChannelShortsResponse](s.client, ctx, "youtube-channel-shorts", paramsFromStruct(params), opts...)
 }
 
 func (s *YouTubeService) ChannelVideos(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5144,10 +13750,10 @@ type YouTubeChannelVideosParams struct {
 	ContinuationToken *string `crawlora:"continuation_token,omitempty"`
 }
 
-type YouTubeChannelVideosResponse = any
+type YouTubeChannelVideosResponse = ModelYoutubeChannelFeedResponseDoc
 
 func (s *YouTubeService) ChannelVideosTyped(ctx context.Context, params YouTubeChannelVideosParams, opts ...RequestOption) (YouTubeChannelVideosResponse, error) {
-	return s.client.Request(ctx, "youtube-channel-videos", paramsFromStruct(params), opts...)
+	return requestTyped[YouTubeChannelVideosResponse](s.client, ctx, "youtube-channel-videos", paramsFromStruct(params), opts...)
 }
 
 func (s *YouTubeService) Comments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5159,10 +13765,10 @@ type YouTubeCommentsParams struct {
 	ContinuationToken *string `crawlora:"continuation_token,omitempty"`
 }
 
-type YouTubeCommentsResponse = any
+type YouTubeCommentsResponse = ModelYoutubeCommentsResponseDoc
 
 func (s *YouTubeService) CommentsTyped(ctx context.Context, params YouTubeCommentsParams, opts ...RequestOption) (YouTubeCommentsResponse, error) {
-	return s.client.Request(ctx, "youtube-comments", paramsFromStruct(params), opts...)
+	return requestTyped[YouTubeCommentsResponse](s.client, ctx, "youtube-comments", paramsFromStruct(params), opts...)
 }
 
 func (s *YouTubeService) Playlist(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5174,10 +13780,10 @@ type YouTubePlaylistParams struct {
 	ContinuationToken *string `crawlora:"continuation_token,omitempty"`
 }
 
-type YouTubePlaylistResponse = any
+type YouTubePlaylistResponse = ModelYoutubePlaylistResponseDoc
 
 func (s *YouTubeService) PlaylistTyped(ctx context.Context, params YouTubePlaylistParams, opts ...RequestOption) (YouTubePlaylistResponse, error) {
-	return s.client.Request(ctx, "youtube-playlist", paramsFromStruct(params), opts...)
+	return requestTyped[YouTubePlaylistResponse](s.client, ctx, "youtube-playlist", paramsFromStruct(params), opts...)
 }
 
 func (s *YouTubeService) Profile(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5188,10 +13794,10 @@ type YouTubeProfileParams struct {
 	Id string `crawlora:"id"`
 }
 
-type YouTubeProfileResponse = any
+type YouTubeProfileResponse = ModelYoutubeProfileResponseDoc
 
 func (s *YouTubeService) ProfileTyped(ctx context.Context, params YouTubeProfileParams, opts ...RequestOption) (YouTubeProfileResponse, error) {
-	return s.client.Request(ctx, "youtube-profile", paramsFromStruct(params), opts...)
+	return requestTyped[YouTubeProfileResponse](s.client, ctx, "youtube-profile", paramsFromStruct(params), opts...)
 }
 
 func (s *YouTubeService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5210,10 +13816,10 @@ type YouTubeSearchParams struct {
 	Params            *string `crawlora:"params,omitempty"`
 }
 
-type YouTubeSearchResponse = any
+type YouTubeSearchResponse = ModelYoutubeSearchResponseDoc
 
 func (s *YouTubeService) SearchTyped(ctx context.Context, params YouTubeSearchParams, opts ...RequestOption) (YouTubeSearchResponse, error) {
-	return s.client.Request(ctx, "youtube-search", paramsFromStruct(params), opts...)
+	return requestTyped[YouTubeSearchResponse](s.client, ctx, "youtube-search", paramsFromStruct(params), opts...)
 }
 
 func (s *YouTubeService) Tag(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5226,10 +13832,10 @@ type YouTubeTagParams struct {
 	ContinuationToken *string `crawlora:"continuation_token,omitempty"`
 }
 
-type YouTubeTagResponse = any
+type YouTubeTagResponse = ModelYoutubeTagResponseDoc
 
 func (s *YouTubeService) TagTyped(ctx context.Context, params YouTubeTagParams, opts ...RequestOption) (YouTubeTagResponse, error) {
-	return s.client.Request(ctx, "youtube-tag", paramsFromStruct(params), opts...)
+	return requestTyped[YouTubeTagResponse](s.client, ctx, "youtube-tag", paramsFromStruct(params), opts...)
 }
 
 func (s *YouTubeService) Transcript(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5244,10 +13850,10 @@ type YouTubeTranscriptParams struct {
 	Timestamps  *bool   `crawlora:"timestamps,omitempty"`
 }
 
-type YouTubeTranscriptResponse = any
+type YouTubeTranscriptResponse = ModelYoutubeTranscriptResponseDoc
 
 func (s *YouTubeService) TranscriptTyped(ctx context.Context, params YouTubeTranscriptParams, opts ...RequestOption) (YouTubeTranscriptResponse, error) {
-	return s.client.Request(ctx, "youtube-transcript", paramsFromStruct(params), opts...)
+	return requestTyped[YouTubeTranscriptResponse](s.client, ctx, "youtube-transcript", paramsFromStruct(params), opts...)
 }
 
 func (s *YouTubeService) TranscriptLanguages(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5258,10 +13864,10 @@ type YouTubeTranscriptLanguagesParams struct {
 	Id string `crawlora:"id"`
 }
 
-type YouTubeTranscriptLanguagesResponse = any
+type YouTubeTranscriptLanguagesResponse = ModelYoutubeTranscriptLanguagesResponseDoc
 
 func (s *YouTubeService) TranscriptLanguagesTyped(ctx context.Context, params YouTubeTranscriptLanguagesParams, opts ...RequestOption) (YouTubeTranscriptLanguagesResponse, error) {
-	return s.client.Request(ctx, "youtube-transcript-languages", paramsFromStruct(params), opts...)
+	return requestTyped[YouTubeTranscriptLanguagesResponse](s.client, ctx, "youtube-transcript-languages", paramsFromStruct(params), opts...)
 }
 
 func (s *YouTubeService) Video(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5272,10 +13878,10 @@ type YouTubeVideoParams struct {
 	Id string `crawlora:"id"`
 }
 
-type YouTubeVideoResponse = any
+type YouTubeVideoResponse = ModelYoutubeVideoResponseDoc
 
 func (s *YouTubeService) VideoTyped(ctx context.Context, params YouTubeVideoParams, opts ...RequestOption) (YouTubeVideoResponse, error) {
-	return s.client.Request(ctx, "youtube-video", paramsFromStruct(params), opts...)
+	return requestTyped[YouTubeVideoResponse](s.client, ctx, "youtube-video", paramsFromStruct(params), opts...)
 }
 
 type ZillowService struct{ client *Client }
@@ -5290,10 +13896,10 @@ type ZillowAutocompleteParams struct {
 	Status *string `crawlora:"status,omitempty"`
 }
 
-type ZillowAutocompleteResponse = any
+type ZillowAutocompleteResponse = ModelZillowAutocompleteResponse
 
 func (s *ZillowService) AutocompleteTyped(ctx context.Context, params ZillowAutocompleteParams, opts ...RequestOption) (ZillowAutocompleteResponse, error) {
-	return s.client.Request(ctx, "zillow-autocomplete", paramsFromStruct(params), opts...)
+	return requestTyped[ZillowAutocompleteResponse](s.client, ctx, "zillow-autocomplete", paramsFromStruct(params), opts...)
 }
 
 func (s *ZillowService) Property(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5304,10 +13910,10 @@ type ZillowPropertyParams struct {
 	Zpid string `crawlora:"zpid"`
 }
 
-type ZillowPropertyResponse = any
+type ZillowPropertyResponse = ModelZillowPropertyResponse
 
 func (s *ZillowService) PropertyTyped(ctx context.Context, params ZillowPropertyParams, opts ...RequestOption) (ZillowPropertyResponse, error) {
-	return s.client.Request(ctx, "zillow-property", paramsFromStruct(params), opts...)
+	return requestTyped[ZillowPropertyResponse](s.client, ctx, "zillow-property", paramsFromStruct(params), opts...)
 }
 
 func (s *ZillowService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -5326,8 +13932,8 @@ type ZillowSearchParams struct {
 	North      *float64 `crawlora:"north,omitempty"`
 }
 
-type ZillowSearchResponse = any
+type ZillowSearchResponse = ModelZillowSearchResponse
 
 func (s *ZillowService) SearchTyped(ctx context.Context, params ZillowSearchParams, opts ...RequestOption) (ZillowSearchResponse, error) {
-	return s.client.Request(ctx, "zillow-search", paramsFromStruct(params), opts...)
+	return requestTyped[ZillowSearchResponse](s.client, ctx, "zillow-search", paramsFromStruct(params), opts...)
 }

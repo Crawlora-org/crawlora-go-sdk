@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.2.0-sdk.10
+
+- Generated OpenAPI schema model structs for typed endpoint responses and body
+  parameters.
+- Updated typed service methods to decode JSON responses into concrete response
+  aliases while keeping dynamic methods unchanged.
+
 ## v1.2.0-sdk.9
 
 - Added fail-fast enum validation for generated query and form parameters.

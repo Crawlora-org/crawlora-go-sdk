@@ -344,6 +344,31 @@ func TestTypedEndpointQueryParams(t *testing.T) {
 	}
 }
 
+func TestTypedEndpointResponseStruct(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("content-type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]any{
+			"code": 200,
+			"msg":  "OK",
+			"data": map[string]any{
+				"results": []map[string]any{
+					{"title": "Coffee result", "url": "https://example.test/coffee"},
+				},
+			},
+		})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
+	out, err := client.Bing.SearchTyped(context.Background(), BingSearchParams{Q: "coffee"})
+	if err != nil {
+		t.Fatalf("typed search: %v", err)
+	}
+	if out.Data.Results[0].Title != "Coffee result" {
+		t.Fatalf("typed title = %q", out.Data.Results[0].Title)
+	}
+}
+
 func TestTypedEndpointJSONBody(t *testing.T) {
 	var gotBody string
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -357,11 +382,15 @@ func TestTypedEndpointJSONBody(t *testing.T) {
 
 	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
 	if _, err := client.Google.SearchTyped(context.Background(), GoogleSearchParams{
-		SearchOption: map[string]any{"q": "coffee"},
+		SearchOption: ModelGoogleSearchOption{
+			Country:  "us",
+			Keyword:  "coffee",
+			Language: "en",
+		},
 	}); err != nil {
 		t.Fatalf("typed google search: %v", err)
 	}
-	if gotBody != `{"q":"coffee"}` {
+	if gotBody != `{"country":"us","keyword":"coffee","language":"en"}` {
 		t.Fatalf("body = %q", gotBody)
 	}
 }
