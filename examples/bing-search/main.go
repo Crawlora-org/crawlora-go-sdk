@@ -16,10 +16,9 @@ func main() {
 		return
 	}
 
-	count := 5
 	result, err := client.Bing.SearchTyped(context.Background(), crawlora.BingSearchParams{
 		Q:     "coffee shops",
-		Count: &count,
+		Count: crawlora.Int(5),
 	})
 	if err != nil {
 		log.Fatal(err)

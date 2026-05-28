@@ -13,7 +13,7 @@ go get github.com/Crawlora-org/crawlora-go-sdk@latest
 For reproducible builds, pin the current beta release tag:
 
 ```sh
-go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.11
+go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.12
 ```
 
 ## Usage
@@ -87,6 +87,11 @@ text, err := client.YouTube.Transcript(ctx, crawlora.Params{
 API failures return `*crawlora.Error` with HTTP status, API code, parsed body,
 raw body, and the underlying transport error when one exists.
 
+## Reference
+
+- [Operation reference](docs/operations.md)
+- [Usage recipes](docs/recipes.md)
+
 ## Examples
 
 Runnable examples live under `examples/`:
@@ -103,7 +108,7 @@ variables are not set.
 ## Versioning
 
 This SDK is currently released as Git beta tags. The moving `latest` tag tracks
-the current promoted beta, while explicit tags such as `v1.2.0-sdk.11` remain
+the current promoted beta, while explicit tags such as `v1.2.0-sdk.12` remain
 available for reproducible builds. Pin an explicit tag in production
 applications and upgrade intentionally.
 

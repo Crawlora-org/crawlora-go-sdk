@@ -24,10 +24,9 @@ func main() {
 		return
 	}
 
-	format := "text"
 	result, err := client.YouTube.TranscriptTyped(
 		context.Background(),
-		crawlora.YouTubeTranscriptParams{Id: videoID, Format: &format},
+		crawlora.YouTubeTranscriptParams{Id: videoID, Format: crawlora.String("text")},
 		crawlora.WithResponseType(crawlora.ResponseText),
 	)
 	if err != nil {

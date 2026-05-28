@@ -64,6 +64,14 @@ def go_string_slice(values):
     return "[]string{" + ", ".join(go_string(v) for v in values) + "}"
 
 
+def md_escape(value):
+    return str(value).replace("|", "\\|").replace("\n", " ")
+
+
+def md_code(value):
+    return f"`{md_escape(value)}`"
+
+
 def enum_values(param):
     values = param.get("enum") or param.get("items", {}).get("enum") or []
     return [str(v) for v in values]
@@ -201,6 +209,63 @@ def operation_const_name(type_base):
     return "Operation" + type_base
 
 
+def param_doc(params):
+    if not params:
+        return "none"
+    entries = []
+    for param in params:
+        required = " required" if param.get("required") else ""
+        location = param.get("in", "param")
+        typ = go_type(param)
+        entries.append(f"{md_code(param['name'])} ({location} {typ}{required})")
+    return "<br>".join(entries)
+
+
+def auth_doc(security):
+    return ", ".join(md_code(item) for item in security) if security else "none"
+
+
+def operation_note(operation_id, operation):
+    produces = [str(item).lower() for item in operation.get("produces", [])]
+    if "text/plain" in produces or operation_id == "youtube-transcript":
+        return "Supports text response mode."
+    return ""
+
+
+def operation_docs(groups, methods_meta, operation_count):
+    lines = [
+        "# Crawlora Go SDK Operations",
+        "",
+        "Generated from `openapi/public.json`. Deprecated, admin, and internal operations are excluded from this SDK contract.",
+        "",
+        f"Total operations: `{operation_count}`",
+        "",
+        "| Group | SDK method | Operation ID | HTTP | Params | Auth | Response | Notes |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for group_name, methods in groups.items():
+        for method_name, operation_id in methods.items():
+            meta = methods_meta[operation_id]
+            lines.append(
+                "| "
+                + " | ".join(
+                    [
+                        md_escape(group_name),
+                        md_code(f"{group_name}.{method_name}"),
+                        md_code(operation_id),
+                        md_code(f"{meta['method']} {meta['path']}"),
+                        param_doc(meta["params"]),
+                        auth_doc(meta["security"]),
+                        md_code(meta["type_base"] + "Response"),
+                        md_escape(meta["note"]),
+                    ]
+                )
+                + " |"
+            )
+    lines.append("")
+    return "\n".join(lines)
+
+
 def operation_params(operation):
     return [
         p
@@ -262,6 +327,7 @@ def main():
 
     operations = {}
     typed_operations = {}
+    methods_meta = {}
     groups = {}
     used_by_group = {}
     for path, methods in sorted(spec["paths"].items()):
@@ -278,6 +344,14 @@ def main():
                 "type_base": group_name + method_name,
                 "params": operation_params(operation),
                 "response_type": response_type(operation),
+            }
+            methods_meta[operation_id] = {
+                "type_base": group_name + method_name,
+                "method": method.upper(),
+                "path": path,
+                "params": operation_params(operation),
+                "security": [key for req in operation.get("security", []) for key in req.keys()],
+                "note": operation_note(operation_id, operation),
             }
 
     lines = [
@@ -354,6 +428,10 @@ def main():
             lines.append("}")
             lines.append("")
     (ROOT / "operations_generated.go").write_text("\n".join(lines))
+    (ROOT / "docs").mkdir(exist_ok=True)
+    (ROOT / "docs" / "operations.md").write_text(
+        operation_docs(groups, methods_meta, sum(len(methods) for methods in spec["paths"].values()))
+    )
 
 
 if __name__ == "__main__":

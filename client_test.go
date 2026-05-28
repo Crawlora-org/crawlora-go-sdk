@@ -7,6 +7,7 @@ import (
 	"errors"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"strings"
 	"testing"
 )
@@ -319,6 +320,32 @@ func TestOperationMetadataCount(t *testing.T) {
 func TestDeprecatedEndpointsAreNotGenerated(t *testing.T) {
 	if _, ok := operations["google-lens"]; ok {
 		t.Fatal("google-lens should not be generated")
+	}
+}
+
+func TestDocsCoverOperationsAndRecipes(t *testing.T) {
+	operationsDoc, err := os.ReadFile("docs/operations.md")
+	if err != nil {
+		t.Fatalf("read operations docs: %v", err)
+	}
+	recipesDoc, err := os.ReadFile("docs/recipes.md")
+	if err != nil {
+		t.Fatalf("read recipes docs: %v", err)
+	}
+	operationsText := string(operationsDoc)
+	recipesText := string(recipesDoc)
+	for _, want := range []string{"Total operations: `303`", "`bing-search`", "`GET /bing/search`", "`Bing.Search`", "`BingSearchResponse`"} {
+		if !strings.Contains(operationsText, want) {
+			t.Fatalf("operations docs missing %q", want)
+		}
+	}
+	if strings.Contains(operationsText, "google-lens") || strings.Contains(strings.ToLower(operationsText), "deprecated") && strings.Contains(operationsText, "`google-lens`") {
+		t.Fatal("operations docs should not include deprecated google-lens")
+	}
+	for _, want := range []string{"RequestTyped", "OperationBingSearch", "WithResponseType", "Crawlora Go SDK Recipes"} {
+		if !strings.Contains(recipesText, want) {
+			t.Fatalf("recipes docs missing %q", want)
+		}
 	}
 }
 

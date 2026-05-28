@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.2.0-sdk.12
+
+- Added generated public operation reference docs and usage recipes.
+- Refreshed examples and README links for typed dynamic operation calls.
+
 ## v1.2.0-sdk.11
 
 - Added generated operation id constants and a public generic `RequestTyped`
