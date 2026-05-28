@@ -106,7 +106,10 @@ client := crawlora.NewClient(
 )
 ```
 
-Per-request options can override headers, timeout, and response mode:
+Per-request options can override headers, timeout, and response mode. Header
+names are matched case-insensitively, so request headers can override default
+auth, user-agent, and content headers without duplicating variants such as
+`x-api-key` and `X-API-KEY`:
 
 ```go
 response, err := client.Bing.Search(
@@ -119,8 +122,9 @@ response, err := client.Bing.Search(
 
 ## Text Responses
 
-Most endpoints return JSON. Endpoints that support alternate text output, such
-as YouTube transcripts, can opt into text mode:
+Most endpoints return JSON. Response mode must be `crawlora.ResponseAuto`,
+`crawlora.ResponseJSON`, or `crawlora.ResponseText`. Endpoints that support
+alternate text output, such as YouTube transcripts, can opt into text mode:
 
 ```go
 transcript, err := client.YouTube.Transcript(
@@ -145,7 +149,10 @@ if errors.As(err, &apiErr) {
 ```
 
 The error includes HTTP `Status`, optional API `Code`, parsed `Body`, `RawBody`,
-and the underlying parser or transport error when available.
+response `Headers`, and the underlying parser or transport error when
+available. Retryable responses honor positive `Retry-After` headers, capped at
+30 seconds. Context cancellation and deadline errors are returned directly so
+callers can match them with `errors.Is`.
 
 ## Examples
 

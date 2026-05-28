@@ -52,7 +52,14 @@ result, err := client.Bing.Search(
 )
 ```
 
+Request headers override default auth, user-agent, and content headers
+case-insensitively. Retryable API responses honor positive `Retry-After`
+headers, capped at 30 seconds.
+
 ## Text Responses
+
+Response mode must be `crawlora.ResponseAuto`, `crawlora.ResponseJSON`, or
+`crawlora.ResponseText`.
 
 ```go
 text, err := client.YouTube.Transcript(
@@ -67,9 +74,12 @@ text, err := client.YouTube.Transcript(
 ```go
 var apiErr *crawlora.Error
 if errors.As(err, &apiErr) {
-    fmt.Println(apiErr.Status, apiErr.Code, apiErr.RawBody)
+    fmt.Println(apiErr.Status, apiErr.Code, apiErr.RawBody, apiErr.Headers)
 }
 ```
+
+Context cancellation and deadline errors are returned directly for
+`errors.Is` checks.
 
 ## Optional Live Smoke Tests
 

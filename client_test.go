@@ -445,7 +445,7 @@ func TestDocsCoverOperationsAndRecipes(t *testing.T) {
 	if strings.Contains(operationsText, "google-lens") || strings.Contains(strings.ToLower(operationsText), "deprecated") && strings.Contains(operationsText, "`google-lens`") {
 		t.Fatal("operations docs should not include deprecated google-lens")
 	}
-	for _, want := range []string{"RequestTyped", "OperationBingSearch", "WithResponseType", "Crawlora Go SDK Recipes"} {
+	for _, want := range []string{"RequestTyped", "OperationBingSearch", "WithResponseType", "Crawlora Go SDK Recipes", "Retry-After", "apiErr.Headers"} {
 		if !strings.Contains(recipesText, want) {
 			t.Fatalf("recipes docs missing %q", want)
 		}

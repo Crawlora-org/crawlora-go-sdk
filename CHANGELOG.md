@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.2.0-sdk.16
+
+- Documented response headers on SDK errors, case-insensitive header overrides,
+  strict response modes, `Retry-After` retries, and context cancellation
+  behavior.
+- Added docs coverage checks for the release-polish behavior.
+- Kept the generated operation contract unchanged.
+
 ## v1.2.0-sdk.15
 
 - Added strict response mode validation, response headers on SDK errors, and
