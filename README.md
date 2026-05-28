@@ -4,6 +4,12 @@ Git-installable beta SDK for the public Crawlora API.
 
 Website: [crawlora.net](https://crawlora.net)
 
+## Get an API Key
+
+Create or sign in to your Crawlora account at [crawlora.net](https://crawlora.net),
+then open the dashboard and create an API key. Set it as `CRAWLORA_API_KEY` in
+your environment before running the examples or using the SDK.
+
 ## Install
 
 ```sh
