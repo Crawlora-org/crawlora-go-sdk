@@ -14,12 +14,13 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"strconv"
 	"strings"
 	"time"
 )
 
 const DefaultBaseURL = "https://api.crawlora.net/api/v1"
-const Version = "1.2.0-sdk.14"
+const Version = "1.2.0-sdk.15"
 
 const (
 	ResponseAuto = "auto"
@@ -142,12 +143,14 @@ func isEmptyValue(value reflect.Value) bool {
 }
 
 type Error struct {
-	Status  int
-	Code    int
-	Message string
-	Body    any
-	RawBody string
-	Err     error
+	Status     int
+	Code       int
+	Message    string
+	Body       any
+	RawBody    string
+	Headers    http.Header
+	RetryAfter time.Duration
+	Err        error
 }
 
 func (e *Error) Error() string {
@@ -273,6 +276,9 @@ func (c *Client) Request(ctx context.Context, operationID string, params Params,
 	for _, opt := range opts {
 		opt(&cfg)
 	}
+	if err := validateResponseType(cfg.ResponseType); err != nil {
+		return nil, err
+	}
 	if cfg.Timeout > 0 {
 		var cancel context.CancelFunc
 		ctx, cancel = context.WithTimeout(ctx, cfg.Timeout)
@@ -288,7 +294,7 @@ func (c *Client) Request(ctx context.Context, operationID string, params Params,
 		if !isRetryableError(err) || attempt == c.Retries {
 			break
 		}
-		if err := sleepBeforeRetry(ctx, c.retryDelay(attempt)); err != nil {
+		if err := sleepBeforeRetry(ctx, c.retryDelayForError(err, attempt)); err != nil {
 			return nil, err
 		}
 	}
@@ -338,13 +344,16 @@ func (c *Client) send(ctx context.Context, operation operationDefinition, params
 
 	resp, err := c.HTTPClient.Do(req)
 	if err != nil {
+		if errors.Is(err, context.Canceled) || errors.Is(err, context.DeadlineExceeded) {
+			return nil, err
+		}
 		return nil, &Error{Message: "crawlora transport error", Err: err}
 	}
 	defer resp.Body.Close()
 
 	responseBody, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return nil, &Error{Message: "crawlora response read error", Err: err}
+		return nil, &Error{Message: "crawlora response read error", Headers: resp.Header.Clone(), Err: err}
 	}
 	parsed, parseErr := parseResponse(responseBody, resp.Header.Get("content-type"), cfg.ResponseType)
 	if parseErr != nil {
@@ -352,11 +361,18 @@ func (c *Client) send(ctx context.Context, operation operationDefinition, params
 			Status:  resp.StatusCode,
 			Message: "crawlora JSON parse error",
 			RawBody: string(responseBody),
+			Headers: resp.Header.Clone(),
 			Err:     parseErr,
 		}
 	}
 	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
-		apiErr := &Error{Status: resp.StatusCode, Body: parsed, RawBody: string(responseBody)}
+		apiErr := &Error{
+			Status:     resp.StatusCode,
+			Body:       parsed,
+			RawBody:    string(responseBody),
+			Headers:    resp.Header.Clone(),
+			RetryAfter: retryAfterDelay(resp.Header),
+		}
 		if body, ok := parsed.(map[string]any); ok {
 			if code, ok := body["code"].(float64); ok {
 				apiErr.Code = int(code)
@@ -573,6 +589,15 @@ func parseResponse(body []byte, contentType string, responseType string) (any, e
 	return string(body), nil
 }
 
+func validateResponseType(responseType string) error {
+	switch responseType {
+	case ResponseAuto, ResponseJSON, ResponseText:
+		return nil
+	default:
+		return fmt.Errorf("invalid response type: expected one of auto, json, text")
+	}
+}
+
 func shouldRetry(status int) bool {
 	return status == 408 || status == 409 || status == 425 || status == 429 || status >= 500
 }
@@ -604,6 +629,38 @@ func (c *Client) retryDelay(attempt int) time.Duration {
 	}
 	jitter := time.Duration(rand.Int63n(jitterMax))
 	return delay + jitter
+}
+
+func (c *Client) retryDelayForError(err error, attempt int) time.Duration {
+	var apiErr *Error
+	if errors.As(err, &apiErr) && apiErr.RetryAfter > 0 {
+		return apiErr.RetryAfter
+	}
+	return c.retryDelay(attempt)
+}
+
+func retryAfterDelay(headers http.Header) time.Duration {
+	value := headers.Get("Retry-After")
+	if value == "" {
+		return 0
+	}
+	if seconds, err := strconv.ParseFloat(value, 64); err == nil && seconds > 0 {
+		return minDuration(time.Duration(seconds*float64(time.Second)), 30*time.Second)
+	}
+	if target, err := http.ParseTime(value); err == nil {
+		delay := time.Until(target)
+		if delay > 0 {
+			return minDuration(delay, 30*time.Second)
+		}
+	}
+	return 0
+}
+
+func minDuration(a, b time.Duration) time.Duration {
+	if a < b {
+		return a
+	}
+	return b
 }
 
 func sleepBeforeRetry(ctx context.Context, delay time.Duration) error {

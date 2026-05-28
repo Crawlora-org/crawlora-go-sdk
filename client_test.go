@@ -10,6 +10,7 @@ import (
 	"os"
 	"strings"
 	"testing"
+	"time"
 )
 
 func TestAPIKeyAuthAndQueryParams(t *testing.T) {
@@ -190,9 +191,11 @@ func TestRequestOptionsHeadersAndUserAgent(t *testing.T) {
 
 func TestRequestHeadersOverrideDefaultAuthAndContentHeaders(t *testing.T) {
 	var gotKey, gotContentType string
+	var gotHeader http.Header
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		gotKey = r.Header.Get("x-api-key")
 		gotContentType = r.Header.Get("content-type")
+		gotHeader = r.Header.Clone()
 		w.Header().Set("content-type", "application/json")
 		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{}})
 	}))
@@ -200,8 +203,8 @@ func TestRequestHeadersOverrideDefaultAuthAndContentHeaders(t *testing.T) {
 
 	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_default"))
 	_, err := client.Google.Search(context.Background(), Params{"searchOption": Params{"q": "coffee"}},
-		WithRequestHeader("x-api-key", "api_request"),
-		WithRequestHeader("content-type", "application/custom+json"),
+		WithRequestHeader("X-API-KEY", "api_request"),
+		WithRequestHeader("Content-Type", "application/custom+json"),
 	)
 	if err != nil {
 		t.Fatalf("search: %v", err)
@@ -211,6 +214,31 @@ func TestRequestHeadersOverrideDefaultAuthAndContentHeaders(t *testing.T) {
 	}
 	if gotContentType != "application/custom+json" {
 		t.Fatalf("content-type = %q", gotContentType)
+	}
+	if len(gotHeader.Values("x-api-key")) != 1 {
+		t.Fatalf("x-api-key values = %#v", gotHeader.Values("x-api-key"))
+	}
+	if len(gotHeader.Values("content-type")) != 1 {
+		t.Fatalf("content-type values = %#v", gotHeader.Values("content-type"))
+	}
+}
+
+func TestInvalidResponseTypeFailsBeforeRequest(t *testing.T) {
+	calls := 0
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		calls++
+		w.Header().Set("content-type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{}})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
+	_, err := client.Bing.Search(context.Background(), Params{"q": "coffee"}, WithResponseType("xml"))
+	if err == nil || !strings.Contains(err.Error(), "invalid response type: expected one of auto, json, text") {
+		t.Fatalf("response type error = %v", err)
+	}
+	if calls != 0 {
+		t.Fatalf("network calls = %d", calls)
 	}
 }
 
@@ -285,6 +313,9 @@ func TestAPIErrorIncludesStatusCodeAndBody(t *testing.T) {
 	if apiErr.Status != http.StatusTooManyRequests || apiErr.Code != 429 || apiErr.Error() != "rate limited" {
 		t.Fatalf("unexpected error %#v", apiErr)
 	}
+	if apiErr.Headers.Get("content-type") != "application/json" {
+		t.Fatalf("content-type header = %q", apiErr.Headers.Get("content-type"))
+	}
 	if apiErr.RawBody == "" {
 		t.Fatal("expected raw body")
 	}
@@ -305,6 +336,9 @@ func TestInvalidJSONResponseIsWrapped(t *testing.T) {
 	}
 	if apiErr.Status != http.StatusOK || apiErr.Error() != "crawlora JSON parse error" || apiErr.Err == nil {
 		t.Fatalf("unexpected parse error %#v", apiErr)
+	}
+	if apiErr.Headers.Get("content-type") != "application/json" {
+		t.Fatalf("content-type header = %q", apiErr.Headers.Get("content-type"))
 	}
 	if apiErr.RawBody != "{not-json" {
 		t.Fatalf("raw body = %q", apiErr.RawBody)
@@ -331,6 +365,49 @@ func TestRetriesRetryableStatus(t *testing.T) {
 	}
 	if calls != 2 {
 		t.Fatalf("calls = %d", calls)
+	}
+}
+
+func TestRetryDelayHonorsRetryAfterHeader(t *testing.T) {
+	calls := 0
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		calls++
+		w.Header().Set("content-type", "application/json")
+		if calls == 1 {
+			w.Header().Set("Retry-After", "0.001")
+			w.WriteHeader(http.StatusTooManyRequests)
+			_ = json.NewEncoder(w).Encode(map[string]any{"code": 429, "msg": "slow down"})
+			return
+		}
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{"ok": true}})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"), WithRetries(1), WithRetryDelay(time.Hour))
+	start := time.Now()
+	if _, err := client.Bing.Search(context.Background(), Params{"q": "coffee"}); err != nil {
+		t.Fatalf("search: %v", err)
+	}
+	if calls != 2 {
+		t.Fatalf("calls = %d", calls)
+	}
+	if elapsed := time.Since(start); elapsed > 500*time.Millisecond {
+		t.Fatalf("retry-after delay took too long: %v", elapsed)
+	}
+}
+
+func TestContextCancellationIsPreserved(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		t.Fatal("request should not reach server")
+	}))
+	defer server.Close()
+
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel()
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"), WithRetries(1))
+	_, err := client.Bing.Search(ctx, Params{"q": "coffee"})
+	if !errors.Is(err, context.Canceled) {
+		t.Fatalf("expected context.Canceled, got %T %v", err, err)
 	}
 }
 

@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.2.0-sdk.15
+
+- Added strict response mode validation, response headers on SDK errors, and
+  `Retry-After` aware retry delays capped at 30 seconds.
+- Added coverage for case-insensitive request header overrides across auth and
+  content headers.
+- Preserved context cancellation and deadline errors instead of wrapping them as
+  transport failures.
+
 ## v1.2.0-sdk.14
 
 - Aligned the promoted SDK beta tag with the JavaScript and Python SDKs.
