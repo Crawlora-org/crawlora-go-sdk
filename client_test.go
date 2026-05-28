@@ -188,6 +188,32 @@ func TestRequestOptionsHeadersAndUserAgent(t *testing.T) {
 	}
 }
 
+func TestRequestHeadersOverrideDefaultAuthAndContentHeaders(t *testing.T) {
+	var gotKey, gotContentType string
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		gotKey = r.Header.Get("x-api-key")
+		gotContentType = r.Header.Get("content-type")
+		w.Header().Set("content-type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{}})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_default"))
+	_, err := client.Google.Search(context.Background(), Params{"searchOption": Params{"q": "coffee"}},
+		WithRequestHeader("x-api-key", "api_request"),
+		WithRequestHeader("content-type", "application/custom+json"),
+	)
+	if err != nil {
+		t.Fatalf("search: %v", err)
+	}
+	if gotKey != "api_request" {
+		t.Fatalf("x-api-key = %q", gotKey)
+	}
+	if gotContentType != "application/custom+json" {
+		t.Fatalf("content-type = %q", gotContentType)
+	}
+}
+
 func TestQuerySerializationKeepsFalseZero(t *testing.T) {
 	var gotQuery string
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

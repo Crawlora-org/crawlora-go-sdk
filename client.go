@@ -19,7 +19,7 @@ import (
 )
 
 const DefaultBaseURL = "https://api.crawlora.net/api/v1"
-const Version = "1.2.0-sdk.12"
+const Version = "1.2.0-sdk.14"
 
 const (
 	ResponseAuto = "auto"
@@ -310,9 +310,6 @@ func (c *Client) send(ctx context.Context, operation operationDefinition, params
 	for key, value := range c.Headers {
 		req.Header.Set(key, value)
 	}
-	for key, value := range cfg.Headers {
-		req.Header.Set(key, value)
-	}
 	if contentType != "" {
 		req.Header.Set("content-type", contentType)
 	}
@@ -334,6 +331,9 @@ func (c *Client) send(ctx context.Context, operation operationDefinition, params
 				req.Header.Set("Authorization", token)
 			}
 		}
+	}
+	for key, value := range cfg.Headers {
+		req.Header.Set(key, value)
 	}
 
 	resp, err := c.HTTPClient.Do(req)

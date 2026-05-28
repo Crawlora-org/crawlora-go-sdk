@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.2.0-sdk.14
+
+- Aligned the promoted SDK beta tag with the JavaScript and Python SDKs.
+- Let request-level headers override generated auth and content headers.
+
 ## v1.2.0-sdk.12
 
 - Added generated public operation reference docs and usage recipes.
