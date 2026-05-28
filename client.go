@@ -19,7 +19,7 @@ import (
 )
 
 const DefaultBaseURL = "https://api.crawlora.net/api/v1"
-const Version = "1.2.0-sdk.10"
+const Version = "1.2.0-sdk.11"
 
 const (
 	ResponseAuto = "auto"
@@ -96,6 +96,22 @@ func paramsFromStruct(input any) Params {
 		}
 	}
 	return params
+}
+
+func String(value string) *string {
+	return &value
+}
+
+func Int(value int) *int {
+	return &value
+}
+
+func Bool(value bool) *bool {
+	return &value
+}
+
+func Float64(value float64) *float64 {
+	return &value
 }
 
 func tagHasOption(parts []string, option string) bool {
@@ -225,6 +241,10 @@ func WithRequestTimeout(timeout time.Duration) RequestOption {
 
 func (c *Client) Operation(ctx context.Context, operationID string, params Params, opts ...RequestOption) (any, error) {
 	return c.Request(ctx, operationID, params, opts...)
+}
+
+func RequestTyped[T any](c *Client, ctx context.Context, operationID string, params Params, opts ...RequestOption) (T, error) {
+	return requestTyped[T](c, ctx, operationID, params, opts...)
 }
 
 func requestTyped[T any](c *Client, ctx context.Context, operationID string, params Params, opts ...RequestOption) (T, error) {

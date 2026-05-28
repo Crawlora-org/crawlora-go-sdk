@@ -13,7 +13,7 @@ go get github.com/Crawlora-org/crawlora-go-sdk@latest
 For reproducible builds, pin the current beta release tag:
 
 ```sh
-go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.10
+go get github.com/Crawlora-org/crawlora-go-sdk@v1.2.0-sdk.11
 ```
 
 ## Usage
@@ -45,11 +45,22 @@ func main() {
 Typed endpoint variants are generated for every operation:
 
 ```go
-count := 10
 result, err := client.Bing.SearchTyped(ctx, crawlora.BingSearchParams{
     Q:     "coffee shops",
-    Count: &count,
+    Count: crawlora.Int(10),
 })
+```
+
+Dynamic operation calls can also use generated operation constants with typed
+response decoding:
+
+```go
+result, err := crawlora.RequestTyped[crawlora.BingSearchResponse](
+    client,
+    ctx,
+    crawlora.OperationBingSearch,
+    crawlora.Params{"q": "coffee shops"},
+)
 ```
 
 ## Configuration
@@ -92,7 +103,7 @@ variables are not set.
 ## Versioning
 
 This SDK is currently released as Git beta tags. The moving `latest` tag tracks
-the current promoted beta, while explicit tags such as `v1.2.0-sdk.10` remain
+the current promoted beta, while explicit tags such as `v1.2.0-sdk.11` remain
 available for reproducible builds. Pin an explicit tag in production
 applications and upgrade intentionally.
 

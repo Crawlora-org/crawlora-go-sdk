@@ -331,11 +331,10 @@ func TestTypedEndpointQueryParams(t *testing.T) {
 	}))
 	defer server.Close()
 
-	count := 0
 	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
 	if _, err := client.Bing.SearchTyped(context.Background(), BingSearchParams{
 		Q:     "coffee",
-		Count: &count,
+		Count: Int(0),
 	}); err != nil {
 		t.Fatalf("typed search: %v", err)
 	}
@@ -363,6 +362,46 @@ func TestTypedEndpointResponseStruct(t *testing.T) {
 	out, err := client.Bing.SearchTyped(context.Background(), BingSearchParams{Q: "coffee"})
 	if err != nil {
 		t.Fatalf("typed search: %v", err)
+	}
+	if out.Data.Results[0].Title != "Coffee result" {
+		t.Fatalf("typed title = %q", out.Data.Results[0].Title)
+	}
+}
+
+func TestPointerHelpers(t *testing.T) {
+	if *String("coffee") != "coffee" {
+		t.Fatal("String helper returned wrong value")
+	}
+	if *Int(3) != 3 {
+		t.Fatal("Int helper returned wrong value")
+	}
+	if *Bool(false) != false {
+		t.Fatal("Bool helper returned wrong value")
+	}
+	if *Float64(1.25) != 1.25 {
+		t.Fatal("Float64 helper returned wrong value")
+	}
+}
+
+func TestRequestTypedHelperAndOperationConstant(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("content-type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]any{
+			"code": 200,
+			"msg":  "OK",
+			"data": map[string]any{
+				"results": []map[string]any{
+					{"title": "Coffee result"},
+				},
+			},
+		})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
+	out, err := RequestTyped[BingSearchResponse](client, context.Background(), OperationBingSearch, Params{"q": "coffee"})
+	if err != nil {
+		t.Fatalf("request typed: %v", err)
 	}
 	if out.Data.Results[0].Title != "Coffee result" {
 		t.Fatalf("typed title = %q", out.Data.Results[0].Title)

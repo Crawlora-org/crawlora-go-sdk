@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.2.0-sdk.11
+
+- Added generated operation id constants and a public generic `RequestTyped`
+  helper for typed dynamic calls.
+- Added small pointer helpers for typed optional params such as
+  `crawlora.Int(10)`.
+
 ## v1.2.0-sdk.10
 
 - Generated OpenAPI schema model structs for typed endpoint responses and body

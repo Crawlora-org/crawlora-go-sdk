@@ -197,6 +197,10 @@ def definition(method, path, operation):
     )
 
 
+def operation_const_name(type_base):
+    return "Operation" + type_base
+
+
 def operation_params(operation):
     return [
         p
@@ -308,8 +312,15 @@ def main():
         *model_definitions(spec.get("definitions", {})),
         f"const operationCount = {sum(len(methods) for methods in spec['paths'].values())}",
         "",
-        "var operations = map[string]operationDefinition{",
+        "const (",
     ]
+    for operation_id, meta in sorted(typed_operations.items(), key=lambda item: item[1]["type_base"]):
+        lines.append(f"\t{operation_const_name(meta['type_base'])} = {go_string(operation_id)}")
+    lines.extend([
+        ")",
+        "",
+        "var operations = map[string]operationDefinition{",
+    ])
     for operation_id, body in operations.items():
         lines.append(f"\t{go_string(operation_id)}: {body},")
     lines.extend(["}", "", "type Services struct {"])
