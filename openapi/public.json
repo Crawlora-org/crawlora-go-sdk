@@ -1313,207 +1313,6 @@
       },
       "type": "object"
     },
-    "billing.adminPlanChangeRequestDoc": {
-      "properties": {
-        "currency": {
-          "example": "usd",
-          "type": "string"
-        },
-        "monthly_price_cents": {
-          "example": 129900,
-          "type": "integer"
-        },
-        "plan": {
-          "example": "Pro",
-          "type": "string"
-        }
-      },
-      "required": [
-        "plan"
-      ],
-      "type": "object"
-    },
-    "billing.adminPlanChangeResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "$ref": "#/definitions/billing.billingSnapshotDoc"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingConsistencyEndpointBreakdownDoc": {
-      "properties": {
-        "actual_credits": {
-          "example": 990,
-          "type": "integer"
-        },
-        "actual_overage": {
-          "example": 90,
-          "type": "integer"
-        },
-        "endpoint": {
-          "example": "google/search",
-          "type": "string"
-        },
-        "expected_credits": {
-          "example": 1000,
-          "type": "integer"
-        },
-        "expected_overage": {
-          "example": 100,
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingConsistencyIssueDoc": {
-      "properties": {
-        "actual_credits": {
-          "example": 990,
-          "type": "integer"
-        },
-        "actual_overage": {
-          "example": 90,
-          "type": "integer"
-        },
-        "created_at": {
-          "example": "2026-05-01T00:15:00Z",
-          "type": "string"
-        },
-        "detail": {
-          "example": "closed period ledger has no frozen statement snapshot",
-          "type": "string"
-        },
-        "endpoint_breakdown": {
-          "items": {
-            "$ref": "#/definitions/billing.billingConsistencyEndpointBreakdownDoc"
-          },
-          "type": "array"
-        },
-        "expected_credits": {
-          "example": 1000,
-          "type": "integer"
-        },
-        "expected_overage": {
-          "example": 100,
-          "type": "integer"
-        },
-        "frozen_at": {
-          "example": "2026-05-01T00:15:00Z",
-          "type": "string"
-        },
-        "issue_id": {
-          "example": "5f6d2e4c9f7a8b01",
-          "type": "string"
-        },
-        "issue_type": {
-          "example": "closed_ledger_missing_snapshot",
-          "type": "string"
-        },
-        "period_key": {
-          "example": "2026-04",
-          "type": "string"
-        },
-        "repair_method": {
-          "example": "POST",
-          "type": "string"
-        },
-        "repair_path": {
-          "example": "/api/v1/admin/billing/users/user-1/periods/2026-04/statement/freeze",
-          "type": "string"
-        },
-        "request_id": {
-          "example": "req-1",
-          "type": "string"
-        },
-        "severity": {
-          "example": "error",
-          "type": "string"
-        },
-        "source_updated_at": {
-          "example": "2026-05-01T02:15:00Z",
-          "type": "string"
-        },
-        "statement_id": {
-          "example": "bps:user-1:2026-04:1",
-          "type": "string"
-        },
-        "stripe_invoice_id": {
-          "example": "in_123",
-          "type": "string"
-        },
-        "suggested_action": {
-          "example": "freeze_statement",
-          "type": "string"
-        },
-        "user_id": {
-          "example": "user-1",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingConsistencyReportDoc": {
-      "properties": {
-        "checked_from": {
-          "example": "2026-04-01T00:00:00Z",
-          "type": "string"
-        },
-        "checked_to": {
-          "example": "2026-04-30T23:59:59Z",
-          "type": "string"
-        },
-        "counts_by_severity": {
-          "additionalProperties": {
-            "format": "int64",
-            "type": "integer"
-          },
-          "type": "object"
-        },
-        "counts_by_type": {
-          "additionalProperties": {
-            "format": "int64",
-            "type": "integer"
-          },
-          "type": "object"
-        },
-        "generated_at": {
-          "example": "2026-05-01T00:15:00Z",
-          "type": "string"
-        },
-        "issues": {
-          "items": {
-            "$ref": "#/definitions/billing.billingConsistencyIssueDoc"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingConsistencyResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "$ref": "#/definitions/billing.billingConsistencyReportDoc"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "billing.billingEndpointLedgerDoc": {
       "properties": {
         "charged_requests": {
@@ -1659,446 +1458,6 @@
             "$ref": "#/definitions/billing.billingEventDoc"
           },
           "type": "array"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingFinanceAgingBucketDoc": {
-      "properties": {
-        "amount_remaining_cents": {
-          "example": 7800,
-          "type": "integer"
-        },
-        "bucket": {
-          "example": "0-30",
-          "type": "string"
-        },
-        "invoice_count": {
-          "example": 8,
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingFinanceAgingResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "items": {
-            "$ref": "#/definitions/billing.billingFinanceAgingBucketDoc"
-          },
-          "type": "array"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingFinanceOverviewDoc": {
-      "properties": {
-        "active_customers": {
-          "example": 10,
-          "type": "integer"
-        },
-        "at_risk_mrr_cents": {
-          "example": 20800,
-          "type": "integer"
-        },
-        "booked_expected_total_cents": {
-          "example": 121900,
-          "type": "integer"
-        },
-        "booked_overage_cents": {
-          "example": 3200,
-          "type": "integer"
-        },
-        "booked_subscription_cents": {
-          "example": 118700,
-          "type": "integer"
-        },
-        "cash_collected_cents": {
-          "example": 114100,
-          "type": "integer"
-        },
-        "currency": {
-          "example": "usd",
-          "type": "string"
-        },
-        "current_outstanding_ar_cents": {
-          "example": 7800,
-          "type": "integer"
-        },
-        "grace_period_customers": {
-          "example": 1,
-          "type": "integer"
-        },
-        "invoice_count": {
-          "example": 15,
-          "type": "integer"
-        },
-        "invoiced_amount_due_cents": {
-          "example": 121900,
-          "type": "integer"
-        },
-        "mismatch_invoice_count": {
-          "example": 0,
-          "type": "integer"
-        },
-        "mismatch_total_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "mrr_cents": {
-          "example": 118700,
-          "type": "integer"
-        },
-        "paid_invoice_count": {
-          "example": 13,
-          "type": "integer"
-        },
-        "past_due_customers": {
-          "example": 1,
-          "type": "integer"
-        },
-        "payment_failed_invoice_count": {
-          "example": 1,
-          "type": "integer"
-        },
-        "plan_breakdown": {
-          "items": {
-            "$ref": "#/definitions/billing.billingFinancePlanBreakdownDoc"
-          },
-          "type": "array"
-        },
-        "stripe_actual_credit_note_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "stripe_actual_discount_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "stripe_actual_net_cash_cents": {
-          "example": 114100,
-          "type": "integer"
-        },
-        "stripe_actual_refund_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "stripe_actual_tax_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "stripe_actual_total_cents": {
-          "example": 121900,
-          "type": "integer"
-        },
-        "uncollectible_invoice_count": {
-          "example": 0,
-          "type": "integer"
-        },
-        "voided_invoice_count": {
-          "example": 0,
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingFinanceOverviewResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "$ref": "#/definitions/billing.billingFinanceOverviewDoc"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingFinancePeriodItemDoc": {
-      "properties": {
-        "amount_paid_cents": {
-          "example": 90200,
-          "type": "integer"
-        },
-        "amount_remaining_cents": {
-          "example": 7800,
-          "type": "integer"
-        },
-        "customers": {
-          "example": 12,
-          "type": "integer"
-        },
-        "expected_total_amount_cents": {
-          "example": 98000,
-          "type": "integer"
-        },
-        "invoice_amount_due_cents": {
-          "example": 98000,
-          "type": "integer"
-        },
-        "invoice_count": {
-          "example": 12,
-          "type": "integer"
-        },
-        "mismatch_invoice_count": {
-          "example": 0,
-          "type": "integer"
-        },
-        "mismatch_total_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "overage_amount_cents": {
-          "example": 3200,
-          "type": "integer"
-        },
-        "paid_invoice_count": {
-          "example": 10,
-          "type": "integer"
-        },
-        "payment_failed_invoice_count": {
-          "example": 1,
-          "type": "integer"
-        },
-        "period_key": {
-          "example": "2026-04",
-          "type": "string"
-        },
-        "stripe_actual_credit_note_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "stripe_actual_discount_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "stripe_actual_net_cash_cents": {
-          "example": 90200,
-          "type": "integer"
-        },
-        "stripe_actual_refund_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "stripe_actual_tax_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "stripe_actual_total_cents": {
-          "example": 98000,
-          "type": "integer"
-        },
-        "subscription_amount_cents": {
-          "example": 94800,
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingFinancePeriodsResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "items": {
-            "$ref": "#/definitions/billing.billingFinancePeriodItemDoc"
-          },
-          "type": "array"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingFinancePlanBreakdownDoc": {
-      "properties": {
-        "active_customers": {
-          "example": 10,
-          "type": "integer"
-        },
-        "at_risk_mrr_cents": {
-          "example": 15800,
-          "type": "integer"
-        },
-        "booked_expected_total_cents": {
-          "example": 98000,
-          "type": "integer"
-        },
-        "booked_overage_cents": {
-          "example": 3200,
-          "type": "integer"
-        },
-        "booked_subscription_cents": {
-          "example": 94800,
-          "type": "integer"
-        },
-        "cash_collected_cents": {
-          "example": 90200,
-          "type": "integer"
-        },
-        "current_outstanding_ar_cents": {
-          "example": 7800,
-          "type": "integer"
-        },
-        "customers": {
-          "example": 12,
-          "type": "integer"
-        },
-        "grace_period_customers": {
-          "example": 1,
-          "type": "integer"
-        },
-        "invoice_count": {
-          "example": 12,
-          "type": "integer"
-        },
-        "invoiced_amount_due_cents": {
-          "example": 98000,
-          "type": "integer"
-        },
-        "mismatch_invoice_count": {
-          "example": 0,
-          "type": "integer"
-        },
-        "mismatch_total_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "mrr_cents": {
-          "example": 94800,
-          "type": "integer"
-        },
-        "paid_invoice_count": {
-          "example": 10,
-          "type": "integer"
-        },
-        "past_due_customers": {
-          "example": 1,
-          "type": "integer"
-        },
-        "payment_failed_invoice_count": {
-          "example": 1,
-          "type": "integer"
-        },
-        "plan": {
-          "example": "Pro",
-          "type": "string"
-        },
-        "stripe_actual_credit_note_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "stripe_actual_discount_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "stripe_actual_net_cash_cents": {
-          "example": 90200,
-          "type": "integer"
-        },
-        "stripe_actual_refund_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "stripe_actual_tax_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "stripe_actual_total_cents": {
-          "example": 98000,
-          "type": "integer"
-        },
-        "uncollectible_invoice_count": {
-          "example": 0,
-          "type": "integer"
-        },
-        "voided_invoice_count": {
-          "example": 0,
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingPeriodCloseErrorDoc": {
-      "properties": {
-        "error": {
-          "example": "upsert billing period ledger: connection reset",
-          "type": "string"
-        },
-        "period_key": {
-          "example": "2026-04",
-          "type": "string"
-        },
-        "user_id": {
-          "example": "user-1",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingPeriodCloseSummaryDoc": {
-      "properties": {
-        "closed": {
-          "example": 498,
-          "type": "integer"
-        },
-        "errors": {
-          "items": {
-            "$ref": "#/definitions/billing.billingPeriodCloseErrorDoc"
-          },
-          "type": "array"
-        },
-        "failed": {
-          "example": 1,
-          "type": "integer"
-        },
-        "scanned": {
-          "example": 500,
-          "type": "integer"
-        },
-        "skipped": {
-          "example": 1,
-          "type": "integer"
-        },
-        "snapshot_skipped": {
-          "example": 1,
-          "type": "integer"
-        },
-        "snapshots_created": {
-          "example": 498,
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingPeriodCloseSummaryResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "$ref": "#/definitions/billing.billingPeriodCloseSummaryDoc"
         },
         "msg": {
           "example": "OK",
@@ -2503,240 +1862,6 @@
       },
       "type": "object"
     },
-    "billing.billingPeriodStatementSnapshotSummaryDoc": {
-      "properties": {
-        "adjustment_event_count": {
-          "example": 1,
-          "type": "integer"
-        },
-        "canonical_json_sha256": {
-          "example": "7f83b1657ff1fc53b92dc18148a1d65dfa1355e5545b1e8d2b0e9f8c9e48a5d8",
-          "type": "string"
-        },
-        "event_count": {
-          "example": 100,
-          "type": "integer"
-        },
-        "frozen_at": {
-          "example": "2026-05-01T02:00:00Z",
-          "type": "string"
-        },
-        "generated_at": {
-          "example": "2026-05-01T02:00:00Z",
-          "type": "string"
-        },
-        "generated_by": {
-          "example": "admin-1",
-          "type": "string"
-        },
-        "invoice_event_count": {
-          "example": 3,
-          "type": "integer"
-        },
-        "period_key": {
-          "example": "2026-04",
-          "type": "string"
-        },
-        "plan": {
-          "example": "Pro",
-          "type": "string"
-        },
-        "revision": {
-          "example": 1,
-          "type": "integer"
-        },
-        "source_ledger_updated_at": {
-          "example": "2026-05-01T00:15:00Z",
-          "type": "string"
-        },
-        "source_snapshot_updated_at": {
-          "example": "2026-05-01T01:01:00Z",
-          "type": "string"
-        },
-        "statement_id": {
-          "example": "bps:user-1:2026-04:1",
-          "type": "string"
-        },
-        "statement_version": {
-          "example": "v1",
-          "type": "string"
-        },
-        "status": {
-          "example": "frozen",
-          "type": "string"
-        },
-        "user_id": {
-          "example": "user-1",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingPeriodStatementSnapshotsResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "items": {
-            "$ref": "#/definitions/billing.billingPeriodStatementSnapshotSummaryDoc"
-          },
-          "type": "array"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingPeriodStatementVerificationDoc": {
-      "properties": {
-        "canonical_json_byte_count": {
-          "example": 12000,
-          "type": "integer"
-        },
-        "computed_sha256": {
-          "example": "7f83b1657ff1fc53b92dc18148a1d65dfa1355e5545b1e8d2b0e9f8c9e48a5d8",
-          "type": "string"
-        },
-        "frozen_at": {
-          "example": "2026-05-01T02:00:00Z",
-          "type": "string"
-        },
-        "period_key": {
-          "example": "2026-04",
-          "type": "string"
-        },
-        "revision": {
-          "example": 1,
-          "type": "integer"
-        },
-        "statement_id": {
-          "example": "bps:user-1:2026-04:1",
-          "type": "string"
-        },
-        "statement_version": {
-          "example": "v1",
-          "type": "string"
-        },
-        "stored_sha256": {
-          "example": "7f83b1657ff1fc53b92dc18148a1d65dfa1355e5545b1e8d2b0e9f8c9e48a5d8",
-          "type": "string"
-        },
-        "user_id": {
-          "example": "user-1",
-          "type": "string"
-        },
-        "valid": {
-          "example": true,
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingPeriodStatementVerificationResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "$ref": "#/definitions/billing.billingPeriodStatementVerificationDoc"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingSnapshotDoc": {
-      "properties": {
-        "allow_overage": {
-          "example": true,
-          "type": "boolean"
-        },
-        "credits_remaining": {
-          "example": 398750,
-          "type": "integer"
-        },
-        "credits_used": {
-          "example": 1250,
-          "type": "integer"
-        },
-        "currency": {
-          "example": "usd",
-          "type": "string"
-        },
-        "daily_credit_limit": {
-          "example": 25000,
-          "type": "integer"
-        },
-        "daily_credits_remaining": {
-          "example": 24100,
-          "type": "integer"
-        },
-        "daily_credits_used": {
-          "example": 900,
-          "type": "integer"
-        },
-        "daily_key": {
-          "example": "2026-04-16",
-          "type": "string"
-        },
-        "expected_subscription_amount_cents": {
-          "example": 7900,
-          "type": "integer"
-        },
-        "expected_total_amount_cents": {
-          "example": 7900,
-          "type": "integer"
-        },
-        "hard_limit": {
-          "example": false,
-          "type": "boolean"
-        },
-        "included_credits": {
-          "example": 400000,
-          "type": "integer"
-        },
-        "overage_credits": {
-          "example": 0,
-          "type": "integer"
-        },
-        "period_end": {
-          "example": "2026-05-01T00:00:00Z",
-          "type": "string"
-        },
-        "period_key": {
-          "example": "2026-04",
-          "type": "string"
-        },
-        "period_start": {
-          "example": "2026-04-01T00:00:00Z",
-          "type": "string"
-        },
-        "plan": {
-          "example": "Pro",
-          "type": "string"
-        },
-        "pricing_source": {
-          "example": "plan_default",
-          "type": "string"
-        },
-        "subscription_price_cents": {
-          "example": 7900,
-          "type": "integer"
-        },
-        "user_id": {
-          "example": "user-1",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "billing.billingStateDoc": {
       "properties": {
         "allow_overage": {
@@ -2956,29 +2081,6 @@
       },
       "type": "object"
     },
-    "billing.billingStatementAdminEvidenceDoc": {
-      "properties": {
-        "adjustment_events": {
-          "items": {
-            "$ref": "#/definitions/billing.billingStatementAdjustmentEvidenceDoc"
-          },
-          "type": "array"
-        },
-        "invoice": {
-          "$ref": "#/definitions/billing.billingStatementInvoiceEvidenceDoc"
-        },
-        "invoice_events": {
-          "items": {
-            "$ref": "#/definitions/billing.billingStatementInvoiceEventEvidenceDoc"
-          },
-          "type": "array"
-        },
-        "repair": {
-          "$ref": "#/definitions/billing.billingStatementRepairDoc"
-        }
-      },
-      "type": "object"
-    },
     "billing.billingStatementEventItemDoc": {
       "properties": {
         "billable": {
@@ -3012,23 +2114,6 @@
         "status_code": {
           "example": 200,
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingStatementEvidencePackDoc": {
-      "properties": {
-        "admin_evidence": {
-          "$ref": "#/definitions/billing.billingStatementAdminEvidenceDoc"
-        },
-        "customer_statement": {
-          "$ref": "#/definitions/billing.billingPeriodStatementDoc"
-        },
-        "snapshot": {
-          "$ref": "#/definitions/billing.billingPeriodStatementSnapshotSummaryDoc"
-        },
-        "verification": {
-          "$ref": "#/definitions/billing.billingPeriodStatementVerificationDoc"
         }
       },
       "type": "object"
@@ -3436,272 +2521,6 @@
       },
       "type": "object"
     },
-    "billing.billingSummaryItemDoc": {
-      "properties": {
-        "billable": {
-          "example": true,
-          "type": "boolean"
-        },
-        "charged_requests": {
-          "example": 1150,
-          "type": "integer"
-        },
-        "credits": {
-          "example": 3450,
-          "type": "integer"
-        },
-        "endpoint": {
-          "example": "google/search",
-          "type": "string"
-        },
-        "failed_requests": {
-          "example": 5,
-          "type": "integer"
-        },
-        "non_billable_requests": {
-          "example": 45,
-          "type": "integer"
-        },
-        "overage": {
-          "example": 0,
-          "type": "integer"
-        },
-        "plan": {
-          "example": "Pro",
-          "type": "string"
-        },
-        "requests": {
-          "example": 1200,
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "billing.billingSummaryResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "items": {
-            "$ref": "#/definitions/billing.billingSummaryItemDoc"
-          },
-          "type": "array"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeAdjustmentEventDoc": {
-      "properties": {
-        "amount_cents": {
-          "example": 500,
-          "type": "integer"
-        },
-        "charge_id": {
-          "example": "ch_123",
-          "type": "string"
-        },
-        "currency": {
-          "example": "usd",
-          "type": "string"
-        },
-        "error": {
-          "example": "",
-          "type": "string"
-        },
-        "event_created": {
-          "example": "2026-05-02T01:01:00Z",
-          "type": "string"
-        },
-        "event_id": {
-          "example": "evt_123",
-          "type": "string"
-        },
-        "event_type": {
-          "example": "credit_note.created",
-          "type": "string"
-        },
-        "invoice_payment_ids": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "kind": {
-          "example": "credit_note",
-          "type": "string"
-        },
-        "match_status": {
-          "example": "matched",
-          "type": "string"
-        },
-        "matched_period_key": {
-          "example": "2026-04",
-          "type": "string"
-        },
-        "matched_stripe_invoice_id": {
-          "example": "in_123",
-          "type": "string"
-        },
-        "matched_user_id": {
-          "example": "user-1",
-          "type": "string"
-        },
-        "payment_intent_id": {
-          "example": "pi_123",
-          "type": "string"
-        },
-        "post_payment_credit_note_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "pre_payment_credit_note_cents": {
-          "example": 500,
-          "type": "integer"
-        },
-        "processed_at": {
-          "example": "2026-05-02T01:01:02Z",
-          "type": "string"
-        },
-        "reconciliation_status": {
-          "example": "matched",
-          "type": "string"
-        },
-        "refund_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "repair_attempts": {
-          "example": 1,
-          "type": "integer"
-        },
-        "repair_last_attempt_at": {
-          "example": "2026-05-02T02:00:00Z",
-          "type": "string"
-        },
-        "repair_last_error": {
-          "example": "",
-          "type": "string"
-        },
-        "repair_source": {
-          "example": "webhook_auto",
-          "type": "string"
-        },
-        "repair_status": {
-          "example": "pending",
-          "type": "string"
-        },
-        "resource_id": {
-          "example": "cn_123",
-          "type": "string"
-        },
-        "resource_status": {
-          "example": "issued",
-          "type": "string"
-        },
-        "stripe_customer_id": {
-          "example": "cus_123",
-          "type": "string"
-        },
-        "stripe_invoice_id": {
-          "example": "in_123",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeAdjustmentEventsResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "items": {
-            "$ref": "#/definitions/billing.stripeAdjustmentEventDoc"
-          },
-          "type": "array"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeAdjustmentReconcileErrorDoc": {
-      "properties": {
-        "error": {
-          "example": "no stripe invoice snapshot matched adjustment",
-          "type": "string"
-        },
-        "event_id": {
-          "example": "evt_123",
-          "type": "string"
-        },
-        "resource_id": {
-          "example": "cn_123",
-          "type": "string"
-        },
-        "stripe_invoice_id": {
-          "example": "in_123",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeAdjustmentReconcileSummaryDoc": {
-      "properties": {
-        "errors": {
-          "items": {
-            "$ref": "#/definitions/billing.stripeAdjustmentReconcileErrorDoc"
-          },
-          "type": "array"
-        },
-        "failed": {
-          "example": 1,
-          "type": "integer"
-        },
-        "matched": {
-          "example": 480,
-          "type": "integer"
-        },
-        "scanned": {
-          "example": 500,
-          "type": "integer"
-        },
-        "skipped": {
-          "example": 0,
-          "type": "integer"
-        },
-        "unmatched": {
-          "example": 19,
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeAdjustmentReconcileSummaryResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "$ref": "#/definitions/billing.stripeAdjustmentReconcileSummaryDoc"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "billing.stripeCheckoutRequestDoc": {
       "properties": {
         "cancel_url": {
@@ -3714,190 +2533,6 @@
         },
         "success_url": {
           "example": "https://fe.tonywang.io/app/billing?checkout=success",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeInvoiceEventDoc": {
-      "properties": {
-        "amount_due": {
-          "example": 19900,
-          "type": "integer"
-        },
-        "amount_paid": {
-          "example": 19900,
-          "type": "integer"
-        },
-        "amount_remaining": {
-          "example": 0,
-          "type": "integer"
-        },
-        "charge_id": {
-          "example": "ch_123",
-          "type": "string"
-        },
-        "currency": {
-          "example": "usd",
-          "type": "string"
-        },
-        "discount_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "due_date": {
-          "example": "2026-05-08T00:00:00Z",
-          "type": "string"
-        },
-        "error": {
-          "example": "",
-          "type": "string"
-        },
-        "event_created": {
-          "example": "2026-05-01T01:01:00Z",
-          "type": "string"
-        },
-        "event_id": {
-          "example": "evt_123",
-          "type": "string"
-        },
-        "event_type": {
-          "example": "invoice.paid",
-          "type": "string"
-        },
-        "hosted_invoice_url": {
-          "example": "https://invoice.stripe.com/i/acct_...",
-          "type": "string"
-        },
-        "invoice_payment_ids": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "invoice_pdf": {
-          "example": "https://pay.stripe.com/invoice/.../pdf",
-          "type": "string"
-        },
-        "line_items": {
-          "items": {
-            "$ref": "#/definitions/billing.stripeInvoiceLineItemDoc"
-          },
-          "type": "array"
-        },
-        "match_status": {
-          "example": "matched",
-          "type": "string"
-        },
-        "matched_period_key": {
-          "example": "2026-04",
-          "type": "string"
-        },
-        "matched_user_id": {
-          "example": "user-1",
-          "type": "string"
-        },
-        "payment_intent_id": {
-          "example": "pi_123",
-          "type": "string"
-        },
-        "period_end": {
-          "example": "2026-05-01T00:00:00Z",
-          "type": "string"
-        },
-        "period_start": {
-          "example": "2026-04-01T00:00:00Z",
-          "type": "string"
-        },
-        "post_payment_credit_note_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "pre_payment_credit_note_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "processed_at": {
-          "example": "2026-05-01T01:01:02Z",
-          "type": "string"
-        },
-        "reconciliation_status": {
-          "example": "paid",
-          "type": "string"
-        },
-        "repair_attempts": {
-          "example": 1,
-          "type": "integer"
-        },
-        "repair_last_attempt_at": {
-          "example": "2026-05-01T02:00:00Z",
-          "type": "string"
-        },
-        "repair_last_error": {
-          "example": "",
-          "type": "string"
-        },
-        "repair_source": {
-          "example": "admin_manual",
-          "type": "string"
-        },
-        "repair_status": {
-          "example": "pending",
-          "type": "string"
-        },
-        "stripe_customer_id": {
-          "example": "cus_123",
-          "type": "string"
-        },
-        "stripe_invoice_id": {
-          "example": "in_123",
-          "type": "string"
-        },
-        "stripe_invoice_number": {
-          "example": "C8F8C2D-0001",
-          "type": "string"
-        },
-        "stripe_invoice_status": {
-          "example": "paid",
-          "type": "string"
-        },
-        "subtotal_cents": {
-          "example": 19900,
-          "type": "integer"
-        },
-        "subtotal_excluding_tax_cents": {
-          "example": 19900,
-          "type": "integer"
-        },
-        "tax_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "total_cents": {
-          "example": 19900,
-          "type": "integer"
-        },
-        "total_excluding_tax_cents": {
-          "example": 19900,
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeInvoiceEventsResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "items": {
-            "$ref": "#/definitions/billing.stripeInvoiceEventDoc"
-          },
-          "type": "array"
-        },
-        "msg": {
-          "example": "OK",
           "type": "string"
         }
       },
@@ -3948,739 +2583,10 @@
       },
       "type": "object"
     },
-    "billing.stripeInvoiceReconcileErrorDoc": {
-      "properties": {
-        "error": {
-          "example": "no billing period ledger matched stripe invoice",
-          "type": "string"
-        },
-        "event_id": {
-          "example": "evt_123",
-          "type": "string"
-        },
-        "stripe_invoice_id": {
-          "example": "in_123",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeInvoiceReconcileSummaryDoc": {
-      "properties": {
-        "errors": {
-          "items": {
-            "$ref": "#/definitions/billing.stripeInvoiceReconcileErrorDoc"
-          },
-          "type": "array"
-        },
-        "failed": {
-          "example": 1,
-          "type": "integer"
-        },
-        "matched": {
-          "example": 480,
-          "type": "integer"
-        },
-        "scanned": {
-          "example": 500,
-          "type": "integer"
-        },
-        "skipped": {
-          "example": 0,
-          "type": "integer"
-        },
-        "unmatched": {
-          "example": 19,
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeInvoiceReconcileSummaryResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "$ref": "#/definitions/billing.stripeInvoiceReconcileSummaryDoc"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeInvoiceSnapshotDetailDoc": {
-      "properties": {
-        "adjustment_events": {
-          "items": {
-            "$ref": "#/definitions/billing.stripeAdjustmentEventDoc"
-          },
-          "type": "array"
-        },
-        "invoice_events": {
-          "items": {
-            "$ref": "#/definitions/billing.stripeInvoiceEventDoc"
-          },
-          "type": "array"
-        },
-        "ledger": {
-          "$ref": "#/definitions/billing.billingPeriodLedgerDoc"
-        },
-        "snapshot": {
-          "$ref": "#/definitions/billing.stripeInvoiceSnapshotDoc"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeInvoiceSnapshotDetailResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "$ref": "#/definitions/billing.stripeInvoiceSnapshotDetailDoc"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeInvoiceSnapshotDoc": {
-      "properties": {
-        "actual_one_time_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "actual_overage_cents": {
-          "example": 3200,
-          "type": "integer"
-        },
-        "actual_proration_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "actual_subscription_cents": {
-          "example": 7900,
-          "type": "integer"
-        },
-        "amount_due_cents": {
-          "example": 11100,
-          "type": "integer"
-        },
-        "amount_paid_cents": {
-          "example": 11100,
-          "type": "integer"
-        },
-        "amount_remaining_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "charge_id": {
-          "example": "ch_123",
-          "type": "string"
-        },
-        "created_at": {
-          "example": "2026-05-01T00:59:00Z",
-          "type": "string"
-        },
-        "currency": {
-          "example": "usd",
-          "type": "string"
-        },
-        "discount_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "due_date": {
-          "example": "2026-05-08T00:00:00Z",
-          "type": "string"
-        },
-        "effective_due_date": {
-          "example": "2026-05-08T00:00:00Z",
-          "type": "string"
-        },
-        "expected_total_cents": {
-          "example": 11100,
-          "type": "integer"
-        },
-        "finalized_at": {
-          "example": "2026-05-01T01:00:00Z",
-          "type": "string"
-        },
-        "hosted_invoice_url": {
-          "example": "https://invoice.stripe.com/i/acct_...",
-          "type": "string"
-        },
-        "invoice_payment_ids": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "invoice_pdf": {
-          "example": "https://pay.stripe.com/invoice/.../pdf",
-          "type": "string"
-        },
-        "last_event_created": {
-          "example": "2026-05-01T01:01:00Z",
-          "type": "string"
-        },
-        "last_event_id": {
-          "example": "evt_123",
-          "type": "string"
-        },
-        "line_items": {
-          "items": {
-            "$ref": "#/definitions/billing.stripeInvoiceLineItemDoc"
-          },
-          "type": "array"
-        },
-        "matched_period_key": {
-          "example": "2026-04",
-          "type": "string"
-        },
-        "matched_user_id": {
-          "example": "user-1",
-          "type": "string"
-        },
-        "mismatch_flags": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "mismatch_total_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "net_cash_cents": {
-          "example": 11100,
-          "type": "integer"
-        },
-        "paid_at": {
-          "example": "2026-05-01T01:01:00Z",
-          "type": "string"
-        },
-        "payment_intent_id": {
-          "example": "pi_123",
-          "type": "string"
-        },
-        "period_end": {
-          "example": "2026-05-01T00:00:00Z",
-          "type": "string"
-        },
-        "period_start": {
-          "example": "2026-04-01T00:00:00Z",
-          "type": "string"
-        },
-        "plan": {
-          "example": "Pro",
-          "type": "string"
-        },
-        "post_payment_credit_note_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "pre_payment_credit_note_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "reconciliation_status": {
-          "example": "paid",
-          "type": "string"
-        },
-        "refund_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "repair_attempts": {
-          "example": 1,
-          "type": "integer"
-        },
-        "repair_error": {
-          "example": "",
-          "type": "string"
-        },
-        "repair_last_attempt_at": {
-          "example": "2026-05-01T02:00:00Z",
-          "type": "string"
-        },
-        "repair_last_success_at": {
-          "example": "2026-05-01T02:01:00Z",
-          "type": "string"
-        },
-        "repair_status": {
-          "example": "pending",
-          "type": "string"
-        },
-        "stripe_customer_id": {
-          "example": "cus_123",
-          "type": "string"
-        },
-        "stripe_invoice_id": {
-          "example": "in_123",
-          "type": "string"
-        },
-        "stripe_invoice_number": {
-          "example": "C8F8C2D-0001",
-          "type": "string"
-        },
-        "stripe_invoice_status": {
-          "example": "paid",
-          "type": "string"
-        },
-        "subtotal_cents": {
-          "example": 11100,
-          "type": "integer"
-        },
-        "subtotal_excluding_tax_cents": {
-          "example": 11100,
-          "type": "integer"
-        },
-        "tax_cents": {
-          "example": 0,
-          "type": "integer"
-        },
-        "total_cents": {
-          "example": 11100,
-          "type": "integer"
-        },
-        "total_excluding_tax_cents": {
-          "example": 11100,
-          "type": "integer"
-        },
-        "updated_at": {
-          "example": "2026-05-01T01:01:00Z",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeInvoiceSnapshotsResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "items": {
-            "$ref": "#/definitions/billing.stripeInvoiceSnapshotDoc"
-          },
-          "type": "array"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeMismatchSummaryDoc": {
-      "properties": {
-        "auto_repairable": {
-          "items": {
-            "$ref": "#/definitions/billing.stripeMismatchSummaryItemDoc"
-          },
-          "type": "array"
-        },
-        "manual_review": {
-          "items": {
-            "$ref": "#/definitions/billing.stripeMismatchSummaryItemDoc"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeMismatchSummaryItemDoc": {
-      "properties": {
-        "actual_total_cents": {
-          "example": 50200,
-          "type": "integer"
-        },
-        "delta_total_cents": {
-          "example": -5100,
-          "type": "integer"
-        },
-        "expected_total_cents": {
-          "example": 55300,
-          "type": "integer"
-        },
-        "invoice_count": {
-          "example": 7,
-          "type": "integer"
-        },
-        "mismatch_flag": {
-          "example": "unmatched_adjustment",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeMismatchSummaryResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "$ref": "#/definitions/billing.stripeMismatchSummaryDoc"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeOverageSyncErrorDoc": {
-      "properties": {
-        "error": {
-          "example": "stripe customer id is required",
-          "type": "string"
-        },
-        "period_key": {
-          "example": "2026-04",
-          "type": "string"
-        },
-        "user_id": {
-          "example": "user-1",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeOverageSyncSummaryDoc": {
-      "properties": {
-        "ambiguous": {
-          "example": 0,
-          "type": "integer"
-        },
-        "errors": {
-          "items": {
-            "$ref": "#/definitions/billing.stripeOverageSyncErrorDoc"
-          },
-          "type": "array"
-        },
-        "failed": {
-          "example": 1,
-          "type": "integer"
-        },
-        "not_required": {
-          "example": 0,
-          "type": "integer"
-        },
-        "scanned": {
-          "example": 500,
-          "type": "integer"
-        },
-        "skipped": {
-          "example": 1,
-          "type": "integer"
-        },
-        "synced": {
-          "example": 498,
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeOverageSyncSummaryResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "$ref": "#/definitions/billing.stripeOverageSyncSummaryDoc"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "billing.stripePortalRequestDoc": {
       "properties": {
         "return_url": {
           "example": "https://fe.tonywang.io/app/billing",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeRepairBacklogBucketDoc": {
-      "properties": {
-        "by_attempt_bucket": {
-          "items": {
-            "$ref": "#/definitions/billing.stripeRepairStatusCountDoc"
-          },
-          "type": "array"
-        },
-        "by_source": {
-          "items": {
-            "$ref": "#/definitions/billing.stripeRepairStatusCountDoc"
-          },
-          "type": "array"
-        },
-        "by_status": {
-          "items": {
-            "$ref": "#/definitions/billing.stripeRepairStatusCountDoc"
-          },
-          "type": "array"
-        },
-        "total": {
-          "example": 42,
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeRepairBacklogSummaryDoc": {
-      "properties": {
-        "adjustment_events": {
-          "$ref": "#/definitions/billing.stripeRepairBacklogBucketDoc"
-        },
-        "auto_retry_exhausted_count": {
-          "example": 4,
-          "type": "integer"
-        },
-        "invoice_events": {
-          "$ref": "#/definitions/billing.stripeRepairBacklogBucketDoc"
-        },
-        "recent_errors": {
-          "items": {
-            "$ref": "#/definitions/billing.stripeRepairRecentErrorDoc"
-          },
-          "type": "array"
-        },
-        "snapshots": {
-          "$ref": "#/definitions/billing.stripeRepairBacklogBucketDoc"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeRepairBacklogSummaryResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "$ref": "#/definitions/billing.stripeRepairBacklogSummaryDoc"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeRepairErrorDoc": {
-      "properties": {
-        "candidate_kind": {
-          "example": "invoice",
-          "type": "string"
-        },
-        "error": {
-          "example": "stripe customer is not linked to a user",
-          "type": "string"
-        },
-        "event_id": {
-          "example": "evt_123",
-          "type": "string"
-        },
-        "invoice_id": {
-          "example": "in_123",
-          "type": "string"
-        },
-        "resource_id": {
-          "example": "cn_123",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeRepairRecentErrorDoc": {
-      "properties": {
-        "candidate_kind": {
-          "example": "adjustment_event",
-          "type": "string"
-        },
-        "event_id": {
-          "example": "evt_123",
-          "type": "string"
-        },
-        "invoice_id": {
-          "example": "in_123",
-          "type": "string"
-        },
-        "repair_attempts": {
-          "example": 5,
-          "type": "integer"
-        },
-        "repair_last_attempt_at": {
-          "example": "2026-05-02T02:00:00Z",
-          "type": "string"
-        },
-        "repair_last_error": {
-          "example": "stripe invoice id is required",
-          "type": "string"
-        },
-        "repair_status": {
-          "example": "failed",
-          "type": "string"
-        },
-        "resource_id": {
-          "example": "cn_123",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeRepairResetDoc": {
-      "properties": {
-        "candidate_kind": {
-          "example": "adjustment_event",
-          "type": "string"
-        },
-        "event_id": {
-          "example": "evt_123",
-          "type": "string"
-        },
-        "invoice_id": {
-          "example": "in_123",
-          "type": "string"
-        },
-        "previous_repair_attempts": {
-          "example": 5,
-          "type": "integer"
-        },
-        "previous_repair_status": {
-          "example": "failed",
-          "type": "string"
-        },
-        "repair_attempts": {
-          "example": 0,
-          "type": "integer"
-        },
-        "repair_source": {
-          "example": "admin_manual",
-          "type": "string"
-        },
-        "repair_status": {
-          "example": "pending",
-          "type": "string"
-        },
-        "reset_at": {
-          "example": "2026-05-02T03:00:00Z",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeRepairResetRequestDoc": {
-      "properties": {
-        "candidate_kind": {
-          "example": "adjustment_event",
-          "type": "string"
-        },
-        "event_id": {
-          "example": "evt_123",
-          "type": "string"
-        },
-        "invoice_id": {
-          "example": "in_123",
-          "type": "string"
-        }
-      },
-      "required": [
-        "candidate_kind"
-      ],
-      "type": "object"
-    },
-    "billing.stripeRepairResetResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "$ref": "#/definitions/billing.stripeRepairResetDoc"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeRepairStatusCountDoc": {
-      "properties": {
-        "count": {
-          "example": 3,
-          "type": "integer"
-        },
-        "key": {
-          "example": "failed",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeRepairSummaryDoc": {
-      "properties": {
-        "adjustment_repaired": {
-          "example": 80,
-          "type": "integer"
-        },
-        "errors": {
-          "items": {
-            "$ref": "#/definitions/billing.stripeRepairErrorDoc"
-          },
-          "type": "array"
-        },
-        "failed": {
-          "example": 3,
-          "type": "integer"
-        },
-        "invoice_repaired": {
-          "example": 40,
-          "type": "integer"
-        },
-        "scanned": {
-          "example": 200,
-          "type": "integer"
-        },
-        "skipped": {
-          "example": 77,
-          "type": "integer"
-        },
-        "succeeded": {
-          "example": 120,
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "billing.stripeRepairSummaryResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "$ref": "#/definitions/billing.stripeRepairSummaryDoc"
-        },
-        "msg": {
-          "example": "OK",
           "type": "string"
         }
       },
@@ -7896,18 +5802,6 @@
       },
       "type": "object"
     },
-    "contact.ContactOption": {
-      "properties": {
-        "url": {
-          "example": "https://www.google.com",
-          "type": "string"
-        }
-      },
-      "required": [
-        "url"
-      ],
-      "type": "object"
-    },
     "datasets.DatasetInfo": {
       "properties": {
         "capabilities": {
@@ -10804,23 +8698,6 @@
           "type": "array"
         }
       },
-      "type": "object"
-    },
-    "google.ShoppingItemDetailOption": {
-      "properties": {
-        "cid": {
-          "type": "string"
-        },
-        "gid": {
-          "type": "string"
-        },
-        "oid": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "oid"
-      ],
       "type": "object"
     },
     "google.SuggestResponse": {
@@ -17663,289 +15540,6 @@
       },
       "type": "object"
     },
-    "referrals.adminReferralAttributionDoc": {
-      "properties": {
-        "attribution": {
-          "$ref": "#/definitions/referrals.adminReferralAttributionRecordDoc"
-        },
-        "rewards": {
-          "items": {
-            "$ref": "#/definitions/referrals.adminReferralRewardDoc"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "referrals.adminReferralAttributionRecordDoc": {
-      "properties": {
-        "click_id": {
-          "example": "refclk_abc123",
-          "type": "string"
-        },
-        "code": {
-          "example": "A1B2C3D4E5F6",
-          "type": "string"
-        },
-        "created_at": {
-          "type": "string"
-        },
-        "error": {
-          "example": "temporary billing write failure",
-          "type": "string"
-        },
-        "expires_at": {
-          "type": "string"
-        },
-        "first_paid_invoice_id": {
-          "example": "in_123",
-          "type": "string"
-        },
-        "id": {
-          "example": "attr-1",
-          "type": "string"
-        },
-        "landing_path": {
-          "example": "/pricing",
-          "type": "string"
-        },
-        "qualified_at": {
-          "type": "string"
-        },
-        "referred_user_id": {
-          "example": "user-referred",
-          "type": "string"
-        },
-        "referrer_user_id": {
-          "example": "user-referrer",
-          "type": "string"
-        },
-        "review_reason": {
-          "example": "same_stripe_customer",
-          "type": "string"
-        },
-        "reviewed_at": {
-          "type": "string"
-        },
-        "reviewed_by": {
-          "example": "admin-user",
-          "type": "string"
-        },
-        "rewarded_at": {
-          "type": "string"
-        },
-        "risk_flags": {
-          "example": [
-            "same_stripe_customer"
-          ],
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "skip_reason": {
-          "example": "capped",
-          "type": "string"
-        },
-        "status": {
-          "enum": [
-            "attributed",
-            "qualified",
-            "review_required",
-            "rewarded",
-            "expired",
-            "capped",
-            "failed",
-            "rejected"
-          ],
-          "example": "rewarded",
-          "type": "string"
-        },
-        "stripe_event_id": {
-          "example": "evt_123",
-          "type": "string"
-        },
-        "stripe_invoice_id": {
-          "example": "in_123",
-          "type": "string"
-        },
-        "utm_campaign": {
-          "example": "spring-launch",
-          "type": "string"
-        },
-        "utm_medium": {
-          "example": "email",
-          "type": "string"
-        },
-        "utm_source": {
-          "example": "newsletter",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "referrals.adminReferralDetailResponseDoc": {
-      "properties": {
-        "attribution": {
-          "$ref": "#/definitions/referrals.adminReferralAttributionRecordDoc"
-        },
-        "rewards": {
-          "items": {
-            "$ref": "#/definitions/referrals.adminReferralRewardDoc"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "referrals.adminReferralRecoveryResponseDoc": {
-      "properties": {
-        "attempted": {
-          "example": 3,
-          "type": "integer"
-        },
-        "errors": {
-          "example": [
-            "reward-3: temporary billing write failure"
-          ],
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "recovered": {
-          "example": 2,
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "referrals.adminReferralRejectRequestDoc": {
-      "properties": {
-        "reason": {
-          "example": "same billing account",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "referrals.adminReferralReviewResponseDoc": {
-      "properties": {
-        "attribution": {
-          "$ref": "#/definitions/referrals.adminReferralAttributionRecordDoc"
-        },
-        "rewards": {
-          "items": {
-            "$ref": "#/definitions/referrals.adminReferralRewardDoc"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "referrals.adminReferralRewardDoc": {
-      "properties": {
-        "attribution_id": {
-          "example": "attr-1",
-          "type": "string"
-        },
-        "created_at": {
-          "type": "string"
-        },
-        "credits": {
-          "example": 10000,
-          "type": "integer"
-        },
-        "credits_grant_error": {
-          "example": "temporary billing write failure",
-          "type": "string"
-        },
-        "credits_grant_key": {
-          "example": "reward-1",
-          "type": "string"
-        },
-        "credits_granted_at": {
-          "type": "string"
-        },
-        "id": {
-          "example": "reward-1",
-          "type": "string"
-        },
-        "role": {
-          "enum": [
-            "referrer",
-            "referred"
-          ],
-          "example": "referrer",
-          "type": "string"
-        },
-        "stripe_invoice_id": {
-          "example": "in_123",
-          "type": "string"
-        },
-        "user_id": {
-          "example": "user-referrer",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "referrals.adminReferralStatsResponseDoc": {
-      "properties": {
-        "attributed_signups": {
-          "example": 9,
-          "type": "integer"
-        },
-        "capped_referrals": {
-          "example": 0,
-          "type": "integer"
-        },
-        "clicks": {
-          "example": 42,
-          "type": "integer"
-        },
-        "qualification_rate": {
-          "example": 0.333,
-          "type": "number"
-        },
-        "qualified_referrals": {
-          "example": 3,
-          "type": "integer"
-        },
-        "rejected_referrals": {
-          "example": 0,
-          "type": "integer"
-        },
-        "review_required": {
-          "example": 1,
-          "type": "integer"
-        },
-        "reward_rate": {
-          "example": 0.222,
-          "type": "number"
-        },
-        "rewarded_referrals": {
-          "example": 2,
-          "type": "integer"
-        },
-        "signup_rate": {
-          "example": 0.214,
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "referrals.adminReferralsListResponseDoc": {
-      "properties": {
-        "items": {
-          "items": {
-            "$ref": "#/definitions/referrals.adminReferralAttributionDoc"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "referrals.referralAttributionDoc": {
       "properties": {
         "campaign": {
@@ -18121,6 +15715,1194 @@
         "rewarded": {
           "example": 1,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.AnalysisResponse": {
+      "properties": {
+        "currencies": {
+          "example": [
+            "USD",
+            "GBP"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "discounts": {
+          "$ref": "#/definitions/shopapp.DiscountSummary"
+        },
+        "groups_count": {
+          "example": 5,
+          "type": "integer"
+        },
+        "prices_by_currency": {
+          "items": {
+            "$ref": "#/definitions/shopapp.CurrencyPriceSummary"
+          },
+          "type": "array"
+        },
+        "products_count": {
+          "example": 20,
+          "type": "integer"
+        },
+        "query": {
+          "example": "sneakers",
+          "type": "string"
+        },
+        "sale_count": {
+          "example": 6,
+          "type": "integer"
+        },
+        "sampled_product_ids": {
+          "example": [
+            "8075903107261",
+            "7093164834901"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "shops_count": {
+          "example": 8,
+          "type": "integer"
+        },
+        "top_shops": {
+          "items": {
+            "$ref": "#/definitions/shopapp.ShopSummary"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.CategoriesResponse": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/definitions/shopapp.CategoryItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.CategoryItem": {
+      "properties": {
+        "children": {
+          "items": {
+            "$ref": "#/definitions/shopapp.CategoryItem"
+          },
+          "type": "array"
+        },
+        "gid": {
+          "example": "gid://shopify/ProductCategory/1?version=13",
+          "type": "string"
+        },
+        "has_children": {
+          "type": "boolean"
+        },
+        "id": {
+          "example": "1",
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Women",
+          "type": "string"
+        },
+        "path": {
+          "items": {
+            "$ref": "#/definitions/shopapp.CategoryPath"
+          },
+          "type": "array"
+        },
+        "slug": {
+          "example": "women",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.CategoryPath": {
+      "properties": {
+        "gid": {
+          "example": "gid://shopify/ProductCategory/1?version=13",
+          "type": "string"
+        },
+        "id": {
+          "example": "1",
+          "type": "string"
+        },
+        "name": {
+          "example": "Women",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.CurrencyPriceSummary": {
+      "properties": {
+        "average": {
+          "example": 72.42,
+          "type": "number"
+        },
+        "count": {
+          "example": 12,
+          "type": "integer"
+        },
+        "currency": {
+          "example": "USD",
+          "type": "string"
+        },
+        "max": {
+          "example": 149.99,
+          "type": "number"
+        },
+        "min": {
+          "example": 35.9,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.DiscountSummary": {
+      "properties": {
+        "average_percent": {
+          "example": 24.6,
+          "type": "number"
+        },
+        "max_percent": {
+          "example": 60,
+          "type": "number"
+        },
+        "min_percent": {
+          "example": 10,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ImageItem": {
+      "properties": {
+        "alt": {
+          "example": "Product image",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://cdn.shopify.com/example.jpg",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.LocationAddress": {
+      "properties": {
+        "address1": {
+          "example": "175b Mott Street",
+          "type": "string"
+        },
+        "address2": {
+          "type": "string"
+        },
+        "city": {
+          "example": "New York",
+          "type": "string"
+        },
+        "country": {
+          "example": "US",
+          "type": "string"
+        },
+        "postal_code": {
+          "example": "10012",
+          "type": "string"
+        },
+        "zone_code": {
+          "example": "NY",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.OptionGroup": {
+      "properties": {
+        "name": {
+          "example": "Size",
+          "type": "string"
+        },
+        "values": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ProductDetail": {
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "currency": {
+          "example": "HKD",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "external_url": {
+          "type": "string"
+        },
+        "id": {
+          "example": "4596217053229",
+          "type": "string"
+        },
+        "images": {
+          "items": {
+            "$ref": "#/definitions/shopapp.ImageItem"
+          },
+          "type": "array"
+        },
+        "option_groups": {
+          "items": {
+            "$ref": "#/definitions/shopapp.OptionGroup"
+          },
+          "type": "array"
+        },
+        "original_price": {
+          "example": 1166,
+          "type": "number"
+        },
+        "price": {
+          "example": 1076,
+          "type": "number"
+        },
+        "rating": {
+          "example": 4.4,
+          "type": "number"
+        },
+        "related_products": {
+          "items": {
+            "$ref": "#/definitions/shopapp.ProductItem"
+          },
+          "type": "array"
+        },
+        "reviews": {
+          "items": {
+            "$ref": "#/definitions/shopapp.ReviewItem"
+          },
+          "type": "array"
+        },
+        "reviews_count": {
+          "example": 22,
+          "type": "integer"
+        },
+        "shop_handle": {
+          "example": "n1r478fp0h",
+          "type": "string"
+        },
+        "shop_id": {
+          "type": "string"
+        },
+        "shop_name": {
+          "example": "Wide Fit Shoes UK",
+          "type": "string"
+        },
+        "slug": {
+          "example": "mens-wide-fit-new-balance-624v5-black-trainers-abzorb",
+          "type": "string"
+        },
+        "title": {
+          "example": "Mens Wide Fit New Balance 624V5 Black Trainers ABZORB",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "variant_id": {
+          "example": "34761278160941",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ProductDetailResponse": {
+      "properties": {
+        "product": {
+          "$ref": "#/definitions/shopapp.ProductDetail"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ProductItem": {
+      "properties": {
+        "currency": {
+          "example": "USD",
+          "type": "string"
+        },
+        "group_query": {
+          "example": "kids' athletic sneakers",
+          "type": "string"
+        },
+        "group_title": {
+          "example": "kids' athletic sneakers",
+          "type": "string"
+        },
+        "id": {
+          "example": "8075903107261",
+          "type": "string"
+        },
+        "image": {
+          "example": "https://cdn.shopify.com/s/files/1/1145/5784/files/example.jpg",
+          "type": "string"
+        },
+        "image_alt": {
+          "example": "Black sneaker side view",
+          "type": "string"
+        },
+        "on_sale": {
+          "type": "boolean"
+        },
+        "original_price": {
+          "example": 120,
+          "type": "number"
+        },
+        "position": {
+          "example": 1,
+          "type": "integer"
+        },
+        "price": {
+          "example": 100,
+          "type": "number"
+        },
+        "shop_id": {
+          "example": "62696",
+          "type": "string"
+        },
+        "shop_name": {
+          "example": "BILLY Footwear",
+          "type": "string"
+        },
+        "title": {
+          "example": "Black/Black/Gum BILLY Sport Inclusion DZ1",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://billyfootwear.com/products/black-black-gum-billy-sport-inclusion-dz1-zipper-shoes?utm_source=shop_app",
+          "type": "string"
+        },
+        "variant_id": {
+          "example": "46242960965821",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ProductShopResponse": {
+      "properties": {
+        "product_id": {
+          "example": "4596217053229",
+          "type": "string"
+        },
+        "shop": {
+          "$ref": "#/definitions/shopapp.ShopDetail"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ProductVariantResponse": {
+      "properties": {
+        "product_id": {
+          "example": "4596217053229",
+          "type": "string"
+        },
+        "variant": {
+          "$ref": "#/definitions/shopapp.VariantItem"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.RelatedResponse": {
+      "properties": {
+        "limit": {
+          "example": 20,
+          "type": "integer"
+        },
+        "product_id": {
+          "example": "4596217053229",
+          "type": "string"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/definitions/shopapp.ProductItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ReviewItem": {
+      "properties": {
+        "author": {
+          "example": "Donal",
+          "type": "string"
+        },
+        "body": {
+          "example": "Perfect fit.",
+          "type": "string"
+        },
+        "date": {
+          "example": "December 6, 2025",
+          "type": "string"
+        },
+        "helpful_count": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "product": {
+          "$ref": "#/definitions/shopapp.ReviewProduct"
+        },
+        "rating": {
+          "example": 5,
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "variant_label": {
+          "example": "Black / 12.5 / 4E",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ReviewProduct": {
+      "properties": {
+        "id": {
+          "example": "8114373328975",
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "image_alt": {
+          "type": "string"
+        },
+        "slug": {
+          "example": "solana-brown-woven-leather-backstrap-clogs",
+          "type": "string"
+        },
+        "title": {
+          "example": "Solana Brown Woven Leather Backstrap Clogs",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "variant": {
+          "example": "7 / Brown Woven / Leather",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ReviewsResponse": {
+      "properties": {
+        "limit": {
+          "example": 20,
+          "type": "integer"
+        },
+        "product_id": {
+          "example": "4596217053229",
+          "type": "string"
+        },
+        "reviews": {
+          "items": {
+            "$ref": "#/definitions/shopapp.ReviewItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.SearchGroup": {
+      "properties": {
+        "product_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "products_seen": {
+          "example": 4,
+          "type": "integer"
+        },
+        "query": {
+          "example": "men's running sneakers",
+          "type": "string"
+        },
+        "title": {
+          "example": "men's running sneakers",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.SearchResponse": {
+      "properties": {
+        "groups": {
+          "items": {
+            "$ref": "#/definitions/shopapp.SearchGroup"
+          },
+          "type": "array"
+        },
+        "limit": {
+          "example": 20,
+          "type": "integer"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/definitions/shopapp.ProductItem"
+          },
+          "type": "array"
+        },
+        "query": {
+          "example": "sneakers",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ShopCollection": {
+      "properties": {
+        "id": {
+          "example": "292518002767",
+          "type": "string"
+        },
+        "slug": {
+          "example": "mens-dress-shoes",
+          "type": "string"
+        },
+        "title": {
+          "example": "Mens Dress Shoes",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ShopDetail": {
+      "properties": {
+        "banner": {
+          "type": "string"
+        },
+        "collections": {
+          "items": {
+            "$ref": "#/definitions/shopapp.ShopCollection"
+          },
+          "type": "array"
+        },
+        "description": {
+          "type": "string"
+        },
+        "handle": {
+          "example": "marcnolan",
+          "type": "string"
+        },
+        "id": {
+          "example": "186720",
+          "type": "string"
+        },
+        "logo": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Marc Nolan",
+          "type": "string"
+        },
+        "rating": {
+          "example": 4.7,
+          "type": "number"
+        },
+        "reviews_count": {
+          "example": 19699,
+          "type": "integer"
+        },
+        "shopify_id": {
+          "type": "string"
+        },
+        "storefront": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ShopLocationItem": {
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/shopapp.LocationAddress"
+        },
+        "id": {
+          "example": "gid://shopify/Location/78620459087",
+          "type": "string"
+        },
+        "latitude": {
+          "example": 40.7205232,
+          "type": "number"
+        },
+        "longitude": {
+          "example": -73.9961032,
+          "type": "number"
+        },
+        "name": {
+          "example": "NYC",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ShopLocationsResponse": {
+      "properties": {
+        "limit": {
+          "example": 10,
+          "type": "integer"
+        },
+        "locations": {
+          "items": {
+            "$ref": "#/definitions/shopapp.ShopLocationItem"
+          },
+          "type": "array"
+        },
+        "next_cursor": {
+          "type": "string"
+        },
+        "shop_handle": {
+          "example": "marcnolan",
+          "type": "string"
+        },
+        "shop_id": {
+          "example": "186720",
+          "type": "string"
+        },
+        "total_count": {
+          "example": 2,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ShopProductsResponse": {
+      "properties": {
+        "collection": {
+          "$ref": "#/definitions/shopapp.ShopCollection"
+        },
+        "collection_id": {
+          "example": "292518002767",
+          "type": "string"
+        },
+        "limit": {
+          "example": 30,
+          "type": "integer"
+        },
+        "next_cursor": {
+          "type": "string"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/definitions/shopapp.ProductItem"
+          },
+          "type": "array"
+        },
+        "shop_handle": {
+          "example": "marcnolan",
+          "type": "string"
+        },
+        "sort_by": {
+          "example": "MOST_SALES",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ShopResponse": {
+      "properties": {
+        "shop": {
+          "$ref": "#/definitions/shopapp.ShopDetail"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ShopReviewsResponse": {
+      "properties": {
+        "limit": {
+          "example": 20,
+          "type": "integer"
+        },
+        "next_cursor": {
+          "type": "string"
+        },
+        "reviews": {
+          "items": {
+            "$ref": "#/definitions/shopapp.ReviewItem"
+          },
+          "type": "array"
+        },
+        "shop_handle": {
+          "example": "marcnolan",
+          "type": "string"
+        },
+        "shop_id": {
+          "example": "186720",
+          "type": "string"
+        },
+        "total_count": {
+          "example": 15015,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ShopSummary": {
+      "properties": {
+        "count": {
+          "example": 4,
+          "type": "integer"
+        },
+        "shop_id": {
+          "example": "3961166",
+          "type": "string"
+        },
+        "shop_name": {
+          "example": "Start Fitness",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ShopTypeaheadItem": {
+      "properties": {
+        "collection": {
+          "$ref": "#/definitions/shopapp.ShopCollection"
+        },
+        "id": {
+          "example": "7438827651151",
+          "type": "string"
+        },
+        "position": {
+          "example": 1,
+          "type": "integer"
+        },
+        "product": {
+          "$ref": "#/definitions/shopapp.ProductItem"
+        },
+        "text": {
+          "example": "loafer",
+          "type": "string"
+        },
+        "type": {
+          "example": "product",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.ShopTypeaheadResponse": {
+      "properties": {
+        "limit": {
+          "example": 20,
+          "type": "integer"
+        },
+        "query": {
+          "example": "loafer",
+          "type": "string"
+        },
+        "shop_handle": {
+          "example": "marcnolan",
+          "type": "string"
+        },
+        "shop_id": {
+          "example": "186720",
+          "type": "string"
+        },
+        "suggestions": {
+          "items": {
+            "$ref": "#/definitions/shopapp.ShopTypeaheadItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.SuggestResponse": {
+      "properties": {
+        "limit": {
+          "example": 10,
+          "type": "integer"
+        },
+        "query": {
+          "example": "sneakers",
+          "type": "string"
+        },
+        "suggestions": {
+          "items": {
+            "$ref": "#/definitions/shopapp.SuggestionItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.SuggestionItem": {
+      "properties": {
+        "image": {
+          "type": "string"
+        },
+        "rating": {
+          "example": 4.79,
+          "type": "number"
+        },
+        "shop_handle": {
+          "example": "gr21z45he0",
+          "type": "string"
+        },
+        "shop_id": {
+          "example": "365323",
+          "type": "string"
+        },
+        "shop_name": {
+          "example": "Sneakers Plus",
+          "type": "string"
+        },
+        "text": {
+          "example": "sneakers",
+          "type": "string"
+        },
+        "type": {
+          "example": "query",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://shop.app/search/results?query=sneakers",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.VariantItem": {
+      "properties": {
+        "available_for_sale": {
+          "type": "boolean"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "gid": {
+          "example": "gid://shopify/ProductVariant/34761278160941",
+          "type": "string"
+        },
+        "id": {
+          "example": "34761278160941",
+          "type": "string"
+        },
+        "image": {
+          "$ref": "#/definitions/shopapp.ImageItem"
+        },
+        "options": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "original_price": {
+          "type": "number"
+        },
+        "price": {
+          "type": "number"
+        },
+        "requires_shipping": {
+          "type": "boolean"
+        },
+        "title": {
+          "example": "Black / 7 / 6E",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.VariantsResponse": {
+      "properties": {
+        "limit": {
+          "example": 50,
+          "type": "integer"
+        },
+        "product_id": {
+          "example": "4596217053229",
+          "type": "string"
+        },
+        "variants": {
+          "items": {
+            "$ref": "#/definitions/shopapp.VariantItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.analysisResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopapp.AnalysisResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.categoriesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopapp.CategoriesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.productResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopapp.ProductDetailResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.productShopResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopapp.ProductShopResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.productVariantResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopapp.ProductVariantResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.relatedResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopapp.RelatedResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.reviewsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopapp.ReviewsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopapp.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.shopLocationsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopapp.ShopLocationsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.shopProductsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopapp.ShopProductsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.shopResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopapp.ShopResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.shopReviewsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopapp.ShopReviewsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.shopTypeaheadResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopapp.ShopTypeaheadResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.suggestionsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopapp.SuggestResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopapp.variantsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopapp.VariantsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
         }
       },
       "type": "object"
@@ -26027,30 +24809,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "web.ParseWebOption": {
-      "properties": {
-        "enablejs": {
-          "example": true,
-          "type": "boolean"
-        },
-        "format": {
-          "enum": [
-            "html",
-            "markdown"
-          ],
-          "example": "html",
-          "type": "string"
-        },
-        "url": {
-          "example": "https://www.google.com",
-          "type": "string"
-        }
-      },
-      "required": [
-        "url"
-      ],
       "type": "object"
     },
     "yahoofinance.ActionEvents": {
@@ -42662,6 +41420,1150 @@
         "summary": "List current user's referral events",
         "tags": [
           "Referrals"
+        ]
+      }
+    },
+    "/shop-app/analysis": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a market snapshot derived from Shop.app search results, including price ranges, currencies, sale counts, discounts, and top shops. Limit defaults to 20 and accepts values up to 50.",
+        "operationId": "shop-app-analysis",
+        "parameters": [
+          {
+            "description": "Search query",
+            "example": "sneakers",
+            "in": "query",
+            "name": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum products to analyze, defaults to 20 and supports up to 50",
+            "example": 20,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": true,
+            "description": "Request in-stock products",
+            "example": true,
+            "in": "query",
+            "name": "in_stock",
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "Request sale products",
+            "example": false,
+            "in": "query",
+            "name": "on_sale",
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "Enable Shop.app deep search mode",
+            "example": false,
+            "in": "query",
+            "name": "deep_search",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopapp.analysisResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Analyze Shop.app query results",
+        "tags": [
+          "Shop.app"
+        ]
+      }
+    },
+    "/shop-app/categories": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns public Shop.app product categories.",
+        "operationId": "shop-app-categories",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopapp.categoriesResponseDoc"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Shop.app categories",
+        "tags": [
+          "Shop.app"
+        ]
+      }
+    },
+    "/shop-app/products/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized public product details from Shop.app.",
+        "operationId": "shop-app-product",
+        "parameters": [
+          {
+            "description": "Product id",
+            "example": "4596217053229",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Variant id",
+            "example": "34761278160941",
+            "in": "query",
+            "name": "variant_id",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopapp.productResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Shop.app product",
+        "tags": [
+          "Shop.app"
+        ]
+      }
+    },
+    "/shop-app/products/{id}/related": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns related product cards from a public Shop.app product page.",
+        "operationId": "shop-app-product-related",
+        "parameters": [
+          {
+            "description": "Product id",
+            "example": "4596217053229",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum products, defaults to 20 and supports up to 50",
+            "example": 20,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopapp.relatedResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Shop.app related products",
+        "tags": [
+          "Shop.app"
+        ]
+      }
+    },
+    "/shop-app/products/{id}/reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns public product reviews from a Shop.app product page.",
+        "operationId": "shop-app-product-reviews",
+        "parameters": [
+          {
+            "description": "Product id",
+            "example": "4596217053229",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum reviews, defaults to 20 and supports up to 50",
+            "example": 20,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopapp.reviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Shop.app product reviews",
+        "tags": [
+          "Shop.app"
+        ]
+      }
+    },
+    "/shop-app/products/{id}/shop": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Resolves the public Shop.app merchant profile for a product id.",
+        "operationId": "shop-app-product-shop",
+        "parameters": [
+          {
+            "description": "Product id",
+            "example": "4596217053229",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopapp.productShopResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get the Shop.app shop for a product",
+        "tags": [
+          "Shop.app"
+        ]
+      }
+    },
+    "/shop-app/products/{id}/variant": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the exact public product variant matching selected options. selected_options must be a JSON object when provided. Repeated option filters may also be sent as option.Name=value or option[Name]=value.",
+        "operationId": "shop-app-product-variant",
+        "parameters": [
+          {
+            "description": "Product id",
+            "example": "4596217053229",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Selected options JSON object",
+            "example": "{\"Colour\":\"Black\",\"Size\":\"7\",\"Width\":\"6E\"}",
+            "in": "query",
+            "name": "selected_options",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopapp.productVariantResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Shop.app product variant by selected options",
+        "tags": [
+          "Shop.app"
+        ]
+      }
+    },
+    "/shop-app/products/{id}/variants": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns adjacent variants for a Shop.app product. selected_options must be a JSON object when provided. Repeated option filters may also be sent as option.Name=value or option[Name]=value.",
+        "operationId": "shop-app-product-variants",
+        "parameters": [
+          {
+            "description": "Product id",
+            "example": "4596217053229",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Selected options JSON object",
+            "example": "{\"Size\":\"7\"}",
+            "in": "query",
+            "name": "selected_options",
+            "type": "string"
+          },
+          {
+            "description": "Maximum variants, defaults to 50 and supports up to 100",
+            "example": 50,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopapp.variantsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Shop.app product variants",
+        "tags": [
+          "Shop.app"
+        ]
+      }
+    },
+    "/shop-app/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches Shop.app product results using the credential-free public web search flow. Limit defaults to 20 and accepts values up to 50.",
+        "operationId": "shop-app-search",
+        "parameters": [
+          {
+            "description": "Search query",
+            "example": "sneakers",
+            "in": "query",
+            "name": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum products, defaults to 20 and supports up to 50",
+            "example": 20,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": true,
+            "description": "Request in-stock products",
+            "example": true,
+            "in": "query",
+            "name": "in_stock",
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "Request sale products",
+            "example": false,
+            "in": "query",
+            "name": "on_sale",
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "Enable Shop.app deep search mode",
+            "example": false,
+            "in": "query",
+            "name": "deep_search",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopapp.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Shop.app products",
+        "tags": [
+          "Shop.app"
+        ]
+      }
+    },
+    "/shop-app/shops/{handle}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns public Shop.app merchant profile details.",
+        "operationId": "shop-app-shop",
+        "parameters": [
+          {
+            "description": "Shop handle",
+            "example": "marcnolan",
+            "in": "path",
+            "name": "handle",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopapp.shopResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Shop.app shop",
+        "tags": [
+          "Shop.app"
+        ]
+      }
+    },
+    "/shop-app/shops/{handle}/collections/{collection_id}/products": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns public product cards from a Shop.app merchant collection. sort_by allowed values: MOST_SALES, PRICE_LOW_TO_HIGH, PRICE_HIGH_TO_LOW, RELEVANCE.",
+        "operationId": "shop-app-collection-products",
+        "parameters": [
+          {
+            "description": "Shop handle",
+            "example": "marcnolan",
+            "in": "path",
+            "name": "handle",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Collection id",
+            "example": "292518002767",
+            "in": "path",
+            "name": "collection_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum products, defaults to 30 and supports up to 60",
+            "example": 30,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": "MOST_SALES",
+            "description": "Sort mode",
+            "enum": [
+              "MOST_SALES",
+              "PRICE_LOW_TO_HIGH",
+              "PRICE_HIGH_TO_LOW",
+              "RELEVANCE"
+            ],
+            "example": "MOST_SALES",
+            "in": "query",
+            "name": "sort_by",
+            "type": "string"
+          },
+          {
+            "default": true,
+            "description": "Request in-stock products",
+            "example": true,
+            "in": "query",
+            "name": "in_stock",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopapp.shopProductsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Shop.app collection products",
+        "tags": [
+          "Shop.app"
+        ]
+      }
+    },
+    "/shop-app/shops/{handle}/locations": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns public retail locations for a Shop.app merchant profile.",
+        "operationId": "shop-app-shop-locations",
+        "parameters": [
+          {
+            "description": "Shop handle",
+            "example": "marcnolan",
+            "in": "path",
+            "name": "handle",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum locations, defaults to 10 and supports up to 50",
+            "example": 10,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopapp.shopLocationsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Shop.app shop locations",
+        "tags": [
+          "Shop.app"
+        ]
+      }
+    },
+    "/shop-app/shops/{handle}/products": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns public product cards from a Shop.app merchant profile. sort_by allowed values: MOST_SALES, PRICE_LOW_TO_HIGH, PRICE_HIGH_TO_LOW, RELEVANCE.",
+        "operationId": "shop-app-shop-products",
+        "parameters": [
+          {
+            "description": "Shop handle",
+            "example": "marcnolan",
+            "in": "path",
+            "name": "handle",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum products, defaults to 30 and supports up to 60",
+            "example": 30,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": "MOST_SALES",
+            "description": "Sort mode",
+            "enum": [
+              "MOST_SALES",
+              "PRICE_LOW_TO_HIGH",
+              "PRICE_HIGH_TO_LOW",
+              "RELEVANCE"
+            ],
+            "example": "MOST_SALES",
+            "in": "query",
+            "name": "sort_by",
+            "type": "string"
+          },
+          {
+            "default": true,
+            "description": "Request in-stock products",
+            "example": true,
+            "in": "query",
+            "name": "in_stock",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopapp.shopProductsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Shop.app shop products",
+        "tags": [
+          "Shop.app"
+        ]
+      }
+    },
+    "/shop-app/shops/{handle}/reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns public reviews for a Shop.app merchant profile.",
+        "operationId": "shop-app-shop-reviews",
+        "parameters": [
+          {
+            "description": "Shop handle",
+            "example": "marcnolan",
+            "in": "path",
+            "name": "handle",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum reviews, defaults to 20 and supports up to 50",
+            "example": 20,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopapp.shopReviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Shop.app shop reviews",
+        "tags": [
+          "Shop.app"
+        ]
+      }
+    },
+    "/shop-app/shops/{handle}/typeahead": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns public store typeahead suggestions for a Shop.app merchant profile.",
+        "operationId": "shop-app-shop-typeahead",
+        "parameters": [
+          {
+            "description": "Shop handle",
+            "example": "marcnolan",
+            "in": "path",
+            "name": "handle",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Typeahead query",
+            "example": "loafer",
+            "in": "query",
+            "name": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum suggestions, defaults to 20 and supports up to 20",
+            "example": 20,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopapp.shopTypeaheadResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Suggest products and collections inside a Shop.app shop",
+        "tags": [
+          "Shop.app"
+        ]
+      }
+    },
+    "/shop-app/suggestions": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns Shop.app autocomplete suggestions. Limit defaults to 10 and supports up to 20.",
+        "operationId": "shop-app-suggestions",
+        "parameters": [
+          {
+            "description": "Search query",
+            "example": "sneakers",
+            "in": "query",
+            "name": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum suggestions, defaults to 10 and supports up to 20",
+            "example": 10,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopapp.suggestionsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Suggest Shop.app searches",
+        "tags": [
+          "Shop.app"
         ]
       }
     },

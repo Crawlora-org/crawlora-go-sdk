@@ -459,64 +459,6 @@ type ModelAppstoreVersionHistoryResponseDoc struct {
 	Msg  string                            `json:"msg,omitempty"`
 }
 
-type ModelBillingAdminPlanChangeRequestDoc struct {
-	Currency          string `json:"currency,omitempty"`
-	MonthlyPriceCents int    `json:"monthly_price_cents,omitempty"`
-	Plan              string `json:"plan"`
-}
-
-type ModelBillingAdminPlanChangeResponseDoc struct {
-	Code int                            `json:"code,omitempty"`
-	Data ModelBillingBillingSnapshotDoc `json:"data,omitempty"`
-	Msg  string                         `json:"msg,omitempty"`
-}
-
-type ModelBillingBillingConsistencyEndpointBreakdownDoc struct {
-	ActualCredits   int    `json:"actual_credits,omitempty"`
-	ActualOverage   int    `json:"actual_overage,omitempty"`
-	Endpoint        string `json:"endpoint,omitempty"`
-	ExpectedCredits int    `json:"expected_credits,omitempty"`
-	ExpectedOverage int    `json:"expected_overage,omitempty"`
-}
-
-type ModelBillingBillingConsistencyIssueDoc struct {
-	ActualCredits     int                                                  `json:"actual_credits,omitempty"`
-	ActualOverage     int                                                  `json:"actual_overage,omitempty"`
-	CreatedAt         string                                               `json:"created_at,omitempty"`
-	Detail            string                                               `json:"detail,omitempty"`
-	EndpointBreakdown []ModelBillingBillingConsistencyEndpointBreakdownDoc `json:"endpoint_breakdown,omitempty"`
-	ExpectedCredits   int                                                  `json:"expected_credits,omitempty"`
-	ExpectedOverage   int                                                  `json:"expected_overage,omitempty"`
-	FrozenAt          string                                               `json:"frozen_at,omitempty"`
-	IssueId           string                                               `json:"issue_id,omitempty"`
-	IssueType         string                                               `json:"issue_type,omitempty"`
-	PeriodKey         string                                               `json:"period_key,omitempty"`
-	RepairMethod      string                                               `json:"repair_method,omitempty"`
-	RepairPath        string                                               `json:"repair_path,omitempty"`
-	RequestId         string                                               `json:"request_id,omitempty"`
-	Severity          string                                               `json:"severity,omitempty"`
-	SourceUpdatedAt   string                                               `json:"source_updated_at,omitempty"`
-	StatementId       string                                               `json:"statement_id,omitempty"`
-	StripeInvoiceId   string                                               `json:"stripe_invoice_id,omitempty"`
-	SuggestedAction   string                                               `json:"suggested_action,omitempty"`
-	UserId            string                                               `json:"user_id,omitempty"`
-}
-
-type ModelBillingBillingConsistencyReportDoc struct {
-	CheckedFrom      string                                   `json:"checked_from,omitempty"`
-	CheckedTo        string                                   `json:"checked_to,omitempty"`
-	CountsBySeverity map[string]int                           `json:"counts_by_severity,omitempty"`
-	CountsByType     map[string]int                           `json:"counts_by_type,omitempty"`
-	GeneratedAt      string                                   `json:"generated_at,omitempty"`
-	Issues           []ModelBillingBillingConsistencyIssueDoc `json:"issues,omitempty"`
-}
-
-type ModelBillingBillingConsistencyResponseDoc struct {
-	Code int                                     `json:"code,omitempty"`
-	Data ModelBillingBillingConsistencyReportDoc `json:"data,omitempty"`
-	Msg  string                                  `json:"msg,omitempty"`
-}
-
 type ModelBillingBillingEndpointLedgerDoc struct {
 	ChargedRequests     int    `json:"charged_requests,omitempty"`
 	Credits             int    `json:"credits,omitempty"`
@@ -558,132 +500,6 @@ type ModelBillingBillingEventsResponseDoc struct {
 	Code int                           `json:"code,omitempty"`
 	Data []ModelBillingBillingEventDoc `json:"data,omitempty"`
 	Msg  string                        `json:"msg,omitempty"`
-}
-
-type ModelBillingBillingFinanceAgingBucketDoc struct {
-	AmountRemainingCents int    `json:"amount_remaining_cents,omitempty"`
-	Bucket               string `json:"bucket,omitempty"`
-	InvoiceCount         int    `json:"invoice_count,omitempty"`
-}
-
-type ModelBillingBillingFinanceAgingResponseDoc struct {
-	Code int                                        `json:"code,omitempty"`
-	Data []ModelBillingBillingFinanceAgingBucketDoc `json:"data,omitempty"`
-	Msg  string                                     `json:"msg,omitempty"`
-}
-
-type ModelBillingBillingFinanceOverviewDoc struct {
-	ActiveCustomers             int                                          `json:"active_customers,omitempty"`
-	AtRiskMrrCents              int                                          `json:"at_risk_mrr_cents,omitempty"`
-	BookedExpectedTotalCents    int                                          `json:"booked_expected_total_cents,omitempty"`
-	BookedOverageCents          int                                          `json:"booked_overage_cents,omitempty"`
-	BookedSubscriptionCents     int                                          `json:"booked_subscription_cents,omitempty"`
-	CashCollectedCents          int                                          `json:"cash_collected_cents,omitempty"`
-	Currency                    string                                       `json:"currency,omitempty"`
-	CurrentOutstandingArCents   int                                          `json:"current_outstanding_ar_cents,omitempty"`
-	GracePeriodCustomers        int                                          `json:"grace_period_customers,omitempty"`
-	InvoiceCount                int                                          `json:"invoice_count,omitempty"`
-	InvoicedAmountDueCents      int                                          `json:"invoiced_amount_due_cents,omitempty"`
-	MismatchInvoiceCount        int                                          `json:"mismatch_invoice_count,omitempty"`
-	MismatchTotalCents          int                                          `json:"mismatch_total_cents,omitempty"`
-	MrrCents                    int                                          `json:"mrr_cents,omitempty"`
-	PaidInvoiceCount            int                                          `json:"paid_invoice_count,omitempty"`
-	PastDueCustomers            int                                          `json:"past_due_customers,omitempty"`
-	PaymentFailedInvoiceCount   int                                          `json:"payment_failed_invoice_count,omitempty"`
-	PlanBreakdown               []ModelBillingBillingFinancePlanBreakdownDoc `json:"plan_breakdown,omitempty"`
-	StripeActualCreditNoteCents int                                          `json:"stripe_actual_credit_note_cents,omitempty"`
-	StripeActualDiscountCents   int                                          `json:"stripe_actual_discount_cents,omitempty"`
-	StripeActualNetCashCents    int                                          `json:"stripe_actual_net_cash_cents,omitempty"`
-	StripeActualRefundCents     int                                          `json:"stripe_actual_refund_cents,omitempty"`
-	StripeActualTaxCents        int                                          `json:"stripe_actual_tax_cents,omitempty"`
-	StripeActualTotalCents      int                                          `json:"stripe_actual_total_cents,omitempty"`
-	UncollectibleInvoiceCount   int                                          `json:"uncollectible_invoice_count,omitempty"`
-	VoidedInvoiceCount          int                                          `json:"voided_invoice_count,omitempty"`
-}
-
-type ModelBillingBillingFinanceOverviewResponseDoc struct {
-	Code int                                   `json:"code,omitempty"`
-	Data ModelBillingBillingFinanceOverviewDoc `json:"data,omitempty"`
-	Msg  string                                `json:"msg,omitempty"`
-}
-
-type ModelBillingBillingFinancePeriodItemDoc struct {
-	AmountPaidCents             int    `json:"amount_paid_cents,omitempty"`
-	AmountRemainingCents        int    `json:"amount_remaining_cents,omitempty"`
-	Customers                   int    `json:"customers,omitempty"`
-	ExpectedTotalAmountCents    int    `json:"expected_total_amount_cents,omitempty"`
-	InvoiceAmountDueCents       int    `json:"invoice_amount_due_cents,omitempty"`
-	InvoiceCount                int    `json:"invoice_count,omitempty"`
-	MismatchInvoiceCount        int    `json:"mismatch_invoice_count,omitempty"`
-	MismatchTotalCents          int    `json:"mismatch_total_cents,omitempty"`
-	OverageAmountCents          int    `json:"overage_amount_cents,omitempty"`
-	PaidInvoiceCount            int    `json:"paid_invoice_count,omitempty"`
-	PaymentFailedInvoiceCount   int    `json:"payment_failed_invoice_count,omitempty"`
-	PeriodKey                   string `json:"period_key,omitempty"`
-	StripeActualCreditNoteCents int    `json:"stripe_actual_credit_note_cents,omitempty"`
-	StripeActualDiscountCents   int    `json:"stripe_actual_discount_cents,omitempty"`
-	StripeActualNetCashCents    int    `json:"stripe_actual_net_cash_cents,omitempty"`
-	StripeActualRefundCents     int    `json:"stripe_actual_refund_cents,omitempty"`
-	StripeActualTaxCents        int    `json:"stripe_actual_tax_cents,omitempty"`
-	StripeActualTotalCents      int    `json:"stripe_actual_total_cents,omitempty"`
-	SubscriptionAmountCents     int    `json:"subscription_amount_cents,omitempty"`
-}
-
-type ModelBillingBillingFinancePeriodsResponseDoc struct {
-	Code int                                       `json:"code,omitempty"`
-	Data []ModelBillingBillingFinancePeriodItemDoc `json:"data,omitempty"`
-	Msg  string                                    `json:"msg,omitempty"`
-}
-
-type ModelBillingBillingFinancePlanBreakdownDoc struct {
-	ActiveCustomers             int    `json:"active_customers,omitempty"`
-	AtRiskMrrCents              int    `json:"at_risk_mrr_cents,omitempty"`
-	BookedExpectedTotalCents    int    `json:"booked_expected_total_cents,omitempty"`
-	BookedOverageCents          int    `json:"booked_overage_cents,omitempty"`
-	BookedSubscriptionCents     int    `json:"booked_subscription_cents,omitempty"`
-	CashCollectedCents          int    `json:"cash_collected_cents,omitempty"`
-	CurrentOutstandingArCents   int    `json:"current_outstanding_ar_cents,omitempty"`
-	Customers                   int    `json:"customers,omitempty"`
-	GracePeriodCustomers        int    `json:"grace_period_customers,omitempty"`
-	InvoiceCount                int    `json:"invoice_count,omitempty"`
-	InvoicedAmountDueCents      int    `json:"invoiced_amount_due_cents,omitempty"`
-	MismatchInvoiceCount        int    `json:"mismatch_invoice_count,omitempty"`
-	MismatchTotalCents          int    `json:"mismatch_total_cents,omitempty"`
-	MrrCents                    int    `json:"mrr_cents,omitempty"`
-	PaidInvoiceCount            int    `json:"paid_invoice_count,omitempty"`
-	PastDueCustomers            int    `json:"past_due_customers,omitempty"`
-	PaymentFailedInvoiceCount   int    `json:"payment_failed_invoice_count,omitempty"`
-	Plan                        string `json:"plan,omitempty"`
-	StripeActualCreditNoteCents int    `json:"stripe_actual_credit_note_cents,omitempty"`
-	StripeActualDiscountCents   int    `json:"stripe_actual_discount_cents,omitempty"`
-	StripeActualNetCashCents    int    `json:"stripe_actual_net_cash_cents,omitempty"`
-	StripeActualRefundCents     int    `json:"stripe_actual_refund_cents,omitempty"`
-	StripeActualTaxCents        int    `json:"stripe_actual_tax_cents,omitempty"`
-	StripeActualTotalCents      int    `json:"stripe_actual_total_cents,omitempty"`
-	UncollectibleInvoiceCount   int    `json:"uncollectible_invoice_count,omitempty"`
-	VoidedInvoiceCount          int    `json:"voided_invoice_count,omitempty"`
-}
-
-type ModelBillingBillingPeriodCloseErrorDoc struct {
-	Error     string `json:"error,omitempty"`
-	PeriodKey string `json:"period_key,omitempty"`
-	UserId    string `json:"user_id,omitempty"`
-}
-
-type ModelBillingBillingPeriodCloseSummaryDoc struct {
-	Closed           int                                      `json:"closed,omitempty"`
-	Errors           []ModelBillingBillingPeriodCloseErrorDoc `json:"errors,omitempty"`
-	Failed           int                                      `json:"failed,omitempty"`
-	Scanned          int                                      `json:"scanned,omitempty"`
-	Skipped          int                                      `json:"skipped,omitempty"`
-	SnapshotSkipped  int                                      `json:"snapshot_skipped,omitempty"`
-	SnapshotsCreated int                                      `json:"snapshots_created,omitempty"`
-}
-
-type ModelBillingBillingPeriodCloseSummaryResponseDoc struct {
-	Code int                                      `json:"code,omitempty"`
-	Data ModelBillingBillingPeriodCloseSummaryDoc `json:"data,omitempty"`
-	Msg  string                                   `json:"msg,omitempty"`
 }
 
 type ModelBillingBillingPeriodLedgerDoc struct {
@@ -793,73 +609,6 @@ type ModelBillingBillingPeriodStatementResponseDoc struct {
 	Msg  string                                `json:"msg,omitempty"`
 }
 
-type ModelBillingBillingPeriodStatementSnapshotSummaryDoc struct {
-	AdjustmentEventCount    int    `json:"adjustment_event_count,omitempty"`
-	CanonicalJsonSha256     string `json:"canonical_json_sha256,omitempty"`
-	EventCount              int    `json:"event_count,omitempty"`
-	FrozenAt                string `json:"frozen_at,omitempty"`
-	GeneratedAt             string `json:"generated_at,omitempty"`
-	GeneratedBy             string `json:"generated_by,omitempty"`
-	InvoiceEventCount       int    `json:"invoice_event_count,omitempty"`
-	PeriodKey               string `json:"period_key,omitempty"`
-	Plan                    string `json:"plan,omitempty"`
-	Revision                int    `json:"revision,omitempty"`
-	SourceLedgerUpdatedAt   string `json:"source_ledger_updated_at,omitempty"`
-	SourceSnapshotUpdatedAt string `json:"source_snapshot_updated_at,omitempty"`
-	StatementId             string `json:"statement_id,omitempty"`
-	StatementVersion        string `json:"statement_version,omitempty"`
-	Status                  string `json:"status,omitempty"`
-	UserId                  string `json:"user_id,omitempty"`
-}
-
-type ModelBillingBillingPeriodStatementSnapshotsResponseDoc struct {
-	Code int                                                    `json:"code,omitempty"`
-	Data []ModelBillingBillingPeriodStatementSnapshotSummaryDoc `json:"data,omitempty"`
-	Msg  string                                                 `json:"msg,omitempty"`
-}
-
-type ModelBillingBillingPeriodStatementVerificationDoc struct {
-	CanonicalJsonByteCount int    `json:"canonical_json_byte_count,omitempty"`
-	ComputedSha256         string `json:"computed_sha256,omitempty"`
-	FrozenAt               string `json:"frozen_at,omitempty"`
-	PeriodKey              string `json:"period_key,omitempty"`
-	Revision               int    `json:"revision,omitempty"`
-	StatementId            string `json:"statement_id,omitempty"`
-	StatementVersion       string `json:"statement_version,omitempty"`
-	StoredSha256           string `json:"stored_sha256,omitempty"`
-	UserId                 string `json:"user_id,omitempty"`
-	Valid                  bool   `json:"valid,omitempty"`
-}
-
-type ModelBillingBillingPeriodStatementVerificationResponseDoc struct {
-	Code int                                               `json:"code,omitempty"`
-	Data ModelBillingBillingPeriodStatementVerificationDoc `json:"data,omitempty"`
-	Msg  string                                            `json:"msg,omitempty"`
-}
-
-type ModelBillingBillingSnapshotDoc struct {
-	AllowOverage                    bool   `json:"allow_overage,omitempty"`
-	CreditsRemaining                int    `json:"credits_remaining,omitempty"`
-	CreditsUsed                     int    `json:"credits_used,omitempty"`
-	Currency                        string `json:"currency,omitempty"`
-	DailyCreditLimit                int    `json:"daily_credit_limit,omitempty"`
-	DailyCreditsRemaining           int    `json:"daily_credits_remaining,omitempty"`
-	DailyCreditsUsed                int    `json:"daily_credits_used,omitempty"`
-	DailyKey                        string `json:"daily_key,omitempty"`
-	ExpectedSubscriptionAmountCents int    `json:"expected_subscription_amount_cents,omitempty"`
-	ExpectedTotalAmountCents        int    `json:"expected_total_amount_cents,omitempty"`
-	HardLimit                       bool   `json:"hard_limit,omitempty"`
-	IncludedCredits                 int    `json:"included_credits,omitempty"`
-	OverageCredits                  int    `json:"overage_credits,omitempty"`
-	PeriodEnd                       string `json:"period_end,omitempty"`
-	PeriodKey                       string `json:"period_key,omitempty"`
-	PeriodStart                     string `json:"period_start,omitempty"`
-	Plan                            string `json:"plan,omitempty"`
-	PricingSource                   string `json:"pricing_source,omitempty"`
-	SubscriptionPriceCents          int    `json:"subscription_price_cents,omitempty"`
-	UserId                          string `json:"user_id,omitempty"`
-}
-
 type ModelBillingBillingStateDoc struct {
 	AllowOverage                    bool   `json:"allow_overage,omitempty"`
 	CreatedAt                       string `json:"created_at,omitempty"`
@@ -922,13 +671,6 @@ type ModelBillingBillingStatementAdjustmentEvidenceDoc struct {
 	StripeInvoiceId      string `json:"stripe_invoice_id,omitempty"`
 }
 
-type ModelBillingBillingStatementAdminEvidenceDoc struct {
-	AdjustmentEvents []ModelBillingBillingStatementAdjustmentEvidenceDoc   `json:"adjustment_events,omitempty"`
-	Invoice          ModelBillingBillingStatementInvoiceEvidenceDoc        `json:"invoice,omitempty"`
-	InvoiceEvents    []ModelBillingBillingStatementInvoiceEventEvidenceDoc `json:"invoice_events,omitempty"`
-	Repair           ModelBillingBillingStatementRepairDoc                 `json:"repair,omitempty"`
-}
-
 type ModelBillingBillingStatementEventItemDoc struct {
 	Billable          bool   `json:"billable,omitempty"`
 	CreatedAt         string `json:"created_at,omitempty"`
@@ -938,13 +680,6 @@ type ModelBillingBillingStatementEventItemDoc struct {
 	NonBillableReason string `json:"non_billable_reason,omitempty"`
 	RequestId         string `json:"request_id,omitempty"`
 	StatusCode        int    `json:"status_code,omitempty"`
-}
-
-type ModelBillingBillingStatementEvidencePackDoc struct {
-	AdminEvidence     ModelBillingBillingStatementAdminEvidenceDoc         `json:"admin_evidence,omitempty"`
-	CustomerStatement ModelBillingBillingPeriodStatementDoc                `json:"customer_statement,omitempty"`
-	Snapshot          ModelBillingBillingPeriodStatementSnapshotSummaryDoc `json:"snapshot,omitempty"`
-	Verification      ModelBillingBillingPeriodStatementVerificationDoc    `json:"verification,omitempty"`
 }
 
 type ModelBillingBillingStatementExpectedRevenueDoc struct {
@@ -1062,135 +797,10 @@ type ModelBillingBillingStatementUserDoc struct {
 	Username         string `json:"username,omitempty"`
 }
 
-type ModelBillingBillingSummaryItemDoc struct {
-	Billable            bool   `json:"billable,omitempty"`
-	ChargedRequests     int    `json:"charged_requests,omitempty"`
-	Credits             int    `json:"credits,omitempty"`
-	Endpoint            string `json:"endpoint,omitempty"`
-	FailedRequests      int    `json:"failed_requests,omitempty"`
-	NonBillableRequests int    `json:"non_billable_requests,omitempty"`
-	Overage             int    `json:"overage,omitempty"`
-	Plan                string `json:"plan,omitempty"`
-	Requests            int    `json:"requests,omitempty"`
-}
-
-type ModelBillingBillingSummaryResponseDoc struct {
-	Code int                                 `json:"code,omitempty"`
-	Data []ModelBillingBillingSummaryItemDoc `json:"data,omitempty"`
-	Msg  string                              `json:"msg,omitempty"`
-}
-
-type ModelBillingStripeAdjustmentEventDoc struct {
-	AmountCents                int      `json:"amount_cents,omitempty"`
-	ChargeId                   string   `json:"charge_id,omitempty"`
-	Currency                   string   `json:"currency,omitempty"`
-	Error                      string   `json:"error,omitempty"`
-	EventCreated               string   `json:"event_created,omitempty"`
-	EventId                    string   `json:"event_id,omitempty"`
-	EventType                  string   `json:"event_type,omitempty"`
-	InvoicePaymentIds          []string `json:"invoice_payment_ids,omitempty"`
-	Kind                       string   `json:"kind,omitempty"`
-	MatchStatus                string   `json:"match_status,omitempty"`
-	MatchedPeriodKey           string   `json:"matched_period_key,omitempty"`
-	MatchedStripeInvoiceId     string   `json:"matched_stripe_invoice_id,omitempty"`
-	MatchedUserId              string   `json:"matched_user_id,omitempty"`
-	PaymentIntentId            string   `json:"payment_intent_id,omitempty"`
-	PostPaymentCreditNoteCents int      `json:"post_payment_credit_note_cents,omitempty"`
-	PrePaymentCreditNoteCents  int      `json:"pre_payment_credit_note_cents,omitempty"`
-	ProcessedAt                string   `json:"processed_at,omitempty"`
-	ReconciliationStatus       string   `json:"reconciliation_status,omitempty"`
-	RefundCents                int      `json:"refund_cents,omitempty"`
-	RepairAttempts             int      `json:"repair_attempts,omitempty"`
-	RepairLastAttemptAt        string   `json:"repair_last_attempt_at,omitempty"`
-	RepairLastError            string   `json:"repair_last_error,omitempty"`
-	RepairSource               string   `json:"repair_source,omitempty"`
-	RepairStatus               string   `json:"repair_status,omitempty"`
-	ResourceId                 string   `json:"resource_id,omitempty"`
-	ResourceStatus             string   `json:"resource_status,omitempty"`
-	StripeCustomerId           string   `json:"stripe_customer_id,omitempty"`
-	StripeInvoiceId            string   `json:"stripe_invoice_id,omitempty"`
-}
-
-type ModelBillingStripeAdjustmentEventsResponseDoc struct {
-	Code int                                    `json:"code,omitempty"`
-	Data []ModelBillingStripeAdjustmentEventDoc `json:"data,omitempty"`
-	Msg  string                                 `json:"msg,omitempty"`
-}
-
-type ModelBillingStripeAdjustmentReconcileErrorDoc struct {
-	Error           string `json:"error,omitempty"`
-	EventId         string `json:"event_id,omitempty"`
-	ResourceId      string `json:"resource_id,omitempty"`
-	StripeInvoiceId string `json:"stripe_invoice_id,omitempty"`
-}
-
-type ModelBillingStripeAdjustmentReconcileSummaryDoc struct {
-	Errors    []ModelBillingStripeAdjustmentReconcileErrorDoc `json:"errors,omitempty"`
-	Failed    int                                             `json:"failed,omitempty"`
-	Matched   int                                             `json:"matched,omitempty"`
-	Scanned   int                                             `json:"scanned,omitempty"`
-	Skipped   int                                             `json:"skipped,omitempty"`
-	Unmatched int                                             `json:"unmatched,omitempty"`
-}
-
-type ModelBillingStripeAdjustmentReconcileSummaryResponseDoc struct {
-	Code int                                             `json:"code,omitempty"`
-	Data ModelBillingStripeAdjustmentReconcileSummaryDoc `json:"data,omitempty"`
-	Msg  string                                          `json:"msg,omitempty"`
-}
-
 type ModelBillingStripeCheckoutRequestDoc struct {
 	CancelUrl  string `json:"cancel_url,omitempty"`
 	Plan       string `json:"plan,omitempty"`
 	SuccessUrl string `json:"success_url,omitempty"`
-}
-
-type ModelBillingStripeInvoiceEventDoc struct {
-	AmountDue                  int                                    `json:"amount_due,omitempty"`
-	AmountPaid                 int                                    `json:"amount_paid,omitempty"`
-	AmountRemaining            int                                    `json:"amount_remaining,omitempty"`
-	ChargeId                   string                                 `json:"charge_id,omitempty"`
-	Currency                   string                                 `json:"currency,omitempty"`
-	DiscountCents              int                                    `json:"discount_cents,omitempty"`
-	DueDate                    string                                 `json:"due_date,omitempty"`
-	Error                      string                                 `json:"error,omitempty"`
-	EventCreated               string                                 `json:"event_created,omitempty"`
-	EventId                    string                                 `json:"event_id,omitempty"`
-	EventType                  string                                 `json:"event_type,omitempty"`
-	HostedInvoiceUrl           string                                 `json:"hosted_invoice_url,omitempty"`
-	InvoicePaymentIds          []string                               `json:"invoice_payment_ids,omitempty"`
-	InvoicePdf                 string                                 `json:"invoice_pdf,omitempty"`
-	LineItems                  []ModelBillingStripeInvoiceLineItemDoc `json:"line_items,omitempty"`
-	MatchStatus                string                                 `json:"match_status,omitempty"`
-	MatchedPeriodKey           string                                 `json:"matched_period_key,omitempty"`
-	MatchedUserId              string                                 `json:"matched_user_id,omitempty"`
-	PaymentIntentId            string                                 `json:"payment_intent_id,omitempty"`
-	PeriodEnd                  string                                 `json:"period_end,omitempty"`
-	PeriodStart                string                                 `json:"period_start,omitempty"`
-	PostPaymentCreditNoteCents int                                    `json:"post_payment_credit_note_cents,omitempty"`
-	PrePaymentCreditNoteCents  int                                    `json:"pre_payment_credit_note_cents,omitempty"`
-	ProcessedAt                string                                 `json:"processed_at,omitempty"`
-	ReconciliationStatus       string                                 `json:"reconciliation_status,omitempty"`
-	RepairAttempts             int                                    `json:"repair_attempts,omitempty"`
-	RepairLastAttemptAt        string                                 `json:"repair_last_attempt_at,omitempty"`
-	RepairLastError            string                                 `json:"repair_last_error,omitempty"`
-	RepairSource               string                                 `json:"repair_source,omitempty"`
-	RepairStatus               string                                 `json:"repair_status,omitempty"`
-	StripeCustomerId           string                                 `json:"stripe_customer_id,omitempty"`
-	StripeInvoiceId            string                                 `json:"stripe_invoice_id,omitempty"`
-	StripeInvoiceNumber        string                                 `json:"stripe_invoice_number,omitempty"`
-	StripeInvoiceStatus        string                                 `json:"stripe_invoice_status,omitempty"`
-	SubtotalCents              int                                    `json:"subtotal_cents,omitempty"`
-	SubtotalExcludingTaxCents  int                                    `json:"subtotal_excluding_tax_cents,omitempty"`
-	TaxCents                   int                                    `json:"tax_cents,omitempty"`
-	TotalCents                 int                                    `json:"total_cents,omitempty"`
-	TotalExcludingTaxCents     int                                    `json:"total_excluding_tax_cents,omitempty"`
-}
-
-type ModelBillingStripeInvoiceEventsResponseDoc struct {
-	Code int                                 `json:"code,omitempty"`
-	Data []ModelBillingStripeInvoiceEventDoc `json:"data,omitempty"`
-	Msg  string                              `json:"msg,omitempty"`
 }
 
 type ModelBillingStripeInvoiceLineItemDoc struct {
@@ -1206,227 +816,8 @@ type ModelBillingStripeInvoiceLineItemDoc struct {
 	Type        string `json:"type,omitempty"`
 }
 
-type ModelBillingStripeInvoiceReconcileErrorDoc struct {
-	Error           string `json:"error,omitempty"`
-	EventId         string `json:"event_id,omitempty"`
-	StripeInvoiceId string `json:"stripe_invoice_id,omitempty"`
-}
-
-type ModelBillingStripeInvoiceReconcileSummaryDoc struct {
-	Errors    []ModelBillingStripeInvoiceReconcileErrorDoc `json:"errors,omitempty"`
-	Failed    int                                          `json:"failed,omitempty"`
-	Matched   int                                          `json:"matched,omitempty"`
-	Scanned   int                                          `json:"scanned,omitempty"`
-	Skipped   int                                          `json:"skipped,omitempty"`
-	Unmatched int                                          `json:"unmatched,omitempty"`
-}
-
-type ModelBillingStripeInvoiceReconcileSummaryResponseDoc struct {
-	Code int                                          `json:"code,omitempty"`
-	Data ModelBillingStripeInvoiceReconcileSummaryDoc `json:"data,omitempty"`
-	Msg  string                                       `json:"msg,omitempty"`
-}
-
-type ModelBillingStripeInvoiceSnapshotDetailDoc struct {
-	AdjustmentEvents []ModelBillingStripeAdjustmentEventDoc `json:"adjustment_events,omitempty"`
-	InvoiceEvents    []ModelBillingStripeInvoiceEventDoc    `json:"invoice_events,omitempty"`
-	Ledger           ModelBillingBillingPeriodLedgerDoc     `json:"ledger,omitempty"`
-	Snapshot         ModelBillingStripeInvoiceSnapshotDoc   `json:"snapshot,omitempty"`
-}
-
-type ModelBillingStripeInvoiceSnapshotDetailResponseDoc struct {
-	Code int                                        `json:"code,omitempty"`
-	Data ModelBillingStripeInvoiceSnapshotDetailDoc `json:"data,omitempty"`
-	Msg  string                                     `json:"msg,omitempty"`
-}
-
-type ModelBillingStripeInvoiceSnapshotDoc struct {
-	ActualOneTimeCents         int                                    `json:"actual_one_time_cents,omitempty"`
-	ActualOverageCents         int                                    `json:"actual_overage_cents,omitempty"`
-	ActualProrationCents       int                                    `json:"actual_proration_cents,omitempty"`
-	ActualSubscriptionCents    int                                    `json:"actual_subscription_cents,omitempty"`
-	AmountDueCents             int                                    `json:"amount_due_cents,omitempty"`
-	AmountPaidCents            int                                    `json:"amount_paid_cents,omitempty"`
-	AmountRemainingCents       int                                    `json:"amount_remaining_cents,omitempty"`
-	ChargeId                   string                                 `json:"charge_id,omitempty"`
-	CreatedAt                  string                                 `json:"created_at,omitempty"`
-	Currency                   string                                 `json:"currency,omitempty"`
-	DiscountCents              int                                    `json:"discount_cents,omitempty"`
-	DueDate                    string                                 `json:"due_date,omitempty"`
-	EffectiveDueDate           string                                 `json:"effective_due_date,omitempty"`
-	ExpectedTotalCents         int                                    `json:"expected_total_cents,omitempty"`
-	FinalizedAt                string                                 `json:"finalized_at,omitempty"`
-	HostedInvoiceUrl           string                                 `json:"hosted_invoice_url,omitempty"`
-	InvoicePaymentIds          []string                               `json:"invoice_payment_ids,omitempty"`
-	InvoicePdf                 string                                 `json:"invoice_pdf,omitempty"`
-	LastEventCreated           string                                 `json:"last_event_created,omitempty"`
-	LastEventId                string                                 `json:"last_event_id,omitempty"`
-	LineItems                  []ModelBillingStripeInvoiceLineItemDoc `json:"line_items,omitempty"`
-	MatchedPeriodKey           string                                 `json:"matched_period_key,omitempty"`
-	MatchedUserId              string                                 `json:"matched_user_id,omitempty"`
-	MismatchFlags              []string                               `json:"mismatch_flags,omitempty"`
-	MismatchTotalCents         int                                    `json:"mismatch_total_cents,omitempty"`
-	NetCashCents               int                                    `json:"net_cash_cents,omitempty"`
-	PaidAt                     string                                 `json:"paid_at,omitempty"`
-	PaymentIntentId            string                                 `json:"payment_intent_id,omitempty"`
-	PeriodEnd                  string                                 `json:"period_end,omitempty"`
-	PeriodStart                string                                 `json:"period_start,omitempty"`
-	Plan                       string                                 `json:"plan,omitempty"`
-	PostPaymentCreditNoteCents int                                    `json:"post_payment_credit_note_cents,omitempty"`
-	PrePaymentCreditNoteCents  int                                    `json:"pre_payment_credit_note_cents,omitempty"`
-	ReconciliationStatus       string                                 `json:"reconciliation_status,omitempty"`
-	RefundCents                int                                    `json:"refund_cents,omitempty"`
-	RepairAttempts             int                                    `json:"repair_attempts,omitempty"`
-	RepairError                string                                 `json:"repair_error,omitempty"`
-	RepairLastAttemptAt        string                                 `json:"repair_last_attempt_at,omitempty"`
-	RepairLastSuccessAt        string                                 `json:"repair_last_success_at,omitempty"`
-	RepairStatus               string                                 `json:"repair_status,omitempty"`
-	StripeCustomerId           string                                 `json:"stripe_customer_id,omitempty"`
-	StripeInvoiceId            string                                 `json:"stripe_invoice_id,omitempty"`
-	StripeInvoiceNumber        string                                 `json:"stripe_invoice_number,omitempty"`
-	StripeInvoiceStatus        string                                 `json:"stripe_invoice_status,omitempty"`
-	SubtotalCents              int                                    `json:"subtotal_cents,omitempty"`
-	SubtotalExcludingTaxCents  int                                    `json:"subtotal_excluding_tax_cents,omitempty"`
-	TaxCents                   int                                    `json:"tax_cents,omitempty"`
-	TotalCents                 int                                    `json:"total_cents,omitempty"`
-	TotalExcludingTaxCents     int                                    `json:"total_excluding_tax_cents,omitempty"`
-	UpdatedAt                  string                                 `json:"updated_at,omitempty"`
-}
-
-type ModelBillingStripeInvoiceSnapshotsResponseDoc struct {
-	Code int                                    `json:"code,omitempty"`
-	Data []ModelBillingStripeInvoiceSnapshotDoc `json:"data,omitempty"`
-	Msg  string                                 `json:"msg,omitempty"`
-}
-
-type ModelBillingStripeMismatchSummaryDoc struct {
-	AutoRepairable []ModelBillingStripeMismatchSummaryItemDoc `json:"auto_repairable,omitempty"`
-	ManualReview   []ModelBillingStripeMismatchSummaryItemDoc `json:"manual_review,omitempty"`
-}
-
-type ModelBillingStripeMismatchSummaryItemDoc struct {
-	ActualTotalCents   int    `json:"actual_total_cents,omitempty"`
-	DeltaTotalCents    int    `json:"delta_total_cents,omitempty"`
-	ExpectedTotalCents int    `json:"expected_total_cents,omitempty"`
-	InvoiceCount       int    `json:"invoice_count,omitempty"`
-	MismatchFlag       string `json:"mismatch_flag,omitempty"`
-}
-
-type ModelBillingStripeMismatchSummaryResponseDoc struct {
-	Code int                                  `json:"code,omitempty"`
-	Data ModelBillingStripeMismatchSummaryDoc `json:"data,omitempty"`
-	Msg  string                               `json:"msg,omitempty"`
-}
-
-type ModelBillingStripeOverageSyncErrorDoc struct {
-	Error     string `json:"error,omitempty"`
-	PeriodKey string `json:"period_key,omitempty"`
-	UserId    string `json:"user_id,omitempty"`
-}
-
-type ModelBillingStripeOverageSyncSummaryDoc struct {
-	Ambiguous   int                                     `json:"ambiguous,omitempty"`
-	Errors      []ModelBillingStripeOverageSyncErrorDoc `json:"errors,omitempty"`
-	Failed      int                                     `json:"failed,omitempty"`
-	NotRequired int                                     `json:"not_required,omitempty"`
-	Scanned     int                                     `json:"scanned,omitempty"`
-	Skipped     int                                     `json:"skipped,omitempty"`
-	Synced      int                                     `json:"synced,omitempty"`
-}
-
-type ModelBillingStripeOverageSyncSummaryResponseDoc struct {
-	Code int                                     `json:"code,omitempty"`
-	Data ModelBillingStripeOverageSyncSummaryDoc `json:"data,omitempty"`
-	Msg  string                                  `json:"msg,omitempty"`
-}
-
 type ModelBillingStripePortalRequestDoc struct {
 	ReturnUrl string `json:"return_url,omitempty"`
-}
-
-type ModelBillingStripeRepairBacklogBucketDoc struct {
-	ByAttemptBucket []ModelBillingStripeRepairStatusCountDoc `json:"by_attempt_bucket,omitempty"`
-	BySource        []ModelBillingStripeRepairStatusCountDoc `json:"by_source,omitempty"`
-	ByStatus        []ModelBillingStripeRepairStatusCountDoc `json:"by_status,omitempty"`
-	Total           int                                      `json:"total,omitempty"`
-}
-
-type ModelBillingStripeRepairBacklogSummaryDoc struct {
-	AdjustmentEvents        ModelBillingStripeRepairBacklogBucketDoc `json:"adjustment_events,omitempty"`
-	AutoRetryExhaustedCount int                                      `json:"auto_retry_exhausted_count,omitempty"`
-	InvoiceEvents           ModelBillingStripeRepairBacklogBucketDoc `json:"invoice_events,omitempty"`
-	RecentErrors            []ModelBillingStripeRepairRecentErrorDoc `json:"recent_errors,omitempty"`
-	Snapshots               ModelBillingStripeRepairBacklogBucketDoc `json:"snapshots,omitempty"`
-}
-
-type ModelBillingStripeRepairBacklogSummaryResponseDoc struct {
-	Code int                                       `json:"code,omitempty"`
-	Data ModelBillingStripeRepairBacklogSummaryDoc `json:"data,omitempty"`
-	Msg  string                                    `json:"msg,omitempty"`
-}
-
-type ModelBillingStripeRepairErrorDoc struct {
-	CandidateKind string `json:"candidate_kind,omitempty"`
-	Error         string `json:"error,omitempty"`
-	EventId       string `json:"event_id,omitempty"`
-	InvoiceId     string `json:"invoice_id,omitempty"`
-	ResourceId    string `json:"resource_id,omitempty"`
-}
-
-type ModelBillingStripeRepairRecentErrorDoc struct {
-	CandidateKind       string `json:"candidate_kind,omitempty"`
-	EventId             string `json:"event_id,omitempty"`
-	InvoiceId           string `json:"invoice_id,omitempty"`
-	RepairAttempts      int    `json:"repair_attempts,omitempty"`
-	RepairLastAttemptAt string `json:"repair_last_attempt_at,omitempty"`
-	RepairLastError     string `json:"repair_last_error,omitempty"`
-	RepairStatus        string `json:"repair_status,omitempty"`
-	ResourceId          string `json:"resource_id,omitempty"`
-}
-
-type ModelBillingStripeRepairResetDoc struct {
-	CandidateKind          string `json:"candidate_kind,omitempty"`
-	EventId                string `json:"event_id,omitempty"`
-	InvoiceId              string `json:"invoice_id,omitempty"`
-	PreviousRepairAttempts int    `json:"previous_repair_attempts,omitempty"`
-	PreviousRepairStatus   string `json:"previous_repair_status,omitempty"`
-	RepairAttempts         int    `json:"repair_attempts,omitempty"`
-	RepairSource           string `json:"repair_source,omitempty"`
-	RepairStatus           string `json:"repair_status,omitempty"`
-	ResetAt                string `json:"reset_at,omitempty"`
-}
-
-type ModelBillingStripeRepairResetRequestDoc struct {
-	CandidateKind string `json:"candidate_kind"`
-	EventId       string `json:"event_id,omitempty"`
-	InvoiceId     string `json:"invoice_id,omitempty"`
-}
-
-type ModelBillingStripeRepairResetResponseDoc struct {
-	Code int                              `json:"code,omitempty"`
-	Data ModelBillingStripeRepairResetDoc `json:"data,omitempty"`
-	Msg  string                           `json:"msg,omitempty"`
-}
-
-type ModelBillingStripeRepairStatusCountDoc struct {
-	Count int    `json:"count,omitempty"`
-	Key   string `json:"key,omitempty"`
-}
-
-type ModelBillingStripeRepairSummaryDoc struct {
-	AdjustmentRepaired int                                `json:"adjustment_repaired,omitempty"`
-	Errors             []ModelBillingStripeRepairErrorDoc `json:"errors,omitempty"`
-	Failed             int                                `json:"failed,omitempty"`
-	InvoiceRepaired    int                                `json:"invoice_repaired,omitempty"`
-	Scanned            int                                `json:"scanned,omitempty"`
-	Skipped            int                                `json:"skipped,omitempty"`
-	Succeeded          int                                `json:"succeeded,omitempty"`
-}
-
-type ModelBillingStripeRepairSummaryResponseDoc struct {
-	Code int                                `json:"code,omitempty"`
-	Data ModelBillingStripeRepairSummaryDoc `json:"data,omitempty"`
-	Msg  string                             `json:"msg,omitempty"`
 }
 
 type ModelBillingStripeSessionDoc struct {
@@ -2399,10 +1790,6 @@ type ModelContactContact struct {
 	Url     string         `json:"url,omitempty"`
 }
 
-type ModelContactContactOption struct {
-	Url string `json:"url"`
-}
-
 type ModelDatasetsDatasetInfo struct {
 	Capabilities []string `json:"capabilities,omitempty"`
 	Description  string   `json:"description,omitempty"`
@@ -3233,12 +2620,6 @@ type ModelGoogleSearchResp struct {
 	PeopleAlsoSearchFor []string                       `json:"people_also_search_for,omitempty"`
 	RelatedSearches     []string                       `json:"related_searches,omitempty"`
 	Result              []ModelGoogleSearchItem        `json:"result,omitempty"`
-}
-
-type ModelGoogleShoppingItemDetailOption struct {
-	Cid string `json:"cid,omitempty"`
-	Gid string `json:"gid,omitempty"`
-	Oid string `json:"oid"`
 }
 
 type ModelGoogleSuggestResponse struct {
@@ -5428,87 +4809,6 @@ type ModelProducthuntSearchTopicDoc struct {
 	Topic map[string]any `json:"topic,omitempty"`
 }
 
-type ModelReferralsAdminReferralAttributionDoc struct {
-	Attribution ModelReferralsAdminReferralAttributionRecordDoc `json:"attribution,omitempty"`
-	Rewards     []ModelReferralsAdminReferralRewardDoc          `json:"rewards,omitempty"`
-}
-
-type ModelReferralsAdminReferralAttributionRecordDoc struct {
-	ClickId            string   `json:"click_id,omitempty"`
-	Code               string   `json:"code,omitempty"`
-	CreatedAt          string   `json:"created_at,omitempty"`
-	Error              string   `json:"error,omitempty"`
-	ExpiresAt          string   `json:"expires_at,omitempty"`
-	FirstPaidInvoiceId string   `json:"first_paid_invoice_id,omitempty"`
-	Id                 string   `json:"id,omitempty"`
-	LandingPath        string   `json:"landing_path,omitempty"`
-	QualifiedAt        string   `json:"qualified_at,omitempty"`
-	ReferredUserId     string   `json:"referred_user_id,omitempty"`
-	ReferrerUserId     string   `json:"referrer_user_id,omitempty"`
-	ReviewReason       string   `json:"review_reason,omitempty"`
-	ReviewedAt         string   `json:"reviewed_at,omitempty"`
-	ReviewedBy         string   `json:"reviewed_by,omitempty"`
-	RewardedAt         string   `json:"rewarded_at,omitempty"`
-	RiskFlags          []string `json:"risk_flags,omitempty"`
-	SkipReason         string   `json:"skip_reason,omitempty"`
-	Status             string   `json:"status,omitempty"`
-	StripeEventId      string   `json:"stripe_event_id,omitempty"`
-	StripeInvoiceId    string   `json:"stripe_invoice_id,omitempty"`
-	UtmCampaign        string   `json:"utm_campaign,omitempty"`
-	UtmMedium          string   `json:"utm_medium,omitempty"`
-	UtmSource          string   `json:"utm_source,omitempty"`
-}
-
-type ModelReferralsAdminReferralDetailResponseDoc struct {
-	Attribution ModelReferralsAdminReferralAttributionRecordDoc `json:"attribution,omitempty"`
-	Rewards     []ModelReferralsAdminReferralRewardDoc          `json:"rewards,omitempty"`
-}
-
-type ModelReferralsAdminReferralRecoveryResponseDoc struct {
-	Attempted int      `json:"attempted,omitempty"`
-	Errors    []string `json:"errors,omitempty"`
-	Recovered int      `json:"recovered,omitempty"`
-}
-
-type ModelReferralsAdminReferralRejectRequestDoc struct {
-	Reason string `json:"reason,omitempty"`
-}
-
-type ModelReferralsAdminReferralReviewResponseDoc struct {
-	Attribution ModelReferralsAdminReferralAttributionRecordDoc `json:"attribution,omitempty"`
-	Rewards     []ModelReferralsAdminReferralRewardDoc          `json:"rewards,omitempty"`
-}
-
-type ModelReferralsAdminReferralRewardDoc struct {
-	AttributionId     string `json:"attribution_id,omitempty"`
-	CreatedAt         string `json:"created_at,omitempty"`
-	Credits           int    `json:"credits,omitempty"`
-	CreditsGrantError string `json:"credits_grant_error,omitempty"`
-	CreditsGrantKey   string `json:"credits_grant_key,omitempty"`
-	CreditsGrantedAt  string `json:"credits_granted_at,omitempty"`
-	Id                string `json:"id,omitempty"`
-	Role              string `json:"role,omitempty"`
-	StripeInvoiceId   string `json:"stripe_invoice_id,omitempty"`
-	UserId            string `json:"user_id,omitempty"`
-}
-
-type ModelReferralsAdminReferralStatsResponseDoc struct {
-	AttributedSignups  int     `json:"attributed_signups,omitempty"`
-	CappedReferrals    int     `json:"capped_referrals,omitempty"`
-	Clicks             int     `json:"clicks,omitempty"`
-	QualificationRate  float64 `json:"qualification_rate,omitempty"`
-	QualifiedReferrals int     `json:"qualified_referrals,omitempty"`
-	RejectedReferrals  int     `json:"rejected_referrals,omitempty"`
-	ReviewRequired     int     `json:"review_required,omitempty"`
-	RewardRate         float64 `json:"reward_rate,omitempty"`
-	RewardedReferrals  int     `json:"rewarded_referrals,omitempty"`
-	SignupRate         float64 `json:"signup_rate,omitempty"`
-}
-
-type ModelReferralsAdminReferralsListResponseDoc struct {
-	Items []ModelReferralsAdminReferralAttributionDoc `json:"items,omitempty"`
-}
-
 type ModelReferralsReferralAttributionDoc struct {
 	Campaign      string `json:"campaign,omitempty"`
 	Code          string `json:"code,omitempty"`
@@ -5559,6 +4859,389 @@ type ModelReferralsReferralsStatsDoc struct {
 	Rejected       int `json:"rejected,omitempty"`
 	ReviewRequired int `json:"review_required,omitempty"`
 	Rewarded       int `json:"rewarded,omitempty"`
+}
+
+type ModelShopappAnalysisResponse struct {
+	Currencies        []string                           `json:"currencies,omitempty"`
+	Discounts         ModelShopappDiscountSummary        `json:"discounts,omitempty"`
+	GroupsCount       int                                `json:"groups_count,omitempty"`
+	PricesByCurrency  []ModelShopappCurrencyPriceSummary `json:"prices_by_currency,omitempty"`
+	ProductsCount     int                                `json:"products_count,omitempty"`
+	Query             string                             `json:"query,omitempty"`
+	SaleCount         int                                `json:"sale_count,omitempty"`
+	SampledProductIds []string                           `json:"sampled_product_ids,omitempty"`
+	ShopsCount        int                                `json:"shops_count,omitempty"`
+	TopShops          []ModelShopappShopSummary          `json:"top_shops,omitempty"`
+}
+
+type ModelShopappCategoriesResponse struct {
+	Categories []ModelShopappCategoryItem `json:"categories,omitempty"`
+}
+
+type ModelShopappCategoryItem struct {
+	Children    []ModelShopappCategoryItem `json:"children,omitempty"`
+	Gid         string                     `json:"gid,omitempty"`
+	HasChildren bool                       `json:"has_children,omitempty"`
+	Id          string                     `json:"id,omitempty"`
+	Image       string                     `json:"image,omitempty"`
+	Name        string                     `json:"name,omitempty"`
+	Path        []ModelShopappCategoryPath `json:"path,omitempty"`
+	Slug        string                     `json:"slug,omitempty"`
+}
+
+type ModelShopappCategoryPath struct {
+	Gid  string `json:"gid,omitempty"`
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelShopappCurrencyPriceSummary struct {
+	Average  float64 `json:"average,omitempty"`
+	Count    int     `json:"count,omitempty"`
+	Currency string  `json:"currency,omitempty"`
+	Max      float64 `json:"max,omitempty"`
+	Min      float64 `json:"min,omitempty"`
+}
+
+type ModelShopappDiscountSummary struct {
+	AveragePercent float64 `json:"average_percent,omitempty"`
+	MaxPercent     float64 `json:"max_percent,omitempty"`
+	MinPercent     float64 `json:"min_percent,omitempty"`
+}
+
+type ModelShopappImageItem struct {
+	Alt string `json:"alt,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
+type ModelShopappLocationAddress struct {
+	Address1   string `json:"address1,omitempty"`
+	Address2   string `json:"address2,omitempty"`
+	City       string `json:"city,omitempty"`
+	Country    string `json:"country,omitempty"`
+	PostalCode string `json:"postal_code,omitempty"`
+	ZoneCode   string `json:"zone_code,omitempty"`
+}
+
+type ModelShopappOptionGroup struct {
+	Name   string   `json:"name,omitempty"`
+	Values []string `json:"values,omitempty"`
+}
+
+type ModelShopappProductDetail struct {
+	Available       bool                      `json:"available,omitempty"`
+	Currency        string                    `json:"currency,omitempty"`
+	Description     string                    `json:"description,omitempty"`
+	ExternalUrl     string                    `json:"external_url,omitempty"`
+	Id              string                    `json:"id,omitempty"`
+	Images          []ModelShopappImageItem   `json:"images,omitempty"`
+	OptionGroups    []ModelShopappOptionGroup `json:"option_groups,omitempty"`
+	OriginalPrice   float64                   `json:"original_price,omitempty"`
+	Price           float64                   `json:"price,omitempty"`
+	Rating          float64                   `json:"rating,omitempty"`
+	RelatedProducts []ModelShopappProductItem `json:"related_products,omitempty"`
+	Reviews         []ModelShopappReviewItem  `json:"reviews,omitempty"`
+	ReviewsCount    int                       `json:"reviews_count,omitempty"`
+	ShopHandle      string                    `json:"shop_handle,omitempty"`
+	ShopId          string                    `json:"shop_id,omitempty"`
+	ShopName        string                    `json:"shop_name,omitempty"`
+	Slug            string                    `json:"slug,omitempty"`
+	Title           string                    `json:"title,omitempty"`
+	Url             string                    `json:"url,omitempty"`
+	VariantId       string                    `json:"variant_id,omitempty"`
+}
+
+type ModelShopappProductDetailResponse struct {
+	Product ModelShopappProductDetail `json:"product,omitempty"`
+}
+
+type ModelShopappProductItem struct {
+	Currency      string  `json:"currency,omitempty"`
+	GroupQuery    string  `json:"group_query,omitempty"`
+	GroupTitle    string  `json:"group_title,omitempty"`
+	Id            string  `json:"id,omitempty"`
+	Image         string  `json:"image,omitempty"`
+	ImageAlt      string  `json:"image_alt,omitempty"`
+	OnSale        bool    `json:"on_sale,omitempty"`
+	OriginalPrice float64 `json:"original_price,omitempty"`
+	Position      int     `json:"position,omitempty"`
+	Price         float64 `json:"price,omitempty"`
+	ShopId        string  `json:"shop_id,omitempty"`
+	ShopName      string  `json:"shop_name,omitempty"`
+	Title         string  `json:"title,omitempty"`
+	Url           string  `json:"url,omitempty"`
+	VariantId     string  `json:"variant_id,omitempty"`
+}
+
+type ModelShopappProductShopResponse struct {
+	ProductId string                 `json:"product_id,omitempty"`
+	Shop      ModelShopappShopDetail `json:"shop,omitempty"`
+}
+
+type ModelShopappProductVariantResponse struct {
+	ProductId string                  `json:"product_id,omitempty"`
+	Variant   ModelShopappVariantItem `json:"variant,omitempty"`
+}
+
+type ModelShopappRelatedResponse struct {
+	Limit     int                       `json:"limit,omitempty"`
+	ProductId string                    `json:"product_id,omitempty"`
+	Products  []ModelShopappProductItem `json:"products,omitempty"`
+}
+
+type ModelShopappReviewItem struct {
+	Author       string                    `json:"author,omitempty"`
+	Body         string                    `json:"body,omitempty"`
+	Date         string                    `json:"date,omitempty"`
+	HelpfulCount int                       `json:"helpful_count,omitempty"`
+	Id           string                    `json:"id,omitempty"`
+	Product      ModelShopappReviewProduct `json:"product,omitempty"`
+	Rating       float64                   `json:"rating,omitempty"`
+	Title        string                    `json:"title,omitempty"`
+	VariantLabel string                    `json:"variant_label,omitempty"`
+}
+
+type ModelShopappReviewProduct struct {
+	Id       string `json:"id,omitempty"`
+	Image    string `json:"image,omitempty"`
+	ImageAlt string `json:"image_alt,omitempty"`
+	Slug     string `json:"slug,omitempty"`
+	Title    string `json:"title,omitempty"`
+	Url      string `json:"url,omitempty"`
+	Variant  string `json:"variant,omitempty"`
+}
+
+type ModelShopappReviewsResponse struct {
+	Limit     int                      `json:"limit,omitempty"`
+	ProductId string                   `json:"product_id,omitempty"`
+	Reviews   []ModelShopappReviewItem `json:"reviews,omitempty"`
+}
+
+type ModelShopappSearchGroup struct {
+	ProductIds   []string `json:"product_ids,omitempty"`
+	ProductsSeen int      `json:"products_seen,omitempty"`
+	Query        string   `json:"query,omitempty"`
+	Title        string   `json:"title,omitempty"`
+}
+
+type ModelShopappSearchResponse struct {
+	Groups   []ModelShopappSearchGroup `json:"groups,omitempty"`
+	Limit    int                       `json:"limit,omitempty"`
+	Products []ModelShopappProductItem `json:"products,omitempty"`
+	Query    string                    `json:"query,omitempty"`
+}
+
+type ModelShopappShopCollection struct {
+	Id    string `json:"id,omitempty"`
+	Slug  string `json:"slug,omitempty"`
+	Title string `json:"title,omitempty"`
+	Url   string `json:"url,omitempty"`
+}
+
+type ModelShopappShopDetail struct {
+	Banner       string                       `json:"banner,omitempty"`
+	Collections  []ModelShopappShopCollection `json:"collections,omitempty"`
+	Description  string                       `json:"description,omitempty"`
+	Handle       string                       `json:"handle,omitempty"`
+	Id           string                       `json:"id,omitempty"`
+	Logo         string                       `json:"logo,omitempty"`
+	Name         string                       `json:"name,omitempty"`
+	Rating       float64                      `json:"rating,omitempty"`
+	ReviewsCount int                          `json:"reviews_count,omitempty"`
+	ShopifyId    string                       `json:"shopify_id,omitempty"`
+	Storefront   string                       `json:"storefront,omitempty"`
+	Url          string                       `json:"url,omitempty"`
+	Uuid         string                       `json:"uuid,omitempty"`
+}
+
+type ModelShopappShopLocationItem struct {
+	Address   ModelShopappLocationAddress `json:"address,omitempty"`
+	Id        string                      `json:"id,omitempty"`
+	Latitude  float64                     `json:"latitude,omitempty"`
+	Longitude float64                     `json:"longitude,omitempty"`
+	Name      string                      `json:"name,omitempty"`
+}
+
+type ModelShopappShopLocationsResponse struct {
+	Limit      int                            `json:"limit,omitempty"`
+	Locations  []ModelShopappShopLocationItem `json:"locations,omitempty"`
+	NextCursor string                         `json:"next_cursor,omitempty"`
+	ShopHandle string                         `json:"shop_handle,omitempty"`
+	ShopId     string                         `json:"shop_id,omitempty"`
+	TotalCount int                            `json:"total_count,omitempty"`
+}
+
+type ModelShopappShopProductsResponse struct {
+	Collection   ModelShopappShopCollection `json:"collection,omitempty"`
+	CollectionId string                     `json:"collection_id,omitempty"`
+	Limit        int                        `json:"limit,omitempty"`
+	NextCursor   string                     `json:"next_cursor,omitempty"`
+	Products     []ModelShopappProductItem  `json:"products,omitempty"`
+	ShopHandle   string                     `json:"shop_handle,omitempty"`
+	SortBy       string                     `json:"sort_by,omitempty"`
+}
+
+type ModelShopappShopResponse struct {
+	Shop ModelShopappShopDetail `json:"shop,omitempty"`
+}
+
+type ModelShopappShopReviewsResponse struct {
+	Limit      int                      `json:"limit,omitempty"`
+	NextCursor string                   `json:"next_cursor,omitempty"`
+	Reviews    []ModelShopappReviewItem `json:"reviews,omitempty"`
+	ShopHandle string                   `json:"shop_handle,omitempty"`
+	ShopId     string                   `json:"shop_id,omitempty"`
+	TotalCount int                      `json:"total_count,omitempty"`
+}
+
+type ModelShopappShopSummary struct {
+	Count    int    `json:"count,omitempty"`
+	ShopId   string `json:"shop_id,omitempty"`
+	ShopName string `json:"shop_name,omitempty"`
+}
+
+type ModelShopappShopTypeaheadItem struct {
+	Collection ModelShopappShopCollection `json:"collection,omitempty"`
+	Id         string                     `json:"id,omitempty"`
+	Position   int                        `json:"position,omitempty"`
+	Product    ModelShopappProductItem    `json:"product,omitempty"`
+	Text       string                     `json:"text,omitempty"`
+	Type       string                     `json:"type,omitempty"`
+	Url        string                     `json:"url,omitempty"`
+}
+
+type ModelShopappShopTypeaheadResponse struct {
+	Limit       int                             `json:"limit,omitempty"`
+	Query       string                          `json:"query,omitempty"`
+	ShopHandle  string                          `json:"shop_handle,omitempty"`
+	ShopId      string                          `json:"shop_id,omitempty"`
+	Suggestions []ModelShopappShopTypeaheadItem `json:"suggestions,omitempty"`
+}
+
+type ModelShopappSuggestResponse struct {
+	Limit       int                          `json:"limit,omitempty"`
+	Query       string                       `json:"query,omitempty"`
+	Suggestions []ModelShopappSuggestionItem `json:"suggestions,omitempty"`
+}
+
+type ModelShopappSuggestionItem struct {
+	Image      string  `json:"image,omitempty"`
+	Rating     float64 `json:"rating,omitempty"`
+	ShopHandle string  `json:"shop_handle,omitempty"`
+	ShopId     string  `json:"shop_id,omitempty"`
+	ShopName   string  `json:"shop_name,omitempty"`
+	Text       string  `json:"text,omitempty"`
+	Type       string  `json:"type,omitempty"`
+	Url        string  `json:"url,omitempty"`
+}
+
+type ModelShopappVariantItem struct {
+	AvailableForSale bool                  `json:"available_for_sale,omitempty"`
+	Currency         string                `json:"currency,omitempty"`
+	Gid              string                `json:"gid,omitempty"`
+	Id               string                `json:"id,omitempty"`
+	Image            ModelShopappImageItem `json:"image,omitempty"`
+	Options          map[string]string     `json:"options,omitempty"`
+	OriginalPrice    float64               `json:"original_price,omitempty"`
+	Price            float64               `json:"price,omitempty"`
+	RequiresShipping bool                  `json:"requires_shipping,omitempty"`
+	Title            string                `json:"title,omitempty"`
+}
+
+type ModelShopappVariantsResponse struct {
+	Limit     int                       `json:"limit,omitempty"`
+	ProductId string                    `json:"product_id,omitempty"`
+	Variants  []ModelShopappVariantItem `json:"variants,omitempty"`
+}
+
+type ModelShopappAnalysisResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelShopappAnalysisResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelShopappCategoriesResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelShopappCategoriesResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelShopappProductResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelShopappProductDetailResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelShopappProductShopResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelShopappProductShopResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelShopappProductVariantResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelShopappProductVariantResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelShopappRelatedResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelShopappRelatedResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelShopappReviewsResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelShopappReviewsResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelShopappSearchResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelShopappSearchResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelShopappShopLocationsResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelShopappShopLocationsResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelShopappShopProductsResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelShopappShopProductsResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelShopappShopResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelShopappShopResponse `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelShopappShopReviewsResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelShopappShopReviewsResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelShopappShopTypeaheadResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelShopappShopTypeaheadResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelShopappSuggestionsResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelShopappSuggestResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelShopappVariantsResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelShopappVariantsResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
 }
 
 type ModelSimilarwebSearchResp struct {
@@ -7724,12 +7407,6 @@ type ModelUserUserRotateApikeyResponseDoc struct {
 	Msg  string                       `json:"msg,omitempty"`
 }
 
-type ModelWebParseWebOption struct {
-	Enablejs bool   `json:"enablejs,omitempty"`
-	Format   string `json:"format,omitempty"`
-	Url      string `json:"url"`
-}
-
 type ModelYahoofinanceActionEvents struct {
 	CapitalGains []map[string]any `json:"capital_gains,omitempty"`
 	Dividends    []map[string]any `json:"dividends,omitempty"`
@@ -8632,7 +8309,7 @@ type ModelZillowSearchResponse struct {
 	Results  []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 303
+const operationCount = 319
 
 const (
 	OperationAirbnbRoom                            = "airbnb-room"
@@ -8799,6 +8476,22 @@ const (
 	OperationReferralsClick                        = "referrals-click"
 	OperationReferralsMe                           = "referrals-me"
 	OperationReferralsMeEvents                     = "referrals-me-events"
+	OperationShopAppAnalysis                       = "shop-app-analysis"
+	OperationShopAppCategories                     = "shop-app-categories"
+	OperationShopAppCollectionProducts             = "shop-app-collection-products"
+	OperationShopAppProduct                        = "shop-app-product"
+	OperationShopAppProductRelated                 = "shop-app-product-related"
+	OperationShopAppProductReviews                 = "shop-app-product-reviews"
+	OperationShopAppProductShop                    = "shop-app-product-shop"
+	OperationShopAppProductVariant                 = "shop-app-product-variant"
+	OperationShopAppProductVariants                = "shop-app-product-variants"
+	OperationShopAppSearch                         = "shop-app-search"
+	OperationShopAppShop                           = "shop-app-shop"
+	OperationShopAppShopLocations                  = "shop-app-shop-locations"
+	OperationShopAppShopProducts                   = "shop-app-shop-products"
+	OperationShopAppShopReviews                    = "shop-app-shop-reviews"
+	OperationShopAppShopTypeahead                  = "shop-app-shop-typeahead"
+	OperationShopAppSuggestions                    = "shop-app-suggestions"
 	OperationSimilarWebSearch                      = "similarweb-search"
 	OperationSimilarWebWeb                         = "similarweb-web"
 	OperationSpotifyAlbum                          = "spotify-album"
@@ -9105,6 +8798,22 @@ var operations = map[string]operationDefinition{
 	"referrals-click":                            operationDefinition{Method: "POST", Path: "/referrals/click", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{}},
 	"referrals-me":                               operationDefinition{Method: "GET", Path: "/referrals/me", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
 	"referrals-me-events":                        operationDefinition{Method: "GET", Path: "/referrals/me/events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
+	"shop-app-analysis":                          operationDefinition{Method: "GET", Path: "/shop-app/analysis", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "in_stock", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "on_sale", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "deep_search", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shop-app-categories":                        operationDefinition{Method: "GET", Path: "/shop-app/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shop-app-product":                           operationDefinition{Method: "GET", Path: "/shop-app/products/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "variant_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shop-app-product-related":                   operationDefinition{Method: "GET", Path: "/shop-app/products/{id}/related", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shop-app-product-reviews":                   operationDefinition{Method: "GET", Path: "/shop-app/products/{id}/reviews", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shop-app-product-shop":                      operationDefinition{Method: "GET", Path: "/shop-app/products/{id}/shop", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shop-app-product-variant":                   operationDefinition{Method: "GET", Path: "/shop-app/products/{id}/variant", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "selected_options", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shop-app-product-variants":                  operationDefinition{Method: "GET", Path: "/shop-app/products/{id}/variants", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "selected_options", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shop-app-search":                            operationDefinition{Method: "GET", Path: "/shop-app/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "in_stock", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "on_sale", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "deep_search", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shop-app-shop":                              operationDefinition{Method: "GET", Path: "/shop-app/shops/{handle}", PathParams: []string{"handle"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shop-app-collection-products":               operationDefinition{Method: "GET", Path: "/shop-app/shops/{handle}/collections/{collection_id}/products", PathParams: []string{"handle", "collection_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"MOST_SALES", "PRICE_LOW_TO_HIGH", "PRICE_HIGH_TO_LOW", "RELEVANCE"}}, parameterDefinition{Name: "in_stock", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shop-app-shop-locations":                    operationDefinition{Method: "GET", Path: "/shop-app/shops/{handle}/locations", PathParams: []string{"handle"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shop-app-shop-products":                     operationDefinition{Method: "GET", Path: "/shop-app/shops/{handle}/products", PathParams: []string{"handle"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"MOST_SALES", "PRICE_LOW_TO_HIGH", "PRICE_HIGH_TO_LOW", "RELEVANCE"}}, parameterDefinition{Name: "in_stock", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shop-app-shop-reviews":                      operationDefinition{Method: "GET", Path: "/shop-app/shops/{handle}/reviews", PathParams: []string{"handle"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shop-app-shop-typeahead":                    operationDefinition{Method: "GET", Path: "/shop-app/shops/{handle}/typeahead", PathParams: []string{"handle"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shop-app-suggestions":                       operationDefinition{Method: "GET", Path: "/shop-app/suggestions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"similarweb-search":                          operationDefinition{Method: "GET", Path: "/similarweb/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"similarweb-web":                             operationDefinition{Method: "GET", Path: "/similarweb/web/{domain}", PathParams: []string{"domain"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"spotify-podcasts-categories":                operationDefinition{Method: "GET", Path: "/spotify-podcasts/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "section_offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "section_limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -9266,6 +8975,7 @@ type Services struct {
 	Meta            *MetaService
 	ProductHunt     *ProductHuntService
 	Referrals       *ReferralsService
+	ShopApp         *ShopAppService
 	SimilarWeb      *SimilarWebService
 	SpotifyPodcasts *SpotifyPodcastsService
 	Spotify         *SpotifyService
@@ -9300,6 +9010,7 @@ func initServices(c *Client) Services {
 		Meta:            &MetaService{client: c},
 		ProductHunt:     &ProductHuntService{client: c},
 		Referrals:       &ReferralsService{client: c},
+		ShopApp:         &ShopAppService{client: c},
 		SimilarWeb:      &SimilarWebService{client: c},
 		SpotifyPodcasts: &SpotifyPodcastsService{client: c},
 		Spotify:         &SpotifyService{client: c},
@@ -11979,6 +11690,257 @@ type ReferralsMeEventsResponse = ModelReferralsReferralsEventsResponseDoc
 
 func (s *ReferralsService) MeEventsTyped(ctx context.Context, params ReferralsMeEventsParams, opts ...RequestOption) (ReferralsMeEventsResponse, error) {
 	return requestTyped[ReferralsMeEventsResponse](s.client, ctx, "referrals-me-events", paramsFromStruct(params), opts...)
+}
+
+type ShopAppService struct{ client *Client }
+
+func (s *ShopAppService) Analysis(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shop-app-analysis", params, opts...)
+}
+
+type ShopAppAnalysisParams struct {
+	Query      string `crawlora:"query"`
+	Limit      *int   `crawlora:"limit,omitempty"`
+	InStock    *bool  `crawlora:"in_stock,omitempty"`
+	OnSale     *bool  `crawlora:"on_sale,omitempty"`
+	DeepSearch *bool  `crawlora:"deep_search,omitempty"`
+}
+
+type ShopAppAnalysisResponse = ModelShopappAnalysisResponseDoc
+
+func (s *ShopAppService) AnalysisTyped(ctx context.Context, params ShopAppAnalysisParams, opts ...RequestOption) (ShopAppAnalysisResponse, error) {
+	return requestTyped[ShopAppAnalysisResponse](s.client, ctx, "shop-app-analysis", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopAppService) Categories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shop-app-categories", params, opts...)
+}
+
+type ShopAppCategoriesParams struct {
+}
+
+type ShopAppCategoriesResponse = ModelShopappCategoriesResponseDoc
+
+func (s *ShopAppService) CategoriesTyped(ctx context.Context, params ShopAppCategoriesParams, opts ...RequestOption) (ShopAppCategoriesResponse, error) {
+	return requestTyped[ShopAppCategoriesResponse](s.client, ctx, "shop-app-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopAppService) Product(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shop-app-product", params, opts...)
+}
+
+type ShopAppProductParams struct {
+	Id        string  `crawlora:"id"`
+	VariantId *string `crawlora:"variant_id,omitempty"`
+}
+
+type ShopAppProductResponse = ModelShopappProductResponseDoc
+
+func (s *ShopAppService) ProductTyped(ctx context.Context, params ShopAppProductParams, opts ...RequestOption) (ShopAppProductResponse, error) {
+	return requestTyped[ShopAppProductResponse](s.client, ctx, "shop-app-product", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopAppService) ProductRelated(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shop-app-product-related", params, opts...)
+}
+
+type ShopAppProductRelatedParams struct {
+	Id    string `crawlora:"id"`
+	Limit *int   `crawlora:"limit,omitempty"`
+}
+
+type ShopAppProductRelatedResponse = ModelShopappRelatedResponseDoc
+
+func (s *ShopAppService) ProductRelatedTyped(ctx context.Context, params ShopAppProductRelatedParams, opts ...RequestOption) (ShopAppProductRelatedResponse, error) {
+	return requestTyped[ShopAppProductRelatedResponse](s.client, ctx, "shop-app-product-related", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopAppService) ProductReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shop-app-product-reviews", params, opts...)
+}
+
+type ShopAppProductReviewsParams struct {
+	Id    string `crawlora:"id"`
+	Limit *int   `crawlora:"limit,omitempty"`
+}
+
+type ShopAppProductReviewsResponse = ModelShopappReviewsResponseDoc
+
+func (s *ShopAppService) ProductReviewsTyped(ctx context.Context, params ShopAppProductReviewsParams, opts ...RequestOption) (ShopAppProductReviewsResponse, error) {
+	return requestTyped[ShopAppProductReviewsResponse](s.client, ctx, "shop-app-product-reviews", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopAppService) ProductShop(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shop-app-product-shop", params, opts...)
+}
+
+type ShopAppProductShopParams struct {
+	Id string `crawlora:"id"`
+}
+
+type ShopAppProductShopResponse = ModelShopappProductShopResponseDoc
+
+func (s *ShopAppService) ProductShopTyped(ctx context.Context, params ShopAppProductShopParams, opts ...RequestOption) (ShopAppProductShopResponse, error) {
+	return requestTyped[ShopAppProductShopResponse](s.client, ctx, "shop-app-product-shop", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopAppService) ProductVariant(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shop-app-product-variant", params, opts...)
+}
+
+type ShopAppProductVariantParams struct {
+	Id              string  `crawlora:"id"`
+	SelectedOptions *string `crawlora:"selected_options,omitempty"`
+}
+
+type ShopAppProductVariantResponse = ModelShopappProductVariantResponseDoc
+
+func (s *ShopAppService) ProductVariantTyped(ctx context.Context, params ShopAppProductVariantParams, opts ...RequestOption) (ShopAppProductVariantResponse, error) {
+	return requestTyped[ShopAppProductVariantResponse](s.client, ctx, "shop-app-product-variant", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopAppService) ProductVariants(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shop-app-product-variants", params, opts...)
+}
+
+type ShopAppProductVariantsParams struct {
+	Id              string  `crawlora:"id"`
+	SelectedOptions *string `crawlora:"selected_options,omitempty"`
+	Limit           *int    `crawlora:"limit,omitempty"`
+}
+
+type ShopAppProductVariantsResponse = ModelShopappVariantsResponseDoc
+
+func (s *ShopAppService) ProductVariantsTyped(ctx context.Context, params ShopAppProductVariantsParams, opts ...RequestOption) (ShopAppProductVariantsResponse, error) {
+	return requestTyped[ShopAppProductVariantsResponse](s.client, ctx, "shop-app-product-variants", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopAppService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shop-app-search", params, opts...)
+}
+
+type ShopAppSearchParams struct {
+	Query      string `crawlora:"query"`
+	Limit      *int   `crawlora:"limit,omitempty"`
+	InStock    *bool  `crawlora:"in_stock,omitempty"`
+	OnSale     *bool  `crawlora:"on_sale,omitempty"`
+	DeepSearch *bool  `crawlora:"deep_search,omitempty"`
+}
+
+type ShopAppSearchResponse = ModelShopappSearchResponseDoc
+
+func (s *ShopAppService) SearchTyped(ctx context.Context, params ShopAppSearchParams, opts ...RequestOption) (ShopAppSearchResponse, error) {
+	return requestTyped[ShopAppSearchResponse](s.client, ctx, "shop-app-search", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopAppService) Shop(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shop-app-shop", params, opts...)
+}
+
+type ShopAppShopParams struct {
+	Handle string `crawlora:"handle"`
+}
+
+type ShopAppShopResponse = ModelShopappShopResponseDoc
+
+func (s *ShopAppService) ShopTyped(ctx context.Context, params ShopAppShopParams, opts ...RequestOption) (ShopAppShopResponse, error) {
+	return requestTyped[ShopAppShopResponse](s.client, ctx, "shop-app-shop", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopAppService) CollectionProducts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shop-app-collection-products", params, opts...)
+}
+
+type ShopAppCollectionProductsParams struct {
+	Handle       string  `crawlora:"handle"`
+	CollectionId string  `crawlora:"collection_id"`
+	Limit        *int    `crawlora:"limit,omitempty"`
+	SortBy       *string `crawlora:"sort_by,omitempty"`
+	InStock      *bool   `crawlora:"in_stock,omitempty"`
+}
+
+type ShopAppCollectionProductsResponse = ModelShopappShopProductsResponseDoc
+
+func (s *ShopAppService) CollectionProductsTyped(ctx context.Context, params ShopAppCollectionProductsParams, opts ...RequestOption) (ShopAppCollectionProductsResponse, error) {
+	return requestTyped[ShopAppCollectionProductsResponse](s.client, ctx, "shop-app-collection-products", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopAppService) ShopLocations(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shop-app-shop-locations", params, opts...)
+}
+
+type ShopAppShopLocationsParams struct {
+	Handle string `crawlora:"handle"`
+	Limit  *int   `crawlora:"limit,omitempty"`
+}
+
+type ShopAppShopLocationsResponse = ModelShopappShopLocationsResponseDoc
+
+func (s *ShopAppService) ShopLocationsTyped(ctx context.Context, params ShopAppShopLocationsParams, opts ...RequestOption) (ShopAppShopLocationsResponse, error) {
+	return requestTyped[ShopAppShopLocationsResponse](s.client, ctx, "shop-app-shop-locations", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopAppService) ShopProducts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shop-app-shop-products", params, opts...)
+}
+
+type ShopAppShopProductsParams struct {
+	Handle  string  `crawlora:"handle"`
+	Limit   *int    `crawlora:"limit,omitempty"`
+	SortBy  *string `crawlora:"sort_by,omitempty"`
+	InStock *bool   `crawlora:"in_stock,omitempty"`
+}
+
+type ShopAppShopProductsResponse = ModelShopappShopProductsResponseDoc
+
+func (s *ShopAppService) ShopProductsTyped(ctx context.Context, params ShopAppShopProductsParams, opts ...RequestOption) (ShopAppShopProductsResponse, error) {
+	return requestTyped[ShopAppShopProductsResponse](s.client, ctx, "shop-app-shop-products", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopAppService) ShopReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shop-app-shop-reviews", params, opts...)
+}
+
+type ShopAppShopReviewsParams struct {
+	Handle string `crawlora:"handle"`
+	Limit  *int   `crawlora:"limit,omitempty"`
+}
+
+type ShopAppShopReviewsResponse = ModelShopappShopReviewsResponseDoc
+
+func (s *ShopAppService) ShopReviewsTyped(ctx context.Context, params ShopAppShopReviewsParams, opts ...RequestOption) (ShopAppShopReviewsResponse, error) {
+	return requestTyped[ShopAppShopReviewsResponse](s.client, ctx, "shop-app-shop-reviews", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopAppService) ShopTypeahead(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shop-app-shop-typeahead", params, opts...)
+}
+
+type ShopAppShopTypeaheadParams struct {
+	Handle string `crawlora:"handle"`
+	Query  string `crawlora:"query"`
+	Limit  *int   `crawlora:"limit,omitempty"`
+}
+
+type ShopAppShopTypeaheadResponse = ModelShopappShopTypeaheadResponseDoc
+
+func (s *ShopAppService) ShopTypeaheadTyped(ctx context.Context, params ShopAppShopTypeaheadParams, opts ...RequestOption) (ShopAppShopTypeaheadResponse, error) {
+	return requestTyped[ShopAppShopTypeaheadResponse](s.client, ctx, "shop-app-shop-typeahead", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopAppService) Suggestions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shop-app-suggestions", params, opts...)
+}
+
+type ShopAppSuggestionsParams struct {
+	Query string `crawlora:"query"`
+	Limit *int   `crawlora:"limit,omitempty"`
+}
+
+type ShopAppSuggestionsResponse = ModelShopappSuggestionsResponseDoc
+
+func (s *ShopAppService) SuggestionsTyped(ctx context.Context, params ShopAppSuggestionsParams, opts ...RequestOption) (ShopAppSuggestionsResponse, error) {
+	return requestTyped[ShopAppSuggestionsResponse](s.client, ctx, "shop-app-suggestions", paramsFromStruct(params), opts...)
 }
 
 type SimilarWebService struct{ client *Client }

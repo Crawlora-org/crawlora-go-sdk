@@ -2,7 +2,7 @@
 
 Generated from `openapi/public.json`. Deprecated, admin, and internal operations are excluded from this SDK contract.
 
-Total operations: `303`
+Total operations: `319`
 
 | Group | SDK method | Operation ID | HTTP | Params | Auth | Response | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -170,6 +170,22 @@ Total operations: `303`
 | Referrals | `Referrals.Click` | `referrals-click` | `POST /referrals/click` | `request` (body ModelReferralsReferralClickRequestDoc required) | none | `ReferralsClickResponse` |  |
 | Referrals | `Referrals.Me` | `referrals-me` | `GET /referrals/me` | none | `JWTAuth` | `ReferralsMeResponse` |  |
 | Referrals | `Referrals.MeEvents` | `referrals-me-events` | `GET /referrals/me/events` | `limit` (query int) | `JWTAuth` | `ReferralsMeEventsResponse` |  |
+| ShopApp | `ShopApp.Analysis` | `shop-app-analysis` | `GET /shop-app/analysis` | `query` (query string required)<br>`limit` (query int)<br>`in_stock` (query bool)<br>`on_sale` (query bool)<br>`deep_search` (query bool) | `ApiKeyAuth` | `ShopAppAnalysisResponse` |  |
+| ShopApp | `ShopApp.Categories` | `shop-app-categories` | `GET /shop-app/categories` | none | `ApiKeyAuth` | `ShopAppCategoriesResponse` |  |
+| ShopApp | `ShopApp.Product` | `shop-app-product` | `GET /shop-app/products/{id}` | `id` (path string required)<br>`variant_id` (query string) | `ApiKeyAuth` | `ShopAppProductResponse` |  |
+| ShopApp | `ShopApp.ProductRelated` | `shop-app-product-related` | `GET /shop-app/products/{id}/related` | `id` (path string required)<br>`limit` (query int) | `ApiKeyAuth` | `ShopAppProductRelatedResponse` |  |
+| ShopApp | `ShopApp.ProductReviews` | `shop-app-product-reviews` | `GET /shop-app/products/{id}/reviews` | `id` (path string required)<br>`limit` (query int) | `ApiKeyAuth` | `ShopAppProductReviewsResponse` |  |
+| ShopApp | `ShopApp.ProductShop` | `shop-app-product-shop` | `GET /shop-app/products/{id}/shop` | `id` (path string required) | `ApiKeyAuth` | `ShopAppProductShopResponse` |  |
+| ShopApp | `ShopApp.ProductVariant` | `shop-app-product-variant` | `GET /shop-app/products/{id}/variant` | `id` (path string required)<br>`selected_options` (query string) | `ApiKeyAuth` | `ShopAppProductVariantResponse` |  |
+| ShopApp | `ShopApp.ProductVariants` | `shop-app-product-variants` | `GET /shop-app/products/{id}/variants` | `id` (path string required)<br>`selected_options` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `ShopAppProductVariantsResponse` |  |
+| ShopApp | `ShopApp.Search` | `shop-app-search` | `GET /shop-app/search` | `query` (query string required)<br>`limit` (query int)<br>`in_stock` (query bool)<br>`on_sale` (query bool)<br>`deep_search` (query bool) | `ApiKeyAuth` | `ShopAppSearchResponse` |  |
+| ShopApp | `ShopApp.Shop` | `shop-app-shop` | `GET /shop-app/shops/{handle}` | `handle` (path string required) | `ApiKeyAuth` | `ShopAppShopResponse` |  |
+| ShopApp | `ShopApp.CollectionProducts` | `shop-app-collection-products` | `GET /shop-app/shops/{handle}/collections/{collection_id}/products` | `handle` (path string required)<br>`collection_id` (path string required)<br>`limit` (query int)<br>`sort_by` (query string)<br>`in_stock` (query bool) | `ApiKeyAuth` | `ShopAppCollectionProductsResponse` |  |
+| ShopApp | `ShopApp.ShopLocations` | `shop-app-shop-locations` | `GET /shop-app/shops/{handle}/locations` | `handle` (path string required)<br>`limit` (query int) | `ApiKeyAuth` | `ShopAppShopLocationsResponse` |  |
+| ShopApp | `ShopApp.ShopProducts` | `shop-app-shop-products` | `GET /shop-app/shops/{handle}/products` | `handle` (path string required)<br>`limit` (query int)<br>`sort_by` (query string)<br>`in_stock` (query bool) | `ApiKeyAuth` | `ShopAppShopProductsResponse` |  |
+| ShopApp | `ShopApp.ShopReviews` | `shop-app-shop-reviews` | `GET /shop-app/shops/{handle}/reviews` | `handle` (path string required)<br>`limit` (query int) | `ApiKeyAuth` | `ShopAppShopReviewsResponse` |  |
+| ShopApp | `ShopApp.ShopTypeahead` | `shop-app-shop-typeahead` | `GET /shop-app/shops/{handle}/typeahead` | `handle` (path string required)<br>`query` (query string required)<br>`limit` (query int) | `ApiKeyAuth` | `ShopAppShopTypeaheadResponse` |  |
+| ShopApp | `ShopApp.Suggestions` | `shop-app-suggestions` | `GET /shop-app/suggestions` | `query` (query string required)<br>`limit` (query int) | `ApiKeyAuth` | `ShopAppSuggestionsResponse` |  |
 | SimilarWeb | `SimilarWeb.Search` | `similarweb-search` | `GET /similarweb/search` | `q` (query string required) | `ApiKeyAuth` | `SimilarWebSearchResponse` |  |
 | SimilarWeb | `SimilarWeb.Web` | `similarweb-web` | `GET /similarweb/web/{domain}` | `domain` (path string required) | `ApiKeyAuth` | `SimilarWebWebResponse` |  |
 | SpotifyPodcasts | `SpotifyPodcasts.Categories` | `spotify-podcasts-categories` | `GET /spotify-podcasts/categories` | `uri` (query string)<br>`page_offset` (query int)<br>`page_limit` (query int)<br>`section_offset` (query int)<br>`section_limit` (query int)<br>`include_episode_content_ratings_v2` (query bool) | `ApiKeyAuth` | `SpotifyPodcastsCategoriesResponse` |  |
