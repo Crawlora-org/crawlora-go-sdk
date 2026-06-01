@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.3.0-sdk.1
+
+- Added the `ErrClient`, `ErrServer`, and `ErrNetwork` sentinels plus
+  `(*Error).IsClientError`, `IsServerError`, and `IsNetworkError`, so failures can
+  be classified with `errors.Is(err, crawlora.ErrServer)`.
+- Added `Client.Paginate`, which walks page/offset endpoints with a per-page
+  callback and stops on an empty page; return `ErrStopPagination` to stop early.
+- The generator now shares a single language-neutral core with the TypeScript and
+  Python SDKs; generated output is unchanged.
+
 ## v1.2.0-sdk.19
 
 - Regenerated the public SDK contract with the promoted Shopify endpoint family.

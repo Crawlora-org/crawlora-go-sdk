@@ -1,0 +1,56 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      MODULE: github.com/Crawlora-org/crawlora-go-sdk
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+      - name: Validate release tag
+        run: |
+          version="$(sed -n 's/^const Version = "\(.*\)"/\1/p' client.go)"
+          if [ "${GITHUB_REF_TYPE}" = "tag" ] && [ "${GITHUB_REF_NAME}" != "v${version}" ]; then
+            echo "Tag ${GITHUB_REF_NAME} does not match Version ${version}" >&2
+            exit 1
+          fi
+          echo "Releasing ${MODULE}@${GITHUB_REF_NAME}"
+      - name: Regenerate SDK
+        run: |
+          python3 scripts/generate.py
+          gofmt -w operations_generated.go
+      - name: Check generated files
+        run: git diff --exit-code
+      - name: Test
+        run: go test ./...
+      - name: Vet
+        run: go vet ./...
+      - name: Warm module proxy
+        if: github.ref_type == 'tag'
+        run: |
+          # Make the tagged version immediately resolvable via the Go proxy.
+          for attempt in $(seq 1 10); do
+            if GOPROXY=proxy.golang.org go list -m "${MODULE}@${GITHUB_REF_NAME}" >/dev/null 2>&1; then
+              echo "module ${MODULE}@${GITHUB_REF_NAME} is resolvable"
+              break
+            fi
+            echo "module not indexed yet; retrying in 15s (${attempt}/10)"
+            sleep 15
+          done

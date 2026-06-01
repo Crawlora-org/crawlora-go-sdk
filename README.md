@@ -154,6 +154,29 @@ available. Retryable responses honor positive `Retry-After` headers, capped at
 30 seconds. Context cancellation and deadline errors are returned directly so
 callers can match them with `errors.Is`.
 
+Classify failures with the `ErrClient` (4xx), `ErrServer` (5xx), and `ErrNetwork`
+(transport) sentinels, or the `IsClientError`/`IsServerError`/`IsNetworkError`
+methods on `*crawlora.Error`:
+
+```go
+if errors.Is(err, crawlora.ErrServer) {
+	// retry or alert
+}
+```
+
+## Pagination
+
+`Paginate` walks page/offset endpoints, invoking your callback per page and
+stopping when a page returns no data. Return `crawlora.ErrStopPagination` to stop
+early:
+
+```go
+err := client.Paginate(ctx, "ebay-seller-feedback", crawlora.Params{"seller": "acme"}, func(page any) error {
+	// handle page
+	return nil
+})
+```
+
 ## Examples
 
 Runnable examples live under `examples/` and skip cleanly when required

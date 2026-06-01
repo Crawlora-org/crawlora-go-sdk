@@ -20,7 +20,7 @@ import (
 )
 
 const DefaultBaseURL = "https://api.crawlora.net/api/v1"
-const Version = "1.2.0-sdk.19"
+const Version = "1.3.0-sdk.1"
 
 const (
 	ResponseAuto = "auto"
@@ -165,6 +165,37 @@ func (e *Error) Error() string {
 
 func (e *Error) Unwrap() error {
 	return e.Err
+}
+
+// Sentinel errors for classifying failures with errors.Is. A *Error reports
+// itself as one of these based on its status:
+//
+//	if errors.Is(err, crawlora.ErrServer) { /* retry or alert */ }
+var (
+	ErrClient  = errors.New("crawlora: client error")  // 4xx response
+	ErrServer  = errors.New("crawlora: server error")  // 5xx response
+	ErrNetwork = errors.New("crawlora: network error") // transport failure before a response
+)
+
+// IsClientError reports whether the API rejected the request (4xx).
+func (e *Error) IsClientError() bool { return e.Status >= 400 && e.Status < 500 }
+
+// IsServerError reports whether the API failed to handle a valid request (5xx).
+func (e *Error) IsServerError() bool { return e.Status >= 500 }
+
+// IsNetworkError reports whether the request failed before a response arrived.
+func (e *Error) IsNetworkError() bool { return e.Status == 0 && e.Err != nil }
+
+func (e *Error) Is(target error) bool {
+	switch target {
+	case ErrClient:
+		return e.IsClientError()
+	case ErrServer:
+		return e.IsServerError()
+	case ErrNetwork:
+		return e.IsNetworkError()
+	}
+	return false
 }
 
 func NewClient(opts ...Option) *Client {
@@ -674,5 +705,129 @@ func sleepBeforeRetry(ctx context.Context, delay time.Duration) error {
 		return ctx.Err()
 	case <-timer.C:
 		return nil
+	}
+}
+
+// ErrStopPagination, returned from a Paginate callback, stops iteration without
+// reporting an error.
+var ErrStopPagination = errors.New("crawlora: stop pagination")
+
+type paginateConfig struct {
+	pageParam string
+	start     int
+	hasStart  bool
+	step      int
+	maxPages  int
+}
+
+type PaginateOption func(*paginateConfig)
+
+// WithPageParam overrides the auto-detected page/offset query parameter.
+func WithPageParam(name string) PaginateOption {
+	return func(cfg *paginateConfig) { cfg.pageParam = name }
+}
+
+// WithPageStart sets the first page value (defaults to 1 for page, 0 for offset).
+func WithPageStart(start int) PaginateOption {
+	return func(cfg *paginateConfig) {
+		cfg.start = start
+		cfg.hasStart = true
+	}
+}
+
+// WithPageStep sets the amount added to the page value after each page (default 1).
+func WithPageStep(step int) PaginateOption {
+	return func(cfg *paginateConfig) { cfg.step = step }
+}
+
+// WithMaxPages caps the number of pages fetched.
+func WithMaxPages(maxPages int) PaginateOption {
+	return func(cfg *paginateConfig) { cfg.maxPages = maxPages }
+}
+
+// Paginate walks pages of a paginated operation, invoking fn for each page. It
+// advances the numeric page/offset query parameter and stops when a page
+// returns no data, when fn returns ErrStopPagination, or when fn returns any
+// other error (which is propagated).
+func (c *Client) Paginate(ctx context.Context, operationID string, params Params, fn func(page any) error, opts ...PaginateOption) error {
+	operation, ok := operations[operationID]
+	if !ok {
+		return fmt.Errorf("unknown Crawlora operation: %s", operationID)
+	}
+	cfg := paginateConfig{step: 1, maxPages: -1}
+	for _, opt := range opts {
+		opt(&cfg)
+	}
+	pageParam := cfg.pageParam
+	if pageParam == "" {
+		pageParam = detectPageParam(operation)
+	}
+	if pageParam == "" {
+		return fmt.Errorf("operation %s has no page or offset query parameter to paginate", operationID)
+	}
+	start := cfg.start
+	if !cfg.hasStart && pageParam == "offset" {
+		start = 0
+	} else if !cfg.hasStart {
+		start = 1
+	}
+	step := cfg.step
+	if step == 0 {
+		step = 1
+	}
+	pageValue := start
+	for fetched := 0; cfg.maxPages < 0 || fetched < cfg.maxPages; fetched++ {
+		pageParams := Params{}
+		for key, value := range params {
+			pageParams[key] = value
+		}
+		pageParams[pageParam] = pageValue
+		page, err := c.Request(ctx, operationID, pageParams)
+		if err != nil {
+			return err
+		}
+		if err := fn(page); err != nil {
+			if errors.Is(err, ErrStopPagination) {
+				return nil
+			}
+			return err
+		}
+		if pageIsEmpty(page) {
+			break
+		}
+		pageValue += step
+	}
+	return nil
+}
+
+func detectPageParam(operation operationDefinition) string {
+	for _, name := range []string{"page", "offset"} {
+		for _, parameter := range operation.QueryParams {
+			if parameter.Name == name {
+				return name
+			}
+		}
+	}
+	return ""
+}
+
+func pageIsEmpty(page any) bool {
+	data := page
+	if body, ok := page.(map[string]any); ok {
+		if value, exists := body["data"]; exists {
+			data = value
+		}
+	}
+	switch value := data.(type) {
+	case nil:
+		return true
+	case []any:
+		return len(value) == 0
+	case map[string]any:
+		return len(value) == 0
+	case string:
+		return value == ""
+	default:
+		return false
 	}
 }

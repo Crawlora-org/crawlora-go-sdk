@@ -1,59 +1,39 @@
 #!/usr/bin/env python3
+"""Go SDK emitter.
+
+Language-neutral spec parsing, grouping, aliasing, and the operations docs table
+live in the vendored `scripts/_sdkgen/core.py` (synced from the API repo). This
+file only maps OpenAPI schemas to Go types and renders the Go artifacts:
+`operations_generated.go` (runtime metadata + typed service methods).
+"""
 import json
 import os
-import re
 import shutil
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _sdkgen import core  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SPEC = ROOT / "openapi" / "public.json"
 SPEC_PATH = Path(os.environ.get("CRAWLORA_OPENAPI_SPEC", DEFAULT_SPEC))
-TAG_GROUP_OVERRIDES = {
-    "AppStore": "AppStore",
-    "CoinGecko": "CoinGecko",
-    "GooglePlay": "GooglePlay",
-    "ProductHunt": "ProductHunt",
-    "SimilarWeb": "SimilarWeb",
-    "SpotifyPodcasts": "SpotifyPodcasts",
-    "TikTok": "TikTok",
-    "YouTube": "YouTube",
-}
-TAG_PREFIX_OVERRIDES = {
-    "AppStore": "appstore",
-    "CoinGecko": "coingecko",
-    "GooglePlay": "googleplay",
-    "ProductHunt": "producthunt",
-    "SimilarWeb": "similarweb",
-    "SpotifyPodcasts": "spotify-podcasts",
-    "TikTok": "tiktok",
-    "YouTube": "youtube",
-}
 
-
-def words(value):
-    value = re.sub(r"([a-z0-9])([A-Z])", r"\1-\2", value)
-    return [part for part in re.split(r"[^A-Za-z0-9]+", value.lower()) if part]
-
-
-def pascal(parts):
-    return "".join(part[:1].upper() + part[1:] for part in parts) or "Call"
-
-
-def alias(operation_id, tag, used):
-    op_words = words(operation_id)
-    tag_words = words(TAG_PREFIX_OVERRIDES.get(tag, tag))
-    if op_words[: len(tag_words)] == tag_words:
-        op_words = op_words[len(tag_words) :]
-    name = pascal(op_words)
-    if not name or name in used:
-        name = pascal(words(operation_id))
-    base = name
-    i = 2
-    while name in used:
-        name = f"{base}{i}"
-        i += 1
-    used.add(name)
-    return name
+POLICY = core.NamingPolicy(
+    case_fn=lambda parts: "".join(p[:1].upper() + p[1:] for p in parts) or "Call",
+    dedup_sep="",
+    type_base_fn=lambda group, method: group + method,
+    tag_group_overrides={
+        "AppStore": "AppStore",
+        "CoinGecko": "CoinGecko",
+        "GooglePlay": "GooglePlay",
+        "ProductHunt": "ProductHunt",
+        "SimilarWeb": "SimilarWeb",
+        "SpotifyPodcasts": "SpotifyPodcasts",
+        "TikTok": "TikTok",
+        "YouTube": "YouTube",
+    },
+)
 
 
 def go_string(value):
@@ -64,21 +44,8 @@ def go_string_slice(values):
     return "[]string{" + ", ".join(go_string(v) for v in values) + "}"
 
 
-def md_escape(value):
-    return str(value).replace("|", "\\|").replace("\n", " ")
-
-
-def md_code(value):
-    return f"`{md_escape(value)}`"
-
-
-def enum_values(param):
-    values = param.get("enum") or param.get("items", {}).get("enum") or []
-    return [str(v) for v in values]
-
-
 def go_identifier(value):
-    name = pascal(words(value))
+    name = "".join(part[:1].upper() + part[1:] for part in core.words(value))
     if not name:
         name = "Value"
     if name[0].isdigit():
@@ -174,115 +141,32 @@ def param_slice(params):
             + ", Required: "
             + required
             + ", Enum: "
-            + go_string_slice(enum_values(param))
+            + go_string_slice(core.enum_values(param))
             + "}"
         )
     return "[]parameterDefinition{" + ", ".join(items) + "}"
 
 
-def definition(method, path, operation):
-    params = operation.get("parameters", [])
-    security = []
-    for requirement in operation.get("security", []):
-        security.extend(requirement.keys())
-    path_params = [p["name"] for p in params if p.get("in") == "path"]
-    query_params = [p for p in params if p.get("in") == "query"]
-    form_params = [p for p in params if p.get("in") == "formData"]
-    body_param = next((p["name"] for p in params if p.get("in") == "body"), "")
+def go_definition(op):
+    """Render a core operation_definition dict into a Go operationDefinition literal."""
     return (
         "operationDefinition{"
-        f"Method: {go_string(method.upper())}, "
-        f"Path: {go_string(path)}, "
-        f"PathParams: {go_string_slice(path_params)}, "
-        f"QueryParams: {param_slice(query_params)}, "
-        f"FormParams: {param_slice(form_params)}, "
-        f"BodyParam: {go_string(body_param)}, "
-        f"BodyRequired: {'true' if any(p.get('in') == 'body' and p.get('required') for p in params) else 'false'}, "
-        f"Consumes: {go_string_slice(operation.get('consumes', []))}, "
-        f"Produces: {go_string_slice(operation.get('produces', []))}, "
-        f"Security: {go_string_slice(security)}, "
+        f"Method: {go_string(op['method'])}, "
+        f"Path: {go_string(op['path'])}, "
+        f"PathParams: {go_string_slice(op['pathParams'])}, "
+        f"QueryParams: {param_slice(op['queryParams'])}, "
+        f"FormParams: {param_slice(op['formParams'])}, "
+        f"BodyParam: {go_string(op['bodyParam'] or '')}, "
+        f"BodyRequired: {'true' if op['bodyRequired'] else 'false'}, "
+        f"Consumes: {go_string_slice(op['consumes'])}, "
+        f"Produces: {go_string_slice(op['produces'])}, "
+        f"Security: {go_string_slice(op['security'])}, "
         "}"
     )
 
 
 def operation_const_name(type_base):
     return "Operation" + type_base
-
-
-def param_doc(params):
-    if not params:
-        return "none"
-    entries = []
-    for param in params:
-        required = " required" if param.get("required") else ""
-        location = param.get("in", "param")
-        typ = go_type(param)
-        entries.append(f"{md_code(param['name'])} ({location} {typ}{required})")
-    return "<br>".join(entries)
-
-
-def auth_doc(security):
-    return ", ".join(md_code(item) for item in security) if security else "none"
-
-
-def operation_note(operation_id, operation):
-    produces = [str(item).lower() for item in operation.get("produces", [])]
-    if "text/plain" in produces or operation_id == "youtube-transcript":
-        return "Supports text response mode."
-    return ""
-
-
-def operation_docs(groups, methods_meta, operation_count):
-    lines = [
-        "# Crawlora Go SDK Operations",
-        "",
-        "Generated from `openapi/public.json`. Deprecated, admin, and internal operations are excluded from this SDK contract.",
-        "",
-        f"Total operations: `{operation_count}`",
-        "",
-        "| Group | SDK method | Operation ID | HTTP | Params | Auth | Response | Notes |",
-        "| --- | --- | --- | --- | --- | --- | --- | --- |",
-    ]
-    for group_name, methods in groups.items():
-        for method_name, operation_id in methods.items():
-            meta = methods_meta[operation_id]
-            lines.append(
-                "| "
-                + " | ".join(
-                    [
-                        md_escape(group_name),
-                        md_code(f"{group_name}.{method_name}"),
-                        md_code(operation_id),
-                        md_code(f"{meta['method']} {meta['path']}"),
-                        param_doc(meta["params"]),
-                        auth_doc(meta["security"]),
-                        md_code(meta["type_base"] + "Response"),
-                        md_escape(meta["note"]),
-                    ]
-                )
-                + " |"
-            )
-    lines.append("")
-    return "\n".join(lines)
-
-
-def operation_params(operation):
-    return [
-        p
-        for p in operation.get("parameters", [])
-        if p.get("in") in {"path", "query", "formData", "body"}
-    ]
-
-
-def response_ref(operation):
-    schema = operation.get("responses", {}).get("200", {}).get("schema") or {}
-    ref = schema.get("$ref", "")
-    return ref.rsplit("/", 1)[-1] if ref else ""
-
-
-def response_type(operation):
-    schema = operation.get("responses", {}).get("200", {}).get("schema") or {}
-    return go_schema_type(schema)
 
 
 def model_field(param_name, schema, required, used):
@@ -325,34 +209,7 @@ def main():
     if SPEC_PATH.resolve() != target_spec.resolve():
         shutil.copyfile(SPEC_PATH, target_spec)
 
-    operations = {}
-    typed_operations = {}
-    methods_meta = {}
-    groups = {}
-    used_by_group = {}
-    for path, methods in sorted(spec["paths"].items()):
-        for method, operation in sorted(methods.items()):
-            operation_id = operation["operationId"]
-            tag = (operation.get("tags") or ["Default"])[0]
-            group_name = TAG_GROUP_OVERRIDES.get(tag, pascal(words(tag)))
-            groups.setdefault(group_name, {})
-            used_by_group.setdefault(group_name, set())
-            method_name = alias(operation_id, tag, used_by_group[group_name])
-            groups[group_name][method_name] = operation_id
-            operations[operation_id] = definition(method, path, operation)
-            typed_operations[operation_id] = {
-                "type_base": group_name + method_name,
-                "params": operation_params(operation),
-                "response_type": response_type(operation),
-            }
-            methods_meta[operation_id] = {
-                "type_base": group_name + method_name,
-                "method": method.upper(),
-                "path": path,
-                "params": operation_params(operation),
-                "security": [key for req in operation.get("security", []) for key in req.keys()],
-                "note": operation_note(operation_id, operation),
-            }
+    model = core.build_model(spec, POLICY)
 
     lines = [
         "package crawlora",
@@ -383,45 +240,46 @@ def main():
         "\tSecurity []string",
         "}",
         "",
-        *model_definitions(spec.get("definitions", {})),
-        f"const operationCount = {sum(len(methods) for methods in spec['paths'].values())}",
+        *model_definitions(model.definitions),
+        f"const operationCount = {model.operation_count}",
         "",
         "const (",
     ]
-    for operation_id, meta in sorted(typed_operations.items(), key=lambda item: item[1]["type_base"]):
+    for operation_id, meta in sorted(model.meta.items(), key=lambda item: item[1]["type_base"]):
         lines.append(f"\t{operation_const_name(meta['type_base'])} = {go_string(operation_id)}")
     lines.extend([
         ")",
         "",
         "var operations = map[string]operationDefinition{",
     ])
-    for operation_id, body in operations.items():
-        lines.append(f"\t{go_string(operation_id)}: {body},")
+    for operation_id, op in model.operations.items():
+        lines.append(f"\t{go_string(operation_id)}: {go_definition(op)},")
     lines.extend(["}", "", "type Services struct {"])
-    for group_name in groups:
+    for group_name in model.groups:
         lines.append(f"\t{group_name} *{group_name}Service")
     lines.extend(["}", "", "func initServices(c *Client) Services {", "\treturn Services{"])
-    for group_name in groups:
+    for group_name in model.groups:
         lines.append(f"\t\t{group_name}: &{group_name}Service{{client: c}},")
     lines.extend(["\t}", "}", ""])
-    for group_name, methods in groups.items():
+    for group_name, methods in model.groups.items():
         lines.append(f"type {group_name}Service struct {{ client *Client }}")
         lines.append("")
         for method_name, operation_id in methods.items():
+            meta = model.meta[operation_id]
+            type_base = meta["type_base"]
             lines.append(f"func (s *{group_name}Service) {method_name}(ctx context.Context, params Params, opts ...RequestOption) (any, error) {{")
             lines.append(f"\treturn s.client.Request(ctx, {go_string(operation_id)}, params, opts...)")
             lines.append("}")
             lines.append("")
-            type_base = typed_operations[operation_id]["type_base"]
             lines.append(f"type {type_base}Params struct {{")
             used_fields = set()
-            for param in typed_operations[operation_id]["params"]:
+            for param in meta["params"]:
                 field_name, field_type, param_name, optional = typed_field(param, used_fields)
                 tag = param_name + (",omitempty" if optional else "")
                 lines.append(f"\t{field_name} {field_type} `crawlora:{go_string(tag)}`")
             lines.append("}")
             lines.append("")
-            lines.append(f"type {type_base}Response = {typed_operations[operation_id]['response_type']}")
+            lines.append(f"type {type_base}Response = {go_schema_type(meta['response_schema'])}")
             lines.append("")
             lines.append(f"func (s *{group_name}Service) {method_name}Typed(ctx context.Context, params {type_base}Params, opts ...RequestOption) ({type_base}Response, error) {{")
             lines.append(f"\treturn requestTyped[{type_base}Response](s.client, ctx, {go_string(operation_id)}, paramsFromStruct(params), opts...)")
@@ -430,7 +288,7 @@ def main():
     (ROOT / "operations_generated.go").write_text("\n".join(lines))
     (ROOT / "docs").mkdir(exist_ok=True)
     (ROOT / "docs" / "operations.md").write_text(
-        operation_docs(groups, methods_meta, sum(len(methods) for methods in spec["paths"].values()))
+        core.operation_docs(model, title="Crawlora Go SDK Operations", type_render=go_type)
     )
 
 

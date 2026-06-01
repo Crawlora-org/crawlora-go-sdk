@@ -547,6 +547,105 @@ func TestRequestTypedHelperAndOperationConstant(t *testing.T) {
 	}
 }
 
+func TestErrorClassification(t *testing.T) {
+	cases := []struct {
+		status   int
+		isClient bool
+		isServer bool
+	}{
+		{status: http.StatusNotFound, isClient: true},
+		{status: http.StatusInternalServerError, isServer: true},
+	}
+	for _, tc := range cases {
+		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("content-type", "application/json")
+			w.WriteHeader(tc.status)
+			_ = json.NewEncoder(w).Encode(map[string]any{"code": tc.status, "msg": "err"})
+		}))
+		client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
+		_, err := client.Bing.Search(context.Background(), Params{"q": "coffee"})
+		server.Close()
+		if tc.isClient && !errors.Is(err, ErrClient) {
+			t.Fatalf("status %d: expected ErrClient, got %v", tc.status, err)
+		}
+		if tc.isServer && !errors.Is(err, ErrServer) {
+			t.Fatalf("status %d: expected ErrServer, got %v", tc.status, err)
+		}
+		var apiErr *Error
+		if errors.As(err, &apiErr) && apiErr.IsClientError() != tc.isClient {
+			t.Fatalf("status %d: IsClientError = %v", tc.status, apiErr.IsClientError())
+		}
+	}
+}
+
+func TestNetworkErrorClassification(t *testing.T) {
+	client := NewClient(WithBaseURL("http://127.0.0.1:1/api/v1"), WithAPIKey("api_test"))
+	_, err := client.Bing.Search(context.Background(), Params{"q": "coffee"})
+	if !errors.Is(err, ErrNetwork) {
+		t.Fatalf("expected ErrNetwork, got %v", err)
+	}
+}
+
+func TestPaginateAdvancesAndStopsOnEmpty(t *testing.T) {
+	var seenPages []string
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		page := r.URL.Query().Get("page")
+		seenPages = append(seenPages, page)
+		w.Header().Set("content-type", "application/json")
+		data := []map[string]any{}
+		if page != "3" {
+			data = append(data, map[string]any{"page": page})
+		}
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": data})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
+	var pages int
+	err := client.Paginate(context.Background(), "ebay-seller-feedback", Params{"seller": "acme"}, func(page any) error {
+		pages++
+		return nil
+	})
+	if err != nil {
+		t.Fatalf("paginate: %v", err)
+	}
+	if pages != 3 {
+		t.Fatalf("pages = %d", pages)
+	}
+	if strings.Join(seenPages, ",") != "1,2,3" {
+		t.Fatalf("seen pages = %v", seenPages)
+	}
+}
+
+func TestPaginateStopError(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("content-type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": []map[string]any{{"x": 1}}})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
+	calls := 0
+	err := client.Paginate(context.Background(), "ebay-seller-feedback", Params{"seller": "acme"}, func(page any) error {
+		calls++
+		return ErrStopPagination
+	})
+	if err != nil {
+		t.Fatalf("paginate stop: %v", err)
+	}
+	if calls != 1 {
+		t.Fatalf("calls = %d", calls)
+	}
+}
+
+func TestPaginateRequiresPageParam(t *testing.T) {
+	client := NewClient(WithAPIKey("api_test"))
+	err := client.Paginate(context.Background(), "user-me", nil, func(page any) error { return nil })
+	if err == nil || !strings.Contains(err.Error(), "no page or offset query parameter") {
+		t.Fatalf("expected page param error, got %v", err)
+	}
+}
+
 func TestTypedEndpointJSONBody(t *testing.T) {
 	var gotBody string
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
