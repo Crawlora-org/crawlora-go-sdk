@@ -10,6 +10,7 @@ import (
 	"net/http/httptest"
 	"os"
 	"strings"
+	"sync"
 	"testing"
 	"time"
 )
@@ -795,6 +796,112 @@ func TestEnvVarConfig(t *testing.T) {
 	explicit := NewClient(WithAPIKey("explicit"))
 	if explicit.APIKey != "explicit" {
 		t.Fatalf("explicit api key=%q", explicit.APIKey)
+	}
+}
+
+func TestBeforeRequestAndAfterResponse(t *testing.T) {
+	var gotSig string
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		gotSig = r.Header.Get("x-sig")
+		w.Header().Set("content-type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{}})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("k"),
+		WithBeforeRequest(func(req *http.Request) error { req.Header.Set("x-sig", "signed"); return nil }),
+		WithAfterResponse(func(operationID string, status int, headers http.Header, body any) (any, error) {
+			return map[string]any{"op": operationID}, nil
+		}),
+	)
+	out, err := client.Bing.Search(context.Background(), Params{"q": "c"})
+	if err != nil {
+		t.Fatalf("search: %v", err)
+	}
+	if gotSig != "signed" {
+		t.Fatalf("x-sig = %q", gotSig)
+	}
+	if m, ok := out.(map[string]any); !ok || m["op"] != "bing-search" {
+		t.Fatalf("after response = %#v", out)
+	}
+}
+
+func TestIdempotencyKeyStableAcrossRetries(t *testing.T) {
+	var keys []string
+	calls := 0
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		keys = append(keys, r.Header.Get("Idempotency-Key"))
+		calls++
+		w.Header().Set("content-type", "application/json")
+		if calls == 1 {
+			w.WriteHeader(http.StatusServiceUnavailable)
+			_ = json.NewEncoder(w).Encode(map[string]any{"code": 503})
+			return
+		}
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{}})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("k"), WithRetries(1), WithRetryDelay(0), WithIdempotencyKeys(true))
+	if _, err := client.Google.Search(context.Background(), Params{"searchOption": Params{"q": "c"}}); err != nil {
+		t.Fatalf("search: %v", err)
+	}
+	if len(keys) != 2 || keys[0] == "" || keys[0] != keys[1] {
+		t.Fatalf("idempotency keys = %#v", keys)
+	}
+}
+
+func TestPerRequestRetriesOverride(t *testing.T) {
+	calls := 0
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		calls++
+		w.Header().Set("content-type", "application/json")
+		w.WriteHeader(http.StatusServiceUnavailable)
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 503})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("k"), WithRetries(5), WithRetryDelay(0))
+	_, err := client.Bing.Search(context.Background(), Params{"q": "c"}, WithRequestRetries(0))
+	if err == nil {
+		t.Fatal("expected error")
+	}
+	if calls != 1 {
+		t.Fatalf("calls = %d (expected 1 with per-request retries=0)", calls)
+	}
+}
+
+func TestMaxConcurrencyCapsInFlight(t *testing.T) {
+	var mu sync.Mutex
+	active, maxActive := 0, 0
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		mu.Lock()
+		active++
+		if active > maxActive {
+			maxActive = active
+		}
+		mu.Unlock()
+		time.Sleep(15 * time.Millisecond)
+		mu.Lock()
+		active--
+		mu.Unlock()
+		w.Header().Set("content-type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{}})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("k"), WithMaxConcurrency(2))
+	var wg sync.WaitGroup
+	for i := 0; i < 6; i++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			_, _ = client.Bing.Search(context.Background(), Params{"q": "c"})
+		}()
+	}
+	wg.Wait()
+	if maxActive > 2 {
+		t.Fatalf("max in-flight = %d (cap 2)", maxActive)
 	}
 }
 

@@ -18,11 +18,12 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 )
 
 const DefaultBaseURL = "https://api.crawlora.net/api/v1"
-const Version = "1.4.0-sdk.1"
+const Version = "1.5.0-sdk.1"
 
 const (
 	ResponseAuto   = "auto"
@@ -46,20 +47,62 @@ type Client struct {
 	MaxRetryDelay time.Duration
 	UserAgent     string
 
-	RetryStatuses  map[int]bool
-	RetryPredicate func(status int, err error) bool
-	OnRetry        func(attempt int, err error, delay time.Duration)
-	RequestID      bool
-	Logger         func(event map[string]any)
+	RetryStatuses   map[int]bool
+	RetryPredicate  func(status int, err error) bool
+	OnRetry         func(attempt int, err error, delay time.Duration)
+	RequestID       bool
+	IdempotencyKeys bool
+	Logger          func(event map[string]any)
+
+	BeforeRequest []func(req *http.Request) error
+	AfterResponse []func(operationID string, status int, headers http.Header, body any) (any, error)
+
+	rateLimiter *rateLimiter
+	concurrency chan struct{}
+}
+
+// rateLimiter spaces requests by a fixed minimum interval (requests per second).
+type rateLimiter struct {
+	mu       sync.Mutex
+	interval time.Duration
+	next     time.Time
+}
+
+func newRateLimiter(perSecond float64) *rateLimiter {
+	return &rateLimiter{interval: time.Duration(float64(time.Second) / perSecond)}
+}
+
+func (r *rateLimiter) wait(ctx context.Context) error {
+	r.mu.Lock()
+	now := time.Now()
+	if r.next.Before(now) {
+		r.next = now
+	}
+	delay := r.next.Sub(now)
+	r.next = r.next.Add(r.interval)
+	r.mu.Unlock()
+	if delay <= 0 {
+		return nil
+	}
+	timer := time.NewTimer(delay)
+	defer timer.Stop()
+	select {
+	case <-ctx.Done():
+		return ctx.Err()
+	case <-timer.C:
+		return nil
+	}
 }
 
 type Option func(*Client)
 type RequestOption func(*requestConfig)
 
 type requestConfig struct {
-	Headers      map[string]string
-	ResponseType string
-	Timeout      time.Duration
+	Headers        map[string]string
+	ResponseType   string
+	Timeout        time.Duration
+	Retries        *int
+	RetryPredicate func(status int, err error) bool
 }
 
 func paramsFromStruct(input any) Params {
@@ -275,10 +318,57 @@ func WithRequestID(enabled bool) Option {
 	return func(c *Client) { c.RequestID = enabled }
 }
 
+// WithIdempotencyKeys attaches a stable Idempotency-Key header to POST/PATCH
+// requests, reused across that call's retries.
+func WithIdempotencyKeys(enabled bool) Option {
+	return func(c *Client) { c.IdempotencyKeys = enabled }
+}
+
+// WithRateLimit caps outgoing requests to at most perSecond requests per second.
+func WithRateLimit(perSecond float64) Option {
+	return func(c *Client) {
+		if perSecond > 0 {
+			c.rateLimiter = newRateLimiter(perSecond)
+		}
+	}
+}
+
+// WithMaxConcurrency caps the number of in-flight requests.
+func WithMaxConcurrency(n int) Option {
+	return func(c *Client) {
+		if n > 0 {
+			c.concurrency = make(chan struct{}, n)
+		}
+	}
+}
+
+// WithRequestRetries overrides the client retry count for a single request.
+func WithRequestRetries(retries int) RequestOption {
+	return func(cfg *requestConfig) { cfg.Retries = &retries }
+}
+
+// WithRequestRetryPredicate overrides the retry predicate for a single request.
+func WithRequestRetryPredicate(predicate func(status int, err error) bool) RequestOption {
+	return func(cfg *requestConfig) { cfg.RetryPredicate = predicate }
+}
+
 // WithLogger registers a structured event sink (request/retry). The SDK never
 // logs on its own.
 func WithLogger(logger func(event map[string]any)) Option {
 	return func(c *Client) { c.Logger = logger }
+}
+
+// WithBeforeRequest appends a hook that runs just before each request is sent
+// and may mutate the *http.Request (headers, URL, body). A returned error aborts
+// the request.
+func WithBeforeRequest(hook func(req *http.Request) error) Option {
+	return func(c *Client) { c.BeforeRequest = append(c.BeforeRequest, hook) }
+}
+
+// WithAfterResponse appends a hook that runs on a successful parsed response and
+// may return a replacement body. A returned error aborts the request.
+func WithAfterResponse(hook func(operationID string, status int, headers http.Header, body any) (any, error)) Option {
+	return func(c *Client) { c.AfterResponse = append(c.AfterResponse, hook) }
 }
 
 func WithAPIKey(apiKey string) Option {
@@ -377,14 +467,25 @@ func (c *Client) Request(ctx context.Context, operationID string, params Params,
 		defer cancel()
 	}
 	c.log(map[string]any{"event": "request", "operation": operationID})
+	maxRetries := c.Retries
+	if cfg.Retries != nil {
+		maxRetries = *cfg.Retries
+		if maxRetries < 0 {
+			maxRetries = 0
+		}
+	}
+	idempotencyKey := ""
+	if c.IdempotencyKeys && (operation.Method == "POST" || operation.Method == "PATCH") {
+		idempotencyKey = newRequestID()
+	}
 	var last error
-	for attempt := 0; attempt <= c.Retries; attempt++ {
-		out, err := c.send(ctx, operation, params, cfg)
+	for attempt := 0; attempt <= maxRetries; attempt++ {
+		out, err := c.send(ctx, operationID, operation, params, cfg, idempotencyKey)
 		if err == nil {
 			return out, nil
 		}
 		last = err
-		if !c.isRetryable(err) || attempt == c.Retries {
+		if !c.isRetryableWith(err, cfg.RetryPredicate) || attempt == maxRetries {
 			break
 		}
 		delay := c.retryDelayForError(err, attempt)
@@ -405,9 +506,22 @@ func (c *Client) log(event map[string]any) {
 	}
 }
 
-func (c *Client) send(ctx context.Context, operation operationDefinition, params Params, cfg requestConfig) (any, error) {
+func (c *Client) send(ctx context.Context, operationID string, operation operationDefinition, params Params, cfg requestConfig, idempotencyKey string) (any, error) {
 	if params == nil {
 		params = Params{}
+	}
+	if c.concurrency != nil {
+		select {
+		case c.concurrency <- struct{}{}:
+			defer func() { <-c.concurrency }()
+		case <-ctx.Done():
+			return nil, ctx.Err()
+		}
+	}
+	if c.rateLimiter != nil {
+		if err := c.rateLimiter.wait(ctx); err != nil {
+			return nil, err
+		}
 	}
 	requestURL, body, contentType, err := buildRequest(c.BaseURL, operation, params)
 	if err != nil {
@@ -449,6 +563,14 @@ func (c *Client) send(ctx context.Context, operation operationDefinition, params
 	if c.RequestID && reqID == "" {
 		reqID = newRequestID()
 		req.Header.Set("x-request-id", reqID)
+	}
+	if idempotencyKey != "" && req.Header.Get("Idempotency-Key") == "" {
+		req.Header.Set("Idempotency-Key", idempotencyKey)
+	}
+	for _, hook := range c.BeforeRequest {
+		if err := hook(req); err != nil {
+			return nil, err
+		}
 	}
 
 	resp, err := c.HTTPClient.Do(req)
@@ -502,6 +624,15 @@ func (c *Client) send(ctx context.Context, operation operationDefinition, params
 			}
 		}
 		return nil, apiErr
+	}
+	for _, hook := range c.AfterResponse {
+		replacement, err := hook(operationID, resp.StatusCode, resp.Header, parsed)
+		if err != nil {
+			return nil, err
+		}
+		if replacement != nil {
+			parsed = replacement
+		}
 	}
 	return parsed, nil
 }
@@ -751,6 +882,19 @@ func (c *Client) isRetryable(err error) bool {
 		return true
 	}
 	return shouldRetry(apiErr.Status)
+}
+
+// isRetryableWith applies a per-request predicate when provided, else the
+// client's default retry policy.
+func (c *Client) isRetryableWith(err error, predicate func(status int, err error) bool) bool {
+	if predicate != nil {
+		var apiErr *Error
+		if !errors.As(err, &apiErr) {
+			return false
+		}
+		return predicate(apiErr.Status, err)
+	}
+	return c.isRetryable(err)
 }
 
 func (c *Client) retryDelay(attempt int) time.Duration {

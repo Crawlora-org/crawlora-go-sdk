@@ -141,6 +141,41 @@ defer body.Close()
 `CRAWLORA_API_KEY` and `CRAWLORA_BASE_URL` are used when not set explicitly
 (precedence: option > env > default).
 
+## Middleware
+
+```go
+client := crawlora.NewClient(
+    crawlora.WithBeforeRequest(func(req *http.Request) error {
+        req.Header.Set("x-signature", sign(req))
+        return nil
+    }),
+    crawlora.WithAfterResponse(func(operationID string, status int, headers http.Header, body any) (any, error) {
+        return body, nil // return a replacement to transform
+    }),
+)
+```
+
+## Idempotency And Per-Request Retries
+
+```go
+client := crawlora.NewClient(crawlora.WithIdempotencyKeys(true)) // stable key on POST/PATCH retries
+
+// override retry policy for one call
+client.Bing.Search(ctx, crawlora.Params{"q": "coffee"},
+    crawlora.WithRequestRetries(5),
+    crawlora.WithRequestRetryPredicate(func(status int, err error) bool { return status >= 500 }),
+)
+```
+
+## Rate Limiting
+
+```go
+client := crawlora.NewClient(
+    crawlora.WithRateLimit(10),     // <= 10 requests/sec
+    crawlora.WithMaxConcurrency(4), // <= 4 in flight
+)
+```
+
 ## Optional Live Smoke Tests
 
 ```sh
