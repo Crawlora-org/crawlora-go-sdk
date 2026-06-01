@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.2.0-sdk.19
+
+- Regenerated the public SDK contract with the promoted Shopify endpoint family.
+- Added the generated `Shopify` group with 11 active Shopify operations.
+- Updated the generated operation reference to 330 public SDK operations.
+
 ## v1.2.0-sdk.16
 
 - Documented response headers on SDK errors, case-insensitive header overrides,

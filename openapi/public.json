@@ -16907,6 +16907,862 @@
       },
       "type": "object"
     },
+    "shopify.CollectionItem": {
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "handle": {
+          "example": "mens",
+          "type": "string"
+        },
+        "id": {
+          "example": "278435758160",
+          "type": "string"
+        },
+        "products_count": {
+          "example": 24,
+          "type": "integer"
+        },
+        "published_at": {
+          "type": "string"
+        },
+        "title": {
+          "example": "Men",
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.allbirds.com/collections/mens",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.CollectionProductsResponse": {
+      "properties": {
+        "collection": {
+          "example": "mens",
+          "type": "string"
+        },
+        "limit": {
+          "example": 50,
+          "type": "integer"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/definitions/shopify.ProductItem"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        },
+        "store_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.CollectionsResponse": {
+      "properties": {
+        "collections": {
+          "items": {
+            "$ref": "#/definitions/shopify.CollectionItem"
+          },
+          "type": "array"
+        },
+        "limit": {
+          "example": 50,
+          "type": "integer"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "source_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        },
+        "store_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.ImageItem": {
+      "properties": {
+        "alt": {
+          "example": "Product image",
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "height": {
+          "example": 1600,
+          "type": "integer"
+        },
+        "id": {
+          "example": "36411373027408",
+          "type": "string"
+        },
+        "position": {
+          "example": 1,
+          "type": "integer"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "url": {
+          "example": "https://cdn.shopify.com/s/files/1/example.jpg",
+          "type": "string"
+        },
+        "variant_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "width": {
+          "example": 1600,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.OptionItem": {
+      "properties": {
+        "name": {
+          "example": "Size",
+          "type": "string"
+        },
+        "position": {
+          "example": 1,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.PageItem": {
+      "properties": {
+        "content": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "handle": {
+          "example": "accessibility",
+          "type": "string"
+        },
+        "id": {
+          "example": "54831906896",
+          "type": "string"
+        },
+        "published_at": {
+          "type": "string"
+        },
+        "title": {
+          "example": "Accessibility",
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.allbirds.com/pages/accessibility",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.PageResponse": {
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/shopify.PageItem"
+        },
+        "source_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        },
+        "store_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.PagesResponse": {
+      "properties": {
+        "limit": {
+          "example": 50,
+          "type": "integer"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "pages": {
+          "items": {
+            "$ref": "#/definitions/shopify.PageItem"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        },
+        "store_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.ProductItem": {
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "compare_at_price": {
+          "example": 120,
+          "type": "number"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "featured_image": {
+          "type": "string"
+        },
+        "handle": {
+          "example": "mens-wool-runners",
+          "type": "string"
+        },
+        "id": {
+          "example": "6616124981328",
+          "type": "string"
+        },
+        "images": {
+          "items": {
+            "$ref": "#/definitions/shopify.ImageItem"
+          },
+          "type": "array"
+        },
+        "options": {
+          "items": {
+            "$ref": "#/definitions/shopify.OptionItem"
+          },
+          "type": "array"
+        },
+        "price": {
+          "example": 98,
+          "type": "number"
+        },
+        "product_type": {
+          "example": "Shoes",
+          "type": "string"
+        },
+        "published_at": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "title": {
+          "example": "Men's Wool Runners",
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.allbirds.com/products/mens-wool-runners",
+          "type": "string"
+        },
+        "variants": {
+          "items": {
+            "$ref": "#/definitions/shopify.VariantItem"
+          },
+          "type": "array"
+        },
+        "vendor": {
+          "example": "Allbirds",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.ProductRecommendationsResponse": {
+      "properties": {
+        "handle": {
+          "example": "mens-wool-runners",
+          "type": "string"
+        },
+        "intent": {
+          "example": "related",
+          "type": "string"
+        },
+        "limit": {
+          "example": 10,
+          "type": "integer"
+        },
+        "product_id": {
+          "example": "6616124981328",
+          "type": "string"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/definitions/shopify.ProductItem"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        },
+        "store_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.ProductResponse": {
+      "properties": {
+        "product": {
+          "$ref": "#/definitions/shopify.ProductItem"
+        },
+        "source_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        },
+        "store_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.ProductsResponse": {
+      "properties": {
+        "limit": {
+          "example": 50,
+          "type": "integer"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/definitions/shopify.ProductItem"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        },
+        "store_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.SearchQueryItem": {
+      "properties": {
+        "text": {
+          "example": "wool",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.allbirds.com/search?q=wool",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.SearchSuggestResponse": {
+      "properties": {
+        "collections": {
+          "items": {
+            "$ref": "#/definitions/shopify.CollectionItem"
+          },
+          "type": "array"
+        },
+        "limit": {
+          "example": 10,
+          "type": "integer"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/definitions/shopify.ProductItem"
+          },
+          "type": "array"
+        },
+        "queries": {
+          "items": {
+            "$ref": "#/definitions/shopify.SearchQueryItem"
+          },
+          "type": "array"
+        },
+        "query": {
+          "example": "wool",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        },
+        "store_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        },
+        "types": {
+          "example": [
+            "product",
+            "collection",
+            "query"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.SitemapImage": {
+      "properties": {
+        "caption": {
+          "type": "string"
+        },
+        "title": {
+          "example": "Men's Wool Runner",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://cdn.shopify.com/example.png",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.SitemapIndexResponse": {
+      "properties": {
+        "sitemaps": {
+          "items": {
+            "$ref": "#/definitions/shopify.SitemapItem"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        },
+        "store_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.SitemapItem": {
+      "properties": {
+        "loc": {
+          "example": "https://www.allbirds.com/sitemap_products_1.xml",
+          "type": "string"
+        },
+        "type": {
+          "example": "products",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.SitemapURLItem": {
+      "properties": {
+        "changefreq": {
+          "example": "weekly",
+          "type": "string"
+        },
+        "handle": {
+          "example": "mens-wool-runners",
+          "type": "string"
+        },
+        "images": {
+          "items": {
+            "$ref": "#/definitions/shopify.SitemapImage"
+          },
+          "type": "array"
+        },
+        "lastmod": {
+          "example": "2026-03-19T11:41:39-07:00",
+          "type": "string"
+        },
+        "loc": {
+          "example": "https://www.allbirds.com/products/mens-wool-runners",
+          "type": "string"
+        },
+        "type": {
+          "example": "products",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.SitemapURLsResponse": {
+      "properties": {
+        "limit": {
+          "example": 50,
+          "type": "integer"
+        },
+        "source_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        },
+        "store_url": {
+          "example": "https://www.allbirds.com",
+          "type": "string"
+        },
+        "type": {
+          "example": "products",
+          "type": "string"
+        },
+        "urls": {
+          "items": {
+            "$ref": "#/definitions/shopify.SitemapURLItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.StoreResponse": {
+      "properties": {
+        "city": {
+          "example": "San Francisco",
+          "type": "string"
+        },
+        "country": {
+          "example": "US",
+          "type": "string"
+        },
+        "currency": {
+          "example": "USD",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "domain": {
+          "example": "www.gymshark.com",
+          "type": "string"
+        },
+        "myshopify_domain": {
+          "example": "gymsharkusa.myshopify.com",
+          "type": "string"
+        },
+        "name": {
+          "example": "Allbirds",
+          "type": "string"
+        },
+        "province": {
+          "example": "CA",
+          "type": "string"
+        },
+        "published_collections_count": {
+          "example": 42,
+          "type": "integer"
+        },
+        "published_products_count": {
+          "example": 638,
+          "type": "integer"
+        },
+        "requested_url": {
+          "example": "https://www.gymshark.com",
+          "type": "string"
+        },
+        "source_domain": {
+          "example": "gymsharkusa.myshopify.com",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://gymsharkusa.myshopify.com",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.VariantItem": {
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "barcode": {
+          "type": "string"
+        },
+        "compare_at_price": {
+          "example": 120,
+          "type": "number"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "featured_image": {
+          "type": "string"
+        },
+        "grams": {
+          "example": 400,
+          "type": "integer"
+        },
+        "id": {
+          "example": "34761278160941",
+          "type": "string"
+        },
+        "option1": {
+          "type": "string"
+        },
+        "option2": {
+          "type": "string"
+        },
+        "option3": {
+          "type": "string"
+        },
+        "position": {
+          "example": 1,
+          "type": "integer"
+        },
+        "price": {
+          "example": 98,
+          "type": "number"
+        },
+        "product_id": {
+          "example": "6616124981328",
+          "type": "string"
+        },
+        "requires_shipping": {
+          "type": "boolean"
+        },
+        "sku": {
+          "example": "A123",
+          "type": "string"
+        },
+        "taxable": {
+          "type": "boolean"
+        },
+        "title": {
+          "example": "Natural Black / 10",
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.collectionProductsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopify.CollectionProductsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.collectionsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopify.CollectionsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.pageResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopify.PageResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.pagesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopify.PagesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.productRecommendationsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopify.ProductRecommendationsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.productResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopify.ProductResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.productsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopify.ProductsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.searchSuggestResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopify.SearchSuggestResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.sitemapIndexResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopify.SitemapIndexResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.sitemapURLsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopify.SitemapURLsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "shopify.storeResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/shopify.StoreResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "similarweb.SearchResp": {
       "properties": {
         "apps": {
@@ -42564,6 +43420,808 @@
         "summary": "Suggest Shop.app searches",
         "tags": [
           "Shop.app"
+        ]
+      }
+    },
+    "/shopify/collections": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized collections from a public Shopify `/collections.json` endpoint. Valid empty result pages return `200` with an empty collections array.",
+        "operationId": "shopify-collections",
+        "parameters": [
+          {
+            "description": "Shopify storefront URL",
+            "example": "https://www.allbirds.com",
+            "in": "query",
+            "name": "url",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page, defaults to 1",
+            "example": 1,
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum collections, defaults to 50 and supports up to 250",
+            "example": 50,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopify.collectionsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Shopify collections",
+        "tags": [
+          "Shopify"
+        ]
+      }
+    },
+    "/shopify/collections/{handle}/products": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized products from a public Shopify collection `/products.json` endpoint.",
+        "operationId": "shopify-collection-products",
+        "parameters": [
+          {
+            "description": "Collection handle",
+            "example": "mens",
+            "in": "path",
+            "name": "handle",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Shopify storefront URL",
+            "example": "https://www.allbirds.com",
+            "in": "query",
+            "name": "url",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page, defaults to 1",
+            "example": 1,
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum products, defaults to 50 and supports up to 250",
+            "example": 50,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopify.collectionProductsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Shopify collection products",
+        "tags": [
+          "Shopify"
+        ]
+      }
+    },
+    "/shopify/pages": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized static pages from a public Shopify `/pages.json` endpoint. Page body HTML is returned as cleaned text only.",
+        "operationId": "shopify-pages",
+        "parameters": [
+          {
+            "description": "Shopify storefront URL",
+            "example": "https://www.allbirds.com",
+            "in": "query",
+            "name": "url",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page, defaults to 1",
+            "example": 1,
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum pages, defaults to 50 and supports up to 250",
+            "example": 50,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopify.pagesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Shopify pages",
+        "tags": [
+          "Shopify"
+        ]
+      }
+    },
+    "/shopify/pages/{handle}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized page detail from Shopify's credential-free `/pages/{handle}.json` endpoint. Page body HTML is returned as cleaned text only.",
+        "operationId": "shopify-page",
+        "parameters": [
+          {
+            "description": "Page handle",
+            "example": "accessibility",
+            "in": "path",
+            "name": "handle",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Shopify storefront URL",
+            "example": "https://www.allbirds.com",
+            "in": "query",
+            "name": "url",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopify.pageResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Shopify page",
+        "tags": [
+          "Shopify"
+        ]
+      }
+    },
+    "/shopify/products": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized products from a public Shopify `/products.json` endpoint. Valid empty result pages return `200` with an empty products array.",
+        "operationId": "shopify-products",
+        "parameters": [
+          {
+            "description": "Shopify storefront URL",
+            "example": "https://www.allbirds.com",
+            "in": "query",
+            "name": "url",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page, defaults to 1",
+            "example": 1,
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum products, defaults to 50 and supports up to 250",
+            "example": 50,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopify.productsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Shopify products",
+        "tags": [
+          "Shopify"
+        ]
+      }
+    },
+    "/shopify/products/{handle}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized product detail from Shopify's credential-free product handle `.js` endpoint.",
+        "operationId": "shopify-product",
+        "parameters": [
+          {
+            "description": "Product handle",
+            "example": "mens-wool-runners",
+            "in": "path",
+            "name": "handle",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Shopify storefront URL",
+            "example": "https://www.allbirds.com",
+            "in": "query",
+            "name": "url",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopify.productResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Shopify product",
+        "tags": [
+          "Shopify"
+        ]
+      }
+    },
+    "/shopify/products/{handle}/recommendations": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized recommended products from Shopify's credential-free recommendations Ajax endpoint. The route handle is resolved to a Shopify product id before fetching recommendations.",
+        "operationId": "shopify-product-recommendations",
+        "parameters": [
+          {
+            "description": "Product handle",
+            "example": "mens-wool-runners",
+            "in": "path",
+            "name": "handle",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Shopify storefront URL",
+            "example": "https://www.allbirds.com",
+            "in": "query",
+            "name": "url",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum products, defaults to 10 and supports up to 20",
+            "example": 10,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "Recommendation intent. Allowed values: related, complementary",
+            "enum": [
+              "related",
+              "complementary"
+            ],
+            "example": "related",
+            "in": "query",
+            "name": "intent",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopify.productRecommendationsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Shopify product recommendations",
+        "tags": [
+          "Shopify"
+        ]
+      }
+    },
+    "/shopify/search/suggest": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns products, collections, and query suggestions from Shopify's credential-free predictive search Ajax endpoint.",
+        "operationId": "shopify-search-suggest",
+        "parameters": [
+          {
+            "description": "Shopify storefront URL",
+            "example": "https://www.allbirds.com",
+            "in": "query",
+            "name": "url",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Search query",
+            "example": "wool",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated suggestion types. Allowed values: product, collection, query",
+            "example": "product,collection,query",
+            "in": "query",
+            "name": "types",
+            "type": "string"
+          },
+          {
+            "description": "Maximum results per type, defaults to 10 and supports up to 20",
+            "example": 10,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopify.searchSuggestResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Shopify search suggestions",
+        "tags": [
+          "Shopify"
+        ]
+      }
+    },
+    "/shopify/sitemap/urls": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Fetches capped URL entries from Shopify child sitemaps matching the requested type.",
+        "operationId": "shopify-sitemap-urls",
+        "parameters": [
+          {
+            "description": "Shopify storefront URL",
+            "example": "https://www.allbirds.com",
+            "in": "query",
+            "name": "url",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Sitemap type. Allowed values: all, products, collections, pages, blogs, agentic_discovery, other",
+            "enum": [
+              "all",
+              "products",
+              "collections",
+              "pages",
+              "blogs",
+              "agentic_discovery",
+              "other"
+            ],
+            "example": "products",
+            "in": "query",
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "description": "Maximum URL entries, defaults to 50 and supports up to 250",
+            "example": 50,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopify.sitemapURLsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Shopify sitemap URLs",
+        "tags": [
+          "Shopify"
+        ]
+      }
+    },
+    "/shopify/sitemaps": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns child sitemap URLs from a public Shopify `/sitemap.xml` index with inferred sitemap types.",
+        "operationId": "shopify-sitemaps",
+        "parameters": [
+          {
+            "description": "Shopify storefront URL",
+            "example": "https://www.allbirds.com",
+            "in": "query",
+            "name": "url",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopify.sitemapIndexResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Shopify sitemaps",
+        "tags": [
+          "Shopify"
+        ]
+      }
+    },
+    "/shopify/store": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Resolves a public Shopify storefront and returns normalized metadata from credential-free storefront JSON. If the vanity domain blocks `/products.json`, the service may fall back to a public `*.myshopify.com` domain discovered from the storefront page.",
+        "operationId": "shopify-store",
+        "parameters": [
+          {
+            "description": "Shopify storefront URL",
+            "example": "https://www.allbirds.com",
+            "in": "query",
+            "name": "url",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/shopify.storeResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Shopify store metadata",
+        "tags": [
+          "Shopify"
         ]
       }
     },

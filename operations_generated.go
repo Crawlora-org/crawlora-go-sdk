@@ -5244,6 +5244,276 @@ type ModelShopappVariantsResponseDoc struct {
 	Msg  string                       `json:"msg,omitempty"`
 }
 
+type ModelShopifyCollectionItem struct {
+	CreatedAt     string `json:"created_at,omitempty"`
+	Description   string `json:"description,omitempty"`
+	Handle        string `json:"handle,omitempty"`
+	Id            string `json:"id,omitempty"`
+	ProductsCount int    `json:"products_count,omitempty"`
+	PublishedAt   string `json:"published_at,omitempty"`
+	Title         string `json:"title,omitempty"`
+	UpdatedAt     string `json:"updated_at,omitempty"`
+	Url           string `json:"url,omitempty"`
+}
+
+type ModelShopifyCollectionProductsResponse struct {
+	Collection string                    `json:"collection,omitempty"`
+	Limit      int                       `json:"limit,omitempty"`
+	Page       int                       `json:"page,omitempty"`
+	Products   []ModelShopifyProductItem `json:"products,omitempty"`
+	SourceUrl  string                    `json:"source_url,omitempty"`
+	StoreUrl   string                    `json:"store_url,omitempty"`
+}
+
+type ModelShopifyCollectionsResponse struct {
+	Collections []ModelShopifyCollectionItem `json:"collections,omitempty"`
+	Limit       int                          `json:"limit,omitempty"`
+	Page        int                          `json:"page,omitempty"`
+	SourceUrl   string                       `json:"source_url,omitempty"`
+	StoreUrl    string                       `json:"store_url,omitempty"`
+}
+
+type ModelShopifyImageItem struct {
+	Alt        string   `json:"alt,omitempty"`
+	CreatedAt  string   `json:"created_at,omitempty"`
+	Height     int      `json:"height,omitempty"`
+	Id         string   `json:"id,omitempty"`
+	Position   int      `json:"position,omitempty"`
+	UpdatedAt  string   `json:"updated_at,omitempty"`
+	Url        string   `json:"url,omitempty"`
+	VariantIds []string `json:"variant_ids,omitempty"`
+	Width      int      `json:"width,omitempty"`
+}
+
+type ModelShopifyOptionItem struct {
+	Name     string   `json:"name,omitempty"`
+	Position int      `json:"position,omitempty"`
+	Values   []string `json:"values,omitempty"`
+}
+
+type ModelShopifyPageItem struct {
+	Content     string `json:"content,omitempty"`
+	CreatedAt   string `json:"created_at,omitempty"`
+	Handle      string `json:"handle,omitempty"`
+	Id          string `json:"id,omitempty"`
+	PublishedAt string `json:"published_at,omitempty"`
+	Title       string `json:"title,omitempty"`
+	UpdatedAt   string `json:"updated_at,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelShopifyPageResponse struct {
+	Page      ModelShopifyPageItem `json:"page,omitempty"`
+	SourceUrl string               `json:"source_url,omitempty"`
+	StoreUrl  string               `json:"store_url,omitempty"`
+}
+
+type ModelShopifyPagesResponse struct {
+	Limit     int                    `json:"limit,omitempty"`
+	Page      int                    `json:"page,omitempty"`
+	Pages     []ModelShopifyPageItem `json:"pages,omitempty"`
+	SourceUrl string                 `json:"source_url,omitempty"`
+	StoreUrl  string                 `json:"store_url,omitempty"`
+}
+
+type ModelShopifyProductItem struct {
+	Available      bool                      `json:"available,omitempty"`
+	CompareAtPrice float64                   `json:"compare_at_price,omitempty"`
+	CreatedAt      string                    `json:"created_at,omitempty"`
+	Description    string                    `json:"description,omitempty"`
+	FeaturedImage  string                    `json:"featured_image,omitempty"`
+	Handle         string                    `json:"handle,omitempty"`
+	Id             string                    `json:"id,omitempty"`
+	Images         []ModelShopifyImageItem   `json:"images,omitempty"`
+	Options        []ModelShopifyOptionItem  `json:"options,omitempty"`
+	Price          float64                   `json:"price,omitempty"`
+	ProductType    string                    `json:"product_type,omitempty"`
+	PublishedAt    string                    `json:"published_at,omitempty"`
+	Tags           []string                  `json:"tags,omitempty"`
+	Title          string                    `json:"title,omitempty"`
+	UpdatedAt      string                    `json:"updated_at,omitempty"`
+	Url            string                    `json:"url,omitempty"`
+	Variants       []ModelShopifyVariantItem `json:"variants,omitempty"`
+	Vendor         string                    `json:"vendor,omitempty"`
+}
+
+type ModelShopifyProductRecommendationsResponse struct {
+	Handle    string                    `json:"handle,omitempty"`
+	Intent    string                    `json:"intent,omitempty"`
+	Limit     int                       `json:"limit,omitempty"`
+	ProductId string                    `json:"product_id,omitempty"`
+	Products  []ModelShopifyProductItem `json:"products,omitempty"`
+	SourceUrl string                    `json:"source_url,omitempty"`
+	StoreUrl  string                    `json:"store_url,omitempty"`
+}
+
+type ModelShopifyProductResponse struct {
+	Product   ModelShopifyProductItem `json:"product,omitempty"`
+	SourceUrl string                  `json:"source_url,omitempty"`
+	StoreUrl  string                  `json:"store_url,omitempty"`
+}
+
+type ModelShopifyProductsResponse struct {
+	Limit     int                       `json:"limit,omitempty"`
+	Page      int                       `json:"page,omitempty"`
+	Products  []ModelShopifyProductItem `json:"products,omitempty"`
+	SourceUrl string                    `json:"source_url,omitempty"`
+	StoreUrl  string                    `json:"store_url,omitempty"`
+}
+
+type ModelShopifySearchQueryItem struct {
+	Text string `json:"text,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelShopifySearchSuggestResponse struct {
+	Collections []ModelShopifyCollectionItem  `json:"collections,omitempty"`
+	Limit       int                           `json:"limit,omitempty"`
+	Products    []ModelShopifyProductItem     `json:"products,omitempty"`
+	Queries     []ModelShopifySearchQueryItem `json:"queries,omitempty"`
+	Query       string                        `json:"query,omitempty"`
+	SourceUrl   string                        `json:"source_url,omitempty"`
+	StoreUrl    string                        `json:"store_url,omitempty"`
+	Types       []string                      `json:"types,omitempty"`
+}
+
+type ModelShopifySitemapImage struct {
+	Caption string `json:"caption,omitempty"`
+	Title   string `json:"title,omitempty"`
+	Url     string `json:"url,omitempty"`
+}
+
+type ModelShopifySitemapIndexResponse struct {
+	Sitemaps  []ModelShopifySitemapItem `json:"sitemaps,omitempty"`
+	SourceUrl string                    `json:"source_url,omitempty"`
+	StoreUrl  string                    `json:"store_url,omitempty"`
+}
+
+type ModelShopifySitemapItem struct {
+	Loc  string `json:"loc,omitempty"`
+	Type string `json:"type,omitempty"`
+}
+
+type ModelShopifySitemapUrlitem struct {
+	Changefreq string                     `json:"changefreq,omitempty"`
+	Handle     string                     `json:"handle,omitempty"`
+	Images     []ModelShopifySitemapImage `json:"images,omitempty"`
+	Lastmod    string                     `json:"lastmod,omitempty"`
+	Loc        string                     `json:"loc,omitempty"`
+	Type       string                     `json:"type,omitempty"`
+}
+
+type ModelShopifySitemapUrlsResponse struct {
+	Limit     int                          `json:"limit,omitempty"`
+	SourceUrl string                       `json:"source_url,omitempty"`
+	StoreUrl  string                       `json:"store_url,omitempty"`
+	Type      string                       `json:"type,omitempty"`
+	Urls      []ModelShopifySitemapUrlitem `json:"urls,omitempty"`
+}
+
+type ModelShopifyStoreResponse struct {
+	City                      string `json:"city,omitempty"`
+	Country                   string `json:"country,omitempty"`
+	Currency                  string `json:"currency,omitempty"`
+	Description               string `json:"description,omitempty"`
+	Domain                    string `json:"domain,omitempty"`
+	MyshopifyDomain           string `json:"myshopify_domain,omitempty"`
+	Name                      string `json:"name,omitempty"`
+	Province                  string `json:"province,omitempty"`
+	PublishedCollectionsCount int    `json:"published_collections_count,omitempty"`
+	PublishedProductsCount    int    `json:"published_products_count,omitempty"`
+	RequestedUrl              string `json:"requested_url,omitempty"`
+	SourceDomain              string `json:"source_domain,omitempty"`
+	SourceUrl                 string `json:"source_url,omitempty"`
+}
+
+type ModelShopifyVariantItem struct {
+	Available        bool    `json:"available,omitempty"`
+	Barcode          string  `json:"barcode,omitempty"`
+	CompareAtPrice   float64 `json:"compare_at_price,omitempty"`
+	CreatedAt        string  `json:"created_at,omitempty"`
+	FeaturedImage    string  `json:"featured_image,omitempty"`
+	Grams            int     `json:"grams,omitempty"`
+	Id               string  `json:"id,omitempty"`
+	Option1          string  `json:"option1,omitempty"`
+	Option2          string  `json:"option2,omitempty"`
+	Option3          string  `json:"option3,omitempty"`
+	Position         int     `json:"position,omitempty"`
+	Price            float64 `json:"price,omitempty"`
+	ProductId        string  `json:"product_id,omitempty"`
+	RequiresShipping bool    `json:"requires_shipping,omitempty"`
+	Sku              string  `json:"sku,omitempty"`
+	Taxable          bool    `json:"taxable,omitempty"`
+	Title            string  `json:"title,omitempty"`
+	UpdatedAt        string  `json:"updated_at,omitempty"`
+}
+
+type ModelShopifyCollectionProductsResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelShopifyCollectionProductsResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelShopifyCollectionsResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelShopifyCollectionsResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelShopifyPageResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelShopifyPageResponse `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelShopifyPagesResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelShopifyPagesResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelShopifyProductRecommendationsResponseDoc struct {
+	Code int                                        `json:"code,omitempty"`
+	Data ModelShopifyProductRecommendationsResponse `json:"data,omitempty"`
+	Msg  string                                     `json:"msg,omitempty"`
+}
+
+type ModelShopifyProductResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelShopifyProductResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelShopifyProductsResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelShopifyProductsResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelShopifySearchSuggestResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelShopifySearchSuggestResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelShopifySitemapIndexResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelShopifySitemapIndexResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelShopifySitemapUrlsResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelShopifySitemapUrlsResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelShopifyStoreResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelShopifyStoreResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
 type ModelSimilarwebSearchResp struct {
 	Apps      map[string]any   `json:"apps,omitempty"`
 	Companies []map[string]any `json:"companies,omitempty"`
@@ -8309,7 +8579,7 @@ type ModelZillowSearchResponse struct {
 	Results  []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 319
+const operationCount = 330
 
 const (
 	OperationAirbnbRoom                            = "airbnb-room"
@@ -8492,6 +8762,17 @@ const (
 	OperationShopAppShopReviews                    = "shop-app-shop-reviews"
 	OperationShopAppShopTypeahead                  = "shop-app-shop-typeahead"
 	OperationShopAppSuggestions                    = "shop-app-suggestions"
+	OperationShopifyCollectionProducts             = "shopify-collection-products"
+	OperationShopifyCollections                    = "shopify-collections"
+	OperationShopifyPage                           = "shopify-page"
+	OperationShopifyPages                          = "shopify-pages"
+	OperationShopifyProduct                        = "shopify-product"
+	OperationShopifyProductRecommendations         = "shopify-product-recommendations"
+	OperationShopifyProducts                       = "shopify-products"
+	OperationShopifySearchSuggest                  = "shopify-search-suggest"
+	OperationShopifySitemapUrls                    = "shopify-sitemap-urls"
+	OperationShopifySitemaps                       = "shopify-sitemaps"
+	OperationShopifyStore                          = "shopify-store"
 	OperationSimilarWebSearch                      = "similarweb-search"
 	OperationSimilarWebWeb                         = "similarweb-web"
 	OperationSpotifyAlbum                          = "spotify-album"
@@ -8814,6 +9095,17 @@ var operations = map[string]operationDefinition{
 	"shop-app-shop-reviews":                      operationDefinition{Method: "GET", Path: "/shop-app/shops/{handle}/reviews", PathParams: []string{"handle"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"shop-app-shop-typeahead":                    operationDefinition{Method: "GET", Path: "/shop-app/shops/{handle}/typeahead", PathParams: []string{"handle"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"shop-app-suggestions":                       operationDefinition{Method: "GET", Path: "/shop-app/suggestions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopify-collections":                        operationDefinition{Method: "GET", Path: "/shopify/collections", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopify-collection-products":                operationDefinition{Method: "GET", Path: "/shopify/collections/{handle}/products", PathParams: []string{"handle"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopify-pages":                              operationDefinition{Method: "GET", Path: "/shopify/pages", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopify-page":                               operationDefinition{Method: "GET", Path: "/shopify/pages/{handle}", PathParams: []string{"handle"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopify-products":                           operationDefinition{Method: "GET", Path: "/shopify/products", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopify-product":                            operationDefinition{Method: "GET", Path: "/shopify/products/{handle}", PathParams: []string{"handle"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopify-product-recommendations":            operationDefinition{Method: "GET", Path: "/shopify/products/{handle}/recommendations", PathParams: []string{"handle"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "intent", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"related", "complementary"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopify-search-suggest":                     operationDefinition{Method: "GET", Path: "/shopify/search/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "types", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopify-sitemap-urls":                       operationDefinition{Method: "GET", Path: "/shopify/sitemap/urls", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "products", "collections", "pages", "blogs", "agentic_discovery", "other"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopify-sitemaps":                           operationDefinition{Method: "GET", Path: "/shopify/sitemaps", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopify-store":                              operationDefinition{Method: "GET", Path: "/shopify/store", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"similarweb-search":                          operationDefinition{Method: "GET", Path: "/similarweb/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"similarweb-web":                             operationDefinition{Method: "GET", Path: "/similarweb/web/{domain}", PathParams: []string{"domain"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"spotify-podcasts-categories":                operationDefinition{Method: "GET", Path: "/spotify-podcasts/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "section_offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "section_limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -8976,6 +9268,7 @@ type Services struct {
 	ProductHunt     *ProductHuntService
 	Referrals       *ReferralsService
 	ShopApp         *ShopAppService
+	Shopify         *ShopifyService
 	SimilarWeb      *SimilarWebService
 	SpotifyPodcasts *SpotifyPodcastsService
 	Spotify         *SpotifyService
@@ -9011,6 +9304,7 @@ func initServices(c *Client) Services {
 		ProductHunt:     &ProductHuntService{client: c},
 		Referrals:       &ReferralsService{client: c},
 		ShopApp:         &ShopAppService{client: c},
+		Shopify:         &ShopifyService{client: c},
 		SimilarWeb:      &SimilarWebService{client: c},
 		SpotifyPodcasts: &SpotifyPodcastsService{client: c},
 		Spotify:         &SpotifyService{client: c},
@@ -11941,6 +12235,181 @@ type ShopAppSuggestionsResponse = ModelShopappSuggestionsResponseDoc
 
 func (s *ShopAppService) SuggestionsTyped(ctx context.Context, params ShopAppSuggestionsParams, opts ...RequestOption) (ShopAppSuggestionsResponse, error) {
 	return requestTyped[ShopAppSuggestionsResponse](s.client, ctx, "shop-app-suggestions", paramsFromStruct(params), opts...)
+}
+
+type ShopifyService struct{ client *Client }
+
+func (s *ShopifyService) Collections(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopify-collections", params, opts...)
+}
+
+type ShopifyCollectionsParams struct {
+	Url   string `crawlora:"url"`
+	Page  *int   `crawlora:"page,omitempty"`
+	Limit *int   `crawlora:"limit,omitempty"`
+}
+
+type ShopifyCollectionsResponse = ModelShopifyCollectionsResponseDoc
+
+func (s *ShopifyService) CollectionsTyped(ctx context.Context, params ShopifyCollectionsParams, opts ...RequestOption) (ShopifyCollectionsResponse, error) {
+	return requestTyped[ShopifyCollectionsResponse](s.client, ctx, "shopify-collections", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopifyService) CollectionProducts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopify-collection-products", params, opts...)
+}
+
+type ShopifyCollectionProductsParams struct {
+	Handle string `crawlora:"handle"`
+	Url    string `crawlora:"url"`
+	Page   *int   `crawlora:"page,omitempty"`
+	Limit  *int   `crawlora:"limit,omitempty"`
+}
+
+type ShopifyCollectionProductsResponse = ModelShopifyCollectionProductsResponseDoc
+
+func (s *ShopifyService) CollectionProductsTyped(ctx context.Context, params ShopifyCollectionProductsParams, opts ...RequestOption) (ShopifyCollectionProductsResponse, error) {
+	return requestTyped[ShopifyCollectionProductsResponse](s.client, ctx, "shopify-collection-products", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopifyService) Pages(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopify-pages", params, opts...)
+}
+
+type ShopifyPagesParams struct {
+	Url   string `crawlora:"url"`
+	Page  *int   `crawlora:"page,omitempty"`
+	Limit *int   `crawlora:"limit,omitempty"`
+}
+
+type ShopifyPagesResponse = ModelShopifyPagesResponseDoc
+
+func (s *ShopifyService) PagesTyped(ctx context.Context, params ShopifyPagesParams, opts ...RequestOption) (ShopifyPagesResponse, error) {
+	return requestTyped[ShopifyPagesResponse](s.client, ctx, "shopify-pages", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopifyService) Page(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopify-page", params, opts...)
+}
+
+type ShopifyPageParams struct {
+	Handle string `crawlora:"handle"`
+	Url    string `crawlora:"url"`
+}
+
+type ShopifyPageResponse = ModelShopifyPageResponseDoc
+
+func (s *ShopifyService) PageTyped(ctx context.Context, params ShopifyPageParams, opts ...RequestOption) (ShopifyPageResponse, error) {
+	return requestTyped[ShopifyPageResponse](s.client, ctx, "shopify-page", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopifyService) Products(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopify-products", params, opts...)
+}
+
+type ShopifyProductsParams struct {
+	Url   string `crawlora:"url"`
+	Page  *int   `crawlora:"page,omitempty"`
+	Limit *int   `crawlora:"limit,omitempty"`
+}
+
+type ShopifyProductsResponse = ModelShopifyProductsResponseDoc
+
+func (s *ShopifyService) ProductsTyped(ctx context.Context, params ShopifyProductsParams, opts ...RequestOption) (ShopifyProductsResponse, error) {
+	return requestTyped[ShopifyProductsResponse](s.client, ctx, "shopify-products", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopifyService) Product(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopify-product", params, opts...)
+}
+
+type ShopifyProductParams struct {
+	Handle string `crawlora:"handle"`
+	Url    string `crawlora:"url"`
+}
+
+type ShopifyProductResponse = ModelShopifyProductResponseDoc
+
+func (s *ShopifyService) ProductTyped(ctx context.Context, params ShopifyProductParams, opts ...RequestOption) (ShopifyProductResponse, error) {
+	return requestTyped[ShopifyProductResponse](s.client, ctx, "shopify-product", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopifyService) ProductRecommendations(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopify-product-recommendations", params, opts...)
+}
+
+type ShopifyProductRecommendationsParams struct {
+	Handle string  `crawlora:"handle"`
+	Url    string  `crawlora:"url"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+	Intent *string `crawlora:"intent,omitempty"`
+}
+
+type ShopifyProductRecommendationsResponse = ModelShopifyProductRecommendationsResponseDoc
+
+func (s *ShopifyService) ProductRecommendationsTyped(ctx context.Context, params ShopifyProductRecommendationsParams, opts ...RequestOption) (ShopifyProductRecommendationsResponse, error) {
+	return requestTyped[ShopifyProductRecommendationsResponse](s.client, ctx, "shopify-product-recommendations", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopifyService) SearchSuggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopify-search-suggest", params, opts...)
+}
+
+type ShopifySearchSuggestParams struct {
+	Url   string  `crawlora:"url"`
+	Q     string  `crawlora:"q"`
+	Types *string `crawlora:"types,omitempty"`
+	Limit *int    `crawlora:"limit,omitempty"`
+}
+
+type ShopifySearchSuggestResponse = ModelShopifySearchSuggestResponseDoc
+
+func (s *ShopifyService) SearchSuggestTyped(ctx context.Context, params ShopifySearchSuggestParams, opts ...RequestOption) (ShopifySearchSuggestResponse, error) {
+	return requestTyped[ShopifySearchSuggestResponse](s.client, ctx, "shopify-search-suggest", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopifyService) SitemapUrls(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopify-sitemap-urls", params, opts...)
+}
+
+type ShopifySitemapUrlsParams struct {
+	Url   string  `crawlora:"url"`
+	Type  *string `crawlora:"type,omitempty"`
+	Limit *int    `crawlora:"limit,omitempty"`
+}
+
+type ShopifySitemapUrlsResponse = ModelShopifySitemapUrlsResponseDoc
+
+func (s *ShopifyService) SitemapUrlsTyped(ctx context.Context, params ShopifySitemapUrlsParams, opts ...RequestOption) (ShopifySitemapUrlsResponse, error) {
+	return requestTyped[ShopifySitemapUrlsResponse](s.client, ctx, "shopify-sitemap-urls", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopifyService) Sitemaps(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopify-sitemaps", params, opts...)
+}
+
+type ShopifySitemapsParams struct {
+	Url string `crawlora:"url"`
+}
+
+type ShopifySitemapsResponse = ModelShopifySitemapIndexResponseDoc
+
+func (s *ShopifyService) SitemapsTyped(ctx context.Context, params ShopifySitemapsParams, opts ...RequestOption) (ShopifySitemapsResponse, error) {
+	return requestTyped[ShopifySitemapsResponse](s.client, ctx, "shopify-sitemaps", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopifyService) Store(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopify-store", params, opts...)
+}
+
+type ShopifyStoreParams struct {
+	Url string `crawlora:"url"`
+}
+
+type ShopifyStoreResponse = ModelShopifyStoreResponseDoc
+
+func (s *ShopifyService) StoreTyped(ctx context.Context, params ShopifyStoreParams, opts ...RequestOption) (ShopifyStoreResponse, error) {
+	return requestTyped[ShopifyStoreResponse](s.client, ctx, "shopify-store", paramsFromStruct(params), opts...)
 }
 
 type SimilarWebService struct{ client *Client }

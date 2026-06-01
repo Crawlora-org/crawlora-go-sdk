@@ -2,7 +2,7 @@
 
 Generated from `openapi/public.json`. Deprecated, admin, and internal operations are excluded from this SDK contract.
 
-Total operations: `319`
+Total operations: `330`
 
 | Group | SDK method | Operation ID | HTTP | Params | Auth | Response | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -186,6 +186,17 @@ Total operations: `319`
 | ShopApp | `ShopApp.ShopReviews` | `shop-app-shop-reviews` | `GET /shop-app/shops/{handle}/reviews` | `handle` (path string required)<br>`limit` (query int) | `ApiKeyAuth` | `ShopAppShopReviewsResponse` |  |
 | ShopApp | `ShopApp.ShopTypeahead` | `shop-app-shop-typeahead` | `GET /shop-app/shops/{handle}/typeahead` | `handle` (path string required)<br>`query` (query string required)<br>`limit` (query int) | `ApiKeyAuth` | `ShopAppShopTypeaheadResponse` |  |
 | ShopApp | `ShopApp.Suggestions` | `shop-app-suggestions` | `GET /shop-app/suggestions` | `query` (query string required)<br>`limit` (query int) | `ApiKeyAuth` | `ShopAppSuggestionsResponse` |  |
+| Shopify | `Shopify.Collections` | `shopify-collections` | `GET /shopify/collections` | `url` (query string required)<br>`page` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `ShopifyCollectionsResponse` |  |
+| Shopify | `Shopify.CollectionProducts` | `shopify-collection-products` | `GET /shopify/collections/{handle}/products` | `handle` (path string required)<br>`url` (query string required)<br>`page` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `ShopifyCollectionProductsResponse` |  |
+| Shopify | `Shopify.Pages` | `shopify-pages` | `GET /shopify/pages` | `url` (query string required)<br>`page` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `ShopifyPagesResponse` |  |
+| Shopify | `Shopify.Page` | `shopify-page` | `GET /shopify/pages/{handle}` | `handle` (path string required)<br>`url` (query string required) | `ApiKeyAuth` | `ShopifyPageResponse` |  |
+| Shopify | `Shopify.Products` | `shopify-products` | `GET /shopify/products` | `url` (query string required)<br>`page` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `ShopifyProductsResponse` |  |
+| Shopify | `Shopify.Product` | `shopify-product` | `GET /shopify/products/{handle}` | `handle` (path string required)<br>`url` (query string required) | `ApiKeyAuth` | `ShopifyProductResponse` |  |
+| Shopify | `Shopify.ProductRecommendations` | `shopify-product-recommendations` | `GET /shopify/products/{handle}/recommendations` | `handle` (path string required)<br>`url` (query string required)<br>`limit` (query int)<br>`intent` (query string) | `ApiKeyAuth` | `ShopifyProductRecommendationsResponse` |  |
+| Shopify | `Shopify.SearchSuggest` | `shopify-search-suggest` | `GET /shopify/search/suggest` | `url` (query string required)<br>`q` (query string required)<br>`types` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `ShopifySearchSuggestResponse` |  |
+| Shopify | `Shopify.SitemapUrls` | `shopify-sitemap-urls` | `GET /shopify/sitemap/urls` | `url` (query string required)<br>`type` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `ShopifySitemapUrlsResponse` |  |
+| Shopify | `Shopify.Sitemaps` | `shopify-sitemaps` | `GET /shopify/sitemaps` | `url` (query string required) | `ApiKeyAuth` | `ShopifySitemapsResponse` |  |
+| Shopify | `Shopify.Store` | `shopify-store` | `GET /shopify/store` | `url` (query string required) | `ApiKeyAuth` | `ShopifyStoreResponse` |  |
 | SimilarWeb | `SimilarWeb.Search` | `similarweb-search` | `GET /similarweb/search` | `q` (query string required) | `ApiKeyAuth` | `SimilarWebSearchResponse` |  |
 | SimilarWeb | `SimilarWeb.Web` | `similarweb-web` | `GET /similarweb/web/{domain}` | `domain` (path string required) | `ApiKeyAuth` | `SimilarWebWebResponse` |  |
 | SpotifyPodcasts | `SpotifyPodcasts.Categories` | `spotify-podcasts-categories` | `GET /spotify-podcasts/categories` | `uri` (query string)<br>`page_offset` (query int)<br>`page_limit` (query int)<br>`section_offset` (query int)<br>`section_limit` (query int)<br>`include_episode_content_ratings_v2` (query bool) | `ApiKeyAuth` | `SpotifyPodcastsCategoriesResponse` |  |
