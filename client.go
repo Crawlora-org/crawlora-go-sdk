@@ -3,6 +3,8 @@ package crawlora
 import (
 	"bytes"
 	"context"
+	crand "crypto/rand"
+	"encoding/hex"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -20,12 +22,13 @@ import (
 )
 
 const DefaultBaseURL = "https://api.crawlora.net/api/v1"
-const Version = "1.3.0-sdk.1"
+const Version = "1.4.0-sdk.1"
 
 const (
-	ResponseAuto = "auto"
-	ResponseJSON = "json"
-	ResponseText = "text"
+	ResponseAuto   = "auto"
+	ResponseJSON   = "json"
+	ResponseText   = "text"
+	ResponseStream = "stream"
 )
 
 type Params map[string]any
@@ -33,14 +36,21 @@ type Params map[string]any
 type Client struct {
 	Services
 
-	APIKey     string
-	JWTToken   string
-	BaseURL    string
-	HTTPClient *http.Client
-	Headers    map[string]string
-	Retries    int
-	RetryDelay time.Duration
-	UserAgent  string
+	APIKey        string
+	JWTToken      string
+	BaseURL       string
+	HTTPClient    *http.Client
+	Headers       map[string]string
+	Retries       int
+	RetryDelay    time.Duration
+	MaxRetryDelay time.Duration
+	UserAgent     string
+
+	RetryStatuses  map[int]bool
+	RetryPredicate func(status int, err error) bool
+	OnRetry        func(attempt int, err error, delay time.Duration)
+	RequestID      bool
+	Logger         func(event map[string]any)
 }
 
 type Option func(*Client)
@@ -150,6 +160,7 @@ type Error struct {
 	RawBody    string
 	Headers    http.Header
 	RetryAfter time.Duration
+	RequestID  string
 	Err        error
 }
 
@@ -200,14 +211,24 @@ func (e *Error) Is(target error) bool {
 
 func NewClient(opts ...Option) *Client {
 	c := &Client{
-		BaseURL:    DefaultBaseURL,
-		HTTPClient: &http.Client{Timeout: 30 * time.Second},
-		Headers:    map[string]string{},
-		RetryDelay: 250 * time.Millisecond,
-		UserAgent:  "crawlora-go-sdk/" + Version,
+		BaseURL:       DefaultBaseURL,
+		HTTPClient:    &http.Client{Timeout: 30 * time.Second},
+		Headers:       map[string]string{},
+		RetryDelay:    250 * time.Millisecond,
+		MaxRetryDelay: 30 * time.Second,
+		UserAgent:     "crawlora-go-sdk/" + Version,
 	}
 	for _, opt := range opts {
 		opt(c)
+	}
+	// Precedence: explicit option > environment variable > default.
+	if c.APIKey == "" {
+		c.APIKey = os.Getenv("CRAWLORA_API_KEY")
+	}
+	if c.BaseURL == DefaultBaseURL {
+		if env := os.Getenv("CRAWLORA_BASE_URL"); env != "" {
+			c.BaseURL = env
+		}
 	}
 	c.BaseURL = strings.TrimRight(c.BaseURL, "/")
 	if c.Retries < 0 {
@@ -216,8 +237,48 @@ func NewClient(opts ...Option) *Client {
 	if c.RetryDelay < 0 {
 		c.RetryDelay = 0
 	}
+	if c.MaxRetryDelay < 0 {
+		c.MaxRetryDelay = 0
+	}
 	c.Services = initServices(c)
 	return c
+}
+
+// WithMaxRetryDelay caps backoff and Retry-After delays (default 30s).
+func WithMaxRetryDelay(delay time.Duration) Option {
+	return func(c *Client) { c.MaxRetryDelay = delay }
+}
+
+// WithRetryableStatuses overrides the retryable HTTP status set. Network
+// failures (status 0) stay retryable unless a predicate decides otherwise.
+func WithRetryableStatuses(statuses ...int) Option {
+	return func(c *Client) {
+		c.RetryStatuses = map[int]bool{}
+		for _, s := range statuses {
+			c.RetryStatuses[s] = true
+		}
+	}
+}
+
+// WithRetryPredicate sets a full retry predicate; it supersedes the status set.
+func WithRetryPredicate(predicate func(status int, err error) bool) Option {
+	return func(c *Client) { c.RetryPredicate = predicate }
+}
+
+// WithOnRetry registers a hook invoked before each retry sleep.
+func WithOnRetry(hook func(attempt int, err error, delay time.Duration)) Option {
+	return func(c *Client) { c.OnRetry = hook }
+}
+
+// WithRequestID enables generating an x-request-id header when absent.
+func WithRequestID(enabled bool) Option {
+	return func(c *Client) { c.RequestID = enabled }
+}
+
+// WithLogger registers a structured event sink (request/retry). The SDK never
+// logs on its own.
+func WithLogger(logger func(event map[string]any)) Option {
+	return func(c *Client) { c.Logger = logger }
 }
 
 func WithAPIKey(apiKey string) Option {
@@ -315,6 +376,7 @@ func (c *Client) Request(ctx context.Context, operationID string, params Params,
 		ctx, cancel = context.WithTimeout(ctx, cfg.Timeout)
 		defer cancel()
 	}
+	c.log(map[string]any{"event": "request", "operation": operationID})
 	var last error
 	for attempt := 0; attempt <= c.Retries; attempt++ {
 		out, err := c.send(ctx, operation, params, cfg)
@@ -322,14 +384,25 @@ func (c *Client) Request(ctx context.Context, operationID string, params Params,
 			return out, nil
 		}
 		last = err
-		if !isRetryableError(err) || attempt == c.Retries {
+		if !c.isRetryable(err) || attempt == c.Retries {
 			break
 		}
-		if err := sleepBeforeRetry(ctx, c.retryDelayForError(err, attempt)); err != nil {
+		delay := c.retryDelayForError(err, attempt)
+		c.log(map[string]any{"event": "retry", "operation": operationID, "attempt": attempt + 1, "delay": delay})
+		if c.OnRetry != nil {
+			c.OnRetry(attempt+1, err, delay)
+		}
+		if err := sleepBeforeRetry(ctx, delay); err != nil {
 			return nil, err
 		}
 	}
 	return nil, last
+}
+
+func (c *Client) log(event map[string]any) {
+	if c.Logger != nil {
+		c.Logger(event)
+	}
 }
 
 func (c *Client) send(ctx context.Context, operation operationDefinition, params Params, cfg requestConfig) (any, error) {
@@ -372,28 +445,43 @@ func (c *Client) send(ctx context.Context, operation operationDefinition, params
 	for key, value := range cfg.Headers {
 		req.Header.Set(key, value)
 	}
+	reqID := req.Header.Get("x-request-id")
+	if c.RequestID && reqID == "" {
+		reqID = newRequestID()
+		req.Header.Set("x-request-id", reqID)
+	}
 
 	resp, err := c.HTTPClient.Do(req)
 	if err != nil {
 		if errors.Is(err, context.Canceled) || errors.Is(err, context.DeadlineExceeded) {
 			return nil, err
 		}
-		return nil, &Error{Message: "crawlora transport error", Err: err}
+		return nil, &Error{Message: "crawlora transport error", RequestID: reqID, Err: err}
+	}
+
+	// Streaming success returns the unread body; the caller must close it.
+	if cfg.ResponseType == ResponseStream && resp.StatusCode >= 200 && resp.StatusCode < 300 {
+		return resp.Body, nil
 	}
 	defer resp.Body.Close()
 
 	responseBody, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return nil, &Error{Message: "crawlora response read error", Headers: resp.Header.Clone(), Err: err}
+		return nil, &Error{Message: "crawlora response read error", Headers: resp.Header.Clone(), RequestID: reqID, Err: err}
 	}
-	parsed, parseErr := parseResponse(responseBody, resp.Header.Get("content-type"), cfg.ResponseType)
+	parseMode := cfg.ResponseType
+	if parseMode == ResponseStream {
+		parseMode = ResponseAuto // stream only reaches here on an error status; parse the error body
+	}
+	parsed, parseErr := parseResponse(responseBody, resp.Header.Get("content-type"), parseMode)
 	if parseErr != nil {
 		return nil, &Error{
-			Status:  resp.StatusCode,
-			Message: "crawlora JSON parse error",
-			RawBody: string(responseBody),
-			Headers: resp.Header.Clone(),
-			Err:     parseErr,
+			Status:    resp.StatusCode,
+			Message:   "crawlora JSON parse error",
+			RawBody:   string(responseBody),
+			Headers:   resp.Header.Clone(),
+			RequestID: reqID,
+			Err:       parseErr,
 		}
 	}
 	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
@@ -402,7 +490,8 @@ func (c *Client) send(ctx context.Context, operation operationDefinition, params
 			Body:       parsed,
 			RawBody:    string(responseBody),
 			Headers:    resp.Header.Clone(),
-			RetryAfter: retryAfterDelay(resp.Header),
+			RetryAfter: retryAfterDelay(resp.Header, c.MaxRetryDelay),
+			RequestID:  reqID,
 		}
 		if body, ok := parsed.(map[string]any); ok {
 			if code, ok := body["code"].(float64); ok {
@@ -622,10 +711,10 @@ func parseResponse(body []byte, contentType string, responseType string) (any, e
 
 func validateResponseType(responseType string) error {
 	switch responseType {
-	case ResponseAuto, ResponseJSON, ResponseText:
+	case ResponseAuto, ResponseJSON, ResponseText, ResponseStream:
 		return nil
 	default:
-		return fmt.Errorf("invalid response type: expected one of auto, json, text")
+		return fmt.Errorf("invalid response type: expected one of auto, json, text, stream")
 	}
 }
 
@@ -638,10 +727,25 @@ func hasAuthScheme(token string) bool {
 		len(token) >= 7 && strings.EqualFold(token[:7], "Bearer ")
 }
 
-func isRetryableError(err error) bool {
+func newRequestID() string {
+	var buf [16]byte
+	if _, err := crand.Read(buf[:]); err != nil {
+		return fmt.Sprintf("req-%d", time.Now().UnixNano())
+	}
+	return hex.EncodeToString(buf[:])
+}
+
+func (c *Client) isRetryable(err error) bool {
 	var apiErr *Error
 	if !errors.As(err, &apiErr) {
 		return false
+	}
+	if c.RetryPredicate != nil {
+		return c.RetryPredicate(apiErr.Status, err)
+	}
+	if c.RetryStatuses != nil {
+		// Network failures (status 0) stay retryable unless a predicate decides.
+		return apiErr.Status == 0 || c.RetryStatuses[apiErr.Status]
 	}
 	if apiErr.Status == 0 {
 		return true
@@ -670,18 +774,18 @@ func (c *Client) retryDelayForError(err error, attempt int) time.Duration {
 	return c.retryDelay(attempt)
 }
 
-func retryAfterDelay(headers http.Header) time.Duration {
+func retryAfterDelay(headers http.Header, maxDelay time.Duration) time.Duration {
 	value := headers.Get("Retry-After")
 	if value == "" {
 		return 0
 	}
 	if seconds, err := strconv.ParseFloat(value, 64); err == nil && seconds > 0 {
-		return minDuration(time.Duration(seconds*float64(time.Second)), 30*time.Second)
+		return minDuration(time.Duration(seconds*float64(time.Second)), maxDelay)
 	}
 	if target, err := http.ParseTime(value); err == nil {
 		delay := time.Until(target)
 		if delay > 0 {
-			return minDuration(delay, 30*time.Second)
+			return minDuration(delay, maxDelay)
 		}
 	}
 	return 0
@@ -713,11 +817,15 @@ func sleepBeforeRetry(ctx context.Context, delay time.Duration) error {
 var ErrStopPagination = errors.New("crawlora: stop pagination")
 
 type paginateConfig struct {
-	pageParam string
-	start     int
-	hasStart  bool
-	step      int
-	maxPages  int
+	pageParam   string
+	start       int
+	hasStart    bool
+	step        int
+	maxPages    int
+	cursorParam string
+	cursorStart any
+	nextCursor  func(page any) any
+	items       func(page any) []any
 }
 
 type PaginateOption func(*paginateConfig)
@@ -725,6 +833,29 @@ type PaginateOption func(*paginateConfig)
 // WithPageParam overrides the auto-detected page/offset query parameter.
 func WithPageParam(name string) PaginateOption {
 	return func(cfg *paginateConfig) { cfg.pageParam = name }
+}
+
+// WithCursorParam enables cursor pagination using the named query parameter.
+// Requires WithNextCursor.
+func WithCursorParam(name string) PaginateOption {
+	return func(cfg *paginateConfig) { cfg.cursorParam = name }
+}
+
+// WithNextCursor sets the extractor that returns the next cursor from a page;
+// iteration stops when it returns nil.
+func WithNextCursor(fn func(page any) any) PaginateOption {
+	return func(cfg *paginateConfig) { cfg.nextCursor = fn }
+}
+
+// WithCursorStart sets the initial cursor value (cursor mode).
+func WithCursorStart(value any) PaginateOption {
+	return func(cfg *paginateConfig) { cfg.cursorStart = value }
+}
+
+// WithItems sets the per-page item extractor for PaginateItems (default: the
+// "data" array).
+func WithItems(fn func(page any) []any) PaginateOption {
+	return func(cfg *paginateConfig) { cfg.items = fn }
 }
 
 // WithPageStart sets the first page value (defaults to 1 for page, 0 for offset).
@@ -758,6 +889,48 @@ func (c *Client) Paginate(ctx context.Context, operationID string, params Params
 	for _, opt := range opts {
 		opt(&cfg)
 	}
+
+	if cfg.cursorParam != "" || cfg.nextCursor != nil {
+		if cfg.cursorParam == "" || cfg.nextCursor == nil {
+			return fmt.Errorf("cursor pagination requires both WithCursorParam and WithNextCursor")
+		}
+		found := false
+		for _, parameter := range operation.QueryParams {
+			if parameter.Name == cfg.cursorParam {
+				found = true
+				break
+			}
+		}
+		if !found {
+			return fmt.Errorf("cursor parameter %q is not a query parameter of operation %s", cfg.cursorParam, operationID)
+		}
+		cursor := cfg.cursorStart
+		for fetched := 0; cfg.maxPages < 0 || fetched < cfg.maxPages; fetched++ {
+			pageParams := Params{}
+			for key, value := range params {
+				pageParams[key] = value
+			}
+			if cursor != nil {
+				pageParams[cfg.cursorParam] = cursor
+			}
+			page, err := c.Request(ctx, operationID, pageParams)
+			if err != nil {
+				return err
+			}
+			if err := fn(page); err != nil {
+				if errors.Is(err, ErrStopPagination) {
+					return nil
+				}
+				return err
+			}
+			cursor = cfg.nextCursor(page)
+			if cursor == nil {
+				break
+			}
+		}
+		return nil
+	}
+
 	pageParam := cfg.pageParam
 	if pageParam == "" {
 		pageParam = detectPageParam(operation)
@@ -796,6 +969,41 @@ func (c *Client) Paginate(ctx context.Context, operationID string, params Params
 			break
 		}
 		pageValue += step
+	}
+	return nil
+}
+
+// PaginateItems walks pages and invokes fn for each item. Items are extracted
+// per page (default: the "data" array; override with WithItems). Return
+// ErrStopPagination from fn to stop early.
+func (c *Client) PaginateItems(ctx context.Context, operationID string, params Params, fn func(item any) error, opts ...PaginateOption) error {
+	cfg := paginateConfig{}
+	for _, opt := range opts {
+		opt(&cfg)
+	}
+	extract := cfg.items
+	if extract == nil {
+		extract = defaultItems
+	}
+	return c.Paginate(ctx, operationID, params, func(page any) error {
+		for _, item := range extract(page) {
+			if err := fn(item); err != nil {
+				return err
+			}
+		}
+		return nil
+	}, opts...)
+}
+
+func defaultItems(page any) []any {
+	data := page
+	if body, ok := page.(map[string]any); ok {
+		if value, exists := body["data"]; exists {
+			data = value
+		}
+	}
+	if list, ok := data.([]any); ok {
+		return list
 	}
 	return nil
 }

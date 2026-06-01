@@ -1,3 +1,7 @@
 bin/
 coverage.out
 .DS_Store
+
+# Python bytecode from the vendored generator core
+__pycache__/
+*.pyc

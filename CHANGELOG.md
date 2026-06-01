@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.4.0-sdk.1
+
+- Configurable retries: `WithMaxRetryDelay`, `WithRetryableStatuses`, and
+  `WithRetryPredicate`; added `WithOnRetry`, `WithRequestID` (x-request-id, also
+  on `(*Error).RequestID`), and `WithLogger`.
+- Pagination: cursor/token mode (`WithCursorParam` + `WithNextCursor`) and
+  `Client.PaginateItems`; operation metadata now carries `Paginatable` and
+  `CursorParams`.
+- Streaming: `WithResponseType(crawlora.ResponseStream)` returns an
+  `io.ReadCloser` on success.
+- Config: `CRAWLORA_API_KEY` / `CRAWLORA_BASE_URL` environment fallback.
+
 ## v1.3.0-sdk.1
 
 - Added the `ErrClient`, `ErrServer`, and `ErrNetwork` sentinels plus

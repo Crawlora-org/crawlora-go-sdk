@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -643,6 +644,157 @@ func TestPaginateRequiresPageParam(t *testing.T) {
 	err := client.Paginate(context.Background(), "user-me", nil, func(page any) error { return nil })
 	if err == nil || !strings.Contains(err.Error(), "no page or offset query parameter") {
 		t.Fatalf("expected page param error, got %v", err)
+	}
+}
+
+func TestRetryPredicateAndOnRetry(t *testing.T) {
+	calls := 0
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		calls++
+		w.Header().Set("content-type", "application/json")
+		if calls == 1 {
+			w.WriteHeader(http.StatusInternalServerError)
+			_ = json.NewEncoder(w).Encode(map[string]any{"code": 500, "msg": "x"})
+			return
+		}
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": map[string]any{"ok": true}})
+	}))
+	defer server.Close()
+
+	var retries []int
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("k"), WithRetries(1), WithRetryDelay(0),
+		WithRetryPredicate(func(status int, err error) bool { return status == 500 }),
+		WithOnRetry(func(attempt int, err error, delay time.Duration) { retries = append(retries, attempt) }),
+	)
+	if _, err := client.Bing.Search(context.Background(), Params{"q": "c"}); err != nil {
+		t.Fatalf("search: %v", err)
+	}
+	if calls != 2 || len(retries) != 1 || retries[0] != 1 {
+		t.Fatalf("calls=%d retries=%v", calls, retries)
+	}
+}
+
+func TestRequestIDGenerated(t *testing.T) {
+	var got string
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		got = r.Header.Get("x-request-id")
+		w.Header().Set("content-type", "application/json")
+		w.WriteHeader(http.StatusInternalServerError)
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 500, "msg": "x"})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("k"), WithRequestID(true))
+	_, err := client.Bing.Search(context.Background(), Params{"q": "c"})
+	var apiErr *Error
+	if !errors.As(err, &apiErr) {
+		t.Fatalf("expected *Error, got %v", err)
+	}
+	if got == "" || apiErr.RequestID != got {
+		t.Fatalf("request id header=%q error=%q", got, apiErr.RequestID)
+	}
+}
+
+func TestPaginateItems(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		page := r.URL.Query().Get("page")
+		w.Header().Set("content-type", "application/json")
+		data := []map[string]any{}
+		if page != "3" {
+			data = append(data, map[string]any{"page": page})
+		}
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": data})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("k"))
+	var items int
+	if err := client.PaginateItems(context.Background(), "ebay-seller-feedback", Params{"seller": "a"}, func(item any) error {
+		items++
+		return nil
+	}); err != nil {
+		t.Fatalf("paginate items: %v", err)
+	}
+	if items != 2 {
+		t.Fatalf("items=%d", items)
+	}
+}
+
+func TestCursorPagination(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		cur := r.URL.Query().Get("cursor")
+		next := map[string]string{"": "a", "a": "b", "b": ""}[cur]
+		w.Header().Set("content-type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]any{"code": 200, "msg": "OK", "data": []any{cur}, "next": next})
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("k"))
+	pages := 0
+	err := client.Paginate(context.Background(), "producthunt-leaderboard", nil, func(page any) error {
+		pages++
+		return nil
+	}, WithCursorParam("cursor"), WithNextCursor(func(page any) any {
+		if m, ok := page.(map[string]any); ok {
+			if n, ok := m["next"].(string); ok && n != "" {
+				return n
+			}
+		}
+		return nil
+	}))
+	if err != nil {
+		t.Fatalf("cursor paginate: %v", err)
+	}
+	if pages != 3 {
+		t.Fatalf("pages=%d", pages)
+	}
+}
+
+func TestCursorParamMustBeQueryParam(t *testing.T) {
+	client := NewClient(WithAPIKey("k"))
+	err := client.Paginate(context.Background(), "producthunt-leaderboard", nil, func(page any) error { return nil },
+		WithCursorParam("bogus"), WithNextCursor(func(page any) any { return nil }))
+	if err == nil || !strings.Contains(err.Error(), "is not a query parameter") {
+		t.Fatalf("expected cursor param error, got %v", err)
+	}
+}
+
+func TestStreamingResponse(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("content-type", "application/octet-stream")
+		_, _ = w.Write([]byte("streamed-bytes"))
+	}))
+	defer server.Close()
+
+	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("k"))
+	out, err := client.Bing.Search(context.Background(), Params{"q": "c"}, WithResponseType(ResponseStream))
+	if err != nil {
+		t.Fatalf("stream: %v", err)
+	}
+	body, ok := out.(io.ReadCloser)
+	if !ok {
+		t.Fatalf("expected io.ReadCloser, got %T", out)
+	}
+	defer body.Close()
+	data, _ := io.ReadAll(body)
+	if string(data) != "streamed-bytes" {
+		t.Fatalf("stream data=%q", data)
+	}
+}
+
+func TestEnvVarConfig(t *testing.T) {
+	t.Setenv("CRAWLORA_API_KEY", "env_key")
+	t.Setenv("CRAWLORA_BASE_URL", "https://env.example/api/v1")
+	client := NewClient()
+	if client.APIKey != "env_key" {
+		t.Fatalf("api key=%q", client.APIKey)
+	}
+	if client.BaseURL != "https://env.example/api/v1" {
+		t.Fatalf("base url=%q", client.BaseURL)
+	}
+	explicit := NewClient(WithAPIKey("explicit"))
+	if explicit.APIKey != "explicit" {
+		t.Fatalf("explicit api key=%q", explicit.APIKey)
 	}
 }
 

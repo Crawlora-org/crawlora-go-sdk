@@ -125,16 +125,27 @@ class NamingPolicy:
         return name
 
 
+# Numeric page parameters the SDK pagination helpers can auto-increment, and
+# token/cursor parameters that need a caller-supplied next-cursor extractor.
+NUMERIC_PAGE_PARAMS = ("page", "offset")
+CURSOR_PARAMS = ("cursor", "page_token", "next", "start")
+
+
 def _is_paginatable(params: list[dict]) -> bool:
     """An operation is paginatable when it exposes a page/offset/cursor-style
-    query parameter that the SDK pagination helpers can auto-advance."""
-    cursor_names = {"page", "offset", "cursor", "page_token", "next", "start"}
-    for param in params:
-        if param.get("in") != "query":
-            continue
-        if param.get("name", "").lower() in cursor_names:
-            return True
-    return False
+    query parameter that the SDK pagination helpers can advance."""
+    names = {p.get("name", "").lower() for p in params if p.get("in") == "query"}
+    return any(name in names for name in NUMERIC_PAGE_PARAMS + CURSOR_PARAMS)
+
+
+def _cursor_params(params: list[dict]) -> list[str]:
+    """Names of token/cursor-style query parameters, in spec order, for cursor
+    pagination."""
+    return [
+        p["name"]
+        for p in params
+        if p.get("in") == "query" and p.get("name", "").lower() in CURSOR_PARAMS
+    ]
 
 
 def operation_definition(operation_id: str, method: str, path: str, operation: dict) -> dict:
@@ -181,6 +192,8 @@ def operation_definition(operation_id: str, method: str, path: str, operation: d
         "consumes": operation.get("consumes", []),
         "produces": operation.get("produces", []),
         "security": security,
+        **({"paginatable": True} if _is_paginatable(params) else {}),
+        **({"cursorParams": _cursor_params(params)} if _cursor_params(params) else {}),
     }
 
 

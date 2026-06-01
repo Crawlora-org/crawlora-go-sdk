@@ -149,7 +149,7 @@ def param_slice(params):
 
 def go_definition(op):
     """Render a core operation_definition dict into a Go operationDefinition literal."""
-    return (
+    fields = (
         "operationDefinition{"
         f"Method: {go_string(op['method'])}, "
         f"Path: {go_string(op['path'])}, "
@@ -161,8 +161,12 @@ def go_definition(op):
         f"Consumes: {go_string_slice(op['consumes'])}, "
         f"Produces: {go_string_slice(op['produces'])}, "
         f"Security: {go_string_slice(op['security'])}, "
-        "}"
     )
+    if op.get("paginatable"):
+        fields += "Paginatable: true, "
+    if op.get("cursorParams"):
+        fields += f"CursorParams: {go_string_slice(op['cursorParams'])}, "
+    return fields + "}"
 
 
 def operation_const_name(type_base):
@@ -238,6 +242,8 @@ def main():
         "\tConsumes []string",
         "\tProduces []string",
         "\tSecurity []string",
+        "\tPaginatable bool",
+        "\tCursorParams []string",
         "}",
         "",
         *model_definitions(model.definitions),

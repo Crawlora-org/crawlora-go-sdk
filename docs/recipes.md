@@ -81,6 +81,66 @@ if errors.As(err, &apiErr) {
 Context cancellation and deadline errors are returned directly for
 `errors.Is` checks.
 
+## Custom Retries And Observability
+
+```go
+client := crawlora.NewClient(
+    crawlora.WithRetries(3),
+    crawlora.WithMaxRetryDelay(10*time.Second),
+    crawlora.WithRetryableStatuses(429, 503),                // or:
+    crawlora.WithRetryPredicate(func(status int, err error) bool { return status >= 500 }),
+    crawlora.WithOnRetry(func(attempt int, err error, delay time.Duration) {
+        log.Printf("retry %d after %v: %v", attempt, delay, err)
+    }),
+    crawlora.WithRequestID(true), // generate x-request-id; available as (*Error).RequestID
+    crawlora.WithLogger(func(event map[string]any) { log.Printf("%v", event) }),
+)
+```
+
+Classify failures with `errors.Is(err, crawlora.ErrClient | ErrServer | ErrNetwork)`.
+
+## Pagination
+
+```go
+// page/offset (auto-detected), per-page callback; return ErrStopPagination to stop early.
+_ = client.Paginate(ctx, "ebay-seller-feedback", crawlora.Params{"seller": "acme"}, func(page any) error {
+    return nil
+})
+
+// per-item iteration
+_ = client.PaginateItems(ctx, "ebay-seller-feedback", crawlora.Params{"seller": "acme"}, func(item any) error {
+    return nil
+})
+
+// cursor/token pagination
+_ = client.Paginate(ctx, "producthunt-leaderboard", nil, func(page any) error { return nil },
+    crawlora.WithCursorParam("cursor"),
+    crawlora.WithNextCursor(func(page any) any {
+        if m, ok := page.(map[string]any); ok {
+            return m["next_cursor"]
+        }
+        return nil
+    }),
+)
+```
+
+## Streaming Responses
+
+```go
+out, err := client.Bing.Search(ctx, crawlora.Params{"q": "coffee"}, crawlora.WithResponseType(crawlora.ResponseStream))
+if err != nil {
+    return err
+}
+body := out.(io.ReadCloser)
+defer body.Close()
+// read body incrementally
+```
+
+## Environment Variables
+
+`CRAWLORA_API_KEY` and `CRAWLORA_BASE_URL` are used when not set explicitly
+(precedence: option > env > default).
+
 ## Optional Live Smoke Tests
 
 ```sh
