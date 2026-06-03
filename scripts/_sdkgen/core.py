@@ -17,7 +17,6 @@ per-repo `scripts/generate.py`.
 
 from __future__ import annotations
 
-import keyword
 import re
 from dataclasses import dataclass, field
 from typing import Any, Callable
@@ -85,13 +84,17 @@ class NamingPolicy:
     case_fn:               turn word parts into a group/method name
     dedup_sep:             separator inserted before the numeric dedup suffix
     tag_group_overrides:   tag -> group name overrides (already language-cased)
-    sanitize_keywords:     append '_' to language keywords (Python only)
+    keywords:              reserved words the target language forbids as a method
+                           name; a generated name that collides gets a '_' suffix.
+                           Each emitter supplies its own set (Python passes
+                           keyword.kwlist, Ruby/Java/PHP their own); empty by
+                           default so untyped/keyword-free targets opt out.
     """
 
     case_fn: Callable[[list[str]], str]
     dedup_sep: str = ""
     tag_group_overrides: dict[str, str] = field(default_factory=dict)
-    sanitize_keywords: bool = False
+    keywords: frozenset[str] = frozenset()
     # How a group + method become the PascalCase type base for generated type
     # names. Defaults to re-tokenizing both (TS/Python). Go concatenates the
     # already-cased group and method verbatim to preserve internal caps such as
@@ -114,7 +117,7 @@ class NamingPolicy:
         name = self.case_fn(op_words)
         if not name or name in used:
             name = self.case_fn(words(operation_id))
-        if self.sanitize_keywords and keyword.iskeyword(name):
+        if name in self.keywords:
             name += "_"
         base = name
         i = 2
