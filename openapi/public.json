@@ -3045,6 +3045,276 @@
       },
       "type": "object"
     },
+    "brand.Address": {
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "country_code": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "state_code": {
+          "type": "string"
+        },
+        "state_province": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "brand.Backdrop": {
+      "properties": {
+        "colors": {
+          "items": {
+            "$ref": "#/definitions/brand.Color"
+          },
+          "type": "array"
+        },
+        "resolution": {
+          "$ref": "#/definitions/brand.Resolution"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "brand.BrandResponse": {
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/brand.Address"
+        },
+        "backdrops": {
+          "items": {
+            "$ref": "#/definitions/brand.Backdrop"
+          },
+          "type": "array"
+        },
+        "colors": {
+          "items": {
+            "$ref": "#/definitions/brand.Color"
+          },
+          "type": "array"
+        },
+        "description": {
+          "example": "Brand intelligence for the modern web.",
+          "type": "string"
+        },
+        "domain": {
+          "example": "context.dev",
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "industries": {
+          "$ref": "#/definitions/brand.Industries"
+        },
+        "is_nsfw": {
+          "example": false,
+          "type": "boolean"
+        },
+        "links": {
+          "$ref": "#/definitions/brand.Links"
+        },
+        "logos": {
+          "items": {
+            "$ref": "#/definitions/brand.Logo"
+          },
+          "type": "array"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "primary_language": {
+          "example": "en",
+          "type": "string"
+        },
+        "slogan": {
+          "type": "string"
+        },
+        "socials": {
+          "items": {
+            "$ref": "#/definitions/brand.Social"
+          },
+          "type": "array"
+        },
+        "source": {
+          "$ref": "#/definitions/brand.SourceDetail"
+        },
+        "stock": {
+          "$ref": "#/definitions/brand.Stock"
+        },
+        "title": {
+          "example": "Context",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "brand.Color": {
+      "properties": {
+        "hex": {
+          "example": "#0b0b0b",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "brand.EIC": {
+      "properties": {
+        "industry": {
+          "type": "string"
+        },
+        "subindustry": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "brand.Industries": {
+      "properties": {
+        "eic": {
+          "items": {
+            "$ref": "#/definitions/brand.EIC"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "brand.Links": {
+      "properties": {
+        "blog": {
+          "type": "string"
+        },
+        "careers": {
+          "type": "string"
+        },
+        "contact": {
+          "type": "string"
+        },
+        "pricing": {
+          "type": "string"
+        },
+        "privacy": {
+          "type": "string"
+        },
+        "terms": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "brand.Logo": {
+      "properties": {
+        "colors": {
+          "items": {
+            "$ref": "#/definitions/brand.Color"
+          },
+          "type": "array"
+        },
+        "mode": {
+          "type": "string"
+        },
+        "resolution": {
+          "$ref": "#/definitions/brand.Resolution"
+        },
+        "type": {
+          "example": "icon",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://context.dev/favicon.ico",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "brand.Resolution": {
+      "properties": {
+        "aspect_ratio": {
+          "example": 1,
+          "type": "number"
+        },
+        "height": {
+          "example": 512,
+          "type": "integer"
+        },
+        "width": {
+          "example": 512,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "brand.Social": {
+      "properties": {
+        "type": {
+          "example": "x",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://x.com/context",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "brand.SourceDetail": {
+      "properties": {
+        "type": {
+          "example": "html",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://context.dev",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "brand.Stock": {
+      "properties": {
+        "exchange": {
+          "example": "NASDAQ",
+          "type": "string"
+        },
+        "ticker": {
+          "example": "NVDA",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "brand.retrieveResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/brand.BrandResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "brave.Discussion": {
       "properties": {
         "age": {
@@ -15540,6 +15810,336 @@
       },
       "type": "object"
     },
+    "reddit.Author": {
+      "properties": {
+        "name": {
+          "example": "reddit_user",
+          "type": "string"
+        },
+        "profile_url": {
+          "example": "https://www.reddit.com/user/reddit_user/",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "reddit.Comment": {
+      "properties": {
+        "author": {
+          "$ref": "#/definitions/reddit.Author"
+        },
+        "body": {
+          "example": "I agree with this post.",
+          "type": "string"
+        },
+        "created": {
+          "example": "2024-04-19T00:00:00Z",
+          "type": "string"
+        },
+        "created_utc": {
+          "example": 1713484800,
+          "type": "integer"
+        },
+        "depth": {
+          "example": 1,
+          "type": "integer"
+        },
+        "id": {
+          "example": "kabc123",
+          "type": "string"
+        },
+        "name": {
+          "example": "t1_kabc123",
+          "type": "string"
+        },
+        "parent_id": {
+          "example": "t3_1abcxyz",
+          "type": "string"
+        },
+        "permalink": {
+          "example": "https://www.reddit.com/r/OpenAI/comments/1abcxyz/openai_discussion_thread/kabc123/",
+          "type": "string"
+        },
+        "replies": {
+          "items": {
+            "$ref": "#/definitions/reddit.Comment"
+          },
+          "type": "array"
+        },
+        "score": {
+          "example": 12,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "reddit.CommentsResponse": {
+      "properties": {
+        "comments": {
+          "items": {
+            "$ref": "#/definitions/reddit.Comment"
+          },
+          "type": "array"
+        },
+        "post": {
+          "$ref": "#/definitions/reddit.Post"
+        },
+        "source": {
+          "$ref": "#/definitions/reddit.SourceDetail"
+        }
+      },
+      "type": "object"
+    },
+    "reddit.Pagination": {
+      "properties": {
+        "after": {
+          "example": "t3_1abcxyz",
+          "type": "string"
+        },
+        "limit": {
+          "example": 25,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "reddit.Post": {
+      "properties": {
+        "author": {
+          "$ref": "#/definitions/reddit.Author"
+        },
+        "comment_count": {
+          "example": 45,
+          "type": "integer"
+        },
+        "created": {
+          "example": "2024-04-19T00:00:00Z",
+          "type": "string"
+        },
+        "created_utc": {
+          "example": 1713484800,
+          "type": "integer"
+        },
+        "domain": {
+          "example": "self.OpenAI",
+          "type": "string"
+        },
+        "flair": {
+          "example": "Discussion",
+          "type": "string"
+        },
+        "id": {
+          "example": "1abcxyz",
+          "type": "string"
+        },
+        "is_self": {
+          "type": "boolean"
+        },
+        "is_video": {
+          "type": "boolean"
+        },
+        "locked": {
+          "type": "boolean"
+        },
+        "name": {
+          "example": "t3_1abcxyz",
+          "type": "string"
+        },
+        "over_18": {
+          "type": "boolean"
+        },
+        "permalink": {
+          "example": "https://www.reddit.com/r/OpenAI/comments/1abcxyz/openai_discussion_thread/",
+          "type": "string"
+        },
+        "score": {
+          "example": 123,
+          "type": "integer"
+        },
+        "selftext": {
+          "example": "Discussion body",
+          "type": "string"
+        },
+        "source_feed_url": {
+          "example": "https://www.reddit.com/r/OpenAI/.rss",
+          "type": "string"
+        },
+        "stickied": {
+          "type": "boolean"
+        },
+        "subreddit": {
+          "example": "OpenAI",
+          "type": "string"
+        },
+        "thumbnail": {
+          "example": "https://b.thumbs.redditmedia.com/example.jpg",
+          "type": "string"
+        },
+        "title": {
+          "example": "OpenAI discussion thread",
+          "type": "string"
+        },
+        "upvote_ratio": {
+          "example": 0.95,
+          "type": "number"
+        },
+        "url": {
+          "example": "https://www.reddit.com/r/OpenAI/comments/1abcxyz/openai_discussion_thread/",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "reddit.PostResponse": {
+      "properties": {
+        "post": {
+          "$ref": "#/definitions/reddit.Post"
+        },
+        "source": {
+          "$ref": "#/definitions/reddit.SourceDetail"
+        }
+      },
+      "type": "object"
+    },
+    "reddit.SearchResponse": {
+      "properties": {
+        "pagination": {
+          "$ref": "#/definitions/reddit.Pagination"
+        },
+        "posts": {
+          "items": {
+            "$ref": "#/definitions/reddit.Post"
+          },
+          "type": "array"
+        },
+        "query": {
+          "example": "openai",
+          "type": "string"
+        },
+        "sort": {
+          "example": "relevance",
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/definitions/reddit.SourceDetail"
+        },
+        "subreddit": {
+          "example": "OpenAI",
+          "type": "string"
+        },
+        "time": {
+          "example": "week",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "reddit.SourceDetail": {
+      "properties": {
+        "type": {
+          "example": "rss",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.reddit.com/r/OpenAI/.rss",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "reddit.SubredditPostsResponse": {
+      "properties": {
+        "pagination": {
+          "$ref": "#/definitions/reddit.Pagination"
+        },
+        "posts": {
+          "items": {
+            "$ref": "#/definitions/reddit.Post"
+          },
+          "type": "array"
+        },
+        "sort": {
+          "example": "hot",
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/definitions/reddit.SourceDetail"
+        },
+        "subreddit": {
+          "example": "OpenAI",
+          "type": "string"
+        },
+        "time": {
+          "example": "week",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "reddit.commentsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/reddit.CommentsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "reddit.postResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/reddit.PostResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "reddit.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/reddit.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "reddit.subredditPostsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/reddit.SubredditPostsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "referrals.referralAttributionDoc": {
       "properties": {
         "campaign": {
@@ -25991,6 +26591,38 @@
       },
       "type": "object"
     },
+    "yahoofinance.LookupResponse": {
+      "properties": {
+        "count": {
+          "example": 10,
+          "type": "integer"
+        },
+        "documents": {
+          "items": {
+            "additionalProperties": {},
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "query": {
+          "example": "apple",
+          "type": "string"
+        },
+        "start": {
+          "example": 0,
+          "type": "integer"
+        },
+        "total": {
+          "example": 10,
+          "type": "integer"
+        },
+        "type": {
+          "example": "all",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "yahoofinance.MarketStatusResponse": {
       "properties": {
         "market": {
@@ -26565,6 +27197,22 @@
         },
         "data": {
           "$ref": "#/definitions/yahoofinance.ISINResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "yahoofinance.lookupResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/yahoofinance.LookupResponse"
         },
         "msg": {
           "example": "OK",
@@ -31283,6 +31931,98 @@
         "summary": "Search Bing video results",
         "tags": [
           "Bing"
+        ]
+      }
+    },
+    "/brand/retrieve": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Fetches a domain's homepage and extracts a normalized brand profile (title, description, colors, logos, backdrops, socials, links, and any schema.org organization data). Enrichment-only fields that are not present in the page markup are returned as null.",
+        "operationId": "brand-retrieve",
+        "parameters": [
+          {
+            "description": "Domain to retrieve brand data for, e.g. context.dev",
+            "in": "query",
+            "name": "domain",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Accepted for compatibility; not applied in HTML-only mode",
+            "in": "query",
+            "name": "force_language",
+            "type": "string"
+          },
+          {
+            "description": "Optimize for speed by skipping schema.org and footer-link extraction",
+            "in": "query",
+            "name": "maxSpeed",
+            "type": "boolean"
+          },
+          {
+            "description": "Cache freshness window in milliseconds, clamps to 1 day..1 year",
+            "in": "query",
+            "name": "maxAgeMs",
+            "type": "integer"
+          },
+          {
+            "description": "Upstream fetch timeout in milliseconds, clamps to 1000..300000",
+            "in": "query",
+            "name": "timeoutMS",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/brand.retrieveResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "408": {
+            "description": "Request Timeout",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve brand data by domain",
+        "tags": [
+          "Brand"
         ]
       }
     },
@@ -42142,6 +42882,367 @@
         ]
       }
     },
+    "/reddit/comments/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns flat public comment entries from a Reddit post.",
+        "operationId": "reddit-comments",
+        "parameters": [
+          {
+            "description": "Reddit post id or t3_ id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "confidence",
+            "description": "Accepted for compatibility: confidence, top, new, controversial, old, or qa. Public comment data is flat and may ignore sort.",
+            "enum": [
+              "confidence",
+              "top",
+              "new",
+              "controversial",
+              "old",
+              "qa"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Maximum comments returned, defaults to 25 and clamps to 100",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 3,
+            "description": "Accepted for compatibility. Public comment data is flat and may ignore depth.",
+            "in": "query",
+            "name": "depth",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/reddit.commentsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Reddit post comments",
+        "tags": [
+          "Reddit"
+        ]
+      }
+    },
+    "/reddit/post/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized public Reddit post entry.",
+        "operationId": "reddit-post",
+        "parameters": [
+          {
+            "description": "Reddit post id or t3_ id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/reddit.postResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Reddit post",
+        "tags": [
+          "Reddit"
+        ]
+      }
+    },
+    "/reddit/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches public Reddit content and returns normalized public post entries.",
+        "operationId": "reddit-search",
+        "parameters": [
+          {
+            "description": "Search keywords",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Restrict search to a subreddit name, without r/",
+            "in": "query",
+            "name": "subreddit",
+            "type": "string"
+          },
+          {
+            "default": "relevance",
+            "description": "Sort: relevance, hot, new, top, or comments",
+            "enum": [
+              "relevance",
+              "hot",
+              "new",
+              "top",
+              "comments"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Time window for top/comments sorts: hour, day, week, month, year, or all",
+            "enum": [
+              "hour",
+              "day",
+              "week",
+              "month",
+              "year",
+              "all"
+            ],
+            "in": "query",
+            "name": "time",
+            "type": "string"
+          },
+          {
+            "description": "Maximum posts, defaults to 25 and clamps to 100",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "Reddit pagination token",
+            "in": "query",
+            "name": "after",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/reddit.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Reddit posts",
+        "tags": [
+          "Reddit"
+        ]
+      }
+    },
+    "/reddit/subreddit/{subreddit}/posts": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized public posts from a subreddit.",
+        "operationId": "reddit-subreddit-posts",
+        "parameters": [
+          {
+            "description": "Subreddit name, without r/",
+            "in": "path",
+            "name": "subreddit",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "hot",
+            "description": "Sort: hot, new, top, or rising",
+            "enum": [
+              "hot",
+              "new",
+              "top",
+              "rising"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Time window for top sort: hour, day, week, month, year, or all",
+            "enum": [
+              "hour",
+              "day",
+              "week",
+              "month",
+              "year",
+              "all"
+            ],
+            "in": "query",
+            "name": "time",
+            "type": "string"
+          },
+          {
+            "description": "Maximum posts, defaults to 25 and clamps to 100",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "Reddit pagination token",
+            "in": "query",
+            "name": "after",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/reddit.subredditPostsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Reddit subreddit posts",
+        "tags": [
+          "Reddit"
+        ]
+      }
+    },
     "/referrals/click": {
       "post": {
         "consumes": [
@@ -50467,7 +51568,7 @@
         },
         "security": [
           {
-            "JWTAuth": []
+            "ApiKeyAuth": []
           }
         ],
         "summary": "Get current user's endpoint usage breakdown",
@@ -50543,7 +51644,7 @@
         },
         "security": [
           {
-            "JWTAuth": []
+            "ApiKeyAuth": []
           }
         ],
         "summary": "Get current user's usage overview",
@@ -50627,7 +51728,7 @@
         },
         "security": [
           {
-            "JWTAuth": []
+            "ApiKeyAuth": []
           }
         ],
         "summary": "Get current user's recent API client IPs",
@@ -50720,7 +51821,7 @@
         },
         "security": [
           {
-            "JWTAuth": []
+            "ApiKeyAuth": []
           }
         ],
         "summary": "Get current user's usage timeseries",
@@ -51191,6 +52292,96 @@
           }
         ],
         "summary": "Yahoo Finance industry detail",
+        "tags": [
+          "Yahoo Finance"
+        ]
+      }
+    },
+    "/yahoo-finance/lookup": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns Yahoo Finance instrument matches for a query, optionally filtered by instrument type.",
+        "operationId": "yahoo-finance-lookup",
+        "parameters": [
+          {
+            "description": "Ticker symbol or company name",
+            "in": "query",
+            "name": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Instrument type filter",
+            "enum": [
+              "all",
+              "equity",
+              "etf",
+              "mutualfund",
+              "index",
+              "future",
+              "currency",
+              "cryptocurrency"
+            ],
+            "in": "query",
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "description": "Result count",
+            "in": "query",
+            "name": "count",
+            "type": "integer"
+          },
+          {
+            "description": "Result offset",
+            "in": "query",
+            "name": "start",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/yahoofinance.lookupResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Yahoo Finance lookup",
         "tags": [
           "Yahoo Finance"
         ]

@@ -35,6 +35,15 @@ result, err := crawlora.RequestTyped[crawlora.BingSearchResponse](
 )
 ```
 
+## Reddit And Brand
+
+Newer platforms are grouped like every other endpoint:
+
+```go
+posts, err := client.Reddit.Search(ctx, crawlora.Params{"q": "golang", "subreddit": "programming"})
+brand, err := client.Brand.Retrieve(ctx, crawlora.Params{"domain": "stripe.com"})
+```
+
 ## Retries, Timeouts, And Headers
 
 ```go

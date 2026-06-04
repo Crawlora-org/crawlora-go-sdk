@@ -968,6 +968,100 @@ type ModelBingVideosResponseDoc struct {
 	Msg  string                  `json:"msg,omitempty"`
 }
 
+type ModelBrandAddress struct {
+	City          string `json:"city,omitempty"`
+	Country       string `json:"country,omitempty"`
+	CountryCode   string `json:"country_code,omitempty"`
+	PostalCode    string `json:"postal_code,omitempty"`
+	StateCode     string `json:"state_code,omitempty"`
+	StateProvince string `json:"state_province,omitempty"`
+	Street        string `json:"street,omitempty"`
+}
+
+type ModelBrandBackdrop struct {
+	Colors     []ModelBrandColor    `json:"colors,omitempty"`
+	Resolution ModelBrandResolution `json:"resolution,omitempty"`
+	Url        string               `json:"url,omitempty"`
+}
+
+type ModelBrandBrandResponse struct {
+	Address         ModelBrandAddress      `json:"address,omitempty"`
+	Backdrops       []ModelBrandBackdrop   `json:"backdrops,omitempty"`
+	Colors          []ModelBrandColor      `json:"colors,omitempty"`
+	Description     string                 `json:"description,omitempty"`
+	Domain          string                 `json:"domain,omitempty"`
+	Email           string                 `json:"email,omitempty"`
+	Industries      ModelBrandIndustries   `json:"industries,omitempty"`
+	IsNsfw          bool                   `json:"is_nsfw,omitempty"`
+	Links           ModelBrandLinks        `json:"links,omitempty"`
+	Logos           []ModelBrandLogo       `json:"logos,omitempty"`
+	Phone           string                 `json:"phone,omitempty"`
+	PrimaryLanguage string                 `json:"primary_language,omitempty"`
+	Slogan          string                 `json:"slogan,omitempty"`
+	Socials         []ModelBrandSocial     `json:"socials,omitempty"`
+	Source          ModelBrandSourceDetail `json:"source,omitempty"`
+	Stock           ModelBrandStock        `json:"stock,omitempty"`
+	Title           string                 `json:"title,omitempty"`
+}
+
+type ModelBrandColor struct {
+	Hex  string `json:"hex,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelBrandEic struct {
+	Industry    string `json:"industry,omitempty"`
+	Subindustry string `json:"subindustry,omitempty"`
+}
+
+type ModelBrandIndustries struct {
+	Eic []ModelBrandEic `json:"eic,omitempty"`
+}
+
+type ModelBrandLinks struct {
+	Blog    string `json:"blog,omitempty"`
+	Careers string `json:"careers,omitempty"`
+	Contact string `json:"contact,omitempty"`
+	Pricing string `json:"pricing,omitempty"`
+	Privacy string `json:"privacy,omitempty"`
+	Terms   string `json:"terms,omitempty"`
+}
+
+type ModelBrandLogo struct {
+	Colors     []ModelBrandColor    `json:"colors,omitempty"`
+	Mode       string               `json:"mode,omitempty"`
+	Resolution ModelBrandResolution `json:"resolution,omitempty"`
+	Type       string               `json:"type,omitempty"`
+	Url        string               `json:"url,omitempty"`
+}
+
+type ModelBrandResolution struct {
+	AspectRatio float64 `json:"aspect_ratio,omitempty"`
+	Height      int     `json:"height,omitempty"`
+	Width       int     `json:"width,omitempty"`
+}
+
+type ModelBrandSocial struct {
+	Type string `json:"type,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelBrandSourceDetail struct {
+	Type string `json:"type,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelBrandStock struct {
+	Exchange string `json:"exchange,omitempty"`
+	Ticker   string `json:"ticker,omitempty"`
+}
+
+type ModelBrandRetrieveResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelBrandBrandResponse `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
 type ModelBraveDiscussion struct {
 	Age          string `json:"age,omitempty"`
 	CommentCount int    `json:"comment_count,omitempty"`
@@ -4811,6 +4905,114 @@ type ModelProducthuntSearchTopicDoc struct {
 	Topic map[string]any `json:"topic,omitempty"`
 }
 
+type ModelRedditAuthor struct {
+	Name       string `json:"name,omitempty"`
+	ProfileUrl string `json:"profile_url,omitempty"`
+}
+
+type ModelRedditComment struct {
+	Author     ModelRedditAuthor    `json:"author,omitempty"`
+	Body       string               `json:"body,omitempty"`
+	Created    string               `json:"created,omitempty"`
+	CreatedUtc int                  `json:"created_utc,omitempty"`
+	Depth      int                  `json:"depth,omitempty"`
+	Id         string               `json:"id,omitempty"`
+	Name       string               `json:"name,omitempty"`
+	ParentId   string               `json:"parent_id,omitempty"`
+	Permalink  string               `json:"permalink,omitempty"`
+	Replies    []ModelRedditComment `json:"replies,omitempty"`
+	Score      int                  `json:"score,omitempty"`
+}
+
+type ModelRedditCommentsResponse struct {
+	Comments []ModelRedditComment    `json:"comments,omitempty"`
+	Post     ModelRedditPost         `json:"post,omitempty"`
+	Source   ModelRedditSourceDetail `json:"source,omitempty"`
+}
+
+type ModelRedditPagination struct {
+	After string `json:"after,omitempty"`
+	Limit int    `json:"limit,omitempty"`
+}
+
+type ModelRedditPost struct {
+	Author        ModelRedditAuthor `json:"author,omitempty"`
+	CommentCount  int               `json:"comment_count,omitempty"`
+	Created       string            `json:"created,omitempty"`
+	CreatedUtc    int               `json:"created_utc,omitempty"`
+	Domain        string            `json:"domain,omitempty"`
+	Flair         string            `json:"flair,omitempty"`
+	Id            string            `json:"id,omitempty"`
+	IsSelf        bool              `json:"is_self,omitempty"`
+	IsVideo       bool              `json:"is_video,omitempty"`
+	Locked        bool              `json:"locked,omitempty"`
+	Name          string            `json:"name,omitempty"`
+	Over18        bool              `json:"over_18,omitempty"`
+	Permalink     string            `json:"permalink,omitempty"`
+	Score         int               `json:"score,omitempty"`
+	Selftext      string            `json:"selftext,omitempty"`
+	SourceFeedUrl string            `json:"source_feed_url,omitempty"`
+	Stickied      bool              `json:"stickied,omitempty"`
+	Subreddit     string            `json:"subreddit,omitempty"`
+	Thumbnail     string            `json:"thumbnail,omitempty"`
+	Title         string            `json:"title,omitempty"`
+	UpvoteRatio   float64           `json:"upvote_ratio,omitempty"`
+	Url           string            `json:"url,omitempty"`
+}
+
+type ModelRedditPostResponse struct {
+	Post   ModelRedditPost         `json:"post,omitempty"`
+	Source ModelRedditSourceDetail `json:"source,omitempty"`
+}
+
+type ModelRedditSearchResponse struct {
+	Pagination ModelRedditPagination   `json:"pagination,omitempty"`
+	Posts      []ModelRedditPost       `json:"posts,omitempty"`
+	Query      string                  `json:"query,omitempty"`
+	Sort       string                  `json:"sort,omitempty"`
+	Source     ModelRedditSourceDetail `json:"source,omitempty"`
+	Subreddit  string                  `json:"subreddit,omitempty"`
+	Time       string                  `json:"time,omitempty"`
+}
+
+type ModelRedditSourceDetail struct {
+	Type string `json:"type,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelRedditSubredditPostsResponse struct {
+	Pagination ModelRedditPagination   `json:"pagination,omitempty"`
+	Posts      []ModelRedditPost       `json:"posts,omitempty"`
+	Sort       string                  `json:"sort,omitempty"`
+	Source     ModelRedditSourceDetail `json:"source,omitempty"`
+	Subreddit  string                  `json:"subreddit,omitempty"`
+	Time       string                  `json:"time,omitempty"`
+}
+
+type ModelRedditCommentsResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelRedditCommentsResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelRedditPostResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelRedditPostResponse `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelRedditSearchResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelRedditSearchResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelRedditSubredditPostsResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelRedditSubredditPostsResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
 type ModelReferralsReferralAttributionDoc struct {
 	Campaign      string `json:"campaign,omitempty"`
 	Code          string `json:"code,omitempty"`
@@ -7780,6 +7982,15 @@ type ModelYahoofinanceInfoResponse struct {
 	Symbol  string         `json:"symbol,omitempty"`
 }
 
+type ModelYahoofinanceLookupResponse struct {
+	Count     int              `json:"count,omitempty"`
+	Documents []map[string]any `json:"documents,omitempty"`
+	Query     string           `json:"query,omitempty"`
+	Start     int              `json:"start,omitempty"`
+	Total     int              `json:"total,omitempty"`
+	Type      string           `json:"type,omitempty"`
+}
+
 type ModelYahoofinanceMarketStatusResponse struct {
 	Market string         `json:"market,omitempty"`
 	Status map[string]any `json:"status,omitempty"`
@@ -7962,6 +8173,12 @@ type ModelYahoofinanceIsinResponseDoc struct {
 	Code int                           `json:"code,omitempty"`
 	Data ModelYahoofinanceIsinresponse `json:"data,omitempty"`
 	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelYahoofinanceLookupResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelYahoofinanceLookupResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
 }
 
 type ModelYahoofinanceMarketStatusResponseDoc struct {
@@ -8581,7 +8798,7 @@ type ModelZillowSearchResponse struct {
 	Results  []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 330
+const operationCount = 336
 
 const (
 	OperationAirbnbRoom                            = "airbnb-room"
@@ -8619,6 +8836,7 @@ const (
 	OperationBingSearch                            = "bing-search"
 	OperationBingSuggest                           = "bing-suggest"
 	OperationBingVideos                            = "bing-videos"
+	OperationBrandRetrieve                         = "brand-retrieve"
 	OperationBraveImages                           = "brave-images"
 	OperationBraveNews                             = "brave-news"
 	OperationBraveSearch                           = "brave-search"
@@ -8745,6 +8963,10 @@ const (
 	OperationProductHuntProduct                    = "producthunt-product"
 	OperationProductHuntReviews                    = "producthunt-reviews"
 	OperationProductHuntSearch                     = "producthunt-search"
+	OperationRedditComments                        = "reddit-comments"
+	OperationRedditPost                            = "reddit-post"
+	OperationRedditSearch                          = "reddit-search"
+	OperationRedditSubredditPosts                  = "reddit-subreddit-posts"
 	OperationReferralsClick                        = "referrals-click"
 	OperationReferralsMe                           = "referrals-me"
 	OperationReferralsMeEvents                     = "referrals-me-events"
@@ -8865,6 +9087,7 @@ const (
 	OperationYahooFinanceDownload                  = "yahoo-finance-download"
 	OperationYahooFinanceIndustries                = "yahoo-finance-industries"
 	OperationYahooFinanceIndustry                  = "yahoo-finance-industry"
+	OperationYahooFinanceLookup                    = "yahoo-finance-lookup"
 	OperationYahooFinanceMarketStatus              = "yahoo-finance-market-status"
 	OperationYahooFinanceMarketSummary             = "yahoo-finance-market-summary"
 	OperationYahooFinanceScreener                  = "yahoo-finance-screener"
@@ -8952,6 +9175,7 @@ var operations = map[string]operationDefinition{
 	"bing-search":                                operationDefinition{Method: "GET", Path: "/bing/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"bing-suggest":                               operationDefinition{Method: "GET", Path: "/bing/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"bing-videos":                                operationDefinition{Method: "GET", Path: "/bing/videos", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"brand-retrieve":                             operationDefinition{Method: "GET", Path: "/brand/retrieve", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "domain", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "force_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "maxSpeed", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "maxAgeMs", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "timeoutMS", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"brave-images":                               operationDefinition{Method: "GET", Path: "/brave/images", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"brave-news":                                 operationDefinition{Method: "GET", Path: "/brave/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}, parameterDefinition{Name: "time_range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"any", "day", "week", "month", "year", "custom"}}, parameterDefinition{Name: "date_from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"brave-search":                               operationDefinition{Method: "GET", Path: "/brave/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}, parameterDefinition{Name: "time_range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"any", "day", "week", "month", "year", "custom"}}, parameterDefinition{Name: "date_from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -9078,6 +9302,10 @@ var operations = map[string]operationDefinition{
 	"producthunt-reviews":                        operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/reviews", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"producthunt-search":                         operationDefinition{Method: "GET", Path: "/producthunt/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"product", "user", "launch"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "featured", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "topics", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"ready":                                      operationDefinition{Method: "GET", Path: "/ready", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{}},
+	"reddit-comments":                            operationDefinition{Method: "GET", Path: "/reddit/comments/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"confidence", "top", "new", "controversial", "old", "qa"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "depth", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reddit-post":                                operationDefinition{Method: "GET", Path: "/reddit/post/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reddit-search":                              operationDefinition{Method: "GET", Path: "/reddit/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "subreddit", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "hot", "new", "top", "comments"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reddit-subreddit-posts":                     operationDefinition{Method: "GET", Path: "/reddit/subreddit/{subreddit}/posts", PathParams: []string{"subreddit"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "top", "rising"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"referrals-click":                            operationDefinition{Method: "POST", Path: "/referrals/click", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{}},
 	"referrals-me":                               operationDefinition{Method: "GET", Path: "/referrals/me", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
 	"referrals-me-events":                        operationDefinition{Method: "GET", Path: "/referrals/me/events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
@@ -9185,10 +9413,10 @@ var operations = map[string]operationDefinition{
 	"trustpilot-categories":                      operationDefinition{Method: "GET", Path: "/trustpilot/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"trustpilot-category-search":                 operationDefinition{Method: "GET", Path: "/trustpilot/categories/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "locale", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"trustpilot-category":                        operationDefinition{Method: "GET", Path: "/trustpilot/category/{slug}", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
-	"usage-me-endpoints":                         operationDefinition{Method: "GET", Path: "/usage/me/endpoints", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"period", "day", "week", "month", "custom"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
-	"usage-me-overview":                          operationDefinition{Method: "GET", Path: "/usage/me/overview", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"period", "day", "week", "month", "custom"}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
-	"usage-me-recent-ips":                        operationDefinition{Method: "GET", Path: "/usage/me/recent-ips", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"period", "day", "week", "month", "custom"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
-	"usage-me-timeseries":                        operationDefinition{Method: "GET", Path: "/usage/me/timeseries", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"period", "day", "week", "month", "custom"}}, parameterDefinition{Name: "bucket", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day"}}, parameterDefinition{Name: "endpoint", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
+	"usage-me-endpoints":                         operationDefinition{Method: "GET", Path: "/usage/me/endpoints", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"period", "day", "week", "month", "custom"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"usage-me-overview":                          operationDefinition{Method: "GET", Path: "/usage/me/overview", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"period", "day", "week", "month", "custom"}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"usage-me-recent-ips":                        operationDefinition{Method: "GET", Path: "/usage/me/recent-ips", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"period", "day", "week", "month", "custom"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"usage-me-timeseries":                        operationDefinition{Method: "GET", Path: "/usage/me/timeseries", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"period", "day", "week", "month", "custom"}}, parameterDefinition{Name: "bucket", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day"}}, parameterDefinition{Name: "endpoint", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"user-me":                                    operationDefinition{Method: "GET", Path: "/user/me", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
 	"user-me-api-keys":                           operationDefinition{Method: "GET", Path: "/user/me/api-keys", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
 	"user-me-api-keys-rotate":                    operationDefinition{Method: "POST", Path: "/user/me/api-keys/rotate", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
@@ -9198,6 +9426,7 @@ var operations = map[string]operationDefinition{
 	"yahoo-finance-download":                     operationDefinition{Method: "POST", Path: "/yahoo-finance/download", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"yahoo-finance-industries":                   operationDefinition{Method: "GET", Path: "/yahoo-finance/industries", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"yahoo-finance-industry":                     operationDefinition{Method: "GET", Path: "/yahoo-finance/industries/{key}", PathParams: []string{"key"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yahoo-finance-lookup":                       operationDefinition{Method: "GET", Path: "/yahoo-finance/lookup", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "equity", "etf", "mutualfund", "index", "future", "currency", "cryptocurrency"}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "start", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"start"}},
 	"yahoo-finance-market-status":                operationDefinition{Method: "GET", Path: "/yahoo-finance/market/{market}/status", PathParams: []string{"market"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"yahoo-finance-market-summary":               operationDefinition{Method: "GET", Path: "/yahoo-finance/market/{market}/summary", PathParams: []string{"market"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"yahoo-finance-screener-custom":              operationDefinition{Method: "POST", Path: "/yahoo-finance/screener", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -9256,6 +9485,7 @@ type Services struct {
 	AppStore        *AppStoreService
 	Billing         *BillingService
 	Bing            *BingService
+	Brand           *BrandService
 	Brave           *BraveService
 	CoinGecko       *CoinGeckoService
 	Datasets        *DatasetsService
@@ -9268,6 +9498,7 @@ type Services struct {
 	LinkedIn        *LinkedInService
 	Meta            *MetaService
 	ProductHunt     *ProductHuntService
+	Reddit          *RedditService
 	Referrals       *ReferralsService
 	ShopApp         *ShopAppService
 	Shopify         *ShopifyService
@@ -9292,6 +9523,7 @@ func initServices(c *Client) Services {
 		AppStore:        &AppStoreService{client: c},
 		Billing:         &BillingService{client: c},
 		Bing:            &BingService{client: c},
+		Brand:           &BrandService{client: c},
 		Brave:           &BraveService{client: c},
 		CoinGecko:       &CoinGeckoService{client: c},
 		Datasets:        &DatasetsService{client: c},
@@ -9304,6 +9536,7 @@ func initServices(c *Client) Services {
 		LinkedIn:        &LinkedInService{client: c},
 		Meta:            &MetaService{client: c},
 		ProductHunt:     &ProductHuntService{client: c},
+		Reddit:          &RedditService{client: c},
 		Referrals:       &ReferralsService{client: c},
 		ShopApp:         &ShopAppService{client: c},
 		Shopify:         &ShopifyService{client: c},
@@ -9910,6 +10143,26 @@ type BingVideosResponse = ModelBingVideosResponseDoc
 
 func (s *BingService) VideosTyped(ctx context.Context, params BingVideosParams, opts ...RequestOption) (BingVideosResponse, error) {
 	return requestTyped[BingVideosResponse](s.client, ctx, "bing-videos", paramsFromStruct(params), opts...)
+}
+
+type BrandService struct{ client *Client }
+
+func (s *BrandService) Retrieve(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "brand-retrieve", params, opts...)
+}
+
+type BrandRetrieveParams struct {
+	Domain        string  `crawlora:"domain"`
+	ForceLanguage *string `crawlora:"force_language,omitempty"`
+	MaxSpeed      *bool   `crawlora:"maxSpeed,omitempty"`
+	MaxAgeMs      *int    `crawlora:"maxAgeMs,omitempty"`
+	TimeoutMs     *int    `crawlora:"timeoutMS,omitempty"`
+}
+
+type BrandRetrieveResponse = ModelBrandRetrieveResponseDoc
+
+func (s *BrandService) RetrieveTyped(ctx context.Context, params BrandRetrieveParams, opts ...RequestOption) (BrandRetrieveResponse, error) {
+	return requestTyped[BrandRetrieveResponse](s.client, ctx, "brand-retrieve", paramsFromStruct(params), opts...)
 }
 
 type BraveService struct{ client *Client }
@@ -11945,6 +12198,76 @@ func (s *ProductHuntService) SearchTyped(ctx context.Context, params ProductHunt
 	return requestTyped[ProductHuntSearchResponse](s.client, ctx, "producthunt-search", paramsFromStruct(params), opts...)
 }
 
+type RedditService struct{ client *Client }
+
+func (s *RedditService) Comments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "reddit-comments", params, opts...)
+}
+
+type RedditCommentsParams struct {
+	Id    string  `crawlora:"id"`
+	Sort  *string `crawlora:"sort,omitempty"`
+	Limit *int    `crawlora:"limit,omitempty"`
+	Depth *int    `crawlora:"depth,omitempty"`
+}
+
+type RedditCommentsResponse = ModelRedditCommentsResponseDoc
+
+func (s *RedditService) CommentsTyped(ctx context.Context, params RedditCommentsParams, opts ...RequestOption) (RedditCommentsResponse, error) {
+	return requestTyped[RedditCommentsResponse](s.client, ctx, "reddit-comments", paramsFromStruct(params), opts...)
+}
+
+func (s *RedditService) Post(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "reddit-post", params, opts...)
+}
+
+type RedditPostParams struct {
+	Id string `crawlora:"id"`
+}
+
+type RedditPostResponse = ModelRedditPostResponseDoc
+
+func (s *RedditService) PostTyped(ctx context.Context, params RedditPostParams, opts ...RequestOption) (RedditPostResponse, error) {
+	return requestTyped[RedditPostResponse](s.client, ctx, "reddit-post", paramsFromStruct(params), opts...)
+}
+
+func (s *RedditService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "reddit-search", params, opts...)
+}
+
+type RedditSearchParams struct {
+	Q         string  `crawlora:"q"`
+	Subreddit *string `crawlora:"subreddit,omitempty"`
+	Sort      *string `crawlora:"sort,omitempty"`
+	Time      *string `crawlora:"time,omitempty"`
+	Limit     *int    `crawlora:"limit,omitempty"`
+	After     *string `crawlora:"after,omitempty"`
+}
+
+type RedditSearchResponse = ModelRedditSearchResponseDoc
+
+func (s *RedditService) SearchTyped(ctx context.Context, params RedditSearchParams, opts ...RequestOption) (RedditSearchResponse, error) {
+	return requestTyped[RedditSearchResponse](s.client, ctx, "reddit-search", paramsFromStruct(params), opts...)
+}
+
+func (s *RedditService) SubredditPosts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "reddit-subreddit-posts", params, opts...)
+}
+
+type RedditSubredditPostsParams struct {
+	Subreddit string  `crawlora:"subreddit"`
+	Sort      *string `crawlora:"sort,omitempty"`
+	Time      *string `crawlora:"time,omitempty"`
+	Limit     *int    `crawlora:"limit,omitempty"`
+	After     *string `crawlora:"after,omitempty"`
+}
+
+type RedditSubredditPostsResponse = ModelRedditSubredditPostsResponseDoc
+
+func (s *RedditService) SubredditPostsTyped(ctx context.Context, params RedditSubredditPostsParams, opts ...RequestOption) (RedditSubredditPostsResponse, error) {
+	return requestTyped[RedditSubredditPostsResponse](s.client, ctx, "reddit-subreddit-posts", paramsFromStruct(params), opts...)
+}
+
 type ReferralsService struct{ client *Client }
 
 func (s *ReferralsService) Click(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -13927,6 +14250,23 @@ type YahooFinanceIndustryResponse = ModelYahoofinanceIndustryResponseDoc
 
 func (s *YahooFinanceService) IndustryTyped(ctx context.Context, params YahooFinanceIndustryParams, opts ...RequestOption) (YahooFinanceIndustryResponse, error) {
 	return requestTyped[YahooFinanceIndustryResponse](s.client, ctx, "yahoo-finance-industry", paramsFromStruct(params), opts...)
+}
+
+func (s *YahooFinanceService) Lookup(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yahoo-finance-lookup", params, opts...)
+}
+
+type YahooFinanceLookupParams struct {
+	Query string  `crawlora:"query"`
+	Type  *string `crawlora:"type,omitempty"`
+	Count *int    `crawlora:"count,omitempty"`
+	Start *int    `crawlora:"start,omitempty"`
+}
+
+type YahooFinanceLookupResponse = ModelYahoofinanceLookupResponseDoc
+
+func (s *YahooFinanceService) LookupTyped(ctx context.Context, params YahooFinanceLookupParams, opts ...RequestOption) (YahooFinanceLookupResponse, error) {
+	return requestTyped[YahooFinanceLookupResponse](s.client, ctx, "yahoo-finance-lookup", paramsFromStruct(params), opts...)
 }
 
 func (s *YahooFinanceService) MarketStatus(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
