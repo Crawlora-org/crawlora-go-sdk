@@ -8752,6 +8752,53 @@
       },
       "type": "object"
     },
+    "google.NewsResponse": {
+      "properties": {
+        "pagination": {
+          "$ref": "#/definitions/google.VerticalPagination"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/google.NewsResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "google.NewsResult": {
+      "properties": {
+        "age": {
+          "example": "2 hours ago",
+          "type": "string"
+        },
+        "description": {
+          "example": "OpenAI announced an update.",
+          "type": "string"
+        },
+        "position": {
+          "example": 1,
+          "type": "integer"
+        },
+        "source": {
+          "example": "Example News",
+          "type": "string"
+        },
+        "thumbnail": {
+          "example": "https://example.com/thumb.jpg",
+          "type": "string"
+        },
+        "title": {
+          "example": "OpenAI announces update",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://example.com/openai-news",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "google.PeopleAlsoAskItem": {
       "properties": {
         "answer": {
@@ -8998,6 +9045,74 @@
       },
       "type": "object"
     },
+    "google.VerticalPagination": {
+      "properties": {
+        "next_page": {
+          "example": 2,
+          "type": "integer"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "previous_page": {
+          "example": 1,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "google.VideoResult": {
+      "properties": {
+        "age": {
+          "example": "2 days ago",
+          "type": "string"
+        },
+        "description": {
+          "example": "Watch the OpenAI DevDay keynote.",
+          "type": "string"
+        },
+        "duration": {
+          "example": "45:12",
+          "type": "string"
+        },
+        "platform": {
+          "example": "YouTube",
+          "type": "string"
+        },
+        "position": {
+          "example": 1,
+          "type": "integer"
+        },
+        "thumbnail": {
+          "example": "https://example.com/thumb.jpg",
+          "type": "string"
+        },
+        "title": {
+          "example": "OpenAI DevDay keynote - YouTube",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.youtube.com/watch?v=openai-devday",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "google.VideosResponse": {
+      "properties": {
+        "pagination": {
+          "$ref": "#/definitions/google.VerticalPagination"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/google.VideoResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "google.mapPlaceResponseDoc": {
       "properties": {
         "code": {
@@ -9033,6 +9148,22 @@
       },
       "type": "object"
     },
+    "google.newsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/google.NewsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "google.searchResponseDoc": {
       "properties": {
         "code": {
@@ -9057,6 +9188,22 @@
         },
         "data": {
           "$ref": "#/definitions/google.SuggestResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "google.videosResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/google.VideosResponse"
         },
         "msg": {
           "example": "OK",
@@ -37870,6 +38017,100 @@
         ]
       }
     },
+    "/google/news": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized Google News vertical results (title, source, link, age) parsed from the public Google News results page. Locale defaults to country=us and lang=en. Returns 503 when Google serves a challenge page or unusable HTML.",
+        "operationId": "google-news",
+        "parameters": [
+          {
+            "description": "Search query",
+            "example": "openai",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number; defaults to 1",
+            "example": 1,
+            "in": "query",
+            "minimum": 1,
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page; defaults to 10, clamped to 1..50",
+            "example": 10,
+            "in": "query",
+            "maximum": 50,
+            "minimum": 1,
+            "name": "count",
+            "type": "integer"
+          },
+          {
+            "description": "Two-letter country code; defaults to us",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Google UI language; defaults to en",
+            "example": "en",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/google.newsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid query parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Google upstream request failed",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Google News",
+        "tags": [
+          "Google"
+        ]
+      }
+    },
     "/google/search": {
       "post": {
         "consumes": [
@@ -38997,6 +39238,100 @@
           }
         ],
         "summary": "Google Trends trending term detail",
+        "tags": [
+          "Google"
+        ]
+      }
+    },
+    "/google/videos": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized Google video vertical results (title, platform, link, duration, age) parsed from the public Google video results page. Locale defaults to country=us and lang=en. Returns 503 when Google serves a challenge page or unusable HTML.",
+        "operationId": "google-videos",
+        "parameters": [
+          {
+            "description": "Search query",
+            "example": "openai",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number; defaults to 1",
+            "example": 1,
+            "in": "query",
+            "minimum": 1,
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page; defaults to 10, clamped to 1..50",
+            "example": 10,
+            "in": "query",
+            "maximum": 50,
+            "minimum": 1,
+            "name": "count",
+            "type": "integer"
+          },
+          {
+            "description": "Two-letter country code; defaults to us",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Google UI language; defaults to en",
+            "example": "en",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/google.videosResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid query parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Google upstream request failed",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Google video results",
         "tags": [
           "Google"
         ]

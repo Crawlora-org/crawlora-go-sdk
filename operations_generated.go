@@ -2666,6 +2666,21 @@ type ModelGoogleMapSearchOption struct {
 	Language string `json:"language,omitempty"`
 }
 
+type ModelGoogleNewsResponse struct {
+	Pagination ModelGoogleVerticalPagination `json:"pagination,omitempty"`
+	Results    []ModelGoogleNewsResult       `json:"results,omitempty"`
+}
+
+type ModelGoogleNewsResult struct {
+	Age         string `json:"age,omitempty"`
+	Description string `json:"description,omitempty"`
+	Position    int    `json:"position,omitempty"`
+	Source      string `json:"source,omitempty"`
+	Thumbnail   string `json:"thumbnail,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
 type ModelGooglePeopleAlsoAskItem struct {
 	Answer   string `json:"answer,omitempty"`
 	Date     string `json:"date,omitempty"`
@@ -2728,6 +2743,28 @@ type ModelGoogleSuggestionResult struct {
 	Query    string `json:"query,omitempty"`
 }
 
+type ModelGoogleVerticalPagination struct {
+	NextPage     int `json:"next_page,omitempty"`
+	Page         int `json:"page,omitempty"`
+	PreviousPage int `json:"previous_page,omitempty"`
+}
+
+type ModelGoogleVideoResult struct {
+	Age         string `json:"age,omitempty"`
+	Description string `json:"description,omitempty"`
+	Duration    string `json:"duration,omitempty"`
+	Platform    string `json:"platform,omitempty"`
+	Position    int    `json:"position,omitempty"`
+	Thumbnail   string `json:"thumbnail,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelGoogleVideosResponse struct {
+	Pagination ModelGoogleVerticalPagination `json:"pagination,omitempty"`
+	Results    []ModelGoogleVideoResult      `json:"results,omitempty"`
+}
+
 type ModelGoogleMapPlaceResponseDoc struct {
 	Code int              `json:"code,omitempty"`
 	Data ModelGooglePlace `json:"data,omitempty"`
@@ -2740,6 +2777,12 @@ type ModelGoogleMapSearchResponseDoc struct {
 	Msg  string             `json:"msg,omitempty"`
 }
 
+type ModelGoogleNewsResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelGoogleNewsResponse `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
 type ModelGoogleSearchResponseDoc struct {
 	Code int                   `json:"code,omitempty"`
 	Data ModelGoogleSearchResp `json:"data,omitempty"`
@@ -2750,6 +2793,12 @@ type ModelGoogleSuggestResponseDoc struct {
 	Code int                        `json:"code,omitempty"`
 	Data ModelGoogleSuggestResponse `json:"data,omitempty"`
 	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelGoogleVideosResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelGoogleVideosResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
 }
 
 type ModelGoogleplayApp struct {
@@ -8798,7 +8847,7 @@ type ModelZillowSearchResponse struct {
 	Results  []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 336
+const operationCount = 338
 
 const (
 	OperationAirbnbRoom                            = "airbnb-room"
@@ -8900,6 +8949,7 @@ const (
 	OperationGoogleJobs                            = "google-jobs"
 	OperationGoogleMapPlace                        = "google-map-place"
 	OperationGoogleMapSearch                       = "google-map-search"
+	OperationGoogleNews                            = "google-news"
 	OperationGooglePlayApp                         = "googleplay-app"
 	OperationGooglePlayCategories                  = "googleplay-categories"
 	OperationGooglePlayDatasafety                  = "googleplay-datasafety"
@@ -8923,6 +8973,7 @@ const (
 	OperationGoogleTrendsLocations                 = "google-trends-locations"
 	OperationGoogleTrendsTrending                  = "google-trends-trending"
 	OperationGoogleTrendsTrendingDetail            = "google-trends-trending-detail"
+	OperationGoogleVideos                          = "google-videos"
 	OperationInstagramPost                         = "instagram-post"
 	OperationInstagramProfile                      = "instagram-profile"
 	OperationInstagramReels                        = "instagram-reels"
@@ -9239,6 +9290,7 @@ var operations = map[string]operationDefinition{
 	"google-jobs":                                operationDefinition{Method: "POST", Path: "/google/jobs", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-map-place":                           operationDefinition{Method: "GET", Path: "/google/map/place/{place_id}", PathParams: []string{"place_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-map-search":                          operationDefinition{Method: "POST", Path: "/google/map/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "mapSearchOption", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-news":                                operationDefinition{Method: "GET", Path: "/google/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"google-search":                              operationDefinition{Method: "POST", Path: "/google/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "searchOption", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-suggest":                             operationDefinition{Method: "GET", Path: "/google/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-trends-categories":                   operationDefinition{Method: "GET", Path: "/google/trends/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -9252,6 +9304,7 @@ var operations = map[string]operationDefinition{
 	"google-trends-locations":                    operationDefinition{Method: "GET", Path: "/google/trends/locations", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-trends-trending":                     operationDefinition{Method: "GET", Path: "/google/trends/trending", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "geo", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"AF", "AX", "AL", "DZ", "AS", "AD", "AO", "AI", "AQ", "AG", "AR", "AM", "AW", "AU", "AT", "AZ", "BS", "BH", "BD", "BB", "BY", "BE", "BZ", "BJ", "BM", "BT", "BO", "BA", "BW", "BV", "BR", "IO", "VG", "BN", "BG", "BF", "BI", "KH", "CM", "CA", "CV", "BQ", "KY", "CF", "TD", "CL", "CN", "CX", "CC", "CO", "KM", "CG", "CD", "CK", "CR", "CI", "HR", "CU", "CW", "CY", "CZ", "DK", "DJ", "DM", "DO", "EC", "EG", "SV", "GQ", "ER", "EE", "SZ", "ET", "FK", "FO", "FJ", "FI", "FR", "GF", "PF", "TF", "GA", "GM", "GE", "DE", "GH", "GI", "GR", "GL", "GD", "GP", "GU", "GT", "GG", "GN", "GW", "GY", "HT", "HM", "HN", "HK", "HU", "IS", "IN", "ID", "IR", "IQ", "IE", "IM", "IL", "IT", "JM", "JP", "JE", "JO", "KZ", "KE", "KI", "XK", "KW", "KG", "LA", "LV", "LB", "LS", "LR", "LY", "LI", "LT", "LU", "MO", "MG", "MW", "MY", "MV", "ML", "MT", "MH", "MQ", "MR", "MU", "YT", "MX", "FM", "MD", "MC", "MN", "ME", "MS", "MA", "MZ", "MM", "NA", "NR", "NP", "NL", "NC", "NZ", "NI", "NE", "NG", "NU", "NF", "KP", "MK", "MP", "NO", "OM", "PK", "PW", "PS", "PA", "PG", "PY", "PE", "PH", "PN", "PL", "PT", "PR", "QA", "RE", "RO", "RU", "RW", "WS", "SM", "ST", "SA", "SN", "RS", "SC", "SL", "SG", "SX", "SK", "SI", "SB", "SO", "ZA", "GS", "KR", "SS", "ES", "LK", "BL", "SH", "KN", "LC", "MF", "PM", "VC", "SD", "SR", "SJ", "SE", "CH", "SY", "TW", "TJ", "TZ", "TH", "TL", "TG", "TK", "TO", "TT", "TN", "TR", "TM", "TC", "TV", "UM", "VI", "UG", "UA", "AE", "GB", "US", "UY", "UZ", "VU", "VA", "VE", "VN", "WF", "EH", "YE", "ZM", "ZW"}}, parameterDefinition{Name: "hl", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tz", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "window", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"4h", "24h", "48h", "7d"}}, parameterDefinition{Name: "time_range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"4h", "24h", "48h", "7d"}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"0", "3", "47", "44", "22", "12", "5", "7", "71", "8", "45", "65", "11", "13", "958", "19", "16", "299", "14", "66", "29", "533", "174", "18", "20", "67"}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "active", "ended"}}, parameterDefinition{Name: "sort_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "title", "recency", "search_volume"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-trends-trending-detail":              operationDefinition{Method: "POST", Path: "/google/trends/trending/detail", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-videos":                              operationDefinition{Method: "GET", Path: "/google/videos", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"googleplay-app":                             operationDefinition{Method: "GET", Path: "/googleplay/app", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"googleplay-categories":                      operationDefinition{Method: "GET", Path: "/googleplay/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"googleplay-datasafety":                      operationDefinition{Method: "GET", Path: "/googleplay/datasafety", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -11185,6 +11238,24 @@ func (s *GoogleService) MapSearchTyped(ctx context.Context, params GoogleMapSear
 	return requestTyped[GoogleMapSearchResponse](s.client, ctx, "google-map-search", paramsFromStruct(params), opts...)
 }
 
+func (s *GoogleService) News(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-news", params, opts...)
+}
+
+type GoogleNewsParams struct {
+	Q       string  `crawlora:"q"`
+	Page    *int    `crawlora:"page,omitempty"`
+	Count   *int    `crawlora:"count,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type GoogleNewsResponse = ModelGoogleNewsResponseDoc
+
+func (s *GoogleService) NewsTyped(ctx context.Context, params GoogleNewsParams, opts ...RequestOption) (GoogleNewsResponse, error) {
+	return requestTyped[GoogleNewsResponse](s.client, ctx, "google-news", paramsFromStruct(params), opts...)
+}
+
 func (s *GoogleService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "google-search", params, opts...)
 }
@@ -11373,6 +11444,24 @@ type GoogleTrendsTrendingDetailResponse = ModelTrendsExploreResponseDoc
 
 func (s *GoogleService) TrendsTrendingDetailTyped(ctx context.Context, params GoogleTrendsTrendingDetailParams, opts ...RequestOption) (GoogleTrendsTrendingDetailResponse, error) {
 	return requestTyped[GoogleTrendsTrendingDetailResponse](s.client, ctx, "google-trends-trending-detail", paramsFromStruct(params), opts...)
+}
+
+func (s *GoogleService) Videos(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-videos", params, opts...)
+}
+
+type GoogleVideosParams struct {
+	Q       string  `crawlora:"q"`
+	Page    *int    `crawlora:"page,omitempty"`
+	Count   *int    `crawlora:"count,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type GoogleVideosResponse = ModelGoogleVideosResponseDoc
+
+func (s *GoogleService) VideosTyped(ctx context.Context, params GoogleVideosParams, opts ...RequestOption) (GoogleVideosResponse, error) {
+	return requestTyped[GoogleVideosResponse](s.client, ctx, "google-videos", paramsFromStruct(params), opts...)
 }
 
 type GooglePlayService struct{ client *Client }

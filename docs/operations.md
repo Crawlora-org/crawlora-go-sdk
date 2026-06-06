@@ -2,7 +2,7 @@
 
 Generated from `openapi/public.json`. Deprecated, admin, and internal operations are excluded from this SDK contract.
 
-Total operations: `336`
+Total operations: `338`
 
 | Group | SDK method | Operation ID | HTTP | Params | Auth | Response | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -105,6 +105,7 @@ Total operations: `336`
 | Google | `Google.Jobs` | `google-jobs` | `POST /google/jobs` | `option` (body ModelGoogleJobsOption required) | `ApiKeyAuth` | `GoogleJobsResponse` |  |
 | Google | `Google.MapPlace` | `google-map-place` | `GET /google/map/place/{place_id}` | `place_id` (path string required) | `ApiKeyAuth` | `GoogleMapPlaceResponse` |  |
 | Google | `Google.MapSearch` | `google-map-search` | `POST /google/map/search` | `mapSearchOption` (body ModelGoogleMapSearchOption required) | `ApiKeyAuth` | `GoogleMapSearchResponse` |  |
+| Google | `Google.News` | `google-news` | `GET /google/news` | `q` (query string required)<br>`page` (query int)<br>`count` (query int)<br>`country` (query string)<br>`lang` (query string) | `ApiKeyAuth` | `GoogleNewsResponse` |  |
 | Google | `Google.Search` | `google-search` | `POST /google/search` | `searchOption` (body ModelGoogleSearchOption required) | `ApiKeyAuth` | `GoogleSearchResponse` |  |
 | Google | `Google.Suggest` | `google-suggest` | `GET /google/suggest` | `q` (query string required)<br>`count` (query int)<br>`country` (query string)<br>`lang` (query string) | `ApiKeyAuth` | `GoogleSuggestResponse` |  |
 | Google | `Google.TrendsCategories` | `google-trends-categories` | `GET /google/trends/categories` | none | `ApiKeyAuth` | `GoogleTrendsCategoriesResponse` |  |
@@ -118,6 +119,7 @@ Total operations: `336`
 | Google | `Google.TrendsLocations` | `google-trends-locations` | `GET /google/trends/locations` | none | `ApiKeyAuth` | `GoogleTrendsLocationsResponse` |  |
 | Google | `Google.TrendsTrending` | `google-trends-trending` | `GET /google/trends/trending` | `geo` (query string)<br>`hl` (query string)<br>`tz` (query int)<br>`window` (query string)<br>`time_range` (query string)<br>`category` (query int)<br>`status` (query string)<br>`sort_by` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `GoogleTrendsTrendingResponse` |  |
 | Google | `Google.TrendsTrendingDetail` | `google-trends-trending-detail` | `POST /google/trends/trending/detail` | `request` (body ModelTrendsTrendingDetailRequest required) | `ApiKeyAuth` | `GoogleTrendsTrendingDetailResponse` |  |
+| Google | `Google.Videos` | `google-videos` | `GET /google/videos` | `q` (query string required)<br>`page` (query int)<br>`count` (query int)<br>`country` (query string)<br>`lang` (query string) | `ApiKeyAuth` | `GoogleVideosResponse` |  |
 | GooglePlay | `GooglePlay.App` | `googleplay-app` | `GET /googleplay/app` | `app_id` (query string required)<br>`country` (query string)<br>`lang` (query string) | `ApiKeyAuth` | `GooglePlayAppResponse` |  |
 | GooglePlay | `GooglePlay.Categories` | `googleplay-categories` | `GET /googleplay/categories` | `country` (query string)<br>`lang` (query string) | `ApiKeyAuth` | `GooglePlayCategoriesResponse` |  |
 | GooglePlay | `GooglePlay.Datasafety` | `googleplay-datasafety` | `GET /googleplay/datasafety` | `app_id` (query string required)<br>`lang` (query string) | `ApiKeyAuth` | `GooglePlayDatasafetyResponse` |  |
