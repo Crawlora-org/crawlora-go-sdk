@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.7.0-sdk.1
+
+- Added six new platforms, regenerated from the public API contract (now 491
+  operations): **Polymarket**, **Kalshi**, and **Metaculus** (prediction
+  markets); **IMDb**, **Rotten Tomatoes**, and **Box Office Mojo** (film/TV).
+- Expanded **Reddit**: subreddit about/comments, multi-subreddit posts,
+  domain posts, user posts/comments, and trends.
+
 ## v1.6.0-sdk.1
 
 - Added the **Reddit** platform (`Reddit.Search`, `Reddit.Post`,
