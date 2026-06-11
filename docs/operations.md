@@ -2,7 +2,7 @@
 
 Generated from `openapi/public.json`. Deprecated, admin, and internal operations are excluded from this SDK contract.
 
-Total operations: `491`
+Total operations: `499`
 
 | Group | SDK method | Operation ID | HTTP | Params | Auth | Response | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -89,6 +89,9 @@ Total operations: `491`
 | CoinGecko | `CoinGecko.TokenUnlocks` | `coingecko-token-unlocks` | `GET /coingecko/token-unlocks` | `limit` (query int) | `ApiKeyAuth` | `CoinGeckoTokenUnlocksResponse` |  |
 | CoinGecko | `CoinGecko.Treasuries` | `coingecko-treasuries` | `GET /coingecko/treasuries` | `asset` (query string)<br>`holder_type` (query string)<br>`limit` (query int)<br>`vs_currency` (query string) | `ApiKeyAuth` | `CoinGeckoTreasuriesResponse` |  |
 | CoinGecko | `CoinGecko.Trending` | `coingecko-trending` | `GET /coingecko/trending` | `limit` (query int)<br>`vs_currency` (query string) | `ApiKeyAuth` | `CoinGeckoTrendingResponse` |  |
+| Web | `Web.Contact` | `contact` | `POST /contact` | `option` (body ModelContactContactRequest required) | `ApiKeyAuth` | `WebContactResponse` |  |
+| Web | `Web.AntibotCheck` | `antibot-check` | `POST /diagnostics/antibot-check` | `request` (body ModelDiagnosticsAntibotCheckRequest required) | `ApiKeyAuth` | `WebAntibotCheckResponse` |  |
+| Web | `Web.Scrape` | `web-scrape` | `POST /web/scrape` | `scrapeOption` (body ModelWebScrapeOption required) | `ApiKeyAuth` | `WebScrapeResponse` |  |
 | Datasets | `Datasets.List` | `datasets-list` | `GET /datasets` | none | `ApiKeyAuth` | `DatasetsListResponse` |  |
 | Datasets | `Datasets.GoogleMapBusinessesFacets` | `datasets-google-map-businesses-facets` | `GET /datasets/google-map-businesses/facets` | `facet` (query string required)<br>`q` (query string)<br>`category` (query string)<br>`country` (query string)<br>`state` (query string)<br>`county` (query string)<br>`city` (query string)<br>`town` (query string)<br>`min_rating` (query float64)<br>`min_review_count` (query int)<br>`has_website` (query bool)<br>`has_phone` (query bool)<br>`lat` (query float64)<br>`lon` (query float64)<br>`radius_m` (query int)<br>`sort` (query string) | `ApiKeyAuth` | `DatasetsGoogleMapBusinessesFacetsResponse` |  |
 | Datasets | `Datasets.GoogleMapBusinessesItem` | `datasets-google-map-businesses-item` | `GET /datasets/google-map-businesses/items/{place_id}` | `place_id` (path string required) | `ApiKeyAuth` | `DatasetsGoogleMapBusinessesItemResponse` |  |
@@ -318,6 +321,11 @@ Total operations: `491`
 | Reddit | `Reddit.Trends` | `reddit-trends` | `GET /reddit/trends` | `sort` (query string)<br>`time` (query string)<br>`limit` (query int)<br>`after` (query string) | `ApiKeyAuth` | `RedditTrendsResponse` |  |
 | Reddit | `Reddit.UserComments` | `reddit-user-comments` | `GET /reddit/user/{username}/comments` | `username` (path string required)<br>`limit` (query int)<br>`after` (query string) | `ApiKeyAuth` | `RedditUserCommentsResponse` |  |
 | Reddit | `Reddit.UserPosts` | `reddit-user-posts` | `GET /reddit/user/{username}/posts` | `username` (path string required)<br>`limit` (query int)<br>`after` (query string) | `ApiKeyAuth` | `RedditUserPostsResponse` |  |
+| Redfin | `Redfin.Estimate` | `redfin-estimate` | `GET /redfin/estimate` | `property_id` (query string required) | `ApiKeyAuth` | `RedfinEstimateResponse` |  |
+| Redfin | `Redfin.Property` | `redfin-property` | `GET /redfin/property` | `url` (query string)<br>`property_id` (query string)<br>`listing_id` (query string) | `ApiKeyAuth` | `RedfinPropertyResponse` |  |
+| Redfin | `Redfin.RegionTrends` | `redfin-region-trends` | `GET /redfin/region-trends` | `region_id` (query int required)<br>`region_type` (query int) | `ApiKeyAuth` | `RedfinRegionTrendsResponse` |  |
+| Redfin | `Redfin.Search` | `redfin-search` | `GET /redfin/search` | `location` (query string)<br>`page` (query int)<br>`region_id` (query int)<br>`region_type` (query int)<br>`status` (query string)<br>`min_price` (query int)<br>`max_price` (query int)<br>`min_beds` (query int)<br>`min_baths` (query float64) | `ApiKeyAuth` | `RedfinSearchResponse` |  |
+| Redfin | `Redfin.Similar` | `redfin-similar` | `GET /redfin/similar` | `property_id` (query string required) | `ApiKeyAuth` | `RedfinSimilarResponse` |  |
 | Referrals | `Referrals.Click` | `referrals-click` | `POST /referrals/click` | `request` (body ModelReferralsReferralClickRequestDoc required) | none | `ReferralsClickResponse` |  |
 | Referrals | `Referrals.Me` | `referrals-me` | `GET /referrals/me` | none | `JWTAuth` | `ReferralsMeResponse` |  |
 | Referrals | `Referrals.MeEvents` | `referrals-me-events` | `GET /referrals/me/events` | `limit` (query int) | `JWTAuth` | `ReferralsMeEventsResponse` |  |

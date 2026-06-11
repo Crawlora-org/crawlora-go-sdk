@@ -173,6 +173,43 @@ type ModelAmazonSuggestResponseDoc struct {
 	Msg string `json:"msg,omitempty"`
 }
 
+type ModelAntibotBand = string
+
+type ModelAntibotProtection struct {
+	Confidence string `json:"confidence,omitempty"`
+	Evidence []string `json:"evidence,omitempty"`
+	Kind string `json:"kind,omitempty"`
+	Vendor string `json:"vendor,omitempty"`
+}
+
+type ModelAntibotSignals struct {
+	AttemptsPassed int `json:"attempts_passed,omitempty"`
+	AttemptsRun int `json:"attempts_run,omitempty"`
+	AttemptsSkipped int `json:"attempts_skipped,omitempty"`
+	BlockMarkers []string `json:"block_markers,omitempty"`
+	BlockedStatus bool `json:"blocked_status,omitempty"`
+	CaptchaDetected bool `json:"captcha_detected,omitempty"`
+	ChallengeDetected bool `json:"challenge_detected,omitempty"`
+	JsRenderLikely bool `json:"js_render_likely,omitempty"`
+	RateLimited bool `json:"rate_limited,omitempty"`
+}
+
+type ModelAntibotVerdict struct {
+	Coverage string `json:"coverage,omitempty"`
+	DifficultyBand ModelAntibotBand `json:"difficulty_band,omitempty"`
+	DifficultyScore int `json:"difficulty_score,omitempty"`
+	EasiestWorkingTransport string `json:"easiest_working_transport,omitempty"`
+	GatedLayers []string `json:"gated_layers,omitempty"`
+	Notes []string `json:"notes,omitempty"`
+	Protections []ModelAntibotProtection `json:"protections,omitempty"`
+	RecommendedApproach string `json:"recommended_approach,omitempty"`
+	RecommendedProfile string `json:"recommended_profile,omitempty"`
+	Scrapeable bool `json:"scrapeable,omitempty"`
+	Signals ModelAntibotSignals `json:"signals,omitempty"`
+	Summary string `json:"summary,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
 type ModelApiComponentStatus struct {
 	Error string `json:"error,omitempty"`
 	Ready bool `json:"ready,omitempty"`
@@ -2480,6 +2517,48 @@ type ModelContactContact struct {
 	Url string `json:"url,omitempty"`
 }
 
+type ModelContactContactRequest struct {
+	IndependentsOnly bool `json:"independents_only,omitempty"`
+	MaxPages int `json:"max_pages,omitempty"`
+	Url string `json:"url"`
+	Verify bool `json:"verify,omitempty"`
+}
+
+type ModelContactContactResult struct {
+	CrawlStatus string `json:"crawl_status,omitempty"`
+	CrawledPages []string `json:"crawled_pages,omitempty"`
+	Domain string `json:"domain,omitempty"`
+	DomainType string `json:"domain_type,omitempty"`
+	Emails []ModelContactEmailContact `json:"emails,omitempty"`
+	Phones []ModelContactPhoneContact `json:"phones,omitempty"`
+	Socials []ModelContactSocialProfile `json:"socials,omitempty"`
+	Website string `json:"website,omitempty"`
+}
+
+type ModelContactEmailContact struct {
+	Address string `json:"address,omitempty"`
+	SourcePage string `json:"source_page,omitempty"`
+	Status string `json:"status,omitempty"`
+	Type string `json:"type,omitempty"`
+}
+
+type ModelContactPhoneContact struct {
+	Number string `json:"number,omitempty"`
+	SourcePage string `json:"source_page,omitempty"`
+}
+
+type ModelContactSocialProfile struct {
+	Handle string `json:"handle,omitempty"`
+	Network string `json:"network,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
+type ModelContactContactResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelContactContactResult `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
 type ModelDatasetsDatasetInfo struct {
 	Capabilities []string `json:"capabilities,omitempty"`
 	Description string `json:"description,omitempty"`
@@ -2527,6 +2606,17 @@ type ModelDatasetsGoogleMapBusinessesSearchResponseDoc struct {
 type ModelDatasetsListResponseDoc struct {
 	Code int `json:"code,omitempty"`
 	Data ModelDatasetsDatasetListResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelDiagnosticsAntibotCheckRequest struct {
+	Fast bool `json:"fast,omitempty"`
+	Url string `json:"url"`
+}
+
+type ModelDiagnosticsAntibotCheckResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelAntibotVerdict `json:"data,omitempty"`
 	Msg string `json:"msg,omitempty"`
 }
 
@@ -7476,6 +7566,107 @@ type ModelRedditUserPostsResponseDoc struct {
 	Msg string `json:"msg,omitempty"`
 }
 
+type ModelRedfinEstimateResponse struct {
+	Address string `json:"address,omitempty"`
+	Baths float64 `json:"baths,omitempty"`
+	Beds float64 `json:"beds,omitempty"`
+	CityTimeSeries []float64 `json:"city_time_series,omitempty"`
+	CountyTimeSeries []float64 `json:"county_time_series,omitempty"`
+	Estimate float64 `json:"estimate,omitempty"`
+	EstimateText string `json:"estimate_text,omitempty"`
+	Latitude float64 `json:"latitude,omitempty"`
+	ListingPrice float64 `json:"listing_price,omitempty"`
+	Longitude float64 `json:"longitude,omitempty"`
+	PostalCodeTimeSeries []float64 `json:"postal_code_time_series,omitempty"`
+	PropertyId string `json:"property_id,omitempty"`
+	PropertyTimeSeries []float64 `json:"property_time_series,omitempty"`
+	Sqft float64 `json:"sqft,omitempty"`
+	UpdatedAt int `json:"updated_at,omitempty"`
+	YearBuilt int `json:"year_built,omitempty"`
+}
+
+type ModelRedfinPropertyItem struct {
+	Address string `json:"address,omitempty"`
+	Baths float64 `json:"baths,omitempty"`
+	Beds float64 `json:"beds,omitempty"`
+	City string `json:"city,omitempty"`
+	DaysOnMarket int `json:"days_on_market,omitempty"`
+	HoaMonthly float64 `json:"hoa_monthly,omitempty"`
+	Image string `json:"image,omitempty"`
+	Latitude float64 `json:"latitude,omitempty"`
+	ListingId string `json:"listing_id,omitempty"`
+	Longitude float64 `json:"longitude,omitempty"`
+	LotSize float64 `json:"lot_size,omitempty"`
+	MlsNumber string `json:"mls_number,omitempty"`
+	Price float64 `json:"price,omitempty"`
+	PricePerSqft float64 `json:"price_per_sqft,omitempty"`
+	PropertyId string `json:"property_id,omitempty"`
+	PropertyType string `json:"property_type,omitempty"`
+	Sqft float64 `json:"sqft,omitempty"`
+	State string `json:"state,omitempty"`
+	Status string `json:"status,omitempty"`
+	Url string `json:"url,omitempty"`
+	YearBuilt int `json:"year_built,omitempty"`
+	Zip string `json:"zip,omitempty"`
+}
+
+type ModelRedfinPropertyResponse struct {
+	Address string `json:"address,omitempty"`
+	Baths float64 `json:"baths,omitempty"`
+	Beds float64 `json:"beds,omitempty"`
+	City string `json:"city,omitempty"`
+	DaysOnMarket int `json:"days_on_market,omitempty"`
+	Description string `json:"description,omitempty"`
+	Facts []string `json:"facts,omitempty"`
+	HoaMonthly float64 `json:"hoa_monthly,omitempty"`
+	Image string `json:"image,omitempty"`
+	Latitude float64 `json:"latitude,omitempty"`
+	ListingId string `json:"listing_id,omitempty"`
+	Longitude float64 `json:"longitude,omitempty"`
+	LotSize float64 `json:"lot_size,omitempty"`
+	MlsNumber string `json:"mls_number,omitempty"`
+	Price float64 `json:"price,omitempty"`
+	PricePerSqft float64 `json:"price_per_sqft,omitempty"`
+	PropertyId string `json:"property_id,omitempty"`
+	PropertyType string `json:"property_type,omitempty"`
+	Sqft float64 `json:"sqft,omitempty"`
+	State string `json:"state,omitempty"`
+	Status string `json:"status,omitempty"`
+	Url string `json:"url,omitempty"`
+	YearBuilt int `json:"year_built,omitempty"`
+	Zip string `json:"zip,omitempty"`
+}
+
+type ModelRedfinRegionTrendsResponse struct {
+	AvgDaysOnMarket string `json:"avg_days_on_market,omitempty"`
+	AvgDownPayment string `json:"avg_down_payment,omitempty"`
+	AvgNumOffers string `json:"avg_num_offers,omitempty"`
+	MedianListPerSqft string `json:"median_list_per_sqft,omitempty"`
+	MedianListPrice string `json:"median_list_price,omitempty"`
+	MedianSalePerList string `json:"median_sale_per_list,omitempty"`
+	MedianSalePerSqft string `json:"median_sale_per_sqft,omitempty"`
+	MedianSalePrice string `json:"median_sale_price,omitempty"`
+	NumHomesOnMarket string `json:"num_homes_on_market,omitempty"`
+	NumHomesSold string `json:"num_homes_sold,omitempty"`
+	RegionId int `json:"region_id,omitempty"`
+	RegionType int `json:"region_type,omitempty"`
+	YoySalePerSqft string `json:"yoy_sale_per_sqft,omitempty"`
+	YoySalePrice string `json:"yoy_sale_price,omitempty"`
+}
+
+type ModelRedfinSearchResponse struct {
+	Location string `json:"location,omitempty"`
+	Page int `json:"page,omitempty"`
+	RegionId int `json:"region_id,omitempty"`
+	RegionType int `json:"region_type,omitempty"`
+	Results []ModelRedfinPropertyItem `json:"results,omitempty"`
+}
+
+type ModelRedfinSimilarResponse struct {
+	PropertyId string `json:"property_id,omitempty"`
+	Results []ModelRedfinPropertyItem `json:"results,omitempty"`
+}
+
 type ModelReferralsReferralAttributionDoc struct {
 	Campaign string `json:"campaign,omitempty"`
 	Code string `json:"code,omitempty"`
@@ -8816,6 +9007,7 @@ type ModelSpotifyCountryHubContentMeta struct {
 	FetchedAt string `json:"fetchedAt,omitempty"`
 	ItemCount int `json:"itemCount,omitempty"`
 	OperationName string `json:"operationName,omitempty"`
+	PartialErrors int `json:"partialErrors,omitempty"`
 }
 
 type ModelSpotifyCountryHubContentResponse struct {
@@ -8850,6 +9042,7 @@ type ModelSpotifyCountryHubMeta struct {
 	FetchedAt string `json:"fetchedAt,omitempty"`
 	ItemCount int `json:"itemCount,omitempty"`
 	OperationName string `json:"operationName,omitempty"`
+	PartialErrors int `json:"partialErrors,omitempty"`
 	SectionCount int `json:"sectionCount,omitempty"`
 }
 
@@ -10697,6 +10890,65 @@ type ModelUserUserRotateApikeyResponseDoc struct {
 	Msg string `json:"msg,omitempty"`
 }
 
+type ModelWebScrapeInfo struct {
+	Backend string `json:"backend,omitempty"`
+	CacheState string `json:"cache_state,omitempty"`
+	CachedAt string `json:"cached_at,omitempty"`
+	Escalated bool `json:"escalated,omitempty"`
+	Method string `json:"method,omitempty"`
+}
+
+type ModelWebScrapeLink struct {
+	Href string `json:"href,omitempty"`
+	Rel string `json:"rel,omitempty"`
+	Text string `json:"text,omitempty"`
+}
+
+type ModelWebScrapeMetadata struct {
+	Author string `json:"author,omitempty"`
+	CanonicalUrl string `json:"canonical_url,omitempty"`
+	ContentType string `json:"content_type,omitempty"`
+	Description string `json:"description,omitempty"`
+	FinalUrl string `json:"final_url,omitempty"`
+	Image string `json:"image,omitempty"`
+	Language string `json:"language,omitempty"`
+	ModifiedAt string `json:"modified_at,omitempty"`
+	PublishedAt string `json:"published_at,omitempty"`
+	Section string `json:"section,omitempty"`
+	SiteName string `json:"site_name,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	StatusCode int `json:"status_code,omitempty"`
+	Title string `json:"title,omitempty"`
+}
+
+type ModelWebScrapeOption struct {
+	Backend string `json:"backend,omitempty"`
+	Formats []string `json:"formats,omitempty"`
+	MaxAge int `json:"max_age,omitempty"`
+	OnlyMainContent bool `json:"only_main_content,omitempty"`
+	Proxy string `json:"proxy,omitempty"`
+	Render string `json:"render,omitempty"`
+	StoreInCache bool `json:"store_in_cache,omitempty"`
+	Url string `json:"url"`
+	WaitFor int `json:"wait_for,omitempty"`
+}
+
+type ModelWebScrapeResult struct {
+	Html string `json:"html,omitempty"`
+	LinkDetails []ModelWebScrapeLink `json:"link_details,omitempty"`
+	Links []string `json:"links,omitempty"`
+	Markdown string `json:"markdown,omitempty"`
+	Metadata ModelWebScrapeMetadata `json:"metadata,omitempty"`
+	RawHtml string `json:"raw_html,omitempty"`
+	Scrape ModelWebScrapeInfo `json:"scrape,omitempty"`
+}
+
+type ModelWebScrapeResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelWebScrapeResult `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
 type ModelYahoofinanceActionEvents struct {
 	CapitalGains []map[string]any `json:"capital_gains,omitempty"`
 	Dividends []map[string]any `json:"dividends,omitempty"`
@@ -11614,7 +11866,7 @@ type ModelZillowSearchResponse struct {
 	Results []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 491
+const operationCount = 499
 
 const (
 	OperationAirbnbRoom = "airbnb-room"
@@ -11929,6 +12181,11 @@ const (
 	OperationRedditTrends = "reddit-trends"
 	OperationRedditUserComments = "reddit-user-comments"
 	OperationRedditUserPosts = "reddit-user-posts"
+	OperationRedfinEstimate = "redfin-estimate"
+	OperationRedfinProperty = "redfin-property"
+	OperationRedfinRegionTrends = "redfin-region-trends"
+	OperationRedfinSearch = "redfin-search"
+	OperationRedfinSimilar = "redfin-similar"
 	OperationReferralsClick = "referrals-click"
 	OperationReferralsMe = "referrals-me"
 	OperationReferralsMeEvents = "referrals-me-events"
@@ -12053,6 +12310,9 @@ const (
 	OperationUserMeApiKeys = "user-me-api-keys"
 	OperationUserMeApiKeysReveal = "user-me-api-keys-reveal"
 	OperationUserMeApiKeysRotate = "user-me-api-keys-rotate"
+	OperationWebAntibotCheck = "antibot-check"
+	OperationWebContact = "contact"
+	OperationWebScrape = "web-scrape"
 	OperationYahooFinanceCalendar = "yahoo-finance-calendar"
 	OperationYahooFinanceCalendars = "yahoo-finance-calendars"
 	OperationYahooFinanceDownload = "yahoo-finance-download"
@@ -12194,11 +12454,13 @@ var operations = map[string]operationDefinition{
 	"coingecko-token-unlocks": operationDefinition{Method: "GET", Path: "/coingecko/token-unlocks", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"coingecko-treasuries": operationDefinition{Method: "GET", Path: "/coingecko/treasuries", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "asset", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "bitcoin", "ethereum", "solana", "bnb", "xrp", "tron"}}, parameterDefinition{Name: "holder_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "companies", "governments"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"coingecko-trending": operationDefinition{Method: "GET", Path: "/coingecko/trending", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"contact": operationDefinition{Method: "POST", Path: "/contact", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"datasets-list": operationDefinition{Method: "GET", Path: "/datasets", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"datasets-google-map-businesses-facets": operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "county", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "town", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_website", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_phone", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"datasets-google-map-businesses-item": operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/items/{place_id}", PathParams: []string{"place_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"datasets-google-map-businesses-nearby": operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/nearby", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"datasets-google-map-businesses-search": operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "county", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "town", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_website", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_phone", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
+	"antibot-check": operationDefinition{Method: "POST", Path: "/diagnostics/antibot-check", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"ebay-item": operationDefinition{Method: "GET", Path: "/ebay/item/{item_id}", PathParams: []string{"item_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"ebay-search": operationDefinition{Method: "POST", Path: "/ebay/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"ebay-seller": operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}", PathParams: []string{"seller"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
@@ -12423,6 +12685,11 @@ var operations = map[string]operationDefinition{
 	"reddit-trends": operationDefinition{Method: "GET", Path: "/reddit/trends", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "rising", "top"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"reddit-user-comments": operationDefinition{Method: "GET", Path: "/reddit/user/{username}/comments", PathParams: []string{"username"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"reddit-user-posts": operationDefinition{Method: "GET", Path: "/reddit/user/{username}/posts", PathParams: []string{"username"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"redfin-estimate": operationDefinition{Method: "GET", Path: "/redfin/estimate", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "property_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"redfin-property": operationDefinition{Method: "GET", Path: "/redfin/property", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "property_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "listing_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"redfin-region-trends": operationDefinition{Method: "GET", Path: "/redfin/region-trends", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "region_type", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"redfin-search": operationDefinition{Method: "GET", Path: "/redfin/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "region_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "region_type", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_price", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_beds", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_baths", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
+	"redfin-similar": operationDefinition{Method: "GET", Path: "/redfin/similar", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "property_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"referrals-click": operationDefinition{Method: "POST", Path: "/referrals/click", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{}, },
 	"referrals-me": operationDefinition{Method: "GET", Path: "/referrals/me", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}, },
 	"referrals-me-events": operationDefinition{Method: "GET", Path: "/referrals/me/events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}, },
@@ -12547,6 +12814,7 @@ var operations = map[string]operationDefinition{
 	"user-me-api-keys": operationDefinition{Method: "GET", Path: "/user/me/api-keys", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}, },
 	"user-me-api-keys-rotate": operationDefinition{Method: "POST", Path: "/user/me/api-keys/rotate", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}, },
 	"user-me-api-keys-reveal": operationDefinition{Method: "POST", Path: "/user/me/api-keys/{id}/reveal", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}, },
+	"web-scrape": operationDefinition{Method: "POST", Path: "/web/scrape", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "scrapeOption", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"yahoo-finance-calendars": operationDefinition{Method: "GET", Path: "/yahoo-finance/calendars", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"yahoo-finance-calendar": operationDefinition{Method: "GET", Path: "/yahoo-finance/calendars/{type}", PathParams: []string{"type"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "start", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "end", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "market_cap", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "filter_most_active", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"start"}, },
 	"yahoo-finance-download": operationDefinition{Method: "POST", Path: "/yahoo-finance/download", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
@@ -12615,6 +12883,7 @@ type Services struct {
 	Brand *BrandService
 	Brave *BraveService
 	CoinGecko *CoinGeckoService
+	Web *WebService
 	Datasets *DatasetsService
 	EBay *EBayService
 	Geocoding *GeocodingService
@@ -12630,6 +12899,7 @@ type Services struct {
 	Polymarket *PolymarketService
 	ProductHunt *ProductHuntService
 	Reddit *RedditService
+	Redfin *RedfinService
 	Referrals *ReferralsService
 	RottenTomatoes *RottenTomatoesService
 	ShopApp *ShopAppService
@@ -12659,6 +12929,7 @@ func initServices(c *Client) Services {
 		Brand: &BrandService{client: c},
 		Brave: &BraveService{client: c},
 		CoinGecko: &CoinGeckoService{client: c},
+		Web: &WebService{client: c},
 		Datasets: &DatasetsService{client: c},
 		EBay: &EBayService{client: c},
 		Geocoding: &GeocodingService{client: c},
@@ -12674,6 +12945,7 @@ func initServices(c *Client) Services {
 		Polymarket: &PolymarketService{client: c},
 		ProductHunt: &ProductHuntService{client: c},
 		Reddit: &RedditService{client: c},
+		Redfin: &RedfinService{client: c},
 		Referrals: &ReferralsService{client: c},
 		RottenTomatoes: &RottenTomatoesService{client: c},
 		ShopApp: &ShopAppService{client: c},
@@ -14040,6 +14312,50 @@ type CoinGeckoTrendingResponse = ModelCoingeckoTrendingResponseDoc
 
 func (s *CoinGeckoService) TrendingTyped(ctx context.Context, params CoinGeckoTrendingParams, opts ...RequestOption) (CoinGeckoTrendingResponse, error) {
 	return requestTyped[CoinGeckoTrendingResponse](s.client, ctx, "coingecko-trending", paramsFromStruct(params), opts...)
+}
+
+type WebService struct { client *Client }
+
+func (s *WebService) Contact(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "contact", params, opts...)
+}
+
+type WebContactParams struct {
+	Option ModelContactContactRequest `crawlora:"option"`
+}
+
+type WebContactResponse = ModelContactContactResponseDoc
+
+func (s *WebService) ContactTyped(ctx context.Context, params WebContactParams, opts ...RequestOption) (WebContactResponse, error) {
+	return requestTyped[WebContactResponse](s.client, ctx, "contact", paramsFromStruct(params), opts...)
+}
+
+func (s *WebService) AntibotCheck(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "antibot-check", params, opts...)
+}
+
+type WebAntibotCheckParams struct {
+	Request ModelDiagnosticsAntibotCheckRequest `crawlora:"request"`
+}
+
+type WebAntibotCheckResponse = ModelDiagnosticsAntibotCheckResponseDoc
+
+func (s *WebService) AntibotCheckTyped(ctx context.Context, params WebAntibotCheckParams, opts ...RequestOption) (WebAntibotCheckResponse, error) {
+	return requestTyped[WebAntibotCheckResponse](s.client, ctx, "antibot-check", paramsFromStruct(params), opts...)
+}
+
+func (s *WebService) Scrape(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "web-scrape", params, opts...)
+}
+
+type WebScrapeParams struct {
+	ScrapeOption ModelWebScrapeOption `crawlora:"scrapeOption"`
+}
+
+type WebScrapeResponse = ModelWebScrapeResponseDoc
+
+func (s *WebService) ScrapeTyped(ctx context.Context, params WebScrapeParams, opts ...RequestOption) (WebScrapeResponse, error) {
+	return requestTyped[WebScrapeResponse](s.client, ctx, "web-scrape", paramsFromStruct(params), opts...)
 }
 
 type DatasetsService struct { client *Client }
@@ -17687,6 +18003,89 @@ type RedditUserPostsResponse = ModelRedditUserPostsResponseDoc
 
 func (s *RedditService) UserPostsTyped(ctx context.Context, params RedditUserPostsParams, opts ...RequestOption) (RedditUserPostsResponse, error) {
 	return requestTyped[RedditUserPostsResponse](s.client, ctx, "reddit-user-posts", paramsFromStruct(params), opts...)
+}
+
+type RedfinService struct { client *Client }
+
+func (s *RedfinService) Estimate(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "redfin-estimate", params, opts...)
+}
+
+type RedfinEstimateParams struct {
+	PropertyId string `crawlora:"property_id"`
+}
+
+type RedfinEstimateResponse = ModelRedfinEstimateResponse
+
+func (s *RedfinService) EstimateTyped(ctx context.Context, params RedfinEstimateParams, opts ...RequestOption) (RedfinEstimateResponse, error) {
+	return requestTyped[RedfinEstimateResponse](s.client, ctx, "redfin-estimate", paramsFromStruct(params), opts...)
+}
+
+func (s *RedfinService) Property(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "redfin-property", params, opts...)
+}
+
+type RedfinPropertyParams struct {
+	Url *string `crawlora:"url,omitempty"`
+	PropertyId *string `crawlora:"property_id,omitempty"`
+	ListingId *string `crawlora:"listing_id,omitempty"`
+}
+
+type RedfinPropertyResponse = ModelRedfinPropertyResponse
+
+func (s *RedfinService) PropertyTyped(ctx context.Context, params RedfinPropertyParams, opts ...RequestOption) (RedfinPropertyResponse, error) {
+	return requestTyped[RedfinPropertyResponse](s.client, ctx, "redfin-property", paramsFromStruct(params), opts...)
+}
+
+func (s *RedfinService) RegionTrends(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "redfin-region-trends", params, opts...)
+}
+
+type RedfinRegionTrendsParams struct {
+	RegionId int `crawlora:"region_id"`
+	RegionType *int `crawlora:"region_type,omitempty"`
+}
+
+type RedfinRegionTrendsResponse = ModelRedfinRegionTrendsResponse
+
+func (s *RedfinService) RegionTrendsTyped(ctx context.Context, params RedfinRegionTrendsParams, opts ...RequestOption) (RedfinRegionTrendsResponse, error) {
+	return requestTyped[RedfinRegionTrendsResponse](s.client, ctx, "redfin-region-trends", paramsFromStruct(params), opts...)
+}
+
+func (s *RedfinService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "redfin-search", params, opts...)
+}
+
+type RedfinSearchParams struct {
+	Location *string `crawlora:"location,omitempty"`
+	Page *int `crawlora:"page,omitempty"`
+	RegionId *int `crawlora:"region_id,omitempty"`
+	RegionType *int `crawlora:"region_type,omitempty"`
+	Status *string `crawlora:"status,omitempty"`
+	MinPrice *int `crawlora:"min_price,omitempty"`
+	MaxPrice *int `crawlora:"max_price,omitempty"`
+	MinBeds *int `crawlora:"min_beds,omitempty"`
+	MinBaths *float64 `crawlora:"min_baths,omitempty"`
+}
+
+type RedfinSearchResponse = ModelRedfinSearchResponse
+
+func (s *RedfinService) SearchTyped(ctx context.Context, params RedfinSearchParams, opts ...RequestOption) (RedfinSearchResponse, error) {
+	return requestTyped[RedfinSearchResponse](s.client, ctx, "redfin-search", paramsFromStruct(params), opts...)
+}
+
+func (s *RedfinService) Similar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "redfin-similar", params, opts...)
+}
+
+type RedfinSimilarParams struct {
+	PropertyId string `crawlora:"property_id"`
+}
+
+type RedfinSimilarResponse = ModelRedfinSimilarResponse
+
+func (s *RedfinService) SimilarTyped(ctx context.Context, params RedfinSimilarParams, opts ...RequestOption) (RedfinSimilarResponse, error) {
+	return requestTyped[RedfinSimilarResponse](s.client, ctx, "redfin-similar", paramsFromStruct(params), opts...)
 }
 
 type ReferralsService struct { client *Client }

@@ -464,6 +464,138 @@
       },
       "type": "object"
     },
+    "antibot.Band": {
+      "enum": [
+        "easy",
+        "medium",
+        "hard",
+        "very_hard",
+        "blocked",
+        "unknown"
+      ],
+      "type": "string",
+      "x-enum-varnames": [
+        "BandEasy",
+        "BandMedium",
+        "BandHard",
+        "BandVeryHard",
+        "BandBlocked",
+        "BandUnknown"
+      ]
+    },
+    "antibot.Protection": {
+      "properties": {
+        "confidence": {
+          "description": "low | medium | high",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "description": "waf | bot_management | captcha | challenge | access_control | rate_limit",
+          "type": "string"
+        },
+        "vendor": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "antibot.Signals": {
+      "properties": {
+        "attempts_passed": {
+          "type": "integer"
+        },
+        "attempts_run": {
+          "type": "integer"
+        },
+        "attempts_skipped": {
+          "type": "integer"
+        },
+        "block_markers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "blocked_status": {
+          "type": "boolean"
+        },
+        "captcha_detected": {
+          "type": "boolean"
+        },
+        "challenge_detected": {
+          "type": "boolean"
+        },
+        "js_render_likely": {
+          "type": "boolean"
+        },
+        "rate_limited": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "antibot.Verdict": {
+      "properties": {
+        "coverage": {
+          "description": "Coverage is `full` when every transport tier ran, or `partial` when some\nwere skipped (e.g. browser sidecars unconfigured in this environment), in\nwhich case a \"blocked\" verdict may understate what a browser could do.",
+          "type": "string"
+        },
+        "difficulty_band": {
+          "$ref": "#/definitions/antibot.Band"
+        },
+        "difficulty_score": {
+          "description": "0 (trivial) .. 10 (blocked)",
+          "type": "integer"
+        },
+        "easiest_working_transport": {
+          "type": "string"
+        },
+        "gated_layers": {
+          "description": "GatedLayers names the anti-bot detection layers that block a plain client,\nderived empirically from which probe tiers were rejected: `tls` (a plain\nHTTP client's TLS/header fingerprint was rejected, but browser-impersonation\nor a browser got through), `js` (HTTP transports failed; JavaScript\nrendering / a real browser was required), `behavior` (a plain headless\nbrowser was also rejected; an anti-detect/stealth browser was needed).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "notes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "protections": {
+          "items": {
+            "$ref": "#/definitions/antibot.Protection"
+          },
+          "type": "array"
+        },
+        "recommended_approach": {
+          "type": "string"
+        },
+        "recommended_profile": {
+          "type": "string"
+        },
+        "scrapeable": {
+          "type": "boolean"
+        },
+        "signals": {
+          "$ref": "#/definitions/antibot.Signals"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "api.componentStatus": {
       "properties": {
         "error": {
@@ -8076,6 +8208,167 @@
       },
       "type": "object"
     },
+    "contact.ContactRequest": {
+      "properties": {
+        "independents_only": {
+          "description": "IndependentsOnly, when true, returns just the classification (no crawl) for\nany non-independent site (chain/social/builder/directory) — a cheap filter.",
+          "example": false,
+          "type": "boolean"
+        },
+        "max_pages": {
+          "example": 5,
+          "type": "integer"
+        },
+        "url": {
+          "example": "https://example.com",
+          "type": "string"
+        },
+        "verify": {
+          "example": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "type": "object"
+    },
+    "contact.ContactResult": {
+      "properties": {
+        "crawl_status": {
+          "description": "CrawlStatus explains an empty result: \"ok\" (read fine, nothing public to\nfind), \"blocked\" (an anti-bot wall stopped the read), or \"unreachable\" (the\nhomepage couldn't be fetched).",
+          "enum": [
+            "ok",
+            "blocked",
+            "unreachable"
+          ],
+          "example": "ok",
+          "type": "string"
+        },
+        "crawled_pages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "domain": {
+          "example": "example.com",
+          "type": "string"
+        },
+        "domain_type": {
+          "enum": [
+            "independent",
+            "chain",
+            "social",
+            "builder",
+            "directory"
+          ],
+          "example": "independent",
+          "type": "string"
+        },
+        "emails": {
+          "items": {
+            "$ref": "#/definitions/contact.EmailContact"
+          },
+          "type": "array"
+        },
+        "phones": {
+          "items": {
+            "$ref": "#/definitions/contact.PhoneContact"
+          },
+          "type": "array"
+        },
+        "socials": {
+          "items": {
+            "$ref": "#/definitions/contact.SocialProfile"
+          },
+          "type": "array"
+        },
+        "website": {
+          "example": "https://example.com",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "contact.EmailContact": {
+      "properties": {
+        "address": {
+          "example": "hello@example.com",
+          "type": "string"
+        },
+        "source_page": {
+          "example": "https://example.com/contact",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "verified",
+            "risky",
+            "unverified",
+            "invalid"
+          ],
+          "example": "unverified",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "generic",
+            "role",
+            "personal"
+          ],
+          "example": "generic",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "contact.PhoneContact": {
+      "properties": {
+        "number": {
+          "example": "+1 415-555-2671",
+          "type": "string"
+        },
+        "source_page": {
+          "example": "https://example.com/contact",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "contact.SocialProfile": {
+      "properties": {
+        "handle": {
+          "example": "example",
+          "type": "string"
+        },
+        "network": {
+          "example": "linkedin",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.linkedin.com/company/example",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "contact.contactResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/contact.ContactResult"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "datasets.DatasetInfo": {
       "properties": {
         "capabilities": {
@@ -8206,6 +8499,39 @@
         },
         "data": {
           "$ref": "#/definitions/datasets.DatasetListResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "diagnostics.AntibotCheckRequest": {
+      "properties": {
+        "fast": {
+          "description": "Fast (default true) escalates cheapest-transport-first and returns at the\nfirst tier that retrieves the page, so an unprotected page never spins up a\nbrowser. Set false for an exhaustive multi-run sweep across every backend.",
+          "type": "boolean"
+        },
+        "url": {
+          "description": "URL is the absolute http/https target to assess.",
+          "example": "https://www.crunchbase.com/organization/snowflake-computing",
+          "type": "string"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "type": "object"
+    },
+    "diagnostics.antibotCheckResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/antibot.Verdict"
         },
         "msg": {
           "example": "OK",
@@ -24141,6 +24467,318 @@
       },
       "type": "object"
     },
+    "redfin.EstimateResponse": {
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "baths": {
+          "type": "number"
+        },
+        "beds": {
+          "type": "number"
+        },
+        "city_time_series": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "county_time_series": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "estimate": {
+          "type": "number"
+        },
+        "estimate_text": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "listing_price": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "postal_code_time_series": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "property_id": {
+          "example": "1715020",
+          "type": "string"
+        },
+        "property_time_series": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "sqft": {
+          "type": "number"
+        },
+        "updated_at": {
+          "type": "integer"
+        },
+        "year_built": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "redfin.PropertyItem": {
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "baths": {
+          "type": "number"
+        },
+        "beds": {
+          "type": "number"
+        },
+        "city": {
+          "type": "string"
+        },
+        "days_on_market": {
+          "type": "integer"
+        },
+        "hoa_monthly": {
+          "type": "number"
+        },
+        "image": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "listing_id": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "lot_size": {
+          "type": "number"
+        },
+        "mls_number": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "price_per_sqft": {
+          "type": "number"
+        },
+        "property_id": {
+          "example": "1715020",
+          "type": "string"
+        },
+        "property_type": {
+          "type": "string"
+        },
+        "sqft": {
+          "type": "number"
+        },
+        "state": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "year_built": {
+          "type": "integer"
+        },
+        "zip": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "redfin.PropertyResponse": {
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "baths": {
+          "type": "number"
+        },
+        "beds": {
+          "type": "number"
+        },
+        "city": {
+          "type": "string"
+        },
+        "days_on_market": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "facts": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hoa_monthly": {
+          "type": "number"
+        },
+        "image": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "listing_id": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "lot_size": {
+          "type": "number"
+        },
+        "mls_number": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "price_per_sqft": {
+          "type": "number"
+        },
+        "property_id": {
+          "example": "1715020",
+          "type": "string"
+        },
+        "property_type": {
+          "type": "string"
+        },
+        "sqft": {
+          "type": "number"
+        },
+        "state": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "year_built": {
+          "type": "integer"
+        },
+        "zip": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "redfin.RegionTrendsResponse": {
+      "properties": {
+        "avg_days_on_market": {
+          "type": "string"
+        },
+        "avg_down_payment": {
+          "type": "string"
+        },
+        "avg_num_offers": {
+          "type": "string"
+        },
+        "median_list_per_sqft": {
+          "type": "string"
+        },
+        "median_list_price": {
+          "example": "$1.29M",
+          "type": "string"
+        },
+        "median_sale_per_list": {
+          "type": "string"
+        },
+        "median_sale_per_sqft": {
+          "type": "string"
+        },
+        "median_sale_price": {
+          "example": "$1.76M",
+          "type": "string"
+        },
+        "num_homes_on_market": {
+          "type": "string"
+        },
+        "num_homes_sold": {
+          "type": "string"
+        },
+        "region_id": {
+          "example": 17151,
+          "type": "integer"
+        },
+        "region_type": {
+          "example": 6,
+          "type": "integer"
+        },
+        "yoy_sale_per_sqft": {
+          "type": "string"
+        },
+        "yoy_sale_price": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "redfin.SearchResponse": {
+      "properties": {
+        "location": {
+          "example": "San Francisco, CA",
+          "type": "string"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "region_id": {
+          "example": 17151,
+          "type": "integer"
+        },
+        "region_type": {
+          "example": 6,
+          "type": "integer"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/redfin.PropertyItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "redfin.SimilarResponse": {
+      "properties": {
+        "property_id": {
+          "example": "1715020",
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/redfin.PropertyItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "referrals.referralAttributionDoc": {
       "properties": {
         "campaign": {
@@ -28673,6 +29311,11 @@
         "operationName": {
           "example": "countryHubContent",
           "type": "string"
+        },
+        "partialErrors": {
+          "description": "PartialErrors counts upstream GraphQL field errors tolerated alongside\nusable items. Zero on a fully clean response.",
+          "example": 1,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -28800,6 +29443,11 @@
         "operationName": {
           "example": "countryHubsPage",
           "type": "string"
+        },
+        "partialErrors": {
+          "description": "PartialErrors counts upstream GraphQL field errors that were tolerated\nbecause usable shelves were still returned (e.g. one broken shelf among\nseveral). Zero on a fully clean response.",
+          "example": 1,
+          "type": "integer"
         },
         "sectionCount": {
           "example": 5,
@@ -35464,6 +36112,193 @@
         },
         "data": {
           "$ref": "#/definitions/user.userRotateAPIKeyDoc"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "web.ScrapeInfo": {
+      "properties": {
+        "backend": {
+          "description": "headless backend that rendered, when method=browser",
+          "type": "string"
+        },
+        "cache_state": {
+          "description": "\"hit\" | \"miss\" — whether this response came from the cache",
+          "type": "string"
+        },
+        "cached_at": {
+          "description": "RFC3339 time the served copy was fetched (cache hits only)",
+          "type": "string"
+        },
+        "escalated": {
+          "description": "true when the fetch escalated from HTTP to a headless browser",
+          "type": "boolean"
+        },
+        "method": {
+          "description": "\"http\" | \"browser\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "web.ScrapeLink": {
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "rel": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "web.ScrapeMetadata": {
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "canonical_url": {
+          "type": "string"
+        },
+        "content_type": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "final_url": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "modified_at": {
+          "type": "string"
+        },
+        "published_at": {
+          "type": "string"
+        },
+        "section": {
+          "type": "string"
+        },
+        "site_name": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "status_code": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "web.ScrapeOption": {
+      "properties": {
+        "backend": {
+          "example": "",
+          "type": "string"
+        },
+        "formats": {
+          "example": [
+            "markdown"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "max_age": {
+          "example": 604800000,
+          "type": "integer"
+        },
+        "only_main_content": {
+          "type": "boolean"
+        },
+        "proxy": {
+          "example": "",
+          "type": "string"
+        },
+        "render": {
+          "enum": [
+            "auto",
+            "http",
+            "browser",
+            "unblocker"
+          ],
+          "example": "auto",
+          "type": "string"
+        },
+        "store_in_cache": {
+          "type": "boolean"
+        },
+        "url": {
+          "example": "https://example.com",
+          "type": "string"
+        },
+        "wait_for": {
+          "example": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "type": "object"
+    },
+    "web.ScrapeResult": {
+      "properties": {
+        "html": {
+          "type": "string"
+        },
+        "link_details": {
+          "items": {
+            "$ref": "#/definitions/web.ScrapeLink"
+          },
+          "type": "array"
+        },
+        "links": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "markdown": {
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/definitions/web.ScrapeMetadata"
+        },
+        "raw_html": {
+          "type": "string"
+        },
+        "scrape": {
+          "$ref": "#/definitions/web.ScrapeInfo"
+        }
+      },
+      "type": "object"
+    },
+    "web.scrapeResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/web.ScrapeResult"
         },
         "msg": {
           "example": "OK",
@@ -45953,6 +46788,64 @@
         ]
       }
     },
+    "/contact": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Crawls a public website URL (homepage plus contact/about/team/imprint pages) and returns its public business contact details: emails — each tagged with a verification `status` (`verified`, `risky`, `unverified`, `invalid`) and a `type` (`generic`, `role`, `personal`) — plus social-media profiles and phone numbers. Intended for authorized public-business data only.",
+        "operationId": "contact",
+        "parameters": [
+          {
+            "description": "Website URL payload",
+            "in": "body",
+            "name": "option",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contact.ContactRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/contact.contactResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Invalid input or missing URL",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error during contact extraction",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Contact API — emails, socials and phones for a website",
+        "tags": [
+          "Web"
+        ]
+      }
+    },
     "/datasets": {
       "get": {
         "consumes": [
@@ -46450,6 +47343,64 @@
         "summary": "Search stored Google Maps businesses",
         "tags": [
           "Datasets"
+        ]
+      }
+    },
+    "/diagnostics/antibot-check": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Probes a URL across escalating transports (direct HTTP → browser-impersonation → headless/stealth browsers) and returns an empirical scraping-difficulty assessment for that exact URL: a 0–10 `difficulty_score` and `difficulty_band` (`easy`, `medium`, `hard`, `very_hard`, `blocked`, `unknown`), whether it is `scrapeable`, the detected anti-bot `protections` (Cloudflare, DataDome, Akamai, PerimeterX, Kasada, Imperva, AWS WAF and more — each with a `kind` and `confidence`), the lightest transport that worked, and a `recommended_profile`. Difficulty is per-URL, not per-site — a homepage may be open while deep pages are bot-managed. Intended for authorized public-data scraping planning.",
+        "operationId": "antibot-check",
+        "parameters": [
+          {
+            "description": "Target URL (and optional fast flag)",
+            "in": "body",
+            "name": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/diagnostics.AntibotCheckRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/diagnostics.antibotCheckResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Invalid or missing URL",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Probe failed (transport/browser error or blocked target)",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Anti-bot check — website scraping difficulty",
+        "tags": [
+          "Web"
         ]
       }
     },
@@ -63558,6 +64509,356 @@
         ]
       }
     },
+    "/redfin/estimate": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the Redfin Estimate for a property, including the current estimate, property facts, and the monthly estimate history with city/county/postal comparatives. Faithful pass-through of Redfin's public avm + avmHistoricalData resources.",
+        "operationId": "redfin-estimate",
+        "parameters": [
+          {
+            "description": "Redfin property id",
+            "in": "query",
+            "name": "property_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/redfin.EstimateResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Redfin Estimate",
+        "tags": [
+          "Redfin"
+        ]
+      }
+    },
+    "/redfin/property": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized Redfin public property details. Provide a listing url, or a property_id (optionally with listing_id) to use Redfin's public stingray detail API.",
+        "operationId": "redfin-property",
+        "parameters": [
+          {
+            "description": "Redfin listing URL (primary key)",
+            "in": "query",
+            "name": "url",
+            "type": "string"
+          },
+          {
+            "description": "Redfin property id, used when url is not provided",
+            "in": "query",
+            "name": "property_id",
+            "type": "string"
+          },
+          {
+            "description": "Redfin listing id, improves completeness with property_id",
+            "in": "query",
+            "name": "listing_id",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/redfin.PropertyResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Redfin property",
+        "tags": [
+          "Redfin"
+        ]
+      }
+    },
+    "/redfin/region-trends": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns Redfin's aggregate market trends for a region (median list/sale price, sale-to-list, offers, days on market, inventory, year-over-year). Faithful pass-through of Redfin's public aggregate-trends resource.",
+        "operationId": "redfin-region-trends",
+        "parameters": [
+          {
+            "description": "Redfin region id from autocomplete",
+            "in": "query",
+            "name": "region_id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Redfin region type from autocomplete (defaults to 6, city)",
+            "in": "query",
+            "name": "region_type",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/redfin.RegionTrendsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Redfin region market trends",
+        "tags": [
+          "Redfin"
+        ]
+      }
+    },
+    "/redfin/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized Redfin public listing search results from Redfin's credential-free region CSV endpoint. Pass region_id/region_type from autocomplete to skip location resolution.",
+        "operationId": "redfin-search",
+        "parameters": [
+          {
+            "description": "Display location; resolved via autocomplete when region_id is omitted",
+            "in": "query",
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "description": "1-based page",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Redfin region id from autocomplete",
+            "in": "query",
+            "name": "region_id",
+            "type": "integer"
+          },
+          {
+            "description": "Redfin region type from autocomplete (defaults to 6, city)",
+            "in": "query",
+            "name": "region_type",
+            "type": "integer"
+          },
+          {
+            "description": "Listing status: for_sale or sold",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "Minimum price filter",
+            "in": "query",
+            "name": "min_price",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum price filter",
+            "in": "query",
+            "name": "max_price",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum bedrooms filter",
+            "in": "query",
+            "name": "min_beds",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum bathrooms filter",
+            "in": "query",
+            "name": "min_baths",
+            "type": "number"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/redfin.SearchResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Redfin listings",
+        "tags": [
+          "Redfin"
+        ]
+      }
+    },
+    "/redfin/similar": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns Redfin's comparable (\"similar\") listings for a property as normalized listing rows. Faithful pass-through of Redfin's public similars resource.",
+        "operationId": "redfin-similar",
+        "parameters": [
+          {
+            "description": "Redfin property id",
+            "in": "query",
+            "name": "property_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/redfin.SimilarResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Redfin comparable listings",
+        "tags": [
+          "Redfin"
+        ]
+      }
+    },
     "/referrals/click": {
       "post": {
         "consumes": [
@@ -73048,6 +74349,64 @@
         "summary": "Reveal current user's API key",
         "tags": [
           "User"
+        ]
+      }
+    },
+    "/web/scrape": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Fetches a single public URL and returns clean content in the requested formats (markdown, html, raw_html, links, metadata). With render=auto the request starts as a fast HTTP fetch and escalates to a real browser when the page is blocked or rendered with JavaScript. only_main_content (default true) strips navigation, headers, footers and other boilerplate before conversion. Only public pages are supported; respect each site's terms of use and robots directives.",
+        "operationId": "web-scrape",
+        "parameters": [
+          {
+            "description": "Scrape options",
+            "in": "body",
+            "name": "scrapeOption",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/web.ScrapeOption"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/web.scrapeResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "502": {
+            "description": "Upstream fetch failed",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Scrape a URL into markdown, HTML, links or metadata",
+        "tags": [
+          "Web"
         ]
       }
     },

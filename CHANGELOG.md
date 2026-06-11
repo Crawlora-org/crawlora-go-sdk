@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.8.0-sdk.1
+
+- Added two new platforms, regenerated from the public API contract (now 499
+  operations): **Redfin** (real-estate `search`, `property`, `estimate`,
+  `region-trends`, `similar`) and **Web** (generic `web-scrape`, `contact`, and
+  the `antibot-check` diagnostic).
+- Refreshed response schemas: `contact` gains `crawl_status`, `web-scrape` gains
+  `cache_state`/`cached_at`/`max_age`, and the Spotify country-hub responses gain
+  `partialErrors`.
+
 ## v1.7.0-sdk.1
 
 - Added six new platforms, regenerated from the public API contract (now 491
