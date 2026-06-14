@@ -485,9 +485,24 @@
     },
     "antibot.Protection": {
       "properties": {
+        "captcha_mode": {
+          "type": "string"
+        },
+        "captcha_type": {
+          "description": "CaptchaType / CaptchaMode sub-classify a kind=captcha detection\n(e.g. recaptcha_v3 / score, turnstile / managed).",
+          "type": "string"
+        },
         "confidence": {
           "description": "low | medium | high",
           "type": "string"
+        },
+        "confidence_score": {
+          "description": "ConfidenceScore is the numeric (0-100) additive confidence over this\ndetection's own evidence (Wappalyzer-style); Confidence is its bucketed label.",
+          "type": "integer"
+        },
+        "custom_vm": {
+          "description": "CustomVM marks the proprietary signed-payload / closed-VM class (Kasada,\nF5 Shape, TikTok) whose anti-bot is a closed in-browser bytecode VM rather\nthan generic transport detection; VMVendor names it.",
+          "type": "boolean"
         },
         "evidence": {
           "items": {
@@ -500,6 +515,9 @@
           "type": "string"
         },
         "vendor": {
+          "type": "string"
+        },
+        "vm_vendor": {
           "type": "string"
         }
       },
@@ -542,9 +560,34 @@
     },
     "antibot.Verdict": {
       "properties": {
+        "auth_required": {
+          "type": "boolean"
+        },
+        "block_detail": {
+          "type": "string"
+        },
+        "block_reason": {
+          "description": "BlockReason is WHY the representative request was blocked (or \"ok\"):\nok | bot_challenge | captcha_required | rate_limited | ip_blocked |\ngeo_blocked | auth_required | payment_required | service_unavailable |\nforbidden | other | unreachable. Different reasons call for different fixes\n(rotate IPs vs run a browser vs log in), so they are surfaced distinctly.",
+          "type": "string"
+        },
+        "captcha_types": {
+          "description": "CaptchaTypes lists the distinct CAPTCHA types detected (e.g. recaptcha_v3,\nturnstile) for easy aggregation.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "coverage": {
           "description": "Coverage is `full` when every transport tier ran, or `partial` when some\nwere skipped (e.g. browser sidecars unconfigured in this environment), in\nwhich case a \"blocked\" verdict may understate what a browser could do.",
           "type": "string"
+        },
+        "custom_vm": {
+          "description": "CustomVM / VMVendor are set when any detected protection is the proprietary\nclosed-VM class (Kasada / F5 Shape / TikTok).",
+          "type": "boolean"
+        },
+        "detection_confidence_score": {
+          "description": "ConfidenceScore is the strongest detection's numeric confidence (0-100), or\n0 when nothing was detected (confidence describes a detection, not a negative).",
+          "type": "integer"
         },
         "difficulty_band": {
           "$ref": "#/definitions/antibot.Band"
@@ -554,6 +597,10 @@
           "type": "integer"
         },
         "easiest_working_transport": {
+          "type": "string"
+        },
+        "enforcement": {
+          "description": "Enforcement separates a managed vendor actively challenging/blocking us from\none merely sitting in front as passive CDN/edge:\nopen | passive_edge | active_challenge | active_block.",
           "type": "string"
         },
         "gated_layers": {
@@ -581,6 +628,9 @@
         "recommended_profile": {
           "type": "string"
         },
+        "retry_after": {
+          "type": "string"
+        },
         "scrapeable": {
           "type": "boolean"
         },
@@ -591,6 +641,9 @@
           "type": "string"
         },
         "url": {
+          "type": "string"
+        },
+        "vm_vendor": {
           "type": "string"
         }
       },
@@ -43442,7 +43495,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Fetches a domain's homepage and extracts a normalized brand profile (title, description, colors, logos, backdrops, socials, links, and any schema.org organization data). Enrichment-only fields that are not present in the page markup are returned as null.",
+        "description": "Fetches a domain's homepage and Web App Manifest and extracts a normalized brand profile (title, description, brand colors normalized to hex, logos and icons ranked best-first, backdrops, socials, links, and any schema.org organization data). Enrichment-only fields that are not present in the page markup are returned as null.",
         "operationId": "brand-retrieve",
         "parameters": [
           {
@@ -47896,8 +47949,8 @@
               "$ref": "#/definitions/app.Response"
             }
           },
-          "429": {
-            "description": "Too Many Requests",
+          "502": {
+            "description": "Bad Gateway",
             "schema": {
               "$ref": "#/definitions/app.Response"
             }
@@ -47995,8 +48048,8 @@
               "$ref": "#/definitions/app.Response"
             }
           },
-          "429": {
-            "description": "Too Many Requests",
+          "502": {
+            "description": "Bad Gateway",
             "schema": {
               "$ref": "#/definitions/app.Response"
             }
@@ -48128,8 +48181,8 @@
               "$ref": "#/definitions/app.Response"
             }
           },
-          "429": {
-            "description": "Too Many Requests",
+          "502": {
+            "description": "Bad Gateway",
             "schema": {
               "$ref": "#/definitions/app.Response"
             }

@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.8.0-sdk.2
+
+- Regenerated from the public API contract (499 operations, unchanged). Enriches
+  the Web `antibot-check` diagnostic response with additional fields:
+  `block_reason`, `block_detail`, `auth_required`, `captcha_type`,
+  `captcha_types`, `captcha_mode`, `confidence_score`, `custom_vm`, and
+  `vm_vendor`.
+- Clarified the `google-search` and datasets `google-map-businesses/search`
+  endpoint descriptions (wording only; no behavior change).
+
 ## v1.8.0-sdk.1
 
 - Added two new platforms, regenerated from the public API contract (now 499

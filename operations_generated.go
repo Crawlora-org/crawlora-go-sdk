@@ -176,10 +176,15 @@ type ModelAmazonSuggestResponseDoc struct {
 type ModelAntibotBand = string
 
 type ModelAntibotProtection struct {
-	Confidence string   `json:"confidence,omitempty"`
-	Evidence   []string `json:"evidence,omitempty"`
-	Kind       string   `json:"kind,omitempty"`
-	Vendor     string   `json:"vendor,omitempty"`
+	CaptchaMode     string   `json:"captcha_mode,omitempty"`
+	CaptchaType     string   `json:"captcha_type,omitempty"`
+	Confidence      string   `json:"confidence,omitempty"`
+	ConfidenceScore int      `json:"confidence_score,omitempty"`
+	CustomVm        bool     `json:"custom_vm,omitempty"`
+	Evidence        []string `json:"evidence,omitempty"`
+	Kind            string   `json:"kind,omitempty"`
+	Vendor          string   `json:"vendor,omitempty"`
+	VmVendor        string   `json:"vm_vendor,omitempty"`
 }
 
 type ModelAntibotSignals struct {
@@ -195,19 +200,28 @@ type ModelAntibotSignals struct {
 }
 
 type ModelAntibotVerdict struct {
-	Coverage                string                   `json:"coverage,omitempty"`
-	DifficultyBand          ModelAntibotBand         `json:"difficulty_band,omitempty"`
-	DifficultyScore         int                      `json:"difficulty_score,omitempty"`
-	EasiestWorkingTransport string                   `json:"easiest_working_transport,omitempty"`
-	GatedLayers             []string                 `json:"gated_layers,omitempty"`
-	Notes                   []string                 `json:"notes,omitempty"`
-	Protections             []ModelAntibotProtection `json:"protections,omitempty"`
-	RecommendedApproach     string                   `json:"recommended_approach,omitempty"`
-	RecommendedProfile      string                   `json:"recommended_profile,omitempty"`
-	Scrapeable              bool                     `json:"scrapeable,omitempty"`
-	Signals                 ModelAntibotSignals      `json:"signals,omitempty"`
-	Summary                 string                   `json:"summary,omitempty"`
-	Url                     string                   `json:"url,omitempty"`
+	AuthRequired             bool                     `json:"auth_required,omitempty"`
+	BlockDetail              string                   `json:"block_detail,omitempty"`
+	BlockReason              string                   `json:"block_reason,omitempty"`
+	CaptchaTypes             []string                 `json:"captcha_types,omitempty"`
+	Coverage                 string                   `json:"coverage,omitempty"`
+	CustomVm                 bool                     `json:"custom_vm,omitempty"`
+	DetectionConfidenceScore int                      `json:"detection_confidence_score,omitempty"`
+	DifficultyBand           ModelAntibotBand         `json:"difficulty_band,omitempty"`
+	DifficultyScore          int                      `json:"difficulty_score,omitempty"`
+	EasiestWorkingTransport  string                   `json:"easiest_working_transport,omitempty"`
+	Enforcement              string                   `json:"enforcement,omitempty"`
+	GatedLayers              []string                 `json:"gated_layers,omitempty"`
+	Notes                    []string                 `json:"notes,omitempty"`
+	Protections              []ModelAntibotProtection `json:"protections,omitempty"`
+	RecommendedApproach      string                   `json:"recommended_approach,omitempty"`
+	RecommendedProfile       string                   `json:"recommended_profile,omitempty"`
+	RetryAfter               string                   `json:"retry_after,omitempty"`
+	Scrapeable               bool                     `json:"scrapeable,omitempty"`
+	Signals                  ModelAntibotSignals      `json:"signals,omitempty"`
+	Summary                  string                   `json:"summary,omitempty"`
+	Url                      string                   `json:"url,omitempty"`
+	VmVendor                 string                   `json:"vm_vendor,omitempty"`
 }
 
 type ModelApiComponentStatus struct {
