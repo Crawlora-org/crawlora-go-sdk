@@ -47200,7 +47200,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches Google Maps business records stored in Elasticsearch. Sort enum: `relevance`, `updated_at_desc`, `rating_desc`, `review_count_desc`, `distance_asc`.",
+        "description": "Searches Google Maps business records stored in a search index. Sort enum: `relevance`, `updated_at_desc`, `rating_desc`, `review_count_desc`, `distance_asc`.",
         "operationId": "datasets-google-map-businesses-search",
         "parameters": [
           {
@@ -49588,7 +49588,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns normalized Google web search results. Results are fetched through gost-egressing browser backends that race several concurrent renders per request (in-render gost fan-out) and return the first clean result, with stale-cache fallback when available. The endpoint returns 503 when Google serves a challenge page or unusable HTML. Rate limit is enforced at 1 request per second, and if the limit is exceeded a 429 status code is returned with rate limit headers.",
+        "description": "Returns normalized Google web search results. Results are fetched through proxied browser renderers that race several concurrent renders per request and return the first clean result, with stale-cache fallback when available. The endpoint returns 503 when Google serves a challenge page or unusable HTML. Rate limit is enforced at 1 request per second, and if the limit is exceeded a 429 status code is returned with rate limit headers.",
         "operationId": "google-search",
         "parameters": [
           {
