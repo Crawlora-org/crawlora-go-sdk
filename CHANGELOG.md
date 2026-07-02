@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.10.0-sdk.1
+
+- Regenerated from the public API contract (525 to 529 operations). Adds the
+  **Airbnb Markets dataset** (4 endpoints): aggregate short-term-rental market
+  statistics -- listing supply, Superhost share, ratings, and nightly-price bands
+  -- rolled up by country, metro, and geo cell (search, item lookup, facets, and
+  nearby density). Aggregate-only: no individual listings or hosts.
+
 ## v1.9.0-sdk.1
 
 - Regenerated from the public API contract (499 to 525 operations). Adds four

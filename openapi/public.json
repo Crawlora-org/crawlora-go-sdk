@@ -8479,6 +8479,84 @@
       },
       "type": "object"
     },
+    "datasets.AirbnbMarketFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.AirbnbMarketFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.AirbnbMarketNearbyResponse": {
+      "properties": {
+        "cells": {
+          "items": {
+            "$ref": "#/definitions/es.AirbnbDensityCell"
+          },
+          "type": "array"
+        },
+        "dataset": {
+          "type": "string"
+        },
+        "lat": {
+          "type": "number"
+        },
+        "lon": {
+          "type": "number"
+        },
+        "precision": {
+          "type": "integer"
+        },
+        "radius_m": {
+          "type": "integer"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.AirbnbMarketSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "group_by": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.AirbnbMarketCell"
+          },
+          "type": "array"
+        },
+        "min_listings": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "datasets.AppsSearchResponse": {
       "properties": {
         "dataset": {
@@ -8699,6 +8777,70 @@
         },
         "total": {
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.airbnbMarketResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.AirbnbMarketDetail"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.airbnbMarketsFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.AirbnbMarketFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.airbnbMarketsNearbyResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.AirbnbMarketNearbyResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.airbnbMarketsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.AirbnbMarketSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9534,6 +9676,144 @@
         },
         "msg": {
           "description": "Msg is the message that describes the result of the request\n@example \"Request successful\""
+        }
+      },
+      "type": "object"
+    },
+    "es.AirbnbDensityCell": {
+      "properties": {
+        "geohash": {
+          "type": "string"
+        },
+        "lat": {
+          "type": "number"
+        },
+        "listings": {
+          "type": "integer"
+        },
+        "lon": {
+          "type": "number"
+        },
+        "superhost_listings": {
+          "type": "integer"
+        },
+        "superhost_pct": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "es.AirbnbGeoBounds": {
+      "properties": {
+        "bottom_right": {
+          "$ref": "#/definitions/es.GeoPoint"
+        },
+        "top_left": {
+          "$ref": "#/definitions/es.GeoPoint"
+        }
+      },
+      "type": "object"
+    },
+    "es.AirbnbMarketCell": {
+      "properties": {
+        "avg_rating": {
+          "type": "number"
+        },
+        "avg_review_count": {
+          "type": "number"
+        },
+        "key": {
+          "type": "string"
+        },
+        "last_seen": {
+          "type": "string"
+        },
+        "listings": {
+          "type": "integer"
+        },
+        "rated_listings": {
+          "type": "integer"
+        },
+        "superhost_listings": {
+          "type": "integer"
+        },
+        "superhost_pct": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "es.AirbnbMarketDetail": {
+      "properties": {
+        "avg_rating": {
+          "type": "number"
+        },
+        "avg_review_count": {
+          "type": "number"
+        },
+        "bounds": {
+          "$ref": "#/definitions/es.AirbnbGeoBounds"
+        },
+        "country": {
+          "type": "string"
+        },
+        "currencies": {
+          "items": {
+            "$ref": "#/definitions/es.AirbnbPriceStats"
+          },
+          "type": "array"
+        },
+        "last_seen": {
+          "type": "string"
+        },
+        "listings": {
+          "type": "integer"
+        },
+        "metros": {
+          "items": {
+            "$ref": "#/definitions/es.AirbnbMarketCell"
+          },
+          "type": "array"
+        },
+        "rated_listings": {
+          "type": "integer"
+        },
+        "superhost_listings": {
+          "type": "integer"
+        },
+        "superhost_pct": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "es.AirbnbMarketFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.AirbnbPriceStats": {
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "listings": {
+          "type": "integer"
+        },
+        "p25": {
+          "type": "number"
+        },
+        "p50": {
+          "type": "number"
+        },
+        "p75": {
+          "type": "number"
         }
       },
       "type": "object"
@@ -48054,6 +48334,393 @@
           }
         ],
         "summary": "List stored scraped datasets",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/airbnb-markets/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns suppressed distribution counts over the Airbnb markets dataset, honoring the same filters as search. Facet enum: `country`, `market`, `currency`, `superhost`, `rating_band`, `review_band`. group_by enum: `country`, `market`.",
+        "operationId": "datasets-airbnb-markets-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: country, market, currency, superhost, rating_band, review_band",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Aggregate cell dimension enum: country, market. Defaults to country",
+            "in": "query",
+            "name": "group_by",
+            "type": "string"
+          },
+          {
+            "description": "Exact ISO-3166-1 alpha-2 country filter, e.g. FR",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Exact metro-market filter, max 128 characters",
+            "in": "query",
+            "name": "market",
+            "type": "string"
+          },
+          {
+            "description": "Count only Superhost listings",
+            "in": "query",
+            "name": "superhost",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum listing rating, from 0 through 5",
+            "in": "query",
+            "name": "min_rating",
+            "type": "number"
+          },
+          {
+            "description": "Minimum listing review count, 0 or greater",
+            "in": "query",
+            "name": "min_review_count",
+            "type": "integer"
+          },
+          {
+            "description": "Freshness filter, an ISO-8601 date (YYYY-MM-DD)",
+            "in": "query",
+            "name": "active_since",
+            "type": "string"
+          },
+          {
+            "description": "Minimum listings per bucket; raises the small-cell suppression floor",
+            "in": "query",
+            "name": "min_listings",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.airbnbMarketsFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet the Airbnb markets dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/airbnb-markets/items/{country}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one country's full aggregate Airbnb market profile from dataset id enum value `airbnb-markets` — headline supply, Superhost share, ratings, its top metros, bounding box and per-currency nightly-price percentiles. Aggregate-only. Returns 404 for a country below the suppression floor.",
+        "operationId": "datasets-airbnb-markets-item",
+        "parameters": [
+          {
+            "description": "ISO-3166-1 alpha-2 country code, e.g. FR",
+            "in": "path",
+            "name": "country",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.airbnbMarketResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get an Airbnb market from the dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/airbnb-markets/nearby": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns an aggregate geohash-grid density map of Airbnb listings within a radius of a coordinate, from dataset id enum value `airbnb-markets`. Each cell reports a centroid, listing count and Superhost share; thin cells are suppressed. Aggregate-only.",
+        "operationId": "datasets-airbnb-markets-nearby",
+        "parameters": [
+          {
+            "description": "Center latitude, from -90 through 90",
+            "in": "query",
+            "name": "lat",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Center longitude, from -180 through 180",
+            "in": "query",
+            "name": "lon",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Search radius in meters, from 1 through 50000",
+            "in": "query",
+            "name": "radius_m",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Geohash precision, from 1 through 12; defaults to a value derived from the radius",
+            "in": "query",
+            "name": "precision",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum listings per cell; raises the small-cell suppression floor",
+            "in": "query",
+            "name": "min_listings",
+            "type": "integer"
+          },
+          {
+            "description": "Exact ISO-3166-1 alpha-2 country filter, e.g. US",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Count only Superhost listings",
+            "in": "query",
+            "name": "superhost",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum listing rating, from 0 through 5",
+            "in": "query",
+            "name": "min_rating",
+            "type": "number"
+          },
+          {
+            "description": "Freshness filter, an ISO-8601 date (YYYY-MM-DD)",
+            "in": "query",
+            "name": "active_since",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.airbnbMarketsNearbyResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Airbnb market density near a coordinate",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/airbnb-markets/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns aggregate Airbnb short-term-rental market rollups from the dataset id enum value `airbnb-markets`. Aggregate-only: each row is a market cell (a country or a metro), never an individual listing. Thin cells are suppressed. group_by enum: `country`, `market`. Sort enum: `listings_desc`, `superhost_pct_desc`, `rating_desc`, `key_asc`.",
+        "operationId": "datasets-airbnb-markets-search",
+        "parameters": [
+          {
+            "description": "Aggregate cell dimension enum: country, market. Defaults to country",
+            "in": "query",
+            "name": "group_by",
+            "type": "string"
+          },
+          {
+            "description": "Exact ISO-3166-1 alpha-2 country filter, e.g. FR",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Exact metro-market filter, e.g. Paris, max 128 characters",
+            "in": "query",
+            "name": "market",
+            "type": "string"
+          },
+          {
+            "description": "Count only Superhost listings",
+            "in": "query",
+            "name": "superhost",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum listing rating, from 0 through 5",
+            "in": "query",
+            "name": "min_rating",
+            "type": "number"
+          },
+          {
+            "description": "Minimum listing review count, 0 or greater",
+            "in": "query",
+            "name": "min_review_count",
+            "type": "integer"
+          },
+          {
+            "description": "Freshness filter, an ISO-8601 date (YYYY-MM-DD); only listings last seen on or after it are counted",
+            "in": "query",
+            "name": "active_since",
+            "type": "string"
+          },
+          {
+            "description": "Minimum listings per cell; raises the small-cell suppression floor (never lowered below the built-in minimum)",
+            "in": "query",
+            "name": "min_listings",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: listings_desc, superhost_pct_desc, rating_desc, key_asc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.airbnbMarketsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the Airbnb markets dataset",
         "tags": [
           "Datasets"
         ]
