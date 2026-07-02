@@ -10523,8 +10523,10 @@
           "type": "string"
         },
         "rating": {
+          "description": "Rating is the aggregate Google rating (1.0–5.0). It is a pointer so a business\nwith NO aggregate Google rating serializes as `rating: null` rather than a\nmisleading 0 — Google never assigns a 0.x average, so 0 always meant \"unrated\".\nConsumers computing an average must skip nulls; use min_rating>0 to exclude them.",
           "example": 4.1,
-          "type": "number"
+          "type": "number",
+          "x-nullable": true
         },
         "review_count": {
           "example": 3213,
@@ -10669,8 +10671,10 @@
           "type": "string"
         },
         "rating": {
+          "description": "Rating is the aggregate Google rating (1.0–5.0). It is a pointer so a business\nwith NO aggregate Google rating serializes as `rating: null` rather than a\nmisleading 0 — Google never assigns a 0.x average, so 0 always meant \"unrated\".\nConsumers computing an average must skip nulls; use min_rating>0 to exclude them.",
           "example": 4.1,
-          "type": "number"
+          "type": "number",
+          "x-nullable": true
         },
         "review_count": {
           "example": 3213,
@@ -12566,8 +12570,10 @@
           "type": "string"
         },
         "rating": {
+          "description": "Rating is the aggregate Google rating (1.0–5.0), or null when the place has no\naggregate rating on Google (Google never assigns a 0.x average, so 0 always meant\n\"unrated\"). A pointer so unrated serializes as `rating: null`, not a misleading 0.",
           "example": 4.1,
-          "type": "number"
+          "type": "number",
+          "x-nullable": true
         },
         "review_count": {
           "example": 3213,
@@ -49829,7 +49835,7 @@
             "type": "string"
           },
           {
-            "description": "Minimum rating, 0 through 5. Businesses with no aggregate Google rating are stored as rating 0, so any min_rating above 0 excludes them.",
+            "description": "Minimum rating, 0 through 5. Businesses with no aggregate Google rating are returned with rating null, so any min_rating above 0 excludes them.",
             "in": "query",
             "name": "min_rating",
             "type": "number"
@@ -50015,7 +50021,7 @@
             "type": "string"
           },
           {
-            "description": "Minimum rating, 0 through 5. Businesses with no aggregate Google rating are stored as rating 0, so any min_rating above 0 excludes them.",
+            "description": "Minimum rating, 0 through 5. Businesses with no aggregate Google rating are returned with rating null, so any min_rating above 0 excludes them.",
             "in": "query",
             "name": "min_rating",
             "type": "number"
@@ -50130,7 +50136,7 @@
             "type": "string"
           },
           {
-            "description": "Minimum rating, 0 through 5. Businesses with no aggregate Google rating are stored as rating 0, so any min_rating above 0 excludes them.",
+            "description": "Minimum rating, 0 through 5. Businesses with no aggregate Google rating are returned with rating null, so any min_rating above 0 excludes them.",
             "in": "query",
             "name": "min_rating",
             "type": "number"

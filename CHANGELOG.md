@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.10.0-sdk.2
+
+- Google Maps dataset (`datasets_google_map_*`) and live Google Maps
+  (`google_map_search`, `google_map_place`): a business with no aggregate Google
+  rating now returns `rating: null` instead of `0`. Google never gives a 0.x
+  average, so `0` had always meant "unrated" — this makes it explicit. A present
+  `rating` is always 1.0-5.0, so skip nulls when you average; `min_rating` above 0
+  still excludes unrated businesses. No endpoints added or removed.
+
 ## v1.10.0-sdk.1
 
 - Regenerated from the public API contract (525 to 529 operations). Adds the
