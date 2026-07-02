@@ -2590,6 +2590,33 @@ type ModelContactContactResponseDoc struct {
 	Msg  string                    `json:"msg,omitempty"`
 }
 
+type ModelDatasetsAirbnbMarketFacetResponse struct {
+	Dataset string                         `json:"dataset,omitempty"`
+	Facet   string                         `json:"facet,omitempty"`
+	Items   []ModelEsAirbnbMarketFacetItem `json:"items,omitempty"`
+}
+
+type ModelDatasetsAirbnbMarketNearbyResponse struct {
+	Cells     []ModelEsAirbnbDensityCell `json:"cells,omitempty"`
+	Dataset   string                     `json:"dataset,omitempty"`
+	Lat       float64                    `json:"lat,omitempty"`
+	Lon       float64                    `json:"lon,omitempty"`
+	Precision int                        `json:"precision,omitempty"`
+	RadiusM   int                        `json:"radius_m,omitempty"`
+	Total     int                        `json:"total,omitempty"`
+}
+
+type ModelDatasetsAirbnbMarketSearchResponse struct {
+	Dataset     string                    `json:"dataset,omitempty"`
+	GroupBy     string                    `json:"group_by,omitempty"`
+	Items       []ModelEsAirbnbMarketCell `json:"items,omitempty"`
+	MinListings int                       `json:"min_listings,omitempty"`
+	Page        int                       `json:"page,omitempty"`
+	PageSize    int                       `json:"page_size,omitempty"`
+	Sort        string                    `json:"sort,omitempty"`
+	Total       int                       `json:"total,omitempty"`
+}
+
 type ModelDatasetsAppsSearchResponse struct {
 	Dataset  string             `json:"dataset,omitempty"`
 	Items    []ModelEsAppRecord `json:"items,omitempty"`
@@ -2666,6 +2693,30 @@ type ModelDatasetsReviewsSearchResponse struct {
 	PageSize int                `json:"page_size,omitempty"`
 	Sort     string             `json:"sort,omitempty"`
 	Total    int                `json:"total,omitempty"`
+}
+
+type ModelDatasetsAirbnbMarketResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelEsAirbnbMarketDetail `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelDatasetsAirbnbMarketsFacetResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelDatasetsAirbnbMarketFacetResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelDatasetsAirbnbMarketsNearbyResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelDatasetsAirbnbMarketNearbyResponse `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
+}
+
+type ModelDatasetsAirbnbMarketsSearchResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelDatasetsAirbnbMarketSearchResponse `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
 }
 
 type ModelDatasetsAppsSearchResponseDoc struct {
@@ -2920,6 +2971,58 @@ type ModelEbaySellerShopResponseDoc struct {
 	Code int                 `json:"code,omitempty"`
 	Data ModelEbaySearchResp `json:"data,omitempty"`
 	Msg  any                 `json:"msg,omitempty"`
+}
+
+type ModelEsAirbnbDensityCell struct {
+	Geohash           string  `json:"geohash,omitempty"`
+	Lat               float64 `json:"lat,omitempty"`
+	Listings          int     `json:"listings,omitempty"`
+	Lon               float64 `json:"lon,omitempty"`
+	SuperhostListings int     `json:"superhost_listings,omitempty"`
+	SuperhostPct      float64 `json:"superhost_pct,omitempty"`
+}
+
+type ModelEsAirbnbGeoBounds struct {
+	BottomRight ModelEsGeoPoint `json:"bottom_right,omitempty"`
+	TopLeft     ModelEsGeoPoint `json:"top_left,omitempty"`
+}
+
+type ModelEsAirbnbMarketCell struct {
+	AvgRating         float64 `json:"avg_rating,omitempty"`
+	AvgReviewCount    float64 `json:"avg_review_count,omitempty"`
+	Key               string  `json:"key,omitempty"`
+	LastSeen          string  `json:"last_seen,omitempty"`
+	Listings          int     `json:"listings,omitempty"`
+	RatedListings     int     `json:"rated_listings,omitempty"`
+	SuperhostListings int     `json:"superhost_listings,omitempty"`
+	SuperhostPct      float64 `json:"superhost_pct,omitempty"`
+}
+
+type ModelEsAirbnbMarketDetail struct {
+	AvgRating         float64                   `json:"avg_rating,omitempty"`
+	AvgReviewCount    float64                   `json:"avg_review_count,omitempty"`
+	Bounds            ModelEsAirbnbGeoBounds    `json:"bounds,omitempty"`
+	Country           string                    `json:"country,omitempty"`
+	Currencies        []ModelEsAirbnbPriceStats `json:"currencies,omitempty"`
+	LastSeen          string                    `json:"last_seen,omitempty"`
+	Listings          int                       `json:"listings,omitempty"`
+	Metros            []ModelEsAirbnbMarketCell `json:"metros,omitempty"`
+	RatedListings     int                       `json:"rated_listings,omitempty"`
+	SuperhostListings int                       `json:"superhost_listings,omitempty"`
+	SuperhostPct      float64                   `json:"superhost_pct,omitempty"`
+}
+
+type ModelEsAirbnbMarketFacetItem struct {
+	Count int    `json:"count,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelEsAirbnbPriceStats struct {
+	Currency string  `json:"currency,omitempty"`
+	Listings int     `json:"listings,omitempty"`
+	P25      float64 `json:"p25,omitempty"`
+	P50      float64 `json:"p50,omitempty"`
+	P75      float64 `json:"p75,omitempty"`
 }
 
 type ModelEsAppRecord struct {
@@ -12299,7 +12402,7 @@ type ModelZillowSearchResponse struct {
 	Results  []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 525
+const operationCount = 529
 
 const (
 	OperationAirbnbRoom                                             = "airbnb-room"
@@ -12385,6 +12488,10 @@ const (
 	OperationCoinGeckoTokenUnlocks                                  = "coingecko-token-unlocks"
 	OperationCoinGeckoTreasuries                                    = "coingecko-treasuries"
 	OperationCoinGeckoTrending                                      = "coingecko-trending"
+	OperationDatasetsAirbnbMarketsFacets                            = "datasets-airbnb-markets-facets"
+	OperationDatasetsAirbnbMarketsItem                              = "datasets-airbnb-markets-item"
+	OperationDatasetsAirbnbMarketsNearby                            = "datasets-airbnb-markets-nearby"
+	OperationDatasetsAirbnbMarketsSearch                            = "datasets-airbnb-markets-search"
 	OperationDatasetsAppsChartsSearch                               = "datasets-apps-charts-search"
 	OperationDatasetsAppsReviewsSearch                              = "datasets-apps-reviews-search"
 	OperationDatasetsAppsSearch                                     = "datasets-apps-search"
@@ -12915,6 +13022,10 @@ var operations = map[string]operationDefinition{
 	"coingecko-trending":                            operationDefinition{Method: "GET", Path: "/coingecko/trending", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"contact":                                       operationDefinition{Method: "POST", Path: "/contact", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-list":                                 operationDefinition{Method: "GET", Path: "/datasets", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-airbnb-markets-facets":                operationDefinition{Method: "GET", Path: "/datasets/airbnb-markets/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "group_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "superhost", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "active_since", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_listings", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-airbnb-markets-item":                  operationDefinition{Method: "GET", Path: "/datasets/airbnb-markets/items/{country}", PathParams: []string{"country"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-airbnb-markets-nearby":                operationDefinition{Method: "GET", Path: "/datasets/airbnb-markets/nearby", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "precision", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_listings", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "superhost", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "active_since", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-airbnb-markets-search":                operationDefinition{Method: "GET", Path: "/datasets/airbnb-markets/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "group_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "superhost", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "active_since", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_listings", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-apps-charts-search":                   operationDefinition{Method: "GET", Path: "/datasets/apps-charts/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "chart_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "collection", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-apps-reviews-search":                  operationDefinition{Method: "GET", Path: "/datasets/apps-reviews/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_score", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-apps-search":                          operationDefinition{Method: "GET", Path: "/datasets/apps/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "developer", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "free", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_reviews", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -14860,6 +14971,88 @@ type DatasetsListResponse = ModelDatasetsListResponseDoc
 
 func (s *DatasetsService) ListTyped(ctx context.Context, params DatasetsListParams, opts ...RequestOption) (DatasetsListResponse, error) {
 	return requestTyped[DatasetsListResponse](s.client, ctx, "datasets-list", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) AirbnbMarketsFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-airbnb-markets-facets", params, opts...)
+}
+
+type DatasetsAirbnbMarketsFacetsParams struct {
+	Facet          string   `crawlora:"facet"`
+	GroupBy        *string  `crawlora:"group_by,omitempty"`
+	Country        *string  `crawlora:"country,omitempty"`
+	Market         *string  `crawlora:"market,omitempty"`
+	Superhost      *bool    `crawlora:"superhost,omitempty"`
+	MinRating      *float64 `crawlora:"min_rating,omitempty"`
+	MinReviewCount *int     `crawlora:"min_review_count,omitempty"`
+	ActiveSince    *string  `crawlora:"active_since,omitempty"`
+	MinListings    *int     `crawlora:"min_listings,omitempty"`
+}
+
+type DatasetsAirbnbMarketsFacetsResponse = ModelDatasetsAirbnbMarketsFacetResponseDoc
+
+func (s *DatasetsService) AirbnbMarketsFacetsTyped(ctx context.Context, params DatasetsAirbnbMarketsFacetsParams, opts ...RequestOption) (DatasetsAirbnbMarketsFacetsResponse, error) {
+	return requestTyped[DatasetsAirbnbMarketsFacetsResponse](s.client, ctx, "datasets-airbnb-markets-facets", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) AirbnbMarketsItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-airbnb-markets-item", params, opts...)
+}
+
+type DatasetsAirbnbMarketsItemParams struct {
+	Country string `crawlora:"country"`
+}
+
+type DatasetsAirbnbMarketsItemResponse = ModelDatasetsAirbnbMarketResponseDoc
+
+func (s *DatasetsService) AirbnbMarketsItemTyped(ctx context.Context, params DatasetsAirbnbMarketsItemParams, opts ...RequestOption) (DatasetsAirbnbMarketsItemResponse, error) {
+	return requestTyped[DatasetsAirbnbMarketsItemResponse](s.client, ctx, "datasets-airbnb-markets-item", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) AirbnbMarketsNearby(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-airbnb-markets-nearby", params, opts...)
+}
+
+type DatasetsAirbnbMarketsNearbyParams struct {
+	Lat         float64  `crawlora:"lat"`
+	Lon         float64  `crawlora:"lon"`
+	RadiusM     int      `crawlora:"radius_m"`
+	Precision   *int     `crawlora:"precision,omitempty"`
+	MinListings *int     `crawlora:"min_listings,omitempty"`
+	Country     *string  `crawlora:"country,omitempty"`
+	Superhost   *bool    `crawlora:"superhost,omitempty"`
+	MinRating   *float64 `crawlora:"min_rating,omitempty"`
+	ActiveSince *string  `crawlora:"active_since,omitempty"`
+}
+
+type DatasetsAirbnbMarketsNearbyResponse = ModelDatasetsAirbnbMarketsNearbyResponseDoc
+
+func (s *DatasetsService) AirbnbMarketsNearbyTyped(ctx context.Context, params DatasetsAirbnbMarketsNearbyParams, opts ...RequestOption) (DatasetsAirbnbMarketsNearbyResponse, error) {
+	return requestTyped[DatasetsAirbnbMarketsNearbyResponse](s.client, ctx, "datasets-airbnb-markets-nearby", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) AirbnbMarketsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-airbnb-markets-search", params, opts...)
+}
+
+type DatasetsAirbnbMarketsSearchParams struct {
+	GroupBy        *string  `crawlora:"group_by,omitempty"`
+	Country        *string  `crawlora:"country,omitempty"`
+	Market         *string  `crawlora:"market,omitempty"`
+	Superhost      *bool    `crawlora:"superhost,omitempty"`
+	MinRating      *float64 `crawlora:"min_rating,omitempty"`
+	MinReviewCount *int     `crawlora:"min_review_count,omitempty"`
+	ActiveSince    *string  `crawlora:"active_since,omitempty"`
+	MinListings    *int     `crawlora:"min_listings,omitempty"`
+	Sort           *string  `crawlora:"sort,omitempty"`
+	Page           *int     `crawlora:"page,omitempty"`
+	PageSize       *int     `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsAirbnbMarketsSearchResponse = ModelDatasetsAirbnbMarketsSearchResponseDoc
+
+func (s *DatasetsService) AirbnbMarketsSearchTyped(ctx context.Context, params DatasetsAirbnbMarketsSearchParams, opts ...RequestOption) (DatasetsAirbnbMarketsSearchResponse, error) {
+	return requestTyped[DatasetsAirbnbMarketsSearchResponse](s.client, ctx, "datasets-airbnb-markets-search", paramsFromStruct(params), opts...)
 }
 
 func (s *DatasetsService) AppsChartsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
