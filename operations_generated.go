@@ -28,9 +28,20 @@ type operationDefinition struct {
 	CursorParams []string
 }
 
+type ModelAirbnbCalendarDay struct {
+	Available            bool   `json:"available,omitempty"`
+	AvailableForCheckin  bool   `json:"available_for_checkin,omitempty"`
+	AvailableForCheckout bool   `json:"available_for_checkout,omitempty"`
+	Bookable             bool   `json:"bookable,omitempty"`
+	Date                 string `json:"date,omitempty"`
+	MaxNights            int    `json:"max_nights,omitempty"`
+	MinNights            int    `json:"min_nights,omitempty"`
+}
+
 type ModelAirbnbCalendarMonth struct {
-	Month string `json:"month,omitempty"`
-	Year  int    `json:"year,omitempty"`
+	Days  []ModelAirbnbCalendarDay `json:"days,omitempty"`
+	Month string                   `json:"month,omitempty"`
+	Year  int                      `json:"year,omitempty"`
 }
 
 type ModelAirbnbCalendarResponse struct {
@@ -39,17 +50,20 @@ type ModelAirbnbCalendarResponse struct {
 }
 
 type ModelAirbnbListingItem struct {
-	Host        string  `json:"host,omitempty"`
-	Id          string  `json:"id,omitempty"`
-	Image       string  `json:"image,omitempty"`
-	Latitude    float64 `json:"latitude,omitempty"`
-	Location    string  `json:"location,omitempty"`
-	Longitude   float64 `json:"longitude,omitempty"`
-	Price       float64 `json:"price,omitempty"`
-	Rating      float64 `json:"rating,omitempty"`
-	ReviewCount int     `json:"review_count,omitempty"`
-	Title       string  `json:"title,omitempty"`
-	Url         string  `json:"url,omitempty"`
+	Host          string  `json:"host,omitempty"`
+	HostId        string  `json:"host_id,omitempty"`
+	Id            string  `json:"id,omitempty"`
+	Image         string  `json:"image,omitempty"`
+	IsSuperhost   bool    `json:"is_superhost,omitempty"`
+	Latitude      float64 `json:"latitude,omitempty"`
+	Location      string  `json:"location,omitempty"`
+	Longitude     float64 `json:"longitude,omitempty"`
+	Price         float64 `json:"price,omitempty"`
+	PricePerNight float64 `json:"price_per_night,omitempty"`
+	Rating        float64 `json:"rating,omitempty"`
+	ReviewCount   int     `json:"review_count,omitempty"`
+	Title         string  `json:"title,omitempty"`
+	Url           string  `json:"url,omitempty"`
 }
 
 type ModelAirbnbReviewItem struct {
@@ -66,19 +80,22 @@ type ModelAirbnbReviewsResponse struct {
 }
 
 type ModelAirbnbRoomResponse struct {
-	Amenities   []string `json:"amenities,omitempty"`
-	Description string   `json:"description,omitempty"`
-	Host        string   `json:"host,omitempty"`
-	Id          string   `json:"id,omitempty"`
-	Image       string   `json:"image,omitempty"`
-	Latitude    float64  `json:"latitude,omitempty"`
-	Location    string   `json:"location,omitempty"`
-	Longitude   float64  `json:"longitude,omitempty"`
-	Price       float64  `json:"price,omitempty"`
-	Rating      float64  `json:"rating,omitempty"`
-	ReviewCount int      `json:"review_count,omitempty"`
-	Title       string   `json:"title,omitempty"`
-	Url         string   `json:"url,omitempty"`
+	Amenities     []string `json:"amenities,omitempty"`
+	Description   string   `json:"description,omitempty"`
+	Host          string   `json:"host,omitempty"`
+	HostId        string   `json:"host_id,omitempty"`
+	Id            string   `json:"id,omitempty"`
+	Image         string   `json:"image,omitempty"`
+	IsSuperhost   bool     `json:"is_superhost,omitempty"`
+	Latitude      float64  `json:"latitude,omitempty"`
+	Location      string   `json:"location,omitempty"`
+	Longitude     float64  `json:"longitude,omitempty"`
+	Price         float64  `json:"price,omitempty"`
+	PricePerNight float64  `json:"price_per_night,omitempty"`
+	Rating        float64  `json:"rating,omitempty"`
+	ReviewCount   int      `json:"review_count,omitempty"`
+	Title         string   `json:"title,omitempty"`
+	Url           string   `json:"url,omitempty"`
 }
 
 type ModelAirbnbSearchResponse struct {
@@ -2573,6 +2590,34 @@ type ModelContactContactResponseDoc struct {
 	Msg  string                    `json:"msg,omitempty"`
 }
 
+type ModelDatasetsAppsSearchResponse struct {
+	Dataset  string             `json:"dataset,omitempty"`
+	Items    []ModelEsAppRecord `json:"items,omitempty"`
+	Page     int                `json:"page,omitempty"`
+	PageSize int                `json:"page_size,omitempty"`
+	Sort     string             `json:"sort,omitempty"`
+	Total    int                `json:"total,omitempty"`
+}
+
+type ModelDatasetsChartsSearchResponse struct {
+	Dataset      string              `json:"dataset,omitempty"`
+	Items        []ModelEsChartEntry `json:"items,omitempty"`
+	Page         int                 `json:"page,omitempty"`
+	PageSize     int                 `json:"page_size,omitempty"`
+	SnapshotDate string              `json:"snapshot_date,omitempty"`
+	Sort         string              `json:"sort,omitempty"`
+	Total        int                 `json:"total,omitempty"`
+}
+
+type ModelDatasetsCreatorsSearchResponse struct {
+	Dataset  string                 `json:"dataset,omitempty"`
+	Items    []ModelEsCreatorRecord `json:"items,omitempty"`
+	Page     int                    `json:"page,omitempty"`
+	PageSize int                    `json:"page_size,omitempty"`
+	Sort     string                 `json:"sort,omitempty"`
+	Total    int                    `json:"total,omitempty"`
+}
+
 type ModelDatasetsDatasetInfo struct {
 	Capabilities []string `json:"capabilities,omitempty"`
 	Description  string   `json:"description,omitempty"`
@@ -2582,6 +2627,21 @@ type ModelDatasetsDatasetInfo struct {
 
 type ModelDatasetsDatasetListResponse struct {
 	Items []ModelDatasetsDatasetInfo `json:"items,omitempty"`
+}
+
+type ModelDatasetsGithubUserFacetResponse struct {
+	Dataset string                              `json:"dataset,omitempty"`
+	Facet   string                              `json:"facet,omitempty"`
+	Items   []ModelEsGithubUserDatasetFacetItem `json:"items,omitempty"`
+}
+
+type ModelDatasetsGithubUserSearchResponse struct {
+	Dataset  string                         `json:"dataset,omitempty"`
+	Items    []ModelEsGithubUserDatasetItem `json:"items,omitempty"`
+	Page     int                            `json:"page,omitempty"`
+	PageSize int                            `json:"page_size,omitempty"`
+	Sort     string                         `json:"sort,omitempty"`
+	Total    int                            `json:"total,omitempty"`
 }
 
 type ModelDatasetsGoogleBusinessFacetResponse struct {
@@ -2597,6 +2657,51 @@ type ModelDatasetsGoogleBusinessSearchResponse struct {
 	PageSize int                                `json:"page_size,omitempty"`
 	Sort     string                             `json:"sort,omitempty"`
 	Total    int                                `json:"total,omitempty"`
+}
+
+type ModelDatasetsReviewsSearchResponse struct {
+	Dataset  string             `json:"dataset,omitempty"`
+	Items    []ModelEsAppReview `json:"items,omitempty"`
+	Page     int                `json:"page,omitempty"`
+	PageSize int                `json:"page_size,omitempty"`
+	Sort     string             `json:"sort,omitempty"`
+	Total    int                `json:"total,omitempty"`
+}
+
+type ModelDatasetsAppsSearchResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelDatasetsAppsSearchResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelDatasetsChartsSearchResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelDatasetsChartsSearchResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelDatasetsCreatorsSearchResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelDatasetsCreatorsSearchResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelDatasetsGithubUserResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelEsGithubUserRecord `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelDatasetsGithubUsersFacetResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelDatasetsGithubUserFacetResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelDatasetsGithubUsersSearchResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelDatasetsGithubUserSearchResponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
 }
 
 type ModelDatasetsGoogleMapBusinessResponseDoc struct {
@@ -2621,6 +2726,12 @@ type ModelDatasetsListResponseDoc struct {
 	Code int                              `json:"code,omitempty"`
 	Data ModelDatasetsDatasetListResponse `json:"data,omitempty"`
 	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelDatasetsReviewsSearchResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelDatasetsReviewsSearchResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
 }
 
 type ModelDiagnosticsAntibotCheckRequest struct {
@@ -2811,9 +2922,214 @@ type ModelEbaySellerShopResponseDoc struct {
 	Msg  any                 `json:"msg,omitempty"`
 }
 
+type ModelEsAppRecord struct {
+	AndroidMaxInstalls int      `json:"android_max_installs,omitempty"`
+	AndroidPackage     string   `json:"android_package,omitempty"`
+	AppUid             string   `json:"app_uid,omitempty"`
+	Category           string   `json:"category,omitempty"`
+	CountriesAvailable []string `json:"countries_available,omitempty"`
+	Country            string   `json:"country,omitempty"`
+	Currency           string   `json:"currency,omitempty"`
+	Developer          string   `json:"developer,omitempty"`
+	DeveloperId        string   `json:"developer_id,omitempty"`
+	FirstSeen          string   `json:"first_seen,omitempty"`
+	Free               bool     `json:"free,omitempty"`
+	IconUrl            string   `json:"icon_url,omitempty"`
+	IosAppId           string   `json:"ios_app_id,omitempty"`
+	IosBundleId        string   `json:"ios_bundle_id,omitempty"`
+	LastCrawled        string   `json:"last_crawled,omitempty"`
+	Popularity         int      `json:"popularity,omitempty"`
+	PriceCents         int      `json:"price_cents,omitempty"`
+	RatingsCount       int      `json:"ratings_count,omitempty"`
+	ReleasedAt         string   `json:"released_at,omitempty"`
+	Score              float64  `json:"score,omitempty"`
+	Store              string   `json:"store,omitempty"`
+	Title              string   `json:"title,omitempty"`
+	UpdatedAt          string   `json:"updated_at,omitempty"`
+	Url                string   `json:"url,omitempty"`
+	Version            string   `json:"version,omitempty"`
+}
+
+type ModelEsAppReview struct {
+	AppId       string `json:"app_id,omitempty"`
+	AppUid      string `json:"app_uid,omitempty"`
+	Country     string `json:"country,omitempty"`
+	LastCrawled string `json:"last_crawled,omitempty"`
+	ReplyText   string `json:"reply_text,omitempty"`
+	ReviewId    string `json:"review_id,omitempty"`
+	ReviewUid   string `json:"review_uid,omitempty"`
+	ReviewedAt  string `json:"reviewed_at,omitempty"`
+	Score       int    `json:"score,omitempty"`
+	Store       string `json:"store,omitempty"`
+	Text        string `json:"text,omitempty"`
+	ThumbsUp    int    `json:"thumbs_up,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Url         string `json:"url,omitempty"`
+	UserName    string `json:"user_name,omitempty"`
+	Version     string `json:"version,omitempty"`
+}
+
+type ModelEsChartEntry struct {
+	AppId        string  `json:"app_id,omitempty"`
+	Category     string  `json:"category,omitempty"`
+	ChartType    string  `json:"chart_type,omitempty"`
+	ChartUid     string  `json:"chart_uid,omitempty"`
+	Collection   string  `json:"collection,omitempty"`
+	Country      string  `json:"country,omitempty"`
+	CrawledAt    string  `json:"crawled_at,omitempty"`
+	Developer    string  `json:"developer,omitempty"`
+	Free         bool    `json:"free,omitempty"`
+	Rank         int     `json:"rank,omitempty"`
+	Score        float64 `json:"score,omitempty"`
+	SnapshotDate string  `json:"snapshot_date,omitempty"`
+	Store        string  `json:"store,omitempty"`
+	Title        string  `json:"title,omitempty"`
+	Url          string  `json:"url,omitempty"`
+}
+
+type ModelEsCreatorRecord struct {
+	AvatarUrl         string              `json:"avatar_url,omitempty"`
+	AvgViews          int                 `json:"avg_views,omitempty"`
+	Bio               string              `json:"bio,omitempty"`
+	BioLink           string              `json:"bio_link,omitempty"`
+	BrandAffiliations []string            `json:"brand_affiliations,omitempty"`
+	Country           string              `json:"country,omitempty"`
+	CreatorUid        string              `json:"creator_uid,omitempty"`
+	Email             string              `json:"email,omitempty"`
+	EmailStatus       string              `json:"email_status,omitempty"`
+	EngagementRate    float64             `json:"engagement_rate,omitempty"`
+	FirstSeen         string              `json:"first_seen,omitempty"`
+	FollowerCount     int                 `json:"follower_count,omitempty"`
+	FollowingCount    int                 `json:"following_count,omitempty"`
+	Language          string              `json:"language,omitempty"`
+	LastCrawled       string              `json:"last_crawled,omitempty"`
+	LastPostAt        string              `json:"last_post_at,omitempty"`
+	Niche             string              `json:"niche,omitempty"`
+	Nickname          string              `json:"nickname,omitempty"`
+	Platform          string              `json:"platform,omitempty"`
+	PostStats         ModelEsPostStatsAgg `json:"post_stats,omitempty"`
+	SecUid            string              `json:"sec_uid,omitempty"`
+	Source            string              `json:"source,omitempty"`
+	Status            string              `json:"status,omitempty"`
+	TotalLikes        int                 `json:"total_likes,omitempty"`
+	UniqueId          string              `json:"unique_id,omitempty"`
+	Verified          bool                `json:"verified,omitempty"`
+	VideoCount        int                 `json:"video_count,omitempty"`
+}
+
 type ModelEsGeoPoint struct {
 	Lat float64 `json:"lat,omitempty"`
 	Lon float64 `json:"lon,omitempty"`
+}
+
+type ModelEsGithubGeo struct {
+	City        string                `json:"city,omitempty"`
+	Country     string                `json:"country,omitempty"`
+	CountryCode string                `json:"country_code,omitempty"`
+	Location    ModelEsGithubGeoPoint `json:"location,omitempty"`
+	State       string                `json:"state,omitempty"`
+}
+
+type ModelEsGithubGeoPoint struct {
+	Lat float64 `json:"lat,omitempty"`
+	Lon float64 `json:"lon,omitempty"`
+}
+
+type ModelEsGithubSocialLink struct {
+	Provider string `json:"provider,omitempty"`
+	Url      string `json:"url,omitempty"`
+}
+
+type ModelEsGithubUserDatasetFacetItem struct {
+	Count int    `json:"count,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelEsGithubUserDatasetItem struct {
+	AccountAgeYears        float64                   `json:"account_age_years,omitempty"`
+	Active90d              bool                      `json:"active_90d,omitempty"`
+	AvatarUrl              string                    `json:"avatar_url,omitempty"`
+	Bio                    string                    `json:"bio,omitempty"`
+	Blog                   string                    `json:"blog,omitempty"`
+	Company                string                    `json:"company,omitempty"`
+	CompanyNormalized      string                    `json:"company_normalized,omitempty"`
+	CrawledAt              string                    `json:"crawled_at,omitempty"`
+	CreatedAt              string                    `json:"created_at,omitempty"`
+	DistanceM              float64                   `json:"distance_m,omitempty"`
+	Domains                []string                  `json:"domains,omitempty"`
+	Email                  string                    `json:"email,omitempty"`
+	FollowerFollowingRatio float64                   `json:"follower_following_ratio,omitempty"`
+	Followers              int                       `json:"followers,omitempty"`
+	Following              int                       `json:"following,omitempty"`
+	Geo                    ModelEsGithubGeo          `json:"geo,omitempty"`
+	HasBlog                bool                      `json:"has_blog,omitempty"`
+	HasEmail               bool                      `json:"has_email,omitempty"`
+	HasTwitter             bool                      `json:"has_twitter,omitempty"`
+	Hireable               bool                      `json:"hireable,omitempty"`
+	HtmlUrl                string                    `json:"html_url,omitempty"`
+	Id                     int                       `json:"id,omitempty"`
+	InfluenceTier          string                    `json:"influence_tier,omitempty"`
+	IsBot                  bool                      `json:"is_bot,omitempty"`
+	IsOrg                  bool                      `json:"is_org,omitempty"`
+	LastActiveAt           string                    `json:"last_active_at,omitempty"`
+	LocationRaw            string                    `json:"location_raw,omitempty"`
+	Login                  string                    `json:"login,omitempty"`
+	Name                   string                    `json:"name,omitempty"`
+	Prs30d                 int                       `json:"prs_30d,omitempty"`
+	PublicGists            int                       `json:"public_gists,omitempty"`
+	PublicRepos            int                       `json:"public_repos,omitempty"`
+	Pushes30d              int                       `json:"pushes_30d,omitempty"`
+	RankScore              int                       `json:"rank_score,omitempty"`
+	Reachable              bool                      `json:"reachable,omitempty"`
+	Reviews30d             int                       `json:"reviews_30d,omitempty"`
+	SchemaVersion          int                       `json:"schema_version,omitempty"`
+	SocialAccounts         []ModelEsGithubSocialLink `json:"social_accounts,omitempty"`
+	SocialCount            int                       `json:"social_count,omitempty"`
+	TwitterUsername        string                    `json:"twitter_username,omitempty"`
+	Type                   string                    `json:"type,omitempty"`
+}
+
+type ModelEsGithubUserRecord struct {
+	AccountAgeYears        float64                   `json:"account_age_years,omitempty"`
+	Active90d              bool                      `json:"active_90d,omitempty"`
+	AvatarUrl              string                    `json:"avatar_url,omitempty"`
+	Bio                    string                    `json:"bio,omitempty"`
+	Blog                   string                    `json:"blog,omitempty"`
+	Company                string                    `json:"company,omitempty"`
+	CompanyNormalized      string                    `json:"company_normalized,omitempty"`
+	CrawledAt              string                    `json:"crawled_at,omitempty"`
+	CreatedAt              string                    `json:"created_at,omitempty"`
+	Domains                []string                  `json:"domains,omitempty"`
+	Email                  string                    `json:"email,omitempty"`
+	FollowerFollowingRatio float64                   `json:"follower_following_ratio,omitempty"`
+	Followers              int                       `json:"followers,omitempty"`
+	Following              int                       `json:"following,omitempty"`
+	Geo                    ModelEsGithubGeo          `json:"geo,omitempty"`
+	HasBlog                bool                      `json:"has_blog,omitempty"`
+	HasEmail               bool                      `json:"has_email,omitempty"`
+	HasTwitter             bool                      `json:"has_twitter,omitempty"`
+	Hireable               bool                      `json:"hireable,omitempty"`
+	HtmlUrl                string                    `json:"html_url,omitempty"`
+	Id                     int                       `json:"id,omitempty"`
+	InfluenceTier          string                    `json:"influence_tier,omitempty"`
+	IsBot                  bool                      `json:"is_bot,omitempty"`
+	IsOrg                  bool                      `json:"is_org,omitempty"`
+	LastActiveAt           string                    `json:"last_active_at,omitempty"`
+	LocationRaw            string                    `json:"location_raw,omitempty"`
+	Login                  string                    `json:"login,omitempty"`
+	Name                   string                    `json:"name,omitempty"`
+	Prs30d                 int                       `json:"prs_30d,omitempty"`
+	PublicGists            int                       `json:"public_gists,omitempty"`
+	PublicRepos            int                       `json:"public_repos,omitempty"`
+	Pushes30d              int                       `json:"pushes_30d,omitempty"`
+	RankScore              int                       `json:"rank_score,omitempty"`
+	Reachable              bool                      `json:"reachable,omitempty"`
+	Reviews30d             int                       `json:"reviews_30d,omitempty"`
+	SchemaVersion          int                       `json:"schema_version,omitempty"`
+	SocialAccounts         []ModelEsGithubSocialLink `json:"social_accounts,omitempty"`
+	SocialCount            int                       `json:"social_count,omitempty"`
+	TwitterUsername        string                    `json:"twitter_username,omitempty"`
+	Type                   string                    `json:"type,omitempty"`
 }
 
 type ModelEsGoogleBusiness struct {
@@ -2880,6 +3196,37 @@ type ModelEsGoogleBusinessDatasetItem struct {
 	Url              string                        `json:"url,omitempty"`
 	Website          string                        `json:"website,omitempty"`
 	WebsiteStatus    ModelEsWebsiteStatus          `json:"website_status,omitempty"`
+}
+
+type ModelEsPostSound struct {
+	Author  string `json:"author,omitempty"`
+	MusicId string `json:"music_id,omitempty"`
+	Title   string `json:"title,omitempty"`
+	Uses    int    `json:"uses,omitempty"`
+}
+
+type ModelEsPostStatsAgg struct {
+	AnalyzedAt               string             `json:"analyzed_at,omitempty"`
+	AvgComments              int                `json:"avg_comments,omitempty"`
+	AvgLikes                 int                `json:"avg_likes,omitempty"`
+	AvgSaves                 int                `json:"avg_saves,omitempty"`
+	AvgShares                int                `json:"avg_shares,omitempty"`
+	AvgVideoDurationSec      float64            `json:"avg_video_duration_sec,omitempty"`
+	AvgViews                 int                `json:"avg_views,omitempty"`
+	BestPostId               string             `json:"best_post_id,omitempty"`
+	BestPostViews            int                `json:"best_post_views,omitempty"`
+	EngagementRateByFollower float64            `json:"engagement_rate_by_follower,omitempty"`
+	EngagementRateByView     float64            `json:"engagement_rate_by_view,omitempty"`
+	FirstPostAt              string             `json:"first_post_at,omitempty"`
+	LastPostAt               string             `json:"last_post_at,omitempty"`
+	MedianLikes              int                `json:"median_likes,omitempty"`
+	MedianViews              int                `json:"median_views,omitempty"`
+	OriginalSoundRatio       float64            `json:"original_sound_ratio,omitempty"`
+	PostsPerWeek             float64            `json:"posts_per_week,omitempty"`
+	SampledPosts             int                `json:"sampled_posts,omitempty"`
+	TopHashtags              []string           `json:"top_hashtags,omitempty"`
+	TopSounds                []ModelEsPostSound `json:"top_sounds,omitempty"`
+	ViewsToFollowerRatio     float64            `json:"views_to_follower_ratio,omitempty"`
 }
 
 type ModelEsWebsiteStatus struct {
@@ -6109,13 +6456,6 @@ type ModelPopularTrendCountryIndustryMetaItem struct {
 	Value string `json:"value,omitempty"`
 }
 
-type ModelPopularTrendCreatorTrendResp struct {
-	Code      int            `json:"code,omitempty"`
-	Data      map[string]any `json:"data,omitempty"`
-	Msg       string         `json:"msg,omitempty"`
-	RequestId string         `json:"request_id,omitempty"`
-}
-
 type ModelPopularTrendTopAdsAnalysisPoint struct {
 	Second int     `json:"second,omitempty"`
 	Value  float64 `json:"value,omitempty"`
@@ -6247,12 +6587,6 @@ type ModelPopulartrendCountryIndustryMetaResponseDoc struct {
 	Code int                                  `json:"code,omitempty"`
 	Data ModelPopularTrendCountryIndustryMeta `json:"data,omitempty"`
 	Msg  string                               `json:"msg,omitempty"`
-}
-
-type ModelPopulartrendCreatorTrendResponseDoc struct {
-	Code int                               `json:"code,omitempty"`
-	Data ModelPopularTrendCreatorTrendResp `json:"data,omitempty"`
-	Msg  string                            `json:"msg,omitempty"`
 }
 
 type ModelPopulartrendTopAdsAnalysisResponseDoc struct {
@@ -10963,6 +11297,91 @@ type ModelWebScrapeResponseDoc struct {
 	Msg  string               `json:"msg,omitempty"`
 }
 
+type ModelXMetrics struct {
+	Bookmarks int `json:"bookmarks,omitempty"`
+	Likes     int `json:"likes,omitempty"`
+	Replies   int `json:"replies,omitempty"`
+	Reposts   int `json:"reposts,omitempty"`
+	Views     int `json:"views,omitempty"`
+}
+
+type ModelXPost struct {
+	Author    ModelXUser      `json:"author,omitempty"`
+	CreatedAt string          `json:"created_at,omitempty"`
+	Id        string          `json:"id,omitempty"`
+	Metrics   ModelXMetrics   `json:"metrics,omitempty"`
+	Quoted    ModelXPostQuote `json:"quoted,omitempty"`
+	Text      string          `json:"text,omitempty"`
+	Url       string          `json:"url,omitempty"`
+}
+
+type ModelXPostQuote struct {
+	Author    ModelXUser `json:"author,omitempty"`
+	CreatedAt string     `json:"created_at,omitempty"`
+	Id        string     `json:"id,omitempty"`
+	Text      string     `json:"text,omitempty"`
+	Url       string     `json:"url,omitempty"`
+}
+
+type ModelXProfile struct {
+	AvatarUrl      string               `json:"avatar_url,omitempty"`
+	BannerUrl      string               `json:"banner_url,omitempty"`
+	CreatedAt      string               `json:"created_at,omitempty"`
+	Description    string               `json:"description,omitempty"`
+	ExternalUrl    string               `json:"external_url,omitempty"`
+	Id             string               `json:"id,omitempty"`
+	IsBlueVerified bool                 `json:"is_blue_verified,omitempty"`
+	IsProtected    bool                 `json:"is_protected,omitempty"`
+	IsUnavailable  bool                 `json:"is_unavailable,omitempty"`
+	Location       string               `json:"location,omitempty"`
+	Metrics        ModelXProfileMetrics `json:"metrics,omitempty"`
+	Name           string               `json:"name,omitempty"`
+	Url            string               `json:"url,omitempty"`
+	Username       string               `json:"username,omitempty"`
+}
+
+type ModelXProfileMetrics struct {
+	Followers int `json:"followers,omitempty"`
+	Following int `json:"following,omitempty"`
+	Posts     int `json:"posts,omitempty"`
+}
+
+type ModelXProfilePosts struct {
+	Count    int          `json:"count,omitempty"`
+	Posts    []ModelXPost `json:"posts,omitempty"`
+	Url      string       `json:"url,omitempty"`
+	Username string       `json:"username,omitempty"`
+}
+
+type ModelXUser struct {
+	AvatarUrl      string `json:"avatar_url,omitempty"`
+	BannerUrl      string `json:"banner_url,omitempty"`
+	Id             string `json:"id,omitempty"`
+	IsBlueVerified bool   `json:"is_blue_verified,omitempty"`
+	IsProtected    bool   `json:"is_protected,omitempty"`
+	Name           string `json:"name,omitempty"`
+	Url            string `json:"url,omitempty"`
+	Username       string `json:"username,omitempty"`
+}
+
+type ModelXPostResponseDoc struct {
+	Code int        `json:"code,omitempty"`
+	Data ModelXPost `json:"data,omitempty"`
+	Msg  string     `json:"msg,omitempty"`
+}
+
+type ModelXProfilePostsResponseDoc struct {
+	Code int                `json:"code,omitempty"`
+	Data ModelXProfilePosts `json:"data,omitempty"`
+	Msg  string             `json:"msg,omitempty"`
+}
+
+type ModelXProfileResponseDoc struct {
+	Code int           `json:"code,omitempty"`
+	Data ModelXProfile `json:"data,omitempty"`
+	Msg  string        `json:"msg,omitempty"`
+}
+
 type ModelYahoofinanceActionEvents struct {
 	CapitalGains []map[string]any `json:"capital_gains,omitempty"`
 	Dividends    []map[string]any `json:"dividends,omitempty"`
@@ -11880,7 +12299,7 @@ type ModelZillowSearchResponse struct {
 	Results  []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 499
+const operationCount = 525
 
 const (
 	OperationAirbnbRoom                                             = "airbnb-room"
@@ -11966,6 +12385,14 @@ const (
 	OperationCoinGeckoTokenUnlocks                                  = "coingecko-token-unlocks"
 	OperationCoinGeckoTreasuries                                    = "coingecko-treasuries"
 	OperationCoinGeckoTrending                                      = "coingecko-trending"
+	OperationDatasetsAppsChartsSearch                               = "datasets-apps-charts-search"
+	OperationDatasetsAppsReviewsSearch                              = "datasets-apps-reviews-search"
+	OperationDatasetsAppsSearch                                     = "datasets-apps-search"
+	OperationDatasetsCreatorsSearch                                 = "datasets-creators-search"
+	OperationDatasetsGithubUsersFacets                              = "datasets-github-users-facets"
+	OperationDatasetsGithubUsersItem                                = "datasets-github-users-item"
+	OperationDatasetsGithubUsersNearby                              = "datasets-github-users-nearby"
+	OperationDatasetsGithubUsersSearch                              = "datasets-github-users-search"
 	OperationDatasetsGoogleMapBusinessesFacets                      = "datasets-google-map-businesses-facets"
 	OperationDatasetsGoogleMapBusinessesItem                        = "datasets-google-map-businesses-item"
 	OperationDatasetsGoogleMapBusinessesNearby                      = "datasets-google-map-businesses-nearby"
@@ -11980,6 +12407,22 @@ const (
 	OperationGeocodingLookup                                        = "geocoding-lookup"
 	OperationGeocodingReverse                                       = "geocoding-reverse"
 	OperationGeocodingSearch                                        = "geocoding-search"
+	OperationGitHubGithubOrg                                        = "github-org"
+	OperationGitHubGithubOrgRepos                                   = "github-org-repos"
+	OperationGitHubGithubRepo                                       = "github-repo"
+	OperationGitHubGithubRepoContributors                           = "github-repo-contributors"
+	OperationGitHubGithubRepoForks                                  = "github-repo-forks"
+	OperationGitHubGithubRepoLanguages                              = "github-repo-languages"
+	OperationGitHubGithubRepoReleases                               = "github-repo-releases"
+	OperationGitHubGithubRepoStargazers                             = "github-repo-stargazers"
+	OperationGitHubGithubSearchRepositories                         = "github-search-repositories"
+	OperationGitHubGithubSearchUsers                                = "github-search-users"
+	OperationGitHubGithubTrending                                   = "github-trending"
+	OperationGitHubGithubTrendingDevelopers                         = "github-trending-developers"
+	OperationGitHubGithubUser                                       = "github-user"
+	OperationGitHubGithubUserEvents                                 = "github-user-events"
+	OperationGitHubGithubUserPinned                                 = "github-user-pinned"
+	OperationGitHubGithubUserRepos                                  = "github-user-repos"
 	OperationGoogleFinanceAnalystArticles                           = "google-finance-analyst-articles"
 	OperationGoogleFinanceChart                                     = "google-finance-chart"
 	OperationGoogleFinanceClassification                            = "google-finance-classification"
@@ -12284,7 +12727,6 @@ const (
 	OperationTikTokChallengeList                                    = "tiktok-challenge-list"
 	OperationTikTokExplore                                          = "tiktok-explore"
 	OperationTikTokPopularTrendCountryIndustryMeta                  = "tiktok-popular-trend-country-industry-meta"
-	OperationTikTokPopularTrendCreator                              = "tiktok-popular-trend-creator"
 	OperationTikTokPost                                             = "tiktok-post"
 	OperationTikTokProfile                                          = "tiktok-profile"
 	OperationTikTokProfilePost                                      = "tiktok-profile-post"
@@ -12327,6 +12769,9 @@ const (
 	OperationWebAntibotCheck                                        = "antibot-check"
 	OperationWebContact                                             = "contact"
 	OperationWebScrape                                              = "web-scrape"
+	OperationXPost                                                  = "x-post"
+	OperationXProfile                                               = "x-profile"
+	OperationXProfilePosts                                          = "x-profile-posts"
 	OperationYahooFinanceCalendar                                   = "yahoo-finance-calendar"
 	OperationYahooFinanceCalendars                                  = "yahoo-finance-calendars"
 	OperationYahooFinanceDownload                                   = "yahoo-finance-download"
@@ -12470,6 +12915,14 @@ var operations = map[string]operationDefinition{
 	"coingecko-trending":                            operationDefinition{Method: "GET", Path: "/coingecko/trending", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"contact":                                       operationDefinition{Method: "POST", Path: "/contact", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-list":                                 operationDefinition{Method: "GET", Path: "/datasets", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-apps-charts-search":                   operationDefinition{Method: "GET", Path: "/datasets/apps-charts/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "chart_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "collection", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-apps-reviews-search":                  operationDefinition{Method: "GET", Path: "/datasets/apps-reviews/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_score", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-apps-search":                          operationDefinition{Method: "GET", Path: "/datasets/apps/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "developer", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "free", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_reviews", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-creators-search":                      operationDefinition{Method: "GET", Path: "/datasets/creators/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "handle", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "niche", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "verified", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_email", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_inactive", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-github-users-facets":                  operationDefinition{Method: "GET", Path: "/datasets/github-users/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "login", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "company", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "influence_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "domain", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_email", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_twitter", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_blog", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "reachable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "active_90d", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "hireable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_org", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_bot", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_repos", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rank_score", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_account_age_years", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_account_age_years", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-github-users-item":                    operationDefinition{Method: "GET", Path: "/datasets/github-users/items/{login}", PathParams: []string{"login"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-github-users-nearby":                  operationDefinition{Method: "GET", Path: "/datasets/github-users/nearby", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "influence_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "reachable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-github-users-search":                  operationDefinition{Method: "GET", Path: "/datasets/github-users/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "login", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "company", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "influence_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "domain", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_email", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_twitter", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_blog", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "reachable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "active_90d", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "hireable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_org", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_bot", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_repos", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rank_score", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_account_age_years", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_account_age_years", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-google-map-businesses-facets":         operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "county", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "town", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_website", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_phone", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-google-map-businesses-item":           operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/items/{place_id}", PathParams: []string{"place_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-google-map-businesses-nearby":         operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/nearby", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -12484,6 +12937,22 @@ var operations = map[string]operationDefinition{
 	"geocoding-lookup":                              operationDefinition{Method: "GET", Path: "/geocoding/lookup", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "osm_ids", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "accept_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"geocoding-reverse":                             operationDefinition{Method: "GET", Path: "/geocoding/reverse", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "zoom", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "accept_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"geocoding-search":                              operationDefinition{Method: "GET", Path: "/geocoding/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "street", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "county", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "postalcode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "countrycodes", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "accept_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"github-org":                                    operationDefinition{Method: "GET", Path: "/github/org/{org}", PathParams: []string{"org"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"github-org-repos":                              operationDefinition{Method: "GET", Path: "/github/org/{org}/repos", PathParams: []string{"org"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"created", "updated", "pushed", "full_name"}}, parameterDefinition{Name: "direction", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "public", "forks", "sources", "member"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"github-repo":                                   operationDefinition{Method: "GET", Path: "/github/repo/{owner}/{repo}", PathParams: []string{"owner", "repo"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"github-repo-contributors":                      operationDefinition{Method: "GET", Path: "/github/repo/{owner}/{repo}/contributors", PathParams: []string{"owner", "repo"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"github-repo-forks":                             operationDefinition{Method: "GET", Path: "/github/repo/{owner}/{repo}/forks", PathParams: []string{"owner", "repo"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"newest", "oldest", "stargazers", "watchers"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"github-repo-languages":                         operationDefinition{Method: "GET", Path: "/github/repo/{owner}/{repo}/languages", PathParams: []string{"owner", "repo"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"github-repo-releases":                          operationDefinition{Method: "GET", Path: "/github/repo/{owner}/{repo}/releases", PathParams: []string{"owner", "repo"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"github-repo-stargazers":                        operationDefinition{Method: "GET", Path: "/github/repo/{owner}/{repo}/stargazers", PathParams: []string{"owner", "repo"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"github-search-repositories":                    operationDefinition{Method: "GET", Path: "/github/search/repositories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"stars", "forks", "help-wanted-issues", "updated"}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"github-search-users":                           operationDefinition{Method: "GET", Path: "/github/search/users", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"followers", "repositories", "joined"}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"github-trending":                               operationDefinition{Method: "GET", Path: "/github/trending", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "since", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"daily", "weekly", "monthly"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"github-trending-developers":                    operationDefinition{Method: "GET", Path: "/github/trending/developers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "since", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"daily", "weekly", "monthly"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"github-user":                                   operationDefinition{Method: "GET", Path: "/github/user/{username}", PathParams: []string{"username"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"github-user-events":                            operationDefinition{Method: "GET", Path: "/github/user/{username}/events", PathParams: []string{"username"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"github-user-pinned":                            operationDefinition{Method: "GET", Path: "/github/user/{username}/pinned", PathParams: []string{"username"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"github-user-repos":                             operationDefinition{Method: "GET", Path: "/github/user/{username}/repos", PathParams: []string{"username"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"created", "updated", "pushed", "full_name"}}, parameterDefinition{Name: "direction", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "owner", "member"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"google-finance-analyst-articles":               operationDefinition{Method: "GET", Path: "/google/finance/analyst-articles/{quote}", PathParams: []string{"quote"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-finance-chart":                          operationDefinition{Method: "GET", Path: "/google/finance/chart/{quote}", PathParams: []string{"quote"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "window", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-finance-classification":                 operationDefinition{Method: "GET", Path: "/google/finance/classification/{quote}", PathParams: []string{"quote"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -12688,17 +13157,17 @@ var operations = map[string]operationDefinition{
 	"producthunt-reviews":                           operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/reviews", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"producthunt-search":                            operationDefinition{Method: "GET", Path: "/producthunt/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"product", "user", "launch"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "featured", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "topics", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"ready":                                         operationDefinition{Method: "GET", Path: "/ready", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{}},
-	"reddit-comments":                               operationDefinition{Method: "GET", Path: "/reddit/comments/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"confidence", "top", "new", "controversial", "old", "qa"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "depth", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"reddit-domain-posts":                           operationDefinition{Method: "GET", Path: "/reddit/domain/{domain}/posts", PathParams: []string{"domain"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "top", "rising"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"reddit-post":                                   operationDefinition{Method: "GET", Path: "/reddit/post/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"reddit-search":                                 operationDefinition{Method: "GET", Path: "/reddit/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "subreddit", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "hot", "new", "top", "comments"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"reddit-subreddit-about":                        operationDefinition{Method: "GET", Path: "/reddit/subreddit/{subreddit}/about", PathParams: []string{"subreddit"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"reddit-subreddit-comments":                     operationDefinition{Method: "GET", Path: "/reddit/subreddit/{subreddit}/comments", PathParams: []string{"subreddit"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"reddit-subreddit-posts":                        operationDefinition{Method: "GET", Path: "/reddit/subreddit/{subreddit}/posts", PathParams: []string{"subreddit"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "top", "rising"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"reddit-subreddits-posts":                       operationDefinition{Method: "GET", Path: "/reddit/subreddits/posts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "subreddits", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "top", "rising"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"reddit-trends":                                 operationDefinition{Method: "GET", Path: "/reddit/trends", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "rising", "top"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"reddit-user-comments":                          operationDefinition{Method: "GET", Path: "/reddit/user/{username}/comments", PathParams: []string{"username"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"reddit-user-posts":                             operationDefinition{Method: "GET", Path: "/reddit/user/{username}/posts", PathParams: []string{"username"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reddit-comments":                               operationDefinition{Method: "GET", Path: "/reddit/comments/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"confidence", "top", "new", "controversial", "old", "qa"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "depth", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reddit-domain-posts":                           operationDefinition{Method: "GET", Path: "/reddit/domain/{domain}/posts", PathParams: []string{"domain"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "top", "rising"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reddit-post":                                   operationDefinition{Method: "GET", Path: "/reddit/post/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reddit-search":                                 operationDefinition{Method: "GET", Path: "/reddit/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "subreddit", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "hot", "new", "top", "comments"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reddit-subreddit-about":                        operationDefinition{Method: "GET", Path: "/reddit/subreddit/{subreddit}/about", PathParams: []string{"subreddit"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reddit-subreddit-comments":                     operationDefinition{Method: "GET", Path: "/reddit/subreddit/{subreddit}/comments", PathParams: []string{"subreddit"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reddit-subreddit-posts":                        operationDefinition{Method: "GET", Path: "/reddit/subreddit/{subreddit}/posts", PathParams: []string{"subreddit"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "top", "rising"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reddit-subreddits-posts":                       operationDefinition{Method: "GET", Path: "/reddit/subreddits/posts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "subreddits", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "top", "rising"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reddit-trends":                                 operationDefinition{Method: "GET", Path: "/reddit/trends", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "rising", "top"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reddit-user-comments":                          operationDefinition{Method: "GET", Path: "/reddit/user/{username}/comments", PathParams: []string{"username"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reddit-user-posts":                             operationDefinition{Method: "GET", Path: "/reddit/user/{username}/posts", PathParams: []string{"username"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"redfin-estimate":                               operationDefinition{Method: "GET", Path: "/redfin/estimate", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "property_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"redfin-property":                               operationDefinition{Method: "GET", Path: "/redfin/property", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "property_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "listing_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"redfin-region-trends":                          operationDefinition{Method: "GET", Path: "/redfin/region-trends", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "region_type", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -12789,7 +13258,6 @@ var operations = map[string]operationDefinition{
 	"tiktok-challenge":                              operationDefinition{Method: "GET", Path: "/tiktok/hashtag/{name}", PathParams: []string{"name"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"tiktok-challenge-list":                         operationDefinition{Method: "GET", Path: "/tiktok/hashtags", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
 	"tiktok-popular-trend-country-industry-meta":    operationDefinition{Method: "GET", Path: "/tiktok/popular-trend/country-industry-meta", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"tiktok-popular-trend-creator":                  operationDefinition{Method: "GET", Path: "/tiktok/popular-trend/creator", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"follower", "engagement", "avg_views"}}, parameterDefinition{Name: "creator_country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "audience_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"1", "2", "3", "4"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"tiktok-post":                                   operationDefinition{Method: "GET", Path: "/tiktok/post/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"tiktok-profile-post":                           operationDefinition{Method: "GET", Path: "/tiktok/posts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "secUid", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_type", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"0", "1", "2"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
 	"tiktok-profile":                                operationDefinition{Method: "GET", Path: "/tiktok/profile/{handler}", PathParams: []string{"handler"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -12829,6 +13297,9 @@ var operations = map[string]operationDefinition{
 	"user-me-api-keys-rotate":                       operationDefinition{Method: "POST", Path: "/user/me/api-keys/rotate", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
 	"user-me-api-keys-reveal":                       operationDefinition{Method: "POST", Path: "/user/me/api-keys/{id}/reveal", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
 	"web-scrape":                                    operationDefinition{Method: "POST", Path: "/web/scrape", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "scrapeOption", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"x-post":                                        operationDefinition{Method: "GET", Path: "/x/post/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "username", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"x-profile":                                     operationDefinition{Method: "GET", Path: "/x/profile/{username}", PathParams: []string{"username"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"x-profile-posts":                               operationDefinition{Method: "GET", Path: "/x/profile/{username}/posts", PathParams: []string{"username"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"yahoo-finance-calendars":                       operationDefinition{Method: "GET", Path: "/yahoo-finance/calendars", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"yahoo-finance-calendar":                        operationDefinition{Method: "GET", Path: "/yahoo-finance/calendars/{type}", PathParams: []string{"type"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "start", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "end", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "market_cap", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "filter_most_active", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"start"}},
 	"yahoo-finance-download":                        operationDefinition{Method: "POST", Path: "/yahoo-finance/download", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -12901,6 +13372,7 @@ type Services struct {
 	Datasets        *DatasetsService
 	EBay            *EBayService
 	Geocoding       *GeocodingService
+	GitHub          *GitHubService
 	Google          *GoogleService
 	GooglePlay      *GooglePlayService
 	Imdb            *ImdbService
@@ -12926,6 +13398,7 @@ type Services struct {
 	Trustpilot      *TrustpilotService
 	Usage           *UsageService
 	User            *UserService
+	X               *XService
 	YahooFinance    *YahooFinanceService
 	YouTube         *YouTubeService
 	Zillow          *ZillowService
@@ -12947,6 +13420,7 @@ func initServices(c *Client) Services {
 		Datasets:        &DatasetsService{client: c},
 		EBay:            &EBayService{client: c},
 		Geocoding:       &GeocodingService{client: c},
+		GitHub:          &GitHubService{client: c},
 		Google:          &GoogleService{client: c},
 		GooglePlay:      &GooglePlayService{client: c},
 		Imdb:            &ImdbService{client: c},
@@ -12972,6 +13446,7 @@ func initServices(c *Client) Services {
 		Trustpilot:      &TrustpilotService{client: c},
 		Usage:           &UsageService{client: c},
 		User:            &UserService{client: c},
+		X:               &XService{client: c},
 		YahooFinance:    &YahooFinanceService{client: c},
 		YouTube:         &YouTubeService{client: c},
 		Zillow:          &ZillowService{client: c},
@@ -14387,6 +14862,217 @@ func (s *DatasetsService) ListTyped(ctx context.Context, params DatasetsListPara
 	return requestTyped[DatasetsListResponse](s.client, ctx, "datasets-list", paramsFromStruct(params), opts...)
 }
 
+func (s *DatasetsService) AppsChartsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-apps-charts-search", params, opts...)
+}
+
+type DatasetsAppsChartsSearchParams struct {
+	Q          *string `crawlora:"q,omitempty"`
+	Store      *string `crawlora:"store,omitempty"`
+	ChartType  *string `crawlora:"chart_type,omitempty"`
+	Collection *string `crawlora:"collection,omitempty"`
+	Category   *string `crawlora:"category,omitempty"`
+	Country    *string `crawlora:"country,omitempty"`
+	AppId      *string `crawlora:"app_id,omitempty"`
+	Date       *string `crawlora:"date,omitempty"`
+	Sort       *string `crawlora:"sort,omitempty"`
+	Page       *int    `crawlora:"page,omitempty"`
+	PageSize   *int    `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsAppsChartsSearchResponse = ModelDatasetsChartsSearchResponseDoc
+
+func (s *DatasetsService) AppsChartsSearchTyped(ctx context.Context, params DatasetsAppsChartsSearchParams, opts ...RequestOption) (DatasetsAppsChartsSearchResponse, error) {
+	return requestTyped[DatasetsAppsChartsSearchResponse](s.client, ctx, "datasets-apps-charts-search", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) AppsReviewsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-apps-reviews-search", params, opts...)
+}
+
+type DatasetsAppsReviewsSearchParams struct {
+	Q        *string `crawlora:"q,omitempty"`
+	Store    *string `crawlora:"store,omitempty"`
+	AppId    *string `crawlora:"app_id,omitempty"`
+	Country  *string `crawlora:"country,omitempty"`
+	MinScore *int    `crawlora:"min_score,omitempty"`
+	Sort     *string `crawlora:"sort,omitempty"`
+	Page     *int    `crawlora:"page,omitempty"`
+	PageSize *int    `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsAppsReviewsSearchResponse = ModelDatasetsReviewsSearchResponseDoc
+
+func (s *DatasetsService) AppsReviewsSearchTyped(ctx context.Context, params DatasetsAppsReviewsSearchParams, opts ...RequestOption) (DatasetsAppsReviewsSearchResponse, error) {
+	return requestTyped[DatasetsAppsReviewsSearchResponse](s.client, ctx, "datasets-apps-reviews-search", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) AppsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-apps-search", params, opts...)
+}
+
+type DatasetsAppsSearchParams struct {
+	Q          *string  `crawlora:"q,omitempty"`
+	Store      *string  `crawlora:"store,omitempty"`
+	Category   *string  `crawlora:"category,omitempty"`
+	Country    *string  `crawlora:"country,omitempty"`
+	Developer  *string  `crawlora:"developer,omitempty"`
+	Free       *bool    `crawlora:"free,omitempty"`
+	MinRating  *float64 `crawlora:"min_rating,omitempty"`
+	MinReviews *int     `crawlora:"min_reviews,omitempty"`
+	Sort       *string  `crawlora:"sort,omitempty"`
+	Page       *int     `crawlora:"page,omitempty"`
+	PageSize   *int     `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsAppsSearchResponse = ModelDatasetsAppsSearchResponseDoc
+
+func (s *DatasetsService) AppsSearchTyped(ctx context.Context, params DatasetsAppsSearchParams, opts ...RequestOption) (DatasetsAppsSearchResponse, error) {
+	return requestTyped[DatasetsAppsSearchResponse](s.client, ctx, "datasets-apps-search", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) CreatorsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-creators-search", params, opts...)
+}
+
+type DatasetsCreatorsSearchParams struct {
+	Q               *string `crawlora:"q,omitempty"`
+	Handle          *string `crawlora:"handle,omitempty"`
+	Niche           *string `crawlora:"niche,omitempty"`
+	Country         *string `crawlora:"country,omitempty"`
+	Verified        *bool   `crawlora:"verified,omitempty"`
+	MinFollowers    *int    `crawlora:"min_followers,omitempty"`
+	HasEmail        *bool   `crawlora:"has_email,omitempty"`
+	IncludeInactive *bool   `crawlora:"include_inactive,omitempty"`
+	Sort            *string `crawlora:"sort,omitempty"`
+	Page            *int    `crawlora:"page,omitempty"`
+	PageSize        *int    `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsCreatorsSearchResponse = ModelDatasetsCreatorsSearchResponseDoc
+
+func (s *DatasetsService) CreatorsSearchTyped(ctx context.Context, params DatasetsCreatorsSearchParams, opts ...RequestOption) (DatasetsCreatorsSearchResponse, error) {
+	return requestTyped[DatasetsCreatorsSearchResponse](s.client, ctx, "datasets-creators-search", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) GithubUsersFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-github-users-facets", params, opts...)
+}
+
+type DatasetsGithubUsersFacetsParams struct {
+	Facet              string   `crawlora:"facet"`
+	Q                  *string  `crawlora:"q,omitempty"`
+	Login              *string  `crawlora:"login,omitempty"`
+	Company            *string  `crawlora:"company,omitempty"`
+	InfluenceTier      *string  `crawlora:"influence_tier,omitempty"`
+	Country            *string  `crawlora:"country,omitempty"`
+	CountryCode        *string  `crawlora:"country_code,omitempty"`
+	State              *string  `crawlora:"state,omitempty"`
+	City               *string  `crawlora:"city,omitempty"`
+	Domain             *string  `crawlora:"domain,omitempty"`
+	HasEmail           *bool    `crawlora:"has_email,omitempty"`
+	HasTwitter         *bool    `crawlora:"has_twitter,omitempty"`
+	HasBlog            *bool    `crawlora:"has_blog,omitempty"`
+	Reachable          *bool    `crawlora:"reachable,omitempty"`
+	Active90d          *bool    `crawlora:"active_90d,omitempty"`
+	Hireable           *bool    `crawlora:"hireable,omitempty"`
+	IsOrg              *bool    `crawlora:"is_org,omitempty"`
+	IsBot              *bool    `crawlora:"is_bot,omitempty"`
+	MinFollowers       *int     `crawlora:"min_followers,omitempty"`
+	MaxFollowers       *int     `crawlora:"max_followers,omitempty"`
+	MinRepos           *int     `crawlora:"min_repos,omitempty"`
+	MinRankScore       *int     `crawlora:"min_rank_score,omitempty"`
+	MinAccountAgeYears *float64 `crawlora:"min_account_age_years,omitempty"`
+	MaxAccountAgeYears *float64 `crawlora:"max_account_age_years,omitempty"`
+	Lat                *float64 `crawlora:"lat,omitempty"`
+	Lon                *float64 `crawlora:"lon,omitempty"`
+	RadiusM            *int     `crawlora:"radius_m,omitempty"`
+	Sort               *string  `crawlora:"sort,omitempty"`
+}
+
+type DatasetsGithubUsersFacetsResponse = ModelDatasetsGithubUsersFacetResponseDoc
+
+func (s *DatasetsService) GithubUsersFacetsTyped(ctx context.Context, params DatasetsGithubUsersFacetsParams, opts ...RequestOption) (DatasetsGithubUsersFacetsResponse, error) {
+	return requestTyped[DatasetsGithubUsersFacetsResponse](s.client, ctx, "datasets-github-users-facets", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) GithubUsersItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-github-users-item", params, opts...)
+}
+
+type DatasetsGithubUsersItemParams struct {
+	Login string `crawlora:"login"`
+}
+
+type DatasetsGithubUsersItemResponse = ModelDatasetsGithubUserResponseDoc
+
+func (s *DatasetsService) GithubUsersItemTyped(ctx context.Context, params DatasetsGithubUsersItemParams, opts ...RequestOption) (DatasetsGithubUsersItemResponse, error) {
+	return requestTyped[DatasetsGithubUsersItemResponse](s.client, ctx, "datasets-github-users-item", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) GithubUsersNearby(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-github-users-nearby", params, opts...)
+}
+
+type DatasetsGithubUsersNearbyParams struct {
+	Lat           float64 `crawlora:"lat"`
+	Lon           float64 `crawlora:"lon"`
+	RadiusM       int     `crawlora:"radius_m"`
+	InfluenceTier *string `crawlora:"influence_tier,omitempty"`
+	Reachable     *bool   `crawlora:"reachable,omitempty"`
+	MinFollowers  *int    `crawlora:"min_followers,omitempty"`
+	Page          *int    `crawlora:"page,omitempty"`
+	PageSize      *int    `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsGithubUsersNearbyResponse = ModelDatasetsGithubUsersSearchResponseDoc
+
+func (s *DatasetsService) GithubUsersNearbyTyped(ctx context.Context, params DatasetsGithubUsersNearbyParams, opts ...RequestOption) (DatasetsGithubUsersNearbyResponse, error) {
+	return requestTyped[DatasetsGithubUsersNearbyResponse](s.client, ctx, "datasets-github-users-nearby", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) GithubUsersSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-github-users-search", params, opts...)
+}
+
+type DatasetsGithubUsersSearchParams struct {
+	Q                  *string  `crawlora:"q,omitempty"`
+	Login              *string  `crawlora:"login,omitempty"`
+	Company            *string  `crawlora:"company,omitempty"`
+	InfluenceTier      *string  `crawlora:"influence_tier,omitempty"`
+	Country            *string  `crawlora:"country,omitempty"`
+	CountryCode        *string  `crawlora:"country_code,omitempty"`
+	State              *string  `crawlora:"state,omitempty"`
+	City               *string  `crawlora:"city,omitempty"`
+	Domain             *string  `crawlora:"domain,omitempty"`
+	HasEmail           *bool    `crawlora:"has_email,omitempty"`
+	HasTwitter         *bool    `crawlora:"has_twitter,omitempty"`
+	HasBlog            *bool    `crawlora:"has_blog,omitempty"`
+	Reachable          *bool    `crawlora:"reachable,omitempty"`
+	Active90d          *bool    `crawlora:"active_90d,omitempty"`
+	Hireable           *bool    `crawlora:"hireable,omitempty"`
+	IsOrg              *bool    `crawlora:"is_org,omitempty"`
+	IsBot              *bool    `crawlora:"is_bot,omitempty"`
+	MinFollowers       *int     `crawlora:"min_followers,omitempty"`
+	MaxFollowers       *int     `crawlora:"max_followers,omitempty"`
+	MinRepos           *int     `crawlora:"min_repos,omitempty"`
+	MinRankScore       *int     `crawlora:"min_rank_score,omitempty"`
+	MinAccountAgeYears *float64 `crawlora:"min_account_age_years,omitempty"`
+	MaxAccountAgeYears *float64 `crawlora:"max_account_age_years,omitempty"`
+	Lat                *float64 `crawlora:"lat,omitempty"`
+	Lon                *float64 `crawlora:"lon,omitempty"`
+	RadiusM            *int     `crawlora:"radius_m,omitempty"`
+	Sort               *string  `crawlora:"sort,omitempty"`
+	Page               *int     `crawlora:"page,omitempty"`
+	PageSize           *int     `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsGithubUsersSearchResponse = ModelDatasetsGithubUsersSearchResponseDoc
+
+func (s *DatasetsService) GithubUsersSearchTyped(ctx context.Context, params DatasetsGithubUsersSearchParams, opts ...RequestOption) (DatasetsGithubUsersSearchResponse, error) {
+	return requestTyped[DatasetsGithubUsersSearchResponse](s.client, ctx, "datasets-github-users-search", paramsFromStruct(params), opts...)
+}
+
 func (s *DatasetsService) GoogleMapBusinessesFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "datasets-google-map-businesses-facets", params, opts...)
 }
@@ -14634,6 +15320,269 @@ type GeocodingSearchResponse = ModelGeocodingSearchResponseDoc
 
 func (s *GeocodingService) SearchTyped(ctx context.Context, params GeocodingSearchParams, opts ...RequestOption) (GeocodingSearchResponse, error) {
 	return requestTyped[GeocodingSearchResponse](s.client, ctx, "geocoding-search", paramsFromStruct(params), opts...)
+}
+
+type GitHubService struct{ client *Client }
+
+func (s *GitHubService) GithubOrg(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "github-org", params, opts...)
+}
+
+type GitHubGithubOrgParams struct {
+	Org string `crawlora:"org"`
+}
+
+type GitHubGithubOrgResponse = ModelAppResponse
+
+func (s *GitHubService) GithubOrgTyped(ctx context.Context, params GitHubGithubOrgParams, opts ...RequestOption) (GitHubGithubOrgResponse, error) {
+	return requestTyped[GitHubGithubOrgResponse](s.client, ctx, "github-org", paramsFromStruct(params), opts...)
+}
+
+func (s *GitHubService) GithubOrgRepos(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "github-org-repos", params, opts...)
+}
+
+type GitHubGithubOrgReposParams struct {
+	Org       string  `crawlora:"org"`
+	Sort      *string `crawlora:"sort,omitempty"`
+	Direction *string `crawlora:"direction,omitempty"`
+	Type      *string `crawlora:"type,omitempty"`
+	Page      *int    `crawlora:"page,omitempty"`
+	PerPage   *int    `crawlora:"per_page,omitempty"`
+}
+
+type GitHubGithubOrgReposResponse = ModelAppResponse
+
+func (s *GitHubService) GithubOrgReposTyped(ctx context.Context, params GitHubGithubOrgReposParams, opts ...RequestOption) (GitHubGithubOrgReposResponse, error) {
+	return requestTyped[GitHubGithubOrgReposResponse](s.client, ctx, "github-org-repos", paramsFromStruct(params), opts...)
+}
+
+func (s *GitHubService) GithubRepo(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "github-repo", params, opts...)
+}
+
+type GitHubGithubRepoParams struct {
+	Owner string `crawlora:"owner"`
+	Repo  string `crawlora:"repo"`
+}
+
+type GitHubGithubRepoResponse = ModelAppResponse
+
+func (s *GitHubService) GithubRepoTyped(ctx context.Context, params GitHubGithubRepoParams, opts ...RequestOption) (GitHubGithubRepoResponse, error) {
+	return requestTyped[GitHubGithubRepoResponse](s.client, ctx, "github-repo", paramsFromStruct(params), opts...)
+}
+
+func (s *GitHubService) GithubRepoContributors(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "github-repo-contributors", params, opts...)
+}
+
+type GitHubGithubRepoContributorsParams struct {
+	Owner   string `crawlora:"owner"`
+	Repo    string `crawlora:"repo"`
+	Page    *int   `crawlora:"page,omitempty"`
+	PerPage *int   `crawlora:"per_page,omitempty"`
+}
+
+type GitHubGithubRepoContributorsResponse = ModelAppResponse
+
+func (s *GitHubService) GithubRepoContributorsTyped(ctx context.Context, params GitHubGithubRepoContributorsParams, opts ...RequestOption) (GitHubGithubRepoContributorsResponse, error) {
+	return requestTyped[GitHubGithubRepoContributorsResponse](s.client, ctx, "github-repo-contributors", paramsFromStruct(params), opts...)
+}
+
+func (s *GitHubService) GithubRepoForks(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "github-repo-forks", params, opts...)
+}
+
+type GitHubGithubRepoForksParams struct {
+	Owner   string  `crawlora:"owner"`
+	Repo    string  `crawlora:"repo"`
+	Sort    *string `crawlora:"sort,omitempty"`
+	Page    *int    `crawlora:"page,omitempty"`
+	PerPage *int    `crawlora:"per_page,omitempty"`
+}
+
+type GitHubGithubRepoForksResponse = ModelAppResponse
+
+func (s *GitHubService) GithubRepoForksTyped(ctx context.Context, params GitHubGithubRepoForksParams, opts ...RequestOption) (GitHubGithubRepoForksResponse, error) {
+	return requestTyped[GitHubGithubRepoForksResponse](s.client, ctx, "github-repo-forks", paramsFromStruct(params), opts...)
+}
+
+func (s *GitHubService) GithubRepoLanguages(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "github-repo-languages", params, opts...)
+}
+
+type GitHubGithubRepoLanguagesParams struct {
+	Owner string `crawlora:"owner"`
+	Repo  string `crawlora:"repo"`
+}
+
+type GitHubGithubRepoLanguagesResponse = ModelAppResponse
+
+func (s *GitHubService) GithubRepoLanguagesTyped(ctx context.Context, params GitHubGithubRepoLanguagesParams, opts ...RequestOption) (GitHubGithubRepoLanguagesResponse, error) {
+	return requestTyped[GitHubGithubRepoLanguagesResponse](s.client, ctx, "github-repo-languages", paramsFromStruct(params), opts...)
+}
+
+func (s *GitHubService) GithubRepoReleases(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "github-repo-releases", params, opts...)
+}
+
+type GitHubGithubRepoReleasesParams struct {
+	Owner   string `crawlora:"owner"`
+	Repo    string `crawlora:"repo"`
+	Page    *int   `crawlora:"page,omitempty"`
+	PerPage *int   `crawlora:"per_page,omitempty"`
+}
+
+type GitHubGithubRepoReleasesResponse = ModelAppResponse
+
+func (s *GitHubService) GithubRepoReleasesTyped(ctx context.Context, params GitHubGithubRepoReleasesParams, opts ...RequestOption) (GitHubGithubRepoReleasesResponse, error) {
+	return requestTyped[GitHubGithubRepoReleasesResponse](s.client, ctx, "github-repo-releases", paramsFromStruct(params), opts...)
+}
+
+func (s *GitHubService) GithubRepoStargazers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "github-repo-stargazers", params, opts...)
+}
+
+type GitHubGithubRepoStargazersParams struct {
+	Owner   string `crawlora:"owner"`
+	Repo    string `crawlora:"repo"`
+	Page    *int   `crawlora:"page,omitempty"`
+	PerPage *int   `crawlora:"per_page,omitempty"`
+}
+
+type GitHubGithubRepoStargazersResponse = ModelAppResponse
+
+func (s *GitHubService) GithubRepoStargazersTyped(ctx context.Context, params GitHubGithubRepoStargazersParams, opts ...RequestOption) (GitHubGithubRepoStargazersResponse, error) {
+	return requestTyped[GitHubGithubRepoStargazersResponse](s.client, ctx, "github-repo-stargazers", paramsFromStruct(params), opts...)
+}
+
+func (s *GitHubService) GithubSearchRepositories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "github-search-repositories", params, opts...)
+}
+
+type GitHubGithubSearchRepositoriesParams struct {
+	Q       string  `crawlora:"q"`
+	Sort    *string `crawlora:"sort,omitempty"`
+	Order   *string `crawlora:"order,omitempty"`
+	Page    *int    `crawlora:"page,omitempty"`
+	PerPage *int    `crawlora:"per_page,omitempty"`
+}
+
+type GitHubGithubSearchRepositoriesResponse = ModelAppResponse
+
+func (s *GitHubService) GithubSearchRepositoriesTyped(ctx context.Context, params GitHubGithubSearchRepositoriesParams, opts ...RequestOption) (GitHubGithubSearchRepositoriesResponse, error) {
+	return requestTyped[GitHubGithubSearchRepositoriesResponse](s.client, ctx, "github-search-repositories", paramsFromStruct(params), opts...)
+}
+
+func (s *GitHubService) GithubSearchUsers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "github-search-users", params, opts...)
+}
+
+type GitHubGithubSearchUsersParams struct {
+	Q       string  `crawlora:"q"`
+	Sort    *string `crawlora:"sort,omitempty"`
+	Order   *string `crawlora:"order,omitempty"`
+	Page    *int    `crawlora:"page,omitempty"`
+	PerPage *int    `crawlora:"per_page,omitempty"`
+}
+
+type GitHubGithubSearchUsersResponse = ModelAppResponse
+
+func (s *GitHubService) GithubSearchUsersTyped(ctx context.Context, params GitHubGithubSearchUsersParams, opts ...RequestOption) (GitHubGithubSearchUsersResponse, error) {
+	return requestTyped[GitHubGithubSearchUsersResponse](s.client, ctx, "github-search-users", paramsFromStruct(params), opts...)
+}
+
+func (s *GitHubService) GithubTrending(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "github-trending", params, opts...)
+}
+
+type GitHubGithubTrendingParams struct {
+	Language *string `crawlora:"language,omitempty"`
+	Since    *string `crawlora:"since,omitempty"`
+}
+
+type GitHubGithubTrendingResponse = ModelAppResponse
+
+func (s *GitHubService) GithubTrendingTyped(ctx context.Context, params GitHubGithubTrendingParams, opts ...RequestOption) (GitHubGithubTrendingResponse, error) {
+	return requestTyped[GitHubGithubTrendingResponse](s.client, ctx, "github-trending", paramsFromStruct(params), opts...)
+}
+
+func (s *GitHubService) GithubTrendingDevelopers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "github-trending-developers", params, opts...)
+}
+
+type GitHubGithubTrendingDevelopersParams struct {
+	Language *string `crawlora:"language,omitempty"`
+	Since    *string `crawlora:"since,omitempty"`
+}
+
+type GitHubGithubTrendingDevelopersResponse = ModelAppResponse
+
+func (s *GitHubService) GithubTrendingDevelopersTyped(ctx context.Context, params GitHubGithubTrendingDevelopersParams, opts ...RequestOption) (GitHubGithubTrendingDevelopersResponse, error) {
+	return requestTyped[GitHubGithubTrendingDevelopersResponse](s.client, ctx, "github-trending-developers", paramsFromStruct(params), opts...)
+}
+
+func (s *GitHubService) GithubUser(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "github-user", params, opts...)
+}
+
+type GitHubGithubUserParams struct {
+	Username string `crawlora:"username"`
+}
+
+type GitHubGithubUserResponse = ModelAppResponse
+
+func (s *GitHubService) GithubUserTyped(ctx context.Context, params GitHubGithubUserParams, opts ...RequestOption) (GitHubGithubUserResponse, error) {
+	return requestTyped[GitHubGithubUserResponse](s.client, ctx, "github-user", paramsFromStruct(params), opts...)
+}
+
+func (s *GitHubService) GithubUserEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "github-user-events", params, opts...)
+}
+
+type GitHubGithubUserEventsParams struct {
+	Username string `crawlora:"username"`
+	Page     *int   `crawlora:"page,omitempty"`
+	PerPage  *int   `crawlora:"per_page,omitempty"`
+}
+
+type GitHubGithubUserEventsResponse = ModelAppResponse
+
+func (s *GitHubService) GithubUserEventsTyped(ctx context.Context, params GitHubGithubUserEventsParams, opts ...RequestOption) (GitHubGithubUserEventsResponse, error) {
+	return requestTyped[GitHubGithubUserEventsResponse](s.client, ctx, "github-user-events", paramsFromStruct(params), opts...)
+}
+
+func (s *GitHubService) GithubUserPinned(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "github-user-pinned", params, opts...)
+}
+
+type GitHubGithubUserPinnedParams struct {
+	Username string `crawlora:"username"`
+}
+
+type GitHubGithubUserPinnedResponse = ModelAppResponse
+
+func (s *GitHubService) GithubUserPinnedTyped(ctx context.Context, params GitHubGithubUserPinnedParams, opts ...RequestOption) (GitHubGithubUserPinnedResponse, error) {
+	return requestTyped[GitHubGithubUserPinnedResponse](s.client, ctx, "github-user-pinned", paramsFromStruct(params), opts...)
+}
+
+func (s *GitHubService) GithubUserRepos(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "github-user-repos", params, opts...)
+}
+
+type GitHubGithubUserReposParams struct {
+	Username  string  `crawlora:"username"`
+	Sort      *string `crawlora:"sort,omitempty"`
+	Direction *string `crawlora:"direction,omitempty"`
+	Type      *string `crawlora:"type,omitempty"`
+	Page      *int    `crawlora:"page,omitempty"`
+	PerPage   *int    `crawlora:"per_page,omitempty"`
+}
+
+type GitHubGithubUserReposResponse = ModelAppResponse
+
+func (s *GitHubService) GithubUserReposTyped(ctx context.Context, params GitHubGithubUserReposParams, opts ...RequestOption) (GitHubGithubUserReposResponse, error) {
+	return requestTyped[GitHubGithubUserReposResponse](s.client, ctx, "github-user-repos", paramsFromStruct(params), opts...)
 }
 
 type GoogleService struct{ client *Client }
@@ -17840,10 +18789,11 @@ func (s *RedditService) Comments(ctx context.Context, params Params, opts ...Req
 }
 
 type RedditCommentsParams struct {
-	Id    string  `crawlora:"id"`
-	Sort  *string `crawlora:"sort,omitempty"`
-	Limit *int    `crawlora:"limit,omitempty"`
-	Depth *int    `crawlora:"depth,omitempty"`
+	Id         string  `crawlora:"id"`
+	Sort       *string `crawlora:"sort,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	Depth      *int    `crawlora:"depth,omitempty"`
+	WithScores *bool   `crawlora:"with_scores,omitempty"`
 }
 
 type RedditCommentsResponse = ModelRedditCommentsResponseDoc
@@ -17857,11 +18807,12 @@ func (s *RedditService) DomainPosts(ctx context.Context, params Params, opts ...
 }
 
 type RedditDomainPostsParams struct {
-	Domain string  `crawlora:"domain"`
-	Sort   *string `crawlora:"sort,omitempty"`
-	Time   *string `crawlora:"time,omitempty"`
-	Limit  *int    `crawlora:"limit,omitempty"`
-	After  *string `crawlora:"after,omitempty"`
+	Domain     string  `crawlora:"domain"`
+	Sort       *string `crawlora:"sort,omitempty"`
+	Time       *string `crawlora:"time,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	After      *string `crawlora:"after,omitempty"`
+	WithScores *bool   `crawlora:"with_scores,omitempty"`
 }
 
 type RedditDomainPostsResponse = ModelRedditDomainPostsResponseDoc
@@ -17875,7 +18826,8 @@ func (s *RedditService) Post(ctx context.Context, params Params, opts ...Request
 }
 
 type RedditPostParams struct {
-	Id string `crawlora:"id"`
+	Id         string `crawlora:"id"`
+	WithScores *bool  `crawlora:"with_scores,omitempty"`
 }
 
 type RedditPostResponse = ModelRedditPostResponseDoc
@@ -17889,12 +18841,13 @@ func (s *RedditService) Search(ctx context.Context, params Params, opts ...Reque
 }
 
 type RedditSearchParams struct {
-	Q         string  `crawlora:"q"`
-	Subreddit *string `crawlora:"subreddit,omitempty"`
-	Sort      *string `crawlora:"sort,omitempty"`
-	Time      *string `crawlora:"time,omitempty"`
-	Limit     *int    `crawlora:"limit,omitempty"`
-	After     *string `crawlora:"after,omitempty"`
+	Q          string  `crawlora:"q"`
+	Subreddit  *string `crawlora:"subreddit,omitempty"`
+	Sort       *string `crawlora:"sort,omitempty"`
+	Time       *string `crawlora:"time,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	After      *string `crawlora:"after,omitempty"`
+	WithScores *bool   `crawlora:"with_scores,omitempty"`
 }
 
 type RedditSearchResponse = ModelRedditSearchResponseDoc
@@ -17908,8 +18861,9 @@ func (s *RedditService) SubredditAbout(ctx context.Context, params Params, opts 
 }
 
 type RedditSubredditAboutParams struct {
-	Subreddit string `crawlora:"subreddit"`
-	Limit     *int   `crawlora:"limit,omitempty"`
+	Subreddit  string `crawlora:"subreddit"`
+	Limit      *int   `crawlora:"limit,omitempty"`
+	WithScores *bool  `crawlora:"with_scores,omitempty"`
 }
 
 type RedditSubredditAboutResponse = ModelRedditSubredditAboutResponseDoc
@@ -17923,9 +18877,10 @@ func (s *RedditService) SubredditComments(ctx context.Context, params Params, op
 }
 
 type RedditSubredditCommentsParams struct {
-	Subreddit string  `crawlora:"subreddit"`
-	Limit     *int    `crawlora:"limit,omitempty"`
-	After     *string `crawlora:"after,omitempty"`
+	Subreddit  string  `crawlora:"subreddit"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	After      *string `crawlora:"after,omitempty"`
+	WithScores *bool   `crawlora:"with_scores,omitempty"`
 }
 
 type RedditSubredditCommentsResponse = ModelRedditSubredditCommentsResponseDoc
@@ -17939,11 +18894,12 @@ func (s *RedditService) SubredditPosts(ctx context.Context, params Params, opts 
 }
 
 type RedditSubredditPostsParams struct {
-	Subreddit string  `crawlora:"subreddit"`
-	Sort      *string `crawlora:"sort,omitempty"`
-	Time      *string `crawlora:"time,omitempty"`
-	Limit     *int    `crawlora:"limit,omitempty"`
-	After     *string `crawlora:"after,omitempty"`
+	Subreddit  string  `crawlora:"subreddit"`
+	Sort       *string `crawlora:"sort,omitempty"`
+	Time       *string `crawlora:"time,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	After      *string `crawlora:"after,omitempty"`
+	WithScores *bool   `crawlora:"with_scores,omitempty"`
 }
 
 type RedditSubredditPostsResponse = ModelRedditSubredditPostsResponseDoc
@@ -17962,6 +18918,7 @@ type RedditSubredditsPostsParams struct {
 	Time       *string `crawlora:"time,omitempty"`
 	Limit      *int    `crawlora:"limit,omitempty"`
 	After      *string `crawlora:"after,omitempty"`
+	WithScores *bool   `crawlora:"with_scores,omitempty"`
 }
 
 type RedditSubredditsPostsResponse = ModelRedditMultiSubredditPostsResponseDoc
@@ -17975,10 +18932,11 @@ func (s *RedditService) Trends(ctx context.Context, params Params, opts ...Reque
 }
 
 type RedditTrendsParams struct {
-	Sort  *string `crawlora:"sort,omitempty"`
-	Time  *string `crawlora:"time,omitempty"`
-	Limit *int    `crawlora:"limit,omitempty"`
-	After *string `crawlora:"after,omitempty"`
+	Sort       *string `crawlora:"sort,omitempty"`
+	Time       *string `crawlora:"time,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	After      *string `crawlora:"after,omitempty"`
+	WithScores *bool   `crawlora:"with_scores,omitempty"`
 }
 
 type RedditTrendsResponse = ModelRedditTrendsResponseDoc
@@ -17992,9 +18950,10 @@ func (s *RedditService) UserComments(ctx context.Context, params Params, opts ..
 }
 
 type RedditUserCommentsParams struct {
-	Username string  `crawlora:"username"`
-	Limit    *int    `crawlora:"limit,omitempty"`
-	After    *string `crawlora:"after,omitempty"`
+	Username   string  `crawlora:"username"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	After      *string `crawlora:"after,omitempty"`
+	WithScores *bool   `crawlora:"with_scores,omitempty"`
 }
 
 type RedditUserCommentsResponse = ModelRedditUserCommentsResponseDoc
@@ -18008,9 +18967,10 @@ func (s *RedditService) UserPosts(ctx context.Context, params Params, opts ...Re
 }
 
 type RedditUserPostsParams struct {
-	Username string  `crawlora:"username"`
-	Limit    *int    `crawlora:"limit,omitempty"`
-	After    *string `crawlora:"after,omitempty"`
+	Username   string  `crawlora:"username"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	After      *string `crawlora:"after,omitempty"`
+	WithScores *bool   `crawlora:"with_scores,omitempty"`
 }
 
 type RedditUserPostsResponse = ModelRedditUserPostsResponseDoc
@@ -19503,24 +20463,6 @@ func (s *TikTokService) PopularTrendCountryIndustryMetaTyped(ctx context.Context
 	return requestTyped[TikTokPopularTrendCountryIndustryMetaResponse](s.client, ctx, "tiktok-popular-trend-country-industry-meta", paramsFromStruct(params), opts...)
 }
 
-func (s *TikTokService) PopularTrendCreator(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
-	return s.client.Request(ctx, "tiktok-popular-trend-creator", params, opts...)
-}
-
-type TikTokPopularTrendCreatorParams struct {
-	Page           *int    `crawlora:"page,omitempty"`
-	Limit          *int    `crawlora:"limit,omitempty"`
-	SortBy         *string `crawlora:"sort_by,omitempty"`
-	CreatorCountry *string `crawlora:"creator_country,omitempty"`
-	AudienceCount  *int    `crawlora:"audience_count,omitempty"`
-}
-
-type TikTokPopularTrendCreatorResponse = ModelPopulartrendCreatorTrendResponseDoc
-
-func (s *TikTokService) PopularTrendCreatorTyped(ctx context.Context, params TikTokPopularTrendCreatorParams, opts ...RequestOption) (TikTokPopularTrendCreatorResponse, error) {
-	return requestTyped[TikTokPopularTrendCreatorResponse](s.client, ctx, "tiktok-popular-trend-creator", paramsFromStruct(params), opts...)
-}
-
 func (s *TikTokService) Post(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "tiktok-post", params, opts...)
 }
@@ -20150,6 +21092,52 @@ type UserMeApiKeysRevealResponse = ModelUserUserRevealApikeyResponseDoc
 
 func (s *UserService) MeApiKeysRevealTyped(ctx context.Context, params UserMeApiKeysRevealParams, opts ...RequestOption) (UserMeApiKeysRevealResponse, error) {
 	return requestTyped[UserMeApiKeysRevealResponse](s.client, ctx, "user-me-api-keys-reveal", paramsFromStruct(params), opts...)
+}
+
+type XService struct{ client *Client }
+
+func (s *XService) Post(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "x-post", params, opts...)
+}
+
+type XPostParams struct {
+	Id       string  `crawlora:"id"`
+	Username *string `crawlora:"username,omitempty"`
+}
+
+type XPostResponse = ModelXPostResponseDoc
+
+func (s *XService) PostTyped(ctx context.Context, params XPostParams, opts ...RequestOption) (XPostResponse, error) {
+	return requestTyped[XPostResponse](s.client, ctx, "x-post", paramsFromStruct(params), opts...)
+}
+
+func (s *XService) Profile(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "x-profile", params, opts...)
+}
+
+type XProfileParams struct {
+	Username string `crawlora:"username"`
+}
+
+type XProfileResponse = ModelXProfileResponseDoc
+
+func (s *XService) ProfileTyped(ctx context.Context, params XProfileParams, opts ...RequestOption) (XProfileResponse, error) {
+	return requestTyped[XProfileResponse](s.client, ctx, "x-profile", paramsFromStruct(params), opts...)
+}
+
+func (s *XService) ProfilePosts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "x-profile-posts", params, opts...)
+}
+
+type XProfilePostsParams struct {
+	Username string `crawlora:"username"`
+	Limit    *int   `crawlora:"limit,omitempty"`
+}
+
+type XProfilePostsResponse = ModelXProfilePostsResponseDoc
+
+func (s *XService) ProfilePostsTyped(ctx context.Context, params XProfilePostsParams, opts ...RequestOption) (XProfilePostsResponse, error) {
+	return requestTyped[XProfilePostsResponse](s.client, ctx, "x-profile-posts", paramsFromStruct(params), opts...)
 }
 
 type YahooFinanceService struct{ client *Client }

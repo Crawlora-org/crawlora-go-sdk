@@ -1,8 +1,41 @@
 {
   "basePath": "/api/v1",
   "definitions": {
+    "airbnb.CalendarDay": {
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "available_for_checkin": {
+          "type": "boolean"
+        },
+        "available_for_checkout": {
+          "type": "boolean"
+        },
+        "bookable": {
+          "type": "boolean"
+        },
+        "date": {
+          "example": "2026-07-01",
+          "type": "string"
+        },
+        "max_nights": {
+          "type": "integer"
+        },
+        "min_nights": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "airbnb.CalendarMonth": {
       "properties": {
+        "days": {
+          "items": {
+            "$ref": "#/definitions/airbnb.CalendarDay"
+          },
+          "type": "array"
+        },
         "month": {
           "type": "string"
         },
@@ -32,12 +65,19 @@
         "host": {
           "type": "string"
         },
+        "host_id": {
+          "example": "65056940",
+          "type": "string"
+        },
         "id": {
           "example": "12345678",
           "type": "string"
         },
         "image": {
           "type": "string"
+        },
+        "is_superhost": {
+          "type": "boolean"
         },
         "latitude": {
           "type": "number"
@@ -49,6 +89,11 @@
           "type": "number"
         },
         "price": {
+          "type": "number"
+        },
+        "price_per_night": {
+          "description": "PricePerNight is the per-night price for the queried stay (search total ÷ nights),\nset only when check_in+check_out are supplied. It amortizes any fixed fees across\nthe stay, so a longer window yields a tighter base-rate estimate. Without dates the\n`price` field is an unstable \"from\"/display figure, not a nightly rate.",
+          "example": 148,
           "type": "number"
         },
         "rating": {
@@ -116,12 +161,19 @@
         "host": {
           "type": "string"
         },
+        "host_id": {
+          "example": "65056940",
+          "type": "string"
+        },
         "id": {
           "example": "12345678",
           "type": "string"
         },
         "image": {
           "type": "string"
+        },
+        "is_superhost": {
+          "type": "boolean"
         },
         "latitude": {
           "type": "number"
@@ -133,6 +185,11 @@
           "type": "number"
         },
         "price": {
+          "type": "number"
+        },
+        "price_per_night": {
+          "description": "PricePerNight is the per-night price for the queried stay (search total ÷ nights),\nset only when check_in+check_out are supplied. It amortizes any fixed fees across\nthe stay, so a longer window yields a tighter base-rate estimate. Without dates the\n`price` field is an unstable \"from\"/display figure, not a nightly rate.",
+          "example": 148,
           "type": "number"
         },
         "rating": {
@@ -8422,6 +8479,87 @@
       },
       "type": "object"
     },
+    "datasets.AppsSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.AppRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.ChartsSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.ChartEntry"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "snapshot_date": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.CreatorsSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.CreatorRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "datasets.DatasetInfo": {
       "properties": {
         "capabilities": {
@@ -8449,6 +8587,49 @@
             "$ref": "#/definitions/datasets.DatasetInfo"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.GithubUserFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.GithubUserDatasetFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.GithubUserSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.GithubUserDatasetItem"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
         }
       },
       "type": "object"
@@ -8492,6 +8673,128 @@
         },
         "total": {
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.ReviewsSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.AppReview"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.appsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.AppsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.chartsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.ChartsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.creatorsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.CreatorsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.githubUserResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.GithubUserRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.githubUsersFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.GithubUserFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.githubUsersSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.GithubUserSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
         }
       },
       "type": "object"
@@ -8552,6 +8855,22 @@
         },
         "data": {
           "$ref": "#/definitions/datasets.DatasetListResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.reviewsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.ReviewsSearchResponse"
         },
         "msg": {
           "example": "OK",
@@ -9219,6 +9538,286 @@
       },
       "type": "object"
     },
+    "es.AppRecord": {
+      "properties": {
+        "android_max_installs": {
+          "type": "integer"
+        },
+        "android_package": {
+          "type": "string"
+        },
+        "app_uid": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "countries_available": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "country": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "developer": {
+          "type": "string"
+        },
+        "developer_id": {
+          "type": "string"
+        },
+        "first_seen": {
+          "type": "string"
+        },
+        "free": {
+          "type": "boolean"
+        },
+        "icon_url": {
+          "type": "string"
+        },
+        "ios_app_id": {
+          "type": "string"
+        },
+        "ios_bundle_id": {
+          "type": "string"
+        },
+        "last_crawled": {
+          "type": "string"
+        },
+        "popularity": {
+          "description": "Popularity = ratings_count × score (\"total rating weight\"). Derived on write\n(recomputed every upsert), 0 for unrated apps. A proven-adoption ranking signal.",
+          "type": "integer"
+        },
+        "price_cents": {
+          "type": "integer"
+        },
+        "ratings_count": {
+          "type": "integer"
+        },
+        "released_at": {
+          "type": "string"
+        },
+        "score": {
+          "type": "number"
+        },
+        "store": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.AppReview": {
+      "properties": {
+        "app_id": {
+          "type": "string"
+        },
+        "app_uid": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "last_crawled": {
+          "type": "string"
+        },
+        "reply_text": {
+          "type": "string"
+        },
+        "review_id": {
+          "type": "string"
+        },
+        "review_uid": {
+          "type": "string"
+        },
+        "reviewed_at": {
+          "type": "string"
+        },
+        "score": {
+          "type": "integer"
+        },
+        "store": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "thumbs_up": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "user_name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.ChartEntry": {
+      "properties": {
+        "app_id": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "chart_type": {
+          "type": "string"
+        },
+        "chart_uid": {
+          "type": "string"
+        },
+        "collection": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "developer": {
+          "type": "string"
+        },
+        "free": {
+          "type": "boolean"
+        },
+        "rank": {
+          "type": "integer"
+        },
+        "score": {
+          "type": "number"
+        },
+        "snapshot_date": {
+          "type": "string"
+        },
+        "store": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.CreatorRecord": {
+      "properties": {
+        "avatar_url": {
+          "type": "string"
+        },
+        "avg_views": {
+          "description": "top-level mirror of PostStats.AvgViews for sort/filter",
+          "type": "integer"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "bio_link": {
+          "type": "string"
+        },
+        "brand_affiliations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "country": {
+          "type": "string"
+        },
+        "creator_uid": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "email_status": {
+          "type": "string"
+        },
+        "engagement_rate": {
+          "description": "headline = by-view (TikTok standard); see PostStats for both",
+          "type": "number"
+        },
+        "first_seen": {
+          "type": "string"
+        },
+        "follower_count": {
+          "type": "integer"
+        },
+        "following_count": {
+          "type": "integer"
+        },
+        "language": {
+          "type": "string"
+        },
+        "last_crawled": {
+          "type": "string"
+        },
+        "last_post_at": {
+          "description": "top-level mirror of PostStats.LastPostAt for recency filter",
+          "type": "string"
+        },
+        "niche": {
+          "type": "string"
+        },
+        "nickname": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "string"
+        },
+        "post_stats": {
+          "$ref": "#/definitions/es.PostStatsAgg"
+        },
+        "sec_uid": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "status": {
+          "description": "\"\" active | \"deleted\" | \"private\" — refresh marks these to skip future crawls",
+          "type": "string"
+        },
+        "total_likes": {
+          "type": "integer"
+        },
+        "unique_id": {
+          "type": "string"
+        },
+        "verified": {
+          "type": "boolean"
+        },
+        "video_count": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "es.GeoPoint": {
       "properties": {
         "lat": {
@@ -9226,6 +9825,324 @@
         },
         "lon": {
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "es.GithubGeo": {
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "country_code": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/definitions/es.GithubGeoPoint"
+        },
+        "state": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.GithubGeoPoint": {
+      "properties": {
+        "lat": {
+          "type": "number"
+        },
+        "lon": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "es.GithubSocialLink": {
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.GithubUserDatasetFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.GithubUserDatasetItem": {
+      "properties": {
+        "account_age_years": {
+          "type": "number"
+        },
+        "active_90d": {
+          "type": "boolean"
+        },
+        "avatar_url": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "blog": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "company_normalized": {
+          "type": "string"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "distance_m": {
+          "type": "number"
+        },
+        "domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "email": {
+          "type": "string"
+        },
+        "follower_following_ratio": {
+          "type": "number"
+        },
+        "followers": {
+          "type": "integer"
+        },
+        "following": {
+          "type": "integer"
+        },
+        "geo": {
+          "$ref": "#/definitions/es.GithubGeo"
+        },
+        "has_blog": {
+          "type": "boolean"
+        },
+        "has_email": {
+          "type": "boolean"
+        },
+        "has_twitter": {
+          "type": "boolean"
+        },
+        "hireable": {
+          "type": "boolean"
+        },
+        "html_url": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "influence_tier": {
+          "type": "string"
+        },
+        "is_bot": {
+          "type": "boolean"
+        },
+        "is_org": {
+          "type": "boolean"
+        },
+        "last_active_at": {
+          "type": "string"
+        },
+        "location_raw": {
+          "type": "string"
+        },
+        "login": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "prs_30d": {
+          "type": "integer"
+        },
+        "public_gists": {
+          "type": "integer"
+        },
+        "public_repos": {
+          "type": "integer"
+        },
+        "pushes_30d": {
+          "type": "integer"
+        },
+        "rank_score": {
+          "type": "integer"
+        },
+        "reachable": {
+          "type": "boolean"
+        },
+        "reviews_30d": {
+          "type": "integer"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "social_accounts": {
+          "items": {
+            "$ref": "#/definitions/es.GithubSocialLink"
+          },
+          "type": "array"
+        },
+        "social_count": {
+          "type": "integer"
+        },
+        "twitter_username": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.GithubUserRecord": {
+      "properties": {
+        "account_age_years": {
+          "type": "number"
+        },
+        "active_90d": {
+          "type": "boolean"
+        },
+        "avatar_url": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "blog": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "company_normalized": {
+          "type": "string"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "email": {
+          "type": "string"
+        },
+        "follower_following_ratio": {
+          "type": "number"
+        },
+        "followers": {
+          "type": "integer"
+        },
+        "following": {
+          "type": "integer"
+        },
+        "geo": {
+          "$ref": "#/definitions/es.GithubGeo"
+        },
+        "has_blog": {
+          "type": "boolean"
+        },
+        "has_email": {
+          "type": "boolean"
+        },
+        "has_twitter": {
+          "type": "boolean"
+        },
+        "hireable": {
+          "type": "boolean"
+        },
+        "html_url": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "influence_tier": {
+          "type": "string"
+        },
+        "is_bot": {
+          "type": "boolean"
+        },
+        "is_org": {
+          "type": "boolean"
+        },
+        "last_active_at": {
+          "type": "string"
+        },
+        "location_raw": {
+          "type": "string"
+        },
+        "login": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "prs_30d": {
+          "type": "integer"
+        },
+        "public_gists": {
+          "type": "integer"
+        },
+        "public_repos": {
+          "type": "integer"
+        },
+        "pushes_30d": {
+          "type": "integer"
+        },
+        "rank_score": {
+          "type": "integer"
+        },
+        "reachable": {
+          "type": "boolean"
+        },
+        "reviews_30d": {
+          "type": "integer"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "social_accounts": {
+          "items": {
+            "$ref": "#/definitions/es.GithubSocialLink"
+          },
+          "type": "array"
+        },
+        "social_count": {
+          "type": "integer"
+        },
+        "twitter_username": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -9504,6 +10421,97 @@
         },
         "website_status": {
           "$ref": "#/definitions/es.WebsiteStatus"
+        }
+      },
+      "type": "object"
+    },
+    "es.PostSound": {
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "music_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "uses": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "es.PostStatsAgg": {
+      "properties": {
+        "analyzed_at": {
+          "type": "string"
+        },
+        "avg_comments": {
+          "type": "integer"
+        },
+        "avg_likes": {
+          "type": "integer"
+        },
+        "avg_saves": {
+          "type": "integer"
+        },
+        "avg_shares": {
+          "type": "integer"
+        },
+        "avg_video_duration_sec": {
+          "type": "number"
+        },
+        "avg_views": {
+          "type": "integer"
+        },
+        "best_post_id": {
+          "type": "string"
+        },
+        "best_post_views": {
+          "type": "integer"
+        },
+        "engagement_rate_by_follower": {
+          "type": "number"
+        },
+        "engagement_rate_by_view": {
+          "type": "number"
+        },
+        "first_post_at": {
+          "type": "string"
+        },
+        "last_post_at": {
+          "type": "string"
+        },
+        "median_likes": {
+          "type": "integer"
+        },
+        "median_views": {
+          "type": "integer"
+        },
+        "original_sound_ratio": {
+          "type": "number"
+        },
+        "posts_per_week": {
+          "type": "number"
+        },
+        "sampled_posts": {
+          "type": "integer"
+        },
+        "top_hashtags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "top_sounds": {
+          "items": {
+            "$ref": "#/definitions/es.PostSound"
+          },
+          "type": "array"
+        },
+        "views_to_follower_ratio": {
+          "type": "number"
         }
       },
       "type": "object"
@@ -19951,103 +20959,6 @@
       },
       "type": "object"
     },
-    "popularTrend.CreatorTrendResp": {
-      "properties": {
-        "code": {
-          "type": "integer"
-        },
-        "data": {
-          "properties": {
-            "creators": {
-              "items": {
-                "properties": {
-                  "avatar_url": {
-                    "type": "string"
-                  },
-                  "country_code": {
-                    "type": "string"
-                  },
-                  "follower_cnt": {
-                    "type": "integer"
-                  },
-                  "items": {
-                    "items": {
-                      "properties": {
-                        "cover_url": {
-                          "type": "string"
-                        },
-                        "create_time": {
-                          "type": "integer"
-                        },
-                        "item_id": {
-                          "type": "string"
-                        },
-                        "liked_cnt": {
-                          "type": "integer"
-                        },
-                        "tt_link": {
-                          "type": "string"
-                        },
-                        "vv": {
-                          "type": "integer"
-                        }
-                      },
-                      "type": "object"
-                    },
-                    "type": "array"
-                  },
-                  "liked_cnt": {
-                    "type": "integer"
-                  },
-                  "nick_name": {
-                    "type": "string"
-                  },
-                  "tcm_id": {
-                    "type": "string"
-                  },
-                  "tcm_link": {
-                    "type": "string"
-                  },
-                  "tt_link": {
-                    "type": "string"
-                  },
-                  "user_id": {
-                    "type": "string"
-                  }
-                },
-                "type": "object"
-              },
-              "type": "array"
-            },
-            "pagination": {
-              "properties": {
-                "has_more": {
-                  "type": "boolean"
-                },
-                "page": {
-                  "type": "integer"
-                },
-                "size": {
-                  "type": "integer"
-                },
-                "total": {
-                  "type": "integer"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "type": "object"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "request_id": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "popularTrend.TopAdsAnalysisPoint": {
       "properties": {
         "second": {
@@ -20585,22 +21496,6 @@
         },
         "data": {
           "$ref": "#/definitions/popularTrend.CountryIndustryMeta"
-        },
-        "msg": {
-          "example": "OK",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "populartrend.creatorTrendResponseDoc": {
-      "properties": {
-        "code": {
-          "example": 200,
-          "type": "integer"
-        },
-        "data": {
-          "$ref": "#/definitions/popularTrend.CreatorTrendResp"
         },
         "msg": {
           "example": "OK",
@@ -36360,6 +37255,230 @@
       },
       "type": "object"
     },
+    "x.Metrics": {
+      "properties": {
+        "bookmarks": {
+          "type": "integer"
+        },
+        "likes": {
+          "type": "integer"
+        },
+        "replies": {
+          "type": "integer"
+        },
+        "reposts": {
+          "type": "integer"
+        },
+        "views": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "x.Post": {
+      "properties": {
+        "author": {
+          "$ref": "#/definitions/x.User"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "metrics": {
+          "$ref": "#/definitions/x.Metrics"
+        },
+        "quoted": {
+          "$ref": "#/definitions/x.PostQuote"
+        },
+        "text": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "x.PostQuote": {
+      "properties": {
+        "author": {
+          "$ref": "#/definitions/x.User"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "x.Profile": {
+      "properties": {
+        "avatar_url": {
+          "type": "string"
+        },
+        "banner_url": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "external_url": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "is_blue_verified": {
+          "type": "boolean"
+        },
+        "is_protected": {
+          "type": "boolean"
+        },
+        "is_unavailable": {
+          "type": "boolean"
+        },
+        "location": {
+          "type": "string"
+        },
+        "metrics": {
+          "$ref": "#/definitions/x.ProfileMetrics"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "x.ProfileMetrics": {
+      "properties": {
+        "followers": {
+          "type": "integer"
+        },
+        "following": {
+          "type": "integer"
+        },
+        "posts": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "x.ProfilePosts": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "posts": {
+          "items": {
+            "$ref": "#/definitions/x.Post"
+          },
+          "type": "array"
+        },
+        "url": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "x.User": {
+      "properties": {
+        "avatar_url": {
+          "type": "string"
+        },
+        "banner_url": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "is_blue_verified": {
+          "type": "boolean"
+        },
+        "is_protected": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "x.postResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/x.Post"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "x.profilePostsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/x.ProfilePosts"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "x.profileResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/x.Profile"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "yahoofinance.ActionEvents": {
       "properties": {
         "capital_gains": {
@@ -46940,12 +48059,1057 @@
         ]
       }
     },
+    "/datasets/apps-charts/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches daily top-chart snapshots scraped from the iOS App Store and Google Play, stored in a search index (one document per chart × snapshot × rank). With no `date` the latest snapshot is returned (today's chart); pair `app_id` with `sort=date_desc` for an app's rank over time. Store enum: `ios`, `android`. Chart type enum: `top_free`, `top_paid`, `top_grossing`, `new`. Sort enum: `rank`, `rank_desc`, `date_desc`.",
+        "operationId": "datasets-apps-charts-search",
+        "parameters": [
+          {
+            "description": "Full-text query over chart-entry title and developer, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Store enum: ios, android",
+            "in": "query",
+            "name": "store",
+            "type": "string"
+          },
+          {
+            "description": "Chart enum: top_free, top_paid, top_grossing, new",
+            "in": "query",
+            "name": "chart_type",
+            "type": "string"
+          },
+          {
+            "description": "Raw store collection id filter (e.g. topgrossingapplications, GROSSING), max 128 characters",
+            "in": "query",
+            "name": "collection",
+            "type": "string"
+          },
+          {
+            "description": "Store category/genre filter, max 128 characters; empty for the overall charts",
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "description": "Exact storefront country filter, max 128 characters",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Exact app filter — iOS numeric track id or Android package; pair with sort=date_desc for rank history",
+            "in": "query",
+            "name": "app_id",
+            "type": "string"
+          },
+          {
+            "description": "Snapshot date filter yyyy-MM-dd; defaults to the latest snapshot",
+            "in": "query",
+            "name": "date",
+            "type": "string"
+          },
+          {
+            "description": "Sort enum: rank, rank_desc, date_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.chartsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the app-charts dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/apps-reviews/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches user reviews scraped from the iOS App Store and Google Play, stored in a search index (one document per review). Store enum: `ios`, `android`. Sort enum: `recent`, `score_desc`, `score_asc`, `helpful_desc`.",
+        "operationId": "datasets-apps-reviews-search",
+        "parameters": [
+          {
+            "description": "Full-text query over review text, title and author, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Store enum: ios, android",
+            "in": "query",
+            "name": "store",
+            "type": "string"
+          },
+          {
+            "description": "Exact app filter — iOS numeric track id or Android package, max 128 characters",
+            "in": "query",
+            "name": "app_id",
+            "type": "string"
+          },
+          {
+            "description": "Exact storefront country filter, max 128 characters",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Minimum star rating, 1 through 5",
+            "in": "query",
+            "name": "min_score",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: recent, score_desc, score_asc, helpful_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.reviewsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the app-reviews dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/apps/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches resolved iOS App Store and Google Play apps stored in a search index. Store enum: `ios`, `android`, `both`. Sort enum: `relevance`, `rating_desc`, `reviews_desc`, `installs_desc`, `updated_at_desc`.",
+        "operationId": "datasets-apps-search",
+        "parameters": [
+          {
+            "description": "Full-text query over title, developer and category, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Store enum: ios, android, both",
+            "in": "query",
+            "name": "store",
+            "type": "string"
+          },
+          {
+            "description": "Exact app-store category filter, max 128 characters",
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "description": "Exact storefront country filter, max 128 characters",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Exact developer/publisher name filter, max 128 characters",
+            "in": "query",
+            "name": "developer",
+            "type": "string"
+          },
+          {
+            "description": "Filter by price; true keeps only free apps, false only paid",
+            "in": "query",
+            "name": "free",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum store rating, 0 through 5",
+            "in": "query",
+            "name": "min_rating",
+            "type": "number"
+          },
+          {
+            "description": "Minimum ratings/review count",
+            "in": "query",
+            "name": "min_reviews",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: relevance, rating_desc, reviews_desc, installs_desc, updated_at_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.appsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the apps-intelligence dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/creators/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches TikTok creators stored in a search index (one document per creator), with follower counts, verified status, niche, and engagement. Deleted and private accounts are excluded by default; set `include_inactive=true` to include them for historical lookups. Sort enum: `followers_desc`, `engagement_desc`, `likes_desc`, `relevance`. Coverage note: `followers_desc`, `likes_desc`, and `relevance` are backed by profile fields present across the full dataset; the post-level engagement metrics (`engagement_rate`, `avg_views`, and the nested `post_stats` object) and the `engagement_desc` sort are currently populated for a growing subset of creators, prioritizing the highest-reach accounts. Creators without these metrics are still returned but sort last under `engagement_desc` and omit those fields.",
+        "operationId": "datasets-creators-search",
+        "parameters": [
+          {
+            "description": "Full-text query over handle, nickname and bio, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact handle lookup (case-insensitive), e.g. khaby.lame; returns the single creator with that exact @handle",
+            "in": "query",
+            "name": "handle",
+            "type": "string"
+          },
+          {
+            "description": "Exact content-niche filter, max 128 characters",
+            "in": "query",
+            "name": "niche",
+            "type": "string"
+          },
+          {
+            "description": "Exact creator country/region filter, max 128 characters",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Filter by verified badge; true keeps only verified creators",
+            "in": "query",
+            "name": "verified",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum follower count",
+            "in": "query",
+            "name": "min_followers",
+            "type": "integer"
+          },
+          {
+            "description": "Filter by contact-email presence; true keeps only creators with an email",
+            "in": "query",
+            "name": "has_email",
+            "type": "boolean"
+          },
+          {
+            "description": "Include deleted/private accounts; defaults to false (only live accounts returned)",
+            "in": "query",
+            "name": "include_inactive",
+            "type": "boolean"
+          },
+          {
+            "description": "Sort enum: followers_desc, engagement_desc, likes_desc, relevance. engagement_desc ranks by post-level engagement rate, currently populated for a subset of creators (highest-reach first); creators without it sort last",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.creatorsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the TikTok creators dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/github-users/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns terms aggregation counts for the GitHub users dataset. Facet enum: `influence_tier`, `type`, `country`, `country_code`, `state`, `city`, `domains`, `company`, `reachable`, `has_email`, `has_twitter`, `has_blog`, `active_90d`, `is_org`, `is_bot`. influence_tier enum: `nano`, `micro`, `mid`, `macro`, `mega`.",
+        "operationId": "datasets-github-users-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: influence_tier, type, country, country_code, state, city, domains, company, reachable, has_email, has_twitter, has_blog, active_90d, is_org, is_bot",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query over login, name, company, bio and location, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact login filter, max 128 characters",
+            "in": "query",
+            "name": "login",
+            "type": "string"
+          },
+          {
+            "description": "Exact normalized-company filter, max 128 characters",
+            "in": "query",
+            "name": "company",
+            "type": "string"
+          },
+          {
+            "description": "Follower-tier enum: nano, micro, mid, macro, mega",
+            "in": "query",
+            "name": "influence_tier",
+            "type": "string"
+          },
+          {
+            "description": "Exact geocoded country filter, max 128 characters",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Exact ISO country-code filter, max 128 characters",
+            "in": "query",
+            "name": "country_code",
+            "type": "string"
+          },
+          {
+            "description": "Exact geocoded state filter, max 128 characters",
+            "in": "query",
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "description": "Exact geocoded city filter, max 128 characters",
+            "in": "query",
+            "name": "city",
+            "type": "string"
+          },
+          {
+            "description": "Interest-domain tag filter, max 128 characters",
+            "in": "query",
+            "name": "domain",
+            "type": "string"
+          },
+          {
+            "description": "Filter by public email presence",
+            "in": "query",
+            "name": "has_email",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by public Twitter/X handle presence",
+            "in": "query",
+            "name": "has_twitter",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by public blog/website presence",
+            "in": "query",
+            "name": "has_blog",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by any public contact channel",
+            "in": "query",
+            "name": "reachable",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by activity within the last 90 days",
+            "in": "query",
+            "name": "active_90d",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by the GitHub available-for-hire flag",
+            "in": "query",
+            "name": "hireable",
+            "type": "boolean"
+          },
+          {
+            "description": "Organization filter",
+            "in": "query",
+            "name": "is_org",
+            "type": "boolean"
+          },
+          {
+            "description": "Bot filter",
+            "in": "query",
+            "name": "is_bot",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum follower count",
+            "in": "query",
+            "name": "min_followers",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum follower count",
+            "in": "query",
+            "name": "max_followers",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum public repository count",
+            "in": "query",
+            "name": "min_repos",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum composite rank score",
+            "in": "query",
+            "name": "min_rank_score",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum account age in years",
+            "in": "query",
+            "name": "min_account_age_years",
+            "type": "number"
+          },
+          {
+            "description": "Maximum account age in years",
+            "in": "query",
+            "name": "max_account_age_years",
+            "type": "number"
+          },
+          {
+            "description": "Latitude for radius filtering",
+            "in": "query",
+            "name": "lat",
+            "type": "number"
+          },
+          {
+            "description": "Longitude for radius filtering",
+            "in": "query",
+            "name": "lon",
+            "type": "number"
+          },
+          {
+            "description": "Radius in meters, 1 through 50000; requires lat and lon when supplied",
+            "in": "query",
+            "name": "radius_m",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: relevance, rank_score_desc, followers_desc, account_age_desc, account_age_asc, distance_asc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.githubUsersFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet the GitHub users dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/github-users/items/{login}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one enriched GitHub user record by login from dataset id enum value `github-users`.",
+        "operationId": "datasets-github-users-item",
+        "parameters": [
+          {
+            "description": "GitHub login, max 128 characters",
+            "in": "path",
+            "name": "login",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.githubUserResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a GitHub user from the dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/github-users/nearby": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches enriched GitHub users near a coordinate, sorted by distance, in dataset id enum value `github-users`. influence_tier enum: `nano`, `micro`, `mid`, `macro`, `mega`.",
+        "operationId": "datasets-github-users-nearby",
+        "parameters": [
+          {
+            "description": "Latitude",
+            "in": "query",
+            "name": "lat",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Longitude",
+            "in": "query",
+            "name": "lon",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Radius in meters, max 50000",
+            "in": "query",
+            "name": "radius_m",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Follower-tier enum: nano, micro, mid, macro, mega",
+            "in": "query",
+            "name": "influence_tier",
+            "type": "string"
+          },
+          {
+            "description": "Filter by any public contact channel",
+            "in": "query",
+            "name": "reachable",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum follower count",
+            "in": "query",
+            "name": "min_followers",
+            "type": "integer"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.githubUsersSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search nearby GitHub users",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/github-users/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches enriched public GitHub user profiles stored in a search index. influence_tier enum: `nano`, `micro`, `mid`, `macro`, `mega`. Sort enum: `relevance`, `rank_score_desc`, `followers_desc`, `account_age_desc`, `account_age_asc`, `distance_asc`.",
+        "operationId": "datasets-github-users-search",
+        "parameters": [
+          {
+            "description": "Full-text query over login, name, company, bio and location, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact login filter, max 128 characters",
+            "in": "query",
+            "name": "login",
+            "type": "string"
+          },
+          {
+            "description": "Exact normalized-company filter, max 128 characters",
+            "in": "query",
+            "name": "company",
+            "type": "string"
+          },
+          {
+            "description": "Follower-tier enum: nano, micro, mid, macro, mega",
+            "in": "query",
+            "name": "influence_tier",
+            "type": "string"
+          },
+          {
+            "description": "Exact geocoded country filter, max 128 characters",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Exact ISO country-code filter, max 128 characters",
+            "in": "query",
+            "name": "country_code",
+            "type": "string"
+          },
+          {
+            "description": "Exact geocoded state filter, max 128 characters",
+            "in": "query",
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "description": "Exact geocoded city filter, max 128 characters",
+            "in": "query",
+            "name": "city",
+            "type": "string"
+          },
+          {
+            "description": "Interest-domain tag filter (e.g. ml-ai, web, devops), max 128 characters",
+            "in": "query",
+            "name": "domain",
+            "type": "string"
+          },
+          {
+            "description": "Filter by public email presence",
+            "in": "query",
+            "name": "has_email",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by public Twitter/X handle presence",
+            "in": "query",
+            "name": "has_twitter",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by public blog/website presence",
+            "in": "query",
+            "name": "has_blog",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by any public contact channel",
+            "in": "query",
+            "name": "reachable",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by activity within the last 90 days",
+            "in": "query",
+            "name": "active_90d",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by the GitHub available-for-hire flag",
+            "in": "query",
+            "name": "hireable",
+            "type": "boolean"
+          },
+          {
+            "description": "Organization filter (normally false; the crawl indexes individuals)",
+            "in": "query",
+            "name": "is_org",
+            "type": "boolean"
+          },
+          {
+            "description": "Bot filter (normally false; the crawl skips bots)",
+            "in": "query",
+            "name": "is_bot",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum follower count",
+            "in": "query",
+            "name": "min_followers",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum follower count",
+            "in": "query",
+            "name": "max_followers",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum public repository count",
+            "in": "query",
+            "name": "min_repos",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum composite rank score",
+            "in": "query",
+            "name": "min_rank_score",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum account age in years",
+            "in": "query",
+            "name": "min_account_age_years",
+            "type": "number"
+          },
+          {
+            "description": "Maximum account age in years",
+            "in": "query",
+            "name": "max_account_age_years",
+            "type": "number"
+          },
+          {
+            "description": "Latitude for radius filtering or distance sort",
+            "in": "query",
+            "name": "lat",
+            "type": "number"
+          },
+          {
+            "description": "Longitude for radius filtering or distance sort",
+            "in": "query",
+            "name": "lon",
+            "type": "number"
+          },
+          {
+            "description": "Radius in meters, 1 through 50000; requires lat and lon when supplied",
+            "in": "query",
+            "name": "radius_m",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: relevance, rank_score_desc, followers_desc, account_age_desc, account_age_asc, distance_asc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.githubUsersSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the GitHub users dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
     "/datasets/google-map-businesses/facets": {
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "Returns terms aggregation counts for Google Maps businesses. Facet enum: `category`, `country`, `state`, `county`, `city`, `town`, `website_status`.",
+        "description": "Returns terms aggregation counts for Google Maps businesses. Facet enum: `category`, `country`, `state`, `county`, `city`, `town`, `website_status`. `category` values (as a facet or filter) are Google Maps type tokens in lower-case snake_case (e.g. `dentist`, `bus_stop`, `atm`).",
         "operationId": "datasets-google-map-businesses-facets",
         "parameters": [
           {
@@ -46962,7 +49126,7 @@
             "type": "string"
           },
           {
-            "description": "Exact category filter, max 128 characters",
+            "description": "Exact category filter: a Google Maps type token in lower-case snake_case (e.g. dentist, bus_stop), max 128 characters",
             "in": "query",
             "name": "category",
             "type": "string"
@@ -46998,7 +49162,7 @@
             "type": "string"
           },
           {
-            "description": "Minimum rating, 0 through 5",
+            "description": "Minimum rating, 0 through 5. Businesses with no aggregate Google rating are stored as rating 0, so any min_rating above 0 excludes them.",
             "in": "query",
             "name": "min_rating",
             "type": "number"
@@ -47091,7 +49255,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns one stored Google Maps business by Google place_id from dataset id enum value `google-map-businesses`.",
+        "description": "Returns one stored Google Maps business by Google place_id from dataset id enum value `google-map-businesses`. The `category` field is a Google Maps type token in lower-case snake_case (e.g. `dentist`, `bus_stop`, `atm`). A `rating` of `0` means no aggregate rating is available for that business (not a literal zero-star score); read it together with `review_count`.",
         "operationId": "datasets-google-map-businesses-item",
         "parameters": [
           {
@@ -47153,7 +49317,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches stored Google Maps businesses near a coordinate in dataset id enum value `google-map-businesses`.",
+        "description": "Searches stored Google Maps businesses near a coordinate in dataset id enum value `google-map-businesses`. `category` is a Google Maps type token in lower-case snake_case (e.g. `dentist`, `bus_stop`, `atm`), both as the `category` filter and in each result's `category` field. A `rating` of `0` means no aggregate rating is available for that business (not a literal zero-star score); read it together with `review_count`, and note that `min_rating` above 0 excludes unrated businesses.",
         "operationId": "datasets-google-map-businesses-nearby",
         "parameters": [
           {
@@ -47178,13 +49342,13 @@
             "type": "integer"
           },
           {
-            "description": "Exact category filter, max 128 characters",
+            "description": "Exact category filter: a Google Maps type token in lower-case snake_case (e.g. dentist, bus_stop), max 128 characters",
             "in": "query",
             "name": "category",
             "type": "string"
           },
           {
-            "description": "Minimum rating, 0 through 5",
+            "description": "Minimum rating, 0 through 5. Businesses with no aggregate Google rating are stored as rating 0, so any min_rating above 0 excludes them.",
             "in": "query",
             "name": "min_rating",
             "type": "number"
@@ -47253,7 +49417,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches Google Maps business records stored in a search index. Sort enum: `relevance`, `updated_at_desc`, `rating_desc`, `review_count_desc`, `distance_asc`.",
+        "description": "Searches Google Maps business records stored in a search index. Sort enum: `relevance`, `updated_at_desc`, `rating_desc`, `review_count_desc`, `distance_asc`. `category` is a Google Maps type token in lower-case snake_case (e.g. `dentist`, `bus_stop`, `atm`), both as the `category` filter and in each result's `category` field. A `rating` of `0` means no aggregate rating is available for that business (too few reviews, or a place type Google does not rate) — it is not a literal zero-star score; read it together with `review_count`, and note that `rating_desc` sorts unrated businesses last and `min_rating` above 0 excludes them.",
         "operationId": "datasets-google-map-businesses-search",
         "parameters": [
           {
@@ -47263,7 +49427,7 @@
             "type": "string"
           },
           {
-            "description": "Exact category filter, max 128 characters",
+            "description": "Exact category filter: a Google Maps type token in lower-case snake_case (e.g. dentist, bus_stop), max 128 characters",
             "in": "query",
             "name": "category",
             "type": "string"
@@ -47299,7 +49463,7 @@
             "type": "string"
           },
           {
-            "description": "Minimum rating, 0 through 5",
+            "description": "Minimum rating, 0 through 5. Businesses with no aggregate Google rating are stored as rating 0, so any min_rating above 0 excludes them.",
             "in": "query",
             "name": "min_rating",
             "type": "number"
@@ -48202,6 +50366,1117 @@
         "summary": "Search Nominatim places",
         "tags": [
           "Geocoding"
+        ]
+      }
+    },
+    "/github/org/{org}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a public GitHub organization profile (company-side enrichment).",
+        "operationId": "github-org",
+        "parameters": [
+          {
+            "description": "GitHub organization login",
+            "in": "path",
+            "name": "org",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped organization profile",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Organization not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or rate limit",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve a GitHub organization profile",
+        "tags": [
+          "GitHub"
+        ]
+      }
+    },
+    "/github/org/{org}/repos": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of an organization's public repositories (company tech stack).",
+        "operationId": "github-org-repos",
+        "parameters": [
+          {
+            "description": "GitHub organization login",
+            "in": "path",
+            "name": "org",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Sort field",
+            "enum": [
+              "created",
+              "updated",
+              "pushed",
+              "full_name"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Sort direction",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "direction",
+            "type": "string"
+          },
+          {
+            "description": "Repository type",
+            "enum": [
+              "all",
+              "public",
+              "forks",
+              "sources",
+              "member"
+            ],
+            "in": "query",
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "description": "Page number",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page (max 100)",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped repository list",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or rate limit",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a GitHub organization's public repositories",
+        "tags": [
+          "GitHub"
+        ]
+      }
+    },
+    "/github/repo/{owner}/{repo}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns public detail for a single repository (the core project object).",
+        "operationId": "github-repo",
+        "parameters": [
+          {
+            "description": "Repository owner (user or org login)",
+            "in": "path",
+            "name": "owner",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Repository name",
+            "in": "path",
+            "name": "repo",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped repository detail",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Repository not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or rate limit",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve a GitHub repository",
+        "tags": [
+          "GitHub"
+        ]
+      }
+    },
+    "/github/repo/{owner}/{repo}/contributors": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of a repository's contributors (who builds a project).",
+        "operationId": "github-repo-contributors",
+        "parameters": [
+          {
+            "description": "Repository owner (user or org login)",
+            "in": "path",
+            "name": "owner",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Repository name",
+            "in": "path",
+            "name": "repo",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Page number",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page (max 100)",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped contributor list",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or rate limit",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a repository's contributors",
+        "tags": [
+          "GitHub"
+        ]
+      }
+    },
+    "/github/repo/{owner}/{repo}/forks": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of a repository's public forks (adopter signal).",
+        "operationId": "github-repo-forks",
+        "parameters": [
+          {
+            "description": "Repository owner (user or org login)",
+            "in": "path",
+            "name": "owner",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Repository name",
+            "in": "path",
+            "name": "repo",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Sort order",
+            "enum": [
+              "newest",
+              "oldest",
+              "stargazers",
+              "watchers"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page (max 100)",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped fork list",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or rate limit",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a repository's public forks",
+        "tags": [
+          "GitHub"
+        ]
+      }
+    },
+    "/github/repo/{owner}/{repo}/languages": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the language byte breakdown for a repository, sorted by bytes descending (tech fingerprint).",
+        "operationId": "github-repo-languages",
+        "parameters": [
+          {
+            "description": "Repository owner (user or org login)",
+            "in": "path",
+            "name": "owner",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Repository name",
+            "in": "path",
+            "name": "repo",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped language breakdown",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or rate limit",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve a repository's language breakdown",
+        "tags": [
+          "GitHub"
+        ]
+      }
+    },
+    "/github/repo/{owner}/{repo}/releases": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of a repository's releases (momentum/health signal).",
+        "operationId": "github-repo-releases",
+        "parameters": [
+          {
+            "description": "Repository owner (user or org login)",
+            "in": "path",
+            "name": "owner",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Repository name",
+            "in": "path",
+            "name": "repo",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Page number",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page (max 100)",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped release list",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or rate limit",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a repository's releases",
+        "tags": [
+          "GitHub"
+        ]
+      }
+    },
+    "/github/repo/{owner}/{repo}/stargazers": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of users who starred a repository (buyer-intent signal).",
+        "operationId": "github-repo-stargazers",
+        "parameters": [
+          {
+            "description": "Repository owner (user or org login)",
+            "in": "path",
+            "name": "owner",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Repository name",
+            "in": "path",
+            "name": "repo",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Page number",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page (max 100)",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped stargazer list",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or rate limit",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List users who starred a repository",
+        "tags": [
+          "GitHub"
+        ]
+      }
+    },
+    "/github/search/repositories": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches public GitHub repositories (market/competitive discovery). Unauthenticated search is rate limited to roughly 10 requests per minute.",
+        "operationId": "github-search-repositories",
+        "parameters": [
+          {
+            "description": "GitHub repository search query",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Sort field",
+            "enum": [
+              "stars",
+              "forks",
+              "help-wanted-issues",
+              "updated"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Sort order",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "order",
+            "type": "string"
+          },
+          {
+            "description": "Page number",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page (max 100)",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped repository search result",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or rate limit",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search public GitHub repositories",
+        "tags": [
+          "GitHub"
+        ]
+      }
+    },
+    "/github/search/users": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches public GitHub users (developer discovery). Unauthenticated search is rate limited to roughly 10 requests per minute.",
+        "operationId": "github-search-users",
+        "parameters": [
+          {
+            "description": "GitHub user search query",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Sort field",
+            "enum": [
+              "followers",
+              "repositories",
+              "joined"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Sort order",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "order",
+            "type": "string"
+          },
+          {
+            "description": "Page number",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page (max 100)",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped user search result",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or rate limit",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search public GitHub users",
+        "tags": [
+          "GitHub"
+        ]
+      }
+    },
+    "/github/trending": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the repositories on GitHub's trending page (market discovery).",
+        "operationId": "github-trending",
+        "parameters": [
+          {
+            "description": "Programming language filter (e.g. go, python)",
+            "in": "query",
+            "name": "language",
+            "type": "string"
+          },
+          {
+            "description": "Time window",
+            "enum": [
+              "daily",
+              "weekly",
+              "monthly"
+            ],
+            "in": "query",
+            "name": "since",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped trending repository list",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List trending GitHub repositories",
+        "tags": [
+          "GitHub"
+        ]
+      }
+    },
+    "/github/trending/developers": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the developers on GitHub's trending developers page (market discovery).",
+        "operationId": "github-trending-developers",
+        "parameters": [
+          {
+            "description": "Programming language filter (e.g. go, python)",
+            "in": "query",
+            "name": "language",
+            "type": "string"
+          },
+          {
+            "description": "Time window",
+            "enum": [
+              "daily",
+              "weekly",
+              "monthly"
+            ],
+            "in": "query",
+            "name": "since",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped trending developer list",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List trending GitHub developers",
+        "tags": [
+          "GitHub"
+        ]
+      }
+    },
+    "/github/user/{username}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a public GitHub user's profile plus user-published social links. Email is included only when the user has made it public on their profile.",
+        "operationId": "github-user",
+        "parameters": [
+          {
+            "description": "GitHub username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped user profile",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or rate limit",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve a GitHub user profile",
+        "tags": [
+          "GitHub"
+        ]
+      }
+    },
+    "/github/user/{username}/events": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of a user's recent public events, normalized to type, repository, and timestamp (freshness signal).",
+        "operationId": "github-user-events",
+        "parameters": [
+          {
+            "description": "GitHub username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Page number",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page (max 100)",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped event list",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or rate limit",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a GitHub user's recent public activity",
+        "tags": [
+          "GitHub"
+        ]
+      }
+    },
+    "/github/user/{username}/pinned": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the repositories a user pinned on their public profile (showcase signal). Empty when the user pinned nothing.",
+        "operationId": "github-user-pinned",
+        "parameters": [
+          {
+            "description": "GitHub username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped pinned repository list",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or rate limit",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a GitHub user's pinned repositories",
+        "tags": [
+          "GitHub"
+        ]
+      }
+    },
+    "/github/user/{username}/repos": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of a user's public repositories (tech-stack signal).",
+        "operationId": "github-user-repos",
+        "parameters": [
+          {
+            "description": "GitHub username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Sort field",
+            "enum": [
+              "created",
+              "updated",
+              "pushed",
+              "full_name"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Sort direction",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "direction",
+            "type": "string"
+          },
+          {
+            "description": "Repository type",
+            "enum": [
+              "all",
+              "owner",
+              "member"
+            ],
+            "in": "query",
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "description": "Page number",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page (max 100)",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped repository list",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or rate limit",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a GitHub user's public repositories",
+        "tags": [
+          "GitHub"
         ]
       }
     },
@@ -63657,6 +66932,12 @@
             "in": "query",
             "name": "depth",
             "type": "integer"
+          },
+          {
+            "description": "When true, source comment scores and nested replies from old.reddit HTML rather than the default (slower)",
+            "in": "query",
+            "name": "with_scores",
+            "type": "boolean"
           }
         ],
         "produces": [
@@ -63758,6 +67039,12 @@
             "in": "query",
             "name": "after",
             "type": "string"
+          },
+          {
+            "description": "When true, source score and comment_count from old.reddit HTML rather than the default (slower)",
+            "in": "query",
+            "name": "with_scores",
+            "type": "boolean"
           }
         ],
         "produces": [
@@ -63820,6 +67107,12 @@
             "name": "id",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "When true, source score, upvote_ratio, and comment_count from old.reddit HTML rather than the default (slower)",
+            "in": "query",
+            "name": "with_scores",
+            "type": "boolean"
           }
         ],
         "produces": [
@@ -63928,6 +67221,12 @@
             "in": "query",
             "name": "after",
             "type": "string"
+          },
+          {
+            "description": "When true, source score and comment_count from old.reddit HTML rather than the default (slower)",
+            "in": "query",
+            "name": "with_scores",
+            "type": "boolean"
           }
         ],
         "produces": [
@@ -63981,7 +67280,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns RSS-derived public metadata and sample posts for a subreddit. Subscriber counts, icons, and banners are omitted because Reddit no-auth about JSON is not reliably reachable.",
+        "description": "Returns public metadata and sample posts for a subreddit. Subscriber counts, icons, and banners are omitted because they are not available on anonymous Reddit pages.",
         "operationId": "reddit-subreddit-about",
         "parameters": [
           {
@@ -63996,6 +67295,12 @@
             "in": "query",
             "name": "limit",
             "type": "integer"
+          },
+          {
+            "description": "When true, source the sample posts (with score and comment_count) from old.reddit HTML rather than the default (slower); subscriber counts remain unavailable",
+            "in": "query",
+            "name": "with_scores",
+            "type": "boolean"
           }
         ],
         "produces": [
@@ -64070,6 +67375,12 @@
             "in": "query",
             "name": "after",
             "type": "string"
+          },
+          {
+            "description": "When true, source comment scores from old.reddit HTML rather than the default (slower)",
+            "in": "query",
+            "name": "with_scores",
+            "type": "boolean"
           }
         ],
         "produces": [
@@ -64171,6 +67482,12 @@
             "in": "query",
             "name": "after",
             "type": "string"
+          },
+          {
+            "description": "When true, source score and comment_count from old.reddit HTML rather than the default (slower)",
+            "in": "query",
+            "name": "with_scores",
+            "type": "boolean"
           }
         ],
         "produces": [
@@ -64272,6 +67589,12 @@
             "in": "query",
             "name": "after",
             "type": "string"
+          },
+          {
+            "description": "When true, source score and comment_count from old.reddit HTML rather than the default (slower)",
+            "in": "query",
+            "name": "with_scores",
+            "type": "boolean"
           }
         ],
         "produces": [
@@ -64366,6 +67689,12 @@
             "in": "query",
             "name": "after",
             "type": "string"
+          },
+          {
+            "description": "When true, source score and comment_count from old.reddit HTML rather than the default (slower)",
+            "in": "query",
+            "name": "with_scores",
+            "type": "boolean"
           }
         ],
         "produces": [
@@ -64440,6 +67769,12 @@
             "in": "query",
             "name": "after",
             "type": "string"
+          },
+          {
+            "description": "When true, source comment scores from old.reddit HTML rather than the default (slower)",
+            "in": "query",
+            "name": "with_scores",
+            "type": "boolean"
           }
         ],
         "produces": [
@@ -64514,6 +67849,12 @@
             "in": "query",
             "name": "after",
             "type": "string"
+          },
+          {
+            "description": "When true, source score and comment_count from old.reddit HTML rather than the default (slower)",
+            "in": "query",
+            "name": "with_scores",
+            "type": "boolean"
           }
         ],
         "produces": [
@@ -71303,110 +74644,6 @@
         ]
       }
     },
-    "/tiktok/popular-trend/creator": {
-      "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Returns trending creators from TikTok Creative Center. The service clamps `page` to 1-10 and `limit` to at most 100.",
-        "operationId": "tiktok-popular-trend-creator",
-        "parameters": [
-          {
-            "default": 1,
-            "description": "Page number",
-            "in": "query",
-            "maximum": 10,
-            "minimum": 1,
-            "name": "page",
-            "type": "integer"
-          },
-          {
-            "description": "Maximum number of creators to return",
-            "example": 50,
-            "in": "query",
-            "maximum": 100,
-            "name": "limit",
-            "type": "integer"
-          },
-          {
-            "default": "follower",
-            "description": "Sort order",
-            "enum": [
-              "follower",
-              "engagement",
-              "avg_views"
-            ],
-            "in": "query",
-            "name": "sort_by",
-            "type": "string"
-          },
-          {
-            "description": "Creator country code",
-            "example": "US",
-            "in": "query",
-            "name": "creator_country",
-            "type": "string"
-          },
-          {
-            "description": "Accepted for compatibility but currently ignored by the upstream request",
-            "enum": [
-              1,
-              2,
-              3,
-              4
-            ],
-            "in": "query",
-            "name": "audience_count",
-            "type": "integer"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {
-              "X-RateLimit-Per-Second-Remaining": {
-                "description": "Number of remaining requests per second",
-                "type": "string"
-              }
-            },
-            "schema": {
-              "$ref": "#/definitions/populartrend.creatorTrendResponseDoc"
-            }
-          },
-          "400": {
-            "description": "Invalid input",
-            "schema": {
-              "$ref": "#/definitions/app.Response"
-            }
-          },
-          "429": {
-            "description": "Rate limit exceeded",
-            "schema": {
-              "$ref": "#/definitions/app.Response"
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "$ref": "#/definitions/app.Response"
-            }
-          }
-        },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
-        "summary": "Retrieve TikTok popular-trend creators",
-        "tags": [
-          "TikTok",
-          "TikTok Popular Trend"
-        ]
-      }
-    },
     "/tiktok/post/{id}": {
       "get": {
         "consumes": [
@@ -71587,6 +74824,12 @@
           },
           "400": {
             "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Profile not found",
             "schema": {
               "$ref": "#/definitions/app.Response"
             }
@@ -74460,6 +77703,186 @@
         "summary": "Scrape a URL into markdown, HTML, links or metadata",
         "tags": [
           "Web"
+        ]
+      }
+    },
+    "/x/post/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a public X post by numeric post id, including author, text, visible metrics, and a quoted post preview when present.",
+        "operationId": "x-post",
+        "parameters": [
+          {
+            "description": "X post id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Expected author username. When provided, mismatched authors return 404.",
+            "in": "query",
+            "name": "username",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped post payload",
+            "schema": {
+              "$ref": "#/definitions/x.postResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Post not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or parser drift",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve an X post",
+        "tags": [
+          "X"
+        ]
+      }
+    },
+    "/x/profile/{username}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns public profile details for an X username, including visible counts and profile media when available.",
+        "operationId": "x-profile",
+        "parameters": [
+          {
+            "description": "X username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped profile payload",
+            "schema": {
+              "$ref": "#/definitions/x.profileResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Profile not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or parser drift",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve an X profile",
+        "tags": [
+          "X"
+        ]
+      }
+    },
+    "/x/profile/{username}/posts": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns posts present in the first public profile page payload for an X username. The endpoint does not paginate replies, media-only tabs, or search results.",
+        "operationId": "x-profile-posts",
+        "parameters": [
+          {
+            "description": "X username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum posts returned from the first page payload. Defaults to 20 and must be 1-50.",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped profile posts payload",
+            "schema": {
+              "$ref": "#/definitions/x.profilePostsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Profile not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or parser drift",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List public X profile posts",
+        "tags": [
+          "X"
         ]
       }
     },

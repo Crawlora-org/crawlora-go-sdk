@@ -1,7 +1,7 @@
 # Crawlora Go SDK
 
 Go client for the public Crawlora API. Use it to call Crawlora scraping,
-search, social, marketplace, media, maps, finance, prediction-market, brand, and usage endpoints
+search, social, developer, marketplace, media, maps, finance, prediction-market, brand, and usage endpoints
 with generated service groups, typed parameter structs, operation constants, and
 typed response aliases.
 

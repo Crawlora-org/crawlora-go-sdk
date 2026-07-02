@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.9.0-sdk.1
+
+- Regenerated from the public API contract (499 to 525 operations). Adds four
+  platforms/families to the client:
+  - **GitHub** (16 endpoints): organizations, repositories (contributors,
+    forks, languages, releases, stargazers), user profiles/events/pinned/repos,
+    repository and user search, and trending repositories/developers.
+  - **GitHub Users dataset** (4): search, facets, nearby, and item lookup.
+  - **X** (3): post, profile, and profile posts.
+  - **Apps datasets** (3): apps, apps-charts, and apps-reviews search.
+  - **Creators dataset** (1): TikTok creators search.
+- Removes the retired tiktok popular-trend/creator operation.
+
 ## v1.8.0-sdk.2
 
 - Regenerated from the public API contract (499 operations, unchanged). Enriches
