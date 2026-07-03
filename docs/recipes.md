@@ -44,6 +44,28 @@ posts, err := client.Reddit.Search(ctx, crawlora.Params{"q": "golang", "subreddi
 brand, err := client.Brand.Retrieve(ctx, crawlora.Params{"domain": "stripe.com"})
 ```
 
+
+
+## Airbnb Markets Dataset
+
+Aggregate Airbnb short-term-rental market data — listing supply, ratings and nightly-price bands rolled up by country, metro and geo cell. Aggregate-only.
+
+```go
+markets, err := client.Datasets.AirbnbMarketsSearch(ctx, crawlora.Params{"group_by": "country", "sort": "listings_desc"})
+fr, err := client.Datasets.AirbnbMarketsItem(ctx, crawlora.Params{"country": "FR"})
+density, err := client.Datasets.AirbnbMarketsNearby(ctx, crawlora.Params{"lat": 48.86, "lon": 2.35, "radius_m": 5000})
+```
+
+## Airbnb Markets Dataset
+
+Aggregate Airbnb short-term-rental market data — listing supply, ratings and nightly-price bands rolled up by country, metro and geo cell. Aggregate-only.
+
+```go
+markets, err := client.Datasets.AirbnbMarketsSearch(ctx, crawlora.Params{"group_by": "country", "sort": "listings_desc"})
+fr, err := client.Datasets.AirbnbMarketsItem(ctx, crawlora.Params{"country": "FR"})
+density, err := client.Datasets.AirbnbMarketsNearby(ctx, crawlora.Params{"lat": 48.86, "lon": 2.35, "radius_m": 5000})
+```
+
 ## Retries, Timeouts, And Headers
 
 ```go
