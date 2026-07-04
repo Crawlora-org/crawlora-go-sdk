@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.11.0-sdk.1
+
+- Regenerated from the public API contract (529 to 532 operations). Adds three
+  Airbnb host endpoints: host profile, host listings, and host reviews.
+
 ## v1.10.0-sdk.1
 
 - Regenerated from the public API contract (525 to 529 operations). Adds the
