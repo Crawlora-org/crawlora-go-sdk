@@ -60,6 +60,195 @@
       },
       "type": "object"
     },
+    "airbnb.HostListing": {
+      "properties": {
+        "bathrooms": {
+          "type": "number"
+        },
+        "bedrooms": {
+          "type": "integer"
+        },
+        "beds": {
+          "type": "integer"
+        },
+        "id": {
+          "example": "44740639",
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "instant_book": {
+          "type": "boolean"
+        },
+        "is_luxury": {
+          "type": "boolean"
+        },
+        "is_new_listing": {
+          "type": "boolean"
+        },
+        "is_superhost": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "property_type": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "number"
+        },
+        "review_count": {
+          "type": "integer"
+        },
+        "room_category": {
+          "type": "string"
+        },
+        "room_type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "airbnb.HostListingsResponse": {
+      "properties": {
+        "has_more": {
+          "type": "boolean"
+        },
+        "id": {
+          "example": "65056940",
+          "type": "string"
+        },
+        "listings": {
+          "items": {
+            "$ref": "#/definitions/airbnb.HostListing"
+          },
+          "type": "array"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "airbnb.HostResponse": {
+      "properties": {
+        "about": {
+          "type": "string"
+        },
+        "hosting_years": {
+          "example": 6,
+          "type": "integer"
+        },
+        "id": {
+          "example": "65056940",
+          "type": "string"
+        },
+        "identity_verified": {
+          "type": "boolean"
+        },
+        "image": {
+          "type": "string"
+        },
+        "interests": {
+          "example": [
+            "Architecture",
+            "Wine",
+            "Yoga"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "is_home_host": {
+          "type": "boolean"
+        },
+        "is_superhost": {
+          "type": "boolean"
+        },
+        "listing_count": {
+          "example": 3,
+          "type": "integer"
+        },
+        "location": {
+          "type": "string"
+        },
+        "member_years": {
+          "example": 10,
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "review_count": {
+          "example": 888,
+          "type": "integer"
+        },
+        "url": {
+          "type": "string"
+        },
+        "verifications": {
+          "example": [
+            "Identity",
+            "Email address",
+            "Phone number"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "airbnb.HostReview": {
+      "properties": {
+        "comments": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "number"
+        },
+        "reviewer": {
+          "type": "string"
+        },
+        "reviewer_location": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "airbnb.HostReviewsResponse": {
+      "properties": {
+        "has_more": {
+          "type": "boolean"
+        },
+        "id": {
+          "example": "65056940",
+          "type": "string"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "reviews": {
+          "items": {
+            "$ref": "#/definitions/airbnb.HostReview"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "airbnb.ListingItem": {
       "properties": {
         "host": {
@@ -9722,6 +9911,12 @@
         "avg_review_count": {
           "type": "number"
         },
+        "distinct_hosts": {
+          "type": "integer"
+        },
+        "enriched_listings": {
+          "type": "integer"
+        },
         "key": {
           "type": "string"
         },
@@ -9731,6 +9926,9 @@
         "listings": {
           "type": "integer"
         },
+        "listings_per_host": {
+          "type": "number"
+        },
         "rated_listings": {
           "type": "integer"
         },
@@ -9738,6 +9936,9 @@
           "type": "integer"
         },
         "superhost_pct": {
+          "type": "number"
+        },
+        "superhost_pct_enriched": {
           "type": "number"
         }
       },
@@ -9763,11 +9964,20 @@
           },
           "type": "array"
         },
+        "distinct_hosts": {
+          "type": "integer"
+        },
+        "enriched_listings": {
+          "type": "integer"
+        },
         "last_seen": {
           "type": "string"
         },
         "listings": {
           "type": "integer"
+        },
+        "listings_per_host": {
+          "type": "number"
         },
         "metros": {
           "items": {
@@ -9782,6 +9992,9 @@
           "type": "integer"
         },
         "superhost_pct": {
+          "type": "number"
+        },
+        "superhost_pct_enriched": {
           "type": "number"
         }
       },
@@ -10523,8 +10736,10 @@
           "type": "string"
         },
         "rating": {
+          "description": "Rating is the aggregate Google rating (1.0–5.0). It is a pointer so a business\nwith NO aggregate Google rating serializes as `rating: null` rather than a\nmisleading 0 — Google never assigns a 0.x average, so 0 always meant \"unrated\".\nConsumers computing an average must skip nulls; use min_rating>0 to exclude them.",
           "example": 4.1,
-          "type": "number"
+          "type": "number",
+          "x-nullable": true
         },
         "review_count": {
           "example": 3213,
@@ -10669,8 +10884,10 @@
           "type": "string"
         },
         "rating": {
+          "description": "Rating is the aggregate Google rating (1.0–5.0). It is a pointer so a business\nwith NO aggregate Google rating serializes as `rating: null` rather than a\nmisleading 0 — Google never assigns a 0.x average, so 0 always meant \"unrated\".\nConsumers computing an average must skip nulls; use min_rating>0 to exclude them.",
           "example": 4.1,
-          "type": "number"
+          "type": "number",
+          "x-nullable": true
         },
         "review_count": {
           "example": 3213,
@@ -12566,8 +12783,10 @@
           "type": "string"
         },
         "rating": {
+          "description": "Rating is the aggregate Google rating (1.0–5.0), or null when the place has no\naggregate rating on Google (Google never assigns a 0.x average, so 0 always meant\n\"unrated\"). A pointer so unrated serializes as `rating: null`, not a misleading 0.",
           "example": 4.1,
-          "type": "number"
+          "type": "number",
+          "x-nullable": true
         },
         "review_count": {
           "example": 3213,
@@ -40652,6 +40871,204 @@
     "version": "1.2"
   },
   "paths": {
+    "/airbnb/host/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized Airbnb public host profile — display name, Superhost and identity-verification status, location, bio, hosting tenure, total guest-review count, and total listing count.",
+        "operationId": "airbnb-host",
+        "parameters": [
+          {
+            "description": "Host id (numeric)",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/airbnb.HostResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Airbnb host profile",
+        "tags": [
+          "Airbnb"
+        ]
+      }
+    },
+    "/airbnb/host/{id}/listings": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the listings an Airbnb host manages, paginated. Page 1 comes from the host profile; deeper pages page through the host's full portfolio.",
+        "operationId": "airbnb-host-listings",
+        "parameters": [
+          {
+            "description": "Host id (numeric)",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/airbnb.HostListingsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Airbnb host listings",
+        "tags": [
+          "Airbnb"
+        ]
+      }
+    },
+    "/airbnb/host/{id}/reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns reviews guests left for an Airbnb host, paginated, including the reviewer name and location.",
+        "operationId": "airbnb-host-reviews",
+        "parameters": [
+          {
+            "description": "Host id (numeric)",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/airbnb.HostReviewsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Airbnb host reviews",
+        "tags": [
+          "Airbnb"
+        ]
+      }
+    },
     "/airbnb/room/{id}": {
       "get": {
         "consumes": [
@@ -49829,7 +50246,7 @@
             "type": "string"
           },
           {
-            "description": "Minimum rating, 0 through 5. Businesses with no aggregate Google rating are stored as rating 0, so any min_rating above 0 excludes them.",
+            "description": "Minimum rating, 0 through 5. Businesses with no aggregate Google rating are returned with rating null, so any min_rating above 0 excludes them.",
             "in": "query",
             "name": "min_rating",
             "type": "number"
@@ -49850,6 +50267,12 @@
             "description": "Filter by phone presence",
             "in": "query",
             "name": "has_phone",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by location presence: true keeps only mappable businesses with coordinates; false isolates locationless service-area businesses that have no map location",
+            "in": "query",
+            "name": "has_geo",
             "type": "boolean"
           },
           {
@@ -49922,7 +50345,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns one stored Google Maps business by Google place_id from dataset id enum value `google-map-businesses`. The `category` field is a Google Maps type token in lower-case snake_case (e.g. `dentist`, `bus_stop`, `atm`). A `rating` of `0` means no aggregate rating is available for that business (not a literal zero-star score); read it together with `review_count`.",
+        "description": "Returns one stored Google Maps business by Google place_id from dataset id enum value `google-map-businesses`. The `category` field is a Google Maps type token in lower-case snake_case (e.g. `dentist`, `bus_stop`, `atm`). A `rating` of `null` means no aggregate rating is available for that business; read it together with `review_count`. Locationless service-area businesses (online/mobile/home-based) have a `null` `geo`.",
         "operationId": "datasets-google-map-businesses-item",
         "parameters": [
           {
@@ -50015,7 +50438,7 @@
             "type": "string"
           },
           {
-            "description": "Minimum rating, 0 through 5. Businesses with no aggregate Google rating are stored as rating 0, so any min_rating above 0 excludes them.",
+            "description": "Minimum rating, 0 through 5. Businesses with no aggregate Google rating are returned with rating null, so any min_rating above 0 excludes them.",
             "in": "query",
             "name": "min_rating",
             "type": "number"
@@ -50084,7 +50507,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches Google Maps business records stored in a search index. Sort enum: `relevance`, `updated_at_desc`, `rating_desc`, `review_count_desc`, `distance_asc`. `category` is a Google Maps type token in lower-case snake_case (e.g. `dentist`, `bus_stop`, `atm`), both as the `category` filter and in each result's `category` field. A `rating` of `0` means no aggregate rating is available for that business (too few reviews, or a place type Google does not rate) — it is not a literal zero-star score; read it together with `review_count`, and note that `rating_desc` sorts unrated businesses last and `min_rating` above 0 excludes them.",
+        "description": "Searches Google Maps business records stored in a search index. Sort enum: `relevance`, `updated_at_desc`, `rating_desc`, `review_count_desc`, `distance_asc`. `category` is a Google Maps type token in lower-case snake_case (e.g. `dentist`, `bus_stop`, `atm`), both as the `category` filter and in each result's `category` field. A `rating` of `null` means no aggregate rating is available for that business (too few reviews, or a place type Google does not rate) — it is never a literal zero-star score; read it together with `review_count`, and note that `rating_desc` sorts unrated businesses last and `min_rating` above 0 excludes them. Use `has_geo=false` to isolate locationless service-area businesses (which have a `null` `geo`).",
         "operationId": "datasets-google-map-businesses-search",
         "parameters": [
           {
@@ -50130,7 +50553,7 @@
             "type": "string"
           },
           {
-            "description": "Minimum rating, 0 through 5. Businesses with no aggregate Google rating are stored as rating 0, so any min_rating above 0 excludes them.",
+            "description": "Minimum rating, 0 through 5. Businesses with no aggregate Google rating are returned with rating null, so any min_rating above 0 excludes them.",
             "in": "query",
             "name": "min_rating",
             "type": "number"
@@ -50151,6 +50574,12 @@
             "description": "Filter by phone presence",
             "in": "query",
             "name": "has_phone",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by location presence: true keeps only mappable businesses with coordinates; false isolates locationless service-area businesses that have no map location",
+            "in": "query",
+            "name": "has_geo",
             "type": "boolean"
           },
           {

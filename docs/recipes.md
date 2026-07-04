@@ -44,6 +44,16 @@ posts, err := client.Reddit.Search(ctx, crawlora.Params{"q": "golang", "subreddi
 brand, err := client.Brand.Retrieve(ctx, crawlora.Params{"domain": "stripe.com"})
 ```
 
+## Airbnb Host Profiles
+
+Look up a public Airbnb host, then page through their listings and guest reviews.
+
+```go
+host, err := client.Airbnb.Host(ctx, crawlora.Params{"id": "65056940"})
+listings, err := client.Airbnb.HostListings(ctx, crawlora.Params{"id": "65056940", "page": 1})
+reviews, err := client.Airbnb.HostReviews(ctx, crawlora.Params{"id": "65056940", "page": 1})
+```
+
 
 
 ## Airbnb Markets Dataset
