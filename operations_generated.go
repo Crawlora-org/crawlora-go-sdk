@@ -113,6 +113,7 @@ type ModelAirbnbListingItem struct {
 	HostId string `json:"host_id,omitempty"`
 	Id string `json:"id,omitempty"`
 	Image string `json:"image,omitempty"`
+	IsGuestFavorite bool `json:"is_guest_favorite,omitempty"`
 	IsSuperhost bool `json:"is_superhost,omitempty"`
 	Latitude float64 `json:"latitude,omitempty"`
 	Location string `json:"location,omitempty"`
@@ -145,12 +146,15 @@ type ModelAirbnbRoomResponse struct {
 	HostId string `json:"host_id,omitempty"`
 	Id string `json:"id,omitempty"`
 	Image string `json:"image,omitempty"`
+	IsGuestFavorite bool `json:"is_guest_favorite,omitempty"`
 	IsSuperhost bool `json:"is_superhost,omitempty"`
 	Latitude float64 `json:"latitude,omitempty"`
 	Location string `json:"location,omitempty"`
 	Longitude float64 `json:"longitude,omitempty"`
+	PersonCapacity int `json:"person_capacity,omitempty"`
 	Price float64 `json:"price,omitempty"`
 	PricePerNight float64 `json:"price_per_night,omitempty"`
+	PropertyType string `json:"property_type,omitempty"`
 	Rating float64 `json:"rating,omitempty"`
 	ReviewCount int `json:"review_count,omitempty"`
 	Title string `json:"title,omitempty"`
@@ -1947,6 +1951,144 @@ type ModelBuildinfoInfo struct {
 	Version string `json:"version,omitempty"`
 }
 
+type ModelChromewebstoreCard struct {
+	Category string `json:"category,omitempty"`
+	CategoryId int `json:"category_id,omitempty"`
+	Icon string `json:"icon,omitempty"`
+	Id string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Publisher string `json:"publisher,omitempty"`
+	Rating float64 `json:"rating,omitempty"`
+	RatingCount int `json:"rating_count,omitempty"`
+	Summary string `json:"summary,omitempty"`
+	TileImage string `json:"tile_image,omitempty"`
+	Url string `json:"url,omitempty"`
+	Users int `json:"users,omitempty"`
+}
+
+type ModelChromewebstoreCategoriesResult struct {
+	Categories []ModelChromewebstoreCategoryGroup `json:"categories,omitempty"`
+	Charts []string `json:"charts,omitempty"`
+	Collections []string `json:"collections,omitempty"`
+}
+
+type ModelChromewebstoreCategoryGroup struct {
+	Group string `json:"group,omitempty"`
+	Subcategories []string `json:"subcategories,omitempty"`
+}
+
+type ModelChromewebstoreItem struct {
+	Category string `json:"category,omitempty"`
+	CategoryId int `json:"category_id,omitempty"`
+	Description string `json:"description,omitempty"`
+	Developer string `json:"developer,omitempty"`
+	DeveloperEmail string `json:"developer_email,omitempty"`
+	HeaderImage string `json:"header_image,omitempty"`
+	Icon string `json:"icon,omitempty"`
+	Id string `json:"id,omitempty"`
+	LanguageCodes []string `json:"language_codes,omitempty"`
+	Languages []string `json:"languages,omitempty"`
+	MinBrowserVersion string `json:"min_browser_version,omitempty"`
+	Name string `json:"name,omitempty"`
+	PrivacyPolicy string `json:"privacy_policy,omitempty"`
+	Rating float64 `json:"rating,omitempty"`
+	RatingCount int `json:"rating_count,omitempty"`
+	Screenshots []string `json:"screenshots,omitempty"`
+	Size string `json:"size,omitempty"`
+	Summary string `json:"summary,omitempty"`
+	SupportUrl string `json:"support_url,omitempty"`
+	TileImage string `json:"tile_image,omitempty"`
+	Updated string `json:"updated,omitempty"`
+	UpdatedUnix int `json:"updated_unix,omitempty"`
+	Url string `json:"url,omitempty"`
+	Users int `json:"users,omitempty"`
+	Version string `json:"version,omitempty"`
+}
+
+type ModelChromewebstoreListResult struct {
+	Count int `json:"count,omitempty"`
+	Kind string `json:"kind,omitempty"`
+	Results []ModelChromewebstoreCard `json:"results,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelChromewebstoreReview struct {
+	Author string `json:"author,omitempty"`
+	Avatar string `json:"avatar,omitempty"`
+	Edited string `json:"edited,omitempty"`
+	Id string `json:"id,omitempty"`
+	Language string `json:"language,omitempty"`
+	Posted string `json:"posted,omitempty"`
+	PostedUnix int `json:"posted_unix,omitempty"`
+	Rating int `json:"rating,omitempty"`
+	Text string `json:"text,omitempty"`
+	Version string `json:"version,omitempty"`
+}
+
+type ModelChromewebstoreReviewsResult struct {
+	Count int `json:"count,omitempty"`
+	Id string `json:"id,omitempty"`
+	Reviews []ModelChromewebstoreReview `json:"reviews,omitempty"`
+}
+
+type ModelChromewebstoreSearchResult struct {
+	Count int `json:"count,omitempty"`
+	Query string `json:"query,omitempty"`
+	Results []ModelChromewebstoreCard `json:"results,omitempty"`
+}
+
+type ModelChromewebstoreSimilarResult struct {
+	Count int `json:"count,omitempty"`
+	Id string `json:"id,omitempty"`
+	Results []ModelChromewebstoreCard `json:"results,omitempty"`
+}
+
+type ModelChromewebstoreSuggestion struct {
+	Term string `json:"term,omitempty"`
+}
+
+type ModelChromewebstoreCategoriesResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelChromewebstoreCategoriesResult `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelChromewebstoreItemResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelChromewebstoreItem `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelChromewebstoreListResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelChromewebstoreListResult `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelChromewebstoreReviewsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelChromewebstoreReviewsResult `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelChromewebstoreSearchResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelChromewebstoreSearchResult `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelChromewebstoreSimilarResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelChromewebstoreSimilarResult `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelChromewebstoreSuggestResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data []ModelChromewebstoreSuggestion `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
 type ModelCoingeckoAnalysisResponse struct {
 	AbsoluteChange float64 `json:"absolute_change,omitempty"`
 	Annotations []map[string]any `json:"annotations,omitempty"`
@@ -2612,6 +2754,7 @@ type ModelContactContactRequest struct {
 	MaxPages int `json:"max_pages,omitempty"`
 	Url string `json:"url"`
 	Verify bool `json:"verify,omitempty"`
+	VerifyLimit int `json:"verify_limit,omitempty"`
 }
 
 type ModelContactContactResult struct {
@@ -2745,6 +2888,53 @@ type ModelDatasetsGoogleBusinessSearchResponse struct {
 	Total int `json:"total,omitempty"`
 }
 
+type ModelDatasetsProductHuntMakersFacetResponse struct {
+	Dataset string `json:"dataset,omitempty"`
+	Facet string `json:"facet,omitempty"`
+	Items []ModelEsProductHuntMakersFacetItem `json:"items,omitempty"`
+}
+
+type ModelDatasetsProductHuntMakersSearchResponse struct {
+	Dataset string `json:"dataset,omitempty"`
+	Items []ModelEsProductHuntMakerItem `json:"items,omitempty"`
+	Page int `json:"page,omitempty"`
+	PageSize int `json:"page_size,omitempty"`
+	Sort string `json:"sort,omitempty"`
+	Total int `json:"total,omitempty"`
+}
+
+type ModelDatasetsProductHuntProductsFacetResponse struct {
+	Dataset string `json:"dataset,omitempty"`
+	Facet string `json:"facet,omitempty"`
+	Items []ModelEsProductHuntProductsFacetItem `json:"items,omitempty"`
+}
+
+type ModelDatasetsProductHuntProductsSearchResponse struct {
+	Dataset string `json:"dataset,omitempty"`
+	Items []ModelEsProductHuntProductItem `json:"items,omitempty"`
+	Page int `json:"page,omitempty"`
+	PageSize int `json:"page_size,omitempty"`
+	Sort string `json:"sort,omitempty"`
+	Total int `json:"total,omitempty"`
+}
+
+type ModelDatasetsProductHuntTrendsFacetResponse struct {
+	Dataset string `json:"dataset,omitempty"`
+	Facet string `json:"facet,omitempty"`
+	Items []ModelEsProductHuntTrendsFacetItem `json:"items,omitempty"`
+}
+
+type ModelDatasetsProductHuntTrendsSearchResponse struct {
+	Dataset string `json:"dataset,omitempty"`
+	GroupBy string `json:"group_by,omitempty"`
+	Items []ModelEsProductHuntTrendCell `json:"items,omitempty"`
+	MinLaunches int `json:"min_launches,omitempty"`
+	Page int `json:"page,omitempty"`
+	PageSize int `json:"page_size,omitempty"`
+	Sort string `json:"sort,omitempty"`
+	Total int `json:"total,omitempty"`
+}
+
 type ModelDatasetsReviewsSearchResponse struct {
 	Dataset string `json:"dataset,omitempty"`
 	Items []ModelEsAppReview `json:"items,omitempty"`
@@ -2835,6 +3025,54 @@ type ModelDatasetsGoogleMapBusinessesSearchResponseDoc struct {
 type ModelDatasetsListResponseDoc struct {
 	Code int `json:"code,omitempty"`
 	Data ModelDatasetsDatasetListResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelDatasetsProducthuntMakerResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelEsProductHuntMakerItem `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelDatasetsProducthuntMakersFacetResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelDatasetsProductHuntMakersFacetResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelDatasetsProducthuntMakersSearchResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelDatasetsProductHuntMakersSearchResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelDatasetsProducthuntProductResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelEsProductHuntProductItem `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelDatasetsProducthuntProductsFacetResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelDatasetsProductHuntProductsFacetResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelDatasetsProducthuntProductsSearchResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelDatasetsProductHuntProductsSearchResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelDatasetsProducthuntTrendsFacetResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelDatasetsProductHuntTrendsFacetResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelDatasetsProducthuntTrendsSearchResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelDatasetsProductHuntTrendsSearchResponse `json:"data,omitempty"`
 	Msg string `json:"msg,omitempty"`
 }
 
@@ -3047,14 +3285,19 @@ type ModelEsAirbnbGeoBounds struct {
 }
 
 type ModelEsAirbnbMarketCell struct {
+	AvgPersonCapacity float64 `json:"avg_person_capacity,omitempty"`
 	AvgRating float64 `json:"avg_rating,omitempty"`
 	AvgReviewCount float64 `json:"avg_review_count,omitempty"`
 	DistinctHosts int `json:"distinct_hosts,omitempty"`
 	EnrichedListings int `json:"enriched_listings,omitempty"`
+	GuestFavoriteListings int `json:"guest_favorite_listings,omitempty"`
+	GuestFavoritePct float64 `json:"guest_favorite_pct,omitempty"`
+	GuestFavoritePctEnriched float64 `json:"guest_favorite_pct_enriched,omitempty"`
 	Key string `json:"key,omitempty"`
 	LastSeen string `json:"last_seen,omitempty"`
 	Listings int `json:"listings,omitempty"`
 	ListingsPerHost float64 `json:"listings_per_host,omitempty"`
+	MedianPriceUsd float64 `json:"median_price_usd,omitempty"`
 	RatedListings int `json:"rated_listings,omitempty"`
 	SuperhostListings int `json:"superhost_listings,omitempty"`
 	SuperhostPct float64 `json:"superhost_pct,omitempty"`
@@ -3062,6 +3305,7 @@ type ModelEsAirbnbMarketCell struct {
 }
 
 type ModelEsAirbnbMarketDetail struct {
+	AvgPersonCapacity float64 `json:"avg_person_capacity,omitempty"`
 	AvgRating float64 `json:"avg_rating,omitempty"`
 	AvgReviewCount float64 `json:"avg_review_count,omitempty"`
 	Bounds ModelEsAirbnbGeoBounds `json:"bounds,omitempty"`
@@ -3069,10 +3313,14 @@ type ModelEsAirbnbMarketDetail struct {
 	Currencies []ModelEsAirbnbPriceStats `json:"currencies,omitempty"`
 	DistinctHosts int `json:"distinct_hosts,omitempty"`
 	EnrichedListings int `json:"enriched_listings,omitempty"`
+	GuestFavoriteListings int `json:"guest_favorite_listings,omitempty"`
+	GuestFavoritePct float64 `json:"guest_favorite_pct,omitempty"`
+	GuestFavoritePctEnriched float64 `json:"guest_favorite_pct_enriched,omitempty"`
 	LastSeen string `json:"last_seen,omitempty"`
 	Listings int `json:"listings,omitempty"`
 	ListingsPerHost float64 `json:"listings_per_host,omitempty"`
 	Metros []ModelEsAirbnbMarketCell `json:"metros,omitempty"`
+	PriceUsd ModelEsAirbnbPriceUsdstats `json:"price_usd,omitempty"`
 	RatedListings int `json:"rated_listings,omitempty"`
 	SuperhostListings int `json:"superhost_listings,omitempty"`
 	SuperhostPct float64 `json:"superhost_pct,omitempty"`
@@ -3086,6 +3334,13 @@ type ModelEsAirbnbMarketFacetItem struct {
 
 type ModelEsAirbnbPriceStats struct {
 	Currency string `json:"currency,omitempty"`
+	Listings int `json:"listings,omitempty"`
+	P25 float64 `json:"p25,omitempty"`
+	P50 float64 `json:"p50,omitempty"`
+	P75 float64 `json:"p75,omitempty"`
+}
+
+type ModelEsAirbnbPriceUsdstats struct {
 	Listings int `json:"listings,omitempty"`
 	P25 float64 `json:"p25,omitempty"`
 	P50 float64 `json:"p50,omitempty"`
@@ -3241,6 +3496,7 @@ type ModelEsGithubUserDatasetItem struct {
 	InfluenceTier string `json:"influence_tier,omitempty"`
 	IsBot bool `json:"is_bot,omitempty"`
 	IsOrg bool `json:"is_org,omitempty"`
+	IsSuspectedAutomation bool `json:"is_suspected_automation,omitempty"`
 	LastActiveAt string `json:"last_active_at,omitempty"`
 	LocationRaw string `json:"location_raw,omitempty"`
 	Login string `json:"login,omitempty"`
@@ -3284,6 +3540,7 @@ type ModelEsGithubUserRecord struct {
 	InfluenceTier string `json:"influence_tier,omitempty"`
 	IsBot bool `json:"is_bot,omitempty"`
 	IsOrg bool `json:"is_org,omitempty"`
+	IsSuspectedAutomation bool `json:"is_suspected_automation,omitempty"`
 	LastActiveAt string `json:"last_active_at,omitempty"`
 	LocationRaw string `json:"location_raw,omitempty"`
 	Login string `json:"login,omitempty"`
@@ -3399,6 +3656,119 @@ type ModelEsPostStatsAgg struct {
 	ViewsToFollowerRatio float64 `json:"views_to_follower_ratio,omitempty"`
 }
 
+type ModelEsProductHuntLaunch struct {
+	DailyRank int `json:"daily_rank,omitempty"`
+	Date string `json:"date,omitempty"`
+	LaunchDayScore int `json:"launch_day_score,omitempty"`
+	LaunchNumber int `json:"launch_number,omitempty"`
+	MonthlyRank int `json:"monthly_rank,omitempty"`
+	PostId string `json:"post_id,omitempty"`
+	PostSlug string `json:"post_slug,omitempty"`
+	Score int `json:"score,omitempty"`
+	WeeklyRank int `json:"weekly_rank,omitempty"`
+}
+
+type ModelEsProductHuntMaker struct {
+	AvatarUrl string `json:"avatar_url,omitempty"`
+	Headline string `json:"headline,omitempty"`
+	MakerId string `json:"maker_id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Username string `json:"username,omitempty"`
+}
+
+type ModelEsProductHuntMakerItem struct {
+	AvatarUrl string `json:"avatar_url,omitempty"`
+	BestProduct ModelEsProductHuntMakerProduct `json:"best_product,omitempty"`
+	FirstLaunchDate string `json:"first_launch_date,omitempty"`
+	FollowersCount int `json:"followers_count,omitempty"`
+	Headline string `json:"headline,omitempty"`
+	LatestLaunchDate string `json:"latest_launch_date,omitempty"`
+	MadeProducts []ModelEsProductHuntMakerProduct `json:"made_products,omitempty"`
+	MakerId string `json:"maker_id,omitempty"`
+	Name string `json:"name,omitempty"`
+	ProductCount int `json:"product_count,omitempty"`
+	Topics []string `json:"topics,omitempty"`
+	TotalVotes int `json:"total_votes,omitempty"`
+	Username string `json:"username,omitempty"`
+}
+
+type ModelEsProductHuntMakerProduct struct {
+	LatestScore int `json:"latest_score,omitempty"`
+	Name string `json:"name,omitempty"`
+	ProductId string `json:"product_id,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelEsProductHuntMakersFacetItem struct {
+	Count int `json:"count,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelEsProductHuntProductItem struct {
+	BestDailyRank int `json:"best_daily_rank,omitempty"`
+	BestMonthlyRank int `json:"best_monthly_rank,omitempty"`
+	BestWeeklyRank int `json:"best_weekly_rank,omitempty"`
+	CommentsCount int `json:"comments_count,omitempty"`
+	Description string `json:"description,omitempty"`
+	FirstLaunchDate string `json:"first_launch_date,omitempty"`
+	FollowersCount int `json:"followers_count,omitempty"`
+	IsNoLongerOnline bool `json:"is_no_longer_online,omitempty"`
+	IsTopProduct bool `json:"is_top_product,omitempty"`
+	LatestLaunchDate string `json:"latest_launch_date,omitempty"`
+	LatestScore int `json:"latest_score,omitempty"`
+	LaunchCount int `json:"launch_count,omitempty"`
+	LaunchYear int `json:"launch_year,omitempty"`
+	Launches []ModelEsProductHuntLaunch `json:"launches,omitempty"`
+	LogoUuid string `json:"logo_uuid,omitempty"`
+	Makers []ModelEsProductHuntMaker `json:"makers,omitempty"`
+	Name string `json:"name,omitempty"`
+	PricingType string `json:"pricing_type,omitempty"`
+	PrimaryTopic string `json:"primary_topic,omitempty"`
+	ProductId string `json:"product_id,omitempty"`
+	ProductState string `json:"product_state,omitempty"`
+	ReviewsCount int `json:"reviews_count,omitempty"`
+	ReviewsRating float64 `json:"reviews_rating,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	Tagline string `json:"tagline,omitempty"`
+	TopicSlugs []string `json:"topic_slugs,omitempty"`
+	Topics []ModelEsProductHuntTopic `json:"topics,omitempty"`
+	Url string `json:"url,omitempty"`
+	Website string `json:"website,omitempty"`
+	WonDaily bool `json:"won_daily,omitempty"`
+}
+
+type ModelEsProductHuntProductsFacetItem struct {
+	Count int `json:"count,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelEsProductHuntTopic struct {
+	Id string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelEsProductHuntTrendCell struct {
+	AvgRating float64 `json:"avg_rating,omitempty"`
+	AvgVotes float64 `json:"avg_votes,omitempty"`
+	Launches int `json:"launches,omitempty"`
+	Period string `json:"period,omitempty"`
+	TopProduct ModelEsProductHuntTrendTopProduct `json:"top_product,omitempty"`
+	Topic string `json:"topic,omitempty"`
+	TotalVotes int `json:"total_votes,omitempty"`
+}
+
+type ModelEsProductHuntTrendTopProduct struct {
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	Votes int `json:"votes,omitempty"`
+}
+
+type ModelEsProductHuntTrendsFacetItem struct {
+	Count int `json:"count,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
 type ModelEsWebsiteStatus struct {
 	CheckedAt string `json:"checked_at,omitempty"`
 	DnsResolvable bool `json:"dns_resolvable,omitempty"`
@@ -3406,6 +3776,282 @@ type ModelEsWebsiteStatus struct {
 	HttpReachable bool `json:"http_reachable,omitempty"`
 	StatusCode int `json:"status_code,omitempty"`
 	Url string `json:"url,omitempty"`
+}
+
+type ModelEspnAthlete struct {
+	Age int `json:"age,omitempty"`
+	DisplayHeight string `json:"display_height,omitempty"`
+	DisplayName string `json:"display_name,omitempty"`
+	DisplayWeight string `json:"display_weight,omitempty"`
+	FullName string `json:"full_name,omitempty"`
+	Headshot string `json:"headshot,omitempty"`
+	Id string `json:"id,omitempty"`
+	Jersey string `json:"jersey,omitempty"`
+	Position string `json:"position,omitempty"`
+	Team ModelEspnTeamRef `json:"team,omitempty"`
+}
+
+type ModelEspnAthleteResponse struct {
+	Athlete ModelEspnAthlete `json:"athlete,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	League string `json:"league,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Sport string `json:"sport,omitempty"`
+}
+
+type ModelEspnBoxscoreTeam struct {
+	HomeAway string `json:"home_away,omitempty"`
+	Stats map[string]string `json:"stats,omitempty"`
+	Team ModelEspnTeamRef `json:"team,omitempty"`
+}
+
+type ModelEspnCompetitor struct {
+	HomeAway string `json:"home_away,omitempty"`
+	Record string `json:"record,omitempty"`
+	Score string `json:"score,omitempty"`
+	Team ModelEspnTeamRef `json:"team,omitempty"`
+	Winner bool `json:"winner,omitempty"`
+}
+
+type ModelEspnGame struct {
+	Competitors []ModelEspnCompetitor `json:"competitors,omitempty"`
+	Date string `json:"date,omitempty"`
+	Id string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Odds []ModelEspnGameOdds `json:"odds,omitempty"`
+	ShortName string `json:"short_name,omitempty"`
+	Status ModelEspnGameStatus `json:"status,omitempty"`
+	Venue string `json:"venue,omitempty"`
+}
+
+type ModelEspnGameOdds struct {
+	Details string `json:"details,omitempty"`
+	OverUnder float64 `json:"over_under,omitempty"`
+	Provider string `json:"provider,omitempty"`
+	Spread float64 `json:"spread,omitempty"`
+}
+
+type ModelEspnGameStatus struct {
+	Clock string `json:"clock,omitempty"`
+	Completed bool `json:"completed,omitempty"`
+	Detail string `json:"detail,omitempty"`
+	Period int `json:"period,omitempty"`
+	ShortDetail string `json:"short_detail,omitempty"`
+	State string `json:"state,omitempty"`
+}
+
+type ModelEspnGameSummaryResponse struct {
+	BoxscoreTeams []ModelEspnBoxscoreTeam `json:"boxscore_teams,omitempty"`
+	Event string `json:"event,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	Game ModelEspnGame `json:"game,omitempty"`
+	League string `json:"league,omitempty"`
+	Odds []ModelEspnGameOdds `json:"odds,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Sport string `json:"sport,omitempty"`
+}
+
+type ModelEspnNewsArticle struct {
+	Byline string `json:"byline,omitempty"`
+	Description string `json:"description,omitempty"`
+	Headline string `json:"headline,omitempty"`
+	Link string `json:"link,omitempty"`
+	Published string `json:"published,omitempty"`
+	Type string `json:"type,omitempty"`
+}
+
+type ModelEspnNewsResponse struct {
+	Articles []ModelEspnNewsArticle `json:"articles,omitempty"`
+	Count int `json:"count,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	League string `json:"league,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Sport string `json:"sport,omitempty"`
+}
+
+type ModelEspnRankEntry struct {
+	Current int `json:"current,omitempty"`
+	Points float64 `json:"points,omitempty"`
+	Previous int `json:"previous,omitempty"`
+	Record string `json:"record,omitempty"`
+	Team ModelEspnTeamRef `json:"team,omitempty"`
+	Trend string `json:"trend,omitempty"`
+}
+
+type ModelEspnRankingPoll struct {
+	Name string `json:"name,omitempty"`
+	Ranks []ModelEspnRankEntry `json:"ranks,omitempty"`
+	ShortName string `json:"short_name,omitempty"`
+}
+
+type ModelEspnRankingsResponse struct {
+	FetchedAt string `json:"fetched_at,omitempty"`
+	League string `json:"league,omitempty"`
+	Polls []ModelEspnRankingPoll `json:"polls,omitempty"`
+	Season ModelEspnSeason `json:"season,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Sport string `json:"sport,omitempty"`
+}
+
+type ModelEspnRosterAthlete struct {
+	Age int `json:"age,omitempty"`
+	DisplayHeight string `json:"display_height,omitempty"`
+	DisplayWeight string `json:"display_weight,omitempty"`
+	ExperienceYears int `json:"experience_years,omitempty"`
+	FullName string `json:"full_name,omitempty"`
+	Id string `json:"id,omitempty"`
+	Jersey string `json:"jersey,omitempty"`
+	Position string `json:"position,omitempty"`
+}
+
+type ModelEspnRosterResponse struct {
+	Athletes []ModelEspnRosterAthlete `json:"athletes,omitempty"`
+	Coach string `json:"coach,omitempty"`
+	Count int `json:"count,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	League string `json:"league,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Sport string `json:"sport,omitempty"`
+	Team ModelEspnTeamRef `json:"team,omitempty"`
+}
+
+type ModelEspnScoreboardResponse struct {
+	Count int `json:"count,omitempty"`
+	Day string `json:"day,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	Games []ModelEspnGame `json:"games,omitempty"`
+	League string `json:"league,omitempty"`
+	LeagueName string `json:"league_name,omitempty"`
+	Season ModelEspnSeason `json:"season,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Sport string `json:"sport,omitempty"`
+}
+
+type ModelEspnSeason struct {
+	Name string `json:"name,omitempty"`
+	Type int `json:"type,omitempty"`
+	Year int `json:"year,omitempty"`
+}
+
+type ModelEspnStandingsEntry struct {
+	Note string `json:"note,omitempty"`
+	Stats map[string]string `json:"stats,omitempty"`
+	Team ModelEspnTeamRef `json:"team,omitempty"`
+}
+
+type ModelEspnStandingsGroup struct {
+	Abbreviation string `json:"abbreviation,omitempty"`
+	Entries []ModelEspnStandingsEntry `json:"entries,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelEspnStandingsResponse struct {
+	FetchedAt string `json:"fetched_at,omitempty"`
+	Groups []ModelEspnStandingsGroup `json:"groups,omitempty"`
+	League string `json:"league,omitempty"`
+	LeagueName string `json:"league_name,omitempty"`
+	Season ModelEspnSeason `json:"season,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Sport string `json:"sport,omitempty"`
+}
+
+type ModelEspnTeamDetail struct {
+	Abbreviation string `json:"abbreviation,omitempty"`
+	AlternateColor string `json:"alternate_color,omitempty"`
+	Color string `json:"color,omitempty"`
+	DisplayName string `json:"display_name,omitempty"`
+	Id string `json:"id,omitempty"`
+	Location string `json:"location,omitempty"`
+	Logo string `json:"logo,omitempty"`
+	Name string `json:"name,omitempty"`
+	Record string `json:"record,omitempty"`
+	ShortDisplayName string `json:"short_display_name,omitempty"`
+	StandingSummary string `json:"standing_summary,omitempty"`
+	Uid string `json:"uid,omitempty"`
+}
+
+type ModelEspnTeamRef struct {
+	Abbreviation string `json:"abbreviation,omitempty"`
+	AlternateColor string `json:"alternate_color,omitempty"`
+	Color string `json:"color,omitempty"`
+	DisplayName string `json:"display_name,omitempty"`
+	Id string `json:"id,omitempty"`
+	Location string `json:"location,omitempty"`
+	Logo string `json:"logo,omitempty"`
+	Name string `json:"name,omitempty"`
+	ShortDisplayName string `json:"short_display_name,omitempty"`
+	Uid string `json:"uid,omitempty"`
+}
+
+type ModelEspnTeamResponse struct {
+	FetchedAt string `json:"fetched_at,omitempty"`
+	League string `json:"league,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Sport string `json:"sport,omitempty"`
+	Team ModelEspnTeamDetail `json:"team,omitempty"`
+}
+
+type ModelEspnTeamsResponse struct {
+	Count int `json:"count,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	League string `json:"league,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Sport string `json:"sport,omitempty"`
+	Teams []ModelEspnTeamRef `json:"teams,omitempty"`
+}
+
+type ModelEspnAthleteResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelEspnAthleteResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelEspnGameSummaryResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelEspnGameSummaryResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelEspnNewsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelEspnNewsResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelEspnRankingsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelEspnRankingsResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelEspnRosterResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelEspnRosterResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelEspnScoreboardResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelEspnScoreboardResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelEspnStandingsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelEspnStandingsResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelEspnTeamResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelEspnTeamResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelEspnTeamsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelEspnTeamsResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
 }
 
 type ModelFinanceAbout struct {
@@ -10119,6 +10765,23 @@ type ModelSpotifyUserProfileResponseDoc struct {
 	Msg any `json:"msg,omitempty"`
 }
 
+type ModelTechstackResult struct {
+	Categories []string `json:"categories,omitempty"`
+	Count int `json:"count,omitempty"`
+	DetectorVersion string `json:"detector_version,omitempty"`
+	FinalUrl string `json:"final_url,omitempty"`
+	Technologies []ModelTechstackTechnology `json:"technologies,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
+type ModelTechstackTechnology struct {
+	Categories []string `json:"categories,omitempty"`
+	Confidence string `json:"confidence,omitempty"`
+	Evidence string `json:"evidence,omitempty"`
+	Name string `json:"name,omitempty"`
+	Version string `json:"version,omitempty"`
+}
+
 type ModelTiktokCategory struct {
 	Name string `json:"name,omitempty"`
 	Type string `json:"type,omitempty"`
@@ -11461,9 +12124,20 @@ type ModelWebScrapeResult struct {
 	Scrape ModelWebScrapeInfo `json:"scrape,omitempty"`
 }
 
+type ModelWebTechStackOption struct {
+	Render string `json:"render,omitempty"`
+	Url string `json:"url"`
+}
+
 type ModelWebScrapeResponseDoc struct {
 	Code int `json:"code,omitempty"`
 	Data ModelWebScrapeResult `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelWebTechStackResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelTechstackResult `json:"data,omitempty"`
 	Msg string `json:"msg,omitempty"`
 }
 
@@ -12469,7 +13143,7 @@ type ModelZillowSearchResponse struct {
 	Results []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 532
+const operationCount = 559
 
 const (
 	OperationAirbnbHost = "airbnb-host"
@@ -12537,6 +13211,15 @@ const (
 	OperationBraveSearch = "brave-search"
 	OperationBraveSuggest = "brave-suggest"
 	OperationBraveVideos = "brave-videos"
+	OperationChromeWebStoreChromewebstoreCategories = "chromewebstore-categories"
+	OperationChromeWebStoreChromewebstoreCategory = "chromewebstore-category"
+	OperationChromeWebStoreChromewebstoreCharts = "chromewebstore-charts"
+	OperationChromeWebStoreChromewebstoreCollection = "chromewebstore-collection"
+	OperationChromeWebStoreChromewebstoreItem = "chromewebstore-item"
+	OperationChromeWebStoreChromewebstoreReviews = "chromewebstore-reviews"
+	OperationChromeWebStoreChromewebstoreSearch = "chromewebstore-search"
+	OperationChromeWebStoreChromewebstoreSimilar = "chromewebstore-similar"
+	OperationChromeWebStoreChromewebstoreSuggest = "chromewebstore-suggest"
 	OperationCoinGeckoCategories = "coingecko-categories"
 	OperationCoinGeckoCategoryCoins = "coingecko-category-coins"
 	OperationCoinGeckoChain = "coingecko-chain"
@@ -12575,12 +13258,29 @@ const (
 	OperationDatasetsGoogleMapBusinessesNearby = "datasets-google-map-businesses-nearby"
 	OperationDatasetsGoogleMapBusinessesSearch = "datasets-google-map-businesses-search"
 	OperationDatasetsList = "datasets-list"
+	OperationDatasetsProducthuntMakersFacets = "datasets-producthunt-makers-facets"
+	OperationDatasetsProducthuntMakersItem = "datasets-producthunt-makers-item"
+	OperationDatasetsProducthuntMakersSearch = "datasets-producthunt-makers-search"
+	OperationDatasetsProducthuntProductsFacets = "datasets-producthunt-products-facets"
+	OperationDatasetsProducthuntProductsItem = "datasets-producthunt-products-item"
+	OperationDatasetsProducthuntProductsSearch = "datasets-producthunt-products-search"
+	OperationDatasetsProducthuntTrendsFacets = "datasets-producthunt-trends-facets"
+	OperationDatasetsProducthuntTrendsSearch = "datasets-producthunt-trends-search"
 	OperationEBayEbayItem = "ebay-item"
 	OperationEBayEbaySearch = "ebay-search"
 	OperationEBayEbaySeller = "ebay-seller"
 	OperationEBayEbaySellerAbout = "ebay-seller-about"
 	OperationEBayEbaySellerFeedback = "ebay-seller-feedback"
 	OperationEBayEbaySellerShop = "ebay-seller-shop"
+	OperationEspnAthlete = "espn-athlete"
+	OperationEspnGameSummary = "espn-game-summary"
+	OperationEspnNews = "espn-news"
+	OperationEspnRankings = "espn-rankings"
+	OperationEspnScoreboard = "espn-scoreboard"
+	OperationEspnStandings = "espn-standings"
+	OperationEspnTeam = "espn-team"
+	OperationEspnTeamRoster = "espn-team-roster"
+	OperationEspnTeams = "espn-teams"
 	OperationGeocodingLookup = "geocoding-lookup"
 	OperationGeocodingReverse = "geocoding-reverse"
 	OperationGeocodingSearch = "geocoding-search"
@@ -12946,6 +13646,7 @@ const (
 	OperationWebAntibotCheck = "antibot-check"
 	OperationWebContact = "contact"
 	OperationWebScrape = "web-scrape"
+	OperationWebTechstack = "web-techstack"
 	OperationXPost = "x-post"
 	OperationXProfile = "x-profile"
 	OperationXProfilePosts = "x-profile-posts"
@@ -13072,6 +13773,15 @@ var operations = map[string]operationDefinition{
 	"brave-search": operationDefinition{Method: "GET", Path: "/brave/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}, parameterDefinition{Name: "time_range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"any", "day", "week", "month", "year", "custom"}}, parameterDefinition{Name: "date_from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"brave-suggest": operationDefinition{Method: "GET", Path: "/brave/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"brave-videos": operationDefinition{Method: "GET", Path: "/brave/videos", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}, parameterDefinition{Name: "time_range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"any", "day", "week", "month", "year", "custom"}}, parameterDefinition{Name: "date_from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
+	"chromewebstore-categories": operationDefinition{Method: "GET", Path: "/chromewebstore/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"chromewebstore-category": operationDefinition{Method: "GET", Path: "/chromewebstore/category", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"chromewebstore-charts": operationDefinition{Method: "GET", Path: "/chromewebstore/charts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "chart", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"trending", "popular", "notable"}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"chromewebstore-collection": operationDefinition{Method: "GET", Path: "/chromewebstore/collection", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "collection", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"chromewebstore-item": operationDefinition{Method: "GET", Path: "/chromewebstore/item", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"chromewebstore-reviews": operationDefinition{Method: "GET", Path: "/chromewebstore/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"chromewebstore-search": operationDefinition{Method: "GET", Path: "/chromewebstore/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"chromewebstore-similar": operationDefinition{Method: "GET", Path: "/chromewebstore/similar", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"chromewebstore-suggest": operationDefinition{Method: "GET", Path: "/chromewebstore/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"coingecko-categories": operationDefinition{Method: "GET", Path: "/coingecko/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"coingecko-category-coins": operationDefinition{Method: "GET", Path: "/coingecko/category/{slug}/coins", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"coingecko-chains": operationDefinition{Method: "GET", Path: "/coingecko/chains", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
@@ -13095,22 +13805,30 @@ var operations = map[string]operationDefinition{
 	"coingecko-trending": operationDefinition{Method: "GET", Path: "/coingecko/trending", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "vs_currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"btc", "eth", "ltc", "bch", "bnb", "eos", "xrp", "xlm", "link", "dot", "yfi", "sol", "usd", "aed", "ars", "aud", "bdt", "bhd", "bmd", "brl", "cad", "chf", "clp", "cny", "czk", "dkk", "eur", "gbp", "gel", "hkd", "huf", "idr", "ils", "inr", "jpy", "krw", "kwd", "lkr", "mmk", "mxn", "myr", "ngn", "nok", "nzd", "php", "pkr", "pln", "rub", "sar", "sek", "sgd", "thb", "try", "twd", "uah", "vef", "vnd", "zar", "xdr", "xag", "xau", "bits", "sats"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"contact": operationDefinition{Method: "POST", Path: "/contact", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"datasets-list": operationDefinition{Method: "GET", Path: "/datasets", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
-	"datasets-airbnb-markets-facets": operationDefinition{Method: "GET", Path: "/datasets/airbnb-markets/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "group_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "superhost", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "active_since", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_listings", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"datasets-airbnb-markets-facets": operationDefinition{Method: "GET", Path: "/datasets/airbnb-markets/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "group_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "superhost", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "guest_favorite", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "active_since", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_listings", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"datasets-airbnb-markets-item": operationDefinition{Method: "GET", Path: "/datasets/airbnb-markets/items/{country}", PathParams: []string{"country"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"datasets-airbnb-markets-nearby": operationDefinition{Method: "GET", Path: "/datasets/airbnb-markets/nearby", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "precision", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_listings", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "superhost", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "active_since", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
-	"datasets-airbnb-markets-search": operationDefinition{Method: "GET", Path: "/datasets/airbnb-markets/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "group_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "superhost", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "active_since", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_listings", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
+	"datasets-airbnb-markets-search": operationDefinition{Method: "GET", Path: "/datasets/airbnb-markets/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "group_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "superhost", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "guest_favorite", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "active_since", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_listings", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"datasets-apps-charts-search": operationDefinition{Method: "GET", Path: "/datasets/apps-charts/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "chart_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "collection", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"datasets-apps-reviews-search": operationDefinition{Method: "GET", Path: "/datasets/apps-reviews/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_score", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"datasets-apps-search": operationDefinition{Method: "GET", Path: "/datasets/apps/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "developer", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "free", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_reviews", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"datasets-creators-search": operationDefinition{Method: "GET", Path: "/datasets/creators/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "handle", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "niche", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "verified", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_email", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_inactive", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
-	"datasets-github-users-facets": operationDefinition{Method: "GET", Path: "/datasets/github-users/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "login", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "company", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "influence_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "domain", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_email", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_twitter", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_blog", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "reachable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "active_90d", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "hireable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_org", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_bot", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_repos", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rank_score", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_account_age_years", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_account_age_years", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"datasets-github-users-facets": operationDefinition{Method: "GET", Path: "/datasets/github-users/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "login", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "company", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "influence_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "domain", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_email", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_twitter", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_blog", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "reachable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "active_90d", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "hireable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_org", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_bot", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_suspected_automation", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_repos", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rank_score", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_account_age_years", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_account_age_years", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"datasets-github-users-item": operationDefinition{Method: "GET", Path: "/datasets/github-users/items/{login}", PathParams: []string{"login"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"datasets-github-users-nearby": operationDefinition{Method: "GET", Path: "/datasets/github-users/nearby", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "influence_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "reachable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
-	"datasets-github-users-search": operationDefinition{Method: "GET", Path: "/datasets/github-users/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "login", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "company", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "influence_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "domain", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_email", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_twitter", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_blog", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "reachable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "active_90d", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "hireable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_org", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_bot", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_repos", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rank_score", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_account_age_years", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_account_age_years", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
+	"datasets-github-users-search": operationDefinition{Method: "GET", Path: "/datasets/github-users/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "login", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "company", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "influence_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "domain", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_email", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_twitter", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_blog", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "reachable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "active_90d", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "hireable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_org", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_bot", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_suspected_automation", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_repos", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rank_score", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_account_age_years", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_account_age_years", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"datasets-google-map-businesses-facets": operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "county", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "town", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_website", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_phone", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_geo", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"datasets-google-map-businesses-item": operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/items/{place_id}", PathParams: []string{"place_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"datasets-google-map-businesses-nearby": operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/nearby", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"datasets-google-map-businesses-search": operationDefinition{Method: "GET", Path: "/datasets/google-map-businesses/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "county", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "town", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_website", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_phone", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_geo", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
+	"datasets-producthunt-makers-facets": operationDefinition{Method: "GET", Path: "/datasets/producthunt-makers/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_products", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_total_votes", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"datasets-producthunt-makers-item": operationDefinition{Method: "GET", Path: "/datasets/producthunt-makers/items/{username}", PathParams: []string{"username"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"datasets-producthunt-makers-search": operationDefinition{Method: "GET", Path: "/datasets/producthunt-makers/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_products", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_total_votes", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
+	"datasets-producthunt-products-facets": operationDefinition{Method: "GET", Path: "/datasets/producthunt-products/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "maker", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_votes", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "pricing_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_website", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_online", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"datasets-producthunt-products-item": operationDefinition{Method: "GET", Path: "/datasets/producthunt-products/items/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"datasets-producthunt-products-search": operationDefinition{Method: "GET", Path: "/datasets/producthunt-products/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "maker", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_votes", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "pricing_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_website", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_online", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
+	"datasets-producthunt-trends-facets": operationDefinition{Method: "GET", Path: "/datasets/producthunt-trends/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "group_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_votes", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_launches", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"datasets-producthunt-trends-search": operationDefinition{Method: "GET", Path: "/datasets/producthunt-trends/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "group_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_votes", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_launches", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"antibot-check": operationDefinition{Method: "POST", Path: "/diagnostics/antibot-check", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"ebay-item": operationDefinition{Method: "GET", Path: "/ebay/item/{item_id}", PathParams: []string{"item_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"ebay-search": operationDefinition{Method: "POST", Path: "/ebay/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
@@ -13118,6 +13836,15 @@ var operations = map[string]operationDefinition{
 	"ebay-seller-about": operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}/about", PathParams: []string{"seller"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"ebay-seller-feedback": operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}/feedback", PathParams: []string{"seller"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"24", "48", "72"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"ebay-seller-shop": operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}/shop", PathParams: []string{"seller"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
+	"espn-athlete": operationDefinition{Method: "GET", Path: "/espn/athlete", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}, parameterDefinition{Name: "athlete", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"espn-game-summary": operationDefinition{Method: "GET", Path: "/espn/game-summary", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}, parameterDefinition{Name: "event", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"espn-news": operationDefinition{Method: "GET", Path: "/espn/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"espn-rankings": operationDefinition{Method: "GET", Path: "/espn/rankings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"college-football", "mens-college-basketball", "womens-college-basketball"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"espn-scoreboard": operationDefinition{Method: "GET", Path: "/espn/scoreboard", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}, parameterDefinition{Name: "dates", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "week", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "seasontype", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"1", "2", "3", "4"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"espn-standings": operationDefinition{Method: "GET", Path: "/espn/standings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "seasontype", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"1", "2", "3"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"espn-team": operationDefinition{Method: "GET", Path: "/espn/team", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}, parameterDefinition{Name: "team", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"espn-team-roster": operationDefinition{Method: "GET", Path: "/espn/team-roster", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}, parameterDefinition{Name: "team", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"espn-teams": operationDefinition{Method: "GET", Path: "/espn/teams", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"geocoding-lookup": operationDefinition{Method: "GET", Path: "/geocoding/lookup", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "osm_ids", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "accept_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"geocoding-reverse": operationDefinition{Method: "GET", Path: "/geocoding/reverse", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "zoom", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "accept_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"geocoding-search": operationDefinition{Method: "GET", Path: "/geocoding/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "street", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "county", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "postalcode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "countrycodes", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "accept_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
@@ -13330,7 +14057,7 @@ var operations = map[string]operationDefinition{
 	"polymarket-tournaments": operationDefinition{Method: "GET", Path: "/polymarket/tournaments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ascending", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"polymarket-tournament": operationDefinition{Method: "GET", Path: "/polymarket/tournaments/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"producthunt-category": operationDefinition{Method: "GET", Path: "/producthunt/category/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
-	"producthunt-category-products": operationDefinition{Method: "GET", Path: "/producthunt/category/{slug}/products", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "featured_only", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "tags", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
+	"producthunt-category-products": operationDefinition{Method: "GET", Path: "/producthunt/category/{slug}/products", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "featured_only", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "tags", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}, },
 	"producthunt-leaderboard": operationDefinition{Method: "GET", Path: "/producthunt/leaderboard", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "scope", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"daily", "weekly", "monthly", "yearly"}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "month", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "day", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "week", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "featured", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}, },
 	"producthunt-product": operationDefinition{Method: "GET", Path: "/producthunt/product/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"producthunt-about": operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/about", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
@@ -13341,17 +14068,17 @@ var operations = map[string]operationDefinition{
 	"producthunt-reviews": operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/reviews", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"producthunt-search": operationDefinition{Method: "GET", Path: "/producthunt/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"product", "user", "launch"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "featured", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "topics", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"ready": operationDefinition{Method: "GET", Path: "/ready", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{}, },
-	"reddit-comments": operationDefinition{Method: "GET", Path: "/reddit/comments/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"confidence", "top", "new", "controversial", "old", "qa"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "depth", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
-	"reddit-domain-posts": operationDefinition{Method: "GET", Path: "/reddit/domain/{domain}/posts", PathParams: []string{"domain"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "top", "rising"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
-	"reddit-post": operationDefinition{Method: "GET", Path: "/reddit/post/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
-	"reddit-search": operationDefinition{Method: "GET", Path: "/reddit/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "subreddit", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "hot", "new", "top", "comments"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
-	"reddit-subreddit-about": operationDefinition{Method: "GET", Path: "/reddit/subreddit/{subreddit}/about", PathParams: []string{"subreddit"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
-	"reddit-subreddit-comments": operationDefinition{Method: "GET", Path: "/reddit/subreddit/{subreddit}/comments", PathParams: []string{"subreddit"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
-	"reddit-subreddit-posts": operationDefinition{Method: "GET", Path: "/reddit/subreddit/{subreddit}/posts", PathParams: []string{"subreddit"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "top", "rising"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
-	"reddit-subreddits-posts": operationDefinition{Method: "GET", Path: "/reddit/subreddits/posts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "subreddits", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "top", "rising"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
-	"reddit-trends": operationDefinition{Method: "GET", Path: "/reddit/trends", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "rising", "top"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
-	"reddit-user-comments": operationDefinition{Method: "GET", Path: "/reddit/user/{username}/comments", PathParams: []string{"username"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
-	"reddit-user-posts": operationDefinition{Method: "GET", Path: "/reddit/user/{username}/posts", PathParams: []string{"username"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "with_scores", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"reddit-comments": operationDefinition{Method: "GET", Path: "/reddit/comments/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"confidence", "top", "new", "controversial", "old", "qa"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "depth", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"reddit-domain-posts": operationDefinition{Method: "GET", Path: "/reddit/domain/{domain}/posts", PathParams: []string{"domain"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "top", "rising"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"reddit-post": operationDefinition{Method: "GET", Path: "/reddit/post/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"reddit-search": operationDefinition{Method: "GET", Path: "/reddit/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "subreddit", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "hot", "new", "top", "comments"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"reddit-subreddit-about": operationDefinition{Method: "GET", Path: "/reddit/subreddit/{subreddit}/about", PathParams: []string{"subreddit"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"reddit-subreddit-comments": operationDefinition{Method: "GET", Path: "/reddit/subreddit/{subreddit}/comments", PathParams: []string{"subreddit"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"reddit-subreddit-posts": operationDefinition{Method: "GET", Path: "/reddit/subreddit/{subreddit}/posts", PathParams: []string{"subreddit"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "top", "rising"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"reddit-subreddits-posts": operationDefinition{Method: "GET", Path: "/reddit/subreddits/posts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "subreddits", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "top", "rising"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"reddit-trends": operationDefinition{Method: "GET", Path: "/reddit/trends", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "rising", "top"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"reddit-user-comments": operationDefinition{Method: "GET", Path: "/reddit/user/{username}/comments", PathParams: []string{"username"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"reddit-user-posts": operationDefinition{Method: "GET", Path: "/reddit/user/{username}/posts", PathParams: []string{"username"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"redfin-estimate": operationDefinition{Method: "GET", Path: "/redfin/estimate", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "property_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"redfin-property": operationDefinition{Method: "GET", Path: "/redfin/property", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "property_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "listing_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"redfin-region-trends": operationDefinition{Method: "GET", Path: "/redfin/region-trends", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "region_type", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
@@ -13481,6 +14208,7 @@ var operations = map[string]operationDefinition{
 	"user-me-api-keys-rotate": operationDefinition{Method: "POST", Path: "/user/me/api-keys/rotate", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}, },
 	"user-me-api-keys-reveal": operationDefinition{Method: "POST", Path: "/user/me/api-keys/{id}/reveal", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}, },
 	"web-scrape": operationDefinition{Method: "POST", Path: "/web/scrape", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "scrapeOption", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"web-techstack": operationDefinition{Method: "POST", Path: "/web/techstack", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"x-post": operationDefinition{Method: "GET", Path: "/x/post/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "username", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"x-profile": operationDefinition{Method: "GET", Path: "/x/profile/{username}", PathParams: []string{"username"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"x-profile-posts": operationDefinition{Method: "GET", Path: "/x/profile/{username}/posts", PathParams: []string{"username"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
@@ -13551,10 +14279,12 @@ type Services struct {
 	BoxOfficeMojo *BoxOfficeMojoService
 	Brand *BrandService
 	Brave *BraveService
+	ChromeWebStore *ChromeWebStoreService
 	CoinGecko *CoinGeckoService
 	Web *WebService
 	Datasets *DatasetsService
 	EBay *EBayService
+	Espn *EspnService
 	Geocoding *GeocodingService
 	GitHub *GitHubService
 	Google *GoogleService
@@ -13599,10 +14329,12 @@ func initServices(c *Client) Services {
 		BoxOfficeMojo: &BoxOfficeMojoService{client: c},
 		Brand: &BrandService{client: c},
 		Brave: &BraveService{client: c},
+		ChromeWebStore: &ChromeWebStoreService{client: c},
 		CoinGecko: &CoinGeckoService{client: c},
 		Web: &WebService{client: c},
 		Datasets: &DatasetsService{client: c},
 		EBay: &EBayService{client: c},
+		Espn: &EspnService{client: c},
 		Geocoding: &GeocodingService{client: c},
 		GitHub: &GitHubService{client: c},
 		Google: &GoogleService{client: c},
@@ -14702,6 +15434,155 @@ func (s *BraveService) VideosTyped(ctx context.Context, params BraveVideosParams
 	return requestTyped[BraveVideosResponse](s.client, ctx, "brave-videos", paramsFromStruct(params), opts...)
 }
 
+type ChromeWebStoreService struct { client *Client }
+
+func (s *ChromeWebStoreService) ChromewebstoreCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "chromewebstore-categories", params, opts...)
+}
+
+type ChromeWebStoreChromewebstoreCategoriesParams struct {
+}
+
+type ChromeWebStoreChromewebstoreCategoriesResponse = ModelChromewebstoreCategoriesResponseDoc
+
+func (s *ChromeWebStoreService) ChromewebstoreCategoriesTyped(ctx context.Context, params ChromeWebStoreChromewebstoreCategoriesParams, opts ...RequestOption) (ChromeWebStoreChromewebstoreCategoriesResponse, error) {
+	return requestTyped[ChromeWebStoreChromewebstoreCategoriesResponse](s.client, ctx, "chromewebstore-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *ChromeWebStoreService) ChromewebstoreCategory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "chromewebstore-category", params, opts...)
+}
+
+type ChromeWebStoreChromewebstoreCategoryParams struct {
+	Category string `crawlora:"category"`
+	Num *int `crawlora:"num,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang *string `crawlora:"lang,omitempty"`
+}
+
+type ChromeWebStoreChromewebstoreCategoryResponse = ModelChromewebstoreListResponseDoc
+
+func (s *ChromeWebStoreService) ChromewebstoreCategoryTyped(ctx context.Context, params ChromeWebStoreChromewebstoreCategoryParams, opts ...RequestOption) (ChromeWebStoreChromewebstoreCategoryResponse, error) {
+	return requestTyped[ChromeWebStoreChromewebstoreCategoryResponse](s.client, ctx, "chromewebstore-category", paramsFromStruct(params), opts...)
+}
+
+func (s *ChromeWebStoreService) ChromewebstoreCharts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "chromewebstore-charts", params, opts...)
+}
+
+type ChromeWebStoreChromewebstoreChartsParams struct {
+	Chart *string `crawlora:"chart,omitempty"`
+	Num *int `crawlora:"num,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang *string `crawlora:"lang,omitempty"`
+}
+
+type ChromeWebStoreChromewebstoreChartsResponse = ModelChromewebstoreListResponseDoc
+
+func (s *ChromeWebStoreService) ChromewebstoreChartsTyped(ctx context.Context, params ChromeWebStoreChromewebstoreChartsParams, opts ...RequestOption) (ChromeWebStoreChromewebstoreChartsResponse, error) {
+	return requestTyped[ChromeWebStoreChromewebstoreChartsResponse](s.client, ctx, "chromewebstore-charts", paramsFromStruct(params), opts...)
+}
+
+func (s *ChromeWebStoreService) ChromewebstoreCollection(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "chromewebstore-collection", params, opts...)
+}
+
+type ChromeWebStoreChromewebstoreCollectionParams struct {
+	Collection string `crawlora:"collection"`
+	Num *int `crawlora:"num,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang *string `crawlora:"lang,omitempty"`
+}
+
+type ChromeWebStoreChromewebstoreCollectionResponse = ModelChromewebstoreListResponseDoc
+
+func (s *ChromeWebStoreService) ChromewebstoreCollectionTyped(ctx context.Context, params ChromeWebStoreChromewebstoreCollectionParams, opts ...RequestOption) (ChromeWebStoreChromewebstoreCollectionResponse, error) {
+	return requestTyped[ChromeWebStoreChromewebstoreCollectionResponse](s.client, ctx, "chromewebstore-collection", paramsFromStruct(params), opts...)
+}
+
+func (s *ChromeWebStoreService) ChromewebstoreItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "chromewebstore-item", params, opts...)
+}
+
+type ChromeWebStoreChromewebstoreItemParams struct {
+	Id string `crawlora:"id"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang *string `crawlora:"lang,omitempty"`
+}
+
+type ChromeWebStoreChromewebstoreItemResponse = ModelChromewebstoreItemResponseDoc
+
+func (s *ChromeWebStoreService) ChromewebstoreItemTyped(ctx context.Context, params ChromeWebStoreChromewebstoreItemParams, opts ...RequestOption) (ChromeWebStoreChromewebstoreItemResponse, error) {
+	return requestTyped[ChromeWebStoreChromewebstoreItemResponse](s.client, ctx, "chromewebstore-item", paramsFromStruct(params), opts...)
+}
+
+func (s *ChromeWebStoreService) ChromewebstoreReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "chromewebstore-reviews", params, opts...)
+}
+
+type ChromeWebStoreChromewebstoreReviewsParams struct {
+	Id string `crawlora:"id"`
+	Num *int `crawlora:"num,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang *string `crawlora:"lang,omitempty"`
+}
+
+type ChromeWebStoreChromewebstoreReviewsResponse = ModelChromewebstoreReviewsResponseDoc
+
+func (s *ChromeWebStoreService) ChromewebstoreReviewsTyped(ctx context.Context, params ChromeWebStoreChromewebstoreReviewsParams, opts ...RequestOption) (ChromeWebStoreChromewebstoreReviewsResponse, error) {
+	return requestTyped[ChromeWebStoreChromewebstoreReviewsResponse](s.client, ctx, "chromewebstore-reviews", paramsFromStruct(params), opts...)
+}
+
+func (s *ChromeWebStoreService) ChromewebstoreSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "chromewebstore-search", params, opts...)
+}
+
+type ChromeWebStoreChromewebstoreSearchParams struct {
+	Term string `crawlora:"term"`
+	Num *int `crawlora:"num,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang *string `crawlora:"lang,omitempty"`
+}
+
+type ChromeWebStoreChromewebstoreSearchResponse = ModelChromewebstoreSearchResponseDoc
+
+func (s *ChromeWebStoreService) ChromewebstoreSearchTyped(ctx context.Context, params ChromeWebStoreChromewebstoreSearchParams, opts ...RequestOption) (ChromeWebStoreChromewebstoreSearchResponse, error) {
+	return requestTyped[ChromeWebStoreChromewebstoreSearchResponse](s.client, ctx, "chromewebstore-search", paramsFromStruct(params), opts...)
+}
+
+func (s *ChromeWebStoreService) ChromewebstoreSimilar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "chromewebstore-similar", params, opts...)
+}
+
+type ChromeWebStoreChromewebstoreSimilarParams struct {
+	Id string `crawlora:"id"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang *string `crawlora:"lang,omitempty"`
+}
+
+type ChromeWebStoreChromewebstoreSimilarResponse = ModelChromewebstoreSimilarResponseDoc
+
+func (s *ChromeWebStoreService) ChromewebstoreSimilarTyped(ctx context.Context, params ChromeWebStoreChromewebstoreSimilarParams, opts ...RequestOption) (ChromeWebStoreChromewebstoreSimilarResponse, error) {
+	return requestTyped[ChromeWebStoreChromewebstoreSimilarResponse](s.client, ctx, "chromewebstore-similar", paramsFromStruct(params), opts...)
+}
+
+func (s *ChromeWebStoreService) ChromewebstoreSuggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "chromewebstore-suggest", params, opts...)
+}
+
+type ChromeWebStoreChromewebstoreSuggestParams struct {
+	Term string `crawlora:"term"`
+	Num *int `crawlora:"num,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang *string `crawlora:"lang,omitempty"`
+}
+
+type ChromeWebStoreChromewebstoreSuggestResponse = ModelChromewebstoreSuggestResponseDoc
+
+func (s *ChromeWebStoreService) ChromewebstoreSuggestTyped(ctx context.Context, params ChromeWebStoreChromewebstoreSuggestParams, opts ...RequestOption) (ChromeWebStoreChromewebstoreSuggestResponse, error) {
+	return requestTyped[ChromeWebStoreChromewebstoreSuggestResponse](s.client, ctx, "chromewebstore-suggest", paramsFromStruct(params), opts...)
+}
+
 type CoinGeckoService struct { client *Client }
 
 func (s *CoinGeckoService) Categories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -15075,6 +15956,20 @@ func (s *WebService) ScrapeTyped(ctx context.Context, params WebScrapeParams, op
 	return requestTyped[WebScrapeResponse](s.client, ctx, "web-scrape", paramsFromStruct(params), opts...)
 }
 
+func (s *WebService) Techstack(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "web-techstack", params, opts...)
+}
+
+type WebTechstackParams struct {
+	Request ModelWebTechStackOption `crawlora:"request"`
+}
+
+type WebTechstackResponse = ModelWebTechStackResponseDoc
+
+func (s *WebService) TechstackTyped(ctx context.Context, params WebTechstackParams, opts ...RequestOption) (WebTechstackResponse, error) {
+	return requestTyped[WebTechstackResponse](s.client, ctx, "web-techstack", paramsFromStruct(params), opts...)
+}
+
 type DatasetsService struct { client *Client }
 
 func (s *DatasetsService) List(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -15100,6 +15995,7 @@ type DatasetsAirbnbMarketsFacetsParams struct {
 	Country *string `crawlora:"country,omitempty"`
 	Market *string `crawlora:"market,omitempty"`
 	Superhost *bool `crawlora:"superhost,omitempty"`
+	GuestFavorite *bool `crawlora:"guest_favorite,omitempty"`
 	MinRating *float64 `crawlora:"min_rating,omitempty"`
 	MinReviewCount *int `crawlora:"min_review_count,omitempty"`
 	ActiveSince *string `crawlora:"active_since,omitempty"`
@@ -15157,6 +16053,7 @@ type DatasetsAirbnbMarketsSearchParams struct {
 	Country *string `crawlora:"country,omitempty"`
 	Market *string `crawlora:"market,omitempty"`
 	Superhost *bool `crawlora:"superhost,omitempty"`
+	GuestFavorite *bool `crawlora:"guest_favorite,omitempty"`
 	MinRating *float64 `crawlora:"min_rating,omitempty"`
 	MinReviewCount *int `crawlora:"min_review_count,omitempty"`
 	ActiveSince *string `crawlora:"active_since,omitempty"`
@@ -15288,6 +16185,7 @@ type DatasetsGithubUsersFacetsParams struct {
 	Hireable *bool `crawlora:"hireable,omitempty"`
 	IsOrg *bool `crawlora:"is_org,omitempty"`
 	IsBot *bool `crawlora:"is_bot,omitempty"`
+	IsSuspectedAutomation *bool `crawlora:"is_suspected_automation,omitempty"`
 	MinFollowers *int `crawlora:"min_followers,omitempty"`
 	MaxFollowers *int `crawlora:"max_followers,omitempty"`
 	MinRepos *int `crawlora:"min_repos,omitempty"`
@@ -15363,6 +16261,7 @@ type DatasetsGithubUsersSearchParams struct {
 	Hireable *bool `crawlora:"hireable,omitempty"`
 	IsOrg *bool `crawlora:"is_org,omitempty"`
 	IsBot *bool `crawlora:"is_bot,omitempty"`
+	IsSuspectedAutomation *bool `crawlora:"is_suspected_automation,omitempty"`
 	MinFollowers *int `crawlora:"min_followers,omitempty"`
 	MaxFollowers *int `crawlora:"max_followers,omitempty"`
 	MinRepos *int `crawlora:"min_repos,omitempty"`
@@ -15479,6 +16378,164 @@ func (s *DatasetsService) GoogleMapBusinessesSearchTyped(ctx context.Context, pa
 	return requestTyped[DatasetsGoogleMapBusinessesSearchResponse](s.client, ctx, "datasets-google-map-businesses-search", paramsFromStruct(params), opts...)
 }
 
+func (s *DatasetsService) ProducthuntMakersFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-producthunt-makers-facets", params, opts...)
+}
+
+type DatasetsProducthuntMakersFacetsParams struct {
+	Facet string `crawlora:"facet"`
+	Q *string `crawlora:"q,omitempty"`
+	Topic *string `crawlora:"topic,omitempty"`
+	MinProducts *int `crawlora:"min_products,omitempty"`
+	MinTotalVotes *int `crawlora:"min_total_votes,omitempty"`
+}
+
+type DatasetsProducthuntMakersFacetsResponse = ModelDatasetsProducthuntMakersFacetResponseDoc
+
+func (s *DatasetsService) ProducthuntMakersFacetsTyped(ctx context.Context, params DatasetsProducthuntMakersFacetsParams, opts ...RequestOption) (DatasetsProducthuntMakersFacetsResponse, error) {
+	return requestTyped[DatasetsProducthuntMakersFacetsResponse](s.client, ctx, "datasets-producthunt-makers-facets", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) ProducthuntMakersItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-producthunt-makers-item", params, opts...)
+}
+
+type DatasetsProducthuntMakersItemParams struct {
+	Username string `crawlora:"username"`
+}
+
+type DatasetsProducthuntMakersItemResponse = ModelDatasetsProducthuntMakerResponseDoc
+
+func (s *DatasetsService) ProducthuntMakersItemTyped(ctx context.Context, params DatasetsProducthuntMakersItemParams, opts ...RequestOption) (DatasetsProducthuntMakersItemResponse, error) {
+	return requestTyped[DatasetsProducthuntMakersItemResponse](s.client, ctx, "datasets-producthunt-makers-item", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) ProducthuntMakersSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-producthunt-makers-search", params, opts...)
+}
+
+type DatasetsProducthuntMakersSearchParams struct {
+	Q *string `crawlora:"q,omitempty"`
+	Topic *string `crawlora:"topic,omitempty"`
+	MinProducts *int `crawlora:"min_products,omitempty"`
+	MinTotalVotes *int `crawlora:"min_total_votes,omitempty"`
+	Sort *string `crawlora:"sort,omitempty"`
+	Page *int `crawlora:"page,omitempty"`
+	PageSize *int `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsProducthuntMakersSearchResponse = ModelDatasetsProducthuntMakersSearchResponseDoc
+
+func (s *DatasetsService) ProducthuntMakersSearchTyped(ctx context.Context, params DatasetsProducthuntMakersSearchParams, opts ...RequestOption) (DatasetsProducthuntMakersSearchResponse, error) {
+	return requestTyped[DatasetsProducthuntMakersSearchResponse](s.client, ctx, "datasets-producthunt-makers-search", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) ProducthuntProductsFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-producthunt-products-facets", params, opts...)
+}
+
+type DatasetsProducthuntProductsFacetsParams struct {
+	Facet string `crawlora:"facet"`
+	Q *string `crawlora:"q,omitempty"`
+	Topic *string `crawlora:"topic,omitempty"`
+	Maker *string `crawlora:"maker,omitempty"`
+	LaunchedAfter *string `crawlora:"launched_after,omitempty"`
+	LaunchedBefore *string `crawlora:"launched_before,omitempty"`
+	MinVotes *int `crawlora:"min_votes,omitempty"`
+	MinRating *float64 `crawlora:"min_rating,omitempty"`
+	PricingType *string `crawlora:"pricing_type,omitempty"`
+	HasWebsite *bool `crawlora:"has_website,omitempty"`
+	IsOnline *bool `crawlora:"is_online,omitempty"`
+}
+
+type DatasetsProducthuntProductsFacetsResponse = ModelDatasetsProducthuntProductsFacetResponseDoc
+
+func (s *DatasetsService) ProducthuntProductsFacetsTyped(ctx context.Context, params DatasetsProducthuntProductsFacetsParams, opts ...RequestOption) (DatasetsProducthuntProductsFacetsResponse, error) {
+	return requestTyped[DatasetsProducthuntProductsFacetsResponse](s.client, ctx, "datasets-producthunt-products-facets", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) ProducthuntProductsItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-producthunt-products-item", params, opts...)
+}
+
+type DatasetsProducthuntProductsItemParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type DatasetsProducthuntProductsItemResponse = ModelDatasetsProducthuntProductResponseDoc
+
+func (s *DatasetsService) ProducthuntProductsItemTyped(ctx context.Context, params DatasetsProducthuntProductsItemParams, opts ...RequestOption) (DatasetsProducthuntProductsItemResponse, error) {
+	return requestTyped[DatasetsProducthuntProductsItemResponse](s.client, ctx, "datasets-producthunt-products-item", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) ProducthuntProductsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-producthunt-products-search", params, opts...)
+}
+
+type DatasetsProducthuntProductsSearchParams struct {
+	Q *string `crawlora:"q,omitempty"`
+	Topic *string `crawlora:"topic,omitempty"`
+	Maker *string `crawlora:"maker,omitempty"`
+	LaunchedAfter *string `crawlora:"launched_after,omitempty"`
+	LaunchedBefore *string `crawlora:"launched_before,omitempty"`
+	MinVotes *int `crawlora:"min_votes,omitempty"`
+	MinRating *float64 `crawlora:"min_rating,omitempty"`
+	PricingType *string `crawlora:"pricing_type,omitempty"`
+	HasWebsite *bool `crawlora:"has_website,omitempty"`
+	IsOnline *bool `crawlora:"is_online,omitempty"`
+	Sort *string `crawlora:"sort,omitempty"`
+	Page *int `crawlora:"page,omitempty"`
+	PageSize *int `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsProducthuntProductsSearchResponse = ModelDatasetsProducthuntProductsSearchResponseDoc
+
+func (s *DatasetsService) ProducthuntProductsSearchTyped(ctx context.Context, params DatasetsProducthuntProductsSearchParams, opts ...RequestOption) (DatasetsProducthuntProductsSearchResponse, error) {
+	return requestTyped[DatasetsProducthuntProductsSearchResponse](s.client, ctx, "datasets-producthunt-products-search", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) ProducthuntTrendsFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-producthunt-trends-facets", params, opts...)
+}
+
+type DatasetsProducthuntTrendsFacetsParams struct {
+	Facet string `crawlora:"facet"`
+	GroupBy *string `crawlora:"group_by,omitempty"`
+	Topic *string `crawlora:"topic,omitempty"`
+	LaunchedAfter *string `crawlora:"launched_after,omitempty"`
+	LaunchedBefore *string `crawlora:"launched_before,omitempty"`
+	MinVotes *int `crawlora:"min_votes,omitempty"`
+	MinLaunches *int `crawlora:"min_launches,omitempty"`
+}
+
+type DatasetsProducthuntTrendsFacetsResponse = ModelDatasetsProducthuntTrendsFacetResponseDoc
+
+func (s *DatasetsService) ProducthuntTrendsFacetsTyped(ctx context.Context, params DatasetsProducthuntTrendsFacetsParams, opts ...RequestOption) (DatasetsProducthuntTrendsFacetsResponse, error) {
+	return requestTyped[DatasetsProducthuntTrendsFacetsResponse](s.client, ctx, "datasets-producthunt-trends-facets", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) ProducthuntTrendsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-producthunt-trends-search", params, opts...)
+}
+
+type DatasetsProducthuntTrendsSearchParams struct {
+	GroupBy *string `crawlora:"group_by,omitempty"`
+	Topic *string `crawlora:"topic,omitempty"`
+	LaunchedAfter *string `crawlora:"launched_after,omitempty"`
+	LaunchedBefore *string `crawlora:"launched_before,omitempty"`
+	MinVotes *int `crawlora:"min_votes,omitempty"`
+	MinLaunches *int `crawlora:"min_launches,omitempty"`
+	Sort *string `crawlora:"sort,omitempty"`
+	Page *int `crawlora:"page,omitempty"`
+	PageSize *int `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsProducthuntTrendsSearchResponse = ModelDatasetsProducthuntTrendsSearchResponseDoc
+
+func (s *DatasetsService) ProducthuntTrendsSearchTyped(ctx context.Context, params DatasetsProducthuntTrendsSearchParams, opts ...RequestOption) (DatasetsProducthuntTrendsSearchResponse, error) {
+	return requestTyped[DatasetsProducthuntTrendsSearchResponse](s.client, ctx, "datasets-producthunt-trends-search", paramsFromStruct(params), opts...)
+}
+
 type EBayService struct { client *Client }
 
 func (s *EBayService) EbayItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -15566,6 +16623,152 @@ type EBayEbaySellerShopResponse = ModelEbaySellerShopResponseDoc
 
 func (s *EBayService) EbaySellerShopTyped(ctx context.Context, params EBayEbaySellerShopParams, opts ...RequestOption) (EBayEbaySellerShopResponse, error) {
 	return requestTyped[EBayEbaySellerShopResponse](s.client, ctx, "ebay-seller-shop", paramsFromStruct(params), opts...)
+}
+
+type EspnService struct { client *Client }
+
+func (s *EspnService) Athlete(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "espn-athlete", params, opts...)
+}
+
+type EspnAthleteParams struct {
+	Sport string `crawlora:"sport"`
+	League string `crawlora:"league"`
+	Athlete string `crawlora:"athlete"`
+}
+
+type EspnAthleteResponse = ModelEspnAthleteResponseDoc
+
+func (s *EspnService) AthleteTyped(ctx context.Context, params EspnAthleteParams, opts ...RequestOption) (EspnAthleteResponse, error) {
+	return requestTyped[EspnAthleteResponse](s.client, ctx, "espn-athlete", paramsFromStruct(params), opts...)
+}
+
+func (s *EspnService) GameSummary(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "espn-game-summary", params, opts...)
+}
+
+type EspnGameSummaryParams struct {
+	Sport string `crawlora:"sport"`
+	League string `crawlora:"league"`
+	Event string `crawlora:"event"`
+}
+
+type EspnGameSummaryResponse = ModelEspnGameSummaryResponseDoc
+
+func (s *EspnService) GameSummaryTyped(ctx context.Context, params EspnGameSummaryParams, opts ...RequestOption) (EspnGameSummaryResponse, error) {
+	return requestTyped[EspnGameSummaryResponse](s.client, ctx, "espn-game-summary", paramsFromStruct(params), opts...)
+}
+
+func (s *EspnService) News(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "espn-news", params, opts...)
+}
+
+type EspnNewsParams struct {
+	Sport string `crawlora:"sport"`
+	League string `crawlora:"league"`
+}
+
+type EspnNewsResponse = ModelEspnNewsResponseDoc
+
+func (s *EspnService) NewsTyped(ctx context.Context, params EspnNewsParams, opts ...RequestOption) (EspnNewsResponse, error) {
+	return requestTyped[EspnNewsResponse](s.client, ctx, "espn-news", paramsFromStruct(params), opts...)
+}
+
+func (s *EspnService) Rankings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "espn-rankings", params, opts...)
+}
+
+type EspnRankingsParams struct {
+	Sport string `crawlora:"sport"`
+	League string `crawlora:"league"`
+}
+
+type EspnRankingsResponse = ModelEspnRankingsResponseDoc
+
+func (s *EspnService) RankingsTyped(ctx context.Context, params EspnRankingsParams, opts ...RequestOption) (EspnRankingsResponse, error) {
+	return requestTyped[EspnRankingsResponse](s.client, ctx, "espn-rankings", paramsFromStruct(params), opts...)
+}
+
+func (s *EspnService) Scoreboard(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "espn-scoreboard", params, opts...)
+}
+
+type EspnScoreboardParams struct {
+	Sport string `crawlora:"sport"`
+	League string `crawlora:"league"`
+	Dates *string `crawlora:"dates,omitempty"`
+	Week *int `crawlora:"week,omitempty"`
+	Seasontype *int `crawlora:"seasontype,omitempty"`
+}
+
+type EspnScoreboardResponse = ModelEspnScoreboardResponseDoc
+
+func (s *EspnService) ScoreboardTyped(ctx context.Context, params EspnScoreboardParams, opts ...RequestOption) (EspnScoreboardResponse, error) {
+	return requestTyped[EspnScoreboardResponse](s.client, ctx, "espn-scoreboard", paramsFromStruct(params), opts...)
+}
+
+func (s *EspnService) Standings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "espn-standings", params, opts...)
+}
+
+type EspnStandingsParams struct {
+	Sport string `crawlora:"sport"`
+	League string `crawlora:"league"`
+	Season *int `crawlora:"season,omitempty"`
+	Seasontype *int `crawlora:"seasontype,omitempty"`
+}
+
+type EspnStandingsResponse = ModelEspnStandingsResponseDoc
+
+func (s *EspnService) StandingsTyped(ctx context.Context, params EspnStandingsParams, opts ...RequestOption) (EspnStandingsResponse, error) {
+	return requestTyped[EspnStandingsResponse](s.client, ctx, "espn-standings", paramsFromStruct(params), opts...)
+}
+
+func (s *EspnService) Team(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "espn-team", params, opts...)
+}
+
+type EspnTeamParams struct {
+	Sport string `crawlora:"sport"`
+	League string `crawlora:"league"`
+	Team string `crawlora:"team"`
+}
+
+type EspnTeamResponse = ModelEspnTeamResponseDoc
+
+func (s *EspnService) TeamTyped(ctx context.Context, params EspnTeamParams, opts ...RequestOption) (EspnTeamResponse, error) {
+	return requestTyped[EspnTeamResponse](s.client, ctx, "espn-team", paramsFromStruct(params), opts...)
+}
+
+func (s *EspnService) TeamRoster(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "espn-team-roster", params, opts...)
+}
+
+type EspnTeamRosterParams struct {
+	Sport string `crawlora:"sport"`
+	League string `crawlora:"league"`
+	Team string `crawlora:"team"`
+}
+
+type EspnTeamRosterResponse = ModelEspnRosterResponseDoc
+
+func (s *EspnService) TeamRosterTyped(ctx context.Context, params EspnTeamRosterParams, opts ...RequestOption) (EspnTeamRosterResponse, error) {
+	return requestTyped[EspnTeamRosterResponse](s.client, ctx, "espn-team-roster", paramsFromStruct(params), opts...)
+}
+
+func (s *EspnService) Teams(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "espn-teams", params, opts...)
+}
+
+type EspnTeamsParams struct {
+	Sport string `crawlora:"sport"`
+	League string `crawlora:"league"`
+}
+
+type EspnTeamsResponse = ModelEspnTeamsResponseDoc
+
+func (s *EspnService) TeamsTyped(ctx context.Context, params EspnTeamsParams, opts ...RequestOption) (EspnTeamsResponse, error) {
+	return requestTyped[EspnTeamsResponse](s.client, ctx, "espn-teams", paramsFromStruct(params), opts...)
 }
 
 type GeocodingService struct { client *Client }
@@ -18933,10 +20136,11 @@ func (s *ProductHuntService) CategoryProducts(ctx context.Context, params Params
 
 type ProductHuntCategoryProductsParams struct {
 	Slug string `crawlora:"slug"`
+	Cursor *string `crawlora:"cursor,omitempty"`
+	PageSize *int `crawlora:"page_size,omitempty"`
 	FeaturedOnly *bool `crawlora:"featured_only,omitempty"`
 	Order *string `crawlora:"order,omitempty"`
 	Page *int `crawlora:"page,omitempty"`
-	PageSize *int `crawlora:"page_size,omitempty"`
 	Tags *string `crawlora:"tags,omitempty"`
 }
 
@@ -19105,7 +20309,6 @@ type RedditCommentsParams struct {
 	Sort *string `crawlora:"sort,omitempty"`
 	Limit *int `crawlora:"limit,omitempty"`
 	Depth *int `crawlora:"depth,omitempty"`
-	WithScores *bool `crawlora:"with_scores,omitempty"`
 }
 
 type RedditCommentsResponse = ModelRedditCommentsResponseDoc
@@ -19124,7 +20327,6 @@ type RedditDomainPostsParams struct {
 	Time *string `crawlora:"time,omitempty"`
 	Limit *int `crawlora:"limit,omitempty"`
 	After *string `crawlora:"after,omitempty"`
-	WithScores *bool `crawlora:"with_scores,omitempty"`
 }
 
 type RedditDomainPostsResponse = ModelRedditDomainPostsResponseDoc
@@ -19139,7 +20341,6 @@ func (s *RedditService) Post(ctx context.Context, params Params, opts ...Request
 
 type RedditPostParams struct {
 	Id string `crawlora:"id"`
-	WithScores *bool `crawlora:"with_scores,omitempty"`
 }
 
 type RedditPostResponse = ModelRedditPostResponseDoc
@@ -19159,7 +20360,6 @@ type RedditSearchParams struct {
 	Time *string `crawlora:"time,omitempty"`
 	Limit *int `crawlora:"limit,omitempty"`
 	After *string `crawlora:"after,omitempty"`
-	WithScores *bool `crawlora:"with_scores,omitempty"`
 }
 
 type RedditSearchResponse = ModelRedditSearchResponseDoc
@@ -19175,7 +20375,6 @@ func (s *RedditService) SubredditAbout(ctx context.Context, params Params, opts 
 type RedditSubredditAboutParams struct {
 	Subreddit string `crawlora:"subreddit"`
 	Limit *int `crawlora:"limit,omitempty"`
-	WithScores *bool `crawlora:"with_scores,omitempty"`
 }
 
 type RedditSubredditAboutResponse = ModelRedditSubredditAboutResponseDoc
@@ -19192,7 +20391,6 @@ type RedditSubredditCommentsParams struct {
 	Subreddit string `crawlora:"subreddit"`
 	Limit *int `crawlora:"limit,omitempty"`
 	After *string `crawlora:"after,omitempty"`
-	WithScores *bool `crawlora:"with_scores,omitempty"`
 }
 
 type RedditSubredditCommentsResponse = ModelRedditSubredditCommentsResponseDoc
@@ -19211,7 +20409,6 @@ type RedditSubredditPostsParams struct {
 	Time *string `crawlora:"time,omitempty"`
 	Limit *int `crawlora:"limit,omitempty"`
 	After *string `crawlora:"after,omitempty"`
-	WithScores *bool `crawlora:"with_scores,omitempty"`
 }
 
 type RedditSubredditPostsResponse = ModelRedditSubredditPostsResponseDoc
@@ -19230,7 +20427,6 @@ type RedditSubredditsPostsParams struct {
 	Time *string `crawlora:"time,omitempty"`
 	Limit *int `crawlora:"limit,omitempty"`
 	After *string `crawlora:"after,omitempty"`
-	WithScores *bool `crawlora:"with_scores,omitempty"`
 }
 
 type RedditSubredditsPostsResponse = ModelRedditMultiSubredditPostsResponseDoc
@@ -19248,7 +20444,6 @@ type RedditTrendsParams struct {
 	Time *string `crawlora:"time,omitempty"`
 	Limit *int `crawlora:"limit,omitempty"`
 	After *string `crawlora:"after,omitempty"`
-	WithScores *bool `crawlora:"with_scores,omitempty"`
 }
 
 type RedditTrendsResponse = ModelRedditTrendsResponseDoc
@@ -19265,7 +20460,6 @@ type RedditUserCommentsParams struct {
 	Username string `crawlora:"username"`
 	Limit *int `crawlora:"limit,omitempty"`
 	After *string `crawlora:"after,omitempty"`
-	WithScores *bool `crawlora:"with_scores,omitempty"`
 }
 
 type RedditUserCommentsResponse = ModelRedditUserCommentsResponseDoc
@@ -19282,7 +20476,6 @@ type RedditUserPostsParams struct {
 	Username string `crawlora:"username"`
 	Limit *int `crawlora:"limit,omitempty"`
 	After *string `crawlora:"after,omitempty"`
-	WithScores *bool `crawlora:"with_scores,omitempty"`
 }
 
 type RedditUserPostsResponse = ModelRedditUserPostsResponseDoc

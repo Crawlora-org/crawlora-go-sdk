@@ -76,6 +76,18 @@ fr, err := client.Datasets.AirbnbMarketsItem(ctx, crawlora.Params{"country": "FR
 density, err := client.Datasets.AirbnbMarketsNearby(ctx, crawlora.Params{"lat": 48.86, "lon": 2.35, "radius_m": 5000})
 ```
 
+## TrustMRR Verified Startup Revenues
+
+Browse verified startup revenues and the acquisition marketplace on TrustMRR: the marketplace snapshot, the revenue leaderboard, startup detail, and categories.
+
+```go
+deals, err := client.TrustMrr.TrustmrrMarketplace(ctx, nil)
+board, err := client.TrustMrr.TrustmrrLeaderboard(ctx, crawlora.Params{"metric": "mrr"})
+startup, err := client.TrustMrr.TrustmrrStartup(ctx, crawlora.Params{"slug": "stan"})
+cats, err := client.TrustMrr.TrustmrrCategories(ctx, nil)
+saas, err := client.TrustMrr.TrustmrrCategory(ctx, crawlora.Params{"slug": "saas"})
+```
+
 ## Retries, Timeouts, And Headers
 
 ```go
