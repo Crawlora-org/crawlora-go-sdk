@@ -265,6 +265,10 @@
         "image": {
           "type": "string"
         },
+        "is_guest_favorite": {
+          "description": "IsGuestFavorite reports whether the listing carries an Airbnb Guest Favorite badge\n(including its \"top N%\" variants). Like IsSuperhost it comes from the search card's\nbadges[] and renders inconsistently, so a true value is reliable but a false/absent\nvalue is not — downstream aggregates treat the rate as an observed lower bound.",
+          "type": "boolean"
+        },
         "is_superhost": {
           "type": "boolean"
         },
@@ -361,6 +365,10 @@
         "image": {
           "type": "string"
         },
+        "is_guest_favorite": {
+          "description": "IsGuestFavorite reports whether the listing carries an Airbnb Guest Favorite badge\n(including its \"top N%\" variants). Like IsSuperhost it comes from the search card's\nbadges[] and renders inconsistently, so a true value is reliable but a false/absent\nvalue is not — downstream aggregates treat the rate as an observed lower bound.",
+          "type": "boolean"
+        },
         "is_superhost": {
           "type": "boolean"
         },
@@ -373,6 +381,10 @@
         "longitude": {
           "type": "number"
         },
+        "person_capacity": {
+          "description": "PersonCapacity is the max guests the listing sleeps and PropertyType is Airbnb's\ncanonical listing type (e.g. \"Entire guest suite\", \"Private room in rental unit\"),\nboth from the room detail page's StayEmbedData. PropertyType is authoritative, unlike\nthe search card's \"<type> in <place>\" descriptor. PDP-only (absent from /airbnb/search).",
+          "type": "integer"
+        },
         "price": {
           "type": "number"
         },
@@ -380,6 +392,9 @@
           "description": "PricePerNight is the per-night price for the queried stay (search total ÷ nights),\nset only when check_in+check_out are supplied. It amortizes any fixed fees across\nthe stay, so a longer window yields a tighter base-rate estimate. Without dates the\n`price` field is an unstable \"from\"/display figure, not a nightly rate.",
           "example": 148,
           "type": "number"
+        },
+        "property_type": {
+          "type": "string"
         },
         "rating": {
           "type": "number"
@@ -6267,6 +6282,402 @@
       },
       "type": "object"
     },
+    "chromewebstore.Card": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "category_id": {
+          "type": "integer"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "number"
+        },
+        "rating_count": {
+          "type": "integer"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "tile_image": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "users": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.CategoriesResult": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/definitions/chromewebstore.CategoryGroup"
+          },
+          "type": "array"
+        },
+        "charts": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "collections": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.CategoryGroup": {
+      "properties": {
+        "group": {
+          "type": "string"
+        },
+        "subcategories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.Item": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "category_id": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "developer": {
+          "type": "string"
+        },
+        "developer_email": {
+          "type": "string"
+        },
+        "header_image": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "language_codes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "languages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "min_browser_version": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "privacy_policy": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "number"
+        },
+        "rating_count": {
+          "type": "integer"
+        },
+        "screenshots": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "size": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "support_url": {
+          "type": "string"
+        },
+        "tile_image": {
+          "type": "string"
+        },
+        "updated": {
+          "type": "string"
+        },
+        "updated_unix": {
+          "type": "integer"
+        },
+        "url": {
+          "type": "string"
+        },
+        "users": {
+          "type": "integer"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.ListResult": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/chromewebstore.Card"
+          },
+          "type": "array"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.Review": {
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "edited": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "posted": {
+          "type": "string"
+        },
+        "posted_unix": {
+          "type": "integer"
+        },
+        "rating": {
+          "type": "integer"
+        },
+        "text": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.ReviewsResult": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "reviews": {
+          "items": {
+            "$ref": "#/definitions/chromewebstore.Review"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.SearchResult": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "query": {
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/chromewebstore.Card"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.SimilarResult": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/chromewebstore.Card"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.Suggestion": {
+      "properties": {
+        "term": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.categoriesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/chromewebstore.CategoriesResult"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.itemResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/chromewebstore.Item"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.listResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/chromewebstore.ListResult"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.reviewsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/chromewebstore.ReviewsResult"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/chromewebstore.SearchResult"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.similarResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/chromewebstore.SimilarResult"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.suggestResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "items": {
+            "$ref": "#/definitions/chromewebstore.Suggestion"
+          },
+          "type": "array"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "coingecko.AnalysisResponse": {
       "properties": {
         "absolute_change": {
@@ -8525,6 +8936,11 @@
         "verify": {
           "example": true,
           "type": "boolean"
+        },
+        "verify_limit": {
+          "description": "VerifyLimit caps how many discovered emails get the costly SMTP mailbox\ncheck when verify is on: the first N (in crawl order — contact/about pages\nfirst) are SMTP-verified, the rest are returned syntax+MX-only (`unverified`).\n0/omitted = verify every email (up to maxEmails). The free preview sets a\nsmall cap to bound SMTP probe volume and latency for anonymous callers.",
+          "example": 10,
+          "type": "integer"
         }
       },
       "required": [
@@ -8944,6 +9360,141 @@
       },
       "type": "object"
     },
+    "datasets.ProductHuntMakersFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.ProductHuntMakersFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.ProductHuntMakersSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.ProductHuntMakerItem"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.ProductHuntProductsFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.ProductHuntProductsFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.ProductHuntProductsSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.ProductHuntProductItem"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.ProductHuntTrendsFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.ProductHuntTrendsFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.ProductHuntTrendsSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "group_by": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.ProductHuntTrendCell"
+          },
+          "type": "array"
+        },
+        "min_launches": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "datasets.ReviewsSearchResponse": {
       "properties": {
         "dataset": {
@@ -9186,6 +9737,134 @@
         },
         "data": {
           "$ref": "#/definitions/datasets.DatasetListResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.producthuntMakerResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.ProductHuntMakerItem"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.producthuntMakersFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.ProductHuntMakersFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.producthuntMakersSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.ProductHuntMakersSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.producthuntProductResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.ProductHuntProductItem"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.producthuntProductsFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.ProductHuntProductsFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.producthuntProductsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.ProductHuntProductsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.producthuntTrendsFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.ProductHuntTrendsFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.producthuntTrendsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.ProductHuntTrendsSearchResponse"
         },
         "msg": {
           "example": "OK",
@@ -9905,6 +10584,9 @@
     },
     "es.AirbnbMarketCell": {
       "properties": {
+        "avg_person_capacity": {
+          "type": "number"
+        },
         "avg_rating": {
           "type": "number"
         },
@@ -9917,6 +10599,15 @@
         "enriched_listings": {
           "type": "integer"
         },
+        "guest_favorite_listings": {
+          "type": "integer"
+        },
+        "guest_favorite_pct": {
+          "type": "number"
+        },
+        "guest_favorite_pct_enriched": {
+          "type": "number"
+        },
         "key": {
           "type": "string"
         },
@@ -9927,6 +10618,9 @@
           "type": "integer"
         },
         "listings_per_host": {
+          "type": "number"
+        },
+        "median_price_usd": {
           "type": "number"
         },
         "rated_listings": {
@@ -9946,6 +10640,9 @@
     },
     "es.AirbnbMarketDetail": {
       "properties": {
+        "avg_person_capacity": {
+          "type": "number"
+        },
         "avg_rating": {
           "type": "number"
         },
@@ -9970,6 +10667,15 @@
         "enriched_listings": {
           "type": "integer"
         },
+        "guest_favorite_listings": {
+          "type": "integer"
+        },
+        "guest_favorite_pct": {
+          "type": "number"
+        },
+        "guest_favorite_pct_enriched": {
+          "type": "number"
+        },
         "last_seen": {
           "type": "string"
         },
@@ -9984,6 +10690,14 @@
             "$ref": "#/definitions/es.AirbnbMarketCell"
           },
           "type": "array"
+        },
+        "price_usd": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/es.AirbnbPriceUSDStats"
+            }
+          ],
+          "description": "PriceUSD is the country-wide nightly-price distribution normalized to USD (approximate,\ndated FX snapshot) — the cross-country-comparable complement to the per-currency\nCurrencies medians. Present only when enough listings carry a USD-normalized price."
         },
         "rated_listings": {
           "type": "integer"
@@ -10016,6 +10730,23 @@
         "currency": {
           "type": "string"
         },
+        "listings": {
+          "type": "integer"
+        },
+        "p25": {
+          "type": "number"
+        },
+        "p50": {
+          "type": "number"
+        },
+        "p75": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "es.AirbnbPriceUSDStats": {
+      "properties": {
         "listings": {
           "type": "integer"
         },
@@ -10455,6 +11186,9 @@
         "is_org": {
           "type": "boolean"
         },
+        "is_suspected_automation": {
+          "type": "boolean"
+        },
         "last_active_at": {
           "type": "string"
         },
@@ -10584,6 +11318,9 @@
           "type": "boolean"
         },
         "is_org": {
+          "type": "boolean"
+        },
+        "is_suspected_automation": {
           "type": "boolean"
         },
         "last_active_at": {
@@ -11013,6 +11750,320 @@
       },
       "type": "object"
     },
+    "es.ProductHuntLaunch": {
+      "properties": {
+        "daily_rank": {
+          "type": "integer"
+        },
+        "date": {
+          "type": "string"
+        },
+        "launch_day_score": {
+          "type": "integer"
+        },
+        "launch_number": {
+          "type": "integer"
+        },
+        "monthly_rank": {
+          "type": "integer"
+        },
+        "post_id": {
+          "type": "string"
+        },
+        "post_slug": {
+          "type": "string"
+        },
+        "score": {
+          "type": "integer"
+        },
+        "weekly_rank": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "es.ProductHuntMaker": {
+      "properties": {
+        "avatar_url": {
+          "type": "string"
+        },
+        "headline": {
+          "type": "string"
+        },
+        "maker_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.ProductHuntMakerItem": {
+      "properties": {
+        "avatar_url": {
+          "type": "string"
+        },
+        "best_product": {
+          "$ref": "#/definitions/es.ProductHuntMakerProduct"
+        },
+        "first_launch_date": {
+          "type": "string"
+        },
+        "followers_count": {
+          "type": "integer"
+        },
+        "headline": {
+          "type": "string"
+        },
+        "latest_launch_date": {
+          "type": "string"
+        },
+        "made_products": {
+          "items": {
+            "$ref": "#/definitions/es.ProductHuntMakerProduct"
+          },
+          "type": "array"
+        },
+        "maker_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "product_count": {
+          "type": "integer"
+        },
+        "topics": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "total_votes": {
+          "type": "integer"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.ProductHuntMakerProduct": {
+      "properties": {
+        "latest_score": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "product_id": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.ProductHuntMakersFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.ProductHuntProductItem": {
+      "properties": {
+        "best_daily_rank": {
+          "type": "integer"
+        },
+        "best_monthly_rank": {
+          "type": "integer"
+        },
+        "best_weekly_rank": {
+          "type": "integer"
+        },
+        "comments_count": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "first_launch_date": {
+          "type": "string"
+        },
+        "followers_count": {
+          "type": "integer"
+        },
+        "is_no_longer_online": {
+          "type": "boolean"
+        },
+        "is_top_product": {
+          "type": "boolean"
+        },
+        "latest_launch_date": {
+          "type": "string"
+        },
+        "latest_score": {
+          "type": "integer"
+        },
+        "launch_count": {
+          "type": "integer"
+        },
+        "launch_year": {
+          "type": "integer"
+        },
+        "launches": {
+          "items": {
+            "$ref": "#/definitions/es.ProductHuntLaunch"
+          },
+          "type": "array"
+        },
+        "logo_uuid": {
+          "type": "string"
+        },
+        "makers": {
+          "items": {
+            "$ref": "#/definitions/es.ProductHuntMaker"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "pricing_type": {
+          "type": "string"
+        },
+        "primary_topic": {
+          "type": "string"
+        },
+        "product_id": {
+          "type": "string"
+        },
+        "product_state": {
+          "type": "string"
+        },
+        "reviews_count": {
+          "type": "integer"
+        },
+        "reviews_rating": {
+          "type": "number"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "topic_slugs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "topics": {
+          "items": {
+            "$ref": "#/definitions/es.ProductHuntTopic"
+          },
+          "type": "array"
+        },
+        "url": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "won_daily": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "es.ProductHuntProductsFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.ProductHuntTopic": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.ProductHuntTrendCell": {
+      "properties": {
+        "avg_rating": {
+          "type": "number"
+        },
+        "avg_votes": {
+          "type": "number"
+        },
+        "launches": {
+          "type": "integer"
+        },
+        "period": {
+          "description": "\"2024-01\" | \"2024\" | \"\" for all-time",
+          "type": "string"
+        },
+        "top_product": {
+          "$ref": "#/definitions/es.ProductHuntTrendTopProduct"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "total_votes": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "es.ProductHuntTrendTopProduct": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "votes": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "es.ProductHuntTrendsFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "es.WebsiteStatus": {
       "properties": {
         "checked_at": {
@@ -11031,6 +12082,789 @@
           "type": "integer"
         },
         "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.Athlete": {
+      "properties": {
+        "age": {
+          "type": "integer"
+        },
+        "display_height": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "display_weight": {
+          "type": "string"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "headshot": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "jersey": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "team": {
+          "$ref": "#/definitions/espn.TeamRef"
+        }
+      },
+      "type": "object"
+    },
+    "espn.AthleteResponse": {
+      "properties": {
+        "athlete": {
+          "$ref": "#/definitions/espn.Athlete"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "league": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "sport": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.BoxscoreTeam": {
+      "properties": {
+        "home_away": {
+          "type": "string"
+        },
+        "stats": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "team": {
+          "$ref": "#/definitions/espn.TeamRef"
+        }
+      },
+      "type": "object"
+    },
+    "espn.Competitor": {
+      "properties": {
+        "home_away": {
+          "example": "home",
+          "type": "string"
+        },
+        "record": {
+          "example": "10-2",
+          "type": "string"
+        },
+        "score": {
+          "example": "27",
+          "type": "string"
+        },
+        "team": {
+          "$ref": "#/definitions/espn.TeamRef"
+        },
+        "winner": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "espn.Game": {
+      "properties": {
+        "competitors": {
+          "items": {
+            "$ref": "#/definitions/espn.Competitor"
+          },
+          "type": "array"
+        },
+        "date": {
+          "type": "string"
+        },
+        "id": {
+          "example": "401816033",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "odds": {
+          "items": {
+            "$ref": "#/definitions/espn.GameOdds"
+          },
+          "type": "array"
+        },
+        "short_name": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/espn.GameStatus"
+        },
+        "venue": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.GameOdds": {
+      "properties": {
+        "details": {
+          "type": "string"
+        },
+        "over_under": {
+          "type": "number"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "spread": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "espn.GameStatus": {
+      "properties": {
+        "clock": {
+          "type": "string"
+        },
+        "completed": {
+          "example": true,
+          "type": "boolean"
+        },
+        "detail": {
+          "example": "Final",
+          "type": "string"
+        },
+        "period": {
+          "type": "integer"
+        },
+        "short_detail": {
+          "example": "Final",
+          "type": "string"
+        },
+        "state": {
+          "example": "post",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.GameSummaryResponse": {
+      "properties": {
+        "boxscore_teams": {
+          "items": {
+            "$ref": "#/definitions/espn.BoxscoreTeam"
+          },
+          "type": "array"
+        },
+        "event": {
+          "type": "string"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "game": {
+          "$ref": "#/definitions/espn.Game"
+        },
+        "league": {
+          "type": "string"
+        },
+        "odds": {
+          "items": {
+            "$ref": "#/definitions/espn.GameOdds"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "sport": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.NewsArticle": {
+      "properties": {
+        "byline": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "headline": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "published": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.NewsResponse": {
+      "properties": {
+        "articles": {
+          "items": {
+            "$ref": "#/definitions/espn.NewsArticle"
+          },
+          "type": "array"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "league": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "sport": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.RankEntry": {
+      "properties": {
+        "current": {
+          "type": "integer"
+        },
+        "points": {
+          "type": "number"
+        },
+        "previous": {
+          "type": "integer"
+        },
+        "record": {
+          "type": "string"
+        },
+        "team": {
+          "$ref": "#/definitions/espn.TeamRef"
+        },
+        "trend": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.RankingPoll": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "ranks": {
+          "items": {
+            "$ref": "#/definitions/espn.RankEntry"
+          },
+          "type": "array"
+        },
+        "short_name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.RankingsResponse": {
+      "properties": {
+        "fetched_at": {
+          "type": "string"
+        },
+        "league": {
+          "type": "string"
+        },
+        "polls": {
+          "items": {
+            "$ref": "#/definitions/espn.RankingPoll"
+          },
+          "type": "array"
+        },
+        "season": {
+          "$ref": "#/definitions/espn.Season"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "sport": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.RosterAthlete": {
+      "properties": {
+        "age": {
+          "type": "integer"
+        },
+        "display_height": {
+          "type": "string"
+        },
+        "display_weight": {
+          "type": "string"
+        },
+        "experience_years": {
+          "type": "integer"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "jersey": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.RosterResponse": {
+      "properties": {
+        "athletes": {
+          "items": {
+            "$ref": "#/definitions/espn.RosterAthlete"
+          },
+          "type": "array"
+        },
+        "coach": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "league": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "sport": {
+          "type": "string"
+        },
+        "team": {
+          "$ref": "#/definitions/espn.TeamRef"
+        }
+      },
+      "type": "object"
+    },
+    "espn.ScoreboardResponse": {
+      "properties": {
+        "count": {
+          "example": 14,
+          "type": "integer"
+        },
+        "day": {
+          "type": "string"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "games": {
+          "items": {
+            "$ref": "#/definitions/espn.Game"
+          },
+          "type": "array"
+        },
+        "league": {
+          "example": "nfl",
+          "type": "string"
+        },
+        "league_name": {
+          "example": "National Football League",
+          "type": "string"
+        },
+        "season": {
+          "$ref": "#/definitions/espn.Season"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "sport": {
+          "example": "football",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.Season": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "example": 2,
+          "type": "integer"
+        },
+        "year": {
+          "example": 2024,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "espn.StandingsEntry": {
+      "properties": {
+        "note": {
+          "type": "string"
+        },
+        "stats": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "team": {
+          "$ref": "#/definitions/espn.TeamRef"
+        }
+      },
+      "type": "object"
+    },
+    "espn.StandingsGroup": {
+      "properties": {
+        "abbreviation": {
+          "type": "string"
+        },
+        "entries": {
+          "items": {
+            "$ref": "#/definitions/espn.StandingsEntry"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.StandingsResponse": {
+      "properties": {
+        "fetched_at": {
+          "type": "string"
+        },
+        "groups": {
+          "items": {
+            "$ref": "#/definitions/espn.StandingsGroup"
+          },
+          "type": "array"
+        },
+        "league": {
+          "type": "string"
+        },
+        "league_name": {
+          "type": "string"
+        },
+        "season": {
+          "$ref": "#/definitions/espn.Season"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "sport": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.TeamDetail": {
+      "properties": {
+        "abbreviation": {
+          "example": "KC",
+          "type": "string"
+        },
+        "alternate_color": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        },
+        "display_name": {
+          "example": "Kansas City Chiefs",
+          "type": "string"
+        },
+        "id": {
+          "example": "12",
+          "type": "string"
+        },
+        "location": {
+          "example": "Kansas City",
+          "type": "string"
+        },
+        "logo": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Chiefs",
+          "type": "string"
+        },
+        "record": {
+          "type": "string"
+        },
+        "short_display_name": {
+          "example": "Chiefs",
+          "type": "string"
+        },
+        "standing_summary": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.TeamRef": {
+      "properties": {
+        "abbreviation": {
+          "example": "KC",
+          "type": "string"
+        },
+        "alternate_color": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        },
+        "display_name": {
+          "example": "Kansas City Chiefs",
+          "type": "string"
+        },
+        "id": {
+          "example": "12",
+          "type": "string"
+        },
+        "location": {
+          "example": "Kansas City",
+          "type": "string"
+        },
+        "logo": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Chiefs",
+          "type": "string"
+        },
+        "short_display_name": {
+          "example": "Chiefs",
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.TeamResponse": {
+      "properties": {
+        "fetched_at": {
+          "type": "string"
+        },
+        "league": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "sport": {
+          "type": "string"
+        },
+        "team": {
+          "$ref": "#/definitions/espn.TeamDetail"
+        }
+      },
+      "type": "object"
+    },
+    "espn.TeamsResponse": {
+      "properties": {
+        "count": {
+          "example": 32,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "league": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "sport": {
+          "type": "string"
+        },
+        "teams": {
+          "items": {
+            "$ref": "#/definitions/espn.TeamRef"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "espn.athleteResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/espn.AthleteResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.gameSummaryResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/espn.GameSummaryResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.newsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/espn.NewsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.rankingsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/espn.RankingsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.rosterResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/espn.RosterResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.scoreboardResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/espn.ScoreboardResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.standingsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/espn.StandingsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.teamResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/espn.TeamResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "espn.teamsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/espn.TeamsResponse"
+        },
+        "msg": {
+          "example": "OK",
           "type": "string"
         }
       },
@@ -25331,7 +27165,6 @@
           "type": "array"
         },
         "score": {
-          "example": 12,
           "type": "integer"
         }
       },
@@ -25437,7 +27270,6 @@
           "$ref": "#/definitions/reddit.Author"
         },
         "comment_count": {
-          "example": 45,
           "type": "integer"
         },
         "created": {
@@ -25481,7 +27313,6 @@
           "type": "string"
         },
         "score": {
-          "example": 123,
           "type": "integer"
         },
         "selftext": {
@@ -25508,7 +27339,6 @@
           "type": "string"
         },
         "upvote_ratio": {
-          "example": 0.95,
           "type": "number"
         },
         "url": {
@@ -32726,6 +34556,60 @@
       },
       "type": "object"
     },
+    "techstack.Result": {
+      "properties": {
+        "categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "detector_version": {
+          "type": "string"
+        },
+        "final_url": {
+          "type": "string"
+        },
+        "technologies": {
+          "items": {
+            "$ref": "#/definitions/techstack.Technology"
+          },
+          "type": "array"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "techstack.Technology": {
+      "properties": {
+        "categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "confidence": {
+          "description": "high | medium | low",
+          "type": "string"
+        },
+        "evidence": {
+          "description": "Evidence is a short, human-readable hint of what matched (e.g. a script\nhost or a <meta generator> value) — not the full markup.",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "tiktok.Category": {
       "properties": {
         "name": {
@@ -37738,6 +39622,27 @@
       },
       "type": "object"
     },
+    "web.TechStackOption": {
+      "properties": {
+        "render": {
+          "enum": [
+            "browser",
+            "auto",
+            "http"
+          ],
+          "example": "browser",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.example.com",
+          "type": "string"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "type": "object"
+    },
     "web.scrapeResponseDoc": {
       "properties": {
         "code": {
@@ -37746,6 +39651,22 @@
         },
         "data": {
           "$ref": "#/definitions/web.ScrapeResult"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "web.techStackResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/techstack.Result"
         },
         "msg": {
           "example": "OK",
@@ -43562,7 +45483,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns normalized Bing web search results for a query string, including organic results, optional context panel data, related queries, people-also-ask questions, news modules, video modules, and page-based pagination. Empty optional blocks are omitted from the JSON response. Locale defaults to country=us and lang=en-us. Results are fetched with the repo's Chrome-impersonated request client and return 503 when Bing serves a challenge page or unusable HTML.",
+        "description": "Returns normalized Bing web search results for a query string, including organic results, optional context panel data, related queries, people-also-ask questions, news modules, video modules, and page-based pagination. Empty optional blocks are omitted from the JSON response. Locale defaults to country=us and lang=en-us. Results are fetched with a Chrome-impersonated request client and return 503 when Bing serves a challenge page or unusable HTML. Queries that use the site: operator (for example site:gov.hu) are not supported: Bing serves a bot-verification challenge for them, so they are rejected with 400 before any request is made. Use the Google search endpoint (/api/v1/google/search) for domain-restricted searches.",
         "operationId": "bing-search",
         "parameters": [
           {
@@ -46233,6 +48154,673 @@
         ]
       }
     },
+    "/chromewebstore/categories": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the reference taxonomy for the list endpoints: extension category groups and their subcategory slugs, the top-chart identifiers, and known curated collection slugs.",
+        "operationId": "chromewebstore-categories",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chromewebstore.categoriesResponseDoc"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Chrome Web Store categories and collections",
+        "tags": [
+          "ChromeWebStore"
+        ]
+      }
+    },
+    "/chromewebstore/category": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the item cards listed under an extensions category slug (e.g. `productivity/tools`, `lifestyle/shopping`, `make_chrome_yours/privacy`). Use /chromewebstore/categories for the reference taxonomy. Defaults: `num=50`, `country=us`, `lang=en`.",
+        "operationId": "chromewebstore-category",
+        "parameters": [
+          {
+            "description": "Category slug under extensions",
+            "example": "productivity/tools",
+            "in": "query",
+            "name": "category",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of items",
+            "example": 50,
+            "in": "query",
+            "name": "num",
+            "type": "integer"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Two-letter language code",
+            "example": "en",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chromewebstore.listResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List items in a Chrome Web Store category",
+        "tags": [
+          "ChromeWebStore"
+        ]
+      }
+    },
+    "/chromewebstore/charts": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the item cards in a store top chart. `chart` accepts `trending`, `popular`, or `notable`. Defaults: `chart=popular`, `num=50`, `country=us`, `lang=en`.",
+        "operationId": "chromewebstore-charts",
+        "parameters": [
+          {
+            "default": "popular",
+            "description": "Top chart to list",
+            "enum": [
+              "trending",
+              "popular",
+              "notable"
+            ],
+            "in": "query",
+            "name": "chart",
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of items",
+            "example": 50,
+            "in": "query",
+            "name": "num",
+            "type": "integer"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Two-letter language code",
+            "example": "en",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chromewebstore.listResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Chrome Web Store top chart",
+        "tags": [
+          "ChromeWebStore"
+        ]
+      }
+    },
+    "/chromewebstore/collection": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the item cards in a curated store collection slug (e.g. `editors_picks_extensions`, `dark_mode`, `ai_productivity`). Use /chromewebstore/categories for known collection slugs. Defaults: `num=50`, `country=us`, `lang=en`.",
+        "operationId": "chromewebstore-collection",
+        "parameters": [
+          {
+            "description": "Curated collection slug",
+            "example": "editors_picks_extensions",
+            "in": "query",
+            "name": "collection",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of items",
+            "example": 50,
+            "in": "query",
+            "name": "num",
+            "type": "integer"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Two-letter language code",
+            "example": "en",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chromewebstore.listResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List items in a curated Chrome Web Store collection",
+        "tags": [
+          "ChromeWebStore"
+        ]
+      }
+    },
+    "/chromewebstore/item": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized detail for a Chrome Web Store extension or theme, including name, rating, rating count, user count, version, last-updated date, size, supported languages, developer, category, screenshots, and privacy links. Defaults: `country=us`, `lang=en`.",
+        "operationId": "chromewebstore-item",
+        "parameters": [
+          {
+            "description": "Chrome Web Store item id (32-character extension/theme id)",
+            "example": "cjpalhdlnbpafiamejdnhcphjbkeiagm",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Two-letter language code",
+            "example": "en",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chromewebstore.itemResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve Chrome Web Store item details",
+        "tags": [
+          "ChromeWebStore"
+        ]
+      }
+    },
+    "/chromewebstore/reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the reviews the store renders on an item's reviews page, each with author, star rating, text, posted/edited dates and reviewed version. Defaults: `num=20`, `country=us`, `lang=en`.",
+        "operationId": "chromewebstore-reviews",
+        "parameters": [
+          {
+            "description": "Chrome Web Store item id (32-character extension/theme id)",
+            "example": "cjpalhdlnbpafiamejdnhcphjbkeiagm",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of reviews",
+            "example": 20,
+            "in": "query",
+            "name": "num",
+            "type": "integer"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Two-letter language code",
+            "example": "en",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chromewebstore.reviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve Chrome Web Store item reviews",
+        "tags": [
+          "ChromeWebStore"
+        ]
+      }
+    },
+    "/chromewebstore/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns Chrome Web Store search result cards for a keyword, each with id, name, rating, user count, publisher and detail URL. Defaults: `num=30`, `country=us`, `lang=en`.",
+        "operationId": "chromewebstore-search",
+        "parameters": [
+          {
+            "description": "Search keyword",
+            "example": "vpn",
+            "in": "query",
+            "name": "term",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of results",
+            "example": 30,
+            "in": "query",
+            "name": "num",
+            "type": "integer"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Two-letter language code",
+            "example": "en",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chromewebstore.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Chrome Web Store items",
+        "tags": [
+          "ChromeWebStore"
+        ]
+      }
+    },
+    "/chromewebstore/similar": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the related-items shelf the store renders on an item's detail page. Defaults: `country=us`, `lang=en`.",
+        "operationId": "chromewebstore-similar",
+        "parameters": [
+          {
+            "description": "Chrome Web Store item id (32-character extension/theme id)",
+            "example": "cjpalhdlnbpafiamejdnhcphjbkeiagm",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Two-letter language code",
+            "example": "en",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chromewebstore.similarResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve related Chrome Web Store items",
+        "tags": [
+          "ChromeWebStore"
+        ]
+      }
+    },
+    "/chromewebstore/suggest": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns item-name suggestions for a search prefix, drawn from the top store-search results. Defaults: `num=8`, `country=us`, `lang=en`.",
+        "operationId": "chromewebstore-suggest",
+        "parameters": [
+          {
+            "description": "Search prefix to autocomplete",
+            "example": "ad blo",
+            "in": "query",
+            "name": "term",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of suggestions",
+            "example": 8,
+            "in": "query",
+            "name": "num",
+            "type": "integer"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Two-letter language code",
+            "example": "en",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chromewebstore.suggestResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Suggest Chrome Web Store search terms",
+        "tags": [
+          "ChromeWebStore"
+        ]
+      }
+    },
     "/coingecko/categories": {
       "get": {
         "consumes": [
@@ -48761,18 +51349,18 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns suppressed distribution counts over the Airbnb markets dataset, honoring the same filters as search. Facet enum: `country`, `market`, `currency`, `superhost`, `rating_band`, `review_band`. group_by enum: `country`, `market`.",
+        "description": "Returns suppressed distribution counts over the Airbnb markets dataset, honoring the same filters as search. Facet enum: `country`, `market`, `currency`, `superhost`, `guest_favorite`, `rating_band`, `review_band`, `admin1` (top subdivision), `locality` (settlement), `room_type` (`entire_place`/`private_room`/`hotel`/`shared_room`), `property_type` (Airbnb's canonical listing type from the detail page), `amenities` (each amenity with the count of listings offering it). The `admin1`, `locality`, `room_type`, `property_type` and `amenities` facets stay empty until their enrichment coverage is high enough to be reliable. group_by enum: `country`, `market`, `admin1`, `locality`, `room_type`, `property_type`.",
         "operationId": "datasets-airbnb-markets-facets",
         "parameters": [
           {
-            "description": "Facet enum: country, market, currency, superhost, rating_band, review_band",
+            "description": "Facet enum: country, market, currency, superhost, guest_favorite, rating_band, review_band, admin1, locality, room_type, property_type, amenities",
             "in": "query",
             "name": "facet",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Aggregate cell dimension enum: country, market. Defaults to country",
+            "description": "Aggregate cell dimension enum: country, market, admin1, locality, room_type, property_type. Defaults to country",
             "in": "query",
             "name": "group_by",
             "type": "string"
@@ -48793,6 +51381,12 @@
             "description": "Count only Superhost listings",
             "in": "query",
             "name": "superhost",
+            "type": "boolean"
+          },
+          {
+            "description": "Count only Guest Favorite listings (an observed lower bound; the badge under-counts)",
+            "in": "query",
+            "name": "guest_favorite",
             "type": "boolean"
           },
           {
@@ -48865,7 +51459,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns one country's full aggregate Airbnb market profile from dataset id enum value `airbnb-markets` — headline supply, Superhost share, ratings, its top metros, bounding box and per-currency nightly-price percentiles. Aggregate-only. Returns 404 for a country below the suppression floor.",
+        "description": "Returns one country's full aggregate Airbnb market profile from dataset id enum value `airbnb-markets` — headline supply, Superhost share, Guest Favorite share (`guest_favorite_pct`, an observed lower bound), `avg_person_capacity` (average guests a listing sleeps over the detail-page-enriched sample), ratings, its top metros, bounding box, per-currency nightly-price percentiles, and a USD-normalized `price_usd` percentile block (converted via an approximate dated FX snapshot) for cross-country comparison. Aggregate-only. Returns 404 for a country below the suppression floor.",
         "operationId": "datasets-airbnb-markets-item",
         "parameters": [
           {
@@ -49033,11 +51627,11 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns aggregate Airbnb short-term-rental market rollups from the dataset id enum value `airbnb-markets`. Aggregate-only: each row is a market cell (a country or a metro), never an individual listing. Thin cells are suppressed. group_by enum: `country`, `market`. Sort enum: `listings_desc`, `superhost_pct_desc`, `rating_desc`, `key_asc`.",
+        "description": "Returns aggregate Airbnb short-term-rental market rollups from the dataset id enum value `airbnb-markets`. Aggregate-only: each row is a market cell, never an individual listing. Thin cells are suppressed. group_by enum: `country`, `market`, `admin1` (top subdivision), `locality` (settlement), `room_type` (`entire_place`/`private_room`/`hotel`/`shared_room`), `property_type` (Airbnb's canonical listing type from the detail page). `admin1`, `locality`, `room_type` and `property_type` are enrichment-derived and stay empty until their coverage is high enough to be reliable. Each cell also carries `median_price_usd`, the median nightly price converted to USD via an approximate dated FX snapshot, for cross-country comparison (combine with `group_by=room_type` for median price by room type); `guest_favorite_pct`, the share of listings carrying the Guest Favorite badge (an observed lower bound, like `superhost_pct`); and `avg_person_capacity`, the average guests a listing sleeps over the detail-page-enriched sample. Sort enum: `listings_desc`, `superhost_pct_desc`, `rating_desc`, `key_asc`.",
         "operationId": "datasets-airbnb-markets-search",
         "parameters": [
           {
-            "description": "Aggregate cell dimension enum: country, market. Defaults to country",
+            "description": "Aggregate cell dimension enum: country, market, admin1, locality, room_type, property_type. Defaults to country",
             "in": "query",
             "name": "group_by",
             "type": "string"
@@ -49058,6 +51652,12 @@
             "description": "Count only Superhost listings",
             "in": "query",
             "name": "superhost",
+            "type": "boolean"
+          },
+          {
+            "description": "Count only Guest Favorite listings (an observed lower bound; the badge under-counts)",
+            "in": "query",
+            "name": "guest_favorite",
             "type": "boolean"
           },
           {
@@ -49590,11 +52190,11 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns terms aggregation counts for the GitHub users dataset. Facet enum: `influence_tier`, `type`, `country`, `country_code`, `state`, `city`, `domains`, `company`, `reachable`, `has_email`, `has_twitter`, `has_blog`, `active_90d`, `is_org`, `is_bot`. influence_tier enum: `nano`, `micro`, `mid`, `macro`, `mega`.",
+        "description": "Returns terms aggregation counts for the GitHub users dataset. Facet enum: `influence_tier`, `type`, `country`, `country_code`, `state`, `city`, `domains`, `company`, `reachable`, `has_email`, `has_twitter`, `has_blog`, `active_90d`, `hireable`, `is_org`, `is_bot`, `is_suspected_automation`. influence_tier enum: `nano`, `micro`, `mid`, `macro`, `mega`. Suspected-automation records are excluded by default unless is_suspected_automation is set.",
         "operationId": "datasets-github-users-facets",
         "parameters": [
           {
-            "description": "Facet enum: influence_tier, type, country, country_code, state, city, domains, company, reachable, has_email, has_twitter, has_blog, active_90d, is_org, is_bot",
+            "description": "Facet enum: influence_tier, type, country, country_code, state, city, domains, company, reachable, has_email, has_twitter, has_blog, active_90d, hireable, is_org, is_bot, is_suspected_automation",
             "in": "query",
             "name": "facet",
             "required": true,
@@ -49700,6 +52300,12 @@
             "description": "Bot filter",
             "in": "query",
             "name": "is_bot",
+            "type": "boolean"
+          },
+          {
+            "description": "Suspected automation filter; omitted these are hidden by default",
+            "in": "query",
+            "name": "is_suspected_automation",
             "type": "boolean"
           },
           {
@@ -50073,6 +52679,12 @@
             "description": "Bot filter (normally false; the crawl skips bots)",
             "in": "query",
             "name": "is_bot",
+            "type": "boolean"
+          },
+          {
+            "description": "Suspected automation (commit-farm/mass-repo bots); omitted these are hidden by default, pass true to isolate them",
+            "in": "query",
+            "name": "is_suspected_automation",
             "type": "boolean"
           },
           {
@@ -50659,6 +53271,739 @@
         ]
       }
     },
+    "/datasets/producthunt-makers/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns distribution counts over the Product Hunt makers dataset (dataset id enum value `producthunt-makers`), honoring the same filters as search. Facet enum: `topic`, `product_count_band`.",
+        "operationId": "datasets-producthunt-makers-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: topic, product_count_band",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query over maker name and headline, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact topic-slug the maker builds in, max 128 characters",
+            "in": "query",
+            "name": "topic",
+            "type": "string"
+          },
+          {
+            "description": "Minimum number of products made, 0 or greater",
+            "in": "query",
+            "name": "min_products",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum total upvotes across the maker's products, 0 or greater",
+            "in": "query",
+            "name": "min_total_votes",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.producthuntMakersFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet the Product Hunt makers dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/producthunt-makers/items/{username}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one maker by Product Hunt username from dataset id enum value `producthunt-makers`, including the products they made and their aggregate footprint. Returns 404 when the username is not in the dataset.",
+        "operationId": "datasets-producthunt-makers-item",
+        "parameters": [
+          {
+            "description": "Product Hunt maker username, e.g. rrhoover",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.producthuntMakerResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Product Hunt maker from the dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/producthunt-makers/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches Product Hunt makers from the dataset id enum value `producthunt-makers` — public-profile records of the people who made products, with their footprint (products made, total upvotes, topics) for maker leaderboards. Public fields only. Sort enum: `total_votes_desc`, `product_count_desc`, `followers_desc`, `relevance`.",
+        "operationId": "datasets-producthunt-makers-search",
+        "parameters": [
+          {
+            "description": "Full-text query over maker name and headline, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact topic-slug the maker builds in, e.g. artificial-intelligence, max 128 characters",
+            "in": "query",
+            "name": "topic",
+            "type": "string"
+          },
+          {
+            "description": "Minimum number of products made, 0 or greater",
+            "in": "query",
+            "name": "min_products",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum total upvotes across the maker's products, 0 or greater",
+            "in": "query",
+            "name": "min_total_votes",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: total_votes_desc, product_count_desc, followers_desc, relevance",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.producthuntMakersSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the Product Hunt makers dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/producthunt-products/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns distribution counts over the Product Hunt products dataset (dataset id enum value `producthunt-products`), honoring the same filters as search. Facet enum: `topic`, `launch_year`, `pricing_type`, `product_state`.",
+        "operationId": "datasets-producthunt-products-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: topic, launch_year, pricing_type, product_state",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query over product name and tagline, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact topic-slug filter, e.g. artificial-intelligence, max 128 characters",
+            "in": "query",
+            "name": "topic",
+            "type": "string"
+          },
+          {
+            "description": "Exact maker-username filter (populated by hydration), max 128 characters",
+            "in": "query",
+            "name": "maker",
+            "type": "string"
+          },
+          {
+            "description": "Lower bound on first-launch date, an ISO-8601 date (YYYY-MM-DD)",
+            "in": "query",
+            "name": "launched_after",
+            "type": "string"
+          },
+          {
+            "description": "Upper bound on first-launch date, an ISO-8601 date (YYYY-MM-DD)",
+            "in": "query",
+            "name": "launched_before",
+            "type": "string"
+          },
+          {
+            "description": "Minimum upvotes, 0 or greater",
+            "in": "query",
+            "name": "min_votes",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum review rating, from 0 through 5",
+            "in": "query",
+            "name": "min_rating",
+            "type": "number"
+          },
+          {
+            "description": "Exact pricing-type filter, e.g. free, paid, freemium",
+            "in": "query",
+            "name": "pricing_type",
+            "type": "string"
+          },
+          {
+            "description": "Website presence filter",
+            "in": "query",
+            "name": "has_website",
+            "type": "boolean"
+          },
+          {
+            "description": "true keeps only products still online, false only retired products",
+            "in": "query",
+            "name": "is_online",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.producthuntProductsFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet the Product Hunt products dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/producthunt-products/items/{slug}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one product by its Product Hunt slug from dataset id enum value `producthunt-products`, including its full launch history and (once hydrated) description, website, pricing and makers. Returns 404 when the slug is not in the archive.",
+        "operationId": "datasets-producthunt-products-item",
+        "parameters": [
+          {
+            "description": "Product Hunt product slug, e.g. chatgpt",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.producthuntProductResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Product Hunt product from the dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/producthunt-products/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches individual Product Hunt launches from the dataset id enum value `producthunt-products` — the searchable launch archive. Each result is one product with its topics, upvotes, ranks and launch history; description/website/pricing/makers are filled in as hydration runs. Sort enum: `relevance`, `votes_desc`, `launched_desc`, `launched_asc`, `rating_desc`, `best_rank_asc`.",
+        "operationId": "datasets-producthunt-products-search",
+        "parameters": [
+          {
+            "description": "Full-text query over product name and tagline, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact topic-slug filter, e.g. artificial-intelligence, max 128 characters",
+            "in": "query",
+            "name": "topic",
+            "type": "string"
+          },
+          {
+            "description": "Exact maker-username filter (populated by hydration), max 128 characters",
+            "in": "query",
+            "name": "maker",
+            "type": "string"
+          },
+          {
+            "description": "Lower bound on first-launch date, an ISO-8601 date (YYYY-MM-DD)",
+            "in": "query",
+            "name": "launched_after",
+            "type": "string"
+          },
+          {
+            "description": "Upper bound on first-launch date, an ISO-8601 date (YYYY-MM-DD)",
+            "in": "query",
+            "name": "launched_before",
+            "type": "string"
+          },
+          {
+            "description": "Minimum upvotes, 0 or greater",
+            "in": "query",
+            "name": "min_votes",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum review rating, from 0 through 5 (populated by hydration)",
+            "in": "query",
+            "name": "min_rating",
+            "type": "number"
+          },
+          {
+            "description": "Exact pricing-type filter (populated by hydration), e.g. free, paid, freemium",
+            "in": "query",
+            "name": "pricing_type",
+            "type": "string"
+          },
+          {
+            "description": "Website presence filter (populated by hydration)",
+            "in": "query",
+            "name": "has_website",
+            "type": "boolean"
+          },
+          {
+            "description": "true keeps only products still online, false only retired products",
+            "in": "query",
+            "name": "is_online",
+            "type": "boolean"
+          },
+          {
+            "description": "Sort enum: relevance, votes_desc, launched_desc, launched_asc, rating_desc, best_rank_asc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.producthuntProductsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the Product Hunt products dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/producthunt-trends/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns suppressed distribution counts over the Product Hunt trends dataset (dataset id enum value `producthunt-trends`), honoring the same filters as search. Facet enum: `topic`, `launch_year`.",
+        "operationId": "datasets-producthunt-trends-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: topic, launch_year",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Aggregate cell dimension enum: topic_month, topic_year, topic. Defaults to topic_month",
+            "in": "query",
+            "name": "group_by",
+            "type": "string"
+          },
+          {
+            "description": "Exact topic-slug filter, e.g. artificial-intelligence, max 128 characters",
+            "in": "query",
+            "name": "topic",
+            "type": "string"
+          },
+          {
+            "description": "Lower bound on first-launch date, an ISO-8601 date (YYYY-MM-DD)",
+            "in": "query",
+            "name": "launched_after",
+            "type": "string"
+          },
+          {
+            "description": "Upper bound on first-launch date, an ISO-8601 date (YYYY-MM-DD)",
+            "in": "query",
+            "name": "launched_before",
+            "type": "string"
+          },
+          {
+            "description": "Minimum product upvotes, 0 or greater",
+            "in": "query",
+            "name": "min_votes",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum launches per bucket; raises the small-cell suppression floor",
+            "in": "query",
+            "name": "min_launches",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.producthuntTrendsFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet the Product Hunt trends dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/producthunt-trends/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns aggregate Product Hunt launch trends from the dataset id enum value `producthunt-trends`. Aggregate-only: each row is a category-over-time cell (a topic, optionally within a calendar period), reporting launch count, total and average upvotes, average rating and the top product — never an individual product record. Thin cells are suppressed. group_by enum: `topic_month`, `topic_year`, `topic`. Sort enum: `period_desc`, `period_asc`, `launch_count_desc`, `sum_votes_desc`.",
+        "operationId": "datasets-producthunt-trends-search",
+        "parameters": [
+          {
+            "description": "Aggregate cell dimension enum: topic_month, topic_year, topic. Defaults to topic_month",
+            "in": "query",
+            "name": "group_by",
+            "type": "string"
+          },
+          {
+            "description": "Exact topic-slug filter, e.g. artificial-intelligence, max 128 characters",
+            "in": "query",
+            "name": "topic",
+            "type": "string"
+          },
+          {
+            "description": "Lower bound on first-launch date, an ISO-8601 date (YYYY-MM-DD)",
+            "in": "query",
+            "name": "launched_after",
+            "type": "string"
+          },
+          {
+            "description": "Upper bound on first-launch date, an ISO-8601 date (YYYY-MM-DD)",
+            "in": "query",
+            "name": "launched_before",
+            "type": "string"
+          },
+          {
+            "description": "Minimum product upvotes, 0 or greater",
+            "in": "query",
+            "name": "min_votes",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum launches per cell; raises the small-cell suppression floor (never lowered below the built-in minimum)",
+            "in": "query",
+            "name": "min_launches",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: period_desc, period_asc, launch_count_desc, sum_votes_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.producthuntTrendsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the Product Hunt trends dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
     "/diagnostics/antibot-check": {
       "post": {
         "consumes": [
@@ -51144,6 +54489,924 @@
         "summary": "Get eBay seller shop listings",
         "tags": [
           "eBay"
+        ]
+      }
+    },
+    "/espn/athlete": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one athlete's bio/overview (name, position, jersey, physicals, current team) from ESPN's credential-free public JSON. The `sport` enum accepts `football`, `basketball`, `baseball`, `hockey`, and `soccer`. The `league` enum accepts `nfl`, `college-football`, `nba`, `wnba`, `mens-college-basketball`, `womens-college-basketball`, `mlb`, `nhl`, `eng.1`, `esp.1`, `ita.1`, `ger.1`, `fra.1`, `usa.1`, and `uefa.champions`; it must be valid for the chosen sport.",
+        "operationId": "espn-athlete",
+        "parameters": [
+          {
+            "description": "Sport key",
+            "enum": [
+              "football",
+              "basketball",
+              "baseball",
+              "hockey",
+              "soccer"
+            ],
+            "example": "football",
+            "in": "query",
+            "name": "sport",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "League key (must be valid for the sport)",
+            "enum": [
+              "nfl",
+              "college-football",
+              "nba",
+              "wnba",
+              "mens-college-basketball",
+              "womens-college-basketball",
+              "mlb",
+              "nhl",
+              "eng.1",
+              "esp.1",
+              "ita.1",
+              "ger.1",
+              "fra.1",
+              "usa.1",
+              "uefa.champions"
+            ],
+            "example": "nfl",
+            "in": "query",
+            "name": "league",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Numeric ESPN athlete (player) id",
+            "example": "3139477",
+            "in": "query",
+            "name": "athlete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/espn.athleteResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "ESPN athlete",
+        "tags": [
+          "ESPN"
+        ]
+      }
+    },
+    "/espn/game-summary": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one game's matchup, betting odds, and boxscore stat totals from ESPN's credential-free public JSON. The `sport` enum accepts `football`, `basketball`, `baseball`, `hockey`, and `soccer`. The `league` enum accepts `nfl`, `college-football`, `nba`, `wnba`, `mens-college-basketball`, `womens-college-basketball`, `mlb`, `nhl`, `eng.1`, `esp.1`, `ita.1`, `ger.1`, `fra.1`, `usa.1`, and `uefa.champions`; it must be valid for the chosen sport. Get an `event` id from the scoreboard endpoint.",
+        "operationId": "espn-game-summary",
+        "parameters": [
+          {
+            "description": "Sport key",
+            "enum": [
+              "football",
+              "basketball",
+              "baseball",
+              "hockey",
+              "soccer"
+            ],
+            "example": "baseball",
+            "in": "query",
+            "name": "sport",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "League key (must be valid for the sport)",
+            "enum": [
+              "nfl",
+              "college-football",
+              "nba",
+              "wnba",
+              "mens-college-basketball",
+              "womens-college-basketball",
+              "mlb",
+              "nhl",
+              "eng.1",
+              "esp.1",
+              "ita.1",
+              "ger.1",
+              "fra.1",
+              "usa.1",
+              "uefa.champions"
+            ],
+            "example": "mlb",
+            "in": "query",
+            "name": "league",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Numeric ESPN event (game) id",
+            "example": "401816033",
+            "in": "query",
+            "name": "event",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/espn.gameSummaryResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "ESPN game summary",
+        "tags": [
+          "ESPN"
+        ]
+      }
+    },
+    "/espn/news": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns recent news articles (headline, description, link) for a league from ESPN's credential-free public JSON. The `sport` enum accepts `football`, `basketball`, `baseball`, `hockey`, and `soccer`. The `league` enum accepts `nfl`, `college-football`, `nba`, `wnba`, `mens-college-basketball`, `womens-college-basketball`, `mlb`, `nhl`, `eng.1`, `esp.1`, `ita.1`, `ger.1`, `fra.1`, `usa.1`, and `uefa.champions`; it must be valid for the chosen sport.",
+        "operationId": "espn-news",
+        "parameters": [
+          {
+            "description": "Sport key",
+            "enum": [
+              "football",
+              "basketball",
+              "baseball",
+              "hockey",
+              "soccer"
+            ],
+            "example": "basketball",
+            "in": "query",
+            "name": "sport",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "League key (must be valid for the sport)",
+            "enum": [
+              "nfl",
+              "college-football",
+              "nba",
+              "wnba",
+              "mens-college-basketball",
+              "womens-college-basketball",
+              "mlb",
+              "nhl",
+              "eng.1",
+              "esp.1",
+              "ita.1",
+              "ger.1",
+              "fra.1",
+              "usa.1",
+              "uefa.champions"
+            ],
+            "example": "nba",
+            "in": "query",
+            "name": "league",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/espn.newsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "ESPN league news",
+        "tags": [
+          "ESPN"
+        ]
+      }
+    },
+    "/espn/rankings": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns poll rankings (e.g. AP Top 25) for a college league from ESPN's credential-free public JSON. Rankings are only published for college leagues: the `sport` enum accepts `football` and `basketball`, and the `league` enum accepts `college-football`, `mens-college-basketball`, and `womens-college-basketball`.",
+        "operationId": "espn-rankings",
+        "parameters": [
+          {
+            "description": "Sport key",
+            "enum": [
+              "football",
+              "basketball"
+            ],
+            "example": "football",
+            "in": "query",
+            "name": "sport",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "College league key",
+            "enum": [
+              "college-football",
+              "mens-college-basketball",
+              "womens-college-basketball"
+            ],
+            "example": "college-football",
+            "in": "query",
+            "name": "league",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/espn.rankingsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "ESPN poll rankings",
+        "tags": [
+          "ESPN"
+        ]
+      }
+    },
+    "/espn/scoreboard": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns games (scores, schedule, status, and odds when available) for a sport and league from ESPN's credential-free public JSON. The `sport` enum accepts `football`, `basketball`, `baseball`, `hockey`, and `soccer`. The `league` enum accepts `nfl`, `college-football`, `nba`, `wnba`, `mens-college-basketball`, `womens-college-basketball`, `mlb`, `nhl`, `eng.1`, `esp.1`, `ita.1`, `ger.1`, `fra.1`, `usa.1`, and `uefa.champions`; it must be valid for the chosen sport. The `seasontype` enum accepts `1` (preseason), `2` (regular season), `3` (postseason), and `4` (offseason).",
+        "operationId": "espn-scoreboard",
+        "parameters": [
+          {
+            "description": "Sport key",
+            "enum": [
+              "football",
+              "basketball",
+              "baseball",
+              "hockey",
+              "soccer"
+            ],
+            "example": "football",
+            "in": "query",
+            "name": "sport",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "League key (must be valid for the sport)",
+            "enum": [
+              "nfl",
+              "college-football",
+              "nba",
+              "wnba",
+              "mens-college-basketball",
+              "womens-college-basketball",
+              "mlb",
+              "nhl",
+              "eng.1",
+              "esp.1",
+              "ita.1",
+              "ger.1",
+              "fra.1",
+              "usa.1",
+              "uefa.champions"
+            ],
+            "example": "nfl",
+            "in": "query",
+            "name": "league",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Date or range as YYYYMMDD, YYYYMMDD-YYYYMMDD, or YYYY; defaults to the current scoreboard",
+            "example": "20260910",
+            "in": "query",
+            "name": "dates",
+            "type": "string"
+          },
+          {
+            "description": "Week number (football leagues)",
+            "example": 1,
+            "in": "query",
+            "name": "week",
+            "type": "integer"
+          },
+          {
+            "description": "Season type",
+            "enum": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "example": 2,
+            "in": "query",
+            "name": "seasontype",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/espn.scoreboardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "ESPN scoreboard",
+        "tags": [
+          "ESPN"
+        ]
+      }
+    },
+    "/espn/standings": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns league standings grouped by conference/division from ESPN's credential-free public JSON. The `sport` enum accepts `football`, `basketball`, `baseball`, `hockey`, and `soccer`. The `league` enum accepts `nfl`, `college-football`, `nba`, `wnba`, `mens-college-basketball`, `womens-college-basketball`, `mlb`, `nhl`, `eng.1`, `esp.1`, `ita.1`, `ger.1`, `fra.1`, `usa.1`, and `uefa.champions`; it must be valid for the chosen sport. The `seasontype` enum accepts `1` (preseason), `2` (regular season), and `3` (postseason).",
+        "operationId": "espn-standings",
+        "parameters": [
+          {
+            "description": "Sport key",
+            "enum": [
+              "football",
+              "basketball",
+              "baseball",
+              "hockey",
+              "soccer"
+            ],
+            "example": "football",
+            "in": "query",
+            "name": "sport",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "League key (must be valid for the sport)",
+            "enum": [
+              "nfl",
+              "college-football",
+              "nba",
+              "wnba",
+              "mens-college-basketball",
+              "womens-college-basketball",
+              "mlb",
+              "nhl",
+              "eng.1",
+              "esp.1",
+              "ita.1",
+              "ger.1",
+              "fra.1",
+              "usa.1",
+              "uefa.champions"
+            ],
+            "example": "nfl",
+            "in": "query",
+            "name": "league",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Four-digit season year; defaults to the current season",
+            "example": 2024,
+            "in": "query",
+            "name": "season",
+            "type": "integer"
+          },
+          {
+            "description": "Season type",
+            "enum": [
+              1,
+              2,
+              3
+            ],
+            "example": 2,
+            "in": "query",
+            "name": "seasontype",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/espn.standingsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "ESPN standings",
+        "tags": [
+          "ESPN"
+        ]
+      }
+    },
+    "/espn/team": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one team's detail (identity, colors, record, standing summary) from ESPN's credential-free public JSON. The `sport` enum accepts `football`, `basketball`, `baseball`, `hockey`, and `soccer`. The `league` enum accepts `nfl`, `college-football`, `nba`, `wnba`, `mens-college-basketball`, `womens-college-basketball`, `mlb`, `nhl`, `eng.1`, `esp.1`, `ita.1`, `ger.1`, `fra.1`, `usa.1`, and `uefa.champions`; it must be valid for the chosen sport.",
+        "operationId": "espn-team",
+        "parameters": [
+          {
+            "description": "Sport key",
+            "enum": [
+              "football",
+              "basketball",
+              "baseball",
+              "hockey",
+              "soccer"
+            ],
+            "example": "football",
+            "in": "query",
+            "name": "sport",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "League key (must be valid for the sport)",
+            "enum": [
+              "nfl",
+              "college-football",
+              "nba",
+              "wnba",
+              "mens-college-basketball",
+              "womens-college-basketball",
+              "mlb",
+              "nhl",
+              "eng.1",
+              "esp.1",
+              "ita.1",
+              "ger.1",
+              "fra.1",
+              "usa.1",
+              "uefa.champions"
+            ],
+            "example": "nfl",
+            "in": "query",
+            "name": "league",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Team id (numeric) or abbreviation",
+            "example": "KC",
+            "in": "query",
+            "name": "team",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/espn.teamResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "ESPN team detail",
+        "tags": [
+          "ESPN"
+        ]
+      }
+    },
+    "/espn/team-roster": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a team's roster (players with position, jersey, age, and experience) plus head coach from ESPN's credential-free public JSON. The `sport` enum accepts `football`, `basketball`, `baseball`, `hockey`, and `soccer`. The `league` enum accepts `nfl`, `college-football`, `nba`, `wnba`, `mens-college-basketball`, `womens-college-basketball`, `mlb`, `nhl`, `eng.1`, `esp.1`, `ita.1`, `ger.1`, `fra.1`, `usa.1`, and `uefa.champions`; it must be valid for the chosen sport.",
+        "operationId": "espn-team-roster",
+        "parameters": [
+          {
+            "description": "Sport key",
+            "enum": [
+              "football",
+              "basketball",
+              "baseball",
+              "hockey",
+              "soccer"
+            ],
+            "example": "football",
+            "in": "query",
+            "name": "sport",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "League key (must be valid for the sport)",
+            "enum": [
+              "nfl",
+              "college-football",
+              "nba",
+              "wnba",
+              "mens-college-basketball",
+              "womens-college-basketball",
+              "mlb",
+              "nhl",
+              "eng.1",
+              "esp.1",
+              "ita.1",
+              "ger.1",
+              "fra.1",
+              "usa.1",
+              "uefa.champions"
+            ],
+            "example": "nfl",
+            "in": "query",
+            "name": "league",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Team id (numeric) or abbreviation",
+            "example": "KC",
+            "in": "query",
+            "name": "team",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/espn.rosterResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "ESPN team roster",
+        "tags": [
+          "ESPN"
+        ]
+      }
+    },
+    "/espn/teams": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the full team list for a sport and league from ESPN's credential-free public JSON. The `sport` enum accepts `football`, `basketball`, `baseball`, `hockey`, and `soccer`. The `league` enum accepts `nfl`, `college-football`, `nba`, `wnba`, `mens-college-basketball`, `womens-college-basketball`, `mlb`, `nhl`, `eng.1`, `esp.1`, `ita.1`, `ger.1`, `fra.1`, `usa.1`, and `uefa.champions`; it must be valid for the chosen sport.",
+        "operationId": "espn-teams",
+        "parameters": [
+          {
+            "description": "Sport key",
+            "enum": [
+              "football",
+              "basketball",
+              "baseball",
+              "hockey",
+              "soccer"
+            ],
+            "example": "basketball",
+            "in": "query",
+            "name": "sport",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "League key (must be valid for the sport)",
+            "enum": [
+              "nfl",
+              "college-football",
+              "nba",
+              "wnba",
+              "mens-college-basketball",
+              "womens-college-basketball",
+              "mlb",
+              "nhl",
+              "eng.1",
+              "esp.1",
+              "ita.1",
+              "ger.1",
+              "fra.1",
+              "usa.1",
+              "uefa.champions"
+            ],
+            "example": "nba",
+            "in": "query",
+            "name": "league",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/espn.teamsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "ESPN team list",
+        "tags": [
+          "ESPN"
         ]
       }
     },
@@ -67132,47 +71395,53 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns the paginated category listing payload for a Product Hunt category slug.",
+        "description": "Returns the products in a Product Hunt category (now backed by Product Hunt topics), cursor-paginated. Pass the `cursor` from a previous response's `end_cursor` to page; `page_size` controls the batch size. `page`, `featured_only`, `order` and `tags` are accepted for compatibility but no longer affect the result.",
         "operationId": "producthunt-category-products",
         "parameters": [
           {
             "description": "Product Hunt category slug",
-            "example": "\"vibe-coding\"",
+            "example": "\"developer-tools\"",
             "in": "path",
             "name": "slug",
             "required": true,
             "type": "string"
           },
           {
+            "description": "Pagination cursor from a previous response's end_cursor",
+            "in": "query",
+            "name": "cursor",
+            "type": "string"
+          },
+          {
+            "default": 15,
+            "description": "Page size (number of products)",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          },
+          {
             "default": true,
-            "description": "Featured products only",
+            "description": "Accepted for compatibility; no longer affects results",
             "in": "query",
             "name": "featured_only",
             "type": "boolean"
           },
           {
             "default": "highest_rated",
-            "description": "Sort order",
+            "description": "Accepted for compatibility; no longer affects results",
             "in": "query",
             "name": "order",
             "type": "string"
           },
           {
             "default": 1,
-            "description": "Page number (1-based)",
+            "description": "Accepted for compatibility; use cursor to paginate",
             "in": "query",
             "name": "page",
             "type": "integer"
           },
           {
-            "default": 15,
-            "description": "Page size",
-            "in": "query",
-            "name": "page_size",
-            "type": "integer"
-          },
-          {
-            "description": "Comma-separated category tags",
+            "description": "Accepted for compatibility; no longer affects results",
             "in": "query",
             "name": "tags",
             "type": "string"
@@ -67991,7 +72260,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns flat public comment entries from a Reddit post.",
+        "description": "Returns a Reddit post with its public comments. A post that exists but has no comments yet returns a 200 response with an empty comments list; a post that does not exist returns 404, and a temporary block or upstream failure returns 503 (retryable) rather than 404.",
         "operationId": "reddit-comments",
         "parameters": [
           {
@@ -68028,12 +72297,6 @@
             "in": "query",
             "name": "depth",
             "type": "integer"
-          },
-          {
-            "description": "When true, source comment scores and nested replies from old.reddit HTML rather than the default (slower)",
-            "in": "query",
-            "name": "with_scores",
-            "type": "boolean"
           }
         ],
         "produces": [
@@ -68135,12 +72398,6 @@
             "in": "query",
             "name": "after",
             "type": "string"
-          },
-          {
-            "description": "When true, source score and comment_count from old.reddit HTML rather than the default (slower)",
-            "in": "query",
-            "name": "with_scores",
-            "type": "boolean"
           }
         ],
         "produces": [
@@ -68203,12 +72460,6 @@
             "name": "id",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "When true, source score, upvote_ratio, and comment_count from old.reddit HTML rather than the default (slower)",
-            "in": "query",
-            "name": "with_scores",
-            "type": "boolean"
           }
         ],
         "produces": [
@@ -68317,12 +72568,6 @@
             "in": "query",
             "name": "after",
             "type": "string"
-          },
-          {
-            "description": "When true, source score and comment_count from old.reddit HTML rather than the default (slower)",
-            "in": "query",
-            "name": "with_scores",
-            "type": "boolean"
           }
         ],
         "produces": [
@@ -68391,12 +72636,6 @@
             "in": "query",
             "name": "limit",
             "type": "integer"
-          },
-          {
-            "description": "When true, source the sample posts (with score and comment_count) from old.reddit HTML rather than the default (slower); subscriber counts remain unavailable",
-            "in": "query",
-            "name": "with_scores",
-            "type": "boolean"
           }
         ],
         "produces": [
@@ -68471,12 +72710,6 @@
             "in": "query",
             "name": "after",
             "type": "string"
-          },
-          {
-            "description": "When true, source comment scores from old.reddit HTML rather than the default (slower)",
-            "in": "query",
-            "name": "with_scores",
-            "type": "boolean"
           }
         ],
         "produces": [
@@ -68578,12 +72811,6 @@
             "in": "query",
             "name": "after",
             "type": "string"
-          },
-          {
-            "description": "When true, source score and comment_count from old.reddit HTML rather than the default (slower)",
-            "in": "query",
-            "name": "with_scores",
-            "type": "boolean"
           }
         ],
         "produces": [
@@ -68685,12 +72912,6 @@
             "in": "query",
             "name": "after",
             "type": "string"
-          },
-          {
-            "description": "When true, source score and comment_count from old.reddit HTML rather than the default (slower)",
-            "in": "query",
-            "name": "with_scores",
-            "type": "boolean"
           }
         ],
         "produces": [
@@ -68785,12 +73006,6 @@
             "in": "query",
             "name": "after",
             "type": "string"
-          },
-          {
-            "description": "When true, source score and comment_count from old.reddit HTML rather than the default (slower)",
-            "in": "query",
-            "name": "with_scores",
-            "type": "boolean"
           }
         ],
         "produces": [
@@ -68865,12 +73080,6 @@
             "in": "query",
             "name": "after",
             "type": "string"
-          },
-          {
-            "description": "When true, source comment scores from old.reddit HTML rather than the default (slower)",
-            "in": "query",
-            "name": "with_scores",
-            "type": "boolean"
           }
         ],
         "produces": [
@@ -68945,12 +73154,6 @@
             "in": "query",
             "name": "after",
             "type": "string"
-          },
-          {
-            "description": "When true, source score and comment_count from old.reddit HTML rather than the default (slower)",
-            "in": "query",
-            "name": "with_scores",
-            "type": "boolean"
           }
         ],
         "produces": [
@@ -78797,6 +83000,70 @@
           }
         ],
         "summary": "Scrape a URL into markdown, HTML, links or metadata",
+        "tags": [
+          "Web"
+        ]
+      }
+    },
+    "/web/techstack": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Fetches a public URL and fingerprints the web technologies it is built with — a BuiltWith / Wappalyzer-style detector. Returns a list of detected `technologies`, each with its `categories`, a `confidence` (`high`, `medium`, `low`), an optional `version`, and the `evidence` that matched. Covers JavaScript frameworks and libraries (React, Vue.js, Angular, Svelte, jQuery), web frameworks / static site generators (Next.js, Nuxt.js, Gatsby, Remix, SvelteKit, Astro, Hugo), CMS and website builders (WordPress, Drupal, Joomla, Ghost, Wix, Squarespace, Webflow), e-commerce (Shopify, WooCommerce, Magento, BigCommerce), analytics, ad pixels, and tag managers (Google Analytics, Google Tag Manager, Meta Pixel, LinkedIn, Bing, TikTok/Pinterest/Reddit pixels, Segment, Hotjar, Microsoft Clarity), CDNs, UI frameworks and fonts, payments (Stripe, PayPal, Klarna), live chat, marketing automation, A/B testing, consent management, CAPTCHAs (reCAPTCHA, hCaptcha, Turnstile), video, and search. It also inspects response headers (from a plain HTTP fetch) to identify the web server (nginx, Apache, IIS), the CDN / hosting provider (Cloudflare, CloudFront, Fastly, Vercel, Netlify), and the server-side language / framework (PHP, ASP.NET, Ruby on Rails, Django, Laravel, Express). Results are directional, not exhaustive. The `render` fetch strategy is one of `browser` (headless browser that executes JavaScript — the default, so client-injected scripts like analytics, tag managers and pixels are detected), `auto` (Chrome-impersonated HTTP, escalating to a real browser only when blocked or JS-rendered), or `http` (HTTP only, no JavaScript — fastest, but sees only the server HTML); defaults to `browser`. Only public pages are supported; respect each site's terms of use and robots directives.",
+        "operationId": "web-techstack",
+        "parameters": [
+          {
+            "description": "Target URL (and optional render strategy)",
+            "in": "body",
+            "name": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/web.TechStackOption"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/web.techStackResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Invalid or missing URL / render value",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "502": {
+            "description": "Upstream fetch failed",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Target blocked the fetch or could not be retrieved",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Tech stack — detect what a website is built with",
         "tags": [
           "Web"
         ]

@@ -1,5 +1,28 @@
 # Changelog
 
+## v1.13.0-sdk.1
+
+- Regenerated from the public API contract (555 to 559 operations). Adds the
+  **Chrome Web Store** platform (9 endpoints): item detail, search, related
+  items, reviews, category / collection / top-chart listings, search
+  suggestions, and the category reference taxonomy — covering Chrome Web Store
+  extensions and themes.
+
+
+## v1.12.0-sdk.1
+
+- Regenerated from the public API contract (532 to 555 operations). Adds the
+  **TrustMRR** platform (5 endpoints): a public database of verified startup
+  revenues and a startup-acquisition marketplace. The endpoints cover the
+  marketplace snapshot (recently listed startups and best deals), the verified
+  revenue leaderboard (rank by MRR, 30-day revenue, all-time revenue, growth,
+  traffic, or revenue per visitor), startup detail, the category directory, and
+  category detail.
+- Also catches the client up with public endpoints from earlier API releases that
+  had not yet been regenerated into the SDKs: the ESPN and Reddit platforms; the
+  Airbnb Markets, GitHub Users, and Product Hunt dataset families; Product Hunt
+  category products; and the website tech-stack endpoint.
+
 ## v1.11.0-sdk.1
 
 - Regenerated from the public API contract (529 to 532 operations). Adds three
