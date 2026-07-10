@@ -6360,6 +6360,50 @@
       },
       "type": "object"
     },
+    "chromewebstore.Developer": {
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "duns": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "is_trader": {
+          "type": "boolean"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/chromewebstore.Card"
+          },
+          "type": "array"
+        },
+        "legal_name": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "chromewebstore.Item": {
       "properties": {
         "category": {
@@ -6469,6 +6513,85 @@
       },
       "type": "object"
     },
+    "chromewebstore.Permissions": {
+      "properties": {
+        "host_permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "manifest_version": {
+          "type": "integer"
+        },
+        "min_browser_version": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "optional_host_permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "optional_permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.Privacy": {
+      "properties": {
+        "collects_data": {
+          "type": "boolean"
+        },
+        "data_collected": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "declarations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "disclosure": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "privacy_policy": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "chromewebstore.Review": {
       "properties": {
         "author": {
@@ -6479,6 +6602,9 @@
         },
         "edited": {
           "type": "string"
+        },
+        "helpful": {
+          "type": "integer"
         },
         "id": {
           "type": "string"
@@ -6517,6 +6643,9 @@
             "$ref": "#/definitions/chromewebstore.Review"
           },
           "type": "array"
+        },
+        "total": {
+          "type": "integer"
         }
       },
       "type": "object"
@@ -6579,6 +6708,22 @@
       },
       "type": "object"
     },
+    "chromewebstore.developerResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/chromewebstore.Developer"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "chromewebstore.itemResponseDoc": {
       "properties": {
         "code": {
@@ -6603,6 +6748,38 @@
         },
         "data": {
           "$ref": "#/definitions/chromewebstore.ListResult"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.permissionsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/chromewebstore.Permissions"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "chromewebstore.privacyResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/chromewebstore.Privacy"
         },
         "msg": {
           "example": "OK",
@@ -9521,6 +9698,92 @@
       },
       "type": "object"
     },
+    "datasets.TechstackFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.TechstackDatasetFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.TechstackSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.TechstackRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.TrustmrrFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.TrustmrrDatasetFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.TrustmrrSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.TrustmrrStartupRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "datasets.airbnbMarketResponseDoc": {
       "properties": {
         "code": {
@@ -9881,6 +10144,102 @@
         },
         "data": {
           "$ref": "#/definitions/datasets.ReviewsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.techstackFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.TechstackFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.techstackItemResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.TechstackRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.techstackSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.TechstackSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.trustmrrFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.TrustmrrFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.trustmrrItemResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.TrustmrrStartupRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.trustmrrSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.TrustmrrSearchResponse"
         },
         "msg": {
           "example": "OK",
@@ -12059,6 +12418,382 @@
           "type": "integer"
         },
         "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.TechstackDatasetFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.TechstackRecord": {
+      "properties": {
+        "analytics": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "categories": {
+          "description": "distinct, sorted; category facets",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "category": {
+          "description": "optional seed category (usually empty)",
+          "type": "string"
+        },
+        "cdn": {
+          "type": "string"
+        },
+        "cms": {
+          "description": "single-value rollups (denormalized from Technologies for cheap facets/filters)",
+          "type": "string"
+        },
+        "detector_version": {
+          "type": "string"
+        },
+        "domain": {
+          "description": "identity",
+          "type": "string"
+        },
+        "ecommerce": {
+          "type": "string"
+        },
+        "final_url": {
+          "description": "URL that produced the adopted body (after www. fallback / redirects)",
+          "type": "string"
+        },
+        "has_captcha": {
+          "type": "boolean"
+        },
+        "method_version": {
+          "type": "string"
+        },
+        "probed_at": {
+          "description": "RFC3339 — when last probed",
+          "type": "string"
+        },
+        "rank": {
+          "description": "Tranco rank when seeded from the top-1M list",
+          "type": "integer"
+        },
+        "reachable": {
+          "type": "boolean"
+        },
+        "render_tier": {
+          "description": "provenance / reproducibility",
+          "type": "string"
+        },
+        "run_date": {
+          "type": "string"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "scan_method": {
+          "type": "string"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "scheme": {
+          "type": "string"
+        },
+        "seed_source": {
+          "description": "tranco | internal-harvest",
+          "type": "string"
+        },
+        "server_language": {
+          "type": "string"
+        },
+        "source_url": {
+          "description": "the exact seed URL probed",
+          "type": "string"
+        },
+        "status": {
+          "type": "integer"
+        },
+        "tech_count": {
+          "type": "integer"
+        },
+        "technologies": {
+          "description": "detections (the payload)",
+          "items": {
+            "$ref": "#/definitions/es.TechstackTechnology"
+          },
+          "type": "array"
+        },
+        "technology_names": {
+          "description": "flattened for AND/NOT term filters + facets",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tld": {
+          "type": "string"
+        },
+        "web_server": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.TechstackTechnology": {
+      "properties": {
+        "categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "confidence": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.TrustmrrDatasetFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.TrustmrrStartupRecord": {
+      "properties": {
+        "active_subscriptions": {
+          "type": "integer"
+        },
+        "ahrefs_domain_rating": {
+          "type": "integer"
+        },
+        "asking_price": {
+          "type": "number"
+        },
+        "business_type": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "category_slug": {
+          "type": "string"
+        },
+        "channels": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "country": {
+          "type": "string"
+        },
+        "customers": {
+          "type": "integer"
+        },
+        "deal_score": {
+          "type": "number"
+        },
+        "description": {
+          "type": "string"
+        },
+        "estimated_user_count": {
+          "type": "integer"
+        },
+        "first_listed_for_sale_at": {
+          "type": "string"
+        },
+        "first_seen": {
+          "type": "string"
+        },
+        "founded_date": {
+          "type": "string"
+        },
+        "funding_status": {
+          "type": "string"
+        },
+        "growth_30d": {
+          "type": "number"
+        },
+        "growth_mrr_30d": {
+          "type": "number"
+        },
+        "has_dofollow_backlink": {
+          "type": "boolean"
+        },
+        "has_google_analytics": {
+          "type": "boolean"
+        },
+        "has_insight_overrides": {
+          "type": "boolean"
+        },
+        "has_search_console": {
+          "type": "boolean"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "is_merchant_of_record": {
+          "type": "boolean"
+        },
+        "is_sponsored": {
+          "type": "boolean"
+        },
+        "last_crawled_at": {
+          "type": "string"
+        },
+        "last_seen": {
+          "type": "string"
+        },
+        "listing_tier": {
+          "type": "string"
+        },
+        "looking_for_cofounder": {
+          "type": "boolean"
+        },
+        "merchant_category_code": {
+          "type": "string"
+        },
+        "mrr": {
+          "type": "number"
+        },
+        "mrr_last_synced_at": {
+          "type": "string"
+        },
+        "multiple": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "offer_count": {
+          "type": "integer"
+        },
+        "on_sale": {
+          "type": "boolean"
+        },
+        "payment_provider": {
+          "type": "string"
+        },
+        "pricing_model": {
+          "type": "string"
+        },
+        "problem_solved": {
+          "type": "string"
+        },
+        "profit_margin_30d": {
+          "type": "number"
+        },
+        "revenue_30d": {
+          "type": "number"
+        },
+        "revenue_last_synced_at": {
+          "type": "string"
+        },
+        "revenue_per_visitor_30d": {
+          "type": "number"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "secondary_payment_provider": {
+          "type": "string"
+        },
+        "seller_message": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "stealth_mode": {
+          "type": "boolean"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "target_audience": {
+          "type": "string"
+        },
+        "target_persona": {
+          "type": "string"
+        },
+        "tech": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "total_revenue": {
+          "type": "number"
+        },
+        "traffic_12mo": {
+          "type": "number"
+        },
+        "traffic_24h": {
+          "type": "number"
+        },
+        "traffic_30d": {
+          "type": "number"
+        },
+        "traffic_7d": {
+          "type": "number"
+        },
+        "url": {
+          "type": "string"
+        },
+        "user_category": {
+          "type": "string"
+        },
+        "user_category_slug": {
+          "type": "string"
+        },
+        "value_proposition": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "x_follower_count": {
+          "type": "integer"
+        },
+        "x_founder_name": {
+          "type": "string"
+        },
+        "x_handle": {
+          "type": "string"
+        },
+        "x_profile_picture": {
           "type": "string"
         }
       },
@@ -21078,6 +21813,147 @@
       },
       "type": "object"
     },
+    "pitchbook.DataTable": {
+      "properties": {
+        "columns": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "example": "Investors",
+          "type": "string"
+        },
+        "rows": {
+          "items": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        },
+        "total": {
+          "example": 23,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "pitchbook.FAQ": {
+      "properties": {
+        "answer": {
+          "example": "Thinking Machines Lab was founded in 2024.",
+          "type": "string"
+        },
+        "question": {
+          "example": "When was Thinking Machines Lab founded?",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "pitchbook.ProfileResponse": {
+      "properties": {
+        "contact": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "description": {
+          "type": "string"
+        },
+        "faqs": {
+          "items": {
+            "$ref": "#/definitions/pitchbook.FAQ"
+          },
+          "type": "array"
+        },
+        "fetched_at": {
+          "example": "2026-07-08T20:00:00Z",
+          "type": "string"
+        },
+        "id": {
+          "example": "752821-12",
+          "type": "string"
+        },
+        "kind": {
+          "example": "company",
+          "type": "string"
+        },
+        "name": {
+          "example": "Thinking Machines Lab",
+          "type": "string"
+        },
+        "overview": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "source_url": {
+          "example": "https://pitchbook.com/profiles/company/752821-12",
+          "type": "string"
+        },
+        "tables": {
+          "items": {
+            "$ref": "#/definitions/pitchbook.DataTable"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "pitchbook.companyResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/pitchbook.ProfileResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "pitchbook.fundResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/pitchbook.ProfileResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "pitchbook.investorResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/pitchbook.ProfileResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "polymarket.ActivityTradesResponse": {
       "properties": {
         "event_id": {
@@ -29439,6 +30315,833 @@
       },
       "type": "object"
     },
+    "sec.CompanyIntelligenceResponse": {
+      "properties": {
+        "financial_snapshot": {
+          "additionalProperties": {
+            "format": "float64",
+            "type": "number"
+          },
+          "type": "object"
+        },
+        "latest_8k": {
+          "$ref": "#/definitions/sec.Filing"
+        },
+        "latest_annual_10k": {
+          "$ref": "#/definitions/sec.Filing"
+        },
+        "latest_quarterly_10q": {
+          "$ref": "#/definitions/sec.Filing"
+        },
+        "profile": {
+          "$ref": "#/definitions/sec.CompanyProfile"
+        },
+        "recent_events": {
+          "items": {
+            "$ref": "#/definitions/sec.EventFiling"
+          },
+          "type": "array"
+        },
+        "snapshot_fiscal_year": {
+          "type": "integer"
+        },
+        "snapshot_period_end": {
+          "type": "string"
+        },
+        "source_urls": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "sec.CompanyMatch": {
+      "properties": {
+        "cik": {
+          "example": 320193,
+          "type": "integer"
+        },
+        "cik_padded": {
+          "example": "CIK0000320193",
+          "type": "string"
+        },
+        "name": {
+          "example": "Apple Inc.",
+          "type": "string"
+        },
+        "ticker": {
+          "example": "AAPL",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.CompanyProfile": {
+      "properties": {
+        "cik": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sic": {
+          "type": "string"
+        },
+        "sic_description": {
+          "type": "string"
+        },
+        "ticker": {
+          "type": "string"
+        },
+        "tickers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "sec.CompanySearchResponse": {
+      "properties": {
+        "count": {
+          "example": 1,
+          "type": "integer"
+        },
+        "matches": {
+          "items": {
+            "$ref": "#/definitions/sec.CompanyMatch"
+          },
+          "type": "array"
+        },
+        "query": {
+          "example": "apple",
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.EventFiling": {
+      "properties": {
+        "accession_number": {
+          "type": "string"
+        },
+        "filing_date": {
+          "type": "string"
+        },
+        "items": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.Filing": {
+      "properties": {
+        "accession_number": {
+          "example": "0000320193-25-000081",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "filing_date": {
+          "example": "2025-10-31",
+          "type": "string"
+        },
+        "filing_index_url": {
+          "type": "string"
+        },
+        "form": {
+          "example": "10-K",
+          "type": "string"
+        },
+        "is_xbrl": {
+          "type": "boolean"
+        },
+        "items": {
+          "type": "string"
+        },
+        "primary_doc_url": {
+          "type": "string"
+        },
+        "primary_document": {
+          "type": "string"
+        },
+        "report_date": {
+          "example": "2025-09-27",
+          "type": "string"
+        },
+        "size": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "sec.FilingDocument": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.FilingResponse": {
+      "properties": {
+        "accession_number": {
+          "example": "0000320193-25-000081",
+          "type": "string"
+        },
+        "cik": {
+          "type": "integer"
+        },
+        "cik_padded": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "documents": {
+          "items": {
+            "$ref": "#/definitions/sec.FilingDocument"
+          },
+          "type": "array"
+        },
+        "filing_date": {
+          "example": "2025-10-31",
+          "type": "string"
+        },
+        "filing_index_url": {
+          "type": "string"
+        },
+        "form": {
+          "example": "10-K",
+          "type": "string"
+        },
+        "is_xbrl": {
+          "type": "boolean"
+        },
+        "items": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "primary_doc_url": {
+          "type": "string"
+        },
+        "primary_document": {
+          "type": "string"
+        },
+        "report_date": {
+          "example": "2025-09-27",
+          "type": "string"
+        },
+        "size": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.FilingSection": {
+      "properties": {
+        "char_count": {
+          "type": "integer"
+        },
+        "item": {
+          "example": "1A",
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "title": {
+          "example": "Risk Factors",
+          "type": "string"
+        },
+        "truncated": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "sec.FilingSectionsResponse": {
+      "properties": {
+        "accession_number": {
+          "type": "string"
+        },
+        "cik": {
+          "type": "integer"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "document_url": {
+          "type": "string"
+        },
+        "form": {
+          "type": "string"
+        },
+        "sections": {
+          "items": {
+            "$ref": "#/definitions/sec.FilingSection"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.FinancialPeriod": {
+      "properties": {
+        "currency": {
+          "example": "USD",
+          "type": "string"
+        },
+        "end_date": {
+          "type": "string"
+        },
+        "fiscal_period": {
+          "example": "FY",
+          "type": "string"
+        },
+        "fiscal_year": {
+          "type": "integer"
+        },
+        "form": {
+          "type": "string"
+        },
+        "lines": {
+          "additionalProperties": {
+            "format": "float64",
+            "type": "number"
+          },
+          "type": "object"
+        },
+        "ratios": {
+          "additionalProperties": {
+            "format": "float64",
+            "type": "number"
+          },
+          "description": "Ratios are computed, normalized metrics derived from the lines (margins,\ncurrent ratio, debt-to-equity, free cash flow, YoY revenue growth) — a\nvalue-add over the raw statement figures.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "sec.FinancialsResponse": {
+      "properties": {
+        "cik": {
+          "type": "integer"
+        },
+        "line_order": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "period": {
+          "example": "annual",
+          "type": "string"
+        },
+        "periods": {
+          "items": {
+            "$ref": "#/definitions/sec.FinancialPeriod"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "statement": {
+          "example": "income",
+          "type": "string"
+        },
+        "ticker": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.FrameFact": {
+      "properties": {
+        "accession_number": {
+          "type": "string"
+        },
+        "cik": {
+          "type": "integer"
+        },
+        "end": {
+          "type": "string"
+        },
+        "entity_name": {
+          "type": "string"
+        },
+        "form": {
+          "type": "string"
+        },
+        "start": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "sec.FramesResponse": {
+      "properties": {
+        "concept": {
+          "example": "Assets",
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "facts": {
+          "items": {
+            "$ref": "#/definitions/sec.FrameFact"
+          },
+          "type": "array"
+        },
+        "period": {
+          "example": "CY2024Q4I",
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "taxonomy": {
+          "example": "us-gaap",
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        },
+        "unit": {
+          "example": "USD",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.FullTextHit": {
+      "properties": {
+        "accession_number": {
+          "type": "string"
+        },
+        "cik": {
+          "type": "integer"
+        },
+        "company_names": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "document_url": {
+          "type": "string"
+        },
+        "filed_at": {
+          "type": "string"
+        },
+        "form": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.FullTextSearchResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "hits": {
+          "items": {
+            "$ref": "#/definitions/sec.FullTextHit"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "query": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "sec.Holding": {
+      "properties": {
+        "cusip": {
+          "type": "string"
+        },
+        "investment_discretion": {
+          "type": "string"
+        },
+        "issuer": {
+          "type": "string"
+        },
+        "put_call": {
+          "type": "string"
+        },
+        "share_type": {
+          "type": "string"
+        },
+        "shares": {
+          "type": "number"
+        },
+        "title_of_class": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "sec.HoldingsResponse": {
+      "properties": {
+        "accession_number": {
+          "type": "string"
+        },
+        "cik": {
+          "type": "integer"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "filing_date": {
+          "type": "string"
+        },
+        "holdings": {
+          "items": {
+            "$ref": "#/definitions/sec.Holding"
+          },
+          "type": "array"
+        },
+        "manager_name": {
+          "type": "string"
+        },
+        "report_date": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "total_holdings": {
+          "type": "integer"
+        },
+        "total_value": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "sec.InsiderResponse": {
+      "properties": {
+        "cik": {
+          "type": "integer"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "ticker": {
+          "type": "string"
+        },
+        "transactions": {
+          "items": {
+            "$ref": "#/definitions/sec.InsiderTransaction"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "sec.InsiderTransaction": {
+      "properties": {
+        "accession_number": {
+          "type": "string"
+        },
+        "acquired_or_disposed": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "filing_date": {
+          "type": "string"
+        },
+        "filing_url": {
+          "type": "string"
+        },
+        "form": {
+          "type": "string"
+        },
+        "is_director": {
+          "type": "boolean"
+        },
+        "is_officer": {
+          "type": "boolean"
+        },
+        "is_ten_percent_owner": {
+          "type": "boolean"
+        },
+        "owner_name": {
+          "type": "string"
+        },
+        "owner_title": {
+          "type": "string"
+        },
+        "price_per_share": {
+          "type": "number"
+        },
+        "security_title": {
+          "type": "string"
+        },
+        "shares": {
+          "type": "number"
+        },
+        "shares_owned_after": {
+          "type": "number"
+        },
+        "transaction_date": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.SubmissionsResponse": {
+      "properties": {
+        "cik": {
+          "example": 320193,
+          "type": "integer"
+        },
+        "cik_padded": {
+          "example": "CIK0000320193",
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "filings": {
+          "items": {
+            "$ref": "#/definitions/sec.Filing"
+          },
+          "type": "array"
+        },
+        "name": {
+          "example": "Apple Inc.",
+          "type": "string"
+        },
+        "sic": {
+          "type": "string"
+        },
+        "sic_description": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "tickers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "sec.companySearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sec.CompanySearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.filingResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sec.FilingResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.filingSectionsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sec.FilingSectionsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.financialsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sec.FinancialsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.framesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sec.FramesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.fullTextResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sec.FullTextSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.holdingsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sec.HoldingsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.insiderResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sec.InsiderResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.intelligenceResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sec.CompanyIntelligenceResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.submissionsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sec.SubmissionsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "shopapp.AnalysisResponse": {
       "properties": {
         "currencies": {
@@ -31827,6 +33530,1241 @@
         },
         "data": {
           "$ref": "#/definitions/similarweb.SimilarWebResp"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.EventDetail": {
+      "properties": {
+        "attendance": {
+          "type": "integer"
+        },
+        "away_score": {
+          "$ref": "#/definitions/sofascore.ScoreLine"
+        },
+        "away_team": {
+          "$ref": "#/definitions/sofascore.TeamRef"
+        },
+        "home_score": {
+          "$ref": "#/definitions/sofascore.ScoreLine"
+        },
+        "home_team": {
+          "$ref": "#/definitions/sofascore.TeamRef"
+        },
+        "id": {
+          "example": 14025013,
+          "type": "integer"
+        },
+        "referee": {
+          "$ref": "#/definitions/sofascore.Referee"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "start_time": {
+          "example": "2025-08-15T19:00:00Z",
+          "type": "string"
+        },
+        "start_timestamp": {
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "#/definitions/sofascore.EventStatus"
+        },
+        "tournament": {
+          "$ref": "#/definitions/sofascore.TournamentRef"
+        },
+        "venue": {
+          "$ref": "#/definitions/sofascore.Venue"
+        },
+        "winner_code": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.EventH2HResponse": {
+      "properties": {
+        "event_id": {
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "manager_duel": {
+          "$ref": "#/definitions/sofascore.TeamDuel"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "team_duel": {
+          "$ref": "#/definitions/sofascore.TeamDuel"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.EventIncidentsResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "event_id": {
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "incidents": {
+          "items": {
+            "$ref": "#/definitions/sofascore.Incident"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.EventLineupsResponse": {
+      "properties": {
+        "away": {
+          "$ref": "#/definitions/sofascore.TeamLineup"
+        },
+        "confirmed": {
+          "type": "boolean"
+        },
+        "event_id": {
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "home": {
+          "$ref": "#/definitions/sofascore.TeamLineup"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.EventOddsResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "event_id": {
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "markets": {
+          "items": {
+            "$ref": "#/definitions/sofascore.OddsMarket"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.EventResponse": {
+      "properties": {
+        "event": {
+          "$ref": "#/definitions/sofascore.EventDetail"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.EventStatisticsResponse": {
+      "properties": {
+        "event_id": {
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "periods": {
+          "items": {
+            "$ref": "#/definitions/sofascore.StatPeriod"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.EventStatus": {
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "description": {
+          "example": "Ended",
+          "type": "string"
+        },
+        "type": {
+          "example": "finished",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.EventSummary": {
+      "properties": {
+        "away_score": {
+          "$ref": "#/definitions/sofascore.ScoreLine"
+        },
+        "away_team": {
+          "$ref": "#/definitions/sofascore.TeamRef"
+        },
+        "home_score": {
+          "$ref": "#/definitions/sofascore.ScoreLine"
+        },
+        "home_team": {
+          "$ref": "#/definitions/sofascore.TeamRef"
+        },
+        "id": {
+          "example": 14025013,
+          "type": "integer"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "start_time": {
+          "example": "2025-08-15T19:00:00Z",
+          "type": "string"
+        },
+        "start_timestamp": {
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "#/definitions/sofascore.EventStatus"
+        },
+        "tournament": {
+          "$ref": "#/definitions/sofascore.TournamentRef"
+        },
+        "winner_code": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.Incident": {
+      "properties": {
+        "added_time": {
+          "type": "integer"
+        },
+        "away_score": {
+          "type": "integer"
+        },
+        "card_color": {
+          "example": "yellow",
+          "type": "string"
+        },
+        "home_score": {
+          "type": "integer"
+        },
+        "is_home": {
+          "type": "boolean"
+        },
+        "player": {
+          "type": "string"
+        },
+        "player_in": {
+          "type": "string"
+        },
+        "player_out": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "text": {
+          "example": "FT",
+          "type": "string"
+        },
+        "time": {
+          "type": "integer"
+        },
+        "type": {
+          "example": "goal",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.LineupPlayer": {
+      "properties": {
+        "jersey_number": {
+          "type": "string"
+        },
+        "player": {
+          "$ref": "#/definitions/sofascore.PlayerRef"
+        },
+        "position": {
+          "type": "string"
+        },
+        "substitute": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.LiveEventsResponse": {
+      "properties": {
+        "count": {
+          "example": 10,
+          "type": "integer"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/definitions/sofascore.EventSummary"
+          },
+          "type": "array"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "sport": {
+          "example": "football",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.OddsChoice": {
+      "properties": {
+        "name": {
+          "example": "1",
+          "type": "string"
+        },
+        "value": {
+          "example": "29/100",
+          "type": "string"
+        },
+        "winning": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.OddsMarket": {
+      "properties": {
+        "choices": {
+          "items": {
+            "$ref": "#/definitions/sofascore.OddsChoice"
+          },
+          "type": "array"
+        },
+        "group": {
+          "example": "1X2",
+          "type": "string"
+        },
+        "name": {
+          "example": "Full time",
+          "type": "string"
+        },
+        "period": {
+          "example": "Full-time",
+          "type": "string"
+        },
+        "suspended": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.PlayerDetail": {
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "date_of_birth": {
+          "type": "string"
+        },
+        "deceased": {
+          "type": "boolean"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "jersey_number": {
+          "type": "string"
+        },
+        "market_value": {
+          "type": "integer"
+        },
+        "market_value_currency": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "preferred_foot": {
+          "type": "string"
+        },
+        "short_name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "team": {
+          "$ref": "#/definitions/sofascore.TeamRef"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.PlayerRef": {
+      "properties": {
+        "country": {
+          "example": "Spain",
+          "type": "string"
+        },
+        "id": {
+          "example": 855833,
+          "type": "integer"
+        },
+        "name": {
+          "example": "Ferran Torres",
+          "type": "string"
+        },
+        "position": {
+          "example": "F",
+          "type": "string"
+        },
+        "short_name": {
+          "example": "F. Torres",
+          "type": "string"
+        },
+        "slug": {
+          "example": "ferran-torres",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.PlayerResponse": {
+      "properties": {
+        "fetched_at": {
+          "type": "string"
+        },
+        "player": {
+          "$ref": "#/definitions/sofascore.PlayerDetail"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.Referee": {
+      "properties": {
+        "country": {
+          "example": "England",
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "example": "Anthony Taylor",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.RoundEventsResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/definitions/sofascore.EventSummary"
+          },
+          "type": "array"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "has_next_page": {
+          "type": "boolean"
+        },
+        "round": {
+          "type": "integer"
+        },
+        "season_id": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "tournament_id": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.ScoreLine": {
+      "properties": {
+        "current": {
+          "type": "integer"
+        },
+        "period1": {
+          "type": "integer"
+        },
+        "period2": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.SearchResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/sofascore.SearchResult"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.SearchResult": {
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "sport": {
+          "type": "string"
+        },
+        "team_id": {
+          "type": "integer"
+        },
+        "team_name": {
+          "type": "string"
+        },
+        "type": {
+          "example": "team",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.Season": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "year": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.SquadPlayer": {
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "date_of_birth": {
+          "type": "string"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "jersey_number": {
+          "type": "string"
+        },
+        "market_value": {
+          "type": "integer"
+        },
+        "market_value_currency": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "preferred_foot": {
+          "type": "string"
+        },
+        "short_name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.StandingsGroup": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "rows": {
+          "items": {
+            "$ref": "#/definitions/sofascore.StandingsRow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.StandingsResponse": {
+      "properties": {
+        "fetched_at": {
+          "type": "string"
+        },
+        "groups": {
+          "items": {
+            "$ref": "#/definitions/sofascore.StandingsGroup"
+          },
+          "type": "array"
+        },
+        "season_id": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "tournament_id": {
+          "type": "integer"
+        },
+        "type": {
+          "example": "total",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.StandingsRow": {
+      "properties": {
+        "draws": {
+          "type": "integer"
+        },
+        "losses": {
+          "type": "integer"
+        },
+        "matches": {
+          "type": "integer"
+        },
+        "points": {
+          "type": "integer"
+        },
+        "position": {
+          "type": "integer"
+        },
+        "promotion": {
+          "example": "Champions League",
+          "type": "string"
+        },
+        "scores_against": {
+          "type": "integer"
+        },
+        "scores_for": {
+          "type": "integer"
+        },
+        "team": {
+          "$ref": "#/definitions/sofascore.TeamRef"
+        },
+        "wins": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.StatGroup": {
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/definitions/sofascore.StatItem"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.StatItem": {
+      "properties": {
+        "away": {
+          "example": "39%",
+          "type": "string"
+        },
+        "home": {
+          "example": "61%",
+          "type": "string"
+        },
+        "key": {
+          "example": "ballPossession",
+          "type": "string"
+        },
+        "name": {
+          "example": "Ball possession",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.StatPeriod": {
+      "properties": {
+        "groups": {
+          "items": {
+            "$ref": "#/definitions/sofascore.StatGroup"
+          },
+          "type": "array"
+        },
+        "period": {
+          "example": "ALL",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.TeamDetail": {
+      "properties": {
+        "country": {
+          "example": "Spain",
+          "type": "string"
+        },
+        "id": {
+          "example": 2817,
+          "type": "integer"
+        },
+        "manager": {
+          "type": "string"
+        },
+        "name": {
+          "example": "FC Barcelona",
+          "type": "string"
+        },
+        "national": {
+          "type": "boolean"
+        },
+        "primary_color": {
+          "type": "string"
+        },
+        "short_name": {
+          "example": "Barcelona",
+          "type": "string"
+        },
+        "slug": {
+          "example": "barcelona",
+          "type": "string"
+        },
+        "sport": {
+          "example": "Football",
+          "type": "string"
+        },
+        "tournament_id": {
+          "type": "integer"
+        },
+        "tournament_name": {
+          "type": "string"
+        },
+        "venue": {
+          "type": "string"
+        },
+        "venue_capacity": {
+          "type": "integer"
+        },
+        "venue_city": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.TeamDuel": {
+      "properties": {
+        "away_wins": {
+          "type": "integer"
+        },
+        "draws": {
+          "type": "integer"
+        },
+        "home_wins": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.TeamEventsResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "direction": {
+          "example": "next",
+          "type": "string"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/definitions/sofascore.EventSummary"
+          },
+          "type": "array"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "has_next_page": {
+          "type": "boolean"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "team_id": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.TeamLineup": {
+      "properties": {
+        "formation": {
+          "example": "4-3-3",
+          "type": "string"
+        },
+        "players": {
+          "items": {
+            "$ref": "#/definitions/sofascore.LineupPlayer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.TeamPlayersResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "players": {
+          "items": {
+            "$ref": "#/definitions/sofascore.SquadPlayer"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "team_id": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.TeamRef": {
+      "properties": {
+        "country": {
+          "example": "Spain",
+          "type": "string"
+        },
+        "id": {
+          "example": 2817,
+          "type": "integer"
+        },
+        "name": {
+          "example": "FC Barcelona",
+          "type": "string"
+        },
+        "national": {
+          "type": "boolean"
+        },
+        "short_name": {
+          "example": "Barcelona",
+          "type": "string"
+        },
+        "slug": {
+          "example": "barcelona",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.TeamResponse": {
+      "properties": {
+        "fetched_at": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "team": {
+          "$ref": "#/definitions/sofascore.TeamDetail"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.TournamentRef": {
+      "properties": {
+        "category": {
+          "example": "England",
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "example": "Premier League",
+          "type": "string"
+        },
+        "slug": {
+          "example": "premier-league",
+          "type": "string"
+        },
+        "unique_tournament_id": {
+          "example": 17,
+          "type": "integer"
+        },
+        "unique_tournament_name": {
+          "example": "Premier League",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.TournamentSeasonsResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "seasons": {
+          "items": {
+            "$ref": "#/definitions/sofascore.Season"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "tournament_id": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.Venue": {
+      "properties": {
+        "capacity": {
+          "example": 61276,
+          "type": "integer"
+        },
+        "city": {
+          "example": "Liverpool",
+          "type": "string"
+        },
+        "country": {
+          "example": "England",
+          "type": "string"
+        },
+        "name": {
+          "example": "Anfield",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.eventH2HResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sofascore.EventH2HResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.eventIncidentsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sofascore.EventIncidentsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.eventLineupsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sofascore.EventLineupsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.eventOddsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sofascore.EventOddsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.eventResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sofascore.EventResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.eventStatisticsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sofascore.EventStatisticsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.liveEventsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sofascore.LiveEventsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.playerResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sofascore.PlayerResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.roundEventsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sofascore.RoundEventsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sofascore.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.standingsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sofascore.StandingsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.teamEventsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sofascore.TeamEventsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.teamPlayersResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sofascore.TeamPlayersResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.teamResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sofascore.TeamResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sofascore.tournamentSeasonsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/sofascore.TournamentSeasonsResponse"
         },
         "msg": {
           "example": "OK",
@@ -37639,6 +40577,950 @@
         },
         "data": {
           "$ref": "#/definitions/tripadvisor.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.AcquireListing": {
+      "properties": {
+        "asking_price": {
+          "type": "number"
+        },
+        "category": {
+          "example": "SaaS",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "first_listed_for_sale_at": {
+          "type": "string"
+        },
+        "founded_date": {
+          "type": "string"
+        },
+        "growth_30d": {
+          "type": "number"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "listing_tier": {
+          "type": "string"
+        },
+        "multiple": {
+          "type": "number"
+        },
+        "name": {
+          "example": "Ploxto",
+          "type": "string"
+        },
+        "offer_count": {
+          "type": "integer"
+        },
+        "payment_provider": {
+          "type": "string"
+        },
+        "profit_margin_last_30_days": {
+          "type": "number"
+        },
+        "revenue_last_30_days": {
+          "type": "number"
+        },
+        "slug": {
+          "example": "ploxto",
+          "type": "string"
+        },
+        "stealth_mode": {
+          "type": "boolean"
+        },
+        "url": {
+          "example": "https://trustmrr.com/startup/ploxto",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.AcquireResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "startups": {
+          "items": {
+            "$ref": "#/definitions/trustmrr.AcquireListing"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.AskingPricePoint": {
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.CategoriesResponse": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/definitions/trustmrr.Category"
+          },
+          "type": "array"
+        },
+        "count": {
+          "example": 31,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.Category": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "icon": {
+          "example": "Sparkles",
+          "type": "string"
+        },
+        "keywords": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "label": {
+          "example": "Artificial Intelligence",
+          "type": "string"
+        },
+        "label_short": {
+          "example": "AI",
+          "type": "string"
+        },
+        "slug": {
+          "example": "ai",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://trustmrr.com/category/ai",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.CategoryResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "slug": {
+          "example": "saas",
+          "type": "string"
+        },
+        "startups": {
+          "items": {
+            "$ref": "#/definitions/trustmrr.CategoryStartup"
+          },
+          "type": "array"
+        },
+        "url": {
+          "example": "https://trustmrr.com/category/saas",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.CategoryStartup": {
+      "properties": {
+        "current_last_30_days_revenue": {
+          "type": "number"
+        },
+        "current_mrr": {
+          "type": "number"
+        },
+        "current_total_revenue": {
+          "type": "number"
+        },
+        "description": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "is_merchant_of_record": {
+          "type": "boolean"
+        },
+        "name": {
+          "example": "Hidden Business",
+          "type": "string"
+        },
+        "on_sale": {
+          "type": "boolean"
+        },
+        "slug": {
+          "example": "hidden-business-3",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://trustmrr.com/startup/hidden-business-3",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.LeaderboardEntry": {
+      "properties": {
+        "current_last_30_days_revenue": {
+          "type": "number"
+        },
+        "current_mrr": {
+          "example": 3569654.22,
+          "type": "number"
+        },
+        "current_total_revenue": {
+          "example": 76627685.07,
+          "type": "number"
+        },
+        "description": {
+          "type": "string"
+        },
+        "growth_30d": {
+          "type": "number"
+        },
+        "growth_mrr_30d": {
+          "type": "number"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "is_merchant_of_record": {
+          "type": "boolean"
+        },
+        "name": {
+          "example": "Stan",
+          "type": "string"
+        },
+        "on_sale": {
+          "type": "boolean"
+        },
+        "rank": {
+          "example": 1,
+          "type": "integer"
+        },
+        "revenue_per_visitor_last_30_days": {
+          "type": "number"
+        },
+        "slug": {
+          "example": "stan",
+          "type": "string"
+        },
+        "stealth_mode": {
+          "type": "boolean"
+        },
+        "traffic_last_30_days": {
+          "type": "number"
+        },
+        "url": {
+          "example": "https://trustmrr.com/startup/stan",
+          "type": "string"
+        },
+        "x_founder_name": {
+          "type": "string"
+        },
+        "x_handle": {
+          "type": "string"
+        },
+        "x_profile_picture": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.LeaderboardMetric": {
+      "enum": [
+        "mrr",
+        "last_30_days_revenue",
+        "all_time_revenue",
+        "growth",
+        "traffic",
+        "revenue_per_visitor"
+      ],
+      "type": "string",
+      "x-enum-varnames": [
+        "MetricMRR",
+        "MetricLast30DaysRevenue",
+        "MetricAllTimeRevenue",
+        "MetricGrowth",
+        "MetricTraffic",
+        "MetricRevenuePerVisitor"
+      ]
+    },
+    "trustmrr.LeaderboardResponse": {
+      "properties": {
+        "count": {
+          "example": 100,
+          "type": "integer"
+        },
+        "entries": {
+          "items": {
+            "$ref": "#/definitions/trustmrr.LeaderboardEntry"
+          },
+          "type": "array"
+        },
+        "metric": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/trustmrr.LeaderboardMetric"
+            }
+          ],
+          "example": "mrr"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.MarketplaceResponse": {
+      "properties": {
+        "best_deals": {
+          "items": {
+            "$ref": "#/definitions/trustmrr.MarketplaceStartup"
+          },
+          "type": "array"
+        },
+        "recently_listed": {
+          "items": {
+            "$ref": "#/definitions/trustmrr.MarketplaceStartup"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.MarketplaceRevenue": {
+      "properties": {
+        "last_30_days": {
+          "example": 23589.38,
+          "type": "number"
+        },
+        "mrr": {
+          "example": 20361.89,
+          "type": "number"
+        },
+        "total": {
+          "example": 23589.38,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.MarketplaceStartup": {
+      "properties": {
+        "active_subscriptions": {
+          "example": 4790,
+          "type": "integer"
+        },
+        "asking_price": {
+          "example": 600000,
+          "type": "number"
+        },
+        "category": {
+          "example": "Mobile Apps",
+          "type": "string"
+        },
+        "country": {
+          "example": "PL",
+          "type": "string"
+        },
+        "customers": {
+          "example": 0,
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "first_listed_for_sale_at": {
+          "type": "string"
+        },
+        "founded_date": {
+          "example": "2025-06-01T00:00:00.000Z",
+          "type": "string"
+        },
+        "google_search_impressions_last_30_days": {
+          "type": "integer"
+        },
+        "growth_30d": {
+          "type": "number"
+        },
+        "growth_mrr_30d": {
+          "type": "number"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "multiple": {
+          "example": 2.1,
+          "type": "number"
+        },
+        "name": {
+          "example": "TrackAI",
+          "type": "string"
+        },
+        "on_sale": {
+          "example": true,
+          "type": "boolean"
+        },
+        "payment_provider": {
+          "example": "revenuecat",
+          "type": "string"
+        },
+        "profit_margin_last_30_days": {
+          "example": 10,
+          "type": "number"
+        },
+        "rank": {
+          "example": 858,
+          "type": "integer"
+        },
+        "revenue": {
+          "$ref": "#/definitions/trustmrr.MarketplaceRevenue"
+        },
+        "revenue_per_visitor": {
+          "type": "number"
+        },
+        "slug": {
+          "example": "trackai",
+          "type": "string"
+        },
+        "target_audience": {
+          "example": "B2C",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://trustmrr.com/startup/trackai",
+          "type": "string"
+        },
+        "visitors_last_30_days": {
+          "type": "integer"
+        },
+        "website": {
+          "example": "https://trackai.app",
+          "type": "string"
+        },
+        "x_handle": {
+          "type": "string"
+        },
+        "x_profile_picture": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.Startup": {
+      "properties": {
+        "ahrefs_domain": {
+          "type": "string"
+        },
+        "ahrefs_domain_rating": {
+          "type": "integer"
+        },
+        "asking_price": {
+          "example": 600000,
+          "type": "number"
+        },
+        "asking_price_history": {
+          "items": {
+            "$ref": "#/definitions/trustmrr.AskingPricePoint"
+          },
+          "type": "array"
+        },
+        "branding_primary_color": {
+          "example": "#ffffff",
+          "type": "string"
+        },
+        "branding_secondary_color": {
+          "example": "#000000",
+          "type": "string"
+        },
+        "category": {
+          "example": "Mobile App",
+          "type": "string"
+        },
+        "category_slug": {
+          "example": "mobile-app",
+          "type": "string"
+        },
+        "country": {
+          "example": "PL",
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "deal_score": {
+          "type": "number"
+        },
+        "description": {
+          "type": "string"
+        },
+        "enrichment": {
+          "$ref": "#/definitions/trustmrr.StartupEnrichment"
+        },
+        "first_listed_for_sale_at": {
+          "type": "string"
+        },
+        "founded_date": {
+          "type": "string"
+        },
+        "growth_30d": {
+          "type": "number"
+        },
+        "growth_mrr_30d": {
+          "type": "number"
+        },
+        "has_dofollow_backlink": {
+          "type": "boolean"
+        },
+        "has_google_analytics": {
+          "type": "boolean"
+        },
+        "has_search_console": {
+          "type": "boolean"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "insight_overrides": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/trustmrr.StartupInsight"
+            }
+          ],
+          "description": "InsightOverrides holds the human-curated business summary TrustMRR displays\nin place of the AI enrichment when a seller has edited it."
+        },
+        "is_merchant_of_record": {
+          "type": "boolean"
+        },
+        "is_sponsored": {
+          "type": "boolean"
+        },
+        "listing_tier": {
+          "example": "pro",
+          "type": "string"
+        },
+        "looking_for_cofounder": {
+          "type": "boolean"
+        },
+        "looking_for_cofounder_message": {
+          "type": "string"
+        },
+        "marketing_channels": {
+          "items": {
+            "$ref": "#/definitions/trustmrr.StartupChannel"
+          },
+          "type": "array"
+        },
+        "merchant_category_code": {
+          "example": "7372",
+          "type": "string"
+        },
+        "mrr_last_synced_at": {
+          "type": "string"
+        },
+        "multiple": {
+          "example": 2.12,
+          "type": "number"
+        },
+        "name": {
+          "example": "TrackAI",
+          "type": "string"
+        },
+        "offer_count": {
+          "type": "integer"
+        },
+        "on_sale": {
+          "type": "boolean"
+        },
+        "payment_provider": {
+          "example": "revenuecat",
+          "type": "string"
+        },
+        "profit_margin_last_30_days": {
+          "example": 10,
+          "type": "number"
+        },
+        "rank": {
+          "example": 858,
+          "type": "integer"
+        },
+        "revenue": {
+          "$ref": "#/definitions/trustmrr.StartupRevenue"
+        },
+        "revenue_last_synced_at": {
+          "type": "string"
+        },
+        "revenue_per_visitor_last_30_days": {
+          "type": "number"
+        },
+        "secondary_payment_provider": {
+          "type": "string"
+        },
+        "seller_message": {
+          "type": "string"
+        },
+        "slug": {
+          "example": "trackai",
+          "type": "string"
+        },
+        "status": {
+          "example": "active",
+          "type": "string"
+        },
+        "stealth_mode": {
+          "type": "boolean"
+        },
+        "target_audience": {
+          "example": "B2C",
+          "type": "string"
+        },
+        "tech_stack": {
+          "items": {
+            "$ref": "#/definitions/trustmrr.StartupTech"
+          },
+          "type": "array"
+        },
+        "traffic_last_12_months": {
+          "type": "number"
+        },
+        "traffic_last_24_hours": {
+          "type": "number"
+        },
+        "traffic_last_30_days": {
+          "type": "number"
+        },
+        "traffic_last_7_days": {
+          "type": "number"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "url": {
+          "example": "https://trustmrr.com/startup/trackai",
+          "type": "string"
+        },
+        "user_category": {
+          "example": "Mobile Apps",
+          "type": "string"
+        },
+        "user_category_slug": {
+          "example": "mobile-apps",
+          "type": "string"
+        },
+        "website": {
+          "example": "https://trackai.app",
+          "type": "string"
+        },
+        "x_follower_count": {
+          "type": "integer"
+        },
+        "x_founder_name": {
+          "type": "string"
+        },
+        "x_handle": {
+          "type": "string"
+        },
+        "x_profile_picture": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.StartupChannel": {
+      "properties": {
+        "category": {
+          "example": "paid",
+          "type": "string"
+        },
+        "slug": {
+          "example": "meta-ads",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.StartupEnrichment": {
+      "properties": {
+        "business_type": {
+          "example": "B2C",
+          "type": "string"
+        },
+        "estimated_user_count": {
+          "type": "integer"
+        },
+        "funding_status": {
+          "type": "string"
+        },
+        "last_enriched_at": {
+          "type": "string"
+        },
+        "pricing_model": {
+          "type": "string"
+        },
+        "problem_solved": {
+          "type": "string"
+        },
+        "screenshots": {
+          "items": {
+            "$ref": "#/definitions/trustmrr.StartupScreenshot"
+          },
+          "type": "array"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "target_persona": {
+          "type": "string"
+        },
+        "value_proposition": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.StartupInsight": {
+      "properties": {
+        "business_type": {
+          "example": "B2C",
+          "type": "string"
+        },
+        "estimated_user_count": {
+          "type": "integer"
+        },
+        "pricing_model": {
+          "type": "string"
+        },
+        "problem_solved": {
+          "type": "string"
+        },
+        "target_persona": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "value_proposition": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.StartupRef": {
+      "properties": {
+        "last_modified": {
+          "example": "2026-07-08T05:09:42.880Z",
+          "type": "string"
+        },
+        "slug": {
+          "example": "gumroad",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://trustmrr.com/startup/gumroad",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.StartupRevenue": {
+      "properties": {
+        "active_subscriptions": {
+          "type": "integer"
+        },
+        "customers": {
+          "type": "integer"
+        },
+        "last_30_days": {
+          "type": "number"
+        },
+        "mrr": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.StartupScreenshot": {
+      "properties": {
+        "captured_at": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.StartupTech": {
+      "properties": {
+        "category": {
+          "example": "frontend",
+          "type": "string"
+        },
+        "slug": {
+          "example": "reactnative",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.StartupsResponse": {
+      "properties": {
+        "has_next": {
+          "example": true,
+          "type": "boolean"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "page_size": {
+          "example": 100,
+          "type": "integer"
+        },
+        "startups": {
+          "items": {
+            "$ref": "#/definitions/trustmrr.StartupRef"
+          },
+          "type": "array"
+        },
+        "total": {
+          "example": 8196,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.acquireResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/trustmrr.AcquireResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.categoriesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/trustmrr.CategoriesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.categoryResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/trustmrr.CategoryResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.leaderboardResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/trustmrr.LeaderboardResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.marketplaceResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/trustmrr.MarketplaceResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.startupResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/trustmrr.Startup"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "trustmrr.startupsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/trustmrr.StartupsResponse"
         },
         "msg": {
           "example": "OK",
@@ -48427,6 +52309,90 @@
         ]
       }
     },
+    "/chromewebstore/developer": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a Chrome Web Store publisher (developer) by publisher id, including the disclosed trader details — legal name, email, phone, address, website, and D-U-N-S number — plus the publisher's listed items (\"More from ...\"). Trader fields are only present for publishers that identify as EU traders. Defaults: `num=50`, `country=us`, `lang=en`.",
+        "operationId": "chromewebstore-developer",
+        "parameters": [
+          {
+            "description": "Chrome Web Store publisher id (u + 32 hex chars)",
+            "example": "u63f06aecfdc45d32c13ccc24f56c3d2d",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of items",
+            "example": 50,
+            "in": "query",
+            "name": "num",
+            "type": "integer"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Two-letter language code",
+            "example": "en",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chromewebstore.developerResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve a Chrome Web Store publisher and their items",
+        "tags": [
+          "ChromeWebStore"
+        ]
+      }
+    },
     "/chromewebstore/item": {
       "get": {
         "consumes": [
@@ -48504,6 +52470,160 @@
         ]
       }
     },
+    "/chromewebstore/permissions": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the permissions a Chrome Web Store extension declares in its manifest: `permissions`, `optional_permissions`, `host_permissions`, `optional_host_permissions`, plus `manifest_version` and `min_browser_version`. Useful for security and supply-chain review. Defaults: `country=us`, `lang=en`.",
+        "operationId": "chromewebstore-permissions",
+        "parameters": [
+          {
+            "description": "Chrome Web Store item id (32-character extension id)",
+            "example": "cjpalhdlnbpafiamejdnhcphjbkeiagm",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Two-letter language code",
+            "example": "en",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chromewebstore.permissionsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve a Chrome Web Store item's declared permissions",
+        "tags": [
+          "ChromeWebStore"
+        ]
+      }
+    },
+    "/chromewebstore/privacy": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns an extension's privacy disclosures as the store renders them: the developer's data-use statement, whether it collects data, the standard data-handling declarations, and the privacy-policy link. Defaults: `country=us`, `lang=en`.",
+        "operationId": "chromewebstore-privacy",
+        "parameters": [
+          {
+            "description": "Chrome Web Store item id (32-character extension/theme id)",
+            "example": "cjpalhdlnbpafiamejdnhcphjbkeiagm",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Two-letter language code",
+            "example": "en",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/chromewebstore.privacyResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve a Chrome Web Store item's privacy disclosures",
+        "tags": [
+          "ChromeWebStore"
+        ]
+      }
+    },
     "/chromewebstore/reviews": {
       "get": {
         "consumes": [
@@ -48522,10 +52642,21 @@
           },
           {
             "description": "Maximum number of reviews",
-            "example": 20,
+            "example": 100,
             "in": "query",
             "name": "num",
             "type": "integer"
+          },
+          {
+            "default": "recent",
+            "description": "Review sort order",
+            "enum": [
+              "recent",
+              "helpful"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
           },
           {
             "description": "Two-letter storefront country code",
@@ -53999,6 +58130,778 @@
           }
         ],
         "summary": "Search the Product Hunt trends dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/techstack/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns distribution counts over the website tech-stack index (dataset id enum value `techstack`), honoring the same filters as search — the technology / category market-share view. Facet enum: `technology`, `category`, `cms`, `ecommerce`, `cdn`, `web_server`, `server_language`, `analytics`, `tld`, `render_tier`, `seed_source`.",
+        "operationId": "datasets-techstack-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: technology, category, cms, ecommerce, cdn, web_server, server_language, analytics, tld, render_tier, seed_source",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Substring match on the site domain, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable exact technology name the site MUST use (AND)",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "technology",
+            "type": "array"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable exact technology name; the site must use at least one (OR)",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "any_of",
+            "type": "array"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable exact technology name the site must NOT use (excludes)",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "not",
+            "type": "array"
+          },
+          {
+            "description": "Exact category filter, e.g. Ecommerce, CMS, Analytics",
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "description": "Exact CMS filter, e.g. WordPress, Shopify, Webflow",
+            "in": "query",
+            "name": "cms",
+            "type": "string"
+          },
+          {
+            "description": "Exact e-commerce platform filter, e.g. Shopify, WooCommerce, Magento",
+            "in": "query",
+            "name": "ecommerce",
+            "type": "string"
+          },
+          {
+            "description": "Exact CDN / hosting filter, e.g. Cloudflare, Fastly, Vercel",
+            "in": "query",
+            "name": "cdn",
+            "type": "string"
+          },
+          {
+            "description": "Exact web-server filter, e.g. nginx, Apache, IIS",
+            "in": "query",
+            "name": "web_server",
+            "type": "string"
+          },
+          {
+            "description": "Exact server language / framework filter, e.g. PHP, ASP.NET, Ruby on Rails",
+            "in": "query",
+            "name": "server_language",
+            "type": "string"
+          },
+          {
+            "description": "Exact top-level-domain filter, e.g. com, org, io",
+            "in": "query",
+            "name": "tld",
+            "type": "string"
+          },
+          {
+            "description": "Fetch-tier filter. Enum: http, browser",
+            "in": "query",
+            "name": "render_tier",
+            "type": "string"
+          },
+          {
+            "description": "Source filter for where the domain was discovered, e.g. tranco",
+            "in": "query",
+            "name": "seed_source",
+            "type": "string"
+          },
+          {
+            "description": "true keeps only sites with a detected CAPTCHA",
+            "in": "query",
+            "name": "has_captcha",
+            "type": "boolean"
+          },
+          {
+            "description": "true keeps only sites whose homepage was fetched",
+            "in": "query",
+            "name": "reachable",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum number of detected technologies, 0 or greater",
+            "in": "query",
+            "name": "min_tech_count",
+            "type": "integer"
+          },
+          {
+            "description": "Scan run id; defaults to the latest run",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.techstackFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet the website tech-stack dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/techstack/items/{domain}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one site by its domain from dataset id enum value `techstack`, including every detected technology (name, categories, confidence, version, evidence) plus the CMS / e-commerce / CDN / web-server / server-language rollups. Returns 404 when the domain is not in the index.",
+        "operationId": "datasets-techstack-item",
+        "parameters": [
+          {
+            "description": "Site domain, e.g. shopify.com (a scheme and www. are stripped)",
+            "in": "path",
+            "name": "domain",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.techstackItemResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a site from the website tech-stack dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/techstack/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches the website tech-stack index (dataset id enum value `techstack`) — one record per site listing the web technologies it is built with (frameworks, CMS, e-commerce, analytics, CDNs, servers, and more), BuiltWith / Wappalyzer-style. The reverse-index filters are the point: repeat `technology` to require several at once (AND), `any_of` to match at least one (OR), and `not` to exclude — e.g. sites on `Shopify` and `Klaviyo` but not `Recharge`. Sort enum: `relevance`, `rank_asc`, `tech_count_desc`, `domain_asc`, `crawled_desc`. render_tier enum: `http`, `browser`.",
+        "operationId": "datasets-techstack-search",
+        "parameters": [
+          {
+            "description": "Substring match on the site domain, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable exact technology name the site MUST use (AND), e.g. technology=Shopify&technology=Klaviyo",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "technology",
+            "type": "array"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable exact technology name; the site must use at least one (OR)",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "any_of",
+            "type": "array"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable exact technology name the site must NOT use (excludes)",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "not",
+            "type": "array"
+          },
+          {
+            "description": "Exact category filter, e.g. Ecommerce, CMS, Analytics, Payment, CDN",
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "description": "Exact CMS filter, e.g. WordPress, Shopify, Webflow",
+            "in": "query",
+            "name": "cms",
+            "type": "string"
+          },
+          {
+            "description": "Exact e-commerce platform filter, e.g. Shopify, WooCommerce, Magento",
+            "in": "query",
+            "name": "ecommerce",
+            "type": "string"
+          },
+          {
+            "description": "Exact CDN / hosting filter, e.g. Cloudflare, Fastly, Vercel",
+            "in": "query",
+            "name": "cdn",
+            "type": "string"
+          },
+          {
+            "description": "Exact web-server filter, e.g. nginx, Apache, IIS",
+            "in": "query",
+            "name": "web_server",
+            "type": "string"
+          },
+          {
+            "description": "Exact server language / framework filter, e.g. PHP, ASP.NET, Ruby on Rails",
+            "in": "query",
+            "name": "server_language",
+            "type": "string"
+          },
+          {
+            "description": "Exact top-level-domain filter, e.g. com, org, io",
+            "in": "query",
+            "name": "tld",
+            "type": "string"
+          },
+          {
+            "description": "Fetch-tier filter. Enum: http, browser",
+            "in": "query",
+            "name": "render_tier",
+            "type": "string"
+          },
+          {
+            "description": "Source filter for where the domain was discovered, e.g. tranco",
+            "in": "query",
+            "name": "seed_source",
+            "type": "string"
+          },
+          {
+            "description": "true keeps only sites with a detected CAPTCHA",
+            "in": "query",
+            "name": "has_captcha",
+            "type": "boolean"
+          },
+          {
+            "description": "true keeps only sites whose homepage was fetched, false only sites that could not be fetched",
+            "in": "query",
+            "name": "reachable",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum number of detected technologies, 0 or greater",
+            "in": "query",
+            "name": "min_tech_count",
+            "type": "integer"
+          },
+          {
+            "description": "Scan run id; defaults to the latest run",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Sort enum: relevance, rank_asc, tech_count_desc, domain_asc, crawled_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.techstackSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the website tech-stack dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/trustmrr/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns terms-aggregation counts for one facet of the TrustMRR dataset, scoped to the same filters as search. Facet enum: `category`, `country`, `payment_provider`, `target_audience`, `business_type`, `tech`, `channels`, `listing_tier`, `status`, `on_sale`, `is_sponsored`, `tags`.",
+        "operationId": "datasets-trustmrr-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: category, country, payment_provider, target_audience, business_type, tech, channels, listing_tier, status, on_sale, is_sponsored, tags",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact category filter, max 128 characters",
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "description": "Exact ISO country-code filter, max 128 characters",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Payment-provider filter, max 128 characters",
+            "in": "query",
+            "name": "payment_provider",
+            "type": "string"
+          },
+          {
+            "description": "Filter for startups currently listed for sale",
+            "in": "query",
+            "name": "on_sale",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum verified MRR in USD",
+            "in": "query",
+            "name": "min_mrr",
+            "type": "number"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.trustmrrFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet the TrustMRR dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/trustmrr/items/{slug}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one startup record by slug from the TrustMRR dataset (dataset id `trustmrr`), including verified revenue/MRR, traffic, growth, category, tech stack, marketing channels and acquisition-marketplace fields.",
+        "operationId": "datasets-trustmrr-item",
+        "parameters": [
+          {
+            "description": "Startup slug, max 128 characters",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.trustmrrItemResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a TrustMRR startup from the dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/trustmrr/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches public startups with payment-provider-verified revenue and MRR, stored in a search index. Filter by category, country, payment provider, target audience, tech, marketing channel, listing tier and for-sale status, and by revenue/MRR/traffic/growth/multiple/asking-price ranges. Sort enum: `relevance`, `mrr_desc`, `revenue_desc`, `revenue_30d_desc`, `traffic_desc`, `growth_desc`, `deal_score_desc`, `price_asc`, `price_desc`, `multiple_asc`, `founded_desc`. status enum: `active`, `removed`.",
+        "operationId": "datasets-trustmrr-search",
+        "parameters": [
+          {
+            "description": "Full-text query over name, description, seller message and business summary, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact startup slug filter, max 128 characters",
+            "in": "query",
+            "name": "slug",
+            "type": "string"
+          },
+          {
+            "description": "Exact category filter (e.g. SaaS, Artificial Intelligence, Mobile Apps), max 128 characters",
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "description": "Exact ISO country-code filter (e.g. US), max 128 characters",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Payment-provider filter (e.g. stripe, revenuecat, superwall, creem), max 128 characters",
+            "in": "query",
+            "name": "payment_provider",
+            "type": "string"
+          },
+          {
+            "description": "Target-audience filter (e.g. B2B, B2C), max 128 characters",
+            "in": "query",
+            "name": "target_audience",
+            "type": "string"
+          },
+          {
+            "description": "Business-type filter (e.g. B2B, B2C), max 128 characters",
+            "in": "query",
+            "name": "business_type",
+            "type": "string"
+          },
+          {
+            "description": "Detected tech-stack slug filter (e.g. nextjs, reactnative), max 128 characters",
+            "in": "query",
+            "name": "tech",
+            "type": "string"
+          },
+          {
+            "description": "Detected marketing-channel slug filter (e.g. meta-ads, seo), max 128 characters",
+            "in": "query",
+            "name": "channel",
+            "type": "string"
+          },
+          {
+            "description": "For-sale listing-tier filter (e.g. pro), max 128 characters",
+            "in": "query",
+            "name": "listing_tier",
+            "type": "string"
+          },
+          {
+            "description": "Lifecycle enum: active, removed",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "Filter for startups currently listed for sale",
+            "in": "query",
+            "name": "on_sale",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter for sponsored (paid-placement) listings",
+            "in": "query",
+            "name": "is_sponsored",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum verified MRR in USD",
+            "in": "query",
+            "name": "min_mrr",
+            "type": "number"
+          },
+          {
+            "description": "Maximum verified MRR in USD",
+            "in": "query",
+            "name": "max_mrr",
+            "type": "number"
+          },
+          {
+            "description": "Minimum verified all-time revenue in USD",
+            "in": "query",
+            "name": "min_revenue",
+            "type": "number"
+          },
+          {
+            "description": "Minimum verified last-30-days revenue in USD",
+            "in": "query",
+            "name": "min_revenue_30d",
+            "type": "number"
+          },
+          {
+            "description": "Minimum last-30-days traffic (visits)",
+            "in": "query",
+            "name": "min_traffic",
+            "type": "number"
+          },
+          {
+            "description": "Minimum 30-day revenue growth percentage",
+            "in": "query",
+            "name": "min_growth",
+            "type": "number"
+          },
+          {
+            "description": "Maximum asking-price-to-revenue multiple",
+            "in": "query",
+            "name": "max_multiple",
+            "type": "number"
+          },
+          {
+            "description": "Minimum asking price in USD",
+            "in": "query",
+            "name": "min_asking_price",
+            "type": "number"
+          },
+          {
+            "description": "Maximum asking price in USD",
+            "in": "query",
+            "name": "max_asking_price",
+            "type": "number"
+          },
+          {
+            "description": "Minimum Ahrefs Domain Rating",
+            "in": "query",
+            "name": "min_ahrefs_dr",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: relevance, mrr_desc, revenue_desc, revenue_30d_desc, traffic_desc, growth_desc, deal_score_desc, price_asc, price_desc, multiple_asc, founded_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.trustmrrSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the TrustMRR dataset",
         "tags": [
           "Datasets"
         ]
@@ -66429,6 +71332,213 @@
         ]
       }
     },
+    "/pitchbook/company": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the free/teaser content of a PitchBook company profile page (overview, description, contact/HQ, industry, funding-round history without dollar amounts, a preview of investors, acquisitions, and subsidiaries). PitchBook gates most numeric figures (deal amounts, cap tables, full investor/LP lists) behind a paid subscription; those come through as empty cells rather than being fabricated. Pass exactly one of `id` or `url`.",
+        "operationId": "pitchbook-company",
+        "parameters": [
+          {
+            "description": "PitchBook company id",
+            "example": "752821-12",
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "description": "Absolute https://pitchbook.com/profiles/company/<id> URL",
+            "example": "https://pitchbook.com/profiles/company/752821-12",
+            "in": "query",
+            "name": "url",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/pitchbook.companyResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "PitchBook company profile",
+        "tags": [
+          "PitchBook"
+        ]
+      }
+    },
+    "/pitchbook/fund": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the free/teaser content of a PitchBook fund profile page (strategy, status, manager, size, vintage, and a preview of limited partners and benchmark peer funds). PitchBook gates most numeric figures (returns/IRR, full LP lists) behind a paid subscription; those come through as empty cells rather than being fabricated. Pass exactly one of `id` or `url`.",
+        "operationId": "pitchbook-fund",
+        "parameters": [
+          {
+            "description": "PitchBook fund id",
+            "example": "19719-91F",
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "description": "Absolute https://pitchbook.com/profiles/fund/<id> URL",
+            "example": "https://pitchbook.com/profiles/fund/19719-91F",
+            "in": "query",
+            "name": "url",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/pitchbook.fundResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "PitchBook fund profile",
+        "tags": [
+          "PitchBook"
+        ]
+      }
+    },
+    "/pitchbook/investor": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the free/teaser content of a PitchBook investor (fund manager/firm) profile page (overview, description, contact/HQ, and a preview of investments, exits, and co-investors). PitchBook gates most numeric figures and full lists behind a paid subscription; those come through as empty cells rather than being fabricated. Pass exactly one of `id` or `url`.",
+        "operationId": "pitchbook-investor",
+        "parameters": [
+          {
+            "description": "PitchBook investor id",
+            "example": "294471-37",
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "description": "Absolute https://pitchbook.com/profiles/investor/<id> URL",
+            "example": "https://pitchbook.com/profiles/investor/294471-37",
+            "in": "query",
+            "name": "url",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/pitchbook.investorResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "PitchBook investor profile",
+        "tags": [
+          "PitchBook"
+        ]
+      }
+    },
     "/polymarket/activity/trades": {
       "get": {
         "consumes": [
@@ -74422,6 +79532,817 @@
         ]
       }
     },
+    "/sec/company/intelligence": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Aggregates a company's profile, a latest-annual financial snapshot, the latest 10-K/10-Q/8-K, and recent material events into one call. Provide cik or ticker. Credential-free public SEC data.",
+        "operationId": "sec-company-intelligence",
+        "parameters": [
+          {
+            "description": "SEC CIK (numeric or zero-padded)",
+            "example": "320193",
+            "in": "query",
+            "name": "cik",
+            "type": "string"
+          },
+          {
+            "description": "Ticker symbol (alternative to cik)",
+            "example": "AAPL",
+            "in": "query",
+            "name": "ticker",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sec.intelligenceResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Company 360 overview from SEC data",
+        "tags": [
+          "SEC EDGAR"
+        ]
+      }
+    },
+    "/sec/company/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Resolves a ticker symbol or company-name query to SEC EDGAR companies (CIK, ticker, name) using the official company_tickers map. Credential-free public SEC data.",
+        "operationId": "sec-company-search",
+        "parameters": [
+          {
+            "description": "Ticker symbol or company name",
+            "example": "apple",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Max matches, default 10, max 100",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sec.companySearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Resolve a ticker or company name to EDGAR companies",
+        "tags": [
+          "SEC EDGAR"
+        ]
+      }
+    },
+    "/sec/company/submissions": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a company's recent SEC filings (form, dates, primary document URL) filtered by form type and date range. Provide cik or ticker. Credential-free public SEC data.",
+        "operationId": "sec-company-submissions",
+        "parameters": [
+          {
+            "description": "SEC CIK (numeric or zero-padded)",
+            "example": "320193",
+            "in": "query",
+            "name": "cik",
+            "type": "string"
+          },
+          {
+            "description": "Ticker symbol (alternative to cik)",
+            "example": "AAPL",
+            "in": "query",
+            "name": "ticker",
+            "type": "string"
+          },
+          {
+            "description": "Filter by form type, e.g. 10-K, 10-Q, 8-K",
+            "example": "10-K",
+            "in": "query",
+            "name": "form",
+            "type": "string"
+          },
+          {
+            "description": "Earliest filing date (YYYY-MM-DD)",
+            "in": "query",
+            "name": "from",
+            "type": "string"
+          },
+          {
+            "description": "Latest filing date (YYYY-MM-DD)",
+            "in": "query",
+            "name": "to",
+            "type": "string"
+          },
+          {
+            "description": "Max filings, default 50, max 500",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sec.submissionsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a company's EDGAR filings",
+        "tags": [
+          "SEC EDGAR"
+        ]
+      }
+    },
+    "/sec/filing": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a single SEC filing's metadata and primary document URL. Provide accession plus cik or ticker. Credential-free public SEC data.",
+        "operationId": "sec-filing",
+        "parameters": [
+          {
+            "description": "SEC CIK (numeric or zero-padded)",
+            "example": "320193",
+            "in": "query",
+            "name": "cik",
+            "type": "string"
+          },
+          {
+            "description": "Ticker symbol (alternative to cik)",
+            "example": "AAPL",
+            "in": "query",
+            "name": "ticker",
+            "type": "string"
+          },
+          {
+            "description": "Accession number",
+            "example": "0000320193-25-000079",
+            "in": "query",
+            "name": "accession",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sec.filingResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a single filing by accession number",
+        "tags": [
+          "SEC EDGAR"
+        ]
+      }
+    },
+    "/sec/filing/sections": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Extracts item sections (e.g. 1A Risk Factors, 7 MD&A) from a 10-K/10-Q/8-K primary document as clean text. Provide accession plus cik or ticker. Credential-free public SEC data.",
+        "operationId": "sec-filing-sections",
+        "parameters": [
+          {
+            "description": "SEC CIK (numeric or zero-padded)",
+            "example": "320193",
+            "in": "query",
+            "name": "cik",
+            "type": "string"
+          },
+          {
+            "description": "Ticker symbol (alternative to cik)",
+            "example": "AAPL",
+            "in": "query",
+            "name": "ticker",
+            "type": "string"
+          },
+          {
+            "description": "Accession number",
+            "example": "0000320193-25-000079",
+            "in": "query",
+            "name": "accession",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated item numbers to return, e.g. 1A,7",
+            "example": "1A,7",
+            "in": "query",
+            "name": "items",
+            "type": "string"
+          },
+          {
+            "description": "Max characters per section, default 20000, max 200000",
+            "in": "query",
+            "name": "max_chars",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sec.filingSectionsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Extract 10-K/10-Q/8-K item sections",
+        "tags": [
+          "SEC EDGAR"
+        ]
+      }
+    },
+    "/sec/financials": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a company's normalized financial statements across recent periods, resolving EDGAR's inconsistent XBRL tags to a stable schema. Provide cik or ticker. Credential-free public SEC data.",
+        "operationId": "sec-financials",
+        "parameters": [
+          {
+            "description": "SEC CIK (numeric or zero-padded)",
+            "example": "320193",
+            "in": "query",
+            "name": "cik",
+            "type": "string"
+          },
+          {
+            "description": "Ticker symbol (alternative to cik)",
+            "example": "AAPL",
+            "in": "query",
+            "name": "ticker",
+            "type": "string"
+          },
+          {
+            "description": "Statement, default income",
+            "enum": [
+              "income",
+              "balance",
+              "cash_flow"
+            ],
+            "in": "query",
+            "name": "statement",
+            "type": "string"
+          },
+          {
+            "description": "Period basis, default annual",
+            "enum": [
+              "annual",
+              "quarterly"
+            ],
+            "in": "query",
+            "name": "period",
+            "type": "string"
+          },
+          {
+            "description": "Number of periods, default 5, max 20",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sec.financialsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Normalized income statement, balance sheet, or cash flow",
+        "tags": [
+          "SEC EDGAR"
+        ]
+      }
+    },
+    "/sec/frames": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns every filer's reported value for one XBRL concept in one reporting period (an EDGAR \"frame\"). Credential-free public SEC data.",
+        "operationId": "sec-frames",
+        "parameters": [
+          {
+            "description": "XBRL concept tag, e.g. Assets, Revenues",
+            "example": "Assets",
+            "in": "query",
+            "name": "concept",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Reporting frame, e.g. CY2024, CY2024Q1, CY2024Q4I",
+            "example": "CY2024Q4I",
+            "in": "query",
+            "name": "period",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Unit of measure, default USD",
+            "example": "USD",
+            "in": "query",
+            "name": "unit",
+            "type": "string"
+          },
+          {
+            "description": "XBRL taxonomy, default us-gaap",
+            "enum": [
+              "dei",
+              "ifrs-full",
+              "srt",
+              "us-gaap"
+            ],
+            "in": "query",
+            "name": "taxonomy",
+            "type": "string"
+          },
+          {
+            "description": "Max companies, default 200, max 2000",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sec.framesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Cross-company values for one XBRL concept and period",
+        "tags": [
+          "SEC EDGAR"
+        ]
+      }
+    },
+    "/sec/full-text-search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches the full text of SEC EDGAR filings (efts), filtered by form and date, with pagination. Credential-free public SEC data; free where incumbents gate full-text search behind paid tiers.",
+        "operationId": "sec-full-text-search",
+        "parameters": [
+          {
+            "description": "Search query (supports quoted phrases)",
+            "example": "artificial intelligence",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Filter by form types, comma-separated",
+            "example": "10-K",
+            "in": "query",
+            "name": "forms",
+            "type": "string"
+          },
+          {
+            "description": "Earliest filing date (YYYY-MM-DD)",
+            "in": "query",
+            "name": "from",
+            "type": "string"
+          },
+          {
+            "description": "Latest filing date (YYYY-MM-DD)",
+            "in": "query",
+            "name": "to",
+            "type": "string"
+          },
+          {
+            "description": "1-based page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sec.fullTextResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Full-text search across EDGAR filings",
+        "tags": [
+          "SEC EDGAR"
+        ]
+      }
+    },
+    "/sec/insider": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a company's recent insider transactions parsed from Form 3/4/5 ownership filings (owner, role, security, shares, price). Provide cik or ticker. Credential-free public SEC data.",
+        "operationId": "sec-insider",
+        "parameters": [
+          {
+            "description": "SEC CIK (numeric or zero-padded)",
+            "example": "320193",
+            "in": "query",
+            "name": "cik",
+            "type": "string"
+          },
+          {
+            "description": "Ticker symbol (alternative to cik)",
+            "example": "AAPL",
+            "in": "query",
+            "name": "ticker",
+            "type": "string"
+          },
+          {
+            "description": "Max transactions, default 10, max 30",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sec.insiderResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Insider transactions (Forms 3/4/5)",
+        "tags": [
+          "SEC EDGAR"
+        ]
+      }
+    },
+    "/sec/institutional-holdings": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the latest 13F-HR holdings for an institutional manager (by CIK): issuer, value, shares, sorted by value. Credential-free public SEC data.",
+        "operationId": "sec-institutional-holdings",
+        "parameters": [
+          {
+            "description": "Institutional manager CIK",
+            "example": "1067983",
+            "in": "query",
+            "name": "cik",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Max holdings, default 50, max 1000",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sec.holdingsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Institutional holdings (13F-HR)",
+        "tags": [
+          "SEC EDGAR"
+        ]
+      }
+    },
     "/shop-app/analysis": {
       "get": {
         "consumes": [
@@ -76477,6 +82398,1000 @@
         "summary": "Get SimilarWeb Web Info",
         "tags": [
           "SimilarWeb"
+        ]
+      }
+    },
+    "/sofascore/event": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one match's detail (teams, score, status, venue, referee) from SofaScore's credential-free public JSON.",
+        "operationId": "sofascore-event",
+        "parameters": [
+          {
+            "description": "Numeric SofaScore event (match) id",
+            "example": "14025013",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sofascore.eventResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "SofaScore event detail",
+        "tags": [
+          "SofaScore"
+        ]
+      }
+    },
+    "/sofascore/event-h2h": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the historical head-to-head win/draw record between a match's two teams (and managers, when available) from SofaScore's credential-free public JSON.",
+        "operationId": "sofascore-event-h2h",
+        "parameters": [
+          {
+            "description": "Numeric SofaScore event (match) id",
+            "example": "14025013",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sofascore.eventH2HResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "SofaScore event head-to-head",
+        "tags": [
+          "SofaScore"
+        ]
+      }
+    },
+    "/sofascore/event-incidents": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one match's goal, card, substitution, and period timeline from SofaScore's credential-free public JSON. An empty `incidents` list is a valid response before kickoff.",
+        "operationId": "sofascore-event-incidents",
+        "parameters": [
+          {
+            "description": "Numeric SofaScore event (match) id",
+            "example": "14025013",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sofascore.eventIncidentsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "SofaScore event incidents",
+        "tags": [
+          "SofaScore"
+        ]
+      }
+    },
+    "/sofascore/event-lineups": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one match's starting XI and substitutes per side, with formation, from SofaScore's credential-free public JSON. Returns 404 when SofaScore has no lineups for the match.",
+        "operationId": "sofascore-event-lineups",
+        "parameters": [
+          {
+            "description": "Numeric SofaScore event (match) id",
+            "example": "14025013",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sofascore.eventLineupsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "SofaScore event lineups",
+        "tags": [
+          "SofaScore"
+        ]
+      }
+    },
+    "/sofascore/event-odds": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one match's betting markets and choices from SofaScore's credential-free public JSON. Returns 404 when SofaScore has no odds for the match.",
+        "operationId": "sofascore-event-odds",
+        "parameters": [
+          {
+            "description": "Numeric SofaScore event (match) id",
+            "example": "14025013",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sofascore.eventOddsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "SofaScore event odds",
+        "tags": [
+          "SofaScore"
+        ]
+      }
+    },
+    "/sofascore/event-statistics": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one match's statistics (possession, shots, passes, and more, grouped and split by period) from SofaScore's credential-free public JSON. Returns 404 when SofaScore has no tracked statistics for the match.",
+        "operationId": "sofascore-event-statistics",
+        "parameters": [
+          {
+            "description": "Numeric SofaScore event (match) id",
+            "example": "14025013",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sofascore.eventStatisticsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "SofaScore event statistics",
+        "tags": [
+          "SofaScore"
+        ]
+      }
+    },
+    "/sofascore/live-events": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns currently live events for a sport from SofaScore's credential-free public JSON. The `sport` enum accepts `football`, `basketball`, and `tennis`. An empty `events` list is a valid response when nothing is live right now.",
+        "operationId": "sofascore-live-events",
+        "parameters": [
+          {
+            "description": "Sport key",
+            "enum": [
+              "football",
+              "basketball",
+              "tennis"
+            ],
+            "example": "football",
+            "in": "query",
+            "name": "sport",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sofascore.liveEventsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "SofaScore live events",
+        "tags": [
+          "SofaScore"
+        ]
+      }
+    },
+    "/sofascore/player": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one player's bio (position, height, market value, current team) from SofaScore's credential-free public JSON.",
+        "operationId": "sofascore-player",
+        "parameters": [
+          {
+            "description": "Numeric SofaScore player id",
+            "example": "855833",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sofascore.playerResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "SofaScore player detail",
+        "tags": [
+          "SofaScore"
+        ]
+      }
+    },
+    "/sofascore/round-events": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns fixtures for one round of a competition season from SofaScore's credential-free public JSON. Get `id` from search and `season` from tournament-seasons.",
+        "operationId": "sofascore-round-events",
+        "parameters": [
+          {
+            "description": "Numeric SofaScore unique-tournament (competition) id",
+            "example": "17",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Numeric SofaScore season id",
+            "example": "76986",
+            "in": "query",
+            "name": "season",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Round number",
+            "example": 1,
+            "in": "query",
+            "name": "round",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sofascore.roundEventsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "SofaScore round fixtures",
+        "tags": [
+          "SofaScore"
+        ]
+      }
+    },
+    "/sofascore/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches SofaScore's credential-free public JSON for teams, players, and competitions matching a free-text query. An empty `results` list is a valid response when nothing matches.",
+        "operationId": "sofascore-search",
+        "parameters": [
+          {
+            "description": "Free-text search query",
+            "example": "barcelona",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sofascore.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "SofaScore universal search",
+        "tags": [
+          "SofaScore"
+        ]
+      }
+    },
+    "/sofascore/standings": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a league table for a competition season from SofaScore's credential-free public JSON. The `type` enum accepts `total`, `home`, and `away`. Get `id` from search and `season` from tournament-seasons.",
+        "operationId": "sofascore-standings",
+        "parameters": [
+          {
+            "description": "Numeric SofaScore unique-tournament (competition) id",
+            "example": "17",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Numeric SofaScore season id",
+            "example": "76986",
+            "in": "query",
+            "name": "season",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Standings variant",
+            "enum": [
+              "total",
+              "home",
+              "away"
+            ],
+            "example": "total",
+            "in": "query",
+            "name": "type",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sofascore.standingsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "SofaScore standings",
+        "tags": [
+          "SofaScore"
+        ]
+      }
+    },
+    "/sofascore/team": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one team's detail (identity, manager, venue, primary competition) from SofaScore's credential-free public JSON.",
+        "operationId": "sofascore-team",
+        "parameters": [
+          {
+            "description": "Numeric SofaScore team id",
+            "example": "2817",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sofascore.teamResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "SofaScore team detail",
+        "tags": [
+          "SofaScore"
+        ]
+      }
+    },
+    "/sofascore/team-events": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of a team's upcoming or recent fixtures from SofaScore's credential-free public JSON. The `direction` enum accepts `next` and `last`. An empty `events` list is a valid response when there is no fixture on that page.",
+        "operationId": "sofascore-team-events",
+        "parameters": [
+          {
+            "description": "Numeric SofaScore team id",
+            "example": "2817",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Fixture direction",
+            "enum": [
+              "next",
+              "last"
+            ],
+            "example": "next",
+            "in": "query",
+            "name": "direction",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Zero-based page number",
+            "example": 0,
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sofascore.teamEventsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "SofaScore team fixtures",
+        "tags": [
+          "SofaScore"
+        ]
+      }
+    },
+    "/sofascore/team-players": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a team's full squad from SofaScore's credential-free public JSON.",
+        "operationId": "sofascore-team-players",
+        "parameters": [
+          {
+            "description": "Numeric SofaScore team id",
+            "example": "2817",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sofascore.teamPlayersResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "SofaScore team players",
+        "tags": [
+          "SofaScore"
+        ]
+      }
+    },
+    "/sofascore/tournament-seasons": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the season list for a competition from SofaScore's credential-free public JSON. Use a returned season id with the standings and round-events endpoints.",
+        "operationId": "sofascore-tournament-seasons",
+        "parameters": [
+          {
+            "description": "Numeric SofaScore unique-tournament (competition) id",
+            "example": "17",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/sofascore.tournamentSeasonsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "SofaScore competition seasons",
+        "tags": [
+          "SofaScore"
         ]
       }
     },
@@ -81855,6 +88770,415 @@
         "summary": "Search TripAdvisor places",
         "tags": [
           "TripAdvisor"
+        ]
+      }
+    },
+    "/trustmrr/acquire": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the for-sale startups rendered on the public TrustMRR /acquire marketplace page, with deal metrics (asking price, revenue, multiple, growth). Verified revenue figures come from supported payment providers.",
+        "operationId": "trustmrr-acquire",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/trustmrr.acquireResponseDoc"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "TrustMRR upstream request failed",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get TrustMRR acquisition listings",
+        "tags": [
+          "TrustMRR"
+        ]
+      }
+    },
+    "/trustmrr/categories": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the TrustMRR startup category directory (slug, label, description, and keywords for each category).",
+        "operationId": "trustmrr-categories",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/trustmrr.categoriesResponseDoc"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "TrustMRR upstream request failed",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get TrustMRR categories",
+        "tags": [
+          "TrustMRR"
+        ]
+      }
+    },
+    "/trustmrr/category/{slug}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a single TrustMRR category page and the startups listed under it, with verified revenue and MRR figures.",
+        "operationId": "trustmrr-category",
+        "parameters": [
+          {
+            "description": "TrustMRR category slug",
+            "example": "saas",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/trustmrr.categoryResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid path parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Category not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "TrustMRR upstream request failed",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get TrustMRR category detail",
+        "tags": [
+          "TrustMRR"
+        ]
+      }
+    },
+    "/trustmrr/leaderboard": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the top 100 startups ranked by the selected metric from the public TrustMRR leaderboard. Revenue and MRR figures are verified through supported payment providers.",
+        "operationId": "trustmrr-leaderboard",
+        "parameters": [
+          {
+            "description": "Leaderboard metric to rank by (default mrr)",
+            "enum": [
+              "mrr",
+              "last_30_days_revenue",
+              "all_time_revenue",
+              "growth",
+              "traffic",
+              "revenue_per_visitor"
+            ],
+            "in": "query",
+            "name": "metric",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/trustmrr.leaderboardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Invalid metric parameter",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "TrustMRR upstream request failed",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get TrustMRR revenue leaderboard",
+        "tags": [
+          "TrustMRR"
+        ]
+      }
+    },
+    "/trustmrr/marketplace": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the public TrustMRR marketplace snapshot: the 25 most recently listed startups for sale and the current 25 best deals ranked by TrustMRR's recency-aware deal score. Revenue figures are verified through supported payment providers.",
+        "operationId": "trustmrr-marketplace",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/trustmrr.marketplaceResponseDoc"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "TrustMRR upstream request failed",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get TrustMRR marketplace snapshot",
+        "tags": [
+          "TrustMRR"
+        ]
+      }
+    },
+    "/trustmrr/startup/{slug}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the full verified profile for a single TrustMRR startup by slug: revenue and MRR, growth, asking price and marketplace status, tech stack, marketing channels, and TrustMRR's AI-generated business summary.",
+        "operationId": "trustmrr-startup",
+        "parameters": [
+          {
+            "description": "TrustMRR startup slug",
+            "example": "trackai",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/trustmrr.startupResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid path parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Startup not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "TrustMRR upstream request failed",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get TrustMRR startup detail",
+        "tags": [
+          "TrustMRR"
+        ]
+      }
+    },
+    "/trustmrr/startups": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a paginated list of every startup in the TrustMRR directory, discovered from the site's public sitemap. Each entry is a slug you can pass to /trustmrr/startup/{slug} for the full verified profile — together these two endpoints let you enumerate and scrape the entire directory without the authenticated marketplace API.",
+        "operationId": "trustmrr-startups",
+        "parameters": [
+          {
+            "description": "1-based page number (default 1)",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Items per page (default 100, max 1000)",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/trustmrr.startupsResponseDoc"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "TrustMRR upstream request failed",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List all TrustMRR startups",
+        "tags": [
+          "TrustMRR"
         ]
       }
     },

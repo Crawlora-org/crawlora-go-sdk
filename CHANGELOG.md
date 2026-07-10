@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.14.0-sdk.1
+
+- Regenerated from the public API contract (559 to 603 operations). Adds the
+  **SEC EDGAR platform** (10 endpoints): company search, filings list, single
+  filing, 10-K/10-Q/8-K section extraction, full-text search, XBRL frames,
+  normalized financial statements (income/balance/cash-flow with computed
+  margins and ratios), insider transactions (Forms 3/4/5), 13F institutional
+  holdings, and a company-intelligence overview -- all over credential-free
+  official SEC data. Also catches up accumulated public-contract coverage that
+  had drifted since the last regeneration.
+
+
 ## v1.13.0-sdk.1
 
 - Regenerated from the public API contract (555 to 559 operations). Adds the
