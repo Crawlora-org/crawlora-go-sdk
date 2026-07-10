@@ -1977,6 +1977,21 @@ type ModelChromewebstoreCategoryGroup struct {
 	Subcategories []string `json:"subcategories,omitempty"`
 }
 
+type ModelChromewebstoreDeveloper struct {
+	Address string `json:"address,omitempty"`
+	Count int `json:"count,omitempty"`
+	Duns string `json:"duns,omitempty"`
+	Email string `json:"email,omitempty"`
+	Id string `json:"id,omitempty"`
+	IsTrader bool `json:"is_trader,omitempty"`
+	Items []ModelChromewebstoreCard `json:"items,omitempty"`
+	LegalName string `json:"legal_name,omitempty"`
+	Name string `json:"name,omitempty"`
+	Phone string `json:"phone,omitempty"`
+	Url string `json:"url,omitempty"`
+	Website string `json:"website,omitempty"`
+}
+
 type ModelChromewebstoreItem struct {
 	Category string `json:"category,omitempty"`
 	CategoryId int `json:"category_id,omitempty"`
@@ -2012,10 +2027,34 @@ type ModelChromewebstoreListResult struct {
 	Value string `json:"value,omitempty"`
 }
 
+type ModelChromewebstorePermissions struct {
+	HostPermissions []string `json:"host_permissions,omitempty"`
+	Id string `json:"id,omitempty"`
+	ManifestVersion int `json:"manifest_version,omitempty"`
+	MinBrowserVersion string `json:"min_browser_version,omitempty"`
+	Name string `json:"name,omitempty"`
+	OptionalHostPermissions []string `json:"optional_host_permissions,omitempty"`
+	OptionalPermissions []string `json:"optional_permissions,omitempty"`
+	Permissions []string `json:"permissions,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
+type ModelChromewebstorePrivacy struct {
+	CollectsData bool `json:"collects_data,omitempty"`
+	DataCollected []string `json:"data_collected,omitempty"`
+	Declarations []string `json:"declarations,omitempty"`
+	Disclosure string `json:"disclosure,omitempty"`
+	Id string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	PrivacyPolicy string `json:"privacy_policy,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
 type ModelChromewebstoreReview struct {
 	Author string `json:"author,omitempty"`
 	Avatar string `json:"avatar,omitempty"`
 	Edited string `json:"edited,omitempty"`
+	Helpful int `json:"helpful,omitempty"`
 	Id string `json:"id,omitempty"`
 	Language string `json:"language,omitempty"`
 	Posted string `json:"posted,omitempty"`
@@ -2029,6 +2068,7 @@ type ModelChromewebstoreReviewsResult struct {
 	Count int `json:"count,omitempty"`
 	Id string `json:"id,omitempty"`
 	Reviews []ModelChromewebstoreReview `json:"reviews,omitempty"`
+	Total int `json:"total,omitempty"`
 }
 
 type ModelChromewebstoreSearchResult struct {
@@ -2053,6 +2093,12 @@ type ModelChromewebstoreCategoriesResponseDoc struct {
 	Msg string `json:"msg,omitempty"`
 }
 
+type ModelChromewebstoreDeveloperResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelChromewebstoreDeveloper `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
 type ModelChromewebstoreItemResponseDoc struct {
 	Code int `json:"code,omitempty"`
 	Data ModelChromewebstoreItem `json:"data,omitempty"`
@@ -2062,6 +2108,18 @@ type ModelChromewebstoreItemResponseDoc struct {
 type ModelChromewebstoreListResponseDoc struct {
 	Code int `json:"code,omitempty"`
 	Data ModelChromewebstoreListResult `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelChromewebstorePermissionsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelChromewebstorePermissions `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelChromewebstorePrivacyResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelChromewebstorePrivacy `json:"data,omitempty"`
 	Msg string `json:"msg,omitempty"`
 }
 
@@ -2944,6 +3002,36 @@ type ModelDatasetsReviewsSearchResponse struct {
 	Total int `json:"total,omitempty"`
 }
 
+type ModelDatasetsTechstackFacetResponse struct {
+	Dataset string `json:"dataset,omitempty"`
+	Facet string `json:"facet,omitempty"`
+	Items []ModelEsTechstackDatasetFacetItem `json:"items,omitempty"`
+}
+
+type ModelDatasetsTechstackSearchResponse struct {
+	Dataset string `json:"dataset,omitempty"`
+	Items []ModelEsTechstackRecord `json:"items,omitempty"`
+	Page int `json:"page,omitempty"`
+	PageSize int `json:"page_size,omitempty"`
+	Sort string `json:"sort,omitempty"`
+	Total int `json:"total,omitempty"`
+}
+
+type ModelDatasetsTrustmrrFacetResponse struct {
+	Dataset string `json:"dataset,omitempty"`
+	Facet string `json:"facet,omitempty"`
+	Items []ModelEsTrustmrrDatasetFacetItem `json:"items,omitempty"`
+}
+
+type ModelDatasetsTrustmrrSearchResponse struct {
+	Dataset string `json:"dataset,omitempty"`
+	Items []ModelEsTrustmrrStartupRecord `json:"items,omitempty"`
+	Page int `json:"page,omitempty"`
+	PageSize int `json:"page_size,omitempty"`
+	Sort string `json:"sort,omitempty"`
+	Total int `json:"total,omitempty"`
+}
+
 type ModelDatasetsAirbnbMarketResponseDoc struct {
 	Code int `json:"code,omitempty"`
 	Data ModelEsAirbnbMarketDetail `json:"data,omitempty"`
@@ -3079,6 +3167,42 @@ type ModelDatasetsProducthuntTrendsSearchResponseDoc struct {
 type ModelDatasetsReviewsSearchResponseDoc struct {
 	Code int `json:"code,omitempty"`
 	Data ModelDatasetsReviewsSearchResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelDatasetsTechstackFacetResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelDatasetsTechstackFacetResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelDatasetsTechstackItemResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelEsTechstackRecord `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelDatasetsTechstackSearchResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelDatasetsTechstackSearchResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelDatasetsTrustmrrFacetResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelDatasetsTrustmrrFacetResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelDatasetsTrustmrrItemResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelEsTrustmrrStartupRecord `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelDatasetsTrustmrrSearchResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelDatasetsTrustmrrSearchResponse `json:"data,omitempty"`
 	Msg string `json:"msg,omitempty"`
 }
 
@@ -3767,6 +3891,126 @@ type ModelEsProductHuntTrendTopProduct struct {
 type ModelEsProductHuntTrendsFacetItem struct {
 	Count int `json:"count,omitempty"`
 	Value string `json:"value,omitempty"`
+}
+
+type ModelEsTechstackDatasetFacetItem struct {
+	Count int `json:"count,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelEsTechstackRecord struct {
+	Analytics []string `json:"analytics,omitempty"`
+	Categories []string `json:"categories,omitempty"`
+	Category string `json:"category,omitempty"`
+	Cdn string `json:"cdn,omitempty"`
+	Cms string `json:"cms,omitempty"`
+	DetectorVersion string `json:"detector_version,omitempty"`
+	Domain string `json:"domain,omitempty"`
+	Ecommerce string `json:"ecommerce,omitempty"`
+	FinalUrl string `json:"final_url,omitempty"`
+	HasCaptcha bool `json:"has_captcha,omitempty"`
+	MethodVersion string `json:"method_version,omitempty"`
+	ProbedAt string `json:"probed_at,omitempty"`
+	Rank int `json:"rank,omitempty"`
+	Reachable bool `json:"reachable,omitempty"`
+	RenderTier string `json:"render_tier,omitempty"`
+	RunDate string `json:"run_date,omitempty"`
+	RunId string `json:"run_id,omitempty"`
+	ScanMethod string `json:"scan_method,omitempty"`
+	SchemaVersion int `json:"schema_version,omitempty"`
+	Scheme string `json:"scheme,omitempty"`
+	SeedSource string `json:"seed_source,omitempty"`
+	ServerLanguage string `json:"server_language,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Status int `json:"status,omitempty"`
+	TechCount int `json:"tech_count,omitempty"`
+	Technologies []ModelEsTechstackTechnology `json:"technologies,omitempty"`
+	TechnologyNames []string `json:"technology_names,omitempty"`
+	Tld string `json:"tld,omitempty"`
+	WebServer string `json:"web_server,omitempty"`
+}
+
+type ModelEsTechstackTechnology struct {
+	Categories []string `json:"categories,omitempty"`
+	Confidence string `json:"confidence,omitempty"`
+	Evidence string `json:"evidence,omitempty"`
+	Name string `json:"name,omitempty"`
+	Version string `json:"version,omitempty"`
+}
+
+type ModelEsTrustmrrDatasetFacetItem struct {
+	Count int `json:"count,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelEsTrustmrrStartupRecord struct {
+	ActiveSubscriptions int `json:"active_subscriptions,omitempty"`
+	AhrefsDomainRating int `json:"ahrefs_domain_rating,omitempty"`
+	AskingPrice float64 `json:"asking_price,omitempty"`
+	BusinessType string `json:"business_type,omitempty"`
+	Category string `json:"category,omitempty"`
+	CategorySlug string `json:"category_slug,omitempty"`
+	Channels []string `json:"channels,omitempty"`
+	Country string `json:"country,omitempty"`
+	Customers int `json:"customers,omitempty"`
+	DealScore float64 `json:"deal_score,omitempty"`
+	Description string `json:"description,omitempty"`
+	EstimatedUserCount int `json:"estimated_user_count,omitempty"`
+	FirstListedForSaleAt string `json:"first_listed_for_sale_at,omitempty"`
+	FirstSeen string `json:"first_seen,omitempty"`
+	FoundedDate string `json:"founded_date,omitempty"`
+	FundingStatus string `json:"funding_status,omitempty"`
+	Growth30d float64 `json:"growth_30d,omitempty"`
+	GrowthMrr30d float64 `json:"growth_mrr_30d,omitempty"`
+	HasDofollowBacklink bool `json:"has_dofollow_backlink,omitempty"`
+	HasGoogleAnalytics bool `json:"has_google_analytics,omitempty"`
+	HasInsightOverrides bool `json:"has_insight_overrides,omitempty"`
+	HasSearchConsole bool `json:"has_search_console,omitempty"`
+	Icon string `json:"icon,omitempty"`
+	IsMerchantOfRecord bool `json:"is_merchant_of_record,omitempty"`
+	IsSponsored bool `json:"is_sponsored,omitempty"`
+	LastCrawledAt string `json:"last_crawled_at,omitempty"`
+	LastSeen string `json:"last_seen,omitempty"`
+	ListingTier string `json:"listing_tier,omitempty"`
+	LookingForCofounder bool `json:"looking_for_cofounder,omitempty"`
+	MerchantCategoryCode string `json:"merchant_category_code,omitempty"`
+	Mrr float64 `json:"mrr,omitempty"`
+	MrrLastSyncedAt string `json:"mrr_last_synced_at,omitempty"`
+	Multiple float64 `json:"multiple,omitempty"`
+	Name string `json:"name,omitempty"`
+	OfferCount int `json:"offer_count,omitempty"`
+	OnSale bool `json:"on_sale,omitempty"`
+	PaymentProvider string `json:"payment_provider,omitempty"`
+	PricingModel string `json:"pricing_model,omitempty"`
+	ProblemSolved string `json:"problem_solved,omitempty"`
+	ProfitMargin30d float64 `json:"profit_margin_30d,omitempty"`
+	Revenue30d float64 `json:"revenue_30d,omitempty"`
+	RevenueLastSyncedAt string `json:"revenue_last_synced_at,omitempty"`
+	RevenuePerVisitor30d float64 `json:"revenue_per_visitor_30d,omitempty"`
+	SchemaVersion int `json:"schema_version,omitempty"`
+	SecondaryPaymentProvider string `json:"secondary_payment_provider,omitempty"`
+	SellerMessage string `json:"seller_message,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	Status string `json:"status,omitempty"`
+	StealthMode bool `json:"stealth_mode,omitempty"`
+	Tags []string `json:"tags,omitempty"`
+	TargetAudience string `json:"target_audience,omitempty"`
+	TargetPersona string `json:"target_persona,omitempty"`
+	Tech []string `json:"tech,omitempty"`
+	TotalRevenue float64 `json:"total_revenue,omitempty"`
+	Traffic12mo float64 `json:"traffic_12mo,omitempty"`
+	Traffic24h float64 `json:"traffic_24h,omitempty"`
+	Traffic30d float64 `json:"traffic_30d,omitempty"`
+	Traffic7d float64 `json:"traffic_7d,omitempty"`
+	Url string `json:"url,omitempty"`
+	UserCategory string `json:"user_category,omitempty"`
+	UserCategorySlug string `json:"user_category_slug,omitempty"`
+	ValueProposition string `json:"value_proposition,omitempty"`
+	Website string `json:"website,omitempty"`
+	XFollowerCount int `json:"x_follower_count,omitempty"`
+	XFounderName string `json:"x_founder_name,omitempty"`
+	XHandle string `json:"x_handle,omitempty"`
+	XProfilePicture string `json:"x_profile_picture,omitempty"`
 }
 
 type ModelEsWebsiteStatus struct {
@@ -6578,6 +6822,49 @@ type ModelMetaculusQuestionsResponseDoc struct {
 	Msg string `json:"msg,omitempty"`
 }
 
+type ModelPitchbookDataTable struct {
+	Columns []string `json:"columns,omitempty"`
+	Name string `json:"name,omitempty"`
+	Rows [][]string `json:"rows,omitempty"`
+	Total int `json:"total,omitempty"`
+}
+
+type ModelPitchbookFaq struct {
+	Answer string `json:"answer,omitempty"`
+	Question string `json:"question,omitempty"`
+}
+
+type ModelPitchbookProfileResponse struct {
+	Contact map[string]string `json:"contact,omitempty"`
+	Description string `json:"description,omitempty"`
+	Faqs []ModelPitchbookFaq `json:"faqs,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	Id string `json:"id,omitempty"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	Overview map[string]string `json:"overview,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Tables []ModelPitchbookDataTable `json:"tables,omitempty"`
+}
+
+type ModelPitchbookCompanyResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelPitchbookProfileResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelPitchbookFundResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelPitchbookProfileResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelPitchbookInvestorResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelPitchbookProfileResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
 type ModelPolymarketActivityTradesResponse struct {
 	EventId string `json:"event_id,omitempty"`
 	FetchedAt string `json:"fetched_at,omitempty"`
@@ -9236,6 +9523,288 @@ type ModelRottentomatoesSeriesResponseDoc struct {
 	Msg string `json:"msg,omitempty"`
 }
 
+type ModelSecCompanyIntelligenceResponse struct {
+	FinancialSnapshot map[string]float64 `json:"financial_snapshot,omitempty"`
+	Latest8k ModelSecFiling `json:"latest_8k,omitempty"`
+	LatestAnnual10k ModelSecFiling `json:"latest_annual_10k,omitempty"`
+	LatestQuarterly10q ModelSecFiling `json:"latest_quarterly_10q,omitempty"`
+	Profile ModelSecCompanyProfile `json:"profile,omitempty"`
+	RecentEvents []ModelSecEventFiling `json:"recent_events,omitempty"`
+	SnapshotFiscalYear int `json:"snapshot_fiscal_year,omitempty"`
+	SnapshotPeriodEnd string `json:"snapshot_period_end,omitempty"`
+	SourceUrls []string `json:"source_urls,omitempty"`
+}
+
+type ModelSecCompanyMatch struct {
+	Cik int `json:"cik,omitempty"`
+	CikPadded string `json:"cik_padded,omitempty"`
+	Name string `json:"name,omitempty"`
+	Ticker string `json:"ticker,omitempty"`
+}
+
+type ModelSecCompanyProfile struct {
+	Cik int `json:"cik,omitempty"`
+	Name string `json:"name,omitempty"`
+	Sic string `json:"sic,omitempty"`
+	SicDescription string `json:"sic_description,omitempty"`
+	Ticker string `json:"ticker,omitempty"`
+	Tickers []string `json:"tickers,omitempty"`
+}
+
+type ModelSecCompanySearchResponse struct {
+	Count int `json:"count,omitempty"`
+	Matches []ModelSecCompanyMatch `json:"matches,omitempty"`
+	Query string `json:"query,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+}
+
+type ModelSecEventFiling struct {
+	AccessionNumber string `json:"accession_number,omitempty"`
+	FilingDate string `json:"filing_date,omitempty"`
+	Items string `json:"items,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
+type ModelSecFiling struct {
+	AccessionNumber string `json:"accession_number,omitempty"`
+	Description string `json:"description,omitempty"`
+	FilingDate string `json:"filing_date,omitempty"`
+	FilingIndexUrl string `json:"filing_index_url,omitempty"`
+	Form string `json:"form,omitempty"`
+	IsXbrl bool `json:"is_xbrl,omitempty"`
+	Items string `json:"items,omitempty"`
+	PrimaryDocUrl string `json:"primary_doc_url,omitempty"`
+	PrimaryDocument string `json:"primary_document,omitempty"`
+	ReportDate string `json:"report_date,omitempty"`
+	Size int `json:"size,omitempty"`
+}
+
+type ModelSecFilingDocument struct {
+	Name string `json:"name,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
+type ModelSecFilingResponse struct {
+	AccessionNumber string `json:"accession_number,omitempty"`
+	Cik int `json:"cik,omitempty"`
+	CikPadded string `json:"cik_padded,omitempty"`
+	Description string `json:"description,omitempty"`
+	Documents []ModelSecFilingDocument `json:"documents,omitempty"`
+	FilingDate string `json:"filing_date,omitempty"`
+	FilingIndexUrl string `json:"filing_index_url,omitempty"`
+	Form string `json:"form,omitempty"`
+	IsXbrl bool `json:"is_xbrl,omitempty"`
+	Items string `json:"items,omitempty"`
+	Name string `json:"name,omitempty"`
+	PrimaryDocUrl string `json:"primary_doc_url,omitempty"`
+	PrimaryDocument string `json:"primary_document,omitempty"`
+	ReportDate string `json:"report_date,omitempty"`
+	Size int `json:"size,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+}
+
+type ModelSecFilingSection struct {
+	CharCount int `json:"char_count,omitempty"`
+	Item string `json:"item,omitempty"`
+	Text string `json:"text,omitempty"`
+	Title string `json:"title,omitempty"`
+	Truncated bool `json:"truncated,omitempty"`
+}
+
+type ModelSecFilingSectionsResponse struct {
+	AccessionNumber string `json:"accession_number,omitempty"`
+	Cik int `json:"cik,omitempty"`
+	Count int `json:"count,omitempty"`
+	DocumentUrl string `json:"document_url,omitempty"`
+	Form string `json:"form,omitempty"`
+	Sections []ModelSecFilingSection `json:"sections,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+}
+
+type ModelSecFinancialPeriod struct {
+	Currency string `json:"currency,omitempty"`
+	EndDate string `json:"end_date,omitempty"`
+	FiscalPeriod string `json:"fiscal_period,omitempty"`
+	FiscalYear int `json:"fiscal_year,omitempty"`
+	Form string `json:"form,omitempty"`
+	Lines map[string]float64 `json:"lines,omitempty"`
+	Ratios map[string]float64 `json:"ratios,omitempty"`
+}
+
+type ModelSecFinancialsResponse struct {
+	Cik int `json:"cik,omitempty"`
+	LineOrder []string `json:"line_order,omitempty"`
+	Name string `json:"name,omitempty"`
+	Period string `json:"period,omitempty"`
+	Periods []ModelSecFinancialPeriod `json:"periods,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Statement string `json:"statement,omitempty"`
+	Ticker string `json:"ticker,omitempty"`
+}
+
+type ModelSecFrameFact struct {
+	AccessionNumber string `json:"accession_number,omitempty"`
+	Cik int `json:"cik,omitempty"`
+	End string `json:"end,omitempty"`
+	EntityName string `json:"entity_name,omitempty"`
+	Form string `json:"form,omitempty"`
+	Start string `json:"start,omitempty"`
+	Value float64 `json:"value,omitempty"`
+}
+
+type ModelSecFramesResponse struct {
+	Concept string `json:"concept,omitempty"`
+	Count int `json:"count,omitempty"`
+	Facts []ModelSecFrameFact `json:"facts,omitempty"`
+	Period string `json:"period,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Taxonomy string `json:"taxonomy,omitempty"`
+	Total int `json:"total,omitempty"`
+	Unit string `json:"unit,omitempty"`
+}
+
+type ModelSecFullTextHit struct {
+	AccessionNumber string `json:"accession_number,omitempty"`
+	Cik int `json:"cik,omitempty"`
+	CompanyNames []string `json:"company_names,omitempty"`
+	DocumentUrl string `json:"document_url,omitempty"`
+	FiledAt string `json:"filed_at,omitempty"`
+	Form string `json:"form,omitempty"`
+}
+
+type ModelSecFullTextSearchResponse struct {
+	Count int `json:"count,omitempty"`
+	Hits []ModelSecFullTextHit `json:"hits,omitempty"`
+	Page int `json:"page,omitempty"`
+	Query string `json:"query,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Total int `json:"total,omitempty"`
+}
+
+type ModelSecHolding struct {
+	Cusip string `json:"cusip,omitempty"`
+	InvestmentDiscretion string `json:"investment_discretion,omitempty"`
+	Issuer string `json:"issuer,omitempty"`
+	PutCall string `json:"put_call,omitempty"`
+	ShareType string `json:"share_type,omitempty"`
+	Shares float64 `json:"shares,omitempty"`
+	TitleOfClass string `json:"title_of_class,omitempty"`
+	Value float64 `json:"value,omitempty"`
+}
+
+type ModelSecHoldingsResponse struct {
+	AccessionNumber string `json:"accession_number,omitempty"`
+	Cik int `json:"cik,omitempty"`
+	Count int `json:"count,omitempty"`
+	FilingDate string `json:"filing_date,omitempty"`
+	Holdings []ModelSecHolding `json:"holdings,omitempty"`
+	ManagerName string `json:"manager_name,omitempty"`
+	ReportDate string `json:"report_date,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	TotalHoldings int `json:"total_holdings,omitempty"`
+	TotalValue float64 `json:"total_value,omitempty"`
+}
+
+type ModelSecInsiderResponse struct {
+	Cik int `json:"cik,omitempty"`
+	Count int `json:"count,omitempty"`
+	Name string `json:"name,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Ticker string `json:"ticker,omitempty"`
+	Transactions []ModelSecInsiderTransaction `json:"transactions,omitempty"`
+}
+
+type ModelSecInsiderTransaction struct {
+	AccessionNumber string `json:"accession_number,omitempty"`
+	AcquiredOrDisposed string `json:"acquired_or_disposed,omitempty"`
+	Code string `json:"code,omitempty"`
+	FilingDate string `json:"filing_date,omitempty"`
+	FilingUrl string `json:"filing_url,omitempty"`
+	Form string `json:"form,omitempty"`
+	IsDirector bool `json:"is_director,omitempty"`
+	IsOfficer bool `json:"is_officer,omitempty"`
+	IsTenPercentOwner bool `json:"is_ten_percent_owner,omitempty"`
+	OwnerName string `json:"owner_name,omitempty"`
+	OwnerTitle string `json:"owner_title,omitempty"`
+	PricePerShare float64 `json:"price_per_share,omitempty"`
+	SecurityTitle string `json:"security_title,omitempty"`
+	Shares float64 `json:"shares,omitempty"`
+	SharesOwnedAfter float64 `json:"shares_owned_after,omitempty"`
+	TransactionDate string `json:"transaction_date,omitempty"`
+}
+
+type ModelSecSubmissionsResponse struct {
+	Cik int `json:"cik,omitempty"`
+	CikPadded string `json:"cik_padded,omitempty"`
+	Count int `json:"count,omitempty"`
+	Filings []ModelSecFiling `json:"filings,omitempty"`
+	Name string `json:"name,omitempty"`
+	Sic string `json:"sic,omitempty"`
+	SicDescription string `json:"sic_description,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Tickers []string `json:"tickers,omitempty"`
+}
+
+type ModelSecCompanySearchResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSecCompanySearchResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSecFilingResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSecFilingResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSecFilingSectionsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSecFilingSectionsResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSecFinancialsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSecFinancialsResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSecFramesResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSecFramesResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSecFullTextResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSecFullTextSearchResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSecHoldingsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSecHoldingsResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSecInsiderResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSecInsiderResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSecIntelligenceResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSecCompanyIntelligenceResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSecSubmissionsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSecSubmissionsResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
 type ModelShopappAnalysisResponse struct {
 	Currencies []string `json:"currencies,omitempty"`
 	Discounts ModelShopappDiscountSummary `json:"discounts,omitempty"`
@@ -9929,6 +10498,448 @@ type ModelSimilarwebSearchResponseDoc struct {
 type ModelSimilarwebWebResponseDoc struct {
 	Code int `json:"code,omitempty"`
 	Data ModelSimilarwebSimilarWebResp `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventDetail struct {
+	Attendance int `json:"attendance,omitempty"`
+	AwayScore ModelSofascoreScoreLine `json:"away_score,omitempty"`
+	AwayTeam ModelSofascoreTeamRef `json:"away_team,omitempty"`
+	HomeScore ModelSofascoreScoreLine `json:"home_score,omitempty"`
+	HomeTeam ModelSofascoreTeamRef `json:"home_team,omitempty"`
+	Id int `json:"id,omitempty"`
+	Referee ModelSofascoreReferee `json:"referee,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	StartTime string `json:"start_time,omitempty"`
+	StartTimestamp int `json:"start_timestamp,omitempty"`
+	Status ModelSofascoreEventStatus `json:"status,omitempty"`
+	Tournament ModelSofascoreTournamentRef `json:"tournament,omitempty"`
+	Venue ModelSofascoreVenue `json:"venue,omitempty"`
+	WinnerCode int `json:"winner_code,omitempty"`
+}
+
+type ModelSofascoreEventH2Hresponse struct {
+	EventId int `json:"event_id,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	ManagerDuel ModelSofascoreTeamDuel `json:"manager_duel,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	TeamDuel ModelSofascoreTeamDuel `json:"team_duel,omitempty"`
+}
+
+type ModelSofascoreEventIncidentsResponse struct {
+	Count int `json:"count,omitempty"`
+	EventId int `json:"event_id,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	Incidents []ModelSofascoreIncident `json:"incidents,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreEventLineupsResponse struct {
+	Away ModelSofascoreTeamLineup `json:"away,omitempty"`
+	Confirmed bool `json:"confirmed,omitempty"`
+	EventId int `json:"event_id,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	Home ModelSofascoreTeamLineup `json:"home,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreEventOddsResponse struct {
+	Count int `json:"count,omitempty"`
+	EventId int `json:"event_id,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	Markets []ModelSofascoreOddsMarket `json:"markets,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreEventResponse struct {
+	Event ModelSofascoreEventDetail `json:"event,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreEventStatisticsResponse struct {
+	EventId int `json:"event_id,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	Periods []ModelSofascoreStatPeriod `json:"periods,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreEventStatus struct {
+	Code int `json:"code,omitempty"`
+	Description string `json:"description,omitempty"`
+	Type string `json:"type,omitempty"`
+}
+
+type ModelSofascoreEventSummary struct {
+	AwayScore ModelSofascoreScoreLine `json:"away_score,omitempty"`
+	AwayTeam ModelSofascoreTeamRef `json:"away_team,omitempty"`
+	HomeScore ModelSofascoreScoreLine `json:"home_score,omitempty"`
+	HomeTeam ModelSofascoreTeamRef `json:"home_team,omitempty"`
+	Id int `json:"id,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	StartTime string `json:"start_time,omitempty"`
+	StartTimestamp int `json:"start_timestamp,omitempty"`
+	Status ModelSofascoreEventStatus `json:"status,omitempty"`
+	Tournament ModelSofascoreTournamentRef `json:"tournament,omitempty"`
+	WinnerCode int `json:"winner_code,omitempty"`
+}
+
+type ModelSofascoreIncident struct {
+	AddedTime int `json:"added_time,omitempty"`
+	AwayScore int `json:"away_score,omitempty"`
+	CardColor string `json:"card_color,omitempty"`
+	HomeScore int `json:"home_score,omitempty"`
+	IsHome bool `json:"is_home,omitempty"`
+	Player string `json:"player,omitempty"`
+	PlayerIn string `json:"player_in,omitempty"`
+	PlayerOut string `json:"player_out,omitempty"`
+	Reason string `json:"reason,omitempty"`
+	Text string `json:"text,omitempty"`
+	Time int `json:"time,omitempty"`
+	Type string `json:"type,omitempty"`
+}
+
+type ModelSofascoreLineupPlayer struct {
+	JerseyNumber string `json:"jersey_number,omitempty"`
+	Player ModelSofascorePlayerRef `json:"player,omitempty"`
+	Position string `json:"position,omitempty"`
+	Substitute bool `json:"substitute,omitempty"`
+}
+
+type ModelSofascoreLiveEventsResponse struct {
+	Count int `json:"count,omitempty"`
+	Events []ModelSofascoreEventSummary `json:"events,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Sport string `json:"sport,omitempty"`
+}
+
+type ModelSofascoreOddsChoice struct {
+	Name string `json:"name,omitempty"`
+	Value string `json:"value,omitempty"`
+	Winning bool `json:"winning,omitempty"`
+}
+
+type ModelSofascoreOddsMarket struct {
+	Choices []ModelSofascoreOddsChoice `json:"choices,omitempty"`
+	Group string `json:"group,omitempty"`
+	Name string `json:"name,omitempty"`
+	Period string `json:"period,omitempty"`
+	Suspended bool `json:"suspended,omitempty"`
+}
+
+type ModelSofascorePlayerDetail struct {
+	Country string `json:"country,omitempty"`
+	DateOfBirth string `json:"date_of_birth,omitempty"`
+	Deceased bool `json:"deceased,omitempty"`
+	Height int `json:"height,omitempty"`
+	Id int `json:"id,omitempty"`
+	JerseyNumber string `json:"jersey_number,omitempty"`
+	MarketValue int `json:"market_value,omitempty"`
+	MarketValueCurrency string `json:"market_value_currency,omitempty"`
+	Name string `json:"name,omitempty"`
+	Position string `json:"position,omitempty"`
+	PreferredFoot string `json:"preferred_foot,omitempty"`
+	ShortName string `json:"short_name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	Team ModelSofascoreTeamRef `json:"team,omitempty"`
+}
+
+type ModelSofascorePlayerRef struct {
+	Country string `json:"country,omitempty"`
+	Id int `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Position string `json:"position,omitempty"`
+	ShortName string `json:"short_name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelSofascorePlayerResponse struct {
+	FetchedAt string `json:"fetched_at,omitempty"`
+	Player ModelSofascorePlayerDetail `json:"player,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreReferee struct {
+	Country string `json:"country,omitempty"`
+	Id int `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelSofascoreRoundEventsResponse struct {
+	Count int `json:"count,omitempty"`
+	Events []ModelSofascoreEventSummary `json:"events,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	HasNextPage bool `json:"has_next_page,omitempty"`
+	Round int `json:"round,omitempty"`
+	SeasonId int `json:"season_id,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	TournamentId int `json:"tournament_id,omitempty"`
+}
+
+type ModelSofascoreScoreLine struct {
+	Current int `json:"current,omitempty"`
+	Period1 int `json:"period1,omitempty"`
+	Period2 int `json:"period2,omitempty"`
+}
+
+type ModelSofascoreSearchResponse struct {
+	Count int `json:"count,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	Query string `json:"query,omitempty"`
+	Results []ModelSofascoreSearchResult `json:"results,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreSearchResult struct {
+	Country string `json:"country,omitempty"`
+	Id int `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	Sport string `json:"sport,omitempty"`
+	TeamId int `json:"team_id,omitempty"`
+	TeamName string `json:"team_name,omitempty"`
+	Type string `json:"type,omitempty"`
+}
+
+type ModelSofascoreSeason struct {
+	Id int `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Year string `json:"year,omitempty"`
+}
+
+type ModelSofascoreSquadPlayer struct {
+	Country string `json:"country,omitempty"`
+	DateOfBirth string `json:"date_of_birth,omitempty"`
+	Height int `json:"height,omitempty"`
+	Id int `json:"id,omitempty"`
+	JerseyNumber string `json:"jersey_number,omitempty"`
+	MarketValue int `json:"market_value,omitempty"`
+	MarketValueCurrency string `json:"market_value_currency,omitempty"`
+	Name string `json:"name,omitempty"`
+	Position string `json:"position,omitempty"`
+	PreferredFoot string `json:"preferred_foot,omitempty"`
+	ShortName string `json:"short_name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelSofascoreStandingsGroup struct {
+	Name string `json:"name,omitempty"`
+	Rows []ModelSofascoreStandingsRow `json:"rows,omitempty"`
+}
+
+type ModelSofascoreStandingsResponse struct {
+	FetchedAt string `json:"fetched_at,omitempty"`
+	Groups []ModelSofascoreStandingsGroup `json:"groups,omitempty"`
+	SeasonId int `json:"season_id,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	TournamentId int `json:"tournament_id,omitempty"`
+	Type string `json:"type,omitempty"`
+}
+
+type ModelSofascoreStandingsRow struct {
+	Draws int `json:"draws,omitempty"`
+	Losses int `json:"losses,omitempty"`
+	Matches int `json:"matches,omitempty"`
+	Points int `json:"points,omitempty"`
+	Position int `json:"position,omitempty"`
+	Promotion string `json:"promotion,omitempty"`
+	ScoresAgainst int `json:"scores_against,omitempty"`
+	ScoresFor int `json:"scores_for,omitempty"`
+	Team ModelSofascoreTeamRef `json:"team,omitempty"`
+	Wins int `json:"wins,omitempty"`
+}
+
+type ModelSofascoreStatGroup struct {
+	Items []ModelSofascoreStatItem `json:"items,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelSofascoreStatItem struct {
+	Away string `json:"away,omitempty"`
+	Home string `json:"home,omitempty"`
+	Key string `json:"key,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelSofascoreStatPeriod struct {
+	Groups []ModelSofascoreStatGroup `json:"groups,omitempty"`
+	Period string `json:"period,omitempty"`
+}
+
+type ModelSofascoreTeamDetail struct {
+	Country string `json:"country,omitempty"`
+	Id int `json:"id,omitempty"`
+	Manager string `json:"manager,omitempty"`
+	Name string `json:"name,omitempty"`
+	National bool `json:"national,omitempty"`
+	PrimaryColor string `json:"primary_color,omitempty"`
+	ShortName string `json:"short_name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	Sport string `json:"sport,omitempty"`
+	TournamentId int `json:"tournament_id,omitempty"`
+	TournamentName string `json:"tournament_name,omitempty"`
+	Venue string `json:"venue,omitempty"`
+	VenueCapacity int `json:"venue_capacity,omitempty"`
+	VenueCity string `json:"venue_city,omitempty"`
+}
+
+type ModelSofascoreTeamDuel struct {
+	AwayWins int `json:"away_wins,omitempty"`
+	Draws int `json:"draws,omitempty"`
+	HomeWins int `json:"home_wins,omitempty"`
+}
+
+type ModelSofascoreTeamEventsResponse struct {
+	Count int `json:"count,omitempty"`
+	Direction string `json:"direction,omitempty"`
+	Events []ModelSofascoreEventSummary `json:"events,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	HasNextPage bool `json:"has_next_page,omitempty"`
+	Page int `json:"page,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	TeamId int `json:"team_id,omitempty"`
+}
+
+type ModelSofascoreTeamLineup struct {
+	Formation string `json:"formation,omitempty"`
+	Players []ModelSofascoreLineupPlayer `json:"players,omitempty"`
+}
+
+type ModelSofascoreTeamPlayersResponse struct {
+	Count int `json:"count,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	Players []ModelSofascoreSquadPlayer `json:"players,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	TeamId int `json:"team_id,omitempty"`
+}
+
+type ModelSofascoreTeamRef struct {
+	Country string `json:"country,omitempty"`
+	Id int `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	National bool `json:"national,omitempty"`
+	ShortName string `json:"short_name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelSofascoreTeamResponse struct {
+	FetchedAt string `json:"fetched_at,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	Team ModelSofascoreTeamDetail `json:"team,omitempty"`
+}
+
+type ModelSofascoreTournamentRef struct {
+	Category string `json:"category,omitempty"`
+	Id int `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	UniqueTournamentId int `json:"unique_tournament_id,omitempty"`
+	UniqueTournamentName string `json:"unique_tournament_name,omitempty"`
+}
+
+type ModelSofascoreTournamentSeasonsResponse struct {
+	Count int `json:"count,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	Seasons []ModelSofascoreSeason `json:"seasons,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+	TournamentId int `json:"tournament_id,omitempty"`
+}
+
+type ModelSofascoreVenue struct {
+	Capacity int `json:"capacity,omitempty"`
+	City string `json:"city,omitempty"`
+	Country string `json:"country,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelSofascoreEventH2HresponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSofascoreEventH2Hresponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventIncidentsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSofascoreEventIncidentsResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventLineupsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSofascoreEventLineupsResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventOddsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSofascoreEventOddsResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSofascoreEventResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventStatisticsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSofascoreEventStatisticsResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSofascoreLiveEventsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSofascoreLiveEventsResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSofascorePlayerResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSofascorePlayerResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSofascoreRoundEventsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSofascoreRoundEventsResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSofascoreSearchResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSofascoreSearchResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSofascoreStandingsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSofascoreStandingsResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTeamEventsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSofascoreTeamEventsResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTeamPlayersResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSofascoreTeamPlayersResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTeamResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSofascoreTeamResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTournamentSeasonsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelSofascoreTournamentSeasonsResponse `json:"data,omitempty"`
 	Msg string `json:"msg,omitempty"`
 }
 
@@ -11490,6 +12501,308 @@ type ModelTripadvisorTripadvisorReviewsResponseDoc struct {
 type ModelTripadvisorTripadvisorSearchResponseDoc struct {
 	Code int `json:"code,omitempty"`
 	Data ModelTripadvisorSearchResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelTrustmrrAcquireListing struct {
+	AskingPrice float64 `json:"asking_price,omitempty"`
+	Category string `json:"category,omitempty"`
+	Description string `json:"description,omitempty"`
+	FirstListedForSaleAt string `json:"first_listed_for_sale_at,omitempty"`
+	FoundedDate string `json:"founded_date,omitempty"`
+	Growth30d float64 `json:"growth_30d,omitempty"`
+	Icon string `json:"icon,omitempty"`
+	ListingTier string `json:"listing_tier,omitempty"`
+	Multiple float64 `json:"multiple,omitempty"`
+	Name string `json:"name,omitempty"`
+	OfferCount int `json:"offer_count,omitempty"`
+	PaymentProvider string `json:"payment_provider,omitempty"`
+	ProfitMarginLast30Days float64 `json:"profit_margin_last_30_days,omitempty"`
+	RevenueLast30Days float64 `json:"revenue_last_30_days,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	StealthMode bool `json:"stealth_mode,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
+type ModelTrustmrrAcquireResponse struct {
+	Count int `json:"count,omitempty"`
+	Startups []ModelTrustmrrAcquireListing `json:"startups,omitempty"`
+}
+
+type ModelTrustmrrAskingPricePoint struct {
+	CreatedAt string `json:"created_at,omitempty"`
+	Price float64 `json:"price,omitempty"`
+}
+
+type ModelTrustmrrCategoriesResponse struct {
+	Categories []ModelTrustmrrCategory `json:"categories,omitempty"`
+	Count int `json:"count,omitempty"`
+}
+
+type ModelTrustmrrCategory struct {
+	Description string `json:"description,omitempty"`
+	Icon string `json:"icon,omitempty"`
+	Keywords []string `json:"keywords,omitempty"`
+	Label string `json:"label,omitempty"`
+	LabelShort string `json:"label_short,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
+type ModelTrustmrrCategoryResponse struct {
+	Count int `json:"count,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	Startups []ModelTrustmrrCategoryStartup `json:"startups,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
+type ModelTrustmrrCategoryStartup struct {
+	CurrentLast30DaysRevenue float64 `json:"current_last_30_days_revenue,omitempty"`
+	CurrentMrr float64 `json:"current_mrr,omitempty"`
+	CurrentTotalRevenue float64 `json:"current_total_revenue,omitempty"`
+	Description string `json:"description,omitempty"`
+	Icon string `json:"icon,omitempty"`
+	IsMerchantOfRecord bool `json:"is_merchant_of_record,omitempty"`
+	Name string `json:"name,omitempty"`
+	OnSale bool `json:"on_sale,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
+type ModelTrustmrrLeaderboardEntry struct {
+	CurrentLast30DaysRevenue float64 `json:"current_last_30_days_revenue,omitempty"`
+	CurrentMrr float64 `json:"current_mrr,omitempty"`
+	CurrentTotalRevenue float64 `json:"current_total_revenue,omitempty"`
+	Description string `json:"description,omitempty"`
+	Growth30d float64 `json:"growth_30d,omitempty"`
+	GrowthMrr30d float64 `json:"growth_mrr_30d,omitempty"`
+	Icon string `json:"icon,omitempty"`
+	IsMerchantOfRecord bool `json:"is_merchant_of_record,omitempty"`
+	Name string `json:"name,omitempty"`
+	OnSale bool `json:"on_sale,omitempty"`
+	Rank int `json:"rank,omitempty"`
+	RevenuePerVisitorLast30Days float64 `json:"revenue_per_visitor_last_30_days,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	StealthMode bool `json:"stealth_mode,omitempty"`
+	TrafficLast30Days float64 `json:"traffic_last_30_days,omitempty"`
+	Url string `json:"url,omitempty"`
+	XFounderName string `json:"x_founder_name,omitempty"`
+	XHandle string `json:"x_handle,omitempty"`
+	XProfilePicture string `json:"x_profile_picture,omitempty"`
+}
+
+type ModelTrustmrrLeaderboardMetric = string
+
+type ModelTrustmrrLeaderboardResponse struct {
+	Count int `json:"count,omitempty"`
+	Entries []ModelTrustmrrLeaderboardEntry `json:"entries,omitempty"`
+	Metric ModelTrustmrrLeaderboardMetric `json:"metric,omitempty"`
+}
+
+type ModelTrustmrrMarketplaceResponse struct {
+	BestDeals []ModelTrustmrrMarketplaceStartup `json:"best_deals,omitempty"`
+	RecentlyListed []ModelTrustmrrMarketplaceStartup `json:"recently_listed,omitempty"`
+}
+
+type ModelTrustmrrMarketplaceRevenue struct {
+	Last30Days float64 `json:"last_30_days,omitempty"`
+	Mrr float64 `json:"mrr,omitempty"`
+	Total float64 `json:"total,omitempty"`
+}
+
+type ModelTrustmrrMarketplaceStartup struct {
+	ActiveSubscriptions int `json:"active_subscriptions,omitempty"`
+	AskingPrice float64 `json:"asking_price,omitempty"`
+	Category string `json:"category,omitempty"`
+	Country string `json:"country,omitempty"`
+	Customers int `json:"customers,omitempty"`
+	Description string `json:"description,omitempty"`
+	FirstListedForSaleAt string `json:"first_listed_for_sale_at,omitempty"`
+	FoundedDate string `json:"founded_date,omitempty"`
+	GoogleSearchImpressionsLast30Days int `json:"google_search_impressions_last_30_days,omitempty"`
+	Growth30d float64 `json:"growth_30d,omitempty"`
+	GrowthMrr30d float64 `json:"growth_mrr_30d,omitempty"`
+	Icon string `json:"icon,omitempty"`
+	Multiple float64 `json:"multiple,omitempty"`
+	Name string `json:"name,omitempty"`
+	OnSale bool `json:"on_sale,omitempty"`
+	PaymentProvider string `json:"payment_provider,omitempty"`
+	ProfitMarginLast30Days float64 `json:"profit_margin_last_30_days,omitempty"`
+	Rank int `json:"rank,omitempty"`
+	Revenue ModelTrustmrrMarketplaceRevenue `json:"revenue,omitempty"`
+	RevenuePerVisitor float64 `json:"revenue_per_visitor,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	TargetAudience string `json:"target_audience,omitempty"`
+	Url string `json:"url,omitempty"`
+	VisitorsLast30Days int `json:"visitors_last_30_days,omitempty"`
+	Website string `json:"website,omitempty"`
+	XHandle string `json:"x_handle,omitempty"`
+	XProfilePicture string `json:"x_profile_picture,omitempty"`
+}
+
+type ModelTrustmrrStartup struct {
+	AhrefsDomain string `json:"ahrefs_domain,omitempty"`
+	AhrefsDomainRating int `json:"ahrefs_domain_rating,omitempty"`
+	AskingPrice float64 `json:"asking_price,omitempty"`
+	AskingPriceHistory []ModelTrustmrrAskingPricePoint `json:"asking_price_history,omitempty"`
+	BrandingPrimaryColor string `json:"branding_primary_color,omitempty"`
+	BrandingSecondaryColor string `json:"branding_secondary_color,omitempty"`
+	Category string `json:"category,omitempty"`
+	CategorySlug string `json:"category_slug,omitempty"`
+	Country string `json:"country,omitempty"`
+	CreatedAt string `json:"created_at,omitempty"`
+	DealScore float64 `json:"deal_score,omitempty"`
+	Description string `json:"description,omitempty"`
+	Enrichment ModelTrustmrrStartupEnrichment `json:"enrichment,omitempty"`
+	FirstListedForSaleAt string `json:"first_listed_for_sale_at,omitempty"`
+	FoundedDate string `json:"founded_date,omitempty"`
+	Growth30d float64 `json:"growth_30d,omitempty"`
+	GrowthMrr30d float64 `json:"growth_mrr_30d,omitempty"`
+	HasDofollowBacklink bool `json:"has_dofollow_backlink,omitempty"`
+	HasGoogleAnalytics bool `json:"has_google_analytics,omitempty"`
+	HasSearchConsole bool `json:"has_search_console,omitempty"`
+	Icon string `json:"icon,omitempty"`
+	InsightOverrides ModelTrustmrrStartupInsight `json:"insight_overrides,omitempty"`
+	IsMerchantOfRecord bool `json:"is_merchant_of_record,omitempty"`
+	IsSponsored bool `json:"is_sponsored,omitempty"`
+	ListingTier string `json:"listing_tier,omitempty"`
+	LookingForCofounder bool `json:"looking_for_cofounder,omitempty"`
+	LookingForCofounderMessage string `json:"looking_for_cofounder_message,omitempty"`
+	MarketingChannels []ModelTrustmrrStartupChannel `json:"marketing_channels,omitempty"`
+	MerchantCategoryCode string `json:"merchant_category_code,omitempty"`
+	MrrLastSyncedAt string `json:"mrr_last_synced_at,omitempty"`
+	Multiple float64 `json:"multiple,omitempty"`
+	Name string `json:"name,omitempty"`
+	OfferCount int `json:"offer_count,omitempty"`
+	OnSale bool `json:"on_sale,omitempty"`
+	PaymentProvider string `json:"payment_provider,omitempty"`
+	ProfitMarginLast30Days float64 `json:"profit_margin_last_30_days,omitempty"`
+	Rank int `json:"rank,omitempty"`
+	Revenue ModelTrustmrrStartupRevenue `json:"revenue,omitempty"`
+	RevenueLastSyncedAt string `json:"revenue_last_synced_at,omitempty"`
+	RevenuePerVisitorLast30Days float64 `json:"revenue_per_visitor_last_30_days,omitempty"`
+	SecondaryPaymentProvider string `json:"secondary_payment_provider,omitempty"`
+	SellerMessage string `json:"seller_message,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	Status string `json:"status,omitempty"`
+	StealthMode bool `json:"stealth_mode,omitempty"`
+	TargetAudience string `json:"target_audience,omitempty"`
+	TechStack []ModelTrustmrrStartupTech `json:"tech_stack,omitempty"`
+	TrafficLast12Months float64 `json:"traffic_last_12_months,omitempty"`
+	TrafficLast24Hours float64 `json:"traffic_last_24_hours,omitempty"`
+	TrafficLast30Days float64 `json:"traffic_last_30_days,omitempty"`
+	TrafficLast7Days float64 `json:"traffic_last_7_days,omitempty"`
+	UpdatedAt string `json:"updated_at,omitempty"`
+	Url string `json:"url,omitempty"`
+	UserCategory string `json:"user_category,omitempty"`
+	UserCategorySlug string `json:"user_category_slug,omitempty"`
+	Website string `json:"website,omitempty"`
+	XFollowerCount int `json:"x_follower_count,omitempty"`
+	XFounderName string `json:"x_founder_name,omitempty"`
+	XHandle string `json:"x_handle,omitempty"`
+	XProfilePicture string `json:"x_profile_picture,omitempty"`
+}
+
+type ModelTrustmrrStartupChannel struct {
+	Category string `json:"category,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelTrustmrrStartupEnrichment struct {
+	BusinessType string `json:"business_type,omitempty"`
+	EstimatedUserCount int `json:"estimated_user_count,omitempty"`
+	FundingStatus string `json:"funding_status,omitempty"`
+	LastEnrichedAt string `json:"last_enriched_at,omitempty"`
+	PricingModel string `json:"pricing_model,omitempty"`
+	ProblemSolved string `json:"problem_solved,omitempty"`
+	Screenshots []ModelTrustmrrStartupScreenshot `json:"screenshots,omitempty"`
+	Tags []string `json:"tags,omitempty"`
+	TargetPersona string `json:"target_persona,omitempty"`
+	ValueProposition string `json:"value_proposition,omitempty"`
+}
+
+type ModelTrustmrrStartupInsight struct {
+	BusinessType string `json:"business_type,omitempty"`
+	EstimatedUserCount int `json:"estimated_user_count,omitempty"`
+	PricingModel string `json:"pricing_model,omitempty"`
+	ProblemSolved string `json:"problem_solved,omitempty"`
+	TargetPersona string `json:"target_persona,omitempty"`
+	UpdatedAt string `json:"updated_at,omitempty"`
+	ValueProposition string `json:"value_proposition,omitempty"`
+}
+
+type ModelTrustmrrStartupRef struct {
+	LastModified string `json:"last_modified,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
+type ModelTrustmrrStartupRevenue struct {
+	ActiveSubscriptions int `json:"active_subscriptions,omitempty"`
+	Customers int `json:"customers,omitempty"`
+	Last30Days float64 `json:"last_30_days,omitempty"`
+	Mrr float64 `json:"mrr,omitempty"`
+	Total float64 `json:"total,omitempty"`
+}
+
+type ModelTrustmrrStartupScreenshot struct {
+	CapturedAt string `json:"captured_at,omitempty"`
+	Label string `json:"label,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
+type ModelTrustmrrStartupTech struct {
+	Category string `json:"category,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelTrustmrrStartupsResponse struct {
+	HasNext bool `json:"has_next,omitempty"`
+	Page int `json:"page,omitempty"`
+	PageSize int `json:"page_size,omitempty"`
+	Startups []ModelTrustmrrStartupRef `json:"startups,omitempty"`
+	Total int `json:"total,omitempty"`
+}
+
+type ModelTrustmrrAcquireResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelTrustmrrAcquireResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelTrustmrrCategoriesResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelTrustmrrCategoriesResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelTrustmrrCategoryResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelTrustmrrCategoryResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelTrustmrrLeaderboardResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelTrustmrrLeaderboardResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelTrustmrrMarketplaceResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelTrustmrrMarketplaceResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelTrustmrrStartupResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelTrustmrrStartup `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelTrustmrrStartupsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelTrustmrrStartupsResponse `json:"data,omitempty"`
 	Msg string `json:"msg,omitempty"`
 }
 
@@ -13143,7 +14456,7 @@ type ModelZillowSearchResponse struct {
 	Results []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 559
+const operationCount = 603
 
 const (
 	OperationAirbnbHost = "airbnb-host"
@@ -13215,7 +14528,10 @@ const (
 	OperationChromeWebStoreChromewebstoreCategory = "chromewebstore-category"
 	OperationChromeWebStoreChromewebstoreCharts = "chromewebstore-charts"
 	OperationChromeWebStoreChromewebstoreCollection = "chromewebstore-collection"
+	OperationChromeWebStoreChromewebstoreDeveloper = "chromewebstore-developer"
 	OperationChromeWebStoreChromewebstoreItem = "chromewebstore-item"
+	OperationChromeWebStoreChromewebstorePermissions = "chromewebstore-permissions"
+	OperationChromeWebStoreChromewebstorePrivacy = "chromewebstore-privacy"
 	OperationChromeWebStoreChromewebstoreReviews = "chromewebstore-reviews"
 	OperationChromeWebStoreChromewebstoreSearch = "chromewebstore-search"
 	OperationChromeWebStoreChromewebstoreSimilar = "chromewebstore-similar"
@@ -13266,6 +14582,12 @@ const (
 	OperationDatasetsProducthuntProductsSearch = "datasets-producthunt-products-search"
 	OperationDatasetsProducthuntTrendsFacets = "datasets-producthunt-trends-facets"
 	OperationDatasetsProducthuntTrendsSearch = "datasets-producthunt-trends-search"
+	OperationDatasetsTechstackFacets = "datasets-techstack-facets"
+	OperationDatasetsTechstackItem = "datasets-techstack-item"
+	OperationDatasetsTechstackSearch = "datasets-techstack-search"
+	OperationDatasetsTrustmrrFacets = "datasets-trustmrr-facets"
+	OperationDatasetsTrustmrrItem = "datasets-trustmrr-item"
+	OperationDatasetsTrustmrrSearch = "datasets-trustmrr-search"
 	OperationEBayEbayItem = "ebay-item"
 	OperationEBayEbaySearch = "ebay-search"
 	OperationEBayEbaySeller = "ebay-seller"
@@ -13428,6 +14750,9 @@ const (
 	OperationMetaculusQuestions = "metaculus-questions"
 	OperationMetaculusTopComments = "metaculus-top-comments"
 	OperationMetaculusTournamentQuestions = "metaculus-tournament-questions"
+	OperationPitchBookPitchbookCompany = "pitchbook-company"
+	OperationPitchBookPitchbookFund = "pitchbook-fund"
+	OperationPitchBookPitchbookInvestor = "pitchbook-investor"
 	OperationPolymarketActivityTrades = "polymarket-activity-trades"
 	OperationPolymarketClobMarket = "polymarket-clob-market"
 	OperationPolymarketDashboardMacro = "polymarket-dashboard-macro"
@@ -13532,6 +14857,16 @@ const (
 	OperationRottenTomatoesRottentomatoesSearch = "rottentomatoes-search"
 	OperationRottenTomatoesRottentomatoesSeason = "rottentomatoes-season"
 	OperationRottenTomatoesRottentomatoesSeries = "rottentomatoes-series"
+	OperationSecEdgarSecCompanyIntelligence = "sec-company-intelligence"
+	OperationSecEdgarSecCompanySearch = "sec-company-search"
+	OperationSecEdgarSecCompanySubmissions = "sec-company-submissions"
+	OperationSecEdgarSecFiling = "sec-filing"
+	OperationSecEdgarSecFilingSections = "sec-filing-sections"
+	OperationSecEdgarSecFinancials = "sec-financials"
+	OperationSecEdgarSecFrames = "sec-frames"
+	OperationSecEdgarSecFullTextSearch = "sec-full-text-search"
+	OperationSecEdgarSecInsider = "sec-insider"
+	OperationSecEdgarSecInstitutionalHoldings = "sec-institutional-holdings"
 	OperationShopAppAnalysis = "shop-app-analysis"
 	OperationShopAppCategories = "shop-app-categories"
 	OperationShopAppCollectionProducts = "shop-app-collection-products"
@@ -13561,6 +14896,21 @@ const (
 	OperationShopifyStore = "shopify-store"
 	OperationSimilarWebSearch = "similarweb-search"
 	OperationSimilarWebWeb = "similarweb-web"
+	OperationSofaScoreSofascoreEvent = "sofascore-event"
+	OperationSofaScoreSofascoreEventH2h = "sofascore-event-h2h"
+	OperationSofaScoreSofascoreEventIncidents = "sofascore-event-incidents"
+	OperationSofaScoreSofascoreEventLineups = "sofascore-event-lineups"
+	OperationSofaScoreSofascoreEventOdds = "sofascore-event-odds"
+	OperationSofaScoreSofascoreEventStatistics = "sofascore-event-statistics"
+	OperationSofaScoreSofascoreLiveEvents = "sofascore-live-events"
+	OperationSofaScoreSofascorePlayer = "sofascore-player"
+	OperationSofaScoreSofascoreRoundEvents = "sofascore-round-events"
+	OperationSofaScoreSofascoreSearch = "sofascore-search"
+	OperationSofaScoreSofascoreStandings = "sofascore-standings"
+	OperationSofaScoreSofascoreTeam = "sofascore-team"
+	OperationSofaScoreSofascoreTeamEvents = "sofascore-team-events"
+	OperationSofaScoreSofascoreTeamPlayers = "sofascore-team-players"
+	OperationSofaScoreSofascoreTournamentSeasons = "sofascore-tournament-seasons"
 	OperationSpotifyAlbum = "spotify-album"
 	OperationSpotifyAlbumTracks = "spotify-album-tracks"
 	OperationSpotifyAlbumsSearch = "spotify-albums-search"
@@ -13628,6 +14978,13 @@ const (
 	OperationTripAdvisorTripadvisorPlace = "tripadvisor-place"
 	OperationTripAdvisorTripadvisorReviews = "tripadvisor-reviews"
 	OperationTripAdvisorTripadvisorSearch = "tripadvisor-search"
+	OperationTrustMrrTrustmrrAcquire = "trustmrr-acquire"
+	OperationTrustMrrTrustmrrCategories = "trustmrr-categories"
+	OperationTrustMrrTrustmrrCategory = "trustmrr-category"
+	OperationTrustMrrTrustmrrLeaderboard = "trustmrr-leaderboard"
+	OperationTrustMrrTrustmrrMarketplace = "trustmrr-marketplace"
+	OperationTrustMrrTrustmrrStartup = "trustmrr-startup"
+	OperationTrustMrrTrustmrrStartups = "trustmrr-startups"
 	OperationTrustpilotBusiness = "trustpilot-business"
 	OperationTrustpilotBusinessRelated = "trustpilot-business-related"
 	OperationTrustpilotBusinessReviews = "trustpilot-business-reviews"
@@ -13777,8 +15134,11 @@ var operations = map[string]operationDefinition{
 	"chromewebstore-category": operationDefinition{Method: "GET", Path: "/chromewebstore/category", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"chromewebstore-charts": operationDefinition{Method: "GET", Path: "/chromewebstore/charts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "chart", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"trending", "popular", "notable"}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"chromewebstore-collection": operationDefinition{Method: "GET", Path: "/chromewebstore/collection", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "collection", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"chromewebstore-developer": operationDefinition{Method: "GET", Path: "/chromewebstore/developer", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"chromewebstore-item": operationDefinition{Method: "GET", Path: "/chromewebstore/item", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
-	"chromewebstore-reviews": operationDefinition{Method: "GET", Path: "/chromewebstore/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"chromewebstore-permissions": operationDefinition{Method: "GET", Path: "/chromewebstore/permissions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"chromewebstore-privacy": operationDefinition{Method: "GET", Path: "/chromewebstore/privacy", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"chromewebstore-reviews": operationDefinition{Method: "GET", Path: "/chromewebstore/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"recent", "helpful"}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"chromewebstore-search": operationDefinition{Method: "GET", Path: "/chromewebstore/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"chromewebstore-similar": operationDefinition{Method: "GET", Path: "/chromewebstore/similar", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"chromewebstore-suggest": operationDefinition{Method: "GET", Path: "/chromewebstore/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
@@ -13829,6 +15189,12 @@ var operations = map[string]operationDefinition{
 	"datasets-producthunt-products-search": operationDefinition{Method: "GET", Path: "/datasets/producthunt-products/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "maker", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_votes", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "pricing_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_website", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_online", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"datasets-producthunt-trends-facets": operationDefinition{Method: "GET", Path: "/datasets/producthunt-trends/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "group_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_votes", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_launches", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"datasets-producthunt-trends-search": operationDefinition{Method: "GET", Path: "/datasets/producthunt-trends/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "group_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_votes", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_launches", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
+	"datasets-techstack-facets": operationDefinition{Method: "GET", Path: "/datasets/techstack/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "technology", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "any_of", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "not", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cms", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ecommerce", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cdn", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "web_server", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "server_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tld", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "render_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "seed_source", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_captcha", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "reachable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_tech_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"datasets-techstack-item": operationDefinition{Method: "GET", Path: "/datasets/techstack/items/{domain}", PathParams: []string{"domain"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"datasets-techstack-search": operationDefinition{Method: "GET", Path: "/datasets/techstack/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "technology", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "any_of", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "not", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cms", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ecommerce", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cdn", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "web_server", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "server_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tld", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "render_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "seed_source", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_captcha", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "reachable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_tech_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
+	"datasets-trustmrr-facets": operationDefinition{Method: "GET", Path: "/datasets/trustmrr/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "payment_provider", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "on_sale", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_mrr", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"datasets-trustmrr-item": operationDefinition{Method: "GET", Path: "/datasets/trustmrr/items/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"datasets-trustmrr-search": operationDefinition{Method: "GET", Path: "/datasets/trustmrr/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "payment_provider", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "target_audience", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "business_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tech", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "channel", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "listing_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "on_sale", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_sponsored", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_mrr", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_mrr", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_revenue", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_revenue_30d", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_traffic", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_growth", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_multiple", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_asking_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_asking_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_ahrefs_dr", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"antibot-check": operationDefinition{Method: "POST", Path: "/diagnostics/antibot-check", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"ebay-item": operationDefinition{Method: "GET", Path: "/ebay/item/{item_id}", PathParams: []string{"item_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"ebay-search": operationDefinition{Method: "POST", Path: "/ebay/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
@@ -13991,6 +15357,9 @@ var operations = map[string]operationDefinition{
 	"metaculus-top-comments": operationDefinition{Method: "GET", Path: "/metaculus/top-comments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"metaculus-tournament-questions": operationDefinition{Method: "GET", Path: "/metaculus/tournament/{slug}/questions", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"ping": operationDefinition{Method: "GET", Path: "/ping", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{}, },
+	"pitchbook-company": operationDefinition{Method: "GET", Path: "/pitchbook/company", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"pitchbook-fund": operationDefinition{Method: "GET", Path: "/pitchbook/fund", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"pitchbook-investor": operationDefinition{Method: "GET", Path: "/pitchbook/investor", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"polymarket-activity-trades": operationDefinition{Method: "GET", Path: "/polymarket/activity/trades", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "taker_only", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"true", "false"}}, parameterDefinition{Name: "filter_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"CASH"}}, parameterDefinition{Name: "filter_amount", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"1", "5", "10", "100", "1000", "10000", "100000"}}, parameterDefinition{Name: "event_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"polymarket-clob-market": operationDefinition{Method: "GET", Path: "/polymarket/clob/market/{condition_id}", PathParams: []string{"condition_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"polymarket-dashboard-macro": operationDefinition{Method: "GET", Path: "/polymarket/dashboards/macro", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}, },
@@ -14096,6 +15465,16 @@ var operations = map[string]operationDefinition{
 	"rottentomatoes-search": operationDefinition{Method: "GET", Path: "/rottentomatoes/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"rottentomatoes-season": operationDefinition{Method: "GET", Path: "/rottentomatoes/season", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"rottentomatoes-series": operationDefinition{Method: "GET", Path: "/rottentomatoes/series", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sec-company-intelligence": operationDefinition{Method: "GET", Path: "/sec/company/intelligence", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cik", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ticker", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sec-company-search": operationDefinition{Method: "GET", Path: "/sec/company/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sec-company-submissions": operationDefinition{Method: "GET", Path: "/sec/company/submissions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cik", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ticker", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "form", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sec-filing": operationDefinition{Method: "GET", Path: "/sec/filing", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cik", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ticker", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "accession", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sec-filing-sections": operationDefinition{Method: "GET", Path: "/sec/filing/sections", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cik", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ticker", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "accession", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "items", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_chars", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sec-financials": operationDefinition{Method: "GET", Path: "/sec/financials", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cik", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ticker", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "statement", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"income", "balance", "cash_flow"}}, parameterDefinition{Name: "period", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"annual", "quarterly"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sec-frames": operationDefinition{Method: "GET", Path: "/sec/frames", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "concept", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "period", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "unit", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "taxonomy", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"dei", "ifrs-full", "srt", "us-gaap"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sec-full-text-search": operationDefinition{Method: "GET", Path: "/sec/full-text-search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "forms", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
+	"sec-insider": operationDefinition{Method: "GET", Path: "/sec/insider", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cik", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ticker", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sec-institutional-holdings": operationDefinition{Method: "GET", Path: "/sec/institutional-holdings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cik", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"shop-app-analysis": operationDefinition{Method: "GET", Path: "/shop-app/analysis", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "in_stock", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "on_sale", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "deep_search", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"shop-app-categories": operationDefinition{Method: "GET", Path: "/shop-app/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"shop-app-product": operationDefinition{Method: "GET", Path: "/shop-app/products/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "variant_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
@@ -14125,6 +15504,21 @@ var operations = map[string]operationDefinition{
 	"shopify-store": operationDefinition{Method: "GET", Path: "/shopify/store", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"similarweb-search": operationDefinition{Method: "GET", Path: "/similarweb/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"similarweb-web": operationDefinition{Method: "GET", Path: "/similarweb/web/{domain}", PathParams: []string{"domain"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sofascore-event": operationDefinition{Method: "GET", Path: "/sofascore/event", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sofascore-event-h2h": operationDefinition{Method: "GET", Path: "/sofascore/event-h2h", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sofascore-event-incidents": operationDefinition{Method: "GET", Path: "/sofascore/event-incidents", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sofascore-event-lineups": operationDefinition{Method: "GET", Path: "/sofascore/event-lineups", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sofascore-event-odds": operationDefinition{Method: "GET", Path: "/sofascore/event-odds", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sofascore-event-statistics": operationDefinition{Method: "GET", Path: "/sofascore/event-statistics", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sofascore-live-events": operationDefinition{Method: "GET", Path: "/sofascore/live-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "tennis"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sofascore-player": operationDefinition{Method: "GET", Path: "/sofascore/player", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sofascore-round-events": operationDefinition{Method: "GET", Path: "/sofascore/round-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "round", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sofascore-search": operationDefinition{Method: "GET", Path: "/sofascore/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sofascore-standings": operationDefinition{Method: "GET", Path: "/sofascore/standings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"total", "home", "away"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sofascore-team": operationDefinition{Method: "GET", Path: "/sofascore/team", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sofascore-team-events": operationDefinition{Method: "GET", Path: "/sofascore/team-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "direction", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"next", "last"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
+	"sofascore-team-players": operationDefinition{Method: "GET", Path: "/sofascore/team-players", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"sofascore-tournament-seasons": operationDefinition{Method: "GET", Path: "/sofascore/tournament-seasons", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"spotify-podcasts-categories": operationDefinition{Method: "GET", Path: "/spotify-podcasts/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "section_offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "section_limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"spotify-podcasts-charts": operationDefinition{Method: "GET", Path: "/spotify-podcasts/charts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "chart", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"spotify-podcasts-episode": operationDefinition{Method: "GET", Path: "/spotify-podcasts/episode", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
@@ -14192,6 +15586,13 @@ var operations = map[string]operationDefinition{
 	"tripadvisor-place": operationDefinition{Method: "GET", Path: "/tripadvisor/place", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"tripadvisor-reviews": operationDefinition{Method: "GET", Path: "/tripadvisor/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ratings", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "do_machine_translation", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "photos_per_review_limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"tripadvisor-search": operationDefinition{Method: "GET", Path: "/tripadvisor/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "geo_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "filter_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "class", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "amenities", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "price_min", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "price_max", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "pricing_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "travelers_choice", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "travelers_choice_botb", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "restaurant_date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "restaurant_time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "restaurant_guests", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "establishment_types", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "online_options", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "locale", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
+	"trustmrr-acquire": operationDefinition{Method: "GET", Path: "/trustmrr/acquire", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"trustmrr-categories": operationDefinition{Method: "GET", Path: "/trustmrr/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"trustmrr-category": operationDefinition{Method: "GET", Path: "/trustmrr/category/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"trustmrr-leaderboard": operationDefinition{Method: "GET", Path: "/trustmrr/leaderboard", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "metric", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"mrr", "last_30_days_revenue", "all_time_revenue", "growth", "traffic", "revenue_per_visitor"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"trustmrr-marketplace": operationDefinition{Method: "GET", Path: "/trustmrr/marketplace", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"trustmrr-startup": operationDefinition{Method: "GET", Path: "/trustmrr/startup/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"trustmrr-startups": operationDefinition{Method: "GET", Path: "/trustmrr/startups", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"trustpilot-business-search": operationDefinition{Method: "GET", Path: "/trustpilot/business-units/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"trustpilot-business": operationDefinition{Method: "GET", Path: "/trustpilot/business/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"trustpilot-business-related": operationDefinition{Method: "GET", Path: "/trustpilot/business/{slug}/related", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
@@ -14296,19 +15697,23 @@ type Services struct {
 	LinkedIn *LinkedInService
 	Metaculus *MetaculusService
 	Meta *MetaService
+	PitchBook *PitchBookService
 	Polymarket *PolymarketService
 	ProductHunt *ProductHuntService
 	Reddit *RedditService
 	Redfin *RedfinService
 	Referrals *ReferralsService
 	RottenTomatoes *RottenTomatoesService
+	SecEdgar *SecEdgarService
 	ShopApp *ShopAppService
 	Shopify *ShopifyService
 	SimilarWeb *SimilarWebService
+	SofaScore *SofaScoreService
 	SpotifyPodcasts *SpotifyPodcastsService
 	Spotify *SpotifyService
 	TikTok *TikTokService
 	TripAdvisor *TripAdvisorService
+	TrustMrr *TrustMrrService
 	Trustpilot *TrustpilotService
 	Usage *UsageService
 	User *UserService
@@ -14346,19 +15751,23 @@ func initServices(c *Client) Services {
 		LinkedIn: &LinkedInService{client: c},
 		Metaculus: &MetaculusService{client: c},
 		Meta: &MetaService{client: c},
+		PitchBook: &PitchBookService{client: c},
 		Polymarket: &PolymarketService{client: c},
 		ProductHunt: &ProductHuntService{client: c},
 		Reddit: &RedditService{client: c},
 		Redfin: &RedfinService{client: c},
 		Referrals: &ReferralsService{client: c},
 		RottenTomatoes: &RottenTomatoesService{client: c},
+		SecEdgar: &SecEdgarService{client: c},
 		ShopApp: &ShopAppService{client: c},
 		Shopify: &ShopifyService{client: c},
 		SimilarWeb: &SimilarWebService{client: c},
+		SofaScore: &SofaScoreService{client: c},
 		SpotifyPodcasts: &SpotifyPodcastsService{client: c},
 		Spotify: &SpotifyService{client: c},
 		TikTok: &TikTokService{client: c},
 		TripAdvisor: &TripAdvisorService{client: c},
+		TrustMrr: &TrustMrrService{client: c},
 		Trustpilot: &TrustpilotService{client: c},
 		Usage: &UsageService{client: c},
 		User: &UserService{client: c},
@@ -15500,6 +16909,23 @@ func (s *ChromeWebStoreService) ChromewebstoreCollectionTyped(ctx context.Contex
 	return requestTyped[ChromeWebStoreChromewebstoreCollectionResponse](s.client, ctx, "chromewebstore-collection", paramsFromStruct(params), opts...)
 }
 
+func (s *ChromeWebStoreService) ChromewebstoreDeveloper(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "chromewebstore-developer", params, opts...)
+}
+
+type ChromeWebStoreChromewebstoreDeveloperParams struct {
+	Id string `crawlora:"id"`
+	Num *int `crawlora:"num,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang *string `crawlora:"lang,omitempty"`
+}
+
+type ChromeWebStoreChromewebstoreDeveloperResponse = ModelChromewebstoreDeveloperResponseDoc
+
+func (s *ChromeWebStoreService) ChromewebstoreDeveloperTyped(ctx context.Context, params ChromeWebStoreChromewebstoreDeveloperParams, opts ...RequestOption) (ChromeWebStoreChromewebstoreDeveloperResponse, error) {
+	return requestTyped[ChromeWebStoreChromewebstoreDeveloperResponse](s.client, ctx, "chromewebstore-developer", paramsFromStruct(params), opts...)
+}
+
 func (s *ChromeWebStoreService) ChromewebstoreItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "chromewebstore-item", params, opts...)
 }
@@ -15516,6 +16942,38 @@ func (s *ChromeWebStoreService) ChromewebstoreItemTyped(ctx context.Context, par
 	return requestTyped[ChromeWebStoreChromewebstoreItemResponse](s.client, ctx, "chromewebstore-item", paramsFromStruct(params), opts...)
 }
 
+func (s *ChromeWebStoreService) ChromewebstorePermissions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "chromewebstore-permissions", params, opts...)
+}
+
+type ChromeWebStoreChromewebstorePermissionsParams struct {
+	Id string `crawlora:"id"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang *string `crawlora:"lang,omitempty"`
+}
+
+type ChromeWebStoreChromewebstorePermissionsResponse = ModelChromewebstorePermissionsResponseDoc
+
+func (s *ChromeWebStoreService) ChromewebstorePermissionsTyped(ctx context.Context, params ChromeWebStoreChromewebstorePermissionsParams, opts ...RequestOption) (ChromeWebStoreChromewebstorePermissionsResponse, error) {
+	return requestTyped[ChromeWebStoreChromewebstorePermissionsResponse](s.client, ctx, "chromewebstore-permissions", paramsFromStruct(params), opts...)
+}
+
+func (s *ChromeWebStoreService) ChromewebstorePrivacy(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "chromewebstore-privacy", params, opts...)
+}
+
+type ChromeWebStoreChromewebstorePrivacyParams struct {
+	Id string `crawlora:"id"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang *string `crawlora:"lang,omitempty"`
+}
+
+type ChromeWebStoreChromewebstorePrivacyResponse = ModelChromewebstorePrivacyResponseDoc
+
+func (s *ChromeWebStoreService) ChromewebstorePrivacyTyped(ctx context.Context, params ChromeWebStoreChromewebstorePrivacyParams, opts ...RequestOption) (ChromeWebStoreChromewebstorePrivacyResponse, error) {
+	return requestTyped[ChromeWebStoreChromewebstorePrivacyResponse](s.client, ctx, "chromewebstore-privacy", paramsFromStruct(params), opts...)
+}
+
 func (s *ChromeWebStoreService) ChromewebstoreReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "chromewebstore-reviews", params, opts...)
 }
@@ -15523,6 +16981,7 @@ func (s *ChromeWebStoreService) ChromewebstoreReviews(ctx context.Context, param
 type ChromeWebStoreChromewebstoreReviewsParams struct {
 	Id string `crawlora:"id"`
 	Num *int `crawlora:"num,omitempty"`
+	Sort *string `crawlora:"sort,omitempty"`
 	Country *string `crawlora:"country,omitempty"`
 	Lang *string `crawlora:"lang,omitempty"`
 }
@@ -16534,6 +17993,157 @@ type DatasetsProducthuntTrendsSearchResponse = ModelDatasetsProducthuntTrendsSea
 
 func (s *DatasetsService) ProducthuntTrendsSearchTyped(ctx context.Context, params DatasetsProducthuntTrendsSearchParams, opts ...RequestOption) (DatasetsProducthuntTrendsSearchResponse, error) {
 	return requestTyped[DatasetsProducthuntTrendsSearchResponse](s.client, ctx, "datasets-producthunt-trends-search", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) TechstackFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-techstack-facets", params, opts...)
+}
+
+type DatasetsTechstackFacetsParams struct {
+	Facet string `crawlora:"facet"`
+	Q *string `crawlora:"q,omitempty"`
+	Technology []string `crawlora:"technology"`
+	AnyOf []string `crawlora:"any_of"`
+	Not []string `crawlora:"not"`
+	Category *string `crawlora:"category,omitempty"`
+	Cms *string `crawlora:"cms,omitempty"`
+	Ecommerce *string `crawlora:"ecommerce,omitempty"`
+	Cdn *string `crawlora:"cdn,omitempty"`
+	WebServer *string `crawlora:"web_server,omitempty"`
+	ServerLanguage *string `crawlora:"server_language,omitempty"`
+	Tld *string `crawlora:"tld,omitempty"`
+	RenderTier *string `crawlora:"render_tier,omitempty"`
+	SeedSource *string `crawlora:"seed_source,omitempty"`
+	HasCaptcha *bool `crawlora:"has_captcha,omitempty"`
+	Reachable *bool `crawlora:"reachable,omitempty"`
+	MinTechCount *int `crawlora:"min_tech_count,omitempty"`
+	RunId *string `crawlora:"run_id,omitempty"`
+}
+
+type DatasetsTechstackFacetsResponse = ModelDatasetsTechstackFacetResponseDoc
+
+func (s *DatasetsService) TechstackFacetsTyped(ctx context.Context, params DatasetsTechstackFacetsParams, opts ...RequestOption) (DatasetsTechstackFacetsResponse, error) {
+	return requestTyped[DatasetsTechstackFacetsResponse](s.client, ctx, "datasets-techstack-facets", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) TechstackItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-techstack-item", params, opts...)
+}
+
+type DatasetsTechstackItemParams struct {
+	Domain string `crawlora:"domain"`
+}
+
+type DatasetsTechstackItemResponse = ModelDatasetsTechstackItemResponseDoc
+
+func (s *DatasetsService) TechstackItemTyped(ctx context.Context, params DatasetsTechstackItemParams, opts ...RequestOption) (DatasetsTechstackItemResponse, error) {
+	return requestTyped[DatasetsTechstackItemResponse](s.client, ctx, "datasets-techstack-item", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) TechstackSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-techstack-search", params, opts...)
+}
+
+type DatasetsTechstackSearchParams struct {
+	Q *string `crawlora:"q,omitempty"`
+	Technology []string `crawlora:"technology"`
+	AnyOf []string `crawlora:"any_of"`
+	Not []string `crawlora:"not"`
+	Category *string `crawlora:"category,omitempty"`
+	Cms *string `crawlora:"cms,omitempty"`
+	Ecommerce *string `crawlora:"ecommerce,omitempty"`
+	Cdn *string `crawlora:"cdn,omitempty"`
+	WebServer *string `crawlora:"web_server,omitempty"`
+	ServerLanguage *string `crawlora:"server_language,omitempty"`
+	Tld *string `crawlora:"tld,omitempty"`
+	RenderTier *string `crawlora:"render_tier,omitempty"`
+	SeedSource *string `crawlora:"seed_source,omitempty"`
+	HasCaptcha *bool `crawlora:"has_captcha,omitempty"`
+	Reachable *bool `crawlora:"reachable,omitempty"`
+	MinTechCount *int `crawlora:"min_tech_count,omitempty"`
+	RunId *string `crawlora:"run_id,omitempty"`
+	Sort *string `crawlora:"sort,omitempty"`
+	Page *int `crawlora:"page,omitempty"`
+	PageSize *int `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsTechstackSearchResponse = ModelDatasetsTechstackSearchResponseDoc
+
+func (s *DatasetsService) TechstackSearchTyped(ctx context.Context, params DatasetsTechstackSearchParams, opts ...RequestOption) (DatasetsTechstackSearchResponse, error) {
+	return requestTyped[DatasetsTechstackSearchResponse](s.client, ctx, "datasets-techstack-search", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) TrustmrrFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-trustmrr-facets", params, opts...)
+}
+
+type DatasetsTrustmrrFacetsParams struct {
+	Facet string `crawlora:"facet"`
+	Q *string `crawlora:"q,omitempty"`
+	Category *string `crawlora:"category,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	PaymentProvider *string `crawlora:"payment_provider,omitempty"`
+	OnSale *bool `crawlora:"on_sale,omitempty"`
+	MinMrr *float64 `crawlora:"min_mrr,omitempty"`
+}
+
+type DatasetsTrustmrrFacetsResponse = ModelDatasetsTrustmrrFacetResponseDoc
+
+func (s *DatasetsService) TrustmrrFacetsTyped(ctx context.Context, params DatasetsTrustmrrFacetsParams, opts ...RequestOption) (DatasetsTrustmrrFacetsResponse, error) {
+	return requestTyped[DatasetsTrustmrrFacetsResponse](s.client, ctx, "datasets-trustmrr-facets", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) TrustmrrItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-trustmrr-item", params, opts...)
+}
+
+type DatasetsTrustmrrItemParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type DatasetsTrustmrrItemResponse = ModelDatasetsTrustmrrItemResponseDoc
+
+func (s *DatasetsService) TrustmrrItemTyped(ctx context.Context, params DatasetsTrustmrrItemParams, opts ...RequestOption) (DatasetsTrustmrrItemResponse, error) {
+	return requestTyped[DatasetsTrustmrrItemResponse](s.client, ctx, "datasets-trustmrr-item", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) TrustmrrSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-trustmrr-search", params, opts...)
+}
+
+type DatasetsTrustmrrSearchParams struct {
+	Q *string `crawlora:"q,omitempty"`
+	Slug *string `crawlora:"slug,omitempty"`
+	Category *string `crawlora:"category,omitempty"`
+	Country *string `crawlora:"country,omitempty"`
+	PaymentProvider *string `crawlora:"payment_provider,omitempty"`
+	TargetAudience *string `crawlora:"target_audience,omitempty"`
+	BusinessType *string `crawlora:"business_type,omitempty"`
+	Tech *string `crawlora:"tech,omitempty"`
+	Channel *string `crawlora:"channel,omitempty"`
+	ListingTier *string `crawlora:"listing_tier,omitempty"`
+	Status *string `crawlora:"status,omitempty"`
+	OnSale *bool `crawlora:"on_sale,omitempty"`
+	IsSponsored *bool `crawlora:"is_sponsored,omitempty"`
+	MinMrr *float64 `crawlora:"min_mrr,omitempty"`
+	MaxMrr *float64 `crawlora:"max_mrr,omitempty"`
+	MinRevenue *float64 `crawlora:"min_revenue,omitempty"`
+	MinRevenue30d *float64 `crawlora:"min_revenue_30d,omitempty"`
+	MinTraffic *float64 `crawlora:"min_traffic,omitempty"`
+	MinGrowth *float64 `crawlora:"min_growth,omitempty"`
+	MaxMultiple *float64 `crawlora:"max_multiple,omitempty"`
+	MinAskingPrice *float64 `crawlora:"min_asking_price,omitempty"`
+	MaxAskingPrice *float64 `crawlora:"max_asking_price,omitempty"`
+	MinAhrefsDr *int `crawlora:"min_ahrefs_dr,omitempty"`
+	Sort *string `crawlora:"sort,omitempty"`
+	Page *int `crawlora:"page,omitempty"`
+	PageSize *int `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsTrustmrrSearchResponse = ModelDatasetsTrustmrrSearchResponseDoc
+
+func (s *DatasetsService) TrustmrrSearchTyped(ctx context.Context, params DatasetsTrustmrrSearchParams, opts ...RequestOption) (DatasetsTrustmrrSearchResponse, error) {
+	return requestTyped[DatasetsTrustmrrSearchResponse](s.client, ctx, "datasets-trustmrr-search", paramsFromStruct(params), opts...)
 }
 
 type EBayService struct { client *Client }
@@ -19087,6 +20697,53 @@ func (s *MetaService) ReadyTyped(ctx context.Context, params MetaReadyParams, op
 	return requestTyped[MetaReadyResponse](s.client, ctx, "ready", paramsFromStruct(params), opts...)
 }
 
+type PitchBookService struct { client *Client }
+
+func (s *PitchBookService) PitchbookCompany(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "pitchbook-company", params, opts...)
+}
+
+type PitchBookPitchbookCompanyParams struct {
+	Id *string `crawlora:"id,omitempty"`
+	Url *string `crawlora:"url,omitempty"`
+}
+
+type PitchBookPitchbookCompanyResponse = ModelPitchbookCompanyResponseDoc
+
+func (s *PitchBookService) PitchbookCompanyTyped(ctx context.Context, params PitchBookPitchbookCompanyParams, opts ...RequestOption) (PitchBookPitchbookCompanyResponse, error) {
+	return requestTyped[PitchBookPitchbookCompanyResponse](s.client, ctx, "pitchbook-company", paramsFromStruct(params), opts...)
+}
+
+func (s *PitchBookService) PitchbookFund(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "pitchbook-fund", params, opts...)
+}
+
+type PitchBookPitchbookFundParams struct {
+	Id *string `crawlora:"id,omitempty"`
+	Url *string `crawlora:"url,omitempty"`
+}
+
+type PitchBookPitchbookFundResponse = ModelPitchbookFundResponseDoc
+
+func (s *PitchBookService) PitchbookFundTyped(ctx context.Context, params PitchBookPitchbookFundParams, opts ...RequestOption) (PitchBookPitchbookFundResponse, error) {
+	return requestTyped[PitchBookPitchbookFundResponse](s.client, ctx, "pitchbook-fund", paramsFromStruct(params), opts...)
+}
+
+func (s *PitchBookService) PitchbookInvestor(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "pitchbook-investor", params, opts...)
+}
+
+type PitchBookPitchbookInvestorParams struct {
+	Id *string `crawlora:"id,omitempty"`
+	Url *string `crawlora:"url,omitempty"`
+}
+
+type PitchBookPitchbookInvestorResponse = ModelPitchbookInvestorResponseDoc
+
+func (s *PitchBookService) PitchbookInvestorTyped(ctx context.Context, params PitchBookPitchbookInvestorParams, opts ...RequestOption) (PitchBookPitchbookInvestorResponse, error) {
+	return requestTyped[PitchBookPitchbookInvestorResponse](s.client, ctx, "pitchbook-investor", paramsFromStruct(params), opts...)
+}
+
 type PolymarketService struct { client *Client }
 
 func (s *PolymarketService) ActivityTrades(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -20752,6 +22409,176 @@ func (s *RottenTomatoesService) RottentomatoesSeriesTyped(ctx context.Context, p
 	return requestTyped[RottenTomatoesRottentomatoesSeriesResponse](s.client, ctx, "rottentomatoes-series", paramsFromStruct(params), opts...)
 }
 
+type SecEdgarService struct { client *Client }
+
+func (s *SecEdgarService) SecCompanyIntelligence(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sec-company-intelligence", params, opts...)
+}
+
+type SecEdgarSecCompanyIntelligenceParams struct {
+	Cik *string `crawlora:"cik,omitempty"`
+	Ticker *string `crawlora:"ticker,omitempty"`
+}
+
+type SecEdgarSecCompanyIntelligenceResponse = ModelSecIntelligenceResponseDoc
+
+func (s *SecEdgarService) SecCompanyIntelligenceTyped(ctx context.Context, params SecEdgarSecCompanyIntelligenceParams, opts ...RequestOption) (SecEdgarSecCompanyIntelligenceResponse, error) {
+	return requestTyped[SecEdgarSecCompanyIntelligenceResponse](s.client, ctx, "sec-company-intelligence", paramsFromStruct(params), opts...)
+}
+
+func (s *SecEdgarService) SecCompanySearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sec-company-search", params, opts...)
+}
+
+type SecEdgarSecCompanySearchParams struct {
+	Q string `crawlora:"q"`
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type SecEdgarSecCompanySearchResponse = ModelSecCompanySearchResponseDoc
+
+func (s *SecEdgarService) SecCompanySearchTyped(ctx context.Context, params SecEdgarSecCompanySearchParams, opts ...RequestOption) (SecEdgarSecCompanySearchResponse, error) {
+	return requestTyped[SecEdgarSecCompanySearchResponse](s.client, ctx, "sec-company-search", paramsFromStruct(params), opts...)
+}
+
+func (s *SecEdgarService) SecCompanySubmissions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sec-company-submissions", params, opts...)
+}
+
+type SecEdgarSecCompanySubmissionsParams struct {
+	Cik *string `crawlora:"cik,omitempty"`
+	Ticker *string `crawlora:"ticker,omitempty"`
+	Form *string `crawlora:"form,omitempty"`
+	From *string `crawlora:"from,omitempty"`
+	To *string `crawlora:"to,omitempty"`
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type SecEdgarSecCompanySubmissionsResponse = ModelSecSubmissionsResponseDoc
+
+func (s *SecEdgarService) SecCompanySubmissionsTyped(ctx context.Context, params SecEdgarSecCompanySubmissionsParams, opts ...RequestOption) (SecEdgarSecCompanySubmissionsResponse, error) {
+	return requestTyped[SecEdgarSecCompanySubmissionsResponse](s.client, ctx, "sec-company-submissions", paramsFromStruct(params), opts...)
+}
+
+func (s *SecEdgarService) SecFiling(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sec-filing", params, opts...)
+}
+
+type SecEdgarSecFilingParams struct {
+	Cik *string `crawlora:"cik,omitempty"`
+	Ticker *string `crawlora:"ticker,omitempty"`
+	Accession string `crawlora:"accession"`
+}
+
+type SecEdgarSecFilingResponse = ModelSecFilingResponseDoc
+
+func (s *SecEdgarService) SecFilingTyped(ctx context.Context, params SecEdgarSecFilingParams, opts ...RequestOption) (SecEdgarSecFilingResponse, error) {
+	return requestTyped[SecEdgarSecFilingResponse](s.client, ctx, "sec-filing", paramsFromStruct(params), opts...)
+}
+
+func (s *SecEdgarService) SecFilingSections(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sec-filing-sections", params, opts...)
+}
+
+type SecEdgarSecFilingSectionsParams struct {
+	Cik *string `crawlora:"cik,omitempty"`
+	Ticker *string `crawlora:"ticker,omitempty"`
+	Accession string `crawlora:"accession"`
+	Items *string `crawlora:"items,omitempty"`
+	MaxChars *int `crawlora:"max_chars,omitempty"`
+}
+
+type SecEdgarSecFilingSectionsResponse = ModelSecFilingSectionsResponseDoc
+
+func (s *SecEdgarService) SecFilingSectionsTyped(ctx context.Context, params SecEdgarSecFilingSectionsParams, opts ...RequestOption) (SecEdgarSecFilingSectionsResponse, error) {
+	return requestTyped[SecEdgarSecFilingSectionsResponse](s.client, ctx, "sec-filing-sections", paramsFromStruct(params), opts...)
+}
+
+func (s *SecEdgarService) SecFinancials(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sec-financials", params, opts...)
+}
+
+type SecEdgarSecFinancialsParams struct {
+	Cik *string `crawlora:"cik,omitempty"`
+	Ticker *string `crawlora:"ticker,omitempty"`
+	Statement *string `crawlora:"statement,omitempty"`
+	Period *string `crawlora:"period,omitempty"`
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type SecEdgarSecFinancialsResponse = ModelSecFinancialsResponseDoc
+
+func (s *SecEdgarService) SecFinancialsTyped(ctx context.Context, params SecEdgarSecFinancialsParams, opts ...RequestOption) (SecEdgarSecFinancialsResponse, error) {
+	return requestTyped[SecEdgarSecFinancialsResponse](s.client, ctx, "sec-financials", paramsFromStruct(params), opts...)
+}
+
+func (s *SecEdgarService) SecFrames(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sec-frames", params, opts...)
+}
+
+type SecEdgarSecFramesParams struct {
+	Concept string `crawlora:"concept"`
+	Period string `crawlora:"period"`
+	Unit *string `crawlora:"unit,omitempty"`
+	Taxonomy *string `crawlora:"taxonomy,omitempty"`
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type SecEdgarSecFramesResponse = ModelSecFramesResponseDoc
+
+func (s *SecEdgarService) SecFramesTyped(ctx context.Context, params SecEdgarSecFramesParams, opts ...RequestOption) (SecEdgarSecFramesResponse, error) {
+	return requestTyped[SecEdgarSecFramesResponse](s.client, ctx, "sec-frames", paramsFromStruct(params), opts...)
+}
+
+func (s *SecEdgarService) SecFullTextSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sec-full-text-search", params, opts...)
+}
+
+type SecEdgarSecFullTextSearchParams struct {
+	Q string `crawlora:"q"`
+	Forms *string `crawlora:"forms,omitempty"`
+	From *string `crawlora:"from,omitempty"`
+	To *string `crawlora:"to,omitempty"`
+	Page *int `crawlora:"page,omitempty"`
+}
+
+type SecEdgarSecFullTextSearchResponse = ModelSecFullTextResponseDoc
+
+func (s *SecEdgarService) SecFullTextSearchTyped(ctx context.Context, params SecEdgarSecFullTextSearchParams, opts ...RequestOption) (SecEdgarSecFullTextSearchResponse, error) {
+	return requestTyped[SecEdgarSecFullTextSearchResponse](s.client, ctx, "sec-full-text-search", paramsFromStruct(params), opts...)
+}
+
+func (s *SecEdgarService) SecInsider(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sec-insider", params, opts...)
+}
+
+type SecEdgarSecInsiderParams struct {
+	Cik *string `crawlora:"cik,omitempty"`
+	Ticker *string `crawlora:"ticker,omitempty"`
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type SecEdgarSecInsiderResponse = ModelSecInsiderResponseDoc
+
+func (s *SecEdgarService) SecInsiderTyped(ctx context.Context, params SecEdgarSecInsiderParams, opts ...RequestOption) (SecEdgarSecInsiderResponse, error) {
+	return requestTyped[SecEdgarSecInsiderResponse](s.client, ctx, "sec-insider", paramsFromStruct(params), opts...)
+}
+
+func (s *SecEdgarService) SecInstitutionalHoldings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sec-institutional-holdings", params, opts...)
+}
+
+type SecEdgarSecInstitutionalHoldingsParams struct {
+	Cik string `crawlora:"cik"`
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type SecEdgarSecInstitutionalHoldingsResponse = ModelSecHoldingsResponseDoc
+
+func (s *SecEdgarService) SecInstitutionalHoldingsTyped(ctx context.Context, params SecEdgarSecInstitutionalHoldingsParams, opts ...RequestOption) (SecEdgarSecInstitutionalHoldingsResponse, error) {
+	return requestTyped[SecEdgarSecInstitutionalHoldingsResponse](s.client, ctx, "sec-institutional-holdings", paramsFromStruct(params), opts...)
+}
+
 type ShopAppService struct { client *Client }
 
 func (s *ShopAppService) Analysis(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -21206,6 +23033,224 @@ type SimilarWebWebResponse = ModelSimilarwebWebResponseDoc
 
 func (s *SimilarWebService) WebTyped(ctx context.Context, params SimilarWebWebParams, opts ...RequestOption) (SimilarWebWebResponse, error) {
 	return requestTyped[SimilarWebWebResponse](s.client, ctx, "similarweb-web", paramsFromStruct(params), opts...)
+}
+
+type SofaScoreService struct { client *Client }
+
+func (s *SofaScoreService) SofascoreEvent(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event", params, opts...)
+}
+
+type SofaScoreSofascoreEventParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventResponse = ModelSofascoreEventResponseDoc
+
+func (s *SofaScoreService) SofascoreEventTyped(ctx context.Context, params SofaScoreSofascoreEventParams, opts ...RequestOption) (SofaScoreSofascoreEventResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventResponse](s.client, ctx, "sofascore-event", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventH2h(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-h2h", params, opts...)
+}
+
+type SofaScoreSofascoreEventH2hParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventH2hResponse = ModelSofascoreEventH2HresponseDoc
+
+func (s *SofaScoreService) SofascoreEventH2hTyped(ctx context.Context, params SofaScoreSofascoreEventH2hParams, opts ...RequestOption) (SofaScoreSofascoreEventH2hResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventH2hResponse](s.client, ctx, "sofascore-event-h2h", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventIncidents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-incidents", params, opts...)
+}
+
+type SofaScoreSofascoreEventIncidentsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventIncidentsResponse = ModelSofascoreEventIncidentsResponseDoc
+
+func (s *SofaScoreService) SofascoreEventIncidentsTyped(ctx context.Context, params SofaScoreSofascoreEventIncidentsParams, opts ...RequestOption) (SofaScoreSofascoreEventIncidentsResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventIncidentsResponse](s.client, ctx, "sofascore-event-incidents", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventLineups(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-lineups", params, opts...)
+}
+
+type SofaScoreSofascoreEventLineupsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventLineupsResponse = ModelSofascoreEventLineupsResponseDoc
+
+func (s *SofaScoreService) SofascoreEventLineupsTyped(ctx context.Context, params SofaScoreSofascoreEventLineupsParams, opts ...RequestOption) (SofaScoreSofascoreEventLineupsResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventLineupsResponse](s.client, ctx, "sofascore-event-lineups", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventOdds(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-odds", params, opts...)
+}
+
+type SofaScoreSofascoreEventOddsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventOddsResponse = ModelSofascoreEventOddsResponseDoc
+
+func (s *SofaScoreService) SofascoreEventOddsTyped(ctx context.Context, params SofaScoreSofascoreEventOddsParams, opts ...RequestOption) (SofaScoreSofascoreEventOddsResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventOddsResponse](s.client, ctx, "sofascore-event-odds", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventStatistics(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-statistics", params, opts...)
+}
+
+type SofaScoreSofascoreEventStatisticsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventStatisticsResponse = ModelSofascoreEventStatisticsResponseDoc
+
+func (s *SofaScoreService) SofascoreEventStatisticsTyped(ctx context.Context, params SofaScoreSofascoreEventStatisticsParams, opts ...RequestOption) (SofaScoreSofascoreEventStatisticsResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventStatisticsResponse](s.client, ctx, "sofascore-event-statistics", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreLiveEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-live-events", params, opts...)
+}
+
+type SofaScoreSofascoreLiveEventsParams struct {
+	Sport string `crawlora:"sport"`
+}
+
+type SofaScoreSofascoreLiveEventsResponse = ModelSofascoreLiveEventsResponseDoc
+
+func (s *SofaScoreService) SofascoreLiveEventsTyped(ctx context.Context, params SofaScoreSofascoreLiveEventsParams, opts ...RequestOption) (SofaScoreSofascoreLiveEventsResponse, error) {
+	return requestTyped[SofaScoreSofascoreLiveEventsResponse](s.client, ctx, "sofascore-live-events", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascorePlayer(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-player", params, opts...)
+}
+
+type SofaScoreSofascorePlayerParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascorePlayerResponse = ModelSofascorePlayerResponseDoc
+
+func (s *SofaScoreService) SofascorePlayerTyped(ctx context.Context, params SofaScoreSofascorePlayerParams, opts ...RequestOption) (SofaScoreSofascorePlayerResponse, error) {
+	return requestTyped[SofaScoreSofascorePlayerResponse](s.client, ctx, "sofascore-player", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreRoundEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-round-events", params, opts...)
+}
+
+type SofaScoreSofascoreRoundEventsParams struct {
+	Id string `crawlora:"id"`
+	Season string `crawlora:"season"`
+	Round int `crawlora:"round"`
+}
+
+type SofaScoreSofascoreRoundEventsResponse = ModelSofascoreRoundEventsResponseDoc
+
+func (s *SofaScoreService) SofascoreRoundEventsTyped(ctx context.Context, params SofaScoreSofascoreRoundEventsParams, opts ...RequestOption) (SofaScoreSofascoreRoundEventsResponse, error) {
+	return requestTyped[SofaScoreSofascoreRoundEventsResponse](s.client, ctx, "sofascore-round-events", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-search", params, opts...)
+}
+
+type SofaScoreSofascoreSearchParams struct {
+	Q string `crawlora:"q"`
+}
+
+type SofaScoreSofascoreSearchResponse = ModelSofascoreSearchResponseDoc
+
+func (s *SofaScoreService) SofascoreSearchTyped(ctx context.Context, params SofaScoreSofascoreSearchParams, opts ...RequestOption) (SofaScoreSofascoreSearchResponse, error) {
+	return requestTyped[SofaScoreSofascoreSearchResponse](s.client, ctx, "sofascore-search", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreStandings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-standings", params, opts...)
+}
+
+type SofaScoreSofascoreStandingsParams struct {
+	Id string `crawlora:"id"`
+	Season string `crawlora:"season"`
+	Type string `crawlora:"type"`
+}
+
+type SofaScoreSofascoreStandingsResponse = ModelSofascoreStandingsResponseDoc
+
+func (s *SofaScoreService) SofascoreStandingsTyped(ctx context.Context, params SofaScoreSofascoreStandingsParams, opts ...RequestOption) (SofaScoreSofascoreStandingsResponse, error) {
+	return requestTyped[SofaScoreSofascoreStandingsResponse](s.client, ctx, "sofascore-standings", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTeam(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-team", params, opts...)
+}
+
+type SofaScoreSofascoreTeamParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreTeamResponse = ModelSofascoreTeamResponseDoc
+
+func (s *SofaScoreService) SofascoreTeamTyped(ctx context.Context, params SofaScoreSofascoreTeamParams, opts ...RequestOption) (SofaScoreSofascoreTeamResponse, error) {
+	return requestTyped[SofaScoreSofascoreTeamResponse](s.client, ctx, "sofascore-team", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTeamEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-team-events", params, opts...)
+}
+
+type SofaScoreSofascoreTeamEventsParams struct {
+	Id string `crawlora:"id"`
+	Direction string `crawlora:"direction"`
+	Page *int `crawlora:"page,omitempty"`
+}
+
+type SofaScoreSofascoreTeamEventsResponse = ModelSofascoreTeamEventsResponseDoc
+
+func (s *SofaScoreService) SofascoreTeamEventsTyped(ctx context.Context, params SofaScoreSofascoreTeamEventsParams, opts ...RequestOption) (SofaScoreSofascoreTeamEventsResponse, error) {
+	return requestTyped[SofaScoreSofascoreTeamEventsResponse](s.client, ctx, "sofascore-team-events", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTeamPlayers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-team-players", params, opts...)
+}
+
+type SofaScoreSofascoreTeamPlayersParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreTeamPlayersResponse = ModelSofascoreTeamPlayersResponseDoc
+
+func (s *SofaScoreService) SofascoreTeamPlayersTyped(ctx context.Context, params SofaScoreSofascoreTeamPlayersParams, opts ...RequestOption) (SofaScoreSofascoreTeamPlayersResponse, error) {
+	return requestTyped[SofaScoreSofascoreTeamPlayersResponse](s.client, ctx, "sofascore-team-players", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTournamentSeasons(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-tournament-seasons", params, opts...)
+}
+
+type SofaScoreSofascoreTournamentSeasonsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreTournamentSeasonsResponse = ModelSofascoreTournamentSeasonsResponseDoc
+
+func (s *SofaScoreService) SofascoreTournamentSeasonsTyped(ctx context.Context, params SofaScoreSofascoreTournamentSeasonsParams, opts ...RequestOption) (SofaScoreSofascoreTournamentSeasonsResponse, error) {
+	return requestTyped[SofaScoreSofascoreTournamentSeasonsResponse](s.client, ctx, "sofascore-tournament-seasons", paramsFromStruct(params), opts...)
 }
 
 type SpotifyPodcastsService struct { client *Client }
@@ -22358,6 +24403,104 @@ type TripAdvisorTripadvisorSearchResponse = ModelTripadvisorTripadvisorSearchRes
 
 func (s *TripAdvisorService) TripadvisorSearchTyped(ctx context.Context, params TripAdvisorTripadvisorSearchParams, opts ...RequestOption) (TripAdvisorTripadvisorSearchResponse, error) {
 	return requestTyped[TripAdvisorTripadvisorSearchResponse](s.client, ctx, "tripadvisor-search", paramsFromStruct(params), opts...)
+}
+
+type TrustMrrService struct { client *Client }
+
+func (s *TrustMrrService) TrustmrrAcquire(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "trustmrr-acquire", params, opts...)
+}
+
+type TrustMrrTrustmrrAcquireParams struct {
+}
+
+type TrustMrrTrustmrrAcquireResponse = ModelTrustmrrAcquireResponseDoc
+
+func (s *TrustMrrService) TrustmrrAcquireTyped(ctx context.Context, params TrustMrrTrustmrrAcquireParams, opts ...RequestOption) (TrustMrrTrustmrrAcquireResponse, error) {
+	return requestTyped[TrustMrrTrustmrrAcquireResponse](s.client, ctx, "trustmrr-acquire", paramsFromStruct(params), opts...)
+}
+
+func (s *TrustMrrService) TrustmrrCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "trustmrr-categories", params, opts...)
+}
+
+type TrustMrrTrustmrrCategoriesParams struct {
+}
+
+type TrustMrrTrustmrrCategoriesResponse = ModelTrustmrrCategoriesResponseDoc
+
+func (s *TrustMrrService) TrustmrrCategoriesTyped(ctx context.Context, params TrustMrrTrustmrrCategoriesParams, opts ...RequestOption) (TrustMrrTrustmrrCategoriesResponse, error) {
+	return requestTyped[TrustMrrTrustmrrCategoriesResponse](s.client, ctx, "trustmrr-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *TrustMrrService) TrustmrrCategory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "trustmrr-category", params, opts...)
+}
+
+type TrustMrrTrustmrrCategoryParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type TrustMrrTrustmrrCategoryResponse = ModelTrustmrrCategoryResponseDoc
+
+func (s *TrustMrrService) TrustmrrCategoryTyped(ctx context.Context, params TrustMrrTrustmrrCategoryParams, opts ...RequestOption) (TrustMrrTrustmrrCategoryResponse, error) {
+	return requestTyped[TrustMrrTrustmrrCategoryResponse](s.client, ctx, "trustmrr-category", paramsFromStruct(params), opts...)
+}
+
+func (s *TrustMrrService) TrustmrrLeaderboard(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "trustmrr-leaderboard", params, opts...)
+}
+
+type TrustMrrTrustmrrLeaderboardParams struct {
+	Metric *string `crawlora:"metric,omitempty"`
+}
+
+type TrustMrrTrustmrrLeaderboardResponse = ModelTrustmrrLeaderboardResponseDoc
+
+func (s *TrustMrrService) TrustmrrLeaderboardTyped(ctx context.Context, params TrustMrrTrustmrrLeaderboardParams, opts ...RequestOption) (TrustMrrTrustmrrLeaderboardResponse, error) {
+	return requestTyped[TrustMrrTrustmrrLeaderboardResponse](s.client, ctx, "trustmrr-leaderboard", paramsFromStruct(params), opts...)
+}
+
+func (s *TrustMrrService) TrustmrrMarketplace(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "trustmrr-marketplace", params, opts...)
+}
+
+type TrustMrrTrustmrrMarketplaceParams struct {
+}
+
+type TrustMrrTrustmrrMarketplaceResponse = ModelTrustmrrMarketplaceResponseDoc
+
+func (s *TrustMrrService) TrustmrrMarketplaceTyped(ctx context.Context, params TrustMrrTrustmrrMarketplaceParams, opts ...RequestOption) (TrustMrrTrustmrrMarketplaceResponse, error) {
+	return requestTyped[TrustMrrTrustmrrMarketplaceResponse](s.client, ctx, "trustmrr-marketplace", paramsFromStruct(params), opts...)
+}
+
+func (s *TrustMrrService) TrustmrrStartup(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "trustmrr-startup", params, opts...)
+}
+
+type TrustMrrTrustmrrStartupParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type TrustMrrTrustmrrStartupResponse = ModelTrustmrrStartupResponseDoc
+
+func (s *TrustMrrService) TrustmrrStartupTyped(ctx context.Context, params TrustMrrTrustmrrStartupParams, opts ...RequestOption) (TrustMrrTrustmrrStartupResponse, error) {
+	return requestTyped[TrustMrrTrustmrrStartupResponse](s.client, ctx, "trustmrr-startup", paramsFromStruct(params), opts...)
+}
+
+func (s *TrustMrrService) TrustmrrStartups(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "trustmrr-startups", params, opts...)
+}
+
+type TrustMrrTrustmrrStartupsParams struct {
+	Page *int `crawlora:"page,omitempty"`
+	PageSize *int `crawlora:"page_size,omitempty"`
+}
+
+type TrustMrrTrustmrrStartupsResponse = ModelTrustmrrStartupsResponseDoc
+
+func (s *TrustMrrService) TrustmrrStartupsTyped(ctx context.Context, params TrustMrrTrustmrrStartupsParams, opts ...RequestOption) (TrustMrrTrustmrrStartupsResponse, error) {
+	return requestTyped[TrustMrrTrustmrrStartupsResponse](s.client, ctx, "trustmrr-startups", paramsFromStruct(params), opts...)
 }
 
 type TrustpilotService struct { client *Client }
