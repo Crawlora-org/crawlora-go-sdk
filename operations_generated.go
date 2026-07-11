@@ -5701,6 +5701,98 @@ type ModelInstagramReelsResponseDoc struct {
 	Msg  string                     `json:"msg,omitempty"`
 }
 
+type ModelJobsBoardResponse struct {
+	Company   string         `json:"company,omitempty"`
+	Count     int            `json:"count,omitempty"`
+	Jobs      []ModelJobsJob `json:"jobs,omitempty"`
+	Provider  string         `json:"provider,omitempty"`
+	SourceUrl string         `json:"source_url,omitempty"`
+	Total     int            `json:"total,omitempty"`
+}
+
+type ModelJobsCompanySearchResponse struct {
+	Count int                    `json:"count,omitempty"`
+	Found []ModelJobsProviderHit `json:"found,omitempty"`
+	Slug  string                 `json:"slug,omitempty"`
+}
+
+type ModelJobsCount struct {
+	Count int    `json:"count,omitempty"`
+	Name  string `json:"name,omitempty"`
+}
+
+type ModelJobsHiringSignals struct {
+	AsOf           string           `json:"as_of,omitempty"`
+	ByDepartment   []ModelJobsCount `json:"by_department,omitempty"`
+	ByLocation     []ModelJobsCount `json:"by_location,omitempty"`
+	Company        string           `json:"company,omitempty"`
+	NewLast30d     int              `json:"new_last_30d,omitempty"`
+	NewLast7d      int              `json:"new_last_7d,omitempty"`
+	Provider       string           `json:"provider,omitempty"`
+	RemoteCount    int              `json:"remote_count,omitempty"`
+	RemotePct      float64          `json:"remote_pct,omitempty"`
+	SampledRoles   int              `json:"sampled_roles,omitempty"`
+	SourceUrl      string           `json:"source_url,omitempty"`
+	TopTitles      []ModelJobsCount `json:"top_titles,omitempty"`
+	TotalOpenRoles int              `json:"total_open_roles,omitempty"`
+}
+
+type ModelJobsJob struct {
+	ApplyUrl             string   `json:"apply_url,omitempty"`
+	Company              string   `json:"company,omitempty"`
+	Compensation         string   `json:"compensation,omitempty"`
+	CompensationCurrency string   `json:"compensation_currency,omitempty"`
+	CompensationMax      float64  `json:"compensation_max,omitempty"`
+	CompensationMin      float64  `json:"compensation_min,omitempty"`
+	Department           string   `json:"department,omitempty"`
+	DescriptionHtml      string   `json:"description_html,omitempty"`
+	DescriptionText      string   `json:"description_text,omitempty"`
+	EmploymentType       string   `json:"employment_type,omitempty"`
+	Id                   string   `json:"id,omitempty"`
+	Location             string   `json:"location,omitempty"`
+	Locations            []string `json:"locations,omitempty"`
+	PostedAgeText        string   `json:"posted_age_text,omitempty"`
+	PostedAt             string   `json:"posted_at,omitempty"`
+	Provider             string   `json:"provider,omitempty"`
+	Remote               bool     `json:"remote,omitempty"`
+	ReqId                string   `json:"req_id,omitempty"`
+	Team                 string   `json:"team,omitempty"`
+	Title                string   `json:"title,omitempty"`
+	Url                  string   `json:"url,omitempty"`
+	WorkplaceType        string   `json:"workplace_type,omitempty"`
+}
+
+type ModelJobsProviderHit struct {
+	BoardUrl       string `json:"board_url,omitempty"`
+	Company        string `json:"company,omitempty"`
+	Provider       string `json:"provider,omitempty"`
+	TotalOpenRoles int    `json:"total_open_roles,omitempty"`
+}
+
+type ModelJobsBoardResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelJobsBoardResponse `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelJobsJobResponseDoc struct {
+	Code int          `json:"code,omitempty"`
+	Data ModelJobsJob `json:"data,omitempty"`
+	Msg  string       `json:"msg,omitempty"`
+}
+
+type ModelJobsSearchResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelJobsCompanySearchResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelJobsSignalsResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelJobsHiringSignals `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
 type ModelJustwatchAgeCertification struct {
 	TechnicalName string `json:"technical_name,omitempty"`
 }
@@ -9524,10 +9616,14 @@ type ModelRottentomatoesSeriesResponseDoc struct {
 }
 
 type ModelSecCompanyIntelligenceResponse struct {
+	Degraded           []string               `json:"degraded,omitempty"`
 	FinancialSnapshot  map[string]float64     `json:"financial_snapshot,omitempty"`
+	Hiring             ModelSecHiringBlock    `json:"hiring,omitempty"`
 	Latest8k           ModelSecFiling         `json:"latest_8k,omitempty"`
 	LatestAnnual10k    ModelSecFiling         `json:"latest_annual_10k,omitempty"`
 	LatestQuarterly10q ModelSecFiling         `json:"latest_quarterly_10q,omitempty"`
+	Market             ModelSecMarketBlock    `json:"market,omitempty"`
+	News               []ModelSecNewsItem     `json:"news,omitempty"`
 	Profile            ModelSecCompanyProfile `json:"profile,omitempty"`
 	RecentEvents       []ModelSecEventFiling  `json:"recent_events,omitempty"`
 	SnapshotFiscalYear int                    `json:"snapshot_fiscal_year,omitempty"`
@@ -9681,6 +9777,15 @@ type ModelSecFullTextSearchResponse struct {
 	Total     int                   `json:"total,omitempty"`
 }
 
+type ModelSecHiringBlock struct {
+	NewLast30d     int                 `json:"new_last_30d,omitempty"`
+	Provider       string              `json:"provider,omitempty"`
+	RemotePct      float64             `json:"remote_pct,omitempty"`
+	SourceUrl      string              `json:"source_url,omitempty"`
+	TopDepartments []ModelSecNameCount `json:"top_departments,omitempty"`
+	TotalOpenRoles int                 `json:"total_open_roles,omitempty"`
+}
+
 type ModelSecHolding struct {
 	Cusip                string  `json:"cusip,omitempty"`
 	InvestmentDiscretion string  `json:"investment_discretion,omitempty"`
@@ -9731,6 +9836,29 @@ type ModelSecInsiderTransaction struct {
 	Shares             float64 `json:"shares,omitempty"`
 	SharesOwnedAfter   float64 `json:"shares_owned_after,omitempty"`
 	TransactionDate    string  `json:"transaction_date,omitempty"`
+}
+
+type ModelSecMarketBlock struct {
+	ChangePercent float64 `json:"change_percent,omitempty"`
+	Currency      string  `json:"currency,omitempty"`
+	DayHigh       float64 `json:"day_high,omitempty"`
+	DayLow        float64 `json:"day_low,omitempty"`
+	MarketCap     float64 `json:"market_cap,omitempty"`
+	Name          string  `json:"name,omitempty"`
+	Price         float64 `json:"price,omitempty"`
+	Symbol        string  `json:"symbol,omitempty"`
+}
+
+type ModelSecNameCount struct {
+	Count int    `json:"count,omitempty"`
+	Name  string `json:"name,omitempty"`
+}
+
+type ModelSecNewsItem struct {
+	PublishedAt string `json:"published_at,omitempty"`
+	Publisher   string `json:"publisher,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Url         string `json:"url,omitempty"`
 }
 
 type ModelSecSubmissionsResponse struct {
@@ -11774,6 +11902,359 @@ type ModelSpotifyUserProfileResponseDoc struct {
 	Code int                             `json:"code,omitempty"`
 	Data ModelSpotifyUserProfileResponse `json:"data,omitempty"`
 	Msg  any                             `json:"msg,omitempty"`
+}
+
+type ModelSteamAchievementsResponse struct {
+	Achievements []ModelSteamGlobalAchievement `json:"achievements,omitempty"`
+	Appid        string                        `json:"appid,omitempty"`
+	Count        int                           `json:"count,omitempty"`
+	SourceUrl    string                        `json:"source_url,omitempty"`
+}
+
+type ModelSteamAppDetails struct {
+	AchievementsTotal  int                  `json:"achievements_total,omitempty"`
+	Appid              int                  `json:"appid,omitempty"`
+	CapsuleImage       string               `json:"capsule_image,omitempty"`
+	Categories         []ModelSteamIdname   `json:"categories,omitempty"`
+	ControllerSupport  string               `json:"controller_support,omitempty"`
+	Developers         []string             `json:"developers,omitempty"`
+	Dlc                []int                `json:"dlc,omitempty"`
+	Genres             []ModelSteamIdname   `json:"genres,omitempty"`
+	HeaderImage        string               `json:"header_image,omitempty"`
+	IsFree             bool                 `json:"is_free,omitempty"`
+	Metacritic         ModelSteamMetacritic `json:"metacritic,omitempty"`
+	Movies             int                  `json:"movies,omitempty"`
+	Name               string               `json:"name,omitempty"`
+	Platforms          ModelSteamPlatforms  `json:"platforms,omitempty"`
+	PriceOverview      ModelSteamPrice      `json:"price_overview,omitempty"`
+	Publishers         []string             `json:"publishers,omitempty"`
+	Recommendations    int                  `json:"recommendations,omitempty"`
+	ReleaseDate        ModelSteamAppRelease `json:"release_date,omitempty"`
+	RequiredAge        int                  `json:"required_age,omitempty"`
+	Screenshots        int                  `json:"screenshots,omitempty"`
+	ShortDescription   string               `json:"short_description,omitempty"`
+	SourceUrl          string               `json:"source_url,omitempty"`
+	SupportedLanguages string               `json:"supported_languages,omitempty"`
+	Type               string               `json:"type,omitempty"`
+	Website            string               `json:"website,omitempty"`
+}
+
+type ModelSteamAppRelease struct {
+	ComingSoon bool   `json:"coming_soon,omitempty"`
+	Date       string `json:"date,omitempty"`
+}
+
+type ModelSteamFeaturedBucket struct {
+	Count int                      `json:"count,omitempty"`
+	Id    string                   `json:"id,omitempty"`
+	Items []ModelSteamFeaturedItem `json:"items,omitempty"`
+	Name  string                   `json:"name,omitempty"`
+}
+
+type ModelSteamFeaturedCategoriesResponse struct {
+	ComingSoon  ModelSteamFeaturedBucket `json:"coming_soon,omitempty"`
+	NewReleases ModelSteamFeaturedBucket `json:"new_releases,omitempty"`
+	SourceUrl   string                   `json:"source_url,omitempty"`
+	Specials    ModelSteamFeaturedBucket `json:"specials,omitempty"`
+	TopSellers  ModelSteamFeaturedBucket `json:"top_sellers,omitempty"`
+}
+
+type ModelSteamFeaturedItem struct {
+	Currency         string `json:"currency,omitempty"`
+	DiscountPercent  int    `json:"discount_percent,omitempty"`
+	Discounted       bool   `json:"discounted,omitempty"`
+	FinalPrice       int    `json:"final_price,omitempty"`
+	HeaderImage      string `json:"header_image,omitempty"`
+	Id               int    `json:"id,omitempty"`
+	LinuxAvailable   bool   `json:"linux_available,omitempty"`
+	MacAvailable     bool   `json:"mac_available,omitempty"`
+	Name             string `json:"name,omitempty"`
+	OriginalPrice    int    `json:"original_price,omitempty"`
+	Type             int    `json:"type,omitempty"`
+	WindowsAvailable bool   `json:"windows_available,omitempty"`
+}
+
+type ModelSteamFeaturedResponse struct {
+	FeaturedLinux []ModelSteamFeaturedItem `json:"featured_linux,omitempty"`
+	FeaturedMac   []ModelSteamFeaturedItem `json:"featured_mac,omitempty"`
+	FeaturedWin   []ModelSteamFeaturedItem `json:"featured_win,omitempty"`
+	LargeCapsules []ModelSteamFeaturedItem `json:"large_capsules,omitempty"`
+	SourceUrl     string                   `json:"source_url,omitempty"`
+}
+
+type ModelSteamGlobalAchievement struct {
+	Name    string  `json:"name,omitempty"`
+	Percent float64 `json:"percent,omitempty"`
+}
+
+type ModelSteamHistogramBucket struct {
+	Date                int `json:"date,omitempty"`
+	RecommendationsDown int `json:"recommendations_down,omitempty"`
+	RecommendationsUp   int `json:"recommendations_up,omitempty"`
+}
+
+type ModelSteamIdname struct {
+	Description string `json:"description,omitempty"`
+	Id          string `json:"id,omitempty"`
+}
+
+type ModelSteamMetacritic struct {
+	Score int    `json:"score,omitempty"`
+	Url   string `json:"url,omitempty"`
+}
+
+type ModelSteamNewsItem struct {
+	Author        string   `json:"author,omitempty"`
+	Contents      string   `json:"contents,omitempty"`
+	Date          int      `json:"date,omitempty"`
+	Feedlabel     string   `json:"feedlabel,omitempty"`
+	Feedname      string   `json:"feedname,omitempty"`
+	Gid           string   `json:"gid,omitempty"`
+	IsExternalUrl bool     `json:"is_external_url,omitempty"`
+	Tags          []string `json:"tags,omitempty"`
+	Title         string   `json:"title,omitempty"`
+	Url           string   `json:"url,omitempty"`
+}
+
+type ModelSteamNewsResponse struct {
+	Appid     string               `json:"appid,omitempty"`
+	Count     int                  `json:"count,omitempty"`
+	Items     []ModelSteamNewsItem `json:"items,omitempty"`
+	SourceUrl string               `json:"source_url,omitempty"`
+}
+
+type ModelSteamPackageDetails struct {
+	Apps        []ModelSteamIdname     `json:"apps,omitempty"`
+	HeaderImage string                 `json:"header_image,omitempty"`
+	Name        string                 `json:"name,omitempty"`
+	Packageid   int                    `json:"packageid,omitempty"`
+	Platforms   ModelSteamPlatforms    `json:"platforms,omitempty"`
+	Price       ModelSteamPackagePrice `json:"price,omitempty"`
+	ReleaseDate ModelSteamAppRelease   `json:"release_date,omitempty"`
+	SourceUrl   string                 `json:"source_url,omitempty"`
+}
+
+type ModelSteamPackagePrice struct {
+	Currency        string `json:"currency,omitempty"`
+	DiscountPercent int    `json:"discount_percent,omitempty"`
+	Final           int    `json:"final,omitempty"`
+	Individual      int    `json:"individual,omitempty"`
+	Initial         int    `json:"initial,omitempty"`
+}
+
+type ModelSteamPlatforms struct {
+	Linux   bool `json:"linux,omitempty"`
+	Mac     bool `json:"mac,omitempty"`
+	Windows bool `json:"windows,omitempty"`
+}
+
+type ModelSteamPlayersResponse struct {
+	Appid       string `json:"appid,omitempty"`
+	PlayerCount int    `json:"player_count,omitempty"`
+	SourceUrl   string `json:"source_url,omitempty"`
+}
+
+type ModelSteamPrice struct {
+	Currency         string `json:"currency,omitempty"`
+	DiscountPercent  int    `json:"discount_percent,omitempty"`
+	Final            int    `json:"final,omitempty"`
+	FinalFormatted   string `json:"final_formatted,omitempty"`
+	Initial          int    `json:"initial,omitempty"`
+	InitialFormatted string `json:"initial_formatted,omitempty"`
+}
+
+type ModelSteamReview struct {
+	Author                   ModelSteamReviewAuthor `json:"author,omitempty"`
+	CommentCount             int                    `json:"comment_count,omitempty"`
+	Language                 string                 `json:"language,omitempty"`
+	ReceivedForFree          bool                   `json:"received_for_free,omitempty"`
+	RecommendationId         string                 `json:"recommendation_id,omitempty"`
+	Review                   string                 `json:"review,omitempty"`
+	SteamPurchase            bool                   `json:"steam_purchase,omitempty"`
+	TimestampCreated         int                    `json:"timestamp_created,omitempty"`
+	TimestampUpdated         int                    `json:"timestamp_updated,omitempty"`
+	VotedUp                  bool                   `json:"voted_up,omitempty"`
+	VotesFunny               int                    `json:"votes_funny,omitempty"`
+	VotesUp                  int                    `json:"votes_up,omitempty"`
+	WeightedVoteScore        string                 `json:"weighted_vote_score,omitempty"`
+	WrittenDuringEarlyAccess bool                   `json:"written_during_early_access,omitempty"`
+}
+
+type ModelSteamReviewAuthor struct {
+	LastPlayed           int    `json:"last_played,omitempty"`
+	NumGamesOwned        int    `json:"num_games_owned,omitempty"`
+	NumReviews           int    `json:"num_reviews,omitempty"`
+	PlaytimeAtReview     int    `json:"playtime_at_review,omitempty"`
+	PlaytimeForever      int    `json:"playtime_forever,omitempty"`
+	PlaytimeLastTwoWeeks int    `json:"playtime_last_two_weeks,omitempty"`
+	Steamid              string `json:"steamid,omitempty"`
+}
+
+type ModelSteamReviewSummary struct {
+	NumReviews      int    `json:"num_reviews,omitempty"`
+	ReviewScore     int    `json:"review_score,omitempty"`
+	ReviewScoreDesc string `json:"review_score_desc,omitempty"`
+	TotalNegative   int    `json:"total_negative,omitempty"`
+	TotalPositive   int    `json:"total_positive,omitempty"`
+	TotalReviews    int    `json:"total_reviews,omitempty"`
+}
+
+type ModelSteamReviewsHistogramResponse struct {
+	Appid           string                      `json:"appid,omitempty"`
+	CountAllReviews int                         `json:"count_all_reviews,omitempty"`
+	EndDate         int                         `json:"end_date,omitempty"`
+	Recent          []ModelSteamHistogramBucket `json:"recent,omitempty"`
+	RollupType      string                      `json:"rollup_type,omitempty"`
+	Rollups         []ModelSteamHistogramBucket `json:"rollups,omitempty"`
+	SourceUrl       string                      `json:"source_url,omitempty"`
+	StartDate       int                         `json:"start_date,omitempty"`
+}
+
+type ModelSteamReviewsResponse struct {
+	Appid        string                  `json:"appid,omitempty"`
+	Count        int                     `json:"count,omitempty"`
+	Cursor       string                  `json:"cursor,omitempty"`
+	QuerySummary ModelSteamReviewSummary `json:"query_summary,omitempty"`
+	Reviews      []ModelSteamReview      `json:"reviews,omitempty"`
+	SourceUrl    string                  `json:"source_url,omitempty"`
+}
+
+type ModelSteamSearchItem struct {
+	ControllerSupport string              `json:"controller_support,omitempty"`
+	Id                int                 `json:"id,omitempty"`
+	Metascore         string              `json:"metascore,omitempty"`
+	Name              string              `json:"name,omitempty"`
+	Platforms         ModelSteamPlatforms `json:"platforms,omitempty"`
+	Price             ModelSteamPrice     `json:"price,omitempty"`
+	Streamingvideo    bool                `json:"streamingvideo,omitempty"`
+	TinyImage         string              `json:"tiny_image,omitempty"`
+	Type              string              `json:"type,omitempty"`
+}
+
+type ModelSteamSearchResponse struct {
+	Count     int                    `json:"count,omitempty"`
+	Items     []ModelSteamSearchItem `json:"items,omitempty"`
+	SourceUrl string                 `json:"source_url,omitempty"`
+	Term      string                 `json:"term,omitempty"`
+	Total     int                    `json:"total,omitempty"`
+}
+
+type ModelSteamSearchResultRow struct {
+	Appid         string              `json:"appid,omitempty"`
+	Bundleid      string              `json:"bundleid,omitempty"`
+	DiscountPct   string              `json:"discount_pct,omitempty"`
+	Name          string              `json:"name,omitempty"`
+	Packageid     string              `json:"packageid,omitempty"`
+	Platforms     ModelSteamPlatforms `json:"platforms,omitempty"`
+	Price         string              `json:"price,omitempty"`
+	ReleaseDate   string              `json:"release_date,omitempty"`
+	ReviewSummary string              `json:"review_summary,omitempty"`
+	Url           string              `json:"url,omitempty"`
+}
+
+type ModelSteamSearchResultsResponse struct {
+	Count     int                         `json:"count,omitempty"`
+	Results   []ModelSteamSearchResultRow `json:"results,omitempty"`
+	SourceUrl string                      `json:"source_url,omitempty"`
+	Start     int                         `json:"start,omitempty"`
+	Term      string                      `json:"term,omitempty"`
+	Total     int                         `json:"total,omitempty"`
+}
+
+type ModelSteamSteamSpyResponse struct {
+	Appid          int            `json:"appid,omitempty"`
+	Average2weeks  int            `json:"average_2weeks,omitempty"`
+	AverageForever int            `json:"average_forever,omitempty"`
+	Ccu            int            `json:"ccu,omitempty"`
+	Developer      string         `json:"developer,omitempty"`
+	Discount       string         `json:"discount,omitempty"`
+	Genre          string         `json:"genre,omitempty"`
+	Initialprice   string         `json:"initialprice,omitempty"`
+	Languages      string         `json:"languages,omitempty"`
+	Median2weeks   int            `json:"median_2weeks,omitempty"`
+	MedianForever  int            `json:"median_forever,omitempty"`
+	Name           string         `json:"name,omitempty"`
+	Negative       int            `json:"negative,omitempty"`
+	Owners         string         `json:"owners,omitempty"`
+	Positive       int            `json:"positive,omitempty"`
+	Price          string         `json:"price,omitempty"`
+	Publisher      string         `json:"publisher,omitempty"`
+	Source         string         `json:"source,omitempty"`
+	SourceUrl      string         `json:"source_url,omitempty"`
+	Tags           map[string]int `json:"tags,omitempty"`
+	Userscore      int            `json:"userscore,omitempty"`
+}
+
+type ModelSteamAchievementsResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelSteamAchievementsResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelSteamAppResponseDoc struct {
+	Code int                  `json:"code,omitempty"`
+	Data ModelSteamAppDetails `json:"data,omitempty"`
+	Msg  string               `json:"msg,omitempty"`
+}
+
+type ModelSteamFeaturedCategoriesResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelSteamFeaturedCategoriesResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelSteamFeaturedResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelSteamFeaturedResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelSteamHistogramResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelSteamReviewsHistogramResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelSteamNewsResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelSteamNewsResponse `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelSteamPackageResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelSteamPackageDetails `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelSteamPlayersResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelSteamPlayersResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelSteamReviewsResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelSteamReviewsResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelSteamSearchResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelSteamSearchResponse `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelSteamSearchResultsResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelSteamSearchResultsResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelSteamSteamspyResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelSteamSteamSpyResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
 }
 
 type ModelTechstackResult struct {
@@ -14456,7 +14937,7 @@ type ModelZillowSearchResponse struct {
 	Results  []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 603
+const operationCount = 625
 
 const (
 	OperationAirbnbHost                                             = "airbnb-host"
@@ -14613,7 +15094,6 @@ const (
 	OperationGitHubGithubRepoForks                                  = "github-repo-forks"
 	OperationGitHubGithubRepoLanguages                              = "github-repo-languages"
 	OperationGitHubGithubRepoReleases                               = "github-repo-releases"
-	OperationGitHubGithubRepoStargazers                             = "github-repo-stargazers"
 	OperationGitHubGithubSearchRepositories                         = "github-search-repositories"
 	OperationGitHubGithubSearchUsers                                = "github-search-users"
 	OperationGitHubGithubTrending                                   = "github-trending"
@@ -14692,6 +15172,17 @@ const (
 	OperationInstagramPost                                          = "instagram-post"
 	OperationInstagramProfile                                       = "instagram-profile"
 	OperationInstagramReels                                         = "instagram-reels"
+	OperationJobsAshbyBoard                                         = "jobs-ashby-board"
+	OperationJobsCompanySearch                                      = "jobs-company-search"
+	OperationJobsGreenhouseBoard                                    = "jobs-greenhouse-board"
+	OperationJobsGreenhouseJob                                      = "jobs-greenhouse-job"
+	OperationJobsHiringSignals                                      = "jobs-hiring-signals"
+	OperationJobsLeverPosting                                       = "jobs-lever-posting"
+	OperationJobsLeverPostings                                      = "jobs-lever-postings"
+	OperationJobsSmartrecruitersPosting                             = "jobs-smartrecruiters-posting"
+	OperationJobsSmartrecruitersPostings                            = "jobs-smartrecruiters-postings"
+	OperationJobsWorkdayBoard                                       = "jobs-workday-board"
+	OperationJobsWorkdayJob                                         = "jobs-workday-job"
 	OperationJustWatchJustwatchAgeCertifications                    = "justwatch-age-certifications"
 	OperationJustWatchJustwatchDiscover                             = "justwatch-discover"
 	OperationJustWatchJustwatchEpisodeById                          = "justwatch-episode-by-id"
@@ -14949,6 +15440,18 @@ const (
 	OperationSpotifyTrackRecommended                                = "spotify-track-recommended"
 	OperationSpotifyTrackSimilarAlbums                              = "spotify-track-similar-albums"
 	OperationSpotifyTracksSearch                                    = "spotify-tracks-search"
+	OperationSteamAchievements                                      = "steam-achievements"
+	OperationSteamApp                                               = "steam-app"
+	OperationSteamFeatured                                          = "steam-featured"
+	OperationSteamFeaturedCategories                                = "steam-featured-categories"
+	OperationSteamNews                                              = "steam-news"
+	OperationSteamPackage                                           = "steam-package"
+	OperationSteamPlayers                                           = "steam-players"
+	OperationSteamReviews                                           = "steam-reviews"
+	OperationSteamReviewsHistogram                                  = "steam-reviews-histogram"
+	OperationSteamSearch                                            = "steam-search"
+	OperationSteamSearchResults                                     = "steam-search-results"
+	OperationSteamSteamspy                                          = "steam-steamspy"
 	OperationTikTokCategory                                         = "tiktok-category"
 	OperationTikTokChallenge                                        = "tiktok-challenge"
 	OperationTikTokChallengeList                                    = "tiktok-challenge-list"
@@ -15221,7 +15724,6 @@ var operations = map[string]operationDefinition{
 	"github-repo-forks":                             operationDefinition{Method: "GET", Path: "/github/repo/{owner}/{repo}/forks", PathParams: []string{"owner", "repo"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"newest", "oldest", "stargazers", "watchers"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"github-repo-languages":                         operationDefinition{Method: "GET", Path: "/github/repo/{owner}/{repo}/languages", PathParams: []string{"owner", "repo"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"github-repo-releases":                          operationDefinition{Method: "GET", Path: "/github/repo/{owner}/{repo}/releases", PathParams: []string{"owner", "repo"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
-	"github-repo-stargazers":                        operationDefinition{Method: "GET", Path: "/github/repo/{owner}/{repo}/stargazers", PathParams: []string{"owner", "repo"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"github-search-repositories":                    operationDefinition{Method: "GET", Path: "/github/search/repositories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"stars", "forks", "help-wanted-issues", "updated"}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"github-search-users":                           operationDefinition{Method: "GET", Path: "/github/search/users", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"followers", "repositories", "joined"}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"github-trending":                               operationDefinition{Method: "GET", Path: "/github/trending", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "since", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"daily", "weekly", "monthly"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -15300,6 +15802,17 @@ var operations = map[string]operationDefinition{
 	"instagram-post":                                operationDefinition{Method: "GET", Path: "/instagram/post/{id}/{post_id}", PathParams: []string{"id", "post_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"instagram-profile":                             operationDefinition{Method: "GET", Path: "/instagram/profile/{username}", PathParams: []string{"username"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"instagram-reels":                               operationDefinition{Method: "GET", Path: "/instagram/reels/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "max_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"jobs-ashby-board":                              operationDefinition{Method: "GET", Path: "/jobs/ashby/board", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "org", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "include_compensation", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"jobs-company-search":                           operationDefinition{Method: "GET", Path: "/jobs/company-search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"jobs-greenhouse-board":                         operationDefinition{Method: "GET", Path: "/jobs/greenhouse/board", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "token", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "content", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"jobs-greenhouse-job":                           operationDefinition{Method: "GET", Path: "/jobs/greenhouse/job", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "token", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"jobs-hiring-signals":                           operationDefinition{Method: "GET", Path: "/jobs/hiring-signals", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "provider", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"greenhouse", "lever", "ashby", "workday", "smartrecruiters"}}, parameterDefinition{Name: "token", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "company", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "org", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tenant", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "datacenter", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "site", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"jobs-lever-posting":                            operationDefinition{Method: "GET", Path: "/jobs/lever/posting", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "company", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"jobs-lever-postings":                           operationDefinition{Method: "GET", Path: "/jobs/lever/postings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "company", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "department", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "remote", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"jobs-smartrecruiters-posting":                  operationDefinition{Method: "GET", Path: "/jobs/smartrecruiters/posting", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "company", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"jobs-smartrecruiters-postings":                 operationDefinition{Method: "GET", Path: "/jobs/smartrecruiters/postings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "company", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"jobs-workday-board":                            operationDefinition{Method: "GET", Path: "/jobs/workday/board", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "tenant", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "datacenter", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "site", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "search", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"jobs-workday-job":                              operationDefinition{Method: "GET", Path: "/jobs/workday/job", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "tenant", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "datacenter", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "site", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"justwatch-age-certifications":                  operationDefinition{Method: "GET", Path: "/justwatch/age-certifications", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"justwatch-discover":                            operationDefinition{Method: "GET", Path: "/justwatch/discover", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "movie", "show"}}, parameterDefinition{Name: "genres", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "providers", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "monetization_types", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"FLATRATE", "FREE", "ADS", "RENT", "BUY"}}, parameterDefinition{Name: "year_min", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "year_max", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"justwatch-episode-by-id":                       operationDefinition{Method: "GET", Path: "/justwatch/episode/by-id", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -15465,7 +15978,7 @@ var operations = map[string]operationDefinition{
 	"rottentomatoes-search":                         operationDefinition{Method: "GET", Path: "/rottentomatoes/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"rottentomatoes-season":                         operationDefinition{Method: "GET", Path: "/rottentomatoes/season", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"rottentomatoes-series":                         operationDefinition{Method: "GET", Path: "/rottentomatoes/series", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"sec-company-intelligence":                      operationDefinition{Method: "GET", Path: "/sec/company/intelligence", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cik", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ticker", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sec-company-intelligence":                      operationDefinition{Method: "GET", Path: "/sec/company/intelligence", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cik", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ticker", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "enrich", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"market", "news", "hiring"}}, parameterDefinition{Name: "ats", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"greenhouse", "lever", "ashby", "workday", "smartrecruiters"}}, parameterDefinition{Name: "careers_slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tenant", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "datacenter", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "site", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sec-company-search":                            operationDefinition{Method: "GET", Path: "/sec/company/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sec-company-submissions":                       operationDefinition{Method: "GET", Path: "/sec/company/submissions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cik", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ticker", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "form", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sec-filing":                                    operationDefinition{Method: "GET", Path: "/sec/filing", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cik", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ticker", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "accession", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -15557,6 +16070,18 @@ var operations = map[string]operationDefinition{
 	"spotify-track-recommended":                     operationDefinition{Method: "GET", Path: "/spotify/track/recommended", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"spotify-track-similar-albums":                  operationDefinition{Method: "GET", Path: "/spotify/track/similar-albums", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "albums_only", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"spotify-tracks-search":                         operationDefinition{Method: "GET", Path: "/spotify/tracks/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "number_of_top_results", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_audiobooks", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_pre_releases", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_album_pre_releases", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_authors", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"steam-achievements":                            operationDefinition{Method: "GET", Path: "/steam/achievements", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "appid", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"steam-app":                                     operationDefinition{Method: "GET", Path: "/steam/app", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "appid", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cc", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "l", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "filters", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"steam-featured":                                operationDefinition{Method: "GET", Path: "/steam/featured", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cc", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "l", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"steam-featured-categories":                     operationDefinition{Method: "GET", Path: "/steam/featured-categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cc", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "l", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"steam-news":                                    operationDefinition{Method: "GET", Path: "/steam/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "appid", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "maxlength", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"steam-package":                                 operationDefinition{Method: "GET", Path: "/steam/package", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "packageid", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cc", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "l", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"steam-players":                                 operationDefinition{Method: "GET", Path: "/steam/players", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "appid", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"steam-reviews":                                 operationDefinition{Method: "GET", Path: "/steam/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "appid", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "filter", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"recent", "updated", "all"}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "review_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "positive", "negative"}}, parameterDefinition{Name: "purchase_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "steam", "non_steam_purchase"}}, parameterDefinition{Name: "day_range", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "num_per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
+	"steam-reviews-histogram":                       operationDefinition{Method: "GET", Path: "/steam/reviews/histogram", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "appid", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"steam-search":                                  operationDefinition{Method: "GET", Path: "/steam/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cc", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "l", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"steam-search-results":                          operationDefinition{Method: "GET", Path: "/steam/search/results", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "start", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Relevance", "Released_DESC", "Name_ASC", "Price_ASC", "Price_DESC", "Reviews_DESC"}}, parameterDefinition{Name: "cc", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "l", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"start"}},
+	"steam-steamspy":                                operationDefinition{Method: "GET", Path: "/steam/steamspy", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "appid", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"tiktok-category":                               operationDefinition{Method: "GET", Path: "/tiktok/category", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"tiktok-video-comments":                         operationDefinition{Method: "GET", Path: "/tiktok/comments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "aweme_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
 	"tiktok-explore":                                operationDefinition{Method: "GET", Path: "/tiktok/explore/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -15692,6 +16217,7 @@ type Services struct {
 	GooglePlay      *GooglePlayService
 	Imdb            *ImdbService
 	Instagram       *InstagramService
+	Jobs            *JobsService
 	JustWatch       *JustWatchService
 	Kalshi          *KalshiService
 	LinkedIn        *LinkedInService
@@ -15711,6 +16237,7 @@ type Services struct {
 	SofaScore       *SofaScoreService
 	SpotifyPodcasts *SpotifyPodcastsService
 	Spotify         *SpotifyService
+	Steam           *SteamService
 	TikTok          *TikTokService
 	TripAdvisor     *TripAdvisorService
 	TrustMrr        *TrustMrrService
@@ -15746,6 +16273,7 @@ func initServices(c *Client) Services {
 		GooglePlay:      &GooglePlayService{client: c},
 		Imdb:            &ImdbService{client: c},
 		Instagram:       &InstagramService{client: c},
+		Jobs:            &JobsService{client: c},
 		JustWatch:       &JustWatchService{client: c},
 		Kalshi:          &KalshiService{client: c},
 		LinkedIn:        &LinkedInService{client: c},
@@ -15765,6 +16293,7 @@ func initServices(c *Client) Services {
 		SofaScore:       &SofaScoreService{client: c},
 		SpotifyPodcasts: &SpotifyPodcastsService{client: c},
 		Spotify:         &SpotifyService{client: c},
+		Steam:           &SteamService{client: c},
 		TikTok:          &TikTokService{client: c},
 		TripAdvisor:     &TripAdvisorService{client: c},
 		TrustMrr:        &TrustMrrService{client: c},
@@ -18564,23 +19093,6 @@ func (s *GitHubService) GithubRepoReleasesTyped(ctx context.Context, params GitH
 	return requestTyped[GitHubGithubRepoReleasesResponse](s.client, ctx, "github-repo-releases", paramsFromStruct(params), opts...)
 }
 
-func (s *GitHubService) GithubRepoStargazers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
-	return s.client.Request(ctx, "github-repo-stargazers", params, opts...)
-}
-
-type GitHubGithubRepoStargazersParams struct {
-	Owner   string `crawlora:"owner"`
-	Repo    string `crawlora:"repo"`
-	Page    *int   `crawlora:"page,omitempty"`
-	PerPage *int   `crawlora:"per_page,omitempty"`
-}
-
-type GitHubGithubRepoStargazersResponse = ModelAppResponse
-
-func (s *GitHubService) GithubRepoStargazersTyped(ctx context.Context, params GitHubGithubRepoStargazersParams, opts ...RequestOption) (GitHubGithubRepoStargazersResponse, error) {
-	return requestTyped[GitHubGithubRepoStargazersResponse](s.client, ctx, "github-repo-stargazers", paramsFromStruct(params), opts...)
-}
-
 func (s *GitHubService) GithubSearchRepositories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "github-search-repositories", params, opts...)
 }
@@ -19774,6 +20286,186 @@ type InstagramReelsResponse = ModelInstagramReelsResponseDoc
 
 func (s *InstagramService) ReelsTyped(ctx context.Context, params InstagramReelsParams, opts ...RequestOption) (InstagramReelsResponse, error) {
 	return requestTyped[InstagramReelsResponse](s.client, ctx, "instagram-reels", paramsFromStruct(params), opts...)
+}
+
+type JobsService struct{ client *Client }
+
+func (s *JobsService) AshbyBoard(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jobs-ashby-board", params, opts...)
+}
+
+type JobsAshbyBoardParams struct {
+	Org                 string `crawlora:"org"`
+	IncludeCompensation *bool  `crawlora:"include_compensation,omitempty"`
+}
+
+type JobsAshbyBoardResponse = ModelJobsBoardResponseDoc
+
+func (s *JobsService) AshbyBoardTyped(ctx context.Context, params JobsAshbyBoardParams, opts ...RequestOption) (JobsAshbyBoardResponse, error) {
+	return requestTyped[JobsAshbyBoardResponse](s.client, ctx, "jobs-ashby-board", paramsFromStruct(params), opts...)
+}
+
+func (s *JobsService) CompanySearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jobs-company-search", params, opts...)
+}
+
+type JobsCompanySearchParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type JobsCompanySearchResponse = ModelJobsSearchResponseDoc
+
+func (s *JobsService) CompanySearchTyped(ctx context.Context, params JobsCompanySearchParams, opts ...RequestOption) (JobsCompanySearchResponse, error) {
+	return requestTyped[JobsCompanySearchResponse](s.client, ctx, "jobs-company-search", paramsFromStruct(params), opts...)
+}
+
+func (s *JobsService) GreenhouseBoard(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jobs-greenhouse-board", params, opts...)
+}
+
+type JobsGreenhouseBoardParams struct {
+	Token   string `crawlora:"token"`
+	Content *bool  `crawlora:"content,omitempty"`
+}
+
+type JobsGreenhouseBoardResponse = ModelJobsBoardResponseDoc
+
+func (s *JobsService) GreenhouseBoardTyped(ctx context.Context, params JobsGreenhouseBoardParams, opts ...RequestOption) (JobsGreenhouseBoardResponse, error) {
+	return requestTyped[JobsGreenhouseBoardResponse](s.client, ctx, "jobs-greenhouse-board", paramsFromStruct(params), opts...)
+}
+
+func (s *JobsService) GreenhouseJob(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jobs-greenhouse-job", params, opts...)
+}
+
+type JobsGreenhouseJobParams struct {
+	Token string `crawlora:"token"`
+	Id    string `crawlora:"id"`
+}
+
+type JobsGreenhouseJobResponse = ModelJobsJobResponseDoc
+
+func (s *JobsService) GreenhouseJobTyped(ctx context.Context, params JobsGreenhouseJobParams, opts ...RequestOption) (JobsGreenhouseJobResponse, error) {
+	return requestTyped[JobsGreenhouseJobResponse](s.client, ctx, "jobs-greenhouse-job", paramsFromStruct(params), opts...)
+}
+
+func (s *JobsService) HiringSignals(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jobs-hiring-signals", params, opts...)
+}
+
+type JobsHiringSignalsParams struct {
+	Provider   string  `crawlora:"provider"`
+	Token      *string `crawlora:"token,omitempty"`
+	Company    *string `crawlora:"company,omitempty"`
+	Org        *string `crawlora:"org,omitempty"`
+	Tenant     *string `crawlora:"tenant,omitempty"`
+	Datacenter *string `crawlora:"datacenter,omitempty"`
+	Site       *string `crawlora:"site,omitempty"`
+}
+
+type JobsHiringSignalsResponse = ModelJobsSignalsResponseDoc
+
+func (s *JobsService) HiringSignalsTyped(ctx context.Context, params JobsHiringSignalsParams, opts ...RequestOption) (JobsHiringSignalsResponse, error) {
+	return requestTyped[JobsHiringSignalsResponse](s.client, ctx, "jobs-hiring-signals", paramsFromStruct(params), opts...)
+}
+
+func (s *JobsService) LeverPosting(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jobs-lever-posting", params, opts...)
+}
+
+type JobsLeverPostingParams struct {
+	Company string `crawlora:"company"`
+	Id      string `crawlora:"id"`
+}
+
+type JobsLeverPostingResponse = ModelJobsJobResponseDoc
+
+func (s *JobsService) LeverPostingTyped(ctx context.Context, params JobsLeverPostingParams, opts ...RequestOption) (JobsLeverPostingResponse, error) {
+	return requestTyped[JobsLeverPostingResponse](s.client, ctx, "jobs-lever-posting", paramsFromStruct(params), opts...)
+}
+
+func (s *JobsService) LeverPostings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jobs-lever-postings", params, opts...)
+}
+
+type JobsLeverPostingsParams struct {
+	Company    string  `crawlora:"company"`
+	Department *string `crawlora:"department,omitempty"`
+	Location   *string `crawlora:"location,omitempty"`
+	Remote     *bool   `crawlora:"remote,omitempty"`
+}
+
+type JobsLeverPostingsResponse = ModelJobsBoardResponseDoc
+
+func (s *JobsService) LeverPostingsTyped(ctx context.Context, params JobsLeverPostingsParams, opts ...RequestOption) (JobsLeverPostingsResponse, error) {
+	return requestTyped[JobsLeverPostingsResponse](s.client, ctx, "jobs-lever-postings", paramsFromStruct(params), opts...)
+}
+
+func (s *JobsService) SmartrecruitersPosting(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jobs-smartrecruiters-posting", params, opts...)
+}
+
+type JobsSmartrecruitersPostingParams struct {
+	Company string `crawlora:"company"`
+	Id      string `crawlora:"id"`
+}
+
+type JobsSmartrecruitersPostingResponse = ModelJobsJobResponseDoc
+
+func (s *JobsService) SmartrecruitersPostingTyped(ctx context.Context, params JobsSmartrecruitersPostingParams, opts ...RequestOption) (JobsSmartrecruitersPostingResponse, error) {
+	return requestTyped[JobsSmartrecruitersPostingResponse](s.client, ctx, "jobs-smartrecruiters-posting", paramsFromStruct(params), opts...)
+}
+
+func (s *JobsService) SmartrecruitersPostings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jobs-smartrecruiters-postings", params, opts...)
+}
+
+type JobsSmartrecruitersPostingsParams struct {
+	Company string `crawlora:"company"`
+	Limit   *int   `crawlora:"limit,omitempty"`
+	Offset  *int   `crawlora:"offset,omitempty"`
+}
+
+type JobsSmartrecruitersPostingsResponse = ModelJobsBoardResponseDoc
+
+func (s *JobsService) SmartrecruitersPostingsTyped(ctx context.Context, params JobsSmartrecruitersPostingsParams, opts ...RequestOption) (JobsSmartrecruitersPostingsResponse, error) {
+	return requestTyped[JobsSmartrecruitersPostingsResponse](s.client, ctx, "jobs-smartrecruiters-postings", paramsFromStruct(params), opts...)
+}
+
+func (s *JobsService) WorkdayBoard(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jobs-workday-board", params, opts...)
+}
+
+type JobsWorkdayBoardParams struct {
+	Tenant     string  `crawlora:"tenant"`
+	Datacenter string  `crawlora:"datacenter"`
+	Site       string  `crawlora:"site"`
+	Search     *string `crawlora:"search,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	Offset     *int    `crawlora:"offset,omitempty"`
+}
+
+type JobsWorkdayBoardResponse = ModelJobsBoardResponseDoc
+
+func (s *JobsService) WorkdayBoardTyped(ctx context.Context, params JobsWorkdayBoardParams, opts ...RequestOption) (JobsWorkdayBoardResponse, error) {
+	return requestTyped[JobsWorkdayBoardResponse](s.client, ctx, "jobs-workday-board", paramsFromStruct(params), opts...)
+}
+
+func (s *JobsService) WorkdayJob(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jobs-workday-job", params, opts...)
+}
+
+type JobsWorkdayJobParams struct {
+	Tenant     string `crawlora:"tenant"`
+	Datacenter string `crawlora:"datacenter"`
+	Site       string `crawlora:"site"`
+	Path       string `crawlora:"path"`
+}
+
+type JobsWorkdayJobResponse = ModelJobsJobResponseDoc
+
+func (s *JobsService) WorkdayJobTyped(ctx context.Context, params JobsWorkdayJobParams, opts ...RequestOption) (JobsWorkdayJobResponse, error) {
+	return requestTyped[JobsWorkdayJobResponse](s.client, ctx, "jobs-workday-job", paramsFromStruct(params), opts...)
 }
 
 type JustWatchService struct{ client *Client }
@@ -22416,8 +23108,14 @@ func (s *SecEdgarService) SecCompanyIntelligence(ctx context.Context, params Par
 }
 
 type SecEdgarSecCompanyIntelligenceParams struct {
-	Cik    *string `crawlora:"cik,omitempty"`
-	Ticker *string `crawlora:"ticker,omitempty"`
+	Cik         *string `crawlora:"cik,omitempty"`
+	Ticker      *string `crawlora:"ticker,omitempty"`
+	Enrich      *string `crawlora:"enrich,omitempty"`
+	Ats         *string `crawlora:"ats,omitempty"`
+	CareersSlug *string `crawlora:"careers_slug,omitempty"`
+	Tenant      *string `crawlora:"tenant,omitempty"`
+	Datacenter  *string `crawlora:"datacenter,omitempty"`
+	Site        *string `crawlora:"site,omitempty"`
 }
 
 type SecEdgarSecCompanyIntelligenceResponse = ModelSecIntelligenceResponseDoc
@@ -23925,6 +24623,200 @@ type SpotifyTracksSearchResponse = ModelSpotifySearchCatalogResponseDoc
 
 func (s *SpotifyService) TracksSearchTyped(ctx context.Context, params SpotifyTracksSearchParams, opts ...RequestOption) (SpotifyTracksSearchResponse, error) {
 	return requestTyped[SpotifyTracksSearchResponse](s.client, ctx, "spotify-tracks-search", paramsFromStruct(params), opts...)
+}
+
+type SteamService struct{ client *Client }
+
+func (s *SteamService) Achievements(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "steam-achievements", params, opts...)
+}
+
+type SteamAchievementsParams struct {
+	Appid string `crawlora:"appid"`
+}
+
+type SteamAchievementsResponse = ModelSteamAchievementsResponseDoc
+
+func (s *SteamService) AchievementsTyped(ctx context.Context, params SteamAchievementsParams, opts ...RequestOption) (SteamAchievementsResponse, error) {
+	return requestTyped[SteamAchievementsResponse](s.client, ctx, "steam-achievements", paramsFromStruct(params), opts...)
+}
+
+func (s *SteamService) App(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "steam-app", params, opts...)
+}
+
+type SteamAppParams struct {
+	Appid   string  `crawlora:"appid"`
+	Cc      *string `crawlora:"cc,omitempty"`
+	L       *string `crawlora:"l,omitempty"`
+	Filters *string `crawlora:"filters,omitempty"`
+}
+
+type SteamAppResponse = ModelSteamAppResponseDoc
+
+func (s *SteamService) AppTyped(ctx context.Context, params SteamAppParams, opts ...RequestOption) (SteamAppResponse, error) {
+	return requestTyped[SteamAppResponse](s.client, ctx, "steam-app", paramsFromStruct(params), opts...)
+}
+
+func (s *SteamService) Featured(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "steam-featured", params, opts...)
+}
+
+type SteamFeaturedParams struct {
+	Cc *string `crawlora:"cc,omitempty"`
+	L  *string `crawlora:"l,omitempty"`
+}
+
+type SteamFeaturedResponse = ModelSteamFeaturedResponseDoc
+
+func (s *SteamService) FeaturedTyped(ctx context.Context, params SteamFeaturedParams, opts ...RequestOption) (SteamFeaturedResponse, error) {
+	return requestTyped[SteamFeaturedResponse](s.client, ctx, "steam-featured", paramsFromStruct(params), opts...)
+}
+
+func (s *SteamService) FeaturedCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "steam-featured-categories", params, opts...)
+}
+
+type SteamFeaturedCategoriesParams struct {
+	Cc *string `crawlora:"cc,omitempty"`
+	L  *string `crawlora:"l,omitempty"`
+}
+
+type SteamFeaturedCategoriesResponse = ModelSteamFeaturedCategoriesResponseDoc
+
+func (s *SteamService) FeaturedCategoriesTyped(ctx context.Context, params SteamFeaturedCategoriesParams, opts ...RequestOption) (SteamFeaturedCategoriesResponse, error) {
+	return requestTyped[SteamFeaturedCategoriesResponse](s.client, ctx, "steam-featured-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *SteamService) News(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "steam-news", params, opts...)
+}
+
+type SteamNewsParams struct {
+	Appid     string `crawlora:"appid"`
+	Count     *int   `crawlora:"count,omitempty"`
+	Maxlength *int   `crawlora:"maxlength,omitempty"`
+}
+
+type SteamNewsResponse = ModelSteamNewsResponseDoc
+
+func (s *SteamService) NewsTyped(ctx context.Context, params SteamNewsParams, opts ...RequestOption) (SteamNewsResponse, error) {
+	return requestTyped[SteamNewsResponse](s.client, ctx, "steam-news", paramsFromStruct(params), opts...)
+}
+
+func (s *SteamService) Package(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "steam-package", params, opts...)
+}
+
+type SteamPackageParams struct {
+	Packageid string  `crawlora:"packageid"`
+	Cc        *string `crawlora:"cc,omitempty"`
+	L         *string `crawlora:"l,omitempty"`
+}
+
+type SteamPackageResponse = ModelSteamPackageResponseDoc
+
+func (s *SteamService) PackageTyped(ctx context.Context, params SteamPackageParams, opts ...RequestOption) (SteamPackageResponse, error) {
+	return requestTyped[SteamPackageResponse](s.client, ctx, "steam-package", paramsFromStruct(params), opts...)
+}
+
+func (s *SteamService) Players(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "steam-players", params, opts...)
+}
+
+type SteamPlayersParams struct {
+	Appid string `crawlora:"appid"`
+}
+
+type SteamPlayersResponse = ModelSteamPlayersResponseDoc
+
+func (s *SteamService) PlayersTyped(ctx context.Context, params SteamPlayersParams, opts ...RequestOption) (SteamPlayersResponse, error) {
+	return requestTyped[SteamPlayersResponse](s.client, ctx, "steam-players", paramsFromStruct(params), opts...)
+}
+
+func (s *SteamService) Reviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "steam-reviews", params, opts...)
+}
+
+type SteamReviewsParams struct {
+	Appid        string  `crawlora:"appid"`
+	Filter       *string `crawlora:"filter,omitempty"`
+	Language     *string `crawlora:"language,omitempty"`
+	ReviewType   *string `crawlora:"review_type,omitempty"`
+	PurchaseType *string `crawlora:"purchase_type,omitempty"`
+	DayRange     *int    `crawlora:"day_range,omitempty"`
+	NumPerPage   *int    `crawlora:"num_per_page,omitempty"`
+	Cursor       *string `crawlora:"cursor,omitempty"`
+}
+
+type SteamReviewsResponse = ModelSteamReviewsResponseDoc
+
+func (s *SteamService) ReviewsTyped(ctx context.Context, params SteamReviewsParams, opts ...RequestOption) (SteamReviewsResponse, error) {
+	return requestTyped[SteamReviewsResponse](s.client, ctx, "steam-reviews", paramsFromStruct(params), opts...)
+}
+
+func (s *SteamService) ReviewsHistogram(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "steam-reviews-histogram", params, opts...)
+}
+
+type SteamReviewsHistogramParams struct {
+	Appid    string  `crawlora:"appid"`
+	Language *string `crawlora:"language,omitempty"`
+}
+
+type SteamReviewsHistogramResponse = ModelSteamHistogramResponseDoc
+
+func (s *SteamService) ReviewsHistogramTyped(ctx context.Context, params SteamReviewsHistogramParams, opts ...RequestOption) (SteamReviewsHistogramResponse, error) {
+	return requestTyped[SteamReviewsHistogramResponse](s.client, ctx, "steam-reviews-histogram", paramsFromStruct(params), opts...)
+}
+
+func (s *SteamService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "steam-search", params, opts...)
+}
+
+type SteamSearchParams struct {
+	Term string  `crawlora:"term"`
+	Cc   *string `crawlora:"cc,omitempty"`
+	L    *string `crawlora:"l,omitempty"`
+}
+
+type SteamSearchResponse = ModelSteamSearchResponseDoc
+
+func (s *SteamService) SearchTyped(ctx context.Context, params SteamSearchParams, opts ...RequestOption) (SteamSearchResponse, error) {
+	return requestTyped[SteamSearchResponse](s.client, ctx, "steam-search", paramsFromStruct(params), opts...)
+}
+
+func (s *SteamService) SearchResults(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "steam-search-results", params, opts...)
+}
+
+type SteamSearchResultsParams struct {
+	Term   string  `crawlora:"term"`
+	Start  *int    `crawlora:"start,omitempty"`
+	Count  *int    `crawlora:"count,omitempty"`
+	SortBy *string `crawlora:"sort_by,omitempty"`
+	Cc     *string `crawlora:"cc,omitempty"`
+	L      *string `crawlora:"l,omitempty"`
+}
+
+type SteamSearchResultsResponse = ModelSteamSearchResultsResponseDoc
+
+func (s *SteamService) SearchResultsTyped(ctx context.Context, params SteamSearchResultsParams, opts ...RequestOption) (SteamSearchResultsResponse, error) {
+	return requestTyped[SteamSearchResultsResponse](s.client, ctx, "steam-search-results", paramsFromStruct(params), opts...)
+}
+
+func (s *SteamService) Steamspy(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "steam-steamspy", params, opts...)
+}
+
+type SteamSteamspyParams struct {
+	Appid string `crawlora:"appid"`
+}
+
+type SteamSteamspyResponse = ModelSteamSteamspyResponseDoc
+
+func (s *SteamService) SteamspyTyped(ctx context.Context, params SteamSteamspyParams, opts ...RequestOption) (SteamSteamspyResponse, error) {
+	return requestTyped[SteamSteamspyResponse](s.client, ctx, "steam-steamspy", paramsFromStruct(params), opts...)
 }
 
 type TikTokService struct{ client *Client }

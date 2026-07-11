@@ -2,7 +2,7 @@
 
 Generated from `openapi/public.json`. Deprecated, admin, and internal operations are excluded from this SDK contract.
 
-Total operations: `603`
+Total operations: `625`
 
 | Group | SDK method | Operation ID | HTTP | Params | Auth | Response | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -164,7 +164,6 @@ Total operations: `603`
 | GitHub | `GitHub.GithubRepoForks` | `github-repo-forks` | `GET /github/repo/{owner}/{repo}/forks` | `owner` (path string required)<br>`repo` (path string required)<br>`sort` (query string)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `GitHubGithubRepoForksResponse` |  |
 | GitHub | `GitHub.GithubRepoLanguages` | `github-repo-languages` | `GET /github/repo/{owner}/{repo}/languages` | `owner` (path string required)<br>`repo` (path string required) | `ApiKeyAuth` | `GitHubGithubRepoLanguagesResponse` |  |
 | GitHub | `GitHub.GithubRepoReleases` | `github-repo-releases` | `GET /github/repo/{owner}/{repo}/releases` | `owner` (path string required)<br>`repo` (path string required)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `GitHubGithubRepoReleasesResponse` |  |
-| GitHub | `GitHub.GithubRepoStargazers` | `github-repo-stargazers` | `GET /github/repo/{owner}/{repo}/stargazers` | `owner` (path string required)<br>`repo` (path string required)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `GitHubGithubRepoStargazersResponse` |  |
 | GitHub | `GitHub.GithubSearchRepositories` | `github-search-repositories` | `GET /github/search/repositories` | `q` (query string required)<br>`sort` (query string)<br>`order` (query string)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `GitHubGithubSearchRepositoriesResponse` |  |
 | GitHub | `GitHub.GithubSearchUsers` | `github-search-users` | `GET /github/search/users` | `q` (query string required)<br>`sort` (query string)<br>`order` (query string)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `GitHubGithubSearchUsersResponse` |  |
 | GitHub | `GitHub.GithubTrending` | `github-trending` | `GET /github/trending` | `language` (query string)<br>`since` (query string) | `ApiKeyAuth` | `GitHubGithubTrendingResponse` |  |
@@ -243,6 +242,17 @@ Total operations: `603`
 | Instagram | `Instagram.Post` | `instagram-post` | `GET /instagram/post/{id}/{post_id}` | `id` (path string required)<br>`post_id` (path string required) | `ApiKeyAuth` | `InstagramPostResponse` |  |
 | Instagram | `Instagram.Profile` | `instagram-profile` | `GET /instagram/profile/{username}` | `username` (path string required) | `ApiKeyAuth` | `InstagramProfileResponse` |  |
 | Instagram | `Instagram.Reels` | `instagram-reels` | `GET /instagram/reels/{id}` | `id` (path string required)<br>`max_id` (query string) | `ApiKeyAuth` | `InstagramReelsResponse` |  |
+| Jobs | `Jobs.AshbyBoard` | `jobs-ashby-board` | `GET /jobs/ashby/board` | `org` (query string required)<br>`include_compensation` (query bool) | `ApiKeyAuth` | `JobsAshbyBoardResponse` |  |
+| Jobs | `Jobs.CompanySearch` | `jobs-company-search` | `GET /jobs/company-search` | `slug` (query string required) | `ApiKeyAuth` | `JobsCompanySearchResponse` |  |
+| Jobs | `Jobs.GreenhouseBoard` | `jobs-greenhouse-board` | `GET /jobs/greenhouse/board` | `token` (query string required)<br>`content` (query bool) | `ApiKeyAuth` | `JobsGreenhouseBoardResponse` |  |
+| Jobs | `Jobs.GreenhouseJob` | `jobs-greenhouse-job` | `GET /jobs/greenhouse/job` | `token` (query string required)<br>`id` (query string required) | `ApiKeyAuth` | `JobsGreenhouseJobResponse` |  |
+| Jobs | `Jobs.HiringSignals` | `jobs-hiring-signals` | `GET /jobs/hiring-signals` | `provider` (query string required)<br>`token` (query string)<br>`company` (query string)<br>`org` (query string)<br>`tenant` (query string)<br>`datacenter` (query string)<br>`site` (query string) | `ApiKeyAuth` | `JobsHiringSignalsResponse` |  |
+| Jobs | `Jobs.LeverPosting` | `jobs-lever-posting` | `GET /jobs/lever/posting` | `company` (query string required)<br>`id` (query string required) | `ApiKeyAuth` | `JobsLeverPostingResponse` |  |
+| Jobs | `Jobs.LeverPostings` | `jobs-lever-postings` | `GET /jobs/lever/postings` | `company` (query string required)<br>`department` (query string)<br>`location` (query string)<br>`remote` (query bool) | `ApiKeyAuth` | `JobsLeverPostingsResponse` |  |
+| Jobs | `Jobs.SmartrecruitersPosting` | `jobs-smartrecruiters-posting` | `GET /jobs/smartrecruiters/posting` | `company` (query string required)<br>`id` (query string required) | `ApiKeyAuth` | `JobsSmartrecruitersPostingResponse` |  |
+| Jobs | `Jobs.SmartrecruitersPostings` | `jobs-smartrecruiters-postings` | `GET /jobs/smartrecruiters/postings` | `company` (query string required)<br>`limit` (query int)<br>`offset` (query int) | `ApiKeyAuth` | `JobsSmartrecruitersPostingsResponse` |  |
+| Jobs | `Jobs.WorkdayBoard` | `jobs-workday-board` | `GET /jobs/workday/board` | `tenant` (query string required)<br>`datacenter` (query string required)<br>`site` (query string required)<br>`search` (query string)<br>`limit` (query int)<br>`offset` (query int) | `ApiKeyAuth` | `JobsWorkdayBoardResponse` |  |
+| Jobs | `Jobs.WorkdayJob` | `jobs-workday-job` | `GET /jobs/workday/job` | `tenant` (query string required)<br>`datacenter` (query string required)<br>`site` (query string required)<br>`path` (query string required) | `ApiKeyAuth` | `JobsWorkdayJobResponse` |  |
 | JustWatch | `JustWatch.JustwatchAgeCertifications` | `justwatch-age-certifications` | `GET /justwatch/age-certifications` | `country` (query string) | `ApiKeyAuth` | `JustWatchJustwatchAgeCertificationsResponse` |  |
 | JustWatch | `JustWatch.JustwatchDiscover` | `justwatch-discover` | `GET /justwatch/discover` | `country` (query string)<br>`language` (query string)<br>`limit` (query int)<br>`type` (query string)<br>`genres` (query string)<br>`providers` (query string)<br>`monetization_types` (query string)<br>`year_min` (query int)<br>`year_max` (query int) | `ApiKeyAuth` | `JustWatchJustwatchDiscoverResponse` |  |
 | JustWatch | `JustWatch.JustwatchEpisodeById` | `justwatch-episode-by-id` | `GET /justwatch/episode/by-id` | `id` (query string required)<br>`country` (query string)<br>`language` (query string) | `ApiKeyAuth` | `JustWatchJustwatchEpisodeByIdResponse` |  |
@@ -408,7 +418,7 @@ Total operations: `603`
 | RottenTomatoes | `RottenTomatoes.RottentomatoesSearch` | `rottentomatoes-search` | `GET /rottentomatoes/search` | `query` (query string required)<br>`limit` (query int) | `ApiKeyAuth` | `RottenTomatoesRottentomatoesSearchResponse` |  |
 | RottenTomatoes | `RottenTomatoes.RottentomatoesSeason` | `rottentomatoes-season` | `GET /rottentomatoes/season` | `path` (query string)<br>`url` (query string) | `ApiKeyAuth` | `RottenTomatoesRottentomatoesSeasonResponse` |  |
 | RottenTomatoes | `RottenTomatoes.RottentomatoesSeries` | `rottentomatoes-series` | `GET /rottentomatoes/series` | `path` (query string)<br>`url` (query string) | `ApiKeyAuth` | `RottenTomatoesRottentomatoesSeriesResponse` |  |
-| SecEdgar | `SecEdgar.SecCompanyIntelligence` | `sec-company-intelligence` | `GET /sec/company/intelligence` | `cik` (query string)<br>`ticker` (query string) | `ApiKeyAuth` | `SecEdgarSecCompanyIntelligenceResponse` |  |
+| SecEdgar | `SecEdgar.SecCompanyIntelligence` | `sec-company-intelligence` | `GET /sec/company/intelligence` | `cik` (query string)<br>`ticker` (query string)<br>`enrich` (query string)<br>`ats` (query string)<br>`careers_slug` (query string)<br>`tenant` (query string)<br>`datacenter` (query string)<br>`site` (query string) | `ApiKeyAuth` | `SecEdgarSecCompanyIntelligenceResponse` |  |
 | SecEdgar | `SecEdgar.SecCompanySearch` | `sec-company-search` | `GET /sec/company/search` | `q` (query string required)<br>`limit` (query int) | `ApiKeyAuth` | `SecEdgarSecCompanySearchResponse` |  |
 | SecEdgar | `SecEdgar.SecCompanySubmissions` | `sec-company-submissions` | `GET /sec/company/submissions` | `cik` (query string)<br>`ticker` (query string)<br>`form` (query string)<br>`from` (query string)<br>`to` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `SecEdgarSecCompanySubmissionsResponse` |  |
 | SecEdgar | `SecEdgar.SecFiling` | `sec-filing` | `GET /sec/filing` | `cik` (query string)<br>`ticker` (query string)<br>`accession` (query string required) | `ApiKeyAuth` | `SecEdgarSecFilingResponse` |  |
@@ -500,6 +510,18 @@ Total operations: `603`
 | Spotify | `Spotify.TrackRecommended` | `spotify-track-recommended` | `GET /spotify/track/recommended` | `uri` (query string)<br>`id` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `SpotifyTrackRecommendedResponse` |  |
 | Spotify | `Spotify.TrackSimilarAlbums` | `spotify-track-similar-albums` | `GET /spotify/track/similar-albums` | `uri` (query string)<br>`id` (query string)<br>`limit` (query int)<br>`albums_only` (query bool) | `ApiKeyAuth` | `SpotifyTrackSimilarAlbumsResponse` |  |
 | Spotify | `Spotify.TracksSearch` | `spotify-tracks-search` | `GET /spotify/tracks/search` | `q` (query string required)<br>`offset` (query int)<br>`limit` (query int)<br>`number_of_top_results` (query int)<br>`include_audiobooks` (query bool)<br>`include_pre_releases` (query bool)<br>`include_album_pre_releases` (query bool)<br>`include_authors` (query bool)<br>`include_episode_content_ratings_v2` (query bool) | `ApiKeyAuth` | `SpotifyTracksSearchResponse` |  |
+| Steam | `Steam.Achievements` | `steam-achievements` | `GET /steam/achievements` | `appid` (query string required) | `ApiKeyAuth` | `SteamAchievementsResponse` |  |
+| Steam | `Steam.App` | `steam-app` | `GET /steam/app` | `appid` (query string required)<br>`cc` (query string)<br>`l` (query string)<br>`filters` (query string) | `ApiKeyAuth` | `SteamAppResponse` |  |
+| Steam | `Steam.Featured` | `steam-featured` | `GET /steam/featured` | `cc` (query string)<br>`l` (query string) | `ApiKeyAuth` | `SteamFeaturedResponse` |  |
+| Steam | `Steam.FeaturedCategories` | `steam-featured-categories` | `GET /steam/featured-categories` | `cc` (query string)<br>`l` (query string) | `ApiKeyAuth` | `SteamFeaturedCategoriesResponse` |  |
+| Steam | `Steam.News` | `steam-news` | `GET /steam/news` | `appid` (query string required)<br>`count` (query int)<br>`maxlength` (query int) | `ApiKeyAuth` | `SteamNewsResponse` |  |
+| Steam | `Steam.Package` | `steam-package` | `GET /steam/package` | `packageid` (query string required)<br>`cc` (query string)<br>`l` (query string) | `ApiKeyAuth` | `SteamPackageResponse` |  |
+| Steam | `Steam.Players` | `steam-players` | `GET /steam/players` | `appid` (query string required) | `ApiKeyAuth` | `SteamPlayersResponse` |  |
+| Steam | `Steam.Reviews` | `steam-reviews` | `GET /steam/reviews` | `appid` (query string required)<br>`filter` (query string)<br>`language` (query string)<br>`review_type` (query string)<br>`purchase_type` (query string)<br>`day_range` (query int)<br>`num_per_page` (query int)<br>`cursor` (query string) | `ApiKeyAuth` | `SteamReviewsResponse` |  |
+| Steam | `Steam.ReviewsHistogram` | `steam-reviews-histogram` | `GET /steam/reviews/histogram` | `appid` (query string required)<br>`language` (query string) | `ApiKeyAuth` | `SteamReviewsHistogramResponse` |  |
+| Steam | `Steam.Search` | `steam-search` | `GET /steam/search` | `term` (query string required)<br>`cc` (query string)<br>`l` (query string) | `ApiKeyAuth` | `SteamSearchResponse` |  |
+| Steam | `Steam.SearchResults` | `steam-search-results` | `GET /steam/search/results` | `term` (query string required)<br>`start` (query int)<br>`count` (query int)<br>`sort_by` (query string)<br>`cc` (query string)<br>`l` (query string) | `ApiKeyAuth` | `SteamSearchResultsResponse` |  |
+| Steam | `Steam.Steamspy` | `steam-steamspy` | `GET /steam/steamspy` | `appid` (query string required) | `ApiKeyAuth` | `SteamSteamspyResponse` |  |
 | TikTok | `TikTok.Category` | `tiktok-category` | `GET /tiktok/category` | none | `ApiKeyAuth` | `TikTokCategoryResponse` |  |
 | TikTok | `TikTok.VideoComments` | `tiktok-video-comments` | `GET /tiktok/comments` | `aweme_id` (query string required)<br>`cursor` (query int) | `ApiKeyAuth` | `TikTokVideoCommentsResponse` |  |
 | TikTok | `TikTok.Explore` | `tiktok-explore` | `GET /tiktok/explore/{id}` | `id` (path int required) | `ApiKeyAuth` | `TikTokExploreResponse` |  |

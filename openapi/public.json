@@ -18201,6 +18201,271 @@
       },
       "type": "object"
     },
+    "jobs.BoardResponse": {
+      "properties": {
+        "company": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "jobs": {
+          "items": {
+            "$ref": "#/definitions/jobs.Job"
+          },
+          "type": "array"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "jobs.CompanySearchResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "found": {
+          "items": {
+            "$ref": "#/definitions/jobs.ProviderHit"
+          },
+          "type": "array"
+        },
+        "slug": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "jobs.Count": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "jobs.HiringSignals": {
+      "properties": {
+        "as_of": {
+          "type": "string"
+        },
+        "by_department": {
+          "items": {
+            "$ref": "#/definitions/jobs.Count"
+          },
+          "type": "array"
+        },
+        "by_location": {
+          "items": {
+            "$ref": "#/definitions/jobs.Count"
+          },
+          "type": "array"
+        },
+        "company": {
+          "type": "string"
+        },
+        "new_last_30d": {
+          "type": "integer"
+        },
+        "new_last_7d": {
+          "type": "integer"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "remote_count": {
+          "type": "integer"
+        },
+        "remote_pct": {
+          "type": "number"
+        },
+        "sampled_roles": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "top_titles": {
+          "items": {
+            "$ref": "#/definitions/jobs.Count"
+          },
+          "type": "array"
+        },
+        "total_open_roles": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "jobs.Job": {
+      "properties": {
+        "apply_url": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "compensation": {
+          "description": "Compensation is the raw provider summary; the *Min/*Max/*Currency fields are\nparsed from it when the summary contains a recognizable pay range/amount.",
+          "type": "string"
+        },
+        "compensation_currency": {
+          "type": "string"
+        },
+        "compensation_max": {
+          "type": "number"
+        },
+        "compensation_min": {
+          "type": "number"
+        },
+        "department": {
+          "type": "string"
+        },
+        "description_html": {
+          "type": "string"
+        },
+        "description_text": {
+          "type": "string"
+        },
+        "employment_type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "locations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "posted_age_text": {
+          "description": "Workday relative age (\"Posted Today\")",
+          "type": "string"
+        },
+        "posted_at": {
+          "description": "RFC3339 / date when the provider gives one",
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "remote": {
+          "type": "boolean"
+        },
+        "req_id": {
+          "type": "string"
+        },
+        "team": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "workplace_type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "jobs.ProviderHit": {
+      "properties": {
+        "board_url": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "total_open_roles": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "jobs.boardResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/jobs.BoardResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "jobs.jobResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/jobs.Job"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "jobs.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/jobs.CompanySearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "jobs.signalsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/jobs.HiringSignals"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "justwatch.AgeCertification": {
       "properties": {
         "technical_name": {
@@ -30317,12 +30582,21 @@
     },
     "sec.CompanyIntelligenceResponse": {
       "properties": {
+        "degraded": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "financial_snapshot": {
           "additionalProperties": {
             "format": "float64",
             "type": "number"
           },
           "type": "object"
+        },
+        "hiring": {
+          "$ref": "#/definitions/sec.HiringBlock"
         },
         "latest_8k": {
           "$ref": "#/definitions/sec.Filing"
@@ -30332,6 +30606,20 @@
         },
         "latest_quarterly_10q": {
           "$ref": "#/definitions/sec.Filing"
+        },
+        "market": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/sec.MarketBlock"
+            }
+          ],
+          "description": "Optional cross-source enrichment (present only when requested via ?enrich=\nand the source succeeded). Degraded lists sources that were requested but\nunavailable (missing key/provider, upstream failure, or timeout)."
+        },
+        "news": {
+          "items": {
+            "$ref": "#/definitions/sec.NewsItem"
+          },
+          "type": "array"
         },
         "profile": {
           "$ref": "#/definitions/sec.CompanyProfile"
@@ -30795,6 +31083,32 @@
       },
       "type": "object"
     },
+    "sec.HiringBlock": {
+      "properties": {
+        "new_last_30d": {
+          "type": "integer"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "remote_pct": {
+          "type": "number"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "top_departments": {
+          "items": {
+            "$ref": "#/definitions/sec.NameCount"
+          },
+          "type": "array"
+        },
+        "total_open_roles": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "sec.Holding": {
       "properties": {
         "cusip": {
@@ -30936,6 +31250,63 @@
           "type": "number"
         },
         "transaction_date": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.MarketBlock": {
+      "properties": {
+        "change_percent": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "day_high": {
+          "type": "number"
+        },
+        "day_low": {
+          "type": "number"
+        },
+        "market_cap": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "symbol": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.NameCount": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "sec.NewsItem": {
+      "properties": {
+        "published_at": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
           "type": "string"
         }
       },
@@ -37490,6 +37861,989 @@
         },
         "msg": {
           "description": "Msg is the message that describes the result of the request\n@example \"Request successful\""
+        }
+      },
+      "type": "object"
+    },
+    "steam.AchievementsResponse": {
+      "properties": {
+        "achievements": {
+          "items": {
+            "$ref": "#/definitions/steam.GlobalAchievement"
+          },
+          "type": "array"
+        },
+        "appid": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.AppDetails": {
+      "properties": {
+        "achievements_total": {
+          "type": "integer"
+        },
+        "appid": {
+          "type": "integer"
+        },
+        "capsule_image": {
+          "type": "string"
+        },
+        "categories": {
+          "items": {
+            "$ref": "#/definitions/steam.IDName"
+          },
+          "type": "array"
+        },
+        "controller_support": {
+          "type": "string"
+        },
+        "developers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "dlc": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "genres": {
+          "items": {
+            "$ref": "#/definitions/steam.IDName"
+          },
+          "type": "array"
+        },
+        "header_image": {
+          "type": "string"
+        },
+        "is_free": {
+          "type": "boolean"
+        },
+        "metacritic": {
+          "$ref": "#/definitions/steam.Metacritic"
+        },
+        "movies": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "platforms": {
+          "$ref": "#/definitions/steam.Platforms"
+        },
+        "price_overview": {
+          "$ref": "#/definitions/steam.Price"
+        },
+        "publishers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "recommendations": {
+          "type": "integer"
+        },
+        "release_date": {
+          "$ref": "#/definitions/steam.AppRelease"
+        },
+        "required_age": {
+          "type": "integer"
+        },
+        "screenshots": {
+          "type": "integer"
+        },
+        "short_description": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "supported_languages": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.AppRelease": {
+      "properties": {
+        "coming_soon": {
+          "type": "boolean"
+        },
+        "date": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.FeaturedBucket": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/steam.FeaturedItem"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.FeaturedCategoriesResponse": {
+      "properties": {
+        "coming_soon": {
+          "$ref": "#/definitions/steam.FeaturedBucket"
+        },
+        "new_releases": {
+          "$ref": "#/definitions/steam.FeaturedBucket"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "specials": {
+          "$ref": "#/definitions/steam.FeaturedBucket"
+        },
+        "top_sellers": {
+          "$ref": "#/definitions/steam.FeaturedBucket"
+        }
+      },
+      "type": "object"
+    },
+    "steam.FeaturedItem": {
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "discount_percent": {
+          "type": "integer"
+        },
+        "discounted": {
+          "type": "boolean"
+        },
+        "final_price": {
+          "type": "integer"
+        },
+        "header_image": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "linux_available": {
+          "type": "boolean"
+        },
+        "mac_available": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "original_price": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "integer"
+        },
+        "windows_available": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "steam.FeaturedResponse": {
+      "properties": {
+        "featured_linux": {
+          "items": {
+            "$ref": "#/definitions/steam.FeaturedItem"
+          },
+          "type": "array"
+        },
+        "featured_mac": {
+          "items": {
+            "$ref": "#/definitions/steam.FeaturedItem"
+          },
+          "type": "array"
+        },
+        "featured_win": {
+          "items": {
+            "$ref": "#/definitions/steam.FeaturedItem"
+          },
+          "type": "array"
+        },
+        "large_capsules": {
+          "items": {
+            "$ref": "#/definitions/steam.FeaturedItem"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.GlobalAchievement": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "percent": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "steam.HistogramBucket": {
+      "properties": {
+        "date": {
+          "type": "integer"
+        },
+        "recommendations_down": {
+          "type": "integer"
+        },
+        "recommendations_up": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "steam.IDName": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.Metacritic": {
+      "properties": {
+        "score": {
+          "type": "integer"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.NewsItem": {
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "contents": {
+          "type": "string"
+        },
+        "date": {
+          "type": "integer"
+        },
+        "feedlabel": {
+          "type": "string"
+        },
+        "feedname": {
+          "type": "string"
+        },
+        "gid": {
+          "type": "string"
+        },
+        "is_external_url": {
+          "type": "boolean"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.NewsResponse": {
+      "properties": {
+        "appid": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/steam.NewsItem"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.PackageDetails": {
+      "properties": {
+        "apps": {
+          "items": {
+            "$ref": "#/definitions/steam.IDName"
+          },
+          "type": "array"
+        },
+        "header_image": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "packageid": {
+          "type": "integer"
+        },
+        "platforms": {
+          "$ref": "#/definitions/steam.Platforms"
+        },
+        "price": {
+          "$ref": "#/definitions/steam.PackagePrice"
+        },
+        "release_date": {
+          "$ref": "#/definitions/steam.AppRelease"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.PackagePrice": {
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "discount_percent": {
+          "type": "integer"
+        },
+        "final": {
+          "type": "integer"
+        },
+        "individual": {
+          "type": "integer"
+        },
+        "initial": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "steam.Platforms": {
+      "properties": {
+        "linux": {
+          "type": "boolean"
+        },
+        "mac": {
+          "type": "boolean"
+        },
+        "windows": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "steam.PlayersResponse": {
+      "properties": {
+        "appid": {
+          "type": "string"
+        },
+        "player_count": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.Price": {
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "discount_percent": {
+          "type": "integer"
+        },
+        "final": {
+          "type": "integer"
+        },
+        "final_formatted": {
+          "type": "string"
+        },
+        "initial": {
+          "type": "integer"
+        },
+        "initial_formatted": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.Review": {
+      "properties": {
+        "author": {
+          "$ref": "#/definitions/steam.ReviewAuthor"
+        },
+        "comment_count": {
+          "type": "integer"
+        },
+        "language": {
+          "type": "string"
+        },
+        "received_for_free": {
+          "type": "boolean"
+        },
+        "recommendation_id": {
+          "type": "string"
+        },
+        "review": {
+          "type": "string"
+        },
+        "steam_purchase": {
+          "type": "boolean"
+        },
+        "timestamp_created": {
+          "type": "integer"
+        },
+        "timestamp_updated": {
+          "type": "integer"
+        },
+        "voted_up": {
+          "type": "boolean"
+        },
+        "votes_funny": {
+          "type": "integer"
+        },
+        "votes_up": {
+          "type": "integer"
+        },
+        "weighted_vote_score": {
+          "type": "string"
+        },
+        "written_during_early_access": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "steam.ReviewAuthor": {
+      "properties": {
+        "last_played": {
+          "type": "integer"
+        },
+        "num_games_owned": {
+          "type": "integer"
+        },
+        "num_reviews": {
+          "type": "integer"
+        },
+        "playtime_at_review": {
+          "type": "integer"
+        },
+        "playtime_forever": {
+          "type": "integer"
+        },
+        "playtime_last_two_weeks": {
+          "type": "integer"
+        },
+        "steamid": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.ReviewSummary": {
+      "properties": {
+        "num_reviews": {
+          "type": "integer"
+        },
+        "review_score": {
+          "type": "integer"
+        },
+        "review_score_desc": {
+          "type": "string"
+        },
+        "total_negative": {
+          "type": "integer"
+        },
+        "total_positive": {
+          "type": "integer"
+        },
+        "total_reviews": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "steam.ReviewsHistogramResponse": {
+      "properties": {
+        "appid": {
+          "type": "string"
+        },
+        "count_all_reviews": {
+          "type": "integer"
+        },
+        "end_date": {
+          "type": "integer"
+        },
+        "recent": {
+          "items": {
+            "$ref": "#/definitions/steam.HistogramBucket"
+          },
+          "type": "array"
+        },
+        "rollup_type": {
+          "type": "string"
+        },
+        "rollups": {
+          "items": {
+            "$ref": "#/definitions/steam.HistogramBucket"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "start_date": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "steam.ReviewsResponse": {
+      "properties": {
+        "appid": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "cursor": {
+          "type": "string"
+        },
+        "query_summary": {
+          "$ref": "#/definitions/steam.ReviewSummary"
+        },
+        "reviews": {
+          "items": {
+            "$ref": "#/definitions/steam.Review"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.SearchItem": {
+      "properties": {
+        "controller_support": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "metascore": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "platforms": {
+          "$ref": "#/definitions/steam.Platforms"
+        },
+        "price": {
+          "$ref": "#/definitions/steam.Price"
+        },
+        "streamingvideo": {
+          "type": "boolean"
+        },
+        "tiny_image": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.SearchResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/steam.SearchItem"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "term": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "steam.SearchResultRow": {
+      "properties": {
+        "appid": {
+          "type": "string"
+        },
+        "bundleid": {
+          "type": "string"
+        },
+        "discount_pct": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "packageid": {
+          "type": "string"
+        },
+        "platforms": {
+          "$ref": "#/definitions/steam.Platforms"
+        },
+        "price": {
+          "type": "string"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "review_summary": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.SearchResultsResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/steam.SearchResultRow"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "start": {
+          "type": "integer"
+        },
+        "term": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "steam.SteamSpyResponse": {
+      "properties": {
+        "appid": {
+          "type": "integer"
+        },
+        "average_2weeks": {
+          "type": "integer"
+        },
+        "average_forever": {
+          "type": "integer"
+        },
+        "ccu": {
+          "type": "integer"
+        },
+        "developer": {
+          "type": "string"
+        },
+        "discount": {
+          "type": "string"
+        },
+        "genre": {
+          "type": "string"
+        },
+        "initialprice": {
+          "type": "string"
+        },
+        "languages": {
+          "type": "string"
+        },
+        "median_2weeks": {
+          "type": "integer"
+        },
+        "median_forever": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "negative": {
+          "type": "integer"
+        },
+        "owners": {
+          "type": "string"
+        },
+        "positive": {
+          "type": "integer"
+        },
+        "price": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "userscore": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "steam.achievementsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.AchievementsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.appResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.AppDetails"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.featuredCategoriesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.FeaturedCategoriesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.featuredResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.FeaturedResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.histogramResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.ReviewsHistogramResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.newsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.NewsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.packageResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.PackageDetails"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.playersResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.PlayersResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.reviewsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.ReviewsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.searchResultsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.SearchResultsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.steamspyResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.SteamSpyResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
         }
       },
       "type": "object"
@@ -61123,75 +62477,6 @@
         ]
       }
     },
-    "/github/repo/{owner}/{repo}/stargazers": {
-      "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Returns a page of users who starred a repository (buyer-intent signal).",
-        "operationId": "github-repo-stargazers",
-        "parameters": [
-          {
-            "description": "Repository owner (user or org login)",
-            "in": "path",
-            "name": "owner",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "Repository name",
-            "in": "path",
-            "name": "repo",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "Page number",
-            "in": "query",
-            "name": "page",
-            "type": "integer"
-          },
-          {
-            "description": "Results per page (max 100)",
-            "in": "query",
-            "name": "per_page",
-            "type": "integer"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Wrapped stargazer list",
-            "schema": {
-              "$ref": "#/definitions/app.Response"
-            }
-          },
-          "400": {
-            "description": "Missing or invalid parameters",
-            "schema": {
-              "$ref": "#/definitions/app.Response"
-            }
-          },
-          "503": {
-            "description": "Upstream error or rate limit",
-            "schema": {
-              "$ref": "#/definitions/app.Response"
-            }
-          }
-        },
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
-        "summary": "List users who starred a repository",
-        "tags": [
-          "GitHub"
-        ]
-      }
-    },
     "/github/search/repositories": {
       "get": {
         "consumes": [
@@ -66907,6 +68192,777 @@
         "summary": "Retrieve Instagram Reels for a user",
         "tags": [
           "Instagram"
+        ]
+      }
+    },
+    "/jobs/ashby/board": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Lists an organization's public Ashby board postings with inline detail (description, compensation when include_compensation=true). The org is the Ashby slug from its careers URL. An unknown org returns an empty board (Ashby does not 404). Credential-free public ATS JSON.",
+        "operationId": "jobs-ashby-board",
+        "parameters": [
+          {
+            "description": "Ashby org slug (careers URL)",
+            "example": "openai",
+            "in": "query",
+            "name": "org",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Include compensation summary",
+            "in": "query",
+            "name": "include_compensation",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.boardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List an organization's Ashby job board",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/company-search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Probes Greenhouse, Lever, Ashby, and SmartRecruiters in parallel for a slug and reports the providers where it resolves to a non-empty board (with the open-role count and board URL). Workday is excluded (its board needs tenant + datacenter + site). Credential-free public ATS JSON.",
+        "operationId": "jobs-company-search",
+        "parameters": [
+          {
+            "description": "Company careers slug to probe",
+            "example": "stripe",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Find which ATS a company uses by slug",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/greenhouse/board": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Lists a company's public Greenhouse board postings, normalized to the shared Job shape. Set content=true to include each job's full HTML description in one call. The token is the company's Greenhouse board slug from its careers URL. Credential-free public ATS JSON.",
+        "operationId": "jobs-greenhouse-board",
+        "parameters": [
+          {
+            "description": "Greenhouse board token (careers URL slug)",
+            "example": "stripe",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Include full HTML description per job",
+            "in": "query",
+            "name": "content",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.boardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a company's Greenhouse job board",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/greenhouse/job": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a single Greenhouse job with its full HTML/text description, department, and offices. Credential-free public ATS JSON.",
+        "operationId": "jobs-greenhouse-job",
+        "parameters": [
+          {
+            "description": "Greenhouse board token",
+            "example": "stripe",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Greenhouse job id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.jobResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a single Greenhouse job",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/hiring-signals": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Aggregates a company's ATS board into a hiring snapshot: total open roles, breakdowns by department/location/title, remote share, and how many roles are new in the last 7/30 days — a leading indicator of company growth. Supply provider plus that provider's slug params (token / company / org / tenant+datacenter+site). Breakdowns are computed over the fetched postings. Credential-free public ATS JSON.",
+        "operationId": "jobs-hiring-signals",
+        "parameters": [
+          {
+            "description": "ATS provider",
+            "enum": [
+              "greenhouse",
+              "lever",
+              "ashby",
+              "workday",
+              "smartrecruiters"
+            ],
+            "in": "query",
+            "name": "provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "greenhouse board token",
+            "in": "query",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "description": "lever / smartrecruiters company slug",
+            "in": "query",
+            "name": "company",
+            "type": "string"
+          },
+          {
+            "description": "ashby org slug",
+            "in": "query",
+            "name": "org",
+            "type": "string"
+          },
+          {
+            "description": "workday tenant",
+            "in": "query",
+            "name": "tenant",
+            "type": "string"
+          },
+          {
+            "description": "workday datacenter shard",
+            "in": "query",
+            "name": "datacenter",
+            "type": "string"
+          },
+          {
+            "description": "workday career site",
+            "in": "query",
+            "name": "site",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.signalsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Aggregate hiring signals for a company's board",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/lever/posting": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a single Lever posting with its full HTML/text description. Credential-free public ATS JSON.",
+        "operationId": "jobs-lever-posting",
+        "parameters": [
+          {
+            "description": "Lever company slug",
+            "example": "spotify",
+            "in": "query",
+            "name": "company",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Lever posting id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.jobResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a single Lever posting",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/lever/postings": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Lists a company's public Lever postings (detail is inline), optionally filtered by department, location, or remote. The company is the Lever slug from its careers URL. Credential-free public ATS JSON.",
+        "operationId": "jobs-lever-postings",
+        "parameters": [
+          {
+            "description": "Lever company slug (careers URL)",
+            "example": "spotify",
+            "in": "query",
+            "name": "company",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Filter: department contains",
+            "in": "query",
+            "name": "department",
+            "type": "string"
+          },
+          {
+            "description": "Filter: location contains",
+            "in": "query",
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "description": "Filter by remote (true or false)",
+            "in": "query",
+            "name": "remote",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.boardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a company's Lever postings",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/smartrecruiters/posting": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a single SmartRecruiters posting with its jobAd description. Recruiter personal data is intentionally omitted. Credential-free public ATS JSON.",
+        "operationId": "jobs-smartrecruiters-posting",
+        "parameters": [
+          {
+            "description": "SmartRecruiters company id",
+            "example": "Visa",
+            "in": "query",
+            "name": "company",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "SmartRecruiters posting id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.jobResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a single SmartRecruiters posting",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/smartrecruiters/postings": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Lists a company's public SmartRecruiters postings, paged via limit/offset. The company is the SmartRecruiters identifier from its careers URL. Credential-free public ATS JSON.",
+        "operationId": "jobs-smartrecruiters-postings",
+        "parameters": [
+          {
+            "description": "SmartRecruiters company id (careers URL)",
+            "example": "Visa",
+            "in": "query",
+            "name": "company",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Page size, default 100, max 100",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "Page offset, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.boardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a company's SmartRecruiters postings",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/workday/board": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Lists a company's public Workday (CXS) postings, paged via limit/offset. tenant, datacenter (wd1/wd3/wd5/...), and site all come from the careers URL https://{tenant}.wd5.myworkdayjobs.com/{site}. Credential-free public ATS JSON.",
+        "operationId": "jobs-workday-board",
+        "parameters": [
+          {
+            "description": "Workday tenant",
+            "example": "nvidia",
+            "in": "query",
+            "name": "tenant",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Workday datacenter shard (wd1, wd3, wd5, ...)",
+            "example": "wd5",
+            "in": "query",
+            "name": "datacenter",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Workday career site",
+            "example": "NVIDIAExternalCareerSite",
+            "in": "query",
+            "name": "site",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Free-text search",
+            "in": "query",
+            "name": "search",
+            "type": "string"
+          },
+          {
+            "description": "Page size, default 20, max 20",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "Page offset, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.boardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Workday tenant's job board",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/workday/job": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a single Workday posting's full detail (description, location, req id). path is the externalPath from a board listing. tenant/datacenter/site as in the board endpoint. Credential-free public ATS JSON.",
+        "operationId": "jobs-workday-job",
+        "parameters": [
+          {
+            "description": "Workday tenant",
+            "example": "nvidia",
+            "in": "query",
+            "name": "tenant",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Workday datacenter shard",
+            "example": "wd5",
+            "in": "query",
+            "name": "datacenter",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Workday career site",
+            "example": "NVIDIAExternalCareerSite",
+            "in": "query",
+            "name": "site",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Job externalPath from a board listing",
+            "in": "query",
+            "name": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.jobResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a single Workday job",
+        "tags": [
+          "Jobs"
         ]
       }
     },
@@ -79537,7 +81593,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Aggregates a company's profile, a latest-annual financial snapshot, the latest 10-K/10-Q/8-K, and recent material events into one call. Provide cik or ticker. Credential-free public SEC data.",
+        "description": "Aggregates a company's profile, a latest-annual financial snapshot, the latest 10-K/10-Q/8-K, and recent material events into one call. Provide cik or ticker. Optionally fuse live cross-source data with enrich (a comma list of market, news, hiring): market and news are keyed on the ticker; hiring needs ats plus that ATS's careers slug (or tenant/datacenter/site for Workday). Enrichment is best-effort — requested-but-unavailable sources are listed under degraded and never fail the SEC-native response. Credential-free public data.",
         "operationId": "sec-company-intelligence",
         "parameters": [
           {
@@ -79552,6 +81608,54 @@
             "example": "AAPL",
             "in": "query",
             "name": "ticker",
+            "type": "string"
+          },
+          {
+            "description": "Comma list of cross-source enrichments",
+            "enum": [
+              "market",
+              "news",
+              "hiring"
+            ],
+            "in": "query",
+            "name": "enrich",
+            "type": "string"
+          },
+          {
+            "description": "ATS provider for hiring enrichment",
+            "enum": [
+              "greenhouse",
+              "lever",
+              "ashby",
+              "workday",
+              "smartrecruiters"
+            ],
+            "in": "query",
+            "name": "ats",
+            "type": "string"
+          },
+          {
+            "description": "Careers board slug for hiring (greenhouse/lever/ashby/smartrecruiters)",
+            "in": "query",
+            "name": "careers_slug",
+            "type": "string"
+          },
+          {
+            "description": "Workday tenant (hiring, when ats=workday)",
+            "in": "query",
+            "name": "tenant",
+            "type": "string"
+          },
+          {
+            "description": "Workday datacenter shard (hiring, when ats=workday)",
+            "in": "query",
+            "name": "datacenter",
+            "type": "string"
+          },
+          {
+            "description": "Workday career site (hiring, when ats=workday)",
+            "in": "query",
+            "name": "site",
             "type": "string"
           }
         ],
@@ -86496,6 +88600,830 @@
         "summary": "Search Spotify tracks",
         "tags": [
           "Spotify"
+        ]
+      }
+    },
+    "/steam/achievements": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the global unlock percentage for each of an app's achievements, sorted most-unlocked first. Apps without global achievement stats return an empty list. Credential-free public Steam WebAPI JSON.",
+        "operationId": "steam-achievements",
+        "parameters": [
+          {
+            "description": "Numeric Steam app id",
+            "example": "440",
+            "in": "query",
+            "name": "appid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.achievementsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get global achievement completion percentages for a Steam app",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
+    "/steam/app": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized store metadata for a single Steam app (title, type, price, developers/publishers, platforms, genres, categories, release date, metacritic, recommendation and achievement counts). cc selects the store region (and price currency) and l the text language. filters is a comma-separated subset of allowed fields to shrink the payload. Credential-free public Steam storefront JSON.",
+        "operationId": "steam-app",
+        "parameters": [
+          {
+            "description": "Numeric Steam app id",
+            "example": "570",
+            "in": "query",
+            "name": "appid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "us",
+            "description": "Store country code (ISO, selects currency)",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "en",
+            "description": "Language code",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated fields: basic, price_overview, developers, publishers, categories, genres, release_date, platforms, metacritic, achievements, screenshots, movies, recommendations, controller_support, dlc, short_description, supported_languages, packages, package_groups, ratings, content_descriptors, background",
+            "in": "query",
+            "name": "filters",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.appResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Steam store details for an app",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
+    "/steam/featured": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the storefront's featured capsules for a region (per-platform featured lists plus large spotlight capsules), including discount and price fields. Credential-free public Steam storefront JSON.",
+        "operationId": "steam-featured",
+        "parameters": [
+          {
+            "default": "us",
+            "description": "Store country code (ISO, selects currency)",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "en",
+            "description": "Language code",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.featuredResponseDoc"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get the Steam store featured capsules",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
+    "/steam/featured-categories": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the storefront merchandising buckets for a region: specials, top_sellers, new_releases, and coming_soon, each with its item list. Credential-free public Steam storefront JSON.",
+        "operationId": "steam-featured-categories",
+        "parameters": [
+          {
+            "default": "us",
+            "description": "Store country code (ISO, selects currency)",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "en",
+            "description": "Language code",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.featuredCategoriesResponseDoc"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Steam top sellers, new releases, specials and coming soon",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
+    "/steam/news": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns recent news/announcement posts for an app (title, author, contents, feed, date). Credential-free public Steam WebAPI JSON.",
+        "operationId": "steam-news",
+        "parameters": [
+          {
+            "description": "Numeric Steam app id",
+            "example": "570",
+            "in": "query",
+            "name": "appid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "Number of posts (max 50)",
+            "in": "query",
+            "name": "count",
+            "type": "integer"
+          },
+          {
+            "default": 300,
+            "description": "Max characters of each post body (0 = full)",
+            "in": "query",
+            "name": "maxlength",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.newsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get recent news posts for a Steam app",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
+    "/steam/package": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized details for a Steam package (a purchasable bundle): name, the apps it contains, price, platforms, and release date. cc selects the store region and price currency. Credential-free public Steam storefront JSON.",
+        "operationId": "steam-package",
+        "parameters": [
+          {
+            "description": "Numeric Steam package id",
+            "example": "68179",
+            "in": "query",
+            "name": "packageid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "us",
+            "description": "Store country code (ISO, selects currency)",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "en",
+            "description": "Language code",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.packageResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Steam store details for a package",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
+    "/steam/players": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the official current concurrent-players count for an app. Credential-free public Steam WebAPI JSON.",
+        "operationId": "steam-players",
+        "parameters": [
+          {
+            "description": "Numeric Steam app id",
+            "example": "570",
+            "in": "query",
+            "name": "appid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.playersResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get the current concurrent-player count for a Steam app",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
+    "/steam/reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of user reviews for an app with cursor pagination and an aggregate query_summary (score, positive/negative totals). Aggregate totals populate only on the first page (cursor=*). Pass the returned cursor back to page. Credential-free public Steam storefront JSON.",
+        "operationId": "steam-reviews",
+        "parameters": [
+          {
+            "description": "Numeric Steam app id",
+            "example": "570",
+            "in": "query",
+            "name": "appid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "recent",
+            "description": "Sort order",
+            "enum": [
+              "recent",
+              "updated",
+              "all"
+            ],
+            "in": "query",
+            "name": "filter",
+            "type": "string"
+          },
+          {
+            "default": "english",
+            "description": "Steam language name or 'all'",
+            "in": "query",
+            "name": "language",
+            "type": "string"
+          },
+          {
+            "default": "all",
+            "description": "Review sentiment filter",
+            "enum": [
+              "all",
+              "positive",
+              "negative"
+            ],
+            "in": "query",
+            "name": "review_type",
+            "type": "string"
+          },
+          {
+            "default": "all",
+            "description": "Purchase source filter",
+            "enum": [
+              "all",
+              "steam",
+              "non_steam_purchase"
+            ],
+            "in": "query",
+            "name": "purchase_type",
+            "type": "string"
+          },
+          {
+            "default": 365,
+            "description": "Look-back window in days (filter=all only, max 365)",
+            "in": "query",
+            "name": "day_range",
+            "type": "integer"
+          },
+          {
+            "default": 20,
+            "description": "Reviews per page (max 100)",
+            "in": "query",
+            "name": "num_per_page",
+            "type": "integer"
+          },
+          {
+            "default": "*",
+            "description": "Pagination cursor from the previous page",
+            "in": "query",
+            "name": "cursor",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.reviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List reviews for a Steam app",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
+    "/steam/reviews/histogram": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the positive/negative recommendation counts over time (the store review graph): weekly/monthly rollups plus recent daily buckets. Credential-free public Steam storefront JSON.",
+        "operationId": "steam-reviews-histogram",
+        "parameters": [
+          {
+            "description": "Numeric Steam app id",
+            "example": "570",
+            "in": "query",
+            "name": "appid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "english",
+            "description": "Steam language name or 'all'",
+            "in": "query",
+            "name": "language",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.histogramResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get the review up/down histogram for a Steam app",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
+    "/steam/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Resolves a search term to Steam apps via the store typeahead JSON (title, appid, price, platforms, metascore). Best for title -> appid lookup; returns roughly ten results. For faceted, paginated search use /steam/search/results. Credential-free public Steam storefront JSON.",
+        "operationId": "steam-search",
+        "parameters": [
+          {
+            "description": "Search term",
+            "example": "portal",
+            "in": "query",
+            "name": "term",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "us",
+            "description": "Store country code (ISO, selects currency)",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "en",
+            "description": "Language code",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the Steam store by title",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
+    "/steam/search/results": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Runs the Steam store search with pagination and sorting and returns the result rows (appid, title, release date, review summary, price, platforms). Supports start/count paging and sort_by. Credential-free public Steam storefront JSON.",
+        "operationId": "steam-search-results",
+        "parameters": [
+          {
+            "description": "Search term",
+            "example": "roguelike",
+            "in": "query",
+            "name": "term",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Result offset for pagination",
+            "in": "query",
+            "name": "start",
+            "type": "integer"
+          },
+          {
+            "default": 25,
+            "description": "Results per page (max 100)",
+            "in": "query",
+            "name": "count",
+            "type": "integer"
+          },
+          {
+            "default": "Relevance",
+            "description": "Sort order",
+            "enum": [
+              "Relevance",
+              "Released_DESC",
+              "Name_ASC",
+              "Price_ASC",
+              "Price_DESC",
+              "Reviews_DESC"
+            ],
+            "in": "query",
+            "name": "sort_by",
+            "type": "string"
+          },
+          {
+            "default": "us",
+            "description": "Store country code (ISO, selects currency)",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "en",
+            "description": "Language code",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.searchResultsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Faceted, paginated Steam store search",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
+    "/steam/steamspy": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns third-party ownership, concurrent-user, playtime, and review estimates for an app from SteamSpy. These are SteamSpy estimates, not official Steam figures. Credential-free public third-party JSON.",
+        "operationId": "steam-steamspy",
+        "parameters": [
+          {
+            "description": "Numeric Steam app id",
+            "example": "570",
+            "in": "query",
+            "name": "appid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.steamspyResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get SteamSpy third-party ownership and playtime estimates",
+        "tags": [
+          "Steam"
         ]
       }
     },

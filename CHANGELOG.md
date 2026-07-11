@@ -1,5 +1,20 @@
 # Changelog
 
+## v1.15.0-sdk.1
+
+- Regenerated from the public API contract (603 to 625 operations). Adds the
+  **Jobs platform** (11 endpoints): public ATS job boards across Greenhouse,
+  Lever, Ashby, Workday, and SmartRecruiters -- board listings and single
+  postings, a company hiring-signals aggregate (open roles, department and
+  location breakdowns, remote share, and newly-posted trends), and cross-provider
+  company search. Adds the **Steam platform** (12 endpoints): app, package,
+  reviews and review histogram, search and search results, featured and featured
+  categories, player counts, achievements, news, and SteamSpy stats. SEC
+  company-intelligence now supports opt-in cross-source enrichment (market quote,
+  news, and hiring signals) via the `enrich` parameter. All over credential-free
+  public data.
+
+
 ## v1.14.0-sdk.1
 
 - Regenerated from the public API contract (559 to 603 operations). Adds the
