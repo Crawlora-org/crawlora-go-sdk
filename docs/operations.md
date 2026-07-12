@@ -2,7 +2,7 @@
 
 Generated from `openapi/public.json`. Deprecated, admin, and internal operations are excluded from this SDK contract.
 
-Total operations: `658`
+Total operations: `685`
 
 | Group | SDK method | Operation ID | HTTP | Params | Auth | Response | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -155,6 +155,13 @@ Total operations: `658`
 | Datasets | `Datasets.TrustmrrFacets` | `datasets-trustmrr-facets` | `GET /datasets/trustmrr/facets` | `facet` (query string required)<br>`q` (query string)<br>`category` (query string)<br>`country` (query string)<br>`payment_provider` (query string)<br>`on_sale` (query bool)<br>`min_mrr` (query float64) | `ApiKeyAuth` | `DatasetsTrustmrrFacetsResponse` |  |
 | Datasets | `Datasets.TrustmrrItem` | `datasets-trustmrr-item` | `GET /datasets/trustmrr/items/{slug}` | `slug` (path string required) | `ApiKeyAuth` | `DatasetsTrustmrrItemResponse` |  |
 | Datasets | `Datasets.TrustmrrSearch` | `datasets-trustmrr-search` | `GET /datasets/trustmrr/search` | `q` (query string)<br>`slug` (query string)<br>`category` (query string)<br>`country` (query string)<br>`payment_provider` (query string)<br>`target_audience` (query string)<br>`business_type` (query string)<br>`tech` (query string)<br>`channel` (query string)<br>`listing_tier` (query string)<br>`status` (query string)<br>`on_sale` (query bool)<br>`is_sponsored` (query bool)<br>`min_mrr` (query float64)<br>`max_mrr` (query float64)<br>`min_revenue` (query float64)<br>`min_revenue_30d` (query float64)<br>`min_traffic` (query float64)<br>`min_growth` (query float64)<br>`max_multiple` (query float64)<br>`min_asking_price` (query float64)<br>`max_asking_price` (query float64)<br>`min_ahrefs_dr` (query int)<br>`sort` (query string)<br>`page` (query int)<br>`page_size` (query int) | `ApiKeyAuth` | `DatasetsTrustmrrSearchResponse` |  |
+| Discogs | `Discogs.Artist` | `discogs-artist` | `GET /discogs/artist/{id}` | `id` (path string required) | `ApiKeyAuth` | `DiscogsArtistResponse` |  |
+| Discogs | `Discogs.ArtistReleases` | `discogs-artist-releases` | `GET /discogs/artist/{id}/releases` | `id` (path string required)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `DiscogsArtistReleasesResponse` |  |
+| Discogs | `Discogs.Label` | `discogs-label` | `GET /discogs/label/{id}` | `id` (path string required) | `ApiKeyAuth` | `DiscogsLabelResponse` |  |
+| Discogs | `Discogs.LabelReleases` | `discogs-label-releases` | `GET /discogs/label/{id}/releases` | `id` (path string required)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `DiscogsLabelReleasesResponse` |  |
+| Discogs | `Discogs.Master` | `discogs-master` | `GET /discogs/master/{id}` | `id` (path string required) | `ApiKeyAuth` | `DiscogsMasterResponse` |  |
+| Discogs | `Discogs.Release` | `discogs-release` | `GET /discogs/release/{id}` | `id` (path string required) | `ApiKeyAuth` | `DiscogsReleaseResponse` |  |
+| Discogs | `Discogs.Search` | `discogs-search` | `GET /discogs/search` | `q` (query string required)<br>`type` (query string)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `DiscogsSearchResponse` |  |
 | EBay | `EBay.EbayItem` | `ebay-item` | `GET /ebay/item/{item_id}` | `item_id` (path string required) | `ApiKeyAuth` | `EBayEbayItemResponse` |  |
 | EBay | `EBay.EbaySearch` | `ebay-search` | `POST /ebay/search` | `option` (body ModelEbaySearchOption required) | `ApiKeyAuth` | `EBayEbaySearchResponse` |  |
 | EBay | `EBay.EbaySeller` | `ebay-seller` | `GET /ebay/seller/{seller}` | `seller` (path string required) | `ApiKeyAuth` | `EBayEbaySellerResponse` |  |
@@ -188,6 +195,12 @@ Total operations: `658`
 | GitHub | `GitHub.GithubUserEvents` | `github-user-events` | `GET /github/user/{username}/events` | `username` (path string required)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `GitHubGithubUserEventsResponse` |  |
 | GitHub | `GitHub.GithubUserPinned` | `github-user-pinned` | `GET /github/user/{username}/pinned` | `username` (path string required) | `ApiKeyAuth` | `GitHubGithubUserPinnedResponse` |  |
 | GitHub | `GitHub.GithubUserRepos` | `github-user-repos` | `GET /github/user/{username}/repos` | `username` (path string required)<br>`sort` (query string)<br>`direction` (query string)<br>`type` (query string)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `GitHubGithubUserReposResponse` |  |
+| Goodreads | `Goodreads.Author` | `goodreads-author` | `GET /goodreads/author/{id}` | `id` (path string required) | `ApiKeyAuth` | `GoodreadsAuthorResponse` |  |
+| Goodreads | `Goodreads.AuthorBooks` | `goodreads-author-books` | `GET /goodreads/author/{id}/books` | `id` (path string required)<br>`page` (query int) | `ApiKeyAuth` | `GoodreadsAuthorBooksResponse` |  |
+| Goodreads | `Goodreads.Book` | `goodreads-book` | `GET /goodreads/book/{id}` | `id` (path string required) | `ApiKeyAuth` | `GoodreadsBookResponse` |  |
+| Goodreads | `Goodreads.BookReviews` | `goodreads-book-reviews` | `GET /goodreads/book/{id}/reviews` | `id` (path string required)<br>`limit` (query int) | `ApiKeyAuth` | `GoodreadsBookReviewsResponse` |  |
+| Goodreads | `Goodreads.List` | `goodreads-list` | `GET /goodreads/list/{id}` | `id` (path string required)<br>`page` (query int) | `ApiKeyAuth` | `GoodreadsListResponse` |  |
+| Goodreads | `Goodreads.Search` | `goodreads-search` | `GET /goodreads/search` | `q` (query string required)<br>`limit` (query int) | `ApiKeyAuth` | `GoodreadsSearchResponse` |  |
 | Google | `Google.FinanceAnalystArticles` | `google-finance-analyst-articles` | `GET /google/finance/analyst-articles/{quote}` | `quote` (path string required) | `ApiKeyAuth` | `GoogleFinanceAnalystArticlesResponse` |  |
 | Google | `Google.FinanceChart` | `google-finance-chart` | `GET /google/finance/chart/{quote}` | `quote` (path string required)<br>`window` (query string) | `ApiKeyAuth` | `GoogleFinanceChartResponse` |  |
 | Google | `Google.FinanceClassification` | `google-finance-classification` | `GET /google/finance/classification/{quote}` | `quote` (path string required) | `ApiKeyAuth` | `GoogleFinanceClassificationResponse` |  |
@@ -311,6 +324,14 @@ Total operations: `658`
 | Kalshi | `Kalshi.Series` | `kalshi-series` | `GET /kalshi/series` | `limit` (query int)<br>`cursor` (query string) | `ApiKeyAuth` | `KalshiSeriesResponse` |  |
 | Kalshi | `Kalshi.SeriesDetail` | `kalshi-series-detail` | `GET /kalshi/series/{series_ticker}` | `series_ticker` (path string required) | `ApiKeyAuth` | `KalshiSeriesDetailResponse` |  |
 | Kalshi | `Kalshi.Trades` | `kalshi-trades` | `GET /kalshi/trades` | `limit` (query int)<br>`cursor` (query string)<br>`ticker` (query string)<br>`min_ts` (query int)<br>`max_ts` (query int) | `ApiKeyAuth` | `KalshiTradesResponse` |  |
+| Letterboxd | `Letterboxd.Film` | `letterboxd-film` | `GET /letterboxd/film/{slug}` | `slug` (path string required) | `ApiKeyAuth` | `LetterboxdFilmResponse` |  |
+| Letterboxd | `Letterboxd.FilmRatingHistogram` | `letterboxd-film-rating-histogram` | `GET /letterboxd/film/{slug}/rating-histogram` | `slug` (path string required) | `ApiKeyAuth` | `LetterboxdFilmRatingHistogramResponse` |  |
+| Letterboxd | `Letterboxd.FilmReviews` | `letterboxd-film-reviews` | `GET /letterboxd/film/{slug}/reviews` | `slug` (path string required)<br>`limit` (query int) | `ApiKeyAuth` | `LetterboxdFilmReviewsResponse` |  |
+| Letterboxd | `Letterboxd.FilmSimilar` | `letterboxd-film-similar` | `GET /letterboxd/film/{slug}/similar` | `slug` (path string required)<br>`limit` (query int) | `ApiKeyAuth` | `LetterboxdFilmSimilarResponse` |  |
+| Letterboxd | `Letterboxd.Member` | `letterboxd-member` | `GET /letterboxd/member/{username}` | `username` (path string required) | `ApiKeyAuth` | `LetterboxdMemberResponse` |  |
+| Letterboxd | `Letterboxd.Person` | `letterboxd-person` | `GET /letterboxd/person/{slug}` | `slug` (path string required)<br>`role` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `LetterboxdPersonResponse` |  |
+| Letterboxd | `Letterboxd.Popular` | `letterboxd-popular` | `GET /letterboxd/popular` | `period` (query string)<br>`genre` (query string)<br>`decade` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `LetterboxdPopularResponse` |  |
+| Letterboxd | `Letterboxd.Search` | `letterboxd-search` | `GET /letterboxd/search` | `q` (query string required)<br>`type` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `LetterboxdSearchResponse` |  |
 | LinkedIn | `LinkedIn.LinkedinCompany` | `linkedin-company` | `GET /linkedin/company/{id}` | `id` (path string required) | `ApiKeyAuth` | `LinkedInLinkedinCompanyResponse` |  |
 | LinkedIn | `LinkedIn.LinkedinProduct` | `linkedin-product` | `GET /linkedin/product/{id}` | `id` (path string required) | `ApiKeyAuth` | `LinkedInLinkedinProductResponse` |  |
 | LinkedIn | `LinkedIn.LinkedinShowcase` | `linkedin-showcase` | `GET /linkedin/showcase/{id}` | `id` (path string required) | `ApiKeyAuth` | `LinkedInLinkedinShowcaseResponse` |  |
@@ -578,6 +599,12 @@ Total operations: `658`
 | TikTok | `TikTok.TopAdsSpotlight` | `tiktok-top-ads-spotlight` | `GET /tiktok/top-ads/spotlight` | `page` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `TikTokTopAdsSpotlightResponse` |  |
 | TikTok | `TikTok.TopAdsSuggestions` | `tiktok-top-ads-suggestions` | `GET /tiktok/top-ads/suggestions` | `count` (query int)<br>`scenario` (query int) | `ApiKeyAuth` | `TikTokTopAdsSuggestionsResponse` |  |
 | TikTok | `TikTok.Trending` | `tiktok-trending` | `GET /tiktok/trending` | none | `ApiKeyAuth` | `TikTokTrendingResponse` |  |
+| Tmdb | `Tmdb.MovieList` | `tmdb-movie-list` | `GET /tmdb/movie/list` | `category` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `TmdbMovieListResponse` |  |
+| Tmdb | `Tmdb.Movie` | `tmdb-movie` | `GET /tmdb/movie/{id}` | `id` (path string required) | `ApiKeyAuth` | `TmdbMovieResponse` |  |
+| Tmdb | `Tmdb.Person` | `tmdb-person` | `GET /tmdb/person/{id}` | `id` (path string required)<br>`limit` (query int) | `ApiKeyAuth` | `TmdbPersonResponse` |  |
+| Tmdb | `Tmdb.Search` | `tmdb-search` | `GET /tmdb/search` | `query` (query string required)<br>`type` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `TmdbSearchResponse` |  |
+| Tmdb | `Tmdb.TvList` | `tmdb-tv-list` | `GET /tmdb/tv/list` | `category` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `TmdbTvListResponse` |  |
+| Tmdb | `Tmdb.Tv` | `tmdb-tv` | `GET /tmdb/tv/{id}` | `id` (path string required) | `ApiKeyAuth` | `TmdbTvResponse` |  |
 | TripAdvisor | `TripAdvisor.TripadvisorAutocomplete` | `tripadvisor-autocomplete` | `GET /tripadvisor/autocomplete` | `q` (query string required)<br>`limit` (query int)<br>`locale` (query string)<br>`scope_geo_id` (query int)<br>`type` (query string)<br>`search_session_id` (query string)<br>`typeahead_id` (query string)<br>`route_uid` (query string) | `ApiKeyAuth` | `TripAdvisorTripadvisorAutocompleteResponse` |  |
 | TripAdvisor | `TripAdvisor.TripadvisorEnums` | `tripadvisor-enums` | `GET /tripadvisor/enums` | none | `ApiKeyAuth` | `TripAdvisorTripadvisorEnumsResponse` |  |
 | TripAdvisor | `TripAdvisor.TripadvisorHotels` | `tripadvisor-hotels` | `GET /tripadvisor/hotels` | `geo_id` (query int required)<br>`filter_id` (query string)<br>`class` (query int)<br>`amenities` (query []int)<br>`price_min` (query int)<br>`price_max` (query int)<br>`pricing_mode` (query string)<br>`travelers_choice` (query bool)<br>`travelers_choice_botb` (query bool)<br>`currency` (query string)<br>`offset` (query int)<br>`limit` (query int)<br>`sort` (query string) | `ApiKeyAuth` | `TripAdvisorTripadvisorHotelsResponse` |  |

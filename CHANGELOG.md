@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.16.0-sdk.1
+
+- Regenerated from the public API contract (658 to 685 operations). Adds four
+  credential-free media platforms (27 endpoints):
+  **Discogs** (7) — release, master, artist and artist releases, label and label
+  releases, and search across the Discogs music database.
+  **Letterboxd** (8) — film details, rating histogram, reviews, similar films,
+  search, person, popular films, and member profiles.
+  **TMDB** (6) — movie, TV, and person details, multi-search, and curated
+  movie/TV lists from The Movie Database.
+  **Goodreads** (6) — book details and reviews, search, author details and
+  author books, and Listopia lists.
+  All over credential-free public pages and JSON endpoints.
+
 ## v1.15.0-sdk.1
 
 - Regenerated from the public API contract (603 to 625 operations). Adds the
