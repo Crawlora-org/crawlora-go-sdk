@@ -10809,6 +10809,881 @@
       },
       "type": "object"
     },
+    "discogs.ArtistCredit": {
+      "properties": {
+        "anv": {
+          "example": "T. Bangalter",
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "join": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "example": "Vocals",
+          "type": "string"
+        },
+        "tracks": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.ArtistReleaseItem": {
+      "properties": {
+        "artist": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "in_collection": {
+          "type": "integer"
+        },
+        "in_wantlist": {
+          "type": "integer"
+        },
+        "label": {
+          "type": "string"
+        },
+        "main_release_id": {
+          "type": "integer"
+        },
+        "role": {
+          "example": "Main",
+          "type": "string"
+        },
+        "thumb": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "example": "release",
+          "type": "string"
+        },
+        "year": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.ArtistReleasesResponse": {
+      "properties": {
+        "artist_id": {
+          "type": "string"
+        },
+        "items": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "pages": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "releases": {
+          "items": {
+            "$ref": "#/definitions/discogs.ArtistReleaseItem"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.ArtistResponse": {
+      "properties": {
+        "aliases": {
+          "items": {
+            "$ref": "#/definitions/discogs.EntityRef"
+          },
+          "type": "array"
+        },
+        "data_quality": {
+          "type": "string"
+        },
+        "groups": {
+          "items": {
+            "$ref": "#/definitions/discogs.EntityRef"
+          },
+          "type": "array"
+        },
+        "id": {
+          "example": 1289,
+          "type": "integer"
+        },
+        "images": {
+          "items": {
+            "$ref": "#/definitions/discogs.Image"
+          },
+          "type": "array"
+        },
+        "members": {
+          "items": {
+            "$ref": "#/definitions/discogs.EntityRef"
+          },
+          "type": "array"
+        },
+        "name": {
+          "example": "Daft Punk",
+          "type": "string"
+        },
+        "name_variations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "profile": {
+          "type": "string"
+        },
+        "real_name": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "urls": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.Community": {
+      "properties": {
+        "have": {
+          "type": "integer"
+        },
+        "rating": {
+          "$ref": "#/definitions/discogs.CommunityRating"
+        },
+        "want": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.CommunityRating": {
+      "properties": {
+        "average": {
+          "type": "number"
+        },
+        "count": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.CompanyCredit": {
+      "properties": {
+        "catno": {
+          "type": "string"
+        },
+        "entity_type": {
+          "type": "string"
+        },
+        "entity_type_name": {
+          "example": "Pressed By",
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.EntityRef": {
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.Format": {
+      "properties": {
+        "descriptions": {
+          "example": [
+            "LP",
+            "Album"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "example": "Vinyl",
+          "type": "string"
+        },
+        "qty": {
+          "example": "2",
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.Identifier": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "example": "Barcode",
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.Image": {
+      "properties": {
+        "height": {
+          "type": "integer"
+        },
+        "type": {
+          "example": "primary",
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "uri150": {
+          "type": "string"
+        },
+        "width": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.LabelCredit": {
+      "properties": {
+        "catno": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.LabelReleaseItem": {
+      "properties": {
+        "artist": {
+          "type": "string"
+        },
+        "catno": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "status": {
+          "type": "string"
+        },
+        "thumb": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "year": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.LabelReleasesResponse": {
+      "properties": {
+        "items": {
+          "type": "integer"
+        },
+        "label_id": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "pages": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "releases": {
+          "items": {
+            "$ref": "#/definitions/discogs.LabelReleaseItem"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.LabelResponse": {
+      "properties": {
+        "contact_info": {
+          "type": "string"
+        },
+        "data_quality": {
+          "type": "string"
+        },
+        "id": {
+          "example": 895,
+          "type": "integer"
+        },
+        "images": {
+          "items": {
+            "$ref": "#/definitions/discogs.Image"
+          },
+          "type": "array"
+        },
+        "name": {
+          "example": "RCA",
+          "type": "string"
+        },
+        "parent_label": {
+          "$ref": "#/definitions/discogs.EntityRef"
+        },
+        "profile": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "sub_labels": {
+          "items": {
+            "$ref": "#/definitions/discogs.EntityRef"
+          },
+          "type": "array"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "urls": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.MasterResponse": {
+      "properties": {
+        "artists": {
+          "items": {
+            "$ref": "#/definitions/discogs.ArtistCredit"
+          },
+          "type": "array"
+        },
+        "data_quality": {
+          "type": "string"
+        },
+        "genres": {
+          "example": [
+            "Electronic"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "example": 26647,
+          "type": "integer"
+        },
+        "images": {
+          "items": {
+            "$ref": "#/definitions/discogs.Image"
+          },
+          "type": "array"
+        },
+        "lowest_price": {
+          "type": "number"
+        },
+        "main_release_id": {
+          "example": 2879,
+          "type": "integer"
+        },
+        "most_recent_release_id": {
+          "type": "integer"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "num_for_sale": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "styles": {
+          "example": [
+            "House",
+            "Disco"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "title": {
+          "example": "Discovery",
+          "type": "string"
+        },
+        "tracklist": {
+          "items": {
+            "$ref": "#/definitions/discogs.Track"
+          },
+          "type": "array"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "videos": {
+          "items": {
+            "$ref": "#/definitions/discogs.Video"
+          },
+          "type": "array"
+        },
+        "year": {
+          "example": 2001,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.ReleaseResponse": {
+      "properties": {
+        "artists": {
+          "items": {
+            "$ref": "#/definitions/discogs.ArtistCredit"
+          },
+          "type": "array"
+        },
+        "artists_sort": {
+          "example": "Rick Astley",
+          "type": "string"
+        },
+        "community": {
+          "$ref": "#/definitions/discogs.Community"
+        },
+        "companies": {
+          "items": {
+            "$ref": "#/definitions/discogs.CompanyCredit"
+          },
+          "type": "array"
+        },
+        "country": {
+          "example": "UK",
+          "type": "string"
+        },
+        "data_quality": {
+          "type": "string"
+        },
+        "extra_artists": {
+          "items": {
+            "$ref": "#/definitions/discogs.ArtistCredit"
+          },
+          "type": "array"
+        },
+        "format_quantity": {
+          "type": "integer"
+        },
+        "formats": {
+          "items": {
+            "$ref": "#/definitions/discogs.Format"
+          },
+          "type": "array"
+        },
+        "genres": {
+          "example": [
+            "Electronic",
+            "Pop"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "example": 249504,
+          "type": "integer"
+        },
+        "identifiers": {
+          "items": {
+            "$ref": "#/definitions/discogs.Identifier"
+          },
+          "type": "array"
+        },
+        "images": {
+          "items": {
+            "$ref": "#/definitions/discogs.Image"
+          },
+          "type": "array"
+        },
+        "labels": {
+          "items": {
+            "$ref": "#/definitions/discogs.LabelCredit"
+          },
+          "type": "array"
+        },
+        "master_id": {
+          "type": "integer"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "released": {
+          "example": "1987-07-00",
+          "type": "string"
+        },
+        "released_formatted": {
+          "example": "Jul 1987",
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "status": {
+          "example": "Accepted",
+          "type": "string"
+        },
+        "styles": {
+          "example": [
+            "Euro-Disco"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "title": {
+          "example": "Never Gonna Give You Up",
+          "type": "string"
+        },
+        "tracklist": {
+          "items": {
+            "$ref": "#/definitions/discogs.Track"
+          },
+          "type": "array"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "videos": {
+          "items": {
+            "$ref": "#/definitions/discogs.Video"
+          },
+          "type": "array"
+        },
+        "year": {
+          "example": 1987,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.SearchResponse": {
+      "properties": {
+        "items": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "pages": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "query": {
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/discogs.SearchResult"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.SearchResult": {
+      "properties": {
+        "barcodes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "catno": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "cover_image": {
+          "type": "string"
+        },
+        "formats": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "genres": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "labels": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "master_id": {
+          "type": "integer"
+        },
+        "styles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "thumb": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "example": "release",
+          "type": "string"
+        },
+        "uri": {
+          "example": "https://www.discogs.com/release/2879-Daft-Punk-Discovery",
+          "type": "string"
+        },
+        "year": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.Track": {
+      "properties": {
+        "duration": {
+          "example": "3:32",
+          "type": "string"
+        },
+        "extra_artists": {
+          "items": {
+            "$ref": "#/definitions/discogs.ArtistCredit"
+          },
+          "type": "array"
+        },
+        "position": {
+          "example": "A1",
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "example": "track",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.Video": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "duration": {
+          "example": 322,
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.artistReleasesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/discogs.ArtistReleasesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.artistResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/discogs.ArtistResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.labelReleasesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/discogs.LabelReleasesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.labelResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/discogs.LabelResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.masterResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/discogs.MasterResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.releaseResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/discogs.ReleaseResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "discogs.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/discogs.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ebay.Item": {
       "properties": {
         "availability": {
@@ -16449,6 +17324,446 @@
         },
         "data": {
           "$ref": "#/definitions/geocoding.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.AuthorBooksResponse": {
+      "properties": {
+        "author_id": {
+          "type": "string"
+        },
+        "books": {
+          "items": {
+            "$ref": "#/definitions/goodreads.BookListItem"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.AuthorResponse": {
+      "properties": {
+        "about": {
+          "type": "string"
+        },
+        "average_rating": {
+          "example": 4.3,
+          "type": "number"
+        },
+        "birth_date": {
+          "example": "August 11, 1962",
+          "type": "string"
+        },
+        "death_date": {
+          "type": "string"
+        },
+        "genres": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "example": "153394",
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Suzanne Collins",
+          "type": "string"
+        },
+        "ratings_count": {
+          "type": "integer"
+        },
+        "reviews_count": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.BookContributor": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "example": "Author",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.BookListItem": {
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "average_rating": {
+          "example": 4.35,
+          "type": "number"
+        },
+        "id": {
+          "type": "string"
+        },
+        "ratings_count": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.BookRating": {
+      "properties": {
+        "average": {
+          "example": 4.35,
+          "type": "number"
+        },
+        "distribution": {
+          "$ref": "#/definitions/goodreads.BookRatingDistribution"
+        },
+        "ratings_count": {
+          "example": 10177796,
+          "type": "integer"
+        },
+        "reviews_count": {
+          "example": 272857,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.BookRatingDistribution": {
+      "properties": {
+        "five_star": {
+          "type": "integer"
+        },
+        "four_star": {
+          "type": "integer"
+        },
+        "one_star": {
+          "type": "integer"
+        },
+        "three_star": {
+          "type": "integer"
+        },
+        "two_star": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.BookResponse": {
+      "properties": {
+        "authors": {
+          "items": {
+            "$ref": "#/definitions/goodreads.BookContributor"
+          },
+          "type": "array"
+        },
+        "description": {
+          "type": "string"
+        },
+        "format": {
+          "example": "Hardcover",
+          "type": "string"
+        },
+        "genres": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "example": "2767052",
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "isbn": {
+          "type": "string"
+        },
+        "isbn13": {
+          "type": "string"
+        },
+        "language": {
+          "example": "English",
+          "type": "string"
+        },
+        "pages": {
+          "example": 374,
+          "type": "integer"
+        },
+        "publication_date": {
+          "example": "2008-10-14",
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "rating": {
+          "$ref": "#/definitions/goodreads.BookRating"
+        },
+        "series": {
+          "example": "The Hunger Games #1",
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "title": {
+          "example": "The Hunger Games",
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.ListResponse": {
+      "properties": {
+        "books": {
+          "items": {
+            "$ref": "#/definitions/goodreads.BookListItem"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "title": {
+          "example": "Best Books Ever",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.Review": {
+      "properties": {
+        "comment_count": {
+          "type": "integer"
+        },
+        "contains_spoilers": {
+          "type": "boolean"
+        },
+        "date": {
+          "example": "2020-09-18",
+          "type": "string"
+        },
+        "like_count": {
+          "type": "integer"
+        },
+        "rating": {
+          "example": 5,
+          "type": "integer"
+        },
+        "reviewer": {
+          "type": "string"
+        },
+        "reviewer_url": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.ReviewsResponse": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "reviews": {
+          "items": {
+            "$ref": "#/definitions/goodreads.Review"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.SearchResponse": {
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/goodreads.SearchResult"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.SearchResult": {
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "author_id": {
+          "type": "string"
+        },
+        "average_rating": {
+          "example": 4.35,
+          "type": "number"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "pages": {
+          "type": "integer"
+        },
+        "ratings_count": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.authorBooksResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/goodreads.AuthorBooksResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.authorResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/goodreads.AuthorResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.bookResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/goodreads.BookResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.listResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/goodreads.ListResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.reviewsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/goodreads.ReviewsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/goodreads.SearchResponse"
         },
         "msg": {
           "example": "OK",
@@ -22450,6 +23765,481 @@
         },
         "data": {
           "$ref": "#/definitions/kalshi.TradesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.FilmRating": {
+      "properties": {
+        "average": {
+          "example": 4.52,
+          "type": "number"
+        },
+        "count": {
+          "example": 5553202,
+          "type": "integer"
+        },
+        "review_count": {
+          "example": 740173,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.FilmRef": {
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.FilmResponse": {
+      "properties": {
+        "cast": {
+          "items": {
+            "$ref": "#/definitions/letterboxd.PersonCredit"
+          },
+          "type": "array"
+        },
+        "countries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "directors": {
+          "items": {
+            "$ref": "#/definitions/letterboxd.PersonCredit"
+          },
+          "type": "array"
+        },
+        "genres": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "languages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "poster_url": {
+          "type": "string"
+        },
+        "production_companies": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "rating": {
+          "$ref": "#/definitions/letterboxd.FilmRating"
+        },
+        "release_date": {
+          "example": "2019-05-21",
+          "type": "string"
+        },
+        "runtime_minutes": {
+          "example": 133,
+          "type": "integer"
+        },
+        "slug": {
+          "example": "parasite-2019",
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "synopsis": {
+          "type": "string"
+        },
+        "title": {
+          "example": "Parasite",
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "year": {
+          "example": 2019,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.MemberResponse": {
+      "properties": {
+        "display_name": {
+          "type": "string"
+        },
+        "films_this_year": {
+          "type": "integer"
+        },
+        "films_watched": {
+          "type": "integer"
+        },
+        "followers": {
+          "type": "integer"
+        },
+        "following": {
+          "type": "integer"
+        },
+        "lists": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.PersonCredit": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.PersonResponse": {
+      "properties": {
+        "films": {
+          "items": {
+            "$ref": "#/definitions/letterboxd.FilmRef"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.PopularResponse": {
+      "properties": {
+        "decade": {
+          "type": "string"
+        },
+        "films": {
+          "items": {
+            "$ref": "#/definitions/letterboxd.FilmRef"
+          },
+          "type": "array"
+        },
+        "genre": {
+          "type": "string"
+        },
+        "period": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.RatingBucket": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "percent": {
+          "type": "integer"
+        },
+        "stars": {
+          "example": 4.5,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.RatingHistogramResponse": {
+      "properties": {
+        "buckets": {
+          "items": {
+            "$ref": "#/definitions/letterboxd.RatingBucket"
+          },
+          "type": "array"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "total_ratings": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.Review": {
+      "properties": {
+        "comment_count": {
+          "type": "integer"
+        },
+        "contains_spoilers": {
+          "type": "boolean"
+        },
+        "date": {
+          "example": "2019-08-14",
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "like_count": {
+          "type": "integer"
+        },
+        "liked": {
+          "type": "boolean"
+        },
+        "rating": {
+          "example": 4.5,
+          "type": "number"
+        },
+        "text": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.ReviewsResponse": {
+      "properties": {
+        "reviews": {
+          "items": {
+            "$ref": "#/definitions/letterboxd.Review"
+          },
+          "type": "array"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.SearchResponse": {
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/letterboxd.SearchResult"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.SearchResult": {
+      "properties": {
+        "owner": {
+          "type": "string"
+        },
+        "role": {
+          "example": "director",
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "example": "film",
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "year": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.SimilarResponse": {
+      "properties": {
+        "films": {
+          "items": {
+            "$ref": "#/definitions/letterboxd.FilmRef"
+          },
+          "type": "array"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.filmResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/letterboxd.FilmResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.memberResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/letterboxd.MemberResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.personResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/letterboxd.PersonResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.popularResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/letterboxd.PopularResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.ratingHistogramResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/letterboxd.RatingHistogramResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.reviewsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/letterboxd.ReviewsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/letterboxd.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "letterboxd.similarResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/letterboxd.SimilarResponse"
         },
         "msg": {
           "example": "OK",
@@ -42174,6 +43964,466 @@
         },
         "data": {
           "$ref": "#/definitions/tiktok.TrendingResp"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.CastCredit": {
+      "properties": {
+        "character": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.CrewCredit": {
+      "properties": {
+        "jobs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.FilmographyCredit": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "example": "movie",
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.MediaRef": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "overview": {
+          "type": "string"
+        },
+        "poster_url": {
+          "type": "string"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.MovieListResponse": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "movies": {
+          "items": {
+            "$ref": "#/definitions/tmdb.MediaRef"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.MovieResponse": {
+      "properties": {
+        "budget": {
+          "type": "number"
+        },
+        "cast": {
+          "items": {
+            "$ref": "#/definitions/tmdb.CastCredit"
+          },
+          "type": "array"
+        },
+        "countries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "genres": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "homepage": {
+          "type": "string"
+        },
+        "id": {
+          "example": "27205",
+          "type": "string"
+        },
+        "original_language": {
+          "example": "English",
+          "type": "string"
+        },
+        "overview": {
+          "type": "string"
+        },
+        "poster_url": {
+          "type": "string"
+        },
+        "rating": {
+          "$ref": "#/definitions/tmdb.Rating"
+        },
+        "release_date": {
+          "example": "2010-07-15",
+          "type": "string"
+        },
+        "revenue": {
+          "type": "number"
+        },
+        "runtime_minutes": {
+          "example": 148,
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "status": {
+          "example": "Released",
+          "type": "string"
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "title": {
+          "example": "Inception",
+          "type": "string"
+        },
+        "top_crew": {
+          "items": {
+            "$ref": "#/definitions/tmdb.CrewCredit"
+          },
+          "type": "array"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "year": {
+          "example": 2010,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.PersonResponse": {
+      "properties": {
+        "biography": {
+          "type": "string"
+        },
+        "birth_date": {
+          "example": "1956-07-09",
+          "type": "string"
+        },
+        "filmography": {
+          "items": {
+            "$ref": "#/definitions/tmdb.FilmographyCredit"
+          },
+          "type": "array"
+        },
+        "id": {
+          "example": "31",
+          "type": "string"
+        },
+        "name": {
+          "example": "Tom Hanks",
+          "type": "string"
+        },
+        "photo_url": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.Rating": {
+      "properties": {
+        "average": {
+          "example": 8.372,
+          "type": "number"
+        },
+        "count": {
+          "example": 39524,
+          "type": "integer"
+        },
+        "review_count": {
+          "example": 8,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.SearchResponse": {
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/tmdb.SearchResult"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.SearchResult": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "overview": {
+          "type": "string"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "example": "movie",
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.TVListResponse": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "shows": {
+          "items": {
+            "$ref": "#/definitions/tmdb.MediaRef"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.TVResponse": {
+      "properties": {
+        "cast": {
+          "items": {
+            "$ref": "#/definitions/tmdb.CastCredit"
+          },
+          "type": "array"
+        },
+        "countries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "first_air_year": {
+          "example": 2008,
+          "type": "integer"
+        },
+        "genres": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "homepage": {
+          "type": "string"
+        },
+        "id": {
+          "example": "1396",
+          "type": "string"
+        },
+        "last_air_year": {
+          "example": 2013,
+          "type": "integer"
+        },
+        "number_of_episodes": {
+          "example": 62,
+          "type": "integer"
+        },
+        "original_language": {
+          "example": "English",
+          "type": "string"
+        },
+        "overview": {
+          "type": "string"
+        },
+        "poster_url": {
+          "type": "string"
+        },
+        "rating": {
+          "$ref": "#/definitions/tmdb.Rating"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "status": {
+          "example": "Ended",
+          "type": "string"
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "title": {
+          "example": "Breaking Bad",
+          "type": "string"
+        },
+        "top_crew": {
+          "items": {
+            "$ref": "#/definitions/tmdb.CrewCredit"
+          },
+          "type": "array"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.movieListResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tmdb.MovieListResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.movieResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tmdb.MovieResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.personResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tmdb.PersonResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tmdb.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.tvListResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tmdb.TVListResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.tvResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tmdb.TVResponse"
         },
         "msg": {
           "example": "OK",
@@ -64728,6 +66978,489 @@
         ]
       }
     },
+    "/discogs/artist/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized Discogs artist profile: real name, bio, links, name variations, aliases, and group memberships. Credential-free official Discogs database data.",
+        "operationId": "discogs-artist",
+        "parameters": [
+          {
+            "description": "Discogs artist id",
+            "example": "1289",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/discogs.artistResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Discogs artist profile",
+        "tags": [
+          "Discogs"
+        ]
+      }
+    },
+    "/discogs/artist/{id}/releases": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns an artist's paginated release/master credits (role, format, label, year, want/collection counts). Credential-free official Discogs database data.",
+        "operationId": "discogs-artist-releases",
+        "parameters": [
+          {
+            "description": "Discogs artist id",
+            "example": "1289",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page, default 50, max 100",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/discogs.artistReleasesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Discogs artist's releases",
+        "tags": [
+          "Discogs"
+        ]
+      }
+    },
+    "/discogs/label/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized Discogs label profile: profile text, contact info, parent label, and sub-labels. Credential-free official Discogs database data.",
+        "operationId": "discogs-label",
+        "parameters": [
+          {
+            "description": "Discogs label id",
+            "example": "895",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/discogs.labelResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Discogs label profile",
+        "tags": [
+          "Discogs"
+        ]
+      }
+    },
+    "/discogs/label/{id}/releases": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a label's paginated release catalog (title, artist, format, catalog number, year). Credential-free official Discogs database data.",
+        "operationId": "discogs-label-releases",
+        "parameters": [
+          {
+            "description": "Discogs label id",
+            "example": "895",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page, default 50, max 100",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/discogs.labelReleasesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Discogs label's releases",
+        "tags": [
+          "Discogs"
+        ]
+      }
+    },
+    "/discogs/master/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized Discogs master release: the version-agnostic grouping of a release across pressings/reissues (artists, tracklist, genres/styles, videos, images, marketplace stats). Credential-free official Discogs database data.",
+        "operationId": "discogs-master",
+        "parameters": [
+          {
+            "description": "Discogs master release id",
+            "example": "26647",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/discogs.masterResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Discogs master release",
+        "tags": [
+          "Discogs"
+        ]
+      }
+    },
+    "/discogs/release/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized Discogs release: artists, labels, formats, tracklist, credits, identifiers, videos, images, and community want/have/rating. Credential-free official Discogs database data (api.discogs.com).",
+        "operationId": "discogs-release",
+        "parameters": [
+          {
+            "description": "Discogs release id",
+            "example": "249504",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/discogs.releaseResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Discogs release",
+        "tags": [
+          "Discogs"
+        ]
+      }
+    },
+    "/discogs/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches Discogs releases, masters, artists, and labels. Credential-free official Discogs database data.",
+        "operationId": "discogs-search",
+        "parameters": [
+          {
+            "description": "Search query",
+            "example": "Daft Punk Discovery",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Result type filter",
+            "enum": [
+              "release",
+              "master",
+              "artist",
+              "label"
+            ],
+            "in": "query",
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "description": "1-based page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page, default 50, max 100",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/discogs.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the Discogs database",
+        "tags": [
+          "Discogs"
+        ]
+      }
+    },
     "/ebay/item/{item_id}": {
       "get": {
         "consumes": [
@@ -67491,6 +70224,402 @@
         "summary": "List a GitHub user's public repositories",
         "tags": [
           "GitHub"
+        ]
+      }
+    },
+    "/goodreads/author/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized Goodreads author profile: bio, birth/death dates, website, genres, photo, and aggregate rating stats. Credential-free public Goodreads data.",
+        "operationId": "goodreads-author",
+        "parameters": [
+          {
+            "description": "Goodreads author id",
+            "example": "153394",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/goodreads.authorResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Goodreads author",
+        "tags": [
+          "Goodreads"
+        ]
+      }
+    },
+    "/goodreads/author/{id}/books": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns an author's paginated works list (title, author, average rating, ratings count). Credential-free public Goodreads data.",
+        "operationId": "goodreads-author-books",
+        "parameters": [
+          {
+            "description": "Goodreads author id",
+            "example": "153394",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/goodreads.authorBooksResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Goodreads author's books",
+        "tags": [
+          "Goodreads"
+        ]
+      }
+    },
+    "/goodreads/book/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized Goodreads book: description, authors, series, genres, format, pages, publisher, publication date, ISBNs, and aggregate rating with the full 1-5 star distribution. Credential-free public Goodreads data (goodreads.com), parsed from the book page's embedded GraphQL cache.",
+        "operationId": "goodreads-book",
+        "parameters": [
+          {
+            "description": "Goodreads book id",
+            "example": "2767052",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/goodreads.bookResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Goodreads book",
+        "tags": [
+          "Goodreads"
+        ]
+      }
+    },
+    "/goodreads/book/{id}/reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a book's featured reviews (reviewer, rating, text, date, like/comment counts, spoiler flag), sorted by like count. Credential-free public Goodreads data.",
+        "operationId": "goodreads-book-reviews",
+        "parameters": [
+          {
+            "description": "Goodreads book id",
+            "example": "2767052",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Max reviews, default 10, max 50",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/goodreads.reviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Goodreads book's featured reviews",
+        "tags": [
+          "Goodreads"
+        ]
+      }
+    },
+    "/goodreads/list/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a Goodreads Listopia list (ranked book list) by id, paginated. Credential-free public Goodreads data.",
+        "operationId": "goodreads-list",
+        "parameters": [
+          {
+            "description": "Goodreads list id",
+            "example": "1",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/goodreads.listResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Goodreads Listopia list",
+        "tags": [
+          "Goodreads"
+        ]
+      }
+    },
+    "/goodreads/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches Goodreads books by title/author. Credential-free public Goodreads data via the autocomplete endpoint (book results only).",
+        "operationId": "goodreads-search",
+        "parameters": [
+          {
+            "description": "Search query",
+            "example": "hunger games",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Max results, default 10, max 50",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/goodreads.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Goodreads books",
+        "tags": [
+          "Goodreads"
         ]
       }
     },
@@ -76822,6 +79951,541 @@
         "summary": "Kalshi trades",
         "tags": [
           "Kalshi"
+        ]
+      }
+    },
+    "/letterboxd/film/{slug}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized Letterboxd film: synopsis, director, cast, genres, countries, languages, runtime, and aggregate member rating. Credential-free public Letterboxd data (letterboxd.com), parsed from the film page's schema.org structured data.",
+        "operationId": "letterboxd-film",
+        "parameters": [
+          {
+            "description": "Letterboxd film slug",
+            "example": "parasite-2019",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/letterboxd.filmResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Letterboxd film",
+        "tags": [
+          "Letterboxd"
+        ]
+      }
+    },
+    "/letterboxd/film/{slug}/rating-histogram": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a film's full star-rating distribution (0.5 to 5.0 in half-star buckets) with counts and percentages. Credential-free public Letterboxd data.",
+        "operationId": "letterboxd-film-rating-histogram",
+        "parameters": [
+          {
+            "description": "Letterboxd film slug",
+            "example": "parasite-2019",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/letterboxd.ratingHistogramResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Letterboxd film's rating distribution",
+        "tags": [
+          "Letterboxd"
+        ]
+      }
+    },
+    "/letterboxd/film/{slug}/reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a film's popular reviews (reviewer, rating, date, text, like/comment counts, spoiler flag). Credential-free public Letterboxd data.",
+        "operationId": "letterboxd-film-reviews",
+        "parameters": [
+          {
+            "description": "Letterboxd film slug",
+            "example": "parasite-2019",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Max reviews, default 10, max 50",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/letterboxd.reviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Letterboxd film's popular reviews",
+        "tags": [
+          "Letterboxd"
+        ]
+      }
+    },
+    "/letterboxd/film/{slug}/similar": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns films Letterboxd recommends as similar to the given film. Credential-free public Letterboxd data.",
+        "operationId": "letterboxd-film-similar",
+        "parameters": [
+          {
+            "description": "Letterboxd film slug",
+            "example": "parasite-2019",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Max films, default 10, max 50",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/letterboxd.similarResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get films similar to a Letterboxd film",
+        "tags": [
+          "Letterboxd"
+        ]
+      }
+    },
+    "/letterboxd/member/{username}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a member's public profile stats (films watched, lists, following/followers). No private data — everything is visible to a logged-out visitor. Credential-free public Letterboxd data.",
+        "operationId": "letterboxd-member",
+        "parameters": [
+          {
+            "description": "Letterboxd username",
+            "example": "dave",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/letterboxd.memberResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Letterboxd member's public profile stats",
+        "tags": [
+          "Letterboxd"
+        ]
+      }
+    },
+    "/letterboxd/person/{slug}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a person's Letterboxd filmography for a credit role. Credential-free public Letterboxd data.",
+        "operationId": "letterboxd-person",
+        "parameters": [
+          {
+            "description": "Letterboxd person slug",
+            "example": "bong-joon-ho",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Credit role, default actor",
+            "enum": [
+              "actor",
+              "director"
+            ],
+            "in": "query",
+            "name": "role",
+            "type": "string"
+          },
+          {
+            "description": "Max films, default 10, max 50",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/letterboxd.personResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Letterboxd person's filmography",
+        "tags": [
+          "Letterboxd"
+        ]
+      }
+    },
+    "/letterboxd/popular": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a popularity-ranked film chart, optionally scoped to a time window, genre, and/or decade. Credential-free public Letterboxd data.",
+        "operationId": "letterboxd-popular",
+        "parameters": [
+          {
+            "description": "Popularity window, omit for all-time",
+            "enum": [
+              "day",
+              "week",
+              "month",
+              "year"
+            ],
+            "in": "query",
+            "name": "period",
+            "type": "string"
+          },
+          {
+            "description": "Genre slug filter",
+            "example": "mystery",
+            "in": "query",
+            "name": "genre",
+            "type": "string"
+          },
+          {
+            "description": "Decade filter, e.g. 2010s",
+            "example": "2010s",
+            "in": "query",
+            "name": "decade",
+            "type": "string"
+          },
+          {
+            "description": "Max films, default 10, max 50",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/letterboxd.popularResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Letterboxd popularity-ranked film chart",
+        "tags": [
+          "Letterboxd"
+        ]
+      }
+    },
+    "/letterboxd/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches Letterboxd films, people, lists, and tags. Credential-free public Letterboxd data.",
+        "operationId": "letterboxd-search",
+        "parameters": [
+          {
+            "description": "Search query",
+            "example": "Parasite",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Optional result type filter",
+            "enum": [
+              "film"
+            ],
+            "in": "query",
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "description": "Max results, default 10, max 50",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/letterboxd.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Letterboxd",
+        "tags": [
+          "Letterboxd"
         ]
       }
     },
@@ -96732,6 +100396,409 @@
         "summary": "Retrieve TikTok trending posts",
         "tags": [
           "TikTok"
+        ]
+      }
+    },
+    "/tmdb/movie/list": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a TMDB movie chart (popular, top rated, now playing, or upcoming). Credential-free public TMDB data.",
+        "operationId": "tmdb-movie-list",
+        "parameters": [
+          {
+            "description": "Movie chart, default popular",
+            "enum": [
+              "popular",
+              "top_rated",
+              "now_playing",
+              "upcoming"
+            ],
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "description": "Max movies, default 10, max 20",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tmdb.movieListResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a TMDB movie chart",
+        "tags": [
+          "TMDB"
+        ]
+      }
+    },
+    "/tmdb/movie/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized TMDB movie: overview, tagline, genres, countries, runtime, budget/revenue, top-billed cast, top crew (director/writer), and aggregate rating. Credential-free public TMDB data (themoviedb.org) — not the official api.themoviedb.org, which requires an API key.",
+        "operationId": "tmdb-movie",
+        "parameters": [
+          {
+            "description": "TMDB movie id",
+            "example": "27205",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tmdb.movieResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a TMDB movie",
+        "tags": [
+          "TMDB"
+        ]
+      }
+    },
+    "/tmdb/person/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized TMDB person: biography, birth date, photo, and filmography (movie and TV credits). Credential-free public TMDB data.",
+        "operationId": "tmdb-person",
+        "parameters": [
+          {
+            "description": "TMDB person id",
+            "example": "31",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Max filmography credits, default 10, max 20",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tmdb.personResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a TMDB person",
+        "tags": [
+          "TMDB"
+        ]
+      }
+    },
+    "/tmdb/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches TMDB movies, TV shows, and people. An unscoped query interleaves results across all three types rather than returning whichever type happens to rank first upstream. Credential-free public TMDB data.",
+        "operationId": "tmdb-search",
+        "parameters": [
+          {
+            "description": "Search query",
+            "example": "Inception",
+            "in": "query",
+            "name": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Optional result type filter",
+            "enum": [
+              "movie",
+              "tv",
+              "person"
+            ],
+            "in": "query",
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "description": "Max results, default 10, max 20",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tmdb.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search TMDB",
+        "tags": [
+          "TMDB"
+        ]
+      }
+    },
+    "/tmdb/tv/list": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a TMDB TV chart (popular, top rated, airing today, or on the air). Credential-free public TMDB data.",
+        "operationId": "tmdb-tv-list",
+        "parameters": [
+          {
+            "description": "TV chart, default popular",
+            "enum": [
+              "popular",
+              "top_rated",
+              "airing_today",
+              "on_the_air"
+            ],
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "description": "Max shows, default 10, max 20",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tmdb.tvListResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a TMDB TV chart",
+        "tags": [
+          "TMDB"
+        ]
+      }
+    },
+    "/tmdb/tv/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized TMDB TV show: overview, tagline, genres, countries, episode count, first/last air year, top-billed cast, top crew (creator), and aggregate rating. Credential-free public TMDB data.",
+        "operationId": "tmdb-tv",
+        "parameters": [
+          {
+            "description": "TMDB TV show id",
+            "example": "1396",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tmdb.tvResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a TMDB TV show",
+        "tags": [
+          "TMDB"
         ]
       }
     },
