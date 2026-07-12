@@ -1,5 +1,31 @@
 # Changelog
 
+## v1.14.0-sdk.1
+
+- Regenerated from the public API contract (559 to 685 operations). A catch-up
+  release bringing the SDK current with every public Crawlora endpoint. New
+  platforms now covered:
+  - **Discogs** (7): release, master, artist + discography, label + catalog,
+    and database search — the credential-free Discogs music database.
+  - **Letterboxd** (8): film detail, rating histogram, popular reviews, similar
+    films, search, person filmography, popular charts, and member profiles.
+  - **TMDB** (6): movie, TV show, and person detail, search, and the movie / TV
+    charts — from the public themoviedb.org site.
+  - **Goodreads** (6): book detail (with the full 1-5 star rating distribution),
+    book reviews, search, author, author works list, and Listopia lists.
+  - **SEC EDGAR** (10): company search / submissions / 360 intelligence, single
+    filing + section extraction, full-text search, XBRL frames, normalized
+    financial statements, insider transactions (Forms 3/4/5), and 13F holdings.
+  - **Jobs** (11): Greenhouse, Lever, Ashby, Workday, and SmartRecruiters board
+    / posting readers plus hiring-signal and company-search aggregators.
+  - **Steam** (21): store, app, reviews, charts, tags, categories, packages,
+    player counts, news, featured lists, and SteamSpy data.
+  - **PlayStation Store** (8): product, concept, category, search, browse,
+    deals, latest, and page collection discovery.
+  - The remaining **Chrome Web Store** endpoints (developer, privacy,
+    permissions).
+
+
 ## v1.13.0-sdk.1
 
 - Regenerated from the public API contract (555 to 559 operations). Adds the
