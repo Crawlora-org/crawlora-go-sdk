@@ -9537,6 +9537,92 @@
       },
       "type": "object"
     },
+    "datasets.HousingFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.HousingMarketDatasetFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.HousingSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.HousingMarketRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.PlaystationFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.PlaystationGameDatasetFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.PlaystationSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.PlaystationGameRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "datasets.ProductHuntMakersFacetResponse": {
       "properties": {
         "dataset": {
@@ -9680,6 +9766,208 @@
         "items": {
           "items": {
             "$ref": "#/definitions/es.AppReview"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.SteamAchievementsSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.SteamAchievementRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.SteamChartsSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.SteamChartEntry"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "snapshot_date": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.SteamFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.SteamGameDatasetFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.SteamNewsSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.SteamNewsRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.SteamPlayerCountsSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.SteamPlayerCountRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.SteamPricesSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.SteamPriceRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.SteamReviewsSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.SteamReviewRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.SteamSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.SteamGameRecord"
           },
           "type": "array"
         },
@@ -9992,6 +10280,54 @@
       },
       "type": "object"
     },
+    "datasets.housingMarketItemResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.HousingMarketRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.housingMarketsFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.HousingFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.housingMarketsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.HousingSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "datasets.listResponseDoc": {
       "properties": {
         "code": {
@@ -10000,6 +10336,54 @@
         },
         "data": {
           "$ref": "#/definitions/datasets.DatasetListResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.playstationGameResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.PlaystationGameRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.playstationGamesFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.PlaystationFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.playstationGamesSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.PlaystationSearchResponse"
         },
         "msg": {
           "example": "OK",
@@ -10144,6 +10528,150 @@
         },
         "data": {
           "$ref": "#/definitions/datasets.ReviewsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.steamAchievementsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.SteamAchievementsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.steamChartsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.SteamChartsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.steamGameResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.SteamGameRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.steamGamesFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.SteamFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.steamGamesSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.SteamSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.steamNewsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.SteamNewsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.steamPlayerCountsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.SteamPlayerCountsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.steamPricesSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.SteamPricesSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.steamReviewsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.SteamReviewsSearchResponse"
         },
         "msg": {
           "example": "OK",
@@ -12018,6 +12546,320 @@
       },
       "type": "object"
     },
+    "es.HousingMarketDatasetFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.HousingMarketRecord": {
+      "properties": {
+        "affordability_gap": {
+          "type": "integer"
+        },
+        "avg_sale_to_list": {
+          "type": "number"
+        },
+        "city": {
+          "type": "string"
+        },
+        "homes_sold": {
+          "type": "integer"
+        },
+        "income_geo_id": {
+          "type": "string"
+        },
+        "income_vintage": {
+          "type": "string"
+        },
+        "inventory": {
+          "type": "integer"
+        },
+        "is_latest": {
+          "description": "IsLatest is true only on the most recent period per\n(region_type_id, table_id, property_type_id); the loader maintains it.",
+          "type": "boolean"
+        },
+        "last_updated": {
+          "type": "string"
+        },
+        "list_price_to_income": {
+          "type": "number"
+        },
+        "loaded_at": {
+          "type": "string"
+        },
+        "median_dom": {
+          "type": "number"
+        },
+        "median_household_income": {
+          "description": "Affordability join (Census ACS 5-year median household income). Present only\nwhere the income geography matched and median_sale_price exists.",
+          "type": "integer"
+        },
+        "median_list_ppsf": {
+          "type": "number"
+        },
+        "median_list_ppsf_mom": {
+          "type": "number"
+        },
+        "median_list_ppsf_yoy": {
+          "type": "number"
+        },
+        "median_list_price": {
+          "type": "number"
+        },
+        "median_list_price_mom": {
+          "type": "number"
+        },
+        "median_list_price_yoy": {
+          "type": "number"
+        },
+        "median_ppsf": {
+          "type": "number"
+        },
+        "median_ppsf_mom": {
+          "type": "number"
+        },
+        "median_ppsf_yoy": {
+          "type": "number"
+        },
+        "median_sale_price": {
+          "type": "number"
+        },
+        "median_sale_price_mom": {
+          "type": "number"
+        },
+        "median_sale_price_yoy": {
+          "type": "number"
+        },
+        "months_of_supply": {
+          "type": "number"
+        },
+        "mortgage_rate_pct": {
+          "type": "number"
+        },
+        "new_listings": {
+          "type": "integer"
+        },
+        "off_market_in_two_weeks": {
+          "type": "number"
+        },
+        "parent_metro": {
+          "type": "string"
+        },
+        "parent_metro_code": {
+          "type": "string"
+        },
+        "pending_sales": {
+          "type": "integer"
+        },
+        "period_begin": {
+          "type": "string"
+        },
+        "period_end": {
+          "type": "string"
+        },
+        "price_drops": {
+          "type": "number"
+        },
+        "price_to_income": {
+          "type": "number"
+        },
+        "property_type": {
+          "type": "string"
+        },
+        "property_type_id": {
+          "type": "integer"
+        },
+        "region": {
+          "type": "string"
+        },
+        "region_type": {
+          "description": "RegionType is the normalized region level: national, metro, county, city, zip.",
+          "type": "string"
+        },
+        "region_type_id": {
+          "type": "integer"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "salary_to_buy": {
+          "type": "integer"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "sold_above_list": {
+          "type": "number"
+        },
+        "source": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "state_code": {
+          "type": "string"
+        },
+        "table_id": {
+          "type": "integer"
+        },
+        "zip_code": {
+          "description": "ZipCode is set on zip rows only, parsed from REGION (\"Zip Code: 60616\").",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.PlaystationGameDatasetFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.PlaystationGameRecord": {
+      "properties": {
+        "addon_count": {
+          "type": "integer"
+        },
+        "base_price_value": {
+          "type": "integer"
+        },
+        "classification": {
+          "description": "Classification is the storeDisplayClassification (FULL_GAME, PREMIUM_EDITION,\nGAME_BUNDLE, ADD_ON_PACK, VIRTUAL_CURRENCY, LEVEL, OTHER, ...).",
+          "type": "string"
+        },
+        "coming_soon": {
+          "type": "boolean"
+        },
+        "concept_id": {
+          "type": "string"
+        },
+        "content_descriptors": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "content_rating_authority": {
+          "type": "string"
+        },
+        "content_rating_desc": {
+          "type": "string"
+        },
+        "content_rating_name": {
+          "type": "string"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "discount_end_time": {
+          "type": "string"
+        },
+        "discount_pct": {
+          "type": "integer"
+        },
+        "discount_text": {
+          "type": "string"
+        },
+        "discounted_value": {
+          "type": "integer"
+        },
+        "edition_count": {
+          "type": "integer"
+        },
+        "genres": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "header_image": {
+          "type": "string"
+        },
+        "is_addon": {
+          "type": "boolean"
+        },
+        "is_free": {
+          "type": "boolean"
+        },
+        "is_tied_to_subscription": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "np_title_id": {
+          "type": "string"
+        },
+        "platforms": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "price_tier": {
+          "type": "string"
+        },
+        "product_id": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "region": {
+          "description": "Region is the store country code the record was crawled from (selects currency).",
+          "type": "string"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "release_year": {
+          "type": "integer"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "seed_rank": {
+          "type": "integer"
+        },
+        "service_branding": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "star_rating_avg": {
+          "type": "number"
+        },
+        "star_rating_count": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "es.PostSound": {
       "properties": {
         "author": {
@@ -12419,6 +13261,474 @@
         },
         "value": {
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.SteamAchievementRecord": {
+      "properties": {
+        "appid": {
+          "type": "integer"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "percent": {
+          "type": "number"
+        },
+        "rank": {
+          "description": "0 = most-unlocked",
+          "type": "integer"
+        },
+        "schema_version": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "es.SteamChartEntry": {
+      "properties": {
+        "app_id": {
+          "type": "string"
+        },
+        "chart": {
+          "type": "string"
+        },
+        "chart_uid": {
+          "type": "string"
+        },
+        "concurrent_in_game": {
+          "type": "integer"
+        },
+        "country": {
+          "type": "string"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "final_price_cents": {
+          "type": "integer"
+        },
+        "last_week_rank": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "peak_in_game": {
+          "type": "integer"
+        },
+        "rank": {
+          "type": "integer"
+        },
+        "review_summary": {
+          "type": "string"
+        },
+        "snapshot_date": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.SteamGameDatasetFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.SteamGameRecord": {
+      "properties": {
+        "achievements_count": {
+          "type": "integer"
+        },
+        "appid": {
+          "type": "integer"
+        },
+        "available": {
+          "description": "Available is false when the storefront returned no appdetails on the most recent\ncrawl (delisted, region-locked, or a fetch miss). The record is kept regardless.",
+          "type": "boolean"
+        },
+        "average_2weeks_min": {
+          "type": "integer"
+        },
+        "average_forever_min": {
+          "type": "integer"
+        },
+        "background": {
+          "type": "string"
+        },
+        "categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ccu": {
+          "type": "integer"
+        },
+        "coming_soon": {
+          "type": "boolean"
+        },
+        "content_descriptor_ids": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "controller_support": {
+          "type": "string"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "developer": {
+          "type": "string"
+        },
+        "developers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "discount_pct": {
+          "type": "integer"
+        },
+        "dlc_count": {
+          "type": "integer"
+        },
+        "genres": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "has_owner_estimate": {
+          "description": "HasOwnerEstimate is false for the floor bucket (\"0 .. 20,000\") / no SteamSpy\nestimate — i.e. the deep tail past the owner-differentiated head. Callers must\nnot treat floor-bucket owners as a real count.",
+          "type": "boolean"
+        },
+        "header_image": {
+          "type": "string"
+        },
+        "initial_price_cents": {
+          "type": "integer"
+        },
+        "is_free": {
+          "type": "boolean"
+        },
+        "language_count": {
+          "type": "integer"
+        },
+        "languages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "median_2weeks_min": {
+          "type": "integer"
+        },
+        "median_forever_min": {
+          "type": "integer"
+        },
+        "metacritic": {
+          "type": "integer"
+        },
+        "movie_count": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "negative": {
+          "type": "integer"
+        },
+        "owners_bucket": {
+          "type": "string"
+        },
+        "owners_max": {
+          "type": "integer"
+        },
+        "owners_midpoint": {
+          "type": "integer"
+        },
+        "owners_min": {
+          "type": "integer"
+        },
+        "package_count": {
+          "type": "integer"
+        },
+        "platform_linux": {
+          "type": "boolean"
+        },
+        "platform_mac": {
+          "type": "boolean"
+        },
+        "platform_windows": {
+          "type": "boolean"
+        },
+        "positive": {
+          "type": "integer"
+        },
+        "price_cents": {
+          "type": "integer"
+        },
+        "price_tier": {
+          "type": "string"
+        },
+        "primary_tag": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "publishers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "recommendations": {
+          "type": "integer"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "release_year": {
+          "type": "integer"
+        },
+        "required_age": {
+          "type": "integer"
+        },
+        "review_score": {
+          "type": "number"
+        },
+        "review_tier": {
+          "type": "string"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "screenshot_count": {
+          "type": "integer"
+        },
+        "seed_rank": {
+          "type": "integer"
+        },
+        "short_description": {
+          "description": "v3 richer-record fields (expanded appFilters). Descriptions/creators/media\ncounts/languages/content flags from the full storefront appdetails set.",
+          "type": "string"
+        },
+        "tag_ids": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "tag_schema_version": {
+          "type": "integer"
+        },
+        "tags": {
+          "description": "Tags is the weighted community-tag taxonomy (Roguelike/Metroidvania/Cozy...),\nordered most-weighted first — the crowd tags appdetails genres omit. Populated\nby the separate tag-enrichment pass (workers/steamdb tag mode via IStoreBrowseService),\nnot the main crawl. TagIDs is the parallel raw id list; PrimaryTag is Tags[0].",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tags_enriched_at": {
+          "type": "string"
+        },
+        "total_reviews": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.SteamNewsRecord": {
+      "properties": {
+        "appid": {
+          "type": "integer"
+        },
+        "author": {
+          "type": "string"
+        },
+        "contents": {
+          "type": "string"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "date": {
+          "description": "upstream epoch seconds",
+          "type": "integer"
+        },
+        "feed_label": {
+          "type": "string"
+        },
+        "feed_name": {
+          "type": "string"
+        },
+        "gid": {
+          "type": "string"
+        },
+        "is_external_url": {
+          "type": "boolean"
+        },
+        "published_at": {
+          "description": "ISO, derived from Date",
+          "type": "string"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.SteamPlayerCountRecord": {
+      "properties": {
+        "appid": {
+          "type": "integer"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "player_count": {
+          "type": "integer"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "snapshot_date": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.SteamPriceRecord": {
+      "properties": {
+        "appid": {
+          "type": "integer"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "discount_pct": {
+          "type": "integer"
+        },
+        "initial_price_cents": {
+          "type": "integer"
+        },
+        "is_free": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "price_cents": {
+          "type": "integer"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "snapshot_date": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.SteamReviewRecord": {
+      "properties": {
+        "appid": {
+          "type": "integer"
+        },
+        "author_playtime_forever_min": {
+          "type": "integer"
+        },
+        "comment_count": {
+          "type": "integer"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "created_at": {
+          "description": "ISO, derived",
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "playtime_at_review_min": {
+          "type": "integer"
+        },
+        "received_for_free": {
+          "type": "boolean"
+        },
+        "recommendation_id": {
+          "type": "string"
+        },
+        "review": {
+          "type": "string"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "steam_purchase": {
+          "type": "boolean"
+        },
+        "timestamp_created": {
+          "type": "integer"
+        },
+        "timestamp_updated": {
+          "type": "integer"
+        },
+        "voted_up": {
+          "type": "boolean"
+        },
+        "votes_funny": {
+          "type": "integer"
+        },
+        "votes_up": {
+          "type": "integer"
+        },
+        "weighted_vote_score": {
+          "type": "number"
+        },
+        "written_during_early_access": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -13597,6 +14907,84 @@
         },
         "data": {
           "$ref": "#/definitions/espn.TeamsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "extract.Option": {
+      "properties": {
+        "instructions": {
+          "example": "Extract the product name and current price.",
+          "type": "string"
+        },
+        "render": {
+          "enum": [
+            "auto",
+            "http",
+            "browser"
+          ],
+          "example": "auto",
+          "type": "string"
+        },
+        "schema": {
+          "additionalProperties": {},
+          "type": "object"
+        },
+        "url": {
+          "example": "https://example.com/product",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema",
+        "url"
+      ],
+      "type": "object"
+    },
+    "extract.Result": {
+      "properties": {
+        "data": {},
+        "final_url": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "usage": {
+          "$ref": "#/definitions/extract.Usage"
+        }
+      },
+      "type": "object"
+    },
+    "extract.Usage": {
+      "properties": {
+        "input_tokens": {
+          "type": "integer"
+        },
+        "output_tokens": {
+          "type": "integer"
+        },
+        "total_tokens": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "extract.responseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/extract.Result"
         },
         "msg": {
           "example": "OK",
@@ -18623,6 +20011,15 @@
           },
           "type": "array"
         },
+        "production_countries": {
+          "example": [
+            "KR"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "providers": {
           "example": [
             "nfx"
@@ -19104,6 +20501,16 @@
         "poster_url": {
           "example": "https://images.justwatch.com/poster/302449148/s718/inception.jpg",
           "type": "string"
+        },
+        "production_countries": {
+          "description": "ProductionCountries lists the title's country of origin as two-letter ISO\ncodes. It is only populated on surfaces that request it, such as discover.",
+          "example": [
+            "KR"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "title": {
           "example": "Inception",
@@ -21915,8 +23322,9 @@
     "metaculus.QuestionScaling": {
       "properties": {
         "continuous_range": {
+          "description": "ContinuousRange passes through Metaculus's scaling.continuous_range: null\nfor discrete questions, an array of numbers (the CDF internal locations)\nfor continuous/numeric ones. It was previously typed []string, so hydrating\na commented continuous question failed to decode and 503'd the comments\nfeeds; numbers are the correct element type.",
           "items": {
-            "type": "string"
+            "type": "number"
           },
           "type": "array"
         },
@@ -22211,6 +23619,609 @@
         },
         "data": {
           "$ref": "#/definitions/pitchbook.ProfileResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.AddOn": {
+      "properties": {
+        "classification": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "$ref": "#/definitions/playstation.DetailPrice"
+        },
+        "product_id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.CollectionLink": {
+      "properties": {
+        "category_id": {
+          "type": "string"
+        },
+        "link_type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.ConceptDetail": {
+      "properties": {
+        "add_ons": {
+          "items": {
+            "$ref": "#/definitions/playstation.AddOn"
+          },
+          "type": "array"
+        },
+        "content_rating": {
+          "$ref": "#/definitions/playstation.ContentRating"
+        },
+        "default_product_id": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "editions": {
+          "items": {
+            "$ref": "#/definitions/playstation.Edition"
+          },
+          "type": "array"
+        },
+        "genres": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "invariant_name": {
+          "type": "string"
+        },
+        "media": {
+          "items": {
+            "$ref": "#/definitions/playstation.Media"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "platforms": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "price": {
+          "$ref": "#/definitions/playstation.DetailPrice"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "star_rating": {
+          "$ref": "#/definitions/playstation.StarRating"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.ContentRating": {
+      "properties": {
+        "authority": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "descriptors": {
+          "description": "Descriptors are the human-readable content/interactivity disclosures the\nrating carries (e.g. \"Blood\", \"Violence\", \"In-Game Purchases\", \"Users\nInteract\"), merged from the store's descriptors + interactiveElements lists.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.DetailPrice": {
+      "properties": {
+        "applicability": {
+          "type": "string"
+        },
+        "base_price": {
+          "type": "string"
+        },
+        "base_price_value": {
+          "type": "integer"
+        },
+        "currency_code": {
+          "type": "string"
+        },
+        "discount_text": {
+          "type": "string"
+        },
+        "discounted_price": {
+          "type": "string"
+        },
+        "discounted_value": {
+          "type": "integer"
+        },
+        "end_time": {
+          "type": "string"
+        },
+        "is_exclusive": {
+          "type": "boolean"
+        },
+        "is_free": {
+          "type": "boolean"
+        },
+        "is_tied_to_subscription": {
+          "type": "boolean"
+        },
+        "service_branding": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "upsell_text": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.Edition": {
+      "properties": {
+        "classification": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "platforms": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "price": {
+          "$ref": "#/definitions/playstation.DetailPrice"
+        },
+        "product_id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.Facet": {
+      "properties": {
+        "display_name": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/playstation.FacetValue"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.FacetValue": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.GridResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "facets": {
+          "items": {
+            "$ref": "#/definitions/playstation.Facet"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/playstation.StoreItem"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "next_page": {
+          "type": "integer"
+        },
+        "page_info": {
+          "$ref": "#/definitions/playstation.PageInfo"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.ListPrice": {
+      "properties": {
+        "base_price": {
+          "type": "string"
+        },
+        "discount_text": {
+          "type": "string"
+        },
+        "discounted_price": {
+          "type": "string"
+        },
+        "is_exclusive": {
+          "type": "boolean"
+        },
+        "is_free": {
+          "type": "boolean"
+        },
+        "is_tied_to_subscription": {
+          "type": "boolean"
+        },
+        "service_branding": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "upsell_service_branding": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "upsell_text": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.Media": {
+      "properties": {
+        "role": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.MerchResponse": {
+      "properties": {
+        "collections": {
+          "items": {
+            "$ref": "#/definitions/playstation.CollectionLink"
+          },
+          "type": "array"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/playstation.StoreItem"
+          },
+          "type": "array"
+        },
+        "sections": {
+          "items": {
+            "$ref": "#/definitions/playstation.Section"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.PageInfo": {
+      "properties": {
+        "is_last": {
+          "type": "boolean"
+        },
+        "offset": {
+          "type": "integer"
+        },
+        "size": {
+          "type": "integer"
+        },
+        "total_count": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.ProductDetail": {
+      "properties": {
+        "classification": {
+          "type": "string"
+        },
+        "concept_id": {
+          "type": "string"
+        },
+        "content_rating": {
+          "$ref": "#/definitions/playstation.ContentRating"
+        },
+        "edition_name": {
+          "type": "string"
+        },
+        "genres": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "media": {
+          "items": {
+            "$ref": "#/definitions/playstation.Media"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "np_title_id": {
+          "type": "string"
+        },
+        "platforms": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "price": {
+          "$ref": "#/definitions/playstation.DetailPrice"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "screen_languages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "spoken_languages": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "star_rating": {
+          "$ref": "#/definitions/playstation.StarRating"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.SearchResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/playstation.StoreItem"
+          },
+          "type": "array"
+        },
+        "next_page": {
+          "type": "integer"
+        },
+        "page_info": {
+          "$ref": "#/definitions/playstation.PageInfo"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "term": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.Section": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/playstation.StoreItem"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.StarRating": {
+      "properties": {
+        "average": {
+          "type": "number"
+        },
+        "count": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.StoreItem": {
+      "properties": {
+        "classification": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "media": {
+          "items": {
+            "$ref": "#/definitions/playstation.Media"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "np_title_id": {
+          "type": "string"
+        },
+        "platforms": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "price": {
+          "$ref": "#/definitions/playstation.ListPrice"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.conceptResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/playstation.ConceptDetail"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.gridResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/playstation.GridResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.merchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/playstation.MerchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.productResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/playstation.ProductDetail"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "playstation.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/playstation.SearchResponse"
         },
         "msg": {
           "example": "OK",
@@ -37893,12 +39904,22 @@
         "appid": {
           "type": "integer"
         },
+        "background": {
+          "type": "string"
+        },
         "capsule_image": {
           "type": "string"
         },
         "categories": {
           "items": {
             "$ref": "#/definitions/steam.IDName"
+          },
+          "type": "array"
+        },
+        "content_descriptor_ids": {
+          "description": "ContentDescriptorIDs are Steam's mature-content flag ids (e.g. 1 nudity, 3\nadult content, 5 strong violence) — the store's own age/adult markers.",
+          "items": {
+            "type": "integer"
           },
           "type": "array"
         },
@@ -37937,6 +39958,12 @@
         },
         "name": {
           "type": "string"
+        },
+        "packages": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
         },
         "platforms": {
           "$ref": "#/definitions/steam.Platforms"
@@ -37986,6 +40013,195 @@
           "type": "boolean"
         },
         "date": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.CategoryBrowseResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/steam.CategoryItem"
+          },
+          "type": "array"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "start": {
+          "type": "integer"
+        },
+        "tag_id": {
+          "type": "integer"
+        },
+        "tag_name": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "steam.CategoryItem": {
+      "properties": {
+        "appid": {
+          "type": "integer"
+        },
+        "developers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "platforms": {
+          "$ref": "#/definitions/steam.Platforms"
+        },
+        "price_overview": {
+          "$ref": "#/definitions/steam.Price"
+        },
+        "publishers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "release_date_unix": {
+          "type": "integer"
+        },
+        "review_count": {
+          "type": "integer"
+        },
+        "review_percent_positive": {
+          "type": "integer"
+        },
+        "review_summary": {
+          "type": "string"
+        },
+        "short_description": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "$ref": "#/definitions/steam.WeightedTag"
+          },
+          "type": "array"
+        },
+        "type": {
+          "type": "integer"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.ChartRank": {
+      "properties": {
+        "appid": {
+          "type": "integer"
+        },
+        "concurrent_in_game": {
+          "type": "integer"
+        },
+        "last_week_rank": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "peak_in_game": {
+          "type": "integer"
+        },
+        "rank": {
+          "type": "integer"
+        },
+        "review_summary": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.ChartResponse": {
+      "properties": {
+        "chart": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "enriched": {
+          "type": "boolean"
+        },
+        "ranks": {
+          "items": {
+            "$ref": "#/definitions/steam.ChartRank"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "updated_unix": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "steam.CommunityRecommendationsResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "review_filter": {
+          "type": "string"
+        },
+        "reviews": {
+          "items": {
+            "$ref": "#/definitions/steam.CommunityReview"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.CommunityReview": {
+      "properties": {
+        "appid": {
+          "type": "string"
+        },
+        "author_name": {
+          "type": "string"
+        },
+        "author_profile_url": {
+          "type": "string"
+        },
+        "helpful": {
+          "type": "string"
+        },
+        "playtime": {
+          "type": "string"
+        },
+        "recommendation_id": {
+          "type": "string"
+        },
+        "review_excerpt": {
+          "type": "string"
+        },
+        "review_url": {
           "type": "string"
         }
       },
@@ -38135,6 +40351,23 @@
           "type": "string"
         },
         "id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.ItemsResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/steam.CategoryItem"
+          },
+          "type": "array"
+        },
+        "source_url": {
           "type": "string"
         }
       },
@@ -38553,6 +40786,12 @@
         "review_summary": {
           "type": "string"
         },
+        "tag_ids": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
         "url": {
           "type": "string"
         }
@@ -38656,6 +40895,122 @@
       },
       "type": "object"
     },
+    "steam.TagEntry": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "tagid": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "steam.TagsListResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "language": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "$ref": "#/definitions/steam.TagEntry"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "steam.TopReleasePage": {
+      "properties": {
+        "appids": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "start_of_month_unix": {
+          "type": "integer"
+        },
+        "url_path": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.TopReleasesResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "pages": {
+          "items": {
+            "$ref": "#/definitions/steam.TopReleasePage"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.TopSellerRank": {
+      "properties": {
+        "appid": {
+          "type": "integer"
+        },
+        "item": {
+          "$ref": "#/definitions/steam.CategoryItem"
+        },
+        "rank": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "steam.TopSellersResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "country_code": {
+          "type": "string"
+        },
+        "ranks": {
+          "items": {
+            "$ref": "#/definitions/steam.TopSellerRank"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "start_date_unix": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "steam.WeightedTag": {
+      "properties": {
+        "tagid": {
+          "type": "integer"
+        },
+        "weight": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "steam.achievementsResponseDoc": {
       "properties": {
         "code": {
@@ -38680,6 +41035,54 @@
         },
         "data": {
           "$ref": "#/definitions/steam.AppDetails"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.categoryBrowseResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.CategoryBrowseResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.chartResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.ChartResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.communityRecommendationsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.CommunityRecommendationsResponse"
         },
         "msg": {
           "example": "OK",
@@ -38728,6 +41131,22 @@
         },
         "data": {
           "$ref": "#/definitions/steam.ReviewsHistogramResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.itemsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.ItemsResponse"
         },
         "msg": {
           "example": "OK",
@@ -38840,6 +41259,54 @@
         },
         "data": {
           "$ref": "#/definitions/steam.SteamSpyResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.tagsListResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.TagsListResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.topReleasesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.TopReleasesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "steam.topSellersResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/steam.TopSellersResponse"
         },
         "msg": {
           "example": "OK",
@@ -58756,6 +61223,953 @@
         ]
       }
     },
+    "/datasets/housing-markets/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns terms aggregation counts for the housing markets dataset. Facet enum: `region_type`, `state_code`, `property_type`, `parent_metro`, `parent_metro_code`, `income_vintage`, `is_latest`, `period_begin`. region_type enum: `national`, `metro`, `county`, `city`, `zip`. property_type enum: `All Residential`, `Single Family Residential`, `Condo/Co-op`, `Townhouse`, `Multi-Family (2-4 Unit)`, `Single Units Only`.",
+        "operationId": "datasets-housing-markets-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: region_type, state_code, property_type, parent_metro, parent_metro_code, income_vintage, is_latest, period_begin",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query over region name and city, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Region level enum: national, metro, county, city, zip",
+            "in": "query",
+            "name": "region_type",
+            "type": "string"
+          },
+          {
+            "description": "Exact two-letter state code filter, e.g. CA",
+            "in": "query",
+            "name": "state_code",
+            "type": "string"
+          },
+          {
+            "description": "Property type enum: All Residential, Single Family Residential, Condo/Co-op, Townhouse, Multi-Family (2-4 Unit), Single Units Only",
+            "in": "query",
+            "name": "property_type",
+            "type": "string"
+          },
+          {
+            "description": "Exact parent metro (CBSA) code filter, e.g. 16980",
+            "in": "query",
+            "name": "parent_metro_code",
+            "type": "string"
+          },
+          {
+            "description": "Exact zip code filter (zip-level rows only), e.g. 60616",
+            "in": "query",
+            "name": "zip_code",
+            "type": "string"
+          },
+          {
+            "description": "Exact period start date filter, YYYY-MM-DD",
+            "in": "query",
+            "name": "period",
+            "type": "string"
+          },
+          {
+            "description": "Filter for the most recent period per region and property type",
+            "in": "query",
+            "name": "latest",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum median sale price in USD",
+            "in": "query",
+            "name": "min_median_sale_price",
+            "type": "number"
+          },
+          {
+            "description": "Maximum median sale price in USD",
+            "in": "query",
+            "name": "max_median_sale_price",
+            "type": "number"
+          },
+          {
+            "description": "Minimum median list price in USD",
+            "in": "query",
+            "name": "min_median_list_price",
+            "type": "number"
+          },
+          {
+            "description": "Maximum median list price in USD",
+            "in": "query",
+            "name": "max_median_list_price",
+            "type": "number"
+          },
+          {
+            "description": "Minimum price-to-income ratio",
+            "in": "query",
+            "name": "min_price_to_income",
+            "type": "number"
+          },
+          {
+            "description": "Maximum price-to-income ratio",
+            "in": "query",
+            "name": "max_price_to_income",
+            "type": "number"
+          },
+          {
+            "description": "Minimum salary needed to buy in USD per year",
+            "in": "query",
+            "name": "min_salary_to_buy",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum salary needed to buy in USD per year",
+            "in": "query",
+            "name": "max_salary_to_buy",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum median days on market",
+            "in": "query",
+            "name": "min_median_dom",
+            "type": "number"
+          },
+          {
+            "description": "Maximum median days on market",
+            "in": "query",
+            "name": "max_median_dom",
+            "type": "number"
+          },
+          {
+            "description": "Minimum active inventory",
+            "in": "query",
+            "name": "min_inventory",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum active inventory",
+            "in": "query",
+            "name": "max_inventory",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum homes sold in the period",
+            "in": "query",
+            "name": "min_homes_sold",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.housingMarketsFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet the US housing markets dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/housing-markets/items/{region_type}/{table_id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one housing-market record by region_type and Redfin table_id from dataset id enum value `housing-markets`. region_type enum: `national`, `metro`, `county`, `city`, `zip`. property_type enum: `All Residential`, `Single Family Residential`, `Condo/Co-op`, `Townhouse`, `Multi-Family (2-4 Unit)`, `Single Units Only` (defaults to `All Residential`). `period` defaults to the most recent period on record. Pass `history=true` to get the full monthly series (a `{dataset, region_type, table_id, property_type, items}` envelope, sorted by period ascending) instead of a single record.",
+        "operationId": "datasets-housing-markets-item",
+        "parameters": [
+          {
+            "description": "Region level enum: national, metro, county, city, zip",
+            "in": "path",
+            "name": "region_type",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Redfin table id (the region's stable numeric id)",
+            "in": "path",
+            "name": "table_id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Exact period start date, YYYY-MM-DD; defaults to the latest period",
+            "in": "query",
+            "name": "period",
+            "type": "string"
+          },
+          {
+            "description": "Property type enum: All Residential, Single Family Residential, Condo/Co-op, Townhouse, Multi-Family (2-4 Unit), Single Units Only; defaults to All Residential",
+            "in": "query",
+            "name": "property_type",
+            "type": "string"
+          },
+          {
+            "description": "Return the full monthly series instead of a single period",
+            "in": "query",
+            "name": "history",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.housingMarketItemResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a US housing market record from the dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/housing-markets/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches monthly Redfin housing-market statistics per region and property type since 2012, joined to Census ACS income for affordability metrics. region_type enum: `national`, `metro`, `county`, `city`, `zip`. property_type enum: `All Residential`, `Single Family Residential`, `Condo/Co-op`, `Townhouse`, `Multi-Family (2-4 Unit)`, `Single Units Only`. Sort enum: `relevance`, `price_desc`, `price_asc`, `list_price_desc`, `list_price_asc`, `price_to_income_desc`, `price_to_income_asc`, `salary_to_buy_desc`, `salary_to_buy_asc`, `dom_asc`, `dom_desc`, `inventory_desc`, `homes_sold_desc`, `period_desc`. Use `latest=true` for the most recent period per region series.",
+        "operationId": "datasets-housing-markets-search",
+        "parameters": [
+          {
+            "description": "Full-text query over region name and city, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Region level enum: national, metro, county, city, zip",
+            "in": "query",
+            "name": "region_type",
+            "type": "string"
+          },
+          {
+            "description": "Exact two-letter state code filter, e.g. CA",
+            "in": "query",
+            "name": "state_code",
+            "type": "string"
+          },
+          {
+            "description": "Property type enum: All Residential, Single Family Residential, Condo/Co-op, Townhouse, Multi-Family (2-4 Unit), Single Units Only",
+            "in": "query",
+            "name": "property_type",
+            "type": "string"
+          },
+          {
+            "description": "Exact parent metro (CBSA) code filter, e.g. 16980",
+            "in": "query",
+            "name": "parent_metro_code",
+            "type": "string"
+          },
+          {
+            "description": "Exact zip code filter (zip-level rows only), e.g. 60616",
+            "in": "query",
+            "name": "zip_code",
+            "type": "string"
+          },
+          {
+            "description": "Exact period start date filter, YYYY-MM-DD",
+            "in": "query",
+            "name": "period",
+            "type": "string"
+          },
+          {
+            "description": "Filter for the most recent period per region and property type",
+            "in": "query",
+            "name": "latest",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum median sale price in USD",
+            "in": "query",
+            "name": "min_median_sale_price",
+            "type": "number"
+          },
+          {
+            "description": "Maximum median sale price in USD",
+            "in": "query",
+            "name": "max_median_sale_price",
+            "type": "number"
+          },
+          {
+            "description": "Minimum median list price in USD",
+            "in": "query",
+            "name": "min_median_list_price",
+            "type": "number"
+          },
+          {
+            "description": "Maximum median list price in USD",
+            "in": "query",
+            "name": "max_median_list_price",
+            "type": "number"
+          },
+          {
+            "description": "Minimum price-to-income ratio",
+            "in": "query",
+            "name": "min_price_to_income",
+            "type": "number"
+          },
+          {
+            "description": "Maximum price-to-income ratio",
+            "in": "query",
+            "name": "max_price_to_income",
+            "type": "number"
+          },
+          {
+            "description": "Minimum salary needed to buy in USD per year",
+            "in": "query",
+            "name": "min_salary_to_buy",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum salary needed to buy in USD per year",
+            "in": "query",
+            "name": "max_salary_to_buy",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum median days on market",
+            "in": "query",
+            "name": "min_median_dom",
+            "type": "number"
+          },
+          {
+            "description": "Maximum median days on market",
+            "in": "query",
+            "name": "max_median_dom",
+            "type": "number"
+          },
+          {
+            "description": "Minimum active inventory",
+            "in": "query",
+            "name": "min_inventory",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum active inventory",
+            "in": "query",
+            "name": "max_inventory",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum homes sold in the period",
+            "in": "query",
+            "name": "min_homes_sold",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: relevance, price_desc, price_asc, list_price_desc, list_price_asc, price_to_income_desc, price_to_income_asc, salary_to_buy_desc, salary_to_buy_asc, dom_asc, dom_desc, inventory_desc, homes_sold_desc, period_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.housingMarketsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the US housing markets dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/playstation-games/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns terms aggregation counts for the PlayStation games dataset. Facet enum: `publisher`, `classification`, `genres`, `platforms`, `content_rating_authority`, `price_tier`, `service_branding`, `region`, `release_year`, `run_id`, `is_free`, `is_addon`, `coming_soon`. price_tier enum: `free`, `under_5`, `5_to_10`, `10_to_20`, `20_to_40`, `40_to_60`, `60_plus`.",
+        "operationId": "datasets-playstation-games-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: publisher, classification, genres, platforms, content_rating_authority, price_tier, service_branding, region, release_year, run_id, is_free, is_addon, coming_soon",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query over name and publisher, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact publisher filter, max 128 characters",
+            "in": "query",
+            "name": "publisher",
+            "type": "string"
+          },
+          {
+            "description": "Exact classification filter, max 128 characters",
+            "in": "query",
+            "name": "classification",
+            "type": "string"
+          },
+          {
+            "description": "Exact genre filter, max 128 characters",
+            "in": "query",
+            "name": "genre",
+            "type": "string"
+          },
+          {
+            "description": "Exact platform filter: PS4 or PS5",
+            "in": "query",
+            "name": "platform",
+            "type": "string"
+          },
+          {
+            "description": "Exact content-rating authority filter, max 128 characters",
+            "in": "query",
+            "name": "content_rating",
+            "type": "string"
+          },
+          {
+            "description": "Exact content-descriptor filter, max 128 characters",
+            "in": "query",
+            "name": "content_descriptor",
+            "type": "string"
+          },
+          {
+            "description": "Price-tier enum: free, under_5, 5_to_10, 10_to_20, 20_to_40, 40_to_60, 60_plus",
+            "in": "query",
+            "name": "price_tier",
+            "type": "string"
+          },
+          {
+            "description": "Exact subscription/service-branding filter, max 128 characters",
+            "in": "query",
+            "name": "branding",
+            "type": "string"
+          },
+          {
+            "description": "Exact store region (country code) filter, max 128 characters",
+            "in": "query",
+            "name": "region",
+            "type": "string"
+          },
+          {
+            "description": "Exact concept id filter, max 128 characters",
+            "in": "query",
+            "name": "concept_id",
+            "type": "string"
+          },
+          {
+            "description": "Exact np_title_id filter, max 128 characters",
+            "in": "query",
+            "name": "np_title_id",
+            "type": "string"
+          },
+          {
+            "description": "Exact crawl run-id filter, max 128 characters",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Filter by free flag",
+            "in": "query",
+            "name": "is_free",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter add-ons vs games",
+            "in": "query",
+            "name": "is_addon",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter subscription-included titles",
+            "in": "query",
+            "name": "is_tied_to_subscription",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter for pre-release titles",
+            "in": "query",
+            "name": "coming_soon",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by titles currently discounted (discount_pct > 0)",
+            "in": "query",
+            "name": "on_sale",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum current price in minor units",
+            "in": "query",
+            "name": "min_price_value",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum current price in minor units",
+            "in": "query",
+            "name": "max_price_value",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum average star rating, 0 through 5",
+            "in": "query",
+            "name": "min_star_rating",
+            "type": "number"
+          },
+          {
+            "description": "Minimum number of star ratings",
+            "in": "query",
+            "name": "min_star_count",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum discount percent, 0 through 100",
+            "in": "query",
+            "name": "min_discount_pct",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum release year",
+            "in": "query",
+            "name": "min_release_year",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum release year",
+            "in": "query",
+            "name": "max_release_year",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.playstationGamesFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet PlayStation games dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/playstation-games/items/{product_id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one crawled PlayStation Store record by product_id from dataset id enum value `playstation-games`.",
+        "operationId": "datasets-playstation-games-item",
+        "parameters": [
+          {
+            "description": "PlayStation product id (e.g. UP0001-PPSA01491_00-GAME000000000000)",
+            "in": "path",
+            "name": "product_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.playstationGameResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a PlayStation game from dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/playstation-games/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches the crawled public PlayStation Store catalog stored in a search index. One row per product SKU (game, edition or add-on); concept_id / np_title_id group a title's SKUs. price_tier enum: `free`, `under_5`, `5_to_10`, `10_to_20`, `20_to_40`, `40_to_60`, `60_plus`. Sort enum: `relevance`, `rating_desc`, `reviews_desc`, `price_asc`, `price_desc`, `discount_desc`, `release_desc`, `release_asc`.",
+        "operationId": "datasets-playstation-games-search",
+        "parameters": [
+          {
+            "description": "Full-text query over name and publisher, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact publisher filter, max 128 characters",
+            "in": "query",
+            "name": "publisher",
+            "type": "string"
+          },
+          {
+            "description": "Exact classification filter: FULL_GAME, PREMIUM_EDITION, GAME_BUNDLE, ADD_ON_PACK, VIRTUAL_CURRENCY, LEVEL, OTHER",
+            "in": "query",
+            "name": "classification",
+            "type": "string"
+          },
+          {
+            "description": "Exact genre filter (e.g. Action, Role Playing Games), max 128 characters",
+            "in": "query",
+            "name": "genre",
+            "type": "string"
+          },
+          {
+            "description": "Exact platform filter: PS4 or PS5",
+            "in": "query",
+            "name": "platform",
+            "type": "string"
+          },
+          {
+            "description": "Exact content-rating authority filter (e.g. ESRB, PEGI), max 128 characters",
+            "in": "query",
+            "name": "content_rating",
+            "type": "string"
+          },
+          {
+            "description": "Exact content-descriptor filter (e.g. Blood, Violence, In-Game Purchases, Users Interact), max 128 characters",
+            "in": "query",
+            "name": "content_descriptor",
+            "type": "string"
+          },
+          {
+            "description": "Price-tier enum: free, under_5, 5_to_10, 10_to_20, 20_to_40, 40_to_60, 60_plus",
+            "in": "query",
+            "name": "price_tier",
+            "type": "string"
+          },
+          {
+            "description": "Exact subscription/service-branding filter (e.g. PS_PLUS, EA_PLAY, UBISOFT_PLUS), max 128 characters",
+            "in": "query",
+            "name": "branding",
+            "type": "string"
+          },
+          {
+            "description": "Exact store region (country code) filter, max 128 characters",
+            "in": "query",
+            "name": "region",
+            "type": "string"
+          },
+          {
+            "description": "Exact concept id filter (groups all SKUs of a title), max 128 characters",
+            "in": "query",
+            "name": "concept_id",
+            "type": "string"
+          },
+          {
+            "description": "Exact np_title_id filter, max 128 characters",
+            "in": "query",
+            "name": "np_title_id",
+            "type": "string"
+          },
+          {
+            "description": "Exact crawl run-id filter, max 128 characters",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Filter by free flag",
+            "in": "query",
+            "name": "is_free",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter: true returns add-ons/DLC/currency, false returns games and editions",
+            "in": "query",
+            "name": "is_addon",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter for titles included with a subscription (e.g. free with PS Plus)",
+            "in": "query",
+            "name": "is_tied_to_subscription",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter for pre-release / not-yet-purchasable titles",
+            "in": "query",
+            "name": "coming_soon",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by titles currently discounted (discount_pct > 0)",
+            "in": "query",
+            "name": "on_sale",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum current price in minor units (e.g. cents)",
+            "in": "query",
+            "name": "min_price_value",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum current price in minor units (e.g. cents)",
+            "in": "query",
+            "name": "max_price_value",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum average star rating, 0 through 5",
+            "in": "query",
+            "name": "min_star_rating",
+            "type": "number"
+          },
+          {
+            "description": "Minimum number of star ratings",
+            "in": "query",
+            "name": "min_star_count",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum discount percent, 0 through 100",
+            "in": "query",
+            "name": "min_discount_pct",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum release year",
+            "in": "query",
+            "name": "min_release_year",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum release year",
+            "in": "query",
+            "name": "max_release_year",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: relevance, rating_desc, reviews_desc, price_asc, price_desc, discount_desc, release_desc, release_asc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.playstationGamesSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search PlayStation games dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
     "/datasets/producthunt-makers/facets": {
       "get": {
         "consumes": [
@@ -59484,6 +62898,1001 @@
           }
         ],
         "summary": "Search the Product Hunt trends dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/steam-achievements/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches per-game global achievement unlock percentages (one document per appid × achievement). Pass `app_id` to list a game's achievements. Sort enum: `percent_desc` (most-unlocked first, default), `percent_asc` (rarest first), `rank_asc`.",
+        "operationId": "datasets-steam-achievements-search",
+        "parameters": [
+          {
+            "description": "Exact Steam app id filter",
+            "in": "query",
+            "name": "app_id",
+            "type": "string"
+          },
+          {
+            "description": "Sort enum: percent_desc, percent_asc, rank_asc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.steamAchievementsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search steam-achievements dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/steam-charts/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches daily snapshots of Steam's player-count and sales charts, stored in a search index (one document per chart × country × snapshot × rank) so history accumulates. Charts: `most_played` (weekly peak concurrent), `concurrent` (live concurrent players), `top_sellers` (weekly sales; country-specific). With no `date` the latest snapshot is returned (today's chart); pair `app_id` with `sort=date_desc` for an app's rank/players over time. Country is `global` for the player-count charts or an ISO code (e.g. `us`) for `top_sellers`. Sort enum: `rank`, `rank_desc`, `date_desc`.",
+        "operationId": "datasets-steam-charts-search",
+        "parameters": [
+          {
+            "description": "Full-text query over the game name, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Chart enum: most_played, concurrent, top_sellers",
+            "in": "query",
+            "name": "chart",
+            "type": "string"
+          },
+          {
+            "description": "Market filter: global (player-count charts) or an ISO country code (top_sellers), max 128 characters",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Exact Steam app id filter; pair with sort=date_desc for rank/players history",
+            "in": "query",
+            "name": "app_id",
+            "type": "string"
+          },
+          {
+            "description": "Snapshot date filter yyyy-MM-dd; defaults to the latest snapshot",
+            "in": "query",
+            "name": "date",
+            "type": "string"
+          },
+          {
+            "description": "Sort enum: rank, rank_desc, date_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.steamChartsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the steam-charts dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/steam-games/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns terms aggregation counts for the Steam games dataset. Facet enum: `type`, `developer`, `publisher`, `genres`, `categories`, `price_tier`, `review_tier`, `owners_bucket`, `release_year`, `run_id`, `is_free`, `coming_soon`, `platform_windows`, `platform_mac`, `platform_linux`. price_tier enum: `free`, `under5`, `5to15`, `15to30`, `30to60`, `over60`. review_tier enum: `overwhelmingly_positive`, `very_positive`, `positive`, `mixed`, `negative`, `insufficient`.",
+        "operationId": "datasets-steam-games-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: type, developer, publisher, genres, categories, tags, primary_tag, price_tier, review_tier, owners_bucket, release_year, run_id, is_free, coming_soon, platform_windows, platform_mac, platform_linux",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query over name, developer and publisher, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact storefront type filter, max 128 characters",
+            "in": "query",
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "description": "Exact developer filter, max 128 characters",
+            "in": "query",
+            "name": "developer",
+            "type": "string"
+          },
+          {
+            "description": "Exact publisher filter, max 128 characters",
+            "in": "query",
+            "name": "publisher",
+            "type": "string"
+          },
+          {
+            "description": "Exact genre filter, max 128 characters",
+            "in": "query",
+            "name": "genre",
+            "type": "string"
+          },
+          {
+            "description": "Exact store category filter, max 128 characters",
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "description": "Exact community-tag filter (e.g. Roguelike, Cozy), max 128 characters",
+            "in": "query",
+            "name": "tag",
+            "type": "string"
+          },
+          {
+            "description": "Price-tier enum: free, under5, 5to15, 15to30, 30to60, over60",
+            "in": "query",
+            "name": "price_tier",
+            "type": "string"
+          },
+          {
+            "description": "Review-tier enum: overwhelmingly_positive, very_positive, positive, mixed, negative, insufficient",
+            "in": "query",
+            "name": "review_tier",
+            "type": "string"
+          },
+          {
+            "description": "Exact SteamSpy owners-range bucket filter, max 128 characters",
+            "in": "query",
+            "name": "owners_bucket",
+            "type": "string"
+          },
+          {
+            "description": "Exact crawl run-id filter, max 128 characters",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Filter by free-to-play flag",
+            "in": "query",
+            "name": "is_free",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by Windows support",
+            "in": "query",
+            "name": "windows",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by macOS support",
+            "in": "query",
+            "name": "mac",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by Linux support",
+            "in": "query",
+            "name": "linux",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by titles currently discounted (discount_pct > 0)",
+            "in": "query",
+            "name": "on_sale",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum current price in cents",
+            "in": "query",
+            "name": "min_price_cents",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum current price in cents",
+            "in": "query",
+            "name": "max_price_cents",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum estimated owners (SteamSpy owners midpoint)",
+            "in": "query",
+            "name": "min_owners",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum positive review count",
+            "in": "query",
+            "name": "min_positive",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum total review count",
+            "in": "query",
+            "name": "min_total_reviews",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum positive-review ratio, 0 through 1",
+            "in": "query",
+            "name": "min_review_score",
+            "type": "number"
+          },
+          {
+            "description": "Minimum Metacritic score, 0 through 100",
+            "in": "query",
+            "name": "min_metacritic",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum peak concurrent users yesterday",
+            "in": "query",
+            "name": "min_ccu",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum release year",
+            "in": "query",
+            "name": "min_release_year",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum release year",
+            "in": "query",
+            "name": "max_release_year",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.steamGamesFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet the Steam games dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/steam-games/items/{appid}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one enriched Steam catalog record by appid from dataset id enum value `steam-games`.",
+        "operationId": "datasets-steam-games-item",
+        "parameters": [
+          {
+            "description": "Steam app id",
+            "in": "path",
+            "name": "appid",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.steamGameResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Steam game from the dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/steam-games/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches enriched public Steam catalog records stored in a search index. price_tier enum: `free`, `under5`, `5to15`, `15to30`, `30to60`, `over60`. review_tier enum: `overwhelmingly_positive`, `very_positive`, `positive`, `mixed`, `negative`, `insufficient`. Sort enum: `relevance`, `owners_desc`, `reviews_desc`, `review_score_desc`, `ccu_desc`, `metacritic_desc`, `price_asc`, `price_desc`, `release_desc`, `release_asc`.",
+        "operationId": "datasets-steam-games-search",
+        "parameters": [
+          {
+            "description": "Full-text query over name, developer and publisher, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact storefront type filter (e.g. game, dlc, demo), max 128 characters",
+            "in": "query",
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "description": "Exact developer filter, max 128 characters",
+            "in": "query",
+            "name": "developer",
+            "type": "string"
+          },
+          {
+            "description": "Exact publisher filter, max 128 characters",
+            "in": "query",
+            "name": "publisher",
+            "type": "string"
+          },
+          {
+            "description": "Exact genre filter (e.g. Action, Indie), max 128 characters",
+            "in": "query",
+            "name": "genre",
+            "type": "string"
+          },
+          {
+            "description": "Exact store category filter (e.g. Single-player), max 128 characters",
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "description": "Exact community-tag filter (e.g. Roguelike, Metroidvania, Cozy), max 128 characters",
+            "in": "query",
+            "name": "tag",
+            "type": "string"
+          },
+          {
+            "description": "Price-tier enum: free, under5, 5to15, 15to30, 30to60, over60",
+            "in": "query",
+            "name": "price_tier",
+            "type": "string"
+          },
+          {
+            "description": "Review-tier enum: overwhelmingly_positive, very_positive, positive, mixed, negative, insufficient",
+            "in": "query",
+            "name": "review_tier",
+            "type": "string"
+          },
+          {
+            "description": "Exact SteamSpy owners-range bucket filter, max 128 characters",
+            "in": "query",
+            "name": "owners_bucket",
+            "type": "string"
+          },
+          {
+            "description": "Exact crawl run-id filter, max 128 characters",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Filter by free-to-play flag",
+            "in": "query",
+            "name": "is_free",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by Windows support",
+            "in": "query",
+            "name": "windows",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by macOS support",
+            "in": "query",
+            "name": "mac",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by Linux support",
+            "in": "query",
+            "name": "linux",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by titles currently discounted (discount_pct > 0)",
+            "in": "query",
+            "name": "on_sale",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum current price in cents",
+            "in": "query",
+            "name": "min_price_cents",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum current price in cents",
+            "in": "query",
+            "name": "max_price_cents",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum estimated owners (SteamSpy owners midpoint)",
+            "in": "query",
+            "name": "min_owners",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum positive review count",
+            "in": "query",
+            "name": "min_positive",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum total review count",
+            "in": "query",
+            "name": "min_total_reviews",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum positive-review ratio, 0 through 1",
+            "in": "query",
+            "name": "min_review_score",
+            "type": "number"
+          },
+          {
+            "description": "Minimum Metacritic score, 0 through 100",
+            "in": "query",
+            "name": "min_metacritic",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum peak concurrent users yesterday",
+            "in": "query",
+            "name": "min_ccu",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum release year",
+            "in": "query",
+            "name": "min_release_year",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum release year",
+            "in": "query",
+            "name": "max_release_year",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: relevance, owners_desc, reviews_desc, review_score_desc, ccu_desc, metacritic_desc, price_asc, price_desc, release_desc, release_asc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.steamGamesSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the Steam games dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/steam-news/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches Steam news + announcements for tracked apps (one document per appid × gid; the latest items per app are kept). Filter by `app_id` for a single game's news, or full-text `q` over the title + contents. Sort enum: `date_desc` (newest first, default), `date_asc`.",
+        "operationId": "datasets-steam-news-search",
+        "parameters": [
+          {
+            "description": "Full-text query over the news title + contents, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact Steam app id filter",
+            "in": "query",
+            "name": "app_id",
+            "type": "string"
+          },
+          {
+            "description": "Sort enum: date_desc, date_asc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.steamNewsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the steam-news dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/steam-playercounts/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches the daily concurrent-player time series for tracked games (one document per appid × day). Pair `app_id` with `sort=date_desc` for a game's player-count history, or pass `date` for one day's snapshot. Sort enum: `date_desc` (default), `date_asc`, `players_desc`.",
+        "operationId": "datasets-steam-playercounts-search",
+        "parameters": [
+          {
+            "description": "Exact Steam app id filter",
+            "in": "query",
+            "name": "app_id",
+            "type": "string"
+          },
+          {
+            "description": "Snapshot date filter yyyy-MM-dd",
+            "in": "query",
+            "name": "date",
+            "type": "string"
+          },
+          {
+            "description": "Sort enum: date_desc, date_asc, players_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.steamPlayerCountsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search steam-playercounts dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/steam-prices/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches the daily price time series for priced games (one document per appid × day; integer cents). Pair `app_id` with `sort=date_desc` for a game's price history, or pass `date` for one day's snapshot. Sort enum: `date_desc` (default), `date_asc`, `price_asc`, `price_desc`, `discount_desc`.",
+        "operationId": "datasets-steam-prices-search",
+        "parameters": [
+          {
+            "description": "Exact Steam app id filter",
+            "in": "query",
+            "name": "app_id",
+            "type": "string"
+          },
+          {
+            "description": "Snapshot date filter yyyy-MM-dd",
+            "in": "query",
+            "name": "date",
+            "type": "string"
+          },
+          {
+            "description": "Sort enum: date_desc, date_asc, price_asc, price_desc, discount_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.steamPricesSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the steam-prices dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/steam-reviews/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches the stored Steam review corpus (the most-helpful reviews per game; one document per appid × recommendation). Full-text `q` over the review body, filter by `app_id`, `language`, or `voted_up` (positive/negative). Sort enum: `votes_desc` (most-helpful first, default), `weighted_desc`, `date_desc`.",
+        "operationId": "datasets-steam-reviews-search",
+        "parameters": [
+          {
+            "description": "Full-text query over the review body, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact Steam app id filter",
+            "in": "query",
+            "name": "app_id",
+            "type": "string"
+          },
+          {
+            "description": "Review language filter (e.g. english, schinese)",
+            "in": "query",
+            "name": "language",
+            "type": "string"
+          },
+          {
+            "description": "Recommendation filter: true (positive) or false (negative)",
+            "in": "query",
+            "name": "voted_up",
+            "type": "string"
+          },
+          {
+            "description": "Sort enum: votes_desc, weighted_desc, date_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.steamReviewsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the steam-reviews dataset",
         "tags": [
           "Datasets"
         ]
@@ -61664,6 +66073,64 @@
         "summary": "ESPN team list",
         "tags": [
           "ESPN"
+        ]
+      }
+    },
+    "/extract": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Scrapes a public URL into clean Markdown, then returns data that strictly conforms to the supplied bounded JSON Schema.",
+        "operationId": "extract",
+        "parameters": [
+          {
+            "description": "Extraction options",
+            "in": "body",
+            "name": "extractOption",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/extract.Option"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/extract.responseDoc"
+            }
+          },
+          "400": {
+            "description": "Invalid URL or schema",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Extraction is not configured",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "502": {
+            "description": "Fetch or model provider failed",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Extract schema-conforming JSON from a URL",
+        "tags": [
+          "Web"
         ]
       }
     },
@@ -69028,7 +73495,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns popular movies and shows filtered by optional genre short names, provider short names, monetization types, and release year bounds. Type accepts only `all`, `movie`, or `show`; monetization_types accepts only `FLATRATE`, `FREE`, `ADS`, `RENT`, or `BUY`.",
+        "description": "Returns popular movies and shows filtered by optional genre short names, provider short names, production countries, monetization types, and release year bounds. Combine `providers` with `production_countries` to build charts such as most popular Korean or Japanese titles on a given service. Type accepts only `all`, `movie`, or `show`; monetization_types accepts only `FLATRATE`, `FREE`, `ADS`, `RENT`, or `BUY`.",
         "operationId": "justwatch-discover",
         "parameters": [
           {
@@ -69079,6 +73546,13 @@
             "example": "nfx,amp",
             "in": "query",
             "name": "providers",
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated two-letter ISO production-country codes",
+            "example": "KR,JP",
+            "in": "query",
+            "name": "production_countries",
             "type": "string"
           },
           {
@@ -72618,7 +77092,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns normalized Metaculus question rows from the credential-free public comments feed page. Rows represent question cards with comment-related counts; upstream comment bodies are not exposed.",
+        "description": "Returns normalized Metaculus question rows for the questions referenced by the most recent public comments, in comment recency order. Derived from credential-free public Metaculus data; upstream comment bodies are not exposed.",
         "operationId": "metaculus-comments-feed",
         "parameters": [
           {
@@ -73215,7 +77689,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns normalized Metaculus question rows from the credential-free public weekly top comments page. Rows represent question cards with comment-related counts; upstream comment bodies are not exposed.",
+        "description": "Returns normalized Metaculus question rows for the questions whose recent public comments collected the highest vote scores over roughly the last week. Derived from credential-free public Metaculus data; upstream comment bodies are not exposed.",
         "operationId": "metaculus-top-comments",
         "parameters": [
           {
@@ -73592,6 +78066,541 @@
         "summary": "PitchBook investor profile",
         "tags": [
           "PitchBook"
+        ]
+      }
+    },
+    "/playstation/browse": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of the PlayStation Store \"all games\" grid with per-item price, platforms, and media, plus the available filter facets (price, genre, platform, subscription, content type, etc.) with value counts. Pass page to advance; next_page is set when more results exist. cc selects the store region (and price currency) and l the text language. Credential-free public PlayStation Store data.",
+        "operationId": "playstation-browse",
+        "parameters": [
+          {
+            "default": 1,
+            "description": "1-based page number",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "default": "us",
+            "description": "Store country code (ISO, selects currency)",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "en",
+            "description": "Language code",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/playstation.gridResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Browse the PlayStation Store all-games grid",
+        "tags": [
+          "PlayStation"
+        ]
+      }
+    },
+    "/playstation/category": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of a specific PlayStation Store category grid (by category UUID) with per-item price, platforms, and media, plus the available filter facets with value counts. Pass page to advance; next_page is set when more results exist. cc selects the store region (and price currency) and l the text language. Credential-free public PlayStation Store data.",
+        "operationId": "playstation-category",
+        "parameters": [
+          {
+            "description": "Category UUID",
+            "example": "e7d3a34c-9a4a-4a94-a0d1-e42c94d0a3fb",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 1,
+            "description": "1-based page number",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "default": "us",
+            "description": "Store country code (ISO, selects currency)",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "en",
+            "description": "Language code",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/playstation.gridResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Browse a PlayStation Store category grid",
+        "tags": [
+          "PlayStation"
+        ]
+      }
+    },
+    "/playstation/concept": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized store metadata for a PlayStation concept: title, publisher, release date, platforms, genres, description, content rating, aggregate star rating, the default product's purchase price, media, and the full lists of purchasable editions and add-ons. cc selects the store region (and price currency) and l the text language. Credential-free public PlayStation Store data.",
+        "operationId": "playstation-concept",
+        "parameters": [
+          {
+            "description": "Numeric PlayStation concept id",
+            "example": "10000237",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "us",
+            "description": "Store country code (ISO, selects currency)",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "en",
+            "description": "Language code",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/playstation.conceptResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get PlayStation Store details for a concept (game hub)",
+        "tags": [
+          "PlayStation"
+        ]
+      }
+    },
+    "/playstation/deals": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the PlayStation Store deals landing page as a list of merchandising shelves (sections), each with its titles and per-item price, plus a flattened, de-duplicated item list across all shelves. cc selects the store region (and price currency) and l the text language. Credential-free public PlayStation Store data.",
+        "operationId": "playstation-deals",
+        "parameters": [
+          {
+            "default": "us",
+            "description": "Store country code (ISO, selects currency)",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "en",
+            "description": "Language code",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/playstation.merchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get PlayStation Store deals shelves",
+        "tags": [
+          "PlayStation"
+        ]
+      }
+    },
+    "/playstation/latest": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the PlayStation Store latest-releases landing page as a list of merchandising shelves (sections), each with its titles and per-item price, plus a flattened, de-duplicated item list across all shelves. cc selects the store region (and price currency) and l the text language. Credential-free public PlayStation Store data.",
+        "operationId": "playstation-latest",
+        "parameters": [
+          {
+            "default": "us",
+            "description": "Store country code (ISO, selects currency)",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "en",
+            "description": "Language code",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/playstation.merchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get PlayStation Store latest-release shelves",
+        "tags": [
+          "PlayStation"
+        ]
+      }
+    },
+    "/playstation/page": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Reads any PlayStation Store merchandising page by alias (e.g. collections, subscriptions, or a promotional alias) and returns its shelves (sections) plus the curated collection links found on the page. Each collection link carries a category_id (UUID) you can pass to /playstation/category to fetch that collection's full, paginated title grid — the credential-free way to browse themed/curated selections. Known aliases: collections, subscriptions, deals, latest. cc selects the store region (and price currency) and l the text language. Credential-free public PlayStation Store data.",
+        "operationId": "playstation-page",
+        "parameters": [
+          {
+            "description": "Merchandising page alias",
+            "example": "collections",
+            "in": "query",
+            "name": "alias",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "us",
+            "description": "Store country code (ISO, selects currency)",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "en",
+            "description": "Language code",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/playstation.merchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a PlayStation Store merchandising page by alias",
+        "tags": [
+          "PlayStation"
+        ]
+      }
+    },
+    "/playstation/product": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized store metadata for a single PlayStation product/edition: title, np title id, parent concept id, product type and store classification, edition name, publisher, release date, platforms, genres, spoken/screen languages, content rating, aggregate star rating, purchase price, and media. cc selects the store region (and price currency) and l the text language. Credential-free public PlayStation Store data.",
+        "operationId": "playstation-product",
+        "parameters": [
+          {
+            "description": "PlayStation product id",
+            "example": "UP0001-PPSA01491_00-GAME000000000000",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "us",
+            "description": "Store country code (ISO, selects currency)",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "en",
+            "description": "Language code",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/playstation.productResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get PlayStation Store details for a single product",
+        "tags": [
+          "PlayStation"
+        ]
+      }
+    },
+    "/playstation/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of PlayStation Store search results (concepts and products) for a term, with pagination and per-item price, platforms, classification, and media. Pass page to advance; next_page is set when more results exist. cc selects the store region (and price currency) and l the text language. Credential-free public PlayStation Store data.",
+        "operationId": "playstation-search",
+        "parameters": [
+          {
+            "description": "Search term",
+            "example": "god of war",
+            "in": "query",
+            "name": "term",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 1,
+            "description": "1-based page number",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "default": "us",
+            "description": "Store country code (ISO, selects currency)",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "en",
+            "description": "Language code",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/playstation.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the PlayStation Store",
+        "tags": [
+          "PlayStation"
         ]
       }
     },
@@ -88731,6 +93740,353 @@
         ]
       }
     },
+    "/steam/category/{slug}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a catalog slice for a community tag / category via Steam's keyless IStoreQueryService, carrying each item's WEIGHTED community tags, review-score breakdown, developer/publisher credits, release date, platforms and price. The slug is a numeric tag id or a tag name (case- and separator-insensitive, e.g. rogue_like); resolve ids via /steam/tags/list. Ordering is Steam's default relevance — for sorted or os/price-faceted browse use /steam/tags. Credential-free public Steam store query API.",
+        "operationId": "steam-category",
+        "parameters": [
+          {
+            "description": "Community tag id (numeric) or tag name slug",
+            "example": "rogue_like",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Only free titles",
+            "in": "query",
+            "name": "free",
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "Only already-released titles",
+            "in": "query",
+            "name": "released_only",
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "Only unreleased / coming-soon titles",
+            "in": "query",
+            "name": "coming_soon_only",
+            "type": "boolean"
+          },
+          {
+            "default": 0,
+            "description": "Result offset for pagination",
+            "in": "query",
+            "name": "start",
+            "type": "integer"
+          },
+          {
+            "default": 25,
+            "description": "Results per page (max 100)",
+            "in": "query",
+            "name": "count",
+            "type": "integer"
+          },
+          {
+            "default": "us",
+            "description": "Store country code (ISO, selects currency)",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "english",
+            "description": "Steam store language name",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.categoryBrowseResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Browse a store category (tag) with weighted community tags",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
+    "/steam/charts/concurrent": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the live leaderboard of games ranked by current concurrent players (rank, appid, current concurrent, peak). By default each row is enriched with the game name and review summary; pass enrich=false for raw ranked app ids. Credential-free public Steam WebAPI JSON.",
+        "operationId": "steam-charts-concurrent",
+        "parameters": [
+          {
+            "default": true,
+            "description": "Attach game name and review summary to each rank",
+            "in": "query",
+            "name": "enrich",
+            "type": "boolean"
+          },
+          {
+            "default": "us",
+            "description": "Store country code (ISO) for name enrichment",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "english",
+            "description": "Steam store language name for name enrichment",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.chartResponseDoc"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Steam's live games-by-concurrent-players leaderboard",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
+    "/steam/charts/most-played": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns Steam's weekly most-played chart: the top games ranked by peak concurrent players over the last week (rank, appid, previous-week rank, peak players). By default each row is enriched with the game name and review summary via a batch lookup; pass enrich=false for the raw ranked app ids only. Credential-free public Steam WebAPI JSON.",
+        "operationId": "steam-charts-most-played",
+        "parameters": [
+          {
+            "default": true,
+            "description": "Attach game name and review summary to each rank",
+            "in": "query",
+            "name": "enrich",
+            "type": "boolean"
+          },
+          {
+            "default": "us",
+            "description": "Store country code (ISO) for name enrichment",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "english",
+            "description": "Steam store language name for name enrichment",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.chartResponseDoc"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Steam's weekly most-played games chart",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
+    "/steam/charts/top-releases": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns Steam's monthly top-releases index: one page per month, each listing that month's top-released app ids (with the month label and start date). The app-id lists are large and not name-enriched; resolve names via /steam/items. Credential-free public Steam WebAPI JSON.",
+        "operationId": "steam-charts-top-releases",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.topReleasesResponseDoc"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Steam's monthly best-new-releases index",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
+    "/steam/community-recommendations": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a batch of recent, quality user reviews recommended across the whole store (author, playtime, helpful votes, and the recommended app). Filter by review kind/sort, reviewer playtime window, review language, and store region. The upstream serves a fixed batch and, unauthenticated, does not support tag filtering or deep pagination. Credential-free public Steam storefront JSON.",
+        "operationId": "steam-community-recommendations",
+        "parameters": [
+          {
+            "default": "helpful",
+            "description": "Review kind / sort",
+            "enum": [
+              "helpful",
+              "recent",
+              "funny"
+            ],
+            "in": "query",
+            "name": "review_filter",
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Minimum reviewer playtime in hours (0 = no minimum)",
+            "in": "query",
+            "name": "playtime_min",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Maximum reviewer playtime in hours (0 = no maximum)",
+            "in": "query",
+            "name": "playtime_max",
+            "type": "integer"
+          },
+          {
+            "default": "my_languages",
+            "description": "Review language: 'my_languages' or a Steam language name",
+            "in": "query",
+            "name": "review_language",
+            "type": "string"
+          },
+          {
+            "default": "us",
+            "description": "Store country code (ISO, selects currency)",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "en",
+            "description": "Language code",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.communityRecommendationsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get the store's community-recommended reviews feed",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
     "/steam/featured": {
       "get": {
         "consumes": [
@@ -88833,6 +94189,71 @@
         ]
       }
     },
+    "/steam/items": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Resolves up to 100 Steam app ids in one call to normalized store items via Steam's keyless IStoreBrowseService, each carrying its WEIGHTED community tags, review-score breakdown, developer/publisher credits, release date, platforms and price. The batch enrichment primitive for the community-tag taxonomy. Credential-free public Steam store query API.",
+        "operationId": "steam-items",
+        "parameters": [
+          {
+            "description": "Comma-separated numeric app ids (max 100)",
+            "example": "570,730,1623730",
+            "in": "query",
+            "name": "appids",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "us",
+            "description": "Store country code (ISO, selects currency)",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "english",
+            "description": "Steam store language name",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.itemsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Resolve a batch of app ids to store items with weighted tags",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
     "/steam/news": {
       "get": {
         "consumes": [
@@ -88858,7 +94279,7 @@
           },
           {
             "default": 300,
-            "description": "Max characters of each post body (0 = full)",
+            "description": "Max characters of each post body; default 300, set -1 for full content",
             "in": "query",
             "name": "maxlength",
             "type": "integer"
@@ -89422,6 +94843,293 @@
           }
         ],
         "summary": "Get SteamSpy third-party ownership and playtime estimates",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
+    "/steam/tags": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Browses the store by the community-tag taxonomy (Roguelike, Metroidvania, Cozy...) and the store filter facets, with no free-text term. Filter by one or more tag ids, a store category id, platform (os), a maximum price, specials-only, and hide-free-to-play; sort and page the browse-rank rows. Each row includes its community tag ids (resolve names via /steam/tags/list). Pagination runs the full result set (total is the real, fully-pageable match count); paging past total returns an empty page. Credential-free public Steam storefront JSON.",
+        "operationId": "steam-tags",
+        "parameters": [
+          {
+            "description": "Comma-separated numeric community tag ids (all must match); resolve ids via /steam/tags/list",
+            "example": "492,4136",
+            "in": "query",
+            "name": "tags",
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated numeric community tag ids to EXCLUDE",
+            "example": "4136",
+            "in": "query",
+            "name": "untags",
+            "type": "string"
+          },
+          {
+            "description": "Numeric Steam store category id (e.g. 998 games, 21 dlc)",
+            "example": "998",
+            "in": "query",
+            "name": "category1",
+            "type": "string"
+          },
+          {
+            "description": "Additional numeric store category id (feature)",
+            "example": "29",
+            "in": "query",
+            "name": "category2",
+            "type": "string"
+          },
+          {
+            "description": "Additional numeric store category id (feature)",
+            "example": "3",
+            "in": "query",
+            "name": "category3",
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated platform filter subset of: win, mac, linux",
+            "example": "win,linux",
+            "in": "query",
+            "name": "os",
+            "type": "string"
+          },
+          {
+            "description": "Maximum price as whole cents in the cc currency, or the literal 'free'",
+            "example": "2000",
+            "in": "query",
+            "name": "maxprice",
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Only discounted titles",
+            "in": "query",
+            "name": "specials",
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "Hide free-to-play titles",
+            "in": "query",
+            "name": "hidef2p",
+            "type": "boolean"
+          },
+          {
+            "description": "Steam Deck compatibility filter: 1 unsupported, 2 playable, 3 verified",
+            "enum": [
+              "1",
+              "2",
+              "3"
+            ],
+            "in": "query",
+            "name": "deck_compatibility",
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated VR-support filter ids (e.g. 401 seated, 402 standing, 403 roomscale)",
+            "example": "401",
+            "in": "query",
+            "name": "vrsupport",
+            "type": "string"
+          },
+          {
+            "description": "Curated preset applied within the other facets",
+            "enum": [
+              "globaltopsellers",
+              "topsellers",
+              "popularnew",
+              "comingsoon"
+            ],
+            "in": "query",
+            "name": "filter",
+            "type": "string"
+          },
+          {
+            "description": "Only titles supporting this Steam language name",
+            "example": "english",
+            "in": "query",
+            "name": "supportedlang",
+            "type": "string"
+          },
+          {
+            "default": "Relevance",
+            "description": "Sort order",
+            "enum": [
+              "Relevance",
+              "Released_DESC",
+              "Name_ASC",
+              "Price_ASC",
+              "Price_DESC",
+              "Reviews_DESC"
+            ],
+            "in": "query",
+            "name": "sort_by",
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Result offset for pagination",
+            "in": "query",
+            "name": "start",
+            "type": "integer"
+          },
+          {
+            "default": 25,
+            "description": "Results per page (max 100)",
+            "in": "query",
+            "name": "count",
+            "type": "integer"
+          },
+          {
+            "default": "us",
+            "description": "Store country code (ISO, selects currency)",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "en",
+            "description": "Language code",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.searchResultsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Browse the Steam store by community tag and store facets",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
+    "/steam/tags/list": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns Steam's popular community tags (numeric id + localized name) so callers can map a tag name to the id that /steam/tags and /steam/category expect. Credential-free public Steam storefront JSON.",
+        "operationId": "steam-tags-list",
+        "parameters": [
+          {
+            "default": "english",
+            "description": "Steam store language name for the tag labels",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.tagsListResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Steam community tag ids and names",
+        "tags": [
+          "Steam"
+        ]
+      }
+    },
+    "/steam/top-sellers": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the store's weekly top-sellers chart for a country, each rank carrying the full store item (name, price, weighted community tags, review summary, platforms). cc selects the country whose sales ranking and currency are returned. Credential-free public Steam store top-sellers API.",
+        "operationId": "steam-top-sellers",
+        "parameters": [
+          {
+            "default": "us",
+            "description": "Country code (ISO) whose weekly sales ranking is returned",
+            "in": "query",
+            "name": "cc",
+            "type": "string"
+          },
+          {
+            "default": "english",
+            "description": "Steam store language name",
+            "in": "query",
+            "name": "l",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/steam.topSellersResponseDoc"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Steam's weekly top-sellers chart for a country",
         "tags": [
           "Steam"
         ]
