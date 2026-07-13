@@ -725,6 +725,819 @@
       },
       "type": "object"
     },
+    "anime.AiringEntry": {
+      "properties": {
+        "airing_at": {
+          "example": 1704900600,
+          "type": "integer"
+        },
+        "episode": {
+          "example": 149,
+          "type": "integer"
+        },
+        "media": {
+          "$ref": "#/definitions/anime.Media"
+        },
+        "time_until_airing": {
+          "example": 259200,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "anime.AiringScheduleResponse": {
+      "properties": {
+        "has_next_page": {
+          "example": true,
+          "type": "boolean"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "per_page": {
+          "example": 20,
+          "type": "integer"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/anime.AiringEntry"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "anime.Character": {
+      "properties": {
+        "age": {
+          "type": "string"
+        },
+        "alternative_names": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "blood_type": {
+          "type": "string"
+        },
+        "date_of_birth": {
+          "$ref": "#/definitions/anime.FuzzyDate"
+        },
+        "description": {
+          "type": "string"
+        },
+        "favourites": {
+          "example": 21952,
+          "type": "integer"
+        },
+        "gender": {
+          "example": "Female",
+          "type": "string"
+        },
+        "id": {
+          "example": 176754,
+          "type": "integer"
+        },
+        "image": {
+          "type": "string"
+        },
+        "media": {
+          "items": {
+            "$ref": "#/definitions/anime.CharacterMediaRole"
+          },
+          "type": "array"
+        },
+        "name": {
+          "example": "Frieren",
+          "type": "string"
+        },
+        "native_name": {
+          "example": "フリーレン",
+          "type": "string"
+        },
+        "site_url": {
+          "example": "https://anilist.co/character/176754",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "anime.CharacterEntry": {
+      "properties": {
+        "favourites": {
+          "example": 21952,
+          "type": "integer"
+        },
+        "id": {
+          "example": 176754,
+          "type": "integer"
+        },
+        "image": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Frieren",
+          "type": "string"
+        },
+        "native_name": {
+          "example": "フリーレン",
+          "type": "string"
+        },
+        "role": {
+          "example": "MAIN",
+          "type": "string"
+        },
+        "site_url": {
+          "example": "https://anilist.co/character/176754",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "anime.CharacterMediaRole": {
+      "properties": {
+        "cover_image": {
+          "type": "string"
+        },
+        "format": {
+          "example": "TV",
+          "type": "string"
+        },
+        "id": {
+          "example": 154587,
+          "type": "integer"
+        },
+        "role": {
+          "example": "MAIN",
+          "type": "string"
+        },
+        "site_url": {
+          "type": "string"
+        },
+        "title": {
+          "$ref": "#/definitions/anime.MediaTitle"
+        },
+        "type": {
+          "example": "ANIME",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "anime.CharacterSearchResponse": {
+      "properties": {
+        "has_next_page": {
+          "example": false,
+          "type": "boolean"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "per_page": {
+          "example": 10,
+          "type": "integer"
+        },
+        "query": {
+          "example": "Frieren",
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/anime.Character"
+          },
+          "type": "array"
+        },
+        "total": {
+          "example": 1,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "anime.CharactersResponse": {
+      "properties": {
+        "has_next_page": {
+          "example": true,
+          "type": "boolean"
+        },
+        "id": {
+          "example": 154587,
+          "type": "integer"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "per_page": {
+          "example": 10,
+          "type": "integer"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/anime.CharacterEntry"
+          },
+          "type": "array"
+        },
+        "total": {
+          "example": 500,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "anime.FuzzyDate": {
+      "properties": {
+        "day": {
+          "example": 29,
+          "type": "integer"
+        },
+        "month": {
+          "example": 9,
+          "type": "integer"
+        },
+        "year": {
+          "example": 2023,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "anime.MangaRankingsResponse": {
+      "properties": {
+        "format": {
+          "example": "MANGA",
+          "type": "string"
+        },
+        "genre": {
+          "example": "Fantasy",
+          "type": "string"
+        },
+        "has_next_page": {
+          "example": true,
+          "type": "boolean"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "per_page": {
+          "example": 20,
+          "type": "integer"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/anime.Media"
+          },
+          "type": "array"
+        },
+        "sort": {
+          "example": "TRENDING_DESC",
+          "type": "string"
+        },
+        "status": {
+          "example": "RELEASING",
+          "type": "string"
+        },
+        "total": {
+          "example": 5000,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "anime.Media": {
+      "properties": {
+        "average_score": {
+          "example": 91,
+          "type": "integer"
+        },
+        "banner_image": {
+          "type": "string"
+        },
+        "chapters": {
+          "type": "integer"
+        },
+        "country_of_origin": {
+          "example": "JP",
+          "type": "string"
+        },
+        "cover_image": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "duration": {
+          "example": 24,
+          "type": "integer"
+        },
+        "end_date": {
+          "$ref": "#/definitions/anime.FuzzyDate"
+        },
+        "episodes": {
+          "example": 28,
+          "type": "integer"
+        },
+        "favourites": {
+          "example": 54038,
+          "type": "integer"
+        },
+        "format": {
+          "example": "TV",
+          "type": "string"
+        },
+        "genres": {
+          "example": [
+            "Adventure",
+            "Drama",
+            "Fantasy"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "example": 154587,
+          "type": "integer"
+        },
+        "id_mal": {
+          "example": 52991,
+          "type": "integer"
+        },
+        "is_adult": {
+          "type": "boolean"
+        },
+        "mean_score": {
+          "example": 91,
+          "type": "integer"
+        },
+        "next_airing_episode": {
+          "$ref": "#/definitions/anime.NextAiringEpisode"
+        },
+        "popularity": {
+          "example": 456965,
+          "type": "integer"
+        },
+        "season": {
+          "example": "FALL",
+          "type": "string"
+        },
+        "season_year": {
+          "example": 2023,
+          "type": "integer"
+        },
+        "site_url": {
+          "example": "https://anilist.co/anime/154587",
+          "type": "string"
+        },
+        "start_date": {
+          "$ref": "#/definitions/anime.FuzzyDate"
+        },
+        "status": {
+          "example": "FINISHED",
+          "type": "string"
+        },
+        "studios": {
+          "example": [
+            "MADHOUSE"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tags": {
+          "items": {
+            "$ref": "#/definitions/anime.MediaTag"
+          },
+          "type": "array"
+        },
+        "title": {
+          "$ref": "#/definitions/anime.MediaTitle"
+        },
+        "trending": {
+          "example": 120,
+          "type": "integer"
+        },
+        "type": {
+          "example": "ANIME",
+          "type": "string"
+        },
+        "volumes": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "anime.MediaTag": {
+      "properties": {
+        "category": {
+          "example": "Cast-Main Cast",
+          "type": "string"
+        },
+        "is_spoiler": {
+          "type": "boolean"
+        },
+        "name": {
+          "example": "Elf",
+          "type": "string"
+        },
+        "rank": {
+          "example": 91,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "anime.MediaTitle": {
+      "properties": {
+        "english": {
+          "example": "Frieren: Beyond Journey's End",
+          "type": "string"
+        },
+        "native": {
+          "example": "葬送のフリーレン",
+          "type": "string"
+        },
+        "romaji": {
+          "example": "Sousou no Frieren",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "anime.NextAiringEpisode": {
+      "properties": {
+        "airing_at": {
+          "example": 1704900600,
+          "type": "integer"
+        },
+        "episode": {
+          "example": 13,
+          "type": "integer"
+        },
+        "time_until_airing": {
+          "example": 259200,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "anime.RankingsResponse": {
+      "properties": {
+        "format": {
+          "example": "TV",
+          "type": "string"
+        },
+        "genre": {
+          "example": "Fantasy",
+          "type": "string"
+        },
+        "has_next_page": {
+          "example": true,
+          "type": "boolean"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "per_page": {
+          "example": 20,
+          "type": "integer"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/anime.Media"
+          },
+          "type": "array"
+        },
+        "season": {
+          "example": "FALL",
+          "type": "string"
+        },
+        "season_year": {
+          "example": 2023,
+          "type": "integer"
+        },
+        "sort": {
+          "example": "TRENDING_DESC",
+          "type": "string"
+        },
+        "status": {
+          "example": "FINISHED",
+          "type": "string"
+        },
+        "total": {
+          "example": 5000,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "anime.RecommendationEntry": {
+      "properties": {
+        "media": {
+          "$ref": "#/definitions/anime.Media"
+        },
+        "rating": {
+          "example": 1144,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "anime.RecommendationsResponse": {
+      "properties": {
+        "has_next_page": {
+          "example": true,
+          "type": "boolean"
+        },
+        "id": {
+          "example": 154587,
+          "type": "integer"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "per_page": {
+          "example": 10,
+          "type": "integer"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/anime.RecommendationEntry"
+          },
+          "type": "array"
+        },
+        "total": {
+          "example": 500,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "anime.SearchResponse": {
+      "properties": {
+        "has_next_page": {
+          "example": false,
+          "type": "boolean"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "per_page": {
+          "example": 10,
+          "type": "integer"
+        },
+        "query": {
+          "example": "Frieren",
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/anime.Media"
+          },
+          "type": "array"
+        },
+        "total": {
+          "example": 1,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "anime.StaffEntry": {
+      "properties": {
+        "id": {
+          "example": 100081,
+          "type": "integer"
+        },
+        "image": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Colleen Clinkenbeard",
+          "type": "string"
+        },
+        "native_name": {
+          "type": "string"
+        },
+        "occupations": {
+          "example": [
+            "Voice Actor"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "role": {
+          "example": "ADR Producer (English)",
+          "type": "string"
+        },
+        "site_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "anime.StaffResponse": {
+      "properties": {
+        "has_next_page": {
+          "example": true,
+          "type": "boolean"
+        },
+        "id": {
+          "example": 154587,
+          "type": "integer"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "per_page": {
+          "example": 10,
+          "type": "integer"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/anime.StaffEntry"
+          },
+          "type": "array"
+        },
+        "total": {
+          "example": 500,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "anime.airingScheduleResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/anime.AiringScheduleResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "anime.characterResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/anime.Character"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "anime.characterSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/anime.CharacterSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "anime.charactersResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/anime.CharactersResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "anime.mangaRankingsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/anime.MangaRankingsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "anime.mediaResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/anime.Media"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "anime.rankingsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/anime.RankingsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "anime.recommendationsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/anime.RecommendationsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "anime.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/anime.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "anime.staffResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/anime.StaffResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "antibot.Band": {
       "enum": [
         "easy",
@@ -53492,6 +54305,659 @@
         ]
       }
     },
+    "/anime/airing-schedule": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns upcoming anime episode broadcasts (episode number, air time, countdown, and the normalized title), soonest first, paginated. Credential-free public AniList data.",
+        "operationId": "anime-airing-schedule",
+        "parameters": [
+          {
+            "description": "1-based page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page, default 20, max 50",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/anime.airingScheduleResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Upcoming anime airing schedule",
+        "tags": [
+          "Anime"
+        ]
+      }
+    },
+    "/anime/character/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches anime and manga characters by name. Returns character summaries (name, native name, image, favourites), paginated. Credential-free public AniList data.",
+        "operationId": "anime-character-search",
+        "parameters": [
+          {
+            "description": "Search text",
+            "example": "Frieren",
+            "in": "query",
+            "name": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page, default 10, max 50",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/anime.characterSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search anime & manga characters",
+        "tags": [
+          "Anime"
+        ]
+      }
+    },
+    "/anime/character/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized character profile by AniList id: names, image, description, gender, age, blood type, birthday, favourites, and the titles the character appears in with their billed role. Credential-free public AniList data.",
+        "operationId": "anime-character",
+        "parameters": [
+          {
+            "description": "AniList character id",
+            "example": "176754",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/anime.characterResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get an anime/manga character",
+        "tags": [
+          "Anime"
+        ]
+      }
+    },
+    "/anime/rankings": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a filterable, sorted anime ranking. Credential-free public AniList data. Filter by season, year, format, genre, and status.",
+        "operationId": "anime-rankings",
+        "parameters": [
+          {
+            "description": "Order: TRENDING_DESC, POPULARITY_DESC, SCORE_DESC, FAVOURITES_DESC, START_DATE_DESC, UPDATED_AT_DESC. Default TRENDING_DESC.",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Airing season filter: WINTER, SPRING, SUMMER, FALL.",
+            "in": "query",
+            "name": "season",
+            "type": "string"
+          },
+          {
+            "description": "Airing year filter, 1940-2100.",
+            "in": "query",
+            "name": "season_year",
+            "type": "integer"
+          },
+          {
+            "description": "Format filter: TV, TV_SHORT, MOVIE, SPECIAL, OVA, ONA, MUSIC.",
+            "in": "query",
+            "name": "format",
+            "type": "string"
+          },
+          {
+            "description": "Genre filter, e.g. Fantasy.",
+            "in": "query",
+            "name": "genre",
+            "type": "string"
+          },
+          {
+            "description": "Status filter: FINISHED, RELEASING, NOT_YET_RELEASED, CANCELLED, HIATUS.",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "1-based page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page, default 20, max 50",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/anime.rankingsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Rank anime",
+        "tags": [
+          "Anime"
+        ]
+      }
+    },
+    "/anime/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches anime by free-text query. Credential-free public anime data from AniList. Returns normalized entries: titles, scores, popularity, format, status, season, genres, tags, and studios.",
+        "operationId": "anime-search",
+        "parameters": [
+          {
+            "description": "Search text",
+            "example": "Frieren",
+            "in": "query",
+            "name": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Ordering: SEARCH_MATCH, POPULARITY_DESC, SCORE_DESC, TRENDING_DESC, FAVOURITES_DESC, START_DATE_DESC. Default SEARCH_MATCH.",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "1-based page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page, default 10, max 50",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/anime.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search anime",
+        "tags": [
+          "Anime"
+        ]
+      }
+    },
+    "/anime/title/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized anime by AniList id: titles (romaji/english/native), MyAnimeList id, scores, popularity, favourites, format, status, season, episodes, duration, genres, ranked tags, studios, dates, description, images, and next-airing countdown. Credential-free public AniList data.",
+        "operationId": "anime-title",
+        "parameters": [
+          {
+            "description": "AniList anime id",
+            "example": "154587",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/anime.mediaResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get an anime",
+        "tags": [
+          "Anime"
+        ]
+      }
+    },
+    "/anime/title/{id}/characters": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns an anime's cast (character name, native name, billed role, image, favourites), paginated. Credential-free public AniList data.",
+        "operationId": "anime-title-characters",
+        "parameters": [
+          {
+            "description": "AniList anime id",
+            "example": "154587",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page, default 10, max 50",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/anime.charactersResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List an anime's characters",
+        "tags": [
+          "Anime"
+        ]
+      }
+    },
+    "/anime/title/{id}/recommendations": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns community-recommended titles for an anime, each with a recommendation rating and the full normalized media entry, paginated. Credential-free public AniList data.",
+        "operationId": "anime-title-recommendations",
+        "parameters": [
+          {
+            "description": "AniList anime id",
+            "example": "154587",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page, default 10, max 50",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/anime.recommendationsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List an anime's recommendations",
+        "tags": [
+          "Anime"
+        ]
+      }
+    },
+    "/anime/title/{id}/staff": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the people credited on an anime (name, production role, occupations, image), paginated. Credential-free public AniList data.",
+        "operationId": "anime-title-staff",
+        "parameters": [
+          {
+            "description": "AniList anime id",
+            "example": "154587",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page, default 10, max 50",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/anime.staffResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List an anime's staff",
+        "tags": [
+          "Anime"
+        ]
+      }
+    },
     "/apple-podcasts/charts": {
       "get": {
         "consumes": [
@@ -80654,6 +82120,229 @@
         "summary": "Get Linkedin Showcase Page Info",
         "tags": [
           "LinkedIn"
+        ]
+      }
+    },
+    "/manga/rankings": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a filterable, sorted manga ranking. Credential-free public AniList data. Filter by format, genre, and status.",
+        "operationId": "manga-rankings",
+        "parameters": [
+          {
+            "description": "Order: TRENDING_DESC, POPULARITY_DESC, SCORE_DESC, FAVOURITES_DESC, START_DATE_DESC, UPDATED_AT_DESC. Default TRENDING_DESC.",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Format filter: MANGA, NOVEL, ONE_SHOT.",
+            "in": "query",
+            "name": "format",
+            "type": "string"
+          },
+          {
+            "description": "Genre filter, e.g. Fantasy.",
+            "in": "query",
+            "name": "genre",
+            "type": "string"
+          },
+          {
+            "description": "Status filter: FINISHED, RELEASING, NOT_YET_RELEASED, CANCELLED, HIATUS.",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "1-based page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page, default 20, max 50",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/anime.mangaRankingsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Rank manga",
+        "tags": [
+          "Manga"
+        ]
+      }
+    },
+    "/manga/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches manga by free-text query. Credential-free public manga data from AniList. Returns normalized entries: titles, scores, popularity, format, status, chapters, volumes, genres, and tags.",
+        "operationId": "manga-search",
+        "parameters": [
+          {
+            "description": "Search text",
+            "example": "Berserk",
+            "in": "query",
+            "name": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Ordering: SEARCH_MATCH, POPULARITY_DESC, SCORE_DESC, TRENDING_DESC, FAVOURITES_DESC, START_DATE_DESC. Default SEARCH_MATCH.",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "1-based page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page, default 10, max 50",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/anime.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search manga",
+        "tags": [
+          "Manga"
+        ]
+      }
+    },
+    "/manga/title/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized manga by AniList id: titles, MyAnimeList id, scores, popularity, favourites, format, status, chapters, volumes, genres, ranked tags, dates, description, and images. Credential-free public AniList data.",
+        "operationId": "manga-title",
+        "parameters": [
+          {
+            "description": "AniList manga id",
+            "example": "30002",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/anime.mediaResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a manga",
+        "tags": [
+          "Manga"
         ]
       }
     },

@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.17.0-sdk.1
+
+- Regenerated from the public API contract (685 to 697 operations). Adds two
+  credential-free platforms (12 endpoints):
+  **Anime** (9) — search, details, characters, staff, recommendations, rankings,
+  the upcoming airing schedule, plus character lookup and search.
+  **Manga** (3) — search, details, and rankings.
+  Both draw on AniList's public catalog: scores, popularity, favourites, genres,
+  ranked tags, studios, and MyAnimeList cross-reference ids.
+
 ## v1.16.0-sdk.1
 
 - Regenerated from the public API contract (658 to 685 operations). Adds four

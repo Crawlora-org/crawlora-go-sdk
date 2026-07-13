@@ -253,6 +253,259 @@ type ModelAmazonSuggestResponseDoc struct {
 	Msg  string   `json:"msg,omitempty"`
 }
 
+type ModelAnimeAiringEntry struct {
+	AiringAt        int             `json:"airing_at,omitempty"`
+	Episode         int             `json:"episode,omitempty"`
+	Media           ModelAnimeMedia `json:"media,omitempty"`
+	TimeUntilAiring int             `json:"time_until_airing,omitempty"`
+}
+
+type ModelAnimeAiringScheduleResponse struct {
+	HasNextPage bool                    `json:"has_next_page,omitempty"`
+	Page        int                     `json:"page,omitempty"`
+	PerPage     int                     `json:"per_page,omitempty"`
+	Results     []ModelAnimeAiringEntry `json:"results,omitempty"`
+}
+
+type ModelAnimeCharacter struct {
+	Age              string                         `json:"age,omitempty"`
+	AlternativeNames []string                       `json:"alternative_names,omitempty"`
+	BloodType        string                         `json:"blood_type,omitempty"`
+	DateOfBirth      ModelAnimeFuzzyDate            `json:"date_of_birth,omitempty"`
+	Description      string                         `json:"description,omitempty"`
+	Favourites       int                            `json:"favourites,omitempty"`
+	Gender           string                         `json:"gender,omitempty"`
+	Id               int                            `json:"id,omitempty"`
+	Image            string                         `json:"image,omitempty"`
+	Media            []ModelAnimeCharacterMediaRole `json:"media,omitempty"`
+	Name             string                         `json:"name,omitempty"`
+	NativeName       string                         `json:"native_name,omitempty"`
+	SiteUrl          string                         `json:"site_url,omitempty"`
+}
+
+type ModelAnimeCharacterEntry struct {
+	Favourites int    `json:"favourites,omitempty"`
+	Id         int    `json:"id,omitempty"`
+	Image      string `json:"image,omitempty"`
+	Name       string `json:"name,omitempty"`
+	NativeName string `json:"native_name,omitempty"`
+	Role       string `json:"role,omitempty"`
+	SiteUrl    string `json:"site_url,omitempty"`
+}
+
+type ModelAnimeCharacterMediaRole struct {
+	CoverImage string               `json:"cover_image,omitempty"`
+	Format     string               `json:"format,omitempty"`
+	Id         int                  `json:"id,omitempty"`
+	Role       string               `json:"role,omitempty"`
+	SiteUrl    string               `json:"site_url,omitempty"`
+	Title      ModelAnimeMediaTitle `json:"title,omitempty"`
+	Type       string               `json:"type,omitempty"`
+}
+
+type ModelAnimeCharacterSearchResponse struct {
+	HasNextPage bool                  `json:"has_next_page,omitempty"`
+	Page        int                   `json:"page,omitempty"`
+	PerPage     int                   `json:"per_page,omitempty"`
+	Query       string                `json:"query,omitempty"`
+	Results     []ModelAnimeCharacter `json:"results,omitempty"`
+	Total       int                   `json:"total,omitempty"`
+}
+
+type ModelAnimeCharactersResponse struct {
+	HasNextPage bool                       `json:"has_next_page,omitempty"`
+	Id          int                        `json:"id,omitempty"`
+	Page        int                        `json:"page,omitempty"`
+	PerPage     int                        `json:"per_page,omitempty"`
+	Results     []ModelAnimeCharacterEntry `json:"results,omitempty"`
+	Total       int                        `json:"total,omitempty"`
+}
+
+type ModelAnimeFuzzyDate struct {
+	Day   int `json:"day,omitempty"`
+	Month int `json:"month,omitempty"`
+	Year  int `json:"year,omitempty"`
+}
+
+type ModelAnimeMangaRankingsResponse struct {
+	Format      string            `json:"format,omitempty"`
+	Genre       string            `json:"genre,omitempty"`
+	HasNextPage bool              `json:"has_next_page,omitempty"`
+	Page        int               `json:"page,omitempty"`
+	PerPage     int               `json:"per_page,omitempty"`
+	Results     []ModelAnimeMedia `json:"results,omitempty"`
+	Sort        string            `json:"sort,omitempty"`
+	Status      string            `json:"status,omitempty"`
+	Total       int               `json:"total,omitempty"`
+}
+
+type ModelAnimeMedia struct {
+	AverageScore      int                         `json:"average_score,omitempty"`
+	BannerImage       string                      `json:"banner_image,omitempty"`
+	Chapters          int                         `json:"chapters,omitempty"`
+	CountryOfOrigin   string                      `json:"country_of_origin,omitempty"`
+	CoverImage        string                      `json:"cover_image,omitempty"`
+	Description       string                      `json:"description,omitempty"`
+	Duration          int                         `json:"duration,omitempty"`
+	EndDate           ModelAnimeFuzzyDate         `json:"end_date,omitempty"`
+	Episodes          int                         `json:"episodes,omitempty"`
+	Favourites        int                         `json:"favourites,omitempty"`
+	Format            string                      `json:"format,omitempty"`
+	Genres            []string                    `json:"genres,omitempty"`
+	Id                int                         `json:"id,omitempty"`
+	IdMal             int                         `json:"id_mal,omitempty"`
+	IsAdult           bool                        `json:"is_adult,omitempty"`
+	MeanScore         int                         `json:"mean_score,omitempty"`
+	NextAiringEpisode ModelAnimeNextAiringEpisode `json:"next_airing_episode,omitempty"`
+	Popularity        int                         `json:"popularity,omitempty"`
+	Season            string                      `json:"season,omitempty"`
+	SeasonYear        int                         `json:"season_year,omitempty"`
+	SiteUrl           string                      `json:"site_url,omitempty"`
+	StartDate         ModelAnimeFuzzyDate         `json:"start_date,omitempty"`
+	Status            string                      `json:"status,omitempty"`
+	Studios           []string                    `json:"studios,omitempty"`
+	Tags              []ModelAnimeMediaTag        `json:"tags,omitempty"`
+	Title             ModelAnimeMediaTitle        `json:"title,omitempty"`
+	Trending          int                         `json:"trending,omitempty"`
+	Type              string                      `json:"type,omitempty"`
+	Volumes           int                         `json:"volumes,omitempty"`
+}
+
+type ModelAnimeMediaTag struct {
+	Category  string `json:"category,omitempty"`
+	IsSpoiler bool   `json:"is_spoiler,omitempty"`
+	Name      string `json:"name,omitempty"`
+	Rank      int    `json:"rank,omitempty"`
+}
+
+type ModelAnimeMediaTitle struct {
+	English string `json:"english,omitempty"`
+	Native  string `json:"native,omitempty"`
+	Romaji  string `json:"romaji,omitempty"`
+}
+
+type ModelAnimeNextAiringEpisode struct {
+	AiringAt        int `json:"airing_at,omitempty"`
+	Episode         int `json:"episode,omitempty"`
+	TimeUntilAiring int `json:"time_until_airing,omitempty"`
+}
+
+type ModelAnimeRankingsResponse struct {
+	Format      string            `json:"format,omitempty"`
+	Genre       string            `json:"genre,omitempty"`
+	HasNextPage bool              `json:"has_next_page,omitempty"`
+	Page        int               `json:"page,omitempty"`
+	PerPage     int               `json:"per_page,omitempty"`
+	Results     []ModelAnimeMedia `json:"results,omitempty"`
+	Season      string            `json:"season,omitempty"`
+	SeasonYear  int               `json:"season_year,omitempty"`
+	Sort        string            `json:"sort,omitempty"`
+	Status      string            `json:"status,omitempty"`
+	Total       int               `json:"total,omitempty"`
+}
+
+type ModelAnimeRecommendationEntry struct {
+	Media  ModelAnimeMedia `json:"media,omitempty"`
+	Rating int             `json:"rating,omitempty"`
+}
+
+type ModelAnimeRecommendationsResponse struct {
+	HasNextPage bool                            `json:"has_next_page,omitempty"`
+	Id          int                             `json:"id,omitempty"`
+	Page        int                             `json:"page,omitempty"`
+	PerPage     int                             `json:"per_page,omitempty"`
+	Results     []ModelAnimeRecommendationEntry `json:"results,omitempty"`
+	Total       int                             `json:"total,omitempty"`
+}
+
+type ModelAnimeSearchResponse struct {
+	HasNextPage bool              `json:"has_next_page,omitempty"`
+	Page        int               `json:"page,omitempty"`
+	PerPage     int               `json:"per_page,omitempty"`
+	Query       string            `json:"query,omitempty"`
+	Results     []ModelAnimeMedia `json:"results,omitempty"`
+	Total       int               `json:"total,omitempty"`
+}
+
+type ModelAnimeStaffEntry struct {
+	Id          int      `json:"id,omitempty"`
+	Image       string   `json:"image,omitempty"`
+	Name        string   `json:"name,omitempty"`
+	NativeName  string   `json:"native_name,omitempty"`
+	Occupations []string `json:"occupations,omitempty"`
+	Role        string   `json:"role,omitempty"`
+	SiteUrl     string   `json:"site_url,omitempty"`
+}
+
+type ModelAnimeStaffResponse struct {
+	HasNextPage bool                   `json:"has_next_page,omitempty"`
+	Id          int                    `json:"id,omitempty"`
+	Page        int                    `json:"page,omitempty"`
+	PerPage     int                    `json:"per_page,omitempty"`
+	Results     []ModelAnimeStaffEntry `json:"results,omitempty"`
+	Total       int                    `json:"total,omitempty"`
+}
+
+type ModelAnimeAiringScheduleResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelAnimeAiringScheduleResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelAnimeCharacterResponseDoc struct {
+	Code int                 `json:"code,omitempty"`
+	Data ModelAnimeCharacter `json:"data,omitempty"`
+	Msg  string              `json:"msg,omitempty"`
+}
+
+type ModelAnimeCharacterSearchResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelAnimeCharacterSearchResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelAnimeCharactersResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelAnimeCharactersResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelAnimeMangaRankingsResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelAnimeMangaRankingsResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelAnimeMediaResponseDoc struct {
+	Code int             `json:"code,omitempty"`
+	Data ModelAnimeMedia `json:"data,omitempty"`
+	Msg  string          `json:"msg,omitempty"`
+}
+
+type ModelAnimeRankingsResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelAnimeRankingsResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelAnimeRecommendationsResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelAnimeRecommendationsResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelAnimeSearchResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelAnimeSearchResponse `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelAnimeStaffResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelAnimeStaffResponse `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
 type ModelAntibotBand = string
 
 type ModelAntibotProtection struct {
@@ -16523,7 +16776,7 @@ type ModelZillowSearchResponse struct {
 	Results  []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 685
+const operationCount = 697
 
 const (
 	OperationAirbnbHost                                             = "airbnb-host"
@@ -16536,6 +16789,15 @@ const (
 	OperationAmazonProduct                                          = "amazon-product"
 	OperationAmazonSearch                                           = "amazon-search"
 	OperationAmazonSuggest                                          = "amazon-suggest"
+	OperationAnimeAiringSchedule                                    = "anime-airing-schedule"
+	OperationAnimeCharacter                                         = "anime-character"
+	OperationAnimeCharacterSearch                                   = "anime-character-search"
+	OperationAnimeRankings                                          = "anime-rankings"
+	OperationAnimeSearch                                            = "anime-search"
+	OperationAnimeTitle                                             = "anime-title"
+	OperationAnimeTitleCharacters                                   = "anime-title-characters"
+	OperationAnimeTitleRecommendations                              = "anime-title-recommendations"
+	OperationAnimeTitleStaff                                        = "anime-title-staff"
 	OperationAppStoreApp                                            = "appstore-app"
 	OperationAppStoreDeveloper                                      = "appstore-developer"
 	OperationAppStoreList                                           = "appstore-list"
@@ -16850,6 +17112,9 @@ const (
 	OperationLinkedInLinkedinCompany                                = "linkedin-company"
 	OperationLinkedInLinkedinProduct                                = "linkedin-product"
 	OperationLinkedInLinkedinShowcase                               = "linkedin-showcase"
+	OperationMangaRankings                                          = "manga-rankings"
+	OperationMangaSearch                                            = "manga-search"
+	OperationMangaTitle                                             = "manga-title"
 	OperationMetaPing                                               = "ping"
 	OperationMetaReady                                              = "ready"
 	OperationMetaculusCategoryQuestions                             = "metaculus-category-questions"
@@ -17224,6 +17489,15 @@ var operations = map[string]operationDefinition{
 	"amazon-product":                                operationDefinition{Method: "GET", Path: "/amazon/product/{asin}", PathParams: []string{"asin"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"en_US"}}, parameterDefinition{Name: "currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"USD"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"amazon-search":                                 operationDefinition{Method: "GET", Path: "/amazon/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "k", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "s", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"amazon-suggest":                                operationDefinition{Method: "GET", Path: "/amazon/suggest/{keyword}", PathParams: []string{"keyword"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"anime-airing-schedule":                         operationDefinition{Method: "GET", Path: "/anime/airing-schedule", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"anime-character-search":                        operationDefinition{Method: "GET", Path: "/anime/character/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"anime-character":                               operationDefinition{Method: "GET", Path: "/anime/character/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"anime-rankings":                                operationDefinition{Method: "GET", Path: "/anime/rankings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "format", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "genre", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"anime-search":                                  operationDefinition{Method: "GET", Path: "/anime/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"anime-title":                                   operationDefinition{Method: "GET", Path: "/anime/title/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"anime-title-characters":                        operationDefinition{Method: "GET", Path: "/anime/title/{id}/characters", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"anime-title-recommendations":                   operationDefinition{Method: "GET", Path: "/anime/title/{id}/recommendations", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"anime-title-staff":                             operationDefinition{Method: "GET", Path: "/anime/title/{id}/staff", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"apple-podcasts-charts":                         operationDefinition{Method: "GET", Path: "/apple-podcasts/charts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "collection", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"apple-podcasts-episodes-search":                operationDefinition{Method: "GET", Path: "/apple-podcasts/episodes/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"apple-podcasts-search":                         operationDefinition{Method: "GET", Path: "/apple-podcasts/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -17541,6 +17815,9 @@ var operations = map[string]operationDefinition{
 	"linkedin-company":                              operationDefinition{Method: "GET", Path: "/linkedin/company/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"linkedin-product":                              operationDefinition{Method: "GET", Path: "/linkedin/product/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"linkedin-showcase":                             operationDefinition{Method: "GET", Path: "/linkedin/showcase/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"manga-rankings":                                operationDefinition{Method: "GET", Path: "/manga/rankings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "format", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "genre", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"manga-search":                                  operationDefinition{Method: "GET", Path: "/manga/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"manga-title":                                   operationDefinition{Method: "GET", Path: "/manga/title/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"metaculus-category-questions":                  operationDefinition{Method: "GET", Path: "/metaculus/category/{slug}/questions", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"metaculus-comments-feed":                       operationDefinition{Method: "GET", Path: "/metaculus/comments-feed", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"metaculus-project-questions":                   operationDefinition{Method: "GET", Path: "/metaculus/project/{slug}/questions", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -17904,6 +18181,7 @@ var operations = map[string]operationDefinition{
 type Services struct {
 	Airbnb          *AirbnbService
 	Amazon          *AmazonService
+	Anime           *AnimeService
 	ApplePodcasts   *ApplePodcastsService
 	AppStore        *AppStoreService
 	Billing         *BillingService
@@ -17930,6 +18208,7 @@ type Services struct {
 	Kalshi          *KalshiService
 	Letterboxd      *LetterboxdService
 	LinkedIn        *LinkedInService
+	Manga           *MangaService
 	Metaculus       *MetaculusService
 	Meta            *MetaService
 	PitchBook       *PitchBookService
@@ -17965,6 +18244,7 @@ func initServices(c *Client) Services {
 	return Services{
 		Airbnb:          &AirbnbService{client: c},
 		Amazon:          &AmazonService{client: c},
+		Anime:           &AnimeService{client: c},
 		ApplePodcasts:   &ApplePodcastsService{client: c},
 		AppStore:        &AppStoreService{client: c},
 		Billing:         &BillingService{client: c},
@@ -17991,6 +18271,7 @@ func initServices(c *Client) Services {
 		Kalshi:          &KalshiService{client: c},
 		Letterboxd:      &LetterboxdService{client: c},
 		LinkedIn:        &LinkedInService{client: c},
+		Manga:           &MangaService{client: c},
 		Metaculus:       &MetaculusService{client: c},
 		Meta:            &MetaService{client: c},
 		PitchBook:       &PitchBookService{client: c},
@@ -18182,6 +18463,153 @@ type AmazonSuggestResponse = ModelAmazonSuggestResponseDoc
 
 func (s *AmazonService) SuggestTyped(ctx context.Context, params AmazonSuggestParams, opts ...RequestOption) (AmazonSuggestResponse, error) {
 	return requestTyped[AmazonSuggestResponse](s.client, ctx, "amazon-suggest", paramsFromStruct(params), opts...)
+}
+
+type AnimeService struct{ client *Client }
+
+func (s *AnimeService) AiringSchedule(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "anime-airing-schedule", params, opts...)
+}
+
+type AnimeAiringScheduleParams struct {
+	Page    *int `crawlora:"page,omitempty"`
+	PerPage *int `crawlora:"per_page,omitempty"`
+}
+
+type AnimeAiringScheduleResponse = ModelAnimeAiringScheduleResponseDoc
+
+func (s *AnimeService) AiringScheduleTyped(ctx context.Context, params AnimeAiringScheduleParams, opts ...RequestOption) (AnimeAiringScheduleResponse, error) {
+	return requestTyped[AnimeAiringScheduleResponse](s.client, ctx, "anime-airing-schedule", paramsFromStruct(params), opts...)
+}
+
+func (s *AnimeService) CharacterSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "anime-character-search", params, opts...)
+}
+
+type AnimeCharacterSearchParams struct {
+	Query   string `crawlora:"query"`
+	Page    *int   `crawlora:"page,omitempty"`
+	PerPage *int   `crawlora:"per_page,omitempty"`
+}
+
+type AnimeCharacterSearchResponse = ModelAnimeCharacterSearchResponseDoc
+
+func (s *AnimeService) CharacterSearchTyped(ctx context.Context, params AnimeCharacterSearchParams, opts ...RequestOption) (AnimeCharacterSearchResponse, error) {
+	return requestTyped[AnimeCharacterSearchResponse](s.client, ctx, "anime-character-search", paramsFromStruct(params), opts...)
+}
+
+func (s *AnimeService) Character(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "anime-character", params, opts...)
+}
+
+type AnimeCharacterParams struct {
+	Id string `crawlora:"id"`
+}
+
+type AnimeCharacterResponse = ModelAnimeCharacterResponseDoc
+
+func (s *AnimeService) CharacterTyped(ctx context.Context, params AnimeCharacterParams, opts ...RequestOption) (AnimeCharacterResponse, error) {
+	return requestTyped[AnimeCharacterResponse](s.client, ctx, "anime-character", paramsFromStruct(params), opts...)
+}
+
+func (s *AnimeService) Rankings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "anime-rankings", params, opts...)
+}
+
+type AnimeRankingsParams struct {
+	Sort       *string `crawlora:"sort,omitempty"`
+	Season     *string `crawlora:"season,omitempty"`
+	SeasonYear *int    `crawlora:"season_year,omitempty"`
+	Format     *string `crawlora:"format,omitempty"`
+	Genre      *string `crawlora:"genre,omitempty"`
+	Status     *string `crawlora:"status,omitempty"`
+	Page       *int    `crawlora:"page,omitempty"`
+	PerPage    *int    `crawlora:"per_page,omitempty"`
+}
+
+type AnimeRankingsResponse = ModelAnimeRankingsResponseDoc
+
+func (s *AnimeService) RankingsTyped(ctx context.Context, params AnimeRankingsParams, opts ...RequestOption) (AnimeRankingsResponse, error) {
+	return requestTyped[AnimeRankingsResponse](s.client, ctx, "anime-rankings", paramsFromStruct(params), opts...)
+}
+
+func (s *AnimeService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "anime-search", params, opts...)
+}
+
+type AnimeSearchParams struct {
+	Query   string  `crawlora:"query"`
+	Sort    *string `crawlora:"sort,omitempty"`
+	Page    *int    `crawlora:"page,omitempty"`
+	PerPage *int    `crawlora:"per_page,omitempty"`
+}
+
+type AnimeSearchResponse = ModelAnimeSearchResponseDoc
+
+func (s *AnimeService) SearchTyped(ctx context.Context, params AnimeSearchParams, opts ...RequestOption) (AnimeSearchResponse, error) {
+	return requestTyped[AnimeSearchResponse](s.client, ctx, "anime-search", paramsFromStruct(params), opts...)
+}
+
+func (s *AnimeService) Title(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "anime-title", params, opts...)
+}
+
+type AnimeTitleParams struct {
+	Id string `crawlora:"id"`
+}
+
+type AnimeTitleResponse = ModelAnimeMediaResponseDoc
+
+func (s *AnimeService) TitleTyped(ctx context.Context, params AnimeTitleParams, opts ...RequestOption) (AnimeTitleResponse, error) {
+	return requestTyped[AnimeTitleResponse](s.client, ctx, "anime-title", paramsFromStruct(params), opts...)
+}
+
+func (s *AnimeService) TitleCharacters(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "anime-title-characters", params, opts...)
+}
+
+type AnimeTitleCharactersParams struct {
+	Id      string `crawlora:"id"`
+	Page    *int   `crawlora:"page,omitempty"`
+	PerPage *int   `crawlora:"per_page,omitempty"`
+}
+
+type AnimeTitleCharactersResponse = ModelAnimeCharactersResponseDoc
+
+func (s *AnimeService) TitleCharactersTyped(ctx context.Context, params AnimeTitleCharactersParams, opts ...RequestOption) (AnimeTitleCharactersResponse, error) {
+	return requestTyped[AnimeTitleCharactersResponse](s.client, ctx, "anime-title-characters", paramsFromStruct(params), opts...)
+}
+
+func (s *AnimeService) TitleRecommendations(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "anime-title-recommendations", params, opts...)
+}
+
+type AnimeTitleRecommendationsParams struct {
+	Id      string `crawlora:"id"`
+	Page    *int   `crawlora:"page,omitempty"`
+	PerPage *int   `crawlora:"per_page,omitempty"`
+}
+
+type AnimeTitleRecommendationsResponse = ModelAnimeRecommendationsResponseDoc
+
+func (s *AnimeService) TitleRecommendationsTyped(ctx context.Context, params AnimeTitleRecommendationsParams, opts ...RequestOption) (AnimeTitleRecommendationsResponse, error) {
+	return requestTyped[AnimeTitleRecommendationsResponse](s.client, ctx, "anime-title-recommendations", paramsFromStruct(params), opts...)
+}
+
+func (s *AnimeService) TitleStaff(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "anime-title-staff", params, opts...)
+}
+
+type AnimeTitleStaffParams struct {
+	Id      string `crawlora:"id"`
+	Page    *int   `crawlora:"page,omitempty"`
+	PerPage *int   `crawlora:"per_page,omitempty"`
+}
+
+type AnimeTitleStaffResponse = ModelAnimeStaffResponseDoc
+
+func (s *AnimeService) TitleStaffTyped(ctx context.Context, params AnimeTitleStaffParams, opts ...RequestOption) (AnimeTitleStaffResponse, error) {
+	return requestTyped[AnimeTitleStaffResponse](s.client, ctx, "anime-title-staff", paramsFromStruct(params), opts...)
 }
 
 type ApplePodcastsService struct{ client *Client }
@@ -23637,6 +24065,58 @@ type LinkedInLinkedinShowcaseResponse = ModelLinkedinShowcaseResponseDoc
 
 func (s *LinkedInService) LinkedinShowcaseTyped(ctx context.Context, params LinkedInLinkedinShowcaseParams, opts ...RequestOption) (LinkedInLinkedinShowcaseResponse, error) {
 	return requestTyped[LinkedInLinkedinShowcaseResponse](s.client, ctx, "linkedin-showcase", paramsFromStruct(params), opts...)
+}
+
+type MangaService struct{ client *Client }
+
+func (s *MangaService) Rankings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "manga-rankings", params, opts...)
+}
+
+type MangaRankingsParams struct {
+	Sort    *string `crawlora:"sort,omitempty"`
+	Format  *string `crawlora:"format,omitempty"`
+	Genre   *string `crawlora:"genre,omitempty"`
+	Status  *string `crawlora:"status,omitempty"`
+	Page    *int    `crawlora:"page,omitempty"`
+	PerPage *int    `crawlora:"per_page,omitempty"`
+}
+
+type MangaRankingsResponse = ModelAnimeMangaRankingsResponseDoc
+
+func (s *MangaService) RankingsTyped(ctx context.Context, params MangaRankingsParams, opts ...RequestOption) (MangaRankingsResponse, error) {
+	return requestTyped[MangaRankingsResponse](s.client, ctx, "manga-rankings", paramsFromStruct(params), opts...)
+}
+
+func (s *MangaService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "manga-search", params, opts...)
+}
+
+type MangaSearchParams struct {
+	Query   string  `crawlora:"query"`
+	Sort    *string `crawlora:"sort,omitempty"`
+	Page    *int    `crawlora:"page,omitempty"`
+	PerPage *int    `crawlora:"per_page,omitempty"`
+}
+
+type MangaSearchResponse = ModelAnimeSearchResponseDoc
+
+func (s *MangaService) SearchTyped(ctx context.Context, params MangaSearchParams, opts ...RequestOption) (MangaSearchResponse, error) {
+	return requestTyped[MangaSearchResponse](s.client, ctx, "manga-search", paramsFromStruct(params), opts...)
+}
+
+func (s *MangaService) Title(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "manga-title", params, opts...)
+}
+
+type MangaTitleParams struct {
+	Id string `crawlora:"id"`
+}
+
+type MangaTitleResponse = ModelAnimeMediaResponseDoc
+
+func (s *MangaService) TitleTyped(ctx context.Context, params MangaTitleParams, opts ...RequestOption) (MangaTitleResponse, error) {
+	return requestTyped[MangaTitleResponse](s.client, ctx, "manga-title", paramsFromStruct(params), opts...)
 }
 
 type MetaculusService struct{ client *Client }
