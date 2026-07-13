@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.18.0-sdk.1
+
+- Regenerated from the public API contract (697 to 737 operations). Adds
+  **Capterra** software discovery and reviews (3), **Metacritic** games, movies,
+  TV titles and reviews (10), **Numbeo** cost-of-living and quality indices (8),
+  and **Walmart** search, products, and reviews (3).
+- Adds 16 dataset operations: Chrome Web Store extension search, facets,
+  history, metrics, changes, and trending (7); journalist discovery (3);
+  Numbeo city and country search (5); and TrustMRR revenue history (1).
+
 ## v1.17.0-sdk.1
 
 - Regenerated from the public API contract (685 to 697 operations). Adds two

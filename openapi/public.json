@@ -965,6 +965,26 @@
       },
       "type": "object"
     },
+    "anime.MALScore": {
+      "properties": {
+        "max": {
+          "example": 10,
+          "type": "integer"
+        },
+        "score": {
+          "example": 9.26,
+          "type": "number"
+        },
+        "scored_by": {
+          "example": 911901,
+          "type": "integer"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "anime.MangaRankingsResponse": {
       "properties": {
         "format": {
@@ -1070,6 +1090,9 @@
         },
         "is_adult": {
           "type": "boolean"
+        },
+        "mal": {
+          "$ref": "#/definitions/anime.MALScore"
         },
         "mean_score": {
           "example": 91,
@@ -7095,6 +7118,186 @@
       },
       "type": "object"
     },
+    "capterra.Product": {
+      "properties": {
+        "best_rating": {
+          "example": 5,
+          "type": "number"
+        },
+        "category": {
+          "example": "Team Communication Software",
+          "type": "string"
+        },
+        "description": {
+          "example": "Slack is where work happens for millions of people everyday.",
+          "type": "string"
+        },
+        "name": {
+          "example": "Slack",
+          "type": "string"
+        },
+        "product_id": {
+          "example": "135003",
+          "type": "string"
+        },
+        "rating": {
+          "example": 4.7,
+          "type": "number"
+        },
+        "review_count": {
+          "example": 24148,
+          "type": "integer"
+        },
+        "url": {
+          "example": "https://www.capterra.com/p/135003/Slack/",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "capterra.Review": {
+      "properties": {
+        "author": {
+          "example": "Jake P.",
+          "type": "string"
+        },
+        "best_rating": {
+          "example": 5,
+          "type": "number"
+        },
+        "headline": {
+          "example": "Excellent Team Collaboration Hub",
+          "type": "string"
+        },
+        "rating": {
+          "example": 5,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "capterra.ReviewsResponse": {
+      "properties": {
+        "has_next_page": {
+          "example": true,
+          "type": "boolean"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "product_id": {
+          "example": "135003",
+          "type": "string"
+        },
+        "rating": {
+          "example": 4.7,
+          "type": "number"
+        },
+        "review_count": {
+          "example": 24148,
+          "type": "integer"
+        },
+        "reviews": {
+          "items": {
+            "$ref": "#/definitions/capterra.Review"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "capterra.SearchResponse": {
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/definitions/capterra.SearchResult"
+          },
+          "type": "array"
+        },
+        "query": {
+          "example": "slack",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "capterra.SearchResult": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Slack",
+          "type": "string"
+        },
+        "product_id": {
+          "example": "135003",
+          "type": "string"
+        },
+        "rating": {
+          "example": 4.7,
+          "type": "number"
+        },
+        "review_count": {
+          "example": 24148,
+          "type": "integer"
+        },
+        "url": {
+          "example": "https://www.capterra.com/p/135003/Slack/",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "capterra.productResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/capterra.Product"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "capterra.reviewsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/capterra.ReviewsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "capterra.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/capterra.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "chromewebstore.Card": {
       "properties": {
         "category": {
@@ -7335,6 +7538,9 @@
           "type": "array"
         },
         "id": {
+          "type": "string"
+        },
+        "item_type": {
           "type": "string"
         },
         "manifest_version": {
@@ -10207,6 +10413,160 @@
       },
       "type": "object"
     },
+    "datasets.ChromeExtensionChangesResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.ChromeExtensionHistoryPoint"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.ChromeExtensionFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.ChromeExtensionFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.ChromeExtensionHistoryResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "dataset": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "points": {
+          "items": {
+            "$ref": "#/definitions/es.ChromeExtensionHistoryPoint"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.ChromeExtensionMetricsResponse": {
+      "properties": {
+        "changes": {
+          "$ref": "#/definitions/es.ChromeExtensionChangeMetrics"
+        },
+        "dataset": {
+          "type": "string"
+        },
+        "days": {
+          "type": "integer"
+        },
+        "generated_at": {
+          "type": "string"
+        },
+        "item_types": {
+          "items": {
+            "$ref": "#/definitions/es.ChromeExtensionMetricBucket"
+          },
+          "type": "array"
+        },
+        "manifest_versions": {
+          "items": {
+            "$ref": "#/definitions/es.ChromeExtensionMetricBucket"
+          },
+          "type": "array"
+        },
+        "rating_bands": {
+          "items": {
+            "$ref": "#/definitions/es.ChromeExtensionMetricBucket"
+          },
+          "type": "array"
+        },
+        "review_bands": {
+          "items": {
+            "$ref": "#/definitions/es.ChromeExtensionMetricBucket"
+          },
+          "type": "array"
+        },
+        "risk_signals": {
+          "items": {
+            "$ref": "#/definitions/es.ChromeExtensionMetricBucket"
+          },
+          "type": "array"
+        },
+        "statuses": {
+          "items": {
+            "$ref": "#/definitions/es.ChromeExtensionMetricBucket"
+          },
+          "type": "array"
+        },
+        "summary": {
+          "$ref": "#/definitions/es.ChromeExtensionMetricSummary"
+        },
+        "top_categories": {
+          "items": {
+            "$ref": "#/definitions/es.ChromeExtensionMetricBucket"
+          },
+          "type": "array"
+        },
+        "top_permissions": {
+          "items": {
+            "$ref": "#/definitions/es.ChromeExtensionMetricBucket"
+          },
+          "type": "array"
+        },
+        "user_bands": {
+          "items": {
+            "$ref": "#/definitions/es.ChromeExtensionMetricBucket"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.ChromeExtensionSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.ChromeExtensionRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "datasets.CreatorsSearchResponse": {
       "properties": {
         "dataset": {
@@ -10375,6 +10735,118 @@
         "items": {
           "items": {
             "$ref": "#/definitions/es.HousingMarketRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.JournalistsFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.JournalistsFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.JournalistsSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.JournalistRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.NumbeoCityFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.NumbeoDatasetFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.NumbeoCitySearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.NumbeoCityRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.NumbeoCountrySearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.NumbeoCountryRecord"
           },
           "type": "array"
         },
@@ -10859,6 +11331,26 @@
       },
       "type": "object"
     },
+    "datasets.TrustmrrHistoryResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "dataset": {
+          "type": "string"
+        },
+        "points": {
+          "items": {
+            "$ref": "#/definitions/es.TrustmrrHistoryPoint"
+          },
+          "type": "array"
+        },
+        "slug": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "datasets.TrustmrrSearchResponse": {
       "properties": {
         "dataset": {
@@ -10973,6 +11465,102 @@
         },
         "data": {
           "$ref": "#/definitions/datasets.ChartsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.chromeExtensionChangesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.ChromeExtensionChangesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.chromeExtensionFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.ChromeExtensionFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.chromeExtensionHistoryResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.ChromeExtensionHistoryResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.chromeExtensionItemResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.ChromeExtensionRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.chromeExtensionMetricsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.ChromeExtensionMetricsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.chromeExtensionsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.ChromeExtensionSearchResponse"
         },
         "msg": {
           "example": "OK",
@@ -11141,6 +11729,54 @@
       },
       "type": "object"
     },
+    "datasets.journalistsFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.JournalistsFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.journalistsItemResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.JournalistRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.journalistsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.JournalistsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "datasets.listResponseDoc": {
       "properties": {
         "code": {
@@ -11149,6 +11785,86 @@
         },
         "data": {
           "$ref": "#/definitions/datasets.DatasetListResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.numbeoCitiesFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.NumbeoCityFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.numbeoCitiesSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.NumbeoCitySearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.numbeoCityResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.NumbeoCityRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.numbeoCountriesSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.NumbeoCountrySearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.numbeoCountryResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.NumbeoCountryRecord"
         },
         "msg": {
           "example": "OK",
@@ -11549,6 +12265,22 @@
         },
         "data": {
           "$ref": "#/definitions/datasets.TrustmrrFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.trustmrrHistoryResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.TrustmrrHistoryResponse"
         },
         "msg": {
           "example": "OK",
@@ -13524,6 +14256,311 @@
       },
       "type": "object"
     },
+    "es.ChromeExtensionChangeDay": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "date": {
+          "type": "string"
+        },
+        "rating_count_delta": {
+          "type": "integer"
+        },
+        "users_delta": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "es.ChromeExtensionChangeMetrics": {
+      "properties": {
+        "daily": {
+          "items": {
+            "$ref": "#/definitions/es.ChromeExtensionChangeDay"
+          },
+          "type": "array"
+        },
+        "total": {
+          "type": "integer"
+        },
+        "types": {
+          "items": {
+            "$ref": "#/definitions/es.ChromeExtensionMetricBucket"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "es.ChromeExtensionFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.ChromeExtensionHistoryPoint": {
+      "properties": {
+        "change_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "collects_data": {
+          "type": "boolean"
+        },
+        "data_collected": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "host_permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "manifest_version": {
+          "type": "integer"
+        },
+        "observed_at": {
+          "type": "string"
+        },
+        "optional_host_permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "optional_permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "privacy_declarations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "privacy_policy": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "number"
+        },
+        "rating_count": {
+          "type": "integer"
+        },
+        "rating_count_delta": {
+          "type": "integer"
+        },
+        "status": {
+          "type": "string"
+        },
+        "users": {
+          "type": "integer"
+        },
+        "users_delta": {
+          "type": "integer"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.ChromeExtensionMetricBucket": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "users": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.ChromeExtensionMetricSummary": {
+      "properties": {
+        "average_rating": {
+          "type": "number"
+        },
+        "last_crawled_at": {
+          "type": "string"
+        },
+        "privacy_policies": {
+          "type": "integer"
+        },
+        "total": {
+          "type": "integer"
+        },
+        "total_ratings": {
+          "type": "integer"
+        },
+        "total_users": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "es.ChromeExtensionRecord": {
+      "properties": {
+        "all_permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "category": {
+          "type": "string"
+        },
+        "collects_data": {
+          "type": "boolean"
+        },
+        "data_collected": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "description": {
+          "type": "string"
+        },
+        "developer": {
+          "type": "string"
+        },
+        "first_seen": {
+          "type": "string"
+        },
+        "has_broad_host_access": {
+          "type": "boolean"
+        },
+        "host_permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "item_type": {
+          "type": "string"
+        },
+        "last_crawled_at": {
+          "type": "string"
+        },
+        "last_seen": {
+          "type": "string"
+        },
+        "manifest_version": {
+          "type": "integer"
+        },
+        "min_browser_version": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "optional_host_permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "optional_permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "privacy_declarations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "privacy_policy": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "number"
+        },
+        "rating_count": {
+          "type": "integer"
+        },
+        "rating_count_delta": {
+          "type": "integer"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "screenshots": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "size": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "trend_score": {
+          "type": "number"
+        },
+        "updated": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "users": {
+          "type": "integer"
+        },
+        "users_delta": {
+          "type": "integer"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "es.CreatorRecord": {
       "properties": {
         "avatar_url": {
@@ -14400,6 +15437,312 @@
         "zip_code": {
           "description": "ZipCode is set on zip rows only, parsed from REGION (\"Zip Code: 60616\").",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.JournalistRecord": {
+      "properties": {
+        "bio": {
+          "type": "string"
+        },
+        "contact_email": {
+          "type": "string"
+        },
+        "contact_type": {
+          "description": "email | social | none",
+          "type": "string"
+        },
+        "crawled_at": {
+          "description": "RFC3339",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "outlet": {
+          "type": "string"
+        },
+        "outlet_domain": {
+          "type": "string"
+        },
+        "outlet_id": {
+          "type": "string"
+        },
+        "profile_url": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "social_links": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "title": {
+          "type": "string"
+        },
+        "topics": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "vertical": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.JournalistsFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.NumbeoCityRecord": {
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "city_slug": {
+          "type": "string"
+        },
+        "climate_index": {
+          "type": "number"
+        },
+        "cost_of_living_index": {
+          "type": "number"
+        },
+        "cost_of_living_plus_rent_index": {
+          "type": "number"
+        },
+        "country": {
+          "type": "string"
+        },
+        "coverage": {
+          "description": "Coverage lists which of the seven families ranked this entity in the\ncurrent sync run, e.g. [\"cost-of-living\",\"crime\",\"quality-of-life\"].",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "crime_index": {
+          "type": "number"
+        },
+        "extra_indices": {
+          "description": "ExtraIndices carries any upstream ranking column not mapped to a typed\nfield above (future-proofing against Numbeo adding columns).",
+          "items": {
+            "$ref": "#/definitions/es.NumbeoNamedValue"
+          },
+          "type": "array"
+        },
+        "groceries_index": {
+          "type": "number"
+        },
+        "health_care_exp_index": {
+          "type": "number"
+        },
+        "health_care_index": {
+          "type": "number"
+        },
+        "local_purchasing_power_index": {
+          "type": "number"
+        },
+        "pollution_exp_index": {
+          "type": "number"
+        },
+        "pollution_index": {
+          "type": "number"
+        },
+        "property_affordability_index": {
+          "type": "number"
+        },
+        "property_gross_rental_yield_city_centre": {
+          "type": "number"
+        },
+        "property_gross_rental_yield_outside_centre": {
+          "type": "number"
+        },
+        "property_mortgage_pct_of_income": {
+          "type": "number"
+        },
+        "property_price_to_income_ratio": {
+          "type": "number"
+        },
+        "property_price_to_rent_ratio_city_centre": {
+          "type": "number"
+        },
+        "property_price_to_rent_ratio_outside_centre": {
+          "type": "number"
+        },
+        "quality_of_life_index": {
+          "type": "number"
+        },
+        "rent_index": {
+          "type": "number"
+        },
+        "restaurant_price_index": {
+          "type": "number"
+        },
+        "safety_index": {
+          "type": "number"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "synced_at": {
+          "type": "string"
+        },
+        "traffic_co2_emission_index": {
+          "type": "number"
+        },
+        "traffic_index": {
+          "type": "number"
+        },
+        "traffic_inefficiency_index": {
+          "type": "number"
+        },
+        "traffic_time_exp_index": {
+          "type": "number"
+        },
+        "traffic_time_index_minutes": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "es.NumbeoCountryRecord": {
+      "properties": {
+        "climate_index": {
+          "type": "number"
+        },
+        "cost_of_living_index": {
+          "type": "number"
+        },
+        "cost_of_living_plus_rent_index": {
+          "type": "number"
+        },
+        "country": {
+          "type": "string"
+        },
+        "coverage": {
+          "description": "Coverage lists which of the seven families ranked this entity in the\ncurrent sync run, e.g. [\"cost-of-living\",\"crime\",\"quality-of-life\"].",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "crime_index": {
+          "type": "number"
+        },
+        "extra_indices": {
+          "description": "ExtraIndices carries any upstream ranking column not mapped to a typed\nfield above (future-proofing against Numbeo adding columns).",
+          "items": {
+            "$ref": "#/definitions/es.NumbeoNamedValue"
+          },
+          "type": "array"
+        },
+        "groceries_index": {
+          "type": "number"
+        },
+        "health_care_exp_index": {
+          "type": "number"
+        },
+        "health_care_index": {
+          "type": "number"
+        },
+        "local_purchasing_power_index": {
+          "type": "number"
+        },
+        "pollution_exp_index": {
+          "type": "number"
+        },
+        "pollution_index": {
+          "type": "number"
+        },
+        "property_affordability_index": {
+          "type": "number"
+        },
+        "property_gross_rental_yield_city_centre": {
+          "type": "number"
+        },
+        "property_gross_rental_yield_outside_centre": {
+          "type": "number"
+        },
+        "property_mortgage_pct_of_income": {
+          "type": "number"
+        },
+        "property_price_to_income_ratio": {
+          "type": "number"
+        },
+        "property_price_to_rent_ratio_city_centre": {
+          "type": "number"
+        },
+        "property_price_to_rent_ratio_outside_centre": {
+          "type": "number"
+        },
+        "quality_of_life_index": {
+          "type": "number"
+        },
+        "rent_index": {
+          "type": "number"
+        },
+        "restaurant_price_index": {
+          "type": "number"
+        },
+        "safety_index": {
+          "type": "number"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "synced_at": {
+          "type": "string"
+        },
+        "traffic_co2_emission_index": {
+          "type": "number"
+        },
+        "traffic_index": {
+          "type": "number"
+        },
+        "traffic_inefficiency_index": {
+          "type": "number"
+        },
+        "traffic_time_exp_index": {
+          "type": "number"
+        },
+        "traffic_time_index_minutes": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "es.NumbeoDatasetFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.NumbeoNamedValue": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
         }
       },
       "type": "object"
@@ -15578,6 +16921,51 @@
         },
         "value": {
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.TrustmrrHistoryPoint": {
+      "properties": {
+        "asking_price": {
+          "type": "number"
+        },
+        "date": {
+          "description": "YYYY-MM-DD in UTC",
+          "type": "string"
+        },
+        "deal_score": {
+          "type": "number"
+        },
+        "growth_30d": {
+          "type": "number"
+        },
+        "mrr": {
+          "type": "number"
+        },
+        "multiple": {
+          "type": "number"
+        },
+        "offer_count": {
+          "type": "integer"
+        },
+        "on_sale": {
+          "type": "boolean"
+        },
+        "revenue_30d": {
+          "type": "number"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "total_revenue": {
+          "type": "number"
+        },
+        "traffic_12mo": {
+          "type": "number"
+        },
+        "traffic_30d": {
+          "type": "number"
         }
       },
       "type": "object"
@@ -25419,6 +26807,474 @@
       },
       "type": "object"
     },
+    "metacritic.BrowseItem": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "genres": {
+          "items": {
+            "$ref": "#/definitions/metacritic.Genre"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "image": {
+          "type": "string"
+        },
+        "metascore": {
+          "$ref": "#/definitions/metacritic.ScoreSummary"
+        },
+        "premiere_year": {
+          "type": "integer"
+        },
+        "rating": {
+          "type": "string"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "season_count": {
+          "type": "integer"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "example": "game",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "user_score": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "metacritic.BrowseResponse": {
+      "properties": {
+        "genre": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/metacritic.BrowseItem"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metacritic.Credit": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "example": "Director",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metacritic.CriticReview": {
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "date": {
+          "example": "2022-02-23",
+          "type": "string"
+        },
+        "platform": {
+          "type": "string"
+        },
+        "publication": {
+          "type": "string"
+        },
+        "publication_slug": {
+          "type": "string"
+        },
+        "quote": {
+          "type": "string"
+        },
+        "score": {
+          "type": "integer"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metacritic.CriticReviewsResponse": {
+      "properties": {
+        "page": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "reviews": {
+          "items": {
+            "$ref": "#/definitions/metacritic.CriticReview"
+          },
+          "type": "array"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metacritic.Genre": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metacritic.Platform": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "is_lead": {
+          "type": "boolean"
+        },
+        "metascore": {
+          "$ref": "#/definitions/metacritic.ScoreSummary"
+        },
+        "name": {
+          "example": "PlayStation 5",
+          "type": "string"
+        },
+        "release_date": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metacritic.Product": {
+      "properties": {
+        "countries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "description": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "integer"
+        },
+        "genres": {
+          "items": {
+            "$ref": "#/definitions/metacritic.Genre"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "image": {
+          "type": "string"
+        },
+        "imdb_id": {
+          "type": "string"
+        },
+        "imdb_url": {
+          "type": "string"
+        },
+        "in_theaters": {
+          "type": "boolean"
+        },
+        "metascore": {
+          "$ref": "#/definitions/metacritic.ScoreSummary"
+        },
+        "networks": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "platforms": {
+          "items": {
+            "$ref": "#/definitions/metacritic.Platform"
+          },
+          "type": "array"
+        },
+        "premiere_year": {
+          "type": "integer"
+        },
+        "production": {
+          "$ref": "#/definitions/metacritic.Production"
+        },
+        "rating": {
+          "example": "M",
+          "type": "string"
+        },
+        "release_date": {
+          "example": "2022-02-25",
+          "type": "string"
+        },
+        "season_count": {
+          "type": "integer"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "example": "game",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "user_score": {
+          "$ref": "#/definitions/metacritic.ScoreSummary"
+        },
+        "video": {
+          "$ref": "#/definitions/metacritic.Video"
+        }
+      },
+      "type": "object"
+    },
+    "metacritic.Production": {
+      "properties": {
+        "companies": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "crew": {
+          "items": {
+            "$ref": "#/definitions/metacritic.Credit"
+          },
+          "type": "array"
+        },
+        "official_site": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metacritic.ScoreSummary": {
+      "properties": {
+        "max": {
+          "example": 100,
+          "type": "integer"
+        },
+        "negative_count": {
+          "type": "integer"
+        },
+        "neutral_count": {
+          "type": "integer"
+        },
+        "positive_count": {
+          "type": "integer"
+        },
+        "review_count": {
+          "type": "integer"
+        },
+        "score": {
+          "type": "number"
+        },
+        "sentiment": {
+          "example": "Universal acclaim",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metacritic.UserReview": {
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "string"
+        },
+        "quote": {
+          "type": "string"
+        },
+        "score": {
+          "type": "integer"
+        },
+        "spoiler": {
+          "type": "boolean"
+        },
+        "thumbs_down": {
+          "type": "integer"
+        },
+        "thumbs_up": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "metacritic.UserReviewsResponse": {
+      "properties": {
+        "page": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "reviews": {
+          "items": {
+            "$ref": "#/definitions/metacritic.UserReview"
+          },
+          "type": "array"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metacritic.Video": {
+      "properties": {
+        "duration": {
+          "type": "integer"
+        },
+        "embed_url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metacritic.browseResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/metacritic.BrowseResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metacritic.criticReviewsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/metacritic.CriticReviewsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metacritic.productResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/metacritic.Product"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metacritic.userReviewsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/metacritic.UserReviewsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "metaculus.ForecastHistoryPoint": {
       "properties": {
         "center": {
@@ -26081,6 +27937,511 @@
         },
         "data": {
           "$ref": "#/definitions/metaculus.QuestionsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.CityIndexEntry": {
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "city_slug": {
+          "type": "string"
+        },
+        "cost_of_living_index": {
+          "type": "number"
+        },
+        "cost_of_living_plus_rent_index": {
+          "type": "number"
+        },
+        "groceries_index": {
+          "type": "number"
+        },
+        "local_purchasing_power_index": {
+          "type": "number"
+        },
+        "rank": {
+          "type": "integer"
+        },
+        "rent_index": {
+          "type": "number"
+        },
+        "restaurant_price_index": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.CostOfLivingCityResponse": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/definitions/numbeo.PriceCategory"
+          },
+          "type": "array"
+        },
+        "city": {
+          "type": "string"
+        },
+        "city_slug": {
+          "type": "string"
+        },
+        "contributors_12mo": {
+          "type": "integer"
+        },
+        "country": {
+          "type": "string"
+        },
+        "last_update": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.CostOfLivingCountryResponse": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/definitions/numbeo.PriceCategory"
+          },
+          "type": "array"
+        },
+        "cities": {
+          "items": {
+            "$ref": "#/definitions/numbeo.CityIndexEntry"
+          },
+          "type": "array"
+        },
+        "contributors_12mo": {
+          "type": "integer"
+        },
+        "country": {
+          "type": "string"
+        },
+        "last_update": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.CountryIndexEntry": {
+      "properties": {
+        "cost_of_living_index": {
+          "type": "number"
+        },
+        "cost_of_living_plus_rent_index": {
+          "type": "number"
+        },
+        "country": {
+          "type": "string"
+        },
+        "groceries_index": {
+          "type": "number"
+        },
+        "local_purchasing_power_index": {
+          "type": "number"
+        },
+        "rank": {
+          "type": "integer"
+        },
+        "rent_index": {
+          "type": "number"
+        },
+        "restaurant_price_index": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.IndexRankingEntry": {
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "city_slug": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "indices": {
+          "items": {
+            "$ref": "#/definitions/numbeo.NamedValue"
+          },
+          "type": "array"
+        },
+        "rank": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.IndexRow": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "qualifier": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.IndexSection": {
+      "properties": {
+        "rows": {
+          "items": {
+            "$ref": "#/definitions/numbeo.IndexRow"
+          },
+          "type": "array"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.IndicesCityResponse": {
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "city_slug": {
+          "type": "string"
+        },
+        "contributors_note": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "headline_indices": {
+          "items": {
+            "$ref": "#/definitions/numbeo.NamedValue"
+          },
+          "type": "array"
+        },
+        "index": {
+          "type": "string"
+        },
+        "last_update": {
+          "type": "string"
+        },
+        "price_categories": {
+          "items": {
+            "$ref": "#/definitions/numbeo.PriceCategory"
+          },
+          "type": "array"
+        },
+        "sections": {
+          "items": {
+            "$ref": "#/definitions/numbeo.IndexSection"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.IndicesCountryResponse": {
+      "properties": {
+        "cities": {
+          "items": {
+            "$ref": "#/definitions/numbeo.IndexRankingEntry"
+          },
+          "type": "array"
+        },
+        "contributors_note": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "headline_indices": {
+          "items": {
+            "$ref": "#/definitions/numbeo.NamedValue"
+          },
+          "type": "array"
+        },
+        "index": {
+          "type": "string"
+        },
+        "last_update": {
+          "type": "string"
+        },
+        "price_categories": {
+          "items": {
+            "$ref": "#/definitions/numbeo.PriceCategory"
+          },
+          "type": "array"
+        },
+        "sections": {
+          "items": {
+            "$ref": "#/definitions/numbeo.IndexSection"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.IndicesRankingsByCountryResponse": {
+      "properties": {
+        "countries": {
+          "items": {
+            "$ref": "#/definitions/numbeo.IndexRankingEntry"
+          },
+          "type": "array"
+        },
+        "index": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.IndicesRankingsResponse": {
+      "properties": {
+        "cities": {
+          "items": {
+            "$ref": "#/definitions/numbeo.IndexRankingEntry"
+          },
+          "type": "array"
+        },
+        "index": {
+          "type": "string"
+        },
+        "period": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.NamedValue": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.PriceCategory": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/numbeo.PriceItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.PriceItem": {
+      "properties": {
+        "currency_symbol": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "range_high": {
+          "type": "number"
+        },
+        "range_low": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.RankingsByCountryResponse": {
+      "properties": {
+        "countries": {
+          "items": {
+            "$ref": "#/definitions/numbeo.CountryIndexEntry"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.RankingsResponse": {
+      "properties": {
+        "cities": {
+          "items": {
+            "$ref": "#/definitions/numbeo.CityIndexEntry"
+          },
+          "type": "array"
+        },
+        "period": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.costOfLivingCityResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/numbeo.CostOfLivingCityResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.costOfLivingCountryResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/numbeo.CostOfLivingCountryResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.indicesCityResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/numbeo.IndicesCityResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.indicesCountryResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/numbeo.IndicesCountryResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.indicesRankingsByCountryResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/numbeo.IndicesRankingsByCountryResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.indicesRankingsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/numbeo.IndicesRankingsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.rankingsByCountryResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/numbeo.RankingsByCountryResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "numbeo.rankingsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/numbeo.RankingsResponse"
         },
         "msg": {
           "example": "OK",
@@ -50217,6 +52578,338 @@
       },
       "type": "object"
     },
+    "walmart.Product": {
+      "properties": {
+        "attributes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "availability": {
+          "example": "IN_STOCK",
+          "type": "string"
+        },
+        "brand": {
+          "example": "Apple",
+          "type": "string"
+        },
+        "canonical_url": {
+          "example": "https://www.walmart.com/ip/5689919121",
+          "type": "string"
+        },
+        "category": {
+          "example": "Electronics",
+          "type": "string"
+        },
+        "currency": {
+          "example": "USD",
+          "type": "string"
+        },
+        "description": {
+          "example": "Wireless earbuds with active noise cancellation.",
+          "type": "string"
+        },
+        "highlights": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "image": {
+          "example": "https://i5.walmartimages.com/seo/example.jpeg",
+          "type": "string"
+        },
+        "images": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "is_sponsored": {
+          "example": false,
+          "type": "boolean"
+        },
+        "item_id": {
+          "example": "5689919121",
+          "type": "string"
+        },
+        "price": {
+          "example": 169,
+          "type": "number"
+        },
+        "price_text": {
+          "example": "$169.00",
+          "type": "string"
+        },
+        "product_id": {
+          "example": "5689919121",
+          "type": "string"
+        },
+        "rating": {
+          "example": 4.6,
+          "type": "number"
+        },
+        "review_count": {
+          "example": 17823,
+          "type": "integer"
+        },
+        "seller_name": {
+          "example": "Walmart.com",
+          "type": "string"
+        },
+        "title": {
+          "example": "Apple AirPods Pro 2",
+          "type": "string"
+        },
+        "variants": {
+          "items": {
+            "$ref": "#/definitions/walmart.ProductSummary"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "walmart.ProductSummary": {
+      "properties": {
+        "availability": {
+          "example": "IN_STOCK",
+          "type": "string"
+        },
+        "brand": {
+          "example": "Apple",
+          "type": "string"
+        },
+        "canonical_url": {
+          "example": "https://www.walmart.com/ip/5689919121",
+          "type": "string"
+        },
+        "currency": {
+          "example": "USD",
+          "type": "string"
+        },
+        "image": {
+          "example": "https://i5.walmartimages.com/seo/example.jpeg",
+          "type": "string"
+        },
+        "images": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "is_sponsored": {
+          "example": false,
+          "type": "boolean"
+        },
+        "item_id": {
+          "example": "5689919121",
+          "type": "string"
+        },
+        "price": {
+          "example": 169,
+          "type": "number"
+        },
+        "price_text": {
+          "example": "$169.00",
+          "type": "string"
+        },
+        "product_id": {
+          "example": "5689919121",
+          "type": "string"
+        },
+        "rating": {
+          "example": 4.6,
+          "type": "number"
+        },
+        "review_count": {
+          "example": 17823,
+          "type": "integer"
+        },
+        "seller_name": {
+          "example": "Walmart.com",
+          "type": "string"
+        },
+        "title": {
+          "example": "Apple AirPods Pro 2",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "walmart.RatingBreakdown": {
+      "properties": {
+        "five_star": {
+          "example": 1698,
+          "type": "integer"
+        },
+        "four_star": {
+          "example": 273,
+          "type": "integer"
+        },
+        "one_star": {
+          "example": 215,
+          "type": "integer"
+        },
+        "three_star": {
+          "example": 150,
+          "type": "integer"
+        },
+        "two_star": {
+          "example": 116,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "walmart.Review": {
+      "properties": {
+        "author": {
+          "example": "MusicFan",
+          "type": "string"
+        },
+        "negative_feedback": {
+          "example": 1,
+          "type": "integer"
+        },
+        "positive_feedback": {
+          "example": 12,
+          "type": "integer"
+        },
+        "rating": {
+          "example": 5,
+          "type": "number"
+        },
+        "review_id": {
+          "example": "406499690",
+          "type": "string"
+        },
+        "submission_date": {
+          "example": "11/30/2025",
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "title": {
+          "example": "Great sound",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "walmart.ReviewsResponse": {
+      "properties": {
+        "average_rating": {
+          "example": 4.3,
+          "type": "number"
+        },
+        "item_id": {
+          "example": "5689919121",
+          "type": "string"
+        },
+        "rating_counts": {
+          "$ref": "#/definitions/walmart.RatingBreakdown"
+        },
+        "recommended_percent": {
+          "example": 87,
+          "type": "number"
+        },
+        "reviews": {
+          "items": {
+            "$ref": "#/definitions/walmart.Review"
+          },
+          "type": "array"
+        },
+        "reviews_with_text_count": {
+          "example": 1345,
+          "type": "integer"
+        },
+        "top_negative_review": {
+          "$ref": "#/definitions/walmart.Review"
+        },
+        "top_positive_review": {
+          "$ref": "#/definitions/walmart.Review"
+        },
+        "total_review_count": {
+          "example": 2452,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "walmart.SearchResponse": {
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/definitions/walmart.ProductSummary"
+          },
+          "type": "array"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "query": {
+          "example": "lego",
+          "type": "string"
+        },
+        "total_results": {
+          "example": 1200,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "walmart.productResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/walmart.Product"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "walmart.reviewsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/walmart.ReviewsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "walmart.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/walmart.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "web.ScrapeInfo": {
       "properties": {
         "backend": {
@@ -54675,7 +57368,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns a normalized anime by AniList id: titles (romaji/english/native), MyAnimeList id, scores, popularity, favourites, format, status, season, episodes, duration, genres, ranked tags, studios, dates, description, images, and next-airing countdown. Credential-free public AniList data.",
+        "description": "Returns a normalized anime by AniList id: titles (romaji/english/native), MyAnimeList id, scores, popularity, favourites, format, status, season, episodes, duration, genres, ranked tags, studios, dates, description, images, and next-airing countdown. Pass mal=true to additionally enrich the response with the MyAnimeList community score (mal block: score on a 0-10 scale, plus scored-by count), scraped credential-free from the public MAL page. Credential-free public AniList data.",
         "operationId": "anime-title",
         "parameters": [
           {
@@ -54685,6 +57378,12 @@
             "name": "id",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "Enrich with the MyAnimeList community score (adds one fetch; omitted when the title has no MAL id)",
+            "in": "query",
+            "name": "mal",
+            "type": "boolean"
           }
         ],
         "produces": [
@@ -59573,6 +62272,196 @@
         ]
       }
     },
+    "/capterra/product": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized Capterra product profile: name, description, category, and aggregate rating. Credential-free public Capterra data, rendered from the product page through proxied browser renderers.",
+        "operationId": "capterra-product",
+        "parameters": [
+          {
+            "description": "Capterra product id (the numeric id in a /p/{id}/{slug}/ URL)",
+            "example": "135003",
+            "in": "query",
+            "name": "product_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/capterra.productResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Capterra product",
+        "tags": [
+          "Capterra"
+        ]
+      }
+    },
+    "/capterra/product/reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of normalized Capterra reviews (author, headline, rating) plus the product's aggregate rating. Credential-free public Capterra data, rendered from the reviews page through proxied browser renderers.",
+        "operationId": "capterra-reviews",
+        "parameters": [
+          {
+            "description": "Capterra product id (the numeric id in a /p/{id}/{slug}/ URL)",
+            "example": "135003",
+            "in": "query",
+            "name": "product_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Page number (default 1)",
+            "example": 1,
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/capterra.reviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Capterra product reviews",
+        "tags": [
+          "Capterra"
+        ]
+      }
+    },
+    "/capterra/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns Capterra search-result products (id, name, url, description, rating). Credential-free public Capterra data, rendered from the search page through proxied browser renderers. Note: Capterra renders a fallback product list even for queries with no genuine match, rather than a distinct empty-results page, so callers should treat low-relevance results as an upstream characteristic, not a bug.",
+        "operationId": "capterra-search",
+        "parameters": [
+          {
+            "description": "Search query",
+            "example": "slack",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/capterra.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Capterra products",
+        "tags": [
+          "Capterra"
+        ]
+      }
+    },
     "/chromewebstore/categories": {
       "get": {
         "consumes": [
@@ -62976,7 +65865,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Lists available read-only scraped datasets. Initial dataset id enum: `google-map-businesses`.",
+        "description": "Lists available read-only scraped datasets and the capabilities supported by each dataset.",
         "operationId": "datasets-list",
         "produces": [
           "application/json"
@@ -63733,6 +66622,649 @@
           }
         ],
         "summary": "Search the apps-intelligence dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/chrome-extensions/changes": {
+      "get": {
+        "description": "Returns recent change observations. Change type enum: `users`, `rating`, `rating_count`, `version`, `permissions`, `privacy`, `status`.",
+        "operationId": "datasets-chrome-extensions-changes",
+        "parameters": [
+          {
+            "description": "Change type enum: users, rating, rating_count, version, permissions, privacy, status",
+            "in": "query",
+            "name": "change_type",
+            "type": "string"
+          },
+          {
+            "description": "Maximum observations, default 100, max 500",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.chromeExtensionChangesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get recent Chrome Web Store item changes",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/chrome-extensions/facets": {
+      "get": {
+        "description": "Returns aggregation buckets. Facet enum: `item_type`, `category`, `developer`, `manifest_version`, `permission`, `status`, `collects_data`, `has_broad_host_access`. Item type enum: `extension`, `theme`, `app`, `unknown`. Search sort, status and manifest-version enums match the search endpoint.",
+        "operationId": "datasets-chrome-extensions-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: item_type, category, developer, manifest_version, permission, status, collects_data, has_broad_host_access",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Item type enum: extension, theme, app, unknown",
+            "in": "query",
+            "name": "item_type",
+            "type": "string"
+          },
+          {
+            "description": "Exact category",
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "description": "Exact developer",
+            "in": "query",
+            "name": "developer",
+            "type": "string"
+          },
+          {
+            "description": "Exact permission",
+            "in": "query",
+            "name": "permission",
+            "type": "string"
+          },
+          {
+            "description": "Status enum: active, removed",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "Manifest version enum: 2, 3",
+            "in": "query",
+            "name": "manifest_version",
+            "type": "integer"
+          },
+          {
+            "description": "Data-collection filter",
+            "in": "query",
+            "name": "collects_data",
+            "type": "boolean"
+          },
+          {
+            "description": "Broad-host-access filter",
+            "in": "query",
+            "name": "has_broad_host_access",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum users",
+            "in": "query",
+            "name": "min_users",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum rating",
+            "in": "query",
+            "name": "min_rating",
+            "type": "number"
+          },
+          {
+            "description": "Minimum rating count",
+            "in": "query",
+            "name": "min_rating_count",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: relevance, users_desc, rating_desc, reviews_desc, updated_desc, trending_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.chromeExtensionFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet the Chrome Web Store dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/chrome-extensions/history/{id}": {
+      "get": {
+        "description": "Returns chronological change-only observations for a Chrome Web Store item.",
+        "operationId": "datasets-chrome-extensions-history",
+        "parameters": [
+          {
+            "description": "Chrome Web Store item id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Inclusive start date, YYYY-MM-DD",
+            "in": "query",
+            "name": "from",
+            "type": "string"
+          },
+          {
+            "description": "Inclusive end date, YYYY-MM-DD",
+            "in": "query",
+            "name": "to",
+            "type": "string"
+          },
+          {
+            "description": "Maximum points, default 365, max 1000",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.chromeExtensionHistoryResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Chrome Web Store item history",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/chrome-extensions/items/{id}": {
+      "get": {
+        "description": "Returns one stored extension, theme or legacy app snapshot by its 32-character Chrome Web Store id.",
+        "operationId": "datasets-chrome-extensions-item",
+        "parameters": [
+          {
+            "description": "Chrome Web Store item id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.chromeExtensionItemResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Chrome Web Store dataset item",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/chrome-extensions/metrics": {
+      "get": {
+        "description": "Returns chart-ready coverage, adoption, rating, permission, privacy and recent-change aggregates for the stored Chrome Web Store dataset. Days enum: `7`, `30`, `90`.",
+        "operationId": "datasets-chrome-extensions-metrics",
+        "parameters": [
+          {
+            "description": "Recent-change window enum: 7, 30, 90; default 30",
+            "in": "query",
+            "name": "days",
+            "type": "integer"
+          },
+          {
+            "description": "Top category and permission buckets, default 10, min 5, max 25",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.chromeExtensionMetricsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Chrome Web Store dataset metrics",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/chrome-extensions/search": {
+      "get": {
+        "description": "Searches stored Chrome Web Store item snapshots. Item type enum: `extension`, `theme`, `app`, `unknown`. Sort enum: `relevance`, `users_desc`, `rating_desc`, `reviews_desc`, `updated_desc`, `trending_desc`. Status enum: `active`, `removed`. Manifest version enum: `2`, `3`.",
+        "operationId": "datasets-chrome-extensions-search",
+        "parameters": [
+          {
+            "description": "Full-text query, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Item type enum: extension, theme, app, unknown",
+            "in": "query",
+            "name": "item_type",
+            "type": "string"
+          },
+          {
+            "description": "Exact Chrome Web Store category",
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "description": "Exact displayed developer name",
+            "in": "query",
+            "name": "developer",
+            "type": "string"
+          },
+          {
+            "description": "Exact declared permission",
+            "in": "query",
+            "name": "permission",
+            "type": "string"
+          },
+          {
+            "description": "Status enum: active, removed",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "Manifest version enum: 2, 3",
+            "in": "query",
+            "name": "manifest_version",
+            "type": "integer"
+          },
+          {
+            "description": "Filter by public data-collection disclosure",
+            "in": "query",
+            "name": "collects_data",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by broad host access",
+            "in": "query",
+            "name": "has_broad_host_access",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum displayed user count",
+            "in": "query",
+            "name": "min_users",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum rating, 0 through 5",
+            "in": "query",
+            "name": "min_rating",
+            "type": "number"
+          },
+          {
+            "description": "Minimum rating count",
+            "in": "query",
+            "name": "min_rating_count",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: relevance, users_desc, rating_desc, reviews_desc, updated_desc, trending_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, default 20, max 100",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.chromeExtensionsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the Chrome Web Store dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/chrome-extensions/trending": {
+      "get": {
+        "description": "Returns stored Chrome Web Store items ranked by the latest observed user and rating-count movement. Filters match the search endpoint; sort is fixed to `trending_desc`.",
+        "operationId": "datasets-chrome-extensions-trending",
+        "parameters": [
+          {
+            "description": "Full-text query",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Item type enum: extension, theme, app, unknown",
+            "in": "query",
+            "name": "item_type",
+            "type": "string"
+          },
+          {
+            "description": "Exact category",
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "description": "Exact developer",
+            "in": "query",
+            "name": "developer",
+            "type": "string"
+          },
+          {
+            "description": "Exact permission",
+            "in": "query",
+            "name": "permission",
+            "type": "string"
+          },
+          {
+            "description": "Status enum: active, removed",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "Manifest version enum: 2, 3",
+            "in": "query",
+            "name": "manifest_version",
+            "type": "integer"
+          },
+          {
+            "description": "Data-collection filter",
+            "in": "query",
+            "name": "collects_data",
+            "type": "boolean"
+          },
+          {
+            "description": "Broad-host-access filter",
+            "in": "query",
+            "name": "has_broad_host_access",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum users",
+            "in": "query",
+            "name": "min_users",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum rating",
+            "in": "query",
+            "name": "min_rating",
+            "type": "number"
+          },
+          {
+            "description": "Minimum rating count",
+            "in": "query",
+            "name": "min_rating_count",
+            "type": "integer"
+          },
+          {
+            "description": "Page number",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, max 100",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.chromeExtensionsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get trending Chrome Web Store items",
         "tags": [
           "Datasets"
         ]
@@ -65396,6 +68928,766 @@
           }
         ],
         "summary": "Search the US housing markets dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/journalists/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns distribution counts over the journalists index (dataset id enum value `journalists`), honoring the same filters as search. Facet enum: `outlet`, `vertical`, `topic`, `contact_type`.",
+        "operationId": "datasets-journalists-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: outlet, vertical, topic, contact_type",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text match on the journalist's name, title, and bio, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact outlet id filter",
+            "in": "query",
+            "name": "outlet",
+            "type": "string"
+          },
+          {
+            "description": "Exact beat-vertical filter. Enum: tech, crypto, marketing, consumer_tech, consumer_policy, cybersecurity, health, gaming, climate, tech_independent, culture_independent",
+            "in": "query",
+            "name": "vertical",
+            "type": "string"
+          },
+          {
+            "description": "Exact topic filter",
+            "in": "query",
+            "name": "topic",
+            "type": "string"
+          },
+          {
+            "description": "Contact-availability filter. Enum: email, social, none",
+            "in": "query",
+            "name": "contact_type",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.journalistsFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet the journalists dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/journalists/items/{outlet}/{slug}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one journalist by outlet id and slug from dataset id enum value `journalists`. Returns 404 when the outlet is not supported or the journalist is not in the index.",
+        "operationId": "datasets-journalists-item",
+        "parameters": [
+          {
+            "description": "Outlet id, e.g. techcrunch. Use the ids returned by facets?facet=outlet",
+            "in": "path",
+            "name": "outlet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Journalist slug within the outlet, e.g. zack-whittaker",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.journalistsItemResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a journalist from the journalists dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/journalists/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches the journalists index (dataset id enum value `journalists`) — public journalist and reporter contact records crawled from news outlets' own staff/author pages, for PR outreach. Each record carries the outlet, title, best-effort beat topics, and any public contact info (a work email or a social handle) found on that outlet's own page. There is no cross-outlet upstream search; this dataset is built by crawling a curated roster of outlets ourselves. vertical enum: `tech`, `crypto`, `marketing`, `consumer_tech`, `consumer_policy`, `cybersecurity`, `health`, `gaming`, `climate`, `tech_independent`, `culture_independent`. contact_type enum: `email`, `social`, `none`. sort enum: `relevance`, `name_asc`, `outlet_asc`, `crawled_desc`.",
+        "operationId": "datasets-journalists-search",
+        "parameters": [
+          {
+            "description": "Full-text match on the journalist's name, title, and bio, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact outlet id filter, e.g. techcrunch, coindesk. Use the ids returned by facets?facet=outlet",
+            "in": "query",
+            "name": "outlet",
+            "type": "string"
+          },
+          {
+            "description": "Exact beat-vertical filter. Enum: tech, crypto, marketing, consumer_tech, consumer_policy, cybersecurity, health, gaming, climate, tech_independent, culture_independent",
+            "in": "query",
+            "name": "vertical",
+            "type": "string"
+          },
+          {
+            "description": "Exact topic filter, e.g. security, stablecoins. Use the values returned by facets?facet=topic",
+            "in": "query",
+            "name": "topic",
+            "type": "string"
+          },
+          {
+            "description": "Contact-availability filter. Enum: email, social, none",
+            "in": "query",
+            "name": "contact_type",
+            "type": "string"
+          },
+          {
+            "description": "Sort enum: relevance, name_asc, outlet_asc, crawled_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.journalistsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the journalists dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/numbeo-cities/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns terms aggregation counts for the Numbeo cities dataset. Facet enum: `country`.",
+        "operationId": "datasets-numbeo-cities-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: country",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query over the city name, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact country filter, max 128 characters",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Minimum Cost of Living Index (New York = 100)",
+            "in": "query",
+            "name": "min_cost_of_living_index",
+            "type": "number"
+          },
+          {
+            "description": "Maximum Cost of Living Index (New York = 100)",
+            "in": "query",
+            "name": "max_cost_of_living_index",
+            "type": "number"
+          },
+          {
+            "description": "Minimum Quality of Life Index",
+            "in": "query",
+            "name": "min_quality_of_life_index",
+            "type": "number"
+          },
+          {
+            "description": "Minimum Crime Index",
+            "in": "query",
+            "name": "min_crime_index",
+            "type": "number"
+          },
+          {
+            "description": "Maximum Crime Index",
+            "in": "query",
+            "name": "max_crime_index",
+            "type": "number"
+          },
+          {
+            "description": "Minimum Safety Index",
+            "in": "query",
+            "name": "min_safety_index",
+            "type": "number"
+          },
+          {
+            "description": "Minimum Health Care Index",
+            "in": "query",
+            "name": "min_health_care_index",
+            "type": "number"
+          },
+          {
+            "description": "Maximum Pollution Index",
+            "in": "query",
+            "name": "max_pollution_index",
+            "type": "number"
+          },
+          {
+            "description": "Maximum Traffic Index",
+            "in": "query",
+            "name": "max_traffic_index",
+            "type": "number"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.numbeoCitiesFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet the Numbeo cities dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/numbeo-cities/items/{slug}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one composite Numbeo city record by city slug from dataset id enum value `numbeo-cities`.",
+        "operationId": "datasets-numbeo-cities-item",
+        "parameters": [
+          {
+            "description": "Numbeo city slug",
+            "example": "Los-Angeles",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.numbeoCityResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Numbeo city from the dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/numbeo-cities/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches the composite Numbeo cities dataset, merged from the current global rankings of all seven index families (cost of living, quality of life, crime, health care, pollution, traffic, property investment). A city appears once it is ranked by at least one family; coverage varies per city. Sort enum: `name_asc`, `cost_of_living_asc`, `cost_of_living_desc`, `quality_of_life_desc`, `safety_desc`, `crime_asc`, `health_care_desc`, `pollution_asc`, `traffic_asc`.",
+        "operationId": "datasets-numbeo-cities-search",
+        "parameters": [
+          {
+            "description": "Full-text query over the city name, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact country filter, max 128 characters",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Minimum Cost of Living Index (New York = 100)",
+            "in": "query",
+            "name": "min_cost_of_living_index",
+            "type": "number"
+          },
+          {
+            "description": "Maximum Cost of Living Index (New York = 100)",
+            "in": "query",
+            "name": "max_cost_of_living_index",
+            "type": "number"
+          },
+          {
+            "description": "Minimum Quality of Life Index",
+            "in": "query",
+            "name": "min_quality_of_life_index",
+            "type": "number"
+          },
+          {
+            "description": "Minimum Crime Index",
+            "in": "query",
+            "name": "min_crime_index",
+            "type": "number"
+          },
+          {
+            "description": "Maximum Crime Index",
+            "in": "query",
+            "name": "max_crime_index",
+            "type": "number"
+          },
+          {
+            "description": "Minimum Safety Index",
+            "in": "query",
+            "name": "min_safety_index",
+            "type": "number"
+          },
+          {
+            "description": "Minimum Health Care Index",
+            "in": "query",
+            "name": "min_health_care_index",
+            "type": "number"
+          },
+          {
+            "description": "Maximum Pollution Index",
+            "in": "query",
+            "name": "max_pollution_index",
+            "type": "number"
+          },
+          {
+            "description": "Maximum Traffic Index",
+            "in": "query",
+            "name": "max_traffic_index",
+            "type": "number"
+          },
+          {
+            "description": "Sort enum: name_asc, cost_of_living_asc, cost_of_living_desc, quality_of_life_desc, safety_desc, crime_asc, health_care_desc, pollution_asc, traffic_asc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.numbeoCitiesSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the Numbeo cities dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/numbeo-countries/items/{country}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one composite Numbeo country record by country name from dataset id enum value `numbeo-countries`.",
+        "operationId": "datasets-numbeo-countries-item",
+        "parameters": [
+          {
+            "description": "Country name as Numbeo spells it",
+            "example": "Vietnam",
+            "in": "path",
+            "name": "country",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.numbeoCountryResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Numbeo country from the dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/numbeo-countries/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches the composite Numbeo countries dataset, merged from the current global by-country rankings of all seven index families. Sort enum: `name_asc`, `cost_of_living_asc`, `cost_of_living_desc`, `quality_of_life_desc`, `safety_desc`, `crime_asc`, `health_care_desc`, `pollution_asc`, `traffic_asc`.",
+        "operationId": "datasets-numbeo-countries-search",
+        "parameters": [
+          {
+            "description": "Full-text query over the country name, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Minimum Cost of Living Index (New York = 100)",
+            "in": "query",
+            "name": "min_cost_of_living_index",
+            "type": "number"
+          },
+          {
+            "description": "Maximum Cost of Living Index (New York = 100)",
+            "in": "query",
+            "name": "max_cost_of_living_index",
+            "type": "number"
+          },
+          {
+            "description": "Minimum Quality of Life Index",
+            "in": "query",
+            "name": "min_quality_of_life_index",
+            "type": "number"
+          },
+          {
+            "description": "Minimum Crime Index",
+            "in": "query",
+            "name": "min_crime_index",
+            "type": "number"
+          },
+          {
+            "description": "Maximum Crime Index",
+            "in": "query",
+            "name": "max_crime_index",
+            "type": "number"
+          },
+          {
+            "description": "Minimum Safety Index",
+            "in": "query",
+            "name": "min_safety_index",
+            "type": "number"
+          },
+          {
+            "description": "Minimum Health Care Index",
+            "in": "query",
+            "name": "min_health_care_index",
+            "type": "number"
+          },
+          {
+            "description": "Maximum Pollution Index",
+            "in": "query",
+            "name": "max_pollution_index",
+            "type": "number"
+          },
+          {
+            "description": "Maximum Traffic Index",
+            "in": "query",
+            "name": "max_traffic_index",
+            "type": "number"
+          },
+          {
+            "description": "Sort enum: name_asc, cost_of_living_asc, cost_of_living_desc, quality_of_life_desc, safety_desc, crime_asc, health_care_desc, pollution_asc, traffic_asc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.numbeoCountriesSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the Numbeo countries dataset",
         "tags": [
           "Datasets"
         ]
@@ -68114,6 +72406,80 @@
           }
         ],
         "summary": "Facet the TrustMRR dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/trustmrr/history/{slug}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a startup's daily time-series of payment-provider-verified metrics — MRR, all-time revenue, last-30-days revenue, 30-day and 12-month traffic, 30-day growth, for-sale flag, asking price, valuation multiple, deal score and offer count — one point per day in chronological order (oldest first). The series accrues one point per calendar day, so a recently discovered startup returns a short or empty series rather than a 404.",
+        "operationId": "datasets-trustmrr-history",
+        "parameters": [
+          {
+            "description": "Startup slug, max 128 characters",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Inclusive start date, YYYY-MM-DD (UTC)",
+            "in": "query",
+            "name": "from",
+            "type": "string"
+          },
+          {
+            "description": "Inclusive end date, YYYY-MM-DD (UTC)",
+            "in": "query",
+            "name": "to",
+            "type": "string"
+          },
+          {
+            "description": "Maximum points returned (the most recent within the range), default 365, max 1000",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.trustmrrHistoryResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a TrustMRR startup's daily history",
         "tags": [
           "Datasets"
         ]
@@ -82288,7 +86654,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns a normalized manga by AniList id: titles, MyAnimeList id, scores, popularity, favourites, format, status, chapters, volumes, genres, ranked tags, dates, description, and images. Credential-free public AniList data.",
+        "description": "Returns a normalized manga by AniList id: titles, MyAnimeList id, scores, popularity, favourites, format, status, chapters, volumes, genres, ranked tags, dates, description, and images. Pass mal=true to additionally enrich the response with the MyAnimeList community score (mal block: score on a 0-10 scale, plus scored-by count), scraped credential-free from the public MAL page. Credential-free public AniList data.",
         "operationId": "manga-title",
         "parameters": [
           {
@@ -82298,6 +86664,12 @@
             "name": "id",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "Enrich with the MyAnimeList community score (adds one fetch; omitted when the title has no MAL id)",
+            "in": "query",
+            "name": "mal",
+            "type": "boolean"
           }
         ],
         "produces": [
@@ -82343,6 +86715,808 @@
         "summary": "Get a manga",
         "tags": [
           "Manga"
+        ]
+      }
+    },
+    "/metacritic/browse": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Browse Metacritic titles by content type, optionally filtered by genre and ordered by Metascore, popularity, or release date. Returns paginated title cards with Metascore and user score. Credential-free public Metacritic data.",
+        "operationId": "metacritic-browse",
+        "parameters": [
+          {
+            "description": "Content type",
+            "enum": [
+              "game",
+              "movie",
+              "tv"
+            ],
+            "in": "query",
+            "name": "type",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Genre filter (e.g. Action)",
+            "in": "query",
+            "name": "genre",
+            "type": "string"
+          },
+          {
+            "description": "Sort order",
+            "enum": [
+              "score",
+              "popularity",
+              "release_date",
+              "oldest"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "1-based page number (default 1)",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page (default 24, max 100)",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/metacritic.browseResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Browse Metacritic titles",
+        "tags": [
+          "Metacritic"
+        ]
+      }
+    },
+    "/metacritic/game/{slug}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized Metacritic game: Metascore (critic) and user score with sentiment and review counts, genres, per-platform scores, developer/publisher, rating, release date, and trailer. Credential-free public Metacritic data.",
+        "operationId": "metacritic-game",
+        "parameters": [
+          {
+            "description": "Metacritic game slug",
+            "example": "elden-ring",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/metacritic.productResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Metacritic game",
+        "tags": [
+          "Metacritic"
+        ]
+      }
+    },
+    "/metacritic/game/{slug}/critic-reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns paginated professional/publication reviews for a game: publication, score, quote, author, platform, and source URL. Credential-free public Metacritic data.",
+        "operationId": "metacritic-game-critic-reviews",
+        "parameters": [
+          {
+            "description": "Metacritic game slug",
+            "example": "elden-ring",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number (default 1)",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page (default 20, max 50)",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          },
+          {
+            "description": "Sort order",
+            "enum": [
+              "date",
+              "score",
+              "publication"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/metacritic.criticReviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Metacritic game's critic reviews",
+        "tags": [
+          "Metacritic"
+        ]
+      }
+    },
+    "/metacritic/game/{slug}/user-reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns paginated user reviews for a game: author, score (0-10), quote, date, platform, helpfulness, and spoiler flag. Credential-free public Metacritic data.",
+        "operationId": "metacritic-game-user-reviews",
+        "parameters": [
+          {
+            "description": "Metacritic game slug",
+            "example": "elden-ring",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number (default 1)",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page (default 20, max 50)",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          },
+          {
+            "description": "Sort order",
+            "enum": [
+              "date",
+              "score",
+              "helpful"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/metacritic.userReviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Metacritic game's user reviews",
+        "tags": [
+          "Metacritic"
+        ]
+      }
+    },
+    "/metacritic/movie/{slug}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized Metacritic movie: Metascore (critic) and user score with sentiment and review counts, genres, cast/crew, rating, runtime, release date, IMDb id, and trailer. Credential-free public Metacritic data.",
+        "operationId": "metacritic-movie",
+        "parameters": [
+          {
+            "description": "Metacritic movie slug",
+            "example": "oppenheimer",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/metacritic.productResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Metacritic movie",
+        "tags": [
+          "Metacritic"
+        ]
+      }
+    },
+    "/metacritic/movie/{slug}/critic-reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns paginated professional/publication reviews for a movie: publication, score, quote, author, and source URL. Credential-free public Metacritic data.",
+        "operationId": "metacritic-movie-critic-reviews",
+        "parameters": [
+          {
+            "description": "Metacritic movie slug",
+            "example": "oppenheimer",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number (default 1)",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page (default 20, max 50)",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          },
+          {
+            "description": "Sort order",
+            "enum": [
+              "date",
+              "score",
+              "publication"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/metacritic.criticReviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Metacritic movie's critic reviews",
+        "tags": [
+          "Metacritic"
+        ]
+      }
+    },
+    "/metacritic/movie/{slug}/user-reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns paginated user reviews for a movie: author, score (0-10), quote, date, helpfulness, and spoiler flag. Credential-free public Metacritic data.",
+        "operationId": "metacritic-movie-user-reviews",
+        "parameters": [
+          {
+            "description": "Metacritic movie slug",
+            "example": "oppenheimer",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number (default 1)",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page (default 20, max 50)",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          },
+          {
+            "description": "Sort order",
+            "enum": [
+              "date",
+              "score",
+              "helpful"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/metacritic.userReviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Metacritic movie's user reviews",
+        "tags": [
+          "Metacritic"
+        ]
+      }
+    },
+    "/metacritic/tv/{slug}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized Metacritic TV show: Metascore (critic) and user score with sentiment and review counts, genres, networks, season count, rating, release date, IMDb id, and trailer. Credential-free public Metacritic data.",
+        "operationId": "metacritic-tv",
+        "parameters": [
+          {
+            "description": "Metacritic TV show slug",
+            "example": "shogun",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/metacritic.productResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Metacritic TV show",
+        "tags": [
+          "Metacritic"
+        ]
+      }
+    },
+    "/metacritic/tv/{slug}/critic-reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns paginated professional/publication reviews for a TV show: publication, score, quote, author, and source URL. Credential-free public Metacritic data.",
+        "operationId": "metacritic-tv-critic-reviews",
+        "parameters": [
+          {
+            "description": "Metacritic TV show slug",
+            "example": "shogun",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number (default 1)",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page (default 20, max 50)",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          },
+          {
+            "description": "Sort order",
+            "enum": [
+              "date",
+              "score",
+              "publication"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/metacritic.criticReviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Metacritic TV show's critic reviews",
+        "tags": [
+          "Metacritic"
+        ]
+      }
+    },
+    "/metacritic/tv/{slug}/user-reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns paginated user reviews for a TV show: author, score (0-10), quote, date, helpfulness, and spoiler flag. Credential-free public Metacritic data.",
+        "operationId": "metacritic-tv-user-reviews",
+        "parameters": [
+          {
+            "description": "Metacritic TV show slug",
+            "example": "shogun",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number (default 1)",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page (default 20, max 50)",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          },
+          {
+            "description": "Sort order",
+            "enum": [
+              "date",
+              "score",
+              "helpful"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/metacritic.userReviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Metacritic TV show's user reviews",
+        "tags": [
+          "Metacritic"
         ]
       }
     },
@@ -83182,6 +88356,540 @@
         "summary": "Metaculus tournament questions",
         "tags": [
           "Metaculus"
+        ]
+      }
+    },
+    "/numbeo/cost-of-living/city/{slug}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns itemized cost-of-living prices for one city (restaurants, markets, transportation, utilities, rent, and more), grouped by category. Credential-free public Numbeo data (numbeo.com).",
+        "operationId": "numbeo-cost-of-living-city",
+        "parameters": [
+          {
+            "description": "Numbeo city slug",
+            "example": "Los-Angeles",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/numbeo.costOfLivingCityResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Numbeo city's cost-of-living prices",
+        "tags": [
+          "Numbeo"
+        ]
+      }
+    },
+    "/numbeo/cost-of-living/country": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns aggregate itemized cost-of-living prices for a country, plus the headline cost-of-living indices for every city Numbeo tracks there. Credential-free public Numbeo data (numbeo.com).",
+        "operationId": "numbeo-cost-of-living-country",
+        "parameters": [
+          {
+            "description": "Country name as Numbeo spells it",
+            "example": "Vietnam",
+            "in": "query",
+            "name": "country",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/numbeo.costOfLivingCountryResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Numbeo country's cost-of-living prices",
+        "tags": [
+          "Numbeo"
+        ]
+      }
+    },
+    "/numbeo/cost-of-living/rankings": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the global cost-of-living city ranking (Cost of Living, Rent, Cost of Living Plus Rent, Groceries, Restaurant Price, and Local Purchasing Power indices), either the continuously-updated current index or a historical periodic snapshot. Credential-free public Numbeo data (numbeo.com).",
+        "operationId": "numbeo-cost-of-living-rankings",
+        "parameters": [
+          {
+            "description": "current (default) or historical",
+            "enum": [
+              "current",
+              "historical"
+            ],
+            "in": "query",
+            "name": "scope",
+            "type": "string"
+          },
+          {
+            "description": "Required when scope=historical, e.g. 2026-mid or 2025",
+            "example": "2026-mid",
+            "in": "query",
+            "name": "period",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/numbeo.rankingsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get the global Numbeo cost-of-living city ranking",
+        "tags": [
+          "Numbeo"
+        ]
+      }
+    },
+    "/numbeo/cost-of-living/rankings-by-country": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the global country-level cost-of-living ranking (Cost of Living, Rent, Cost of Living Plus Rent, Groceries, Restaurant Price, and Local Purchasing Power indices). Credential-free public Numbeo data (numbeo.com).",
+        "operationId": "numbeo-cost-of-living-rankings-by-country",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/numbeo.rankingsByCountryResponseDoc"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get the global Numbeo cost-of-living country ranking",
+        "tags": [
+          "Numbeo"
+        ]
+      }
+    },
+    "/numbeo/indices/city/{slug}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one city's data for a Numbeo index family (quality of life, crime, health care, pollution, traffic, or property investment): headline indices, and (depending on the family) titled sub-index sections and/or itemized prices. Credential-free public Numbeo data (numbeo.com).",
+        "operationId": "numbeo-indices-city",
+        "parameters": [
+          {
+            "description": "Numbeo city slug",
+            "example": "Los-Angeles",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Index family",
+            "enum": [
+              "quality-of-life",
+              "crime",
+              "health-care",
+              "pollution",
+              "traffic",
+              "property-investment"
+            ],
+            "in": "query",
+            "name": "index",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/numbeo.indicesCityResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Numbeo city's data for an index family",
+        "tags": [
+          "Numbeo"
+        ]
+      }
+    },
+    "/numbeo/indices/country": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one country's aggregate data for a Numbeo index family, plus every city Numbeo tracks there with its index breakdown. Credential-free public Numbeo data (numbeo.com).",
+        "operationId": "numbeo-indices-country",
+        "parameters": [
+          {
+            "description": "Country name as Numbeo spells it",
+            "example": "Vietnam",
+            "in": "query",
+            "name": "country",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Index family",
+            "enum": [
+              "quality-of-life",
+              "crime",
+              "health-care",
+              "pollution",
+              "traffic",
+              "property-investment"
+            ],
+            "in": "query",
+            "name": "index",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/numbeo.indicesCountryResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Numbeo country's data for an index family",
+        "tags": [
+          "Numbeo"
+        ]
+      }
+    },
+    "/numbeo/indices/rankings": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the global city ranking for a Numbeo index family, either the continuously-updated current index or a historical periodic snapshot. Credential-free public Numbeo data (numbeo.com).",
+        "operationId": "numbeo-indices-rankings",
+        "parameters": [
+          {
+            "description": "Index family",
+            "enum": [
+              "quality-of-life",
+              "crime",
+              "health-care",
+              "pollution",
+              "traffic",
+              "property-investment"
+            ],
+            "in": "query",
+            "name": "index",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "current (default) or historical",
+            "enum": [
+              "current",
+              "historical"
+            ],
+            "in": "query",
+            "name": "scope",
+            "type": "string"
+          },
+          {
+            "description": "Required when scope=historical, e.g. 2026-mid or 2025",
+            "example": "2026-mid",
+            "in": "query",
+            "name": "period",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/numbeo.indicesRankingsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get the global Numbeo city ranking for an index family",
+        "tags": [
+          "Numbeo"
+        ]
+      }
+    },
+    "/numbeo/indices/rankings-by-country": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the global country-level ranking for a Numbeo index family. Credential-free public Numbeo data (numbeo.com).",
+        "operationId": "numbeo-indices-rankings-by-country",
+        "parameters": [
+          {
+            "description": "Index family",
+            "enum": [
+              "quality-of-life",
+              "crime",
+              "health-care",
+              "pollution",
+              "traffic",
+              "property-investment"
+            ],
+            "in": "query",
+            "name": "index",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/numbeo.indicesRankingsByCountryResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get the global Numbeo country ranking for an index family",
+        "tags": [
+          "Numbeo"
         ]
       }
     },
@@ -104660,6 +110368,215 @@
         "summary": "Reveal current user's API key",
         "tags": [
           "User"
+        ]
+      }
+    },
+    "/walmart/product/{item_id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized Walmart product: price, availability, brand, images, rating, seller, description, highlights, specifications, and variants. Credential-free public Walmart data, rendered from the product page through proxied browser renderers.",
+        "operationId": "walmart-product",
+        "parameters": [
+          {
+            "description": "Walmart item id (the numeric id in a /ip/{id} URL)",
+            "example": "5689919121",
+            "in": "path",
+            "name": "item_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/walmart.productResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Walmart product",
+        "tags": [
+          "Walmart"
+        ]
+      }
+    },
+    "/walmart/product/{item_id}/reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the reviews snapshot embedded in a Walmart product page: average rating, total review count, the per-star rating breakdown, the recommended percentage, the top positive and top negative review, and a sample of recent reviews. This is a single on-page snapshot, not a full paginated feed. A product that exists but has no reviews returns zero counts and an empty reviews list. Credential-free public Walmart data, rendered from the product page through proxied browser renderers.",
+        "operationId": "walmart-product-reviews",
+        "parameters": [
+          {
+            "description": "Walmart item id (the numeric id in a /ip/{id} URL)",
+            "example": "5689919121",
+            "in": "path",
+            "name": "item_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/walmart.reviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Walmart product reviews",
+        "tags": [
+          "Walmart"
+        ]
+      }
+    },
+    "/walmart/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns Walmart search results: item id, title, brand, price, image, availability, seller, and rating per product. Credential-free public Walmart data, rendered from the search page through proxied browser renderers.",
+        "operationId": "walmart-search",
+        "parameters": [
+          {
+            "description": "Search query",
+            "example": "wireless earbuds",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number (default 1)",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Sort order",
+            "enum": [
+              "best_match",
+              "price_low",
+              "price_high",
+              "best_seller",
+              "new_arrivals",
+              "rating_high"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/walmart.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Walmart products",
+        "tags": [
+          "Walmart"
         ]
       }
     },

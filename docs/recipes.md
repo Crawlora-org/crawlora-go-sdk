@@ -44,6 +44,15 @@ posts, err := client.Reddit.Search(ctx, crawlora.Params{"q": "golang", "subreddi
 brand, err := client.Brand.Retrieve(ctx, crawlora.Params{"domain": "stripe.com"})
 ```
 
+## Software, Reviews, And Market Datasets
+
+```go
+extensions, err := client.Datasets.ChromeExtensionsSearch(ctx, crawlora.Params{"q": "productivity", "min_users": 10000})
+cities, err := client.Datasets.NumbeoCitiesSearch(ctx, crawlora.Params{"country": "Portugal", "sort": "quality_of_life_desc"})
+software, err := client.Capterra.Search(ctx, crawlora.Params{"q": "project management"})
+games, err := client.Metacritic.Browse(ctx, crawlora.Params{"type": "game", "sort": "score"})
+```
+
 ## Airbnb Host Profiles
 
 Look up a public Airbnb host, then page through their listings and guest reviews.

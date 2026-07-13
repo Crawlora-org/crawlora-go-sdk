@@ -327,6 +327,13 @@ type ModelAnimeFuzzyDate struct {
 	Year  int `json:"year,omitempty"`
 }
 
+type ModelAnimeMalscore struct {
+	Max      int     `json:"max,omitempty"`
+	Score    float64 `json:"score,omitempty"`
+	ScoredBy int     `json:"scored_by,omitempty"`
+	Url      string  `json:"url,omitempty"`
+}
+
 type ModelAnimeMangaRankingsResponse struct {
 	Format      string            `json:"format,omitempty"`
 	Genre       string            `json:"genre,omitempty"`
@@ -355,6 +362,7 @@ type ModelAnimeMedia struct {
 	Id                int                         `json:"id,omitempty"`
 	IdMal             int                         `json:"id_mal,omitempty"`
 	IsAdult           bool                        `json:"is_adult,omitempty"`
+	Mal               ModelAnimeMalscore          `json:"mal,omitempty"`
 	MeanScore         int                         `json:"mean_score,omitempty"`
 	NextAiringEpisode ModelAnimeNextAiringEpisode `json:"next_airing_episode,omitempty"`
 	Popularity        int                         `json:"popularity,omitempty"`
@@ -2204,6 +2212,65 @@ type ModelBuildinfoInfo struct {
 	Version     string `json:"version,omitempty"`
 }
 
+type ModelCapterraProduct struct {
+	BestRating  float64 `json:"best_rating,omitempty"`
+	Category    string  `json:"category,omitempty"`
+	Description string  `json:"description,omitempty"`
+	Name        string  `json:"name,omitempty"`
+	ProductId   string  `json:"product_id,omitempty"`
+	Rating      float64 `json:"rating,omitempty"`
+	ReviewCount int     `json:"review_count,omitempty"`
+	Url         string  `json:"url,omitempty"`
+}
+
+type ModelCapterraReview struct {
+	Author     string  `json:"author,omitempty"`
+	BestRating float64 `json:"best_rating,omitempty"`
+	Headline   string  `json:"headline,omitempty"`
+	Rating     float64 `json:"rating,omitempty"`
+}
+
+type ModelCapterraReviewsResponse struct {
+	HasNextPage bool                  `json:"has_next_page,omitempty"`
+	Page        int                   `json:"page,omitempty"`
+	ProductId   string                `json:"product_id,omitempty"`
+	Rating      float64               `json:"rating,omitempty"`
+	ReviewCount int                   `json:"review_count,omitempty"`
+	Reviews     []ModelCapterraReview `json:"reviews,omitempty"`
+}
+
+type ModelCapterraSearchResponse struct {
+	Items []ModelCapterraSearchResult `json:"items,omitempty"`
+	Query string                      `json:"query,omitempty"`
+}
+
+type ModelCapterraSearchResult struct {
+	Description string  `json:"description,omitempty"`
+	Name        string  `json:"name,omitempty"`
+	ProductId   string  `json:"product_id,omitempty"`
+	Rating      float64 `json:"rating,omitempty"`
+	ReviewCount int     `json:"review_count,omitempty"`
+	Url         string  `json:"url,omitempty"`
+}
+
+type ModelCapterraProductResponseDoc struct {
+	Code int                  `json:"code,omitempty"`
+	Data ModelCapterraProduct `json:"data,omitempty"`
+	Msg  string               `json:"msg,omitempty"`
+}
+
+type ModelCapterraReviewsResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelCapterraReviewsResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelCapterraSearchResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelCapterraSearchResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
 type ModelChromewebstoreCard struct {
 	Category    string  `json:"category,omitempty"`
 	CategoryId  int     `json:"category_id,omitempty"`
@@ -2283,6 +2350,7 @@ type ModelChromewebstoreListResult struct {
 type ModelChromewebstorePermissions struct {
 	HostPermissions         []string `json:"host_permissions,omitempty"`
 	Id                      string   `json:"id,omitempty"`
+	ItemType                string   `json:"item_type,omitempty"`
 	ManifestVersion         int      `json:"manifest_version,omitempty"`
 	MinBrowserVersion       string   `json:"min_browser_version,omitempty"`
 	Name                    string   `json:"name,omitempty"`
@@ -3149,6 +3217,51 @@ type ModelDatasetsChartsSearchResponse struct {
 	Total        int                 `json:"total,omitempty"`
 }
 
+type ModelDatasetsChromeExtensionChangesResponse struct {
+	Count   int                                  `json:"count,omitempty"`
+	Dataset string                               `json:"dataset,omitempty"`
+	Items   []ModelEsChromeExtensionHistoryPoint `json:"items,omitempty"`
+}
+
+type ModelDatasetsChromeExtensionFacetResponse struct {
+	Dataset string                            `json:"dataset,omitempty"`
+	Facet   string                            `json:"facet,omitempty"`
+	Items   []ModelEsChromeExtensionFacetItem `json:"items,omitempty"`
+}
+
+type ModelDatasetsChromeExtensionHistoryResponse struct {
+	Count   int                                  `json:"count,omitempty"`
+	Dataset string                               `json:"dataset,omitempty"`
+	Id      string                               `json:"id,omitempty"`
+	Points  []ModelEsChromeExtensionHistoryPoint `json:"points,omitempty"`
+}
+
+type ModelDatasetsChromeExtensionMetricsResponse struct {
+	Changes          ModelEsChromeExtensionChangeMetrics  `json:"changes,omitempty"`
+	Dataset          string                               `json:"dataset,omitempty"`
+	Days             int                                  `json:"days,omitempty"`
+	GeneratedAt      string                               `json:"generated_at,omitempty"`
+	ItemTypes        []ModelEsChromeExtensionMetricBucket `json:"item_types,omitempty"`
+	ManifestVersions []ModelEsChromeExtensionMetricBucket `json:"manifest_versions,omitempty"`
+	RatingBands      []ModelEsChromeExtensionMetricBucket `json:"rating_bands,omitempty"`
+	ReviewBands      []ModelEsChromeExtensionMetricBucket `json:"review_bands,omitempty"`
+	RiskSignals      []ModelEsChromeExtensionMetricBucket `json:"risk_signals,omitempty"`
+	Statuses         []ModelEsChromeExtensionMetricBucket `json:"statuses,omitempty"`
+	Summary          ModelEsChromeExtensionMetricSummary  `json:"summary,omitempty"`
+	TopCategories    []ModelEsChromeExtensionMetricBucket `json:"top_categories,omitempty"`
+	TopPermissions   []ModelEsChromeExtensionMetricBucket `json:"top_permissions,omitempty"`
+	UserBands        []ModelEsChromeExtensionMetricBucket `json:"user_bands,omitempty"`
+}
+
+type ModelDatasetsChromeExtensionSearchResponse struct {
+	Dataset  string                         `json:"dataset,omitempty"`
+	Items    []ModelEsChromeExtensionRecord `json:"items,omitempty"`
+	Page     int                            `json:"page,omitempty"`
+	PageSize int                            `json:"page_size,omitempty"`
+	Sort     string                         `json:"sort,omitempty"`
+	Total    int                            `json:"total,omitempty"`
+}
+
 type ModelDatasetsCreatorsSearchResponse struct {
 	Dataset  string                 `json:"dataset,omitempty"`
 	Items    []ModelEsCreatorRecord `json:"items,omitempty"`
@@ -3208,6 +3321,45 @@ type ModelDatasetsHousingFacetResponse struct {
 type ModelDatasetsHousingSearchResponse struct {
 	Dataset  string                       `json:"dataset,omitempty"`
 	Items    []ModelEsHousingMarketRecord `json:"items,omitempty"`
+	Page     int                          `json:"page,omitempty"`
+	PageSize int                          `json:"page_size,omitempty"`
+	Sort     string                       `json:"sort,omitempty"`
+	Total    int                          `json:"total,omitempty"`
+}
+
+type ModelDatasetsJournalistsFacetResponse struct {
+	Dataset string                        `json:"dataset,omitempty"`
+	Facet   string                        `json:"facet,omitempty"`
+	Items   []ModelEsJournalistsFacetItem `json:"items,omitempty"`
+}
+
+type ModelDatasetsJournalistsSearchResponse struct {
+	Dataset  string                    `json:"dataset,omitempty"`
+	Items    []ModelEsJournalistRecord `json:"items,omitempty"`
+	Page     int                       `json:"page,omitempty"`
+	PageSize int                       `json:"page_size,omitempty"`
+	Sort     string                    `json:"sort,omitempty"`
+	Total    int                       `json:"total,omitempty"`
+}
+
+type ModelDatasetsNumbeoCityFacetResponse struct {
+	Dataset string                          `json:"dataset,omitempty"`
+	Facet   string                          `json:"facet,omitempty"`
+	Items   []ModelEsNumbeoDatasetFacetItem `json:"items,omitempty"`
+}
+
+type ModelDatasetsNumbeoCitySearchResponse struct {
+	Dataset  string                    `json:"dataset,omitempty"`
+	Items    []ModelEsNumbeoCityRecord `json:"items,omitempty"`
+	Page     int                       `json:"page,omitempty"`
+	PageSize int                       `json:"page_size,omitempty"`
+	Sort     string                    `json:"sort,omitempty"`
+	Total    int                       `json:"total,omitempty"`
+}
+
+type ModelDatasetsNumbeoCountrySearchResponse struct {
+	Dataset  string                       `json:"dataset,omitempty"`
+	Items    []ModelEsNumbeoCountryRecord `json:"items,omitempty"`
 	Page     int                          `json:"page,omitempty"`
 	PageSize int                          `json:"page_size,omitempty"`
 	Sort     string                       `json:"sort,omitempty"`
@@ -3376,6 +3528,13 @@ type ModelDatasetsTrustmrrFacetResponse struct {
 	Items   []ModelEsTrustmrrDatasetFacetItem `json:"items,omitempty"`
 }
 
+type ModelDatasetsTrustmrrHistoryResponse struct {
+	Count   int                           `json:"count,omitempty"`
+	Dataset string                        `json:"dataset,omitempty"`
+	Points  []ModelEsTrustmrrHistoryPoint `json:"points,omitempty"`
+	Slug    string                        `json:"slug,omitempty"`
+}
+
 type ModelDatasetsTrustmrrSearchResponse struct {
 	Dataset  string                         `json:"dataset,omitempty"`
 	Items    []ModelEsTrustmrrStartupRecord `json:"items,omitempty"`
@@ -3419,6 +3578,42 @@ type ModelDatasetsChartsSearchResponseDoc struct {
 	Code int                               `json:"code,omitempty"`
 	Data ModelDatasetsChartsSearchResponse `json:"data,omitempty"`
 	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelDatasetsChromeExtensionChangesResponseDoc struct {
+	Code int                                         `json:"code,omitempty"`
+	Data ModelDatasetsChromeExtensionChangesResponse `json:"data,omitempty"`
+	Msg  string                                      `json:"msg,omitempty"`
+}
+
+type ModelDatasetsChromeExtensionFacetResponseDoc struct {
+	Code int                                       `json:"code,omitempty"`
+	Data ModelDatasetsChromeExtensionFacetResponse `json:"data,omitempty"`
+	Msg  string                                    `json:"msg,omitempty"`
+}
+
+type ModelDatasetsChromeExtensionHistoryResponseDoc struct {
+	Code int                                         `json:"code,omitempty"`
+	Data ModelDatasetsChromeExtensionHistoryResponse `json:"data,omitempty"`
+	Msg  string                                      `json:"msg,omitempty"`
+}
+
+type ModelDatasetsChromeExtensionItemResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelEsChromeExtensionRecord `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelDatasetsChromeExtensionMetricsResponseDoc struct {
+	Code int                                         `json:"code,omitempty"`
+	Data ModelDatasetsChromeExtensionMetricsResponse `json:"data,omitempty"`
+	Msg  string                                      `json:"msg,omitempty"`
+}
+
+type ModelDatasetsChromeExtensionsSearchResponseDoc struct {
+	Code int                                        `json:"code,omitempty"`
+	Data ModelDatasetsChromeExtensionSearchResponse `json:"data,omitempty"`
+	Msg  string                                     `json:"msg,omitempty"`
 }
 
 type ModelDatasetsCreatorsSearchResponseDoc struct {
@@ -3481,10 +3676,58 @@ type ModelDatasetsHousingMarketsSearchResponseDoc struct {
 	Msg  string                             `json:"msg,omitempty"`
 }
 
+type ModelDatasetsJournalistsFacetResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelDatasetsJournalistsFacetResponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
+}
+
+type ModelDatasetsJournalistsItemResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelEsJournalistRecord `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelDatasetsJournalistsSearchResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelDatasetsJournalistsSearchResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
 type ModelDatasetsListResponseDoc struct {
 	Code int                              `json:"code,omitempty"`
 	Data ModelDatasetsDatasetListResponse `json:"data,omitempty"`
 	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelDatasetsNumbeoCitiesFacetResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelDatasetsNumbeoCityFacetResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelDatasetsNumbeoCitiesSearchResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelDatasetsNumbeoCitySearchResponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
+}
+
+type ModelDatasetsNumbeoCityResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelEsNumbeoCityRecord `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelDatasetsNumbeoCountriesSearchResponseDoc struct {
+	Code int                                      `json:"code,omitempty"`
+	Data ModelDatasetsNumbeoCountrySearchResponse `json:"data,omitempty"`
+	Msg  string                                   `json:"msg,omitempty"`
+}
+
+type ModelDatasetsNumbeoCountryResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelEsNumbeoCountryRecord `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
 }
 
 type ModelDatasetsPlaystationGameResponseDoc struct {
@@ -3635,6 +3878,12 @@ type ModelDatasetsTrustmrrFacetResponseDoc struct {
 	Code int                                `json:"code,omitempty"`
 	Data ModelDatasetsTrustmrrFacetResponse `json:"data,omitempty"`
 	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelDatasetsTrustmrrHistoryResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelDatasetsTrustmrrHistoryResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
 }
 
 type ModelDatasetsTrustmrrItemResponseDoc struct {
@@ -4251,6 +4500,100 @@ type ModelEsChartEntry struct {
 	Url          string  `json:"url,omitempty"`
 }
 
+type ModelEsChromeExtensionChangeDay struct {
+	Count            int    `json:"count,omitempty"`
+	Date             string `json:"date,omitempty"`
+	RatingCountDelta int    `json:"rating_count_delta,omitempty"`
+	UsersDelta       int    `json:"users_delta,omitempty"`
+}
+
+type ModelEsChromeExtensionChangeMetrics struct {
+	Daily []ModelEsChromeExtensionChangeDay    `json:"daily,omitempty"`
+	Total int                                  `json:"total,omitempty"`
+	Types []ModelEsChromeExtensionMetricBucket `json:"types,omitempty"`
+}
+
+type ModelEsChromeExtensionFacetItem struct {
+	Count int    `json:"count,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelEsChromeExtensionHistoryPoint struct {
+	ChangeTypes             []string `json:"change_types,omitempty"`
+	CollectsData            bool     `json:"collects_data,omitempty"`
+	DataCollected           []string `json:"data_collected,omitempty"`
+	HostPermissions         []string `json:"host_permissions,omitempty"`
+	Id                      string   `json:"id,omitempty"`
+	ManifestVersion         int      `json:"manifest_version,omitempty"`
+	ObservedAt              string   `json:"observed_at,omitempty"`
+	OptionalHostPermissions []string `json:"optional_host_permissions,omitempty"`
+	OptionalPermissions     []string `json:"optional_permissions,omitempty"`
+	Permissions             []string `json:"permissions,omitempty"`
+	PrivacyDeclarations     []string `json:"privacy_declarations,omitempty"`
+	PrivacyPolicy           string   `json:"privacy_policy,omitempty"`
+	Rating                  float64  `json:"rating,omitempty"`
+	RatingCount             int      `json:"rating_count,omitempty"`
+	RatingCountDelta        int      `json:"rating_count_delta,omitempty"`
+	Status                  string   `json:"status,omitempty"`
+	Users                   int      `json:"users,omitempty"`
+	UsersDelta              int      `json:"users_delta,omitempty"`
+	Version                 string   `json:"version,omitempty"`
+}
+
+type ModelEsChromeExtensionMetricBucket struct {
+	Count int    `json:"count,omitempty"`
+	Users int    `json:"users,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelEsChromeExtensionMetricSummary struct {
+	AverageRating   float64 `json:"average_rating,omitempty"`
+	LastCrawledAt   string  `json:"last_crawled_at,omitempty"`
+	PrivacyPolicies int     `json:"privacy_policies,omitempty"`
+	Total           int     `json:"total,omitempty"`
+	TotalRatings    int     `json:"total_ratings,omitempty"`
+	TotalUsers      int     `json:"total_users,omitempty"`
+}
+
+type ModelEsChromeExtensionRecord struct {
+	AllPermissions          []string `json:"all_permissions,omitempty"`
+	Category                string   `json:"category,omitempty"`
+	CollectsData            bool     `json:"collects_data,omitempty"`
+	DataCollected           []string `json:"data_collected,omitempty"`
+	Description             string   `json:"description,omitempty"`
+	Developer               string   `json:"developer,omitempty"`
+	FirstSeen               string   `json:"first_seen,omitempty"`
+	HasBroadHostAccess      bool     `json:"has_broad_host_access,omitempty"`
+	HostPermissions         []string `json:"host_permissions,omitempty"`
+	Icon                    string   `json:"icon,omitempty"`
+	Id                      string   `json:"id,omitempty"`
+	ItemType                string   `json:"item_type,omitempty"`
+	LastCrawledAt           string   `json:"last_crawled_at,omitempty"`
+	LastSeen                string   `json:"last_seen,omitempty"`
+	ManifestVersion         int      `json:"manifest_version,omitempty"`
+	MinBrowserVersion       string   `json:"min_browser_version,omitempty"`
+	Name                    string   `json:"name,omitempty"`
+	OptionalHostPermissions []string `json:"optional_host_permissions,omitempty"`
+	OptionalPermissions     []string `json:"optional_permissions,omitempty"`
+	Permissions             []string `json:"permissions,omitempty"`
+	PrivacyDeclarations     []string `json:"privacy_declarations,omitempty"`
+	PrivacyPolicy           string   `json:"privacy_policy,omitempty"`
+	Rating                  float64  `json:"rating,omitempty"`
+	RatingCount             int      `json:"rating_count,omitempty"`
+	RatingCountDelta        int      `json:"rating_count_delta,omitempty"`
+	SchemaVersion           int      `json:"schema_version,omitempty"`
+	Screenshots             []string `json:"screenshots,omitempty"`
+	Size                    string   `json:"size,omitempty"`
+	Status                  string   `json:"status,omitempty"`
+	Summary                 string   `json:"summary,omitempty"`
+	TrendScore              float64  `json:"trend_score,omitempty"`
+	Updated                 string   `json:"updated,omitempty"`
+	Url                     string   `json:"url,omitempty"`
+	Users                   int      `json:"users,omitempty"`
+	UsersDelta              int      `json:"users_delta,omitempty"`
+	Version                 string   `json:"version,omitempty"`
+}
+
 type ModelEsCreatorRecord struct {
 	AvatarUrl         string              `json:"avatar_url,omitempty"`
 	AvgViews          int                 `json:"avg_views,omitempty"`
@@ -4520,6 +4863,108 @@ type ModelEsHousingMarketRecord struct {
 	StateCode             string  `json:"state_code,omitempty"`
 	TableId               int     `json:"table_id,omitempty"`
 	ZipCode               string  `json:"zip_code,omitempty"`
+}
+
+type ModelEsJournalistRecord struct {
+	Bio          string            `json:"bio,omitempty"`
+	ContactEmail string            `json:"contact_email,omitempty"`
+	ContactType  string            `json:"contact_type,omitempty"`
+	CrawledAt    string            `json:"crawled_at,omitempty"`
+	Name         string            `json:"name,omitempty"`
+	Outlet       string            `json:"outlet,omitempty"`
+	OutletDomain string            `json:"outlet_domain,omitempty"`
+	OutletId     string            `json:"outlet_id,omitempty"`
+	ProfileUrl   string            `json:"profile_url,omitempty"`
+	Slug         string            `json:"slug,omitempty"`
+	SocialLinks  map[string]string `json:"social_links,omitempty"`
+	Title        string            `json:"title,omitempty"`
+	Topics       []string          `json:"topics,omitempty"`
+	Vertical     string            `json:"vertical,omitempty"`
+}
+
+type ModelEsJournalistsFacetItem struct {
+	Count int    `json:"count,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelEsNumbeoCityRecord struct {
+	City                                  string                    `json:"city,omitempty"`
+	CitySlug                              string                    `json:"city_slug,omitempty"`
+	ClimateIndex                          float64                   `json:"climate_index,omitempty"`
+	CostOfLivingIndex                     float64                   `json:"cost_of_living_index,omitempty"`
+	CostOfLivingPlusRentIndex             float64                   `json:"cost_of_living_plus_rent_index,omitempty"`
+	Country                               string                    `json:"country,omitempty"`
+	Coverage                              []string                  `json:"coverage,omitempty"`
+	CrimeIndex                            float64                   `json:"crime_index,omitempty"`
+	ExtraIndices                          []ModelEsNumbeoNamedValue `json:"extra_indices,omitempty"`
+	GroceriesIndex                        float64                   `json:"groceries_index,omitempty"`
+	HealthCareExpIndex                    float64                   `json:"health_care_exp_index,omitempty"`
+	HealthCareIndex                       float64                   `json:"health_care_index,omitempty"`
+	LocalPurchasingPowerIndex             float64                   `json:"local_purchasing_power_index,omitempty"`
+	PollutionExpIndex                     float64                   `json:"pollution_exp_index,omitempty"`
+	PollutionIndex                        float64                   `json:"pollution_index,omitempty"`
+	PropertyAffordabilityIndex            float64                   `json:"property_affordability_index,omitempty"`
+	PropertyGrossRentalYieldCityCentre    float64                   `json:"property_gross_rental_yield_city_centre,omitempty"`
+	PropertyGrossRentalYieldOutsideCentre float64                   `json:"property_gross_rental_yield_outside_centre,omitempty"`
+	PropertyMortgagePctOfIncome           float64                   `json:"property_mortgage_pct_of_income,omitempty"`
+	PropertyPriceToIncomeRatio            float64                   `json:"property_price_to_income_ratio,omitempty"`
+	PropertyPriceToRentRatioCityCentre    float64                   `json:"property_price_to_rent_ratio_city_centre,omitempty"`
+	PropertyPriceToRentRatioOutsideCentre float64                   `json:"property_price_to_rent_ratio_outside_centre,omitempty"`
+	QualityOfLifeIndex                    float64                   `json:"quality_of_life_index,omitempty"`
+	RentIndex                             float64                   `json:"rent_index,omitempty"`
+	RestaurantPriceIndex                  float64                   `json:"restaurant_price_index,omitempty"`
+	SafetyIndex                           float64                   `json:"safety_index,omitempty"`
+	SchemaVersion                         int                       `json:"schema_version,omitempty"`
+	SyncedAt                              string                    `json:"synced_at,omitempty"`
+	TrafficCo2EmissionIndex               float64                   `json:"traffic_co2_emission_index,omitempty"`
+	TrafficIndex                          float64                   `json:"traffic_index,omitempty"`
+	TrafficInefficiencyIndex              float64                   `json:"traffic_inefficiency_index,omitempty"`
+	TrafficTimeExpIndex                   float64                   `json:"traffic_time_exp_index,omitempty"`
+	TrafficTimeIndexMinutes               float64                   `json:"traffic_time_index_minutes,omitempty"`
+}
+
+type ModelEsNumbeoCountryRecord struct {
+	ClimateIndex                          float64                   `json:"climate_index,omitempty"`
+	CostOfLivingIndex                     float64                   `json:"cost_of_living_index,omitempty"`
+	CostOfLivingPlusRentIndex             float64                   `json:"cost_of_living_plus_rent_index,omitempty"`
+	Country                               string                    `json:"country,omitempty"`
+	Coverage                              []string                  `json:"coverage,omitempty"`
+	CrimeIndex                            float64                   `json:"crime_index,omitempty"`
+	ExtraIndices                          []ModelEsNumbeoNamedValue `json:"extra_indices,omitempty"`
+	GroceriesIndex                        float64                   `json:"groceries_index,omitempty"`
+	HealthCareExpIndex                    float64                   `json:"health_care_exp_index,omitempty"`
+	HealthCareIndex                       float64                   `json:"health_care_index,omitempty"`
+	LocalPurchasingPowerIndex             float64                   `json:"local_purchasing_power_index,omitempty"`
+	PollutionExpIndex                     float64                   `json:"pollution_exp_index,omitempty"`
+	PollutionIndex                        float64                   `json:"pollution_index,omitempty"`
+	PropertyAffordabilityIndex            float64                   `json:"property_affordability_index,omitempty"`
+	PropertyGrossRentalYieldCityCentre    float64                   `json:"property_gross_rental_yield_city_centre,omitempty"`
+	PropertyGrossRentalYieldOutsideCentre float64                   `json:"property_gross_rental_yield_outside_centre,omitempty"`
+	PropertyMortgagePctOfIncome           float64                   `json:"property_mortgage_pct_of_income,omitempty"`
+	PropertyPriceToIncomeRatio            float64                   `json:"property_price_to_income_ratio,omitempty"`
+	PropertyPriceToRentRatioCityCentre    float64                   `json:"property_price_to_rent_ratio_city_centre,omitempty"`
+	PropertyPriceToRentRatioOutsideCentre float64                   `json:"property_price_to_rent_ratio_outside_centre,omitempty"`
+	QualityOfLifeIndex                    float64                   `json:"quality_of_life_index,omitempty"`
+	RentIndex                             float64                   `json:"rent_index,omitempty"`
+	RestaurantPriceIndex                  float64                   `json:"restaurant_price_index,omitempty"`
+	SafetyIndex                           float64                   `json:"safety_index,omitempty"`
+	SchemaVersion                         int                       `json:"schema_version,omitempty"`
+	SyncedAt                              string                    `json:"synced_at,omitempty"`
+	TrafficCo2EmissionIndex               float64                   `json:"traffic_co2_emission_index,omitempty"`
+	TrafficIndex                          float64                   `json:"traffic_index,omitempty"`
+	TrafficInefficiencyIndex              float64                   `json:"traffic_inefficiency_index,omitempty"`
+	TrafficTimeExpIndex                   float64                   `json:"traffic_time_exp_index,omitempty"`
+	TrafficTimeIndexMinutes               float64                   `json:"traffic_time_index_minutes,omitempty"`
+}
+
+type ModelEsNumbeoDatasetFacetItem struct {
+	Count int    `json:"count,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelEsNumbeoNamedValue struct {
+	Name  string  `json:"name,omitempty"`
+	Value float64 `json:"value,omitempty"`
 }
 
 type ModelEsPlaystationGameDatasetFacetItem struct {
@@ -4915,6 +5360,22 @@ type ModelEsTechstackTechnology struct {
 type ModelEsTrustmrrDatasetFacetItem struct {
 	Count int    `json:"count,omitempty"`
 	Value string `json:"value,omitempty"`
+}
+
+type ModelEsTrustmrrHistoryPoint struct {
+	AskingPrice  float64 `json:"asking_price,omitempty"`
+	Date         string  `json:"date,omitempty"`
+	DealScore    float64 `json:"deal_score,omitempty"`
+	Growth30d    float64 `json:"growth_30d,omitempty"`
+	Mrr          float64 `json:"mrr,omitempty"`
+	Multiple     float64 `json:"multiple,omitempty"`
+	OfferCount   int     `json:"offer_count,omitempty"`
+	OnSale       bool    `json:"on_sale,omitempty"`
+	Revenue30d   float64 `json:"revenue_30d,omitempty"`
+	Slug         string  `json:"slug,omitempty"`
+	TotalRevenue float64 `json:"total_revenue,omitempty"`
+	Traffic12mo  float64 `json:"traffic_12mo,omitempty"`
+	Traffic30d   float64 `json:"traffic_30d,omitempty"`
 }
 
 type ModelEsTrustmrrStartupRecord struct {
@@ -8041,6 +8502,169 @@ type ModelLinkedinShowcaseResponseDoc struct {
 	Msg  string                               `json:"msg,omitempty"`
 }
 
+type ModelMetacriticBrowseItem struct {
+	Description  string                      `json:"description,omitempty"`
+	Genres       []ModelMetacriticGenre      `json:"genres,omitempty"`
+	Id           int                         `json:"id,omitempty"`
+	Image        string                      `json:"image,omitempty"`
+	Metascore    ModelMetacriticScoreSummary `json:"metascore,omitempty"`
+	PremiereYear int                         `json:"premiere_year,omitempty"`
+	Rating       string                      `json:"rating,omitempty"`
+	ReleaseDate  string                      `json:"release_date,omitempty"`
+	SeasonCount  int                         `json:"season_count,omitempty"`
+	Slug         string                      `json:"slug,omitempty"`
+	Title        string                      `json:"title,omitempty"`
+	Type         string                      `json:"type,omitempty"`
+	Url          string                      `json:"url,omitempty"`
+	UserScore    float64                     `json:"user_score,omitempty"`
+}
+
+type ModelMetacriticBrowseResponse struct {
+	Genre   string                      `json:"genre,omitempty"`
+	Items   []ModelMetacriticBrowseItem `json:"items,omitempty"`
+	Page    int                         `json:"page,omitempty"`
+	PerPage int                         `json:"per_page,omitempty"`
+	Sort    string                      `json:"sort,omitempty"`
+	Total   int                         `json:"total,omitempty"`
+	Type    string                      `json:"type,omitempty"`
+}
+
+type ModelMetacriticCredit struct {
+	Name string `json:"name,omitempty"`
+	Role string `json:"role,omitempty"`
+}
+
+type ModelMetacriticCriticReview struct {
+	Author          string `json:"author,omitempty"`
+	Date            string `json:"date,omitempty"`
+	Platform        string `json:"platform,omitempty"`
+	Publication     string `json:"publication,omitempty"`
+	PublicationSlug string `json:"publication_slug,omitempty"`
+	Quote           string `json:"quote,omitempty"`
+	Score           int    `json:"score,omitempty"`
+	Url             string `json:"url,omitempty"`
+}
+
+type ModelMetacriticCriticReviewsResponse struct {
+	Page    int                           `json:"page,omitempty"`
+	PerPage int                           `json:"per_page,omitempty"`
+	Reviews []ModelMetacriticCriticReview `json:"reviews,omitempty"`
+	Slug    string                        `json:"slug,omitempty"`
+	Sort    string                        `json:"sort,omitempty"`
+	Total   int                           `json:"total,omitempty"`
+	Type    string                        `json:"type,omitempty"`
+}
+
+type ModelMetacriticGenre struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelMetacriticPlatform struct {
+	Id          int                         `json:"id,omitempty"`
+	IsLead      bool                        `json:"is_lead,omitempty"`
+	Metascore   ModelMetacriticScoreSummary `json:"metascore,omitempty"`
+	Name        string                      `json:"name,omitempty"`
+	ReleaseDate string                      `json:"release_date,omitempty"`
+}
+
+type ModelMetacriticProduct struct {
+	Countries    []string                    `json:"countries,omitempty"`
+	Description  string                      `json:"description,omitempty"`
+	Duration     int                         `json:"duration,omitempty"`
+	Genres       []ModelMetacriticGenre      `json:"genres,omitempty"`
+	Id           int                         `json:"id,omitempty"`
+	Image        string                      `json:"image,omitempty"`
+	ImdbId       string                      `json:"imdb_id,omitempty"`
+	ImdbUrl      string                      `json:"imdb_url,omitempty"`
+	InTheaters   bool                        `json:"in_theaters,omitempty"`
+	Metascore    ModelMetacriticScoreSummary `json:"metascore,omitempty"`
+	Networks     []string                    `json:"networks,omitempty"`
+	Platforms    []ModelMetacriticPlatform   `json:"platforms,omitempty"`
+	PremiereYear int                         `json:"premiere_year,omitempty"`
+	Production   ModelMetacriticProduction   `json:"production,omitempty"`
+	Rating       string                      `json:"rating,omitempty"`
+	ReleaseDate  string                      `json:"release_date,omitempty"`
+	SeasonCount  int                         `json:"season_count,omitempty"`
+	Slug         string                      `json:"slug,omitempty"`
+	Tagline      string                      `json:"tagline,omitempty"`
+	Title        string                      `json:"title,omitempty"`
+	Type         string                      `json:"type,omitempty"`
+	Url          string                      `json:"url,omitempty"`
+	UserScore    ModelMetacriticScoreSummary `json:"user_score,omitempty"`
+	Video        ModelMetacriticVideo        `json:"video,omitempty"`
+}
+
+type ModelMetacriticProduction struct {
+	Companies    []string                `json:"companies,omitempty"`
+	Crew         []ModelMetacriticCredit `json:"crew,omitempty"`
+	OfficialSite string                  `json:"official_site,omitempty"`
+}
+
+type ModelMetacriticScoreSummary struct {
+	Max           int     `json:"max,omitempty"`
+	NegativeCount int     `json:"negative_count,omitempty"`
+	NeutralCount  int     `json:"neutral_count,omitempty"`
+	PositiveCount int     `json:"positive_count,omitempty"`
+	ReviewCount   int     `json:"review_count,omitempty"`
+	Score         float64 `json:"score,omitempty"`
+	Sentiment     string  `json:"sentiment,omitempty"`
+	Url           string  `json:"url,omitempty"`
+}
+
+type ModelMetacriticUserReview struct {
+	Author     string `json:"author,omitempty"`
+	Date       string `json:"date,omitempty"`
+	Id         string `json:"id,omitempty"`
+	Platform   string `json:"platform,omitempty"`
+	Quote      string `json:"quote,omitempty"`
+	Score      int    `json:"score,omitempty"`
+	Spoiler    bool   `json:"spoiler,omitempty"`
+	ThumbsDown int    `json:"thumbs_down,omitempty"`
+	ThumbsUp   int    `json:"thumbs_up,omitempty"`
+}
+
+type ModelMetacriticUserReviewsResponse struct {
+	Page    int                         `json:"page,omitempty"`
+	PerPage int                         `json:"per_page,omitempty"`
+	Reviews []ModelMetacriticUserReview `json:"reviews,omitempty"`
+	Slug    string                      `json:"slug,omitempty"`
+	Sort    string                      `json:"sort,omitempty"`
+	Total   int                         `json:"total,omitempty"`
+	Type    string                      `json:"type,omitempty"`
+}
+
+type ModelMetacriticVideo struct {
+	Duration int    `json:"duration,omitempty"`
+	EmbedUrl string `json:"embed_url,omitempty"`
+	Title    string `json:"title,omitempty"`
+	Url      string `json:"url,omitempty"`
+}
+
+type ModelMetacriticBrowseResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelMetacriticBrowseResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelMetacriticCriticReviewsResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelMetacriticCriticReviewsResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelMetacriticProductResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelMetacriticProduct `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelMetacriticUserReviewsResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelMetacriticUserReviewsResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
 type ModelMetaculusForecastHistoryPoint struct {
 	Center              float64   `json:"center,omitempty"`
 	Centers             []float64 `json:"centers,omitempty"`
@@ -8234,6 +8858,184 @@ type ModelMetaculusQuestionsResponseDoc struct {
 	Code int                             `json:"code,omitempty"`
 	Data ModelMetaculusQuestionsResponse `json:"data,omitempty"`
 	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelNumbeoCityIndexEntry struct {
+	City                      string  `json:"city,omitempty"`
+	CitySlug                  string  `json:"city_slug,omitempty"`
+	CostOfLivingIndex         float64 `json:"cost_of_living_index,omitempty"`
+	CostOfLivingPlusRentIndex float64 `json:"cost_of_living_plus_rent_index,omitempty"`
+	GroceriesIndex            float64 `json:"groceries_index,omitempty"`
+	LocalPurchasingPowerIndex float64 `json:"local_purchasing_power_index,omitempty"`
+	Rank                      int     `json:"rank,omitempty"`
+	RentIndex                 float64 `json:"rent_index,omitempty"`
+	RestaurantPriceIndex      float64 `json:"restaurant_price_index,omitempty"`
+}
+
+type ModelNumbeoCostOfLivingCityResponse struct {
+	Categories       []ModelNumbeoPriceCategory `json:"categories,omitempty"`
+	City             string                     `json:"city,omitempty"`
+	CitySlug         string                     `json:"city_slug,omitempty"`
+	Contributors12mo int                        `json:"contributors_12mo,omitempty"`
+	Country          string                     `json:"country,omitempty"`
+	LastUpdate       string                     `json:"last_update,omitempty"`
+	SourceUrl        string                     `json:"source_url,omitempty"`
+}
+
+type ModelNumbeoCostOfLivingCountryResponse struct {
+	Categories       []ModelNumbeoPriceCategory  `json:"categories,omitempty"`
+	Cities           []ModelNumbeoCityIndexEntry `json:"cities,omitempty"`
+	Contributors12mo int                         `json:"contributors_12mo,omitempty"`
+	Country          string                      `json:"country,omitempty"`
+	LastUpdate       string                      `json:"last_update,omitempty"`
+	SourceUrl        string                      `json:"source_url,omitempty"`
+}
+
+type ModelNumbeoCountryIndexEntry struct {
+	CostOfLivingIndex         float64 `json:"cost_of_living_index,omitempty"`
+	CostOfLivingPlusRentIndex float64 `json:"cost_of_living_plus_rent_index,omitempty"`
+	Country                   string  `json:"country,omitempty"`
+	GroceriesIndex            float64 `json:"groceries_index,omitempty"`
+	LocalPurchasingPowerIndex float64 `json:"local_purchasing_power_index,omitempty"`
+	Rank                      int     `json:"rank,omitempty"`
+	RentIndex                 float64 `json:"rent_index,omitempty"`
+	RestaurantPriceIndex      float64 `json:"restaurant_price_index,omitempty"`
+}
+
+type ModelNumbeoIndexRankingEntry struct {
+	City     string                  `json:"city,omitempty"`
+	CitySlug string                  `json:"city_slug,omitempty"`
+	Country  string                  `json:"country,omitempty"`
+	Indices  []ModelNumbeoNamedValue `json:"indices,omitempty"`
+	Rank     int                     `json:"rank,omitempty"`
+}
+
+type ModelNumbeoIndexRow struct {
+	Name      string  `json:"name,omitempty"`
+	Qualifier string  `json:"qualifier,omitempty"`
+	Value     float64 `json:"value,omitempty"`
+}
+
+type ModelNumbeoIndexSection struct {
+	Rows  []ModelNumbeoIndexRow `json:"rows,omitempty"`
+	Title string                `json:"title,omitempty"`
+}
+
+type ModelNumbeoIndicesCityResponse struct {
+	City             string                     `json:"city,omitempty"`
+	CitySlug         string                     `json:"city_slug,omitempty"`
+	ContributorsNote string                     `json:"contributors_note,omitempty"`
+	Country          string                     `json:"country,omitempty"`
+	HeadlineIndices  []ModelNumbeoNamedValue    `json:"headline_indices,omitempty"`
+	Index            string                     `json:"index,omitempty"`
+	LastUpdate       string                     `json:"last_update,omitempty"`
+	PriceCategories  []ModelNumbeoPriceCategory `json:"price_categories,omitempty"`
+	Sections         []ModelNumbeoIndexSection  `json:"sections,omitempty"`
+	SourceUrl        string                     `json:"source_url,omitempty"`
+}
+
+type ModelNumbeoIndicesCountryResponse struct {
+	Cities           []ModelNumbeoIndexRankingEntry `json:"cities,omitempty"`
+	ContributorsNote string                         `json:"contributors_note,omitempty"`
+	Country          string                         `json:"country,omitempty"`
+	HeadlineIndices  []ModelNumbeoNamedValue        `json:"headline_indices,omitempty"`
+	Index            string                         `json:"index,omitempty"`
+	LastUpdate       string                         `json:"last_update,omitempty"`
+	PriceCategories  []ModelNumbeoPriceCategory     `json:"price_categories,omitempty"`
+	Sections         []ModelNumbeoIndexSection      `json:"sections,omitempty"`
+	SourceUrl        string                         `json:"source_url,omitempty"`
+}
+
+type ModelNumbeoIndicesRankingsByCountryResponse struct {
+	Countries []ModelNumbeoIndexRankingEntry `json:"countries,omitempty"`
+	Index     string                         `json:"index,omitempty"`
+	SourceUrl string                         `json:"source_url,omitempty"`
+}
+
+type ModelNumbeoIndicesRankingsResponse struct {
+	Cities    []ModelNumbeoIndexRankingEntry `json:"cities,omitempty"`
+	Index     string                         `json:"index,omitempty"`
+	Period    string                         `json:"period,omitempty"`
+	Scope     string                         `json:"scope,omitempty"`
+	SourceUrl string                         `json:"source_url,omitempty"`
+}
+
+type ModelNumbeoNamedValue struct {
+	Name  string  `json:"name,omitempty"`
+	Value float64 `json:"value,omitempty"`
+}
+
+type ModelNumbeoPriceCategory struct {
+	Category string                 `json:"category,omitempty"`
+	Items    []ModelNumbeoPriceItem `json:"items,omitempty"`
+}
+
+type ModelNumbeoPriceItem struct {
+	CurrencySymbol string  `json:"currency_symbol,omitempty"`
+	Name           string  `json:"name,omitempty"`
+	Price          float64 `json:"price,omitempty"`
+	RangeHigh      float64 `json:"range_high,omitempty"`
+	RangeLow       float64 `json:"range_low,omitempty"`
+}
+
+type ModelNumbeoRankingsByCountryResponse struct {
+	Countries []ModelNumbeoCountryIndexEntry `json:"countries,omitempty"`
+	SourceUrl string                         `json:"source_url,omitempty"`
+}
+
+type ModelNumbeoRankingsResponse struct {
+	Cities    []ModelNumbeoCityIndexEntry `json:"cities,omitempty"`
+	Period    string                      `json:"period,omitempty"`
+	Scope     string                      `json:"scope,omitempty"`
+	SourceUrl string                      `json:"source_url,omitempty"`
+}
+
+type ModelNumbeoCostOfLivingCityResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelNumbeoCostOfLivingCityResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelNumbeoCostOfLivingCountryResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelNumbeoCostOfLivingCountryResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelNumbeoIndicesCityResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelNumbeoIndicesCityResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelNumbeoIndicesCountryResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelNumbeoIndicesCountryResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelNumbeoIndicesRankingsByCountryResponseDoc struct {
+	Code int                                         `json:"code,omitempty"`
+	Data ModelNumbeoIndicesRankingsByCountryResponse `json:"data,omitempty"`
+	Msg  string                                      `json:"msg,omitempty"`
+}
+
+type ModelNumbeoIndicesRankingsResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelNumbeoIndicesRankingsResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelNumbeoRankingsByCountryResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelNumbeoRankingsByCountryResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelNumbeoRankingsResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelNumbeoRankingsResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
 }
 
 type ModelPitchbookDataTable struct {
@@ -15704,6 +16506,103 @@ type ModelUserUserRotateApikeyResponseDoc struct {
 	Msg  string                       `json:"msg,omitempty"`
 }
 
+type ModelWalmartProduct struct {
+	Attributes   map[string]string            `json:"attributes,omitempty"`
+	Availability string                       `json:"availability,omitempty"`
+	Brand        string                       `json:"brand,omitempty"`
+	CanonicalUrl string                       `json:"canonical_url,omitempty"`
+	Category     string                       `json:"category,omitempty"`
+	Currency     string                       `json:"currency,omitempty"`
+	Description  string                       `json:"description,omitempty"`
+	Highlights   []string                     `json:"highlights,omitempty"`
+	Image        string                       `json:"image,omitempty"`
+	Images       []string                     `json:"images,omitempty"`
+	IsSponsored  bool                         `json:"is_sponsored,omitempty"`
+	ItemId       string                       `json:"item_id,omitempty"`
+	Price        float64                      `json:"price,omitempty"`
+	PriceText    string                       `json:"price_text,omitempty"`
+	ProductId    string                       `json:"product_id,omitempty"`
+	Rating       float64                      `json:"rating,omitempty"`
+	ReviewCount  int                          `json:"review_count,omitempty"`
+	SellerName   string                       `json:"seller_name,omitempty"`
+	Title        string                       `json:"title,omitempty"`
+	Variants     []ModelWalmartProductSummary `json:"variants,omitempty"`
+}
+
+type ModelWalmartProductSummary struct {
+	Availability string   `json:"availability,omitempty"`
+	Brand        string   `json:"brand,omitempty"`
+	CanonicalUrl string   `json:"canonical_url,omitempty"`
+	Currency     string   `json:"currency,omitempty"`
+	Image        string   `json:"image,omitempty"`
+	Images       []string `json:"images,omitempty"`
+	IsSponsored  bool     `json:"is_sponsored,omitempty"`
+	ItemId       string   `json:"item_id,omitempty"`
+	Price        float64  `json:"price,omitempty"`
+	PriceText    string   `json:"price_text,omitempty"`
+	ProductId    string   `json:"product_id,omitempty"`
+	Rating       float64  `json:"rating,omitempty"`
+	ReviewCount  int      `json:"review_count,omitempty"`
+	SellerName   string   `json:"seller_name,omitempty"`
+	Title        string   `json:"title,omitempty"`
+}
+
+type ModelWalmartRatingBreakdown struct {
+	FiveStar  int `json:"five_star,omitempty"`
+	FourStar  int `json:"four_star,omitempty"`
+	OneStar   int `json:"one_star,omitempty"`
+	ThreeStar int `json:"three_star,omitempty"`
+	TwoStar   int `json:"two_star,omitempty"`
+}
+
+type ModelWalmartReview struct {
+	Author           string  `json:"author,omitempty"`
+	NegativeFeedback int     `json:"negative_feedback,omitempty"`
+	PositiveFeedback int     `json:"positive_feedback,omitempty"`
+	Rating           float64 `json:"rating,omitempty"`
+	ReviewId         string  `json:"review_id,omitempty"`
+	SubmissionDate   string  `json:"submission_date,omitempty"`
+	Text             string  `json:"text,omitempty"`
+	Title            string  `json:"title,omitempty"`
+}
+
+type ModelWalmartReviewsResponse struct {
+	AverageRating        float64                     `json:"average_rating,omitempty"`
+	ItemId               string                      `json:"item_id,omitempty"`
+	RatingCounts         ModelWalmartRatingBreakdown `json:"rating_counts,omitempty"`
+	RecommendedPercent   float64                     `json:"recommended_percent,omitempty"`
+	Reviews              []ModelWalmartReview        `json:"reviews,omitempty"`
+	ReviewsWithTextCount int                         `json:"reviews_with_text_count,omitempty"`
+	TopNegativeReview    ModelWalmartReview          `json:"top_negative_review,omitempty"`
+	TopPositiveReview    ModelWalmartReview          `json:"top_positive_review,omitempty"`
+	TotalReviewCount     int                         `json:"total_review_count,omitempty"`
+}
+
+type ModelWalmartSearchResponse struct {
+	Items        []ModelWalmartProductSummary `json:"items,omitempty"`
+	Page         int                          `json:"page,omitempty"`
+	Query        string                       `json:"query,omitempty"`
+	TotalResults int                          `json:"total_results,omitempty"`
+}
+
+type ModelWalmartProductResponseDoc struct {
+	Code int                 `json:"code,omitempty"`
+	Data ModelWalmartProduct `json:"data,omitempty"`
+	Msg  string              `json:"msg,omitempty"`
+}
+
+type ModelWalmartReviewsResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelWalmartReviewsResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelWalmartSearchResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelWalmartSearchResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
 type ModelWebScrapeInfo struct {
 	Backend    string `json:"backend,omitempty"`
 	CacheState string `json:"cache_state,omitempty"`
@@ -16776,7 +17675,7 @@ type ModelZillowSearchResponse struct {
 	Results  []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 697
+const operationCount = 737
 
 const (
 	OperationAirbnbHost                                             = "airbnb-host"
@@ -16853,6 +17752,9 @@ const (
 	OperationBraveSearch                                            = "brave-search"
 	OperationBraveSuggest                                           = "brave-suggest"
 	OperationBraveVideos                                            = "brave-videos"
+	OperationCapterraProduct                                        = "capterra-product"
+	OperationCapterraReviews                                        = "capterra-reviews"
+	OperationCapterraSearch                                         = "capterra-search"
 	OperationChromeWebStoreChromewebstoreCategories                 = "chromewebstore-categories"
 	OperationChromeWebStoreChromewebstoreCategory                   = "chromewebstore-category"
 	OperationChromeWebStoreChromewebstoreCharts                     = "chromewebstore-charts"
@@ -16893,6 +17795,13 @@ const (
 	OperationDatasetsAppsChartsSearch                               = "datasets-apps-charts-search"
 	OperationDatasetsAppsReviewsSearch                              = "datasets-apps-reviews-search"
 	OperationDatasetsAppsSearch                                     = "datasets-apps-search"
+	OperationDatasetsChromeExtensionsChanges                        = "datasets-chrome-extensions-changes"
+	OperationDatasetsChromeExtensionsFacets                         = "datasets-chrome-extensions-facets"
+	OperationDatasetsChromeExtensionsHistory                        = "datasets-chrome-extensions-history"
+	OperationDatasetsChromeExtensionsItem                           = "datasets-chrome-extensions-item"
+	OperationDatasetsChromeExtensionsMetrics                        = "datasets-chrome-extensions-metrics"
+	OperationDatasetsChromeExtensionsSearch                         = "datasets-chrome-extensions-search"
+	OperationDatasetsChromeExtensionsTrending                       = "datasets-chrome-extensions-trending"
 	OperationDatasetsCreatorsSearch                                 = "datasets-creators-search"
 	OperationDatasetsGithubUsersFacets                              = "datasets-github-users-facets"
 	OperationDatasetsGithubUsersItem                                = "datasets-github-users-item"
@@ -16905,7 +17814,15 @@ const (
 	OperationDatasetsHousingMarketsFacets                           = "datasets-housing-markets-facets"
 	OperationDatasetsHousingMarketsItem                             = "datasets-housing-markets-item"
 	OperationDatasetsHousingMarketsSearch                           = "datasets-housing-markets-search"
+	OperationDatasetsJournalistsFacets                              = "datasets-journalists-facets"
+	OperationDatasetsJournalistsItem                                = "datasets-journalists-item"
+	OperationDatasetsJournalistsSearch                              = "datasets-journalists-search"
 	OperationDatasetsList                                           = "datasets-list"
+	OperationDatasetsNumbeoCitiesFacets                             = "datasets-numbeo-cities-facets"
+	OperationDatasetsNumbeoCitiesItem                               = "datasets-numbeo-cities-item"
+	OperationDatasetsNumbeoCitiesSearch                             = "datasets-numbeo-cities-search"
+	OperationDatasetsNumbeoCountriesItem                            = "datasets-numbeo-countries-item"
+	OperationDatasetsNumbeoCountriesSearch                          = "datasets-numbeo-countries-search"
 	OperationDatasetsPlaystationGamesFacets                         = "datasets-playstation-games-facets"
 	OperationDatasetsPlaystationGamesItem                           = "datasets-playstation-games-item"
 	OperationDatasetsPlaystationGamesSearch                         = "datasets-playstation-games-search"
@@ -16930,6 +17847,7 @@ const (
 	OperationDatasetsTechstackItem                                  = "datasets-techstack-item"
 	OperationDatasetsTechstackSearch                                = "datasets-techstack-search"
 	OperationDatasetsTrustmrrFacets                                 = "datasets-trustmrr-facets"
+	OperationDatasetsTrustmrrHistory                                = "datasets-trustmrr-history"
 	OperationDatasetsTrustmrrItem                                   = "datasets-trustmrr-item"
 	OperationDatasetsTrustmrrSearch                                 = "datasets-trustmrr-search"
 	OperationDiscogsArtist                                          = "discogs-artist"
@@ -17117,6 +18035,16 @@ const (
 	OperationMangaTitle                                             = "manga-title"
 	OperationMetaPing                                               = "ping"
 	OperationMetaReady                                              = "ready"
+	OperationMetacriticBrowse                                       = "metacritic-browse"
+	OperationMetacriticGame                                         = "metacritic-game"
+	OperationMetacriticGameCriticReviews                            = "metacritic-game-critic-reviews"
+	OperationMetacriticGameUserReviews                              = "metacritic-game-user-reviews"
+	OperationMetacriticMovie                                        = "metacritic-movie"
+	OperationMetacriticMovieCriticReviews                           = "metacritic-movie-critic-reviews"
+	OperationMetacriticMovieUserReviews                             = "metacritic-movie-user-reviews"
+	OperationMetacriticTv                                           = "metacritic-tv"
+	OperationMetacriticTvCriticReviews                              = "metacritic-tv-critic-reviews"
+	OperationMetacriticTvUserReviews                                = "metacritic-tv-user-reviews"
 	OperationMetaculusCategoryQuestions                             = "metaculus-category-questions"
 	OperationMetaculusCommentsFeed                                  = "metaculus-comments-feed"
 	OperationMetaculusProjectQuestions                              = "metaculus-project-questions"
@@ -17128,6 +18056,14 @@ const (
 	OperationMetaculusQuestions                                     = "metaculus-questions"
 	OperationMetaculusTopComments                                   = "metaculus-top-comments"
 	OperationMetaculusTournamentQuestions                           = "metaculus-tournament-questions"
+	OperationNumbeoCostOfLivingCity                                 = "numbeo-cost-of-living-city"
+	OperationNumbeoCostOfLivingCountry                              = "numbeo-cost-of-living-country"
+	OperationNumbeoCostOfLivingRankings                             = "numbeo-cost-of-living-rankings"
+	OperationNumbeoCostOfLivingRankingsByCountry                    = "numbeo-cost-of-living-rankings-by-country"
+	OperationNumbeoIndicesCity                                      = "numbeo-indices-city"
+	OperationNumbeoIndicesCountry                                   = "numbeo-indices-country"
+	OperationNumbeoIndicesRankings                                  = "numbeo-indices-rankings"
+	OperationNumbeoIndicesRankingsByCountry                         = "numbeo-indices-rankings-by-country"
 	OperationPitchBookPitchbookCompany                              = "pitchbook-company"
 	OperationPitchBookPitchbookFund                                 = "pitchbook-fund"
 	OperationPitchBookPitchbookInvestor                             = "pitchbook-investor"
@@ -17413,6 +18349,9 @@ const (
 	OperationUserMeApiKeys                                          = "user-me-api-keys"
 	OperationUserMeApiKeysReveal                                    = "user-me-api-keys-reveal"
 	OperationUserMeApiKeysRotate                                    = "user-me-api-keys-rotate"
+	OperationWalmartProduct                                         = "walmart-product"
+	OperationWalmartProductReviews                                  = "walmart-product-reviews"
+	OperationWalmartSearch                                          = "walmart-search"
 	OperationWebAntibotCheck                                        = "antibot-check"
 	OperationWebContact                                             = "contact"
 	OperationWebExtract                                             = "extract"
@@ -17494,7 +18433,7 @@ var operations = map[string]operationDefinition{
 	"anime-character":                               operationDefinition{Method: "GET", Path: "/anime/character/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"anime-rankings":                                operationDefinition{Method: "GET", Path: "/anime/rankings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "format", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "genre", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"anime-search":                                  operationDefinition{Method: "GET", Path: "/anime/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
-	"anime-title":                                   operationDefinition{Method: "GET", Path: "/anime/title/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"anime-title":                                   operationDefinition{Method: "GET", Path: "/anime/title/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "mal", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"anime-title-characters":                        operationDefinition{Method: "GET", Path: "/anime/title/{id}/characters", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"anime-title-recommendations":                   operationDefinition{Method: "GET", Path: "/anime/title/{id}/recommendations", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"anime-title-staff":                             operationDefinition{Method: "GET", Path: "/anime/title/{id}/staff", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -17553,6 +18492,9 @@ var operations = map[string]operationDefinition{
 	"brave-search":                                  operationDefinition{Method: "GET", Path: "/brave/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}, parameterDefinition{Name: "time_range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"any", "day", "week", "month", "year", "custom"}}, parameterDefinition{Name: "date_from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"brave-suggest":                                 operationDefinition{Method: "GET", Path: "/brave/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"brave-videos":                                  operationDefinition{Method: "GET", Path: "/brave/videos", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}, parameterDefinition{Name: "time_range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"any", "day", "week", "month", "year", "custom"}}, parameterDefinition{Name: "date_from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"capterra-product":                              operationDefinition{Method: "GET", Path: "/capterra/product", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "product_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"capterra-reviews":                              operationDefinition{Method: "GET", Path: "/capterra/product/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "product_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"capterra-search":                               operationDefinition{Method: "GET", Path: "/capterra/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"chromewebstore-categories":                     operationDefinition{Method: "GET", Path: "/chromewebstore/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"chromewebstore-category":                       operationDefinition{Method: "GET", Path: "/chromewebstore/category", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"chromewebstore-charts":                         operationDefinition{Method: "GET", Path: "/chromewebstore/charts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "chart", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"trending", "popular", "notable"}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -17595,6 +18537,13 @@ var operations = map[string]operationDefinition{
 	"datasets-apps-charts-search":                   operationDefinition{Method: "GET", Path: "/datasets/apps-charts/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "chart_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "collection", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-apps-reviews-search":                  operationDefinition{Method: "GET", Path: "/datasets/apps-reviews/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_score", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-apps-search":                          operationDefinition{Method: "GET", Path: "/datasets/apps/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "developer", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "free", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_reviews", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-chrome-extensions-changes":            operationDefinition{Method: "GET", Path: "/datasets/chrome-extensions/changes", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "change_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-chrome-extensions-facets":             operationDefinition{Method: "GET", Path: "/datasets/chrome-extensions/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "item_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "developer", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "permission", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "manifest_version", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "collects_data", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_broad_host_access", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_users", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-chrome-extensions-history":            operationDefinition{Method: "GET", Path: "/datasets/chrome-extensions/history/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-chrome-extensions-item":               operationDefinition{Method: "GET", Path: "/datasets/chrome-extensions/items/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-chrome-extensions-metrics":            operationDefinition{Method: "GET", Path: "/datasets/chrome-extensions/metrics", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "days", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-chrome-extensions-search":             operationDefinition{Method: "GET", Path: "/datasets/chrome-extensions/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "item_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "developer", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "permission", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "manifest_version", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "collects_data", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_broad_host_access", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_users", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-chrome-extensions-trending":           operationDefinition{Method: "GET", Path: "/datasets/chrome-extensions/trending", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "item_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "developer", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "permission", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "manifest_version", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "collects_data", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_broad_host_access", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_users", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-creators-search":                      operationDefinition{Method: "GET", Path: "/datasets/creators/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "handle", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "niche", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "verified", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_email", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_inactive", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-github-users-facets":                  operationDefinition{Method: "GET", Path: "/datasets/github-users/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "login", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "company", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "influence_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "domain", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_email", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_twitter", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_blog", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "reachable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "active_90d", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "hireable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_org", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_bot", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_suspected_automation", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_repos", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rank_score", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_account_age_years", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_account_age_years", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-github-users-item":                    operationDefinition{Method: "GET", Path: "/datasets/github-users/items/{login}", PathParams: []string{"login"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -17607,6 +18556,14 @@ var operations = map[string]operationDefinition{
 	"datasets-housing-markets-facets":               operationDefinition{Method: "GET", Path: "/datasets/housing-markets/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "region_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "property_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "parent_metro_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "zip_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "period", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "latest", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_median_sale_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_median_sale_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_median_list_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_median_list_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_price_to_income", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price_to_income", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_salary_to_buy", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_salary_to_buy", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_median_dom", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_median_dom", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_inventory", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_inventory", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_homes_sold", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-housing-markets-item":                 operationDefinition{Method: "GET", Path: "/datasets/housing-markets/items/{region_type}/{table_id}", PathParams: []string{"region_type", "table_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "period", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "property_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "history", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-housing-markets-search":               operationDefinition{Method: "GET", Path: "/datasets/housing-markets/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "region_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "property_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "parent_metro_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "zip_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "period", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "latest", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_median_sale_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_median_sale_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_median_list_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_median_list_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_price_to_income", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price_to_income", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_salary_to_buy", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_salary_to_buy", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_median_dom", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_median_dom", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_inventory", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_inventory", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_homes_sold", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-journalists-facets":                   operationDefinition{Method: "GET", Path: "/datasets/journalists/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "outlet", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "vertical", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "contact_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-journalists-item":                     operationDefinition{Method: "GET", Path: "/datasets/journalists/items/{outlet}/{slug}", PathParams: []string{"outlet", "slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-journalists-search":                   operationDefinition{Method: "GET", Path: "/datasets/journalists/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "outlet", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "vertical", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "contact_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-numbeo-cities-facets":                 operationDefinition{Method: "GET", Path: "/datasets/numbeo-cities/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_cost_of_living_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_cost_of_living_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_quality_of_life_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_crime_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_crime_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_safety_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_health_care_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_pollution_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_traffic_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-numbeo-cities-item":                   operationDefinition{Method: "GET", Path: "/datasets/numbeo-cities/items/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-numbeo-cities-search":                 operationDefinition{Method: "GET", Path: "/datasets/numbeo-cities/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_cost_of_living_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_cost_of_living_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_quality_of_life_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_crime_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_crime_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_safety_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_health_care_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_pollution_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_traffic_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-numbeo-countries-item":                operationDefinition{Method: "GET", Path: "/datasets/numbeo-countries/items/{country}", PathParams: []string{"country"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-numbeo-countries-search":              operationDefinition{Method: "GET", Path: "/datasets/numbeo-countries/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_cost_of_living_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_cost_of_living_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_quality_of_life_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_crime_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_crime_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_safety_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_health_care_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_pollution_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_traffic_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-playstation-games-facets":             operationDefinition{Method: "GET", Path: "/datasets/playstation-games/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "publisher", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "classification", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "genre", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "platform", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "content_rating", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "content_descriptor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "price_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "branding", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "concept_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "np_title_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_free", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_addon", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_tied_to_subscription", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "coming_soon", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "on_sale", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_price_value", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price_value", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_star_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_star_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_discount_pct", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_release_year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_release_year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-playstation-games-item":               operationDefinition{Method: "GET", Path: "/datasets/playstation-games/items/{product_id}", PathParams: []string{"product_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-playstation-games-search":             operationDefinition{Method: "GET", Path: "/datasets/playstation-games/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "publisher", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "classification", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "genre", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "platform", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "content_rating", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "content_descriptor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "price_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "branding", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "concept_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "np_title_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_free", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_addon", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_tied_to_subscription", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "coming_soon", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "on_sale", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_price_value", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price_value", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_star_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_star_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_discount_pct", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_release_year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_release_year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -17631,6 +18588,7 @@ var operations = map[string]operationDefinition{
 	"datasets-techstack-item":                       operationDefinition{Method: "GET", Path: "/datasets/techstack/items/{domain}", PathParams: []string{"domain"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-techstack-search":                     operationDefinition{Method: "GET", Path: "/datasets/techstack/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "technology", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "any_of", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "not", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cms", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ecommerce", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cdn", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "web_server", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "server_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tld", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "render_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "seed_source", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_captcha", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "reachable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_tech_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-trustmrr-facets":                      operationDefinition{Method: "GET", Path: "/datasets/trustmrr/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "payment_provider", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "on_sale", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_mrr", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-trustmrr-history":                     operationDefinition{Method: "GET", Path: "/datasets/trustmrr/history/{slug}", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-trustmrr-item":                        operationDefinition{Method: "GET", Path: "/datasets/trustmrr/items/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-trustmrr-search":                      operationDefinition{Method: "GET", Path: "/datasets/trustmrr/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "payment_provider", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "target_audience", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "business_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tech", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "channel", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "listing_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "on_sale", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_sponsored", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_mrr", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_mrr", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_revenue", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_revenue_30d", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_traffic", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_growth", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_multiple", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_asking_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_asking_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_ahrefs_dr", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"antibot-check":                                 operationDefinition{Method: "POST", Path: "/diagnostics/antibot-check", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -17817,7 +18775,17 @@ var operations = map[string]operationDefinition{
 	"linkedin-showcase":                             operationDefinition{Method: "GET", Path: "/linkedin/showcase/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"manga-rankings":                                operationDefinition{Method: "GET", Path: "/manga/rankings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "format", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "genre", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"manga-search":                                  operationDefinition{Method: "GET", Path: "/manga/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
-	"manga-title":                                   operationDefinition{Method: "GET", Path: "/manga/title/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"manga-title":                                   operationDefinition{Method: "GET", Path: "/manga/title/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "mal", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"metacritic-browse":                             operationDefinition{Method: "GET", Path: "/metacritic/browse", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"game", "movie", "tv"}}, parameterDefinition{Name: "genre", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"score", "popularity", "release_date", "oldest"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"metacritic-game":                               operationDefinition{Method: "GET", Path: "/metacritic/game/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"metacritic-game-critic-reviews":                operationDefinition{Method: "GET", Path: "/metacritic/game/{slug}/critic-reviews", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"date", "score", "publication"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"metacritic-game-user-reviews":                  operationDefinition{Method: "GET", Path: "/metacritic/game/{slug}/user-reviews", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"date", "score", "helpful"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"metacritic-movie":                              operationDefinition{Method: "GET", Path: "/metacritic/movie/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"metacritic-movie-critic-reviews":               operationDefinition{Method: "GET", Path: "/metacritic/movie/{slug}/critic-reviews", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"date", "score", "publication"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"metacritic-movie-user-reviews":                 operationDefinition{Method: "GET", Path: "/metacritic/movie/{slug}/user-reviews", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"date", "score", "helpful"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"metacritic-tv":                                 operationDefinition{Method: "GET", Path: "/metacritic/tv/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"metacritic-tv-critic-reviews":                  operationDefinition{Method: "GET", Path: "/metacritic/tv/{slug}/critic-reviews", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"date", "score", "publication"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"metacritic-tv-user-reviews":                    operationDefinition{Method: "GET", Path: "/metacritic/tv/{slug}/user-reviews", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"date", "score", "helpful"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"metaculus-category-questions":                  operationDefinition{Method: "GET", Path: "/metaculus/category/{slug}/questions", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"metaculus-comments-feed":                       operationDefinition{Method: "GET", Path: "/metaculus/comments-feed", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"metaculus-project-questions":                   operationDefinition{Method: "GET", Path: "/metaculus/project/{slug}/questions", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -17829,6 +18797,14 @@ var operations = map[string]operationDefinition{
 	"metaculus-questions":                           operationDefinition{Method: "GET", Path: "/metaculus/questions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"metaculus-top-comments":                        operationDefinition{Method: "GET", Path: "/metaculus/top-comments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"metaculus-tournament-questions":                operationDefinition{Method: "GET", Path: "/metaculus/tournament/{slug}/questions", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"numbeo-cost-of-living-city":                    operationDefinition{Method: "GET", Path: "/numbeo/cost-of-living/city/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"numbeo-cost-of-living-country":                 operationDefinition{Method: "GET", Path: "/numbeo/cost-of-living/country", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"numbeo-cost-of-living-rankings":                operationDefinition{Method: "GET", Path: "/numbeo/cost-of-living/rankings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "scope", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"current", "historical"}}, parameterDefinition{Name: "period", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"numbeo-cost-of-living-rankings-by-country":     operationDefinition{Method: "GET", Path: "/numbeo/cost-of-living/rankings-by-country", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"numbeo-indices-city":                           operationDefinition{Method: "GET", Path: "/numbeo/indices/city/{slug}", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "index", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"quality-of-life", "crime", "health-care", "pollution", "traffic", "property-investment"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"numbeo-indices-country":                        operationDefinition{Method: "GET", Path: "/numbeo/indices/country", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "index", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"quality-of-life", "crime", "health-care", "pollution", "traffic", "property-investment"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"numbeo-indices-rankings":                       operationDefinition{Method: "GET", Path: "/numbeo/indices/rankings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "index", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"quality-of-life", "crime", "health-care", "pollution", "traffic", "property-investment"}}, parameterDefinition{Name: "scope", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"current", "historical"}}, parameterDefinition{Name: "period", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"numbeo-indices-rankings-by-country":            operationDefinition{Method: "GET", Path: "/numbeo/indices/rankings-by-country", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "index", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"quality-of-life", "crime", "health-care", "pollution", "traffic", "property-investment"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"ping":                                          operationDefinition{Method: "GET", Path: "/ping", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{}},
 	"pitchbook-company":                             operationDefinition{Method: "GET", Path: "/pitchbook/company", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"pitchbook-fund":                                operationDefinition{Method: "GET", Path: "/pitchbook/fund", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -18116,6 +19092,9 @@ var operations = map[string]operationDefinition{
 	"user-me-api-keys":                              operationDefinition{Method: "GET", Path: "/user/me/api-keys", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
 	"user-me-api-keys-rotate":                       operationDefinition{Method: "POST", Path: "/user/me/api-keys/rotate", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
 	"user-me-api-keys-reveal":                       operationDefinition{Method: "POST", Path: "/user/me/api-keys/{id}/reveal", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
+	"walmart-product":                               operationDefinition{Method: "GET", Path: "/walmart/product/{item_id}", PathParams: []string{"item_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"walmart-product-reviews":                       operationDefinition{Method: "GET", Path: "/walmart/product/{item_id}/reviews", PathParams: []string{"item_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"walmart-search":                                operationDefinition{Method: "GET", Path: "/walmart/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"best_match", "price_low", "price_high", "best_seller", "new_arrivals", "rating_high"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"web-scrape":                                    operationDefinition{Method: "POST", Path: "/web/scrape", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "scrapeOption", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"web-techstack":                                 operationDefinition{Method: "POST", Path: "/web/techstack", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"x-post":                                        operationDefinition{Method: "GET", Path: "/x/post/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "username", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -18189,6 +19168,7 @@ type Services struct {
 	BoxOfficeMojo   *BoxOfficeMojoService
 	Brand           *BrandService
 	Brave           *BraveService
+	Capterra        *CapterraService
 	ChromeWebStore  *ChromeWebStoreService
 	CoinGecko       *CoinGeckoService
 	Web             *WebService
@@ -18209,7 +19189,9 @@ type Services struct {
 	Letterboxd      *LetterboxdService
 	LinkedIn        *LinkedInService
 	Manga           *MangaService
+	Metacritic      *MetacriticService
 	Metaculus       *MetaculusService
+	Numbeo          *NumbeoService
 	Meta            *MetaService
 	PitchBook       *PitchBookService
 	PlayStation     *PlayStationService
@@ -18234,6 +19216,7 @@ type Services struct {
 	Trustpilot      *TrustpilotService
 	Usage           *UsageService
 	User            *UserService
+	Walmart         *WalmartService
 	X               *XService
 	YahooFinance    *YahooFinanceService
 	YouTube         *YouTubeService
@@ -18252,6 +19235,7 @@ func initServices(c *Client) Services {
 		BoxOfficeMojo:   &BoxOfficeMojoService{client: c},
 		Brand:           &BrandService{client: c},
 		Brave:           &BraveService{client: c},
+		Capterra:        &CapterraService{client: c},
 		ChromeWebStore:  &ChromeWebStoreService{client: c},
 		CoinGecko:       &CoinGeckoService{client: c},
 		Web:             &WebService{client: c},
@@ -18272,7 +19256,9 @@ func initServices(c *Client) Services {
 		Letterboxd:      &LetterboxdService{client: c},
 		LinkedIn:        &LinkedInService{client: c},
 		Manga:           &MangaService{client: c},
+		Metacritic:      &MetacriticService{client: c},
 		Metaculus:       &MetaculusService{client: c},
+		Numbeo:          &NumbeoService{client: c},
 		Meta:            &MetaService{client: c},
 		PitchBook:       &PitchBookService{client: c},
 		PlayStation:     &PlayStationService{client: c},
@@ -18297,6 +19283,7 @@ func initServices(c *Client) Services {
 		Trustpilot:      &TrustpilotService{client: c},
 		Usage:           &UsageService{client: c},
 		User:            &UserService{client: c},
+		Walmart:         &WalmartService{client: c},
 		X:               &XService{client: c},
 		YahooFinance:    &YahooFinanceService{client: c},
 		YouTube:         &YouTubeService{client: c},
@@ -18555,7 +19542,8 @@ func (s *AnimeService) Title(ctx context.Context, params Params, opts ...Request
 }
 
 type AnimeTitleParams struct {
-	Id string `crawlora:"id"`
+	Id  string `crawlora:"id"`
+	Mal *bool  `crawlora:"mal,omitempty"`
 }
 
 type AnimeTitleResponse = ModelAnimeMediaResponseDoc
@@ -19516,6 +20504,51 @@ func (s *BraveService) VideosTyped(ctx context.Context, params BraveVideosParams
 	return requestTyped[BraveVideosResponse](s.client, ctx, "brave-videos", paramsFromStruct(params), opts...)
 }
 
+type CapterraService struct{ client *Client }
+
+func (s *CapterraService) Product(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "capterra-product", params, opts...)
+}
+
+type CapterraProductParams struct {
+	ProductId string `crawlora:"product_id"`
+}
+
+type CapterraProductResponse = ModelCapterraProductResponseDoc
+
+func (s *CapterraService) ProductTyped(ctx context.Context, params CapterraProductParams, opts ...RequestOption) (CapterraProductResponse, error) {
+	return requestTyped[CapterraProductResponse](s.client, ctx, "capterra-product", paramsFromStruct(params), opts...)
+}
+
+func (s *CapterraService) Reviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "capterra-reviews", params, opts...)
+}
+
+type CapterraReviewsParams struct {
+	ProductId string `crawlora:"product_id"`
+	Page      *int   `crawlora:"page,omitempty"`
+}
+
+type CapterraReviewsResponse = ModelCapterraReviewsResponseDoc
+
+func (s *CapterraService) ReviewsTyped(ctx context.Context, params CapterraReviewsParams, opts ...RequestOption) (CapterraReviewsResponse, error) {
+	return requestTyped[CapterraReviewsResponse](s.client, ctx, "capterra-reviews", paramsFromStruct(params), opts...)
+}
+
+func (s *CapterraService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "capterra-search", params, opts...)
+}
+
+type CapterraSearchParams struct {
+	Q string `crawlora:"q"`
+}
+
+type CapterraSearchResponse = ModelCapterraSearchResponseDoc
+
+func (s *CapterraService) SearchTyped(ctx context.Context, params CapterraSearchParams, opts ...RequestOption) (CapterraSearchResponse, error) {
+	return requestTyped[CapterraSearchResponse](s.client, ctx, "capterra-search", paramsFromStruct(params), opts...)
+}
+
 type ChromeWebStoreService struct{ client *Client }
 
 func (s *ChromeWebStoreService) ChromewebstoreCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -20284,6 +21317,149 @@ func (s *DatasetsService) AppsSearchTyped(ctx context.Context, params DatasetsAp
 	return requestTyped[DatasetsAppsSearchResponse](s.client, ctx, "datasets-apps-search", paramsFromStruct(params), opts...)
 }
 
+func (s *DatasetsService) ChromeExtensionsChanges(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-chrome-extensions-changes", params, opts...)
+}
+
+type DatasetsChromeExtensionsChangesParams struct {
+	ChangeType *string `crawlora:"change_type,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+}
+
+type DatasetsChromeExtensionsChangesResponse = ModelDatasetsChromeExtensionChangesResponseDoc
+
+func (s *DatasetsService) ChromeExtensionsChangesTyped(ctx context.Context, params DatasetsChromeExtensionsChangesParams, opts ...RequestOption) (DatasetsChromeExtensionsChangesResponse, error) {
+	return requestTyped[DatasetsChromeExtensionsChangesResponse](s.client, ctx, "datasets-chrome-extensions-changes", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) ChromeExtensionsFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-chrome-extensions-facets", params, opts...)
+}
+
+type DatasetsChromeExtensionsFacetsParams struct {
+	Facet              string   `crawlora:"facet"`
+	Q                  *string  `crawlora:"q,omitempty"`
+	ItemType           *string  `crawlora:"item_type,omitempty"`
+	Category           *string  `crawlora:"category,omitempty"`
+	Developer          *string  `crawlora:"developer,omitempty"`
+	Permission         *string  `crawlora:"permission,omitempty"`
+	Status             *string  `crawlora:"status,omitempty"`
+	ManifestVersion    *int     `crawlora:"manifest_version,omitempty"`
+	CollectsData       *bool    `crawlora:"collects_data,omitempty"`
+	HasBroadHostAccess *bool    `crawlora:"has_broad_host_access,omitempty"`
+	MinUsers           *int     `crawlora:"min_users,omitempty"`
+	MinRating          *float64 `crawlora:"min_rating,omitempty"`
+	MinRatingCount     *int     `crawlora:"min_rating_count,omitempty"`
+	Sort               *string  `crawlora:"sort,omitempty"`
+}
+
+type DatasetsChromeExtensionsFacetsResponse = ModelDatasetsChromeExtensionFacetResponseDoc
+
+func (s *DatasetsService) ChromeExtensionsFacetsTyped(ctx context.Context, params DatasetsChromeExtensionsFacetsParams, opts ...RequestOption) (DatasetsChromeExtensionsFacetsResponse, error) {
+	return requestTyped[DatasetsChromeExtensionsFacetsResponse](s.client, ctx, "datasets-chrome-extensions-facets", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) ChromeExtensionsHistory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-chrome-extensions-history", params, opts...)
+}
+
+type DatasetsChromeExtensionsHistoryParams struct {
+	Id    string  `crawlora:"id"`
+	From  *string `crawlora:"from,omitempty"`
+	To    *string `crawlora:"to,omitempty"`
+	Limit *int    `crawlora:"limit,omitempty"`
+}
+
+type DatasetsChromeExtensionsHistoryResponse = ModelDatasetsChromeExtensionHistoryResponseDoc
+
+func (s *DatasetsService) ChromeExtensionsHistoryTyped(ctx context.Context, params DatasetsChromeExtensionsHistoryParams, opts ...RequestOption) (DatasetsChromeExtensionsHistoryResponse, error) {
+	return requestTyped[DatasetsChromeExtensionsHistoryResponse](s.client, ctx, "datasets-chrome-extensions-history", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) ChromeExtensionsItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-chrome-extensions-item", params, opts...)
+}
+
+type DatasetsChromeExtensionsItemParams struct {
+	Id string `crawlora:"id"`
+}
+
+type DatasetsChromeExtensionsItemResponse = ModelDatasetsChromeExtensionItemResponseDoc
+
+func (s *DatasetsService) ChromeExtensionsItemTyped(ctx context.Context, params DatasetsChromeExtensionsItemParams, opts ...RequestOption) (DatasetsChromeExtensionsItemResponse, error) {
+	return requestTyped[DatasetsChromeExtensionsItemResponse](s.client, ctx, "datasets-chrome-extensions-item", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) ChromeExtensionsMetrics(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-chrome-extensions-metrics", params, opts...)
+}
+
+type DatasetsChromeExtensionsMetricsParams struct {
+	Days  *int `crawlora:"days,omitempty"`
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type DatasetsChromeExtensionsMetricsResponse = ModelDatasetsChromeExtensionMetricsResponseDoc
+
+func (s *DatasetsService) ChromeExtensionsMetricsTyped(ctx context.Context, params DatasetsChromeExtensionsMetricsParams, opts ...RequestOption) (DatasetsChromeExtensionsMetricsResponse, error) {
+	return requestTyped[DatasetsChromeExtensionsMetricsResponse](s.client, ctx, "datasets-chrome-extensions-metrics", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) ChromeExtensionsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-chrome-extensions-search", params, opts...)
+}
+
+type DatasetsChromeExtensionsSearchParams struct {
+	Q                  *string  `crawlora:"q,omitempty"`
+	ItemType           *string  `crawlora:"item_type,omitempty"`
+	Category           *string  `crawlora:"category,omitempty"`
+	Developer          *string  `crawlora:"developer,omitempty"`
+	Permission         *string  `crawlora:"permission,omitempty"`
+	Status             *string  `crawlora:"status,omitempty"`
+	ManifestVersion    *int     `crawlora:"manifest_version,omitempty"`
+	CollectsData       *bool    `crawlora:"collects_data,omitempty"`
+	HasBroadHostAccess *bool    `crawlora:"has_broad_host_access,omitempty"`
+	MinUsers           *int     `crawlora:"min_users,omitempty"`
+	MinRating          *float64 `crawlora:"min_rating,omitempty"`
+	MinRatingCount     *int     `crawlora:"min_rating_count,omitempty"`
+	Sort               *string  `crawlora:"sort,omitempty"`
+	Page               *int     `crawlora:"page,omitempty"`
+	PageSize           *int     `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsChromeExtensionsSearchResponse = ModelDatasetsChromeExtensionsSearchResponseDoc
+
+func (s *DatasetsService) ChromeExtensionsSearchTyped(ctx context.Context, params DatasetsChromeExtensionsSearchParams, opts ...RequestOption) (DatasetsChromeExtensionsSearchResponse, error) {
+	return requestTyped[DatasetsChromeExtensionsSearchResponse](s.client, ctx, "datasets-chrome-extensions-search", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) ChromeExtensionsTrending(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-chrome-extensions-trending", params, opts...)
+}
+
+type DatasetsChromeExtensionsTrendingParams struct {
+	Q                  *string  `crawlora:"q,omitempty"`
+	ItemType           *string  `crawlora:"item_type,omitempty"`
+	Category           *string  `crawlora:"category,omitempty"`
+	Developer          *string  `crawlora:"developer,omitempty"`
+	Permission         *string  `crawlora:"permission,omitempty"`
+	Status             *string  `crawlora:"status,omitempty"`
+	ManifestVersion    *int     `crawlora:"manifest_version,omitempty"`
+	CollectsData       *bool    `crawlora:"collects_data,omitempty"`
+	HasBroadHostAccess *bool    `crawlora:"has_broad_host_access,omitempty"`
+	MinUsers           *int     `crawlora:"min_users,omitempty"`
+	MinRating          *float64 `crawlora:"min_rating,omitempty"`
+	MinRatingCount     *int     `crawlora:"min_rating_count,omitempty"`
+	Page               *int     `crawlora:"page,omitempty"`
+	PageSize           *int     `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsChromeExtensionsTrendingResponse = ModelDatasetsChromeExtensionsSearchResponseDoc
+
+func (s *DatasetsService) ChromeExtensionsTrendingTyped(ctx context.Context, params DatasetsChromeExtensionsTrendingParams, opts ...RequestOption) (DatasetsChromeExtensionsTrendingResponse, error) {
+	return requestTyped[DatasetsChromeExtensionsTrendingResponse](s.client, ctx, "datasets-chrome-extensions-trending", paramsFromStruct(params), opts...)
+}
+
 func (s *DatasetsService) CreatorsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "datasets-creators-search", params, opts...)
 }
@@ -20612,6 +21788,167 @@ type DatasetsHousingMarketsSearchResponse = ModelDatasetsHousingMarketsSearchRes
 
 func (s *DatasetsService) HousingMarketsSearchTyped(ctx context.Context, params DatasetsHousingMarketsSearchParams, opts ...RequestOption) (DatasetsHousingMarketsSearchResponse, error) {
 	return requestTyped[DatasetsHousingMarketsSearchResponse](s.client, ctx, "datasets-housing-markets-search", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) JournalistsFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-journalists-facets", params, opts...)
+}
+
+type DatasetsJournalistsFacetsParams struct {
+	Facet       string  `crawlora:"facet"`
+	Q           *string `crawlora:"q,omitempty"`
+	Outlet      *string `crawlora:"outlet,omitempty"`
+	Vertical    *string `crawlora:"vertical,omitempty"`
+	Topic       *string `crawlora:"topic,omitempty"`
+	ContactType *string `crawlora:"contact_type,omitempty"`
+}
+
+type DatasetsJournalistsFacetsResponse = ModelDatasetsJournalistsFacetResponseDoc
+
+func (s *DatasetsService) JournalistsFacetsTyped(ctx context.Context, params DatasetsJournalistsFacetsParams, opts ...RequestOption) (DatasetsJournalistsFacetsResponse, error) {
+	return requestTyped[DatasetsJournalistsFacetsResponse](s.client, ctx, "datasets-journalists-facets", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) JournalistsItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-journalists-item", params, opts...)
+}
+
+type DatasetsJournalistsItemParams struct {
+	Outlet string `crawlora:"outlet"`
+	Slug   string `crawlora:"slug"`
+}
+
+type DatasetsJournalistsItemResponse = ModelDatasetsJournalistsItemResponseDoc
+
+func (s *DatasetsService) JournalistsItemTyped(ctx context.Context, params DatasetsJournalistsItemParams, opts ...RequestOption) (DatasetsJournalistsItemResponse, error) {
+	return requestTyped[DatasetsJournalistsItemResponse](s.client, ctx, "datasets-journalists-item", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) JournalistsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-journalists-search", params, opts...)
+}
+
+type DatasetsJournalistsSearchParams struct {
+	Q           *string `crawlora:"q,omitempty"`
+	Outlet      *string `crawlora:"outlet,omitempty"`
+	Vertical    *string `crawlora:"vertical,omitempty"`
+	Topic       *string `crawlora:"topic,omitempty"`
+	ContactType *string `crawlora:"contact_type,omitempty"`
+	Sort        *string `crawlora:"sort,omitempty"`
+	Page        *int    `crawlora:"page,omitempty"`
+	PageSize    *int    `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsJournalistsSearchResponse = ModelDatasetsJournalistsSearchResponseDoc
+
+func (s *DatasetsService) JournalistsSearchTyped(ctx context.Context, params DatasetsJournalistsSearchParams, opts ...RequestOption) (DatasetsJournalistsSearchResponse, error) {
+	return requestTyped[DatasetsJournalistsSearchResponse](s.client, ctx, "datasets-journalists-search", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) NumbeoCitiesFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-numbeo-cities-facets", params, opts...)
+}
+
+type DatasetsNumbeoCitiesFacetsParams struct {
+	Facet                 string   `crawlora:"facet"`
+	Q                     *string  `crawlora:"q,omitempty"`
+	Country               *string  `crawlora:"country,omitempty"`
+	MinCostOfLivingIndex  *float64 `crawlora:"min_cost_of_living_index,omitempty"`
+	MaxCostOfLivingIndex  *float64 `crawlora:"max_cost_of_living_index,omitempty"`
+	MinQualityOfLifeIndex *float64 `crawlora:"min_quality_of_life_index,omitempty"`
+	MinCrimeIndex         *float64 `crawlora:"min_crime_index,omitempty"`
+	MaxCrimeIndex         *float64 `crawlora:"max_crime_index,omitempty"`
+	MinSafetyIndex        *float64 `crawlora:"min_safety_index,omitempty"`
+	MinHealthCareIndex    *float64 `crawlora:"min_health_care_index,omitempty"`
+	MaxPollutionIndex     *float64 `crawlora:"max_pollution_index,omitempty"`
+	MaxTrafficIndex       *float64 `crawlora:"max_traffic_index,omitempty"`
+}
+
+type DatasetsNumbeoCitiesFacetsResponse = ModelDatasetsNumbeoCitiesFacetResponseDoc
+
+func (s *DatasetsService) NumbeoCitiesFacetsTyped(ctx context.Context, params DatasetsNumbeoCitiesFacetsParams, opts ...RequestOption) (DatasetsNumbeoCitiesFacetsResponse, error) {
+	return requestTyped[DatasetsNumbeoCitiesFacetsResponse](s.client, ctx, "datasets-numbeo-cities-facets", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) NumbeoCitiesItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-numbeo-cities-item", params, opts...)
+}
+
+type DatasetsNumbeoCitiesItemParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type DatasetsNumbeoCitiesItemResponse = ModelDatasetsNumbeoCityResponseDoc
+
+func (s *DatasetsService) NumbeoCitiesItemTyped(ctx context.Context, params DatasetsNumbeoCitiesItemParams, opts ...RequestOption) (DatasetsNumbeoCitiesItemResponse, error) {
+	return requestTyped[DatasetsNumbeoCitiesItemResponse](s.client, ctx, "datasets-numbeo-cities-item", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) NumbeoCitiesSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-numbeo-cities-search", params, opts...)
+}
+
+type DatasetsNumbeoCitiesSearchParams struct {
+	Q                     *string  `crawlora:"q,omitempty"`
+	Country               *string  `crawlora:"country,omitempty"`
+	MinCostOfLivingIndex  *float64 `crawlora:"min_cost_of_living_index,omitempty"`
+	MaxCostOfLivingIndex  *float64 `crawlora:"max_cost_of_living_index,omitempty"`
+	MinQualityOfLifeIndex *float64 `crawlora:"min_quality_of_life_index,omitempty"`
+	MinCrimeIndex         *float64 `crawlora:"min_crime_index,omitempty"`
+	MaxCrimeIndex         *float64 `crawlora:"max_crime_index,omitempty"`
+	MinSafetyIndex        *float64 `crawlora:"min_safety_index,omitempty"`
+	MinHealthCareIndex    *float64 `crawlora:"min_health_care_index,omitempty"`
+	MaxPollutionIndex     *float64 `crawlora:"max_pollution_index,omitempty"`
+	MaxTrafficIndex       *float64 `crawlora:"max_traffic_index,omitempty"`
+	Sort                  *string  `crawlora:"sort,omitempty"`
+	Page                  *int     `crawlora:"page,omitempty"`
+	PageSize              *int     `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsNumbeoCitiesSearchResponse = ModelDatasetsNumbeoCitiesSearchResponseDoc
+
+func (s *DatasetsService) NumbeoCitiesSearchTyped(ctx context.Context, params DatasetsNumbeoCitiesSearchParams, opts ...RequestOption) (DatasetsNumbeoCitiesSearchResponse, error) {
+	return requestTyped[DatasetsNumbeoCitiesSearchResponse](s.client, ctx, "datasets-numbeo-cities-search", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) NumbeoCountriesItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-numbeo-countries-item", params, opts...)
+}
+
+type DatasetsNumbeoCountriesItemParams struct {
+	Country string `crawlora:"country"`
+}
+
+type DatasetsNumbeoCountriesItemResponse = ModelDatasetsNumbeoCountryResponseDoc
+
+func (s *DatasetsService) NumbeoCountriesItemTyped(ctx context.Context, params DatasetsNumbeoCountriesItemParams, opts ...RequestOption) (DatasetsNumbeoCountriesItemResponse, error) {
+	return requestTyped[DatasetsNumbeoCountriesItemResponse](s.client, ctx, "datasets-numbeo-countries-item", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) NumbeoCountriesSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-numbeo-countries-search", params, opts...)
+}
+
+type DatasetsNumbeoCountriesSearchParams struct {
+	Q                     *string  `crawlora:"q,omitempty"`
+	MinCostOfLivingIndex  *float64 `crawlora:"min_cost_of_living_index,omitempty"`
+	MaxCostOfLivingIndex  *float64 `crawlora:"max_cost_of_living_index,omitempty"`
+	MinQualityOfLifeIndex *float64 `crawlora:"min_quality_of_life_index,omitempty"`
+	MinCrimeIndex         *float64 `crawlora:"min_crime_index,omitempty"`
+	MaxCrimeIndex         *float64 `crawlora:"max_crime_index,omitempty"`
+	MinSafetyIndex        *float64 `crawlora:"min_safety_index,omitempty"`
+	MinHealthCareIndex    *float64 `crawlora:"min_health_care_index,omitempty"`
+	MaxPollutionIndex     *float64 `crawlora:"max_pollution_index,omitempty"`
+	MaxTrafficIndex       *float64 `crawlora:"max_traffic_index,omitempty"`
+	Sort                  *string  `crawlora:"sort,omitempty"`
+	Page                  *int     `crawlora:"page,omitempty"`
+	PageSize              *int     `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsNumbeoCountriesSearchResponse = ModelDatasetsNumbeoCountriesSearchResponseDoc
+
+func (s *DatasetsService) NumbeoCountriesSearchTyped(ctx context.Context, params DatasetsNumbeoCountriesSearchParams, opts ...RequestOption) (DatasetsNumbeoCountriesSearchResponse, error) {
+	return requestTyped[DatasetsNumbeoCountriesSearchResponse](s.client, ctx, "datasets-numbeo-countries-search", paramsFromStruct(params), opts...)
 }
 
 func (s *DatasetsService) PlaystationGamesFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -21170,6 +22507,23 @@ type DatasetsTrustmrrFacetsResponse = ModelDatasetsTrustmrrFacetResponseDoc
 
 func (s *DatasetsService) TrustmrrFacetsTyped(ctx context.Context, params DatasetsTrustmrrFacetsParams, opts ...RequestOption) (DatasetsTrustmrrFacetsResponse, error) {
 	return requestTyped[DatasetsTrustmrrFacetsResponse](s.client, ctx, "datasets-trustmrr-facets", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) TrustmrrHistory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-trustmrr-history", params, opts...)
+}
+
+type DatasetsTrustmrrHistoryParams struct {
+	Slug  string  `crawlora:"slug"`
+	From  *string `crawlora:"from,omitempty"`
+	To    *string `crawlora:"to,omitempty"`
+	Limit *int    `crawlora:"limit,omitempty"`
+}
+
+type DatasetsTrustmrrHistoryResponse = ModelDatasetsTrustmrrHistoryResponseDoc
+
+func (s *DatasetsService) TrustmrrHistoryTyped(ctx context.Context, params DatasetsTrustmrrHistoryParams, opts ...RequestOption) (DatasetsTrustmrrHistoryResponse, error) {
+	return requestTyped[DatasetsTrustmrrHistoryResponse](s.client, ctx, "datasets-trustmrr-history", paramsFromStruct(params), opts...)
 }
 
 func (s *DatasetsService) TrustmrrItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -24110,13 +25464,178 @@ func (s *MangaService) Title(ctx context.Context, params Params, opts ...Request
 }
 
 type MangaTitleParams struct {
-	Id string `crawlora:"id"`
+	Id  string `crawlora:"id"`
+	Mal *bool  `crawlora:"mal,omitempty"`
 }
 
 type MangaTitleResponse = ModelAnimeMediaResponseDoc
 
 func (s *MangaService) TitleTyped(ctx context.Context, params MangaTitleParams, opts ...RequestOption) (MangaTitleResponse, error) {
 	return requestTyped[MangaTitleResponse](s.client, ctx, "manga-title", paramsFromStruct(params), opts...)
+}
+
+type MetacriticService struct{ client *Client }
+
+func (s *MetacriticService) Browse(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "metacritic-browse", params, opts...)
+}
+
+type MetacriticBrowseParams struct {
+	Type    string  `crawlora:"type"`
+	Genre   *string `crawlora:"genre,omitempty"`
+	Sort    *string `crawlora:"sort,omitempty"`
+	Page    *int    `crawlora:"page,omitempty"`
+	PerPage *int    `crawlora:"per_page,omitempty"`
+}
+
+type MetacriticBrowseResponse = ModelMetacriticBrowseResponseDoc
+
+func (s *MetacriticService) BrowseTyped(ctx context.Context, params MetacriticBrowseParams, opts ...RequestOption) (MetacriticBrowseResponse, error) {
+	return requestTyped[MetacriticBrowseResponse](s.client, ctx, "metacritic-browse", paramsFromStruct(params), opts...)
+}
+
+func (s *MetacriticService) Game(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "metacritic-game", params, opts...)
+}
+
+type MetacriticGameParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type MetacriticGameResponse = ModelMetacriticProductResponseDoc
+
+func (s *MetacriticService) GameTyped(ctx context.Context, params MetacriticGameParams, opts ...RequestOption) (MetacriticGameResponse, error) {
+	return requestTyped[MetacriticGameResponse](s.client, ctx, "metacritic-game", paramsFromStruct(params), opts...)
+}
+
+func (s *MetacriticService) GameCriticReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "metacritic-game-critic-reviews", params, opts...)
+}
+
+type MetacriticGameCriticReviewsParams struct {
+	Slug    string  `crawlora:"slug"`
+	Page    *int    `crawlora:"page,omitempty"`
+	PerPage *int    `crawlora:"per_page,omitempty"`
+	Sort    *string `crawlora:"sort,omitempty"`
+}
+
+type MetacriticGameCriticReviewsResponse = ModelMetacriticCriticReviewsResponseDoc
+
+func (s *MetacriticService) GameCriticReviewsTyped(ctx context.Context, params MetacriticGameCriticReviewsParams, opts ...RequestOption) (MetacriticGameCriticReviewsResponse, error) {
+	return requestTyped[MetacriticGameCriticReviewsResponse](s.client, ctx, "metacritic-game-critic-reviews", paramsFromStruct(params), opts...)
+}
+
+func (s *MetacriticService) GameUserReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "metacritic-game-user-reviews", params, opts...)
+}
+
+type MetacriticGameUserReviewsParams struct {
+	Slug    string  `crawlora:"slug"`
+	Page    *int    `crawlora:"page,omitempty"`
+	PerPage *int    `crawlora:"per_page,omitempty"`
+	Sort    *string `crawlora:"sort,omitempty"`
+}
+
+type MetacriticGameUserReviewsResponse = ModelMetacriticUserReviewsResponseDoc
+
+func (s *MetacriticService) GameUserReviewsTyped(ctx context.Context, params MetacriticGameUserReviewsParams, opts ...RequestOption) (MetacriticGameUserReviewsResponse, error) {
+	return requestTyped[MetacriticGameUserReviewsResponse](s.client, ctx, "metacritic-game-user-reviews", paramsFromStruct(params), opts...)
+}
+
+func (s *MetacriticService) Movie(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "metacritic-movie", params, opts...)
+}
+
+type MetacriticMovieParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type MetacriticMovieResponse = ModelMetacriticProductResponseDoc
+
+func (s *MetacriticService) MovieTyped(ctx context.Context, params MetacriticMovieParams, opts ...RequestOption) (MetacriticMovieResponse, error) {
+	return requestTyped[MetacriticMovieResponse](s.client, ctx, "metacritic-movie", paramsFromStruct(params), opts...)
+}
+
+func (s *MetacriticService) MovieCriticReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "metacritic-movie-critic-reviews", params, opts...)
+}
+
+type MetacriticMovieCriticReviewsParams struct {
+	Slug    string  `crawlora:"slug"`
+	Page    *int    `crawlora:"page,omitempty"`
+	PerPage *int    `crawlora:"per_page,omitempty"`
+	Sort    *string `crawlora:"sort,omitempty"`
+}
+
+type MetacriticMovieCriticReviewsResponse = ModelMetacriticCriticReviewsResponseDoc
+
+func (s *MetacriticService) MovieCriticReviewsTyped(ctx context.Context, params MetacriticMovieCriticReviewsParams, opts ...RequestOption) (MetacriticMovieCriticReviewsResponse, error) {
+	return requestTyped[MetacriticMovieCriticReviewsResponse](s.client, ctx, "metacritic-movie-critic-reviews", paramsFromStruct(params), opts...)
+}
+
+func (s *MetacriticService) MovieUserReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "metacritic-movie-user-reviews", params, opts...)
+}
+
+type MetacriticMovieUserReviewsParams struct {
+	Slug    string  `crawlora:"slug"`
+	Page    *int    `crawlora:"page,omitempty"`
+	PerPage *int    `crawlora:"per_page,omitempty"`
+	Sort    *string `crawlora:"sort,omitempty"`
+}
+
+type MetacriticMovieUserReviewsResponse = ModelMetacriticUserReviewsResponseDoc
+
+func (s *MetacriticService) MovieUserReviewsTyped(ctx context.Context, params MetacriticMovieUserReviewsParams, opts ...RequestOption) (MetacriticMovieUserReviewsResponse, error) {
+	return requestTyped[MetacriticMovieUserReviewsResponse](s.client, ctx, "metacritic-movie-user-reviews", paramsFromStruct(params), opts...)
+}
+
+func (s *MetacriticService) Tv(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "metacritic-tv", params, opts...)
+}
+
+type MetacriticTvParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type MetacriticTvResponse = ModelMetacriticProductResponseDoc
+
+func (s *MetacriticService) TvTyped(ctx context.Context, params MetacriticTvParams, opts ...RequestOption) (MetacriticTvResponse, error) {
+	return requestTyped[MetacriticTvResponse](s.client, ctx, "metacritic-tv", paramsFromStruct(params), opts...)
+}
+
+func (s *MetacriticService) TvCriticReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "metacritic-tv-critic-reviews", params, opts...)
+}
+
+type MetacriticTvCriticReviewsParams struct {
+	Slug    string  `crawlora:"slug"`
+	Page    *int    `crawlora:"page,omitempty"`
+	PerPage *int    `crawlora:"per_page,omitempty"`
+	Sort    *string `crawlora:"sort,omitempty"`
+}
+
+type MetacriticTvCriticReviewsResponse = ModelMetacriticCriticReviewsResponseDoc
+
+func (s *MetacriticService) TvCriticReviewsTyped(ctx context.Context, params MetacriticTvCriticReviewsParams, opts ...RequestOption) (MetacriticTvCriticReviewsResponse, error) {
+	return requestTyped[MetacriticTvCriticReviewsResponse](s.client, ctx, "metacritic-tv-critic-reviews", paramsFromStruct(params), opts...)
+}
+
+func (s *MetacriticService) TvUserReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "metacritic-tv-user-reviews", params, opts...)
+}
+
+type MetacriticTvUserReviewsParams struct {
+	Slug    string  `crawlora:"slug"`
+	Page    *int    `crawlora:"page,omitempty"`
+	PerPage *int    `crawlora:"per_page,omitempty"`
+	Sort    *string `crawlora:"sort,omitempty"`
+}
+
+type MetacriticTvUserReviewsResponse = ModelMetacriticUserReviewsResponseDoc
+
+func (s *MetacriticService) TvUserReviewsTyped(ctx context.Context, params MetacriticTvUserReviewsParams, opts ...RequestOption) (MetacriticTvUserReviewsResponse, error) {
+	return requestTyped[MetacriticTvUserReviewsResponse](s.client, ctx, "metacritic-tv-user-reviews", paramsFromStruct(params), opts...)
 }
 
 type MetaculusService struct{ client *Client }
@@ -24282,6 +25801,124 @@ type MetaculusTournamentQuestionsResponse = ModelMetaculusQuestionsResponseDoc
 
 func (s *MetaculusService) TournamentQuestionsTyped(ctx context.Context, params MetaculusTournamentQuestionsParams, opts ...RequestOption) (MetaculusTournamentQuestionsResponse, error) {
 	return requestTyped[MetaculusTournamentQuestionsResponse](s.client, ctx, "metaculus-tournament-questions", paramsFromStruct(params), opts...)
+}
+
+type NumbeoService struct{ client *Client }
+
+func (s *NumbeoService) CostOfLivingCity(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "numbeo-cost-of-living-city", params, opts...)
+}
+
+type NumbeoCostOfLivingCityParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type NumbeoCostOfLivingCityResponse = ModelNumbeoCostOfLivingCityResponseDoc
+
+func (s *NumbeoService) CostOfLivingCityTyped(ctx context.Context, params NumbeoCostOfLivingCityParams, opts ...RequestOption) (NumbeoCostOfLivingCityResponse, error) {
+	return requestTyped[NumbeoCostOfLivingCityResponse](s.client, ctx, "numbeo-cost-of-living-city", paramsFromStruct(params), opts...)
+}
+
+func (s *NumbeoService) CostOfLivingCountry(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "numbeo-cost-of-living-country", params, opts...)
+}
+
+type NumbeoCostOfLivingCountryParams struct {
+	Country string `crawlora:"country"`
+}
+
+type NumbeoCostOfLivingCountryResponse = ModelNumbeoCostOfLivingCountryResponseDoc
+
+func (s *NumbeoService) CostOfLivingCountryTyped(ctx context.Context, params NumbeoCostOfLivingCountryParams, opts ...RequestOption) (NumbeoCostOfLivingCountryResponse, error) {
+	return requestTyped[NumbeoCostOfLivingCountryResponse](s.client, ctx, "numbeo-cost-of-living-country", paramsFromStruct(params), opts...)
+}
+
+func (s *NumbeoService) CostOfLivingRankings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "numbeo-cost-of-living-rankings", params, opts...)
+}
+
+type NumbeoCostOfLivingRankingsParams struct {
+	Scope  *string `crawlora:"scope,omitempty"`
+	Period *string `crawlora:"period,omitempty"`
+}
+
+type NumbeoCostOfLivingRankingsResponse = ModelNumbeoRankingsResponseDoc
+
+func (s *NumbeoService) CostOfLivingRankingsTyped(ctx context.Context, params NumbeoCostOfLivingRankingsParams, opts ...RequestOption) (NumbeoCostOfLivingRankingsResponse, error) {
+	return requestTyped[NumbeoCostOfLivingRankingsResponse](s.client, ctx, "numbeo-cost-of-living-rankings", paramsFromStruct(params), opts...)
+}
+
+func (s *NumbeoService) CostOfLivingRankingsByCountry(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "numbeo-cost-of-living-rankings-by-country", params, opts...)
+}
+
+type NumbeoCostOfLivingRankingsByCountryParams struct {
+}
+
+type NumbeoCostOfLivingRankingsByCountryResponse = ModelNumbeoRankingsByCountryResponseDoc
+
+func (s *NumbeoService) CostOfLivingRankingsByCountryTyped(ctx context.Context, params NumbeoCostOfLivingRankingsByCountryParams, opts ...RequestOption) (NumbeoCostOfLivingRankingsByCountryResponse, error) {
+	return requestTyped[NumbeoCostOfLivingRankingsByCountryResponse](s.client, ctx, "numbeo-cost-of-living-rankings-by-country", paramsFromStruct(params), opts...)
+}
+
+func (s *NumbeoService) IndicesCity(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "numbeo-indices-city", params, opts...)
+}
+
+type NumbeoIndicesCityParams struct {
+	Slug  string `crawlora:"slug"`
+	Index string `crawlora:"index"`
+}
+
+type NumbeoIndicesCityResponse = ModelNumbeoIndicesCityResponseDoc
+
+func (s *NumbeoService) IndicesCityTyped(ctx context.Context, params NumbeoIndicesCityParams, opts ...RequestOption) (NumbeoIndicesCityResponse, error) {
+	return requestTyped[NumbeoIndicesCityResponse](s.client, ctx, "numbeo-indices-city", paramsFromStruct(params), opts...)
+}
+
+func (s *NumbeoService) IndicesCountry(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "numbeo-indices-country", params, opts...)
+}
+
+type NumbeoIndicesCountryParams struct {
+	Country string `crawlora:"country"`
+	Index   string `crawlora:"index"`
+}
+
+type NumbeoIndicesCountryResponse = ModelNumbeoIndicesCountryResponseDoc
+
+func (s *NumbeoService) IndicesCountryTyped(ctx context.Context, params NumbeoIndicesCountryParams, opts ...RequestOption) (NumbeoIndicesCountryResponse, error) {
+	return requestTyped[NumbeoIndicesCountryResponse](s.client, ctx, "numbeo-indices-country", paramsFromStruct(params), opts...)
+}
+
+func (s *NumbeoService) IndicesRankings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "numbeo-indices-rankings", params, opts...)
+}
+
+type NumbeoIndicesRankingsParams struct {
+	Index  string  `crawlora:"index"`
+	Scope  *string `crawlora:"scope,omitempty"`
+	Period *string `crawlora:"period,omitempty"`
+}
+
+type NumbeoIndicesRankingsResponse = ModelNumbeoIndicesRankingsResponseDoc
+
+func (s *NumbeoService) IndicesRankingsTyped(ctx context.Context, params NumbeoIndicesRankingsParams, opts ...RequestOption) (NumbeoIndicesRankingsResponse, error) {
+	return requestTyped[NumbeoIndicesRankingsResponse](s.client, ctx, "numbeo-indices-rankings", paramsFromStruct(params), opts...)
+}
+
+func (s *NumbeoService) IndicesRankingsByCountry(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "numbeo-indices-rankings-by-country", params, opts...)
+}
+
+type NumbeoIndicesRankingsByCountryParams struct {
+	Index string `crawlora:"index"`
+}
+
+type NumbeoIndicesRankingsByCountryResponse = ModelNumbeoIndicesRankingsByCountryResponseDoc
+
+func (s *NumbeoService) IndicesRankingsByCountryTyped(ctx context.Context, params NumbeoIndicesRankingsByCountryParams, opts ...RequestOption) (NumbeoIndicesRankingsByCountryResponse, error) {
+	return requestTyped[NumbeoIndicesRankingsByCountryResponse](s.client, ctx, "numbeo-indices-rankings-by-country", paramsFromStruct(params), opts...)
 }
 
 type MetaService struct{ client *Client }
@@ -28937,6 +30574,52 @@ type UserMeApiKeysRevealResponse = ModelUserUserRevealApikeyResponseDoc
 
 func (s *UserService) MeApiKeysRevealTyped(ctx context.Context, params UserMeApiKeysRevealParams, opts ...RequestOption) (UserMeApiKeysRevealResponse, error) {
 	return requestTyped[UserMeApiKeysRevealResponse](s.client, ctx, "user-me-api-keys-reveal", paramsFromStruct(params), opts...)
+}
+
+type WalmartService struct{ client *Client }
+
+func (s *WalmartService) Product(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "walmart-product", params, opts...)
+}
+
+type WalmartProductParams struct {
+	ItemId string `crawlora:"item_id"`
+}
+
+type WalmartProductResponse = ModelWalmartProductResponseDoc
+
+func (s *WalmartService) ProductTyped(ctx context.Context, params WalmartProductParams, opts ...RequestOption) (WalmartProductResponse, error) {
+	return requestTyped[WalmartProductResponse](s.client, ctx, "walmart-product", paramsFromStruct(params), opts...)
+}
+
+func (s *WalmartService) ProductReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "walmart-product-reviews", params, opts...)
+}
+
+type WalmartProductReviewsParams struct {
+	ItemId string `crawlora:"item_id"`
+}
+
+type WalmartProductReviewsResponse = ModelWalmartReviewsResponseDoc
+
+func (s *WalmartService) ProductReviewsTyped(ctx context.Context, params WalmartProductReviewsParams, opts ...RequestOption) (WalmartProductReviewsResponse, error) {
+	return requestTyped[WalmartProductReviewsResponse](s.client, ctx, "walmart-product-reviews", paramsFromStruct(params), opts...)
+}
+
+func (s *WalmartService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "walmart-search", params, opts...)
+}
+
+type WalmartSearchParams struct {
+	Q    string  `crawlora:"q"`
+	Page *int    `crawlora:"page,omitempty"`
+	Sort *string `crawlora:"sort,omitempty"`
+}
+
+type WalmartSearchResponse = ModelWalmartSearchResponseDoc
+
+func (s *WalmartService) SearchTyped(ctx context.Context, params WalmartSearchParams, opts ...RequestOption) (WalmartSearchResponse, error) {
+	return requestTyped[WalmartSearchResponse](s.client, ctx, "walmart-search", paramsFromStruct(params), opts...)
 }
 
 type XService struct{ client *Client }
