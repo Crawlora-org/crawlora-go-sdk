@@ -46,8 +46,17 @@ brand, err := client.Brand.Retrieve(ctx, crawlora.Params{"domain": "stripe.com"}
 
 ## Software, Reviews, And Market Datasets
 
+Build a Chrome extension competitive-intelligence view without downloading the
+whole catalog: create a high-adoption shortlist, load chart-ready market
+metrics, watch movers, and audit permission changes or one item's history.
+
 ```go
-extensions, err := client.Datasets.ChromeExtensionsSearch(ctx, crawlora.Params{"q": "productivity", "min_users": 10000})
+extensions, err := client.Datasets.ChromeExtensionsSearch(ctx, crawlora.Params{"q": "productivity", "min_users": 10000, "sort": "users_desc", "page_size": 20})
+metrics, err := client.Datasets.ChromeExtensionsMetrics(ctx, crawlora.Params{"days": 30, "limit": 10})
+movers, err := client.Datasets.ChromeExtensionsTrending(ctx, crawlora.Params{"item_type": "extension", "page_size": 20})
+permissionChanges, err := client.Datasets.ChromeExtensionsChanges(ctx, crawlora.Params{"change_type": "permissions", "limit": 25})
+history, err := client.Datasets.ChromeExtensionsHistory(ctx, crawlora.Params{"id": "fjgncogppolhfdpijihbpfmeohpaadpc", "limit": 90})
+
 cities, err := client.Datasets.NumbeoCitiesSearch(ctx, crawlora.Params{"country": "Portugal", "sort": "quality_of_life_desc"})
 software, err := client.Capterra.Search(ctx, crawlora.Params{"q": "project management"})
 games, err := client.Metacritic.Browse(ctx, crawlora.Params{"type": "game", "sort": "score"})
