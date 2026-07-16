@@ -10526,6 +10526,12 @@
           },
           "type": "array"
         },
+        "top_developers": {
+          "items": {
+            "$ref": "#/definitions/es.ChromeExtensionMetricBucket"
+          },
+          "type": "array"
+        },
         "top_permissions": {
           "items": {
             "$ref": "#/definitions/es.ChromeExtensionMetricBucket"
@@ -10746,6 +10752,56 @@
         },
         "sort": {
           "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.JobCompaniesResponse": {
+      "properties": {
+        "companies": {
+          "items": {
+            "additionalProperties": {},
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.JobsFacetResponse": {
+      "properties": {
+        "facets": {
+          "$ref": "#/definitions/es.JobPostingFacets"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.JobsSearchResponse": {
+      "properties": {
+        "jobs": {
+          "items": {
+            "additionalProperties": {},
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
         },
         "total": {
           "type": "integer"
@@ -11069,6 +11125,132 @@
       },
       "type": "object"
     },
+    "datasets.SecCompanyFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.SecCompanyFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.SecCompanyFinancialsResponse": {
+      "properties": {
+        "cik": {
+          "type": "integer"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "dataset": {
+          "type": "string"
+        },
+        "points": {
+          "items": {
+            "$ref": "#/definitions/es.SecFinancialsHistoryPoint"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.SecCompanyInsiderResponse": {
+      "properties": {
+        "cik": {
+          "type": "integer"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.SecInsiderTransactionRecord"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.SecCompanySearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.SecCompanyRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.SecInstitutionalPositionsFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.SecInstitutionalPositionsFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.SecInstitutionalPositionsSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.SecInstitutionalPositionRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "datasets.SteamAchievementsSearchResponse": {
       "properties": {
         "dataset": {
@@ -11359,6 +11541,49 @@
         "items": {
           "items": {
             "$ref": "#/definitions/es.TrustmrrStartupRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.XUserFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.XUserDatasetFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.XUserSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.XUserDatasetItem"
           },
           "type": "array"
         },
@@ -11729,6 +11954,71 @@
       },
       "type": "object"
     },
+    "datasets.jobsCompaniesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.JobCompaniesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.jobsFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.JobsFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.jobsItemResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "additionalProperties": {},
+          "type": "object"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.jobsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.JobsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "datasets.journalistsFacetResponseDoc": {
       "properties": {
         "code": {
@@ -12065,6 +12355,118 @@
       },
       "type": "object"
     },
+    "datasets.secCompaniesFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.SecCompanyFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.secCompaniesFinancialsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.SecCompanyFinancialsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.secCompaniesInsiderResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.SecCompanyInsiderResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.secCompaniesItemResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.SecCompanyRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.secCompaniesSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.SecCompanySearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.secInstitutionalPositionsFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.SecInstitutionalPositionsFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.secInstitutionalPositionsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.SecInstitutionalPositionsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "datasets.steamAchievementsSearchResponseDoc": {
       "properties": {
         "code": {
@@ -12313,6 +12715,54 @@
         },
         "data": {
           "$ref": "#/definitions/datasets.TrustmrrSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.xUserResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.XUserRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.xUsersFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.XUserFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.xUsersSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.XUserSearchResponse"
         },
         "msg": {
           "example": "OK",
@@ -14306,6 +14756,9 @@
     },
     "es.ChromeExtensionHistoryPoint": {
       "properties": {
+        "category": {
+          "type": "string"
+        },
         "change_types": {
           "items": {
             "type": "string"
@@ -14321,6 +14774,12 @@
           },
           "type": "array"
         },
+        "developer": {
+          "type": "string"
+        },
+        "developer_email": {
+          "type": "string"
+        },
         "host_permissions": {
           "items": {
             "type": "string"
@@ -14330,8 +14789,14 @@
         "id": {
           "type": "string"
         },
+        "item_type": {
+          "type": "string"
+        },
         "manifest_version": {
           "type": "integer"
+        },
+        "name": {
+          "type": "string"
         },
         "observed_at": {
           "type": "string"
@@ -14406,8 +14871,14 @@
         "average_rating": {
           "type": "number"
         },
+        "developer_emails": {
+          "type": "integer"
+        },
         "last_crawled_at": {
           "type": "string"
+        },
+        "named_developers": {
+          "type": "integer"
         },
         "privacy_policies": {
           "type": "integer"
@@ -14448,6 +14919,9 @@
           "type": "string"
         },
         "developer": {
+          "type": "string"
+        },
+        "developer_email": {
           "type": "string"
         },
         "first_seen": {
@@ -14650,6 +15124,17 @@
         },
         "video_count": {
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "es.FacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "key": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -15437,6 +15922,47 @@
         "zip_code": {
           "description": "ZipCode is set on zip rows only, parsed from REGION (\"Zip Code: 60616\").",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.JobPostingFacets": {
+      "properties": {
+        "by_department": {
+          "items": {
+            "$ref": "#/definitions/es.FacetItem"
+          },
+          "type": "array"
+        },
+        "by_employment_type": {
+          "items": {
+            "$ref": "#/definitions/es.FacetItem"
+          },
+          "type": "array"
+        },
+        "by_location": {
+          "items": {
+            "$ref": "#/definitions/es.FacetItem"
+          },
+          "type": "array"
+        },
+        "by_provider": {
+          "items": {
+            "$ref": "#/definitions/es.FacetItem"
+          },
+          "type": "array"
+        },
+        "remote_open": {
+          "type": "integer"
+        },
+        "top_companies": {
+          "items": {
+            "$ref": "#/definitions/es.FacetItem"
+          },
+          "type": "array"
+        },
+        "total_open": {
+          "type": "integer"
         }
       },
       "type": "object"
@@ -16286,6 +16812,313 @@
       "type": "object"
     },
     "es.ProductHuntTrendsFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.SecCompanyFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.SecCompanyRecord": {
+      "properties": {
+        "cik": {
+          "type": "integer"
+        },
+        "cik_padded": {
+          "type": "string"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "entity_type": {
+          "type": "string"
+        },
+        "exchange": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "filing_count": {
+          "type": "integer"
+        },
+        "financials_synced_at": {
+          "type": "string"
+        },
+        "fiscal_year_end": {
+          "type": "string"
+        },
+        "former_names": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "forms_filed": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "insider_last_transaction_at": {
+          "type": "string"
+        },
+        "insider_net_shares_90d": {
+          "type": "number"
+        },
+        "insider_txn_count_90d": {
+          "type": "integer"
+        },
+        "latest_annual_fiscal_year": {
+          "type": "integer"
+        },
+        "latest_annual_net_income": {
+          "type": "number"
+        },
+        "latest_annual_revenue": {
+          "type": "number"
+        },
+        "latest_annual_total_assets": {
+          "type": "number"
+        },
+        "latest_filing_date": {
+          "type": "string"
+        },
+        "latest_quarterly_fiscal_year": {
+          "type": "integer"
+        },
+        "latest_quarterly_revenue": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "primary_ticker": {
+          "type": "string"
+        },
+        "recent_filings": {
+          "items": {
+            "$ref": "#/definitions/es.SecFilingSummary"
+          },
+          "type": "array"
+        },
+        "revenue_band": {
+          "type": "string"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "seed_source": {
+          "type": "string"
+        },
+        "sic": {
+          "type": "string"
+        },
+        "sic_description": {
+          "type": "string"
+        },
+        "state_of_incorporation": {
+          "type": "string"
+        },
+        "submissions_synced_at": {
+          "type": "string"
+        },
+        "tickers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "es.SecFilingSummary": {
+      "properties": {
+        "accession_number": {
+          "type": "string"
+        },
+        "filing_date": {
+          "type": "string"
+        },
+        "form": {
+          "type": "string"
+        },
+        "primary_doc_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.SecFinancialsHistoryPoint": {
+      "properties": {
+        "cik": {
+          "type": "integer"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "end_date": {
+          "type": "string"
+        },
+        "fiscal_period": {
+          "description": "e.g. FY, Q1..Q4",
+          "type": "string"
+        },
+        "fiscal_year": {
+          "type": "integer"
+        },
+        "form": {
+          "type": "string"
+        },
+        "lines": {
+          "additionalProperties": {
+            "format": "float64",
+            "type": "number"
+          },
+          "type": "object"
+        },
+        "period": {
+          "description": "annual | quarterly",
+          "type": "string"
+        },
+        "ratios": {
+          "additionalProperties": {
+            "format": "float64",
+            "type": "number"
+          },
+          "type": "object"
+        },
+        "statement": {
+          "description": "income | balance | cash_flow",
+          "type": "string"
+        },
+        "synced_at": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.SecInsiderTransactionRecord": {
+      "properties": {
+        "accession_number": {
+          "type": "string"
+        },
+        "acquired_or_disposed": {
+          "type": "string"
+        },
+        "cik": {
+          "type": "integer"
+        },
+        "code": {
+          "type": "string"
+        },
+        "filing_date": {
+          "type": "string"
+        },
+        "filing_url": {
+          "type": "string"
+        },
+        "form": {
+          "type": "string"
+        },
+        "is_director": {
+          "type": "boolean"
+        },
+        "is_officer": {
+          "type": "boolean"
+        },
+        "is_ten_percent_owner": {
+          "type": "boolean"
+        },
+        "owner_name": {
+          "type": "string"
+        },
+        "owner_title": {
+          "type": "string"
+        },
+        "price_per_share": {
+          "type": "number"
+        },
+        "security_title": {
+          "type": "string"
+        },
+        "shares": {
+          "type": "number"
+        },
+        "shares_owned_after": {
+          "type": "number"
+        },
+        "synced_at": {
+          "type": "string"
+        },
+        "transaction_date": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.SecInstitutionalPositionRecord": {
+      "properties": {
+        "accession_number": {
+          "type": "string"
+        },
+        "cusip": {
+          "type": "string"
+        },
+        "filing_date": {
+          "type": "string"
+        },
+        "investment_discretion": {
+          "type": "string"
+        },
+        "issuer_name": {
+          "type": "string"
+        },
+        "manager_cik": {
+          "type": "integer"
+        },
+        "manager_name": {
+          "type": "string"
+        },
+        "put_call": {
+          "type": "string"
+        },
+        "report_date": {
+          "type": "string"
+        },
+        "share_type": {
+          "type": "string"
+        },
+        "shares": {
+          "type": "number"
+        },
+        "synced_at": {
+          "type": "string"
+        },
+        "title_of_class": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "es.SecInstitutionalPositionsFacetItem": {
       "properties": {
         "count": {
           "type": "integer"
@@ -17203,6 +18036,141 @@
           "type": "integer"
         },
         "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.XUserDatasetFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.XUserDatasetItem": {
+      "properties": {
+        "avatar_url": {
+          "type": "string"
+        },
+        "banner_url": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "external_url": {
+          "type": "string"
+        },
+        "follower_following_ratio": {
+          "type": "number"
+        },
+        "followers": {
+          "type": "integer"
+        },
+        "following": {
+          "type": "integer"
+        },
+        "has_bio": {
+          "type": "boolean"
+        },
+        "has_external_url": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "is_blue_verified": {
+          "type": "boolean"
+        },
+        "location_raw": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "posts": {
+          "type": "integer"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "source_tier": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.XUserRecord": {
+      "properties": {
+        "avatar_url": {
+          "type": "string"
+        },
+        "banner_url": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "external_url": {
+          "type": "string"
+        },
+        "follower_following_ratio": {
+          "type": "number"
+        },
+        "followers": {
+          "type": "integer"
+        },
+        "following": {
+          "type": "integer"
+        },
+        "has_bio": {
+          "type": "boolean"
+        },
+        "has_external_url": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "is_blue_verified": {
+          "type": "boolean"
+        },
+        "location_raw": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "posts": {
+          "type": "integer"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "source_tier": {
+          "type": "string"
+        },
+        "username": {
           "type": "string"
         }
       },
@@ -38289,6 +39257,10 @@
     },
     "sec.SubmissionsResponse": {
       "properties": {
+        "category": {
+          "example": "Large accelerated filer",
+          "type": "string"
+        },
         "cik": {
           "example": 320193,
           "type": "integer"
@@ -38300,9 +39272,32 @@
         "count": {
           "type": "integer"
         },
+        "entity_type": {
+          "example": "operating",
+          "type": "string"
+        },
+        "exchanges": {
+          "example": [
+            "Nasdaq"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "filings": {
           "items": {
             "$ref": "#/definitions/sec.Filing"
+          },
+          "type": "array"
+        },
+        "fiscal_year_end": {
+          "example": "0930",
+          "type": "string"
+        },
+        "former_names": {
+          "items": {
+            "type": "string"
           },
           "type": "array"
         },
@@ -38317,6 +39312,10 @@
           "type": "string"
         },
         "source_url": {
+          "type": "string"
+        },
+        "state_of_incorporation": {
+          "example": "CA",
           "type": "string"
         },
         "tickers": {
@@ -46279,6 +47278,945 @@
       },
       "type": "object"
     },
+    "tcdb.BirthdaysResponse": {
+      "properties": {
+        "day": {
+          "example": 8,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "example": "2026-06-08T09:20:00Z",
+          "type": "string"
+        },
+        "label": {
+          "example": "Born on June 8",
+          "type": "string"
+        },
+        "month": {
+          "example": 6,
+          "type": "integer"
+        },
+        "people": {
+          "items": {
+            "$ref": "#/definitions/tcdb.PersonRef"
+          },
+          "type": "array"
+        },
+        "public_page_derived": {
+          "example": true,
+          "type": "boolean"
+        },
+        "source_url": {
+          "example": "https://www.tcdb.com/Birthdays.cfm?Date=6-8-2026",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.CardList": {
+      "properties": {
+        "card_id": {
+          "example": "2987774",
+          "type": "string"
+        },
+        "image_urls": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "example": "Michael Jordan CL",
+          "type": "string"
+        },
+        "number": {
+          "example": "1",
+          "type": "string"
+        },
+        "path": {
+          "example": "/ViewCard.cfm/sid/2066/cid/2987774/1986-Star-Michael-Jordan-1-Michael-Jordan",
+          "type": "string"
+        },
+        "person_urls": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "set_id": {
+          "example": "2066",
+          "type": "string"
+        },
+        "team": {
+          "example": "Chicago Bulls",
+          "type": "string"
+        },
+        "team_url": {
+          "example": "https://www.tcdb.com/Team.cfm/tid/67/Chicago-Bulls",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.tcdb.com/ViewCard.cfm/sid/2066/cid/2987774/1986-Star-Michael-Jordan-1-Michael-Jordan",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.CardOfTheDayResponse": {
+      "properties": {
+        "cards": {
+          "items": {
+            "$ref": "#/definitions/tcdb.DailyCard"
+          },
+          "type": "array"
+        },
+        "fetched_at": {
+          "example": "2026-06-08T09:20:00Z",
+          "type": "string"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "public_page_derived": {
+          "example": true,
+          "type": "boolean"
+        },
+        "source_url": {
+          "example": "https://www.tcdb.com/CardoftheDay.cfm",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.CardResponse": {
+      "properties": {
+        "back_image_url": {
+          "example": "https://www.tcdb.com/Images/Large/Basketball/2066/2066-2987774RepBk.jpg",
+          "type": "string"
+        },
+        "card_id": {
+          "example": "2987774",
+          "type": "string"
+        },
+        "category": {
+          "example": "Basketball",
+          "type": "string"
+        },
+        "fetched_at": {
+          "example": "2026-06-08T09:20:00Z",
+          "type": "string"
+        },
+        "front_image_url": {
+          "example": "https://www.tcdb.com/Images/Large/Basketball/2066/2066-2987774RepFr.jpg",
+          "type": "string"
+        },
+        "image_urls": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "example": "Michael Jordan CL",
+          "type": "string"
+        },
+        "number": {
+          "example": "1",
+          "type": "string"
+        },
+        "public_page_derived": {
+          "example": true,
+          "type": "boolean"
+        },
+        "set_id": {
+          "example": "2066",
+          "type": "string"
+        },
+        "set_path": {
+          "example": "/ViewSet.cfm/sid/2066/1986-Star-Michael-Jordan",
+          "type": "string"
+        },
+        "set_title": {
+          "example": "1986 Star Michael Jordan",
+          "type": "string"
+        },
+        "set_url": {
+          "example": "https://www.tcdb.com/ViewSet.cfm/sid/2066/1986-Star-Michael-Jordan",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://www.tcdb.com/ViewCard.cfm/sid/2066/cid/2987774/1986-Star-Michael-Jordan-1-Michael-Jordan",
+          "type": "string"
+        },
+        "tags": {
+          "example": [
+            "Practice Jersey"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "team": {
+          "example": "Chicago Bulls",
+          "type": "string"
+        },
+        "title": {
+          "example": "#1 - Michael Jordan CL - Chicago Bulls",
+          "type": "string"
+        },
+        "year": {
+          "example": "1986",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.CompaniesResponse": {
+      "properties": {
+        "companies": {
+          "items": {
+            "$ref": "#/definitions/tcdb.Company"
+          },
+          "type": "array"
+        },
+        "fetched_at": {
+          "example": "2026-06-08T09:20:00Z",
+          "type": "string"
+        },
+        "public_page_derived": {
+          "example": true,
+          "type": "boolean"
+        },
+        "source_url": {
+          "example": "https://www.tcdb.com/CardCompanies.cfm",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.Company": {
+      "properties": {
+        "links": {
+          "items": {
+            "$ref": "#/definitions/tcdb.CompanyLink"
+          },
+          "type": "array"
+        },
+        "name": {
+          "example": "Choice Sports Cards",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.CompanyLink": {
+      "properties": {
+        "label": {
+          "example": "Website",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.choicesportscards.com",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.DailyCard": {
+      "properties": {
+        "card_id": {
+          "example": "16431579",
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "date": {
+          "example": "Monday, June 8, 2026",
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "path": {
+          "example": "/ViewCard.cfm/sid/8702/cid/16431579/1988-O-Pee-Chee-Stickers-58-291",
+          "type": "string"
+        },
+        "set_id": {
+          "example": "8702",
+          "type": "string"
+        },
+        "set_path": {
+          "example": "/ViewSet.cfm/sid/8702/1988-O-Pee-Chee-Stickers",
+          "type": "string"
+        },
+        "set_title": {
+          "example": "1988 O-Pee-Chee Stickers",
+          "type": "string"
+        },
+        "set_url": {
+          "example": "https://www.tcdb.com/ViewSet.cfm/sid/8702/1988-O-Pee-Chee-Stickers",
+          "type": "string"
+        },
+        "title": {
+          "example": "#58 / 291 Keith Moreland / Richard Dotson",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.tcdb.com/ViewCard.cfm/sid/8702/cid/16431579/1988-O-Pee-Chee-Stickers-58-291",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.EntityCard": {
+      "properties": {
+        "card_id": {
+          "example": "17837465",
+          "type": "string"
+        },
+        "image_urls": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "path": {
+          "example": "/ViewCard.cfm/sid/295795/cid/17837465/1982-92-Nike-Poster-Cards-5x7-290837-Michael-Jordan",
+          "type": "string"
+        },
+        "set_id": {
+          "example": "295795",
+          "type": "string"
+        },
+        "title": {
+          "example": "1982-92 Nike Poster Cards 5x7 #290837 Michael Jordan / Spike Lee",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.tcdb.com/ViewCard.cfm/sid/295795/cid/17837465/1982-92-Nike-Poster-Cards-5x7-290837-Michael-Jordan",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.PersonRef": {
+      "properties": {
+        "id": {
+          "example": "7391",
+          "type": "string"
+        },
+        "name": {
+          "example": "Michael Jordan",
+          "type": "string"
+        },
+        "path": {
+          "example": "/Person.cfm/pid/7391/Michael-Jordan",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.tcdb.com/Person.cfm/pid/7391/Michael-Jordan",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.PersonResponse": {
+      "properties": {
+        "cards": {
+          "items": {
+            "$ref": "#/definitions/tcdb.EntityCard"
+          },
+          "type": "array"
+        },
+        "category": {
+          "example": "Basketball",
+          "type": "string"
+        },
+        "fetched_at": {
+          "example": "2026-06-08T09:20:00Z",
+          "type": "string"
+        },
+        "id": {
+          "example": "7391",
+          "type": "string"
+        },
+        "name": {
+          "example": "Michael Jordan",
+          "type": "string"
+        },
+        "public_page_derived": {
+          "example": true,
+          "type": "boolean"
+        },
+        "source_url": {
+          "example": "https://www.tcdb.com/Person.cfm/pid/7391/Michael-Jordan",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.ReleaseEntry": {
+      "properties": {
+        "date": {
+          "example": "Jun 3",
+          "type": "string"
+        },
+        "month": {
+          "example": "June 2026",
+          "type": "string"
+        },
+        "path": {
+          "example": "/ViewSet.cfm/sid/629987/2026-Fleer-Ultra",
+          "type": "string"
+        },
+        "set_id": {
+          "example": "629987",
+          "type": "string"
+        },
+        "title": {
+          "example": "2026 Fleer Ultra Golf",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.tcdb.com/ViewSet.cfm/sid/629987/2026-Fleer-Ultra",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.ReleasesResponse": {
+      "properties": {
+        "fetched_at": {
+          "example": "2026-06-08T09:20:00Z",
+          "type": "string"
+        },
+        "public_page_derived": {
+          "example": true,
+          "type": "boolean"
+        },
+        "releases": {
+          "items": {
+            "$ref": "#/definitions/tcdb.ReleaseEntry"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "example": "https://www.tcdb.com/ReleaseDates.cfm",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.SearchGroup": {
+      "properties": {
+        "kind": {
+          "example": "set",
+          "type": "string"
+        },
+        "label": {
+          "example": "Sets",
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/tcdb.SearchResult"
+          },
+          "type": "array"
+        },
+        "total_count": {
+          "example": 291,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.SearchResponse": {
+      "properties": {
+        "category": {
+          "example": "Basketball",
+          "type": "string"
+        },
+        "fetched_at": {
+          "example": "2026-06-08T09:20:00Z",
+          "type": "string"
+        },
+        "groups": {
+          "items": {
+            "$ref": "#/definitions/tcdb.SearchGroup"
+          },
+          "type": "array"
+        },
+        "limit": {
+          "example": 10,
+          "type": "integer"
+        },
+        "public_page_derived": {
+          "example": true,
+          "type": "boolean"
+        },
+        "query": {
+          "example": "Michael Jordan",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://www.tcdb.com/Search.cfm?SearchCategory=Basketball&q=Michael+Jordan",
+          "type": "string"
+        },
+        "top_match": {
+          "$ref": "#/definitions/tcdb.SearchResult"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.SearchResult": {
+      "properties": {
+        "id": {
+          "example": "2066",
+          "type": "string"
+        },
+        "kind": {
+          "example": "set",
+          "type": "string"
+        },
+        "path": {
+          "example": "/ViewSet.cfm/sid/2066/1986-Star-Michael-Jordan",
+          "type": "string"
+        },
+        "title": {
+          "example": "1986 Star Michael Jordan",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.tcdb.com/ViewSet.cfm/sid/2066/1986-Star-Michael-Jordan",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.SetResponse": {
+      "properties": {
+        "cards": {
+          "items": {
+            "$ref": "#/definitions/tcdb.CardList"
+          },
+          "type": "array"
+        },
+        "category": {
+          "example": "Basketball",
+          "type": "string"
+        },
+        "fetched_at": {
+          "example": "2026-06-08T09:20:00Z",
+          "type": "string"
+        },
+        "id": {
+          "example": "2066",
+          "type": "string"
+        },
+        "public_page_derived": {
+          "example": true,
+          "type": "boolean"
+        },
+        "rating": {
+          "example": "7.1 (7 ratings)",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://www.tcdb.com/ViewSet.cfm/sid/2066/1986-Star-Michael-Jordan",
+          "type": "string"
+        },
+        "title": {
+          "example": "1986 Star Michael Jordan",
+          "type": "string"
+        },
+        "total_cards": {
+          "example": 10,
+          "type": "integer"
+        },
+        "year": {
+          "example": "1986",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.SetsListing": {
+      "properties": {
+        "id": {
+          "example": "2063",
+          "type": "string"
+        },
+        "path": {
+          "example": "/ViewSet.cfm/sid/2063/1986-Star-Best-of-the-Best",
+          "type": "string"
+        },
+        "title": {
+          "example": "1986 Star Best of the Best",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.tcdb.com/ViewSet.cfm/sid/2063/1986-Star-Best-of-the-Best",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.SetsResponse": {
+      "properties": {
+        "fetched_at": {
+          "example": "2026-06-08T09:20:00Z",
+          "type": "string"
+        },
+        "public_page_derived": {
+          "example": true,
+          "type": "boolean"
+        },
+        "sets": {
+          "items": {
+            "$ref": "#/definitions/tcdb.SetsListing"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "example": "https://www.tcdb.com/ViewAll.cfm/sp/Basketball/year/1986",
+          "type": "string"
+        },
+        "sport": {
+          "example": "Basketball",
+          "type": "string"
+        },
+        "year": {
+          "example": "1986",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.TaggedResponse": {
+      "properties": {
+        "cards": {
+          "items": {
+            "$ref": "#/definitions/tcdb.EntityCard"
+          },
+          "type": "array"
+        },
+        "fetched_at": {
+          "example": "2026-06-08T09:20:00Z",
+          "type": "string"
+        },
+        "id": {
+          "example": "111",
+          "type": "string"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "public_page_derived": {
+          "example": true,
+          "type": "boolean"
+        },
+        "source_url": {
+          "example": "https://www.tcdb.com/Tagged.cfm/tid/111/Practice-Jersey",
+          "type": "string"
+        },
+        "sport": {
+          "example": "Basketball",
+          "type": "string"
+        },
+        "tag": {
+          "example": "Practice Jersey",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.TeamResponse": {
+      "properties": {
+        "cards": {
+          "items": {
+            "$ref": "#/definitions/tcdb.EntityCard"
+          },
+          "type": "array"
+        },
+        "category": {
+          "example": "Basketball",
+          "type": "string"
+        },
+        "fetched_at": {
+          "example": "2026-06-08T09:20:00Z",
+          "type": "string"
+        },
+        "id": {
+          "example": "67",
+          "type": "string"
+        },
+        "name": {
+          "example": "Chicago Bulls",
+          "type": "string"
+        },
+        "public_page_derived": {
+          "example": true,
+          "type": "boolean"
+        },
+        "source_url": {
+          "example": "https://www.tcdb.com/Team.cfm/tid/67/Chicago-Bulls",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.TopSetEntry": {
+      "properties": {
+        "path": {
+          "example": "/ViewSet.cfm/sid/37/1956-Topps",
+          "type": "string"
+        },
+        "rank": {
+          "example": 1,
+          "type": "integer"
+        },
+        "rating": {
+          "example": "8.8",
+          "type": "string"
+        },
+        "set_id": {
+          "example": "37",
+          "type": "string"
+        },
+        "title": {
+          "example": "1956 Topps Baseball",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.tcdb.com/ViewSet.cfm/sid/37/1956-Topps",
+          "type": "string"
+        },
+        "votes": {
+          "example": 155,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.TopSetsResponse": {
+      "properties": {
+        "fetched_at": {
+          "example": "2026-06-08T09:20:00Z",
+          "type": "string"
+        },
+        "public_page_derived": {
+          "example": true,
+          "type": "boolean"
+        },
+        "sets": {
+          "items": {
+            "$ref": "#/definitions/tcdb.TopSetEntry"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "example": "https://www.tcdb.com/TopSets.cfm",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.birthdaysResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tcdb.BirthdaysResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.cardOfTheDayResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tcdb.CardOfTheDayResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.cardResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tcdb.CardResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.companiesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tcdb.CompaniesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.personResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tcdb.PersonResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.releasesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tcdb.ReleasesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tcdb.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.setResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tcdb.SetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.setsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tcdb.SetsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.taggedResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tcdb.TaggedResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.teamResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tcdb.TeamResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tcdb.topSetsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tcdb.TopSetsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "techstack.Result": {
       "properties": {
         "categories": {
@@ -53102,6 +55040,117 @@
       ],
       "type": "object"
     },
+    "web.billingRejectionDoc": {
+      "properties": {
+        "credit_cost": {
+          "description": "credit_cost is what the rejected request would have cost. Credit rejections only.",
+          "example": 1,
+          "type": "integer"
+        },
+        "credits_included": {
+          "description": "credits_included is the plan's credit allowance for the period. Credit rejections only.",
+          "example": 2000,
+          "type": "integer"
+        },
+        "credits_remaining": {
+          "description": "credits_remaining is what is left this period. Credit rejections only.",
+          "example": 0,
+          "type": "integer"
+        },
+        "credits_used": {
+          "description": "credits_used is credits spent so far this period. Credit rejections only.",
+          "example": 2000,
+          "type": "integer"
+        },
+        "daily_credit_limit": {
+          "description": "daily_credit_limit is the plan's daily cap; 0 means no daily cap. Credit rejections only.",
+          "example": 500,
+          "type": "integer"
+        },
+        "daily_credits_remaining": {
+          "description": "daily_credits_remaining is what is left today (UTC). Credit rejections only.",
+          "example": 0,
+          "type": "integer"
+        },
+        "daily_credits_used": {
+          "description": "daily_credits_used is credits spent so far today (UTC). Credit rejections only.",
+          "example": 500,
+          "type": "integer"
+        },
+        "message": {
+          "description": "message is a human-readable explanation of the rejection.",
+          "example": "Your Free plan's 2000 monthly credits are used up. They reset at 2026-08-02T00:00:00Z.",
+          "type": "string"
+        },
+        "plan": {
+          "description": "plan is the caller's current plan.",
+          "example": "Free",
+          "type": "string"
+        },
+        "rate_limit_per_minute": {
+          "description": "rate_limit_per_minute is the plan's request rate. rate_limited only.",
+          "example": 5,
+          "type": "integer"
+        },
+        "reason": {
+          "description": "reason identifies the limit that was hit.",
+          "enum": [
+            "insufficient_credits",
+            "daily_credit_limit",
+            "rate_limited"
+          ],
+          "example": "insufficient_credits",
+          "type": "string"
+        },
+        "reset_scope": {
+          "description": "reset_scope names the window that clears this rejection.",
+          "enum": [
+            "daily",
+            "monthly",
+            "minute"
+          ],
+          "example": "monthly",
+          "type": "string"
+        },
+        "resets_at": {
+          "description": "resets_at is when that window next rolls over, so the caller knows when\nrequests will succeed again without any action.",
+          "example": "2026-08-02T00:00:00Z",
+          "type": "string"
+        },
+        "retry_after_seconds": {
+          "description": "retry_after_seconds is how long to wait before retrying. Matches the\nRetry-After response header. rate_limited only.",
+          "example": 12,
+          "type": "integer"
+        },
+        "suggested_plan": {
+          "description": "suggested_plan is the cheapest plan that would cover the caller's observed\nusage. Omitted when no higher plan applies.",
+          "example": "Starter",
+          "type": "string"
+        },
+        "upgrade_url": {
+          "description": "upgrade_url is where to change plan.",
+          "example": "https://crawlora.net/pricing",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "web.billingRejectionResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 402,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/web.billingRejectionDoc"
+        },
+        "msg": {
+          "example": "Payment Required",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "web.scrapeResponseDoc": {
       "properties": {
         "code": {
@@ -58070,11 +60119,11 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns normalized app metadata from the App Store lookup API. Provide either `id` or `app_id`.",
+        "description": "Returns normalized app metadata from the App Store lookup API. Provide either `id` (numeric track ID) or `app_id` (bundle ID).",
         "operationId": "appstore-app",
         "parameters": [
           {
-            "description": "App Store track ID",
+            "description": "App Store numeric track ID (digits only)",
             "example": "553834731",
             "in": "query",
             "name": "id",
@@ -58332,7 +60381,7 @@
         "operationId": "appstore-privacy",
         "parameters": [
           {
-            "description": "App Store track ID",
+            "description": "App Store numeric track ID (digits only)",
             "example": "324684580",
             "in": "path",
             "name": "id",
@@ -58409,7 +60458,7 @@
         "operationId": "appstore-ratings",
         "parameters": [
           {
-            "description": "App Store track ID",
+            "description": "App Store numeric track ID (digits only)",
             "example": "553834731",
             "in": "query",
             "name": "id",
@@ -58488,11 +60537,11 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns one page of customer reviews for an app. Provide either `id` or `app_id`.",
+        "description": "Returns one page of customer reviews for an app. Provide either `id` (numeric track ID) or `app_id` (bundle ID).",
         "operationId": "appstore-reviews",
         "parameters": [
           {
-            "description": "App Store track ID",
+            "description": "App Store numeric track ID (digits only)",
             "example": "553834731",
             "in": "query",
             "name": "id",
@@ -58555,7 +60604,7 @@
             }
           },
           "404": {
-            "description": "App not found",
+            "description": "App not found, or not published in the requested storefront",
             "schema": {
               "$ref": "#/definitions/app.Response"
             }
@@ -58681,11 +60730,11 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns the related apps shown on the App Store product page. Provide either `id` or `app_id`.",
+        "description": "Returns the related apps shown on the App Store product page. Provide either `id` (numeric track ID) or `app_id` (bundle ID).",
         "operationId": "appstore-similar",
         "parameters": [
           {
-            "description": "App Store track ID",
+            "description": "App Store numeric track ID (digits only)",
             "example": "553834731",
             "in": "query",
             "name": "id",
@@ -58832,7 +60881,7 @@
         "operationId": "appstore-version-history",
         "parameters": [
           {
-            "description": "App Store track ID",
+            "description": "App Store numeric track ID (digits only)",
             "example": "553834731",
             "in": "path",
             "name": "id",
@@ -66629,11 +68678,11 @@
     },
     "/datasets/chrome-extensions/changes": {
       "get": {
-        "description": "Returns recent change observations. Change type enum: `users`, `rating`, `rating_count`, `version`, `permissions`, `privacy`, `status`.",
+        "description": "Returns recent change observations. Change type enum: `users`, `rating`, `rating_count`, `version`, `developer`, `permissions`, `privacy`, `status`.",
         "operationId": "datasets-chrome-extensions-changes",
         "parameters": [
           {
-            "description": "Change type enum: users, rating, rating_count, version, permissions, privacy, status",
+            "description": "Change type enum: users, rating, rating_count, version, developer, permissions, privacy, status",
             "in": "query",
             "name": "change_type",
             "type": "string"
@@ -66687,11 +68736,11 @@
     },
     "/datasets/chrome-extensions/facets": {
       "get": {
-        "description": "Returns aggregation buckets. Facet enum: `item_type`, `category`, `developer`, `manifest_version`, `permission`, `status`, `collects_data`, `has_broad_host_access`. Item type enum: `extension`, `theme`, `app`, `unknown`. Search sort, status and manifest-version enums match the search endpoint.",
+        "description": "Returns aggregation buckets. Facet enum: `item_type`, `category`, `developer`, `developer_email`, `manifest_version`, `permission`, `status`, `collects_data`, `has_broad_host_access`. Item type enum: `extension`, `theme`, `app`, `unknown`. Search sort, status and manifest-version enums match the search endpoint.",
         "operationId": "datasets-chrome-extensions-facets",
         "parameters": [
           {
-            "description": "Facet enum: item_type, category, developer, manifest_version, permission, status, collects_data, has_broad_host_access",
+            "description": "Facet enum: item_type, category, developer, developer_email, manifest_version, permission, status, collects_data, has_broad_host_access",
             "in": "query",
             "name": "facet",
             "required": true,
@@ -66719,6 +68768,12 @@
             "description": "Exact developer",
             "in": "query",
             "name": "developer",
+            "type": "string"
+          },
+          {
+            "description": "Exact developer email",
+            "in": "query",
+            "name": "developer_email",
             "type": "string"
           },
           {
@@ -67034,6 +69089,12 @@
             "type": "string"
           },
           {
+            "description": "Exact disclosed developer email",
+            "in": "query",
+            "name": "developer_email",
+            "type": "string"
+          },
+          {
             "description": "Exact declared permission",
             "in": "query",
             "name": "permission",
@@ -67167,6 +69228,12 @@
             "description": "Exact developer",
             "in": "query",
             "name": "developer",
+            "type": "string"
+          },
+          {
+            "description": "Exact developer email",
+            "in": "query",
+            "name": "developer_email",
             "type": "string"
           },
           {
@@ -68933,6 +71000,305 @@
         ]
       }
     },
+    "/datasets/jobs/companies": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches the discovered company board registry — which companies are hiring, on which ATS, with how many open roles. status enum: `active`, `empty`, `gone`, `blocked`, `pending`. sort enum: `open_desc`, `company_asc`, `crawled_desc`.",
+        "operationId": "datasets-jobs-companies",
+        "parameters": [
+          {
+            "description": "Match on company name / domain",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "ATS provider filter",
+            "in": "query",
+            "name": "provider",
+            "type": "string"
+          },
+          {
+            "description": "Board status. Enum: active, empty, gone, blocked, pending",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "Minimum open roles",
+            "in": "query",
+            "name": "min_open_roles",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: open_desc, company_asc, crawled_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, default 20, max 100",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.jobsCompaniesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Find which companies are hiring (jobs board registry)",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/jobs/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Aggregations over all open postings: top companies hiring, breakdown by ATS provider, department, location, employment type, and the remote share — a live hiring-market snapshot.",
+        "operationId": "datasets-jobs-facets",
+        "parameters": [
+          {
+            "description": "Buckets per facet, default 20, max 100",
+            "in": "query",
+            "name": "size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.jobsFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet the jobs dataset (hiring market aggregates)",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/jobs/items/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one crawled job posting by its dataset posting id. Returns 404 when absent.",
+        "operationId": "datasets-jobs-item",
+        "parameters": [
+          {
+            "description": "Dataset posting id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.jobsItemResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a single posting from the jobs dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/jobs/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Full-text + faceted search over every job posting crawled from every discovered company ATS board (Greenhouse, Lever, Ashby, Workday, SmartRecruiters, Workable, Recruitee, Rippling, Personio, Teamtailor, Oracle, UKG). Open roles only by default (set include_closed=true for historical/filled roles). provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`. sort enum: `relevance`, `posted_desc`, `company_asc`.",
+        "operationId": "datasets-jobs-search",
+        "parameters": [
+          {
+            "description": "Full-text over title, company, description",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Company name match",
+            "in": "query",
+            "name": "company",
+            "type": "string"
+          },
+          {
+            "description": "ATS provider filter. Enum: greenhouse, lever, ashby, workday, smartrecruiters, workable, recruitee, rippling, personio, teamtailor, oracle, ukg",
+            "in": "query",
+            "name": "provider",
+            "type": "string"
+          },
+          {
+            "description": "Exact department filter",
+            "in": "query",
+            "name": "department",
+            "type": "string"
+          },
+          {
+            "description": "Location match",
+            "in": "query",
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "description": "Exact employment-type filter",
+            "in": "query",
+            "name": "employment_type",
+            "type": "string"
+          },
+          {
+            "description": "Filter by remote (true or false)",
+            "in": "query",
+            "name": "remote",
+            "type": "boolean"
+          },
+          {
+            "description": "Include closed/filled roles (default false = open only)",
+            "in": "query",
+            "name": "include_closed",
+            "type": "boolean"
+          },
+          {
+            "description": "Sort enum: relevance, posted_desc, company_asc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, default 20, max 100; page*page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.jobsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the jobs dataset (all companies' live postings)",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
     "/datasets/journalists/facets": {
       "get": {
         "consumes": [
@@ -68961,7 +71327,7 @@
             "type": "string"
           },
           {
-            "description": "Exact beat-vertical filter. Enum: tech, crypto, marketing, consumer_tech, consumer_policy, cybersecurity, health, gaming, climate, tech_independent, culture_independent",
+            "description": "Exact beat-vertical filter. Enum: tech, crypto, marketing, consumer_tech, consumer_policy, cybersecurity, health, gaming, climate, business, entertainment, sports, legal, science, politics, real_estate, automotive, travel, food, education, design, film_tv, fashion, music, personal_finance, tech_independent, culture_independent, local_news",
             "in": "query",
             "name": "vertical",
             "type": "string"
@@ -69093,7 +71459,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches the journalists index (dataset id enum value `journalists`) — public journalist and reporter contact records crawled from news outlets' own staff/author pages, for PR outreach. Each record carries the outlet, title, best-effort beat topics, and any public contact info (a work email or a social handle) found on that outlet's own page. There is no cross-outlet upstream search; this dataset is built by crawling a curated roster of outlets ourselves. vertical enum: `tech`, `crypto`, `marketing`, `consumer_tech`, `consumer_policy`, `cybersecurity`, `health`, `gaming`, `climate`, `tech_independent`, `culture_independent`. contact_type enum: `email`, `social`, `none`. sort enum: `relevance`, `name_asc`, `outlet_asc`, `crawled_desc`.",
+        "description": "Searches the journalists index (dataset id enum value `journalists`) — public journalist and reporter contact records crawled from news outlets' own staff/author pages, for PR outreach. Each record carries the outlet, title, best-effort beat topics, and any public contact info (a work email or a social handle) found on that outlet's own page. There is no cross-outlet upstream search; this dataset is built by crawling a curated roster of outlets ourselves. vertical enum: `tech`, `crypto`, `marketing`, `consumer_tech`, `consumer_policy`, `cybersecurity`, `health`, `gaming`, `climate`, `business`, `entertainment`, `sports`, `legal`, `science`, `politics`, `real_estate`, `automotive`, `travel`, `food`, `education`, `design`, `film_tv`, `fashion`, `music`, `personal_finance`, `tech_independent`, `culture_independent`, `local_news`. contact_type enum: `email`, `social`, `none`. sort enum: `relevance`, `name_asc`, `outlet_asc`, `crawled_desc`.",
         "operationId": "datasets-journalists-search",
         "parameters": [
           {
@@ -69109,7 +71475,7 @@
             "type": "string"
           },
           {
-            "description": "Exact beat-vertical filter. Enum: tech, crypto, marketing, consumer_tech, consumer_policy, cybersecurity, health, gaming, climate, tech_independent, culture_independent",
+            "description": "Exact beat-vertical filter. Enum: tech, crypto, marketing, consumer_tech, consumer_policy, cybersecurity, health, gaming, climate, business, entertainment, sports, legal, science, politics, real_estate, automotive, travel, food, education, design, film_tv, fashion, music, personal_finance, tech_independent, culture_independent, local_news",
             "in": "query",
             "name": "vertical",
             "type": "string"
@@ -70906,6 +73272,648 @@
           }
         ],
         "summary": "Search the Product Hunt trends dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/sec-companies/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns terms-aggregation counts for one facet of the SEC companies dataset, scoped to the same filters as search. Facet enum: `sic`, `sic_description`, `exchange`, `state_of_incorporation`, `entity_type`, `revenue_band`, `forms_filed`. `revenue_band` buckets latest-annual revenue into: `unknown`, `under_1m`, `1m_10m`, `10m_100m`, `100m_1b`, `1b_10b`, `over_10b`.",
+        "operationId": "datasets-sec-companies-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: sic, sic_description, exchange, state_of_incorporation, entity_type, revenue_band, forms_filed",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query over the company name, or an exact ticker match, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact ticker filter (case-insensitive), max 32 characters",
+            "in": "query",
+            "name": "ticker",
+            "type": "string"
+          },
+          {
+            "description": "Exact SIC industry-code filter, max 32 characters",
+            "in": "query",
+            "name": "sic",
+            "type": "string"
+          },
+          {
+            "description": "Exact exchange filter as reported by EDGAR, max 64 characters",
+            "in": "query",
+            "name": "exchange",
+            "type": "string"
+          },
+          {
+            "description": "Exact state/country-of-incorporation filter, max 32 characters",
+            "in": "query",
+            "name": "state_of_incorporation",
+            "type": "string"
+          },
+          {
+            "description": "Exact entity-type filter, max 64 characters",
+            "in": "query",
+            "name": "entity_type",
+            "type": "string"
+          },
+          {
+            "description": "Minimum latest-annual revenue in USD, 0 or greater",
+            "in": "query",
+            "name": "min_revenue",
+            "type": "number"
+          },
+          {
+            "description": "Exact form-type filter, e.g. 10-K, 8-K",
+            "in": "query",
+            "name": "form_filed",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.secCompaniesFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet the SEC companies dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/sec-companies/financials/{cik}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a company's normalized financial-statement history (income statement, balance sheet, cash flow) from the SEC companies dataset, newest fiscal year first. An unknown CIK or a company with no XBRL data returns an empty series rather than a 404 — most filers without a current ticker have no financial-statement history at all. `lines` keys are the same normalized concept names the live `/sec/financials` endpoint uses (e.g. `revenue`, `net_income`, `total_assets`); `ratios` keys include `gross_margin`, `operating_margin`, `net_margin`, `revenue_growth_yoy`, `current_ratio`, `debt_to_equity`, `free_cash_flow` where derivable. statement enum: `income`, `balance`, `cash_flow`. period enum: `annual`, `quarterly`.",
+        "operationId": "datasets-sec-companies-financials",
+        "parameters": [
+          {
+            "description": "SEC CIK, numeric or zero-padded",
+            "in": "path",
+            "name": "cik",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Statement enum: income, balance, cash_flow. Omit to return all three.",
+            "in": "query",
+            "name": "statement",
+            "type": "string"
+          },
+          {
+            "description": "Period-type enum: annual, quarterly. Omit to return both.",
+            "in": "query",
+            "name": "period",
+            "type": "string"
+          },
+          {
+            "description": "Inclusive lower bound on fiscal_year",
+            "in": "query",
+            "name": "from",
+            "type": "integer"
+          },
+          {
+            "description": "Inclusive upper bound on fiscal_year",
+            "in": "query",
+            "name": "to",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum points returned (most recent fiscal years first), default 100, max 400",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.secCompaniesFinancialsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a SEC company's financial-statement history",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/sec-companies/insider/{cik}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a company's insider (Form 3/4/5) transaction history from the SEC companies dataset, most recent transaction first. An unknown CIK or a company with no reported transactions returns an empty series rather than a 404.",
+        "operationId": "datasets-sec-companies-insider",
+        "parameters": [
+          {
+            "description": "SEC CIK, numeric or zero-padded",
+            "in": "path",
+            "name": "cik",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Inclusive start date (YYYY-MM-DD, UTC) filtering transaction date",
+            "in": "query",
+            "name": "from",
+            "type": "string"
+          },
+          {
+            "description": "Inclusive end date (YYYY-MM-DD, UTC) filtering transaction date",
+            "in": "query",
+            "name": "to",
+            "type": "string"
+          },
+          {
+            "description": "Exact transaction code filter, e.g. P (open-market purchase), S (sale)",
+            "in": "query",
+            "name": "code",
+            "type": "string"
+          },
+          {
+            "description": "Maximum transactions returned (most recent first), default 50, max 200",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.secCompaniesInsiderResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a SEC company's insider-transaction history",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/sec-companies/items/{cik}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one SEC-reporting company by CIK from dataset id `sec-companies`, including its filing-history summary, financial-statement rollups, and trailing-90-day insider-activity summary. Returns 404 when the CIK is not in the dataset.",
+        "operationId": "datasets-sec-companies-item",
+        "parameters": [
+          {
+            "description": "SEC CIK, numeric or zero-padded, e.g. 320193 or 0000320193",
+            "in": "path",
+            "name": "cik",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.secCompaniesItemResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a company from the SEC companies dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/sec-companies/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches SEC-reporting companies stored in a search index — normalized filing history, financial-statement rollups (latest annual/quarterly revenue, net income, total assets) and trailing-90-day insider (Form 3/4/5) activity. Sort enum: `relevance`, `name_asc`, `revenue_desc`, `net_income_desc`, `filing_recent_desc`, `insider_activity_desc`. `entity_type`, `sic`, `sic_description`, `exchange`, and `state_of_incorporation` are open filters over the exact values EDGAR reports for each filer (not a fixed enum) — discover real values via the matching facet.",
+        "operationId": "datasets-sec-companies-search",
+        "parameters": [
+          {
+            "description": "Full-text query over the company name, or an exact ticker match, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact ticker filter (case-insensitive), e.g. AAPL, max 32 characters",
+            "in": "query",
+            "name": "ticker",
+            "type": "string"
+          },
+          {
+            "description": "Exact CIK filter, numeric or zero-padded, e.g. 320193 or 0000320193",
+            "in": "query",
+            "name": "cik",
+            "type": "string"
+          },
+          {
+            "description": "Exact SIC industry-code filter, e.g. 3571, max 32 characters",
+            "in": "query",
+            "name": "sic",
+            "type": "string"
+          },
+          {
+            "description": "Exact SIC description filter, e.g. Electronic Computers, max 128 characters",
+            "in": "query",
+            "name": "sic_description",
+            "type": "string"
+          },
+          {
+            "description": "Exact exchange filter as reported by EDGAR, e.g. Nasdaq, NYSE, max 64 characters",
+            "in": "query",
+            "name": "exchange",
+            "type": "string"
+          },
+          {
+            "description": "Exact state/country-of-incorporation filter as reported by EDGAR, e.g. DE, CA, max 32 characters",
+            "in": "query",
+            "name": "state_of_incorporation",
+            "type": "string"
+          },
+          {
+            "description": "Exact entity-type filter as reported by EDGAR (e.g. operating), max 64 characters",
+            "in": "query",
+            "name": "entity_type",
+            "type": "string"
+          },
+          {
+            "description": "Minimum latest-annual revenue in USD, 0 or greater",
+            "in": "query",
+            "name": "min_revenue",
+            "type": "number"
+          },
+          {
+            "description": "Maximum latest-annual revenue in USD, 0 or greater",
+            "in": "query",
+            "name": "max_revenue",
+            "type": "number"
+          },
+          {
+            "description": "Minimum latest-annual net income in USD (negative allowed)",
+            "in": "query",
+            "name": "min_net_income",
+            "type": "number"
+          },
+          {
+            "description": "Minimum latest-annual total assets in USD, 0 or greater",
+            "in": "query",
+            "name": "min_total_assets",
+            "type": "number"
+          },
+          {
+            "description": "Exact form-type filter; keeps only companies that have ever filed this form, e.g. 10-K, 8-K",
+            "in": "query",
+            "name": "form_filed",
+            "type": "string"
+          },
+          {
+            "description": "Minimum insider (Form 3/4/5) transaction count in the trailing 90 days, 0 or greater",
+            "in": "query",
+            "name": "min_insider_txn_count_90d",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: relevance, name_asc, revenue_desc, net_income_desc, filing_recent_desc, insider_activity_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.secCompaniesSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the SEC companies dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/sec-institutional-positions/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns terms-aggregation counts for one facet of the SEC institutional positions dataset, scoped to the same filters as search. Facet enum: `manager`, `issuer`.",
+        "operationId": "datasets-sec-institutional-positions-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: manager, issuer",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Exact institutional-manager CIK filter, numeric or zero-padded",
+            "in": "query",
+            "name": "manager_cik",
+            "type": "string"
+          },
+          {
+            "description": "Issuer-name text filter (best-effort match), max 256 characters",
+            "in": "query",
+            "name": "issuer_name",
+            "type": "string"
+          },
+          {
+            "description": "Exact CUSIP filter, max 16 characters",
+            "in": "query",
+            "name": "cusip",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.secInstitutionalPositionsFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet the SEC institutional positions dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/sec-institutional-positions/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches institutional investment managers' quarterly 13F portfolio holdings stored in a search index. Filter by manager_cik for a manager's full reported portfolio (an exact, reliable filter), or by issuer_name/cusip for a best-effort view of which managers reported a position in an issuer — SEC publishes no authoritative CUSIP-to-CIK mapping, so the issuer side is never a guaranteed-resolved join. Sort enum: `value_desc`, `value_asc`, `shares_desc`.",
+        "operationId": "datasets-sec-institutional-positions-search",
+        "parameters": [
+          {
+            "description": "Exact institutional-manager CIK filter, numeric or zero-padded",
+            "in": "query",
+            "name": "manager_cik",
+            "type": "string"
+          },
+          {
+            "description": "Issuer-name text filter (best-effort match, not a resolved CIK join), max 256 characters",
+            "in": "query",
+            "name": "issuer_name",
+            "type": "string"
+          },
+          {
+            "description": "Exact CUSIP filter, max 16 characters",
+            "in": "query",
+            "name": "cusip",
+            "type": "string"
+          },
+          {
+            "description": "Sort enum: value_desc, value_asc, shares_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.secInstitutionalPositionsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the SEC institutional positions dataset",
         "tags": [
           "Datasets"
         ]
@@ -72747,6 +75755,365 @@
           }
         ],
         "summary": "Search the TrustMRR dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/x-users/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns terms aggregation counts for the X users dataset. Facet enum: `is_blue_verified`, `has_bio`, `has_external_url`, `source_tier`.",
+        "operationId": "datasets-x-users-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: is_blue_verified, has_bio, has_external_url, source_tier",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query over username, name, bio and location, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact username filter (case-insensitive), max 128 characters",
+            "in": "query",
+            "name": "username",
+            "type": "string"
+          },
+          {
+            "description": "Exact filter for which seed tier discovered this account",
+            "in": "query",
+            "name": "source_tier",
+            "type": "string"
+          },
+          {
+            "description": "Filter by the X blue-check verification flag",
+            "in": "query",
+            "name": "is_blue_verified",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by a non-empty profile bio",
+            "in": "query",
+            "name": "has_bio",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by a linked external URL",
+            "in": "query",
+            "name": "has_external_url",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum follower count",
+            "in": "query",
+            "name": "min_followers",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum follower count",
+            "in": "query",
+            "name": "max_followers",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum follower-to-following ratio",
+            "in": "query",
+            "name": "min_ratio",
+            "type": "number"
+          },
+          {
+            "description": "Maximum follower-to-following ratio",
+            "in": "query",
+            "name": "max_ratio",
+            "type": "number"
+          },
+          {
+            "description": "Accounts created on or after this date (RFC3339 or YYYY-MM-DD)",
+            "in": "query",
+            "name": "created_after",
+            "type": "string"
+          },
+          {
+            "description": "Accounts created on or before this date (RFC3339 or YYYY-MM-DD)",
+            "in": "query",
+            "name": "created_before",
+            "type": "string"
+          },
+          {
+            "description": "Records last refreshed on or after this date (RFC3339 or YYYY-MM-DD)",
+            "in": "query",
+            "name": "crawled_after",
+            "type": "string"
+          },
+          {
+            "description": "Records last refreshed on or before this date (RFC3339 or YYYY-MM-DD)",
+            "in": "query",
+            "name": "crawled_before",
+            "type": "string"
+          },
+          {
+            "description": "Sort enum: relevance, followers_desc, followers_asc, crawled_at_desc, crawled_at_asc, created_at_desc, created_at_asc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.xUsersFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet the X users dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/x-users/items/{username}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one X user record by username from dataset id enum value `x-users`.",
+        "operationId": "datasets-x-users-item",
+        "parameters": [
+          {
+            "description": "X username, with or without a leading @, max 128 characters",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.xUserResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get an X user from the dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/x-users/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches public X (Twitter) user profiles stored in a search index. Sort enum: `relevance`, `followers_desc`, `followers_asc`, `crawled_at_desc`, `crawled_at_asc`, `created_at_desc`, `created_at_asc`.",
+        "operationId": "datasets-x-users-search",
+        "parameters": [
+          {
+            "description": "Full-text query over username, name, bio and location, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact username filter (case-insensitive), max 128 characters",
+            "in": "query",
+            "name": "username",
+            "type": "string"
+          },
+          {
+            "description": "Exact filter for which seed tier discovered this account, e.g. github-users, wikidata, tiktok-creators, journalists",
+            "in": "query",
+            "name": "source_tier",
+            "type": "string"
+          },
+          {
+            "description": "Filter by the X blue-check verification flag",
+            "in": "query",
+            "name": "is_blue_verified",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by a non-empty profile bio",
+            "in": "query",
+            "name": "has_bio",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by a linked external URL",
+            "in": "query",
+            "name": "has_external_url",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum follower count",
+            "in": "query",
+            "name": "min_followers",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum follower count",
+            "in": "query",
+            "name": "max_followers",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum follower-to-following ratio (low values surface follow-spam / bot-like accounts)",
+            "in": "query",
+            "name": "min_ratio",
+            "type": "number"
+          },
+          {
+            "description": "Maximum follower-to-following ratio",
+            "in": "query",
+            "name": "max_ratio",
+            "type": "number"
+          },
+          {
+            "description": "Accounts created on or after this date (RFC3339 or YYYY-MM-DD)",
+            "in": "query",
+            "name": "created_after",
+            "type": "string"
+          },
+          {
+            "description": "Accounts created on or before this date (RFC3339 or YYYY-MM-DD)",
+            "in": "query",
+            "name": "created_before",
+            "type": "string"
+          },
+          {
+            "description": "Records last refreshed on or after this date (RFC3339 or YYYY-MM-DD)",
+            "in": "query",
+            "name": "crawled_after",
+            "type": "string"
+          },
+          {
+            "description": "Records last refreshed on or before this date (RFC3339 or YYYY-MM-DD)",
+            "in": "query",
+            "name": "crawled_before",
+            "type": "string"
+          },
+          {
+            "description": "Sort enum: relevance, followers_desc, followers_asc, crawled_at_desc, crawled_at_asc, created_at_desc, created_at_asc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.xUsersSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the X users dataset",
         "tags": [
           "Datasets"
         ]
@@ -75909,6 +79276,130 @@
           }
         ],
         "summary": "List a GitHub user's recent public activity",
+        "tags": [
+          "GitHub"
+        ]
+      }
+    },
+    "/github/user/{username}/followers": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of the public accounts following a GitHub user.",
+        "operationId": "github-user-followers",
+        "parameters": [
+          {
+            "description": "GitHub username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Page number",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page (max 100)",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped follower list",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or rate limit",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a GitHub user's followers",
+        "tags": [
+          "GitHub"
+        ]
+      }
+    },
+    "/github/user/{username}/following": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of the public accounts a GitHub user follows.",
+        "operationId": "github-user-following",
+        "parameters": [
+          {
+            "description": "GitHub username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Page number",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Results per page (max 100)",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped following list",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or rate limit",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List who a GitHub user follows",
         "tags": [
           "GitHub"
         ]
@@ -81685,7 +85176,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Probes Greenhouse, Lever, Ashby, and SmartRecruiters in parallel for a slug and reports the providers where it resolves to a non-empty board (with the open-role count and board URL). Workday is excluded (its board needs tenant + datacenter + site). Credential-free public ATS JSON.",
+        "description": "Probes Greenhouse, Lever, Ashby, SmartRecruiters, Workable, Recruitee, Rippling, and Teamtailor in parallel for a slug and reports the providers where it resolves to a non-empty board (with the open-role count and board URL). Workday is excluded (its board needs tenant + datacenter + site). Credential-free public ATS JSON.",
         "operationId": "jobs-company-search",
         "parameters": [
           {
@@ -81873,7 +85364,14 @@
               "lever",
               "ashby",
               "workday",
-              "smartrecruiters"
+              "smartrecruiters",
+              "workable",
+              "recruitee",
+              "rippling",
+              "personio",
+              "teamtailor",
+              "oracle",
+              "ukg"
             ],
             "in": "query",
             "name": "provider",
@@ -81887,7 +85385,7 @@
             "type": "string"
           },
           {
-            "description": "lever / smartrecruiters company slug",
+            "description": "lever / smartrecruiters / workable / recruitee / rippling / personio / teamtailor company slug",
             "in": "query",
             "name": "company",
             "type": "string"
@@ -81911,9 +85409,21 @@
             "type": "string"
           },
           {
-            "description": "workday career site",
+            "description": "workday / oracle career site",
             "in": "query",
             "name": "site",
+            "type": "string"
+          },
+          {
+            "description": "oracle cloud host (*.oraclecloud.com)",
+            "in": "query",
+            "name": "host",
+            "type": "string"
+          },
+          {
+            "description": "ukg job-board UUID",
+            "in": "query",
+            "name": "board",
             "type": "string"
           }
         ],
@@ -82096,6 +85606,508 @@
         ]
       }
     },
+    "/jobs/oracle/board": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Lists an Oracle Recruiting Cloud tenant's public requisitions, paged via limit/offset. host and site both come from the careers URL https://{host}/hcmUI/CandidateExperience/en/sites/{site}/ (host must be an *.oraclecloud.com hostname; site looks like CX_1). The listing carries a short description; use the single-job endpoint for full detail. Credential-free public ATS JSON.",
+        "operationId": "jobs-oracle-board",
+        "parameters": [
+          {
+            "description": "Oracle Cloud host (careers URL, *.oraclecloud.com)",
+            "example": "eeho.fa.us2.oraclecloud.com",
+            "in": "query",
+            "name": "host",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Oracle career site number",
+            "example": "CX_1",
+            "in": "query",
+            "name": "site",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Free-text keyword search",
+            "in": "query",
+            "name": "search",
+            "type": "string"
+          },
+          {
+            "description": "Page size, default 25, max 50",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "Page offset, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.boardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List an Oracle Recruiting (ORC) tenant's job board",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/oracle/job": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a single Oracle Recruiting requisition with its full HTML/text description (description, responsibilities, qualifications). id is the requisition Id from a board listing; host/site as in the board endpoint. Credential-free public ATS JSON.",
+        "operationId": "jobs-oracle-job",
+        "parameters": [
+          {
+            "description": "Oracle Cloud host (*.oraclecloud.com)",
+            "example": "eeho.fa.us2.oraclecloud.com",
+            "in": "query",
+            "name": "host",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Oracle career site number",
+            "example": "CX_1",
+            "in": "query",
+            "name": "site",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Oracle requisition Id from a board listing",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.jobResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a single Oracle Recruiting (ORC) requisition",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/personio/feed": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Lists a company's public Personio board feed (XML), normalized to the shared Job shape with detail inline, optionally filtered by department, location, or remote. The company is the Personio subdomain from its careers URL https://{company}.jobs.personio.de/. Credential-free public ATS feed.",
+        "operationId": "jobs-personio-feed",
+        "parameters": [
+          {
+            "description": "Personio subdomain (careers URL)",
+            "example": "getquin",
+            "in": "query",
+            "name": "company",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Filter: department contains",
+            "in": "query",
+            "name": "department",
+            "type": "string"
+          },
+          {
+            "description": "Filter: location contains",
+            "in": "query",
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "description": "Filter by remote (true or false)",
+            "in": "query",
+            "name": "remote",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.boardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a company's Personio job board",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/recruitee/offer": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a single Recruitee offer with its full HTML/text description and structured compensation when the board exposes it. Credential-free public ATS JSON.",
+        "operationId": "jobs-recruitee-offer",
+        "parameters": [
+          {
+            "description": "Recruitee subdomain",
+            "example": "bunq",
+            "in": "query",
+            "name": "company",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Recruitee offer id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.jobResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a single Recruitee offer",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/recruitee/offers": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Lists a company's public Recruitee offers (detail is inline), optionally filtered by department, location, or remote. The company is the Recruitee subdomain from its careers URL https://{company}.recruitee.com/. Credential-free public ATS JSON.",
+        "operationId": "jobs-recruitee-offers",
+        "parameters": [
+          {
+            "description": "Recruitee subdomain (careers URL)",
+            "example": "bunq",
+            "in": "query",
+            "name": "company",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Filter: department contains",
+            "in": "query",
+            "name": "department",
+            "type": "string"
+          },
+          {
+            "description": "Filter: location contains",
+            "in": "query",
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "description": "Filter by remote (true or false)",
+            "in": "query",
+            "name": "remote",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.boardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a company's Recruitee offers",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/rippling/board": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Lists a company's public Rippling board postings (thin listing — title, department, work location). The company is the Rippling board slug from its careers URL https://ats.rippling.com/{company}/jobs. Detail (full description, employment type) is fetched per job via the single-job endpoint. Credential-free public ATS JSON.",
+        "operationId": "jobs-rippling-board",
+        "parameters": [
+          {
+            "description": "Rippling board slug (careers URL)",
+            "example": "rippling",
+            "in": "query",
+            "name": "company",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Filter: department contains",
+            "in": "query",
+            "name": "department",
+            "type": "string"
+          },
+          {
+            "description": "Filter: location contains",
+            "in": "query",
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "description": "Filter by remote (true or false)",
+            "in": "query",
+            "name": "remote",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.boardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a company's Rippling job board",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/rippling/job": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a single Rippling job with its full HTML/text description, employment type, and work locations. The id is the job uuid from a listing. Credential-free public ATS JSON.",
+        "operationId": "jobs-rippling-job",
+        "parameters": [
+          {
+            "description": "Rippling board slug",
+            "example": "rippling",
+            "in": "query",
+            "name": "company",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Rippling job uuid",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.jobResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a single Rippling job",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
     "/jobs/smartrecruiters/posting": {
       "get": {
         "consumes": [
@@ -82224,6 +86236,303 @@
           }
         ],
         "summary": "List a company's SmartRecruiters postings",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/teamtailor/jobs": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Lists a company's public Teamtailor board feed (JSON Feed), normalized to the shared Job shape with detail inline, optionally filtered by department, location, or remote. The company is the Teamtailor subdomain from its careers URL https://{company}.teamtailor.com/. Credential-free public ATS feed.",
+        "operationId": "jobs-teamtailor-jobs",
+        "parameters": [
+          {
+            "description": "Teamtailor subdomain (careers URL)",
+            "example": "oatly",
+            "in": "query",
+            "name": "company",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Filter: department contains",
+            "in": "query",
+            "name": "department",
+            "type": "string"
+          },
+          {
+            "description": "Filter: location contains",
+            "in": "query",
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "description": "Filter by remote (true or false)",
+            "in": "query",
+            "name": "remote",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.boardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a company's Teamtailor job board",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/ukg/board": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Lists a UKG Pro Recruiting (formerly UltiPro) tenant's public opportunities, paged via limit/offset. tenant and board both come from the careers URL https://recruiting.ultipro.com/{tenant}/JobBoard/{board}. Each posting carries a brief description inline (UKG's full detail page is HTML, not JSON). Credential-free public ATS JSON.",
+        "operationId": "jobs-ukg-board",
+        "parameters": [
+          {
+            "description": "UKG tenant code (careers URL)",
+            "example": "BUI1004BMDI",
+            "in": "query",
+            "name": "tenant",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "UKG job-board UUID (careers URL)",
+            "example": "6b442184-52a5-4635-8db5-5aa4bed2a563",
+            "in": "query",
+            "name": "board",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Free-text keyword search",
+            "in": "query",
+            "name": "search",
+            "type": "string"
+          },
+          {
+            "description": "Page size, default 25, max 50",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "Page offset, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.boardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a UKG Pro Recruiting tenant's job board",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/workable/posting": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a single Workable posting with its full HTML/text description. The id is the posting shortcode from a listing. Credential-free public ATS JSON.",
+        "operationId": "jobs-workable-posting",
+        "parameters": [
+          {
+            "description": "Workable account slug",
+            "example": "zego",
+            "in": "query",
+            "name": "company",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Workable posting shortcode",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.jobResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a single Workable posting",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/workable/postings": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Lists a company's public Workable postings, normalized to the shared Job shape, optionally filtered by department, location, or remote. The company is the Workable account slug from its careers URL https://apply.workable.com/{company}/. Detail (full description) is fetched per job via the single-posting endpoint. Credential-free public ATS JSON.",
+        "operationId": "jobs-workable-postings",
+        "parameters": [
+          {
+            "description": "Workable account slug (careers URL)",
+            "example": "zego",
+            "in": "query",
+            "name": "company",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Free-text search",
+            "in": "query",
+            "name": "search",
+            "type": "string"
+          },
+          {
+            "description": "Filter: department contains",
+            "in": "query",
+            "name": "department",
+            "type": "string"
+          },
+          {
+            "description": "Filter: location contains",
+            "in": "query",
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "description": "Filter by remote (true or false)",
+            "in": "query",
+            "name": "remote",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.boardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a company's Workable postings",
         "tags": [
           "Jobs"
         ]
@@ -97843,7 +102152,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns a company's recent SEC filings (form, dates, primary document URL) filtered by form type and date range. Provide cik or ticker. Credential-free public SEC data.",
+        "description": "Returns a company's recent SEC filings (form, dates, primary document URL) filtered by form type and date range, plus company profile fields as reported by EDGAR: entity_type, former_names, exchanges, category, fiscal_year_end, state_of_incorporation. Provide cik or ticker. Credential-free public SEC data.",
         "operationId": "sec-company-submissions",
         "parameters": [
           {
@@ -106196,6 +110505,803 @@
         ]
       }
     },
+    "/tcdb/birthdays": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Fetches the public TCDB Birthdays page for a month and day and returns the people born on that date.",
+        "operationId": "tcdb-birthdays",
+        "parameters": [
+          {
+            "description": "Month, 1-12",
+            "example": 6,
+            "in": "query",
+            "name": "month",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Day of month, 1-31",
+            "example": 8,
+            "in": "query",
+            "name": "day",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Maximum people returned, default 25, max 100",
+            "example": 25,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tcdb.birthdaysResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "summary": "Get people born on a TCDB date",
+        "tags": [
+          "tcdb"
+        ]
+      }
+    },
+    "/tcdb/card": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Fetches a public TCDB card page and returns normalized card metadata, image links, tags, and parent set references.",
+        "operationId": "tcdb-card",
+        "parameters": [
+          {
+            "description": "Numeric TCDB set id. Required with card_id when path or url is omitted.",
+            "example": "2066",
+            "in": "query",
+            "name": "set_id",
+            "type": "string"
+          },
+          {
+            "description": "Numeric TCDB card id. Required with set_id when path or url is omitted.",
+            "example": "2987774",
+            "in": "query",
+            "name": "card_id",
+            "type": "string"
+          },
+          {
+            "description": "TCDB ViewCard path",
+            "example": "/ViewCard.cfm/sid/2066/cid/2987774/1986-Star-Michael-Jordan-1-Michael-Jordan",
+            "in": "query",
+            "name": "path",
+            "type": "string"
+          },
+          {
+            "description": "Absolute https://www.tcdb.com ViewCard URL",
+            "example": "https://www.tcdb.com/ViewCard.cfm/sid/2066/cid/2987774/1986-Star-Michael-Jordan-1-Michael-Jordan",
+            "in": "query",
+            "name": "url",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tcdb.cardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "summary": "Get TCDB card detail",
+        "tags": [
+          "tcdb"
+        ]
+      }
+    },
+    "/tcdb/card-of-the-day": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Fetches the public TCDB Card of the Day feed and returns the dated featured cards with their set, card, member comment, and image.",
+        "operationId": "tcdb-card-of-the-day",
+        "parameters": [
+          {
+            "description": "Result page, default 1",
+            "example": 1,
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum cards returned, default 25, max 100",
+            "example": 25,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tcdb.cardOfTheDayResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "summary": "List TCDB cards of the day",
+        "tags": [
+          "tcdb"
+        ]
+      }
+    },
+    "/tcdb/companies": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Fetches the public TCDB Card Companies directory and returns each manufacturer with its labeled external links.",
+        "operationId": "tcdb-companies",
+        "parameters": [
+          {
+            "description": "Maximum companies returned, default 25, max 100",
+            "example": 25,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tcdb.companiesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "summary": "List TCDB card companies",
+        "tags": [
+          "tcdb"
+        ]
+      }
+    },
+    "/tcdb/person": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Fetches a public TCDB person page and returns the person's normalized identity plus the cards on the visible checklist.",
+        "operationId": "tcdb-person",
+        "parameters": [
+          {
+            "description": "Numeric TCDB person id. Required when path or url is omitted.",
+            "example": "7391",
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "description": "TCDB Person.cfm path",
+            "example": "/Person.cfm/pid/7391/Michael-Jordan",
+            "in": "query",
+            "name": "path",
+            "type": "string"
+          },
+          {
+            "description": "Absolute https://www.tcdb.com Person.cfm URL",
+            "example": "https://www.tcdb.com/Person.cfm/pid/7391/Michael-Jordan",
+            "in": "query",
+            "name": "url",
+            "type": "string"
+          },
+          {
+            "description": "Maximum cards returned, default 25, max 100",
+            "example": 25,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tcdb.personResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "summary": "Get TCDB person card checklist",
+        "tags": [
+          "tcdb"
+        ]
+      }
+    },
+    "/tcdb/releases": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Fetches the public TCDB Release Dates calendar and returns the upcoming and recent set releases with their dates.",
+        "operationId": "tcdb-releases",
+        "parameters": [
+          {
+            "description": "Maximum releases returned, default 25, max 100",
+            "example": 25,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tcdb.releasesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "summary": "List TCDB release dates",
+        "tags": [
+          "tcdb"
+        ]
+      }
+    },
+    "/tcdb/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches TCDB's public server-rendered search page and returns normalized set, card, person, and team links from the selected category.",
+        "operationId": "tcdb-search",
+        "parameters": [
+          {
+            "description": "Search query",
+            "example": "Michael Jordan",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "TCDB category. Allowed values: Baseball, Basketball, Boxing, Cricket, Football, Gaming, Golf, Hockey, Misc Sports, MMA, Multi-Sport, Non-Sport, Racing, Soccer, Tennis, Wrestling",
+            "enum": [
+              "Baseball",
+              "Basketball",
+              "Boxing",
+              "Cricket",
+              "Football",
+              "Gaming",
+              "Golf",
+              "Hockey",
+              "Misc Sports",
+              "MMA",
+              "Multi-Sport",
+              "Non-Sport",
+              "Racing",
+              "Soccer",
+              "Tennis",
+              "Wrestling"
+            ],
+            "example": "Basketball",
+            "in": "query",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "description": "Maximum results per parsed group, default 25, max 100",
+            "example": 10,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tcdb.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "summary": "Search Trading Card Database",
+        "tags": [
+          "tcdb"
+        ]
+      }
+    },
+    "/tcdb/set": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Fetches a public TCDB set page and returns normalized set metadata plus card rows from the visible checklist.",
+        "operationId": "tcdb-set",
+        "parameters": [
+          {
+            "description": "Numeric TCDB set id. Required when path or url is omitted.",
+            "example": "2066",
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "description": "TCDB ViewSet path",
+            "example": "/ViewSet.cfm/sid/2066/1986-Star-Michael-Jordan",
+            "in": "query",
+            "name": "path",
+            "type": "string"
+          },
+          {
+            "description": "Absolute https://www.tcdb.com ViewSet URL",
+            "example": "https://www.tcdb.com/ViewSet.cfm/sid/2066/1986-Star-Michael-Jordan",
+            "in": "query",
+            "name": "url",
+            "type": "string"
+          },
+          {
+            "description": "Maximum cards returned, default 25, max 100",
+            "example": 100,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tcdb.setResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "summary": "Get TCDB set checklist",
+        "tags": [
+          "tcdb"
+        ]
+      }
+    },
+    "/tcdb/sets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Lists the TCDB sets released for a sport and year from the public ViewAll browse.",
+        "operationId": "tcdb-sets",
+        "parameters": [
+          {
+            "description": "TCDB sport. Allowed values: Baseball, Basketball, Boxing, Cricket, Football, Gaming, Golf, Hockey, Misc Sports, MMA, Multi-Sport, Non-Sport, Racing, Soccer, Tennis, Wrestling",
+            "enum": [
+              "Baseball",
+              "Basketball",
+              "Boxing",
+              "Cricket",
+              "Football",
+              "Gaming",
+              "Golf",
+              "Hockey",
+              "Misc Sports",
+              "MMA",
+              "Multi-Sport",
+              "Non-Sport",
+              "Racing",
+              "Soccer",
+              "Tennis",
+              "Wrestling"
+            ],
+            "example": "Basketball",
+            "in": "query",
+            "name": "sport",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "4-digit year",
+            "example": "1986",
+            "in": "query",
+            "name": "year",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum sets returned, default 25, max 100",
+            "example": 25,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tcdb.setsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "summary": "Browse TCDB sets by sport and year",
+        "tags": [
+          "tcdb"
+        ]
+      }
+    },
+    "/tcdb/tagged": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Fetches a public TCDB tag page and returns the tag name plus the cards on the visible page, optionally filtered by sport and paged.",
+        "operationId": "tcdb-tagged",
+        "parameters": [
+          {
+            "description": "Numeric TCDB tag id. Required when path or url is omitted.",
+            "example": "111",
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "description": "TCDB Tagged.cfm path",
+            "example": "/Tagged.cfm/tid/111/Practice-Jersey",
+            "in": "query",
+            "name": "path",
+            "type": "string"
+          },
+          {
+            "description": "Absolute https://www.tcdb.com Tagged.cfm URL",
+            "example": "https://www.tcdb.com/Tagged.cfm/tid/111/Practice-Jersey",
+            "in": "query",
+            "name": "url",
+            "type": "string"
+          },
+          {
+            "description": "Optional sport filter. Allowed values: Baseball, Basketball, Boxing, Cricket, Football, Gaming, Golf, Hockey, Misc Sports, MMA, Multi-Sport, Non-Sport, Racing, Soccer, Tennis, Wrestling",
+            "enum": [
+              "Baseball",
+              "Basketball",
+              "Boxing",
+              "Cricket",
+              "Football",
+              "Gaming",
+              "Golf",
+              "Hockey",
+              "Misc Sports",
+              "MMA",
+              "Multi-Sport",
+              "Non-Sport",
+              "Racing",
+              "Soccer",
+              "Tennis",
+              "Wrestling"
+            ],
+            "example": "Basketball",
+            "in": "query",
+            "name": "sport",
+            "type": "string"
+          },
+          {
+            "description": "Result page, default 1",
+            "example": 1,
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum cards returned, default 25, max 100",
+            "example": 25,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tcdb.taggedResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "summary": "Get TCDB cards by tag",
+        "tags": [
+          "tcdb"
+        ]
+      }
+    },
+    "/tcdb/team": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Fetches a public TCDB team page and returns the team's normalized identity plus the cards on the visible checklist.",
+        "operationId": "tcdb-team",
+        "parameters": [
+          {
+            "description": "Numeric TCDB team id. Required when path or url is omitted.",
+            "example": "67",
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "description": "TCDB Team.cfm path",
+            "example": "/Team.cfm/tid/67/Chicago-Bulls",
+            "in": "query",
+            "name": "path",
+            "type": "string"
+          },
+          {
+            "description": "Absolute https://www.tcdb.com Team.cfm URL",
+            "example": "https://www.tcdb.com/Team.cfm/tid/67/Chicago-Bulls",
+            "in": "query",
+            "name": "url",
+            "type": "string"
+          },
+          {
+            "description": "Maximum cards returned, default 25, max 100",
+            "example": 25,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tcdb.teamResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "summary": "Get TCDB team card checklist",
+        "tags": [
+          "tcdb"
+        ]
+      }
+    },
+    "/tcdb/top-sets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Fetches the public TCDB Top Sets ranking and returns the highest-rated sets with their rank, rating, and vote count.",
+        "operationId": "tcdb-top-sets",
+        "parameters": [
+          {
+            "description": "Maximum sets returned, default 25, max 100",
+            "example": 25,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tcdb.topSetsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "summary": "List TCDB top-rated sets",
+        "tags": [
+          "tcdb"
+        ]
+      }
+    },
     "/tiktok/category": {
       "get": {
         "consumes": [
@@ -110612,6 +115718,18 @@
             "description": "Invalid input",
             "schema": {
               "$ref": "#/definitions/app.Response"
+            }
+          },
+          "402": {
+            "description": "Out of credits, or the plan's daily credit limit is used up. The body reports which limit was hit, when it resets, and how to raise it. Returned the same way by every credit-billed endpoint.",
+            "schema": {
+              "$ref": "#/definitions/web.billingRejectionResponseDoc"
+            }
+          },
+          "429": {
+            "description": "Request rate exceeded for the plan. The body reports the plan's per-minute rate and how long to wait; retry_after_seconds matches the Retry-After header. Returned the same way by every credit-billed endpoint.",
+            "schema": {
+              "$ref": "#/definitions/web.billingRejectionResponseDoc"
             }
           },
           "500": {
