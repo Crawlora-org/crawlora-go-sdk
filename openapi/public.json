@@ -14960,6 +14960,10 @@
         "name": {
           "type": "string"
         },
+        "not_found_streak": {
+          "description": "NotFoundStreak counts consecutive crawls that returned not-found for an\notherwise-active item. Removal is only confirmed once it reaches the\nworker's threshold, so a transient upstream block does not delist a live\nitem. No omitempty: a successful crawl must write 0 to reset the streak\nthrough the partial-merge upsert.",
+          "type": "integer"
+        },
         "optional_host_permissions": {
           "items": {
             "type": "string"
@@ -16889,10 +16893,19 @@
         "latest_annual_net_income": {
           "type": "number"
         },
+        "latest_annual_net_income_usd": {
+          "type": "number"
+        },
         "latest_annual_revenue": {
           "type": "number"
         },
+        "latest_annual_revenue_usd": {
+          "type": "number"
+        },
         "latest_annual_total_assets": {
+          "type": "number"
+        },
+        "latest_annual_total_assets_usd": {
           "type": "number"
         },
         "latest_filing_date": {
@@ -16915,6 +16928,10 @@
             "$ref": "#/definitions/es.SecFilingSummary"
           },
           "type": "array"
+        },
+        "reporting_currency": {
+          "description": "Native-currency figures are exactly as the filer reported them (see\nReportingCurrency); the *USD fields are the same values converted at fixed\nreference rates (services/sec.CurrencyToUSD) so they can be sorted, banded\nand range-filtered ACROSS currencies. Screen on the USD fields; display the\nnative value + currency.",
+          "type": "string"
         },
         "revenue_band": {
           "type": "string"
@@ -18063,10 +18080,27 @@
         "bio": {
           "type": "string"
         },
+        "bio_url_host": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "bio_urls": {
+          "description": "BioURLs are links written in the bio text, expanded from t.co. Distinct\nfrom ExternalURL (the single profile-header link).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "crawled_at": {
           "type": "string"
         },
         "created_at": {
+          "type": "string"
+        },
+        "email": {
+          "description": "Email is an address the account self-published in its own bio. Extracted\nverbatim, never inferred or de-obfuscated. HasEmail is the faceting flag\n(an exists query on a keyword is fine, but a bool keeps parity with the\nother has_* fields and is cheaper to aggregate).",
           "type": "string"
         },
         "external_url": {
@@ -18084,6 +18118,12 @@
         "has_bio": {
           "type": "boolean"
         },
+        "has_bio_url": {
+          "type": "boolean"
+        },
+        "has_email": {
+          "type": "boolean"
+        },
         "has_external_url": {
           "type": "boolean"
         },
@@ -18093,8 +18133,22 @@
         "is_blue_verified": {
           "type": "boolean"
         },
+        "is_default_profile_image": {
+          "description": "IsDefaultProfileImage marks never-customized shells.",
+          "type": "boolean"
+        },
+        "likes": {
+          "type": "integer"
+        },
+        "listed": {
+          "description": "Listed is how many curated lists include the account -- the best\nauthority proxy available. Media/Likes are activity signals.",
+          "type": "integer"
+        },
         "location_raw": {
           "type": "string"
+        },
+        "media": {
+          "type": "integer"
         },
         "name": {
           "type": "string"
@@ -18109,6 +18163,10 @@
           "type": "string"
         },
         "username": {
+          "type": "string"
+        },
+        "verified_type": {
+          "description": "VerifiedType is the verification flavour (\"Business\", \"Government\", ...);\nempty for ordinary/blue accounts.",
           "type": "string"
         }
       },
@@ -18125,10 +18183,27 @@
         "bio": {
           "type": "string"
         },
+        "bio_url_host": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "bio_urls": {
+          "description": "BioURLs are links written in the bio text, expanded from t.co. Distinct\nfrom ExternalURL (the single profile-header link).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "crawled_at": {
           "type": "string"
         },
         "created_at": {
+          "type": "string"
+        },
+        "email": {
+          "description": "Email is an address the account self-published in its own bio. Extracted\nverbatim, never inferred or de-obfuscated. HasEmail is the faceting flag\n(an exists query on a keyword is fine, but a bool keeps parity with the\nother has_* fields and is cheaper to aggregate).",
           "type": "string"
         },
         "external_url": {
@@ -18146,6 +18221,12 @@
         "has_bio": {
           "type": "boolean"
         },
+        "has_bio_url": {
+          "type": "boolean"
+        },
+        "has_email": {
+          "type": "boolean"
+        },
         "has_external_url": {
           "type": "boolean"
         },
@@ -18155,8 +18236,22 @@
         "is_blue_verified": {
           "type": "boolean"
         },
+        "is_default_profile_image": {
+          "description": "IsDefaultProfileImage marks never-customized shells.",
+          "type": "boolean"
+        },
+        "likes": {
+          "type": "integer"
+        },
+        "listed": {
+          "description": "Listed is how many curated lists include the account -- the best\nauthority proxy available. Media/Likes are activity signals.",
+          "type": "integer"
+        },
         "location_raw": {
           "type": "string"
+        },
+        "media": {
+          "type": "integer"
         },
         "name": {
           "type": "string"
@@ -18171,6 +18266,10 @@
           "type": "string"
         },
         "username": {
+          "type": "string"
+        },
+        "verified_type": {
+          "description": "VerifiedType is the verification flavour (\"Business\", \"Government\", ...);\nempty for ordinary/blue accounts.",
           "type": "string"
         }
       },
@@ -55257,10 +55356,21 @@
         "banner_url": {
           "type": "string"
         },
+        "bio_urls": {
+          "description": "BioURLs are links written inside the bio, expanded from their t.co form.\nDistinct from ExternalURL, which is the single profile-header link.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "created_at": {
           "type": "string"
         },
         "description": {
+          "type": "string"
+        },
+        "email": {
+          "description": "Email is an address the account self-published in its own bio text. It is\nonly ever extracted, never inferred or de-obfuscated. Empty for the vast\nmajority of profiles.",
           "type": "string"
         },
         "external_url": {
@@ -55270,6 +55380,10 @@
           "type": "string"
         },
         "is_blue_verified": {
+          "type": "boolean"
+        },
+        "is_default_profile_image": {
+          "description": "IsDefaultProfileImage marks accounts still on the placeholder avatar --\na strong shell/abandoned-account signal.",
           "type": "boolean"
         },
         "is_protected": {
@@ -55292,6 +55406,10 @@
         },
         "username": {
           "type": "string"
+        },
+        "verified_type": {
+          "description": "VerifiedType distinguishes the flavour of verification (e.g. \"Business\",\n\"Government\"); empty for ordinary/blue accounts.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -55302,6 +55420,16 @@
           "type": "integer"
         },
         "following": {
+          "type": "integer"
+        },
+        "likes": {
+          "type": "integer"
+        },
+        "listed": {
+          "description": "Listed is how many curated lists include this account -- the best\nauthority proxy in the payload. Media/Likes are activity signals.\nOnly the syndication source populates these; the x.com page parser\nleaves them zero.",
+          "type": "integer"
+        },
+        "media": {
           "type": "integer"
         },
         "posts": {
@@ -71079,7 +71207,63 @@
             "ApiKeyAuth": []
           }
         ],
-        "summary": "Find which companies are hiring (jobs board registry)",
+        "summary": "Find which companies are hiring",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/jobs/companies/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one discovered company board by its dataset board id. When the board carries a known domain (currently populated for iCIMS and Eightfold boards; most Common-Crawl-discovered boards do not), the response also includes a `tech_stack` field joined from the website tech-stack dataset -- a firmographic hint, not a guess: it is only attached when a structural domain signal exists. Returns 404 when the board id is not in the registry.",
+        "operationId": "datasets-jobs-company-item",
+        "parameters": [
+          {
+            "description": "Dataset board id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.jobsItemResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a single company by board id",
         "tags": [
           "Datasets"
         ]
@@ -71185,6 +71369,93 @@
           }
         ],
         "summary": "Get a single posting from the jobs dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/jobs/nearby": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Finds crawled job postings within `radius_km` of a `lat`/`lon`, nearest first. Only geocoded postings participate (the geo-enrich worker back-fills coordinates from each posting's location). Open roles only by default. provider enum matches search.",
+        "operationId": "datasets-jobs-nearby",
+        "parameters": [
+          {
+            "description": "Latitude, -90..90",
+            "in": "query",
+            "name": "lat",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Longitude, -180..180",
+            "in": "query",
+            "name": "lon",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Search radius in km, default 50, max 500",
+            "in": "query",
+            "name": "radius_km",
+            "type": "number"
+          },
+          {
+            "description": "ATS provider filter",
+            "in": "query",
+            "name": "provider",
+            "type": "string"
+          },
+          {
+            "description": "Include closed/filled roles (default false)",
+            "in": "query",
+            "name": "include_closed",
+            "type": "boolean"
+          },
+          {
+            "description": "Page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, default 20, max 100",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.jobsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Find postings near a coordinate",
         "tags": [
           "Datasets"
         ]
@@ -71327,7 +71598,7 @@
             "type": "string"
           },
           {
-            "description": "Exact beat-vertical filter. Enum: tech, crypto, marketing, consumer_tech, consumer_policy, cybersecurity, health, gaming, climate, business, entertainment, sports, legal, science, politics, real_estate, automotive, travel, food, education, design, film_tv, fashion, music, personal_finance, tech_independent, culture_independent, local_news",
+            "description": "Exact beat-vertical filter. Enum: tech, crypto, marketing, consumer_tech, consumer_policy, cybersecurity, health, gaming, climate, business, entertainment, sports, legal, science, politics, real_estate, automotive, travel, food, education, design, film_tv, fashion, music, personal_finance, tech_independent, culture_independent, local_news, construction, banking, retail, aerospace_defense, energy, agriculture, local_business",
             "in": "query",
             "name": "vertical",
             "type": "string"
@@ -71459,7 +71730,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches the journalists index (dataset id enum value `journalists`) — public journalist and reporter contact records crawled from news outlets' own staff/author pages, for PR outreach. Each record carries the outlet, title, best-effort beat topics, and any public contact info (a work email or a social handle) found on that outlet's own page. There is no cross-outlet upstream search; this dataset is built by crawling a curated roster of outlets ourselves. vertical enum: `tech`, `crypto`, `marketing`, `consumer_tech`, `consumer_policy`, `cybersecurity`, `health`, `gaming`, `climate`, `business`, `entertainment`, `sports`, `legal`, `science`, `politics`, `real_estate`, `automotive`, `travel`, `food`, `education`, `design`, `film_tv`, `fashion`, `music`, `personal_finance`, `tech_independent`, `culture_independent`, `local_news`. contact_type enum: `email`, `social`, `none`. sort enum: `relevance`, `name_asc`, `outlet_asc`, `crawled_desc`.",
+        "description": "Searches the journalists index (dataset id enum value `journalists`) — public journalist and reporter contact records crawled from news outlets' own staff/author pages, for PR outreach. Each record carries the outlet, title, best-effort beat topics, and any public contact info (a work email or a social handle) found on that outlet's own page. There is no cross-outlet upstream search; this dataset is built by crawling a curated roster of outlets ourselves. vertical enum: `tech`, `crypto`, `marketing`, `consumer_tech`, `consumer_policy`, `cybersecurity`, `health`, `gaming`, `climate`, `business`, `entertainment`, `sports`, `legal`, `science`, `politics`, `real_estate`, `automotive`, `travel`, `food`, `education`, `design`, `film_tv`, `fashion`, `music`, `personal_finance`, `tech_independent`, `culture_independent`, `local_news`, `construction`, `banking`, `retail`, `aerospace_defense`, `energy`, `agriculture`, `local_business`. contact_type enum: `email`, `social`, `none`. sort enum: `relevance`, `name_asc`, `outlet_asc`, `crawled_desc`.",
         "operationId": "datasets-journalists-search",
         "parameters": [
           {
@@ -71475,7 +71746,7 @@
             "type": "string"
           },
           {
-            "description": "Exact beat-vertical filter. Enum: tech, crypto, marketing, consumer_tech, consumer_policy, cybersecurity, health, gaming, climate, business, entertainment, sports, legal, science, politics, real_estate, automotive, travel, food, education, design, film_tv, fashion, music, personal_finance, tech_independent, culture_independent, local_news",
+            "description": "Exact beat-vertical filter. Enum: tech, crypto, marketing, consumer_tech, consumer_policy, cybersecurity, health, gaming, climate, business, entertainment, sports, legal, science, politics, real_estate, automotive, travel, food, education, design, film_tv, fashion, music, personal_finance, tech_independent, culture_independent, local_news, construction, banking, retail, aerospace_defense, energy, agriculture, local_business",
             "in": "query",
             "name": "vertical",
             "type": "string"
@@ -73282,11 +73553,11 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns terms-aggregation counts for one facet of the SEC companies dataset, scoped to the same filters as search. Facet enum: `sic`, `sic_description`, `exchange`, `state_of_incorporation`, `entity_type`, `revenue_band`, `forms_filed`. `revenue_band` buckets latest-annual revenue into: `unknown`, `under_1m`, `1m_10m`, `10m_100m`, `100m_1b`, `1b_10b`, `over_10b`.",
+        "description": "Returns terms-aggregation counts for one facet of the SEC companies dataset, scoped to the same filters as search. Facet enum: `sic`, `sic_description`, `exchange`, `state_of_incorporation`, `entity_type`, `reporting_currency`, `revenue_band`, `forms_filed`. `revenue_band` buckets latest-annual revenue into: `unknown`, `under_1m`, `1m_10m`, `10m_100m`, `100m_1b`, `1b_10b`, `over_10b`.",
         "operationId": "datasets-sec-companies-facets",
         "parameters": [
           {
-            "description": "Facet enum: sic, sic_description, exchange, state_of_incorporation, entity_type, revenue_band, forms_filed",
+            "description": "Facet enum: sic, sic_description, exchange, state_of_incorporation, entity_type, reporting_currency, revenue_band, forms_filed",
             "in": "query",
             "name": "facet",
             "required": true,
@@ -73329,7 +73600,19 @@
             "type": "string"
           },
           {
-            "description": "Minimum latest-annual revenue in USD, 0 or greater",
+            "description": "Exact reporting-currency filter, ISO-4217 code, e.g. USD, JPY, EUR",
+            "in": "query",
+            "name": "reporting_currency",
+            "type": "string"
+          },
+          {
+            "description": "When true, keep only companies that have XBRL financial statements",
+            "in": "query",
+            "name": "has_financials",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum latest-annual revenue in USD (normalized at reference rates), 0 or greater",
             "in": "query",
             "name": "min_revenue",
             "type": "number"
@@ -73666,25 +73949,37 @@
             "type": "string"
           },
           {
-            "description": "Minimum latest-annual revenue in USD, 0 or greater",
+            "description": "Exact reporting-currency filter, ISO-4217 code, e.g. USD, JPY, EUR",
+            "in": "query",
+            "name": "reporting_currency",
+            "type": "string"
+          },
+          {
+            "description": "When true, keep only companies that have XBRL financial statements",
+            "in": "query",
+            "name": "has_financials",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum latest-annual revenue in USD (normalized from the filer's reporting currency at reference rates), 0 or greater",
             "in": "query",
             "name": "min_revenue",
             "type": "number"
           },
           {
-            "description": "Maximum latest-annual revenue in USD, 0 or greater",
+            "description": "Maximum latest-annual revenue in USD (normalized), 0 or greater",
             "in": "query",
             "name": "max_revenue",
             "type": "number"
           },
           {
-            "description": "Minimum latest-annual net income in USD (negative allowed)",
+            "description": "Minimum latest-annual net income in USD (normalized; negative allowed)",
             "in": "query",
             "name": "min_net_income",
             "type": "number"
           },
           {
-            "description": "Minimum latest-annual total assets in USD, 0 or greater",
+            "description": "Minimum latest-annual total assets in USD (normalized), 0 or greater",
             "in": "query",
             "name": "min_total_assets",
             "type": "number"
@@ -85222,6 +85517,161 @@
         ]
       }
     },
+    "/jobs/eightfold/board": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Lists a company's public Eightfold AI job board, paged via limit/offset. tenant is the {tenant}.eightfold.ai subdomain from the careers URL; domain is the hiring organization's own domain (e.g. microsoft.com), also visible on the tenant's careers page. Tries the newer PCSX search first, falling back to the legacy SmartApply generation when PCSX is not enabled for the tenant. Credential-free public ATS JSON.",
+        "operationId": "jobs-eightfold-board",
+        "parameters": [
+          {
+            "description": "Eightfold tenant subdomain (careers URL)",
+            "example": "microsoft",
+            "in": "query",
+            "name": "tenant",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Hiring organization domain",
+            "example": "microsoft.com",
+            "in": "query",
+            "name": "domain",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Free-text search",
+            "in": "query",
+            "name": "query",
+            "type": "string"
+          },
+          {
+            "description": "Filter: location contains",
+            "in": "query",
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "description": "Page size, default 10, max 10 (upstream caps results per page regardless of a larger value)",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "Page offset, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.boardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List an Eightfold tenant's job board",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/eightfold/job": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a single Eightfold position with its full HTML/text description. id is the position id from a board listing; tenant/domain as in the board endpoint. Tries the newer PCSX detail first, falling back to the legacy SmartApply detail generation. Credential-free public ATS JSON.",
+        "operationId": "jobs-eightfold-job",
+        "parameters": [
+          {
+            "description": "Eightfold tenant subdomain",
+            "example": "microsoft",
+            "in": "query",
+            "name": "tenant",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Hiring organization domain",
+            "example": "microsoft.com",
+            "in": "query",
+            "name": "domain",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Eightfold position id from a board listing",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.jobResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a single Eightfold position",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
     "/jobs/greenhouse/board": {
       "get": {
         "consumes": [
@@ -85354,7 +85804,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Aggregates a company's ATS board into a hiring snapshot: total open roles, breakdowns by department/location/title, remote share, and how many roles are new in the last 7/30 days — a leading indicator of company growth. Supply provider plus that provider's slug params (token / company / org / tenant+datacenter+site). Breakdowns are computed over the fetched postings. Credential-free public ATS JSON.",
+        "description": "Aggregates a company's ATS board into a hiring snapshot: total open roles, breakdowns by department/location/title, remote share, and how many roles are new in the last 7/30 days — a leading indicator of company growth. Supply provider plus that provider's slug params (token / company / org / tenant+datacenter+site / domain). Breakdowns are computed over the fetched postings. Credential-free public ATS JSON.",
         "operationId": "jobs-hiring-signals",
         "parameters": [
           {
@@ -85371,7 +85821,9 @@
               "personio",
               "teamtailor",
               "oracle",
-              "ukg"
+              "ukg",
+              "icims",
+              "eightfold"
             ],
             "in": "query",
             "name": "provider",
@@ -85397,7 +85849,7 @@
             "type": "string"
           },
           {
-            "description": "workday tenant",
+            "description": "workday / eightfold tenant",
             "in": "query",
             "name": "tenant",
             "type": "string"
@@ -85424,6 +85876,12 @@
             "description": "ukg job-board UUID",
             "in": "query",
             "name": "board",
+            "type": "string"
+          },
+          {
+            "description": "icims careers domain / eightfold organization domain",
+            "in": "query",
+            "name": "domain",
             "type": "string"
           }
         ],
@@ -85462,6 +85920,152 @@
           }
         ],
         "summary": "Aggregate hiring signals for a company's board",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/icims/board": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Lists a company's public iCIMS job board (served through the tenant's white-labeled careers domain, e.g. careers.costco.com — not the bare {company}.icims.com subdomain, which is an OAuth-gated employee portal), paged via page/limit, with the full description inline per job. domain is the tenant's careers domain from its careers URL. Credential-free public ATS JSON.",
+        "operationId": "jobs-icims-board",
+        "parameters": [
+          {
+            "description": "iCIMS tenant careers domain (careers URL)",
+            "example": "careers.costco.com",
+            "in": "query",
+            "name": "domain",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Free-text keyword search",
+            "in": "query",
+            "name": "keywords",
+            "type": "string"
+          },
+          {
+            "description": "Filter: location contains",
+            "in": "query",
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "description": "Page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, default 20, max 50",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.boardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List an iCIMS tenant's job board",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/icims/job": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a single iCIMS job with its full HTML/text description, department, and benefits. id is the req_id/slug from a board listing; lang defaults to en-us. Credential-free public ATS JSON.",
+        "operationId": "jobs-icims-job",
+        "parameters": [
+          {
+            "description": "iCIMS tenant careers domain",
+            "example": "careers.costco.com",
+            "in": "query",
+            "name": "domain",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "iCIMS job req_id/slug from a board listing",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Language code, default en-us",
+            "example": "en-us",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.jobResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a single iCIMS job",
         "tags": [
           "Jobs"
         ]
@@ -110560,6 +111164,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "summary": "Get people born on a TCDB date",
         "tags": [
           "tcdb"
@@ -110632,6 +111241,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "summary": "Get TCDB card detail",
         "tags": [
           "tcdb"
@@ -110684,6 +111298,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "summary": "List TCDB cards of the day",
         "tags": [
           "tcdb"
@@ -110729,6 +111348,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "summary": "List TCDB card companies",
         "tags": [
           "tcdb"
@@ -110801,6 +111425,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "summary": "Get TCDB person card checklist",
         "tags": [
           "tcdb"
@@ -110846,6 +111475,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "summary": "List TCDB release dates",
         "tags": [
           "tcdb"
@@ -110924,6 +111558,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "summary": "Search Trading Card Database",
         "tags": [
           "tcdb"
@@ -110996,6 +111635,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "summary": "Get TCDB set checklist",
         "tags": [
           "tcdb"
@@ -111075,6 +111719,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "summary": "Browse TCDB sets by sport and year",
         "tags": [
           "tcdb"
@@ -111179,6 +111828,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "summary": "Get TCDB cards by tag",
         "tags": [
           "tcdb"
@@ -111251,6 +111905,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "summary": "Get TCDB team card checklist",
         "tags": [
           "tcdb"
@@ -111296,6 +111955,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
         "summary": "List TCDB top-rated sets",
         "tags": [
           "tcdb"
