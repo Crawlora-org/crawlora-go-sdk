@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.20.0-sdk.2
+
+- Validate all supported ATS values for jobs dataset provider filters, including iCIMS and Eightfold.
+
 ## v1.20.0-sdk.1
 
 - Regenerated from the public API contract (776 to 782 operations). Adds jobs dataset company detail and nearby search, plus iCIMS and Eightfold board and job operations.
