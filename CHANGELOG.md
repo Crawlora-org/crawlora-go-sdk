@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.22.0-sdk.1
+
+- Regenerated from the public API contract (784 to 787 operations). Adds Threads search, cursor-paginated profile posts, and public post replies.
+
 ## v1.21.0-sdk.1
 
 - Regenerated from the public API contract (782 to 784 operations). Adds credential-free Threads public profile and single-post lookups.

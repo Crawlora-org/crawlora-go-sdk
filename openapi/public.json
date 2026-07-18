@@ -48372,6 +48372,9 @@
     },
     "threads.Author": {
       "properties": {
+        "id": {
+          "type": "string"
+        },
         "name": {
           "type": "string"
         },
@@ -48427,6 +48430,125 @@
       },
       "type": "object"
     },
+    "threads.ProfilePostsResult": {
+      "properties": {
+        "has_more": {
+          "type": "boolean"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/threads.Thread"
+          },
+          "type": "array"
+        },
+        "next_cursor": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "threads.RepliesResult": {
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "has_more": {
+          "type": "boolean"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/threads.Thread"
+          },
+          "type": "array"
+        },
+        "next_cursor": {
+          "type": "string"
+        },
+        "pagination_limited": {
+          "type": "boolean"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "threads.SearchResult": {
+      "properties": {
+        "has_more": {
+          "type": "boolean"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/threads.Thread"
+          },
+          "type": "array"
+        },
+        "next_cursor": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "threads.Thread": {
+      "properties": {
+        "author": {
+          "$ref": "#/definitions/threads.Author"
+        },
+        "code": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "image_urls": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "is_reply": {
+          "type": "boolean"
+        },
+        "like_count": {
+          "type": "integer"
+        },
+        "quote_count": {
+          "type": "integer"
+        },
+        "reply_count": {
+          "type": "integer"
+        },
+        "reply_to": {
+          "type": "string"
+        },
+        "repost_count": {
+          "type": "integer"
+        },
+        "text": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "video_urls": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "threads.postResponseDoc": {
       "properties": {
         "code": {
@@ -48443,6 +48565,22 @@
       },
       "type": "object"
     },
+    "threads.profilePostsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/threads.ProfilePostsResult"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "threads.profileResponseDoc": {
       "properties": {
         "code": {
@@ -48451,6 +48589,38 @@
         },
         "data": {
           "$ref": "#/definitions/threads.Profile"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "threads.repliesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/threads.RepliesResult"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "threads.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/threads.SearchResult"
         },
         "msg": {
           "example": "OK",
@@ -112119,6 +112289,66 @@
         ]
       }
     },
+    "/threads/post/{username}/{code}/replies": {
+      "get": {
+        "description": "Returns the public replies currently exposed to logged-out visitors. The response identifies when Threads reports additional replies but withholds a usable continuation cursor.",
+        "operationId": "threads-post-replies",
+        "parameters": [
+          {
+            "description": "Threads username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Threads post code",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped replies payload",
+            "schema": {
+              "$ref": "#/definitions/threads.repliesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Invalid username or post code",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Post not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or parser drift",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve public replies to a Threads post",
+        "tags": [
+          "Threads"
+        ]
+      }
+    },
     "/threads/profile/{username}": {
       "get": {
         "description": "Returns public profile metadata for a Threads username, including the visible biography and counts.",
@@ -112167,6 +112397,112 @@
           }
         ],
         "summary": "Retrieve a public Threads profile",
+        "tags": [
+          "Threads"
+        ]
+      }
+    },
+    "/threads/profile/{username}/posts": {
+      "get": {
+        "description": "Returns public profile posts with an opaque continuation cursor when more posts are available.",
+        "operationId": "threads-profile-posts",
+        "parameters": [
+          {
+            "description": "Threads username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Opaque cursor returned by the previous response",
+            "in": "query",
+            "name": "cursor",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped profile posts payload",
+            "schema": {
+              "$ref": "#/definitions/threads.profilePostsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Invalid username or cursor",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Profile not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or parser drift",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve public posts from a Threads profile",
+        "tags": [
+          "Threads"
+        ]
+      }
+    },
+    "/threads/search": {
+      "get": {
+        "description": "Returns the public first page of Threads search results for a query. Logged-out search does not expose a continuation cursor.",
+        "operationId": "threads-search",
+        "parameters": [
+          {
+            "description": "Search query (1-100 characters)",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped search payload",
+            "schema": {
+              "$ref": "#/definitions/threads.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or parser drift",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search public Threads posts",
         "tags": [
           "Threads"
         ]

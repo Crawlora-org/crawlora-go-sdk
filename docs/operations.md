@@ -2,7 +2,7 @@
 
 Generated from `openapi/public.json`. Deprecated, admin, and internal operations are excluded from this SDK contract.
 
-Total operations: `784`
+Total operations: `787`
 
 | Group | SDK method | Operation ID | HTTP | Params | Auth | Response | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -671,7 +671,10 @@ Total operations: `784`
 | Tcdb | `Tcdb.Team` | `tcdb-team` | `GET /tcdb/team` | `id` (query string)<br>`path` (query string)<br>`url` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `TcdbTeamResponse` |  |
 | Tcdb | `Tcdb.TopSets` | `tcdb-top-sets` | `GET /tcdb/top-sets` | `limit` (query int) | `ApiKeyAuth` | `TcdbTopSetsResponse` |  |
 | Threads | `Threads.Post` | `threads-post` | `GET /threads/post/{username}/{code}` | `username` (path string required)<br>`code` (path string required) | `ApiKeyAuth` | `ThreadsPostResponse` |  |
+| Threads | `Threads.PostReplies` | `threads-post-replies` | `GET /threads/post/{username}/{code}/replies` | `username` (path string required)<br>`code` (path string required) | `ApiKeyAuth` | `ThreadsPostRepliesResponse` |  |
 | Threads | `Threads.Profile` | `threads-profile` | `GET /threads/profile/{username}` | `username` (path string required) | `ApiKeyAuth` | `ThreadsProfileResponse` |  |
+| Threads | `Threads.ProfilePosts` | `threads-profile-posts` | `GET /threads/profile/{username}/posts` | `username` (path string required)<br>`cursor` (query string) | `ApiKeyAuth` | `ThreadsProfilePostsResponse` |  |
+| Threads | `Threads.Search` | `threads-search` | `GET /threads/search` | `q` (query string required) | `ApiKeyAuth` | `ThreadsSearchResponse` |  |
 | TikTok | `TikTok.Category` | `tiktok-category` | `GET /tiktok/category` | none | `ApiKeyAuth` | `TikTokCategoryResponse` |  |
 | TikTok | `TikTok.VideoComments` | `tiktok-video-comments` | `GET /tiktok/comments` | `aweme_id` (query string required)<br>`cursor` (query int) | `ApiKeyAuth` | `TikTokVideoCommentsResponse` |  |
 | TikTok | `TikTok.Explore` | `tiktok-explore` | `GET /tiktok/explore/{id}` | `id` (path int required) | `ApiKeyAuth` | `TikTokExploreResponse` |  |

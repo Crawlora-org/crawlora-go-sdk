@@ -15421,6 +15421,7 @@ type ModelTechstackTechnology struct {
 }
 
 type ModelThreadsAuthor struct {
+	Id string `json:"id,omitempty"`
 	Name string `json:"name,omitempty"`
 	Username string `json:"username,omitempty"`
 }
@@ -15443,15 +15444,73 @@ type ModelThreadsProfile struct {
 	Username string `json:"username,omitempty"`
 }
 
+type ModelThreadsProfilePostsResult struct {
+	HasMore bool `json:"has_more,omitempty"`
+	Items []ModelThreadsThread `json:"items,omitempty"`
+	NextCursor string `json:"next_cursor,omitempty"`
+	Username string `json:"username,omitempty"`
+}
+
+type ModelThreadsRepliesResult struct {
+	Code string `json:"code,omitempty"`
+	HasMore bool `json:"has_more,omitempty"`
+	Items []ModelThreadsThread `json:"items,omitempty"`
+	NextCursor string `json:"next_cursor,omitempty"`
+	PaginationLimited bool `json:"pagination_limited,omitempty"`
+	Username string `json:"username,omitempty"`
+}
+
+type ModelThreadsSearchResult struct {
+	HasMore bool `json:"has_more,omitempty"`
+	Items []ModelThreadsThread `json:"items,omitempty"`
+	NextCursor string `json:"next_cursor,omitempty"`
+	Query string `json:"query,omitempty"`
+}
+
+type ModelThreadsThread struct {
+	Author ModelThreadsAuthor `json:"author,omitempty"`
+	Code string `json:"code,omitempty"`
+	CreatedAt string `json:"created_at,omitempty"`
+	Id string `json:"id,omitempty"`
+	ImageUrls []string `json:"image_urls,omitempty"`
+	IsReply bool `json:"is_reply,omitempty"`
+	LikeCount int `json:"like_count,omitempty"`
+	QuoteCount int `json:"quote_count,omitempty"`
+	ReplyCount int `json:"reply_count,omitempty"`
+	ReplyTo string `json:"reply_to,omitempty"`
+	RepostCount int `json:"repost_count,omitempty"`
+	Text string `json:"text,omitempty"`
+	Url string `json:"url,omitempty"`
+	VideoUrls []string `json:"video_urls,omitempty"`
+}
+
 type ModelThreadsPostResponseDoc struct {
 	Code int `json:"code,omitempty"`
 	Data ModelThreadsPost `json:"data,omitempty"`
 	Msg string `json:"msg,omitempty"`
 }
 
+type ModelThreadsProfilePostsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelThreadsProfilePostsResult `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
 type ModelThreadsProfileResponseDoc struct {
 	Code int `json:"code,omitempty"`
 	Data ModelThreadsProfile `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelThreadsRepliesResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelThreadsRepliesResult `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelThreadsSearchResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelThreadsSearchResult `json:"data,omitempty"`
 	Msg string `json:"msg,omitempty"`
 }
 
@@ -18401,7 +18460,7 @@ type ModelZillowSearchResponse struct {
 	Results []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 784
+const operationCount = 787
 
 const (
 	OperationAirbnbHost = "airbnb-host"
@@ -19064,7 +19123,10 @@ const (
 	OperationTcdbTeam = "tcdb-team"
 	OperationTcdbTopSets = "tcdb-top-sets"
 	OperationThreadsPost = "threads-post"
+	OperationThreadsPostReplies = "threads-post-replies"
 	OperationThreadsProfile = "threads-profile"
+	OperationThreadsProfilePosts = "threads-profile-posts"
+	OperationThreadsSearch = "threads-search"
 	OperationTikTokCategory = "tiktok-category"
 	OperationTikTokChallenge = "tiktok-challenge"
 	OperationTikTokChallengeList = "tiktok-challenge-list"
@@ -19854,7 +19916,10 @@ var operations = map[string]operationDefinition{
 	"tcdb-team": operationDefinition{Method: "GET", Path: "/tcdb/team", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"tcdb-top-sets": operationDefinition{Method: "GET", Path: "/tcdb/top-sets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"threads-post": operationDefinition{Method: "GET", Path: "/threads/post/{username}/{code}", PathParams: []string{"username", "code"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"threads-post-replies": operationDefinition{Method: "GET", Path: "/threads/post/{username}/{code}/replies", PathParams: []string{"username", "code"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"threads-profile": operationDefinition{Method: "GET", Path: "/threads/profile/{username}", PathParams: []string{"username"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"threads-profile-posts": operationDefinition{Method: "GET", Path: "/threads/profile/{username}/posts", PathParams: []string{"username"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}, },
+	"threads-search": operationDefinition{Method: "GET", Path: "/threads/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"tiktok-category": operationDefinition{Method: "GET", Path: "/tiktok/category", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"tiktok-video-comments": operationDefinition{Method: "GET", Path: "/tiktok/comments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "aweme_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}, },
 	"tiktok-explore": operationDefinition{Method: "GET", Path: "/tiktok/explore/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
@@ -31317,6 +31382,21 @@ func (s *ThreadsService) PostTyped(ctx context.Context, params ThreadsPostParams
 	return requestTyped[ThreadsPostResponse](s.client, ctx, "threads-post", paramsFromStruct(params), opts...)
 }
 
+func (s *ThreadsService) PostReplies(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "threads-post-replies", params, opts...)
+}
+
+type ThreadsPostRepliesParams struct {
+	Username string `crawlora:"username"`
+	Code string `crawlora:"code"`
+}
+
+type ThreadsPostRepliesResponse = ModelThreadsRepliesResponseDoc
+
+func (s *ThreadsService) PostRepliesTyped(ctx context.Context, params ThreadsPostRepliesParams, opts ...RequestOption) (ThreadsPostRepliesResponse, error) {
+	return requestTyped[ThreadsPostRepliesResponse](s.client, ctx, "threads-post-replies", paramsFromStruct(params), opts...)
+}
+
 func (s *ThreadsService) Profile(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "threads-profile", params, opts...)
 }
@@ -31329,6 +31409,35 @@ type ThreadsProfileResponse = ModelThreadsProfileResponseDoc
 
 func (s *ThreadsService) ProfileTyped(ctx context.Context, params ThreadsProfileParams, opts ...RequestOption) (ThreadsProfileResponse, error) {
 	return requestTyped[ThreadsProfileResponse](s.client, ctx, "threads-profile", paramsFromStruct(params), opts...)
+}
+
+func (s *ThreadsService) ProfilePosts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "threads-profile-posts", params, opts...)
+}
+
+type ThreadsProfilePostsParams struct {
+	Username string `crawlora:"username"`
+	Cursor *string `crawlora:"cursor,omitempty"`
+}
+
+type ThreadsProfilePostsResponse = ModelThreadsProfilePostsResponseDoc
+
+func (s *ThreadsService) ProfilePostsTyped(ctx context.Context, params ThreadsProfilePostsParams, opts ...RequestOption) (ThreadsProfilePostsResponse, error) {
+	return requestTyped[ThreadsProfilePostsResponse](s.client, ctx, "threads-profile-posts", paramsFromStruct(params), opts...)
+}
+
+func (s *ThreadsService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "threads-search", params, opts...)
+}
+
+type ThreadsSearchParams struct {
+	Q string `crawlora:"q"`
+}
+
+type ThreadsSearchResponse = ModelThreadsSearchResponseDoc
+
+func (s *ThreadsService) SearchTyped(ctx context.Context, params ThreadsSearchParams, opts ...RequestOption) (ThreadsSearchResponse, error) {
+	return requestTyped[ThreadsSearchResponse](s.client, ctx, "threads-search", paramsFromStruct(params), opts...)
 }
 
 type TikTokService struct { client *Client }
