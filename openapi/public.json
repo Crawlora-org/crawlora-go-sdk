@@ -55350,6 +55350,10 @@
     },
     "x.Profile": {
       "properties": {
+        "affiliate_label": {
+          "description": "AffiliateLabel is the small highlighted-affiliation badge X shows next\nto the display name (e.g. \"Prime Video\" for an account run on behalf\nof that brand). Distinct from VerifiedType; empty when the account has\nno highlighted affiliation.",
+          "type": "string"
+        },
         "avatar_url": {
           "type": "string"
         },
@@ -71133,7 +71137,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches the discovered company board registry — which companies are hiring, on which ATS, with how many open roles. status enum: `active`, `empty`, `gone`, `blocked`, `pending`. sort enum: `open_desc`, `company_asc`, `crawled_desc`.",
+        "description": "Searches the discovered company board registry — which companies are hiring, on which ATS, with how many open roles. provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`. status enum: `active`, `empty`, `gone`, `blocked`, `pending`. sort enum: `open_desc`, `company_asc`, `crawled_desc`.",
         "operationId": "datasets-jobs-companies",
         "parameters": [
           {
@@ -71144,6 +71148,22 @@
           },
           {
             "description": "ATS provider filter",
+            "enum": [
+              "greenhouse",
+              "lever",
+              "ashby",
+              "workday",
+              "smartrecruiters",
+              "workable",
+              "recruitee",
+              "rippling",
+              "personio",
+              "teamtailor",
+              "oracle",
+              "ukg",
+              "icims",
+              "eightfold"
+            ],
             "in": "query",
             "name": "provider",
             "type": "string"
@@ -71379,7 +71399,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Finds crawled job postings within `radius_km` of a `lat`/`lon`, nearest first. Only geocoded postings participate (the geo-enrich worker back-fills coordinates from each posting's location). Open roles only by default. provider enum matches search.",
+        "description": "Finds crawled job postings within `radius_km` of a `lat`/`lon`, nearest first. Only geocoded postings participate (the geo-enrich worker back-fills coordinates from each posting's location). Open roles only by default. provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`.",
         "operationId": "datasets-jobs-nearby",
         "parameters": [
           {
@@ -71404,6 +71424,22 @@
           },
           {
             "description": "ATS provider filter",
+            "enum": [
+              "greenhouse",
+              "lever",
+              "ashby",
+              "workday",
+              "smartrecruiters",
+              "workable",
+              "recruitee",
+              "rippling",
+              "personio",
+              "teamtailor",
+              "oracle",
+              "ukg",
+              "icims",
+              "eightfold"
+            ],
             "in": "query",
             "name": "provider",
             "type": "string"
@@ -71466,7 +71502,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Full-text + faceted search over every job posting crawled from every discovered company ATS board (Greenhouse, Lever, Ashby, Workday, SmartRecruiters, Workable, Recruitee, Rippling, Personio, Teamtailor, Oracle, UKG). Open roles only by default (set include_closed=true for historical/filled roles). provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`. sort enum: `relevance`, `posted_desc`, `company_asc`.",
+        "description": "Full-text + faceted search over every job posting crawled from every discovered company ATS board (Greenhouse, Lever, Ashby, Workday, SmartRecruiters, Workable, Recruitee, Rippling, Personio, Teamtailor, Oracle, UKG, iCIMS, Eightfold). Open roles only by default (set include_closed=true for historical/filled roles). provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`. sort enum: `relevance`, `posted_desc`, `company_asc`.",
         "operationId": "datasets-jobs-search",
         "parameters": [
           {
@@ -71482,7 +71518,23 @@
             "type": "string"
           },
           {
-            "description": "ATS provider filter. Enum: greenhouse, lever, ashby, workday, smartrecruiters, workable, recruitee, rippling, personio, teamtailor, oracle, ukg",
+            "description": "ATS provider filter",
+            "enum": [
+              "greenhouse",
+              "lever",
+              "ashby",
+              "workday",
+              "smartrecruiters",
+              "workable",
+              "recruitee",
+              "rippling",
+              "personio",
+              "teamtailor",
+              "oracle",
+              "ukg",
+              "icims",
+              "eightfold"
+            ],
             "in": "query",
             "name": "provider",
             "type": "string"
