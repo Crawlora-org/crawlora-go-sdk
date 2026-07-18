@@ -48370,6 +48370,95 @@
       },
       "type": "object"
     },
+    "threads.Author": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "threads.Post": {
+      "properties": {
+        "author": {
+          "$ref": "#/definitions/threads.Author"
+        },
+        "code": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "threads.Profile": {
+      "properties": {
+        "avatar_url": {
+          "type": "string"
+        },
+        "biography": {
+          "type": "string"
+        },
+        "followers_count": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "threads_count": {
+          "type": "integer"
+        },
+        "url": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "threads.postResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/threads.Post"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "threads.profileResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/threads.Profile"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "tiktok.Category": {
       "properties": {
         "name": {
@@ -55350,6 +55439,10 @@
     },
     "x.Profile": {
       "properties": {
+        "affiliate_label": {
+          "description": "AffiliateLabel is the small highlighted-affiliation badge X shows next\nto the display name (e.g. \"Prime Video\" for an account run on behalf\nof that brand). Distinct from VerifiedType; empty when the account has\nno highlighted affiliation.",
+          "type": "string"
+        },
         "avatar_url": {
           "type": "string"
         },
@@ -111963,6 +112056,119 @@
         "summary": "List TCDB top-rated sets",
         "tags": [
           "tcdb"
+        ]
+      }
+    },
+    "/threads/post/{username}/{code}": {
+      "get": {
+        "description": "Returns the public text, author, canonical URL, and preview image for a Threads post.",
+        "operationId": "threads-post",
+        "parameters": [
+          {
+            "description": "Threads username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Threads post code",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped post payload",
+            "schema": {
+              "$ref": "#/definitions/threads.postResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Invalid username or post code",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Post not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or parser drift",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve a public Threads post",
+        "tags": [
+          "Threads"
+        ]
+      }
+    },
+    "/threads/profile/{username}": {
+      "get": {
+        "description": "Returns public profile metadata for a Threads username, including the visible biography and counts.",
+        "operationId": "threads-profile",
+        "parameters": [
+          {
+            "description": "Threads username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Wrapped profile payload",
+            "schema": {
+              "$ref": "#/definitions/threads.profileResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Invalid username",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Profile not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream error or parser drift",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve a public Threads profile",
+        "tags": [
+          "Threads"
         ]
       }
     },

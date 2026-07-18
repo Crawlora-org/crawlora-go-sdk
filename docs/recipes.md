@@ -44,6 +44,13 @@ posts, err := client.Reddit.Search(ctx, crawlora.Params{"q": "golang", "subreddi
 brand, err := client.Brand.Retrieve(ctx, crawlora.Params{"domain": "stripe.com"})
 ```
 
+## Threads Public Lookups
+
+```go
+profile, err := client.Threads.Profile(ctx, crawlora.Params{"username": "zuck"})
+post, err := client.Threads.Post(ctx, crawlora.Params{"username": "zuck", "code": "DakyAavlKLZ"})
+```
+
 ## Software, Reviews, And Market Datasets
 
 Build a Chrome extension competitive-intelligence view without downloading the

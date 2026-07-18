@@ -2,7 +2,7 @@
 
 Generated from `openapi/public.json`. Deprecated, admin, and internal operations are excluded from this SDK contract.
 
-Total operations: `782`
+Total operations: `784`
 
 | Group | SDK method | Operation ID | HTTP | Params | Auth | Response | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -670,6 +670,8 @@ Total operations: `782`
 | Tcdb | `Tcdb.Tagged` | `tcdb-tagged` | `GET /tcdb/tagged` | `id` (query string)<br>`path` (query string)<br>`url` (query string)<br>`sport` (query string)<br>`page` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `TcdbTaggedResponse` |  |
 | Tcdb | `Tcdb.Team` | `tcdb-team` | `GET /tcdb/team` | `id` (query string)<br>`path` (query string)<br>`url` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `TcdbTeamResponse` |  |
 | Tcdb | `Tcdb.TopSets` | `tcdb-top-sets` | `GET /tcdb/top-sets` | `limit` (query int) | `ApiKeyAuth` | `TcdbTopSetsResponse` |  |
+| Threads | `Threads.Post` | `threads-post` | `GET /threads/post/{username}/{code}` | `username` (path string required)<br>`code` (path string required) | `ApiKeyAuth` | `ThreadsPostResponse` |  |
+| Threads | `Threads.Profile` | `threads-profile` | `GET /threads/profile/{username}` | `username` (path string required) | `ApiKeyAuth` | `ThreadsProfileResponse` |  |
 | TikTok | `TikTok.Category` | `tiktok-category` | `GET /tiktok/category` | none | `ApiKeyAuth` | `TikTokCategoryResponse` |  |
 | TikTok | `TikTok.VideoComments` | `tiktok-video-comments` | `GET /tiktok/comments` | `aweme_id` (query string required)<br>`cursor` (query int) | `ApiKeyAuth` | `TikTokVideoCommentsResponse` |  |
 | TikTok | `TikTok.Explore` | `tiktok-explore` | `GET /tiktok/explore/{id}` | `id` (path int required) | `ApiKeyAuth` | `TikTokExploreResponse` |  |

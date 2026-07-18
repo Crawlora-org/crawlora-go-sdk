@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.21.0-sdk.1
+
+- Regenerated from the public API contract (782 to 784 operations). Adds credential-free Threads public profile and single-post lookups.
+
 ## v1.20.0-sdk.1
 
 - Regenerated from the public API contract (776 to 782 operations). Adds jobs dataset company detail and nearby search, plus iCIMS and Eightfold board and job operations.
