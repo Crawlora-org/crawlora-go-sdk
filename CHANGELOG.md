@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.23.0-sdk.1
+
+- Regenerated from the public API contract (787 to 790 operations). Adds the Box Office Mojo dataset endpoints: search, item by title id, and facets.
+
+
 ## v1.22.0-sdk.1
 
 - Regenerated from the public API contract (784 to 787 operations). Adds Threads search, cursor-paginated profile posts, and public post replies.

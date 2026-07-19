@@ -5144,6 +5144,18 @@
           "example": "Avatar",
           "type": "string"
         },
+        "title_id": {
+          "example": "tt0499549",
+          "type": "string"
+        },
+        "title_path": {
+          "example": "/title/tt0499549/",
+          "type": "string"
+        },
+        "title_url": {
+          "example": "https://www.boxofficemojo.com/title/tt0499549/",
+          "type": "string"
+        },
         "url": {
           "example": "https://www.boxofficemojo.com/releasegroup/gr3486798341/",
           "type": "string"
@@ -6034,6 +6046,18 @@
         },
         "release_group": {
           "example": "Ne Zha 2",
+          "type": "string"
+        },
+        "release_group_id": {
+          "example": "gr2474856965",
+          "type": "string"
+        },
+        "release_group_path": {
+          "example": "/releasegroup/gr2474856965/",
+          "type": "string"
+        },
+        "release_group_url": {
+          "example": "https://www.boxofficemojo.com/releasegroup/gr2474856965/",
           "type": "string"
         },
         "title_id": {
@@ -10384,6 +10408,49 @@
       },
       "type": "object"
     },
+    "datasets.BoxOfficeMojoFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.BoxOfficeMojoDatasetFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.BoxOfficeMojoSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.BoxOfficeMojoTitleRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "datasets.ChartsSearchResponse": {
       "properties": {
         "dataset": {
@@ -11674,6 +11741,54 @@
         },
         "data": {
           "$ref": "#/definitions/datasets.AppsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.boxOfficeMojoFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.BoxOfficeMojoFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.boxOfficeMojoItemResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.BoxOfficeMojoTitleRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.boxOfficeMojoSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.BoxOfficeMojoSearchResponse"
         },
         "msg": {
           "example": "OK",
@@ -14652,6 +14767,241 @@
         },
         "version": {
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.BoxOfficeMojoDatasetFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.BoxOfficeMojoReleaseGroup": {
+      "properties": {
+        "domestic": {
+          "type": "integer"
+        },
+        "international": {
+          "type": "integer"
+        },
+        "markets": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "rollout": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "worldwide": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "es.BoxOfficeMojoTitleRecord": {
+      "properties": {
+        "brand_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "brand_names": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "domestic_share": {
+          "type": "number"
+        },
+        "first_seen_at": {
+          "type": "string"
+        },
+        "foreign_share": {
+          "type": "number"
+        },
+        "franchise_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "franchise_names": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "genre_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "genre_names": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "gross_band": {
+          "type": "string"
+        },
+        "hydrate_attempts": {
+          "type": "integer"
+        },
+        "hydrate_failed": {
+          "type": "boolean"
+        },
+        "hydrated": {
+          "type": "boolean"
+        },
+        "in_lifetime_top_1000_dom": {
+          "type": "boolean"
+        },
+        "in_lifetime_top_1000_ww": {
+          "type": "boolean"
+        },
+        "is_billion_dollar": {
+          "type": "boolean"
+        },
+        "last_crawled_at": {
+          "type": "string"
+        },
+        "last_hydrated_at": {
+          "type": "string"
+        },
+        "lifetime_gross_domestic": {
+          "type": "integer"
+        },
+        "lifetime_gross_worldwide": {
+          "type": "integer"
+        },
+        "lifetime_rank_domestic": {
+          "type": "integer"
+        },
+        "lifetime_rank_worldwide": {
+          "type": "integer"
+        },
+        "lifetime_year": {
+          "type": "integer"
+        },
+        "market_count": {
+          "type": "integer"
+        },
+        "market_grosses": {
+          "description": "MarketGrosses keeps the hydrated region/market tables as opaque objects so\nthe mapping stays flexible; the public query surface can expand later.",
+          "items": {
+            "additionalProperties": {},
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "peak_worldwide_gross": {
+          "type": "integer"
+        },
+        "peak_worldwide_year": {
+          "type": "integer"
+        },
+        "primary_release_group_id": {
+          "type": "string"
+        },
+        "primary_release_group_name": {
+          "type": "string"
+        },
+        "release_group_count": {
+          "type": "integer"
+        },
+        "release_group_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "release_groups": {
+          "items": {
+            "$ref": "#/definitions/es.BoxOfficeMojoReleaseGroup"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "sources": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "title": {
+          "type": "string"
+        },
+        "title_id": {
+          "type": "string"
+        },
+        "title_path": {
+          "type": "string"
+        },
+        "title_url": {
+          "type": "string"
+        },
+        "year_grosses": {
+          "items": {
+            "$ref": "#/definitions/es.BoxOfficeMojoYearGross"
+          },
+          "type": "array"
+        },
+        "years_active": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "es.BoxOfficeMojoYearGross": {
+      "properties": {
+        "domestic": {
+          "type": "integer"
+        },
+        "domestic_share": {
+          "type": "number"
+        },
+        "foreign": {
+          "type": "integer"
+        },
+        "foreign_share": {
+          "type": "number"
+        },
+        "rank_worldwide": {
+          "type": "integer"
+        },
+        "release_group_id": {
+          "type": "string"
+        },
+        "release_group_name": {
+          "type": "string"
+        },
+        "worldwide": {
+          "type": "integer"
+        },
+        "year": {
+          "type": "integer"
         }
       },
       "type": "object"
@@ -28693,9 +29043,7 @@
           "example": "DEFAULT",
           "type": "string"
         },
-        "possibilities": {
-          "type": "string"
-        },
+        "possibilities": {},
         "public_page_derived": {
           "example": true,
           "type": "boolean"
@@ -28849,9 +29197,7 @@
       "properties": {
         "continuous_range": {
           "description": "ContinuousRange passes through Metaculus's scaling.continuous_range: null\nfor discrete questions, an array of numbers (the CDF internal locations)\nfor continuous/numeric ones. It was previously typed []string, so hydrating\na commented continuous question failed to decode and 503'd the comments\nfeeds; numbers are the correct element type.",
-          "items": {
-            "type": "number"
-          },
+          "items": {},
           "type": "array"
         },
         "inbound_outcome_count": {
@@ -69062,6 +69408,317 @@
           }
         ],
         "summary": "Search the apps-intelligence dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/boxofficemojo/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns terms-aggregation counts for one facet of the Box Office Mojo dataset, scoped to the same filters as search. Facet enum: `gross_band`, `years_active`, `lifetime_year`, `franchise_names`, `brand_names`, `genre_names`, `hydrated`, `is_billion_dollar`, `in_lifetime_top_1000_ww`.",
+        "operationId": "datasets-boxofficemojo-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: gross_band, years_active, lifetime_year, franchise_names, brand_names, genre_names, hydrated, is_billion_dollar, in_lifetime_top_1000_ww",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Year in years_active",
+            "in": "query",
+            "name": "year",
+            "type": "integer"
+          },
+          {
+            "description": "Gross band filter",
+            "in": "query",
+            "name": "gross_band",
+            "type": "string"
+          },
+          {
+            "description": "Minimum lifetime worldwide gross",
+            "in": "query",
+            "name": "min_worldwide",
+            "type": "integer"
+          },
+          {
+            "description": "Hydrated filter",
+            "in": "query",
+            "name": "hydrated",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.boxOfficeMojoFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet the Box Office Mojo dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/boxofficemojo/items/{title_id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one Box Office Mojo dataset record by title id (IMDb `tt…` id used on Box Office Mojo title pages), including lifetime grosses, year history, release groups and market grosses when hydrated.",
+        "operationId": "datasets-boxofficemojo-item",
+        "parameters": [
+          {
+            "description": "Title id (IMDb tt… id), e.g. tt0499549",
+            "in": "path",
+            "name": "title_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.boxOfficeMojoItemResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Box Office Mojo title from the dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/boxofficemojo/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches theatrical box-office records from public Box Office Mojo charts and title pages, stored in a search index. Filter by title id, year, franchise/brand/genre, gross band, lifetime top-1000 membership, hydration status, and worldwide/domestic gross ranges. Sort enum: `relevance`, `worldwide_desc`, `domestic_desc`, `peak_worldwide_desc`, `lifetime_rank_asc`, `year_desc`, `year_asc`. gross_band enum: `under_50m`, `50_100m`, `100_250m`, `250_500m`, `500m_1b`, `over_1b`.",
+        "operationId": "datasets-boxofficemojo-search",
+        "parameters": [
+          {
+            "description": "Full-text query over title and taxonomy names, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact title id (IMDb tt… id used by Box Office Mojo), max 32 characters",
+            "in": "query",
+            "name": "title_id",
+            "type": "string"
+          },
+          {
+            "description": "Year that must appear in years_active",
+            "in": "query",
+            "name": "year",
+            "type": "integer"
+          },
+          {
+            "description": "Primary lifetime chart year",
+            "in": "query",
+            "name": "lifetime_year",
+            "type": "integer"
+          },
+          {
+            "description": "Gross band enum: under_50m, 50_100m, 100_250m, 250_500m, 500m_1b, over_1b",
+            "in": "query",
+            "name": "gross_band",
+            "type": "string"
+          },
+          {
+            "description": "Franchise name filter, max 128 characters",
+            "in": "query",
+            "name": "franchise",
+            "type": "string"
+          },
+          {
+            "description": "Brand name filter, max 128 characters",
+            "in": "query",
+            "name": "brand",
+            "type": "string"
+          },
+          {
+            "description": "Genre name filter, max 128 characters",
+            "in": "query",
+            "name": "genre",
+            "type": "string"
+          },
+          {
+            "description": "Only titles in the lifetime worldwide top 1000 chart",
+            "in": "query",
+            "name": "in_lifetime_top_1000",
+            "type": "boolean"
+          },
+          {
+            "description": "Only titles with hydrated release groups and market grosses",
+            "in": "query",
+            "name": "hydrated",
+            "type": "boolean"
+          },
+          {
+            "description": "Only titles with worldwide gross of at least $1B",
+            "in": "query",
+            "name": "is_billion_dollar",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum lifetime worldwide gross in whole USD dollars",
+            "in": "query",
+            "name": "min_worldwide",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum lifetime worldwide gross in whole USD dollars",
+            "in": "query",
+            "name": "max_worldwide",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum lifetime domestic gross in whole USD dollars",
+            "in": "query",
+            "name": "min_domestic",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum foreign share of worldwide gross, 0 through 1",
+            "in": "query",
+            "name": "min_foreign_share",
+            "type": "number"
+          },
+          {
+            "description": "Maximum domestic share of worldwide gross, 0 through 1",
+            "in": "query",
+            "name": "max_domestic_share",
+            "type": "number"
+          },
+          {
+            "description": "Sort enum: relevance, worldwide_desc, domestic_desc, peak_worldwide_desc, lifetime_rank_asc, year_desc, year_asc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.boxOfficeMojoSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the Box Office Mojo dataset",
         "tags": [
           "Datasets"
         ]
