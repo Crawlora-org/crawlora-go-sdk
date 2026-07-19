@@ -1408,9 +1408,13 @@ type ModelBoxofficemojoCalendarReleaseRow struct {
 	ImageHiResUrl string   `json:"image_hi_res_url,omitempty"`
 	ImageUrl      string   `json:"image_url,omitempty"`
 	Release       string   `json:"release,omitempty"`
+	ReleaseId     string   `json:"release_id,omitempty"`
 	ReleasePath   string   `json:"release_path,omitempty"`
 	ReleaseUrl    string   `json:"release_url,omitempty"`
 	Scale         string   `json:"scale,omitempty"`
+	TitleId       string   `json:"title_id,omitempty"`
+	TitlePath     string   `json:"title_path,omitempty"`
+	TitleUrl      string   `json:"title_url,omitempty"`
 }
 
 type ModelBoxofficemojoCalendarResponse struct {
@@ -1471,6 +1475,9 @@ type ModelBoxofficemojoDomesticWeekendRow struct {
 	NewThisWeek   bool    `json:"new_this_week,omitempty"`
 	Rank          int     `json:"rank,omitempty"`
 	Release       string  `json:"release,omitempty"`
+	ReleaseId     string  `json:"release_id,omitempty"`
+	ReleasePath   string  `json:"release_path,omitempty"`
+	ReleaseUrl    string  `json:"release_url,omitempty"`
 	TheaterChange int     `json:"theater_change,omitempty"`
 	Theaters      int     `json:"theaters,omitempty"`
 	TitleId       string  `json:"title_id,omitempty"`
@@ -1593,6 +1600,9 @@ type ModelBoxofficemojoReleaseGroupResponse struct {
 	ReleaseGroupId    string                                      `json:"release_group_id,omitempty"`
 	SourceUrl         string                                      `json:"source_url,omitempty"`
 	Title             string                                      `json:"title,omitempty"`
+	TitleId           string                                      `json:"title_id,omitempty"`
+	TitlePath         string                                      `json:"title_path,omitempty"`
+	TitleUrl          string                                      `json:"title_url,omitempty"`
 	Url               string                                      `json:"url,omitempty"`
 }
 
@@ -1605,6 +1615,9 @@ type ModelBoxofficemojoReleaseResponse struct {
 	SourceUrl         string                              `json:"source_url,omitempty"`
 	Summary           ModelBoxofficemojoReleaseSummary    `json:"summary,omitempty"`
 	Title             string                              `json:"title,omitempty"`
+	TitleId           string                              `json:"title_id,omitempty"`
+	TitlePath         string                              `json:"title_path,omitempty"`
+	TitleUrl          string                              `json:"title_url,omitempty"`
 	Url               string                              `json:"url,omitempty"`
 }
 
@@ -1742,6 +1755,9 @@ type ModelBoxofficemojoTaxonomyMovieRow struct {
 	Rank             int    `json:"rank,omitempty"`
 	Release          string `json:"release,omitempty"`
 	ReleaseDate      string `json:"release_date,omitempty"`
+	ReleaseId        string `json:"release_id,omitempty"`
+	ReleasePath      string `json:"release_path,omitempty"`
+	ReleaseUrl       string `json:"release_url,omitempty"`
 	TitleId          string `json:"title_id,omitempty"`
 	TitlePath        string `json:"title_path,omitempty"`
 	TitleUrl         string `json:"title_url,omitempty"`
@@ -1837,19 +1853,22 @@ type ModelBoxofficemojoWorldwideYearResponse struct {
 }
 
 type ModelBoxofficemojoWorldwideYearRow struct {
-	Domestic      int     `json:"domestic,omitempty"`
-	DomesticRaw   string  `json:"domestic_raw,omitempty"`
-	DomesticShare float64 `json:"domestic_share,omitempty"`
-	Foreign       int     `json:"foreign,omitempty"`
-	ForeignRaw    string  `json:"foreign_raw,omitempty"`
-	ForeignShare  float64 `json:"foreign_share,omitempty"`
-	Rank          int     `json:"rank,omitempty"`
-	ReleaseGroup  string  `json:"release_group,omitempty"`
-	TitleId       string  `json:"title_id,omitempty"`
-	TitlePath     string  `json:"title_path,omitempty"`
-	TitleUrl      string  `json:"title_url,omitempty"`
-	Worldwide     int     `json:"worldwide,omitempty"`
-	WorldwideRaw  string  `json:"worldwide_raw,omitempty"`
+	Domestic         int     `json:"domestic,omitempty"`
+	DomesticRaw      string  `json:"domestic_raw,omitempty"`
+	DomesticShare    float64 `json:"domestic_share,omitempty"`
+	Foreign          int     `json:"foreign,omitempty"`
+	ForeignRaw       string  `json:"foreign_raw,omitempty"`
+	ForeignShare     float64 `json:"foreign_share,omitempty"`
+	Rank             int     `json:"rank,omitempty"`
+	ReleaseGroup     string  `json:"release_group,omitempty"`
+	ReleaseGroupId   string  `json:"release_group_id,omitempty"`
+	ReleaseGroupPath string  `json:"release_group_path,omitempty"`
+	ReleaseGroupUrl  string  `json:"release_group_url,omitempty"`
+	TitleId          string  `json:"title_id,omitempty"`
+	TitlePath        string  `json:"title_path,omitempty"`
+	TitleUrl         string  `json:"title_url,omitempty"`
+	Worldwide        int     `json:"worldwide,omitempty"`
+	WorldwideRaw     string  `json:"worldwide_raw,omitempty"`
 }
 
 type ModelBoxofficemojoCalendarChangesResponseDoc struct {
@@ -3207,6 +3226,21 @@ type ModelDatasetsAppsSearchResponse struct {
 	Total    int                `json:"total,omitempty"`
 }
 
+type ModelDatasetsBoxOfficeMojoFacetResponse struct {
+	Dataset string                                 `json:"dataset,omitempty"`
+	Facet   string                                 `json:"facet,omitempty"`
+	Items   []ModelEsBoxOfficeMojoDatasetFacetItem `json:"items,omitempty"`
+}
+
+type ModelDatasetsBoxOfficeMojoSearchResponse struct {
+	Dataset  string                            `json:"dataset,omitempty"`
+	Items    []ModelEsBoxOfficeMojoTitleRecord `json:"items,omitempty"`
+	Page     int                               `json:"page,omitempty"`
+	PageSize int                               `json:"page_size,omitempty"`
+	Sort     string                            `json:"sort,omitempty"`
+	Total    int                               `json:"total,omitempty"`
+}
+
 type ModelDatasetsChartsSearchResponse struct {
 	Dataset      string              `json:"dataset,omitempty"`
 	Items        []ModelEsChartEntry `json:"items,omitempty"`
@@ -3650,6 +3684,24 @@ type ModelDatasetsAppsSearchResponseDoc struct {
 	Code int                             `json:"code,omitempty"`
 	Data ModelDatasetsAppsSearchResponse `json:"data,omitempty"`
 	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelDatasetsBoxOfficeMojoFacetResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelDatasetsBoxOfficeMojoFacetResponse `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
+}
+
+type ModelDatasetsBoxOfficeMojoItemResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelEsBoxOfficeMojoTitleRecord `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelDatasetsBoxOfficeMojoSearchResponseDoc struct {
+	Code int                                      `json:"code,omitempty"`
+	Data ModelDatasetsBoxOfficeMojoSearchResponse `json:"data,omitempty"`
+	Msg  string                                   `json:"msg,omitempty"`
 }
 
 type ModelDatasetsChartsSearchResponseDoc struct {
@@ -4642,6 +4694,77 @@ type ModelEsAppReview struct {
 	Url         string `json:"url,omitempty"`
 	UserName    string `json:"user_name,omitempty"`
 	Version     string `json:"version,omitempty"`
+}
+
+type ModelEsBoxOfficeMojoDatasetFacetItem struct {
+	Count int    `json:"count,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelEsBoxOfficeMojoReleaseGroup struct {
+	Domestic      int    `json:"domestic,omitempty"`
+	International int    `json:"international,omitempty"`
+	Markets       string `json:"markets,omitempty"`
+	Name          string `json:"name,omitempty"`
+	Path          string `json:"path,omitempty"`
+	Rollout       string `json:"rollout,omitempty"`
+	Url           string `json:"url,omitempty"`
+	Worldwide     int    `json:"worldwide,omitempty"`
+}
+
+type ModelEsBoxOfficeMojoTitleRecord struct {
+	BrandIds                []string                           `json:"brand_ids,omitempty"`
+	BrandNames              []string                           `json:"brand_names,omitempty"`
+	DomesticShare           float64                            `json:"domestic_share,omitempty"`
+	FirstSeenAt             string                             `json:"first_seen_at,omitempty"`
+	ForeignShare            float64                            `json:"foreign_share,omitempty"`
+	FranchiseIds            []string                           `json:"franchise_ids,omitempty"`
+	FranchiseNames          []string                           `json:"franchise_names,omitempty"`
+	GenreIds                []string                           `json:"genre_ids,omitempty"`
+	GenreNames              []string                           `json:"genre_names,omitempty"`
+	GrossBand               string                             `json:"gross_band,omitempty"`
+	HydrateAttempts         int                                `json:"hydrate_attempts,omitempty"`
+	HydrateFailed           bool                               `json:"hydrate_failed,omitempty"`
+	Hydrated                bool                               `json:"hydrated,omitempty"`
+	InLifetimeTop1000Dom    bool                               `json:"in_lifetime_top_1000_dom,omitempty"`
+	InLifetimeTop1000Ww     bool                               `json:"in_lifetime_top_1000_ww,omitempty"`
+	IsBillionDollar         bool                               `json:"is_billion_dollar,omitempty"`
+	LastCrawledAt           string                             `json:"last_crawled_at,omitempty"`
+	LastHydratedAt          string                             `json:"last_hydrated_at,omitempty"`
+	LifetimeGrossDomestic   int                                `json:"lifetime_gross_domestic,omitempty"`
+	LifetimeGrossWorldwide  int                                `json:"lifetime_gross_worldwide,omitempty"`
+	LifetimeRankDomestic    int                                `json:"lifetime_rank_domestic,omitempty"`
+	LifetimeRankWorldwide   int                                `json:"lifetime_rank_worldwide,omitempty"`
+	LifetimeYear            int                                `json:"lifetime_year,omitempty"`
+	MarketCount             int                                `json:"market_count,omitempty"`
+	MarketGrosses           []map[string]any                   `json:"market_grosses,omitempty"`
+	PeakWorldwideGross      int                                `json:"peak_worldwide_gross,omitempty"`
+	PeakWorldwideYear       int                                `json:"peak_worldwide_year,omitempty"`
+	PrimaryReleaseGroupId   string                             `json:"primary_release_group_id,omitempty"`
+	PrimaryReleaseGroupName string                             `json:"primary_release_group_name,omitempty"`
+	ReleaseGroupCount       int                                `json:"release_group_count,omitempty"`
+	ReleaseGroupIds         []string                           `json:"release_group_ids,omitempty"`
+	ReleaseGroups           []ModelEsBoxOfficeMojoReleaseGroup `json:"release_groups,omitempty"`
+	SchemaVersion           int                                `json:"schema_version,omitempty"`
+	Sources                 []string                           `json:"sources,omitempty"`
+	Title                   string                             `json:"title,omitempty"`
+	TitleId                 string                             `json:"title_id,omitempty"`
+	TitlePath               string                             `json:"title_path,omitempty"`
+	TitleUrl                string                             `json:"title_url,omitempty"`
+	YearGrosses             []ModelEsBoxOfficeMojoYearGross    `json:"year_grosses,omitempty"`
+	YearsActive             []int                              `json:"years_active,omitempty"`
+}
+
+type ModelEsBoxOfficeMojoYearGross struct {
+	Domestic         int     `json:"domestic,omitempty"`
+	DomesticShare    float64 `json:"domestic_share,omitempty"`
+	Foreign          int     `json:"foreign,omitempty"`
+	ForeignShare     float64 `json:"foreign_share,omitempty"`
+	RankWorldwide    int     `json:"rank_worldwide,omitempty"`
+	ReleaseGroupId   string  `json:"release_group_id,omitempty"`
+	ReleaseGroupName string  `json:"release_group_name,omitempty"`
+	Worldwide        int     `json:"worldwide,omitempty"`
+	Year             int     `json:"year,omitempty"`
 }
 
 type ModelEsChartEntry struct {
@@ -9123,7 +9246,7 @@ type ModelMetaculusQuestionMetadataResponse struct {
 	Options                  []string                      `json:"options,omitempty"`
 	OptionsHistory           []ModelMetaculusOptionsChange `json:"options_history,omitempty"`
 	OptionsOrder             string                        `json:"options_order,omitempty"`
-	Possibilities            string                        `json:"possibilities,omitempty"`
+	Possibilities            any                           `json:"possibilities,omitempty"`
 	PublicPageDerived        bool                          `json:"public_page_derived,omitempty"`
 	Question                 ModelMetaculusQuestionRow     `json:"question,omitempty"`
 	Resolution               string                        `json:"resolution,omitempty"`
@@ -9167,15 +9290,15 @@ type ModelMetaculusQuestionRow struct {
 }
 
 type ModelMetaculusQuestionScaling struct {
-	ContinuousRange     []float64 `json:"continuous_range,omitempty"`
-	InboundOutcomeCount int       `json:"inbound_outcome_count,omitempty"`
-	NominalMax          float64   `json:"nominal_max,omitempty"`
-	NominalMin          float64   `json:"nominal_min,omitempty"`
-	OpenLowerBound      bool      `json:"open_lower_bound,omitempty"`
-	OpenUpperBound      bool      `json:"open_upper_bound,omitempty"`
-	RangeMax            float64   `json:"range_max,omitempty"`
-	RangeMin            float64   `json:"range_min,omitempty"`
-	ZeroPoint           float64   `json:"zero_point,omitempty"`
+	ContinuousRange     []any   `json:"continuous_range,omitempty"`
+	InboundOutcomeCount int     `json:"inbound_outcome_count,omitempty"`
+	NominalMax          float64 `json:"nominal_max,omitempty"`
+	NominalMin          float64 `json:"nominal_min,omitempty"`
+	OpenLowerBound      bool    `json:"open_lower_bound,omitempty"`
+	OpenUpperBound      bool    `json:"open_upper_bound,omitempty"`
+	RangeMax            float64 `json:"range_max,omitempty"`
+	RangeMin            float64 `json:"range_min,omitempty"`
+	ZeroPoint           float64 `json:"zero_point,omitempty"`
 }
 
 type ModelMetaculusQuestionsResponse struct {
@@ -18460,7 +18583,7 @@ type ModelZillowSearchResponse struct {
 	Results  []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 787
+const operationCount = 790
 
 const (
 	OperationAirbnbHost                                             = "airbnb-host"
@@ -18580,6 +18703,9 @@ const (
 	OperationDatasetsAppsChartsSearch                               = "datasets-apps-charts-search"
 	OperationDatasetsAppsReviewsSearch                              = "datasets-apps-reviews-search"
 	OperationDatasetsAppsSearch                                     = "datasets-apps-search"
+	OperationDatasetsBoxofficemojoFacets                            = "datasets-boxofficemojo-facets"
+	OperationDatasetsBoxofficemojoItem                              = "datasets-boxofficemojo-item"
+	OperationDatasetsBoxofficemojoSearch                            = "datasets-boxofficemojo-search"
 	OperationDatasetsChromeExtensionsChanges                        = "datasets-chrome-extensions-changes"
 	OperationDatasetsChromeExtensionsFacets                         = "datasets-chrome-extensions-facets"
 	OperationDatasetsChromeExtensionsHistory                        = "datasets-chrome-extensions-history"
@@ -19372,6 +19498,9 @@ var operations = map[string]operationDefinition{
 	"datasets-apps-charts-search":                   operationDefinition{Method: "GET", Path: "/datasets/apps-charts/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "chart_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "collection", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-apps-reviews-search":                  operationDefinition{Method: "GET", Path: "/datasets/apps-reviews/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_score", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-apps-search":                          operationDefinition{Method: "GET", Path: "/datasets/apps/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "developer", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "free", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_reviews", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-boxofficemojo-facets":                 operationDefinition{Method: "GET", Path: "/datasets/boxofficemojo/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "title_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "lifetime_year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "gross_band", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "franchise", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "brand", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "genre", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "in_lifetime_top_1000", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_worldwide", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_worldwide", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_domestic", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_foreign_share", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_domestic_share", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "hydrated", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_billion_dollar", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-boxofficemojo-item":                   operationDefinition{Method: "GET", Path: "/datasets/boxofficemojo/items/{title_id}", PathParams: []string{"title_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-boxofficemojo-search":                 operationDefinition{Method: "GET", Path: "/datasets/boxofficemojo/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "title_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "lifetime_year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "gross_band", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "franchise", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "brand", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "genre", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "in_lifetime_top_1000", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "hydrated", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_billion_dollar", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_worldwide", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_worldwide", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_domestic", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_foreign_share", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_domestic_share", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-chrome-extensions-changes":            operationDefinition{Method: "GET", Path: "/datasets/chrome-extensions/changes", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "change_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-chrome-extensions-facets":             operationDefinition{Method: "GET", Path: "/datasets/chrome-extensions/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "item_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "developer", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "developer_email", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "permission", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "manifest_version", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "collects_data", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_broad_host_access", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_users", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-chrome-extensions-history":            operationDefinition{Method: "GET", Path: "/datasets/chrome-extensions/history/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -22204,6 +22333,82 @@ type DatasetsAppsSearchResponse = ModelDatasetsAppsSearchResponseDoc
 
 func (s *DatasetsService) AppsSearchTyped(ctx context.Context, params DatasetsAppsSearchParams, opts ...RequestOption) (DatasetsAppsSearchResponse, error) {
 	return requestTyped[DatasetsAppsSearchResponse](s.client, ctx, "datasets-apps-search", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) BoxofficemojoFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-boxofficemojo-facets", params, opts...)
+}
+
+type DatasetsBoxofficemojoFacetsParams struct {
+	Facet             string   `crawlora:"facet"`
+	Q                 *string  `crawlora:"q,omitempty"`
+	TitleId           *string  `crawlora:"title_id,omitempty"`
+	Year              *int     `crawlora:"year,omitempty"`
+	LifetimeYear      *int     `crawlora:"lifetime_year,omitempty"`
+	GrossBand         *string  `crawlora:"gross_band,omitempty"`
+	Franchise         *string  `crawlora:"franchise,omitempty"`
+	Brand             *string  `crawlora:"brand,omitempty"`
+	Genre             *string  `crawlora:"genre,omitempty"`
+	InLifetimeTop1000 *bool    `crawlora:"in_lifetime_top_1000,omitempty"`
+	MinWorldwide      *int     `crawlora:"min_worldwide,omitempty"`
+	MaxWorldwide      *int     `crawlora:"max_worldwide,omitempty"`
+	MinDomestic       *int     `crawlora:"min_domestic,omitempty"`
+	MinForeignShare   *float64 `crawlora:"min_foreign_share,omitempty"`
+	MaxDomesticShare  *float64 `crawlora:"max_domestic_share,omitempty"`
+	Hydrated          *bool    `crawlora:"hydrated,omitempty"`
+	IsBillionDollar   *bool    `crawlora:"is_billion_dollar,omitempty"`
+}
+
+type DatasetsBoxofficemojoFacetsResponse = ModelDatasetsBoxOfficeMojoFacetResponseDoc
+
+func (s *DatasetsService) BoxofficemojoFacetsTyped(ctx context.Context, params DatasetsBoxofficemojoFacetsParams, opts ...RequestOption) (DatasetsBoxofficemojoFacetsResponse, error) {
+	return requestTyped[DatasetsBoxofficemojoFacetsResponse](s.client, ctx, "datasets-boxofficemojo-facets", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) BoxofficemojoItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-boxofficemojo-item", params, opts...)
+}
+
+type DatasetsBoxofficemojoItemParams struct {
+	TitleId string `crawlora:"title_id"`
+}
+
+type DatasetsBoxofficemojoItemResponse = ModelDatasetsBoxOfficeMojoItemResponseDoc
+
+func (s *DatasetsService) BoxofficemojoItemTyped(ctx context.Context, params DatasetsBoxofficemojoItemParams, opts ...RequestOption) (DatasetsBoxofficemojoItemResponse, error) {
+	return requestTyped[DatasetsBoxofficemojoItemResponse](s.client, ctx, "datasets-boxofficemojo-item", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) BoxofficemojoSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-boxofficemojo-search", params, opts...)
+}
+
+type DatasetsBoxofficemojoSearchParams struct {
+	Q                 *string  `crawlora:"q,omitempty"`
+	TitleId           *string  `crawlora:"title_id,omitempty"`
+	Year              *int     `crawlora:"year,omitempty"`
+	LifetimeYear      *int     `crawlora:"lifetime_year,omitempty"`
+	GrossBand         *string  `crawlora:"gross_band,omitempty"`
+	Franchise         *string  `crawlora:"franchise,omitempty"`
+	Brand             *string  `crawlora:"brand,omitempty"`
+	Genre             *string  `crawlora:"genre,omitempty"`
+	InLifetimeTop1000 *bool    `crawlora:"in_lifetime_top_1000,omitempty"`
+	Hydrated          *bool    `crawlora:"hydrated,omitempty"`
+	IsBillionDollar   *bool    `crawlora:"is_billion_dollar,omitempty"`
+	MinWorldwide      *int     `crawlora:"min_worldwide,omitempty"`
+	MaxWorldwide      *int     `crawlora:"max_worldwide,omitempty"`
+	MinDomestic       *int     `crawlora:"min_domestic,omitempty"`
+	MinForeignShare   *float64 `crawlora:"min_foreign_share,omitempty"`
+	MaxDomesticShare  *float64 `crawlora:"max_domestic_share,omitempty"`
+	Sort              *string  `crawlora:"sort,omitempty"`
+	Page              *int     `crawlora:"page,omitempty"`
+	PageSize          *int     `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsBoxofficemojoSearchResponse = ModelDatasetsBoxOfficeMojoSearchResponseDoc
+
+func (s *DatasetsService) BoxofficemojoSearchTyped(ctx context.Context, params DatasetsBoxofficemojoSearchParams, opts ...RequestOption) (DatasetsBoxofficemojoSearchResponse, error) {
+	return requestTyped[DatasetsBoxofficemojoSearchResponse](s.client, ctx, "datasets-boxofficemojo-search", paramsFromStruct(params), opts...)
 }
 
 func (s *DatasetsService) ChromeExtensionsChanges(ctx context.Context, params Params, opts ...RequestOption) (any, error) {

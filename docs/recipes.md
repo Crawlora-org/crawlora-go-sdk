@@ -54,6 +54,16 @@ posts, err := client.Threads.ProfilePosts(ctx, crawlora.Params{"username": "zuck
 replies, err := client.Threads.PostReplies(ctx, crawlora.Params{"username": "zuck", "code": "DakyAavlKLZ"})
 ```
 
+## Box Office Mojo Dataset
+
+Search theatrical box-office records, fetch one title, and facet the same filter set.
+
+```go
+titles, err := client.Datasets.BoxofficemojoSearch(ctx, crawlora.Params{"q": "avatar", "sort": "worldwide_desc"})
+avatar, err := client.Datasets.BoxofficemojoItem(ctx, crawlora.Params{"title_id": "tt0499549"})
+years, err := client.Datasets.BoxofficemojoFacets(ctx, crawlora.Params{"facet": "years_active", "gross_band": "over_1b"})
+```
+
 ## Software, Reviews, And Market Datasets
 
 Build a Chrome extension competitive-intelligence view without downloading the
