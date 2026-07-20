@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.24.0-sdk.1
+
+- Regenerated from the public API contract (790 to 836 operations). Adds Google Maps place photos and place reviews, plus Apple Books, and the PitchBook and Goodreads dataset families.
+
 ## v1.23.0-sdk.1
 
 - Regenerated from the public API contract (787 to 790 operations). Adds Box Office Mojo dataset search, item lookup, and facets.

@@ -1822,6 +1822,514 @@
       },
       "type": "object"
     },
+    "applebooks.Audiobook": {
+      "properties": {
+        "artist_id": {
+          "type": "integer"
+        },
+        "artist_name": {
+          "type": "string"
+        },
+        "artist_url": {
+          "type": "string"
+        },
+        "artwork_url": {
+          "type": "string"
+        },
+        "book_id": {
+          "type": "integer"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "duration_seconds": {
+          "type": "integer"
+        },
+        "free": {
+          "type": "boolean"
+        },
+        "genres": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "narrator": {
+          "type": "string"
+        },
+        "preview_url": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "number"
+        },
+        "rating_count": {
+          "type": "integer"
+        },
+        "rating_histogram": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "series_id": {
+          "type": "integer"
+        },
+        "series_name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applebooks.AudiobookSeries": {
+      "properties": {
+        "audiobooks": {
+          "items": {
+            "$ref": "#/definitions/applebooks.Audiobook"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applebooks.Author": {
+      "properties": {
+        "audio_books": {
+          "items": {
+            "$ref": "#/definitions/applebooks.Audiobook"
+          },
+          "type": "array"
+        },
+        "books": {
+          "items": {
+            "$ref": "#/definitions/applebooks.Book"
+          },
+          "type": "array"
+        },
+        "genres": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applebooks.Book": {
+      "properties": {
+        "artist_id": {
+          "type": "integer"
+        },
+        "artist_name": {
+          "type": "string"
+        },
+        "artist_url": {
+          "type": "string"
+        },
+        "artwork_url": {
+          "type": "string"
+        },
+        "audience": {
+          "type": "string"
+        },
+        "audiobook_id": {
+          "type": "integer"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "free": {
+          "type": "boolean"
+        },
+        "genres": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "isbn": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "page_count": {
+          "type": "integer"
+        },
+        "price": {
+          "type": "number"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "number"
+        },
+        "rating_count": {
+          "type": "integer"
+        },
+        "rating_histogram": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "series_id": {
+          "type": "integer"
+        },
+        "series_name": {
+          "type": "string"
+        },
+        "series_sequence": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applebooks.ChartItem": {
+      "properties": {
+        "artist_id": {
+          "type": "integer"
+        },
+        "artist_name": {
+          "type": "string"
+        },
+        "artist_url": {
+          "type": "string"
+        },
+        "artwork_url": {
+          "type": "string"
+        },
+        "genres": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applebooks.Review": {
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "integer"
+        },
+        "text": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "user_name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applebooks.Series": {
+      "properties": {
+        "books": {
+          "items": {
+            "$ref": "#/definitions/applebooks.Book"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applebooks.audiobookResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/applebooks.Audiobook"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applebooks.audiobookReviewsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "items": {
+            "$ref": "#/definitions/applebooks.Review"
+          },
+          "type": "array"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applebooks.audiobookSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "items": {
+            "$ref": "#/definitions/applebooks.Audiobook"
+          },
+          "type": "array"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applebooks.audiobookSeriesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/applebooks.AudiobookSeries"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applebooks.audiobookSimilarResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "items": {
+            "$ref": "#/definitions/applebooks.Audiobook"
+          },
+          "type": "array"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applebooks.authorResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/applebooks.Author"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applebooks.bookResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/applebooks.Book"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applebooks.chartsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "items": {
+            "$ref": "#/definitions/applebooks.ChartItem"
+          },
+          "type": "array"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applebooks.reviewsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "items": {
+            "$ref": "#/definitions/applebooks.Review"
+          },
+          "type": "array"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applebooks.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "items": {
+            "$ref": "#/definitions/applebooks.Book"
+          },
+          "type": "array"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applebooks.seriesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/applebooks.Series"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applebooks.similarResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "items": {
+            "$ref": "#/definitions/applebooks.Book"
+          },
+          "type": "array"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "applepodcasts.Genre": {
       "properties": {
         "id": {
@@ -5577,6 +6085,11 @@
           "example": "2026-06-07T14:46:16Z",
           "type": "string"
         },
+        "has_more": {
+          "description": "HasMore is true when this page returned a full page of rows (100), so a\nhigher offset may return additional results. Box Office Mojo's taxonomy\ndetail pages paginate at 100 rows/page with no total-count marker, so\nthis is a page-size heuristic, not an exact \"more data exists\" signal.",
+          "example": false,
+          "type": "boolean"
+        },
         "id": {
           "example": "fr541495045",
           "type": "string"
@@ -5588,6 +6101,10 @@
         "name": {
           "example": "Marvel Cinematic Universe",
           "type": "string"
+        },
+        "offset": {
+          "example": 0,
+          "type": "integer"
         },
         "path": {
           "example": "/franchise/fr541495045/",
@@ -5602,6 +6119,14 @@
             "$ref": "#/definitions/boxofficemojo.TaxonomyMovieRow"
           },
           "type": "array"
+        },
+        "sort": {
+          "example": "grossToDate",
+          "type": "string"
+        },
+        "sort_dir": {
+          "example": "desc",
+          "type": "string"
         },
         "source_url": {
           "example": "https://www.boxofficemojo.com/franchise/fr541495045/",
@@ -5636,6 +6161,14 @@
             "$ref": "#/definitions/boxofficemojo.TaxonomyListRow"
           },
           "type": "array"
+        },
+        "sort": {
+          "example": "grossToDate",
+          "type": "string"
+        },
+        "sort_dir": {
+          "example": "desc",
+          "type": "string"
         },
         "source_url": {
           "example": "https://www.boxofficemojo.com/franchise/",
@@ -10794,6 +11327,92 @@
       },
       "type": "object"
     },
+    "datasets.GoodreadsAuthorFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.GoodreadsAuthorDatasetFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.GoodreadsAuthorSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.GoodreadsAuthorRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.GoodreadsFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.GoodreadsBookDatasetFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.GoodreadsSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.GoodreadsBookRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "datasets.GoogleBusinessFacetResponse": {
       "properties": {
         "dataset": {
@@ -11024,6 +11643,221 @@
         "items": {
           "items": {
             "$ref": "#/definitions/es.NumbeoCountryRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.PitchbookAdvisorsFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.PitchbookFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.PitchbookAdvisorsSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.PitchbookRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.PitchbookCompaniesFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.PitchbookFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.PitchbookCompaniesSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.PitchbookRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.PitchbookFundsFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.PitchbookFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.PitchbookFundsSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.PitchbookRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.PitchbookInvestorsFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.PitchbookFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.PitchbookInvestorsSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.PitchbookRecord"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.PitchbookLimitedPartnersFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.PitchbookFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.PitchbookLimitedPartnersSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.PitchbookRecord"
           },
           "type": "array"
         },
@@ -12027,6 +12861,102 @@
       },
       "type": "object"
     },
+    "datasets.goodreadsAuthorResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.GoodreadsAuthorRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.goodreadsAuthorsFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.GoodreadsAuthorFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.goodreadsAuthorsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.GoodreadsAuthorSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.goodreadsBookResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.GoodreadsBookRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.goodreadsBooksFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.GoodreadsFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.goodreadsBooksSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.GoodreadsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "datasets.googleMapBusinessResponseDoc": {
       "properties": {
         "code": {
@@ -12324,6 +13254,246 @@
         },
         "data": {
           "$ref": "#/definitions/es.NumbeoCountryRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.pitchbookAdvisorResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.PitchbookRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.pitchbookAdvisorsFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.PitchbookAdvisorsFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.pitchbookAdvisorsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.PitchbookAdvisorsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.pitchbookCompaniesFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.PitchbookCompaniesFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.pitchbookCompaniesSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.PitchbookCompaniesSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.pitchbookCompanyResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.PitchbookRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.pitchbookFundResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.PitchbookRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.pitchbookFundsFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.PitchbookFundsFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.pitchbookFundsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.PitchbookFundsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.pitchbookInvestorResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.PitchbookRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.pitchbookInvestorsFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.PitchbookInvestorsFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.pitchbookInvestorsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.PitchbookInvestorsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.pitchbookLimitedPartnerResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.PitchbookRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.pitchbookLimitedPartnersFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.PitchbookLimitedPartnersFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.pitchbookLimitedPartnersSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.PitchbookLimitedPartnersSearchResponse"
         },
         "msg": {
           "example": "OK",
@@ -15882,6 +17052,213 @@
       },
       "type": "object"
     },
+    "es.GoodreadsAuthorDatasetFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.GoodreadsAuthorRecord": {
+      "properties": {
+        "about": {
+          "type": "string"
+        },
+        "average_rating": {
+          "type": "number"
+        },
+        "birth_date": {
+          "type": "string"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "death_date": {
+          "type": "string"
+        },
+        "discovery_source": {
+          "description": "DiscoverySource records how this id was found, e.g. \"book:2767052\",\n\"genre:fantasy\", \"search:mystery\" — useful for crawl provenance/debugging.",
+          "type": "string"
+        },
+        "genres": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "ratings_count": {
+          "type": "integer"
+        },
+        "reviews_count": {
+          "type": "integer"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "seed_rank": {
+          "description": "SeedRank is the discovery priority (lower = discovered earlier/higher\npriority), mirroring GoodreadsBookRecord.SeedRank.",
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.GoodreadsBookDatasetFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.GoodreadsBookRecord": {
+      "properties": {
+        "author_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "authors": {
+          "description": "Authors/AuthorIDs list every credited contributor (primary + secondary);\nPrimaryAuthor(ID) denormalizes the first for single-value filters/facets.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "discovery_source": {
+          "description": "DiscoverySource records how this id was found, e.g. \"list:1\",\n\"search:mystery\", \"author:153394\" — useful for crawl provenance/debugging.",
+          "type": "string"
+        },
+        "format": {
+          "type": "string"
+        },
+        "genres": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "isbn": {
+          "type": "string"
+        },
+        "isbn13": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "pages": {
+          "type": "integer"
+        },
+        "primary_author": {
+          "type": "string"
+        },
+        "primary_author_id": {
+          "type": "string"
+        },
+        "publication_date": {
+          "type": "string"
+        },
+        "publication_year": {
+          "type": "integer"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "rating_average": {
+          "type": "number"
+        },
+        "rating_five_star": {
+          "type": "integer"
+        },
+        "rating_four_star": {
+          "type": "integer"
+        },
+        "rating_one_star": {
+          "description": "Rating*Star is the flattened 1-5 star ratings-count distribution.",
+          "type": "integer"
+        },
+        "rating_three_star": {
+          "type": "integer"
+        },
+        "rating_two_star": {
+          "type": "integer"
+        },
+        "ratings_count": {
+          "type": "integer"
+        },
+        "reviews_count": {
+          "type": "integer"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "seed_rank": {
+          "description": "SeedRank is the discovery priority (lower = discovered earlier/higher\npriority): curated list/search seeds rank low; BFS-discovered books from\nauthor expansion rank higher so curated breadth crawls first.",
+          "type": "integer"
+        },
+        "series": {
+          "description": "Series is the display string (e.g. \"The Hunger Games #1\"); SeriesName is\nthe bare series title, split out for exact filtering/faceting.",
+          "type": "string"
+        },
+        "series_name": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "es.GoogleBusiness": {
       "properties": {
         "address": {
@@ -16681,6 +18058,233 @@
       },
       "type": "object"
     },
+    "es.PitchbookFAQRecord": {
+      "properties": {
+        "answer": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.PitchbookFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.PitchbookRecord": {
+      "properties": {
+        "commitments_count": {
+          "type": "integer"
+        },
+        "contact": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "contact_title": {
+          "type": "string"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "crawled_at_ms": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "discovery_source": {
+          "type": "string"
+        },
+        "employees": {
+          "type": "integer"
+        },
+        "exits_count": {
+          "type": "integer"
+        },
+        "faqs": {
+          "items": {
+            "$ref": "#/definitions/es.PitchbookFAQRecord"
+          },
+          "type": "array"
+        },
+        "financing_status": {
+          "type": "string"
+        },
+        "formerly_known_as": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "fund_size": {
+          "type": "string"
+        },
+        "fund_status": {
+          "type": "string"
+        },
+        "fund_strategy": {
+          "description": "fund",
+          "type": "string"
+        },
+        "hq_city": {
+          "type": "string"
+        },
+        "hq_country": {
+          "type": "string"
+        },
+        "hq_state": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "institution_type": {
+          "description": "limited partner",
+          "type": "string"
+        },
+        "investments_count": {
+          "type": "integer"
+        },
+        "investor_count": {
+          "type": "integer"
+        },
+        "investor_type": {
+          "description": "investor",
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "latest_deal_type": {
+          "type": "string"
+        },
+        "managing_firm_name": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "other_industries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "overview": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "ownership_status": {
+          "type": "string"
+        },
+        "portfolio_count": {
+          "type": "integer"
+        },
+        "primary_industry": {
+          "type": "string"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "seed_rank": {
+          "type": "integer"
+        },
+        "service_type": {
+          "description": "advisor",
+          "type": "string"
+        },
+        "serviced_companies": {
+          "type": "integer"
+        },
+        "serviced_deals": {
+          "type": "integer"
+        },
+        "sitemap_lastmod": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "status": {
+          "description": "company",
+          "type": "string"
+        },
+        "tables": {
+          "items": {
+            "$ref": "#/definitions/es.PitchbookTableRecord"
+          },
+          "type": "array"
+        },
+        "verticals": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "vintage_year": {
+          "type": "integer"
+        },
+        "website": {
+          "type": "string"
+        },
+        "year_founded": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "es.PitchbookTableRecord": {
+      "properties": {
+        "columns": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "row_ids": {
+          "description": "RowIDs[i][j] is \"<kind>/<id>\" when Rows[i][j]'s cell links to another\nPitchBook profile, \"\" otherwise. Mirrors services/pitchbook.DataTable.RowIDs.",
+          "items": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        },
+        "rows": {
+          "items": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "es.PlaystationGameDatasetFacetItem": {
       "properties": {
         "count": {
@@ -17140,6 +18744,9 @@
             "$ref": "#/definitions/es.ProductHuntTopic"
           },
           "type": "array"
+        },
+        "twitter_url": {
+          "type": "string"
         },
         "url": {
           "type": "string"
@@ -21024,6 +22631,26 @@
       },
       "type": "object"
     },
+    "goodreads.AuthorQuotesResponse": {
+      "properties": {
+        "author_id": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "quotes": {
+          "items": {
+            "$ref": "#/definitions/goodreads.Quote"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "goodreads.AuthorResponse": {
       "properties": {
         "about": {
@@ -21223,6 +22850,153 @@
       },
       "type": "object"
     },
+    "goodreads.Edition": {
+      "properties": {
+        "asin": {
+          "type": "string"
+        },
+        "authors": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "average_rating": {
+          "example": 4.35,
+          "type": "number"
+        },
+        "book_id": {
+          "type": "string"
+        },
+        "format": {
+          "example": "Hardcover",
+          "type": "string"
+        },
+        "isbn": {
+          "type": "string"
+        },
+        "isbn13": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "pages": {
+          "type": "integer"
+        },
+        "publication_date": {
+          "example": "October 14th 2008",
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "ratings_count": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.EditionsResponse": {
+      "properties": {
+        "book_id": {
+          "type": "string"
+        },
+        "editions": {
+          "items": {
+            "$ref": "#/definitions/goodreads.Edition"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "work_id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.GenreBookItem": {
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "author_id": {
+          "type": "string"
+        },
+        "average_rating": {
+          "example": 4.47,
+          "type": "number"
+        },
+        "id": {
+          "type": "string"
+        },
+        "publication_year": {
+          "type": "integer"
+        },
+        "ratings_count": {
+          "type": "integer"
+        },
+        "shelved_count": {
+          "description": "ShelvedCount is how many users have shelved this specific book under\nthis genre tag — a per-genre popularity signal distinct from the\nbook's overall ratings_count.",
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.GenreResponse": {
+      "properties": {
+        "books": {
+          "items": {
+            "$ref": "#/definitions/goodreads.GenreBookItem"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.ListDirectoryItem": {
+      "properties": {
+        "category": {
+          "example": "general",
+          "type": "string"
+        },
+        "id": {
+          "example": "1",
+          "type": "string"
+        },
+        "name": {
+          "example": "Best Books Ever",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "goodreads.ListResponse": {
       "properties": {
         "books": {
@@ -21242,6 +23016,52 @@
         },
         "title": {
           "example": "Best Books Ever",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.ListsResponse": {
+      "properties": {
+        "lists": {
+          "items": {
+            "$ref": "#/definitions/goodreads.ListDirectoryItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.Quote": {
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "book_id": {
+          "type": "string"
+        },
+        "book_title": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "likes": {
+          "type": "integer"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "text": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "work_id": {
           "type": "string"
         }
       },
@@ -21364,6 +23184,22 @@
       },
       "type": "object"
     },
+    "goodreads.authorQuotesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/goodreads.AuthorQuotesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "goodreads.authorResponseDoc": {
       "properties": {
         "code": {
@@ -21396,6 +23232,38 @@
       },
       "type": "object"
     },
+    "goodreads.editionsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/goodreads.EditionsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.genreResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/goodreads.GenreResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "goodreads.listResponseDoc": {
       "properties": {
         "code": {
@@ -21404,6 +23272,22 @@
         },
         "data": {
           "$ref": "#/definitions/goodreads.ListResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "goodreads.listsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/goodreads.ListsResponse"
         },
         "msg": {
           "example": "OK",
@@ -21747,6 +23631,92 @@
       },
       "type": "object"
     },
+    "google.PlacePhoto": {
+      "properties": {
+        "height": {
+          "example": 100,
+          "type": "integer"
+        },
+        "url": {
+          "description": "URL is Google's image URL exactly as served, including its size suffix\n(e.g. `=w203-h100-k-no`). Swap that suffix to request other dimensions.",
+          "example": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlbepbs69mWZVN7SNi4FYseIr1JvRCpGHgpFfN5wOf02mKOVdfv2REVb896InfULrDb_yQmqdxmQcSnmwHp2VncbLzYxzWtsUFFbKH3buF34st-Nhlg1fEIH0_tkmvNKJmWKEHKv45RBu4=w203-h100-k-no",
+          "type": "string"
+        },
+        "width": {
+          "description": "Width and Height are the pixel dimensions of the URL as served, when\nGoogle reports them. 0 means not captured.",
+          "example": 203,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "google.PlaceReview": {
+      "properties": {
+        "author_id": {
+          "description": "AuthorID is the reviewer's stable Google contributor id.",
+          "example": "112997636113922766481",
+          "type": "string"
+        },
+        "author_name": {
+          "description": "AuthorName is the reviewer's display name.",
+          "example": "Supisara Darnchaloemwong",
+          "type": "string"
+        },
+        "author_photo": {
+          "description": "AuthorPhoto is the reviewer's avatar URL.",
+          "example": "https://lh3.googleusercontent.com/a-/ALV-UjWc6XFX9IKHJiQ4vZoY7o_EVCYkjMbWjGfdPZrLEw",
+          "type": "string"
+        },
+        "author_review_count": {
+          "description": "AuthorReviewCount is how many reviews this contributor has written in\ntotal, as reported by Google. 0 means not captured, and is normal for a\nreview syndicated from another site.",
+          "example": 23,
+          "type": "integer"
+        },
+        "author_url": {
+          "description": "AuthorURL is the reviewer's public Google Maps contributor page.",
+          "example": "https://www.google.com/maps/contrib/112997636113922766481",
+          "type": "string"
+        },
+        "id": {
+          "description": "ID is Google's opaque review identifier, stable across fetches.",
+          "example": "Ci9DQUlRQUNvZENodHljRjlvT201dFRHSk1aRU54T0U5cmRFVjNlbGRmU1RJNFkzYxAB",
+          "type": "string"
+        },
+        "photos": {
+          "description": "Photos are the images attached to this review, largest variant first.",
+          "items": {
+            "$ref": "#/definitions/google.PlacePhoto"
+          },
+          "type": "array"
+        },
+        "published_at": {
+          "description": "PublishedAt is the review timestamp in RFC3339 (UTC). Empty when Google\ndid not report one.",
+          "example": "2026-01-01T14:39:25Z",
+          "type": "string"
+        },
+        "rating": {
+          "description": "Rating is the star rating this reviewer gave, 1-5.",
+          "example": 5,
+          "type": "integer"
+        },
+        "relative_time": {
+          "description": "RelativeTime is Google's own human-readable age for the review, in the\nrequested language (e.g. \"6 months ago\").",
+          "example": "6 months ago",
+          "type": "string"
+        },
+        "source": {
+          "description": "Source is the site the review came from. Google's place pages syndicate\nreviews from partner sites (notably for hotels), so this is \"Google\" for a\nnative Google review and the partner's name (e.g. \"Tripadvisor\",\n\"TrustYou\") otherwise.",
+          "example": "Google",
+          "type": "string"
+        },
+        "text": {
+          "description": "Text is the review body. Empty for a photo-only review, which Google allows.",
+          "example": "I never knew pork could taste this good.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "google.SearchItem": {
       "properties": {
         "Snippet": {
@@ -21947,6 +23917,25 @@
       },
       "type": "object"
     },
+    "google.mapPlacePhotosResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "items": {
+            "$ref": "#/definitions/google.PlacePhoto"
+          },
+          "type": "array"
+        },
+        "msg": {
+          "example": "ok",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "google.mapPlaceResponseDoc": {
       "properties": {
         "code": {
@@ -21958,6 +23947,25 @@
         },
         "msg": {
           "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "google.mapPlaceReviewsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "items": {
+            "$ref": "#/definitions/google.PlaceReview"
+          },
+          "type": "array"
+        },
+        "msg": {
+          "example": "ok",
           "type": "string"
         }
       },
@@ -24692,7 +26700,7 @@
           "type": "string"
         },
         "compensation": {
-          "description": "Compensation is the raw provider summary; the *Min/*Max/*Currency fields are\nparsed from it when the summary contains a recognizable pay range/amount.",
+          "description": "Compensation is the raw provider summary; the *Min/*Max/*Currency fields are\nparsed from it when the summary contains a recognizable pay range/amount.\nCompensationPeriod is the pay period (\"hourly\", \"daily\", \"weekly\",\n\"monthly\", \"yearly\") when the summary states one explicitly; empty when\nno period is stated (most single \"$150K – $190K\"-style ranges are\nimplicitly annual but that is never asserted here).",
           "type": "string"
         },
         "compensation_currency": {
@@ -24703,6 +26711,9 @@
         },
         "compensation_min": {
           "type": "number"
+        },
+        "compensation_period": {
+          "type": "string"
         },
         "department": {
           "type": "string"
@@ -29929,6 +31940,15 @@
           "example": "Investors",
           "type": "string"
         },
+        "row_ids": {
+          "items": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        },
         "rows": {
           "items": {
             "items": {
@@ -30010,6 +32030,22 @@
       },
       "type": "object"
     },
+    "pitchbook.advisorResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/pitchbook.ProfileResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "pitchbook.companyResponseDoc": {
       "properties": {
         "code": {
@@ -30043,6 +32079,22 @@
       "type": "object"
     },
     "pitchbook.investorResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/pitchbook.ProfileResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "pitchbook.limitedPartnerResponseDoc": {
       "properties": {
         "code": {
           "example": 200,
@@ -34428,6 +36480,9 @@
           "type": "string"
         },
         "tagline": {
+          "type": "string"
+        },
+        "twitter_url": {
           "type": "string"
         },
         "viewer_pending_team_request": {
@@ -54681,6 +56736,286 @@
       },
       "type": "object"
     },
+    "ubereats.Address": {
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ubereats.MenuItem": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "isSoldOut": {
+          "type": "boolean"
+        },
+        "price": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ubereats.MenuSection": {
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/definitions/ubereats.MenuItem"
+          },
+          "type": "array"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ubereats.Restaurant": {
+      "properties": {
+        "cuisineTags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "deliveryEtaText": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "isSponsored": {
+          "type": "boolean"
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "number"
+        },
+        "reviewCount": {
+          "type": "integer"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "storeUuid": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ubereats.Review": {
+      "properties": {
+        "createdAt": {
+          "type": "string"
+        },
+        "eaterName": {
+          "type": "string"
+        },
+        "formattedDate": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "timeSinceReview": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ubereats.SearchResponse": {
+      "properties": {
+        "cityName": {
+          "type": "string"
+        },
+        "cursor": {
+          "type": "string"
+        },
+        "hasMore": {
+          "type": "boolean"
+        },
+        "offset": {
+          "type": "integer"
+        },
+        "restaurants": {
+          "items": {
+            "$ref": "#/definitions/ubereats.Restaurant"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ubereats.StoreDetail": {
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/ubereats.Address"
+        },
+        "cuisineTags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "heroImageUrl": {
+          "type": "string"
+        },
+        "isOpen": {
+          "type": "boolean"
+        },
+        "isOrderable": {
+          "type": "boolean"
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "menu": {
+          "items": {
+            "$ref": "#/definitions/ubereats.MenuSection"
+          },
+          "type": "array"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "priceBucket": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "number"
+        },
+        "reviewCount": {
+          "type": "integer"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "storeUuid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "workingHoursTagline": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ubereats.StoreReviewsResponse": {
+      "properties": {
+        "rating": {
+          "type": "number"
+        },
+        "reviewCount": {
+          "type": "integer"
+        },
+        "reviews": {
+          "items": {
+            "$ref": "#/definitions/ubereats.Review"
+          },
+          "type": "array"
+        },
+        "storeUuid": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ubereats.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/ubereats.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ubereats.storeResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/ubereats.StoreDetail"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ubereats.storeReviewsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/ubereats.StoreReviewsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "usage.usageBillingStateDoc": {
       "properties": {
         "allow_overage": {
@@ -60497,6 +62832,946 @@
         ]
       }
     },
+    "/apple-books/audiobook-series/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns series metadata and the full ordered list of audiobooks in the series from Apple Books' public catalog page. An audio-book-series is a catalog resource distinct from a book-series, even for the same conceptual series.",
+        "operationId": "apple-books-audiobook-series",
+        "parameters": [
+          {
+            "description": "Apple Books numeric audiobook series ID",
+            "example": "6442645726",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Result language tag",
+            "example": "en-us",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/applebooks.audiobookSeriesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Series not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve an Apple Books audiobook series and its full audiobook list",
+        "tags": [
+          "AppleBooks"
+        ]
+      }
+    },
+    "/apple-books/audiobook/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized Apple Books audiobooks from Apple's public iTunes Search API.",
+        "operationId": "apple-books-audiobook-search",
+        "parameters": [
+          {
+            "description": "Search term",
+            "example": "harry potter",
+            "in": "query",
+            "name": "term",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Result language tag",
+            "example": "en-us",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          },
+          {
+            "description": "Number of audiobooks per page",
+            "example": 50,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "Search page number (1-based)",
+            "example": 1,
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/applebooks.audiobookSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Apple Books audiobooks",
+        "tags": [
+          "AppleBooks"
+        ]
+      }
+    },
+    "/apple-books/audiobook/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized audiobook metadata from Apple Books' public catalog page, including narrator, duration, audio preview, and a cross-link to the ebook edition (when one exists).",
+        "operationId": "apple-books-audiobook",
+        "parameters": [
+          {
+            "description": "Apple Books numeric audiobook ID",
+            "example": "1442174040",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Result language tag",
+            "example": "en-us",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/applebooks.audiobookResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Audiobook not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve Apple Books audiobook details",
+        "tags": [
+          "AppleBooks"
+        ]
+      }
+    },
+    "/apple-books/audiobook/{id}/reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the customer reviews Apple embeds on the audiobook's catalog page (up to the first page Apple ships inline).",
+        "operationId": "apple-books-audiobook-reviews",
+        "parameters": [
+          {
+            "description": "Apple Books numeric audiobook ID",
+            "example": "1442174040",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Result language tag",
+            "example": "en-us",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/applebooks.audiobookReviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Audiobook not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve Apple Books audiobook customer reviews",
+        "tags": [
+          "AppleBooks"
+        ]
+      }
+    },
+    "/apple-books/audiobook/{id}/similar": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the related audiobooks shown on the Apple Books catalog page.",
+        "operationId": "apple-books-audiobook-similar",
+        "parameters": [
+          {
+            "description": "Apple Books numeric audiobook ID",
+            "example": "1442174040",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Result language tag",
+            "example": "en-us",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/applebooks.audiobookSimilarResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Audiobook not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve \"Customers Also Bought\" audiobooks",
+        "tags": [
+          "AppleBooks"
+        ]
+      }
+    },
+    "/apple-books/author/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns author metadata and their full ebook (and audiobook, where available) bibliography from Apple Books' public catalog page.",
+        "operationId": "apple-books-author",
+        "parameters": [
+          {
+            "description": "Apple Books numeric author ID",
+            "example": "79595314",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Result language tag",
+            "example": "en-us",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/applebooks.authorResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Author not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve an Apple Books author's bibliography",
+        "tags": [
+          "AppleBooks"
+        ]
+      }
+    },
+    "/apple-books/book/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized book metadata from Apple Books' public catalog page, including ISBN, page count, publisher, audience, rating histogram, and series linkage.",
+        "operationId": "apple-books-book",
+        "parameters": [
+          {
+            "description": "Apple Books numeric book ID",
+            "example": "1037193578",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Result language tag",
+            "example": "en-us",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/applebooks.bookResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Book not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve Apple Books book details",
+        "tags": [
+          "AppleBooks"
+        ]
+      }
+    },
+    "/apple-books/book/{id}/reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the customer reviews Apple embeds on the book's catalog page (up to the first page Apple ships inline).",
+        "operationId": "apple-books-book-reviews",
+        "parameters": [
+          {
+            "description": "Apple Books numeric book ID",
+            "example": "1037193578",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Result language tag",
+            "example": "en-us",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/applebooks.reviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Book not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve Apple Books customer reviews",
+        "tags": [
+          "AppleBooks"
+        ]
+      }
+    },
+    "/apple-books/book/{id}/similar": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the related books shown on the Apple Books catalog page.",
+        "operationId": "apple-books-book-similar",
+        "parameters": [
+          {
+            "description": "Apple Books numeric book ID",
+            "example": "1037193578",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Result language tag",
+            "example": "en-us",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/applebooks.similarResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Book not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve \"Customers Also Bought\" books",
+        "tags": [
+          "AppleBooks"
+        ]
+      }
+    },
+    "/apple-books/charts": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns Apple Books chart rankings from Apple's public marketing-tools RSS JSON feed. Supported collections are `top-free` and `top-paid`.",
+        "operationId": "apple-books-charts",
+        "parameters": [
+          {
+            "description": "Chart collection. Allowed values: top-free, top-paid",
+            "example": "top-free",
+            "in": "query",
+            "name": "collection",
+            "type": "string"
+          },
+          {
+            "description": "Optional Apple Books genre ID to filter the chart",
+            "example": 9031,
+            "in": "query",
+            "name": "genre",
+            "type": "integer"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Number of chart items to return",
+            "example": 50,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/applebooks.chartsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve Apple Books chart rankings",
+        "tags": [
+          "AppleBooks"
+        ]
+      }
+    },
+    "/apple-books/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized Apple Books ebooks from Apple's public iTunes Search API.",
+        "operationId": "apple-books-search",
+        "parameters": [
+          {
+            "description": "Search term",
+            "example": "harry potter",
+            "in": "query",
+            "name": "term",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Result language tag",
+            "example": "en-us",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          },
+          {
+            "description": "Number of books per page",
+            "example": 50,
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "Search page number (1-based)",
+            "example": 1,
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/applebooks.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Apple Books titles",
+        "tags": [
+          "AppleBooks"
+        ]
+      }
+    },
+    "/apple-books/series/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns series metadata and the full ordered list of books in the series from Apple Books' public catalog page.",
+        "operationId": "apple-books-series",
+        "parameters": [
+          {
+            "description": "Apple Books numeric series ID",
+            "example": "1044374793",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "example": "us",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "description": "Result language tag",
+            "example": "en-us",
+            "in": "query",
+            "name": "lang",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/applebooks.seriesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Series not found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve an Apple Books series and its full book list",
+        "tags": [
+          "AppleBooks"
+        ]
+      }
+    },
     "/apple-podcasts/charts": {
       "get": {
         "consumes": [
@@ -62750,6 +66025,36 @@
             "in": "query",
             "name": "url",
             "type": "string"
+          },
+          {
+            "description": "Sort field",
+            "enum": [
+              "grossToDate",
+              "maxNumTheaters",
+              "openingWeekendGross",
+              "openingNumTheaters",
+              "releaseDate"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Sort direction",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortDir",
+            "type": "string"
+          },
+          {
+            "description": "Row offset for pagination (page size 100)",
+            "example": 0,
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -62811,6 +66116,29 @@
         ],
         "description": "Returns normalized rows from Box Office Mojo's public brand chart.",
         "operationId": "boxofficemojo-brands",
+        "parameters": [
+          {
+            "description": "Sort field",
+            "enum": [
+              "totalGross",
+              "numReleases",
+              "grossToDate"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Sort direction",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortDir",
+            "type": "string"
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -62819,6 +66147,12 @@
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/boxofficemojo.taxonomyListResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
             }
           },
           "429": {
@@ -63150,6 +66484,36 @@
             "in": "query",
             "name": "url",
             "type": "string"
+          },
+          {
+            "description": "Sort field",
+            "enum": [
+              "grossToDate",
+              "maxNumTheaters",
+              "openingWeekendGross",
+              "openingNumTheaters",
+              "releaseDate"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Sort direction",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortDir",
+            "type": "string"
+          },
+          {
+            "description": "Row offset for pagination (page size 100)",
+            "example": 0,
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -63211,6 +66575,29 @@
         ],
         "description": "Returns normalized rows from Box Office Mojo's public franchise chart.",
         "operationId": "boxofficemojo-franchises",
+        "parameters": [
+          {
+            "description": "Sort field",
+            "enum": [
+              "totalGross",
+              "numReleases",
+              "grossToDate"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Sort direction",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortDir",
+            "type": "string"
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -63219,6 +66606,12 @@
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/boxofficemojo.taxonomyListResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
             }
           },
           "429": {
@@ -63279,6 +66672,36 @@
             "in": "query",
             "name": "url",
             "type": "string"
+          },
+          {
+            "description": "Sort field",
+            "enum": [
+              "grossToDate",
+              "maxNumTheaters",
+              "openingWeekendGross",
+              "openingNumTheaters",
+              "releaseDate"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Sort direction",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortDir",
+            "type": "string"
+          },
+          {
+            "description": "Row offset for pagination (page size 100)",
+            "example": 0,
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -63340,6 +66763,29 @@
         ],
         "description": "Returns normalized rows from Box Office Mojo's public genre chart.",
         "operationId": "boxofficemojo-genres",
+        "parameters": [
+          {
+            "description": "Sort field",
+            "enum": [
+              "totalGross",
+              "numTitles",
+              "grossToDate"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Sort direction",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortDir",
+            "type": "string"
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -63348,6 +66794,12 @@
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/boxofficemojo.taxonomyListResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
             }
           },
           "429": {
@@ -71235,6 +74687,652 @@
         ]
       }
     },
+    "/datasets/goodreads-authors/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns terms aggregation counts for the Goodreads authors dataset. Facet enum: `genres`, `run_id`.",
+        "operationId": "datasets-goodreads-authors-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: genres, run_id",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query over name, about and genres, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact author name filter, max 128 characters",
+            "in": "query",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "description": "Exact genre filter, max 128 characters",
+            "in": "query",
+            "name": "genre",
+            "type": "string"
+          },
+          {
+            "description": "Exact crawl run-id filter, max 128 characters",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Minimum average rating, 0 through 5",
+            "in": "query",
+            "name": "min_rating",
+            "type": "number"
+          },
+          {
+            "description": "Minimum number of ratings",
+            "in": "query",
+            "name": "min_ratings_count",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.goodreadsAuthorsFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet Goodreads authors dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/goodreads-authors/items/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one crawled Goodreads author profile record by id from dataset id enum value `goodreads-authors`.",
+        "operationId": "datasets-goodreads-authors-item",
+        "parameters": [
+          {
+            "description": "Goodreads author id, e.g. 153394",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.goodreadsAuthorResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Goodreads author from dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/goodreads-authors/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches the crawled public Goodreads author profile index. Authors are discovered as a byproduct of the books crawl (every credited book contributor, plus the genre/search/list seed sources) — not a full catalog. Sort enum: `relevance`, `rating_desc`, `reviews_desc`, `name_asc`.",
+        "operationId": "datasets-goodreads-authors-search",
+        "parameters": [
+          {
+            "description": "Full-text query over name, about and genres, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact author name filter, max 128 characters",
+            "in": "query",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "description": "Exact genre filter (e.g. Fantasy, Romance, Nonfiction), max 128 characters",
+            "in": "query",
+            "name": "genre",
+            "type": "string"
+          },
+          {
+            "description": "Exact crawl run-id filter, max 128 characters",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Minimum average rating, 0 through 5",
+            "in": "query",
+            "name": "min_rating",
+            "type": "number"
+          },
+          {
+            "description": "Minimum number of ratings",
+            "in": "query",
+            "name": "min_ratings_count",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: relevance, rating_desc, reviews_desc, name_asc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.goodreadsAuthorsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Goodreads authors dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/goodreads-books/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns terms aggregation counts for the Goodreads books dataset. Facet enum: `genres`, `format`, `language`, `publisher`, `primary_author`, `primary_author_id`, `series_name`, `publication_year`, `run_id`.",
+        "operationId": "datasets-goodreads-books-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: genres, format, language, publisher, primary_author, primary_author_id, series_name, publication_year, run_id",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query over title, author and description, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact genre filter, max 128 characters",
+            "in": "query",
+            "name": "genre",
+            "type": "string"
+          },
+          {
+            "description": "Exact format filter, max 128 characters",
+            "in": "query",
+            "name": "format",
+            "type": "string"
+          },
+          {
+            "description": "Exact language filter, max 128 characters",
+            "in": "query",
+            "name": "language",
+            "type": "string"
+          },
+          {
+            "description": "Exact publisher filter, max 128 characters",
+            "in": "query",
+            "name": "publisher",
+            "type": "string"
+          },
+          {
+            "description": "Exact author name filter, max 128 characters",
+            "in": "query",
+            "name": "author",
+            "type": "string"
+          },
+          {
+            "description": "Exact Goodreads author id filter, max 128 characters",
+            "in": "query",
+            "name": "author_id",
+            "type": "string"
+          },
+          {
+            "description": "Exact series name filter, max 128 characters",
+            "in": "query",
+            "name": "series",
+            "type": "string"
+          },
+          {
+            "description": "Exact ISBN-10 filter, max 128 characters",
+            "in": "query",
+            "name": "isbn",
+            "type": "string"
+          },
+          {
+            "description": "Exact ISBN-13 filter, max 128 characters",
+            "in": "query",
+            "name": "isbn13",
+            "type": "string"
+          },
+          {
+            "description": "Exact crawl run-id filter, max 128 characters",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Minimum average rating, 0 through 5",
+            "in": "query",
+            "name": "min_rating",
+            "type": "number"
+          },
+          {
+            "description": "Minimum number of ratings",
+            "in": "query",
+            "name": "min_ratings_count",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum page count",
+            "in": "query",
+            "name": "min_pages",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum page count",
+            "in": "query",
+            "name": "max_pages",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum publication year",
+            "in": "query",
+            "name": "min_publication_year",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum publication year",
+            "in": "query",
+            "name": "max_publication_year",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.goodreadsBooksFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet Goodreads books dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/goodreads-books/items/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one crawled Goodreads book record by id from dataset id enum value `goodreads-books`.",
+        "operationId": "datasets-goodreads-books-item",
+        "parameters": [
+          {
+            "description": "Goodreads book id, e.g. 2767052",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.goodreadsBookResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Goodreads book from dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/goodreads-books/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches the crawled public Goodreads book catalog stored in a search index. Discovered from curated Listopia \"best of\" lists, a search-term sweep, and author bibliography expansion — not a full catalog. Sort enum: `relevance`, `rating_desc`, `reviews_desc`, `publication_desc`, `publication_asc`, `pages_desc`, `pages_asc`, `title_asc`.",
+        "operationId": "datasets-goodreads-books-search",
+        "parameters": [
+          {
+            "description": "Full-text query over title, author and description, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact genre filter (e.g. Fantasy, Romance, Nonfiction), max 128 characters",
+            "in": "query",
+            "name": "genre",
+            "type": "string"
+          },
+          {
+            "description": "Exact format filter (e.g. Hardcover, Paperback, Kindle Edition), max 128 characters",
+            "in": "query",
+            "name": "format",
+            "type": "string"
+          },
+          {
+            "description": "Exact language filter (e.g. English, Spanish), max 128 characters",
+            "in": "query",
+            "name": "language",
+            "type": "string"
+          },
+          {
+            "description": "Exact publisher filter, max 128 characters",
+            "in": "query",
+            "name": "publisher",
+            "type": "string"
+          },
+          {
+            "description": "Exact author name filter (matches any credited contributor), max 128 characters",
+            "in": "query",
+            "name": "author",
+            "type": "string"
+          },
+          {
+            "description": "Exact Goodreads author id filter, max 128 characters",
+            "in": "query",
+            "name": "author_id",
+            "type": "string"
+          },
+          {
+            "description": "Exact series name filter, max 128 characters",
+            "in": "query",
+            "name": "series",
+            "type": "string"
+          },
+          {
+            "description": "Exact ISBN-10 filter, max 128 characters",
+            "in": "query",
+            "name": "isbn",
+            "type": "string"
+          },
+          {
+            "description": "Exact ISBN-13 filter, max 128 characters",
+            "in": "query",
+            "name": "isbn13",
+            "type": "string"
+          },
+          {
+            "description": "Exact crawl run-id filter, max 128 characters",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Minimum average rating, 0 through 5",
+            "in": "query",
+            "name": "min_rating",
+            "type": "number"
+          },
+          {
+            "description": "Minimum number of ratings",
+            "in": "query",
+            "name": "min_ratings_count",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum page count",
+            "in": "query",
+            "name": "min_pages",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum page count",
+            "in": "query",
+            "name": "max_pages",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum publication year",
+            "in": "query",
+            "name": "min_publication_year",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum publication year",
+            "in": "query",
+            "name": "max_publication_year",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: relevance, rating_desc, reviews_desc, publication_desc, publication_asc, pages_desc, pages_asc, title_asc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.goodreadsBooksSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Goodreads books dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
     "/datasets/google-map-businesses/facets": {
       "get": {
         "consumes": [
@@ -72173,7 +76271,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches the discovered company board registry — which companies are hiring, on which ATS, with how many open roles. provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`. status enum: `active`, `empty`, `gone`, `blocked`, `pending`. sort enum: `open_desc`, `company_asc`, `crawled_desc`.",
+        "description": "Searches the discovered company board registry — which companies are hiring, on which ATS, with how many open roles. provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`, `gem`, `pinpoint`. status enum: `active`, `empty`, `gone`, `blocked`, `pending`, `invalid`. sort enum: `open_desc`, `company_asc`, `crawled_desc`.",
         "operationId": "datasets-jobs-companies",
         "parameters": [
           {
@@ -72198,14 +76296,16 @@
               "oracle",
               "ukg",
               "icims",
-              "eightfold"
+              "eightfold",
+              "gem",
+              "pinpoint"
             ],
             "in": "query",
             "name": "provider",
             "type": "string"
           },
           {
-            "description": "Board status. Enum: active, empty, gone, blocked, pending",
+            "description": "Board status. Enum: active, empty, gone, blocked, pending, invalid",
             "in": "query",
             "name": "status",
             "type": "string"
@@ -72435,7 +76535,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Finds crawled job postings within `radius_km` of a `lat`/`lon`, nearest first. Only geocoded postings participate (the geo-enrich worker back-fills coordinates from each posting's location). Open roles only by default. provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`.",
+        "description": "Finds crawled job postings within `radius_km` of a `lat`/`lon`, nearest first. Only geocoded postings participate (the geo-enrich worker back-fills coordinates from each posting's location). Open roles only by default. provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`, `gem`, `pinpoint`.",
         "operationId": "datasets-jobs-nearby",
         "parameters": [
           {
@@ -72474,7 +76574,9 @@
               "oracle",
               "ukg",
               "icims",
-              "eightfold"
+              "eightfold",
+              "gem",
+              "pinpoint"
             ],
             "in": "query",
             "name": "provider",
@@ -72538,7 +76640,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Full-text + faceted search over every job posting crawled from every discovered company ATS board (Greenhouse, Lever, Ashby, Workday, SmartRecruiters, Workable, Recruitee, Rippling, Personio, Teamtailor, Oracle, UKG, iCIMS, Eightfold). Open roles only by default (set include_closed=true for historical/filled roles). provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`. sort enum: `relevance`, `posted_desc`, `company_asc`.",
+        "description": "Full-text + faceted search over every job posting crawled from every discovered company ATS board (Greenhouse, Lever, Ashby, Workday, SmartRecruiters, Workable, Recruitee, Rippling, Personio, Teamtailor, Oracle, UKG, iCIMS, Eightfold, Gem, Pinpoint). Open roles only by default (set include_closed=true for historical/filled roles). Salary data is only present on a minority of postings (only Ashby, Gem, Recruitee, and Pinpoint boards ever populate it); min_salary/max_salary filter on it and require salary_currency, since comparing raw compensation numbers across currencies is meaningless. provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`, `gem`, `pinpoint`. sort enum: `relevance`, `posted_desc`, `company_asc`.",
         "operationId": "datasets-jobs-search",
         "parameters": [
           {
@@ -72569,7 +76671,9 @@
               "oracle",
               "ukg",
               "icims",
-              "eightfold"
+              "eightfold",
+              "gem",
+              "pinpoint"
             ],
             "in": "query",
             "name": "provider",
@@ -72604,6 +76708,24 @@
             "in": "query",
             "name": "include_closed",
             "type": "boolean"
+          },
+          {
+            "description": "Minimum salary (matches postings whose range reaches at least this); requires salary_currency",
+            "in": "query",
+            "name": "min_salary",
+            "type": "number"
+          },
+          {
+            "description": "Maximum salary (matches postings whose range starts at or below this); requires salary_currency",
+            "in": "query",
+            "name": "max_salary",
+            "type": "number"
+          },
+          {
+            "description": "3-letter ISO currency code (e.g. USD) the min_salary/max_salary bounds are in; required when either bound is set",
+            "in": "query",
+            "name": "salary_currency",
+            "type": "string"
           },
           {
             "description": "Sort enum: relevance, posted_desc, company_asc",
@@ -73413,6 +77535,1399 @@
           }
         ],
         "summary": "Search the Numbeo countries dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/pitchbook-advisors/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns terms aggregation counts for the PitchBook advisors dataset. Facet enum: `service_type`, `hq_country`, `hq_state`, `run_id`.",
+        "operationId": "datasets-pitchbook-advisors-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: service_type, hq_country, hq_state, run_id",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query over name and description, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact service provider type filter, max 128 characters",
+            "in": "query",
+            "name": "service_type",
+            "type": "string"
+          },
+          {
+            "description": "Exact headquarters country filter, max 128 characters",
+            "in": "query",
+            "name": "hq_country",
+            "type": "string"
+          },
+          {
+            "description": "Exact headquarters state/region filter, max 128 characters",
+            "in": "query",
+            "name": "hq_state",
+            "type": "string"
+          },
+          {
+            "description": "Exact crawl run-id filter, max 128 characters",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Minimum founding year",
+            "in": "query",
+            "name": "min_year_founded",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum founding year",
+            "in": "query",
+            "name": "max_year_founded",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.pitchbookAdvisorsFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet PitchBook advisors dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/pitchbook-advisors/items/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one crawled PitchBook advisor record by id from dataset id enum value `pitchbook-advisors`.",
+        "operationId": "datasets-pitchbook-advisors-item",
+        "parameters": [
+          {
+            "description": "PitchBook advisor id, e.g. 676215-64",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.pitchbookAdvisorResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a PitchBook advisor from dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/pitchbook-advisors/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches the crawled public PitchBook advisor (service provider — e.g. investment bank, lender, financing advisory firm) profile catalog stored in a search index. Discovered from PitchBook's public sitemap. Sort enum: `relevance`, `name_asc`, `year_founded_desc`, `recently_crawled_desc`.",
+        "operationId": "datasets-pitchbook-advisors-search",
+        "parameters": [
+          {
+            "description": "Full-text query over name and description, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact service provider type filter (e.g. Commercial Bank, Investment Bank, Financing Advisory), max 128 characters",
+            "in": "query",
+            "name": "service_type",
+            "type": "string"
+          },
+          {
+            "description": "Exact headquarters country filter, max 128 characters",
+            "in": "query",
+            "name": "hq_country",
+            "type": "string"
+          },
+          {
+            "description": "Exact headquarters state/region filter, max 128 characters",
+            "in": "query",
+            "name": "hq_state",
+            "type": "string"
+          },
+          {
+            "description": "Exact crawl run-id filter, max 128 characters",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Minimum founding year",
+            "in": "query",
+            "name": "min_year_founded",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum founding year",
+            "in": "query",
+            "name": "max_year_founded",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: relevance, name_asc, year_founded_desc, recently_crawled_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.pitchbookAdvisorsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search PitchBook advisors dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/pitchbook-companies/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns terms aggregation counts for the PitchBook companies dataset. Facet enum: `status`, `primary_industry`, `financing_status`, `ownership_status`, `hq_country`, `hq_state`, `run_id`.",
+        "operationId": "datasets-pitchbook-companies-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: status, primary_industry, financing_status, ownership_status, hq_country, hq_state, run_id",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query over name and description, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact status filter, max 128 characters",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "Exact primary industry filter, max 128 characters",
+            "in": "query",
+            "name": "primary_industry",
+            "type": "string"
+          },
+          {
+            "description": "Exact financing status filter, max 128 characters",
+            "in": "query",
+            "name": "financing_status",
+            "type": "string"
+          },
+          {
+            "description": "Exact ownership status filter, max 128 characters",
+            "in": "query",
+            "name": "ownership_status",
+            "type": "string"
+          },
+          {
+            "description": "Exact headquarters country filter, max 128 characters",
+            "in": "query",
+            "name": "hq_country",
+            "type": "string"
+          },
+          {
+            "description": "Exact headquarters state/region filter, max 128 characters",
+            "in": "query",
+            "name": "hq_state",
+            "type": "string"
+          },
+          {
+            "description": "Exact crawl run-id filter, max 128 characters",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Minimum founding year",
+            "in": "query",
+            "name": "min_year_founded",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum founding year",
+            "in": "query",
+            "name": "max_year_founded",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum number of investors",
+            "in": "query",
+            "name": "min_investor_count",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.pitchbookCompaniesFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet PitchBook companies dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/pitchbook-companies/items/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one crawled PitchBook company record by id from dataset id enum value `pitchbook-companies`.",
+        "operationId": "datasets-pitchbook-companies-item",
+        "parameters": [
+          {
+            "description": "PitchBook company id, e.g. 752821-12",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.pitchbookCompanyResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a PitchBook company from dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/pitchbook-companies/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches the crawled public PitchBook company profile catalog stored in a search index. Discovered from PitchBook's public sitemap. Sort enum: `relevance`, `name_asc`, `year_founded_desc`, `investor_count_desc`, `recently_crawled_desc`.",
+        "operationId": "datasets-pitchbook-companies-search",
+        "parameters": [
+          {
+            "description": "Full-text query over name and description, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact status filter (e.g. Private, Public, Acquired, Out of Business), max 128 characters",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "Exact primary industry filter, max 128 characters",
+            "in": "query",
+            "name": "primary_industry",
+            "type": "string"
+          },
+          {
+            "description": "Exact financing status filter, max 128 characters",
+            "in": "query",
+            "name": "financing_status",
+            "type": "string"
+          },
+          {
+            "description": "Exact ownership status filter, max 128 characters",
+            "in": "query",
+            "name": "ownership_status",
+            "type": "string"
+          },
+          {
+            "description": "Exact headquarters country filter, max 128 characters",
+            "in": "query",
+            "name": "hq_country",
+            "type": "string"
+          },
+          {
+            "description": "Exact headquarters state/region filter, max 128 characters",
+            "in": "query",
+            "name": "hq_state",
+            "type": "string"
+          },
+          {
+            "description": "Exact crawl run-id filter, max 128 characters",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Minimum founding year",
+            "in": "query",
+            "name": "min_year_founded",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum founding year",
+            "in": "query",
+            "name": "max_year_founded",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum number of investors",
+            "in": "query",
+            "name": "min_investor_count",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: relevance, name_asc, year_founded_desc, investor_count_desc, recently_crawled_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.pitchbookCompaniesSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search PitchBook companies dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/pitchbook-funds/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns terms aggregation counts for the PitchBook funds dataset. Facet enum: `fund_strategy`, `fund_status`, `run_id`.",
+        "operationId": "datasets-pitchbook-funds-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: fund_strategy, fund_status, run_id",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query over name and description, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact fund strategy filter, max 128 characters",
+            "in": "query",
+            "name": "fund_strategy",
+            "type": "string"
+          },
+          {
+            "description": "Exact fund status filter, max 128 characters",
+            "in": "query",
+            "name": "fund_status",
+            "type": "string"
+          },
+          {
+            "description": "Exact crawl run-id filter, max 128 characters",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Minimum vintage year",
+            "in": "query",
+            "name": "min_vintage_year",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum vintage year",
+            "in": "query",
+            "name": "max_vintage_year",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.pitchbookFundsFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet PitchBook funds dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/pitchbook-funds/items/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one crawled PitchBook fund record by id from dataset id enum value `pitchbook-funds`.",
+        "operationId": "datasets-pitchbook-funds-item",
+        "parameters": [
+          {
+            "description": "PitchBook fund id, e.g. 19719-91F",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.pitchbookFundResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a PitchBook fund from dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/pitchbook-funds/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches the crawled public PitchBook fund profile catalog stored in a search index. Discovered from PitchBook's public sitemap. Sort enum: `relevance`, `name_asc`, `vintage_desc`, `recently_crawled_desc`.",
+        "operationId": "datasets-pitchbook-funds-search",
+        "parameters": [
+          {
+            "description": "Full-text query over name and description, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact fund strategy filter (e.g. Early Stage VC, Buyout), max 128 characters",
+            "in": "query",
+            "name": "fund_strategy",
+            "type": "string"
+          },
+          {
+            "description": "Exact fund status filter (e.g. Closed, Raising), max 128 characters",
+            "in": "query",
+            "name": "fund_status",
+            "type": "string"
+          },
+          {
+            "description": "Exact crawl run-id filter, max 128 characters",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Minimum vintage year",
+            "in": "query",
+            "name": "min_vintage_year",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum vintage year",
+            "in": "query",
+            "name": "max_vintage_year",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: relevance, name_asc, vintage_desc, recently_crawled_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.pitchbookFundsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search PitchBook funds dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/pitchbook-investors/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns terms aggregation counts for the PitchBook investors dataset. Facet enum: `status`, `investor_type`, `hq_country`, `hq_state`, `run_id`.",
+        "operationId": "datasets-pitchbook-investors-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: status, investor_type, hq_country, hq_state, run_id",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query over name and description, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact status filter, max 128 characters",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "Exact investor type filter, max 128 characters",
+            "in": "query",
+            "name": "investor_type",
+            "type": "string"
+          },
+          {
+            "description": "Exact headquarters country filter, max 128 characters",
+            "in": "query",
+            "name": "hq_country",
+            "type": "string"
+          },
+          {
+            "description": "Exact headquarters state/region filter, max 128 characters",
+            "in": "query",
+            "name": "hq_state",
+            "type": "string"
+          },
+          {
+            "description": "Exact crawl run-id filter, max 128 characters",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Minimum current portfolio size",
+            "in": "query",
+            "name": "min_portfolio_count",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum number of exits",
+            "in": "query",
+            "name": "min_exits_count",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.pitchbookInvestorsFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet PitchBook investors dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/pitchbook-investors/items/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one crawled PitchBook investor record by id from dataset id enum value `pitchbook-investors`.",
+        "operationId": "datasets-pitchbook-investors-item",
+        "parameters": [
+          {
+            "description": "PitchBook investor id, e.g. 294471-37",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.pitchbookInvestorResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a PitchBook investor from dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/pitchbook-investors/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches the crawled public PitchBook investor (fund manager/firm) profile catalog stored in a search index. Discovered from PitchBook's public sitemap. Sort enum: `relevance`, `name_asc`, `portfolio_count_desc`, `recently_crawled_desc`.",
+        "operationId": "datasets-pitchbook-investors-search",
+        "parameters": [
+          {
+            "description": "Full-text query over name and description, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact status filter (e.g. Active, Inactive), max 128 characters",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "Exact investor type filter (e.g. Venture Capital, Private Equity, Angel), max 128 characters",
+            "in": "query",
+            "name": "investor_type",
+            "type": "string"
+          },
+          {
+            "description": "Exact headquarters country filter, max 128 characters",
+            "in": "query",
+            "name": "hq_country",
+            "type": "string"
+          },
+          {
+            "description": "Exact headquarters state/region filter, max 128 characters",
+            "in": "query",
+            "name": "hq_state",
+            "type": "string"
+          },
+          {
+            "description": "Exact crawl run-id filter, max 128 characters",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Minimum current portfolio size",
+            "in": "query",
+            "name": "min_portfolio_count",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum number of exits",
+            "in": "query",
+            "name": "min_exits_count",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: relevance, name_asc, portfolio_count_desc, recently_crawled_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.pitchbookInvestorsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search PitchBook investors dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/pitchbook-limited-partners/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns terms aggregation counts for the PitchBook limited partners dataset. Facet enum: `institution_type`, `hq_country`, `hq_state`, `run_id`.",
+        "operationId": "datasets-pitchbook-limited-partners-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: institution_type, hq_country, hq_state, run_id",
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query over name and description, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact institution type filter, max 128 characters",
+            "in": "query",
+            "name": "institution_type",
+            "type": "string"
+          },
+          {
+            "description": "Exact headquarters country filter, max 128 characters",
+            "in": "query",
+            "name": "hq_country",
+            "type": "string"
+          },
+          {
+            "description": "Exact headquarters state/region filter, max 128 characters",
+            "in": "query",
+            "name": "hq_state",
+            "type": "string"
+          },
+          {
+            "description": "Exact crawl run-id filter, max 128 characters",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Minimum founding year",
+            "in": "query",
+            "name": "min_year_founded",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum founding year",
+            "in": "query",
+            "name": "max_year_founded",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.pitchbookLimitedPartnersFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet PitchBook limited partners dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/pitchbook-limited-partners/items/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one crawled PitchBook limited partner record by id from dataset id enum value `pitchbook-limited-partners`.",
+        "operationId": "datasets-pitchbook-limited-partners-item",
+        "parameters": [
+          {
+            "description": "PitchBook limited partner id, e.g. 864326-44",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.pitchbookLimitedPartnerResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a PitchBook limited partner from dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/pitchbook-limited-partners/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches the crawled public PitchBook limited partner (institutional investor — e.g. pension fund, endowment, insurance company) profile catalog stored in a search index. Discovered from PitchBook's public sitemap. Some limited partner profiles have no FAQ section -- this is normal, not a sign of missing data. Sort enum: `relevance`, `name_asc`, `year_founded_desc`, `recently_crawled_desc`.",
+        "operationId": "datasets-pitchbook-limited-partners-search",
+        "parameters": [
+          {
+            "description": "Full-text query over name and description, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact institution type filter (e.g. Corporate Pension, Private Investment Fund, Endowment), max 128 characters",
+            "in": "query",
+            "name": "institution_type",
+            "type": "string"
+          },
+          {
+            "description": "Exact headquarters country filter, max 128 characters",
+            "in": "query",
+            "name": "hq_country",
+            "type": "string"
+          },
+          {
+            "description": "Exact headquarters state/region filter, max 128 characters",
+            "in": "query",
+            "name": "hq_state",
+            "type": "string"
+          },
+          {
+            "description": "Exact crawl run-id filter, max 128 characters",
+            "in": "query",
+            "name": "run_id",
+            "type": "string"
+          },
+          {
+            "description": "Minimum founding year",
+            "in": "query",
+            "name": "min_year_founded",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum founding year",
+            "in": "query",
+            "name": "max_year_founded",
+            "type": "integer"
+          },
+          {
+            "description": "Sort enum: relevance, name_asc, year_founded_desc, recently_crawled_desc",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.pitchbookLimitedPartnersSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search PitchBook limited partners dataset",
         "tags": [
           "Datasets"
         ]
@@ -74257,7 +79772,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns one product by its Product Hunt slug from dataset id enum value `producthunt-products`, including its full launch history and (once hydrated) description, website, pricing and makers. Returns 404 when the slug is not in the archive.",
+        "description": "Returns one product by its Product Hunt slug from dataset id enum value `producthunt-products`, including its full launch history and (once hydrated) description, website, twitter_url, pricing and makers. Returns 404 when the slug is not in the archive.",
         "operationId": "datasets-producthunt-products-item",
         "parameters": [
           {
@@ -74319,7 +79834,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches individual Product Hunt launches from the dataset id enum value `producthunt-products` — the searchable launch archive. Each result is one product with its topics, upvotes, ranks and launch history; description/website/pricing/makers are filled in as hydration runs. Sort enum: `relevance`, `votes_desc`, `launched_desc`, `launched_asc`, `rating_desc`, `best_rank_asc`.",
+        "description": "Searches individual Product Hunt launches from the dataset id enum value `producthunt-products` — the searchable launch archive. Each result is one product with its topics, upvotes, ranks and launch history; description/website/twitter_url/pricing/makers are filled in as hydration runs. Sort enum: `relevance`, `votes_desc`, `launched_desc`, `launched_asc`, `rating_desc`, `best_rank_asc`.",
         "operationId": "datasets-producthunt-products-search",
         "parameters": [
           {
@@ -81065,6 +86580,75 @@
         ]
       }
     },
+    "/goodreads/author/{id}/quotes": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns an author's paginated attributed-quotes list (quote text, tags, like count, and — when the quote is credited to a specific book — that book's title, id, and work id). Credential-free public Goodreads data.",
+        "operationId": "goodreads-author-quotes",
+        "parameters": [
+          {
+            "description": "Goodreads author id",
+            "example": "153394",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/goodreads.authorQuotesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Goodreads author's attributed quotes",
+        "tags": [
+          "Goodreads"
+        ]
+      }
+    },
     "/goodreads/book/{id}": {
       "get": {
         "consumes": [
@@ -81123,6 +86707,75 @@
           }
         ],
         "summary": "Get a Goodreads book",
+        "tags": [
+          "Goodreads"
+        ]
+      }
+    },
+    "/goodreads/book/{id}/editions": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a work's paginated edition list (per-edition book id, format, page count, publication date, publisher, ISBN/ISBN13/ASIN, language, and rating) — every other translation, printing, and format of the requested book id. Goodreads keys editions by a separate \"work id\", not the book id in the path, so this makes one extra internal request to resolve it; requests against a book with no editions data return an upstream error.",
+        "operationId": "goodreads-book-editions",
+        "parameters": [
+          {
+            "description": "Goodreads book id",
+            "example": "2767052",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "1-based page number, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/goodreads.editionsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Goodreads book's editions",
         "tags": [
           "Goodreads"
         ]
@@ -81197,6 +86850,69 @@
         ]
       }
     },
+    "/goodreads/genre/{name}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns up to 50 books on a Goodreads genre/shelf tag page (e.g. fantasy, romance, science-fiction), Goodreads' credential-free per-tag \"top books\" view: title, author, average rating, ratings count, publication year, and how many times the book was shelved under this specific tag. Goodreads' genre/shelf taxonomy is an open, user-generated folksonomy of thousands of tags, not a small fixed list, so there is no directory endpoint — pass any known tag slug, e.g. from a book's genres[] field or a value seen on goodreads.com. There is no pagination beyond the first 50.",
+        "operationId": "goodreads-genre",
+        "parameters": [
+          {
+            "description": "Goodreads genre/shelf tag",
+            "example": "fantasy",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/goodreads.genreResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Goodreads genre shelf",
+        "tags": [
+          "Goodreads"
+        ]
+      }
+    },
     "/goodreads/list/{id}": {
       "get": {
         "consumes": [
@@ -81261,6 +86977,47 @@
           }
         ],
         "summary": "Get a Goodreads Listopia list",
+        "tags": [
+          "Goodreads"
+        ]
+      }
+    },
+    "/goodreads/lists": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a curated, non-exhaustive catalog of well-known Goodreads Listopia lists (id, name, category) — Goodreads has no directory or search endpoint for the tens of thousands of user-created lists, so this is hand-picked and verified live, not derived from an upstream index. Pass a returned id to GET /goodreads/list/{id} for that list's ranked book contents. Category enum: `general`, `genre`, `era`, `young_adult`, `children`, `holiday`.",
+        "operationId": "goodreads-lists",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/goodreads.listsResponseDoc"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List curated Goodreads Listopia lists",
         "tags": [
           "Goodreads"
         ]
@@ -82597,6 +88354,142 @@
           }
         ],
         "summary": "Google Maps place details API",
+        "tags": [
+          "Google"
+        ]
+      }
+    },
+    "/google/map/place/{place_id}/photos": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the photos Google publishes for a specified place_id — the imagery shown on\nthe place's Google Maps page, typically dozens of images for a well-covered business.\nEach entry carries the image URL as served plus its pixel dimensions when reported;\nswap the trailing size suffix on the URL (e.g. `=w203-h100-k-no`) to request other\ndimensions. Contributor avatars and review-attached photos are excluded. This is the\nplace page's image set, not a paginated archive feed. Rate limit is enforced at 1\nrequest per second.",
+        "operationId": "google-map-place-photos",
+        "parameters": [
+          {
+            "description": "Google Place ID",
+            "in": "path",
+            "name": "place_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of photos to return. Omit or 0 for all captured.",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Per-Second-Remaining": {
+                "description": "Number of remaining requests per second",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/google.mapPlacePhotosResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Google Maps place photos API",
+        "tags": [
+          "Google"
+        ]
+      }
+    },
+    "/google/map/place/{place_id}/reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the reviews Google shows on a specified place_id's Google Maps page —\ntypically the 8 most relevant, each with its rating, text, reviewer, timestamp, and\nany photos the reviewer attached. Photo-only reviews return an empty `text`.\nThis is the place page's first page of reviews, not the full review archive.\nRate limit is enforced at 1 request per second.",
+        "operationId": "google-map-place-reviews",
+        "parameters": [
+          {
+            "description": "Google Place ID",
+            "in": "path",
+            "name": "place_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of reviews to return. Omit or 0 for all captured.",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Per-Second-Remaining": {
+                "description": "Number of remaining requests per second",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/google.mapPlaceReviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Google Maps place reviews API",
         "tags": [
           "Google"
         ]
@@ -84302,7 +90195,7 @@
         "operationId": "googleplay-list",
         "parameters": [
           {
-            "description": "Collection: TOP_FREE, TOP_PAID, GROSSING",
+            "description": "Collection: TOP_FREE, TOP_PAID, GROSSING, NEW_FREE, NEW_PAID",
             "example": "TOP_FREE",
             "in": "query",
             "name": "collection",
@@ -86559,7 +92452,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Probes Greenhouse, Lever, Ashby, SmartRecruiters, Workable, Recruitee, Rippling, and Teamtailor in parallel for a slug and reports the providers where it resolves to a non-empty board (with the open-role count and board URL). Workday is excluded (its board needs tenant + datacenter + site). Credential-free public ATS JSON.",
+        "description": "Probes Greenhouse, Lever, Ashby, SmartRecruiters, Workable, Recruitee, Rippling, Teamtailor, and Pinpoint in parallel for a slug and reports the providers where it resolves to a non-empty board (with the open-role count and board URL). Workday is excluded (its board needs tenant + datacenter + site). Credential-free public ATS JSON.",
         "operationId": "jobs-company-search",
         "parameters": [
           {
@@ -86760,6 +92653,63 @@
         ]
       }
     },
+    "/jobs/gem/board": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Lists a company's public Gem (gem.com) board postings with inline detail (full HTML description, and compensation when the company publishes a pay range). The company is the Gem vanity URL slug from its careers URL. Credential-free public GraphQL.",
+        "operationId": "jobs-gem-board",
+        "parameters": [
+          {
+            "description": "Gem vanity URL slug (careers URL)",
+            "example": "agora",
+            "in": "query",
+            "name": "company",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.boardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a company's Gem job board",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
     "/jobs/greenhouse/board": {
       "get": {
         "consumes": [
@@ -86911,7 +92861,9 @@
               "oracle",
               "ukg",
               "icims",
-              "eightfold"
+              "eightfold",
+              "gem",
+              "pinpoint"
             ],
             "in": "query",
             "name": "provider",
@@ -86925,7 +92877,7 @@
             "type": "string"
           },
           {
-            "description": "lever / smartrecruiters / workable / recruitee / rippling / personio / teamtailor company slug",
+            "description": "lever / smartrecruiters / workable / recruitee / rippling / personio / teamtailor / gem / pinpoint company slug",
             "in": "query",
             "name": "company",
             "type": "string"
@@ -87517,6 +93469,63 @@
           }
         ],
         "summary": "List a company's Personio job board",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/pinpoint/board": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Lists a tenant's public Pinpoint (pinpointhq.com) board postings with inline detail (full HTML description, key responsibilities, skills, and benefits, plus structured compensation when the tenant publishes a pay range). The company is the tenant subdomain from its careers URL https://{company}.pinpointhq.com/. Credential-free public JSON.",
+        "operationId": "jobs-pinpoint-board",
+        "parameters": [
+          {
+            "description": "Pinpoint tenant subdomain (careers URL)",
+            "example": "workwithus",
+            "in": "query",
+            "name": "company",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/jobs.boardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a tenant's Pinpoint job board",
         "tags": [
           "Jobs"
         ]
@@ -93693,12 +99702,12 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns normalized Metaculus question rows from a credential-free public project feed page.",
+        "description": "Returns normalized Metaculus question rows for one public project, filtered by its slug. A slug that does not exist returns 404.",
         "operationId": "metaculus-project-questions",
         "parameters": [
           {
             "description": "Metaculus project slug",
-            "example": "metaculus-cup-summer-2026",
+            "example": "ai-2027",
             "in": "path",
             "name": "slug",
             "required": true,
@@ -94290,12 +100299,12 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns normalized Metaculus question rows from a credential-free public tournament feed page.",
+        "description": "Returns normalized Metaculus question rows for one public tournament, filtered by its slug. A slug that does not exist returns 404.",
         "operationId": "metaculus-tournament-questions",
         "parameters": [
           {
             "description": "Metaculus tournament slug",
-            "example": "metaculus-cup-summer-2026",
+            "example": "quarterly-cup",
             "in": "path",
             "name": "slug",
             "required": true,
@@ -94924,6 +100933,75 @@
         ]
       }
     },
+    "/pitchbook/advisor": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the free/teaser content of a PitchBook advisor (service provider, e.g. investment bank, lender, or financing advisory firm) profile page: overview, description, contact/HQ, and a preview of serviced companies/deals, co-lenders, and subsidiaries. PitchBook gates most numeric figures and full lists behind a paid subscription; those come through as empty cells rather than being fabricated. Pass exactly one of `id` or `url`.",
+        "operationId": "pitchbook-advisor",
+        "parameters": [
+          {
+            "description": "PitchBook advisor id",
+            "example": "676215-64",
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "description": "Absolute https://pitchbook.com/profiles/advisor/<id> URL",
+            "example": "https://pitchbook.com/profiles/advisor/676215-64",
+            "in": "query",
+            "name": "url",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/pitchbook.advisorResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "PitchBook advisor profile",
+        "tags": [
+          "PitchBook"
+        ]
+      }
+    },
     "/pitchbook/company": {
       "get": {
         "consumes": [
@@ -95126,6 +101204,75 @@
           }
         ],
         "summary": "PitchBook investor profile",
+        "tags": [
+          "PitchBook"
+        ]
+      }
+    },
+    "/pitchbook/limited-partner": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the free/teaser content of a PitchBook limited partner (institutional investor, e.g. pension fund, endowment, or insurance company) profile page: overview, description, contact, and a preview of fund commitments. PitchBook gates most numeric figures and full lists behind a paid subscription; those come through as empty cells rather than being fabricated. Some limited partner profiles have no FAQ section (thinner profiles) -- this is normal, not a sign of a blocked or broken response. Pass exactly one of `id` or `url`.",
+        "operationId": "pitchbook-limited-partner",
+        "parameters": [
+          {
+            "description": "PitchBook limited partner id",
+            "example": "864326-44",
+            "in": "query",
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "description": "Absolute https://pitchbook.com/profiles/limited-partner/<id> URL",
+            "example": "https://pitchbook.com/profiles/limited-partner/864326-44",
+            "in": "query",
+            "name": "url",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/pitchbook.limitedPartnerResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "PitchBook limited partner profile",
         "tags": [
           "PitchBook"
         ]
@@ -116995,6 +123142,222 @@
         "summary": "Get Trustpilot category detail",
         "tags": [
           "Trustpilot"
+        ]
+      }
+    },
+    "/ubereats/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns restaurants delivering to a location: name, rating, review count, delivery estimate, cuisine tags, and image. Pass a keyword to search by name/cuisine/dish, or omit it to browse the general feed for that location. Credential-free public UberEats data.",
+        "operationId": "ubereats-search",
+        "parameters": [
+          {
+            "description": "Delivery search center latitude",
+            "example": 37.7749,
+            "in": "query",
+            "name": "latitude",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Delivery search center longitude",
+            "example": -122.4194,
+            "in": "query",
+            "name": "longitude",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Keyword — restaurant name, cuisine, or dish",
+            "example": "pizza",
+            "in": "query",
+            "name": "query",
+            "type": "string"
+          },
+          {
+            "description": "Result offset for the location feed (used only when query is omitted). Default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Number of restaurants to return, clamped to 50. Default 20",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "Opaque pagination cursor from a previous keyword-search response",
+            "in": "query",
+            "name": "cursor",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ubereats.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search UberEats restaurants",
+        "tags": [
+          "UberEats"
+        ]
+      }
+    },
+    "/ubereats/store/{store_id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a normalized UberEats store: address, phone, rating, cuisine tags, hours tagline, and the full menu (sections with items, descriptions, and prices). Credential-free public UberEats data.",
+        "operationId": "ubereats-store",
+        "parameters": [
+          {
+            "description": "UberEats store UUID, as returned by the search endpoint's storeUuid field",
+            "example": "259fe6e9-9e3a-429d-ae24-be5eda54ba64",
+            "in": "path",
+            "name": "store_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ubereats.storeResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get an UberEats store",
+        "tags": [
+          "UberEats"
+        ]
+      }
+    },
+    "/ubereats/store/{store_id}/reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the reviews snapshot embedded in an UberEats store page: aggregate rating, review count, and a sample of recent reviews (reviewer name, text, and relative/absolute date). This is a single on-page snapshot, not a full paginated feed. A store with no written reviews returns an empty reviews list. Credential-free public UberEats data.",
+        "operationId": "ubereats-store-reviews",
+        "parameters": [
+          {
+            "description": "UberEats store UUID, as returned by the search endpoint's storeUuid field",
+            "example": "259fe6e9-9e3a-429d-ae24-be5eda54ba64",
+            "in": "path",
+            "name": "store_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ubereats.storeReviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get UberEats store reviews",
+        "tags": [
+          "UberEats"
         ]
       }
     },
