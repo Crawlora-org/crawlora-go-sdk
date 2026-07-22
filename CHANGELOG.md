@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.25.0-sdk.1
+
+- Regenerated from the public API contract (836 to 832 operations). Adds Apple Podcasts chart rankings, new releases, and related shows; App Store editorial collections; and the Apple Podcasts shows dataset family. Removes the TCDB endpoints, which no longer exist upstream.
+- Parameter examples in the bundled spec now use `x-example`. Swagger 2.0 forbids `example` on a parameter object, so the published contract previously failed OpenAPI validation.
+- Spec metadata: real `info.description`, `license`, `termsOfService`, `x-logo`, an https `contact.url`, and a `securityDefinitions` block declaring the `x-api-key` scheme the operations already referenced.
+
 ## v1.24.0-sdk.1
 
 - Regenerated from the public API contract (790 to 836 operations). Adds Google Maps place photos and place reviews, plus Apple Books, and the PitchBook and Goodreads dataset families.
