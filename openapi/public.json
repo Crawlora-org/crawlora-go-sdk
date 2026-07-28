@@ -11878,6 +11878,49 @@
       },
       "type": "object"
     },
+    "datasets.InstagramUserFacetResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "facet": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.InstagramUserDatasetFacetItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.InstagramUserSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.InstagramUserDatasetItem"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "datasets.JobCompaniesResponse": {
       "properties": {
         "companies": {
@@ -12423,6 +12466,35 @@
         },
         "page_size": {
           "type": "integer"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.RedditTrendingSearchResponse": {
+      "properties": {
+        "dataset": {
+          "type": "string"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/es.RedditTrendingEntry"
+          },
+          "type": "array"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "snapshot_date": {
+          "type": "string"
         },
         "sort": {
           "type": "string"
@@ -13480,6 +13552,54 @@
       },
       "type": "object"
     },
+    "datasets.instagramUserResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/es.InstagramUserRecord"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.instagramUsersFacetResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.InstagramUserFacetResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.instagramUsersSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.InstagramUserSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "datasets.jobsCompaniesResponseDoc": {
       "properties": {
         "code": {
@@ -14097,6 +14217,22 @@
         },
         "data": {
           "$ref": "#/definitions/datasets.ProductHuntTrendsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datasets.redditTrendingSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/datasets.RedditTrendingSearchResponse"
         },
         "msg": {
           "example": "OK",
@@ -16317,6 +16453,13 @@
         "developer_id": {
           "type": "string"
         },
+        "discovery_sources": {
+          "description": "DiscoverySources lists the public catalogs that supplied this app ID.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "first_seen": {
           "type": "string"
         },
@@ -16336,7 +16479,7 @@
           "type": "string"
         },
         "platforms": {
-          "description": "Platforms is the set of Apple device platforms this app is confirmed on,\nusing Apple's own appPlatforms vocabulary: phone, pad, mac, tv, watch,\nvision. Only ever set for Store \"ios\" (Apple's App Store ecosystem);\nabsent/empty on existing docs means \"iPhone catalog, platform not yet\nclassified\" rather than \"phone-only\" — do not treat it as authoritative\nuntil backfilled. Not used for Android.",
+          "description": "Platforms is the set of store-specific device platforms this app is\nconfirmed on. iOS uses Apple's appPlatforms vocabulary (phone, pad, mac,\ntv, watch, vision). Android uses Google Play device-tab/source values\n(phone, tablet, tv, chromebook, watch, xr, car, windows). Empty means the\nrecord has not been classified by platform yet.",
           "items": {
             "type": "string"
           },
@@ -17034,6 +17177,13 @@
         },
         "developer_email": {
           "type": "string"
+        },
+        "discovery_sources": {
+          "description": "DiscoverySources lists the public catalogs that supplied this extension ID.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "first_seen": {
           "type": "string"
@@ -18248,6 +18398,141 @@
       },
       "type": "object"
     },
+    "es.InstagramUserDatasetFacetItem": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.InstagramUserDatasetItem": {
+      "properties": {
+        "avatar_url": {
+          "type": "string"
+        },
+        "biography": {
+          "type": "string"
+        },
+        "category_name": {
+          "type": "string"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "external_url": {
+          "type": "string"
+        },
+        "follower_following_ratio": {
+          "type": "number"
+        },
+        "followers": {
+          "type": "integer"
+        },
+        "following": {
+          "type": "integer"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "has_bio": {
+          "type": "boolean"
+        },
+        "has_external_url": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "is_business_account": {
+          "type": "boolean"
+        },
+        "is_verified": {
+          "type": "boolean"
+        },
+        "posts": {
+          "type": "integer"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "source_tier": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.InstagramUserRecord": {
+      "properties": {
+        "avatar_url": {
+          "type": "string"
+        },
+        "biography": {
+          "type": "string"
+        },
+        "category_name": {
+          "type": "string"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "external_url": {
+          "type": "string"
+        },
+        "follower_following_ratio": {
+          "type": "number"
+        },
+        "followers": {
+          "type": "integer"
+        },
+        "following": {
+          "type": "integer"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "has_bio": {
+          "type": "boolean"
+        },
+        "has_external_url": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "is_business_account": {
+          "type": "boolean"
+        },
+        "is_verified": {
+          "type": "boolean"
+        },
+        "posts": {
+          "type": "integer"
+        },
+        "schema_version": {
+          "type": "integer"
+        },
+        "source_tier": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "es.JobPostingFacets": {
       "properties": {
         "by_department": {
@@ -19369,6 +19654,47 @@
           "type": "integer"
         },
         "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "es.RedditTrendingEntry": {
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "crawled_at": {
+          "type": "string"
+        },
+        "created_utc": {
+          "type": "integer"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "permalink": {
+          "type": "string"
+        },
+        "post_id": {
+          "type": "string"
+        },
+        "post_uid": {
+          "type": "string"
+        },
+        "rank": {
+          "type": "integer"
+        },
+        "snapshot_date": {
+          "type": "string"
+        },
+        "subreddit": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
           "type": "string"
         }
       },
@@ -24750,6 +25076,12 @@
           "example": 100000000,
           "type": "integer"
         },
+        "more_by_developer": {
+          "items": {
+            "$ref": "#/definitions/googleplay.ListApp"
+          },
+          "type": "array"
+        },
         "offers_iap": {
           "example": true,
           "type": "boolean"
@@ -24809,6 +25141,12 @@
           ],
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        },
+        "similar_apps": {
+          "items": {
+            "$ref": "#/definitions/googleplay.ListApp"
           },
           "type": "array"
         },
@@ -24920,6 +25258,34 @@
       },
       "type": "object"
     },
+    "googleplay.DeviceRating": {
+      "properties": {
+        "device": {
+          "example": "phone",
+          "type": "string"
+        },
+        "histogram": {
+          "type": "object"
+        },
+        "ratings": {
+          "example": 326809,
+          "type": "integer"
+        },
+        "reviews": {
+          "example": 8946,
+          "type": "integer"
+        },
+        "score": {
+          "example": 4.7,
+          "type": "number"
+        },
+        "score_text": {
+          "example": "4.7",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "googleplay.Feature": {
       "properties": {
         "description": {
@@ -24928,6 +25294,63 @@
         },
         "title": {
           "example": "AI assistant",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "googleplay.ListApp": {
+      "properties": {
+        "app_id": {
+          "example": "com.openai.chatgpt",
+          "type": "string"
+        },
+        "currency": {
+          "example": "USD",
+          "type": "string"
+        },
+        "developer": {
+          "example": "OpenAI",
+          "type": "string"
+        },
+        "developer_id": {
+          "example": "7577165439232992817",
+          "type": "string"
+        },
+        "free": {
+          "example": true,
+          "type": "boolean"
+        },
+        "icon": {
+          "example": "https://play-lh.googleusercontent.com/lmG9HlI0awHie0cyBieWXeNjpyXvHPwDBb8MNOVIyp0P8VEh95AiBHtUZSDVR3HLe3A",
+          "type": "string"
+        },
+        "price": {
+          "example": 0,
+          "type": "number"
+        },
+        "price_text": {
+          "example": "FREE",
+          "type": "string"
+        },
+        "score": {
+          "example": 4.8,
+          "type": "number"
+        },
+        "score_text": {
+          "example": "4.8",
+          "type": "string"
+        },
+        "summary": {
+          "example": "The official app by OpenAI",
+          "type": "string"
+        },
+        "title": {
+          "example": "ChatGPT",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://play.google.com/store/apps/details?id=com.openai.chatgpt",
           "type": "string"
         }
       },
@@ -25123,6 +25546,25 @@
         },
         "data": {
           "items": {},
+          "type": "array"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "googleplay.ratingsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "items": {
+            "$ref": "#/definitions/googleplay.DeviceRating"
+          },
           "type": "array"
         },
         "msg": {
@@ -39399,6 +39841,9 @@
         "author": {
           "$ref": "#/definitions/reddit.Author"
         },
+        "award_count": {
+          "type": "integer"
+        },
         "body": {
           "example": "I agree with this post.",
           "type": "string"
@@ -39450,6 +39895,9 @@
             "$ref": "#/definitions/reddit.Comment"
           },
           "type": "array"
+        },
+        "metrics_source": {
+          "$ref": "#/definitions/reddit.SourceDetail"
         },
         "post": {
           "$ref": "#/definitions/reddit.Post"
@@ -39542,6 +39990,9 @@
         "author": {
           "$ref": "#/definitions/reddit.Author"
         },
+        "award_count": {
+          "type": "integer"
+        },
         "comment_count": {
           "type": "integer"
         },
@@ -39556,6 +40007,12 @@
         "domain": {
           "example": "self.OpenAI",
           "type": "string"
+        },
+        "estimated_downvotes": {
+          "type": "integer"
+        },
+        "estimated_upvotes": {
+          "type": "integer"
         },
         "flair": {
           "example": "Discussion",
@@ -39617,12 +40074,18 @@
         "url": {
           "example": "https://www.reddit.com/r/OpenAI/comments/1abcxyz/openai_discussion_thread/",
           "type": "string"
+        },
+        "vote_counts_estimated": {
+          "type": "boolean"
         }
       },
       "type": "object"
     },
     "reddit.PostResponse": {
       "properties": {
+        "metrics_source": {
+          "$ref": "#/definitions/reddit.SourceDetail"
+        },
         "post": {
           "$ref": "#/definitions/reddit.Post"
         },
@@ -77107,6 +77570,427 @@
         ]
       }
     },
+    "/datasets/instagram-users/facets": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns terms aggregation counts for the Instagram users dataset. Facet enum: `is_verified`, `is_business_account`, `has_bio`, `has_external_url`, `category_name`, `source_tier`.",
+        "operationId": "datasets-instagram-users-facets",
+        "parameters": [
+          {
+            "description": "Facet enum: is_verified, is_business_account, has_bio, has_external_url, category_name, source_tier",
+            "enum": [
+              "is_verified",
+              "is_business_account",
+              "has_bio",
+              "has_external_url",
+              "category_name",
+              "source_tier"
+            ],
+            "in": "query",
+            "name": "facet",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Full-text query over username, full_name and biography, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact username filter (case-insensitive), max 128 characters",
+            "in": "query",
+            "name": "username",
+            "type": "string"
+          },
+          {
+            "description": "Exact category filter (case-insensitive, e.g. Digital Creator), max 128 characters",
+            "in": "query",
+            "name": "category_name",
+            "type": "string"
+          },
+          {
+            "description": "Exact filter for seed tier (e.g. crossref, vertical-hashtags, mention-graph, head-directory)",
+            "in": "query",
+            "name": "source_tier",
+            "type": "string"
+          },
+          {
+            "description": "Filter by the Instagram verification checkmark",
+            "in": "query",
+            "name": "is_verified",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by business or creator accounts",
+            "in": "query",
+            "name": "is_business_account",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by a non-empty profile biography",
+            "in": "query",
+            "name": "has_bio",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by a linked external URL",
+            "in": "query",
+            "name": "has_external_url",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum follower count",
+            "in": "query",
+            "name": "min_followers",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum follower count",
+            "in": "query",
+            "name": "max_followers",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum follower-to-following ratio",
+            "in": "query",
+            "name": "min_ratio",
+            "type": "number"
+          },
+          {
+            "description": "Maximum follower-to-following ratio",
+            "in": "query",
+            "name": "max_ratio",
+            "type": "number"
+          },
+          {
+            "description": "Accounts created on or after this date (RFC3339 or YYYY-MM-DD)",
+            "in": "query",
+            "name": "created_after",
+            "type": "string"
+          },
+          {
+            "description": "Accounts created on or before this date (RFC3339 or YYYY-MM-DD)",
+            "in": "query",
+            "name": "created_before",
+            "type": "string"
+          },
+          {
+            "description": "Records last refreshed on or after this date (RFC3339 or YYYY-MM-DD)",
+            "in": "query",
+            "name": "crawled_after",
+            "type": "string"
+          },
+          {
+            "description": "Records last refreshed on or before this date (RFC3339 or YYYY-MM-DD)",
+            "in": "query",
+            "name": "crawled_before",
+            "type": "string"
+          },
+          {
+            "description": "Sort enum: relevance, followers_desc, followers_asc, crawled_at_desc, crawled_at_asc, created_at_desc, created_at_asc",
+            "enum": [
+              "relevance",
+              "followers_desc",
+              "followers_asc",
+              "crawled_at_desc",
+              "crawled_at_asc",
+              "created_at_desc",
+              "created_at_asc"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.instagramUsersFacetResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Facet the Instagram users dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/instagram-users/items/{username}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one Instagram user record by username from dataset id enum value `instagram-users`.",
+        "operationId": "datasets-instagram-users-item",
+        "parameters": [
+          {
+            "description": "Instagram username, with or without a leading @, max 128 characters",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.instagramUserResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get an Instagram user from the dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/instagram-users/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches public Instagram user profiles stored in a search index. Sort enum: `relevance`, `followers_desc`, `followers_asc`, `crawled_at_desc`, `crawled_at_asc`, `created_at_desc`, `created_at_asc`.",
+        "operationId": "datasets-instagram-users-search",
+        "parameters": [
+          {
+            "description": "Full-text query over username, full_name and biography, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact username filter (case-insensitive), max 128 characters",
+            "in": "query",
+            "name": "username",
+            "type": "string"
+          },
+          {
+            "description": "Exact category filter (case-insensitive, e.g. Digital Creator), max 128 characters",
+            "in": "query",
+            "name": "category_name",
+            "type": "string"
+          },
+          {
+            "description": "Exact filter for seed tier (e.g. crossref, vertical-hashtags, mention-graph, head-directory), max 128 characters",
+            "in": "query",
+            "name": "source_tier",
+            "type": "string"
+          },
+          {
+            "description": "Filter by the Instagram verification checkmark",
+            "in": "query",
+            "name": "is_verified",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by business or creator accounts",
+            "in": "query",
+            "name": "is_business_account",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by a non-empty profile biography",
+            "in": "query",
+            "name": "has_bio",
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by a linked external URL",
+            "in": "query",
+            "name": "has_external_url",
+            "type": "boolean"
+          },
+          {
+            "description": "Minimum follower count",
+            "in": "query",
+            "name": "min_followers",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum follower count",
+            "in": "query",
+            "name": "max_followers",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum follower-to-following ratio",
+            "in": "query",
+            "name": "min_ratio",
+            "type": "number"
+          },
+          {
+            "description": "Maximum follower-to-following ratio",
+            "in": "query",
+            "name": "max_ratio",
+            "type": "number"
+          },
+          {
+            "description": "Accounts created on or after this date (RFC3339 or YYYY-MM-DD)",
+            "in": "query",
+            "name": "created_after",
+            "type": "string"
+          },
+          {
+            "description": "Accounts created on or before this date (RFC3339 or YYYY-MM-DD)",
+            "in": "query",
+            "name": "created_before",
+            "type": "string"
+          },
+          {
+            "description": "Records last refreshed on or after this date (RFC3339 or YYYY-MM-DD)",
+            "in": "query",
+            "name": "crawled_after",
+            "type": "string"
+          },
+          {
+            "description": "Records last refreshed on or before this date (RFC3339 or YYYY-MM-DD)",
+            "in": "query",
+            "name": "crawled_before",
+            "type": "string"
+          },
+          {
+            "description": "Sort enum: relevance, followers_desc, followers_asc, crawled_at_desc, crawled_at_asc, created_at_desc, created_at_asc",
+            "enum": [
+              "relevance",
+              "followers_desc",
+              "followers_asc",
+              "crawled_at_desc",
+              "crawled_at_asc",
+              "created_at_desc",
+              "created_at_asc"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.instagramUsersSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the Instagram users dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
     "/datasets/jobs/companies": {
       "get": {
         "consumes": [
@@ -81308,6 +82192,95 @@
           }
         ],
         "summary": "Search the Product Hunt trends dataset",
+        "tags": [
+          "Datasets"
+        ]
+      }
+    },
+    "/datasets/reddit-trending/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches daily snapshots of each tracked subreddit's hot-feed post order, stored in a search index (one document per subreddit × snapshot × rank) so history accumulates. With no `date` the latest snapshot is returned (today's trending); pair `subreddit` with `sort=date_desc` for a subreddit's trending history over time. There is no score or comment-count field — the underlying credential-free scraper does not expose vote counts, so `rank` reflects Reddit's own hot-feed order rather than a locally computed score.",
+        "operationId": "datasets-reddit-trending-search",
+        "parameters": [
+          {
+            "description": "Full-text query over the post title, max 256 characters",
+            "in": "query",
+            "name": "q",
+            "type": "string"
+          },
+          {
+            "description": "Exact subreddit-name filter, max 128 characters",
+            "in": "query",
+            "name": "subreddit",
+            "type": "string"
+          },
+          {
+            "description": "Snapshot date filter yyyy-MM-dd; defaults to the latest snapshot",
+            "in": "query",
+            "name": "date",
+            "type": "string"
+          },
+          {
+            "description": "Sort enum: rank, date_desc",
+            "enum": [
+              "rank",
+              "date_desc"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Page number, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Page size, defaults to 20 and maxes at 100; page * page_size must be <= 10000",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/datasets.redditTrendingSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search the reddit-trending dataset",
         "tags": [
           "Datasets"
         ]
@@ -91272,7 +92245,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns normalized app metadata from a Google Play details page, including installs, ratings, pricing, version info, developer metadata, media assets, release state, and selected user comments. Defaults: `country=us`, `lang=en`.",
+        "description": "Returns normalized app metadata from a Google Play details page, including installs, ratings, pricing, version info, developer metadata, media assets, release state, selected user comments, and \"More by this developer\" and \"Similar apps\" recommendation rails. For a per-device (phone/tablet/Chromebook) ratings-and-reviews breakdown, see `/googleplay/ratings`. Defaults: `country=us`, `lang=en`.",
         "operationId": "googleplay-app",
         "parameters": [
           {
@@ -91604,6 +92577,22 @@
             "x-example": "TOOLS"
           },
           {
+            "description": "Google Play device tab: phone, tablet, tv, chromebook, watch, xr, car",
+            "enum": [
+              "phone",
+              "tablet",
+              "tv",
+              "chromebook",
+              "watch",
+              "xr",
+              "car"
+            ],
+            "in": "query",
+            "name": "device",
+            "type": "string",
+            "x-example": "tablet"
+          },
+          {
             "description": "Family age range",
             "in": "query",
             "name": "age",
@@ -91764,6 +92753,83 @@
           }
         ],
         "summary": "Retrieve Google Play app permissions",
+        "tags": [
+          "GooglePlay"
+        ]
+      }
+    },
+    "/googleplay/ratings": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the ratings-and-reviews breakdown Google Play shows under the details page's device tabs, one entry each for phone, tablet, and Chromebook. Defaults: `country=us`, `lang=en`.",
+        "operationId": "googleplay-ratings",
+        "parameters": [
+          {
+            "description": "Google Play package name",
+            "in": "query",
+            "name": "app_id",
+            "required": true,
+            "type": "string",
+            "x-example": "com.openai.chatgpt"
+          },
+          {
+            "description": "Two-letter storefront country code",
+            "in": "query",
+            "name": "country",
+            "type": "string",
+            "x-example": "us"
+          },
+          {
+            "description": "Two-letter language code",
+            "in": "query",
+            "name": "lang",
+            "type": "string",
+            "x-example": "en"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/googleplay.ratingsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Google Play ratings by device",
         "tags": [
           "GooglePlay"
         ]
@@ -109077,7 +110143,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns a Reddit post with its public comments. A post that exists but has no comments yet returns a 200 response with an empty comments list; a post that does not exist returns 404, and a temporary block or upstream failure returns 503 (retryable) rather than 404. A `503` with a `Retry-After` header means Reddit is temporarily throttling the request; wait that many seconds and retry.",
+        "description": "Returns a Reddit post with its public comments. The default 1-credit mode uses RSS. Set `include_metrics=true` to use the anonymous HTML post page as the sole content request and return the server-rendered comments with public net score and award count plus post engagement metrics for 3 credits. Large threads may expose only an initial comment subset in anonymous HTML. Reddit does not expose per-comment upvote ratios or exact upvote/downvote totals anonymously. A post that exists but has no comments yet returns a 200 response with an empty comments list; a post that does not exist returns 404, and a temporary block or upstream failure returns 503 (retryable) rather than 404.",
         "operationId": "reddit-comments",
         "parameters": [
           {
@@ -109089,7 +110155,7 @@
           },
           {
             "default": "confidence",
-            "description": "Accepted for compatibility: confidence, top, new, controversial, old, or qa. Public comment data is flat and may ignore sort.",
+            "description": "Comment order: confidence, top, new, controversial, old, or qa. Applied to the anonymous HTML request when metrics are enabled.",
             "enum": [
               "confidence",
               "top",
@@ -109110,10 +110176,17 @@
           },
           {
             "default": 3,
-            "description": "Accepted for compatibility. Public comment data is flat and may ignore depth.",
+            "description": "Maximum flat comment depth returned in metrics mode.",
             "in": "query",
             "name": "depth",
             "type": "integer"
+          },
+          {
+            "default": false,
+            "description": "Include public post and per-comment engagement metrics; costs 3 credits instead of 1",
+            "in": "query",
+            "name": "include_metrics",
+            "type": "boolean"
           }
         ],
         "produces": [
@@ -109268,7 +110341,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns a normalized public Reddit post entry. A `503` with a `Retry-After` header means Reddit is temporarily throttling the request; wait that many seconds and retry.",
+        "description": "Returns a normalized public Reddit post. The default 1-credit mode uses RSS. Set `include_metrics=true` to use the anonymous HTML post page as the sole content request and return public net score, upvote ratio, comment count, award count, and estimated upvote/downvote totals for 3 credits. Reddit fuzzes voting data, so estimates are approximate; share, repost/crosspost, and view counts are not exposed anonymously.",
         "operationId": "reddit-post",
         "parameters": [
           {
@@ -109277,6 +110350,13 @@
             "name": "id",
             "required": true,
             "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Include public engagement metrics; costs 3 credits instead of 1",
+            "in": "query",
+            "name": "include_metrics",
+            "type": "boolean"
           }
         ],
         "produces": [

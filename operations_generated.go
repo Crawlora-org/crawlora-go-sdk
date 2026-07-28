@@ -3696,6 +3696,21 @@ type ModelDatasetsHousingSearchResponse struct {
 	Total    int                          `json:"total,omitempty"`
 }
 
+type ModelDatasetsInstagramUserFacetResponse struct {
+	Dataset string                                 `json:"dataset,omitempty"`
+	Facet   string                                 `json:"facet,omitempty"`
+	Items   []ModelEsInstagramUserDatasetFacetItem `json:"items,omitempty"`
+}
+
+type ModelDatasetsInstagramUserSearchResponse struct {
+	Dataset  string                            `json:"dataset,omitempty"`
+	Items    []ModelEsInstagramUserDatasetItem `json:"items,omitempty"`
+	Page     int                               `json:"page,omitempty"`
+	PageSize int                               `json:"page_size,omitempty"`
+	Sort     string                            `json:"sort,omitempty"`
+	Total    int                               `json:"total,omitempty"`
+}
+
 type ModelDatasetsJobCompaniesResponse struct {
 	Companies []map[string]any `json:"companies,omitempty"`
 	Page      int              `json:"page,omitempty"`
@@ -3888,6 +3903,16 @@ type ModelDatasetsProductHuntTrendsSearchResponse struct {
 	PageSize    int                           `json:"page_size,omitempty"`
 	Sort        string                        `json:"sort,omitempty"`
 	Total       int                           `json:"total,omitempty"`
+}
+
+type ModelDatasetsRedditTrendingSearchResponse struct {
+	Dataset      string                       `json:"dataset,omitempty"`
+	Items        []ModelEsRedditTrendingEntry `json:"items,omitempty"`
+	Page         int                          `json:"page,omitempty"`
+	PageSize     int                          `json:"page_size,omitempty"`
+	SnapshotDate string                       `json:"snapshot_date,omitempty"`
+	Sort         string                       `json:"sort,omitempty"`
+	Total        int                          `json:"total,omitempty"`
 }
 
 type ModelDatasetsReviewsSearchResponse struct {
@@ -4269,6 +4294,24 @@ type ModelDatasetsHousingMarketsSearchResponseDoc struct {
 	Msg  string                             `json:"msg,omitempty"`
 }
 
+type ModelDatasetsInstagramUserResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelEsInstagramUserRecord `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelDatasetsInstagramUsersFacetResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelDatasetsInstagramUserFacetResponse `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
+}
+
+type ModelDatasetsInstagramUsersSearchResponseDoc struct {
+	Code int                                      `json:"code,omitempty"`
+	Data ModelDatasetsInstagramUserSearchResponse `json:"data,omitempty"`
+	Msg  string                                   `json:"msg,omitempty"`
+}
+
 type ModelDatasetsJobsCompaniesResponseDoc struct {
 	Code int                               `json:"code,omitempty"`
 	Data ModelDatasetsJobCompaniesResponse `json:"data,omitempty"`
@@ -4501,6 +4544,12 @@ type ModelDatasetsProducthuntTrendsSearchResponseDoc struct {
 	Code int                                          `json:"code,omitempty"`
 	Data ModelDatasetsProductHuntTrendsSearchResponse `json:"data,omitempty"`
 	Msg  string                                       `json:"msg,omitempty"`
+}
+
+type ModelDatasetsRedditTrendingSearchResponseDoc struct {
+	Code int                                       `json:"code,omitempty"`
+	Data ModelDatasetsRedditTrendingSearchResponse `json:"data,omitempty"`
+	Msg  string                                    `json:"msg,omitempty"`
 }
 
 type ModelDatasetsReviewsSearchResponseDoc struct {
@@ -5212,6 +5261,7 @@ type ModelEsAppRecord struct {
 	Currency           string   `json:"currency,omitempty"`
 	Developer          string   `json:"developer,omitempty"`
 	DeveloperId        string   `json:"developer_id,omitempty"`
+	DiscoverySources   []string `json:"discovery_sources,omitempty"`
 	FirstSeen          string   `json:"first_seen,omitempty"`
 	Free               bool     `json:"free,omitempty"`
 	IconUrl            string   `json:"icon_url,omitempty"`
@@ -5443,6 +5493,7 @@ type ModelEsChromeExtensionRecord struct {
 	Description             string   `json:"description,omitempty"`
 	Developer               string   `json:"developer,omitempty"`
 	DeveloperEmail          string   `json:"developer_email,omitempty"`
+	DiscoverySources        []string `json:"discovery_sources,omitempty"`
 	FirstSeen               string   `json:"first_seen,omitempty"`
 	HasBroadHostAccess      bool     `json:"has_broad_host_access,omitempty"`
 	HostPermissions         []string `json:"host_permissions,omitempty"`
@@ -5820,6 +5871,55 @@ type ModelEsHousingMarketRecord struct {
 	ZipCode               string  `json:"zip_code,omitempty"`
 }
 
+type ModelEsInstagramUserDatasetFacetItem struct {
+	Count int    `json:"count,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelEsInstagramUserDatasetItem struct {
+	AvatarUrl              string  `json:"avatar_url,omitempty"`
+	Biography              string  `json:"biography,omitempty"`
+	CategoryName           string  `json:"category_name,omitempty"`
+	CrawledAt              string  `json:"crawled_at,omitempty"`
+	CreatedAt              string  `json:"created_at,omitempty"`
+	ExternalUrl            string  `json:"external_url,omitempty"`
+	FollowerFollowingRatio float64 `json:"follower_following_ratio,omitempty"`
+	Followers              int     `json:"followers,omitempty"`
+	Following              int     `json:"following,omitempty"`
+	FullName               string  `json:"full_name,omitempty"`
+	HasBio                 bool    `json:"has_bio,omitempty"`
+	HasExternalUrl         bool    `json:"has_external_url,omitempty"`
+	Id                     string  `json:"id,omitempty"`
+	IsBusinessAccount      bool    `json:"is_business_account,omitempty"`
+	IsVerified             bool    `json:"is_verified,omitempty"`
+	Posts                  int     `json:"posts,omitempty"`
+	SchemaVersion          int     `json:"schema_version,omitempty"`
+	SourceTier             string  `json:"source_tier,omitempty"`
+	Username               string  `json:"username,omitempty"`
+}
+
+type ModelEsInstagramUserRecord struct {
+	AvatarUrl              string  `json:"avatar_url,omitempty"`
+	Biography              string  `json:"biography,omitempty"`
+	CategoryName           string  `json:"category_name,omitempty"`
+	CrawledAt              string  `json:"crawled_at,omitempty"`
+	CreatedAt              string  `json:"created_at,omitempty"`
+	ExternalUrl            string  `json:"external_url,omitempty"`
+	FollowerFollowingRatio float64 `json:"follower_following_ratio,omitempty"`
+	Followers              int     `json:"followers,omitempty"`
+	Following              int     `json:"following,omitempty"`
+	FullName               string  `json:"full_name,omitempty"`
+	HasBio                 bool    `json:"has_bio,omitempty"`
+	HasExternalUrl         bool    `json:"has_external_url,omitempty"`
+	Id                     string  `json:"id,omitempty"`
+	IsBusinessAccount      bool    `json:"is_business_account,omitempty"`
+	IsVerified             bool    `json:"is_verified,omitempty"`
+	Posts                  int     `json:"posts,omitempty"`
+	SchemaVersion          int     `json:"schema_version,omitempty"`
+	SourceTier             string  `json:"source_tier,omitempty"`
+	Username               string  `json:"username,omitempty"`
+}
+
 type ModelEsJobPostingFacets struct {
 	ByDepartment     []ModelEsFacetItem `json:"by_department,omitempty"`
 	ByEmploymentType []ModelEsFacetItem `json:"by_employment_type,omitempty"`
@@ -6188,6 +6288,21 @@ type ModelEsProductHuntTrendTopProduct struct {
 type ModelEsProductHuntTrendsFacetItem struct {
 	Count int    `json:"count,omitempty"`
 	Value string `json:"value,omitempty"`
+}
+
+type ModelEsRedditTrendingEntry struct {
+	Author       string `json:"author,omitempty"`
+	CrawledAt    string `json:"crawled_at,omitempty"`
+	CreatedUtc   int    `json:"created_utc,omitempty"`
+	Domain       string `json:"domain,omitempty"`
+	Permalink    string `json:"permalink,omitempty"`
+	PostId       string `json:"post_id,omitempty"`
+	PostUid      string `json:"post_uid,omitempty"`
+	Rank         int    `json:"rank,omitempty"`
+	SnapshotDate string `json:"snapshot_date,omitempty"`
+	Subreddit    string `json:"subreddit,omitempty"`
+	Title        string `json:"title,omitempty"`
+	Url          string `json:"url,omitempty"`
 }
 
 type ModelEsSecCompanyFacetItem struct {
@@ -7898,6 +8013,7 @@ type ModelGoogleplayApp struct {
 	IsAvailableInPlayPass     bool                      `json:"is_available_in_play_pass,omitempty"`
 	MaxInstalls               int                       `json:"max_installs,omitempty"`
 	MinInstalls               int                       `json:"min_installs,omitempty"`
+	MoreByDeveloper           []ModelGoogleplayListApp  `json:"more_by_developer,omitempty"`
 	OffersIap                 bool                      `json:"offers_iap,omitempty"`
 	OriginalPrice             float64                   `json:"original_price,omitempty"`
 	Preregister               bool                      `json:"preregister,omitempty"`
@@ -7912,6 +8028,7 @@ type ModelGoogleplayApp struct {
 	Score                     float64                   `json:"score,omitempty"`
 	ScoreText                 string                    `json:"score_text,omitempty"`
 	Screenshots               []string                  `json:"screenshots,omitempty"`
+	SimilarApps               []ModelGoogleplayListApp  `json:"similar_apps,omitempty"`
 	Summary                   string                    `json:"summary,omitempty"`
 	Title                     string                    `json:"title,omitempty"`
 	Updated                   int                       `json:"updated,omitempty"`
@@ -7946,9 +8063,34 @@ type ModelGoogleplayDataSafetyResult struct {
 	SharedData        []ModelGoogleplayDataSafetyEntry  `json:"shared_data,omitempty"`
 }
 
+type ModelGoogleplayDeviceRating struct {
+	Device    string         `json:"device,omitempty"`
+	Histogram map[string]any `json:"histogram,omitempty"`
+	Ratings   int            `json:"ratings,omitempty"`
+	Reviews   int            `json:"reviews,omitempty"`
+	Score     float64        `json:"score,omitempty"`
+	ScoreText string         `json:"score_text,omitempty"`
+}
+
 type ModelGoogleplayFeature struct {
 	Description string `json:"description,omitempty"`
 	Title       string `json:"title,omitempty"`
+}
+
+type ModelGoogleplayListApp struct {
+	AppId       string  `json:"app_id,omitempty"`
+	Currency    string  `json:"currency,omitempty"`
+	Developer   string  `json:"developer,omitempty"`
+	DeveloperId string  `json:"developer_id,omitempty"`
+	Free        bool    `json:"free,omitempty"`
+	Icon        string  `json:"icon,omitempty"`
+	Price       float64 `json:"price,omitempty"`
+	PriceText   string  `json:"price_text,omitempty"`
+	Score       float64 `json:"score,omitempty"`
+	ScoreText   string  `json:"score_text,omitempty"`
+	Summary     string  `json:"summary,omitempty"`
+	Title       string  `json:"title,omitempty"`
+	Url         string  `json:"url,omitempty"`
 }
 
 type ModelGoogleplayReview struct {
@@ -8015,6 +8157,12 @@ type ModelGoogleplayPermissionsResultsResponseDoc struct {
 	Code int    `json:"code,omitempty"`
 	Data []any  `json:"data,omitempty"`
 	Msg  string `json:"msg,omitempty"`
+}
+
+type ModelGoogleplayRatingsResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data []ModelGoogleplayDeviceRating `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
 }
 
 type ModelGoogleplayReviewsResponseDoc struct {
@@ -12611,6 +12759,7 @@ type ModelRedditAuthor struct {
 
 type ModelRedditComment struct {
 	Author     ModelRedditAuthor    `json:"author,omitempty"`
+	AwardCount int                  `json:"award_count,omitempty"`
 	Body       string               `json:"body,omitempty"`
 	Created    string               `json:"created,omitempty"`
 	CreatedUtc int                  `json:"created_utc,omitempty"`
@@ -12624,9 +12773,10 @@ type ModelRedditComment struct {
 }
 
 type ModelRedditCommentsResponse struct {
-	Comments []ModelRedditComment    `json:"comments,omitempty"`
-	Post     ModelRedditPost         `json:"post,omitempty"`
-	Source   ModelRedditSourceDetail `json:"source,omitempty"`
+	Comments      []ModelRedditComment    `json:"comments,omitempty"`
+	MetricsSource ModelRedditSourceDetail `json:"metrics_source,omitempty"`
+	Post          ModelRedditPost         `json:"post,omitempty"`
+	Source        ModelRedditSourceDetail `json:"source,omitempty"`
 }
 
 type ModelRedditDomainPostsResponse struct {
@@ -12653,33 +12803,38 @@ type ModelRedditPagination struct {
 }
 
 type ModelRedditPost struct {
-	Author        ModelRedditAuthor `json:"author,omitempty"`
-	CommentCount  int               `json:"comment_count,omitempty"`
-	Created       string            `json:"created,omitempty"`
-	CreatedUtc    int               `json:"created_utc,omitempty"`
-	Domain        string            `json:"domain,omitempty"`
-	Flair         string            `json:"flair,omitempty"`
-	Id            string            `json:"id,omitempty"`
-	IsSelf        bool              `json:"is_self,omitempty"`
-	IsVideo       bool              `json:"is_video,omitempty"`
-	Locked        bool              `json:"locked,omitempty"`
-	Name          string            `json:"name,omitempty"`
-	Over18        bool              `json:"over_18,omitempty"`
-	Permalink     string            `json:"permalink,omitempty"`
-	Score         int               `json:"score,omitempty"`
-	Selftext      string            `json:"selftext,omitempty"`
-	SourceFeedUrl string            `json:"source_feed_url,omitempty"`
-	Stickied      bool              `json:"stickied,omitempty"`
-	Subreddit     string            `json:"subreddit,omitempty"`
-	Thumbnail     string            `json:"thumbnail,omitempty"`
-	Title         string            `json:"title,omitempty"`
-	UpvoteRatio   float64           `json:"upvote_ratio,omitempty"`
-	Url           string            `json:"url,omitempty"`
+	Author              ModelRedditAuthor `json:"author,omitempty"`
+	AwardCount          int               `json:"award_count,omitempty"`
+	CommentCount        int               `json:"comment_count,omitempty"`
+	Created             string            `json:"created,omitempty"`
+	CreatedUtc          int               `json:"created_utc,omitempty"`
+	Domain              string            `json:"domain,omitempty"`
+	EstimatedDownvotes  int               `json:"estimated_downvotes,omitempty"`
+	EstimatedUpvotes    int               `json:"estimated_upvotes,omitempty"`
+	Flair               string            `json:"flair,omitempty"`
+	Id                  string            `json:"id,omitempty"`
+	IsSelf              bool              `json:"is_self,omitempty"`
+	IsVideo             bool              `json:"is_video,omitempty"`
+	Locked              bool              `json:"locked,omitempty"`
+	Name                string            `json:"name,omitempty"`
+	Over18              bool              `json:"over_18,omitempty"`
+	Permalink           string            `json:"permalink,omitempty"`
+	Score               int               `json:"score,omitempty"`
+	Selftext            string            `json:"selftext,omitempty"`
+	SourceFeedUrl       string            `json:"source_feed_url,omitempty"`
+	Stickied            bool              `json:"stickied,omitempty"`
+	Subreddit           string            `json:"subreddit,omitempty"`
+	Thumbnail           string            `json:"thumbnail,omitempty"`
+	Title               string            `json:"title,omitempty"`
+	UpvoteRatio         float64           `json:"upvote_ratio,omitempty"`
+	Url                 string            `json:"url,omitempty"`
+	VoteCountsEstimated bool              `json:"vote_counts_estimated,omitempty"`
 }
 
 type ModelRedditPostResponse struct {
-	Post   ModelRedditPost         `json:"post,omitempty"`
-	Source ModelRedditSourceDetail `json:"source,omitempty"`
+	MetricsSource ModelRedditSourceDetail `json:"metrics_source,omitempty"`
+	Post          ModelRedditPost         `json:"post,omitempty"`
+	Source        ModelRedditSourceDetail `json:"source,omitempty"`
 }
 
 type ModelRedditSearchResponse struct {
@@ -19286,7 +19441,7 @@ type ModelZillowSearchResponse struct {
 	Results  []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 832
+const operationCount = 837
 
 const (
 	OperationAirbnbHost                                             = "airbnb-host"
@@ -19454,6 +19609,9 @@ const (
 	OperationDatasetsHousingMarketsFacets                           = "datasets-housing-markets-facets"
 	OperationDatasetsHousingMarketsItem                             = "datasets-housing-markets-item"
 	OperationDatasetsHousingMarketsSearch                           = "datasets-housing-markets-search"
+	OperationDatasetsInstagramUsersFacets                           = "datasets-instagram-users-facets"
+	OperationDatasetsInstagramUsersItem                             = "datasets-instagram-users-item"
+	OperationDatasetsInstagramUsersSearch                           = "datasets-instagram-users-search"
 	OperationDatasetsJobsCompanies                                  = "datasets-jobs-companies"
 	OperationDatasetsJobsCompanyItem                                = "datasets-jobs-company-item"
 	OperationDatasetsJobsFacets                                     = "datasets-jobs-facets"
@@ -19495,6 +19653,7 @@ const (
 	OperationDatasetsProducthuntProductsSearch                      = "datasets-producthunt-products-search"
 	OperationDatasetsProducthuntTrendsFacets                        = "datasets-producthunt-trends-facets"
 	OperationDatasetsProducthuntTrendsSearch                        = "datasets-producthunt-trends-search"
+	OperationDatasetsRedditTrendingSearch                           = "datasets-reddit-trending-search"
 	OperationDatasetsSecCompaniesFacets                             = "datasets-sec-companies-facets"
 	OperationDatasetsSecCompaniesFinancials                         = "datasets-sec-companies-financials"
 	OperationDatasetsSecCompaniesInsider                            = "datasets-sec-companies-insider"
@@ -19605,6 +19764,7 @@ const (
 	OperationGooglePlayDeveloper                                    = "googleplay-developer"
 	OperationGooglePlayList                                         = "googleplay-list"
 	OperationGooglePlayPermissions                                  = "googleplay-permissions"
+	OperationGooglePlayRatings                                      = "googleplay-ratings"
 	OperationGooglePlayReviews                                      = "googleplay-reviews"
 	OperationGooglePlaySearch                                       = "googleplay-search"
 	OperationGooglePlaySimilar                                      = "googleplay-similar"
@@ -20291,6 +20451,9 @@ var operations = map[string]operationDefinition{
 	"datasets-housing-markets-facets":               operationDefinition{Method: "GET", Path: "/datasets/housing-markets/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"region_type", "state_code", "property_type", "parent_metro", "parent_metro_code", "income_vintage", "is_latest", "period_begin"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "region_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"national", "metro", "county", "city", "zip"}}, parameterDefinition{Name: "state_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "property_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "parent_metro_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "zip_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "period", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "latest", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_median_sale_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_median_sale_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_median_list_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_median_list_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_price_to_income", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price_to_income", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_salary_to_buy", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_salary_to_buy", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_median_dom", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_median_dom", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_inventory", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_inventory", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_homes_sold", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-housing-markets-item":                 operationDefinition{Method: "GET", Path: "/datasets/housing-markets/items/{region_type}/{table_id}", PathParams: []string{"region_type", "table_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "period", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "property_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "history", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-housing-markets-search":               operationDefinition{Method: "GET", Path: "/datasets/housing-markets/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "region_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"national", "metro", "county", "city", "zip"}}, parameterDefinition{Name: "state_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "property_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "parent_metro_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "zip_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "period", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "latest", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_median_sale_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_median_sale_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_median_list_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_median_list_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_price_to_income", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price_to_income", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_salary_to_buy", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_salary_to_buy", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_median_dom", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_median_dom", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_inventory", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_inventory", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_homes_sold", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "price_desc", "price_asc", "list_price_desc", "list_price_asc", "price_to_income_desc", "price_to_income_asc", "salary_to_buy_desc", "salary_to_buy_asc", "dom_asc", "dom_desc", "inventory_desc", "homes_sold_desc", "period_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-instagram-users-facets":               operationDefinition{Method: "GET", Path: "/datasets/instagram-users/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"is_verified", "is_business_account", "has_bio", "has_external_url", "category_name", "source_tier"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "username", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category_name", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "source_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_verified", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_business_account", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_bio", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_external_url", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_ratio", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_ratio", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "created_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "created_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "crawled_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "crawled_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "followers_desc", "followers_asc", "crawled_at_desc", "crawled_at_asc", "created_at_desc", "created_at_asc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-instagram-users-item":                 operationDefinition{Method: "GET", Path: "/datasets/instagram-users/items/{username}", PathParams: []string{"username"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-instagram-users-search":               operationDefinition{Method: "GET", Path: "/datasets/instagram-users/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "username", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category_name", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "source_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_verified", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_business_account", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_bio", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_external_url", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_ratio", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_ratio", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "created_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "created_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "crawled_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "crawled_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "followers_desc", "followers_asc", "crawled_at_desc", "crawled_at_asc", "created_at_desc", "created_at_asc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-jobs-companies":                       operationDefinition{Method: "GET", Path: "/datasets/jobs/companies", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "provider", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"greenhouse", "lever", "ashby", "workday", "smartrecruiters", "workable", "recruitee", "rippling", "personio", "teamtailor", "oracle", "ukg", "icims", "eightfold", "gem", "pinpoint"}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"active", "empty", "gone", "blocked", "pending", "invalid"}}, parameterDefinition{Name: "min_open_roles", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"open_desc", "company_asc", "crawled_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-jobs-company-item":                    operationDefinition{Method: "GET", Path: "/datasets/jobs/companies/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-jobs-facets":                          operationDefinition{Method: "GET", Path: "/datasets/jobs/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -20331,6 +20494,7 @@ var operations = map[string]operationDefinition{
 	"datasets-producthunt-products-search":          operationDefinition{Method: "GET", Path: "/datasets/producthunt-products/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "maker", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_votes", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "pricing_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_website", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_online", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "votes_desc", "launched_desc", "launched_asc", "rating_desc", "best_rank_asc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-producthunt-trends-facets":            operationDefinition{Method: "GET", Path: "/datasets/producthunt-trends/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"topic", "launch_year"}}, parameterDefinition{Name: "group_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"topic_month", "topic_year", "topic"}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_votes", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_launches", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-producthunt-trends-search":            operationDefinition{Method: "GET", Path: "/datasets/producthunt-trends/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "group_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"topic_month", "topic_year", "topic"}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "launched_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_votes", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_launches", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"period_desc", "period_asc", "launch_count_desc", "sum_votes_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-reddit-trending-search":               operationDefinition{Method: "GET", Path: "/datasets/reddit-trending/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "subreddit", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"rank", "date_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-sec-companies-facets":                 operationDefinition{Method: "GET", Path: "/datasets/sec-companies/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"sic", "sic_description", "exchange", "state_of_incorporation", "entity_type", "reporting_currency", "revenue_band", "forms_filed"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ticker", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "exchange", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state_of_incorporation", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "entity_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "reporting_currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_financials", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_revenue", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "form_filed", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-sec-companies-financials":             operationDefinition{Method: "GET", Path: "/datasets/sec-companies/financials/{cik}", PathParams: []string{"cik"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "statement", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"income", "balance", "cash_flow"}}, parameterDefinition{Name: "period", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"annual", "quarterly"}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-sec-companies-insider":                operationDefinition{Method: "GET", Path: "/datasets/sec-companies/insider/{cik}", PathParams: []string{"cik"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -20455,8 +20619,9 @@ var operations = map[string]operationDefinition{
 	"googleplay-categories":                         operationDefinition{Method: "GET", Path: "/googleplay/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"googleplay-datasafety":                         operationDefinition{Method: "GET", Path: "/googleplay/datasafety", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"googleplay-developer":                          operationDefinition{Method: "GET", Path: "/googleplay/developer/{dev_id}", PathParams: []string{"dev_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "full_detail", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"googleplay-list":                               operationDefinition{Method: "GET", Path: "/googleplay/list", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "collection", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"TOP_FREE", "TOP_PAID", "GROSSING", "NEW_FREE", "NEW_PAID"}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "age", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "full_detail", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"googleplay-list":                               operationDefinition{Method: "GET", Path: "/googleplay/list", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "collection", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"TOP_FREE", "TOP_PAID", "GROSSING", "NEW_FREE", "NEW_PAID"}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "device", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"phone", "tablet", "tv", "chromebook", "watch", "xr", "car"}}, parameterDefinition{Name: "age", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "full_detail", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"googleplay-permissions":                        operationDefinition{Method: "GET", Path: "/googleplay/permissions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "short", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"googleplay-ratings":                            operationDefinition{Method: "GET", Path: "/googleplay/ratings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"googleplay-reviews":                            operationDefinition{Method: "GET", Path: "/googleplay/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"helpfulness", "newest", "rating"}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "paginate", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "next_pagination_token", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"googleplay-search":                             operationDefinition{Method: "GET", Path: "/googleplay/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "full_detail", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "price", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "free", "paid"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"googleplay-similar":                            operationDefinition{Method: "GET", Path: "/googleplay/similar", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "full_detail", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -20687,9 +20852,9 @@ var operations = map[string]operationDefinition{
 	"producthunt-reviews":                           operationDefinition{Method: "GET", Path: "/producthunt/product/{id}/reviews", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"producthunt-search":                            operationDefinition{Method: "GET", Path: "/producthunt/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"product", "user", "launch"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "featured", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "topics", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"ready":                                         operationDefinition{Method: "GET", Path: "/ready", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{}},
-	"reddit-comments":                               operationDefinition{Method: "GET", Path: "/reddit/comments/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"confidence", "top", "new", "controversial", "old", "qa"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "depth", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reddit-comments":                               operationDefinition{Method: "GET", Path: "/reddit/comments/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"confidence", "top", "new", "controversial", "old", "qa"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "depth", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_metrics", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"reddit-domain-posts":                           operationDefinition{Method: "GET", Path: "/reddit/domain/{domain}/posts", PathParams: []string{"domain"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "top", "rising"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"reddit-post":                                   operationDefinition{Method: "GET", Path: "/reddit/post/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reddit-post":                                   operationDefinition{Method: "GET", Path: "/reddit/post/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "include_metrics", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"reddit-search":                                 operationDefinition{Method: "GET", Path: "/reddit/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "subreddit", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "hot", "new", "top", "comments"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hour", "day", "week", "month", "year", "all"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"reddit-subreddit-about":                        operationDefinition{Method: "GET", Path: "/reddit/subreddit/{subreddit}/about", PathParams: []string{"subreddit"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"reddit-subreddit-comments":                     operationDefinition{Method: "GET", Path: "/reddit/subreddit/{subreddit}/comments", PathParams: []string{"subreddit"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -24172,6 +24337,85 @@ func (s *DatasetsService) HousingMarketsSearchTyped(ctx context.Context, params 
 	return requestTyped[DatasetsHousingMarketsSearchResponse](s.client, ctx, "datasets-housing-markets-search", paramsFromStruct(params), opts...)
 }
 
+func (s *DatasetsService) InstagramUsersFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-instagram-users-facets", params, opts...)
+}
+
+type DatasetsInstagramUsersFacetsParams struct {
+	Facet             string   `crawlora:"facet"`
+	Q                 *string  `crawlora:"q,omitempty"`
+	Username          *string  `crawlora:"username,omitempty"`
+	CategoryName      *string  `crawlora:"category_name,omitempty"`
+	SourceTier        *string  `crawlora:"source_tier,omitempty"`
+	IsVerified        *bool    `crawlora:"is_verified,omitempty"`
+	IsBusinessAccount *bool    `crawlora:"is_business_account,omitempty"`
+	HasBio            *bool    `crawlora:"has_bio,omitempty"`
+	HasExternalUrl    *bool    `crawlora:"has_external_url,omitempty"`
+	MinFollowers      *int     `crawlora:"min_followers,omitempty"`
+	MaxFollowers      *int     `crawlora:"max_followers,omitempty"`
+	MinRatio          *float64 `crawlora:"min_ratio,omitempty"`
+	MaxRatio          *float64 `crawlora:"max_ratio,omitempty"`
+	CreatedAfter      *string  `crawlora:"created_after,omitempty"`
+	CreatedBefore     *string  `crawlora:"created_before,omitempty"`
+	CrawledAfter      *string  `crawlora:"crawled_after,omitempty"`
+	CrawledBefore     *string  `crawlora:"crawled_before,omitempty"`
+	Sort              *string  `crawlora:"sort,omitempty"`
+	Page              *int     `crawlora:"page,omitempty"`
+	PageSize          *int     `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsInstagramUsersFacetsResponse = ModelDatasetsInstagramUsersFacetResponseDoc
+
+func (s *DatasetsService) InstagramUsersFacetsTyped(ctx context.Context, params DatasetsInstagramUsersFacetsParams, opts ...RequestOption) (DatasetsInstagramUsersFacetsResponse, error) {
+	return requestTyped[DatasetsInstagramUsersFacetsResponse](s.client, ctx, "datasets-instagram-users-facets", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) InstagramUsersItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-instagram-users-item", params, opts...)
+}
+
+type DatasetsInstagramUsersItemParams struct {
+	Username string `crawlora:"username"`
+}
+
+type DatasetsInstagramUsersItemResponse = ModelDatasetsInstagramUserResponseDoc
+
+func (s *DatasetsService) InstagramUsersItemTyped(ctx context.Context, params DatasetsInstagramUsersItemParams, opts ...RequestOption) (DatasetsInstagramUsersItemResponse, error) {
+	return requestTyped[DatasetsInstagramUsersItemResponse](s.client, ctx, "datasets-instagram-users-item", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) InstagramUsersSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-instagram-users-search", params, opts...)
+}
+
+type DatasetsInstagramUsersSearchParams struct {
+	Q                 *string  `crawlora:"q,omitempty"`
+	Username          *string  `crawlora:"username,omitempty"`
+	CategoryName      *string  `crawlora:"category_name,omitempty"`
+	SourceTier        *string  `crawlora:"source_tier,omitempty"`
+	IsVerified        *bool    `crawlora:"is_verified,omitempty"`
+	IsBusinessAccount *bool    `crawlora:"is_business_account,omitempty"`
+	HasBio            *bool    `crawlora:"has_bio,omitempty"`
+	HasExternalUrl    *bool    `crawlora:"has_external_url,omitempty"`
+	MinFollowers      *int     `crawlora:"min_followers,omitempty"`
+	MaxFollowers      *int     `crawlora:"max_followers,omitempty"`
+	MinRatio          *float64 `crawlora:"min_ratio,omitempty"`
+	MaxRatio          *float64 `crawlora:"max_ratio,omitempty"`
+	CreatedAfter      *string  `crawlora:"created_after,omitempty"`
+	CreatedBefore     *string  `crawlora:"created_before,omitempty"`
+	CrawledAfter      *string  `crawlora:"crawled_after,omitempty"`
+	CrawledBefore     *string  `crawlora:"crawled_before,omitempty"`
+	Sort              *string  `crawlora:"sort,omitempty"`
+	Page              *int     `crawlora:"page,omitempty"`
+	PageSize          *int     `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsInstagramUsersSearchResponse = ModelDatasetsInstagramUsersSearchResponseDoc
+
+func (s *DatasetsService) InstagramUsersSearchTyped(ctx context.Context, params DatasetsInstagramUsersSearchParams, opts ...RequestOption) (DatasetsInstagramUsersSearchResponse, error) {
+	return requestTyped[DatasetsInstagramUsersSearchResponse](s.client, ctx, "datasets-instagram-users-search", paramsFromStruct(params), opts...)
+}
+
 func (s *DatasetsService) JobsCompanies(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "datasets-jobs-companies", params, opts...)
 }
@@ -24994,6 +25238,25 @@ type DatasetsProducthuntTrendsSearchResponse = ModelDatasetsProducthuntTrendsSea
 
 func (s *DatasetsService) ProducthuntTrendsSearchTyped(ctx context.Context, params DatasetsProducthuntTrendsSearchParams, opts ...RequestOption) (DatasetsProducthuntTrendsSearchResponse, error) {
 	return requestTyped[DatasetsProducthuntTrendsSearchResponse](s.client, ctx, "datasets-producthunt-trends-search", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) RedditTrendingSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-reddit-trending-search", params, opts...)
+}
+
+type DatasetsRedditTrendingSearchParams struct {
+	Q         *string `crawlora:"q,omitempty"`
+	Subreddit *string `crawlora:"subreddit,omitempty"`
+	Date      *string `crawlora:"date,omitempty"`
+	Sort      *string `crawlora:"sort,omitempty"`
+	Page      *int    `crawlora:"page,omitempty"`
+	PageSize  *int    `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsRedditTrendingSearchResponse = ModelDatasetsRedditTrendingSearchResponseDoc
+
+func (s *DatasetsService) RedditTrendingSearchTyped(ctx context.Context, params DatasetsRedditTrendingSearchParams, opts ...RequestOption) (DatasetsRedditTrendingSearchResponse, error) {
+	return requestTyped[DatasetsRedditTrendingSearchResponse](s.client, ctx, "datasets-reddit-trending-search", paramsFromStruct(params), opts...)
 }
 
 func (s *DatasetsService) SecCompaniesFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -27078,6 +27341,7 @@ func (s *GooglePlayService) List(ctx context.Context, params Params, opts ...Req
 type GooglePlayListParams struct {
 	Collection *string `crawlora:"collection,omitempty"`
 	Category   *string `crawlora:"category,omitempty"`
+	Device     *string `crawlora:"device,omitempty"`
 	Age        *string `crawlora:"age,omitempty"`
 	Num        *int    `crawlora:"num,omitempty"`
 	Country    *string `crawlora:"country,omitempty"`
@@ -27106,6 +27370,22 @@ type GooglePlayPermissionsResponse = ModelGoogleplayPermissionsResultsResponseDo
 
 func (s *GooglePlayService) PermissionsTyped(ctx context.Context, params GooglePlayPermissionsParams, opts ...RequestOption) (GooglePlayPermissionsResponse, error) {
 	return requestTyped[GooglePlayPermissionsResponse](s.client, ctx, "googleplay-permissions", paramsFromStruct(params), opts...)
+}
+
+func (s *GooglePlayService) Ratings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "googleplay-ratings", params, opts...)
+}
+
+type GooglePlayRatingsParams struct {
+	AppId   string  `crawlora:"app_id"`
+	Country *string `crawlora:"country,omitempty"`
+	Lang    *string `crawlora:"lang,omitempty"`
+}
+
+type GooglePlayRatingsResponse = ModelGoogleplayRatingsResponseDoc
+
+func (s *GooglePlayService) RatingsTyped(ctx context.Context, params GooglePlayRatingsParams, opts ...RequestOption) (GooglePlayRatingsResponse, error) {
+	return requestTyped[GooglePlayRatingsResponse](s.client, ctx, "googleplay-ratings", paramsFromStruct(params), opts...)
 }
 
 func (s *GooglePlayService) Reviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -30785,10 +31065,11 @@ func (s *RedditService) Comments(ctx context.Context, params Params, opts ...Req
 }
 
 type RedditCommentsParams struct {
-	Id    string  `crawlora:"id"`
-	Sort  *string `crawlora:"sort,omitempty"`
-	Limit *int    `crawlora:"limit,omitempty"`
-	Depth *int    `crawlora:"depth,omitempty"`
+	Id             string  `crawlora:"id"`
+	Sort           *string `crawlora:"sort,omitempty"`
+	Limit          *int    `crawlora:"limit,omitempty"`
+	Depth          *int    `crawlora:"depth,omitempty"`
+	IncludeMetrics *bool   `crawlora:"include_metrics,omitempty"`
 }
 
 type RedditCommentsResponse = ModelRedditCommentsResponseDoc
@@ -30820,7 +31101,8 @@ func (s *RedditService) Post(ctx context.Context, params Params, opts ...Request
 }
 
 type RedditPostParams struct {
-	Id string `crawlora:"id"`
+	Id             string `crawlora:"id"`
+	IncludeMetrics *bool  `crawlora:"include_metrics,omitempty"`
 }
 
 type RedditPostResponse = ModelRedditPostResponseDoc

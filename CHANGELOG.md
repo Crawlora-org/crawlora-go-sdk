@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.26.0-sdk.1
+
+- Regenerated from the public API contract (832 to 837 operations). Adds Google Play ratings, Instagram user dataset search/item/facets, and Reddit trending dataset search.
+- Reddit post and comments operations now expose `include_metrics`. The default feed mode costs 1 credit; metrics mode makes one anonymous HTML request and costs 3 credits.
+
 ## v1.25.0-sdk.1
 
 - Regenerated from the public API contract (836 to 832 operations). Adds Apple Podcasts chart rankings, new releases, and related shows; App Store editorial collections; and the Apple Podcasts shows dataset family. Removes the TCDB endpoints, which no longer exist upstream.
