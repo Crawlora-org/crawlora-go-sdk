@@ -41,8 +41,13 @@ Newer platforms are grouped like every other endpoint:
 
 ```go
 posts, err := client.Reddit.Search(ctx, crawlora.Params{"q": "golang", "subreddit": "programming"})
+postWithMetrics, err := client.Reddit.Post(ctx, crawlora.Params{"id": "1v8hy3q", "include_metrics": true})
+commentsWithMetrics, err := client.Reddit.Comments(ctx, crawlora.Params{"id": "1v8hy3q", "include_metrics": true, "limit": 25})
 brand, err := client.Brand.Retrieve(ctx, crawlora.Params{"domain": "stripe.com"})
 ```
+
+Omit `include_metrics` for the 1-credit feed mode. Set it to `true` for the
+3-credit anonymous HTML mode with public post and comment engagement metrics.
 
 ## Threads Public Lookups
 
