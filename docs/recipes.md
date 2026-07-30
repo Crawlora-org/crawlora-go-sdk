@@ -49,6 +49,18 @@ brand, err := client.Brand.Retrieve(ctx, crawlora.Params{"domain": "stripe.com"}
 Omit `include_metrics` for the 1-credit feed mode. Set it to `true` for the
 3-credit anonymous HTML mode with public post and comment engagement metrics.
 
+## Company Job Searches
+
+Search public job listings directly from employer career sites:
+
+```go
+amazon, err := client.AmazonJobs.Search(ctx, crawlora.Params{"q": "software engineer", "country": "US"})
+apple, err := client.AppleJobs.Search(ctx, crawlora.Params{"q": "machine learning", "location": "United States"})
+google, err := client.GoogleJobs.Search(ctx, crawlora.Params{"q": "data scientist", "location": "Singapore"})
+meta, err := client.MetaJobs.Search(ctx, crawlora.Params{"q": "product manager", "is_remote_only": true})
+tesla, err := client.TeslaJobs.List(ctx, crawlora.Params{"query": "manufacturing", "location": "Texas"})
+```
+
 ## Threads Public Lookups
 
 ```go

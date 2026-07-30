@@ -2,7 +2,7 @@
 
 Generated from `openapi/public.json`. Deprecated, admin, and internal operations are excluded from this SDK contract.
 
-Total operations: `837`
+Total operations: `848`
 
 | Group | SDK method | Operation ID | HTTP | Params | Auth | Response | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -13,6 +13,8 @@ Total operations: `837`
 | Airbnb | `Airbnb.RoomCalendar` | `airbnb-room-calendar` | `GET /airbnb/room/{id}/calendar` | `id` (path string required) | `ApiKeyAuth` | `AirbnbRoomCalendarResponse` |  |
 | Airbnb | `Airbnb.RoomReviews` | `airbnb-room-reviews` | `GET /airbnb/room/{id}/reviews` | `id` (path string required)<br>`page` (query int) | `ApiKeyAuth` | `AirbnbRoomReviewsResponse` |  |
 | Airbnb | `Airbnb.Search` | `airbnb-search` | `GET /airbnb/search` | `location` (query string required)<br>`check_in` (query string)<br>`check_out` (query string)<br>`adults` (query int)<br>`page` (query int)<br>`currency` (query string)<br>`ne_lat` (query float64)<br>`ne_lng` (query float64)<br>`sw_lat` (query float64)<br>`sw_lng` (query float64)<br>`zoom` (query int) | `ApiKeyAuth` | `AirbnbSearchResponse` |  |
+| AmazonJobs | `AmazonJobs.Job` | `amazon-jobs-job` | `GET /amazon-jobs/job` | `id` (query string required) | `ApiKeyAuth` | `AmazonJobsJobResponse` |  |
+| AmazonJobs | `AmazonJobs.Search` | `amazon-jobs-search` | `GET /amazon-jobs/search` | `q` (query string)<br>`category` (query string)<br>`country` (query string)<br>`page` (query int)<br>`limit` (query int)<br>`sort` (query string) | `ApiKeyAuth` | `AmazonJobsSearchResponse` |  |
 | Amazon | `Amazon.Product` | `amazon-product` | `GET /amazon/product/{asin}` | `asin` (path string required)<br>`language` (query string)<br>`currency` (query string) | `ApiKeyAuth` | `AmazonProductResponse` |  |
 | Amazon | `Amazon.Search` | `amazon-search` | `GET /amazon/search` | `k` (query string required)<br>`s` (query string)<br>`page` (query int) | `ApiKeyAuth` | `AmazonSearchResponse` |  |
 | Amazon | `Amazon.Suggest` | `amazon-suggest` | `GET /amazon/suggest/{keyword}` | `keyword` (path string required) | `ApiKeyAuth` | `AmazonSuggestResponse` |  |
@@ -37,6 +39,8 @@ Total operations: `837`
 | AppleBooks | `AppleBooks.Charts` | `apple-books-charts` | `GET /apple-books/charts` | `collection` (query string)<br>`genre` (query int)<br>`country` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `AppleBooksChartsResponse` |  |
 | AppleBooks | `AppleBooks.Search` | `apple-books-search` | `GET /apple-books/search` | `term` (query string required)<br>`country` (query string)<br>`lang` (query string)<br>`limit` (query int)<br>`page` (query int) | `ApiKeyAuth` | `AppleBooksSearchResponse` |  |
 | AppleBooks | `AppleBooks.Series` | `apple-books-series` | `GET /apple-books/series/{id}` | `id` (path string required)<br>`country` (query string)<br>`lang` (query string) | `ApiKeyAuth` | `AppleBooksSeriesResponse` |  |
+| AppleJobs | `AppleJobs.Job` | `apple-jobs-job` | `GET /apple-jobs/job` | `id` (query string required) | `ApiKeyAuth` | `AppleJobsJobResponse` |  |
+| AppleJobs | `AppleJobs.Search` | `apple-jobs-search` | `GET /apple-jobs/search` | `q` (query string required)<br>`location` (query string)<br>`page` (query int) | `ApiKeyAuth` | `AppleJobsSearchResponse` |  |
 | ApplePodcasts | `ApplePodcasts.Charts` | `apple-podcasts-charts` | `GET /apple-podcasts/charts` | `collection` (query string)<br>`category` (query int)<br>`country` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `ApplePodcastsChartsResponse` |  |
 | ApplePodcasts | `ApplePodcasts.ChartsRankings` | `apple-podcasts-charts-rankings` | `GET /apple-podcasts/charts/rankings` | `chart` (query string)<br>`type` (query string)<br>`genre` (query int)<br>`country` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `ApplePodcastsChartsRankingsResponse` |  |
 | ApplePodcasts | `ApplePodcasts.EpisodesSearch` | `apple-podcasts-episodes-search` | `GET /apple-podcasts/episodes/search` | `term` (query string required)<br>`country` (query string)<br>`lang` (query string)<br>`limit` (query int)<br>`page` (query int) | `ApiKeyAuth` | `ApplePodcastsEpisodesSearchResponse` |  |
@@ -299,6 +303,8 @@ Total operations: `837`
 | Goodreads | `Goodreads.List` | `goodreads-list` | `GET /goodreads/list/{id}` | `id` (path string required)<br>`page` (query int) | `ApiKeyAuth` | `GoodreadsListResponse` |  |
 | Goodreads | `Goodreads.Lists` | `goodreads-lists` | `GET /goodreads/lists` | none | `ApiKeyAuth` | `GoodreadsListsResponse` |  |
 | Goodreads | `Goodreads.Search` | `goodreads-search` | `GET /goodreads/search` | `q` (query string required)<br>`limit` (query int) | `ApiKeyAuth` | `GoodreadsSearchResponse` |  |
+| GoogleJobs | `GoogleJobs.Job` | `google-jobs-job` | `GET /google-jobs/job` | `id` (query string required) | `ApiKeyAuth` | `GoogleJobsJobResponse` |  |
+| GoogleJobs | `GoogleJobs.Search` | `google-jobs-search` | `GET /google-jobs/search` | `q` (query string required)<br>`location` (query string)<br>`page` (query int) | `ApiKeyAuth` | `GoogleJobsSearchResponse` |  |
 | Google | `Google.FinanceAnalystArticles` | `google-finance-analyst-articles` | `GET /google/finance/analyst-articles/{quote}` | `quote` (path string required) | `ApiKeyAuth` | `GoogleFinanceAnalystArticlesResponse` |  |
 | Google | `Google.FinanceChart` | `google-finance-chart` | `GET /google/finance/chart/{quote}` | `quote` (path string required)<br>`window` (query string) | `ApiKeyAuth` | `GoogleFinanceChartResponse` |  |
 | Google | `Google.FinanceClassification` | `google-finance-classification` | `GET /google/finance/classification/{quote}` | `quote` (path string required) | `ApiKeyAuth` | `GoogleFinanceClassificationResponse` |  |
@@ -456,6 +462,9 @@ Total operations: `837`
 | Manga | `Manga.Rankings` | `manga-rankings` | `GET /manga/rankings` | `sort` (query string)<br>`format` (query string)<br>`genre` (query string)<br>`status` (query string)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `MangaRankingsResponse` |  |
 | Manga | `Manga.Search` | `manga-search` | `GET /manga/search` | `query` (query string required)<br>`sort` (query string)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `MangaSearchResponse` |  |
 | Manga | `Manga.Title` | `manga-title` | `GET /manga/title/{id}` | `id` (path string required)<br>`mal` (query bool) | `ApiKeyAuth` | `MangaTitleResponse` |  |
+| MetaJobs | `MetaJobs.Job` | `meta-jobs-job` | `GET /meta-jobs/job` | `id` (query string required) | `ApiKeyAuth` | `MetaJobsJobResponse` |  |
+| MetaJobs | `MetaJobs.List` | `meta-jobs-list` | `GET /meta-jobs/list` | `page` (query int)<br>`page_size` (query int) | `ApiKeyAuth` | `MetaJobsListResponse` |  |
+| MetaJobs | `MetaJobs.Search` | `meta-jobs-search` | `GET /meta-jobs/search` | `q` (query string)<br>`teams` (query []string)<br>`roles` (query []string)<br>`offices` (query []string)<br>`is_remote_only` (query bool)<br>`sort_by_new` (query bool)<br>`results_per_page` (query string) | `ApiKeyAuth` | `MetaJobsSearchResponse` |  |
 | Metacritic | `Metacritic.Browse` | `metacritic-browse` | `GET /metacritic/browse` | `type` (query string required)<br>`genre` (query string)<br>`sort` (query string)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `MetacriticBrowseResponse` |  |
 | Metacritic | `Metacritic.Game` | `metacritic-game` | `GET /metacritic/game/{slug}` | `slug` (path string required) | `ApiKeyAuth` | `MetacriticGameResponse` |  |
 | Metacritic | `Metacritic.GameCriticReviews` | `metacritic-game-critic-reviews` | `GET /metacritic/game/{slug}/critic-reviews` | `slug` (path string required)<br>`page` (query int)<br>`per_page` (query int)<br>`sort` (query string) | `ApiKeyAuth` | `MetacriticGameCriticReviewsResponse` |  |
@@ -717,6 +726,8 @@ Total operations: `837`
 | Steam | `Steam.Tags` | `steam-tags` | `GET /steam/tags` | `tags` (query string)<br>`untags` (query string)<br>`category1` (query string)<br>`category2` (query string)<br>`category3` (query string)<br>`os` (query string)<br>`maxprice` (query string)<br>`specials` (query bool)<br>`hidef2p` (query bool)<br>`deck_compatibility` (query string)<br>`vrsupport` (query string)<br>`filter` (query string)<br>`supportedlang` (query string)<br>`sort_by` (query string)<br>`start` (query int)<br>`count` (query int)<br>`cc` (query string)<br>`l` (query string) | `ApiKeyAuth` | `SteamTagsResponse` |  |
 | Steam | `Steam.TagsList` | `steam-tags-list` | `GET /steam/tags/list` | `l` (query string) | `ApiKeyAuth` | `SteamTagsListResponse` |  |
 | Steam | `Steam.TopSellers` | `steam-top-sellers` | `GET /steam/top-sellers` | `cc` (query string)<br>`l` (query string) | `ApiKeyAuth` | `SteamTopSellersResponse` |  |
+| TeslaJobs | `TeslaJobs.Job` | `tesla-jobs-job` | `GET /tesla-jobs/job` | `id` (query string required) | `ApiKeyAuth` | `TeslaJobsJobResponse` |  |
+| TeslaJobs | `TeslaJobs.List` | `tesla-jobs-list` | `GET /tesla-jobs/list` | `query` (query string)<br>`location` (query string)<br>`page` (query int)<br>`page_size` (query int) | `ApiKeyAuth` | `TeslaJobsListResponse` |  |
 | Threads | `Threads.Post` | `threads-post` | `GET /threads/post/{username}/{code}` | `username` (path string required)<br>`code` (path string required) | `ApiKeyAuth` | `ThreadsPostResponse` |  |
 | Threads | `Threads.PostReplies` | `threads-post-replies` | `GET /threads/post/{username}/{code}/replies` | `username` (path string required)<br>`code` (path string required) | `ApiKeyAuth` | `ThreadsPostRepliesResponse` |  |
 | Threads | `Threads.Profile` | `threads-profile` | `GET /threads/profile/{username}` | `username` (path string required) | `ApiKeyAuth` | `ThreadsProfileResponse` |  |

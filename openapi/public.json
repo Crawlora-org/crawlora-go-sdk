@@ -725,6 +725,138 @@
       },
       "type": "object"
     },
+    "amazonjobs.AmazonJob": {
+      "properties": {
+        "apply_url": {
+          "example": "https://account.amazon.com/jobs/10386857/apply",
+          "type": "string"
+        },
+        "basic_qualifications": {
+          "type": "string"
+        },
+        "category": {
+          "example": "Software Development",
+          "type": "string"
+        },
+        "city": {
+          "example": "Sydney",
+          "type": "string"
+        },
+        "company": {
+          "example": "Amazon Web Services Australia Pty Ltd",
+          "type": "string"
+        },
+        "country": {
+          "example": "AUS",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "example": "10386857",
+          "type": "string"
+        },
+        "location": {
+          "example": "Sydney, New South Wales, AUS",
+          "type": "string"
+        },
+        "posted_at": {
+          "example": "2026-04-09T00:00:00Z",
+          "type": "string"
+        },
+        "preferred_qualifications": {
+          "type": "string"
+        },
+        "schedule_type": {
+          "example": "full-time",
+          "type": "string"
+        },
+        "state": {
+          "example": "NSW",
+          "type": "string"
+        },
+        "title": {
+          "example": "Software Engineer",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.amazon.jobs/en/jobs/10386857/software-engineer",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "amazonjobs.SearchResponse": {
+      "properties": {
+        "category": {
+          "example": "software-development",
+          "type": "string"
+        },
+        "country": {
+          "example": "USA",
+          "type": "string"
+        },
+        "jobs": {
+          "items": {
+            "$ref": "#/definitions/amazonjobs.AmazonJob"
+          },
+          "type": "array"
+        },
+        "limit": {
+          "example": 20,
+          "type": "integer"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "query": {
+          "example": "software engineer",
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "total": {
+          "example": 2027,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "amazonjobs.jobResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/amazonjobs.AmazonJob"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "amazonjobs.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/amazonjobs.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "anime.AiringEntry": {
       "properties": {
         "airing_at": {
@@ -2322,6 +2454,127 @@
             "$ref": "#/definitions/applebooks.Book"
           },
           "type": "array"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applejobs.AppleJob": {
+      "properties": {
+        "country": {
+          "example": "United States",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "employment_type": {
+          "example": "Standard",
+          "type": "string"
+        },
+        "id": {
+          "example": "200674676-0836",
+          "type": "string"
+        },
+        "location": {
+          "example": "Cupertino, California, United States",
+          "type": "string"
+        },
+        "locations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "minimum_qualifications": {
+          "type": "string"
+        },
+        "position_id": {
+          "example": "200674676",
+          "type": "string"
+        },
+        "posted_at": {
+          "example": "2026-07-29T04:08:46Z",
+          "type": "string"
+        },
+        "preferred_qualifications": {
+          "type": "string"
+        },
+        "responsibilities": {
+          "type": "string"
+        },
+        "team": {
+          "example": "Hardware",
+          "type": "string"
+        },
+        "title": {
+          "example": "Optical Software Engineer",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://jobs.apple.com/en-us/details/200674676-0836/optical-software-engineer",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applejobs.SearchResponse": {
+      "properties": {
+        "jobs": {
+          "items": {
+            "$ref": "#/definitions/applejobs.AppleJob"
+          },
+          "type": "array"
+        },
+        "location": {
+          "example": "united-states-USA",
+          "type": "string"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "query": {
+          "example": "software engineer",
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "total": {
+          "example": 4342,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "applejobs.jobResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/applejobs.AppleJob"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "applejobs.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/applejobs.SearchResponse"
         },
         "msg": {
           "example": "OK",
@@ -18048,8 +18301,10 @@
           "x-nullable": true
         },
         "review_count": {
+          "description": "ReviewCount is the aggregate Google review count. A null value means Google\ndid not return a count; numeric zero means Google confirmed zero reviews.",
           "example": 3213,
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "similarweb": {
           "$ref": "#/definitions/similarweb.SimilarWebResp"
@@ -18196,8 +18451,10 @@
           "x-nullable": true
         },
         "review_count": {
+          "description": "ReviewCount is the aggregate Google review count. A null value means Google\ndid not return a count; numeric zero means Google confirmed zero reviews.",
           "example": 3213,
-          "type": "integer"
+          "type": "integer",
+          "x-nullable": true
         },
         "similarweb": {
           "$ref": "#/definitions/similarweb.SimilarWebResp"
@@ -24909,6 +25166,122 @@
         },
         "data": {
           "$ref": "#/definitions/google.VideosResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "googlejobs.GoogleJob": {
+      "properties": {
+        "apply_url": {
+          "type": "string"
+        },
+        "company": {
+          "example": "Google",
+          "type": "string"
+        },
+        "country": {
+          "example": "TW",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "example": "85207000467546822",
+          "type": "string"
+        },
+        "location": {
+          "example": "New Taipei, Banqiao District, New Taipei City, Taiwan",
+          "type": "string"
+        },
+        "locations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "minimum_qualifications": {
+          "type": "string"
+        },
+        "posted_at": {
+          "example": "2026-07-22T14:10:44Z",
+          "type": "string"
+        },
+        "preferred_qualifications": {
+          "type": "string"
+        },
+        "responsibilities": {
+          "type": "string"
+        },
+        "title": {
+          "example": "Software Engineer, Embedded Software, Silicon",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.google.com/about/careers/applications/jobs/results/85207000467546822-software-engineer-embedded-software-silicon",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "googlejobs.SearchResponse": {
+      "properties": {
+        "jobs": {
+          "items": {
+            "$ref": "#/definitions/googlejobs.GoogleJob"
+          },
+          "type": "array"
+        },
+        "location": {
+          "example": "Singapore",
+          "type": "string"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "query": {
+          "example": "software engineer",
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "total": {
+          "example": 1722,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "googlejobs.jobResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/googlejobs.GoogleJob"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "googlejobs.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/googlejobs.SearchResponse"
         },
         "msg": {
           "example": "OK",
@@ -32492,6 +32865,229 @@
         },
         "data": {
           "$ref": "#/definitions/metaculus.QuestionsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metajobs.ListResponse": {
+      "properties": {
+        "listings": {
+          "items": {
+            "$ref": "#/definitions/metajobs.MetaJobListing"
+          },
+          "type": "array"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "page_size": {
+          "example": 50,
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "total": {
+          "example": 754,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "metajobs.MetaJob": {
+      "properties": {
+        "compensation_country": {
+          "example": "US",
+          "type": "string"
+        },
+        "compensation_max": {
+          "example": "$241,000/year",
+          "type": "string"
+        },
+        "compensation_min": {
+          "example": "$173,000/year",
+          "type": "string"
+        },
+        "departments": {
+          "example": [
+            "Product Management"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "example": "1238249364564427",
+          "type": "string"
+        },
+        "locations": {
+          "example": [
+            "Menlo Park",
+            " CA"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "minimum_qualifications": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "preferred_qualifications": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "responsibilities": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "title": {
+          "example": "Product Manager",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.metacareers.com/profile/job_details/1238249364564427/",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metajobs.MetaJobListing": {
+      "properties": {
+        "id": {
+          "example": "1238249364564427",
+          "type": "string"
+        },
+        "last_modified": {
+          "example": "2026-07-29T01:17:34-07:00",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.metacareers.com/profile/job_details/1238249364564427/",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metajobs.MetaJobSearchResult": {
+      "properties": {
+        "id": {
+          "example": "1010234865172301",
+          "type": "string"
+        },
+        "locations": {
+          "example": [
+            "Sunnyvale",
+            " CA"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sub_teams": {
+          "example": [
+            "Hardware"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "teams": {
+          "example": [
+            "Infrastructure"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "title": {
+          "example": "ASIC Engineer, Design",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.metacareers.com/profile/job_details/1010234865172301/",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metajobs.SearchResponse": {
+      "properties": {
+        "jobs": {
+          "items": {
+            "$ref": "#/definitions/metajobs.MetaJobSearchResult"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "total": {
+          "example": 58,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "metajobs.jobResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/metajobs.MetaJob"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metajobs.listResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/metajobs.ListResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "metajobs.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/metajobs.SearchResponse"
         },
         "msg": {
           "example": "OK",
@@ -50984,6 +51580,146 @@
       },
       "type": "object"
     },
+    "teslajobs.ListResponse": {
+      "properties": {
+        "jobs": {
+          "items": {
+            "$ref": "#/definitions/teslajobs.TeslaJobListing"
+          },
+          "type": "array"
+        },
+        "location": {
+          "example": "Palo Alto",
+          "type": "string"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "page_size": {
+          "example": 20,
+          "type": "integer"
+        },
+        "query": {
+          "example": "software engineer",
+          "type": "string"
+        },
+        "total": {
+          "example": 302,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "teslajobs.TeslaJob": {
+      "properties": {
+        "apply_url": {
+          "type": "string"
+        },
+        "compensation_text": {
+          "type": "string"
+        },
+        "country": {
+          "example": "US",
+          "type": "string"
+        },
+        "department": {
+          "example": "Tesla AI",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "employment_type": {
+          "example": "fulltime",
+          "type": "string"
+        },
+        "id": {
+          "example": "224501",
+          "type": "string"
+        },
+        "job_family": {
+          "example": "AI",
+          "type": "string"
+        },
+        "location": {
+          "example": "Palo Alto, California",
+          "type": "string"
+        },
+        "requirements": {
+          "type": "string"
+        },
+        "responsibilities": {
+          "type": "string"
+        },
+        "state": {
+          "example": "CA",
+          "type": "string"
+        },
+        "title": {
+          "example": "AI Engineer, Manipulation, Optimus",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.tesla.com/careers/search/job/ai-engineer-manipulation-optimus-224501",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "teslajobs.TeslaJobListing": {
+      "properties": {
+        "department": {
+          "example": "Tesla AI",
+          "type": "string"
+        },
+        "id": {
+          "example": "224501",
+          "type": "string"
+        },
+        "location": {
+          "example": "Palo Alto, California",
+          "type": "string"
+        },
+        "title": {
+          "example": "AI Engineer, Manipulation, Optimus",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "teslajobs.jobResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/teslajobs.TeslaJob"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "teslajobs.listResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/teslajobs.ListResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "threads.Author": {
       "properties": {
         "id": {
@@ -62101,6 +62837,200 @@
         ]
       }
     },
+    "/amazon-jobs/job": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one Amazon.jobs posting by its numeric job id (the `id` field returned by search). Parsed from amazon.jobs's stable server-rendered job detail page — there is no separate JSON detail endpoint upstream.",
+        "operationId": "amazon-jobs-job",
+        "parameters": [
+          {
+            "description": "Numeric Amazon job id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "10386857"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/amazonjobs.jobResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Amazon Jobs single posting",
+        "tags": [
+          "Amazon Jobs"
+        ]
+      }
+    },
+    "/amazon-jobs/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches Amazon's public careers site (amazon.jobs) via its credential-free search JSON. Each result includes the full description and qualifications inline. `sort` accepts `relevant` (default, upstream relevance ranking) or `recent` (newest posted first). Either `q` or `category` (or both) must be given -- `category` filters by Amazon's own job-category taxonomy and works with no text query at all.",
+        "operationId": "amazon-jobs-search",
+        "parameters": [
+          {
+            "description": "Search query. Either q or category is required",
+            "in": "query",
+            "name": "q",
+            "type": "string",
+            "x-example": "software engineer"
+          },
+          {
+            "description": "Amazon's own job-category taxonomy slug. Either q or category is required",
+            "enum": [
+              "administrative-support",
+              "applied-science",
+              "audio-video-photography-production",
+              "business-intelligence-data-engineering",
+              "business-merchant-development",
+              "buying-planning-instock-management",
+              "customer-service",
+              "data-science",
+              "database-administration",
+              "design",
+              "economics",
+              "editorial-writing-content-management",
+              "facilities-maintenance-real-estate",
+              "fgbs",
+              "fulfillment-center-warehouse-associate",
+              "fulfillment-operations-management",
+              "hardware-development",
+              "human-resources",
+              "investigation-loss-prevention",
+              "leadership-development-training",
+              "legal",
+              "marketing",
+              "medical-health-safety",
+              "operations-it-support-engineering",
+              "project-program-product-management-non-tech",
+              "project-program-product-management-technical",
+              "public-policy",
+              "public-relations-communications",
+              "research-science",
+              "sales-advertising-account-management",
+              "software-development",
+              "solutions-architecture",
+              "supply-chain-transportation-management",
+              "systems-quality-security-engineering"
+            ],
+            "in": "query",
+            "name": "category",
+            "type": "string",
+            "x-example": "software-development"
+          },
+          {
+            "description": "ISO 3166-1 alpha-3 country code filter",
+            "in": "query",
+            "name": "country",
+            "type": "string",
+            "x-example": "USA"
+          },
+          {
+            "description": "Page number, 1-based",
+            "in": "query",
+            "name": "page",
+            "type": "integer",
+            "x-example": 1
+          },
+          {
+            "description": "Results per page, max 100 (default 20)",
+            "in": "query",
+            "name": "limit",
+            "type": "integer",
+            "x-example": 20
+          },
+          {
+            "description": "Sort order",
+            "enum": [
+              "relevant",
+              "recent"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string",
+            "x-example": "relevant"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/amazonjobs.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Amazon Jobs search",
+        "tags": [
+          "Amazon Jobs"
+        ]
+      }
+    },
     "/amazon/product/{asin}": {
       "get": {
         "consumes": [
@@ -64008,6 +64938,140 @@
         "summary": "Retrieve an Apple Books series and its full book list",
         "tags": [
           "AppleBooks"
+        ]
+      }
+    },
+    "/apple-jobs/job": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one Apple Careers posting by its job id (the `id` field returned by search, e.g. `200674676-0836` for a specific requisition or `PIPE-200314122` for an evergreen/pipeline retail role). Parsed from jobs.apple.com's server-rendered job detail page.",
+        "operationId": "apple-jobs-job",
+        "parameters": [
+          {
+            "description": "Apple job id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "200674676-0836"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/applejobs.jobResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Apple Jobs single posting",
+        "tags": [
+          "Apple Jobs"
+        ]
+      }
+    },
+    "/apple-jobs/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches Apple's public careers site (jobs.apple.com) via its server-rendered search page's embedded job data. Page size is fixed by Apple at 20 results. Search results carry identity/location/team metadata only — call the job endpoint for the full description and qualifications.",
+        "operationId": "apple-jobs-search",
+        "parameters": [
+          {
+            "description": "Search query",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string",
+            "x-example": "software engineer"
+          },
+          {
+            "description": "Location filter in Apple's own slug format, e.g. united-states-USA or singapore-SGP",
+            "in": "query",
+            "name": "location",
+            "type": "string",
+            "x-example": "united-states-USA"
+          },
+          {
+            "description": "Page number, 1-based",
+            "in": "query",
+            "name": "page",
+            "type": "integer",
+            "x-example": 1
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/applejobs.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Apple Jobs search",
+        "tags": [
+          "Apple Jobs"
         ]
       }
     },
@@ -76572,7 +77636,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns terms aggregation counts for Google Maps businesses. Facet enum: `category`, `country`, `state`, `county`, `city`, `town`, `website_status`. `category` values (as a facet or filter) are Google Maps type tokens in lower-case snake_case (e.g. `dentist`, `bus_stop`, `atm`).",
+        "description": "Returns terms aggregation counts for Google Maps businesses. Facet enum: `category`, `country`, `state`, `county`, `city`, `town`, `website_status`. Category facet values are exact locale-specific Google Maps labels and can be localized, non-ASCII, or contain punctuation; pass a returned value unchanged to the category filter.",
         "operationId": "datasets-google-map-businesses-facets",
         "parameters": [
           {
@@ -76598,7 +77662,7 @@
             "type": "string"
           },
           {
-            "description": "Exact category filter: a Google Maps type token in lower-case snake_case (e.g. dentist, bus_stop), max 128 characters",
+            "description": "Exact locale-specific Google Maps category label; use the category facet to discover values, max 128 characters",
             "in": "query",
             "name": "category",
             "type": "string"
@@ -76740,7 +77804,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns one stored Google Maps business by Google place_id from dataset id enum value `google-map-businesses`. The `category` field is a Google Maps type token in lower-case snake_case (e.g. `dentist`, `bus_stop`, `atm`). A `rating` of `null` means no aggregate rating is available for that business; read it together with `review_count`. Locationless service-area businesses (online/mobile/home-based) have a `null` `geo`.",
+        "description": "Returns one stored Google Maps business by Google place_id from dataset id enum value `google-map-businesses`. The `category` field contains the exact Google Maps category label returned for the business locale and can be localized, non-ASCII, or contain punctuation. A `rating` of `null` means no aggregate rating is available. A `review_count` of `null` means Google did not return a count; numeric `0` means Google confirmed zero reviews. Locationless service-area businesses (online/mobile/home-based) have a `null` `geo`.",
         "operationId": "datasets-google-map-businesses-item",
         "parameters": [
           {
@@ -76802,7 +77866,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches stored Google Maps businesses near a coordinate in dataset id enum value `google-map-businesses`. `category` is a Google Maps type token in lower-case snake_case (e.g. `dentist`, `bus_stop`, `atm`), both as the `category` filter and in each result's `category` field. A `rating` of `0` means no aggregate rating is available for that business (not a literal zero-star score); read it together with `review_count`, and note that `min_rating` above 0 excludes unrated businesses.",
+        "description": "Searches stored Google Maps businesses near a coordinate in dataset id enum value `google-map-businesses`. `category` is the exact Google Maps category label returned for the business locale; it can be localized, non-ASCII, or contain punctuation, so use the category facet to discover exact filter values. A `rating` of `null` means no aggregate rating is available. A `review_count` of `null` means Google did not return a count; numeric `0` means Google confirmed zero reviews. `min_rating` above 0 excludes unrated businesses.",
         "operationId": "datasets-google-map-businesses-nearby",
         "parameters": [
           {
@@ -76827,7 +77891,7 @@
             "type": "integer"
           },
           {
-            "description": "Exact category filter: a Google Maps type token in lower-case snake_case (e.g. dentist, bus_stop), max 128 characters",
+            "description": "Exact locale-specific Google Maps category label; use the category facet to discover values, max 128 characters",
             "in": "query",
             "name": "category",
             "type": "string"
@@ -76902,7 +77966,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches Google Maps business records stored in a search index. Sort enum: `relevance`, `updated_at_desc`, `rating_desc`, `review_count_desc`, `distance_asc`. `category` is a Google Maps type token in lower-case snake_case (e.g. `dentist`, `bus_stop`, `atm`), both as the `category` filter and in each result's `category` field. A `rating` of `null` means no aggregate rating is available for that business (too few reviews, or a place type Google does not rate) — it is never a literal zero-star score; read it together with `review_count`, and note that `rating_desc` sorts unrated businesses last and `min_rating` above 0 excludes them. Use `has_geo=false` to isolate locationless service-area businesses (which have a `null` `geo`).",
+        "description": "Searches Google Maps business records stored in a search index. Sort enum: `relevance`, `updated_at_desc`, `rating_desc`, `review_count_desc`, `distance_asc`. `category` is the exact Google Maps category label returned for the business locale; it can be localized, non-ASCII, or contain punctuation, so use the category facet to discover exact filter values. A `rating` of `null` means no aggregate rating is available. A `review_count` of `null` means Google did not return a count; numeric `0` means Google confirmed zero reviews. `rating_desc` sorts unrated businesses last, and `min_rating` above 0 excludes them. Use `has_geo=false` to isolate locationless service-area businesses (which have a `null` `geo`).",
         "operationId": "datasets-google-map-businesses-search",
         "parameters": [
           {
@@ -76912,7 +77976,7 @@
             "type": "string"
           },
           {
-            "description": "Exact category filter: a Google Maps type token in lower-case snake_case (e.g. dentist, bus_stop), max 128 characters",
+            "description": "Exact locale-specific Google Maps category label; use the category facet to discover values, max 128 characters",
             "in": "query",
             "name": "category",
             "type": "string"
@@ -89447,6 +90511,140 @@
         ]
       }
     },
+    "/google-jobs/job": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one Google Careers posting by its numeric job id (the `id` field returned by search). Parsed from careers.google.com's server-rendered job detail page.",
+        "operationId": "google-jobs-job",
+        "parameters": [
+          {
+            "description": "Numeric Google job id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "85207000467546822"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/googlejobs.jobResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Google Jobs single posting",
+        "tags": [
+          "Google Jobs"
+        ]
+      }
+    },
+    "/google-jobs/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches Google's public careers site (careers.google.com) via its server-rendered search page's embedded job data. Each result includes the description, responsibilities, and qualifications inline. Page size is fixed by Google at 20 results.",
+        "operationId": "google-jobs-search",
+        "parameters": [
+          {
+            "description": "Search query",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string",
+            "x-example": "software engineer"
+          },
+          {
+            "description": "Location filter (free text)",
+            "in": "query",
+            "name": "location",
+            "type": "string",
+            "x-example": "Singapore"
+          },
+          {
+            "description": "Page number, 1-based",
+            "in": "query",
+            "name": "page",
+            "type": "integer",
+            "x-example": 1
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/googlejobs.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Google Jobs search",
+        "tags": [
+          "Google Jobs"
+        ]
+      }
+    },
     "/google/finance/analyst-articles/{quote}": {
       "get": {
         "consumes": [
@@ -101224,6 +102422,244 @@
         "summary": "Get a manga",
         "tags": [
           "Manga"
+        ]
+      }
+    },
+    "/meta-jobs/job": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one Meta Careers posting by its numeric job id (the `id` field returned by search or list). Parsed from metacareers.com's server-rendered job detail page.",
+        "operationId": "meta-jobs-job",
+        "parameters": [
+          {
+            "description": "Meta job id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "1238249364564427"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/metajobs.jobResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Meta Jobs single posting",
+        "tags": [
+          "Meta Jobs"
+        ]
+      }
+    },
+    "/meta-jobs/list": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of Meta's own public job sitemap -- every open requisition's id, canonical URL, and last-modified timestamp, with no team/location/keyword filtering. Use this for full-catalog enumeration or change tracking via last_modified; use search when you need to filter by team, technology, location, employment type, or keyword.",
+        "operationId": "meta-jobs-list",
+        "parameters": [
+          {
+            "description": "Page number, 1-based, defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer",
+            "x-example": 1
+          },
+          {
+            "description": "Page size, defaults to 50, maxes at 200",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer",
+            "x-example": 50
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/metajobs.listResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Meta Jobs catalog listing",
+        "tags": [
+          "Meta Jobs"
+        ]
+      }
+    },
+    "/meta-jobs/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches Meta's public careers site (metacareers.com) via its own anonymous jobsearch GraphQL endpoint, with the same team/technology/location/employment-type/keyword/remote/sort filters the live search page offers. All filters are optional and combine with AND semantics; an empty request returns Meta's entire open-requisition catalog in one response. `q` matches team, technology, location, or ref/req-code names -- it is NOT a free-text search over job titles or descriptions. `teams` enum (org teams + technologies, both use the same field): `Advertising Technology`, `AR/VR`, `Artificial Intelligence`, `Business Development & Partnerships`, `Communications & Public Policy`, `Creative`, `Data & Analytics`, `Data Center`, `Design & User Experience`, `Enterprise Engineering`, `Global Operations`, `Infrastructure`, `Internship - Business`, `Internship - Engineering, Tech & Design`, `Internship - PhD`, `Legal, Finance, Facilities & Admin`, `People & Recruiting`, `Product Management`, `Research`, `Sales & Marketing`, `Security`, `Software Engineering`, `Technical Program Management`, `University Grad - Business`, `University Grad - Engineering, Tech & Design`, `University Grad - PhD & Postdoc`, `Facebook`, `Messenger`, `Instagram`, `WhatsApp`, `Meta Quest`. `roles` enum: `Full time employment`, `Internship`, `Short term employment`. `results_per_page` enum: `all`, `five`, `ten`.",
+        "operationId": "meta-jobs-search",
+        "parameters": [
+          {
+            "description": "Facet-name keyword: matches team, technology, location, or ref/req-code -- not a title/description search",
+            "in": "query",
+            "name": "q",
+            "type": "string",
+            "x-example": "Instagram"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable team-or-technology filter (OR); see teams enum above",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "teams",
+            "type": "array",
+            "x-example": "Software Engineering"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable employment-type filter (OR); see roles enum above",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "roles",
+            "type": "array",
+            "x-example": "Full time employment"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable location-id filter (OR) in Meta's own id format, e.g. menlo-park, london -- not a closed enum",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "offices",
+            "type": "array",
+            "x-example": "menlo-park"
+          },
+          {
+            "description": "Restrict to remote-only postings",
+            "in": "query",
+            "name": "is_remote_only",
+            "type": "boolean"
+          },
+          {
+            "description": "Sort newest-first instead of relevance",
+            "in": "query",
+            "name": "sort_by_new",
+            "type": "boolean"
+          },
+          {
+            "description": "Response size cap: all, five, ten",
+            "enum": [
+              "all",
+              "five",
+              "ten"
+            ],
+            "in": "query",
+            "name": "results_per_page",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/metajobs.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Meta Jobs search",
+        "tags": [
+          "Meta Jobs"
         ]
       }
     },
@@ -120927,6 +122363,146 @@
         "summary": "Get Steam's weekly top-sellers chart for a country",
         "tags": [
           "Steam"
+        ]
+      }
+    },
+    "/tesla-jobs/job": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one Tesla Careers posting by its numeric job id (the `id` field returned by the list endpoint). Parsed from tesla.com's own job detail JSON endpoint.",
+        "operationId": "tesla-jobs-job",
+        "parameters": [
+          {
+            "description": "Tesla job id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "224501"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/teslajobs.jobResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Tesla Jobs single posting",
+        "tags": [
+          "Tesla Jobs"
+        ]
+      }
+    },
+    "/tesla-jobs/list": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches Tesla's public careers site (tesla.com/careers) via its own careers-state JSON endpoint. Tesla's own endpoint always returns its entire global job dataset regardless of query parameters; this filters and paginates that snapshot server-side. Listings carry identity/department/location metadata only — call the job endpoint for the full description, responsibilities, and requirements.",
+        "operationId": "tesla-jobs-list",
+        "parameters": [
+          {
+            "description": "Filter by title or department, case-insensitive substring match",
+            "in": "query",
+            "name": "query",
+            "type": "string",
+            "x-example": "software engineer"
+          },
+          {
+            "description": "Filter by location, case-insensitive substring match",
+            "in": "query",
+            "name": "location",
+            "type": "string",
+            "x-example": "Palo Alto"
+          },
+          {
+            "description": "Page number, 1-based",
+            "in": "query",
+            "name": "page",
+            "type": "integer",
+            "x-example": 1
+          },
+          {
+            "description": "Results per page, up to 100",
+            "in": "query",
+            "name": "page_size",
+            "type": "integer",
+            "x-example": 20
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/teslajobs.listResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Tesla Jobs listing",
+        "tags": [
+          "Tesla Jobs"
         ]
       }
     },

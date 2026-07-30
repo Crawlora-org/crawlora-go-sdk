@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.27.0-sdk.1
+
+- Regenerated from the public API contract (837 to 848 operations). Adds public
+  job search and detail groups for Amazon, Apple, Google, Meta, and Tesla.
+- Google Maps business responses now distinguish a missing `review_count`
+  (`null`) from a confirmed zero, and document locale-specific category labels.
+
 ## v1.26.0-sdk.1
 
 - Regenerated from the public API contract (832 to 837 operations). Adds Google Play ratings, Instagram user dataset search/item/facets, and Reddit trending dataset search.

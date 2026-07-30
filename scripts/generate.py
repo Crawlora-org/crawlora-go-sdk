@@ -182,7 +182,14 @@ def model_field(param_name, schema, required, used):
         i += 1
     used.add(name)
     tag = param_name if required else param_name + ",omitempty"
-    return name, go_schema_type(schema), tag
+    field_type = go_schema_type(schema)
+    if (
+        schema.get("x-nullable")
+        and field_type != "any"
+        and not field_type.startswith(("*", "[]", "map["))
+    ):
+        field_type = "*" + field_type
+    return name, field_type, tag
 
 
 def model_definitions(definitions):
