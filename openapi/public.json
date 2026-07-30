@@ -18792,7 +18792,27 @@
     },
     "es.JobPostingFacets": {
       "properties": {
+        "by_ai_tool": {
+          "description": "ByAITool counts canonical AI tool and platform names mentioned in open\njob postings.",
+          "items": {
+            "$ref": "#/definitions/es.FacetItem"
+          },
+          "type": "array"
+        },
+        "by_benefit": {
+          "description": "ByBenefit, BySecurityClearance, and ByEducationLevel count canonical\nrequirements and offerings mentioned in open job postings.",
+          "items": {
+            "$ref": "#/definitions/es.FacetItem"
+          },
+          "type": "array"
+        },
         "by_department": {
+          "items": {
+            "$ref": "#/definitions/es.FacetItem"
+          },
+          "type": "array"
+        },
+        "by_education_level": {
           "items": {
             "$ref": "#/definitions/es.FacetItem"
           },
@@ -18811,6 +18831,19 @@
           "type": "array"
         },
         "by_provider": {
+          "items": {
+            "$ref": "#/definitions/es.FacetItem"
+          },
+          "type": "array"
+        },
+        "by_security_clearance": {
+          "items": {
+            "$ref": "#/definitions/es.FacetItem"
+          },
+          "type": "array"
+        },
+        "by_skill": {
+          "description": "BySkill counts canonical ESCO skill labels mentioned in open job\npostings.",
           "items": {
             "$ref": "#/definitions/es.FacetItem"
           },
@@ -22259,6 +22292,144 @@
         },
         "data": {
           "$ref": "#/definitions/extract.Result"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "facebook.Page": {
+      "properties": {
+        "address": {
+          "example": "9985 Arthur Hills CT, Sacramento, CA, United States, California",
+          "type": "string"
+        },
+        "category": {
+          "example": "Marketing Agency",
+          "type": "string"
+        },
+        "company": {
+          "example": "Seo Marketing Wiz",
+          "type": "string"
+        },
+        "email": {
+          "example": "contact@seomarketingwiz.com",
+          "type": "string"
+        },
+        "emails": {
+          "description": "Fields populated by the Go-native browser-rendered extractor (parse.go).",
+          "example": [
+            "[\"contact@seomarketingwiz.com\"]"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hours": {
+          "description": "Hours is the About panel's business-hours summary text (e.g. \"Open now\",\n\"Closes at 9 PM\", \"Opening soon\"), when the Page publishes one. Not a\nstructured weekly schedule.",
+          "example": "Open now",
+          "type": "string"
+        },
+        "intro": {
+          "example": "Marketing professionals with 20 years of experience wanting to provide digital marketing services to",
+          "type": "string"
+        },
+        "latestPostAt": {
+          "example": "2020-11-26T00:00:00.000Z",
+          "type": "string"
+        },
+        "og": {
+          "properties": {
+            "description": {
+              "example": "SEO Marketing Wiz, Sacramento, California. 521 likes. Marketing professionals with 20 years of experience wanting to provide digital marketing services to",
+              "type": "string"
+            },
+            "image": {
+              "example": "https://scontent-dfw5-2.xx.fbcdn.net/v/t39.30808-1/279690292_375554114584870_8657447943866659854_n.png?cstp=mx200x200&ctp=s200x200&_nc_cat=100&ccb=1-7&_nc_sid=3ab345&_nc_ohc=cJ5c41eGYbkQ7kNvwFpyUu7&_nc_oc=AdmE_uznxjhjbFVzL_VatcILSjMcv56Yft-_-icARncJRyR5i3CLrlh-9ZnkTHvyQWg&_nc_zt=24&_nc_ht=scontent-dfw5-2.xx&_nc_gid=JfTmimRDWsc3S1tfuZSW1A&oh=00_AfIjr4QtVdPoXb42NKwayq1Ud-aqW3G8YNoQ8Q9d2eDFEQ&oe=6827F32E",
+              "type": "string"
+            },
+            "title": {
+              "example": "SEO Marketing Wiz | Sacramento CA",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "pageId": {
+          "description": "PageID is Facebook's stable numeric Page identifier -- unlike the vanity\nname/handle, it never changes even if the Page is renamed.",
+          "example": "100063763354867",
+          "type": "string"
+        },
+        "phones": {
+          "example": [
+            "[\"+1 555 123 4567\"]"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "priceRange": {
+          "description": "PriceRange is the About panel's price-tier text (e.g. \"Price range · $$\"),\nwhen the Page publishes one.",
+          "example": "Price range · $$",
+          "type": "string"
+        },
+        "reviewCount": {
+          "example": 0,
+          "type": "integer"
+        },
+        "sourceUrl": {
+          "example": "https://www.facebook.com/nike/about",
+          "type": "string"
+        },
+        "stats": {
+          "properties": {
+            "followers": {
+              "example": 526,
+              "type": "integer"
+            },
+            "likes": {
+              "example": 521,
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "talking": {
+          "example": 12,
+          "type": "integer"
+        },
+        "title": {
+          "example": "SEO Marketing Wiz",
+          "type": "string"
+        },
+        "website": {
+          "example": "http://www.seomarketingwiz.com/",
+          "type": "string"
+        },
+        "wereHere": {
+          "example": 3,
+          "type": "integer"
+        },
+        "whatsapp": {
+          "description": "WhatsApp is the Page's configured WhatsApp Business \"Message us\" number,\nwhen set up. See ParsePage's field_type extraction.",
+          "example": "+1 800-242-8478",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "facebook.pageResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/facebook.Page"
         },
         "msg": {
           "example": "OK",
@@ -28130,8 +28301,22 @@
     },
     "jobs.Job": {
       "properties": {
+        "ai_tools_mentioned": {
+          "description": "AITools lists canonical AI tool and platform names mentioned in the job\ntitle or description, such as \"ChatGPT\" or \"GitHub Copilot\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "apply_url": {
           "type": "string"
+        },
+        "benefits_mentioned": {
+          "description": "Benefits, Clearance, and Education contain canonical requirements and\nofferings mentioned in the job title or description.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "company": {
           "type": "string"
@@ -28163,6 +28348,12 @@
         },
         "description_text": {
           "type": "string"
+        },
+        "education_level_required": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "employment_type": {
           "type": "string"
@@ -28205,6 +28396,19 @@
         },
         "req_id": {
           "type": "string"
+        },
+        "security_clearance_required": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "skills_mentioned": {
+          "description": "Skills lists canonical ESCO skill labels mentioned in the job title or\ndescription.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "team": {
           "type": "string"
@@ -79060,7 +79264,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches the discovered company board registry — which companies are hiring, on which ATS, with how many open roles. provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`, `gem`, `pinpoint`. status enum: `active`, `empty`, `gone`, `blocked`, `pending`, `invalid`. sort enum: `open_desc`, `company_asc`, `crawled_desc`.",
+        "description": "Searches the discovered company board registry — which companies are hiring, on which ATS (or, for the 5 single-company big-tech providers, which platform), with how many open roles. Set sponsors_visa=true to keep companies with certified employer filings in recent public U.S. Department of Labor LCA disclosure data. This is company-level historical evidence, not a guarantee for a specific role or candidate. provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`, `gem`, `pinpoint`, `amazon-jobs`, `apple-jobs`, `google-jobs`, `meta-jobs`, `tesla-jobs`. status enum: `active`, `empty`, `gone`, `blocked`, `pending`, `invalid`. sort enum: `open_desc`, `company_asc`, `crawled_desc`.",
         "operationId": "datasets-jobs-companies",
         "parameters": [
           {
@@ -79070,7 +79274,7 @@
             "type": "string"
           },
           {
-            "description": "ATS provider filter",
+            "description": "Provider filter",
             "enum": [
               "greenhouse",
               "lever",
@@ -79087,7 +79291,12 @@
               "icims",
               "eightfold",
               "gem",
-              "pinpoint"
+              "pinpoint",
+              "amazon-jobs",
+              "apple-jobs",
+              "google-jobs",
+              "meta-jobs",
+              "tesla-jobs"
             ],
             "in": "query",
             "name": "provider",
@@ -79112,6 +79321,12 @@
             "in": "query",
             "name": "min_open_roles",
             "type": "integer"
+          },
+          {
+            "description": "Keep companies with recent certified DOL LCA filings (default false)",
+            "in": "query",
+            "name": "sponsors_visa",
+            "type": "boolean"
           },
           {
             "description": "Sort enum: open_desc, company_asc, crawled_desc",
@@ -79176,7 +79391,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns one discovered company board by its dataset board id. When the board carries a known domain (currently populated for iCIMS and Eightfold boards; most Common-Crawl-discovered boards do not), the response also includes a `tech_stack` field joined from the website tech-stack dataset -- a firmographic hint, not a guess: it is only attached when a structural domain signal exists. Returns 404 when the board id is not in the registry.",
+        "description": "Returns one discovered company board by its dataset board id. When the company name matches recent public U.S. Department of Labor LCA disclosure data, the response includes `lca_sponsorship` with filing counts and observed fiscal-quarter range; this is company-level historical evidence, not a guarantee for a specific role or candidate. When the board carries a known domain, the response also includes a `tech_stack` firmographic hint. Returns 404 when the board id is not in the registry.",
         "operationId": "datasets-jobs-company-item",
         "parameters": [
           {
@@ -79232,7 +79447,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Aggregations over all open postings: top companies hiring, breakdown by ATS provider, department, location, employment type, and the remote share — a live hiring-market snapshot.",
+        "description": "Aggregations over all open postings: top companies hiring, breakdown by provider (every provider filterable via /datasets/jobs/search's `provider` param), department, location, employment type, and the remote share — a live hiring-market snapshot.",
         "operationId": "datasets-jobs-facets",
         "parameters": [
           {
@@ -79337,7 +79552,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Finds crawled job postings within `radius_km` of a `lat`/`lon`, nearest first. Only geocoded postings participate (the geo-enrich worker back-fills coordinates from each posting's location). Open roles only by default. provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`, `gem`, `pinpoint`.",
+        "description": "Finds crawled job postings within `radius_km` of a `lat`/`lon`, nearest first. Only geocoded postings participate (the geo-enrich worker back-fills coordinates from each posting's location). Open roles only by default. provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`, `gem`, `pinpoint`, `amazon-jobs`, `apple-jobs`, `google-jobs`, `meta-jobs`, `tesla-jobs`.",
         "operationId": "datasets-jobs-nearby",
         "parameters": [
           {
@@ -79361,7 +79576,7 @@
             "type": "number"
           },
           {
-            "description": "ATS provider filter",
+            "description": "Provider filter",
             "enum": [
               "greenhouse",
               "lever",
@@ -79378,7 +79593,12 @@
               "icims",
               "eightfold",
               "gem",
-              "pinpoint"
+              "pinpoint",
+              "amazon-jobs",
+              "apple-jobs",
+              "google-jobs",
+              "meta-jobs",
+              "tesla-jobs"
             ],
             "in": "query",
             "name": "provider",
@@ -79442,7 +79662,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Full-text + faceted search over every job posting crawled from every discovered company ATS board (Greenhouse, Lever, Ashby, Workday, SmartRecruiters, Workable, Recruitee, Rippling, Personio, Teamtailor, Oracle, UKG, iCIMS, Eightfold, Gem, Pinpoint). Open roles only by default (set include_closed=true for historical/filled roles). Salary is parsed from a structured field when the provider has one, or from an explicit pay figure stated in the description otherwise, so coverage varies by posting rather than by provider; min_salary/max_salary filter on it and require salary_currency, since comparing raw compensation numbers across currencies is meaningless. Location is also exposed as structured city/state/country fields alongside the free-text location string, so city/state/country filter on an exact match of those parsed components rather than substring-matching the display string. provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`, `gem`, `pinpoint`. workplace_type enum: `onsite`, `hybrid`, `remote`. sort enum: `relevance`, `posted_desc`, `company_asc`.",
+        "description": "Full-text + faceted search over every job posting crawled from every discovered company ATS board (Greenhouse, Lever, Ashby, Workday, SmartRecruiters, Workable, Recruitee, Rippling, Personio, Teamtailor, Oracle, UKG, iCIMS, Eightfold, Gem, Pinpoint) plus 5 single-company big-tech careers platforms (Amazon, Apple, Google, Meta, Tesla). Open roles only by default (set include_closed=true for historical/filled roles). Salary is parsed from a structured field when the provider has one, or from an explicit pay figure stated in the description otherwise, so coverage varies by posting rather than by provider; min_salary/max_salary filter on it and require salary_currency, since comparing raw compensation numbers across currencies is meaningless. Location is also exposed as structured city/state/country fields alongside the free-text location string, so city/state/country filter on an exact match of those parsed components rather than substring-matching the display string. employment_type is never populated for google-jobs/meta-jobs, and posted_at (so sort=posted_desc) is never populated for meta-jobs/tesla-jobs -- their upstream APIs expose no such field. provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`, `gem`, `pinpoint`, `amazon-jobs`, `apple-jobs`, `google-jobs`, `meta-jobs`, `tesla-jobs`. workplace_type enum: `onsite`, `hybrid`, `remote`. sort enum: `relevance`, `posted_desc`, `company_asc`.",
         "operationId": "datasets-jobs-search",
         "parameters": [
           {
@@ -79458,7 +79678,7 @@
             "type": "string"
           },
           {
-            "description": "ATS provider filter",
+            "description": "Provider filter",
             "enum": [
               "greenhouse",
               "lever",
@@ -79475,7 +79695,12 @@
               "icims",
               "eightfold",
               "gem",
-              "pinpoint"
+              "pinpoint",
+              "amazon-jobs",
+              "apple-jobs",
+              "google-jobs",
+              "meta-jobs",
+              "tesla-jobs"
             ],
             "in": "query",
             "name": "provider",
@@ -88386,6 +88611,63 @@
         "summary": "Extract schema-conforming JSON from a URL",
         "tags": [
           "Web"
+        ]
+      }
+    },
+    "/facebook/{page}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Fetches public data about a Facebook Page given its page ID, vanity name, or full page URL: name, follower/like counts, intro, category, business hours/price range, review count, and any public contact details (email, phone, address, website, WhatsApp number) exposed on the Page's About tab.",
+        "operationId": "facebook-page",
+        "parameters": [
+          {
+            "description": "Facebook Page reference: vanity name, handle, profile.php id, or full Facebook URL",
+            "in": "path",
+            "name": "page",
+            "required": true,
+            "type": "string",
+            "x-example": "nike"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/facebook.pageResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad request — missing or invalid page reference",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Page not found or unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error while fetching page data",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Facebook page details",
+        "tags": [
+          "Facebook"
         ]
       }
     },
