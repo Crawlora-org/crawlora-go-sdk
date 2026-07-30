@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.28.0-sdk.1
+
+- Regenerated from the public API contract (848 to 849 operations), adding
+  Facebook public page lookup.
+- Jobs company search now accepts `sponsors_visa`; company detail responses can
+  include recent public LCA filing evidence. Job response types also include the
+  latest skills, AI-tool, benefits, education, and security-clearance fields.
+
 ## v1.27.0-sdk.1
 
 - Regenerated from the public API contract (837 to 848 operations). Adds public

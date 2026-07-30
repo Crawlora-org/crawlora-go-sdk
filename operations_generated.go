@@ -6000,13 +6000,18 @@ type ModelEsInstagramUserRecord struct {
 }
 
 type ModelEsJobPostingFacets struct {
-	ByDepartment     []ModelEsFacetItem `json:"by_department,omitempty"`
-	ByEmploymentType []ModelEsFacetItem `json:"by_employment_type,omitempty"`
-	ByLocation       []ModelEsFacetItem `json:"by_location,omitempty"`
-	ByProvider       []ModelEsFacetItem `json:"by_provider,omitempty"`
-	RemoteOpen       int                `json:"remote_open,omitempty"`
-	TopCompanies     []ModelEsFacetItem `json:"top_companies,omitempty"`
-	TotalOpen        int                `json:"total_open,omitempty"`
+	ByAiTool            []ModelEsFacetItem `json:"by_ai_tool,omitempty"`
+	ByBenefit           []ModelEsFacetItem `json:"by_benefit,omitempty"`
+	ByDepartment        []ModelEsFacetItem `json:"by_department,omitempty"`
+	ByEducationLevel    []ModelEsFacetItem `json:"by_education_level,omitempty"`
+	ByEmploymentType    []ModelEsFacetItem `json:"by_employment_type,omitempty"`
+	ByLocation          []ModelEsFacetItem `json:"by_location,omitempty"`
+	ByProvider          []ModelEsFacetItem `json:"by_provider,omitempty"`
+	BySecurityClearance []ModelEsFacetItem `json:"by_security_clearance,omitempty"`
+	BySkill             []ModelEsFacetItem `json:"by_skill,omitempty"`
+	RemoteOpen          int                `json:"remote_open,omitempty"`
+	TopCompanies        []ModelEsFacetItem `json:"top_companies,omitempty"`
+	TotalOpen           int                `json:"total_open,omitempty"`
 }
 
 type ModelEsJournalistRecord struct {
@@ -7161,6 +7166,35 @@ type ModelExtractResponseDoc struct {
 	Code int                `json:"code,omitempty"`
 	Data ModelExtractResult `json:"data,omitempty"`
 	Msg  string             `json:"msg,omitempty"`
+}
+
+type ModelFacebookPage struct {
+	Address      string         `json:"address,omitempty"`
+	Category     string         `json:"category,omitempty"`
+	Company      string         `json:"company,omitempty"`
+	Email        string         `json:"email,omitempty"`
+	Emails       []string       `json:"emails,omitempty"`
+	Hours        string         `json:"hours,omitempty"`
+	Intro        string         `json:"intro,omitempty"`
+	LatestPostAt string         `json:"latestPostAt,omitempty"`
+	Og           map[string]any `json:"og,omitempty"`
+	PageId       string         `json:"pageId,omitempty"`
+	Phones       []string       `json:"phones,omitempty"`
+	PriceRange   string         `json:"priceRange,omitempty"`
+	ReviewCount  int            `json:"reviewCount,omitempty"`
+	SourceUrl    string         `json:"sourceUrl,omitempty"`
+	Stats        map[string]any `json:"stats,omitempty"`
+	Talking      int            `json:"talking,omitempty"`
+	Title        string         `json:"title,omitempty"`
+	Website      string         `json:"website,omitempty"`
+	WereHere     int            `json:"wereHere,omitempty"`
+	Whatsapp     string         `json:"whatsapp,omitempty"`
+}
+
+type ModelFacebookPageResponseDoc struct {
+	Code int               `json:"code,omitempty"`
+	Data ModelFacebookPage `json:"data,omitempty"`
+	Msg  string            `json:"msg,omitempty"`
 }
 
 type ModelFinanceAbout struct {
@@ -8976,33 +9010,38 @@ type ModelJobsHiringSignals struct {
 }
 
 type ModelJobsJob struct {
-	ApplyUrl             string   `json:"apply_url,omitempty"`
-	Company              string   `json:"company,omitempty"`
-	CompanyLogoUrl       string   `json:"company_logo_url,omitempty"`
-	Compensation         string   `json:"compensation,omitempty"`
-	CompensationCurrency string   `json:"compensation_currency,omitempty"`
-	CompensationMax      float64  `json:"compensation_max,omitempty"`
-	CompensationMin      float64  `json:"compensation_min,omitempty"`
-	CompensationPeriod   string   `json:"compensation_period,omitempty"`
-	Department           string   `json:"department,omitempty"`
-	DescriptionHtml      string   `json:"description_html,omitempty"`
-	DescriptionText      string   `json:"description_text,omitempty"`
-	EmploymentType       string   `json:"employment_type,omitempty"`
-	Id                   string   `json:"id,omitempty"`
-	Location             string   `json:"location,omitempty"`
-	LocationCity         string   `json:"location_city,omitempty"`
-	LocationCountry      string   `json:"location_country,omitempty"`
-	LocationState        string   `json:"location_state,omitempty"`
-	Locations            []string `json:"locations,omitempty"`
-	PostedAgeText        string   `json:"posted_age_text,omitempty"`
-	PostedAt             string   `json:"posted_at,omitempty"`
-	Provider             string   `json:"provider,omitempty"`
-	Remote               bool     `json:"remote,omitempty"`
-	ReqId                string   `json:"req_id,omitempty"`
-	Team                 string   `json:"team,omitempty"`
-	Title                string   `json:"title,omitempty"`
-	Url                  string   `json:"url,omitempty"`
-	WorkplaceType        string   `json:"workplace_type,omitempty"`
+	AiToolsMentioned          []string `json:"ai_tools_mentioned,omitempty"`
+	ApplyUrl                  string   `json:"apply_url,omitempty"`
+	BenefitsMentioned         []string `json:"benefits_mentioned,omitempty"`
+	Company                   string   `json:"company,omitempty"`
+	CompanyLogoUrl            string   `json:"company_logo_url,omitempty"`
+	Compensation              string   `json:"compensation,omitempty"`
+	CompensationCurrency      string   `json:"compensation_currency,omitempty"`
+	CompensationMax           float64  `json:"compensation_max,omitempty"`
+	CompensationMin           float64  `json:"compensation_min,omitempty"`
+	CompensationPeriod        string   `json:"compensation_period,omitempty"`
+	Department                string   `json:"department,omitempty"`
+	DescriptionHtml           string   `json:"description_html,omitempty"`
+	DescriptionText           string   `json:"description_text,omitempty"`
+	EducationLevelRequired    []string `json:"education_level_required,omitempty"`
+	EmploymentType            string   `json:"employment_type,omitempty"`
+	Id                        string   `json:"id,omitempty"`
+	Location                  string   `json:"location,omitempty"`
+	LocationCity              string   `json:"location_city,omitempty"`
+	LocationCountry           string   `json:"location_country,omitempty"`
+	LocationState             string   `json:"location_state,omitempty"`
+	Locations                 []string `json:"locations,omitempty"`
+	PostedAgeText             string   `json:"posted_age_text,omitempty"`
+	PostedAt                  string   `json:"posted_at,omitempty"`
+	Provider                  string   `json:"provider,omitempty"`
+	Remote                    bool     `json:"remote,omitempty"`
+	ReqId                     string   `json:"req_id,omitempty"`
+	SecurityClearanceRequired []string `json:"security_clearance_required,omitempty"`
+	SkillsMentioned           []string `json:"skills_mentioned,omitempty"`
+	Team                      string   `json:"team,omitempty"`
+	Title                     string   `json:"title,omitempty"`
+	Url                       string   `json:"url,omitempty"`
+	WorkplaceType             string   `json:"workplace_type,omitempty"`
 }
 
 type ModelJobsProviderHit struct {
@@ -19664,7 +19703,7 @@ type ModelZillowSearchResponse struct {
 	Results  []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 848
+const operationCount = 849
 
 const (
 	OperationAirbnbHost                                             = "airbnb-host"
@@ -19929,6 +19968,7 @@ const (
 	OperationEspnTeam                                               = "espn-team"
 	OperationEspnTeamRoster                                         = "espn-team-roster"
 	OperationEspnTeams                                              = "espn-teams"
+	OperationFacebookPage                                           = "facebook-page"
 	OperationGeocodingLookup                                        = "geocoding-lookup"
 	OperationGeocodingReverse                                       = "geocoding-reverse"
 	OperationGeocodingSearch                                        = "geocoding-search"
@@ -20692,12 +20732,12 @@ var operations = map[string]operationDefinition{
 	"datasets-instagram-users-facets":               operationDefinition{Method: "GET", Path: "/datasets/instagram-users/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"is_verified", "is_business_account", "has_bio", "has_external_url", "category_name", "source_tier"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "username", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category_name", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "source_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_verified", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_business_account", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_bio", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_external_url", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_ratio", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_ratio", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "created_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "created_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "crawled_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "crawled_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "followers_desc", "followers_asc", "crawled_at_desc", "crawled_at_asc", "created_at_desc", "created_at_asc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-instagram-users-item":                 operationDefinition{Method: "GET", Path: "/datasets/instagram-users/items/{username}", PathParams: []string{"username"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-instagram-users-search":               operationDefinition{Method: "GET", Path: "/datasets/instagram-users/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "username", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category_name", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "source_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_verified", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_business_account", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_bio", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_external_url", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_ratio", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_ratio", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "created_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "created_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "crawled_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "crawled_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "followers_desc", "followers_asc", "crawled_at_desc", "crawled_at_asc", "created_at_desc", "created_at_asc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
-	"datasets-jobs-companies":                       operationDefinition{Method: "GET", Path: "/datasets/jobs/companies", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "provider", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"greenhouse", "lever", "ashby", "workday", "smartrecruiters", "workable", "recruitee", "rippling", "personio", "teamtailor", "oracle", "ukg", "icims", "eightfold", "gem", "pinpoint"}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"active", "empty", "gone", "blocked", "pending", "invalid"}}, parameterDefinition{Name: "min_open_roles", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"open_desc", "company_asc", "crawled_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-jobs-companies":                       operationDefinition{Method: "GET", Path: "/datasets/jobs/companies", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "provider", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"greenhouse", "lever", "ashby", "workday", "smartrecruiters", "workable", "recruitee", "rippling", "personio", "teamtailor", "oracle", "ukg", "icims", "eightfold", "gem", "pinpoint", "amazon-jobs", "apple-jobs", "google-jobs", "meta-jobs", "tesla-jobs"}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"active", "empty", "gone", "blocked", "pending", "invalid"}}, parameterDefinition{Name: "min_open_roles", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sponsors_visa", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"open_desc", "company_asc", "crawled_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-jobs-company-item":                    operationDefinition{Method: "GET", Path: "/datasets/jobs/companies/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-jobs-facets":                          operationDefinition{Method: "GET", Path: "/datasets/jobs/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-jobs-item":                            operationDefinition{Method: "GET", Path: "/datasets/jobs/items/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"datasets-jobs-nearby":                          operationDefinition{Method: "GET", Path: "/datasets/jobs/nearby", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "radius_km", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "provider", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"greenhouse", "lever", "ashby", "workday", "smartrecruiters", "workable", "recruitee", "rippling", "personio", "teamtailor", "oracle", "ukg", "icims", "eightfold", "gem", "pinpoint"}}, parameterDefinition{Name: "include_closed", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
-	"datasets-jobs-search":                          operationDefinition{Method: "GET", Path: "/datasets/jobs/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "company", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "provider", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"greenhouse", "lever", "ashby", "workday", "smartrecruiters", "workable", "recruitee", "rippling", "personio", "teamtailor", "oracle", "ukg", "icims", "eightfold", "gem", "pinpoint"}}, parameterDefinition{Name: "department", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "employment_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "remote", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "workplace_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"onsite", "hybrid", "remote"}}, parameterDefinition{Name: "include_closed", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_salary", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_salary", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "salary_currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "posted_desc", "company_asc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-jobs-nearby":                          operationDefinition{Method: "GET", Path: "/datasets/jobs/nearby", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "radius_km", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "provider", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"greenhouse", "lever", "ashby", "workday", "smartrecruiters", "workable", "recruitee", "rippling", "personio", "teamtailor", "oracle", "ukg", "icims", "eightfold", "gem", "pinpoint", "amazon-jobs", "apple-jobs", "google-jobs", "meta-jobs", "tesla-jobs"}}, parameterDefinition{Name: "include_closed", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-jobs-search":                          operationDefinition{Method: "GET", Path: "/datasets/jobs/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "company", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "provider", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"greenhouse", "lever", "ashby", "workday", "smartrecruiters", "workable", "recruitee", "rippling", "personio", "teamtailor", "oracle", "ukg", "icims", "eightfold", "gem", "pinpoint", "amazon-jobs", "apple-jobs", "google-jobs", "meta-jobs", "tesla-jobs"}}, parameterDefinition{Name: "department", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "employment_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "remote", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "workplace_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"onsite", "hybrid", "remote"}}, parameterDefinition{Name: "include_closed", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_salary", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_salary", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "salary_currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "posted_desc", "company_asc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-journalists-facets":                   operationDefinition{Method: "GET", Path: "/datasets/journalists/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"outlet", "vertical", "topic", "contact_type"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "outlet", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "vertical", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"tech", "crypto", "marketing", "consumer_tech", "consumer_policy", "cybersecurity", "health", "gaming", "climate", "business", "entertainment", "sports", "legal", "science", "politics", "real_estate", "automotive", "travel", "food", "education", "design", "film_tv", "fashion", "music", "personal_finance", "tech_independent", "culture_independent", "local_news", "construction", "banking", "retail", "aerospace_defense", "energy", "agriculture", "local_business"}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "contact_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"email", "social", "none"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-journalists-item":                     operationDefinition{Method: "GET", Path: "/datasets/journalists/items/{outlet}/{slug}", PathParams: []string{"outlet", "slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-journalists-search":                   operationDefinition{Method: "GET", Path: "/datasets/journalists/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "outlet", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "vertical", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"tech", "crypto", "marketing", "consumer_tech", "consumer_policy", "cybersecurity", "health", "gaming", "climate", "business", "entertainment", "sports", "legal", "science", "politics", "real_estate", "automotive", "travel", "food", "education", "design", "film_tv", "fashion", "music", "personal_finance", "tech_independent", "culture_independent", "local_news", "construction", "banking", "retail", "aerospace_defense", "energy", "agriculture", "local_business"}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "contact_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"email", "social", "none"}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "name_asc", "outlet_asc", "crawled_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -20783,6 +20823,7 @@ var operations = map[string]operationDefinition{
 	"espn-team-roster":                              operationDefinition{Method: "GET", Path: "/espn/team-roster", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}, parameterDefinition{Name: "team", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"espn-teams":                                    operationDefinition{Method: "GET", Path: "/espn/teams", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"extract":                                       operationDefinition{Method: "POST", Path: "/extract", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "extractOption", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"facebook-page":                                 operationDefinition{Method: "GET", Path: "/facebook/{page}", PathParams: []string{"page"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"geocoding-lookup":                              operationDefinition{Method: "GET", Path: "/geocoding/lookup", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "osm_ids", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "accept_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"geocoding-reverse":                             operationDefinition{Method: "GET", Path: "/geocoding/reverse", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "zoom", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "accept_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"geocoding-search":                              operationDefinition{Method: "GET", Path: "/geocoding/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "street", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "county", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "postalcode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "countrycodes", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "accept_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -21390,6 +21431,7 @@ type Services struct {
 	Discogs         *DiscogsService
 	EBay            *EBayService
 	Espn            *EspnService
+	Facebook        *FacebookService
 	Geocoding       *GeocodingService
 	GitHub          *GitHubService
 	Goodreads       *GoodreadsService
@@ -21465,6 +21507,7 @@ func initServices(c *Client) Services {
 		Discogs:         &DiscogsService{client: c},
 		EBay:            &EBayService{client: c},
 		Espn:            &EspnService{client: c},
+		Facebook:        &FacebookService{client: c},
 		Geocoding:       &GeocodingService{client: c},
 		GitHub:          &GitHubService{client: c},
 		Goodreads:       &GoodreadsService{client: c},
@@ -24747,6 +24790,7 @@ type DatasetsJobsCompaniesParams struct {
 	Provider     *string `crawlora:"provider,omitempty"`
 	Status       *string `crawlora:"status,omitempty"`
 	MinOpenRoles *int    `crawlora:"min_open_roles,omitempty"`
+	SponsorsVisa *bool   `crawlora:"sponsors_visa,omitempty"`
 	Sort         *string `crawlora:"sort,omitempty"`
 	Page         *int    `crawlora:"page,omitempty"`
 	PageSize     *int    `crawlora:"page_size,omitempty"`
@@ -26513,6 +26557,22 @@ type EspnTeamsResponse = ModelEspnTeamsResponseDoc
 
 func (s *EspnService) TeamsTyped(ctx context.Context, params EspnTeamsParams, opts ...RequestOption) (EspnTeamsResponse, error) {
 	return requestTyped[EspnTeamsResponse](s.client, ctx, "espn-teams", paramsFromStruct(params), opts...)
+}
+
+type FacebookService struct{ client *Client }
+
+func (s *FacebookService) Page(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "facebook-page", params, opts...)
+}
+
+type FacebookPageParams struct {
+	Page string `crawlora:"page"`
+}
+
+type FacebookPageResponse = ModelFacebookPageResponseDoc
+
+func (s *FacebookService) PageTyped(ctx context.Context, params FacebookPageParams, opts ...RequestOption) (FacebookPageResponse, error) {
+	return requestTyped[FacebookPageResponse](s.client, ctx, "facebook-page", paramsFromStruct(params), opts...)
 }
 
 type GeocodingService struct{ client *Client }
