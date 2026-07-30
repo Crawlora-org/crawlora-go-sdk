@@ -417,8 +417,21 @@ func TestOperationMetadataCount(t *testing.T) {
 	if len(operations) != operationCount {
 		t.Fatalf("operations = %d, operationCount = %d", len(operations), operationCount)
 	}
-	if operationCount != 837 {
+	if operationCount != 848 {
 		t.Fatalf("operationCount = %d", operationCount)
+	}
+}
+
+func TestGeneratedGoogleBusinessCountsAreNullable(t *testing.T) {
+	zero := 0
+	item := ModelEsGoogleBusiness{ReviewCount: &zero}
+	if item.ReviewCount == nil || *item.ReviewCount != 0 {
+		t.Fatalf("expected confirmed zero review count, got %#v", item.ReviewCount)
+	}
+
+	item.ReviewCount = nil
+	if item.ReviewCount != nil {
+		t.Fatalf("expected missing review count to remain nil, got %#v", item.ReviewCount)
 	}
 }
 
@@ -440,7 +453,7 @@ func TestDocsCoverOperationsAndRecipes(t *testing.T) {
 	operationsText := string(operationsDoc)
 	recipesText := string(recipesDoc)
 	for _, want := range []string{
-		"Total operations: `837`",
+		"Total operations: `848`",
 		"`bing-search`",
 		"`GET /bing/search`",
 		"`Bing.Search`",

@@ -253,6 +253,47 @@ type ModelAmazonSuggestResponseDoc struct {
 	Msg  string   `json:"msg,omitempty"`
 }
 
+type ModelAmazonjobsAmazonJob struct {
+	ApplyUrl                string `json:"apply_url,omitempty"`
+	BasicQualifications     string `json:"basic_qualifications,omitempty"`
+	Category                string `json:"category,omitempty"`
+	City                    string `json:"city,omitempty"`
+	Company                 string `json:"company,omitempty"`
+	Country                 string `json:"country,omitempty"`
+	Description             string `json:"description,omitempty"`
+	Id                      string `json:"id,omitempty"`
+	Location                string `json:"location,omitempty"`
+	PostedAt                string `json:"posted_at,omitempty"`
+	PreferredQualifications string `json:"preferred_qualifications,omitempty"`
+	ScheduleType            string `json:"schedule_type,omitempty"`
+	State                   string `json:"state,omitempty"`
+	Title                   string `json:"title,omitempty"`
+	Url                     string `json:"url,omitempty"`
+}
+
+type ModelAmazonjobsSearchResponse struct {
+	Category  string                     `json:"category,omitempty"`
+	Country   string                     `json:"country,omitempty"`
+	Jobs      []ModelAmazonjobsAmazonJob `json:"jobs,omitempty"`
+	Limit     int                        `json:"limit,omitempty"`
+	Page      int                        `json:"page,omitempty"`
+	Query     string                     `json:"query,omitempty"`
+	SourceUrl string                     `json:"source_url,omitempty"`
+	Total     int                        `json:"total,omitempty"`
+}
+
+type ModelAmazonjobsJobResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelAmazonjobsAmazonJob `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelAmazonjobsSearchResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelAmazonjobsSearchResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
 type ModelAnimeAiringEntry struct {
 	AiringAt        int             `json:"airing_at,omitempty"`
 	Episode         int             `json:"episode,omitempty"`
@@ -761,6 +802,44 @@ type ModelApplebooksSimilarResponseDoc struct {
 	Code int                   `json:"code,omitempty"`
 	Data []ModelApplebooksBook `json:"data,omitempty"`
 	Msg  string                `json:"msg,omitempty"`
+}
+
+type ModelApplejobsAppleJob struct {
+	Country                 string   `json:"country,omitempty"`
+	Description             string   `json:"description,omitempty"`
+	EmploymentType          string   `json:"employment_type,omitempty"`
+	Id                      string   `json:"id,omitempty"`
+	Location                string   `json:"location,omitempty"`
+	Locations               []string `json:"locations,omitempty"`
+	MinimumQualifications   string   `json:"minimum_qualifications,omitempty"`
+	PositionId              string   `json:"position_id,omitempty"`
+	PostedAt                string   `json:"posted_at,omitempty"`
+	PreferredQualifications string   `json:"preferred_qualifications,omitempty"`
+	Responsibilities        string   `json:"responsibilities,omitempty"`
+	Team                    string   `json:"team,omitempty"`
+	Title                   string   `json:"title,omitempty"`
+	Url                     string   `json:"url,omitempty"`
+}
+
+type ModelApplejobsSearchResponse struct {
+	Jobs      []ModelApplejobsAppleJob `json:"jobs,omitempty"`
+	Location  string                   `json:"location,omitempty"`
+	Page      int                      `json:"page,omitempty"`
+	Query     string                   `json:"query,omitempty"`
+	SourceUrl string                   `json:"source_url,omitempty"`
+	Total     int                      `json:"total,omitempty"`
+}
+
+type ModelApplejobsJobResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelApplejobsAppleJob `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelApplejobsSearchResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelApplejobsSearchResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
 }
 
 type ModelApplepodcastsChartRankingItem struct {
@@ -5766,8 +5845,8 @@ type ModelEsGoogleBusiness struct {
 	Name             string                        `json:"name,omitempty"`
 	Phone            string                        `json:"phone,omitempty"`
 	PlaceId          string                        `json:"place_id,omitempty"`
-	Rating           float64                       `json:"rating,omitempty"`
-	ReviewCount      int                           `json:"review_count,omitempty"`
+	Rating           *float64                      `json:"rating,omitempty"`
+	ReviewCount      *int                          `json:"review_count,omitempty"`
 	Similarweb       ModelSimilarwebSimilarWebResp `json:"similarweb,omitempty"`
 	State            string                        `json:"state,omitempty"`
 	Town             string                        `json:"town,omitempty"`
@@ -5802,8 +5881,8 @@ type ModelEsGoogleBusinessDatasetItem struct {
 	Name             string                        `json:"name,omitempty"`
 	Phone            string                        `json:"phone,omitempty"`
 	PlaceId          string                        `json:"place_id,omitempty"`
-	Rating           float64                       `json:"rating,omitempty"`
-	ReviewCount      int                           `json:"review_count,omitempty"`
+	Rating           *float64                      `json:"rating,omitempty"`
+	ReviewCount      *int                          `json:"review_count,omitempty"`
 	Similarweb       ModelSimilarwebSimilarWebResp `json:"similarweb,omitempty"`
 	State            string                        `json:"state,omitempty"`
 	Town             string                        `json:"town,omitempty"`
@@ -7842,7 +7921,7 @@ type ModelGooglePlace struct {
 	Name        string   `json:"name,omitempty"`
 	Phone       string   `json:"phone,omitempty"`
 	PlaceId     string   `json:"place_id,omitempty"`
-	Rating      float64  `json:"rating,omitempty"`
+	Rating      *float64 `json:"rating,omitempty"`
 	ReviewCount int      `json:"review_count,omitempty"`
 	Url         string   `json:"url,omitempty"`
 	Website     string   `json:"website,omitempty"`
@@ -7973,6 +8052,43 @@ type ModelGoogleVideosResponseDoc struct {
 	Code int                       `json:"code,omitempty"`
 	Data ModelGoogleVideosResponse `json:"data,omitempty"`
 	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelGooglejobsGoogleJob struct {
+	ApplyUrl                string   `json:"apply_url,omitempty"`
+	Company                 string   `json:"company,omitempty"`
+	Country                 string   `json:"country,omitempty"`
+	Description             string   `json:"description,omitempty"`
+	Id                      string   `json:"id,omitempty"`
+	Location                string   `json:"location,omitempty"`
+	Locations               []string `json:"locations,omitempty"`
+	MinimumQualifications   string   `json:"minimum_qualifications,omitempty"`
+	PostedAt                string   `json:"posted_at,omitempty"`
+	PreferredQualifications string   `json:"preferred_qualifications,omitempty"`
+	Responsibilities        string   `json:"responsibilities,omitempty"`
+	Title                   string   `json:"title,omitempty"`
+	Url                     string   `json:"url,omitempty"`
+}
+
+type ModelGooglejobsSearchResponse struct {
+	Jobs      []ModelGooglejobsGoogleJob `json:"jobs,omitempty"`
+	Location  string                     `json:"location,omitempty"`
+	Page      int                        `json:"page,omitempty"`
+	Query     string                     `json:"query,omitempty"`
+	SourceUrl string                     `json:"source_url,omitempty"`
+	Total     int                        `json:"total,omitempty"`
+}
+
+type ModelGooglejobsJobResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelGooglejobsGoogleJob `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelGooglejobsSearchResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelGooglejobsSearchResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
 }
 
 type ModelGoogleplayApp struct {
@@ -10370,6 +10486,68 @@ type ModelMetaculusQuestionsResponseDoc struct {
 	Code int                             `json:"code,omitempty"`
 	Data ModelMetaculusQuestionsResponse `json:"data,omitempty"`
 	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelMetajobsListResponse struct {
+	Listings  []ModelMetajobsMetaJobListing `json:"listings,omitempty"`
+	Page      int                           `json:"page,omitempty"`
+	PageSize  int                           `json:"page_size,omitempty"`
+	SourceUrl string                        `json:"source_url,omitempty"`
+	Total     int                           `json:"total,omitempty"`
+}
+
+type ModelMetajobsMetaJob struct {
+	CompensationCountry     string   `json:"compensation_country,omitempty"`
+	CompensationMax         string   `json:"compensation_max,omitempty"`
+	CompensationMin         string   `json:"compensation_min,omitempty"`
+	Departments             []string `json:"departments,omitempty"`
+	Description             string   `json:"description,omitempty"`
+	Id                      string   `json:"id,omitempty"`
+	Locations               []string `json:"locations,omitempty"`
+	MinimumQualifications   []string `json:"minimum_qualifications,omitempty"`
+	PreferredQualifications []string `json:"preferred_qualifications,omitempty"`
+	Responsibilities        []string `json:"responsibilities,omitempty"`
+	Title                   string   `json:"title,omitempty"`
+	Url                     string   `json:"url,omitempty"`
+}
+
+type ModelMetajobsMetaJobListing struct {
+	Id           string `json:"id,omitempty"`
+	LastModified string `json:"last_modified,omitempty"`
+	Url          string `json:"url,omitempty"`
+}
+
+type ModelMetajobsMetaJobSearchResult struct {
+	Id        string   `json:"id,omitempty"`
+	Locations []string `json:"locations,omitempty"`
+	SubTeams  []string `json:"sub_teams,omitempty"`
+	Teams     []string `json:"teams,omitempty"`
+	Title     string   `json:"title,omitempty"`
+	Url       string   `json:"url,omitempty"`
+}
+
+type ModelMetajobsSearchResponse struct {
+	Jobs      []ModelMetajobsMetaJobSearchResult `json:"jobs,omitempty"`
+	SourceUrl string                             `json:"source_url,omitempty"`
+	Total     int                                `json:"total,omitempty"`
+}
+
+type ModelMetajobsJobResponseDoc struct {
+	Code int                  `json:"code,omitempty"`
+	Data ModelMetajobsMetaJob `json:"data,omitempty"`
+	Msg  string               `json:"msg,omitempty"`
+}
+
+type ModelMetajobsListResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelMetajobsListResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelMetajobsSearchResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelMetajobsSearchResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
 }
 
 type ModelNumbeoCityIndexEntry struct {
@@ -16301,6 +16479,51 @@ type ModelTechstackTechnology struct {
 	Version    string   `json:"version,omitempty"`
 }
 
+type ModelTeslajobsListResponse struct {
+	Jobs     []ModelTeslajobsTeslaJobListing `json:"jobs,omitempty"`
+	Location string                          `json:"location,omitempty"`
+	Page     int                             `json:"page,omitempty"`
+	PageSize int                             `json:"page_size,omitempty"`
+	Query    string                          `json:"query,omitempty"`
+	Total    int                             `json:"total,omitempty"`
+}
+
+type ModelTeslajobsTeslaJob struct {
+	ApplyUrl         string `json:"apply_url,omitempty"`
+	CompensationText string `json:"compensation_text,omitempty"`
+	Country          string `json:"country,omitempty"`
+	Department       string `json:"department,omitempty"`
+	Description      string `json:"description,omitempty"`
+	EmploymentType   string `json:"employment_type,omitempty"`
+	Id               string `json:"id,omitempty"`
+	JobFamily        string `json:"job_family,omitempty"`
+	Location         string `json:"location,omitempty"`
+	Requirements     string `json:"requirements,omitempty"`
+	Responsibilities string `json:"responsibilities,omitempty"`
+	State            string `json:"state,omitempty"`
+	Title            string `json:"title,omitempty"`
+	Url              string `json:"url,omitempty"`
+}
+
+type ModelTeslajobsTeslaJobListing struct {
+	Department string `json:"department,omitempty"`
+	Id         string `json:"id,omitempty"`
+	Location   string `json:"location,omitempty"`
+	Title      string `json:"title,omitempty"`
+}
+
+type ModelTeslajobsJobResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelTeslajobsTeslaJob `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelTeslajobsListResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelTeslajobsListResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
 type ModelThreadsAuthor struct {
 	Id       string `json:"id,omitempty"`
 	Name     string `json:"name,omitempty"`
@@ -19441,7 +19664,7 @@ type ModelZillowSearchResponse struct {
 	Results  []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 837
+const operationCount = 848
 
 const (
 	OperationAirbnbHost                                             = "airbnb-host"
@@ -19451,6 +19674,8 @@ const (
 	OperationAirbnbRoomCalendar                                     = "airbnb-room-calendar"
 	OperationAirbnbRoomReviews                                      = "airbnb-room-reviews"
 	OperationAirbnbSearch                                           = "airbnb-search"
+	OperationAmazonJobsJob                                          = "amazon-jobs-job"
+	OperationAmazonJobsSearch                                       = "amazon-jobs-search"
 	OperationAmazonProduct                                          = "amazon-product"
 	OperationAmazonSearch                                           = "amazon-search"
 	OperationAmazonSuggest                                          = "amazon-suggest"
@@ -19487,6 +19712,8 @@ const (
 	OperationAppleBooksCharts                                       = "apple-books-charts"
 	OperationAppleBooksSearch                                       = "apple-books-search"
 	OperationAppleBooksSeries                                       = "apple-books-series"
+	OperationAppleJobsJob                                           = "apple-jobs-job"
+	OperationAppleJobsSearch                                        = "apple-jobs-search"
 	OperationApplePodcastsCharts                                    = "apple-podcasts-charts"
 	OperationApplePodcastsChartsRankings                            = "apple-podcasts-charts-rankings"
 	OperationApplePodcastsEpisodesSearch                            = "apple-podcasts-episodes-search"
@@ -19753,6 +19980,8 @@ const (
 	OperationGoogleFinanceSearch                                    = "google-finance-search"
 	OperationGoogleFinanceTicker                                    = "google-finance-ticker"
 	OperationGoogleJobs                                             = "google-jobs"
+	OperationGoogleJobsJob                                          = "google-jobs-job"
+	OperationGoogleJobsSearch                                       = "google-jobs-search"
 	OperationGoogleMapPlace                                         = "google-map-place"
 	OperationGoogleMapPlacePhotos                                   = "google-map-place-photos"
 	OperationGoogleMapPlaceReviews                                  = "google-map-place-reviews"
@@ -19889,6 +20118,9 @@ const (
 	OperationMangaRankings                                          = "manga-rankings"
 	OperationMangaSearch                                            = "manga-search"
 	OperationMangaTitle                                             = "manga-title"
+	OperationMetaJobsJob                                            = "meta-jobs-job"
+	OperationMetaJobsList                                           = "meta-jobs-list"
+	OperationMetaJobsSearch                                         = "meta-jobs-search"
 	OperationMetaPing                                               = "ping"
 	OperationMetaReady                                              = "ready"
 	OperationMetacriticBrowse                                       = "metacritic-browse"
@@ -20150,6 +20382,8 @@ const (
 	OperationSteamTags                                              = "steam-tags"
 	OperationSteamTagsList                                          = "steam-tags-list"
 	OperationSteamTopSellers                                        = "steam-top-sellers"
+	OperationTeslaJobsJob                                           = "tesla-jobs-job"
+	OperationTeslaJobsList                                          = "tesla-jobs-list"
 	OperationThreadsPost                                            = "threads-post"
 	OperationThreadsPostReplies                                     = "threads-post-replies"
 	OperationThreadsProfile                                         = "threads-profile"
@@ -20291,6 +20525,8 @@ var operations = map[string]operationDefinition{
 	"airbnb-room-calendar":                          operationDefinition{Method: "GET", Path: "/airbnb/room/{id}/calendar", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"airbnb-room-reviews":                           operationDefinition{Method: "GET", Path: "/airbnb/room/{id}/reviews", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"airbnb-search":                                 operationDefinition{Method: "GET", Path: "/airbnb/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "check_in", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "check_out", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "adults", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ne_lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "ne_lng", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "sw_lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "sw_lng", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "zoom", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"amazon-jobs-job":                               operationDefinition{Method: "GET", Path: "/amazon-jobs/job", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"amazon-jobs-search":                            operationDefinition{Method: "GET", Path: "/amazon-jobs/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"administrative-support", "applied-science", "audio-video-photography-production", "business-intelligence-data-engineering", "business-merchant-development", "buying-planning-instock-management", "customer-service", "data-science", "database-administration", "design", "economics", "editorial-writing-content-management", "facilities-maintenance-real-estate", "fgbs", "fulfillment-center-warehouse-associate", "fulfillment-operations-management", "hardware-development", "human-resources", "investigation-loss-prevention", "leadership-development-training", "legal", "marketing", "medical-health-safety", "operations-it-support-engineering", "project-program-product-management-non-tech", "project-program-product-management-technical", "public-policy", "public-relations-communications", "research-science", "sales-advertising-account-management", "software-development", "solutions-architecture", "supply-chain-transportation-management", "systems-quality-security-engineering"}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevant", "recent"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"amazon-product":                                operationDefinition{Method: "GET", Path: "/amazon/product/{asin}", PathParams: []string{"asin"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"en_US"}}, parameterDefinition{Name: "currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"USD"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"amazon-search":                                 operationDefinition{Method: "GET", Path: "/amazon/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "k", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "s", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"amazon-suggest":                                operationDefinition{Method: "GET", Path: "/amazon/suggest/{keyword}", PathParams: []string{"keyword"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -20315,6 +20551,8 @@ var operations = map[string]operationDefinition{
 	"apple-books-charts":                            operationDefinition{Method: "GET", Path: "/apple-books/charts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "collection", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"top-free", "top-paid"}}, parameterDefinition{Name: "genre", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"apple-books-search":                            operationDefinition{Method: "GET", Path: "/apple-books/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"apple-books-series":                            operationDefinition{Method: "GET", Path: "/apple-books/series/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"apple-jobs-job":                                operationDefinition{Method: "GET", Path: "/apple-jobs/job", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"apple-jobs-search":                             operationDefinition{Method: "GET", Path: "/apple-jobs/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"apple-podcasts-charts":                         operationDefinition{Method: "GET", Path: "/apple-podcasts/charts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "collection", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"apple-podcasts-charts-rankings":                operationDefinition{Method: "GET", Path: "/apple-podcasts/charts/rankings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "chart", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "genre", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"apple-podcasts-episodes-search":                operationDefinition{Method: "GET", Path: "/apple-podcasts/episodes/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -20575,6 +20813,8 @@ var operations = map[string]operationDefinition{
 	"goodreads-list":                                operationDefinition{Method: "GET", Path: "/goodreads/list/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"goodreads-lists":                               operationDefinition{Method: "GET", Path: "/goodreads/lists", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"goodreads-search":                              operationDefinition{Method: "GET", Path: "/goodreads/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-jobs-job":                               operationDefinition{Method: "GET", Path: "/google-jobs/job", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-jobs-search":                            operationDefinition{Method: "GET", Path: "/google-jobs/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"google-finance-analyst-articles":               operationDefinition{Method: "GET", Path: "/google/finance/analyst-articles/{quote}", PathParams: []string{"quote"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-finance-chart":                          operationDefinition{Method: "GET", Path: "/google/finance/chart/{quote}", PathParams: []string{"quote"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "window", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-finance-classification":                 operationDefinition{Method: "GET", Path: "/google/finance/classification/{quote}", PathParams: []string{"quote"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -20732,6 +20972,9 @@ var operations = map[string]operationDefinition{
 	"manga-rankings":                                operationDefinition{Method: "GET", Path: "/manga/rankings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"TRENDING_DESC", "POPULARITY_DESC", "SCORE_DESC", "FAVOURITES_DESC", "START_DATE_DESC", "UPDATED_AT_DESC"}}, parameterDefinition{Name: "format", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"MANGA", "NOVEL", "ONE_SHOT"}}, parameterDefinition{Name: "genre", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"FINISHED", "RELEASING", "NOT_YET_RELEASED", "CANCELLED", "HIATUS"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"manga-search":                                  operationDefinition{Method: "GET", Path: "/manga/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"SEARCH_MATCH", "POPULARITY_DESC", "SCORE_DESC", "TRENDING_DESC", "FAVOURITES_DESC", "START_DATE_DESC"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"manga-title":                                   operationDefinition{Method: "GET", Path: "/manga/title/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "mal", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"meta-jobs-job":                                 operationDefinition{Method: "GET", Path: "/meta-jobs/job", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"meta-jobs-list":                                operationDefinition{Method: "GET", Path: "/meta-jobs/list", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"meta-jobs-search":                              operationDefinition{Method: "GET", Path: "/meta-jobs/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "teams", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "roles", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "offices", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_remote_only", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_by_new", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "results_per_page", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "five", "ten"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"metacritic-browse":                             operationDefinition{Method: "GET", Path: "/metacritic/browse", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"game", "movie", "tv"}}, parameterDefinition{Name: "genre", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"score", "popularity", "release_date", "oldest"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"metacritic-game":                               operationDefinition{Method: "GET", Path: "/metacritic/game/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"metacritic-game-critic-reviews":                operationDefinition{Method: "GET", Path: "/metacritic/game/{slug}/critic-reviews", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"date", "score", "publication"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -20993,6 +21236,8 @@ var operations = map[string]operationDefinition{
 	"steam-tags":                                    operationDefinition{Method: "GET", Path: "/steam/tags", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "tags", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "untags", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category1", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category2", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category3", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "os", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "maxprice", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "specials", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "hidef2p", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "deck_compatibility", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"1", "2", "3"}}, parameterDefinition{Name: "vrsupport", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "filter", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"globaltopsellers", "topsellers", "popularnew", "comingsoon"}}, parameterDefinition{Name: "supportedlang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Relevance", "Released_DESC", "Name_ASC", "Price_ASC", "Price_DESC", "Reviews_DESC"}}, parameterDefinition{Name: "start", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "cc", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "l", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"start"}},
 	"steam-tags-list":                               operationDefinition{Method: "GET", Path: "/steam/tags/list", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "l", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"steam-top-sellers":                             operationDefinition{Method: "GET", Path: "/steam/top-sellers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cc", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "l", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tesla-jobs-job":                                operationDefinition{Method: "GET", Path: "/tesla-jobs/job", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tesla-jobs-list":                               operationDefinition{Method: "GET", Path: "/tesla-jobs/list", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"threads-post":                                  operationDefinition{Method: "GET", Path: "/threads/post/{username}/{code}", PathParams: []string{"username", "code"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"threads-post-replies":                          operationDefinition{Method: "GET", Path: "/threads/post/{username}/{code}/replies", PathParams: []string{"username", "code"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"threads-profile":                               operationDefinition{Method: "GET", Path: "/threads/profile/{username}", PathParams: []string{"username"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -21125,9 +21370,11 @@ var operations = map[string]operationDefinition{
 
 type Services struct {
 	Airbnb          *AirbnbService
+	AmazonJobs      *AmazonJobsService
 	Amazon          *AmazonService
 	Anime           *AnimeService
 	AppleBooks      *AppleBooksService
+	AppleJobs       *AppleJobsService
 	ApplePodcasts   *ApplePodcastsService
 	AppStore        *AppStoreService
 	Billing         *BillingService
@@ -21146,6 +21393,7 @@ type Services struct {
 	Geocoding       *GeocodingService
 	GitHub          *GitHubService
 	Goodreads       *GoodreadsService
+	GoogleJobs      *GoogleJobsService
 	Google          *GoogleService
 	GooglePlay      *GooglePlayService
 	Imdb            *ImdbService
@@ -21156,6 +21404,7 @@ type Services struct {
 	Letterboxd      *LetterboxdService
 	LinkedIn        *LinkedInService
 	Manga           *MangaService
+	MetaJobs        *MetaJobsService
 	Metacritic      *MetacriticService
 	Metaculus       *MetaculusService
 	Numbeo          *NumbeoService
@@ -21176,6 +21425,7 @@ type Services struct {
 	SpotifyPodcasts *SpotifyPodcastsService
 	Spotify         *SpotifyService
 	Steam           *SteamService
+	TeslaJobs       *TeslaJobsService
 	Threads         *ThreadsService
 	TikTok          *TikTokService
 	Tmdb            *TmdbService
@@ -21195,9 +21445,11 @@ type Services struct {
 func initServices(c *Client) Services {
 	return Services{
 		Airbnb:          &AirbnbService{client: c},
+		AmazonJobs:      &AmazonJobsService{client: c},
 		Amazon:          &AmazonService{client: c},
 		Anime:           &AnimeService{client: c},
 		AppleBooks:      &AppleBooksService{client: c},
+		AppleJobs:       &AppleJobsService{client: c},
 		ApplePodcasts:   &ApplePodcastsService{client: c},
 		AppStore:        &AppStoreService{client: c},
 		Billing:         &BillingService{client: c},
@@ -21216,6 +21468,7 @@ func initServices(c *Client) Services {
 		Geocoding:       &GeocodingService{client: c},
 		GitHub:          &GitHubService{client: c},
 		Goodreads:       &GoodreadsService{client: c},
+		GoogleJobs:      &GoogleJobsService{client: c},
 		Google:          &GoogleService{client: c},
 		GooglePlay:      &GooglePlayService{client: c},
 		Imdb:            &ImdbService{client: c},
@@ -21226,6 +21479,7 @@ func initServices(c *Client) Services {
 		Letterboxd:      &LetterboxdService{client: c},
 		LinkedIn:        &LinkedInService{client: c},
 		Manga:           &MangaService{client: c},
+		MetaJobs:        &MetaJobsService{client: c},
 		Metacritic:      &MetacriticService{client: c},
 		Metaculus:       &MetaculusService{client: c},
 		Numbeo:          &NumbeoService{client: c},
@@ -21246,6 +21500,7 @@ func initServices(c *Client) Services {
 		SpotifyPodcasts: &SpotifyPodcastsService{client: c},
 		Spotify:         &SpotifyService{client: c},
 		Steam:           &SteamService{client: c},
+		TeslaJobs:       &TeslaJobsService{client: c},
 		Threads:         &ThreadsService{client: c},
 		TikTok:          &TikTokService{client: c},
 		Tmdb:            &TmdbService{client: c},
@@ -21374,6 +21629,41 @@ type AirbnbSearchResponse = ModelAirbnbSearchResponse
 
 func (s *AirbnbService) SearchTyped(ctx context.Context, params AirbnbSearchParams, opts ...RequestOption) (AirbnbSearchResponse, error) {
 	return requestTyped[AirbnbSearchResponse](s.client, ctx, "airbnb-search", paramsFromStruct(params), opts...)
+}
+
+type AmazonJobsService struct{ client *Client }
+
+func (s *AmazonJobsService) Job(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "amazon-jobs-job", params, opts...)
+}
+
+type AmazonJobsJobParams struct {
+	Id string `crawlora:"id"`
+}
+
+type AmazonJobsJobResponse = ModelAmazonjobsJobResponseDoc
+
+func (s *AmazonJobsService) JobTyped(ctx context.Context, params AmazonJobsJobParams, opts ...RequestOption) (AmazonJobsJobResponse, error) {
+	return requestTyped[AmazonJobsJobResponse](s.client, ctx, "amazon-jobs-job", paramsFromStruct(params), opts...)
+}
+
+func (s *AmazonJobsService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "amazon-jobs-search", params, opts...)
+}
+
+type AmazonJobsSearchParams struct {
+	Q        *string `crawlora:"q,omitempty"`
+	Category *string `crawlora:"category,omitempty"`
+	Country  *string `crawlora:"country,omitempty"`
+	Page     *int    `crawlora:"page,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+	Sort     *string `crawlora:"sort,omitempty"`
+}
+
+type AmazonJobsSearchResponse = ModelAmazonjobsSearchResponseDoc
+
+func (s *AmazonJobsService) SearchTyped(ctx context.Context, params AmazonJobsSearchParams, opts ...RequestOption) (AmazonJobsSearchResponse, error) {
+	return requestTyped[AmazonJobsSearchResponse](s.client, ctx, "amazon-jobs-search", paramsFromStruct(params), opts...)
 }
 
 type AmazonService struct{ client *Client }
@@ -21773,6 +22063,38 @@ type AppleBooksSeriesResponse = ModelApplebooksSeriesResponseDoc
 
 func (s *AppleBooksService) SeriesTyped(ctx context.Context, params AppleBooksSeriesParams, opts ...RequestOption) (AppleBooksSeriesResponse, error) {
 	return requestTyped[AppleBooksSeriesResponse](s.client, ctx, "apple-books-series", paramsFromStruct(params), opts...)
+}
+
+type AppleJobsService struct{ client *Client }
+
+func (s *AppleJobsService) Job(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "apple-jobs-job", params, opts...)
+}
+
+type AppleJobsJobParams struct {
+	Id string `crawlora:"id"`
+}
+
+type AppleJobsJobResponse = ModelApplejobsJobResponseDoc
+
+func (s *AppleJobsService) JobTyped(ctx context.Context, params AppleJobsJobParams, opts ...RequestOption) (AppleJobsJobResponse, error) {
+	return requestTyped[AppleJobsJobResponse](s.client, ctx, "apple-jobs-job", paramsFromStruct(params), opts...)
+}
+
+func (s *AppleJobsService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "apple-jobs-search", params, opts...)
+}
+
+type AppleJobsSearchParams struct {
+	Q        string  `crawlora:"q"`
+	Location *string `crawlora:"location,omitempty"`
+	Page     *int    `crawlora:"page,omitempty"`
+}
+
+type AppleJobsSearchResponse = ModelApplejobsSearchResponseDoc
+
+func (s *AppleJobsService) SearchTyped(ctx context.Context, params AppleJobsSearchParams, opts ...RequestOption) (AppleJobsSearchResponse, error) {
+	return requestTyped[AppleJobsSearchResponse](s.client, ctx, "apple-jobs-search", paramsFromStruct(params), opts...)
 }
 
 type ApplePodcastsService struct{ client *Client }
@@ -26684,6 +27006,38 @@ func (s *GoodreadsService) SearchTyped(ctx context.Context, params GoodreadsSear
 	return requestTyped[GoodreadsSearchResponse](s.client, ctx, "goodreads-search", paramsFromStruct(params), opts...)
 }
 
+type GoogleJobsService struct{ client *Client }
+
+func (s *GoogleJobsService) Job(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-jobs-job", params, opts...)
+}
+
+type GoogleJobsJobParams struct {
+	Id string `crawlora:"id"`
+}
+
+type GoogleJobsJobResponse = ModelGooglejobsJobResponseDoc
+
+func (s *GoogleJobsService) JobTyped(ctx context.Context, params GoogleJobsJobParams, opts ...RequestOption) (GoogleJobsJobResponse, error) {
+	return requestTyped[GoogleJobsJobResponse](s.client, ctx, "google-jobs-job", paramsFromStruct(params), opts...)
+}
+
+func (s *GoogleJobsService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "google-jobs-search", params, opts...)
+}
+
+type GoogleJobsSearchParams struct {
+	Q        string  `crawlora:"q"`
+	Location *string `crawlora:"location,omitempty"`
+	Page     *int    `crawlora:"page,omitempty"`
+}
+
+type GoogleJobsSearchResponse = ModelGooglejobsSearchResponseDoc
+
+func (s *GoogleJobsService) SearchTyped(ctx context.Context, params GoogleJobsSearchParams, opts ...RequestOption) (GoogleJobsSearchResponse, error) {
+	return requestTyped[GoogleJobsSearchResponse](s.client, ctx, "google-jobs-search", paramsFromStruct(params), opts...)
+}
+
 type GoogleService struct{ client *Client }
 
 func (s *GoogleService) FinanceAnalystArticles(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -29163,6 +29517,57 @@ type MangaTitleResponse = ModelAnimeMediaResponseDoc
 
 func (s *MangaService) TitleTyped(ctx context.Context, params MangaTitleParams, opts ...RequestOption) (MangaTitleResponse, error) {
 	return requestTyped[MangaTitleResponse](s.client, ctx, "manga-title", paramsFromStruct(params), opts...)
+}
+
+type MetaJobsService struct{ client *Client }
+
+func (s *MetaJobsService) Job(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "meta-jobs-job", params, opts...)
+}
+
+type MetaJobsJobParams struct {
+	Id string `crawlora:"id"`
+}
+
+type MetaJobsJobResponse = ModelMetajobsJobResponseDoc
+
+func (s *MetaJobsService) JobTyped(ctx context.Context, params MetaJobsJobParams, opts ...RequestOption) (MetaJobsJobResponse, error) {
+	return requestTyped[MetaJobsJobResponse](s.client, ctx, "meta-jobs-job", paramsFromStruct(params), opts...)
+}
+
+func (s *MetaJobsService) List(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "meta-jobs-list", params, opts...)
+}
+
+type MetaJobsListParams struct {
+	Page     *int `crawlora:"page,omitempty"`
+	PageSize *int `crawlora:"page_size,omitempty"`
+}
+
+type MetaJobsListResponse = ModelMetajobsListResponseDoc
+
+func (s *MetaJobsService) ListTyped(ctx context.Context, params MetaJobsListParams, opts ...RequestOption) (MetaJobsListResponse, error) {
+	return requestTyped[MetaJobsListResponse](s.client, ctx, "meta-jobs-list", paramsFromStruct(params), opts...)
+}
+
+func (s *MetaJobsService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "meta-jobs-search", params, opts...)
+}
+
+type MetaJobsSearchParams struct {
+	Q              *string  `crawlora:"q,omitempty"`
+	Teams          []string `crawlora:"teams"`
+	Roles          []string `crawlora:"roles"`
+	Offices        []string `crawlora:"offices"`
+	IsRemoteOnly   *bool    `crawlora:"is_remote_only,omitempty"`
+	SortByNew      *bool    `crawlora:"sort_by_new,omitempty"`
+	ResultsPerPage *string  `crawlora:"results_per_page,omitempty"`
+}
+
+type MetaJobsSearchResponse = ModelMetajobsSearchResponseDoc
+
+func (s *MetaJobsService) SearchTyped(ctx context.Context, params MetaJobsSearchParams, opts ...RequestOption) (MetaJobsSearchResponse, error) {
+	return requestTyped[MetaJobsSearchResponse](s.client, ctx, "meta-jobs-search", paramsFromStruct(params), opts...)
 }
 
 type MetacriticService struct{ client *Client }
@@ -33391,6 +33796,39 @@ type SteamTopSellersResponse = ModelSteamTopSellersResponseDoc
 
 func (s *SteamService) TopSellersTyped(ctx context.Context, params SteamTopSellersParams, opts ...RequestOption) (SteamTopSellersResponse, error) {
 	return requestTyped[SteamTopSellersResponse](s.client, ctx, "steam-top-sellers", paramsFromStruct(params), opts...)
+}
+
+type TeslaJobsService struct{ client *Client }
+
+func (s *TeslaJobsService) Job(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tesla-jobs-job", params, opts...)
+}
+
+type TeslaJobsJobParams struct {
+	Id string `crawlora:"id"`
+}
+
+type TeslaJobsJobResponse = ModelTeslajobsJobResponseDoc
+
+func (s *TeslaJobsService) JobTyped(ctx context.Context, params TeslaJobsJobParams, opts ...RequestOption) (TeslaJobsJobResponse, error) {
+	return requestTyped[TeslaJobsJobResponse](s.client, ctx, "tesla-jobs-job", paramsFromStruct(params), opts...)
+}
+
+func (s *TeslaJobsService) List(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tesla-jobs-list", params, opts...)
+}
+
+type TeslaJobsListParams struct {
+	Query    *string `crawlora:"query,omitempty"`
+	Location *string `crawlora:"location,omitempty"`
+	Page     *int    `crawlora:"page,omitempty"`
+	PageSize *int    `crawlora:"page_size,omitempty"`
+}
+
+type TeslaJobsListResponse = ModelTeslajobsListResponseDoc
+
+func (s *TeslaJobsService) ListTyped(ctx context.Context, params TeslaJobsListParams, opts ...RequestOption) (TeslaJobsListResponse, error) {
+	return requestTyped[TeslaJobsListResponse](s.client, ctx, "tesla-jobs-list", paramsFromStruct(params), opts...)
 }
 
 type ThreadsService struct{ client *Client }
