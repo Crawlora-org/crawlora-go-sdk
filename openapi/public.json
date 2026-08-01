@@ -11480,6 +11480,229 @@
       },
       "type": "object"
     },
+    "creativecenter.HashtagTopCreator": {
+      "properties": {
+        "avatar_url": {
+          "type": "string"
+        },
+        "country_code": {
+          "type": "string"
+        },
+        "creator_id": {
+          "type": "string"
+        },
+        "follower_count": {
+          "type": "integer"
+        },
+        "handle": {
+          "type": "string"
+        },
+        "nickname": {
+          "type": "string"
+        },
+        "rank": {
+          "type": "integer"
+        },
+        "tiktok_uid": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "creativecenter.HashtagTrendPoint": {
+      "properties": {
+        "timestamp": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "creativecenter.TrendingHashtag": {
+      "properties": {
+        "hashtag_id": {
+          "type": "string"
+        },
+        "hashtag_name": {
+          "type": "string"
+        },
+        "industry_ids": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "popularity_curve": {
+          "items": {
+            "$ref": "#/definitions/creativecenter.HashtagTrendPoint"
+          },
+          "type": "array"
+        },
+        "publish_count": {
+          "type": "integer"
+        },
+        "rank": {
+          "type": "integer"
+        },
+        "top_creators": {
+          "items": {
+            "$ref": "#/definitions/creativecenter.HashtagTopCreator"
+          },
+          "type": "array"
+        },
+        "video_views": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "creativecenter.TrendingHashtagsResp": {
+      "properties": {
+        "hashtags": {
+          "items": {
+            "$ref": "#/definitions/creativecenter.TrendingHashtag"
+          },
+          "type": "array"
+        },
+        "total_count": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "creativecenter.TrendingVideo": {
+      "properties": {
+        "author_avatar_url": {
+          "type": "string"
+        },
+        "author_bio": {
+          "type": "string"
+        },
+        "author_follower_count": {
+          "type": "integer"
+        },
+        "author_handle": {
+          "type": "string"
+        },
+        "author_id": {
+          "type": "string"
+        },
+        "author_nickname": {
+          "type": "string"
+        },
+        "content_tags": {
+          "items": {
+            "$ref": "#/definitions/creativecenter.TrendingVideoContentTag"
+          },
+          "type": "array"
+        },
+        "content_type": {
+          "type": "integer"
+        },
+        "cover_url": {
+          "type": "string"
+        },
+        "create_time": {
+          "type": "integer"
+        },
+        "engagement_rate": {
+          "type": "number"
+        },
+        "engagement_rate_lifetime": {
+          "type": "number"
+        },
+        "item_id": {
+          "type": "string"
+        },
+        "organic_video_views": {
+          "type": "integer"
+        },
+        "organic_video_views_lifetime": {
+          "type": "integer"
+        },
+        "six_seconds_vtr": {
+          "type": "number"
+        },
+        "six_seconds_vtr_lifetime": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "video_url": {
+          "type": "string"
+        },
+        "video_views": {
+          "type": "integer"
+        },
+        "video_views_lifetime": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "creativecenter.TrendingVideoContentTag": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "creativecenter.TrendingVideosResp": {
+      "properties": {
+        "page_count": {
+          "type": "integer"
+        },
+        "total_count": {
+          "type": "integer"
+        },
+        "videos": {
+          "items": {
+            "$ref": "#/definitions/creativecenter.TrendingVideo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "creativecenter.trendingHashtagsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/creativecenter.TrendingHashtagsResp"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "creativecenter.trendingVideosResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/creativecenter.TrendingVideosResp"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "datasets.AirbnbMarketFacetResponse": {
       "properties": {
         "dataset": {
@@ -18824,6 +19047,13 @@
           },
           "type": "array"
         },
+        "by_job_family": {
+          "description": "ByJobFamily counts conservative ESCO/ISCO occupation-family\nclassifications; postings without sufficient evidence are omitted.",
+          "items": {
+            "$ref": "#/definitions/es.FacetItem"
+          },
+          "type": "array"
+        },
         "by_location": {
           "items": {
             "$ref": "#/definitions/es.FacetItem"
@@ -18837,6 +19067,13 @@
           "type": "array"
         },
         "by_security_clearance": {
+          "items": {
+            "$ref": "#/definitions/es.FacetItem"
+          },
+          "type": "array"
+        },
+        "by_seniority": {
+          "description": "BySeniority counts the mutually exclusive entry/mid/senior\nclassification over open postings.",
           "items": {
             "$ref": "#/definitions/es.FacetItem"
           },
@@ -33295,6 +33532,987 @@
         },
         "msg": {
           "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.BoxscorePlayer": {
+      "properties": {
+        "batting_order": {
+          "type": "string"
+        },
+        "person": {
+          "$ref": "#/definitions/mlb.NamedRef"
+        },
+        "position": {
+          "type": "string"
+        },
+        "stats": {
+          "additionalProperties": {
+            "additionalProperties": {},
+            "type": "object"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.BoxscoreResponse": {
+      "properties": {
+        "away": {
+          "$ref": "#/definitions/mlb.BoxscoreTeam"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "game_id": {
+          "type": "integer"
+        },
+        "home": {
+          "$ref": "#/definitions/mlb.BoxscoreTeam"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.BoxscoreTeam": {
+      "properties": {
+        "players": {
+          "items": {
+            "$ref": "#/definitions/mlb.BoxscorePlayer"
+          },
+          "type": "array"
+        },
+        "team": {
+          "$ref": "#/definitions/mlb.TeamRef"
+        },
+        "team_stats": {
+          "additionalProperties": {
+            "additionalProperties": {},
+            "type": "object"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.Decision": {
+      "properties": {
+        "loser": {
+          "$ref": "#/definitions/mlb.NamedRef"
+        },
+        "save": {
+          "$ref": "#/definitions/mlb.NamedRef"
+        },
+        "winner": {
+          "$ref": "#/definitions/mlb.NamedRef"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.GameResponse": {
+      "properties": {
+        "away_boxscore": {
+          "$ref": "#/definitions/mlb.TeamBoxscore"
+        },
+        "decisions": {
+          "$ref": "#/definitions/mlb.Decision"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "game": {
+          "$ref": "#/definitions/mlb.GameSummary"
+        },
+        "home_boxscore": {
+          "$ref": "#/definitions/mlb.TeamBoxscore"
+        },
+        "linescore": {
+          "$ref": "#/definitions/mlb.Linescore"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.GameSide": {
+      "properties": {
+        "losses": {
+          "type": "integer"
+        },
+        "probable_pitcher": {
+          "$ref": "#/definitions/mlb.NamedRef"
+        },
+        "score": {
+          "type": "integer"
+        },
+        "team": {
+          "$ref": "#/definitions/mlb.TeamRef"
+        },
+        "wins": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.GameStatus": {
+      "properties": {
+        "abstract": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "detailed": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.GameSummary": {
+      "properties": {
+        "away": {
+          "$ref": "#/definitions/mlb.GameSide"
+        },
+        "day_night": {
+          "type": "string"
+        },
+        "double_header": {
+          "type": "string"
+        },
+        "game_date": {
+          "type": "string"
+        },
+        "game_number": {
+          "type": "integer"
+        },
+        "game_type": {
+          "type": "string"
+        },
+        "home": {
+          "$ref": "#/definitions/mlb.GameSide"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "official_date": {
+          "type": "string"
+        },
+        "scheduled_innings": {
+          "type": "integer"
+        },
+        "season": {
+          "type": "string"
+        },
+        "series_description": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/mlb.GameStatus"
+        },
+        "venue": {
+          "$ref": "#/definitions/mlb.VenueRef"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.Inning": {
+      "properties": {
+        "away_errors": {
+          "type": "integer"
+        },
+        "away_hits": {
+          "type": "integer"
+        },
+        "away_runs": {
+          "type": "integer"
+        },
+        "home_errors": {
+          "type": "integer"
+        },
+        "home_hits": {
+          "type": "integer"
+        },
+        "home_runs": {
+          "type": "integer"
+        },
+        "number": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.Linescore": {
+      "properties": {
+        "away_errors": {
+          "type": "integer"
+        },
+        "away_hits": {
+          "type": "integer"
+        },
+        "away_runs": {
+          "type": "integer"
+        },
+        "current_inning": {
+          "type": "integer"
+        },
+        "home_errors": {
+          "type": "integer"
+        },
+        "home_hits": {
+          "type": "integer"
+        },
+        "home_runs": {
+          "type": "integer"
+        },
+        "inning_state": {
+          "type": "string"
+        },
+        "innings": {
+          "items": {
+            "$ref": "#/definitions/mlb.Inning"
+          },
+          "type": "array"
+        },
+        "scheduled_innings": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.NamedRef": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.Play": {
+      "properties": {
+        "at_bat_index": {
+          "type": "integer"
+        },
+        "batter": {
+          "$ref": "#/definitions/mlb.NamedRef"
+        },
+        "description": {
+          "type": "string"
+        },
+        "event": {
+          "type": "string"
+        },
+        "event_type": {
+          "type": "string"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/definitions/mlb.PlayEvent"
+          },
+          "type": "array"
+        },
+        "half_inning": {
+          "type": "string"
+        },
+        "inning": {
+          "type": "integer"
+        },
+        "is_complete": {
+          "type": "boolean"
+        },
+        "pitcher": {
+          "$ref": "#/definitions/mlb.NamedRef"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.PlayByPlayResponse": {
+      "properties": {
+        "fetched_at": {
+          "type": "string"
+        },
+        "game_id": {
+          "type": "integer"
+        },
+        "plays": {
+          "items": {
+            "$ref": "#/definitions/mlb.Play"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.PlayEvent": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "details": {
+          "additionalProperties": {},
+          "type": "object"
+        },
+        "end_time": {
+          "type": "string"
+        },
+        "index": {
+          "type": "integer"
+        },
+        "is_pitch": {
+          "type": "boolean"
+        },
+        "pitch_data": {
+          "additionalProperties": {},
+          "type": "object"
+        },
+        "pitch_number": {
+          "type": "integer"
+        },
+        "start_time": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.Player": {
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "bat_side": {
+          "type": "string"
+        },
+        "birth_city": {
+          "type": "string"
+        },
+        "birth_country": {
+          "type": "string"
+        },
+        "birth_date": {
+          "type": "string"
+        },
+        "current_age": {
+          "type": "integer"
+        },
+        "current_team": {
+          "$ref": "#/definitions/mlb.TeamRef"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "height": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "mlb_debut_date": {
+          "type": "string"
+        },
+        "pitch_hand": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "position_code": {
+          "type": "string"
+        },
+        "primary_number": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.PlayerResponse": {
+      "properties": {
+        "fetched_at": {
+          "type": "string"
+        },
+        "player": {
+          "$ref": "#/definitions/mlb.Player"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.RosterPlayer": {
+      "properties": {
+        "jersey_number": {
+          "type": "string"
+        },
+        "person": {
+          "$ref": "#/definitions/mlb.NamedRef"
+        },
+        "position": {
+          "type": "string"
+        },
+        "position_code": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.RosterResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "players": {
+          "items": {
+            "$ref": "#/definitions/mlb.RosterPlayer"
+          },
+          "type": "array"
+        },
+        "roster_type": {
+          "type": "string"
+        },
+        "season": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "team_id": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.ScheduleResponse": {
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "end_date": {
+          "type": "string"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "games": {
+          "items": {
+            "$ref": "#/definitions/mlb.GameSummary"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "start_date": {
+          "type": "string"
+        },
+        "team_id": {
+          "type": "integer"
+        },
+        "total_games": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.StandingsGroup": {
+      "properties": {
+        "division": {
+          "$ref": "#/definitions/mlb.NamedRef"
+        },
+        "league": {
+          "$ref": "#/definitions/mlb.NamedRef"
+        },
+        "teams": {
+          "items": {
+            "$ref": "#/definitions/mlb.StandingsTeam"
+          },
+          "type": "array"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.StandingsResponse": {
+      "properties": {
+        "fetched_at": {
+          "type": "string"
+        },
+        "groups": {
+          "items": {
+            "$ref": "#/definitions/mlb.StandingsGroup"
+          },
+          "type": "array"
+        },
+        "season": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.StandingsTeam": {
+      "properties": {
+        "clinched": {
+          "type": "boolean"
+        },
+        "division_leader": {
+          "type": "boolean"
+        },
+        "division_rank": {
+          "type": "string"
+        },
+        "games_back": {
+          "type": "string"
+        },
+        "league_rank": {
+          "type": "string"
+        },
+        "losses": {
+          "type": "integer"
+        },
+        "run_differential": {
+          "type": "integer"
+        },
+        "runs_allowed": {
+          "type": "integer"
+        },
+        "runs_scored": {
+          "type": "integer"
+        },
+        "streak": {
+          "type": "string"
+        },
+        "team": {
+          "$ref": "#/definitions/mlb.TeamRef"
+        },
+        "wild_card_games_back": {
+          "type": "string"
+        },
+        "winning_percentage": {
+          "type": "string"
+        },
+        "wins": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.StatSplit": {
+      "properties": {
+        "league": {
+          "$ref": "#/definitions/mlb.NamedRef"
+        },
+        "player": {
+          "$ref": "#/definitions/mlb.NamedRef"
+        },
+        "position": {
+          "type": "string"
+        },
+        "rank": {
+          "type": "integer"
+        },
+        "season": {
+          "type": "string"
+        },
+        "stats": {
+          "additionalProperties": {},
+          "type": "object"
+        },
+        "team": {
+          "$ref": "#/definitions/mlb.TeamRef"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.StatsResponse": {
+      "properties": {
+        "fetched_at": {
+          "type": "string"
+        },
+        "group": {
+          "type": "string"
+        },
+        "player_id": {
+          "type": "integer"
+        },
+        "season": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "splits": {
+          "items": {
+            "$ref": "#/definitions/mlb.StatSplit"
+          },
+          "type": "array"
+        },
+        "team_id": {
+          "type": "integer"
+        },
+        "total": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.Team": {
+      "properties": {
+        "abbreviation": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "club_name": {
+          "type": "string"
+        },
+        "division": {
+          "$ref": "#/definitions/mlb.NamedRef"
+        },
+        "first_year_of_play": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "league": {
+          "$ref": "#/definitions/mlb.NamedRef"
+        },
+        "location_name": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "season": {
+          "type": "integer"
+        },
+        "venue": {
+          "$ref": "#/definitions/mlb.VenueRef"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.TeamBoxscore": {
+      "properties": {
+        "batters": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "pitchers": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "players_used": {
+          "type": "integer"
+        },
+        "team": {
+          "$ref": "#/definitions/mlb.TeamRef"
+        },
+        "team_stats": {
+          "additionalProperties": {
+            "additionalProperties": {},
+            "type": "object"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.TeamRef": {
+      "properties": {
+        "abbreviation": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.TeamsResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "season": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "teams": {
+          "items": {
+            "$ref": "#/definitions/mlb.Team"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.Transaction": {
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "effective_date": {
+          "type": "string"
+        },
+        "from_team": {
+          "$ref": "#/definitions/mlb.TeamRef"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "player": {
+          "$ref": "#/definitions/mlb.NamedRef"
+        },
+        "to_team": {
+          "$ref": "#/definitions/mlb.TeamRef"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.TransactionsResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "end_date": {
+          "type": "string"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "start_date": {
+          "type": "string"
+        },
+        "transactions": {
+          "items": {
+            "$ref": "#/definitions/mlb.Transaction"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.VenueRef": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.boxscoreResponseDoc": {
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/mlb.BoxscoreResponse"
+        },
+        "msg": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.gameResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/mlb.GameResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.playByPlayResponseDoc": {
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/mlb.PlayByPlayResponse"
+        },
+        "msg": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.playerResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/mlb.PlayerResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.rosterResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/mlb.RosterResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.scheduleResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/mlb.ScheduleResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.standingsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/mlb.StandingsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.statsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/mlb.StatsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.teamsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/mlb.TeamsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "mlb.transactionsResponseDoc": {
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/mlb.TransactionsResponse"
+        },
+        "msg": {
           "type": "string"
         }
       },
@@ -51730,6 +52948,760 @@
       },
       "type": "object"
     },
+    "target.Answer": {
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "helpful": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "submitted_at": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "target.Availability": {
+      "properties": {
+        "backup_store": {
+          "type": "boolean"
+        },
+        "primary_store": {
+          "type": "boolean"
+        },
+        "scheduled_delivery": {
+          "type": "boolean"
+        },
+        "shipping": {
+          "type": "boolean"
+        },
+        "sold_out": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "target.Breadcrumb": {
+      "properties": {
+        "id": {
+          "example": "4yi5p",
+          "type": "string"
+        },
+        "name": {
+          "example": "Coffee",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "target.CategoriesResponse": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/definitions/target.Category"
+          },
+          "type": "array"
+        },
+        "count": {
+          "example": 29,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "group_count": {
+          "example": 16,
+          "type": "integer"
+        },
+        "groups": {
+          "items": {
+            "$ref": "#/definitions/target.CategoryGroup"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "target.Category": {
+      "properties": {
+        "id": {
+          "example": "5xt1a",
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Grocery",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.target.com/c/grocery/-/N-5xt1a",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "target.CategoryGroup": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/definitions/target.Category"
+          },
+          "type": "array"
+        },
+        "name": {
+          "example": "Grocery",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "target.CategoryProductsResponse": {
+      "properties": {
+        "applied_filter_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "category_id": {
+          "example": "5q0ga",
+          "type": "string"
+        },
+        "count": {
+          "example": 24,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "filter_groups": {
+          "items": {
+            "$ref": "#/definitions/target.FilterGroup"
+          },
+          "type": "array"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "page_size": {
+          "example": 24,
+          "type": "integer"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/definitions/target.ProductSummary"
+          },
+          "type": "array"
+        },
+        "sort": {
+          "example": "featured",
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "store_id": {
+          "example": 2885,
+          "type": "integer"
+        },
+        "total": {
+          "example": 4158,
+          "type": "integer"
+        },
+        "total_pages": {
+          "example": 50,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "target.FilterGroup": {
+      "properties": {
+        "display_name": {
+          "example": "Deals",
+          "type": "string"
+        },
+        "expanded": {
+          "type": "boolean"
+        },
+        "id": {
+          "example": "d_deals",
+          "type": "string"
+        },
+        "options": {
+          "items": {
+            "$ref": "#/definitions/target.FilterOption"
+          },
+          "type": "array"
+        },
+        "type": {
+          "example": "checkbox",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "target.FilterOption": {
+      "properties": {
+        "display_name": {
+          "example": "Clearance",
+          "type": "string"
+        },
+        "id": {
+          "example": "5tdv1",
+          "type": "string"
+        },
+        "selected": {
+          "type": "boolean"
+        },
+        "url": {
+          "example": "d_deals:clearance",
+          "type": "string"
+        },
+        "value": {
+          "example": "clearance",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "target.FilterOptionsResponse": {
+      "properties": {
+        "applied_filter_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "category_id": {
+          "example": "5q0ga",
+          "type": "string"
+        },
+        "count": {
+          "example": 7,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "filter_groups": {
+          "items": {
+            "$ref": "#/definitions/target.FilterGroup"
+          },
+          "type": "array"
+        },
+        "query": {
+          "example": "coffee",
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "store_id": {
+          "example": 2885,
+          "type": "integer"
+        },
+        "total": {
+          "example": 4158,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "target.Price": {
+      "properties": {
+        "current": {
+          "example": 12.79,
+          "type": "number"
+        },
+        "formatted": {
+          "example": "$12.79",
+          "type": "string"
+        },
+        "regular": {
+          "example": 12.79,
+          "type": "number"
+        },
+        "store_id": {
+          "example": 2885,
+          "type": "integer"
+        },
+        "unit_formatted": {
+          "example": "$1.07/ounce",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "target.Product": {
+      "properties": {
+        "availability": {
+          "$ref": "#/definitions/target.Availability"
+        },
+        "brand": {
+          "example": "Starbucks",
+          "type": "string"
+        },
+        "breadcrumbs": {
+          "items": {
+            "$ref": "#/definitions/target.Breadcrumb"
+          },
+          "type": "array"
+        },
+        "bullets": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "category": {
+          "example": "Ground Coffee",
+          "type": "string"
+        },
+        "category_id": {
+          "example": "x2hqv",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "dpci": {
+          "example": "231-10-1932",
+          "type": "string"
+        },
+        "images": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "item_type": {
+          "example": "Coffee",
+          "type": "string"
+        },
+        "parent_category_id": {
+          "example": "4yi5p",
+          "type": "string"
+        },
+        "parent_tcin": {
+          "example": "89169599",
+          "type": "string"
+        },
+        "price": {
+          "$ref": "#/definitions/target.Price"
+        },
+        "primary_image_url": {
+          "type": "string"
+        },
+        "rating": {
+          "$ref": "#/definitions/target.Rating"
+        },
+        "specifications": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tcin": {
+          "example": "12954151",
+          "type": "string"
+        },
+        "title": {
+          "example": "Starbucks Pike Place Roast Medium Ground Coffee - 12oz",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "target.ProductResponse": {
+      "properties": {
+        "fetched_at": {
+          "type": "string"
+        },
+        "product": {
+          "$ref": "#/definitions/target.Product"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "store_id": {
+          "example": 2885,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "target.ProductSummary": {
+      "properties": {
+        "brand": {
+          "example": "Starbucks",
+          "type": "string"
+        },
+        "category_id": {
+          "example": "x2hqv",
+          "type": "string"
+        },
+        "parent_category_id": {
+          "example": "4yi5p",
+          "type": "string"
+        },
+        "parent_tcin": {
+          "example": "89169599",
+          "type": "string"
+        },
+        "price": {
+          "$ref": "#/definitions/target.Price"
+        },
+        "primary_image_url": {
+          "type": "string"
+        },
+        "rating": {
+          "$ref": "#/definitions/target.Rating"
+        },
+        "tcin": {
+          "example": "12954151",
+          "type": "string"
+        },
+        "title": {
+          "example": "Starbucks Pike Place Roast Medium Ground Coffee - 12oz",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "target.Question": {
+      "properties": {
+        "answers": {
+          "items": {
+            "$ref": "#/definitions/target.Answer"
+          },
+          "type": "array"
+        },
+        "author": {
+          "type": "string"
+        },
+        "helpful": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "submitted_at": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "target.QuestionsResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "questions": {
+          "items": {
+            "$ref": "#/definitions/target.Question"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "tcin": {
+          "type": "string"
+        },
+        "total_pages": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "target.Rating": {
+      "properties": {
+        "average": {
+          "example": 4.51,
+          "type": "number"
+        },
+        "rating_count": {
+          "example": 1586,
+          "type": "integer"
+        },
+        "review_count": {
+          "example": 1076,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "target.Review": {
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "helpful": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "integer"
+        },
+        "submitted_at": {
+          "type": "string"
+        },
+        "syndicated": {
+          "type": "boolean"
+        },
+        "text": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "verified": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "target.ReviewsResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "reviews": {
+          "items": {
+            "$ref": "#/definitions/target.Review"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "tcin": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        },
+        "total_pages": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "target.SearchResponse": {
+      "properties": {
+        "applied_filter_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "count": {
+          "example": 24,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "filter_groups": {
+          "items": {
+            "$ref": "#/definitions/target.FilterGroup"
+          },
+          "type": "array"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "page_size": {
+          "example": 24,
+          "type": "integer"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/definitions/target.ProductSummary"
+          },
+          "type": "array"
+        },
+        "query": {
+          "example": "coffee",
+          "type": "string"
+        },
+        "sort": {
+          "example": "relevance",
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "store_id": {
+          "example": 2885,
+          "type": "integer"
+        },
+        "total": {
+          "example": 20939,
+          "type": "integer"
+        },
+        "total_pages": {
+          "example": 50,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "target.categoriesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/target.CategoriesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "target.categoryProductsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/target.CategoryProductsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "target.filterOptionsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/target.FilterOptionsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "target.productResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/target.ProductResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "target.questionsResponseDoc": {
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/target.QuestionsResponse"
+        },
+        "msg": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "target.reviewsResponseDoc": {
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/target.ReviewsResponse"
+        },
+        "msg": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "target.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/target.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "techstack.Result": {
       "properties": {
         "categories": {
@@ -52175,6 +54147,748 @@
         },
         "data": {
           "$ref": "#/definitions/threads.SearchResult"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.Attraction": {
+      "properties": {
+        "classification": {
+          "$ref": "#/definitions/ticketmaster.Classification"
+        },
+        "discovery_id": {
+          "example": "K8vZ9172Qo7",
+          "type": "string"
+        },
+        "id": {
+          "example": "1688071",
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Ariana Grande",
+          "type": "string"
+        },
+        "synopsis": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.AttractionRef": {
+      "properties": {
+        "discovery_id": {
+          "example": "K8vZ9172Qo7",
+          "type": "string"
+        },
+        "id": {
+          "example": "1688071",
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Ariana Grande",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.AttractionResponse": {
+      "properties": {
+        "attraction": {
+          "$ref": "#/definitions/ticketmaster.Attraction"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.Classification": {
+      "properties": {
+        "genre": {
+          "example": "Pop",
+          "type": "string"
+        },
+        "segment": {
+          "example": "Music",
+          "type": "string"
+        },
+        "sub_genre": {
+          "example": "Electro Pop",
+          "type": "string"
+        },
+        "sub_type": {
+          "example": "Musician",
+          "type": "string"
+        },
+        "type": {
+          "example": "Individual",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.DiscoverCategoriesResponse": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.DiscoverCategory"
+          },
+          "type": "array"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "section": {
+          "type": "string"
+        },
+        "source_urls": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.DiscoverCategory": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "major": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "section": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.DiscoverCitiesResponse": {
+      "properties": {
+        "cities": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.DiscoverCity"
+          },
+          "type": "array"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "country": {
+          "type": "string"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.DiscoverCity": {
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.EventDetail": {
+      "properties": {
+        "attractions": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.AttractionRef"
+          },
+          "type": "array"
+        },
+        "cancelled": {
+          "type": "boolean"
+        },
+        "classification": {
+          "$ref": "#/definitions/ticketmaster.Classification"
+        },
+        "currency": {
+          "example": "USD",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "discovery_id": {
+          "example": "vv1A7ZkG_GkdqBxS4",
+          "type": "string"
+        },
+        "event_change_status": {
+          "example": "none",
+          "type": "string"
+        },
+        "event_type": {
+          "example": "STANDARD",
+          "type": "string"
+        },
+        "id": {
+          "example": "04006319DDEA2CD5",
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "limited_availability": {
+          "type": "boolean"
+        },
+        "onsale_time": {
+          "example": "2025-09-10T15:00:00Z",
+          "type": "string"
+        },
+        "postponed": {
+          "type": "boolean"
+        },
+        "presales": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.Presale"
+          },
+          "type": "array"
+        },
+        "product_type": {
+          "example": "General",
+          "type": "string"
+        },
+        "rescheduled": {
+          "type": "boolean"
+        },
+        "seatmap_url": {
+          "type": "string"
+        },
+        "sold_out": {
+          "type": "boolean"
+        },
+        "start_time": {
+          "example": "2026-08-04T02:00:00Z",
+          "type": "string"
+        },
+        "tba": {
+          "type": "boolean"
+        },
+        "ticketing_status": {
+          "example": "UNKNOWN",
+          "type": "string"
+        },
+        "time_zone": {
+          "example": "America/Chicago",
+          "type": "string"
+        },
+        "title": {
+          "example": "Ariana Grande - The Eternal Sunshine Tour",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "venue": {
+          "$ref": "#/definitions/ticketmaster.VenueRef"
+        },
+        "virtual": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.EventResponse": {
+      "properties": {
+        "event": {
+          "$ref": "#/definitions/ticketmaster.EventDetail"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.EventSummary": {
+      "properties": {
+        "attractions": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.AttractionRef"
+          },
+          "type": "array"
+        },
+        "cancelled": {
+          "type": "boolean"
+        },
+        "discovery_id": {
+          "example": "vv1A7ZkG_GkdqBxS4",
+          "type": "string"
+        },
+        "event_change_status": {
+          "example": "none",
+          "type": "string"
+        },
+        "id": {
+          "example": "04006319DDEA2CD5",
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "limited_availability": {
+          "type": "boolean"
+        },
+        "onsale_time": {
+          "example": "2025-09-10T15:00:00Z",
+          "type": "string"
+        },
+        "postponed": {
+          "type": "boolean"
+        },
+        "presales": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.Presale"
+          },
+          "type": "array"
+        },
+        "rescheduled": {
+          "type": "boolean"
+        },
+        "seatmap_url": {
+          "type": "string"
+        },
+        "sold_out": {
+          "type": "boolean"
+        },
+        "start_time": {
+          "example": "2026-08-04T02:00:00Z",
+          "type": "string"
+        },
+        "tba": {
+          "type": "boolean"
+        },
+        "ticketing_status": {
+          "example": "UNKNOWN",
+          "type": "string"
+        },
+        "time_zone": {
+          "example": "America/Chicago",
+          "type": "string"
+        },
+        "title": {
+          "example": "Ariana Grande - The Eternal Sunshine Tour",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "venue": {
+          "$ref": "#/definitions/ticketmaster.VenueRef"
+        },
+        "virtual": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.EventsResponse": {
+      "properties": {
+        "count": {
+          "example": 20,
+          "type": "integer"
+        },
+        "entity_id": {
+          "type": "string"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.EventSummary"
+          },
+          "type": "array"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "query": {
+          "type": "string"
+        },
+        "sort": {
+          "example": "date",
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "total": {
+          "example": 28,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.Presale": {
+      "properties": {
+        "end_time": {
+          "example": "2025-09-10T03:00:00Z",
+          "type": "string"
+        },
+        "name": {
+          "example": "Artist Presale",
+          "type": "string"
+        },
+        "start_time": {
+          "example": "2025-09-09T15:00:00Z",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.Suggestion": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "event_count": {
+          "type": "integer"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.SuggestionsResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "suggestions": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.Suggestion"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.Venue": {
+      "properties": {
+        "address": {
+          "example": "1901 W Madison",
+          "type": "string"
+        },
+        "city": {
+          "example": "Chicago",
+          "type": "string"
+        },
+        "country": {
+          "example": "US",
+          "type": "string"
+        },
+        "discovery_id": {
+          "example": "KovZpa2M7e",
+          "type": "string"
+        },
+        "id": {
+          "example": "32882",
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "info": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.VenueInfoBlock"
+          },
+          "type": "array"
+        },
+        "latitude": {
+          "example": 41.881244,
+          "type": "number"
+        },
+        "longitude": {
+          "example": -87.674274,
+          "type": "number"
+        },
+        "name": {
+          "example": "United Center",
+          "type": "string"
+        },
+        "postal_code": {
+          "example": "60612",
+          "type": "string"
+        },
+        "state": {
+          "example": "IL",
+          "type": "string"
+        },
+        "time_zone": {
+          "example": "America/Chicago",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.VenueInfoBlock": {
+      "properties": {
+        "name": {
+          "example": "Parking",
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.VenueRef": {
+      "properties": {
+        "address": {
+          "example": "1901 W Madison",
+          "type": "string"
+        },
+        "city": {
+          "example": "Chicago",
+          "type": "string"
+        },
+        "country": {
+          "example": "US",
+          "type": "string"
+        },
+        "discovery_id": {
+          "example": "KovZpa2M7e",
+          "type": "string"
+        },
+        "id": {
+          "example": "32882",
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "latitude": {
+          "example": 41.881244,
+          "type": "number"
+        },
+        "longitude": {
+          "example": -87.674274,
+          "type": "number"
+        },
+        "name": {
+          "example": "United Center",
+          "type": "string"
+        },
+        "postal_code": {
+          "example": "60612",
+          "type": "string"
+        },
+        "state": {
+          "example": "IL",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.VenueResponse": {
+      "properties": {
+        "fetched_at": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "venue": {
+          "$ref": "#/definitions/ticketmaster.Venue"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.attractionResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/ticketmaster.AttractionResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.categoriesResponseDoc": {
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/ticketmaster.DiscoverCategoriesResponse"
+        },
+        "msg": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.citiesResponseDoc": {
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/ticketmaster.DiscoverCitiesResponse"
+        },
+        "msg": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.eventResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/ticketmaster.EventResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.eventsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/ticketmaster.EventsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.suggestionsResponseDoc": {
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/ticketmaster.SuggestionsResponse"
+        },
+        "msg": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.venueResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/ticketmaster.VenueResponse"
         },
         "msg": {
           "example": "OK",
@@ -79447,7 +82161,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Aggregations over all open postings: top companies hiring, breakdown by provider (every provider filterable via /datasets/jobs/search's `provider` param), department, location, employment type, and the remote share — a live hiring-market snapshot.",
+        "description": "Aggregations over all open postings: top companies hiring, breakdown by provider (every provider filterable via /datasets/jobs/search's `provider` param), department, location, employment type, skill, benefit, education, security clearance, seniority, and ESCO/ISCO job family, plus the remote share — a live hiring-market snapshot. Seniority uses one mutually exclusive value: `entry`, `mid`, or `senior`; ambiguous occupations are omitted from job-family buckets.",
         "operationId": "datasets-jobs-facets",
         "parameters": [
           {
@@ -79662,7 +82376,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Full-text + faceted search over every job posting crawled from every discovered company ATS board (Greenhouse, Lever, Ashby, Workday, SmartRecruiters, Workable, Recruitee, Rippling, Personio, Teamtailor, Oracle, UKG, iCIMS, Eightfold, Gem, Pinpoint) plus 5 single-company big-tech careers platforms (Amazon, Apple, Google, Meta, Tesla). Open roles only by default (set include_closed=true for historical/filled roles). Salary is parsed from a structured field when the provider has one, or from an explicit pay figure stated in the description otherwise, so coverage varies by posting rather than by provider; min_salary/max_salary filter on it and require salary_currency, since comparing raw compensation numbers across currencies is meaningless. Location is also exposed as structured city/state/country fields alongside the free-text location string, so city/state/country filter on an exact match of those parsed components rather than substring-matching the display string. employment_type is never populated for google-jobs/meta-jobs, and posted_at (so sort=posted_desc) is never populated for meta-jobs/tesla-jobs -- their upstream APIs expose no such field. provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`, `gem`, `pinpoint`, `amazon-jobs`, `apple-jobs`, `google-jobs`, `meta-jobs`, `tesla-jobs`. workplace_type enum: `onsite`, `hybrid`, `remote`. sort enum: `relevance`, `posted_desc`, `company_asc`.",
+        "description": "Full-text + faceted search over every job posting crawled from every discovered company ATS board (Greenhouse, Lever, Ashby, Workday, SmartRecruiters, Workable, Recruitee, Rippling, Personio, Teamtailor, Oracle, UKG, iCIMS, Eightfold, Gem, Pinpoint) plus 5 single-company big-tech careers platforms (Amazon, Apple, Google, Meta, Tesla). Open roles only by default (set include_closed=true for historical/filled roles). Salary is parsed from a structured field when the provider has one, or from an explicit pay figure stated in the description otherwise, so coverage varies by posting rather than by provider; min_salary/max_salary filter on it and require salary_currency, since comparing raw compensation numbers across currencies is meaningless. Location is also exposed as structured city/state/country fields alongside the free-text location string, so city/state/country filter on an exact match of those parsed components rather than substring-matching the display string. job_family is an exact level-2 ISCO family label assigned from ESCO occupation evidence; ambiguous postings remain unclassified and do not match that filter. employment_type is never populated for google-jobs/meta-jobs, and posted_at (so sort=posted_desc) is never populated for meta-jobs/tesla-jobs -- their upstream APIs expose no such field. provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`, `gem`, `pinpoint`, `amazon-jobs`, `apple-jobs`, `google-jobs`, `meta-jobs`, `tesla-jobs`. workplace_type enum: `onsite`, `hybrid`, `remote`. sort enum: `relevance`, `posted_desc`, `company_asc`.",
         "operationId": "datasets-jobs-search",
         "parameters": [
           {
@@ -79740,6 +82454,12 @@
             "description": "Exact employment-type filter",
             "in": "query",
             "name": "employment_type",
+            "type": "string"
+          },
+          {
+            "description": "Exact ESCO/ISCO job-family label filter",
+            "in": "query",
+            "name": "job_family",
             "type": "string"
           },
           {
@@ -104586,6 +107306,810 @@
         ]
       }
     },
+    "/mlb/game": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a compact MLB game feed with status, teams, score, innings, probable pitchers, decisions, and team box-score totals.",
+        "operationId": "mlb-game",
+        "parameters": [
+          {
+            "description": "Numeric MLB game id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "822781"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/mlb.gameResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get an MLB game feed",
+        "tags": [
+          "MLB"
+        ]
+      }
+    },
+    "/mlb/game-boxscore": {
+      "get": {
+        "description": "Returns both teams' player batting, pitching, and fielding lines for a game.",
+        "operationId": "mlb-game-boxscore",
+        "parameters": [
+          {
+            "description": "Numeric MLB game id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/mlb.boxscoreResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get an MLB player boxscore",
+        "tags": [
+          "MLB"
+        ]
+      }
+    },
+    "/mlb/game-play-by-play": {
+      "get": {
+        "description": "Returns every at-bat and pitch/event record for an MLB game.",
+        "operationId": "mlb-game-play-by-play",
+        "parameters": [
+          {
+            "description": "Numeric MLB game id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/mlb.playByPlayResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get MLB game play-by-play",
+        "tags": [
+          "MLB"
+        ]
+      }
+    },
+    "/mlb/league-stats": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns ranked MLB season stat splits across both leagues. The group enum accepts `hitting`, `pitching`, and `fielding`.",
+        "operationId": "mlb-league-stats",
+        "parameters": [
+          {
+            "description": "Four-digit season; defaults to current year",
+            "in": "query",
+            "name": "season",
+            "type": "integer",
+            "x-example": 2026
+          },
+          {
+            "description": "Stat group",
+            "enum": [
+              "hitting",
+              "pitching",
+              "fielding"
+            ],
+            "in": "query",
+            "name": "group",
+            "required": true,
+            "type": "string",
+            "x-example": "hitting"
+          },
+          {
+            "default": 10,
+            "description": "Results to return (1-100)",
+            "in": "query",
+            "maximum": 100,
+            "minimum": 1,
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/mlb.statsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get ranked MLB league statistics",
+        "tags": [
+          "MLB"
+        ]
+      }
+    },
+    "/mlb/player": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns an MLB player's identity, biographical information, position, handedness, active status, and current team.",
+        "operationId": "mlb-player",
+        "parameters": [
+          {
+            "description": "Numeric MLB player id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "592450"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/mlb.playerResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get an MLB player",
+        "tags": [
+          "MLB"
+        ]
+      }
+    },
+    "/mlb/player-stats": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one player's MLB season statistics. The group enum accepts `hitting`, `pitching`, and `fielding`.",
+        "operationId": "mlb-player-stats",
+        "parameters": [
+          {
+            "description": "Numeric MLB player id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "592450"
+          },
+          {
+            "description": "Four-digit season; defaults to current year",
+            "in": "query",
+            "name": "season",
+            "type": "integer",
+            "x-example": 2026
+          },
+          {
+            "description": "Stat group",
+            "enum": [
+              "hitting",
+              "pitching",
+              "fielding"
+            ],
+            "in": "query",
+            "name": "group",
+            "required": true,
+            "type": "string",
+            "x-example": "hitting"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/mlb.statsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get MLB player season statistics",
+        "tags": [
+          "MLB"
+        ]
+      }
+    },
+    "/mlb/schedule": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns MLB games, teams, scores, status, probable pitchers, venue, and series information for one date or date range, optionally filtered to a team.",
+        "operationId": "mlb-schedule",
+        "parameters": [
+          {
+            "description": "Single date in YYYY-MM-DD format",
+            "in": "query",
+            "name": "date",
+            "type": "string",
+            "x-example": "2026-08-01"
+          },
+          {
+            "description": "Range start in YYYY-MM-DD format",
+            "in": "query",
+            "name": "start_date",
+            "type": "string"
+          },
+          {
+            "description": "Range end in YYYY-MM-DD format",
+            "in": "query",
+            "name": "end_date",
+            "type": "string"
+          },
+          {
+            "description": "Numeric MLB team id",
+            "in": "query",
+            "name": "team_id",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/mlb.scheduleResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get the MLB schedule and scores",
+        "tags": [
+          "MLB"
+        ]
+      }
+    },
+    "/mlb/standings": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns American League and National League standings grouped by division. The type enum accepts `regularSeason`, `wildCard`, and `springTraining`.",
+        "operationId": "mlb-standings",
+        "parameters": [
+          {
+            "description": "Four-digit season; defaults to current year",
+            "in": "query",
+            "name": "season",
+            "type": "integer",
+            "x-example": 2026
+          },
+          {
+            "default": "regularSeason",
+            "description": "Standings type",
+            "enum": [
+              "regularSeason",
+              "wildCard",
+              "springTraining"
+            ],
+            "in": "query",
+            "name": "type",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/mlb.standingsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get MLB standings",
+        "tags": [
+          "MLB"
+        ]
+      }
+    },
+    "/mlb/team-roster": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a team's players, jersey numbers, positions, and roster status. The roster_type enum accepts `active`, `40Man`, and `fullSeason`.",
+        "operationId": "mlb-team-roster",
+        "parameters": [
+          {
+            "description": "Numeric MLB team id",
+            "in": "query",
+            "name": "team_id",
+            "required": true,
+            "type": "string",
+            "x-example": "147"
+          },
+          {
+            "description": "Four-digit season; defaults to current year",
+            "in": "query",
+            "name": "season",
+            "type": "integer",
+            "x-example": 2026
+          },
+          {
+            "default": "active",
+            "description": "Roster type",
+            "enum": [
+              "active",
+              "40Man",
+              "fullSeason"
+            ],
+            "in": "query",
+            "name": "roster_type",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/mlb.rosterResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get an MLB team roster",
+        "tags": [
+          "MLB"
+        ]
+      }
+    },
+    "/mlb/team-stats": {
+      "get": {
+        "description": "Returns one team's season statistics. Group accepts `hitting`, `pitching`, and `fielding`.",
+        "operationId": "mlb-team-stats",
+        "parameters": [
+          {
+            "description": "Numeric MLB team id",
+            "in": "query",
+            "name": "team_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Four-digit season",
+            "in": "query",
+            "name": "season",
+            "type": "integer"
+          },
+          {
+            "description": "Statistics group",
+            "enum": [
+              "hitting",
+              "pitching",
+              "fielding"
+            ],
+            "in": "query",
+            "name": "group",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/mlb.statsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get MLB team season statistics",
+        "tags": [
+          "MLB"
+        ]
+      }
+    },
+    "/mlb/teams": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the 30 MLB clubs for a season with league, division, venue, and abbreviation metadata.",
+        "operationId": "mlb-teams",
+        "parameters": [
+          {
+            "description": "Four-digit season; defaults to current year",
+            "in": "query",
+            "name": "season",
+            "type": "integer",
+            "x-example": 2026
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/mlb.teamsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List MLB teams",
+        "tags": [
+          "MLB"
+        ]
+      }
+    },
+    "/mlb/transactions": {
+      "get": {
+        "description": "Lists signings, trades, options, assignments, injured-list moves, and other MLB transactions for a date range.",
+        "operationId": "mlb-transactions",
+        "parameters": [
+          {
+            "description": "Range start in YYYY-MM-DD format",
+            "in": "query",
+            "name": "start_date",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Range end in YYYY-MM-DD format",
+            "in": "query",
+            "name": "end_date",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Numeric MLB team id",
+            "in": "query",
+            "name": "team_id",
+            "type": "string"
+          },
+          {
+            "description": "Numeric MLB player id",
+            "in": "query",
+            "name": "player_id",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/mlb.transactionsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List MLB transactions",
+        "tags": [
+          "MLB"
+        ]
+      }
+    },
     "/numbeo/cost-of-living/city/{slug}": {
       "get": {
         "consumes": [
@@ -122648,6 +126172,510 @@
         ]
       }
     },
+    "/target/categories": {
+      "get": {
+        "description": "Returns Target's current top-level category menu and the complete grouped shop-all directory, including category ids and canonical URLs.",
+        "operationId": "target-categories",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/target.categoriesResponseDoc"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List all Target categories",
+        "tags": [
+          "Target"
+        ]
+      }
+    },
+    "/target/category-products": {
+      "get": {
+        "description": "Returns paginated products for any category id from target-categories. Each response also contains every available dynamic filter group and option. Pass selected option ids through filter_ids as a comma-separated list. The sort enum accepts `relevance`, `featured`, `price-low`, `price-high`, `rating`, `bestselling`, and `newest`.",
+        "operationId": "target-category-products",
+        "parameters": [
+          {
+            "description": "Target category id",
+            "in": "query",
+            "name": "category_id",
+            "required": true,
+            "type": "string",
+            "x-example": "5q0ga"
+          },
+          {
+            "default": 1,
+            "description": "One-based page (1-50)",
+            "in": "query",
+            "maximum": 50,
+            "minimum": 1,
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "default": "featured",
+            "description": "Result order",
+            "enum": [
+              "relevance",
+              "featured",
+              "price-low",
+              "price-high",
+              "rating",
+              "bestselling",
+              "newest"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "default": 2885,
+            "description": "Target store id used for pricing",
+            "in": "query",
+            "minimum": 1,
+            "name": "store_id",
+            "type": "integer"
+          },
+          {
+            "description": "Comma-separated Target filter option ids",
+            "in": "query",
+            "name": "filter_ids",
+            "type": "string",
+            "x-example": "5tdv1,fwtfr"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/target.categoryProductsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Browse Target category products",
+        "tags": [
+          "Target"
+        ]
+      }
+    },
+    "/target/filter-options": {
+      "get": {
+        "description": "Returns every dynamic filter group and option for either a product query or category. Provide exactly one of q or category_id. Pass currently selected option ids through filter_ids to obtain the remaining context-aware options.",
+        "operationId": "target-filter-options",
+        "parameters": [
+          {
+            "description": "Product search query; mutually exclusive with category_id",
+            "in": "query",
+            "name": "q",
+            "type": "string",
+            "x-example": "coffee"
+          },
+          {
+            "description": "Target category id; mutually exclusive with q",
+            "in": "query",
+            "name": "category_id",
+            "type": "string",
+            "x-example": "5q0ga"
+          },
+          {
+            "default": 2885,
+            "description": "Target store id used for pricing",
+            "in": "query",
+            "minimum": 1,
+            "name": "store_id",
+            "type": "integer"
+          },
+          {
+            "description": "Comma-separated selected Target filter option ids",
+            "in": "query",
+            "name": "filter_ids",
+            "type": "string",
+            "x-example": "5tdv1,fwtfr"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/target.filterOptionsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Target filter options",
+        "tags": [
+          "Target"
+        ]
+      }
+    },
+    "/target/product": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized product details for one Target item, including product content, images, price, rating, category, and availability flags for the selected store.",
+        "operationId": "target-product",
+        "parameters": [
+          {
+            "description": "Numeric Target item id (TCIN)",
+            "in": "query",
+            "name": "tcin",
+            "required": true,
+            "type": "string",
+            "x-example": "12954151"
+          },
+          {
+            "default": 2885,
+            "description": "Target store id used for pricing and availability",
+            "in": "query",
+            "minimum": 1,
+            "name": "store_id",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/target.productResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Target product",
+        "tags": [
+          "Target"
+        ]
+      }
+    },
+    "/target/questions": {
+      "get": {
+        "description": "Returns paginated product questions with their nested answers.",
+        "operationId": "target-questions",
+        "parameters": [
+          {
+            "description": "Numeric Target item id",
+            "in": "query",
+            "name": "tcin",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Zero-based page",
+            "in": "query",
+            "minimum": 0,
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "default": 25,
+            "description": "Questions per page",
+            "in": "query",
+            "maximum": 25,
+            "minimum": 1,
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/target.questionsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Target product questions and answers",
+        "tags": [
+          "Target"
+        ]
+      }
+    },
+    "/target/reviews": {
+      "get": {
+        "description": "Returns paginated written reviews for a Target item. Pagination is zero-based and page 50 is the upstream maximum.",
+        "operationId": "target-reviews",
+        "parameters": [
+          {
+            "description": "Numeric Target item id",
+            "in": "query",
+            "name": "tcin",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Zero-based page",
+            "in": "query",
+            "maximum": 50,
+            "minimum": 0,
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "default": 25,
+            "description": "Reviews per page",
+            "in": "query",
+            "maximum": 25,
+            "minimum": 1,
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/target.reviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Target product reviews",
+        "tags": [
+          "Target"
+        ]
+      }
+    },
+    "/target/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches Target products and returns normalized products plus every filter group and option available for the current result set. Pass option ids back through filter_ids as a comma-separated list. A zero total with an empty products list is a valid no-results response. The sort enum accepts `relevance`, `featured`, `price-low`, `price-high`, `rating`, `bestselling`, and `newest`.",
+        "operationId": "target-search",
+        "parameters": [
+          {
+            "description": "Product search query",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string",
+            "x-example": "coffee"
+          },
+          {
+            "default": 1,
+            "description": "One-based page (1-50)",
+            "in": "query",
+            "maximum": 50,
+            "minimum": 1,
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "default": "relevance",
+            "description": "Result order",
+            "enum": [
+              "relevance",
+              "featured",
+              "price-low",
+              "price-high",
+              "rating",
+              "bestselling",
+              "newest"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "default": 2885,
+            "description": "Target store id used for pricing",
+            "in": "query",
+            "minimum": 1,
+            "name": "store_id",
+            "type": "integer"
+          },
+          {
+            "description": "Comma-separated Target filter option ids",
+            "in": "query",
+            "name": "filter_ids",
+            "type": "string",
+            "x-example": "5tdv1,fwtfr"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/target.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Target products",
+        "tags": [
+          "Target"
+        ]
+      }
+    },
     "/tesla-jobs/job": {
       "get": {
         "consumes": [
@@ -123067,6 +127095,733 @@
         ]
       }
     },
+    "/ticketmaster/attraction": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized details for one Ticketmaster artist, team, or other attraction.",
+        "operationId": "ticketmaster-attraction",
+        "parameters": [
+          {
+            "description": "Numeric Ticketmaster attraction id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "1688071"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ticketmaster.attractionResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Ticketmaster attraction",
+        "tags": [
+          "Ticketmaster"
+        ]
+      }
+    },
+    "/ticketmaster/attraction-events": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns upcoming Ticketmaster events for one attraction. The sort enum accepts `relevance` and `date`.",
+        "operationId": "ticketmaster-attraction-events",
+        "parameters": [
+          {
+            "description": "Numeric Ticketmaster attraction id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "1688071"
+          },
+          {
+            "default": 0,
+            "description": "Zero-based page (0-49)",
+            "in": "query",
+            "maximum": 49,
+            "minimum": 0,
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "default": "date",
+            "description": "Result order",
+            "enum": [
+              "relevance",
+              "date"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ticketmaster.eventsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List an attraction's Ticketmaster events",
+        "tags": [
+          "Ticketmaster"
+        ]
+      }
+    },
+    "/ticketmaster/discover-categories": {
+      "get": {
+        "description": "Lists every current Concerts, Sports, Arts & Theater, and Family category with pagination. Section accepts `all`, `concerts`, `sports`, `arts-theater`, and `family`.",
+        "operationId": "ticketmaster-discover-categories",
+        "parameters": [
+          {
+            "default": "all",
+            "description": "Discover section",
+            "enum": [
+              "all",
+              "concerts",
+              "sports",
+              "arts-theater",
+              "family"
+            ],
+            "in": "query",
+            "name": "section",
+            "type": "string"
+          },
+          {
+            "default": 1,
+            "description": "One-based page",
+            "in": "query",
+            "minimum": 1,
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "default": 50,
+            "description": "Categories per page",
+            "in": "query",
+            "maximum": 100,
+            "minimum": 1,
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ticketmaster.categoriesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Ticketmaster discover categories",
+        "tags": [
+          "Ticketmaster"
+        ]
+      }
+    },
+    "/ticketmaster/discover-category-events": {
+      "get": {
+        "description": "Returns a zero-based paginated event feed for any category returned by ticketmaster-discover-categories.",
+        "operationId": "ticketmaster-discover-category-events",
+        "parameters": [
+          {
+            "description": "Ticketmaster discover category id",
+            "in": "query",
+            "name": "category_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Zero-based page",
+            "in": "query",
+            "maximum": 49,
+            "minimum": 0,
+            "name": "page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ticketmaster.eventsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List events in a Ticketmaster discover category",
+        "tags": [
+          "Ticketmaster"
+        ]
+      }
+    },
+    "/ticketmaster/discover-cities": {
+      "get": {
+        "description": "Lists Ticketmaster city discovery destinations for a country with pagination.",
+        "operationId": "ticketmaster-discover-cities",
+        "parameters": [
+          {
+            "default": "US",
+            "description": "Two-letter country code",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "default": 1,
+            "description": "One-based page",
+            "in": "query",
+            "minimum": 1,
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "default": 50,
+            "description": "Cities per page",
+            "in": "query",
+            "maximum": 100,
+            "minimum": 1,
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ticketmaster.citiesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Ticketmaster discover cities",
+        "tags": [
+          "Ticketmaster"
+        ]
+      }
+    },
+    "/ticketmaster/discover-city-events": {
+      "get": {
+        "description": "Returns a zero-based paginated event feed for a city slug returned by ticketmaster-discover-cities.",
+        "operationId": "ticketmaster-discover-city-events",
+        "parameters": [
+          {
+            "description": "Ticketmaster discover city slug",
+            "in": "query",
+            "name": "city",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "US",
+            "description": "Two-letter country code matching the selected city",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Zero-based page",
+            "in": "query",
+            "maximum": 49,
+            "minimum": 0,
+            "name": "page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ticketmaster.eventsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List events in a Ticketmaster discover city",
+        "tags": [
+          "Ticketmaster"
+        ]
+      }
+    },
+    "/ticketmaster/event": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized details for one Ticketmaster event, including its venue, attractions, timing, availability flags, and classification.",
+        "operationId": "ticketmaster-event",
+        "parameters": [
+          {
+            "description": "Ticketmaster event id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "04006319DDEA2CD5"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ticketmaster.eventResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Ticketmaster event",
+        "tags": [
+          "Ticketmaster"
+        ]
+      }
+    },
+    "/ticketmaster/search-events": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches Ticketmaster events by artist, event, team, or venue. A zero total with an empty events list is a valid no-results response. The sort enum accepts `relevance` and `date`.",
+        "operationId": "ticketmaster-search-events",
+        "parameters": [
+          {
+            "description": "Artist, event, team, or venue query",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string",
+            "x-example": "ariana grande"
+          },
+          {
+            "default": 0,
+            "description": "Zero-based page (0-49)",
+            "in": "query",
+            "maximum": 49,
+            "minimum": 0,
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "default": "relevance",
+            "description": "Result order",
+            "enum": [
+              "relevance",
+              "date"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ticketmaster.eventsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Ticketmaster events",
+        "tags": [
+          "Ticketmaster"
+        ]
+      }
+    },
+    "/ticketmaster/suggest": {
+      "get": {
+        "description": "Returns autocomplete suggestions for a partial query.",
+        "operationId": "ticketmaster-suggest",
+        "parameters": [
+          {
+            "description": "Partial artist, event, team, or venue query",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ticketmaster.suggestionsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Suggest Ticketmaster artists, events, and venues",
+        "tags": [
+          "Ticketmaster"
+        ]
+      }
+    },
+    "/ticketmaster/venue": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized details and visitor information for one Ticketmaster venue.",
+        "operationId": "ticketmaster-venue",
+        "parameters": [
+          {
+            "description": "Numeric Ticketmaster venue id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "32882"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ticketmaster.venueResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Ticketmaster venue",
+        "tags": [
+          "Ticketmaster"
+        ]
+      }
+    },
+    "/ticketmaster/venue-events": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns upcoming Ticketmaster events at one venue. The sort enum accepts `relevance` and `date`.",
+        "operationId": "ticketmaster-venue-events",
+        "parameters": [
+          {
+            "description": "Numeric Ticketmaster venue id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "32882"
+          },
+          {
+            "default": 0,
+            "description": "Zero-based page (0-49)",
+            "in": "query",
+            "maximum": 49,
+            "minimum": 0,
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "default": "date",
+            "description": "Result order",
+            "enum": [
+              "relevance",
+              "date"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ticketmaster.eventsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a venue's Ticketmaster events",
+        "tags": [
+          "Ticketmaster"
+        ]
+      }
+    },
     "/tiktok/category": {
       "get": {
         "consumes": [
@@ -123181,6 +127936,194 @@
         "summary": "Retrieve TikTok video comments",
         "tags": [
           "TikTok"
+        ]
+      }
+    },
+    "/tiktok/creative-center/hashtags": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns TikTok Creative Center's ranked trending hashtags for a country and period. TikTok gates this endpoint's full result set behind a logged-in TikTok One account: an anonymous request always receives at most 3 hashtags regardless of country or period.",
+        "operationId": "tiktok-creative-center-hashtags",
+        "parameters": [
+          {
+            "description": "ISO-2 country code",
+            "in": "query",
+            "name": "country_code",
+            "required": true,
+            "type": "string",
+            "x-example": "US"
+          },
+          {
+            "default": 7,
+            "description": "Lookback window in days",
+            "enum": [
+              7,
+              30
+            ],
+            "in": "query",
+            "name": "period",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Per-Second-Remaining": {
+                "description": "Number of remaining requests per second",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/creativecenter.trendingHashtagsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream failure",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve TikTok Creative Center trending hashtags",
+        "tags": [
+          "TikTok",
+          "TikTok Creative Center"
+        ]
+      }
+    },
+    "/tiktok/creative-center/videos": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns TikTok Creative Center's ranked trending videos for a country, period, and sort order. TikTok reports the true result-set size (see total_count/page_count in the response) but gates access to it behind a logged-in TikTok One account: an anonymous request always receives page 1 (4 videos) regardless of sort order or period. Country coverage is uneven: US, JP, ID, VN, and TH reliably return populated results; other countries have been observed to return an empty videos array (a genuine no-data response, not an error).",
+        "operationId": "tiktok-creative-center-videos",
+        "parameters": [
+          {
+            "description": "ISO-2 country code",
+            "in": "query",
+            "name": "country_code",
+            "required": true,
+            "type": "string",
+            "x-example": "US"
+          },
+          {
+            "default": 7,
+            "description": "Lookback window in days",
+            "enum": [
+              7,
+              30
+            ],
+            "in": "query",
+            "name": "period",
+            "type": "integer"
+          },
+          {
+            "default": "views",
+            "description": "Sort order",
+            "enum": [
+              "views",
+              "engagement",
+              "six_second_views"
+            ],
+            "in": "query",
+            "name": "sort_by",
+            "type": "string"
+          },
+          {
+            "description": "Content tag id to filter by",
+            "in": "query",
+            "name": "content_label_id",
+            "type": "string",
+            "x-example": "11015"
+          },
+          {
+            "default": false,
+            "description": "Restrict to organic (non-paid) videos only",
+            "in": "query",
+            "name": "organic_only",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Per-Second-Remaining": {
+                "description": "Number of remaining requests per second",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/creativecenter.trendingVideosResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Upstream failure",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Retrieve TikTok Creative Center trending videos",
+        "tags": [
+          "TikTok",
+          "TikTok Creative Center"
         ]
       }
     },

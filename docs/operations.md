@@ -2,7 +2,7 @@
 
 Generated from `openapi/public.json`. Deprecated, admin, and internal operations are excluded from this SDK contract.
 
-Total operations: `849`
+Total operations: `881`
 
 | Group | SDK method | Operation ID | HTTP | Params | Auth | Response | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -189,7 +189,7 @@ Total operations: `849`
 | Datasets | `Datasets.JobsFacets` | `datasets-jobs-facets` | `GET /datasets/jobs/facets` | `size` (query int) | `ApiKeyAuth` | `DatasetsJobsFacetsResponse` |  |
 | Datasets | `Datasets.JobsItem` | `datasets-jobs-item` | `GET /datasets/jobs/items/{id}` | `id` (path string required) | `ApiKeyAuth` | `DatasetsJobsItemResponse` |  |
 | Datasets | `Datasets.JobsNearby` | `datasets-jobs-nearby` | `GET /datasets/jobs/nearby` | `lat` (query float64 required)<br>`lon` (query float64 required)<br>`radius_km` (query float64)<br>`provider` (query string)<br>`include_closed` (query bool)<br>`page` (query int)<br>`page_size` (query int) | `ApiKeyAuth` | `DatasetsJobsNearbyResponse` |  |
-| Datasets | `Datasets.JobsSearch` | `datasets-jobs-search` | `GET /datasets/jobs/search` | `q` (query string)<br>`company` (query string)<br>`provider` (query string)<br>`department` (query string)<br>`location` (query string)<br>`city` (query string)<br>`state` (query string)<br>`country` (query string)<br>`employment_type` (query string)<br>`remote` (query bool)<br>`workplace_type` (query string)<br>`include_closed` (query bool)<br>`min_salary` (query float64)<br>`max_salary` (query float64)<br>`salary_currency` (query string)<br>`sort` (query string)<br>`page` (query int)<br>`page_size` (query int) | `ApiKeyAuth` | `DatasetsJobsSearchResponse` |  |
+| Datasets | `Datasets.JobsSearch` | `datasets-jobs-search` | `GET /datasets/jobs/search` | `q` (query string)<br>`company` (query string)<br>`provider` (query string)<br>`department` (query string)<br>`location` (query string)<br>`city` (query string)<br>`state` (query string)<br>`country` (query string)<br>`employment_type` (query string)<br>`job_family` (query string)<br>`remote` (query bool)<br>`workplace_type` (query string)<br>`include_closed` (query bool)<br>`min_salary` (query float64)<br>`max_salary` (query float64)<br>`salary_currency` (query string)<br>`sort` (query string)<br>`page` (query int)<br>`page_size` (query int) | `ApiKeyAuth` | `DatasetsJobsSearchResponse` |  |
 | Datasets | `Datasets.JournalistsFacets` | `datasets-journalists-facets` | `GET /datasets/journalists/facets` | `facet` (query string required)<br>`q` (query string)<br>`outlet` (query string)<br>`vertical` (query string)<br>`topic` (query string)<br>`contact_type` (query string) | `ApiKeyAuth` | `DatasetsJournalistsFacetsResponse` |  |
 | Datasets | `Datasets.JournalistsItem` | `datasets-journalists-item` | `GET /datasets/journalists/items/{outlet}/{slug}` | `outlet` (path string required)<br>`slug` (path string required) | `ApiKeyAuth` | `DatasetsJournalistsItemResponse` |  |
 | Datasets | `Datasets.JournalistsSearch` | `datasets-journalists-search` | `GET /datasets/journalists/search` | `q` (query string)<br>`outlet` (query string)<br>`vertical` (query string)<br>`topic` (query string)<br>`contact_type` (query string)<br>`sort` (query string)<br>`page` (query int)<br>`page_size` (query int) | `ApiKeyAuth` | `DatasetsJournalistsSearchResponse` |  |
@@ -487,6 +487,18 @@ Total operations: `849`
 | Metaculus | `Metaculus.Questions` | `metaculus-questions` | `GET /metaculus/questions` | `limit` (query int)<br>`topic` (query string) | `ApiKeyAuth` | `MetaculusQuestionsResponse` |  |
 | Metaculus | `Metaculus.TopComments` | `metaculus-top-comments` | `GET /metaculus/top-comments` | `limit` (query int)<br>`topic` (query string) | `ApiKeyAuth` | `MetaculusTopCommentsResponse` |  |
 | Metaculus | `Metaculus.TournamentQuestions` | `metaculus-tournament-questions` | `GET /metaculus/tournament/{slug}/questions` | `slug` (path string required)<br>`limit` (query int) | `ApiKeyAuth` | `MetaculusTournamentQuestionsResponse` |  |
+| Mlb | `Mlb.Game` | `mlb-game` | `GET /mlb/game` | `id` (query string required) | `ApiKeyAuth` | `MlbGameResponse` |  |
+| Mlb | `Mlb.GameBoxscore` | `mlb-game-boxscore` | `GET /mlb/game-boxscore` | `id` (query string required) | `ApiKeyAuth` | `MlbGameBoxscoreResponse` |  |
+| Mlb | `Mlb.GamePlayByPlay` | `mlb-game-play-by-play` | `GET /mlb/game-play-by-play` | `id` (query string required) | `ApiKeyAuth` | `MlbGamePlayByPlayResponse` |  |
+| Mlb | `Mlb.LeagueStats` | `mlb-league-stats` | `GET /mlb/league-stats` | `season` (query int)<br>`group` (query string required)<br>`limit` (query int) | `ApiKeyAuth` | `MlbLeagueStatsResponse` |  |
+| Mlb | `Mlb.Player` | `mlb-player` | `GET /mlb/player` | `id` (query string required) | `ApiKeyAuth` | `MlbPlayerResponse` |  |
+| Mlb | `Mlb.PlayerStats` | `mlb-player-stats` | `GET /mlb/player-stats` | `id` (query string required)<br>`season` (query int)<br>`group` (query string required) | `ApiKeyAuth` | `MlbPlayerStatsResponse` |  |
+| Mlb | `Mlb.Schedule` | `mlb-schedule` | `GET /mlb/schedule` | `date` (query string)<br>`start_date` (query string)<br>`end_date` (query string)<br>`team_id` (query string) | `ApiKeyAuth` | `MlbScheduleResponse` |  |
+| Mlb | `Mlb.Standings` | `mlb-standings` | `GET /mlb/standings` | `season` (query int)<br>`type` (query string) | `ApiKeyAuth` | `MlbStandingsResponse` |  |
+| Mlb | `Mlb.TeamRoster` | `mlb-team-roster` | `GET /mlb/team-roster` | `team_id` (query string required)<br>`season` (query int)<br>`roster_type` (query string) | `ApiKeyAuth` | `MlbTeamRosterResponse` |  |
+| Mlb | `Mlb.TeamStats` | `mlb-team-stats` | `GET /mlb/team-stats` | `team_id` (query string required)<br>`season` (query int)<br>`group` (query string required) | `ApiKeyAuth` | `MlbTeamStatsResponse` |  |
+| Mlb | `Mlb.Teams` | `mlb-teams` | `GET /mlb/teams` | `season` (query int) | `ApiKeyAuth` | `MlbTeamsResponse` |  |
+| Mlb | `Mlb.Transactions` | `mlb-transactions` | `GET /mlb/transactions` | `start_date` (query string required)<br>`end_date` (query string required)<br>`team_id` (query string)<br>`player_id` (query string) | `ApiKeyAuth` | `MlbTransactionsResponse` |  |
 | Numbeo | `Numbeo.CostOfLivingCity` | `numbeo-cost-of-living-city` | `GET /numbeo/cost-of-living/city/{slug}` | `slug` (path string required) | `ApiKeyAuth` | `NumbeoCostOfLivingCityResponse` |  |
 | Numbeo | `Numbeo.CostOfLivingCountry` | `numbeo-cost-of-living-country` | `GET /numbeo/cost-of-living/country` | `country` (query string required) | `ApiKeyAuth` | `NumbeoCostOfLivingCountryResponse` |  |
 | Numbeo | `Numbeo.CostOfLivingRankings` | `numbeo-cost-of-living-rankings` | `GET /numbeo/cost-of-living/rankings` | `scope` (query string)<br>`period` (query string) | `ApiKeyAuth` | `NumbeoCostOfLivingRankingsResponse` |  |
@@ -727,6 +739,13 @@ Total operations: `849`
 | Steam | `Steam.Tags` | `steam-tags` | `GET /steam/tags` | `tags` (query string)<br>`untags` (query string)<br>`category1` (query string)<br>`category2` (query string)<br>`category3` (query string)<br>`os` (query string)<br>`maxprice` (query string)<br>`specials` (query bool)<br>`hidef2p` (query bool)<br>`deck_compatibility` (query string)<br>`vrsupport` (query string)<br>`filter` (query string)<br>`supportedlang` (query string)<br>`sort_by` (query string)<br>`start` (query int)<br>`count` (query int)<br>`cc` (query string)<br>`l` (query string) | `ApiKeyAuth` | `SteamTagsResponse` |  |
 | Steam | `Steam.TagsList` | `steam-tags-list` | `GET /steam/tags/list` | `l` (query string) | `ApiKeyAuth` | `SteamTagsListResponse` |  |
 | Steam | `Steam.TopSellers` | `steam-top-sellers` | `GET /steam/top-sellers` | `cc` (query string)<br>`l` (query string) | `ApiKeyAuth` | `SteamTopSellersResponse` |  |
+| Target | `Target.Categories` | `target-categories` | `GET /target/categories` | none | `ApiKeyAuth` | `TargetCategoriesResponse` |  |
+| Target | `Target.CategoryProducts` | `target-category-products` | `GET /target/category-products` | `category_id` (query string required)<br>`page` (query int)<br>`sort` (query string)<br>`store_id` (query int)<br>`filter_ids` (query string) | `ApiKeyAuth` | `TargetCategoryProductsResponse` |  |
+| Target | `Target.FilterOptions` | `target-filter-options` | `GET /target/filter-options` | `q` (query string)<br>`category_id` (query string)<br>`store_id` (query int)<br>`filter_ids` (query string) | `ApiKeyAuth` | `TargetFilterOptionsResponse` |  |
+| Target | `Target.Product` | `target-product` | `GET /target/product` | `tcin` (query string required)<br>`store_id` (query int) | `ApiKeyAuth` | `TargetProductResponse` |  |
+| Target | `Target.Questions` | `target-questions` | `GET /target/questions` | `tcin` (query string required)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `TargetQuestionsResponse` |  |
+| Target | `Target.Reviews` | `target-reviews` | `GET /target/reviews` | `tcin` (query string required)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `TargetReviewsResponse` |  |
+| Target | `Target.Search` | `target-search` | `GET /target/search` | `q` (query string required)<br>`page` (query int)<br>`sort` (query string)<br>`store_id` (query int)<br>`filter_ids` (query string) | `ApiKeyAuth` | `TargetSearchResponse` |  |
 | TeslaJobs | `TeslaJobs.Job` | `tesla-jobs-job` | `GET /tesla-jobs/job` | `id` (query string required) | `ApiKeyAuth` | `TeslaJobsJobResponse` |  |
 | TeslaJobs | `TeslaJobs.List` | `tesla-jobs-list` | `GET /tesla-jobs/list` | `query` (query string)<br>`location` (query string)<br>`page` (query int)<br>`page_size` (query int) | `ApiKeyAuth` | `TeslaJobsListResponse` |  |
 | Threads | `Threads.Post` | `threads-post` | `GET /threads/post/{username}/{code}` | `username` (path string required)<br>`code` (path string required) | `ApiKeyAuth` | `ThreadsPostResponse` |  |
@@ -734,8 +753,21 @@ Total operations: `849`
 | Threads | `Threads.Profile` | `threads-profile` | `GET /threads/profile/{username}` | `username` (path string required) | `ApiKeyAuth` | `ThreadsProfileResponse` |  |
 | Threads | `Threads.ProfilePosts` | `threads-profile-posts` | `GET /threads/profile/{username}/posts` | `username` (path string required)<br>`cursor` (query string) | `ApiKeyAuth` | `ThreadsProfilePostsResponse` |  |
 | Threads | `Threads.Search` | `threads-search` | `GET /threads/search` | `q` (query string required) | `ApiKeyAuth` | `ThreadsSearchResponse` |  |
+| Ticketmaster | `Ticketmaster.Attraction` | `ticketmaster-attraction` | `GET /ticketmaster/attraction` | `id` (query string required) | `ApiKeyAuth` | `TicketmasterAttractionResponse` |  |
+| Ticketmaster | `Ticketmaster.AttractionEvents` | `ticketmaster-attraction-events` | `GET /ticketmaster/attraction-events` | `id` (query string required)<br>`page` (query int)<br>`sort` (query string) | `ApiKeyAuth` | `TicketmasterAttractionEventsResponse` |  |
+| Ticketmaster | `Ticketmaster.DiscoverCategories` | `ticketmaster-discover-categories` | `GET /ticketmaster/discover-categories` | `section` (query string)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `TicketmasterDiscoverCategoriesResponse` |  |
+| Ticketmaster | `Ticketmaster.DiscoverCategoryEvents` | `ticketmaster-discover-category-events` | `GET /ticketmaster/discover-category-events` | `category_id` (query string required)<br>`page` (query int) | `ApiKeyAuth` | `TicketmasterDiscoverCategoryEventsResponse` |  |
+| Ticketmaster | `Ticketmaster.DiscoverCities` | `ticketmaster-discover-cities` | `GET /ticketmaster/discover-cities` | `country` (query string)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `TicketmasterDiscoverCitiesResponse` |  |
+| Ticketmaster | `Ticketmaster.DiscoverCityEvents` | `ticketmaster-discover-city-events` | `GET /ticketmaster/discover-city-events` | `city` (query string required)<br>`country` (query string)<br>`page` (query int) | `ApiKeyAuth` | `TicketmasterDiscoverCityEventsResponse` |  |
+| Ticketmaster | `Ticketmaster.Event` | `ticketmaster-event` | `GET /ticketmaster/event` | `id` (query string required) | `ApiKeyAuth` | `TicketmasterEventResponse` |  |
+| Ticketmaster | `Ticketmaster.SearchEvents` | `ticketmaster-search-events` | `GET /ticketmaster/search-events` | `q` (query string required)<br>`page` (query int)<br>`sort` (query string) | `ApiKeyAuth` | `TicketmasterSearchEventsResponse` |  |
+| Ticketmaster | `Ticketmaster.Suggest` | `ticketmaster-suggest` | `GET /ticketmaster/suggest` | `q` (query string required) | `ApiKeyAuth` | `TicketmasterSuggestResponse` |  |
+| Ticketmaster | `Ticketmaster.Venue` | `ticketmaster-venue` | `GET /ticketmaster/venue` | `id` (query string required) | `ApiKeyAuth` | `TicketmasterVenueResponse` |  |
+| Ticketmaster | `Ticketmaster.VenueEvents` | `ticketmaster-venue-events` | `GET /ticketmaster/venue-events` | `id` (query string required)<br>`page` (query int)<br>`sort` (query string) | `ApiKeyAuth` | `TicketmasterVenueEventsResponse` |  |
 | TikTok | `TikTok.Category` | `tiktok-category` | `GET /tiktok/category` | none | `ApiKeyAuth` | `TikTokCategoryResponse` |  |
 | TikTok | `TikTok.VideoComments` | `tiktok-video-comments` | `GET /tiktok/comments` | `aweme_id` (query string required)<br>`cursor` (query int) | `ApiKeyAuth` | `TikTokVideoCommentsResponse` |  |
+| TikTok | `TikTok.CreativeCenterHashtags` | `tiktok-creative-center-hashtags` | `GET /tiktok/creative-center/hashtags` | `country_code` (query string required)<br>`period` (query int) | `ApiKeyAuth` | `TikTokCreativeCenterHashtagsResponse` |  |
+| TikTok | `TikTok.CreativeCenterVideos` | `tiktok-creative-center-videos` | `GET /tiktok/creative-center/videos` | `country_code` (query string required)<br>`period` (query int)<br>`sort_by` (query string)<br>`content_label_id` (query string)<br>`organic_only` (query bool) | `ApiKeyAuth` | `TikTokCreativeCenterVideosResponse` |  |
 | TikTok | `TikTok.Explore` | `tiktok-explore` | `GET /tiktok/explore/{id}` | `id` (path int required) | `ApiKeyAuth` | `TikTokExploreResponse` |  |
 | TikTok | `TikTok.Challenge` | `tiktok-challenge` | `GET /tiktok/hashtag/{name}` | `name` (path string required) | `ApiKeyAuth` | `TikTokChallengeResponse` |  |
 | TikTok | `TikTok.ChallengeList` | `tiktok-challenge-list` | `GET /tiktok/hashtags` | `id` (query string required)<br>`cursor` (query int) | `ApiKeyAuth` | `TikTokChallengeListResponse` |  |

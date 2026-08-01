@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.29.0-sdk.1
+
+- Regenerated from the public API contract (849 to 881 operations), adding
+  Ticketmaster event discovery, MLB schedules and statistics, Target catalog
+  discovery and filters, and TikTok Creative Center coverage.
+- Ticketmaster discovery includes category and city pagination; Target search
+  and category listings expose dynamic filter identifiers and filter options.
+
 ## v1.28.0-sdk.1
 
 - Regenerated from the public API contract (848 to 849 operations), adding

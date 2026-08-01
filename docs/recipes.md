@@ -284,6 +284,14 @@ client := crawlora.NewClient(
 )
 ```
 
+## Ticketmaster, MLB, And Target
+
+```go
+events, _ := client.Request(ctx, "ticketmaster-search-events", crawlora.Params{"keyword": "jazz", "page": 1})
+schedule, _ := client.Request(ctx, "mlb-schedule", crawlora.Params{"date": "2026-08-01"})
+filters, _ := client.Request(ctx, "target-filter-options", crawlora.Params{"category_id": "5xt1a"})
+```
+
 ## Optional Live Smoke Tests
 
 ```sh
