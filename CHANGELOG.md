@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.30.0-sdk.1
+
+- Added paginated TMDB Popular People and expanded TMDB movie, TV, and search operations with pagination and browse filters.
+
 ## v1.29.0-sdk.1
 
 - Regenerated from the public API contract (849 to 881 operations), adding
