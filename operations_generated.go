@@ -17861,9 +17861,11 @@ type ModelTmdbMediaRef struct {
 }
 
 type ModelTmdbMovieListResponse struct {
-	Category  string              `json:"category,omitempty"`
-	Movies    []ModelTmdbMediaRef `json:"movies,omitempty"`
-	SourceUrl string              `json:"source_url,omitempty"`
+	Category    string              `json:"category,omitempty"`
+	HasNextPage bool                `json:"has_next_page,omitempty"`
+	Movies      []ModelTmdbMediaRef `json:"movies,omitempty"`
+	Page        int                 `json:"page,omitempty"`
+	SourceUrl   string              `json:"source_url,omitempty"`
 }
 
 type ModelTmdbMovieResponse struct {
@@ -17889,6 +17891,21 @@ type ModelTmdbMovieResponse struct {
 	Year             int                   `json:"year,omitempty"`
 }
 
+type ModelTmdbPersonListResponse struct {
+	HasNextPage bool                 `json:"has_next_page,omitempty"`
+	Page        int                  `json:"page,omitempty"`
+	People      []ModelTmdbPersonRef `json:"people,omitempty"`
+	SourceUrl   string               `json:"source_url,omitempty"`
+}
+
+type ModelTmdbPersonRef struct {
+	Id         string `json:"id,omitempty"`
+	KnownFor   string `json:"known_for,omitempty"`
+	Name       string `json:"name,omitempty"`
+	ProfileUrl string `json:"profile_url,omitempty"`
+	Uri        string `json:"uri,omitempty"`
+}
+
 type ModelTmdbPersonResponse struct {
 	Biography   string                       `json:"biography,omitempty"`
 	BirthDate   string                       `json:"birth_date,omitempty"`
@@ -17907,10 +17924,12 @@ type ModelTmdbRating struct {
 }
 
 type ModelTmdbSearchResponse struct {
-	Query     string                  `json:"query,omitempty"`
-	Results   []ModelTmdbSearchResult `json:"results,omitempty"`
-	SourceUrl string                  `json:"source_url,omitempty"`
-	Type      string                  `json:"type,omitempty"`
+	HasNextPage bool                    `json:"has_next_page,omitempty"`
+	Page        int                     `json:"page,omitempty"`
+	Query       string                  `json:"query,omitempty"`
+	Results     []ModelTmdbSearchResult `json:"results,omitempty"`
+	SourceUrl   string                  `json:"source_url,omitempty"`
+	Type        string                  `json:"type,omitempty"`
 }
 
 type ModelTmdbSearchResult struct {
@@ -17923,9 +17942,11 @@ type ModelTmdbSearchResult struct {
 }
 
 type ModelTmdbTvlistResponse struct {
-	Category  string              `json:"category,omitempty"`
-	Shows     []ModelTmdbMediaRef `json:"shows,omitempty"`
-	SourceUrl string              `json:"source_url,omitempty"`
+	Category    string              `json:"category,omitempty"`
+	HasNextPage bool                `json:"has_next_page,omitempty"`
+	Page        int                 `json:"page,omitempty"`
+	Shows       []ModelTmdbMediaRef `json:"shows,omitempty"`
+	SourceUrl   string              `json:"source_url,omitempty"`
 }
 
 type ModelTmdbTvresponse struct {
@@ -17959,6 +17980,12 @@ type ModelTmdbMovieResponseDoc struct {
 	Code int                    `json:"code,omitempty"`
 	Data ModelTmdbMovieResponse `json:"data,omitempty"`
 	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelTmdbPersonListResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelTmdbPersonListResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
 }
 
 type ModelTmdbPersonResponseDoc struct {
@@ -20638,7 +20665,7 @@ type ModelZillowSearchResponse struct {
 	Results  []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 881
+const operationCount = 882
 
 const (
 	OperationAirbnbHost                                             = "airbnb-host"
@@ -21422,6 +21449,7 @@ const (
 	OperationTmdbMovie                                              = "tmdb-movie"
 	OperationTmdbMovieList                                          = "tmdb-movie-list"
 	OperationTmdbPerson                                             = "tmdb-person"
+	OperationTmdbPersonList                                         = "tmdb-person-list"
 	OperationTmdbSearch                                             = "tmdb-search"
 	OperationTmdbTv                                                 = "tmdb-tv"
 	OperationTmdbTvList                                             = "tmdb-tv-list"
@@ -22306,11 +22334,12 @@ var operations = map[string]operationDefinition{
 	"tiktok-top-ads-spotlight":                      operationDefinition{Method: "GET", Path: "/tiktok/top-ads/spotlight", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"tiktok-top-ads-suggestions":                    operationDefinition{Method: "GET", Path: "/tiktok/top-ads/suggestions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "scenario", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"tiktok-trending":                               operationDefinition{Method: "GET", Path: "/tiktok/trending", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"tmdb-movie-list":                               operationDefinition{Method: "GET", Path: "/tmdb/movie/list", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"popular", "top_rated", "now_playing", "upcoming"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tmdb-movie-list":                               operationDefinition{Method: "GET", Path: "/tmdb/movie/list", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"popular", "top_rated", "now_playing", "upcoming"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"popularity.desc", "popularity.asc", "vote_average.desc", "vote_average.asc", "primary_release_date.desc", "primary_release_date.asc", "title.asc", "title.desc"}}, parameterDefinition{Name: "with_genres", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "original_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_votes", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_runtime", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_runtime", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_adult", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"tmdb-movie":                                    operationDefinition{Method: "GET", Path: "/tmdb/movie/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tmdb-person-list":                              operationDefinition{Method: "GET", Path: "/tmdb/person/list", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"tmdb-person":                                   operationDefinition{Method: "GET", Path: "/tmdb/person/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"tmdb-search":                                   operationDefinition{Method: "GET", Path: "/tmdb/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"movie", "tv", "person"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"tmdb-tv-list":                                  operationDefinition{Method: "GET", Path: "/tmdb/tv/list", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"popular", "top_rated", "airing_today", "on_the_air"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tmdb-search":                                   operationDefinition{Method: "GET", Path: "/tmdb/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"movie", "tv", "person"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"tmdb-tv-list":                                  operationDefinition{Method: "GET", Path: "/tmdb/tv/list", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"popular", "top_rated", "airing_today", "on_the_air"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"popularity.desc", "popularity.asc", "vote_average.desc", "vote_average.asc", "first_air_date.desc", "first_air_date.asc", "name.asc", "name.desc"}}, parameterDefinition{Name: "with_genres", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "original_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_votes", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_runtime", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_runtime", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_adult", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"tmdb-tv":                                       operationDefinition{Method: "GET", Path: "/tmdb/tv/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"tripadvisor-autocomplete":                      operationDefinition{Method: "GET", Path: "/tripadvisor/autocomplete", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "locale", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "scope_geo_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "search_session_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "typeahead_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "route_uid", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"tripadvisor-enums":                             operationDefinition{Method: "GET", Path: "/tripadvisor/enums", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -35826,8 +35855,20 @@ func (s *TmdbService) MovieList(ctx context.Context, params Params, opts ...Requ
 }
 
 type TmdbMovieListParams struct {
-	Category *string `crawlora:"category,omitempty"`
-	Limit    *int    `crawlora:"limit,omitempty"`
+	Category         *string  `crawlora:"category,omitempty"`
+	Page             *int     `crawlora:"page,omitempty"`
+	SortBy           *string  `crawlora:"sort_by,omitempty"`
+	WithGenres       *string  `crawlora:"with_genres,omitempty"`
+	OriginalLanguage *string  `crawlora:"original_language,omitempty"`
+	DateFrom         *string  `crawlora:"date_from,omitempty"`
+	DateTo           *string  `crawlora:"date_to,omitempty"`
+	MinRating        *float64 `crawlora:"min_rating,omitempty"`
+	MaxRating        *float64 `crawlora:"max_rating,omitempty"`
+	MinVotes         *int     `crawlora:"min_votes,omitempty"`
+	MinRuntime       *int     `crawlora:"min_runtime,omitempty"`
+	MaxRuntime       *int     `crawlora:"max_runtime,omitempty"`
+	IncludeAdult     *bool    `crawlora:"include_adult,omitempty"`
+	Limit            *int     `crawlora:"limit,omitempty"`
 }
 
 type TmdbMovieListResponse = ModelTmdbMovieListResponseDoc
@@ -35848,6 +35889,21 @@ type TmdbMovieResponse = ModelTmdbMovieResponseDoc
 
 func (s *TmdbService) MovieTyped(ctx context.Context, params TmdbMovieParams, opts ...RequestOption) (TmdbMovieResponse, error) {
 	return requestTyped[TmdbMovieResponse](s.client, ctx, "tmdb-movie", paramsFromStruct(params), opts...)
+}
+
+func (s *TmdbService) PersonList(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tmdb-person-list", params, opts...)
+}
+
+type TmdbPersonListParams struct {
+	Page  *int `crawlora:"page,omitempty"`
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type TmdbPersonListResponse = ModelTmdbPersonListResponseDoc
+
+func (s *TmdbService) PersonListTyped(ctx context.Context, params TmdbPersonListParams, opts ...RequestOption) (TmdbPersonListResponse, error) {
+	return requestTyped[TmdbPersonListResponse](s.client, ctx, "tmdb-person-list", paramsFromStruct(params), opts...)
 }
 
 func (s *TmdbService) Person(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -35872,6 +35928,7 @@ func (s *TmdbService) Search(ctx context.Context, params Params, opts ...Request
 type TmdbSearchParams struct {
 	Query string  `crawlora:"query"`
 	Type  *string `crawlora:"type,omitempty"`
+	Page  *int    `crawlora:"page,omitempty"`
 	Limit *int    `crawlora:"limit,omitempty"`
 }
 
@@ -35886,8 +35943,20 @@ func (s *TmdbService) TvList(ctx context.Context, params Params, opts ...Request
 }
 
 type TmdbTvListParams struct {
-	Category *string `crawlora:"category,omitempty"`
-	Limit    *int    `crawlora:"limit,omitempty"`
+	Category         *string  `crawlora:"category,omitempty"`
+	Page             *int     `crawlora:"page,omitempty"`
+	SortBy           *string  `crawlora:"sort_by,omitempty"`
+	WithGenres       *string  `crawlora:"with_genres,omitempty"`
+	OriginalLanguage *string  `crawlora:"original_language,omitempty"`
+	DateFrom         *string  `crawlora:"date_from,omitempty"`
+	DateTo           *string  `crawlora:"date_to,omitempty"`
+	MinRating        *float64 `crawlora:"min_rating,omitempty"`
+	MaxRating        *float64 `crawlora:"max_rating,omitempty"`
+	MinVotes         *int     `crawlora:"min_votes,omitempty"`
+	MinRuntime       *int     `crawlora:"min_runtime,omitempty"`
+	MaxRuntime       *int     `crawlora:"max_runtime,omitempty"`
+	IncludeAdult     *bool    `crawlora:"include_adult,omitempty"`
+	Limit            *int     `crawlora:"limit,omitempty"`
 }
 
 type TmdbTvListResponse = ModelTmdbTvListResponseDoc

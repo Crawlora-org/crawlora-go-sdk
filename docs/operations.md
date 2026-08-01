@@ -2,7 +2,7 @@
 
 Generated from `openapi/public.json`. Deprecated, admin, and internal operations are excluded from this SDK contract.
 
-Total operations: `881`
+Total operations: `882`
 
 | Group | SDK method | Operation ID | HTTP | Params | Auth | Response | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -789,11 +789,12 @@ Total operations: `881`
 | TikTok | `TikTok.TopAdsSpotlight` | `tiktok-top-ads-spotlight` | `GET /tiktok/top-ads/spotlight` | `page` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `TikTokTopAdsSpotlightResponse` |  |
 | TikTok | `TikTok.TopAdsSuggestions` | `tiktok-top-ads-suggestions` | `GET /tiktok/top-ads/suggestions` | `count` (query int)<br>`scenario` (query int) | `ApiKeyAuth` | `TikTokTopAdsSuggestionsResponse` |  |
 | TikTok | `TikTok.Trending` | `tiktok-trending` | `GET /tiktok/trending` | none | `ApiKeyAuth` | `TikTokTrendingResponse` |  |
-| Tmdb | `Tmdb.MovieList` | `tmdb-movie-list` | `GET /tmdb/movie/list` | `category` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `TmdbMovieListResponse` |  |
+| Tmdb | `Tmdb.MovieList` | `tmdb-movie-list` | `GET /tmdb/movie/list` | `category` (query string)<br>`page` (query int)<br>`sort_by` (query string)<br>`with_genres` (query string)<br>`original_language` (query string)<br>`date_from` (query string)<br>`date_to` (query string)<br>`min_rating` (query float64)<br>`max_rating` (query float64)<br>`min_votes` (query int)<br>`min_runtime` (query int)<br>`max_runtime` (query int)<br>`include_adult` (query bool)<br>`limit` (query int) | `ApiKeyAuth` | `TmdbMovieListResponse` |  |
 | Tmdb | `Tmdb.Movie` | `tmdb-movie` | `GET /tmdb/movie/{id}` | `id` (path string required) | `ApiKeyAuth` | `TmdbMovieResponse` |  |
+| Tmdb | `Tmdb.PersonList` | `tmdb-person-list` | `GET /tmdb/person/list` | `page` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `TmdbPersonListResponse` |  |
 | Tmdb | `Tmdb.Person` | `tmdb-person` | `GET /tmdb/person/{id}` | `id` (path string required)<br>`limit` (query int) | `ApiKeyAuth` | `TmdbPersonResponse` |  |
-| Tmdb | `Tmdb.Search` | `tmdb-search` | `GET /tmdb/search` | `query` (query string required)<br>`type` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `TmdbSearchResponse` |  |
-| Tmdb | `Tmdb.TvList` | `tmdb-tv-list` | `GET /tmdb/tv/list` | `category` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `TmdbTvListResponse` |  |
+| Tmdb | `Tmdb.Search` | `tmdb-search` | `GET /tmdb/search` | `query` (query string required)<br>`type` (query string)<br>`page` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `TmdbSearchResponse` |  |
+| Tmdb | `Tmdb.TvList` | `tmdb-tv-list` | `GET /tmdb/tv/list` | `category` (query string)<br>`page` (query int)<br>`sort_by` (query string)<br>`with_genres` (query string)<br>`original_language` (query string)<br>`date_from` (query string)<br>`date_to` (query string)<br>`min_rating` (query float64)<br>`max_rating` (query float64)<br>`min_votes` (query int)<br>`min_runtime` (query int)<br>`max_runtime` (query int)<br>`include_adult` (query bool)<br>`limit` (query int) | `ApiKeyAuth` | `TmdbTvListResponse` |  |
 | Tmdb | `Tmdb.Tv` | `tmdb-tv` | `GET /tmdb/tv/{id}` | `id` (path string required) | `ApiKeyAuth` | `TmdbTvResponse` |  |
 | TripAdvisor | `TripAdvisor.TripadvisorAutocomplete` | `tripadvisor-autocomplete` | `GET /tripadvisor/autocomplete` | `q` (query string required)<br>`limit` (query int)<br>`locale` (query string)<br>`scope_geo_id` (query int)<br>`type` (query string)<br>`search_session_id` (query string)<br>`typeahead_id` (query string)<br>`route_uid` (query string) | `ApiKeyAuth` | `TripAdvisorTripadvisorAutocompleteResponse` |  |
 | TripAdvisor | `TripAdvisor.TripadvisorEnums` | `tripadvisor-enums` | `GET /tripadvisor/enums` | none | `ApiKeyAuth` | `TripAdvisorTripadvisorEnumsResponse` |  |

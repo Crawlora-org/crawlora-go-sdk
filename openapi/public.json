@@ -266,7 +266,7 @@
           "type": "string"
         },
         "is_guest_favorite": {
-          "description": "IsGuestFavorite reports whether the listing carries an Airbnb Guest Favorite badge\n(including its \"top N%\" variants). Like IsSuperhost it comes from the search card's\nbadges[] and renders inconsistently, so a true value is reliable but a false/absent\nvalue is not — downstream aggregates treat the rate as an observed lower bound.",
+          "description": "IsGuestFavorite reports whether the listing carries an Airbnb Guest Favorite badge\n(including its \"top N%\" variants). Like IsSuperhost it comes from the search card's\nbadges[] and renders inconsistently, so a true value is reliable but a false/absent\nvalue is not \u2014 downstream aggregates treat the rate as an observed lower bound.",
           "type": "boolean"
         },
         "is_superhost": {
@@ -285,7 +285,7 @@
           "type": "number"
         },
         "price_per_night": {
-          "description": "PricePerNight is the per-night price for the queried stay (search total ÷ nights),\nset only when check_in+check_out are supplied. It amortizes any fixed fees across\nthe stay, so a longer window yields a tighter base-rate estimate. Without dates the\n`price` field is an unstable \"from\"/display figure, not a nightly rate.",
+          "description": "PricePerNight is the per-night price for the queried stay (search total \u00f7 nights),\nset only when check_in+check_out are supplied. It amortizes any fixed fees across\nthe stay, so a longer window yields a tighter base-rate estimate. Without dates the\n`price` field is an unstable \"from\"/display figure, not a nightly rate.",
           "example": 148,
           "type": "number"
         },
@@ -366,7 +366,7 @@
           "type": "string"
         },
         "is_guest_favorite": {
-          "description": "IsGuestFavorite reports whether the listing carries an Airbnb Guest Favorite badge\n(including its \"top N%\" variants). Like IsSuperhost it comes from the search card's\nbadges[] and renders inconsistently, so a true value is reliable but a false/absent\nvalue is not — downstream aggregates treat the rate as an observed lower bound.",
+          "description": "IsGuestFavorite reports whether the listing carries an Airbnb Guest Favorite badge\n(including its \"top N%\" variants). Like IsSuperhost it comes from the search card's\nbadges[] and renders inconsistently, so a true value is reliable but a false/absent\nvalue is not \u2014 downstream aggregates treat the rate as an observed lower bound.",
           "type": "boolean"
         },
         "is_superhost": {
@@ -389,7 +389,7 @@
           "type": "number"
         },
         "price_per_night": {
-          "description": "PricePerNight is the per-night price for the queried stay (search total ÷ nights),\nset only when check_in+check_out are supplied. It amortizes any fixed fees across\nthe stay, so a longer window yields a tighter base-rate estimate. Without dates the\n`price` field is an unstable \"from\"/display figure, not a nightly rate.",
+          "description": "PricePerNight is the per-night price for the queried stay (search total \u00f7 nights),\nset only when check_in+check_out are supplied. It amortizes any fixed fees across\nthe stay, so a longer window yields a tighter base-rate estimate. Without dates the\n`price` field is an unstable \"from\"/display figure, not a nightly rate.",
           "example": 148,
           "type": "number"
         },
@@ -946,7 +946,7 @@
           "type": "string"
         },
         "native_name": {
-          "example": "フリーレン",
+          "example": "\u30d5\u30ea\u30fc\u30ec\u30f3",
           "type": "string"
         },
         "site_url": {
@@ -974,7 +974,7 @@
           "type": "string"
         },
         "native_name": {
-          "example": "フリーレン",
+          "example": "\u30d5\u30ea\u30fc\u30ec\u30f3",
           "type": "string"
         },
         "role": {
@@ -1315,7 +1315,7 @@
           "type": "string"
         },
         "native": {
-          "example": "葬送のフリーレン",
+          "example": "\u846c\u9001\u306e\u30d5\u30ea\u30fc\u30ec\u30f3",
           "type": "string"
         },
         "romaji": {
@@ -3260,7 +3260,7 @@
           "type": "string"
         },
         "destination_id": {
-          "description": "DestinationID is the item's clickAction.destination.id. For a\n\"Browse by Category\" shelf item this is the target category's\neditorial page ID — pass it as EditorialCategoryOption.CategoryID for\nthe SAME device. Live-verified this is NOT unique to category links,\nthough: a regular single-app item (e.g. Lockup) carries its own ID\nhere too (a self-referential page link, duplicating ID/AdamID) — so\ncallers looking for a category ID should scope to the shelf titled\n\"Browse by Category\" rather than taking the first non-empty\nDestinationID from any shelf.",
+          "description": "DestinationID is the item's clickAction.destination.id. For a\n\"Browse by Category\" shelf item this is the target category's\neditorial page ID \u2014 pass it as EditorialCategoryOption.CategoryID for\nthe SAME device. Live-verified this is NOT unique to category links,\nthough: a regular single-app item (e.g. Lockup) carries its own ID\nhere too (a self-referential page link, duplicating ID/AdamID) \u2014 so\ncallers looking for a category ID should scope to the shelf titled\n\"Browse by Category\" rather than taking the first non-empty\nDestinationID from any shelf.",
           "type": "string"
         },
         "developer_name": {
@@ -5832,7 +5832,7 @@
           "type": "string"
         },
         "release_id": {
-          "description": "Live weekend charts typically link /release/rl…/ rather than /title/tt….",
+          "description": "Live weekend charts typically link /release/rl\u2026/ rather than /title/tt\u2026.",
           "example": "rl3389031937",
           "type": "string"
         },
@@ -6841,12 +6841,12 @@
           "type": "string"
         },
         "release_id": {
-          "description": "Live franchise/brand/genre detail pages often link /release/rl…/ instead of /title/tt….",
+          "description": "Live franchise/brand/genre detail pages often link /release/rl\u2026/ instead of /title/tt\u2026.",
           "example": "rl3059975681",
           "type": "string"
         },
         "release_note": {
-          "description": "ReleaseNote carries the secondary label Box Office Mojo renders under the\nrelease name to distinguish one release of a film from another — e.g.\n\"2022 Re-release\", \"2010 Special Edition\", \"2012 3D Release\". A film with\nre-releases appears as several rows sharing one title but differing here.",
+          "description": "ReleaseNote carries the secondary label Box Office Mojo renders under the\nrelease name to distinguish one release of a film from another \u2014 e.g.\n\"2022 Re-release\", \"2010 Special Edition\", \"2012 3D Release\". A film with\nre-releases appears as several rows sharing one title but differing here.",
           "example": "2022 Re-release",
           "type": "string"
         },
@@ -11317,7 +11317,7 @@
     "contact.ContactRequest": {
       "properties": {
         "independents_only": {
-          "description": "IndependentsOnly, when true, returns just the classification (no crawl) for\nany non-independent site (chain/social/builder/directory) — a cheap filter.",
+          "description": "IndependentsOnly, when true, returns just the classification (no crawl) for\nany non-independent site (chain/social/builder/directory) \u2014 a cheap filter.",
           "example": false,
           "type": "boolean"
         },
@@ -11334,7 +11334,7 @@
           "type": "boolean"
         },
         "verify_limit": {
-          "description": "VerifyLimit caps how many discovered emails get the costly SMTP mailbox\ncheck when verify is on: the first N (in crawl order — contact/about pages\nfirst) are SMTP-verified, the rest are returned syntax+MX-only (`unverified`).\n0/omitted = verify every email (up to maxEmails). The free preview sets a\nsmall cap to bound SMTP probe volume and latency for anonymous callers.",
+          "description": "VerifyLimit caps how many discovered emails get the costly SMTP mailbox\ncheck when verify is on: the first N (in crawl order \u2014 contact/about pages\nfirst) are SMTP-verified, the rest are returned syntax+MX-only (`unverified`).\n0/omitted = verify every email (up to maxEmails). The free preview sets a\nsmall cap to bound SMTP probe volume and latency for anonymous callers.",
           "example": 10,
           "type": "integer"
         }
@@ -16832,7 +16832,7 @@
               "$ref": "#/definitions/es.AirbnbPriceUSDStats"
             }
           ],
-          "description": "PriceUSD is the country-wide nightly-price distribution normalized to USD (approximate,\ndated FX snapshot) — the cross-country-comparable complement to the per-currency\nCurrencies medians. Present only when enough listings carry a USD-normalized price."
+          "description": "PriceUSD is the country-wide nightly-price distribution normalized to USD (approximate,\ndated FX snapshot) \u2014 the cross-country-comparable complement to the per-currency\nCurrencies medians. Present only when enough listings carry a USD-normalized price."
         },
         "rated_listings": {
           "type": "integer"
@@ -16962,7 +16962,7 @@
           "type": "array"
         },
         "popularity": {
-          "description": "Popularity = ratings_count × score (\"total rating weight\"). Derived on write\n(recomputed every upsert), 0 for unrated apps. A proven-adoption ranking signal.",
+          "description": "Popularity = ratings_count \u00d7 score (\"total rating weight\"). Derived on write\n(recomputed every upsert), 0 for unrated apps. A proven-adoption ranking signal.",
           "type": "integer"
         },
         "price_cents": {
@@ -17090,7 +17090,7 @@
           "type": "integer"
         },
         "discovery_source": {
-          "description": "DiscoverySource is \"chart\", \"search\" (show-search term sweep), or\n\"episode_search\" (episode-search term sweep, M6 — the parent show of a\nmatching episode). DiscoveryCountry/DiscoveryGenreID/DiscoveryCollection\nrecord which chart grid cell first surfaced this show (empty genre\nid/collection for either search-sweep source).",
+          "description": "DiscoverySource is \"chart\", \"search\" (show-search term sweep), or\n\"episode_search\" (episode-search term sweep, M6 \u2014 the parent show of a\nmatching episode). DiscoveryCountry/DiscoveryGenreID/DiscoveryCollection\nrecord which chart grid cell first surfaced this show (empty genre\nid/collection for either search-sweep source).",
           "type": "string"
         },
         "feed_url": {
@@ -17412,7 +17412,7 @@
           "type": "boolean"
         },
         "platform": {
-          "description": "Platform is the Apple device platform this chart ranking is for — phone,\npad, or mac (Apple's appPlatforms vocabulary) — or empty for Google Play\n(Android has no separate device-family charts). A chart ranking is\nalways single-platform by construction, unlike AppRecord.Platforms.",
+          "description": "Platform is the Apple device platform this chart ranking is for \u2014 phone,\npad, or mac (Apple's appPlatforms vocabulary) \u2014 or empty for Google Play\n(Android has no separate device-family charts). A chart ranking is\nalways single-platform by construction, unlike AppRecord.Platforms.",
           "type": "string"
         },
         "rank": {
@@ -17851,7 +17851,7 @@
           "type": "string"
         },
         "status": {
-          "description": "\"\" active | \"deleted\" | \"private\" — refresh marks these to skip future crawls",
+          "description": "\"\" active | \"deleted\" | \"private\" \u2014 refresh marks these to skip future crawls",
           "type": "string"
         },
         "total_likes": {
@@ -18244,7 +18244,7 @@
           "type": "string"
         },
         "discovery_source": {
-          "description": "DiscoverySource records how this id was found, e.g. \"book:2767052\",\n\"genre:fantasy\", \"search:mystery\" — useful for crawl provenance/debugging.",
+          "description": "DiscoverySource records how this id was found, e.g. \"book:2767052\",\n\"genre:fantasy\", \"search:mystery\" \u2014 useful for crawl provenance/debugging.",
           "type": "string"
         },
         "genres": {
@@ -18323,7 +18323,7 @@
           "type": "string"
         },
         "discovery_source": {
-          "description": "DiscoverySource records how this id was found, e.g. \"list:1\",\n\"search:mystery\", \"author:153394\" — useful for crawl provenance/debugging.",
+          "description": "DiscoverySource records how this id was found, e.g. \"list:1\",\n\"search:mystery\", \"author:153394\" \u2014 useful for crawl provenance/debugging.",
           "type": "string"
         },
         "format": {
@@ -18459,13 +18459,13 @@
               "$ref": "#/definitions/contact.Contact"
             }
           ],
-          "description": "🆕  Contact information"
+          "description": "\ud83c\udd95  Contact information"
         },
         "contact_is_updated": {
           "type": "boolean"
         },
         "country": {
-          "description": "🆕  Geographic hierarchy",
+          "description": "\ud83c\udd95  Geographic hierarchy",
           "example": "United States",
           "type": "string"
         },
@@ -18474,7 +18474,7 @@
           "type": "string"
         },
         "created_at": {
-          "description": "🆕  Timestamps",
+          "description": "\ud83c\udd95  Timestamps",
           "type": "string"
         },
         "description": {
@@ -18518,7 +18518,7 @@
           "type": "string"
         },
         "rating": {
-          "description": "Rating is the aggregate Google rating (1.0–5.0). It is a pointer so a business\nwith NO aggregate Google rating serializes as `rating: null` rather than a\nmisleading 0 — Google never assigns a 0.x average, so 0 always meant \"unrated\".\nConsumers computing an average must skip nulls; use min_rating>0 to exclude them.",
+          "description": "Rating is the aggregate Google rating (1.0\u20135.0). It is a pointer so a business\nwith NO aggregate Google rating serializes as `rating: null` rather than a\nmisleading 0 \u2014 Google never assigns a 0.x average, so 0 always meant \"unrated\".\nConsumers computing an average must skip nulls; use min_rating>0 to exclude them.",
           "example": 4.1,
           "type": "number",
           "x-nullable": true
@@ -18548,7 +18548,7 @@
           "type": "string"
         },
         "website": {
-          "description": "🆕  Website and status",
+          "description": "\ud83c\udd95  Website and status",
           "example": "https://www.hotelzephyrsf.com/",
           "type": "string"
         },
@@ -18606,13 +18606,13 @@
               "$ref": "#/definitions/contact.Contact"
             }
           ],
-          "description": "🆕  Contact information"
+          "description": "\ud83c\udd95  Contact information"
         },
         "contact_is_updated": {
           "type": "boolean"
         },
         "country": {
-          "description": "🆕  Geographic hierarchy",
+          "description": "\ud83c\udd95  Geographic hierarchy",
           "example": "United States",
           "type": "string"
         },
@@ -18621,7 +18621,7 @@
           "type": "string"
         },
         "created_at": {
-          "description": "🆕  Timestamps",
+          "description": "\ud83c\udd95  Timestamps",
           "type": "string"
         },
         "description": {
@@ -18668,7 +18668,7 @@
           "type": "string"
         },
         "rating": {
-          "description": "Rating is the aggregate Google rating (1.0–5.0). It is a pointer so a business\nwith NO aggregate Google rating serializes as `rating: null` rather than a\nmisleading 0 — Google never assigns a 0.x average, so 0 always meant \"unrated\".\nConsumers computing an average must skip nulls; use min_rating>0 to exclude them.",
+          "description": "Rating is the aggregate Google rating (1.0\u20135.0). It is a pointer so a business\nwith NO aggregate Google rating serializes as `rating: null` rather than a\nmisleading 0 \u2014 Google never assigns a 0.x average, so 0 always meant \"unrated\".\nConsumers computing an average must skip nulls; use min_rating>0 to exclude them.",
           "example": 4.1,
           "type": "number",
           "x-nullable": true
@@ -18698,7 +18698,7 @@
           "type": "string"
         },
         "website": {
-          "description": "🆕  Website and status",
+          "description": "\ud83c\udd95  Website and status",
           "example": "https://www.hotelzephyrsf.com/",
           "type": "string"
         },
@@ -20693,7 +20693,7 @@
           "type": "array"
         },
         "has_owner_estimate": {
-          "description": "HasOwnerEstimate is false for the floor bucket (\"0 .. 20,000\") / no SteamSpy\nestimate — i.e. the deep tail past the owner-differentiated head. Callers must\nnot treat floor-bucket owners as a real count.",
+          "description": "HasOwnerEstimate is false for the floor bucket (\"0 .. 20,000\") / no SteamSpy\nestimate \u2014 i.e. the deep tail past the owner-differentiated head. Callers must\nnot treat floor-bucket owners as a real count.",
           "type": "boolean"
         },
         "header_image": {
@@ -20821,7 +20821,7 @@
           "type": "integer"
         },
         "tags": {
-          "description": "Tags is the weighted community-tag taxonomy (Roguelike/Metroidvania/Cozy...),\nordered most-weighted first — the crowd tags appdetails genres omit. Populated\nby the separate tag-enrichment pass (workers/steamdb tag mode via IStoreBrowseService),\nnot the main crawl. TagIDs is the parallel raw id list; PrimaryTag is Tags[0].",
+          "description": "Tags is the weighted community-tag taxonomy (Roguelike/Metroidvania/Cozy...),\nordered most-weighted first \u2014 the crowd tags appdetails genres omit. Populated\nby the separate tag-enrichment pass (workers/steamdb tag mode via IStoreBrowseService),\nnot the main crawl. TagIDs is the parallel raw id list; PrimaryTag is Tags[0].",
           "items": {
             "type": "string"
           },
@@ -21073,7 +21073,7 @@
           "type": "string"
         },
         "probed_at": {
-          "description": "RFC3339 — when last probed",
+          "description": "RFC3339 \u2014 when last probed",
           "type": "string"
         },
         "rank": {
@@ -22610,8 +22610,8 @@
           "type": "array"
         },
         "priceRange": {
-          "description": "PriceRange is the About panel's price-tier text (e.g. \"Price range · $$\"),\nwhen the Page publishes one.",
-          "example": "Price range · $$",
+          "description": "PriceRange is the About panel's price-tier text (e.g. \"Price range \u00b7 $$\"),\nwhen the Page publishes one.",
+          "example": "Price range \u00b7 $$",
           "type": "string"
         },
         "reviewCount": {
@@ -22679,7 +22679,7 @@
       "properties": {
         "about": {
           "description": "Information about the company.",
-          "example": "SAP SE is a European multinational software company based in Walldorf, Baden-Württemberg, Germany...",
+          "example": "SAP SE is a European multinational software company based in Walldorf, Baden-W\u00fcrttemberg, Germany...",
           "type": "string"
         },
         "ceo": {
@@ -22699,7 +22699,7 @@
         },
         "headquarters": {
           "description": "The headquarters of the company.",
-          "example": "Walldorf, Baden-Württemberg, Germany",
+          "example": "Walldorf, Baden-W\u00fcrttemberg, Germany",
           "type": "string"
         },
         "website": {
@@ -24036,7 +24036,7 @@
           "type": "string"
         },
         "licence": {
-          "example": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+          "example": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
           "type": "string"
         },
         "lon": {
@@ -24479,7 +24479,7 @@
           "type": "integer"
         },
         "shelved_count": {
-          "description": "ShelvedCount is how many users have shelved this specific book under\nthis genre tag — a per-genre popularity signal distinct from the\nbook's overall ratings_count.",
+          "description": "ShelvedCount is how many users have shelved this specific book under\nthis genre tag \u2014 a per-genre popularity signal distinct from the\nbook's overall ratings_count.",
           "type": "integer"
         },
         "title": {
@@ -25139,7 +25139,7 @@
           "type": "string"
         },
         "rating": {
-          "description": "Rating is the aggregate Google rating (1.0–5.0), or null when the place has no\naggregate rating on Google (Google never assigns a 0.x average, so 0 always meant\n\"unrated\"). A pointer so unrated serializes as `rating: null`, not a misleading 0.",
+          "description": "Rating is the aggregate Google rating (1.0\u20135.0), or null when the place has no\naggregate rating on Google (Google never assigns a 0.x average, so 0 always meant\n\"unrated\"). A pointer so unrated serializes as `rating: null`, not a misleading 0.",
           "example": 4.1,
           "type": "number",
           "x-nullable": true
@@ -28194,7 +28194,7 @@
           "type": "integer"
         },
         "media_url": {
-          "example": "https://scontent-lax3-2.cdninstagram.com/v/t51.2885-15/…n.jpg",
+          "example": "https://scontent-lax3-2.cdninstagram.com/v/t51.2885-15/\u2026n.jpg",
           "type": "string"
         },
         "product_type": {
@@ -28258,7 +28258,7 @@
           "type": "boolean"
         },
         "profile_pic_url": {
-          "example": "https://…/profile.jpg",
+          "example": "https://\u2026/profile.jpg",
           "type": "string"
         },
         "username": {
@@ -28348,7 +28348,7 @@
           "type": "integer"
         },
         "profile_pic_url": {
-          "example": "https://scontent-lax3-1.cdninstagram.com/v/t51.2885-19/…n.jpg",
+          "example": "https://scontent-lax3-1.cdninstagram.com/v/t51.2885-19/\u2026n.jpg",
           "type": "string"
         },
         "related_profiles": {
@@ -28562,7 +28562,7 @@
           "type": "string"
         },
         "compensation": {
-          "description": "Compensation is the raw provider summary; the *Min/*Max/*Currency fields are\nparsed from it when the summary contains a recognizable pay range/amount.\nCompensationPeriod is the pay period (\"hourly\", \"daily\", \"weekly\",\n\"monthly\", \"yearly\") when the summary states one explicitly; empty when\nno period is stated (most single \"$150K – $190K\"-style ranges are\nimplicitly annual but that is never asserted here).",
+          "description": "Compensation is the raw provider summary; the *Min/*Max/*Currency fields are\nparsed from it when the summary contains a recognizable pay range/amount.\nCompensationPeriod is the pay period (\"hourly\", \"daily\", \"weekly\",\n\"monthly\", \"yearly\") when the summary states one explicitly; empty when\nno period is stated (most single \"$150K \u2013 $190K\"-style ranges are\nimplicitly annual but that is never asserted here).",
           "type": "string"
         },
         "compensation_currency": {
@@ -31850,7 +31850,7 @@
     "linkedin.LinkedinCompanyResponse": {
       "properties": {
         "about": {
-          "example": "We’re a team of scientists, engineers...",
+          "example": "We\u2019re a team of scientists, engineers...",
           "type": "string"
         },
         "affiliated_pages": {
@@ -32913,7 +32913,7 @@
     "metaculus.Project": {
       "properties": {
         "emoji": {
-          "example": "💼",
+          "example": "\ud83d\udcbc",
           "type": "string"
         },
         "id": {
@@ -44539,7 +44539,7 @@
             "format": "float64",
             "type": "number"
           },
-          "description": "Ratios are computed, normalized metrics derived from the lines (margins,\ncurrent ratio, debt-to-equity, free cash flow, YoY revenue growth) — a\nvalue-add over the raw statement figures.",
+          "description": "Ratios are computed, normalized metrics derived from the lines (margins,\ncurrent ratio, debt-to-equity, free cash flow, YoY revenue growth) \u2014 a\nvalue-add over the raw statement figures.",
           "type": "object"
         }
       },
@@ -50933,7 +50933,7 @@
           "type": "boolean"
         },
         "name": {
-          "example": "Today’s Top Hits",
+          "example": "Today\u2019s Top Hits",
           "type": "string"
         },
         "ownerName": {
@@ -51550,7 +51550,7 @@
           "type": "array"
         },
         "content_descriptor_ids": {
-          "description": "ContentDescriptorIDs are Steam's mature-content flag ids (e.g. 1 nudity, 3\nadult content, 5 strong violence) — the store's own age/adult markers.",
+          "description": "ContentDescriptorIDs are Steam's mature-content flag ids (e.g. 1 nudity, 3\nadult content, 5 strong violence) \u2014 the store's own age/adult markers.",
           "items": {
             "type": "integer"
           },
@@ -53744,7 +53744,7 @@
           "type": "string"
         },
         "evidence": {
-          "description": "Evidence is a short, human-readable hint of what matched (e.g. a script\nhost or a <meta generator> value) — not the full markup.",
+          "description": "Evidence is a short, human-readable hint of what matched (e.g. a script\nhost or a <meta generator> value) \u2014 not the full markup.",
           "type": "string"
         },
         "name": {
@@ -55787,11 +55787,17 @@
         "category": {
           "type": "string"
         },
+        "has_next_page": {
+          "type": "boolean"
+        },
         "movies": {
           "items": {
             "$ref": "#/definitions/tmdb.MediaRef"
           },
           "type": "array"
+        },
+        "page": {
+          "type": "integer"
         },
         "source_url": {
           "type": "string"
@@ -55937,6 +55943,12 @@
     },
     "tmdb.SearchResponse": {
       "properties": {
+        "has_next_page": {
+          "type": "boolean"
+        },
+        "page": {
+          "type": "integer"
+        },
         "query": {
           "type": "string"
         },
@@ -55983,6 +55995,12 @@
       "properties": {
         "category": {
           "type": "string"
+        },
+        "has_next_page": {
+          "type": "boolean"
+        },
+        "page": {
+          "type": "integer"
         },
         "shows": {
           "items": {
@@ -61761,7 +61779,7 @@
           "type": "string"
         },
         "cache_state": {
-          "description": "\"hit\" | \"miss\" — whether this response came from the cache",
+          "description": "\"hit\" | \"miss\" \u2014 whether this response came from the cache",
           "type": "string"
         },
         "cached_at": {
@@ -62024,7 +62042,7 @@
           "type": "string"
         },
         "retry_after_seconds": {
-          "description": "retry_after_seconds is how long to wait before retrying, rounded up to the\nnext whole second. Matches the Retry-After response header. Present on every\nreason whenever resets_at is present — this is not rate_limited-only.",
+          "description": "retry_after_seconds is how long to wait before retrying, rounded up to the\nnext whole second. Matches the Retry-After response header. Present on every\nreason whenever resets_at is present \u2014 this is not rate_limited-only.",
           "example": 12,
           "type": "integer"
         },
@@ -63710,7 +63728,7 @@
     "youtube.Profile": {
       "properties": {
         "bio": {
-          "example": "OpenAI’s mission is to ensure that artificial general intelligence benefits all of humanity.",
+          "example": "OpenAI\u2019s mission is to ensure that artificial general intelligence benefits all of humanity.",
           "type": "string"
         },
         "channel_id": {
@@ -64031,7 +64049,7 @@
           "type": "string"
         },
         "title": {
-          "example": "Sam Altman on AGI, GPT-5, and what’s next — the OpenAI Podcast Ep. 1",
+          "example": "Sam Altman on AGI, GPT-5, and what\u2019s next \u2014 the OpenAI Podcast Ep. 1",
           "type": "string"
         },
         "views_count": {
@@ -65225,6 +65243,62 @@
         }
       },
       "type": "object"
+    },
+    "tmdb.PersonListResponse": {
+      "properties": {
+        "has_next_page": {
+          "type": "boolean"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "people": {
+          "items": {
+            "$ref": "#/definitions/tmdb.PersonRef"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.PersonRef": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "known_for": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "profile_url": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tmdb.personListResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/tmdb.PersonListResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
     }
   },
   "host": "api.crawlora.net",
@@ -65234,7 +65308,7 @@
       "name": "API Support",
       "url": "https://crawlora.net"
     },
-    "description": "Crawlora is a hosted web-data and SERP API: call documented REST endpoints and get normalized JSON instead of HTML to parse — across search/SERP, maps and local, e-commerce, app stores, social, media and finance. One API key; Crawlora runs the proxy rotation, headless browsers and parsing behind the scenes. Billed pay-on-success: charged only on a successful 2xx response, 1-10 credits per call, with a free tier of 2,000 credits per month and no card. A hosted MCP server (mcp.crawlora.net/mcp) exposes the same catalog as agent tools.",
+    "description": "Crawlora is a hosted web-data and SERP API: call documented REST endpoints and get normalized JSON instead of HTML to parse \u2014 across search/SERP, maps and local, e-commerce, app stores, social, media and finance. One API key; Crawlora runs the proxy rotation, headless browsers and parsing behind the scenes. Billed pay-on-success: charged only on a successful 2xx response, 1-10 credits per call, with a free tier of 2,000 credits per month and no card. A hosted MCP server (mcp.crawlora.net/mcp) exposes the same catalog as agent tools.",
     "license": {
       "name": "Crawlora Terms of Service",
       "url": "https://crawlora.net/terms"
@@ -65254,7 +65328,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns a normalized Airbnb public host profile — display name, Superhost and identity-verification status, location, bio, hosting tenure, total guest-review count, and total listing count.",
+        "description": "Returns a normalized Airbnb public host profile \u2014 display name, Superhost and identity-verification status, location, bio, hosting tenure, total guest-review count, and total listing count.",
         "operationId": "airbnb-host",
         "parameters": [
           {
@@ -65760,7 +65834,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns one Amazon.jobs posting by its numeric job id (the `id` field returned by search). Parsed from amazon.jobs's stable server-rendered job detail page — there is no separate JSON detail endpoint upstream.",
+        "description": "Returns one Amazon.jobs posting by its numeric job id (the `id` field returned by search). Parsed from amazon.jobs's stable server-rendered job detail page \u2014 there is no separate JSON detail endpoint upstream.",
         "operationId": "amazon-jobs-job",
         "parameters": [
           {
@@ -67927,7 +68001,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches Apple's public careers site (jobs.apple.com) via its server-rendered search page's embedded job data. Page size is fixed by Apple at 20 results. Search results carry identity/location/team metadata only — call the job endpoint for the full description and qualifications.",
+        "description": "Searches Apple's public careers site (jobs.apple.com) via its server-rendered search page's embedded job data. Page size is fixed by Apple at 20 results. Search results carry identity/location/team metadata only \u2014 call the job endpoint for the full description and qualifications.",
         "operationId": "apple-jobs-search",
         "parameters": [
           {
@@ -68791,7 +68865,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns the curated editorial shelves from one of Apple's per-device App Store landing pages (the same content shown by apps.apple.com's device switcher). `device` enum: `iphone`, `ipad`, `mac`, `vision`, `watch`, `tv`. `section` enum: `main` (the device's Today/Discover/Apps & Games landing page), `arcade` (the device's Apple Arcade landing page). Watch has no Arcade page — `device=watch` with `section=arcade` returns `400`.",
+        "description": "Returns the curated editorial shelves from one of Apple's per-device App Store landing pages (the same content shown by apps.apple.com's device switcher). `device` enum: `iphone`, `ipad`, `mac`, `vision`, `watch`, `tv`. `section` enum: `main` (the device's Today/Discover/Apps & Games landing page), `arcade` (the device's Apple Arcade landing page). Watch has no Arcade page \u2014 `device=watch` with `section=arcade` returns `400`.",
         "operationId": "appstore-editorial",
         "parameters": [
           {
@@ -68886,7 +68960,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns the curated editorial shelves for one device category page (e.g. \"Entertainment Apps for Vision\"). `category_id` is a numeric, device-specific editorial page ID — not a static enum — discovered from an `appstore_editorial` response for the SAME `device`, in its \"Browse by Category\" shelf items' `destination_id` field. `device` enum: `iphone`, `ipad`, `mac`, `vision`, `watch`, `tv`.",
+        "description": "Returns the curated editorial shelves for one device category page (e.g. \"Entertainment Apps for Vision\"). `category_id` is a numeric, device-specific editorial page ID \u2014 not a static enum \u2014 discovered from an `appstore_editorial` response for the SAME `device`, in its \"Browse by Category\" shelf items' `destination_id` field. `device` enum: `iphone`, `ipad`, `mac`, `vision`, `watch`, `tv`.",
         "operationId": "appstore-editorial-category",
         "parameters": [
           {
@@ -68978,7 +69052,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns ranked App Store apps from an iTunes RSS collection, optionally expanded to full lookup details. `collection` enum: `topfreeapplications`, `toppaidapplications`, `topgrossingapplications`, `topfreeipadapplications`, `toppaidipadapplications`, `topgrossingipadapplications`, `topmacapps`, `topfreemacapps`, `topgrossingmacapps`, `toppaidmacapps`, `newapplications`, `newfreeapplications`, `newpaidapplications`. Of the Mac collections, only `topfreemacapps` currently returns ranked apps — `topmacapps`, `topgrossingmacapps`, and `toppaidmacapps` are accepted but Apple's feed for them is currently empty. There is no separate Games `collection` — combine any collection with `category=6014` (or a Games subgenre ID, e.g. `7012` for Puzzle) to get its Games-only equivalent, e.g. Top Free Games. See the endpoint markdown for the full category ID table.",
+        "description": "Returns ranked App Store apps from an iTunes RSS collection, optionally expanded to full lookup details. `collection` enum: `topfreeapplications`, `toppaidapplications`, `topgrossingapplications`, `topfreeipadapplications`, `toppaidipadapplications`, `topgrossingipadapplications`, `topmacapps`, `topfreemacapps`, `topgrossingmacapps`, `toppaidmacapps`, `newapplications`, `newfreeapplications`, `newpaidapplications`. Of the Mac collections, only `topfreemacapps` currently returns ranked apps \u2014 `topmacapps`, `topgrossingmacapps`, and `toppaidmacapps` are accepted but Apple's feed for them is currently empty. There is no separate Games `collection` \u2014 combine any collection with `category=6014` (or a Games subgenre ID, e.g. `7012` for Puzzle) to get its Games-only equivalent, e.g. Top Free Games. See the endpoint markdown for the full category ID table.",
         "operationId": "appstore-list",
         "parameters": [
           {
@@ -73670,7 +73744,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns a Chrome Web Store publisher (developer) by publisher id, including the disclosed trader details — legal name, email, phone, address, website, and D-U-N-S number — plus the publisher's listed items (\"More from ...\"). Trader fields are only present for publishers that identify as EU traders. Defaults: `num=50`, `country=us`, `lang=en`.",
+        "description": "Returns a Chrome Web Store publisher (developer) by publisher id, including the disclosed trader details \u2014 legal name, email, phone, address, website, and D-U-N-S number \u2014 plus the publisher's listed items (\"More from ...\"). Trader fields are only present for publishers that identify as EU traders. Defaults: `num=50`, `country=us`, `lang=en`.",
         "operationId": "chromewebstore-developer",
         "parameters": [
           {
@@ -76737,7 +76811,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Crawls a public website URL (homepage plus contact/about/team/imprint pages) and returns its public business contact details: emails — each tagged with a verification `status` (`verified`, `risky`, `unverified`, `invalid`) and a `type` (`generic`, `role`, `personal`) — plus social-media profiles and phone numbers. Intended for authorized public-business data only.",
+        "description": "Crawls a public website URL (homepage plus contact/about/team/imprint pages) and returns its public business contact details: emails \u2014 each tagged with a verification `status` (`verified`, `risky`, `unverified`, `invalid`) and a `type` (`generic`, `role`, `personal`) \u2014 plus social-media profiles and phone numbers. Intended for authorized public-business data only.",
         "operationId": "contact",
         "parameters": [
           {
@@ -76784,7 +76858,7 @@
             "ApiKeyAuth": []
           }
         ],
-        "summary": "Contact API — emails, socials and phones for a website",
+        "summary": "Contact API \u2014 emails, socials and phones for a website",
         "tags": [
           "Web"
         ]
@@ -76968,7 +77042,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns one country's full aggregate Airbnb market profile from dataset id enum value `airbnb-markets` — headline supply, Superhost share, Guest Favorite share (`guest_favorite_pct`, an observed lower bound), `avg_person_capacity` (average guests a listing sleeps over the detail-page-enriched sample), ratings, its top metros, bounding box, per-currency nightly-price percentiles, and a USD-normalized `price_usd` percentile block (converted via an approximate dated FX snapshot) for cross-country comparison. Aggregate-only. Returns 404 for a country below the suppression floor.",
+        "description": "Returns one country's full aggregate Airbnb market profile from dataset id enum value `airbnb-markets` \u2014 headline supply, Superhost share, Guest Favorite share (`guest_favorite_pct`, an observed lower bound), `avg_person_capacity` (average guests a listing sleeps over the detail-page-enriched sample), ratings, its top metros, bounding box, per-currency nightly-price percentiles, and a USD-normalized `price_usd` percentile block (converted via an approximate dated FX snapshot) for cross-country comparison. Aggregate-only. Returns 404 for a country below the suppression floor.",
         "operationId": "datasets-airbnb-markets-item",
         "parameters": [
           {
@@ -77438,7 +77512,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches the crawled public Apple Podcasts show catalog stored in a search index. One row per show. Discovered from a country x genre x collection chart grid and a search-term sweep — not a full catalog of every Apple Podcasts show. Sort enum: `relevance`, `popularity`, `track_count_desc`, `release_desc`, `title_asc`.",
+        "description": "Searches the crawled public Apple Podcasts show catalog stored in a search index. One row per show. Discovered from a country x genre x collection chart grid and a search-term sweep \u2014 not a full catalog of every Apple Podcasts show. Sort enum: `relevance`, `popularity`, `track_count_desc`, `release_desc`, `title_asc`.",
         "operationId": "datasets-apple-podcasts-shows-search",
         "parameters": [
           {
@@ -77554,7 +77628,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches daily top-chart snapshots scraped from the iOS App Store and Google Play, stored in a search index (one document per chart × snapshot × rank). With no `date` the latest snapshot is returned (today's chart); pair `app_id` with `sort=date_desc` for an app's rank over time. Store enum: `ios`, `android`. Chart type enum: `top_free`, `top_paid`, `top_grossing`, `new`. Platform enum (Apple device platforms, ios charts only): `phone`, `pad`, `mac`. Sort enum: `rank`, `rank_desc`, `date_desc`.",
+        "description": "Searches daily top-chart snapshots scraped from the iOS App Store and Google Play, stored in a search index (one document per chart \u00d7 snapshot \u00d7 rank). With no `date` the latest snapshot is returned (today's chart); pair `app_id` with `sort=date_desc` for an app's rank over time. Store enum: `ios`, `android`. Chart type enum: `top_free`, `top_paid`, `top_grossing`, `new`. Platform enum (Apple device platforms, ios charts only): `phone`, `pad`, `mac`. Sort enum: `rank`, `rank_desc`, `date_desc`.",
         "operationId": "datasets-apps-charts-search",
         "parameters": [
           {
@@ -77610,7 +77684,7 @@
             "type": "string"
           },
           {
-            "description": "Exact app filter — iOS numeric track id or Android package; pair with sort=date_desc for rank history",
+            "description": "Exact app filter \u2014 iOS numeric track id or Android package; pair with sort=date_desc for rank history",
             "in": "query",
             "name": "app_id",
             "type": "string"
@@ -77710,7 +77784,7 @@
             "type": "string"
           },
           {
-            "description": "Exact app filter — iOS numeric track id or Android package, max 128 characters",
+            "description": "Exact app filter \u2014 iOS numeric track id or Android package, max 128 characters",
             "in": "query",
             "name": "app_id",
             "type": "string"
@@ -77963,7 +78037,7 @@
             "type": "string"
           },
           {
-            "description": "Exact title id (IMDb tt… id used by Box Office Mojo), max 32 characters",
+            "description": "Exact title id (IMDb tt\u2026 id used by Box Office Mojo), max 32 characters",
             "in": "query",
             "name": "title_id",
             "type": "string"
@@ -78098,11 +78172,11 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns one Box Office Mojo dataset record by title id (IMDb `tt…` id used on Box Office Mojo title pages), including lifetime grosses, year history, release groups and market grosses when hydrated.",
+        "description": "Returns one Box Office Mojo dataset record by title id (IMDb `tt\u2026` id used on Box Office Mojo title pages), including lifetime grosses, year history, release groups and market grosses when hydrated.",
         "operationId": "datasets-boxofficemojo-item",
         "parameters": [
           {
-            "description": "Title id (IMDb tt… id), e.g. tt0499549",
+            "description": "Title id (IMDb tt\u2026 id), e.g. tt0499549",
             "in": "path",
             "name": "title_id",
             "required": true,
@@ -78170,7 +78244,7 @@
             "type": "string"
           },
           {
-            "description": "Exact title id (IMDb tt… id used by Box Office Mojo), max 32 characters",
+            "description": "Exact title id (IMDb tt\u2026 id used by Box Office Mojo), max 32 characters",
             "in": "query",
             "name": "title_id",
             "type": "string"
@@ -80035,7 +80109,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches the crawled public Goodreads author profile index. Authors are discovered as a byproduct of the books crawl (every credited book contributor, plus the genre/search/list seed sources) — not a full catalog. Sort enum: `relevance`, `rating_desc`, `reviews_desc`, `name_asc`.",
+        "description": "Searches the crawled public Goodreads author profile index. Authors are discovered as a byproduct of the books crawl (every credited book contributor, plus the genre/search/list seed sources) \u2014 not a full catalog. Sort enum: `relevance`, `rating_desc`, `reviews_desc`, `name_asc`.",
         "operationId": "datasets-goodreads-authors-search",
         "parameters": [
           {
@@ -80375,7 +80449,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches the crawled public Goodreads book catalog stored in a search index. Discovered from curated Listopia \"best of\" lists, a search-term sweep, and author bibliography expansion — not a full catalog. Sort enum: `relevance`, `rating_desc`, `reviews_desc`, `publication_desc`, `publication_asc`, `pages_desc`, `pages_asc`, `title_asc`.",
+        "description": "Searches the crawled public Goodreads book catalog stored in a search index. Discovered from curated Listopia \"best of\" lists, a search-term sweep, and author bibliography expansion \u2014 not a full catalog. Sort enum: `relevance`, `rating_desc`, `reviews_desc`, `publication_desc`, `publication_asc`, `pages_desc`, `pages_asc`, `title_asc`.",
         "operationId": "datasets-goodreads-books-search",
         "parameters": [
           {
@@ -81978,7 +82052,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches the discovered company board registry — which companies are hiring, on which ATS (or, for the 5 single-company big-tech providers, which platform), with how many open roles. Set sponsors_visa=true to keep companies with certified employer filings in recent public U.S. Department of Labor LCA disclosure data. This is company-level historical evidence, not a guarantee for a specific role or candidate. provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`, `gem`, `pinpoint`, `amazon-jobs`, `apple-jobs`, `google-jobs`, `meta-jobs`, `tesla-jobs`. status enum: `active`, `empty`, `gone`, `blocked`, `pending`, `invalid`. sort enum: `open_desc`, `company_asc`, `crawled_desc`.",
+        "description": "Searches the discovered company board registry \u2014 which companies are hiring, on which ATS (or, for the 5 single-company big-tech providers, which platform), with how many open roles. Set sponsors_visa=true to keep companies with certified employer filings in recent public U.S. Department of Labor LCA disclosure data. This is company-level historical evidence, not a guarantee for a specific role or candidate. provider enum: `greenhouse`, `lever`, `ashby`, `workday`, `smartrecruiters`, `workable`, `recruitee`, `rippling`, `personio`, `teamtailor`, `oracle`, `ukg`, `icims`, `eightfold`, `gem`, `pinpoint`, `amazon-jobs`, `apple-jobs`, `google-jobs`, `meta-jobs`, `tesla-jobs`. status enum: `active`, `empty`, `gone`, `blocked`, `pending`, `invalid`. sort enum: `open_desc`, `company_asc`, `crawled_desc`.",
         "operationId": "datasets-jobs-companies",
         "parameters": [
           {
@@ -82161,7 +82235,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Aggregations over all open postings: top companies hiring, breakdown by provider (every provider filterable via /datasets/jobs/search's `provider` param), department, location, employment type, skill, benefit, education, security clearance, seniority, and ESCO/ISCO job family, plus the remote share — a live hiring-market snapshot. Seniority uses one mutually exclusive value: `entry`, `mid`, or `senior`; ambiguous occupations are omitted from job-family buckets.",
+        "description": "Aggregations over all open postings: top companies hiring, breakdown by provider (every provider filterable via /datasets/jobs/search's `provider` param), department, location, employment type, skill, benefit, education, security clearance, seniority, and ESCO/ISCO job family, plus the remote share \u2014 a live hiring-market snapshot. Seniority uses one mutually exclusive value: `entry`, `mid`, or `senior`; ambiguous occupations are omitted from job-family buckets.",
         "operationId": "datasets-jobs-facets",
         "parameters": [
           {
@@ -82769,7 +82843,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches the journalists index (dataset id enum value `journalists`) — public journalist and reporter contact records crawled from news outlets' own staff/author pages, for PR outreach. Each record carries the outlet, title, best-effort beat topics, and any public contact info (a work email or a social handle) found on that outlet's own page. There is no cross-outlet upstream search; this dataset is built by crawling a curated roster of outlets ourselves. vertical enum: `tech`, `crypto`, `marketing`, `consumer_tech`, `consumer_policy`, `cybersecurity`, `health`, `gaming`, `climate`, `business`, `entertainment`, `sports`, `legal`, `science`, `politics`, `real_estate`, `automotive`, `travel`, `food`, `education`, `design`, `film_tv`, `fashion`, `music`, `personal_finance`, `tech_independent`, `culture_independent`, `local_news`, `construction`, `banking`, `retail`, `aerospace_defense`, `energy`, `agriculture`, `local_business`. contact_type enum: `email`, `social`, `none`. sort enum: `relevance`, `name_asc`, `outlet_asc`, `crawled_desc`.",
+        "description": "Searches the journalists index (dataset id enum value `journalists`) \u2014 public journalist and reporter contact records crawled from news outlets' own staff/author pages, for PR outreach. Each record carries the outlet, title, best-effort beat topics, and any public contact info (a work email or a social handle) found on that outlet's own page. There is no cross-outlet upstream search; this dataset is built by crawling a curated roster of outlets ourselves. vertical enum: `tech`, `crypto`, `marketing`, `consumer_tech`, `consumer_policy`, `cybersecurity`, `health`, `gaming`, `climate`, `business`, `entertainment`, `sports`, `legal`, `science`, `politics`, `real_estate`, `automotive`, `travel`, `food`, `education`, `design`, `film_tv`, `fashion`, `music`, `personal_finance`, `tech_independent`, `culture_independent`, `local_news`, `construction`, `banking`, `retail`, `aerospace_defense`, `energy`, `agriculture`, `local_business`. contact_type enum: `email`, `social`, `none`. sort enum: `relevance`, `name_asc`, `outlet_asc`, `crawled_desc`.",
         "operationId": "datasets-journalists-search",
         "parameters": [
           {
@@ -83613,7 +83687,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches the crawled public PitchBook advisor (service provider — e.g. investment bank, lender, financing advisory firm) profile catalog stored in a search index. Discovered from PitchBook's public sitemap. Sort enum: `relevance`, `name_asc`, `year_founded_desc`, `recently_crawled_desc`.",
+        "description": "Searches the crawled public PitchBook advisor (service provider \u2014 e.g. investment bank, lender, financing advisory firm) profile catalog stored in a search index. Discovered from PitchBook's public sitemap. Sort enum: `relevance`, `name_asc`, `year_founded_desc`, `recently_crawled_desc`.",
         "operationId": "datasets-pitchbook-advisors-search",
         "parameters": [
           {
@@ -84789,7 +84863,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches the crawled public PitchBook limited partner (institutional investor — e.g. pension fund, endowment, insurance company) profile catalog stored in a search index. Discovered from PitchBook's public sitemap. Some limited partner profiles have no FAQ section -- this is normal, not a sign of missing data. Sort enum: `relevance`, `name_asc`, `year_founded_desc`, `recently_crawled_desc`.",
+        "description": "Searches the crawled public PitchBook limited partner (institutional investor \u2014 e.g. pension fund, endowment, insurance company) profile catalog stored in a search index. Discovered from PitchBook's public sitemap. Some limited partner profiles have no FAQ section -- this is normal, not a sign of missing data. Sort enum: `relevance`, `name_asc`, `year_founded_desc`, `recently_crawled_desc`.",
         "operationId": "datasets-pitchbook-limited-partners-search",
         "parameters": [
           {
@@ -85580,7 +85654,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches Product Hunt makers from the dataset id enum value `producthunt-makers` — public-profile records of the people who made products, with their footprint (products made, total upvotes, topics) for maker leaderboards. Public fields only. Sort enum: `total_votes_desc`, `product_count_desc`, `followers_desc`, `relevance`.",
+        "description": "Searches Product Hunt makers from the dataset id enum value `producthunt-makers` \u2014 public-profile records of the people who made products, with their footprint (products made, total upvotes, topics) for maker leaderboards. Public fields only. Sort enum: `total_votes_desc`, `product_count_desc`, `followers_desc`, `relevance`.",
         "operationId": "datasets-producthunt-makers-search",
         "parameters": [
           {
@@ -85861,7 +85935,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches individual Product Hunt launches from the dataset id enum value `producthunt-products` — the searchable launch archive. Each result is one product with its topics, upvotes, ranks and launch history; description/website/twitter_url/pricing/makers are filled in as hydration runs. Sort enum: `relevance`, `votes_desc`, `launched_desc`, `launched_asc`, `rating_desc`, `best_rank_asc`.",
+        "description": "Searches individual Product Hunt launches from the dataset id enum value `producthunt-products` \u2014 the searchable launch archive. Each result is one product with its topics, upvotes, ranks and launch history; description/website/twitter_url/pricing/makers are filled in as hydration runs. Sort enum: `relevance`, `votes_desc`, `launched_desc`, `launched_asc`, `rating_desc`, `best_rank_asc`.",
         "operationId": "datasets-producthunt-products-search",
         "parameters": [
           {
@@ -86097,7 +86171,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns aggregate Product Hunt launch trends from the dataset id enum value `producthunt-trends`. Aggregate-only: each row is a category-over-time cell (a topic, optionally within a calendar period), reporting launch count, total and average upvotes, average rating and the top product — never an individual product record. Thin cells are suppressed. group_by enum: `topic_month`, `topic_year`, `topic`. Sort enum: `period_desc`, `period_asc`, `launch_count_desc`, `sum_votes_desc`.",
+        "description": "Returns aggregate Product Hunt launch trends from the dataset id enum value `producthunt-trends`. Aggregate-only: each row is a category-over-time cell (a topic, optionally within a calendar period), reporting launch count, total and average upvotes, average rating and the top product \u2014 never an individual product record. Thin cells are suppressed. group_by enum: `topic_month`, `topic_year`, `topic`. Sort enum: `period_desc`, `period_asc`, `launch_count_desc`, `sum_votes_desc`.",
         "operationId": "datasets-producthunt-trends-search",
         "parameters": [
           {
@@ -86211,7 +86285,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches daily snapshots of each tracked subreddit's hot-feed post order, stored in a search index (one document per subreddit × snapshot × rank) so history accumulates. With no `date` the latest snapshot is returned (today's trending); pair `subreddit` with `sort=date_desc` for a subreddit's trending history over time. There is no score or comment-count field — the underlying credential-free scraper does not expose vote counts, so `rank` reflects Reddit's own hot-feed order rather than a locally computed score.",
+        "description": "Searches daily snapshots of each tracked subreddit's hot-feed post order, stored in a search index (one document per subreddit \u00d7 snapshot \u00d7 rank) so history accumulates. With no `date` the latest snapshot is returned (today's trending); pair `subreddit` with `sort=date_desc` for a subreddit's trending history over time. There is no score or comment-count field \u2014 the underlying credential-free scraper does not expose vote counts, so `rank` reflects Reddit's own hot-feed order rather than a locally computed score.",
         "operationId": "datasets-reddit-trending-search",
         "parameters": [
           {
@@ -86426,7 +86500,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns a company's normalized financial-statement history (income statement, balance sheet, cash flow) from the SEC companies dataset, newest fiscal year first. An unknown CIK or a company with no XBRL data returns an empty series rather than a 404 — most filers without a current ticker have no financial-statement history at all. `lines` keys are the same normalized concept names the live `/sec/financials` endpoint uses (e.g. `revenue`, `net_income`, `total_assets`); `ratios` keys include `gross_margin`, `operating_margin`, `net_margin`, `revenue_growth_yoy`, `current_ratio`, `debt_to_equity`, `free_cash_flow` where derivable. statement enum: `income`, `balance`, `cash_flow`. period enum: `annual`, `quarterly`.",
+        "description": "Returns a company's normalized financial-statement history (income statement, balance sheet, cash flow) from the SEC companies dataset, newest fiscal year first. An unknown CIK or a company with no XBRL data returns an empty series rather than a 404 \u2014 most filers without a current ticker have no financial-statement history at all. `lines` keys are the same normalized concept names the live `/sec/financials` endpoint uses (e.g. `revenue`, `net_income`, `total_assets`); `ratios` keys include `gross_margin`, `operating_margin`, `net_margin`, `revenue_growth_yoy`, `current_ratio`, `debt_to_equity`, `free_cash_flow` where derivable. statement enum: `income`, `balance`, `cash_flow`. period enum: `annual`, `quarterly`.",
         "operationId": "datasets-sec-companies-financials",
         "parameters": [
           {
@@ -86663,7 +86737,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches SEC-reporting companies stored in a search index — normalized filing history, financial-statement rollups (latest annual/quarterly revenue, net income, total assets) and trailing-90-day insider (Form 3/4/5) activity. Sort enum: `relevance`, `name_asc`, `revenue_desc`, `net_income_desc`, `filing_recent_desc`, `insider_activity_desc`. `entity_type`, `sic`, `sic_description`, `exchange`, and `state_of_incorporation` are open filters over the exact values EDGAR reports for each filer (not a fixed enum) — discover real values via the matching facet.",
+        "description": "Searches SEC-reporting companies stored in a search index \u2014 normalized filing history, financial-statement rollups (latest annual/quarterly revenue, net income, total assets) and trailing-90-day insider (Form 3/4/5) activity. Sort enum: `relevance`, `name_asc`, `revenue_desc`, `net_income_desc`, `filing_recent_desc`, `insider_activity_desc`. `entity_type`, `sic`, `sic_description`, `exchange`, and `state_of_incorporation` are open filters over the exact values EDGAR reports for each filer (not a fixed enum) \u2014 discover real values via the matching facet.",
         "operationId": "datasets-sec-companies-search",
         "parameters": [
           {
@@ -86912,7 +86986,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches institutional investment managers' quarterly 13F portfolio holdings stored in a search index. Filter by manager_cik for a manager's full reported portfolio (an exact, reliable filter), or by issuer_name/cusip for a best-effort view of which managers reported a position in an issuer — SEC publishes no authoritative CUSIP-to-CIK mapping, so the issuer side is never a guaranteed-resolved join. Sort enum: `value_desc`, `value_asc`, `shares_desc`.",
+        "description": "Searches institutional investment managers' quarterly 13F portfolio holdings stored in a search index. Filter by manager_cik for a manager's full reported portfolio (an exact, reliable filter), or by issuer_name/cusip for a best-effort view of which managers reported a position in an issuer \u2014 SEC publishes no authoritative CUSIP-to-CIK mapping, so the issuer side is never a guaranteed-resolved join. Sort enum: `value_desc`, `value_asc`, `shares_desc`.",
         "operationId": "datasets-sec-institutional-positions-search",
         "parameters": [
           {
@@ -87002,7 +87076,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches per-game global achievement unlock percentages (one document per appid × achievement). Pass `app_id` to list a game's achievements. Sort enum: `percent_desc` (most-unlocked first, default), `percent_asc` (rarest first), `rank_asc`.",
+        "description": "Searches per-game global achievement unlock percentages (one document per appid \u00d7 achievement). Pass `app_id` to list a game's achievements. Sort enum: `percent_desc` (most-unlocked first, default), `percent_asc` (rarest first), `rank_asc`.",
         "operationId": "datasets-steam-achievements-search",
         "parameters": [
           {
@@ -87080,7 +87154,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches daily snapshots of Steam's player-count and sales charts, stored in a search index (one document per chart × country × snapshot × rank) so history accumulates. Charts: `most_played` (weekly peak concurrent), `concurrent` (live concurrent players), `top_sellers` (weekly sales; country-specific). With no `date` the latest snapshot is returned (today's chart); pair `app_id` with `sort=date_desc` for an app's rank/players over time. Country is `global` for the player-count charts or an ISO code (e.g. `us`) for `top_sellers`. Sort enum: `rank`, `rank_desc`, `date_desc`.",
+        "description": "Searches daily snapshots of Steam's player-count and sales charts, stored in a search index (one document per chart \u00d7 country \u00d7 snapshot \u00d7 rank) so history accumulates. Charts: `most_played` (weekly peak concurrent), `concurrent` (live concurrent players), `top_sellers` (weekly sales; country-specific). With no `date` the latest snapshot is returned (today's chart); pair `app_id` with `sort=date_desc` for an app's rank/players over time. Country is `global` for the player-count charts or an ISO code (e.g. `us`) for `top_sellers`. Sort enum: `rank`, `rank_desc`, `date_desc`.",
         "operationId": "datasets-steam-charts-search",
         "parameters": [
           {
@@ -87755,7 +87829,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches Steam news + announcements for tracked apps (one document per appid × gid; the latest items per app are kept). Filter by `app_id` for a single game's news, or full-text `q` over the title + contents. Sort enum: `date_desc` (newest first, default), `date_asc`.",
+        "description": "Searches Steam news + announcements for tracked apps (one document per appid \u00d7 gid; the latest items per app are kept). Filter by `app_id` for a single game's news, or full-text `q` over the title + contents. Sort enum: `date_desc` (newest first, default), `date_asc`.",
         "operationId": "datasets-steam-news-search",
         "parameters": [
           {
@@ -87838,7 +87912,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches the daily concurrent-player time series for tracked games (one document per appid × day). Pair `app_id` with `sort=date_desc` for a game's player-count history, or pass `date` for one day's snapshot. Sort enum: `date_desc` (default), `date_asc`, `players_desc`.",
+        "description": "Searches the daily concurrent-player time series for tracked games (one document per appid \u00d7 day). Pair `app_id` with `sort=date_desc` for a game's player-count history, or pass `date` for one day's snapshot. Sort enum: `date_desc` (default), `date_asc`, `players_desc`.",
         "operationId": "datasets-steam-playercounts-search",
         "parameters": [
           {
@@ -87922,7 +87996,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches the daily price time series for priced games (one document per appid × day; integer cents). Pair `app_id` with `sort=date_desc` for a game's price history, or pass `date` for one day's snapshot. Sort enum: `date_desc` (default), `date_asc`, `price_asc`, `price_desc`, `discount_desc`.",
+        "description": "Searches the daily price time series for priced games (one document per appid \u00d7 day; integer cents). Pair `app_id` with `sort=date_desc` for a game's price history, or pass `date` for one day's snapshot. Sort enum: `date_desc` (default), `date_asc`, `price_asc`, `price_desc`, `discount_desc`.",
         "operationId": "datasets-steam-prices-search",
         "parameters": [
           {
@@ -88008,7 +88082,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches the stored Steam review corpus (the most-helpful reviews per game; one document per appid × recommendation). Full-text `q` over the review body, filter by `app_id`, `language`, or `voted_up` (positive/negative). Sort enum: `votes_desc` (most-helpful first, default), `weighted_desc`, `date_desc`.",
+        "description": "Searches the stored Steam review corpus (the most-helpful reviews per game; one document per appid \u00d7 recommendation). Full-text `q` over the review body, filter by `app_id`, `language`, or `voted_up` (positive/negative). Sort enum: `votes_desc` (most-helpful first, default), `weighted_desc`, `date_desc`.",
         "operationId": "datasets-steam-reviews-search",
         "parameters": [
           {
@@ -88104,7 +88178,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns distribution counts over the website tech-stack index (dataset id enum value `techstack`), honoring the same filters as search — the technology / category market-share view. Facet enum: `technology`, `category`, `cms`, `ecommerce`, `cdn`, `web_server`, `server_language`, `analytics`, `tld`, `render_tier`, `seed_source`.",
+        "description": "Returns distribution counts over the website tech-stack index (dataset id enum value `techstack`), honoring the same filters as search \u2014 the technology / category market-share view. Facet enum: `technology`, `category`, `cms`, `ecommerce`, `cdn`, `web_server`, `server_language`, `analytics`, `tld`, `render_tier`, `seed_source`.",
         "operationId": "datasets-techstack-facets",
         "parameters": [
           {
@@ -88353,7 +88427,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches the website tech-stack index (dataset id enum value `techstack`) — one record per site listing the web technologies it is built with (frameworks, CMS, e-commerce, analytics, CDNs, servers, and more), BuiltWith / Wappalyzer-style. The reverse-index filters are the point: repeat `technology` to require several at once (AND), `any_of` to match at least one (OR), and `not` to exclude — e.g. sites on `Shopify` and `Klaviyo` but not `Recharge`. Sort enum: `relevance`, `rank_asc`, `tech_count_desc`, `domain_asc`, `crawled_desc`. render_tier enum: `http`, `browser`.",
+        "description": "Searches the website tech-stack index (dataset id enum value `techstack`) \u2014 one record per site listing the web technologies it is built with (frameworks, CMS, e-commerce, analytics, CDNs, servers, and more), BuiltWith / Wappalyzer-style. The reverse-index filters are the point: repeat `technology` to require several at once (AND), `any_of` to match at least one (OR), and `not` to exclude \u2014 e.g. sites on `Shopify` and `Klaviyo` but not `Recharge`. Sort enum: `relevance`, `rank_asc`, `tech_count_desc`, `domain_asc`, `crawled_desc`. render_tier enum: `http`, `browser`.",
         "operationId": "datasets-techstack-search",
         "parameters": [
           {
@@ -88651,7 +88725,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns a startup's daily time-series of payment-provider-verified metrics — MRR, all-time revenue, last-30-days revenue, 30-day and 12-month traffic, 30-day growth, for-sale flag, asking price, valuation multiple, deal score and offer count — one point per day in chronological order (oldest first). The series accrues one point per calendar day, so a recently discovered startup returns a short or empty series rather than a 404.",
+        "description": "Returns a startup's daily time-series of payment-provider-verified metrics \u2014 MRR, all-time revenue, last-30-days revenue, 30-day and 12-month traffic, 30-day growth, for-sale flag, asking price, valuation multiple, deal score and offer count \u2014 one point per day in chronological order (oldest first). The series accrues one point per calendar day, so a recently discovered startup returns a short or empty series rather than a 404.",
         "operationId": "datasets-trustmrr-history",
         "parameters": [
           {
@@ -89392,7 +89466,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Probes a URL across escalating transports (direct HTTP → browser-impersonation → headless/stealth browsers) and returns an empirical scraping-difficulty assessment for that exact URL: a 0–10 `difficulty_score` and `difficulty_band` (`easy`, `medium`, `hard`, `very_hard`, `blocked`, `unknown`), whether it is `scrapeable`, the detected anti-bot `protections` (Cloudflare, DataDome, Akamai, PerimeterX, Kasada, Imperva, AWS WAF and more — each with a `kind` and `confidence`), the lightest transport that worked, and a `recommended_profile`. Difficulty is per-URL, not per-site — a homepage may be open while deep pages are bot-managed. Intended for authorized public-data scraping planning.",
+        "description": "Probes a URL across escalating transports (direct HTTP \u2192 browser-impersonation \u2192 headless/stealth browsers) and returns an empirical scraping-difficulty assessment for that exact URL: a 0\u201310 `difficulty_score` and `difficulty_band` (`easy`, `medium`, `hard`, `very_hard`, `blocked`, `unknown`), whether it is `scrapeable`, the detected anti-bot `protections` (Cloudflare, DataDome, Akamai, PerimeterX, Kasada, Imperva, AWS WAF and more \u2014 each with a `kind` and `confidence`), the lightest transport that worked, and a `recommended_profile`. Difficulty is per-URL, not per-site \u2014 a homepage may be open while deep pages are bot-managed. Intended for authorized public-data scraping planning.",
         "operationId": "antibot-check",
         "parameters": [
           {
@@ -89439,7 +89513,7 @@
             "ApiKeyAuth": []
           }
         ],
-        "summary": "Anti-bot check — website scraping difficulty",
+        "summary": "Anti-bot check \u2014 website scraping difficulty",
         "tags": [
           "Web"
         ]
@@ -91362,7 +91436,7 @@
             }
           },
           "400": {
-            "description": "Bad request — missing or invalid page reference",
+            "description": "Bad request \u2014 missing or invalid page reference",
             "schema": {
               "$ref": "#/definitions/app.Response"
             }
@@ -93012,7 +93086,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns an author's paginated attributed-quotes list (quote text, tags, like count, and — when the quote is credited to a specific book — that book's title, id, and work id). Credential-free public Goodreads data.",
+        "description": "Returns an author's paginated attributed-quotes list (quote text, tags, like count, and \u2014 when the quote is credited to a specific book \u2014 that book's title, id, and work id). Credential-free public Goodreads data.",
         "operationId": "goodreads-author-quotes",
         "parameters": [
           {
@@ -93144,7 +93218,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns a work's paginated edition list (per-edition book id, format, page count, publication date, publisher, ISBN/ISBN13/ASIN, language, and rating) — every other translation, printing, and format of the requested book id. Goodreads keys editions by a separate \"work id\", not the book id in the path, so this makes one extra internal request to resolve it; requests against a book with no editions data return an upstream error.",
+        "description": "Returns a work's paginated edition list (per-edition book id, format, page count, publication date, publisher, ISBN/ISBN13/ASIN, language, and rating) \u2014 every other translation, printing, and format of the requested book id. Goodreads keys editions by a separate \"work id\", not the book id in the path, so this makes one extra internal request to resolve it; requests against a book with no editions data return an upstream error.",
         "operationId": "goodreads-book-editions",
         "parameters": [
           {
@@ -93282,7 +93356,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns up to 50 books on a Goodreads genre/shelf tag page (e.g. fantasy, romance, science-fiction), Goodreads' credential-free per-tag \"top books\" view: title, author, average rating, ratings count, publication year, and how many times the book was shelved under this specific tag. Goodreads' genre/shelf taxonomy is an open, user-generated folksonomy of thousands of tags, not a small fixed list, so there is no directory endpoint — pass any known tag slug, e.g. from a book's genres[] field or a value seen on goodreads.com. There is no pagination beyond the first 50.",
+        "description": "Returns up to 50 books on a Goodreads genre/shelf tag page (e.g. fantasy, romance, science-fiction), Goodreads' credential-free per-tag \"top books\" view: title, author, average rating, ratings count, publication year, and how many times the book was shelved under this specific tag. Goodreads' genre/shelf taxonomy is an open, user-generated folksonomy of thousands of tags, not a small fixed list, so there is no directory endpoint \u2014 pass any known tag slug, e.g. from a book's genres[] field or a value seen on goodreads.com. There is no pagination beyond the first 50.",
         "operationId": "goodreads-genre",
         "parameters": [
           {
@@ -93414,7 +93488,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns a curated, non-exhaustive catalog of well-known Goodreads Listopia lists (id, name, category) — Goodreads has no directory or search endpoint for the tens of thousands of user-created lists, so this is hand-picked and verified live, not derived from an upstream index. Pass a returned id to GET /goodreads/list/{id} for that list's ranked book contents. Category enum: `general`, `genre`, `era`, `young_adult`, `children`, `holiday`.",
+        "description": "Returns a curated, non-exhaustive catalog of well-known Goodreads Listopia lists (id, name, category) \u2014 Goodreads has no directory or search endpoint for the tens of thousands of user-created lists, so this is hand-picked and verified live, not derived from an upstream index. Pass a returned id to GET /goodreads/list/{id} for that list's ranked book contents. Category enum: `general`, `genre`, `era`, `young_adult`, `children`, `holiday`.",
         "operationId": "goodreads-lists",
         "produces": [
           "application/json"
@@ -94925,7 +94999,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns the photos Google publishes for a specified place_id — the imagery shown on\nthe place's Google Maps page, typically dozens of images for a well-covered business.\nEach entry carries the image URL as served plus its pixel dimensions when reported;\nswap the trailing size suffix on the URL (e.g. `=w203-h100-k-no`) to request other\ndimensions. Contributor avatars and review-attached photos are excluded. This is the\nplace page's image set, not a paginated archive feed. Rate limit is enforced at 1\nrequest per second.",
+        "description": "Returns the photos Google publishes for a specified place_id \u2014 the imagery shown on\nthe place's Google Maps page, typically dozens of images for a well-covered business.\nEach entry carries the image URL as served plus its pixel dimensions when reported;\nswap the trailing size suffix on the URL (e.g. `=w203-h100-k-no`) to request other\ndimensions. Contributor avatars and review-attached photos are excluded. This is the\nplace page's image set, not a paginated archive feed. Rate limit is enforced at 1\nrequest per second.",
         "operationId": "google-map-place-photos",
         "parameters": [
           {
@@ -94993,7 +95067,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns the reviews Google shows on a specified place_id's Google Maps page —\ntypically the 8 most relevant, each with its rating, text, reviewer, timestamp, and\nany photos the reviewer attached. Photo-only reviews return an empty `text`.\nThis is the place page's first page of reviews, not the full review archive.\nRate limit is enforced at 1 request per second.",
+        "description": "Returns the reviews Google shows on a specified place_id's Google Maps page \u2014\ntypically the 8 most relevant, each with its rating, text, reviewer, timestamp, and\nany photos the reviewer attached. Photo-only reviews return an empty `text`.\nThis is the place page's first page of reviews, not the full review archive.\nRate limit is enforced at 1 request per second.",
         "operationId": "google-map-place-reviews",
         "parameters": [
           {
@@ -99513,7 +99587,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Aggregates a company's ATS board into a hiring snapshot: total open roles, breakdowns by department/location/title, remote share, and how many roles are new in the last 7/30 days — a leading indicator of company growth. Supply provider plus that provider's slug params (token / company / org / tenant+datacenter+site / domain). Breakdowns are computed over the fetched postings. Credential-free public ATS JSON.",
+        "description": "Aggregates a company's ATS board into a hiring snapshot: total open roles, breakdowns by department/location/title, remote share, and how many roles are new in the last 7/30 days \u2014 a leading indicator of company growth. Supply provider plus that provider's slug params (token / company / org / tenant+datacenter+site / domain). Breakdowns are computed over the fetched postings. Credential-free public ATS JSON.",
         "operationId": "jobs-hiring-signals",
         "parameters": [
           {
@@ -99641,7 +99715,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Lists a company's public iCIMS job board (served through the tenant's white-labeled careers domain, e.g. careers.costco.com — not the bare {company}.icims.com subdomain, which is an OAuth-gated employee portal), paged via page/limit, with the full description inline per job. domain is the tenant's careers domain from its careers URL. Credential-free public ATS JSON.",
+        "description": "Lists a company's public iCIMS job board (served through the tenant's white-labeled careers domain, e.g. careers.costco.com \u2014 not the bare {company}.icims.com subdomain, which is an OAuth-gated employee portal), paged via page/limit, with the full description inline per job. domain is the tenant's careers domain from its careers URL. Credential-free public ATS JSON.",
         "operationId": "jobs-icims-board",
         "parameters": [
           {
@@ -100346,7 +100420,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Lists a company's public Rippling board postings (thin listing — title, department, work location). The company is the Rippling board slug from its careers URL https://ats.rippling.com/{company}/jobs. Detail (full description, employment type) is fetched per job via the single-job endpoint. Credential-free public ATS JSON.",
+        "description": "Lists a company's public Rippling board postings (thin listing \u2014 title, department, work location). The company is the Rippling board slug from its careers URL https://ats.rippling.com/{company}/jobs. Detail (full description, employment type) is fetched per job via the single-job endpoint. Credential-free public ATS JSON.",
         "operationId": "jobs-rippling-board",
         "parameters": [
           {
@@ -104718,7 +104792,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns a member's public profile stats (films watched, lists, following/followers). No private data — everything is visible to a logged-out visitor. Credential-free public Letterboxd data.",
+        "description": "Returns a member's public profile stats (films watched, lists, following/followers). No private data \u2014 everything is visible to a logged-out visitor. Credential-free public Letterboxd data.",
         "operationId": "letterboxd-member",
         "parameters": [
           {
@@ -109351,7 +109425,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Reads any PlayStation Store merchandising page by alias (e.g. collections, subscriptions, or a promotional alias) and returns its shelves (sections) plus the curated collection links found on the page. Each collection link carries a category_id (UUID) you can pass to /playstation/category to fetch that collection's full, paginated title grid — the credential-free way to browse themed/curated selections. Known aliases: collections, subscriptions, deals, latest. cc selects the store region (and price currency) and l the text language. Credential-free public PlayStation Store data.",
+        "description": "Reads any PlayStation Store merchandising page by alias (e.g. collections, subscriptions, or a promotional alias) and returns its shelves (sections) plus the curated collection links found on the page. Each collection link carries a category_id (UUID) you can pass to /playstation/category to fetch that collection's full, paginated title grid \u2014 the credential-free way to browse themed/curated selections. Known aliases: collections, subscriptions, deals, latest. cc selects the store region (and price currency) and l the text language. Credential-free public PlayStation Store data.",
         "operationId": "playstation-page",
         "parameters": [
           {
@@ -117570,7 +117644,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Aggregates a company's profile, a latest-annual financial snapshot, the latest 10-K/10-Q/8-K, and recent material events into one call. Provide cik or ticker. Optionally fuse live cross-source data with enrich (a comma list of market, news, hiring): market and news are keyed on the ticker; hiring needs ats plus that ATS's careers slug (or tenant/datacenter/site for Workday). Enrichment is best-effort — requested-but-unavailable sources are listed under degraded and never fail the SEC-native response. Credential-free public data.",
+        "description": "Aggregates a company's profile, a latest-annual financial snapshot, the latest 10-K/10-Q/8-K, and recent material events into one call. Provide cik or ticker. Optionally fuse live cross-source data with enrich (a comma list of market, news, hiring): market and news are keyed on the ticker; hiring needs ats plus that ATS's careers slug (or tenant/datacenter/site for Workday). Enrichment is best-effort \u2014 requested-but-unavailable sources are listed under degraded and never fail the SEC-native response. Credential-free public data.",
         "operationId": "sec-company-intelligence",
         "parameters": [
           {
@@ -124782,7 +124856,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns a catalog slice for a community tag / category via Steam's keyless IStoreQueryService, carrying each item's WEIGHTED community tags, review-score breakdown, developer/publisher credits, release date, platforms and price. The slug is a numeric tag id or a tag name (case- and separator-insensitive, e.g. rogue_like); resolve ids via /steam/tags/list. Ordering is Steam's default relevance — for sorted or os/price-faceted browse use /steam/tags. Credential-free public Steam store query API.",
+        "description": "Returns a catalog slice for a community tag / category via Steam's keyless IStoreQueryService, carrying each item's WEIGHTED community tags, review-score breakdown, developer/publisher credits, release date, platforms and price. The slug is a numeric tag id or a tag name (case- and separator-insensitive, e.g. rogue_like); resolve ids via /steam/tags/list. Ordering is Steam's default relevance \u2014 for sorted or os/price-faceted browse use /steam/tags. Credential-free public Steam store query API.",
         "operationId": "steam-category",
         "parameters": [
           {
@@ -126744,7 +126818,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Searches Tesla's public careers site (tesla.com/careers) via its own careers-state JSON endpoint. Tesla's own endpoint always returns its entire global job dataset regardless of query parameters; this filters and paginates that snapshot server-side. Listings carry identity/department/location metadata only — call the job endpoint for the full description, responsibilities, and requirements.",
+        "description": "Searches Tesla's public careers site (tesla.com/careers) via its own careers-state JSON endpoint. Tesla's own endpoint always returns its entire global job dataset regardless of query parameters; this filters and paginates that snapshot server-side. Listings carry identity/department/location metadata only \u2014 call the job endpoint for the full description, responsibilities, and requirements.",
         "operationId": "tesla-jobs-list",
         "parameters": [
           {
@@ -129631,6 +129705,90 @@
             "type": "string"
           },
           {
+            "description": "1-based page, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Sort order",
+            "enum": [
+              "popularity.desc",
+              "popularity.asc",
+              "vote_average.desc",
+              "vote_average.asc",
+              "primary_release_date.desc",
+              "primary_release_date.asc",
+              "title.asc",
+              "title.desc"
+            ],
+            "in": "query",
+            "name": "sort_by",
+            "type": "string"
+          },
+          {
+            "description": "Comma- or pipe-separated TMDB genre ids",
+            "in": "query",
+            "name": "with_genres",
+            "type": "string",
+            "x-example": "18,878"
+          },
+          {
+            "description": "Two-letter original-language code",
+            "in": "query",
+            "name": "original_language",
+            "type": "string",
+            "x-example": "en"
+          },
+          {
+            "description": "Release date lower bound (YYYY-MM-DD)",
+            "in": "query",
+            "name": "date_from",
+            "type": "string"
+          },
+          {
+            "description": "Release date upper bound (YYYY-MM-DD)",
+            "in": "query",
+            "name": "date_to",
+            "type": "string"
+          },
+          {
+            "description": "Minimum rating, 0-10",
+            "in": "query",
+            "name": "min_rating",
+            "type": "number"
+          },
+          {
+            "description": "Maximum rating, 0-10",
+            "in": "query",
+            "name": "max_rating",
+            "type": "number"
+          },
+          {
+            "description": "Minimum vote count",
+            "in": "query",
+            "name": "min_votes",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum runtime in minutes",
+            "in": "query",
+            "name": "min_runtime",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum runtime in minutes",
+            "in": "query",
+            "name": "max_runtime",
+            "type": "integer"
+          },
+          {
+            "description": "Include adult titles",
+            "in": "query",
+            "name": "include_adult",
+            "type": "boolean"
+          },
+          {
             "description": "Max movies, default 10, max 20",
             "in": "query",
             "name": "limit",
@@ -129682,7 +129840,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns a normalized TMDB movie: overview, tagline, genres, countries, runtime, budget/revenue, top-billed cast, top crew (director/writer), and aggregate rating. Credential-free public TMDB data (themoviedb.org) — not the official api.themoviedb.org, which requires an API key.",
+        "description": "Returns a normalized TMDB movie: overview, tagline, genres, countries, runtime, budget/revenue, top-billed cast, top crew (director/writer), and aggregate rating. Credential-free public TMDB data (themoviedb.org) \u2014 not the official api.themoviedb.org, which requires an API key.",
         "operationId": "tmdb-movie",
         "parameters": [
           {
@@ -129837,6 +129995,12 @@
             "type": "string"
           },
           {
+            "description": "1-based results page, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
             "description": "Max results, default 10, max 20",
             "in": "query",
             "name": "limit",
@@ -129902,6 +130066,90 @@
             "in": "query",
             "name": "category",
             "type": "string"
+          },
+          {
+            "description": "1-based page, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Sort order",
+            "enum": [
+              "popularity.desc",
+              "popularity.asc",
+              "vote_average.desc",
+              "vote_average.asc",
+              "first_air_date.desc",
+              "first_air_date.asc",
+              "name.asc",
+              "name.desc"
+            ],
+            "in": "query",
+            "name": "sort_by",
+            "type": "string"
+          },
+          {
+            "description": "Comma- or pipe-separated TMDB genre ids",
+            "in": "query",
+            "name": "with_genres",
+            "type": "string",
+            "x-example": "18,10765"
+          },
+          {
+            "description": "Two-letter original-language code",
+            "in": "query",
+            "name": "original_language",
+            "type": "string",
+            "x-example": "en"
+          },
+          {
+            "description": "First-air date lower bound (YYYY-MM-DD)",
+            "in": "query",
+            "name": "date_from",
+            "type": "string"
+          },
+          {
+            "description": "First-air date upper bound (YYYY-MM-DD)",
+            "in": "query",
+            "name": "date_to",
+            "type": "string"
+          },
+          {
+            "description": "Minimum rating, 0-10",
+            "in": "query",
+            "name": "min_rating",
+            "type": "number"
+          },
+          {
+            "description": "Maximum rating, 0-10",
+            "in": "query",
+            "name": "max_rating",
+            "type": "number"
+          },
+          {
+            "description": "Minimum vote count",
+            "in": "query",
+            "name": "min_votes",
+            "type": "integer"
+          },
+          {
+            "description": "Minimum runtime in minutes",
+            "in": "query",
+            "name": "min_runtime",
+            "type": "integer"
+          },
+          {
+            "description": "Maximum runtime in minutes",
+            "in": "query",
+            "name": "max_runtime",
+            "type": "integer"
+          },
+          {
+            "description": "Include adult titles",
+            "in": "query",
+            "name": "include_adult",
+            "type": "boolean"
           },
           {
             "description": "Max shows, default 10, max 20",
@@ -131040,7 +131288,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns a paginated list of every startup in the TrustMRR directory, discovered from the site's public sitemap. Each entry is a slug you can pass to /trustmrr/startup/{slug} for the full verified profile — together these two endpoints let you enumerate and scrape the entire directory without the authenticated marketplace API.",
+        "description": "Returns a paginated list of every startup in the TrustMRR directory, discovered from the site's public sitemap. Each entry is a slug you can pass to /trustmrr/startup/{slug} for the full verified profile \u2014 together these two endpoints let you enumerate and scrape the entire directory without the authenticated marketplace API.",
         "operationId": "trustmrr-startups",
         "parameters": [
           {
@@ -131700,7 +131948,7 @@
             "x-example": -122.4194
           },
           {
-            "description": "Keyword — restaurant name, cuisine, or dish",
+            "description": "Keyword \u2014 restaurant name, cuisine, or dish",
             "in": "query",
             "name": "query",
             "type": "string",
@@ -132685,7 +132933,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Fetches a public URL and fingerprints the web technologies it is built with — a BuiltWith / Wappalyzer-style detector. Returns a list of detected `technologies`, each with its `categories`, a `confidence` (`high`, `medium`, `low`), an optional `version`, and the `evidence` that matched. Covers JavaScript frameworks and libraries (React, Vue.js, Angular, Svelte, jQuery), web frameworks / static site generators (Next.js, Nuxt.js, Gatsby, Remix, SvelteKit, Astro, Hugo), CMS and website builders (WordPress, Drupal, Joomla, Ghost, Wix, Squarespace, Webflow), e-commerce (Shopify, WooCommerce, Magento, BigCommerce), analytics, ad pixels, and tag managers (Google Analytics, Google Tag Manager, Meta Pixel, LinkedIn, Bing, TikTok/Pinterest/Reddit pixels, Segment, Hotjar, Microsoft Clarity), CDNs, UI frameworks and fonts, payments (Stripe, PayPal, Klarna), live chat, marketing automation, A/B testing, consent management, CAPTCHAs (reCAPTCHA, hCaptcha, Turnstile), video, and search. It also inspects response headers (from a plain HTTP fetch) to identify the web server (nginx, Apache, IIS), the CDN / hosting provider (Cloudflare, CloudFront, Fastly, Vercel, Netlify), and the server-side language / framework (PHP, ASP.NET, Ruby on Rails, Django, Laravel, Express). Results are directional, not exhaustive. The `render` fetch strategy is one of `browser` (headless browser that executes JavaScript — the default, so client-injected scripts like analytics, tag managers and pixels are detected), `auto` (Chrome-impersonated HTTP, escalating to a real browser only when blocked or JS-rendered), or `http` (HTTP only, no JavaScript — fastest, but sees only the server HTML); defaults to `browser`. Only public pages are supported; respect each site's terms of use and robots directives.",
+        "description": "Fetches a public URL and fingerprints the web technologies it is built with \u2014 a BuiltWith / Wappalyzer-style detector. Returns a list of detected `technologies`, each with its `categories`, a `confidence` (`high`, `medium`, `low`), an optional `version`, and the `evidence` that matched. Covers JavaScript frameworks and libraries (React, Vue.js, Angular, Svelte, jQuery), web frameworks / static site generators (Next.js, Nuxt.js, Gatsby, Remix, SvelteKit, Astro, Hugo), CMS and website builders (WordPress, Drupal, Joomla, Ghost, Wix, Squarespace, Webflow), e-commerce (Shopify, WooCommerce, Magento, BigCommerce), analytics, ad pixels, and tag managers (Google Analytics, Google Tag Manager, Meta Pixel, LinkedIn, Bing, TikTok/Pinterest/Reddit pixels, Segment, Hotjar, Microsoft Clarity), CDNs, UI frameworks and fonts, payments (Stripe, PayPal, Klarna), live chat, marketing automation, A/B testing, consent management, CAPTCHAs (reCAPTCHA, hCaptcha, Turnstile), video, and search. It also inspects response headers (from a plain HTTP fetch) to identify the web server (nginx, Apache, IIS), the CDN / hosting provider (Cloudflare, CloudFront, Fastly, Vercel, Netlify), and the server-side language / framework (PHP, ASP.NET, Ruby on Rails, Django, Laravel, Express). Results are directional, not exhaustive. The `render` fetch strategy is one of `browser` (headless browser that executes JavaScript \u2014 the default, so client-injected scripts like analytics, tag managers and pixels are detected), `auto` (Chrome-impersonated HTTP, escalating to a real browser only when blocked or JS-rendered), or `http` (HTTP only, no JavaScript \u2014 fastest, but sees only the server HTML); defaults to `browser`. Only public pages are supported; respect each site's terms of use and robots directives.",
         "operationId": "web-techstack",
         "parameters": [
           {
@@ -132738,7 +132986,7 @@
             "ApiKeyAuth": []
           }
         ],
-        "summary": "Tech stack — detect what a website is built with",
+        "summary": "Tech stack \u2014 detect what a website is built with",
         "tags": [
           "Web"
         ]
@@ -136648,6 +136896,67 @@
         "summary": "Search Zillow listings",
         "tags": [
           "Zillow"
+        ]
+      }
+    },
+    "/tmdb/person/list": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one page from TMDB's Popular People directory, including each person's id, name, known-for titles, profile image, and detail URL. Credential-free public TMDB data.",
+        "operationId": "tmdb-person-list",
+        "parameters": [
+          {
+            "description": "1-based page, default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Max people, default 10, max 20",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/tmdb.personListResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List popular people on TMDB",
+        "tags": [
+          "TMDB"
         ]
       }
     }
