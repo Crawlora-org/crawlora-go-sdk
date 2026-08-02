@@ -299,6 +299,8 @@ def main():
             lines.append("}")
             lines.append("")
     (ROOT / "operations_generated.go").write_text("\n".join(lines))
+    import subprocess
+    subprocess.run(["gofmt", "-w", str(ROOT / "operations_generated.go")], check=True)
     (ROOT / "docs").mkdir(exist_ok=True)
     (ROOT / "docs" / "operations.md").write_text(
         core.operation_docs(model, title="Crawlora Go SDK Operations", type_render=go_type)
