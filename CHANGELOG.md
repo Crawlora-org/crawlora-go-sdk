@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.32.0-sdk.1
+
+- Regenerated from the public API contract (890 to 895 operations). Adds DoorDash location discovery feed, dish and item keyword search, menu item options/details, store customer reviews snapshot, and store fulfillment schedules.
+
 ## v1.30.0-sdk.1
 
 - Added paginated TMDB Popular People and expanded TMDB movie, TV, and search operations with pagination and browse filters.

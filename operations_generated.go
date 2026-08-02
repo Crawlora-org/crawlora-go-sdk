@@ -5172,6 +5172,22 @@ type ModelDoordashCuisine struct {
 	Name string `json:"name,omitempty"`
 }
 
+type ModelDoordashFeedResponse struct {
+	Stores []ModelDoordashFeedStore `json:"stores,omitempty"`
+}
+
+type ModelDoordashFeedStore struct {
+	AverageRating float64 `json:"averageRating,omitempty"`
+	CoverImageUrl string `json:"coverImageUrl,omitempty"`
+	DeliveryFee string `json:"deliveryFee,omitempty"`
+	Eta string `json:"eta,omitempty"`
+	Name string `json:"name,omitempty"`
+	PriceRange string `json:"priceRange,omitempty"`
+	RatingCount string `json:"ratingCount,omitempty"`
+	StoreId string `json:"storeId,omitempty"`
+	Tags []string `json:"tags,omitempty"`
+}
+
 type ModelDoordashFilterValue struct {
 	DisplayName string `json:"displayName,omitempty"`
 	Type string `json:"type,omitempty"`
@@ -5193,6 +5209,15 @@ type ModelDoordashMenuResponse struct {
 type ModelDoordashMenuSection struct {
 	Items []ModelDoordashMenuItem `json:"items,omitempty"`
 	Name string `json:"name,omitempty"`
+}
+
+type ModelDoordashReviewItem struct {
+	AvatarInitial string `json:"avatarInitial,omitempty"`
+	AvatarUrl string `json:"avatarUrl,omitempty"`
+	Rating float64 `json:"rating,omitempty"`
+	ReviewerName string `json:"reviewerName,omitempty"`
+	ReviewerReviewsCount string `json:"reviewerReviewsCount,omitempty"`
+	Text string `json:"text,omitempty"`
 }
 
 type ModelDoordashSearchAddress struct {
@@ -5218,6 +5243,21 @@ type ModelDoordashSearchFiltersResponse struct {
 	Filters []ModelDoordashSearchFilter `json:"filters,omitempty"`
 }
 
+type ModelDoordashSearchItemResult struct {
+	Description string `json:"description,omitempty"`
+	Distance string `json:"distance,omitempty"`
+	ItemId string `json:"itemId,omitempty"`
+	Name string `json:"name,omitempty"`
+	Price string `json:"price,omitempty"`
+	StoreId string `json:"storeId,omitempty"`
+	StoreName string `json:"storeName,omitempty"`
+}
+
+type ModelDoordashSearchItemsResponse struct {
+	Query string `json:"query,omitempty"`
+	Results []ModelDoordashSearchItemResult `json:"results,omitempty"`
+}
+
 type ModelDoordashSearchResponse struct {
 	Query string `json:"query,omitempty"`
 	Results []ModelDoordashSearchResult `json:"results,omitempty"`
@@ -5240,6 +5280,7 @@ type ModelDoordashSearchResult struct {
 
 type ModelDoordashStoreDetail struct {
 	Address ModelDoordashAddress `json:"address,omitempty"`
+	AverageRating float64 `json:"averageRating,omitempty"`
 	Images []string `json:"images,omitempty"`
 	Latitude float64 `json:"latitude,omitempty"`
 	Longitude float64 `json:"longitude,omitempty"`
@@ -5247,8 +5288,45 @@ type ModelDoordashStoreDetail struct {
 	MenuSectionCount int `json:"menuSectionCount,omitempty"`
 	Name string `json:"name,omitempty"`
 	PriceRange string `json:"priceRange,omitempty"`
+	RatingCount string `json:"ratingCount,omitempty"`
 	StoreId string `json:"storeId,omitempty"`
 	Url string `json:"url,omitempty"`
+}
+
+type ModelDoordashStoreFulfillmentResponse struct {
+	DeliverySubtitle string `json:"deliverySubtitle,omitempty"`
+	DeliveryTitle string `json:"deliveryTitle,omitempty"`
+	FulfillmentMethod string `json:"fulfillmentMethod,omitempty"`
+	IsFreeDelivery bool `json:"isFreeDelivery,omitempty"`
+	OfferedFulfillmentMethods []string `json:"offeredFulfillmentMethods,omitempty"`
+	ScheduleDescription string `json:"scheduleDescription,omitempty"`
+	StoreId string `json:"storeId,omitempty"`
+	StoreName string `json:"storeName,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
+type ModelDoordashStoreItemResponse struct {
+	Description string `json:"description,omitempty"`
+	ItemId string `json:"itemId,omitempty"`
+	Name string `json:"name,omitempty"`
+	Price string `json:"price,omitempty"`
+	StoreId string `json:"storeId,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
+type ModelDoordashStoreReviewsResponse struct {
+	AverageRating float64 `json:"averageRating,omitempty"`
+	RatingCount string `json:"ratingCount,omitempty"`
+	Reviews []ModelDoordashReviewItem `json:"reviews,omitempty"`
+	StoreId string `json:"storeId,omitempty"`
+	StoreName string `json:"storeName,omitempty"`
+	Url string `json:"url,omitempty"`
+}
+
+type ModelDoordashFeedResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelDoordashFeedResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
 }
 
 type ModelDoordashMenuResponseDoc struct {
@@ -5263,15 +5341,39 @@ type ModelDoordashSearchFiltersResponseDoc struct {
 	Msg string `json:"msg,omitempty"`
 }
 
+type ModelDoordashSearchItemsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelDoordashSearchItemsResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
 type ModelDoordashSearchResponseDoc struct {
 	Code int `json:"code,omitempty"`
 	Data ModelDoordashSearchResponse `json:"data,omitempty"`
 	Msg string `json:"msg,omitempty"`
 }
 
+type ModelDoordashStoreFulfillmentResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelDoordashStoreFulfillmentResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelDoordashStoreItemResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelDoordashStoreItemResponse `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
 type ModelDoordashStoreResponseDoc struct {
 	Code int `json:"code,omitempty"`
 	Data ModelDoordashStoreDetail `json:"data,omitempty"`
+	Msg string `json:"msg,omitempty"`
+}
+
+type ModelDoordashStoreReviewsResponseDoc struct {
+	Code int `json:"code,omitempty"`
+	Data ModelDoordashStoreReviewsResponse `json:"data,omitempty"`
 	Msg string `json:"msg,omitempty"`
 }
 
@@ -20837,7 +20939,7 @@ type ModelZillowSearchResponse struct {
 	Results []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 890
+const operationCount = 895
 
 const (
 	OperationAirbnbHost = "airbnb-host"
@@ -21087,11 +21189,16 @@ const (
 	OperationDiscogsMaster = "discogs-master"
 	OperationDiscogsRelease = "discogs-release"
 	OperationDiscogsSearch = "discogs-search"
+	OperationDoorDashDoordashFeed = "doordash-feed"
 	OperationDoorDashDoordashSearch = "doordash-search"
 	OperationDoorDashDoordashSearchAutocomplete = "doordash-search-autocomplete"
 	OperationDoorDashDoordashSearchFilters = "doordash-search-filters"
+	OperationDoorDashDoordashSearchItems = "doordash-search-items"
 	OperationDoorDashDoordashStore = "doordash-store"
+	OperationDoorDashDoordashStoreFulfillment = "doordash-store-fulfillment"
+	OperationDoorDashDoordashStoreItem = "doordash-store-item"
 	OperationDoorDashDoordashStoreMenu = "doordash-store-menu"
+	OperationDoorDashDoordashStoreReviews = "doordash-store-reviews"
 	OperationEBayEbayItem = "ebay-item"
 	OperationEBayEbaySearch = "ebay-search"
 	OperationEBayEbaySeller = "ebay-seller"
@@ -21982,11 +22089,16 @@ var operations = map[string]operationDefinition{
 	"discogs-master": operationDefinition{Method: "GET", Path: "/discogs/master/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"discogs-release": operationDefinition{Method: "GET", Path: "/discogs/release/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"discogs-search": operationDefinition{Method: "GET", Path: "/discogs/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"release", "master", "artist", "label"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
+	"doordash-feed": operationDefinition{Method: "GET", Path: "/doordash/feed", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, },
 	"doordash-search": operationDefinition{Method: "GET", Path: "/doordash/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "tag", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "dashPassOnly", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "asapOnly", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "pickupOnly", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "maxDistanceMiles", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"doordash-search-autocomplete": operationDefinition{Method: "GET", Path: "/doordash/search/autocomplete", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"doordash-search-filters": operationDefinition{Method: "GET", Path: "/doordash/search/filters", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"doordash-search-items": operationDefinition{Method: "GET", Path: "/doordash/search/items", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"doordash-store": operationDefinition{Method: "GET", Path: "/doordash/store/{store_id}", PathParams: []string{"store_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"doordash-store-fulfillment": operationDefinition{Method: "GET", Path: "/doordash/store/{store_id}/fulfillment", PathParams: []string{"store_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"doordash-store-item": operationDefinition{Method: "GET", Path: "/doordash/store/{store_id}/item/{item_id}", PathParams: []string{"store_id", "item_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"doordash-store-menu": operationDefinition{Method: "GET", Path: "/doordash/store/{store_id}/menu", PathParams: []string{"store_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
+	"doordash-store-reviews": operationDefinition{Method: "GET", Path: "/doordash/store/{store_id}/reviews", PathParams: []string{"store_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"ebay-item": operationDefinition{Method: "GET", Path: "/ebay/item/{item_id}", PathParams: []string{"item_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"ebay-search": operationDefinition{Method: "POST", Path: "/ebay/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
 	"ebay-seller": operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}", PathParams: []string{"seller"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, },
@@ -27551,6 +27663,23 @@ func (s *DiscogsService) SearchTyped(ctx context.Context, params DiscogsSearchPa
 
 type DoorDashService struct { client *Client }
 
+func (s *DoorDashService) DoordashFeed(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "doordash-feed", params, opts...)
+}
+
+type DoorDashDoordashFeedParams struct {
+	Latitude float64 `crawlora:"latitude"`
+	Longitude float64 `crawlora:"longitude"`
+	Offset *int `crawlora:"offset,omitempty"`
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type DoorDashDoordashFeedResponse = ModelDoordashFeedResponseDoc
+
+func (s *DoorDashService) DoordashFeedTyped(ctx context.Context, params DoorDashDoordashFeedParams, opts ...RequestOption) (DoorDashDoordashFeedResponse, error) {
+	return requestTyped[DoorDashDoordashFeedResponse](s.client, ctx, "doordash-feed", paramsFromStruct(params), opts...)
+}
+
 func (s *DoorDashService) DoordashSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "doordash-search", params, opts...)
 }
@@ -27603,6 +27732,22 @@ func (s *DoorDashService) DoordashSearchFiltersTyped(ctx context.Context, params
 	return requestTyped[DoorDashDoordashSearchFiltersResponse](s.client, ctx, "doordash-search-filters", paramsFromStruct(params), opts...)
 }
 
+func (s *DoorDashService) DoordashSearchItems(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "doordash-search-items", params, opts...)
+}
+
+type DoorDashDoordashSearchItemsParams struct {
+	Query string `crawlora:"query"`
+	Latitude float64 `crawlora:"latitude"`
+	Longitude float64 `crawlora:"longitude"`
+}
+
+type DoorDashDoordashSearchItemsResponse = ModelDoordashSearchItemsResponseDoc
+
+func (s *DoorDashService) DoordashSearchItemsTyped(ctx context.Context, params DoorDashDoordashSearchItemsParams, opts ...RequestOption) (DoorDashDoordashSearchItemsResponse, error) {
+	return requestTyped[DoorDashDoordashSearchItemsResponse](s.client, ctx, "doordash-search-items", paramsFromStruct(params), opts...)
+}
+
 func (s *DoorDashService) DoordashStore(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "doordash-store", params, opts...)
 }
@@ -27619,6 +27764,39 @@ func (s *DoorDashService) DoordashStoreTyped(ctx context.Context, params DoorDas
 	return requestTyped[DoorDashDoordashStoreResponse](s.client, ctx, "doordash-store", paramsFromStruct(params), opts...)
 }
 
+func (s *DoorDashService) DoordashStoreFulfillment(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "doordash-store-fulfillment", params, opts...)
+}
+
+type DoorDashDoordashStoreFulfillmentParams struct {
+	StoreId string `crawlora:"store_id"`
+	Latitude float64 `crawlora:"latitude"`
+	Longitude float64 `crawlora:"longitude"`
+}
+
+type DoorDashDoordashStoreFulfillmentResponse = ModelDoordashStoreFulfillmentResponseDoc
+
+func (s *DoorDashService) DoordashStoreFulfillmentTyped(ctx context.Context, params DoorDashDoordashStoreFulfillmentParams, opts ...RequestOption) (DoorDashDoordashStoreFulfillmentResponse, error) {
+	return requestTyped[DoorDashDoordashStoreFulfillmentResponse](s.client, ctx, "doordash-store-fulfillment", paramsFromStruct(params), opts...)
+}
+
+func (s *DoorDashService) DoordashStoreItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "doordash-store-item", params, opts...)
+}
+
+type DoorDashDoordashStoreItemParams struct {
+	StoreId string `crawlora:"store_id"`
+	ItemId string `crawlora:"item_id"`
+	Latitude float64 `crawlora:"latitude"`
+	Longitude float64 `crawlora:"longitude"`
+}
+
+type DoorDashDoordashStoreItemResponse = ModelDoordashStoreItemResponseDoc
+
+func (s *DoorDashService) DoordashStoreItemTyped(ctx context.Context, params DoorDashDoordashStoreItemParams, opts ...RequestOption) (DoorDashDoordashStoreItemResponse, error) {
+	return requestTyped[DoorDashDoordashStoreItemResponse](s.client, ctx, "doordash-store-item", paramsFromStruct(params), opts...)
+}
+
 func (s *DoorDashService) DoordashStoreMenu(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "doordash-store-menu", params, opts...)
 }
@@ -27633,6 +27811,22 @@ type DoorDashDoordashStoreMenuResponse = ModelDoordashMenuResponseDoc
 
 func (s *DoorDashService) DoordashStoreMenuTyped(ctx context.Context, params DoorDashDoordashStoreMenuParams, opts ...RequestOption) (DoorDashDoordashStoreMenuResponse, error) {
 	return requestTyped[DoorDashDoordashStoreMenuResponse](s.client, ctx, "doordash-store-menu", paramsFromStruct(params), opts...)
+}
+
+func (s *DoorDashService) DoordashStoreReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "doordash-store-reviews", params, opts...)
+}
+
+type DoorDashDoordashStoreReviewsParams struct {
+	StoreId string `crawlora:"store_id"`
+	Latitude float64 `crawlora:"latitude"`
+	Longitude float64 `crawlora:"longitude"`
+}
+
+type DoorDashDoordashStoreReviewsResponse = ModelDoordashStoreReviewsResponseDoc
+
+func (s *DoorDashService) DoordashStoreReviewsTyped(ctx context.Context, params DoorDashDoordashStoreReviewsParams, opts ...RequestOption) (DoorDashDoordashStoreReviewsResponse, error) {
+	return requestTyped[DoorDashDoordashStoreReviewsResponse](s.client, ctx, "doordash-store-reviews", paramsFromStruct(params), opts...)
 }
 
 type EBayService struct { client *Client }

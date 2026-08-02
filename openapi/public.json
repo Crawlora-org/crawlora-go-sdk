@@ -16100,6 +16100,52 @@
       },
       "type": "object"
     },
+    "doordash.FeedResponse": {
+      "properties": {
+        "stores": {
+          "items": {
+            "$ref": "#/definitions/doordash.FeedStore"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "doordash.FeedStore": {
+      "properties": {
+        "averageRating": {
+          "type": "number"
+        },
+        "coverImageUrl": {
+          "type": "string"
+        },
+        "deliveryFee": {
+          "type": "string"
+        },
+        "eta": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "priceRange": {
+          "type": "string"
+        },
+        "ratingCount": {
+          "type": "string"
+        },
+        "storeId": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "doordash.FilterValue": {
       "properties": {
         "displayName": {
@@ -16154,6 +16200,29 @@
           "type": "array"
         },
         "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "doordash.ReviewItem": {
+      "properties": {
+        "avatarInitial": {
+          "type": "string"
+        },
+        "avatarUrl": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "number"
+        },
+        "reviewerName": {
+          "type": "string"
+        },
+        "reviewerReviewsCount": {
+          "type": "string"
+        },
+        "text": {
           "type": "string"
         }
       },
@@ -16228,6 +16297,46 @@
       },
       "type": "object"
     },
+    "doordash.SearchItemResult": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "distance": {
+          "type": "string"
+        },
+        "itemId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "string"
+        },
+        "storeId": {
+          "type": "string"
+        },
+        "storeName": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "doordash.SearchItemsResponse": {
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/doordash.SearchItemResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "doordash.SearchResponse": {
       "properties": {
         "query": {
@@ -16291,6 +16400,9 @@
         "address": {
           "$ref": "#/definitions/doordash.Address"
         },
+        "averageRating": {
+          "type": "number"
+        },
         "images": {
           "items": {
             "type": "string"
@@ -16315,10 +16427,113 @@
         "priceRange": {
           "type": "string"
         },
+        "ratingCount": {
+          "type": "string"
+        },
         "storeId": {
           "type": "string"
         },
         "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "doordash.StoreFulfillmentResponse": {
+      "properties": {
+        "deliverySubtitle": {
+          "type": "string"
+        },
+        "deliveryTitle": {
+          "type": "string"
+        },
+        "fulfillmentMethod": {
+          "type": "string"
+        },
+        "isFreeDelivery": {
+          "type": "boolean"
+        },
+        "offeredFulfillmentMethods": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "scheduleDescription": {
+          "type": "string"
+        },
+        "storeId": {
+          "type": "string"
+        },
+        "storeName": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "doordash.StoreItemResponse": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "itemId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "string"
+        },
+        "storeId": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "doordash.StoreReviewsResponse": {
+      "properties": {
+        "averageRating": {
+          "type": "number"
+        },
+        "ratingCount": {
+          "type": "string"
+        },
+        "reviews": {
+          "items": {
+            "$ref": "#/definitions/doordash.ReviewItem"
+          },
+          "type": "array"
+        },
+        "storeId": {
+          "type": "string"
+        },
+        "storeName": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "doordash.feedResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/doordash.FeedResponse"
+        },
+        "msg": {
+          "example": "OK",
           "type": "string"
         }
       },
@@ -16356,6 +16571,22 @@
       },
       "type": "object"
     },
+    "doordash.searchItemsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/doordash.SearchItemsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "doordash.searchResponseDoc": {
       "properties": {
         "code": {
@@ -16372,6 +16603,38 @@
       },
       "type": "object"
     },
+    "doordash.storeFulfillmentResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/doordash.StoreFulfillmentResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "doordash.storeItemResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/doordash.StoreItemResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "doordash.storeResponseDoc": {
       "properties": {
         "code": {
@@ -16380,6 +16643,22 @@
         },
         "data": {
           "$ref": "#/definitions/doordash.StoreDetail"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "doordash.storeReviewsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/doordash.StoreReviewsResponse"
         },
         "msg": {
           "example": "OK",
@@ -90499,6 +90778,85 @@
         ]
       }
     },
+    "/doordash/feed": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns nearby trending restaurants, grocery stores, and promotional offers from the Android mobile guest experience for a location. No DoorDash account or caller-supplied token is required.",
+        "operationId": "doordash-feed",
+        "parameters": [
+          {
+            "description": "Consumer latitude",
+            "in": "query",
+            "name": "latitude",
+            "required": true,
+            "type": "number",
+            "x-example": 37.7825
+          },
+          {
+            "description": "Consumer longitude",
+            "in": "query",
+            "name": "longitude",
+            "required": true,
+            "type": "number",
+            "x-example": -122.461
+          },
+          {
+            "description": "Feed offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer",
+            "x-example": 0
+          },
+          {
+            "description": "Max stores to return",
+            "in": "query",
+            "name": "limit",
+            "type": "integer",
+            "x-example": 20
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/doordash.feedResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get DoorDash store discovery feed",
+        "tags": [
+          "DoorDash"
+        ]
+      }
+    },
     "/doordash/search": {
       "get": {
         "consumes": [
@@ -90742,6 +91100,79 @@
         ]
       }
     },
+    "/doordash/search/items": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Search for specific dishes or items across nearby merchants from the Android mobile guest experience. No DoorDash account or caller-supplied token is required.",
+        "operationId": "doordash-search-items",
+        "parameters": [
+          {
+            "description": "Search text",
+            "in": "query",
+            "name": "query",
+            "required": true,
+            "type": "string",
+            "x-example": "pizza"
+          },
+          {
+            "description": "Consumer latitude",
+            "in": "query",
+            "name": "latitude",
+            "required": true,
+            "type": "number",
+            "x-example": 37.7825
+          },
+          {
+            "description": "Consumer longitude",
+            "in": "query",
+            "name": "longitude",
+            "required": true,
+            "type": "number",
+            "x-example": -122.461
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/doordash.searchItemsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search DoorDash dishes and items",
+        "tags": [
+          "DoorDash"
+        ]
+      }
+    },
     "/doordash/store/{store_id}": {
       "get": {
         "consumes": [
@@ -90821,6 +91252,172 @@
         ]
       }
     },
+    "/doordash/store/{store_id}/fulfillment": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns store fulfillment methods, delivery fee info, and scheduling details from the Android mobile guest experience. No DoorDash account or caller-supplied token is required.",
+        "operationId": "doordash-store-fulfillment",
+        "parameters": [
+          {
+            "description": "Numeric DoorDash store ID",
+            "in": "path",
+            "name": "store_id",
+            "required": true,
+            "type": "string",
+            "x-example": "26282644"
+          },
+          {
+            "description": "Delivery latitude",
+            "in": "query",
+            "name": "latitude",
+            "required": true,
+            "type": "number",
+            "x-example": 37.7825
+          },
+          {
+            "description": "Delivery longitude",
+            "in": "query",
+            "name": "longitude",
+            "required": true,
+            "type": "number",
+            "x-example": -122.461
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/doordash.storeFulfillmentResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get DoorDash store fulfillment details",
+        "tags": [
+          "DoorDash"
+        ]
+      }
+    },
+    "/doordash/store/{store_id}/item/{item_id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns details for a specific menu item from the Android mobile guest experience. No DoorDash account or caller-supplied token is required.",
+        "operationId": "doordash-store-item",
+        "parameters": [
+          {
+            "description": "Numeric DoorDash store ID",
+            "in": "path",
+            "name": "store_id",
+            "required": true,
+            "type": "string",
+            "x-example": "26282644"
+          },
+          {
+            "description": "Menu item ID or name",
+            "in": "path",
+            "name": "item_id",
+            "required": true,
+            "type": "string",
+            "x-example": "Roasted Duck"
+          },
+          {
+            "description": "Delivery latitude",
+            "in": "query",
+            "name": "latitude",
+            "required": true,
+            "type": "number",
+            "x-example": 37.7825
+          },
+          {
+            "description": "Delivery longitude",
+            "in": "query",
+            "name": "longitude",
+            "required": true,
+            "type": "number",
+            "x-example": -122.461
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/doordash.storeItemResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get DoorDash menu item details",
+        "tags": [
+          "DoorDash"
+        ]
+      }
+    },
     "/doordash/store/{store_id}/menu": {
       "get": {
         "consumes": [
@@ -90895,6 +91492,85 @@
           }
         ],
         "summary": "Get a DoorDash store menu",
+        "tags": [
+          "DoorDash"
+        ]
+      }
+    },
+    "/doordash/store/{store_id}/reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns store ratings and customer reviews from the Android mobile guest experience for a location. No DoorDash account or caller-supplied token is required.",
+        "operationId": "doordash-store-reviews",
+        "parameters": [
+          {
+            "description": "Numeric DoorDash store ID",
+            "in": "path",
+            "name": "store_id",
+            "required": true,
+            "type": "string",
+            "x-example": "26282644"
+          },
+          {
+            "description": "Delivery latitude",
+            "in": "query",
+            "name": "latitude",
+            "required": true,
+            "type": "number",
+            "x-example": 37.7825
+          },
+          {
+            "description": "Delivery longitude",
+            "in": "query",
+            "name": "longitude",
+            "required": true,
+            "type": "number",
+            "x-example": -122.461
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/doordash.storeReviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get DoorDash store reviews",
         "tags": [
           "DoorDash"
         ]
