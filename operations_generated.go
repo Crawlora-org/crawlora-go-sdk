@@ -1214,6 +1214,213 @@ type ModelAppstoreVersionHistoryResponseDoc struct {
 	Msg  string                            `json:"msg,omitempty"`
 }
 
+type ModelAutotraderBodyStyle struct {
+	Code string `json:"code,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelAutotraderColor struct {
+	ExteriorColor       string `json:"exterior_color,omitempty"`
+	ExteriorColorSimple string `json:"exterior_color_simple,omitempty"`
+	InteriorColor       string `json:"interior_color,omitempty"`
+	InteriorColorSimple string `json:"interior_color_simple,omitempty"`
+}
+
+type ModelAutotraderDealer struct {
+	Address1        string  `json:"address1,omitempty"`
+	City            string  `json:"city,omitempty"`
+	Id              int     `json:"id,omitempty"`
+	IsPrivateSeller bool    `json:"is_private_seller,omitempty"`
+	IsVirtual       bool    `json:"is_virtual,omitempty"`
+	Latitude        float64 `json:"latitude,omitempty"`
+	Longitude       float64 `json:"longitude,omitempty"`
+	Name            string  `json:"name,omitempty"`
+	Phone           string  `json:"phone,omitempty"`
+	Rating          float64 `json:"rating,omitempty"`
+	RatingCount     int     `json:"rating_count,omitempty"`
+	State           string  `json:"state,omitempty"`
+	Url             string  `json:"url,omitempty"`
+	Website         string  `json:"website,omitempty"`
+	Zip             string  `json:"zip,omitempty"`
+}
+
+type ModelAutotraderDealerResponse struct {
+	Address1        string                   `json:"address1,omitempty"`
+	City            string                   `json:"city,omitempty"`
+	Id              int                      `json:"id,omitempty"`
+	Inventory       []ModelAutotraderVehicle `json:"inventory,omitempty"`
+	IsPrivateSeller bool                     `json:"is_private_seller,omitempty"`
+	IsVirtual       bool                     `json:"is_virtual,omitempty"`
+	Latitude        float64                  `json:"latitude,omitempty"`
+	Longitude       float64                  `json:"longitude,omitempty"`
+	Name            string                   `json:"name,omitempty"`
+	Phone           string                   `json:"phone,omitempty"`
+	Rating          float64                  `json:"rating,omitempty"`
+	RatingCount     int                      `json:"rating_count,omitempty"`
+	SourceUrl       string                   `json:"source_url,omitempty"`
+	State           string                   `json:"state,omitempty"`
+	TotalCount      int                      `json:"total_count,omitempty"`
+	Url             string                   `json:"url,omitempty"`
+	Website         string                   `json:"website,omitempty"`
+	Zip             string                   `json:"zip,omitempty"`
+}
+
+type ModelAutotraderDriveType struct {
+	Description string `json:"description,omitempty"`
+	Name        string `json:"name,omitempty"`
+}
+
+type ModelAutotraderEngine struct {
+	Code string `json:"code,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelAutotraderFuelType struct {
+	Code  string `json:"code,omitempty"`
+	Group string `json:"group,omitempty"`
+	Name  string `json:"name,omitempty"`
+}
+
+type ModelAutotraderImage struct {
+	Alt    string `json:"alt,omitempty"`
+	Height int    `json:"height,omitempty"`
+	Url    string `json:"url,omitempty"`
+	Width  int    `json:"width,omitempty"`
+}
+
+type ModelAutotraderMake struct {
+	Code string `json:"code,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelAutotraderMileage struct {
+	Label string `json:"label,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelAutotraderModel struct {
+	Code string `json:"code,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelAutotraderPricing struct {
+	DealerDiscountedPrice float64 `json:"dealer_discounted_price,omitempty"`
+	DisplayPrice          float64 `json:"display_price,omitempty"`
+	Msrp                  float64 `json:"msrp,omitempty"`
+	NoPriceLabel          string  `json:"no_price_label,omitempty"`
+	SalePrice             float64 `json:"sale_price,omitempty"`
+}
+
+type ModelAutotraderSearchResponse struct {
+	Page       int                        `json:"page,omitempty"`
+	PageSize   int                        `json:"page_size,omitempty"`
+	SourceUrl  string                     `json:"source_url,omitempty"`
+	Stats      ModelAutotraderSearchStats `json:"stats,omitempty"`
+	TotalCount int                        `json:"total_count,omitempty"`
+	Vehicles   []ModelAutotraderVehicle   `json:"vehicles,omitempty"`
+}
+
+type ModelAutotraderSearchStats struct {
+	DerivedPrice ModelAutotraderStatRange `json:"derived_price,omitempty"`
+	EndYear      int                      `json:"end_year,omitempty"`
+	MaxPrice     float64                  `json:"max_price,omitempty"`
+	MinPrice     float64                  `json:"min_price,omitempty"`
+	StartYear    int                      `json:"start_year,omitempty"`
+	Year         ModelAutotraderStatRange `json:"year,omitempty"`
+}
+
+type ModelAutotraderStatRange struct {
+	Average float64 `json:"average,omitempty"`
+	Max     float64 `json:"max,omitempty"`
+	Min     float64 `json:"min,omitempty"`
+}
+
+type ModelAutotraderTransmission struct {
+	Code        string `json:"code,omitempty"`
+	Description string `json:"description,omitempty"`
+	Group       string `json:"group,omitempty"`
+	Name        string `json:"name,omitempty"`
+}
+
+type ModelAutotraderTrim struct {
+	Code string `json:"code,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelAutotraderVehicle struct {
+	BodyStyles          []ModelAutotraderBodyStyle  `json:"body_styles,omitempty"`
+	Color               ModelAutotraderColor        `json:"color,omitempty"`
+	DaysOnSite          int                         `json:"days_on_site,omitempty"`
+	DriveType           ModelAutotraderDriveType    `json:"drive_type,omitempty"`
+	Engine              ModelAutotraderEngine       `json:"engine,omitempty"`
+	FuelType            ModelAutotraderFuelType     `json:"fuel_type,omitempty"`
+	Id                  int                         `json:"id,omitempty"`
+	Images              []ModelAutotraderImage      `json:"images,omitempty"`
+	IsHot               bool                        `json:"is_hot,omitempty"`
+	IsNewlyListed       bool                        `json:"is_newly_listed,omitempty"`
+	IsReducedPrice      bool                        `json:"is_reduced_price,omitempty"`
+	ListingType         string                      `json:"listing_type,omitempty"`
+	Make                ModelAutotraderMake         `json:"make,omitempty"`
+	Mileage             ModelAutotraderMileage      `json:"mileage,omitempty"`
+	Model               ModelAutotraderModel        `json:"model,omitempty"`
+	MpgCity             int                         `json:"mpg_city,omitempty"`
+	MpgHighway          int                         `json:"mpg_highway,omitempty"`
+	OwnerId             int                         `json:"owner_id,omitempty"`
+	Packages            []string                    `json:"packages,omitempty"`
+	Pricing             ModelAutotraderPricing      `json:"pricing,omitempty"`
+	StockId             string                      `json:"stock_id,omitempty"`
+	Title               string                      `json:"title,omitempty"`
+	TitleLong           string                      `json:"title_long,omitempty"`
+	Transmission        ModelAutotraderTransmission `json:"transmission,omitempty"`
+	Trim                ModelAutotraderTrim         `json:"trim,omitempty"`
+	Url                 string                      `json:"url,omitempty"`
+	VehicleHistoryFlags []string                    `json:"vehicle_history_flags,omitempty"`
+	Vin                 string                      `json:"vin,omitempty"`
+	Year                int                         `json:"year,omitempty"`
+}
+
+type ModelAutotraderVehicleResponse struct {
+	BodyStyles          []ModelAutotraderBodyStyle  `json:"body_styles,omitempty"`
+	Color               ModelAutotraderColor        `json:"color,omitempty"`
+	DaysOnSite          int                         `json:"days_on_site,omitempty"`
+	Dealer              ModelAutotraderDealer       `json:"dealer,omitempty"`
+	Description         string                      `json:"description,omitempty"`
+	DriveType           ModelAutotraderDriveType    `json:"drive_type,omitempty"`
+	Engine              ModelAutotraderEngine       `json:"engine,omitempty"`
+	FuelType            ModelAutotraderFuelType     `json:"fuel_type,omitempty"`
+	Id                  int                         `json:"id,omitempty"`
+	Images              []ModelAutotraderImage      `json:"images,omitempty"`
+	IsHot               bool                        `json:"is_hot,omitempty"`
+	IsNewlyListed       bool                        `json:"is_newly_listed,omitempty"`
+	IsReducedPrice      bool                        `json:"is_reduced_price,omitempty"`
+	ListingType         string                      `json:"listing_type,omitempty"`
+	Make                ModelAutotraderMake         `json:"make,omitempty"`
+	Mileage             ModelAutotraderMileage      `json:"mileage,omitempty"`
+	Model               ModelAutotraderModel        `json:"model,omitempty"`
+	MpgCity             int                         `json:"mpg_city,omitempty"`
+	MpgHighway          int                         `json:"mpg_highway,omitempty"`
+	OwnerId             int                         `json:"owner_id,omitempty"`
+	Packages            []string                    `json:"packages,omitempty"`
+	Pricing             ModelAutotraderPricing      `json:"pricing,omitempty"`
+	SimilarListings     []ModelAutotraderVehicle    `json:"similar_listings,omitempty"`
+	SourceUrl           string                      `json:"source_url,omitempty"`
+	StockId             string                      `json:"stock_id,omitempty"`
+	Title               string                      `json:"title,omitempty"`
+	TitleLong           string                      `json:"title_long,omitempty"`
+	Transmission        ModelAutotraderTransmission `json:"transmission,omitempty"`
+	Trim                ModelAutotraderTrim         `json:"trim,omitempty"`
+	Url                 string                      `json:"url,omitempty"`
+	VehicleHistoryFlags []string                    `json:"vehicle_history_flags,omitempty"`
+	Vin                 string                      `json:"vin,omitempty"`
+	Year                int                         `json:"year,omitempty"`
+}
+
+type ModelAutotraderSearchResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelAutotraderSearchResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
 type ModelBillingBillingEndpointLedgerDoc struct {
 	ChargedRequests     int    `json:"charged_requests,omitempty"`
 	Credits             int    `json:"credits,omitempty"`
@@ -1719,6 +1926,265 @@ type ModelBingVideosResponseDoc struct {
 	Code int                     `json:"code,omitempty"`
 	Data ModelBingVideosResponse `json:"data,omitempty"`
 	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelBookingAttractionCategoryFilter struct {
+	Name          string                                 `json:"name,omitempty"`
+	ProductCount  int                                    `json:"product_count,omitempty"`
+	Subcategories []ModelBookingAttractionCategoryFilter `json:"subcategories,omitempty"`
+	Tagname       string                                 `json:"tagname,omitempty"`
+}
+
+type ModelBookingAttractionDetailResponse struct {
+	City             string  `json:"city,omitempty"`
+	Currency         string  `json:"currency,omitempty"`
+	Description      string  `json:"description,omitempty"`
+	Duration         string  `json:"duration,omitempty"`
+	Id               string  `json:"id,omitempty"`
+	Name             string  `json:"name,omitempty"`
+	Price            float64 `json:"price,omitempty"`
+	ReviewCount      int     `json:"review_count,omitempty"`
+	ReviewScore      float64 `json:"review_score,omitempty"`
+	ShortDescription string  `json:"short_description,omitempty"`
+}
+
+type ModelBookingAttractionProduct struct {
+	Currency    string  `json:"currency,omitempty"`
+	Description string  `json:"description,omitempty"`
+	Duration    string  `json:"duration,omitempty"`
+	Id          string  `json:"id,omitempty"`
+	Name        string  `json:"name,omitempty"`
+	Price       float64 `json:"price,omitempty"`
+	ReviewCount int     `json:"review_count,omitempty"`
+	ReviewScore float64 `json:"review_score,omitempty"`
+	Slug        string  `json:"slug,omitempty"`
+	Url         string  `json:"url,omitempty"`
+}
+
+type ModelBookingAttractionReview struct {
+	Content         string  `json:"content,omitempty"`
+	Id              string  `json:"id,omitempty"`
+	Language        string  `json:"language,omitempty"`
+	ReviewedDate    string  `json:"reviewed_date,omitempty"`
+	ReviewerCountry string  `json:"reviewer_country,omitempty"`
+	ReviewerName    string  `json:"reviewer_name,omitempty"`
+	Score           float64 `json:"score,omitempty"`
+}
+
+type ModelBookingAttractionReviewsResponse struct {
+	Page      int                            `json:"page,omitempty"`
+	ProductId string                         `json:"product_id,omitempty"`
+	Reviews   []ModelBookingAttractionReview `json:"reviews,omitempty"`
+	Total     int                            `json:"total,omitempty"`
+}
+
+type ModelBookingAttractionSearchResponse struct {
+	Categories      []ModelBookingAttractionCategoryFilter `json:"categories,omitempty"`
+	Country         string                                 `json:"country,omitempty"`
+	Destination     string                                 `json:"destination,omitempty"`
+	FilteredCount   int                                    `json:"filtered_count,omitempty"`
+	HasNextPage     bool                                   `json:"has_next_page,omitempty"`
+	Page            int                                    `json:"page,omitempty"`
+	Products        []ModelBookingAttractionProduct        `json:"products,omitempty"`
+	Query           string                                 `json:"query,omitempty"`
+	UnfilteredCount int                                    `json:"unfiltered_count,omitempty"`
+}
+
+type ModelBookingFacility struct {
+	Icon  string `json:"icon,omitempty"`
+	Title string `json:"title,omitempty"`
+}
+
+type ModelBookingFlightAutocompleteResponse struct {
+	Query   string                                 `json:"query,omitempty"`
+	Results []ModelBookingFlightAutocompleteResult `json:"results,omitempty"`
+}
+
+type ModelBookingFlightAutocompleteResult struct {
+	Code        string `json:"code,omitempty"`
+	Country     string `json:"country,omitempty"`
+	CountryName string `json:"country_name,omitempty"`
+	Name        string `json:"name,omitempty"`
+	PhotoUrl    string `json:"photo_url,omitempty"`
+	RegionName  string `json:"region_name,omitempty"`
+	Type        string `json:"type,omitempty"`
+}
+
+type ModelBookingFlightLeg struct {
+	ArrivalAirport   string `json:"arrival_airport,omitempty"`
+	ArrivalTime      string `json:"arrival_time,omitempty"`
+	CabinClass       string `json:"cabin_class,omitempty"`
+	Carrier          string `json:"carrier,omitempty"`
+	CarrierCode      string `json:"carrier_code,omitempty"`
+	DepartureAirport string `json:"departure_airport,omitempty"`
+	DepartureTime    string `json:"departure_time,omitempty"`
+	DurationSeconds  int    `json:"duration_seconds,omitempty"`
+	FlightNumber     int    `json:"flight_number,omitempty"`
+	Stops            int    `json:"stops,omitempty"`
+}
+
+type ModelBookingFlightOffer struct {
+	Currency string                      `json:"currency,omitempty"`
+	Price    float64                     `json:"price,omitempty"`
+	Segments []ModelBookingFlightSegment `json:"segments,omitempty"`
+	Token    string                      `json:"token,omitempty"`
+}
+
+type ModelBookingFlightSearchResponse struct {
+	Currency   string                    `json:"currency,omitempty"`
+	Depart     string                    `json:"depart,omitempty"`
+	From       string                    `json:"from,omitempty"`
+	MinPrice   float64                   `json:"min_price,omitempty"`
+	Offers     []ModelBookingFlightOffer `json:"offers,omitempty"`
+	Return     string                    `json:"return,omitempty"`
+	To         string                    `json:"to,omitempty"`
+	TotalCount int                       `json:"total_count,omitempty"`
+	Type       string                    `json:"type,omitempty"`
+}
+
+type ModelBookingFlightSegment struct {
+	ArrivalAirport   string                  `json:"arrival_airport,omitempty"`
+	ArrivalCity      string                  `json:"arrival_city,omitempty"`
+	ArrivalTime      string                  `json:"arrival_time,omitempty"`
+	DepartureAirport string                  `json:"departure_airport,omitempty"`
+	DepartureCity    string                  `json:"departure_city,omitempty"`
+	DepartureTime    string                  `json:"departure_time,omitempty"`
+	Legs             []ModelBookingFlightLeg `json:"legs,omitempty"`
+}
+
+type ModelBookingHotelDetailResponse struct {
+	Address         string                 `json:"address,omitempty"`
+	Facilities      []ModelBookingFacility `json:"facilities,omitempty"`
+	FacilitiesCount int                    `json:"facilities_count,omitempty"`
+	Highlights      []ModelBookingFacility `json:"highlights,omitempty"`
+	HouseRules      ModelBookingHouseRules `json:"house_rules,omitempty"`
+	Id              int                    `json:"id,omitempty"`
+	Name            string                 `json:"name,omitempty"`
+	Photos          []string               `json:"photos,omitempty"`
+	RatingScores    map[string]float64     `json:"rating_scores,omitempty"`
+	ReviewCount     int                    `json:"review_count,omitempty"`
+	Rooms           []ModelBookingRoom     `json:"rooms,omitempty"`
+	StarRating      float64                `json:"star_rating,omitempty"`
+}
+
+type ModelBookingHouseRules struct {
+	AllowChildren               bool   `json:"allow_children,omitempty"`
+	CheckinAgeRestrictionPhrase string `json:"checkin_age_restriction_phrase,omitempty"`
+	CurfewPhrase                string `json:"curfew_phrase,omitempty"`
+	GroupLimitPhrase            string `json:"group_limit_phrase,omitempty"`
+	PaymentExclusive            bool   `json:"payment_exclusive,omitempty"`
+	PetsAllowed                 string `json:"pets_allowed,omitempty"`
+}
+
+type ModelBookingProperty struct {
+	Currency    string  `json:"currency,omitempty"`
+	Distance    string  `json:"distance,omitempty"`
+	Id          int     `json:"id,omitempty"`
+	Location    string  `json:"location,omitempty"`
+	Name        string  `json:"name,omitempty"`
+	PhotoUrl    string  `json:"photo_url,omitempty"`
+	Price       float64 `json:"price,omitempty"`
+	ReviewCount int     `json:"review_count,omitempty"`
+	ReviewScore float64 `json:"review_score,omitempty"`
+	Slug        string  `json:"slug,omitempty"`
+	StarRating  float64 `json:"star_rating,omitempty"`
+	Url         string  `json:"url,omitempty"`
+}
+
+type ModelBookingReview struct {
+	CheckinDate         string  `json:"checkin_date,omitempty"`
+	CheckoutDate        string  `json:"checkout_date,omitempty"`
+	CustomerType        string  `json:"customer_type,omitempty"`
+	HelpfulVotesCount   int     `json:"helpful_votes_count,omitempty"`
+	Language            string  `json:"language,omitempty"`
+	NegativeText        string  `json:"negative_text,omitempty"`
+	NumNights           int     `json:"num_nights,omitempty"`
+	PositiveText        string  `json:"positive_text,omitempty"`
+	ReviewUrl           string  `json:"review_url,omitempty"`
+	ReviewedDate        string  `json:"reviewed_date,omitempty"`
+	ReviewerCountry     string  `json:"reviewer_country,omitempty"`
+	ReviewerName        string  `json:"reviewer_name,omitempty"`
+	ReviewerReviewCount int     `json:"reviewer_review_count,omitempty"`
+	RoomType            string  `json:"room_type,omitempty"`
+	Score               float64 `json:"score,omitempty"`
+	StayStatus          string  `json:"stay_status,omitempty"`
+	Title               string  `json:"title,omitempty"`
+}
+
+type ModelBookingReviewsResponse struct {
+	HotelId      int                  `json:"hotel_id,omitempty"`
+	Page         int                  `json:"page,omitempty"`
+	RatingScores map[string]float64   `json:"rating_scores,omitempty"`
+	Reviews      []ModelBookingReview `json:"reviews,omitempty"`
+	ReviewsCount int                  `json:"reviews_count,omitempty"`
+	SearchText   string               `json:"search_text,omitempty"`
+}
+
+type ModelBookingRoom struct {
+	Id         int      `json:"id,omitempty"`
+	Name       string   `json:"name,omitempty"`
+	PhotoCount int      `json:"photo_count,omitempty"`
+	Photos     []string `json:"photos,omitempty"`
+}
+
+type ModelBookingSearchResponse struct {
+	Checkin       string                 `json:"checkin,omitempty"`
+	Checkout      string                 `json:"checkout,omitempty"`
+	Country       string                 `json:"country,omitempty"`
+	Destination   string                 `json:"destination,omitempty"`
+	DestinationId int                    `json:"destination_id,omitempty"`
+	Page          int                    `json:"page,omitempty"`
+	Properties    []ModelBookingProperty `json:"properties,omitempty"`
+	Query         string                 `json:"query,omitempty"`
+	ResultsCount  int                    `json:"results_count,omitempty"`
+}
+
+type ModelBookingBookingAttractionDetailResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelBookingAttractionDetailResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelBookingBookingAttractionReviewsResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelBookingAttractionReviewsResponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
+}
+
+type ModelBookingBookingAttractionSearchResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelBookingAttractionSearchResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelBookingBookingFlightAutocompleteResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelBookingFlightAutocompleteResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelBookingBookingFlightSearchResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelBookingFlightSearchResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelBookingBookingHotelDetailResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelBookingHotelDetailResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelBookingBookingReviewsResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelBookingReviewsResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelBookingBookingSearchResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelBookingSearchResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
 }
 
 type ModelBoxofficemojoCalendarChangeDay struct {
@@ -5172,6 +5638,33 @@ type ModelDoordashCuisine struct {
 	Name                  string `json:"name,omitempty"`
 }
 
+type ModelDoordashExploreItem struct {
+	ImageUrl string `json:"imageUrl,omitempty"`
+	ItemId   string `json:"itemId,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Price    string `json:"price,omitempty"`
+}
+
+type ModelDoordashExploreResponse struct {
+	Stores []ModelDoordashExploreStore `json:"stores,omitempty"`
+}
+
+type ModelDoordashExploreStore struct {
+	AsapAvailable    bool                       `json:"asapAvailable,omitempty"`
+	AverageRating    float64                    `json:"averageRating,omitempty"`
+	CoverImageUrl    string                     `json:"coverImageUrl,omitempty"`
+	DashPassEligible bool                       `json:"dashPassEligible,omitempty"`
+	DisplayAsapTime  string                     `json:"displayAsapTime,omitempty"`
+	DisplayStatus    string                     `json:"displayStatus,omitempty"`
+	Name             string                     `json:"name,omitempty"`
+	NumberOfRatings  int                        `json:"numberOfRatings,omitempty"`
+	PickupAvailable  bool                       `json:"pickupAvailable,omitempty"`
+	PriceRange       int                        `json:"priceRange,omitempty"`
+	StoreId          string                     `json:"storeId,omitempty"`
+	Tags             []string                   `json:"tags,omitempty"`
+	TopItems         []ModelDoordashExploreItem `json:"topItems,omitempty"`
+}
+
 type ModelDoordashFeedResponse struct {
 	Stores []ModelDoordashFeedStore `json:"stores,omitempty"`
 }
@@ -5305,6 +5798,20 @@ type ModelDoordashStoreFulfillmentResponse struct {
 	Url                       string   `json:"url,omitempty"`
 }
 
+type ModelDoordashStoreInfoResponse struct {
+	Address      string  `json:"address,omitempty"`
+	BusinessName string  `json:"businessName,omitempty"`
+	CityRegion   string  `json:"cityRegion,omitempty"`
+	HasPhone     bool    `json:"hasPhone,omitempty"`
+	HasWebsite   bool    `json:"hasWebsite,omitempty"`
+	Latitude     float64 `json:"latitude,omitempty"`
+	Longitude    float64 `json:"longitude,omitempty"`
+	Phone        string  `json:"phone,omitempty"`
+	StoreId      string  `json:"storeId,omitempty"`
+	Street       string  `json:"street,omitempty"`
+	Url          string  `json:"url,omitempty"`
+}
+
 type ModelDoordashStoreItemResponse struct {
 	Description string `json:"description,omitempty"`
 	ItemId      string `json:"itemId,omitempty"`
@@ -5321,6 +5828,12 @@ type ModelDoordashStoreReviewsResponse struct {
 	StoreId       string                    `json:"storeId,omitempty"`
 	StoreName     string                    `json:"storeName,omitempty"`
 	Url           string                    `json:"url,omitempty"`
+}
+
+type ModelDoordashExploreResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelDoordashExploreResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
 }
 
 type ModelDoordashFeedResponseDoc struct {
@@ -5357,6 +5870,12 @@ type ModelDoordashStoreFulfillmentResponseDoc struct {
 	Code int                                   `json:"code,omitempty"`
 	Data ModelDoordashStoreFulfillmentResponse `json:"data,omitempty"`
 	Msg  string                                `json:"msg,omitempty"`
+}
+
+type ModelDoordashStoreInfoResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelDoordashStoreInfoResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
 }
 
 type ModelDoordashStoreItemResponseDoc struct {
@@ -7444,6 +7963,417 @@ type ModelEspnTeamsResponseDoc struct {
 	Msg  string                 `json:"msg,omitempty"`
 }
 
+type ModelEtsyMobileListing struct {
+	CategoryName     string   `json:"category_name,omitempty"`
+	CreateDate       int      `json:"create_date,omitempty"`
+	Currency         string   `json:"currency,omitempty"`
+	Description      string   `json:"description,omitempty"`
+	Favorites        int      `json:"favorites,omitempty"`
+	Images           []string `json:"images,omitempty"`
+	IsCustomizable   bool     `json:"is_customizable,omitempty"`
+	IsDigital        bool     `json:"is_digital,omitempty"`
+	IsSoldOut        bool     `json:"is_sold_out,omitempty"`
+	ListingId        string   `json:"listing_id,omitempty"`
+	Materials        []string `json:"materials,omitempty"`
+	Price            string   `json:"price,omitempty"`
+	PriceInt         int      `json:"price_int,omitempty"`
+	Quantity         int      `json:"quantity,omitempty"`
+	ShipsFromCountry string   `json:"ships_from_country,omitempty"`
+	ShopId           string   `json:"shop_id,omitempty"`
+	ShopName         string   `json:"shop_name,omitempty"`
+	State            string   `json:"state,omitempty"`
+	Tags             []string `json:"tags,omitempty"`
+	Title            string   `json:"title,omitempty"`
+	UpdateDate       int      `json:"update_date,omitempty"`
+	Url              string   `json:"url,omitempty"`
+	Views            int      `json:"views,omitempty"`
+	WhenMade         string   `json:"when_made,omitempty"`
+}
+
+type ModelEtsyMobileListingCard struct {
+	Currency   string  `json:"currency,omitempty"`
+	Image      string  `json:"image,omitempty"`
+	IsSoldOut  bool    `json:"is_sold_out,omitempty"`
+	ListingId  string  `json:"listing_id,omitempty"`
+	Price      string  `json:"price,omitempty"`
+	PriceInt   int     `json:"price_int,omitempty"`
+	Quantity   int     `json:"quantity,omitempty"`
+	ShopId     string  `json:"shop_id,omitempty"`
+	ShopName   string  `json:"shop_name,omitempty"`
+	ShopRating float64 `json:"shop_rating,omitempty"`
+	Title      string  `json:"title,omitempty"`
+	Url        string  `json:"url,omitempty"`
+}
+
+type ModelEtsyMobileListingReviews struct {
+	AvgRating        float64                 `json:"avg_rating,omitempty"`
+	Count            int                     `json:"count,omitempty"`
+	ListingId        string                  `json:"listing_id,omitempty"`
+	Offset           int                     `json:"offset,omitempty"`
+	Reviews          []ModelEtsyMobileReview `json:"reviews,omitempty"`
+	TotalRatingCount int                     `json:"total_rating_count,omitempty"`
+}
+
+type ModelEtsyMobileReview struct {
+	BuyerAvatar   string `json:"buyer_avatar,omitempty"`
+	BuyerLogin    string `json:"buyer_login,omitempty"`
+	BuyerName     string `json:"buyer_name,omitempty"`
+	BuyerUserId   string `json:"buyer_user_id,omitempty"`
+	Date          int    `json:"date,omitempty"`
+	Language      string `json:"language,omitempty"`
+	ListingId     string `json:"listing_id,omitempty"`
+	ListingImage  string `json:"listing_image,omitempty"`
+	ListingTitle  string `json:"listing_title,omitempty"`
+	Rating        int    `json:"rating,omitempty"`
+	ReceiptId     string `json:"receipt_id,omitempty"`
+	SellerReplied bool   `json:"seller_replied,omitempty"`
+	Text          string `json:"text,omitempty"`
+}
+
+type ModelEtsyMobileSearchResponse struct {
+	Count   int                          `json:"count,omitempty"`
+	Offset  int                          `json:"offset,omitempty"`
+	Query   string                       `json:"query,omitempty"`
+	Results []ModelEtsyMobileListingCard `json:"results,omitempty"`
+}
+
+type ModelEtsyMobileShop struct {
+	AverageRating float64 `json:"average_rating,omitempty"`
+	Headline      string  `json:"headline,omitempty"`
+	Icon          string  `json:"icon,omitempty"`
+	IsStarSeller  bool    `json:"is_star_seller,omitempty"`
+	OpenDate      int     `json:"open_date,omitempty"`
+	ReviewsCount  int     `json:"reviews_count,omitempty"`
+	SellerAvatar  string  `json:"seller_avatar,omitempty"`
+	SellerLogin   string  `json:"seller_login,omitempty"`
+	SellerName    string  `json:"seller_name,omitempty"`
+	ShopId        string  `json:"shop_id,omitempty"`
+	ShopName      string  `json:"shop_name,omitempty"`
+	SoldCount     int     `json:"sold_count,omitempty"`
+}
+
+type ModelEtsyMobileShopCard struct {
+	ActiveListingCount int    `json:"active_listing_count,omitempty"`
+	IsVacation         bool   `json:"is_vacation,omitempty"`
+	Location           string `json:"location,omitempty"`
+	OpenDate           int    `json:"open_date,omitempty"`
+	SellerAvatar       string `json:"seller_avatar,omitempty"`
+	ShopId             string `json:"shop_id,omitempty"`
+	ShopName           string `json:"shop_name,omitempty"`
+}
+
+type ModelEtsyMobileShopListings struct {
+	Listings []ModelEtsyMobileListingCard `json:"listings,omitempty"`
+	Offset   int                          `json:"offset,omitempty"`
+	Query    string                       `json:"query,omitempty"`
+	ShopId   string                       `json:"shop_id,omitempty"`
+	ShopName string                       `json:"shop_name,omitempty"`
+}
+
+type ModelEtsyMobileShopReviews struct {
+	AvgRating        float64                 `json:"avg_rating,omitempty"`
+	Count            int                     `json:"count,omitempty"`
+	Offset           int                     `json:"offset,omitempty"`
+	Reviews          []ModelEtsyMobileReview `json:"reviews,omitempty"`
+	ShopId           string                  `json:"shop_id,omitempty"`
+	ShopName         string                  `json:"shop_name,omitempty"`
+	TotalRatingCount int                     `json:"total_rating_count,omitempty"`
+}
+
+type ModelEtsyMobileShopSearchResponse struct {
+	Query string                    `json:"query,omitempty"`
+	Shops []ModelEtsyMobileShopCard `json:"shops,omitempty"`
+}
+
+type ModelEtsyListingResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelEtsyMobileListing `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelEtsyListingReviewsResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelEtsyMobileListingReviews `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelEtsySearchResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelEtsyMobileSearchResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelEtsyShopListingsResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelEtsyMobileShopListings `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelEtsyShopResponseDoc struct {
+	Code int                 `json:"code,omitempty"`
+	Data ModelEtsyMobileShop `json:"data,omitempty"`
+	Msg  string              `json:"msg,omitempty"`
+}
+
+type ModelEtsyShopReviewsResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelEtsyMobileShopReviews `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelEtsyShopSearchResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelEtsyMobileShopSearchResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelExpediaActivityListing struct {
+	Duration         string `json:"duration,omitempty"`
+	FreeCancellation bool   `json:"free_cancellation,omitempty"`
+	Id               string `json:"id,omitempty"`
+	Name             string `json:"name,omitempty"`
+	Price            string `json:"price,omitempty"`
+	ReviewCount      int    `json:"review_count,omitempty"`
+	ReviewLabel      string `json:"review_label,omitempty"`
+	ReviewScore      string `json:"review_score,omitempty"`
+	ThumbnailUrl     string `json:"thumbnail_url,omitempty"`
+}
+
+type ModelExpediaActivitySearchOption struct {
+	Currency    string `json:"currency,omitempty"`
+	Destination string `json:"destination"`
+	EndDate     string `json:"end_date"`
+	Locale      string `json:"locale,omitempty"`
+	Page        int    `json:"page,omitempty"`
+	PageSize    int    `json:"page_size,omitempty"`
+	StartDate   string `json:"start_date"`
+}
+
+type ModelExpediaActivitySearchResponse struct {
+	Activities  []ModelExpediaActivityListing `json:"activities,omitempty"`
+	Destination string                        `json:"destination,omitempty"`
+	Page        int                           `json:"page,omitempty"`
+	RegionId    string                        `json:"region_id,omitempty"`
+	TotalCount  int                           `json:"total_count,omitempty"`
+}
+
+type ModelExpediaFlightOffer struct {
+	Airline         string `json:"airline,omitempty"`
+	ArrivalTime     string `json:"arrival_time,omitempty"`
+	DepartureTime   string `json:"departure_time,omitempty"`
+	DurationSummary string `json:"duration_summary,omitempty"`
+	Price           string `json:"price,omitempty"`
+	PriceNote       string `json:"price_note,omitempty"`
+	Route           string `json:"route,omitempty"`
+	Stops           int    `json:"stops,omitempty"`
+}
+
+type ModelExpediaFlightsSearchOption struct {
+	Adults        int    `json:"adults,omitempty"`
+	CabinClass    string `json:"cabin_class,omitempty"`
+	Currency      string `json:"currency,omitempty"`
+	DepartureDate string `json:"departure_date"`
+	Destination   string `json:"destination"`
+	Locale        string `json:"locale,omitempty"`
+	Origin        string `json:"origin"`
+	ReturnDate    string `json:"return_date,omitempty"`
+	TripType      string `json:"trip_type,omitempty"`
+}
+
+type ModelExpediaFlightsSearchResponse struct {
+	DepartureDate string                    `json:"departure_date,omitempty"`
+	Destination   string                    `json:"destination,omitempty"`
+	Offers        []ModelExpediaFlightOffer `json:"offers,omitempty"`
+	Origin        string                    `json:"origin,omitempty"`
+	ReturnDate    string                    `json:"return_date,omitempty"`
+}
+
+type ModelExpediaLocationSearchOption struct {
+	Currency string `json:"currency,omitempty"`
+	Locale   string `json:"locale,omitempty"`
+	Term     string `json:"term"`
+}
+
+type ModelExpediaLocationSearchResponse struct {
+	Items []ModelExpediaLocationSuggestion `json:"items,omitempty"`
+	Term  string                           `json:"term,omitempty"`
+}
+
+type ModelExpediaLocationSuggestion struct {
+	AirportCode      string  `json:"airport_code,omitempty"`
+	GeoType          string  `json:"geo_type,omitempty"`
+	Latitude         float64 `json:"latitude,omitempty"`
+	LocationFullName string  `json:"location_full_name,omitempty"`
+	Longitude        float64 `json:"longitude,omitempty"`
+	PrimaryText      string  `json:"primary_text,omitempty"`
+	PropertyId       string  `json:"property_id,omitempty"`
+	RegionId         string  `json:"region_id,omitempty"`
+	SecondaryText    string  `json:"secondary_text,omitempty"`
+	Type             string  `json:"type,omitempty"`
+}
+
+type ModelExpediaPropertyDetailOption struct {
+	Adults     int    `json:"adults,omitempty"`
+	CheckIn    string `json:"check_in"`
+	CheckOut   string `json:"check_out"`
+	Currency   string `json:"currency,omitempty"`
+	Locale     string `json:"locale,omitempty"`
+	PropertyId string `json:"property_id"`
+}
+
+type ModelExpediaPropertyDetailResponse struct {
+	Address     string   `json:"address,omitempty"`
+	Amenities   []string `json:"amenities,omitempty"`
+	City        string   `json:"city,omitempty"`
+	CountryCode string   `json:"country_code,omitempty"`
+	Latitude    float64  `json:"latitude,omitempty"`
+	Longitude   float64  `json:"longitude,omitempty"`
+	Name        string   `json:"name,omitempty"`
+	PropertyId  string   `json:"property_id,omitempty"`
+	Province    string   `json:"province,omitempty"`
+	StarRating  float64  `json:"star_rating,omitempty"`
+	VipMessage  string   `json:"vip_message,omitempty"`
+}
+
+type ModelExpediaPropertyFilterField struct {
+	Label    string                             `json:"label,omitempty"`
+	Options  []ModelExpediaPropertyFilterOption `json:"options,omitempty"`
+	RangeMax float64                            `json:"range_max,omitempty"`
+	RangeMin float64                            `json:"range_min,omitempty"`
+	Type     string                             `json:"type,omitempty"`
+}
+
+type ModelExpediaPropertyFilterOption struct {
+	FilterId string `json:"filter_id,omitempty"`
+	Label    string `json:"label,omitempty"`
+	Selected bool   `json:"selected,omitempty"`
+	Value    string `json:"value,omitempty"`
+}
+
+type ModelExpediaPropertyFilterSection struct {
+	Fields []ModelExpediaPropertyFilterField `json:"fields,omitempty"`
+	Title  string                            `json:"title,omitempty"`
+}
+
+type ModelExpediaPropertyFiltersOption struct {
+	Adults      int    `json:"adults,omitempty"`
+	CheckIn     string `json:"check_in"`
+	CheckOut    string `json:"check_out"`
+	Currency    string `json:"currency,omitempty"`
+	Destination string `json:"destination"`
+	Locale      string `json:"locale,omitempty"`
+	Rooms       int    `json:"rooms,omitempty"`
+}
+
+type ModelExpediaPropertyFiltersResponse struct {
+	Destination string                              `json:"destination,omitempty"`
+	RegionId    string                              `json:"region_id,omitempty"`
+	Sections    []ModelExpediaPropertyFilterSection `json:"sections,omitempty"`
+	SortOptions []ModelExpediaPropertyFilterOption  `json:"sort_options,omitempty"`
+}
+
+type ModelExpediaPropertyListing struct {
+	Amenities      []string `json:"amenities,omitempty"`
+	Badges         []string `json:"badges,omitempty"`
+	Id             string   `json:"id,omitempty"`
+	Name           string   `json:"name,omitempty"`
+	NightlyPrice   string   `json:"nightly_price,omitempty"`
+	Price          string   `json:"price,omitempty"`
+	ReviewCount    int      `json:"review_count,omitempty"`
+	ReviewScore    float64  `json:"review_score,omitempty"`
+	ReviewTitle    string   `json:"review_title,omitempty"`
+	StrikeoutPrice string   `json:"strikeout_price,omitempty"`
+	ThumbnailUrl   string   `json:"thumbnail_url,omitempty"`
+	Url            string   `json:"url,omitempty"`
+}
+
+type ModelExpediaPropertyReview struct {
+	Date         string `json:"date,omitempty"`
+	Message      string `json:"message,omitempty"`
+	RatingLabel  string `json:"rating_label,omitempty"`
+	ReviewerName string `json:"reviewer_name,omitempty"`
+	Verified     bool   `json:"verified,omitempty"`
+}
+
+type ModelExpediaPropertyReviewsOption struct {
+	Adults     int    `json:"adults,omitempty"`
+	CheckIn    string `json:"check_in"`
+	CheckOut   string `json:"check_out"`
+	Currency   string `json:"currency,omitempty"`
+	Locale     string `json:"locale,omitempty"`
+	PropertyId string `json:"property_id"`
+}
+
+type ModelExpediaPropertyReviewsResponse struct {
+	OverallRating string                       `json:"overall_rating,omitempty"`
+	PropertyId    string                       `json:"property_id,omitempty"`
+	Reviews       []ModelExpediaPropertyReview `json:"reviews,omitempty"`
+}
+
+type ModelExpediaPropertySearchOption struct {
+	Adults      int    `json:"adults,omitempty"`
+	CheckIn     string `json:"check_in"`
+	CheckOut    string `json:"check_out"`
+	Currency    string `json:"currency,omitempty"`
+	Destination string `json:"destination"`
+	Locale      string `json:"locale,omitempty"`
+	Page        int    `json:"page,omitempty"`
+	PageSize    int    `json:"page_size,omitempty"`
+	Rooms       int    `json:"rooms,omitempty"`
+}
+
+type ModelExpediaPropertySearchResponse struct {
+	CheckIn      string                        `json:"check_in,omitempty"`
+	CheckOut     string                        `json:"check_out,omitempty"`
+	Destination  string                        `json:"destination,omitempty"`
+	Page         int                           `json:"page,omitempty"`
+	Properties   []ModelExpediaPropertyListing `json:"properties,omitempty"`
+	RegionId     string                        `json:"region_id,omitempty"`
+	ResultsLabel string                        `json:"results_label,omitempty"`
+}
+
+type ModelExpediaExpediaActivitySearchResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelExpediaActivitySearchResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelExpediaExpediaFlightsSearchResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelExpediaFlightsSearchResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelExpediaExpediaLocationSearchResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelExpediaLocationSearchResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelExpediaExpediaPropertyDetailResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelExpediaPropertyDetailResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelExpediaExpediaPropertyFiltersResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelExpediaPropertyFiltersResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelExpediaExpediaPropertyReviewsResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelExpediaPropertyReviewsResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelExpediaExpediaPropertySearchResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelExpediaPropertySearchResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
 type ModelExtractOption struct {
 	Instructions string         `json:"instructions,omitempty"`
 	Render       string         `json:"render,omitempty"`
@@ -7471,6 +8401,60 @@ type ModelExtractResponseDoc struct {
 	Msg  string             `json:"msg,omitempty"`
 }
 
+type ModelFacebookGroup struct {
+	CoverImage   string `json:"coverImage,omitempty"`
+	GroupId      string `json:"groupId,omitempty"`
+	MembersCount int    `json:"membersCount,omitempty"`
+	MembersText  string `json:"membersText,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Privacy      string `json:"privacy,omitempty"`
+	SourceUrl    string `json:"sourceUrl,omitempty"`
+}
+
+type ModelFacebookMarketplaceItem struct {
+	CategoryId   string                        `json:"categoryId,omitempty"`
+	Condition    string                        `json:"condition,omitempty"`
+	CreatedAt    string                        `json:"createdAt,omitempty"`
+	Description  string                        `json:"description,omitempty"`
+	Id           string                        `json:"id,omitempty"`
+	Image        string                        `json:"image,omitempty"`
+	IsLive       bool                          `json:"isLive,omitempty"`
+	IsPending    bool                          `json:"isPending,omitempty"`
+	IsSold       bool                          `json:"isSold,omitempty"`
+	LocationText string                        `json:"locationText,omitempty"`
+	Price        ModelFacebookMarketplacePrice `json:"price,omitempty"`
+	ProductType  string                        `json:"productType,omitempty"`
+	SourceUrl    string                        `json:"sourceUrl,omitempty"`
+	Title        string                        `json:"title,omitempty"`
+	Url          string                        `json:"url,omitempty"`
+}
+
+type ModelFacebookMarketplaceListing struct {
+	City  string                        `json:"city,omitempty"`
+	Id    string                        `json:"id,omitempty"`
+	Image string                        `json:"image,omitempty"`
+	Price ModelFacebookMarketplacePrice `json:"price,omitempty"`
+	State string                        `json:"state,omitempty"`
+	Title string                        `json:"title,omitempty"`
+	Url   string                        `json:"url,omitempty"`
+}
+
+type ModelFacebookMarketplacePrice struct {
+	Amount    string `json:"amount,omitempty"`
+	Currency  string `json:"currency,omitempty"`
+	Formatted string `json:"formatted,omitempty"`
+	IsFree    bool   `json:"isFree,omitempty"`
+}
+
+type ModelFacebookMarketplaceSearchResult struct {
+	Category  string                            `json:"category,omitempty"`
+	HasMore   bool                              `json:"hasMore,omitempty"`
+	Listings  []ModelFacebookMarketplaceListing `json:"listings,omitempty"`
+	Location  string                            `json:"location,omitempty"`
+	Query     string                            `json:"query,omitempty"`
+	SourceUrl string                            `json:"sourceUrl,omitempty"`
+}
+
 type ModelFacebookPage struct {
 	Address      string         `json:"address,omitempty"`
 	Category     string         `json:"category,omitempty"`
@@ -7492,6 +8476,24 @@ type ModelFacebookPage struct {
 	Website      string         `json:"website,omitempty"`
 	WereHere     int            `json:"wereHere,omitempty"`
 	Whatsapp     string         `json:"whatsapp,omitempty"`
+}
+
+type ModelFacebookGroupResponseDoc struct {
+	Code int                `json:"code,omitempty"`
+	Data ModelFacebookGroup `json:"data,omitempty"`
+	Msg  string             `json:"msg,omitempty"`
+}
+
+type ModelFacebookMarketplaceItemResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelFacebookMarketplaceItem `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelFacebookMarketplaceSearchResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelFacebookMarketplaceSearchResult `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
 }
 
 type ModelFacebookPageResponseDoc struct {
@@ -9108,6 +10110,194 @@ type ModelImdbTitleResponseDoc struct {
 	Code int                    `json:"code,omitempty"`
 	Data ModelImdbTitleResponse `json:"data,omitempty"`
 	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelImportyetiCompany struct {
+	Address              string                           `json:"address,omitempty"`
+	AlsoKnownAsAddresses int                              `json:"also_known_as_addresses,omitempty"`
+	AlsoKnownAsNames     int                              `json:"also_known_as_names,omitempty"`
+	AvgTeuPerMonth       float64                          `json:"avg_teu_per_month,omitempty"`
+	AvgTeuPerShipment    float64                          `json:"avg_teu_per_shipment,omitempty"`
+	EstShippingSpend     string                           `json:"est_shipping_spend,omitempty"`
+	HsCodes              []ModelImportyetiHscode          `json:"hs_codes,omitempty"`
+	LastShipmentDate     string                           `json:"last_shipment_date,omitempty"`
+	Name                 string                           `json:"name,omitempty"`
+	Phone                string                           `json:"phone,omitempty"`
+	RecentShipments      []ModelImportyetiShipment        `json:"recent_shipments,omitempty"`
+	RegionBreakdown      []ModelImportyetiRegionBreakdown `json:"region_breakdown,omitempty"`
+	Slug                 string                           `json:"slug,omitempty"`
+	SourceUrl            string                           `json:"source_url,omitempty"`
+	Suppliers            []ModelImportyetiSupplier        `json:"suppliers,omitempty"`
+	TotalShipments       int                              `json:"total_shipments,omitempty"`
+	Url                  string                           `json:"url,omitempty"`
+	Website              string                           `json:"website,omitempty"`
+}
+
+type ModelImportyetiCountryShipments struct {
+	Country   string `json:"country,omitempty"`
+	Shipments int    `json:"shipments,omitempty"`
+}
+
+type ModelImportyetiHscode struct {
+	Code               string `json:"code,omitempty"`
+	Description        string `json:"description,omitempty"`
+	ProductDescription string `json:"product_description,omitempty"`
+	SampleBillOfLading string `json:"sample_bill_of_lading,omitempty"`
+}
+
+type ModelImportyetiRegionBreakdown struct {
+	Countries []ModelImportyetiCountryShipments `json:"countries,omitempty"`
+	Percent   float64                           `json:"percent,omitempty"`
+	Region    string                            `json:"region,omitempty"`
+}
+
+type ModelImportyetiSearchResponse struct {
+	Page       int                           `json:"page,omitempty"`
+	Query      string                        `json:"query,omitempty"`
+	Results    []ModelImportyetiSearchResult `json:"results,omitempty"`
+	SourceUrl  string                        `json:"source_url,omitempty"`
+	TotalHits  int                           `json:"total_hits,omitempty"`
+	TotalPages int                           `json:"total_pages,omitempty"`
+}
+
+type ModelImportyetiSearchResult struct {
+	Address             string `json:"address,omitempty"`
+	CountryCode         string `json:"country_code,omitempty"`
+	Kind                string `json:"kind,omitempty"`
+	MostRecentShipment  string `json:"most_recent_shipment,omitempty"`
+	OtherAddressesCount int    `json:"other_addresses_count,omitempty"`
+	OtherNamesCount     int    `json:"other_names_count,omitempty"`
+	Slug                string `json:"slug,omitempty"`
+	Title               string `json:"title,omitempty"`
+	TotalShipments      int    `json:"total_shipments,omitempty"`
+}
+
+type ModelImportyetiShipment struct {
+	BillOfLading         string `json:"bill_of_lading,omitempty"`
+	Containers           string `json:"containers,omitempty"`
+	Date                 string `json:"date,omitempty"`
+	Description          string `json:"description,omitempty"`
+	EstimatedFreightCost string `json:"estimated_freight_cost,omitempty"`
+	Quantity             string `json:"quantity,omitempty"`
+	Route                string `json:"route,omitempty"`
+	SupplierLocation     string `json:"supplier_location,omitempty"`
+	SupplierName         string `json:"supplier_name,omitempty"`
+	SupplierSlug         string `json:"supplier_slug,omitempty"`
+	Weight               string `json:"weight,omitempty"`
+}
+
+type ModelImportyetiSupplier struct {
+	City              string   `json:"city,omitempty"`
+	Country           string   `json:"country,omitempty"`
+	Description       string   `json:"description,omitempty"`
+	HsCodes           []string `json:"hs_codes,omitempty"`
+	Name              string   `json:"name,omitempty"`
+	ProductCategories []string `json:"product_categories,omitempty"`
+	Slug              string   `json:"slug,omitempty"`
+	TotalShipments    int      `json:"total_shipments,omitempty"`
+}
+
+type ModelImportyetiCompanyResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelImportyetiCompany `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelImportyetiSearchResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelImportyetiSearchResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelIndeedJob struct {
+	Benefits           []string `json:"benefits,omitempty"`
+	City               string   `json:"city,omitempty"`
+	Company            string   `json:"company,omitempty"`
+	CompanyRating      float64  `json:"company_rating,omitempty"`
+	CompanyReviewCount int      `json:"company_review_count,omitempty"`
+	CompanyUrl         string   `json:"company_url,omitempty"`
+	Country            string   `json:"country,omitempty"`
+	DescriptionHtml    string   `json:"description_html,omitempty"`
+	DescriptionText    string   `json:"description_text,omitempty"`
+	DirectApply        bool     `json:"direct_apply,omitempty"`
+	EmploymentType     []string `json:"employment_type,omitempty"`
+	JobKey             string   `json:"job_key,omitempty"`
+	Location           string   `json:"location,omitempty"`
+	PostalCode         string   `json:"postal_code,omitempty"`
+	PostedAt           string   `json:"posted_at,omitempty"`
+	Remote             bool     `json:"remote,omitempty"`
+	SalaryCurrency     string   `json:"salary_currency,omitempty"`
+	SalaryMax          float64  `json:"salary_max,omitempty"`
+	SalaryMin          float64  `json:"salary_min,omitempty"`
+	SalaryPeriod       string   `json:"salary_period,omitempty"`
+	SalaryText         string   `json:"salary_text,omitempty"`
+	State              string   `json:"state,omitempty"`
+	Title              string   `json:"title,omitempty"`
+	Url                string   `json:"url,omitempty"`
+	ValidThrough       string   `json:"valid_through,omitempty"`
+}
+
+type ModelIndeedJobCard struct {
+	City               string   `json:"city,omitempty"`
+	Company            string   `json:"company,omitempty"`
+	CompanyRating      float64  `json:"company_rating,omitempty"`
+	CompanyReviewCount int      `json:"company_review_count,omitempty"`
+	IndeedApplyable    bool     `json:"indeed_applyable,omitempty"`
+	JobKey             string   `json:"job_key,omitempty"`
+	JobTypes           []string `json:"job_types,omitempty"`
+	Location           string   `json:"location,omitempty"`
+	NewJob             bool     `json:"new_job,omitempty"`
+	PostalCode         string   `json:"postal_code,omitempty"`
+	PostedAt           string   `json:"posted_at,omitempty"`
+	PostedRelative     string   `json:"posted_relative,omitempty"`
+	Remote             bool     `json:"remote,omitempty"`
+	SalaryCurrency     string   `json:"salary_currency,omitempty"`
+	SalaryMax          float64  `json:"salary_max,omitempty"`
+	SalaryMin          float64  `json:"salary_min,omitempty"`
+	SalaryPeriod       string   `json:"salary_period,omitempty"`
+	SalaryText         string   `json:"salary_text,omitempty"`
+	Snippet            string   `json:"snippet,omitempty"`
+	Sponsored          bool     `json:"sponsored,omitempty"`
+	State              string   `json:"state,omitempty"`
+	Title              string   `json:"title,omitempty"`
+	UrgentlyHiring     bool     `json:"urgently_hiring,omitempty"`
+	Url                string   `json:"url,omitempty"`
+}
+
+type ModelIndeedLocationSuggestResponse struct {
+	Query       string                          `json:"query,omitempty"`
+	Suggestions []ModelIndeedLocationSuggestion `json:"suggestions,omitempty"`
+}
+
+type ModelIndeedLocationSuggestion struct {
+	Name   string `json:"name,omitempty"`
+	Source string `json:"source,omitempty"`
+}
+
+type ModelIndeedSearchResponse struct {
+	Jobs     []ModelIndeedJobCard `json:"jobs,omitempty"`
+	Location string               `json:"location,omitempty"`
+	Page     int                  `json:"page,omitempty"`
+	Query    string               `json:"query,omitempty"`
+	Total    int                  `json:"total,omitempty"`
+}
+
+type ModelIndeedJobResponseDoc struct {
+	Code int            `json:"code,omitempty"`
+	Data ModelIndeedJob `json:"data,omitempty"`
+	Msg  string         `json:"msg,omitempty"`
+}
+
+type ModelIndeedLocationSuggestResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelIndeedLocationSuggestResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelIndeedSearchResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelIndeedSearchResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
 }
 
 type ModelInstagramBusinessAddress struct {
@@ -11459,6 +12649,162 @@ type ModelNumbeoRankingsResponseDoc struct {
 	Code int                         `json:"code,omitempty"`
 	Data ModelNumbeoRankingsResponse `json:"data,omitempty"`
 	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelOpentableCuisine struct {
+	Id      string `json:"id,omitempty"`
+	Name    string `json:"name,omitempty"`
+	Primary bool   `json:"primary,omitempty"`
+}
+
+type ModelOpentableMenu struct {
+	Currency string                      `json:"currency,omitempty"`
+	Sections []ModelOpentableMenuSection `json:"sections,omitempty"`
+	Title    string                      `json:"title,omitempty"`
+}
+
+type ModelOpentableMenuItem struct {
+	Description string `json:"description,omitempty"`
+	Price       string `json:"price,omitempty"`
+	Title       string `json:"title,omitempty"`
+}
+
+type ModelOpentableMenuSection struct {
+	Items []ModelOpentableMenuItem `json:"items,omitempty"`
+	Title string                   `json:"title,omitempty"`
+}
+
+type ModelOpentableMenusResponse struct {
+	Menus        []ModelOpentableMenu `json:"menus,omitempty"`
+	RestaurantId string               `json:"restaurant_id,omitempty"`
+}
+
+type ModelOpentablePriceBand struct {
+	Band  string `json:"band,omitempty"`
+	Label string `json:"label,omitempty"`
+}
+
+type ModelOpentableRestaurantResponse struct {
+	AvailabilityDateTime string                      `json:"availability_date_time,omitempty"`
+	City                 string                      `json:"city,omitempty"`
+	Country              string                      `json:"country,omitempty"`
+	CountryCode          string                      `json:"country_code,omitempty"`
+	Cuisines             []ModelOpentableCuisine     `json:"cuisines,omitempty"`
+	CurrencyCode         string                      `json:"currency_code,omitempty"`
+	Description          string                      `json:"description,omitempty"`
+	DiningStyle          string                      `json:"dining_style,omitempty"`
+	DressCode            string                      `json:"dress_code,omitempty"`
+	Email                string                      `json:"email,omitempty"`
+	Features             []string                    `json:"features,omitempty"`
+	Hours                string                      `json:"hours,omitempty"`
+	Id                   string                      `json:"id,omitempty"`
+	Latitude             float64                     `json:"latitude,omitempty"`
+	Line1                string                      `json:"line1,omitempty"`
+	Line2                string                      `json:"line2,omitempty"`
+	Longitude            float64                     `json:"longitude,omitempty"`
+	MaxAdvanceDays       int                         `json:"max_advance_days,omitempty"`
+	MaxPartySize         int                         `json:"max_party_size,omitempty"`
+	Name                 string                      `json:"name,omitempty"`
+	PhoneNumber          string                      `json:"phone_number,omitempty"`
+	PhotosCount          int                         `json:"photos_count,omitempty"`
+	PostalCode           string                      `json:"postal_code,omitempty"`
+	PriceBand            ModelOpentablePriceBand     `json:"price_band,omitempty"`
+	Reviews              ModelOpentableReviewSummary `json:"reviews,omitempty"`
+	State                string                      `json:"state,omitempty"`
+	Timeslots            []ModelOpentableTimeslot    `json:"timeslots,omitempty"`
+	Website              string                      `json:"website,omitempty"`
+}
+
+type ModelOpentableReview struct {
+	Author          string                         `json:"author,omitempty"`
+	AuthorMetro     string                         `json:"author_metro,omitempty"`
+	Id              string                         `json:"id,omitempty"`
+	PostedDate      string                         `json:"posted_date,omitempty"`
+	Recommended     bool                           `json:"recommended,omitempty"`
+	ReservationDate string                         `json:"reservation_date,omitempty"`
+	Statistics      ModelOpentableReviewStatistics `json:"statistics,omitempty"`
+	Text            string                         `json:"text,omitempty"`
+}
+
+type ModelOpentableReviewStatistics struct {
+	Ambience      float64 `json:"ambience,omitempty"`
+	Food          float64 `json:"food,omitempty"`
+	Noise         float64 `json:"noise,omitempty"`
+	OverallRating float64 `json:"overall_rating,omitempty"`
+	Service       float64 `json:"service,omitempty"`
+	Value         float64 `json:"value,omitempty"`
+}
+
+type ModelOpentableReviewSummary struct {
+	Ambience      float64 `json:"ambience,omitempty"`
+	Count         int     `json:"count,omitempty"`
+	Food          float64 `json:"food,omitempty"`
+	Noise         float64 `json:"noise,omitempty"`
+	OverallRating float64 `json:"overall_rating,omitempty"`
+	ReviewCount   int     `json:"review_count,omitempty"`
+	Service       float64 `json:"service,omitempty"`
+	Value         float64 `json:"value,omitempty"`
+}
+
+type ModelOpentableReviewsResponse struct {
+	Page         int                    `json:"page,omitempty"`
+	RestaurantId string                 `json:"restaurant_id,omitempty"`
+	Reviews      []ModelOpentableReview `json:"reviews,omitempty"`
+}
+
+type ModelOpentableSearchResponse struct {
+	Results []ModelOpentableSearchResult `json:"results,omitempty"`
+	Term    string                       `json:"term,omitempty"`
+}
+
+type ModelOpentableSearchResult struct {
+	AvailabilityDateTime string                   `json:"availability_date_time,omitempty"`
+	City                 string                   `json:"city,omitempty"`
+	Country              string                   `json:"country,omitempty"`
+	Description          string                   `json:"description,omitempty"`
+	Id                   string                   `json:"id,omitempty"`
+	Latitude             float64                  `json:"latitude,omitempty"`
+	Line1                string                   `json:"line1,omitempty"`
+	Line2                string                   `json:"line2,omitempty"`
+	Longitude            float64                  `json:"longitude,omitempty"`
+	Name                 string                   `json:"name,omitempty"`
+	PostalCode           string                   `json:"postal_code,omitempty"`
+	State                string                   `json:"state,omitempty"`
+	Timeslots            []ModelOpentableTimeslot `json:"timeslots,omitempty"`
+}
+
+type ModelOpentableTimeslot struct {
+	Available      bool   `json:"available,omitempty"`
+	DateTime       string `json:"date_time,omitempty"`
+	Points         int    `json:"points,omitempty"`
+	PriceAmount    int    `json:"price_amount,omitempty"`
+	RedemptionTier string `json:"redemption_tier,omitempty"`
+	Token          string `json:"token,omitempty"`
+	Type           string `json:"type,omitempty"`
+}
+
+type ModelOpentableMenusResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelOpentableMenusResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelOpentableRestaurantResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelOpentableRestaurantResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelOpentableReviewsResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelOpentableReviewsResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelOpentableSearchResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelOpentableSearchResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
 }
 
 type ModelPitchbookDataTable struct {
@@ -20400,6 +21746,236 @@ type ModelYahoofinanceValuationResponseDoc struct {
 	Msg  string                             `json:"msg,omitempty"`
 }
 
+type ModelYelpAddressDetails struct {
+	AddressLine1     string   `json:"address_line_1,omitempty"`
+	AddressLine2     string   `json:"address_line_2,omitempty"`
+	AddressLine3     string   `json:"address_line_3,omitempty"`
+	City             string   `json:"city,omitempty"`
+	Country          string   `json:"country,omitempty"`
+	FormattedAddress []string `json:"formatted_address,omitempty"`
+	PostalCode       string   `json:"postal_code,omitempty"`
+	State            string   `json:"state,omitempty"`
+}
+
+type ModelYelpBusinessAttribute struct {
+	Alias  string   `json:"alias,omitempty"`
+	Title  string   `json:"title,omitempty"`
+	Value  string   `json:"value,omitempty"`
+	Values []string `json:"values,omitempty"`
+}
+
+type ModelYelpBusinessItem struct {
+	Address        string                  `json:"address,omitempty"`
+	AddressDetails ModelYelpAddressDetails `json:"address_details,omitempty"`
+	Alias          string                  `json:"alias,omitempty"`
+	Categories     []string                `json:"categories,omitempty"`
+	Claimed        bool                    `json:"claimed,omitempty"`
+	Closed         bool                    `json:"closed,omitempty"`
+	Coordinates    ModelYelpCoordinates    `json:"coordinates,omitempty"`
+	EncodedId      string                  `json:"encoded_id,omitempty"`
+	Id             string                  `json:"id,omitempty"`
+	Image          string                  `json:"image,omitempty"`
+	Name           string                  `json:"name,omitempty"`
+	Neighborhoods  []string                `json:"neighborhoods,omitempty"`
+	Phone          string                  `json:"phone,omitempty"`
+	PhoneNumber    string                  `json:"phone_number,omitempty"`
+	Photos         []string                `json:"photos,omitempty"`
+	Price          string                  `json:"price,omitempty"`
+	Rating         float64                 `json:"rating,omitempty"`
+	ReviewCount    int                     `json:"review_count,omitempty"`
+	Url            string                  `json:"url,omitempty"`
+	Website        string                  `json:"website,omitempty"`
+}
+
+type ModelYelpCoordinates struct {
+	Latitude  float64 `json:"latitude,omitempty"`
+	Longitude float64 `json:"longitude,omitempty"`
+}
+
+type ModelYelpMobileBusinessMenuResponse struct {
+	Id    string                    `json:"id,omitempty"`
+	Items []ModelYelpMobileMenuItem `json:"items,omitempty"`
+}
+
+type ModelYelpMobileBusinessPhotosResponse struct {
+	Id     string                     `json:"id,omitempty"`
+	Limit  int                        `json:"limit,omitempty"`
+	Offset int                        `json:"offset,omitempty"`
+	Photos []ModelYelpMobilePhotoItem `json:"photos,omitempty"`
+	Total  int                        `json:"total,omitempty"`
+}
+
+type ModelYelpMobileBusinessResponse struct {
+	Address         string                       `json:"address,omitempty"`
+	AddressDetails  ModelYelpAddressDetails      `json:"address_details,omitempty"`
+	Alias           string                       `json:"alias,omitempty"`
+	Attributes      []ModelYelpBusinessAttribute `json:"attributes,omitempty"`
+	Categories      []string                     `json:"categories,omitempty"`
+	Claimed         bool                         `json:"claimed,omitempty"`
+	Closed          bool                         `json:"closed,omitempty"`
+	Coordinates     ModelYelpCoordinates         `json:"coordinates,omitempty"`
+	Description     string                       `json:"description,omitempty"`
+	EncodedId       string                       `json:"encoded_id,omitempty"`
+	HealthScore     string                       `json:"health_score,omitempty"`
+	Hours           []string                     `json:"hours,omitempty"`
+	Id              string                       `json:"id,omitempty"`
+	Image           string                       `json:"image,omitempty"`
+	Name            string                       `json:"name,omitempty"`
+	Neighborhoods   []string                     `json:"neighborhoods,omitempty"`
+	Phone           string                       `json:"phone,omitempty"`
+	PhoneNumber     string                       `json:"phone_number,omitempty"`
+	PhotoCount      int                          `json:"photo_count,omitempty"`
+	Photos          []string                     `json:"photos,omitempty"`
+	Price           string                       `json:"price,omitempty"`
+	Rating          float64                      `json:"rating,omitempty"`
+	ReviewCount     int                          `json:"review_count,omitempty"`
+	Url             string                       `json:"url,omitempty"`
+	Website         string                       `json:"website,omitempty"`
+	YearEstablished int                          `json:"year_established,omitempty"`
+}
+
+type ModelYelpMobileBusinessReviewHighlightsResponse struct {
+	Highlights []ModelYelpMobileReviewHighlight `json:"highlights,omitempty"`
+	Id         string                           `json:"id,omitempty"`
+	Total      int                              `json:"total,omitempty"`
+}
+
+type ModelYelpMobileBusinessReviewsResponse struct {
+	Id      string                      `json:"id,omitempty"`
+	Limit   int                         `json:"limit,omitempty"`
+	Offset  int                         `json:"offset,omitempty"`
+	Reviews []ModelYelpMobileReviewItem `json:"reviews,omitempty"`
+}
+
+type ModelYelpMobileBusinessReviewsSearchResponse struct {
+	Id      string                            `json:"id,omitempty"`
+	Reviews []ModelYelpMobileReviewSearchItem `json:"reviews,omitempty"`
+	Term    string                            `json:"term,omitempty"`
+	Total   int                               `json:"total,omitempty"`
+}
+
+type ModelYelpMobileGeocodeResponse struct {
+	Address       string               `json:"address,omitempty"`
+	AddressLine1  string               `json:"address_line_1,omitempty"`
+	City          string               `json:"city,omitempty"`
+	Coordinates   ModelYelpCoordinates `json:"coordinates,omitempty"`
+	Country       string               `json:"country,omitempty"`
+	County        string               `json:"county,omitempty"`
+	DisplayName   string               `json:"display_name,omitempty"`
+	PostalCode    string               `json:"postal_code,omitempty"`
+	State         string               `json:"state,omitempty"`
+	YelpAvailable bool                 `json:"yelp_available,omitempty"`
+}
+
+type ModelYelpMobileMenuItem struct {
+	Alias       string `json:"alias,omitempty"`
+	Description string `json:"description,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Photo       string `json:"photo,omitempty"`
+	PhotoCount  int    `json:"photo_count,omitempty"`
+	Price       string `json:"price,omitempty"`
+	ReviewCount int    `json:"review_count,omitempty"`
+}
+
+type ModelYelpMobilePhotoItem struct {
+	Caption     string `json:"caption,omitempty"`
+	Height      int    `json:"height,omitempty"`
+	Id          string `json:"id,omitempty"`
+	ShareUrl    string `json:"share_url,omitempty"`
+	TimeCreated int    `json:"time_created,omitempty"`
+	Url         string `json:"url,omitempty"`
+	Width       int    `json:"width,omitempty"`
+}
+
+type ModelYelpMobileReviewHighlight struct {
+	Identifier   string `json:"identifier,omitempty"`
+	PhotoUrl     string `json:"photo_url,omitempty"`
+	ReviewCount  int    `json:"review_count,omitempty"`
+	ReviewId     string `json:"review_id,omitempty"`
+	SentenceHtml string `json:"sentence_html,omitempty"`
+}
+
+type ModelYelpMobileReviewItem struct {
+	Author            string  `json:"author,omitempty"`
+	AuthorLocation    string  `json:"author_location,omitempty"`
+	AuthorReviewCount int     `json:"author_review_count,omitempty"`
+	Id                string  `json:"id,omitempty"`
+	Language          string  `json:"language,omitempty"`
+	Rating            float64 `json:"rating,omitempty"`
+	ShareUrl          string  `json:"share_url,omitempty"`
+	Text              string  `json:"text,omitempty"`
+	TimeModified      int     `json:"time_modified,omitempty"`
+}
+
+type ModelYelpMobileReviewSearchItem struct {
+	Author            string  `json:"author,omitempty"`
+	AuthorLocation    string  `json:"author_location,omitempty"`
+	AuthorReviewCount int     `json:"author_review_count,omitempty"`
+	ExcerptHtml       string  `json:"excerpt_html,omitempty"`
+	Id                string  `json:"id,omitempty"`
+	Language          string  `json:"language,omitempty"`
+	Rating            float64 `json:"rating,omitempty"`
+	ShareUrl          string  `json:"share_url,omitempty"`
+	TimeModified      int     `json:"time_modified,omitempty"`
+}
+
+type ModelYelpMobileSearchResponse struct {
+	Limit    int                     `json:"limit,omitempty"`
+	Location string                  `json:"location,omitempty"`
+	Offset   int                     `json:"offset,omitempty"`
+	Results  []ModelYelpBusinessItem `json:"results,omitempty"`
+	Term     string                  `json:"term,omitempty"`
+	Total    int                     `json:"total,omitempty"`
+}
+
+type ModelYelpMobileBusinessMenuResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelYelpMobileBusinessMenuResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelYelpMobileBusinessPhotosResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelYelpMobileBusinessPhotosResponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
+}
+
+type ModelYelpMobileBusinessResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelYelpMobileBusinessResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelYelpMobileBusinessReviewHighlightsResponseDoc struct {
+	Code int                                             `json:"code,omitempty"`
+	Data ModelYelpMobileBusinessReviewHighlightsResponse `json:"data,omitempty"`
+	Msg  string                                          `json:"msg,omitempty"`
+}
+
+type ModelYelpMobileBusinessReviewsResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelYelpMobileBusinessReviewsResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelYelpMobileBusinessReviewsSearchResponseDoc struct {
+	Code int                                          `json:"code,omitempty"`
+	Data ModelYelpMobileBusinessReviewsSearchResponse `json:"data,omitempty"`
+	Msg  string                                       `json:"msg,omitempty"`
+}
+
+type ModelYelpMobileGeocodeResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelYelpMobileGeocodeResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelYelpMobileSearchResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelYelpMobileSearchResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
 type ModelYoutubeCaption struct {
 	Duration float64 `json:"duration,omitempty"`
 	Start    float64 `json:"start,omitempty"`
@@ -20646,6 +22222,118 @@ type ModelYoutubeVideoResponseDoc struct {
 	Code int                     `json:"code,omitempty"`
 	Data ModelYoutubeVideoDetail `json:"data,omitempty"`
 	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelZalandoCategoryResponse struct {
+	Category   string                       `json:"category,omitempty"`
+	Count      int                          `json:"count,omitempty"`
+	FetchedAt  string                       `json:"fetched_at,omitempty"`
+	Market     string                       `json:"market,omitempty"`
+	Products   []ModelZalandoProductSummary `json:"products,omitempty"`
+	SourceUrl  string                       `json:"source_url,omitempty"`
+	TotalCount int                          `json:"total_count,omitempty"`
+}
+
+type ModelZalandoMarket struct {
+	Code   string `json:"code,omitempty"`
+	Domain string `json:"domain,omitempty"`
+}
+
+type ModelZalandoMarketsResponse struct {
+	Count   int                  `json:"count,omitempty"`
+	Markets []ModelZalandoMarket `json:"markets,omitempty"`
+}
+
+type ModelZalandoProduct struct {
+	Brand       string                       `json:"brand,omitempty"`
+	Color       string                       `json:"color,omitempty"`
+	Currency    string                       `json:"currency,omitempty"`
+	Description string                       `json:"description,omitempty"`
+	Images      []string                     `json:"images,omitempty"`
+	Name        string                       `json:"name,omitempty"`
+	Price       float64                      `json:"price,omitempty"`
+	Sku         string                       `json:"sku,omitempty"`
+	Url         string                       `json:"url,omitempty"`
+	Variants    []ModelZalandoProductVariant `json:"variants,omitempty"`
+}
+
+type ModelZalandoProductResponse struct {
+	FetchedAt string              `json:"fetched_at,omitempty"`
+	Market    string              `json:"market,omitempty"`
+	Product   ModelZalandoProduct `json:"product,omitempty"`
+	SourceUrl string              `json:"source_url,omitempty"`
+}
+
+type ModelZalandoProductSummary struct {
+	Brand           string  `json:"brand,omitempty"`
+	Condition       string  `json:"condition,omitempty"`
+	Currency        string  `json:"currency,omitempty"`
+	DiscountPercent int     `json:"discount_percent,omitempty"`
+	Image           string  `json:"image,omitempty"`
+	Name            string  `json:"name,omitempty"`
+	OriginalPrice   float64 `json:"original_price,omitempty"`
+	Price           float64 `json:"price,omitempty"`
+	Silhouette      string  `json:"silhouette,omitempty"`
+	Sku             string  `json:"sku,omitempty"`
+	Url             string  `json:"url,omitempty"`
+}
+
+type ModelZalandoProductVariant struct {
+	Availability string  `json:"availability,omitempty"`
+	Currency     string  `json:"currency,omitempty"`
+	Gtin         string  `json:"gtin,omitempty"`
+	Price        float64 `json:"price,omitempty"`
+	Size         string  `json:"size,omitempty"`
+	Sku          string  `json:"sku,omitempty"`
+	Url          string  `json:"url,omitempty"`
+}
+
+type ModelZalandoSearchResponse struct {
+	Count      int                          `json:"count,omitempty"`
+	FetchedAt  string                       `json:"fetched_at,omitempty"`
+	Market     string                       `json:"market,omitempty"`
+	Products   []ModelZalandoProductSummary `json:"products,omitempty"`
+	Query      string                       `json:"query,omitempty"`
+	SourceUrl  string                       `json:"source_url,omitempty"`
+	TotalCount int                          `json:"total_count,omitempty"`
+}
+
+type ModelZalandoSuggestResponse struct {
+	FetchedAt   string   `json:"fetched_at,omitempty"`
+	Market      string   `json:"market,omitempty"`
+	Query       string   `json:"query,omitempty"`
+	SourceUrl   string   `json:"source_url,omitempty"`
+	Suggestions []string `json:"suggestions,omitempty"`
+}
+
+type ModelZalandoCategoryResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelZalandoCategoryResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelZalandoMarketsResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelZalandoMarketsResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelZalandoProductResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelZalandoProductResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelZalandoSearchResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelZalandoSearchResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelZalandoSuggestResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelZalandoSuggestResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
 }
 
 type ModelZillowAutocompleteItem struct {
@@ -20939,7 +22627,7 @@ type ModelZillowSearchResponse struct {
 	Results  []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 895
+const operationCount = 947
 
 const (
 	OperationAirbnbHost                                             = "airbnb-host"
@@ -20997,6 +22685,9 @@ const (
 	OperationApplePodcastsShow                                      = "apple-podcasts-show"
 	OperationApplePodcastsShowEpisodes                              = "apple-podcasts-show-episodes"
 	OperationApplePodcastsShowRelated                               = "apple-podcasts-show-related"
+	OperationAutotraderDealer                                       = "autotrader-dealer"
+	OperationAutotraderSearch                                       = "autotrader-search"
+	OperationAutotraderVehicle                                      = "autotrader-vehicle"
 	OperationBillingMe                                              = "billing-me"
 	OperationBillingMeCheckout                                      = "billing-me-checkout"
 	OperationBillingMeEvents                                        = "billing-me-events"
@@ -21010,6 +22701,14 @@ const (
 	OperationBingSearch                                             = "bing-search"
 	OperationBingSuggest                                            = "bing-suggest"
 	OperationBingVideos                                             = "bing-videos"
+	OperationBookingAttractionsDetail                               = "booking-attractions-detail"
+	OperationBookingAttractionsReviews                              = "booking-attractions-reviews"
+	OperationBookingAttractionsSearch                               = "booking-attractions-search"
+	OperationBookingFlightsAutocomplete                             = "booking-flights-autocomplete"
+	OperationBookingFlightsSearch                                   = "booking-flights-search"
+	OperationBookingHotelDetail                                     = "booking-hotel-detail"
+	OperationBookingReviews                                         = "booking-reviews"
+	OperationBookingSearch                                          = "booking-search"
 	OperationBoxOfficeMojoBoxofficemojoBrand                        = "boxofficemojo-brand"
 	OperationBoxOfficeMojoBoxofficemojoBrands                       = "boxofficemojo-brands"
 	OperationBoxOfficeMojoBoxofficemojoCalendar                     = "boxofficemojo-calendar"
@@ -21189,6 +22888,7 @@ const (
 	OperationDiscogsMaster                                          = "discogs-master"
 	OperationDiscogsRelease                                         = "discogs-release"
 	OperationDiscogsSearch                                          = "discogs-search"
+	OperationDoorDashDoordashExplore                                = "doordash-explore"
 	OperationDoorDashDoordashFeed                                   = "doordash-feed"
 	OperationDoorDashDoordashSearch                                 = "doordash-search"
 	OperationDoorDashDoordashSearchAutocomplete                     = "doordash-search-autocomplete"
@@ -21196,6 +22896,7 @@ const (
 	OperationDoorDashDoordashSearchItems                            = "doordash-search-items"
 	OperationDoorDashDoordashStore                                  = "doordash-store"
 	OperationDoorDashDoordashStoreFulfillment                       = "doordash-store-fulfillment"
+	OperationDoorDashDoordashStoreInfo                              = "doordash-store-info"
 	OperationDoorDashDoordashStoreItem                              = "doordash-store-item"
 	OperationDoorDashDoordashStoreMenu                              = "doordash-store-menu"
 	OperationDoorDashDoordashStoreReviews                           = "doordash-store-reviews"
@@ -21214,6 +22915,23 @@ const (
 	OperationEspnTeam                                               = "espn-team"
 	OperationEspnTeamRoster                                         = "espn-team-roster"
 	OperationEspnTeams                                              = "espn-teams"
+	OperationEtsyListing                                            = "etsy-listing"
+	OperationEtsyListingReviews                                     = "etsy-listing-reviews"
+	OperationEtsySearch                                             = "etsy-search"
+	OperationEtsyShop                                               = "etsy-shop"
+	OperationEtsyShopListings                                       = "etsy-shop-listings"
+	OperationEtsyShopReviews                                        = "etsy-shop-reviews"
+	OperationEtsyShopSearch                                         = "etsy-shop-search"
+	OperationExpediaActivitiesSearch                                = "expedia-activities-search"
+	OperationExpediaFlightsSearch                                   = "expedia-flights-search"
+	OperationExpediaLocationsSearch                                 = "expedia-locations-search"
+	OperationExpediaPropertiesDetail                                = "expedia-properties-detail"
+	OperationExpediaPropertiesFilters                               = "expedia-properties-filters"
+	OperationExpediaPropertiesReviews                               = "expedia-properties-reviews"
+	OperationExpediaPropertiesSearch                                = "expedia-properties-search"
+	OperationFacebookGroup                                          = "facebook-group"
+	OperationFacebookMarketplaceItem                                = "facebook-marketplace-item"
+	OperationFacebookMarketplaceSearch                              = "facebook-marketplace-search"
 	OperationFacebookPage                                           = "facebook-page"
 	OperationGeocodingLookup                                        = "geocoding-lookup"
 	OperationGeocodingReverse                                       = "geocoding-reverse"
@@ -21318,6 +23036,11 @@ const (
 	OperationImdbTitleReviews                                       = "imdb-title-reviews"
 	OperationImdbTitleTechnicalSpecs                                = "imdb-title-technical-specs"
 	OperationImdbTitleTrivia                                        = "imdb-title-trivia"
+	OperationImportYetiImportyetiCompany                            = "importyeti-company"
+	OperationImportYetiImportyetiSearch                             = "importyeti-search"
+	OperationIndeedJob                                              = "indeed-job"
+	OperationIndeedLocationsSuggest                                 = "indeed-locations-suggest"
+	OperationIndeedSearch                                           = "indeed-search"
 	OperationInstagramPost                                          = "instagram-post"
 	OperationInstagramProfile                                       = "instagram-profile"
 	OperationInstagramReels                                         = "instagram-reels"
@@ -21451,6 +23174,10 @@ const (
 	OperationNumbeoIndicesCountry                                   = "numbeo-indices-country"
 	OperationNumbeoIndicesRankings                                  = "numbeo-indices-rankings"
 	OperationNumbeoIndicesRankingsByCountry                         = "numbeo-indices-rankings-by-country"
+	OperationOpenTableOpentableRestaurant                           = "opentable-restaurant"
+	OperationOpenTableOpentableRestaurantMenus                      = "opentable-restaurant-menus"
+	OperationOpenTableOpentableRestaurantReviews                    = "opentable-restaurant-reviews"
+	OperationOpenTableOpentableSearch                               = "opentable-search"
 	OperationPitchBookPitchbookAdvisor                              = "pitchbook-advisor"
 	OperationPitchBookPitchbookCompany                              = "pitchbook-company"
 	OperationPitchBookPitchbookFund                                 = "pitchbook-fund"
@@ -21821,6 +23548,14 @@ const (
 	OperationYahooFinanceTickerSustainability                       = "yahoo-finance-ticker-sustainability"
 	OperationYahooFinanceTickerValuation                            = "yahoo-finance-ticker-valuation"
 	OperationYahooFinanceTrending                                   = "yahoo-finance-trending"
+	OperationYelpBusiness                                           = "yelp-business"
+	OperationYelpBusinessMenu                                       = "yelp-business-menu"
+	OperationYelpBusinessPhotos                                     = "yelp-business-photos"
+	OperationYelpBusinessReviewHighlights                           = "yelp-business-review-highlights"
+	OperationYelpBusinessReviews                                    = "yelp-business-reviews"
+	OperationYelpBusinessReviewsSearch                              = "yelp-business-reviews-search"
+	OperationYelpGeocode                                            = "yelp-geocode"
+	OperationYelpSearch                                             = "yelp-search"
 	OperationYouTubeCaptions                                        = "youtube-captions"
 	OperationYouTubeChannelPlaylists                                = "youtube-channel-playlists"
 	OperationYouTubeChannelSearch                                   = "youtube-channel-search"
@@ -21834,6 +23569,11 @@ const (
 	OperationYouTubeTranscript                                      = "youtube-transcript"
 	OperationYouTubeTranscriptLanguages                             = "youtube-transcript-languages"
 	OperationYouTubeVideo                                           = "youtube-video"
+	OperationZalandoCategory                                        = "zalando-category"
+	OperationZalandoMarkets                                         = "zalando-markets"
+	OperationZalandoProduct                                         = "zalando-product"
+	OperationZalandoSearch                                          = "zalando-search"
+	OperationZalandoSuggest                                         = "zalando-suggest"
 	OperationZillowAutocomplete                                     = "zillow-autocomplete"
 	OperationZillowProperty                                         = "zillow-property"
 	OperationZillowSearch                                           = "zillow-search"
@@ -21895,6 +23635,9 @@ var operations = map[string]operationDefinition{
 	"appstore-similar":                              operationDefinition{Method: "GET", Path: "/appstore/similar", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"appstore-suggest":                              operationDefinition{Method: "GET", Path: "/appstore/suggest/{term}", PathParams: []string{"term"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"appstore-version-history":                      operationDefinition{Method: "GET", Path: "/appstore/version-history/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"autotrader-dealer":                             operationDefinition{Method: "GET", Path: "/autotrader/dealer/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"autotrader-search":                             operationDefinition{Method: "GET", Path: "/autotrader/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "zip", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "make", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "model", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "trim", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "condition", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"new", "used", "certified", "3p_cert"}}, parameterDefinition{Name: "body_style", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"convertible", "coupe", "hatchback", "sedan", "suv", "truck", "van", "wagon"}}, parameterDefinition{Name: "seller_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"dealer", "private"}}, parameterDefinition{Name: "min_year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_price", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_mileage", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"autotrader-vehicle":                            operationDefinition{Method: "GET", Path: "/autotrader/vehicle/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"billing-me":                                    operationDefinition{Method: "GET", Path: "/billing/me", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"billing-me-checkout":                           operationDefinition{Method: "POST", Path: "/billing/me/checkout", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"billing-me-events":                             operationDefinition{Method: "GET", Path: "/billing/me/events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "endpoint", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "request_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "event_status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"reserved", "charged", "non_billable", "failed"}}, parameterDefinition{Name: "billable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -21908,6 +23651,14 @@ var operations = map[string]operationDefinition{
 	"bing-search":                                   operationDefinition{Method: "GET", Path: "/bing/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"bing-suggest":                                  operationDefinition{Method: "GET", Path: "/bing/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"bing-videos":                                   operationDefinition{Method: "GET", Path: "/bing/videos", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"booking-attractions-detail":                    operationDefinition{Method: "GET", Path: "/booking-attractions/detail", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"booking-attractions-reviews":                   operationDefinition{Method: "GET", Path: "/booking-attractions/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "product_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"booking-attractions-search":                    operationDefinition{Method: "GET", Path: "/booking-attractions/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "start_date", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "end_date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "subcategory", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"booking-flights-autocomplete":                  operationDefinition{Method: "GET", Path: "/booking-flights/autocomplete", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"to", "from"}}, parameterDefinition{Name: "origin", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "origin_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"booking-flights-search":                        operationDefinition{Method: "GET", Path: "/booking-flights/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"ROUNDTRIP", "ONEWAY"}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "from_country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to_country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "depart", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "return", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "adults", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "children", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "cabin_class", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"booking-hotel-detail":                          operationDefinition{Method: "GET", Path: "/booking/hotel-detail", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "hotel_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"booking-reviews":                               operationDefinition{Method: "GET", Path: "/booking/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "hotel_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "destination_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "hotel_country_code", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "hotel_score", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "search_text", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"booking-search":                                operationDefinition{Method: "GET", Path: "/booking/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "checkin", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "checkout", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "adults", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "rooms", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "children", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"boxofficemojo-brand":                           operationDefinition{Method: "GET", Path: "/boxofficemojo/brand", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"grossToDate", "maxNumTheaters", "openingWeekendGross", "openingNumTheaters", "releaseDate"}}, parameterDefinition{Name: "sortDir", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"boxofficemojo-brands":                          operationDefinition{Method: "GET", Path: "/boxofficemojo/brands", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"totalGross", "numReleases", "grossToDate"}}, parameterDefinition{Name: "sortDir", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"boxofficemojo-calendar":                        operationDefinition{Method: "GET", Path: "/boxofficemojo/calendar", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "year", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "month", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -22089,6 +23840,7 @@ var operations = map[string]operationDefinition{
 	"discogs-master":                                operationDefinition{Method: "GET", Path: "/discogs/master/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"discogs-release":                               operationDefinition{Method: "GET", Path: "/discogs/release/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"discogs-search":                                operationDefinition{Method: "GET", Path: "/discogs/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"release", "master", "artist", "label"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"doordash-explore":                              operationDefinition{Method: "GET", Path: "/doordash/explore", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"doordash-feed":                                 operationDefinition{Method: "GET", Path: "/doordash/feed", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"doordash-search":                               operationDefinition{Method: "GET", Path: "/doordash/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "tag", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "dashPassOnly", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "asapOnly", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "pickupOnly", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "maxDistanceMiles", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"doordash-search-autocomplete":                  operationDefinition{Method: "GET", Path: "/doordash/search/autocomplete", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -22096,6 +23848,7 @@ var operations = map[string]operationDefinition{
 	"doordash-search-items":                         operationDefinition{Method: "GET", Path: "/doordash/search/items", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"doordash-store":                                operationDefinition{Method: "GET", Path: "/doordash/store/{store_id}", PathParams: []string{"store_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"doordash-store-fulfillment":                    operationDefinition{Method: "GET", Path: "/doordash/store/{store_id}/fulfillment", PathParams: []string{"store_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"doordash-store-info":                           operationDefinition{Method: "GET", Path: "/doordash/store/{store_id}/info", PathParams: []string{"store_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"doordash-store-item":                           operationDefinition{Method: "GET", Path: "/doordash/store/{store_id}/item/{item_id}", PathParams: []string{"store_id", "item_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"doordash-store-menu":                           operationDefinition{Method: "GET", Path: "/doordash/store/{store_id}/menu", PathParams: []string{"store_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"doordash-store-reviews":                        operationDefinition{Method: "GET", Path: "/doordash/store/{store_id}/reviews", PathParams: []string{"store_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -22114,7 +23867,24 @@ var operations = map[string]operationDefinition{
 	"espn-team":                                     operationDefinition{Method: "GET", Path: "/espn/team", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}, parameterDefinition{Name: "team", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"espn-team-roster":                              operationDefinition{Method: "GET", Path: "/espn/team-roster", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}, parameterDefinition{Name: "team", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"espn-teams":                                    operationDefinition{Method: "GET", Path: "/espn/teams", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"etsy-listing":                                  operationDefinition{Method: "GET", Path: "/etsy/listing/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"etsy-listing-reviews":                          operationDefinition{Method: "GET", Path: "/etsy/listing/{id}/reviews", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"newest", "oldest", "highest_rating", "lowest_rating", "most_relevant"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"etsy-search":                                   operationDefinition{Method: "GET", Path: "/etsy/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"etsy-shop-search":                              operationDefinition{Method: "GET", Path: "/etsy/shop/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"etsy-shop":                                     operationDefinition{Method: "GET", Path: "/etsy/shop/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"etsy-shop-listings":                            operationDefinition{Method: "GET", Path: "/etsy/shop/{id}/listings", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"etsy-shop-reviews":                             operationDefinition{Method: "GET", Path: "/etsy/shop/{id}/reviews", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"expedia-activities-search":                     operationDefinition{Method: "POST", Path: "/expedia/activities/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"expedia-flights-search":                        operationDefinition{Method: "POST", Path: "/expedia/flights/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"expedia-locations-search":                      operationDefinition{Method: "POST", Path: "/expedia/locations/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"expedia-properties-detail":                     operationDefinition{Method: "POST", Path: "/expedia/properties/detail", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"expedia-properties-filters":                    operationDefinition{Method: "POST", Path: "/expedia/properties/filters", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"expedia-properties-reviews":                    operationDefinition{Method: "POST", Path: "/expedia/properties/reviews", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"expedia-properties-search":                     operationDefinition{Method: "POST", Path: "/expedia/properties/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"extract":                                       operationDefinition{Method: "POST", Path: "/extract", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "extractOption", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"facebook-group":                                operationDefinition{Method: "GET", Path: "/facebook/groups/{group}", PathParams: []string{"group"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"facebook-marketplace-item":                     operationDefinition{Method: "GET", Path: "/facebook/marketplace/item/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"facebook-marketplace-search":                   operationDefinition{Method: "GET", Path: "/facebook/marketplace/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"vehicles", "property_rentals", "classifieds", "apparel", "electronics", "entertainment", "family", "free", "garden_outdoors", "hobbies", "home_goods", "home_improvement", "musical_instruments", "office_supplies", "pet_supplies", "property_sale", "sporting_goods", "toys_games"}}, parameterDefinition{Name: "min_price", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"best_match", "distance_ascend", "creation_time_descend", "price_ascend", "price_descend"}}, parameterDefinition{Name: "days_since_listed", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"1", "7", "30"}}, parameterDefinition{Name: "condition", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"new", "used_like_new", "used_good", "used_fair"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"facebook-page":                                 operationDefinition{Method: "GET", Path: "/facebook/{page}", PathParams: []string{"page"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"geocoding-lookup":                              operationDefinition{Method: "GET", Path: "/geocoding/lookup", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "osm_ids", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "accept_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"geocoding-reverse":                             operationDefinition{Method: "GET", Path: "/geocoding/reverse", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "zoom", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "accept_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -22219,6 +23989,11 @@ var operations = map[string]operationDefinition{
 	"imdb-title-reviews":                            operationDefinition{Method: "GET", Path: "/imdb/title/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"imdb-title-technical-specs":                    operationDefinition{Method: "GET", Path: "/imdb/title/technical-specs", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"imdb-title-trivia":                             operationDefinition{Method: "GET", Path: "/imdb/title/trivia", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"importyeti-company":                            operationDefinition{Method: "GET", Path: "/importyeti/company", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"importyeti-search":                             operationDefinition{Method: "GET", Path: "/importyeti/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"indeed-job":                                    operationDefinition{Method: "GET", Path: "/indeed/job", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "jk", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"indeed-locations-suggest":                      operationDefinition{Method: "GET", Path: "/indeed/locations/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"indeed-search":                                 operationDefinition{Method: "GET", Path: "/indeed/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "l", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "date"}}, parameterDefinition{Name: "radius", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "fromage", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"instagram-post":                                operationDefinition{Method: "GET", Path: "/instagram/post/{id}/{post_id}", PathParams: []string{"id", "post_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"instagram-profile":                             operationDefinition{Method: "GET", Path: "/instagram/profile/{username}", PathParams: []string{"username"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"instagram-reels":                               operationDefinition{Method: "GET", Path: "/instagram/reels/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "max_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -22350,6 +24125,10 @@ var operations = map[string]operationDefinition{
 	"numbeo-indices-country":                        operationDefinition{Method: "GET", Path: "/numbeo/indices/country", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "index", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"quality-of-life", "crime", "health-care", "pollution", "traffic", "property-investment"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"numbeo-indices-rankings":                       operationDefinition{Method: "GET", Path: "/numbeo/indices/rankings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "index", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"quality-of-life", "crime", "health-care", "pollution", "traffic", "property-investment"}}, parameterDefinition{Name: "scope", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"current", "historical"}}, parameterDefinition{Name: "period", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"numbeo-indices-rankings-by-country":            operationDefinition{Method: "GET", Path: "/numbeo/indices/rankings-by-country", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "index", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"quality-of-life", "crime", "health-care", "pollution", "traffic", "property-investment"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opentable-restaurant":                          operationDefinition{Method: "GET", Path: "/opentable/restaurant", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "restaurant_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "date_time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "party_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opentable-restaurant-menus":                    operationDefinition{Method: "GET", Path: "/opentable/restaurant/menus", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "restaurant_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opentable-restaurant-reviews":                  operationDefinition{Method: "GET", Path: "/opentable/restaurant/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "restaurant_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"opentable-search":                              operationDefinition{Method: "GET", Path: "/opentable/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "date_time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "party_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"ping":                                          operationDefinition{Method: "GET", Path: "/ping", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{}},
 	"pitchbook-advisor":                             operationDefinition{Method: "GET", Path: "/pitchbook/advisor", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"pitchbook-company":                             operationDefinition{Method: "GET", Path: "/pitchbook/company", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -22719,6 +24498,14 @@ var operations = map[string]operationDefinition{
 	"yahoo-finance-ticker-sustainability":           operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/sustainability", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"yahoo-finance-ticker-valuation":                operationDefinition{Method: "GET", Path: "/yahoo-finance/ticker/{symbol}/valuation", PathParams: []string{"symbol"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"yahoo-finance-trending":                        operationDefinition{Method: "GET", Path: "/yahoo-finance/trending/{region}", PathParams: []string{"region"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yelp-business":                                 operationDefinition{Method: "GET", Path: "/yelp/business/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yelp-business-menu":                            operationDefinition{Method: "GET", Path: "/yelp/business/{id}/menu", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yelp-business-photos":                          operationDefinition{Method: "GET", Path: "/yelp/business/{id}/photos", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"yelp-business-reviews":                         operationDefinition{Method: "GET", Path: "/yelp/business/{id}/reviews", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"yelp-business-review-highlights":               operationDefinition{Method: "GET", Path: "/yelp/business/{id}/reviews/highlights", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yelp-business-reviews-search":                  operationDefinition{Method: "GET", Path: "/yelp/business/{id}/reviews/search", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yelp-geocode":                                  operationDefinition{Method: "GET", Path: "/yelp/geocode", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "address", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yelp-search":                                   operationDefinition{Method: "GET", Path: "/yelp/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"youtube-captions":                              operationDefinition{Method: "GET", Path: "/youtube/captions/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"youtube-channel-playlists":                     operationDefinition{Method: "GET", Path: "/youtube/channel/{id}/playlists", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "continuation_token", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"youtube-channel-search":                        operationDefinition{Method: "GET", Path: "/youtube/channel/{id}/search", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "continuation_token", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -22732,6 +24519,11 @@ var operations = map[string]operationDefinition{
 	"youtube-transcript":                            operationDefinition{Method: "GET", Path: "/youtube/transcript/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "translate_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "format", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"json", "text", "srt", "vtt"}}, parameterDefinition{Name: "timestamps", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json", "text/plain"}, Security: []string{"ApiKeyAuth"}},
 	"youtube-transcript-languages":                  operationDefinition{Method: "GET", Path: "/youtube/transcript/{id}/languages", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"youtube-video":                                 operationDefinition{Method: "GET", Path: "/youtube/video/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"zalando-category":                              operationDefinition{Method: "GET", Path: "/zalando/category", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"at", "be", "ch", "cz", "de", "dk", "ee", "es", "fi", "fr", "gb", "hr", "hu", "ie", "it", "lt", "lu", "lv", "nl", "no", "pl", "ro", "se", "si", "sk"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"zalando-markets":                               operationDefinition{Method: "GET", Path: "/zalando/markets", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"zalando-product":                               operationDefinition{Method: "GET", Path: "/zalando/product", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sku", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"at", "be", "ch", "cz", "de", "dk", "ee", "es", "fi", "fr", "gb", "hr", "hu", "ie", "it", "lt", "lu", "lv", "nl", "no", "pl", "ro", "se", "si", "sk"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"zalando-search":                                operationDefinition{Method: "GET", Path: "/zalando/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"at", "be", "ch", "cz", "de", "dk", "ee", "es", "fi", "fr", "gb", "hr", "hu", "ie", "it", "lt", "lu", "lv", "nl", "no", "pl", "ro", "se", "si", "sk"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"zalando-suggest":                               operationDefinition{Method: "GET", Path: "/zalando/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"at", "be", "ch", "cz", "de", "dk", "ee", "es", "fi", "fr", "gb", "hr", "hu", "ie", "it", "lt", "lu", "lv", "nl", "no", "pl", "ro", "se", "si", "sk"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"zillow-autocomplete":                           operationDefinition{Method: "GET", Path: "/zillow/autocomplete", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"for_sale", "sale", "for-sale", "for_rent", "rent", "for-rent", "sold"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"zillow-property":                               operationDefinition{Method: "GET", Path: "/zillow/property/{zpid}", PathParams: []string{"zpid"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"zillow-search":                                 operationDefinition{Method: "GET", Path: "/zillow/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"for_sale", "sale", "for-sale", "for_rent", "rent", "for-rent", "sold"}}, parameterDefinition{Name: "region_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "region_type", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "west", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "east", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "south", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "north", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -22746,8 +24538,10 @@ type Services struct {
 	AppleJobs       *AppleJobsService
 	ApplePodcasts   *ApplePodcastsService
 	AppStore        *AppStoreService
+	Autotrader      *AutotraderService
 	Billing         *BillingService
 	Bing            *BingService
+	Booking         *BookingService
 	BoxOfficeMojo   *BoxOfficeMojoService
 	Brand           *BrandService
 	Brave           *BraveService
@@ -22760,6 +24554,8 @@ type Services struct {
 	DoorDash        *DoorDashService
 	EBay            *EBayService
 	Espn            *EspnService
+	Etsy            *EtsyService
+	Expedia         *ExpediaService
 	Facebook        *FacebookService
 	Geocoding       *GeocodingService
 	GitHub          *GitHubService
@@ -22768,6 +24564,8 @@ type Services struct {
 	Google          *GoogleService
 	GooglePlay      *GooglePlayService
 	Imdb            *ImdbService
+	ImportYeti      *ImportYetiService
+	Indeed          *IndeedService
 	Instagram       *InstagramService
 	Jobs            *JobsService
 	JustWatch       *JustWatchService
@@ -22780,6 +24578,7 @@ type Services struct {
 	Metaculus       *MetaculusService
 	Mlb             *MlbService
 	Numbeo          *NumbeoService
+	OpenTable       *OpenTableService
 	Meta            *MetaService
 	PitchBook       *PitchBookService
 	PlayStation     *PlayStationService
@@ -22812,7 +24611,9 @@ type Services struct {
 	Walmart         *WalmartService
 	X               *XService
 	YahooFinance    *YahooFinanceService
+	Yelp            *YelpService
 	YouTube         *YouTubeService
+	Zalando         *ZalandoService
 	Zillow          *ZillowService
 }
 
@@ -22826,8 +24627,10 @@ func initServices(c *Client) Services {
 		AppleJobs:       &AppleJobsService{client: c},
 		ApplePodcasts:   &ApplePodcastsService{client: c},
 		AppStore:        &AppStoreService{client: c},
+		Autotrader:      &AutotraderService{client: c},
 		Billing:         &BillingService{client: c},
 		Bing:            &BingService{client: c},
+		Booking:         &BookingService{client: c},
 		BoxOfficeMojo:   &BoxOfficeMojoService{client: c},
 		Brand:           &BrandService{client: c},
 		Brave:           &BraveService{client: c},
@@ -22840,6 +24643,8 @@ func initServices(c *Client) Services {
 		DoorDash:        &DoorDashService{client: c},
 		EBay:            &EBayService{client: c},
 		Espn:            &EspnService{client: c},
+		Etsy:            &EtsyService{client: c},
+		Expedia:         &ExpediaService{client: c},
 		Facebook:        &FacebookService{client: c},
 		Geocoding:       &GeocodingService{client: c},
 		GitHub:          &GitHubService{client: c},
@@ -22848,6 +24653,8 @@ func initServices(c *Client) Services {
 		Google:          &GoogleService{client: c},
 		GooglePlay:      &GooglePlayService{client: c},
 		Imdb:            &ImdbService{client: c},
+		ImportYeti:      &ImportYetiService{client: c},
+		Indeed:          &IndeedService{client: c},
 		Instagram:       &InstagramService{client: c},
 		Jobs:            &JobsService{client: c},
 		JustWatch:       &JustWatchService{client: c},
@@ -22860,6 +24667,7 @@ func initServices(c *Client) Services {
 		Metaculus:       &MetaculusService{client: c},
 		Mlb:             &MlbService{client: c},
 		Numbeo:          &NumbeoService{client: c},
+		OpenTable:       &OpenTableService{client: c},
 		Meta:            &MetaService{client: c},
 		PitchBook:       &PitchBookService{client: c},
 		PlayStation:     &PlayStationService{client: c},
@@ -22892,7 +24700,9 @@ func initServices(c *Client) Services {
 		Walmart:         &WalmartService{client: c},
 		X:               &XService{client: c},
 		YahooFinance:    &YahooFinanceService{client: c},
+		Yelp:            &YelpService{client: c},
 		YouTube:         &YouTubeService{client: c},
+		Zalando:         &ZalandoService{client: c},
 		Zillow:          &ZillowService{client: c},
 	}
 }
@@ -23822,6 +25632,64 @@ func (s *AppStoreService) VersionHistoryTyped(ctx context.Context, params AppSto
 	return requestTyped[AppStoreVersionHistoryResponse](s.client, ctx, "appstore-version-history", paramsFromStruct(params), opts...)
 }
 
+type AutotraderService struct{ client *Client }
+
+func (s *AutotraderService) Dealer(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "autotrader-dealer", params, opts...)
+}
+
+type AutotraderDealerParams struct {
+	Id string `crawlora:"id"`
+}
+
+type AutotraderDealerResponse = ModelAutotraderDealerResponse
+
+func (s *AutotraderService) DealerTyped(ctx context.Context, params AutotraderDealerParams, opts ...RequestOption) (AutotraderDealerResponse, error) {
+	return requestTyped[AutotraderDealerResponse](s.client, ctx, "autotrader-dealer", paramsFromStruct(params), opts...)
+}
+
+func (s *AutotraderService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "autotrader-search", params, opts...)
+}
+
+type AutotraderSearchParams struct {
+	Query      *string `crawlora:"query,omitempty"`
+	Zip        *string `crawlora:"zip,omitempty"`
+	Radius     *int    `crawlora:"radius,omitempty"`
+	Make       *string `crawlora:"make,omitempty"`
+	Model      *string `crawlora:"model,omitempty"`
+	Trim       *string `crawlora:"trim,omitempty"`
+	Condition  *string `crawlora:"condition,omitempty"`
+	BodyStyle  *string `crawlora:"body_style,omitempty"`
+	SellerType *string `crawlora:"seller_type,omitempty"`
+	MinYear    *int    `crawlora:"min_year,omitempty"`
+	MaxYear    *int    `crawlora:"max_year,omitempty"`
+	MinPrice   *int    `crawlora:"min_price,omitempty"`
+	MaxPrice   *int    `crawlora:"max_price,omitempty"`
+	MaxMileage *int    `crawlora:"max_mileage,omitempty"`
+	Page       *int    `crawlora:"page,omitempty"`
+}
+
+type AutotraderSearchResponse = ModelAutotraderSearchResponseDoc
+
+func (s *AutotraderService) SearchTyped(ctx context.Context, params AutotraderSearchParams, opts ...RequestOption) (AutotraderSearchResponse, error) {
+	return requestTyped[AutotraderSearchResponse](s.client, ctx, "autotrader-search", paramsFromStruct(params), opts...)
+}
+
+func (s *AutotraderService) Vehicle(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "autotrader-vehicle", params, opts...)
+}
+
+type AutotraderVehicleParams struct {
+	Id string `crawlora:"id"`
+}
+
+type AutotraderVehicleResponse = ModelAutotraderVehicleResponse
+
+func (s *AutotraderService) VehicleTyped(ctx context.Context, params AutotraderVehicleParams, opts ...RequestOption) (AutotraderVehicleResponse, error) {
+	return requestTyped[AutotraderVehicleResponse](s.client, ctx, "autotrader-vehicle", paramsFromStruct(params), opts...)
+}
+
 type BillingService struct{ client *Client }
 
 func (s *BillingService) Me(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -24032,6 +25900,153 @@ type BingVideosResponse = ModelBingVideosResponseDoc
 
 func (s *BingService) VideosTyped(ctx context.Context, params BingVideosParams, opts ...RequestOption) (BingVideosResponse, error) {
 	return requestTyped[BingVideosResponse](s.client, ctx, "bing-videos", paramsFromStruct(params), opts...)
+}
+
+type BookingService struct{ client *Client }
+
+func (s *BookingService) AttractionsDetail(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "booking-attractions-detail", params, opts...)
+}
+
+type BookingAttractionsDetailParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type BookingAttractionsDetailResponse = ModelBookingBookingAttractionDetailResponseDoc
+
+func (s *BookingService) AttractionsDetailTyped(ctx context.Context, params BookingAttractionsDetailParams, opts ...RequestOption) (BookingAttractionsDetailResponse, error) {
+	return requestTyped[BookingAttractionsDetailResponse](s.client, ctx, "booking-attractions-detail", paramsFromStruct(params), opts...)
+}
+
+func (s *BookingService) AttractionsReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "booking-attractions-reviews", params, opts...)
+}
+
+type BookingAttractionsReviewsParams struct {
+	ProductId string `crawlora:"product_id"`
+	Page      *int   `crawlora:"page,omitempty"`
+	Limit     *int   `crawlora:"limit,omitempty"`
+}
+
+type BookingAttractionsReviewsResponse = ModelBookingBookingAttractionReviewsResponseDoc
+
+func (s *BookingService) AttractionsReviewsTyped(ctx context.Context, params BookingAttractionsReviewsParams, opts ...RequestOption) (BookingAttractionsReviewsResponse, error) {
+	return requestTyped[BookingAttractionsReviewsResponse](s.client, ctx, "booking-attractions-reviews", paramsFromStruct(params), opts...)
+}
+
+func (s *BookingService) AttractionsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "booking-attractions-search", params, opts...)
+}
+
+type BookingAttractionsSearchParams struct {
+	Query       string  `crawlora:"query"`
+	StartDate   string  `crawlora:"start_date"`
+	EndDate     *string `crawlora:"end_date,omitempty"`
+	Page        *int    `crawlora:"page,omitempty"`
+	Limit       *int    `crawlora:"limit,omitempty"`
+	Category    *string `crawlora:"category,omitempty"`
+	Subcategory *string `crawlora:"subcategory,omitempty"`
+}
+
+type BookingAttractionsSearchResponse = ModelBookingBookingAttractionSearchResponseDoc
+
+func (s *BookingService) AttractionsSearchTyped(ctx context.Context, params BookingAttractionsSearchParams, opts ...RequestOption) (BookingAttractionsSearchResponse, error) {
+	return requestTyped[BookingAttractionsSearchResponse](s.client, ctx, "booking-attractions-search", paramsFromStruct(params), opts...)
+}
+
+func (s *BookingService) FlightsAutocomplete(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "booking-flights-autocomplete", params, opts...)
+}
+
+type BookingFlightsAutocompleteParams struct {
+	Query      string  `crawlora:"query"`
+	Type       *string `crawlora:"type,omitempty"`
+	Origin     *string `crawlora:"origin,omitempty"`
+	OriginType *string `crawlora:"origin_type,omitempty"`
+}
+
+type BookingFlightsAutocompleteResponse = ModelBookingBookingFlightAutocompleteResponseDoc
+
+func (s *BookingService) FlightsAutocompleteTyped(ctx context.Context, params BookingFlightsAutocompleteParams, opts ...RequestOption) (BookingFlightsAutocompleteResponse, error) {
+	return requestTyped[BookingFlightsAutocompleteResponse](s.client, ctx, "booking-flights-autocomplete", paramsFromStruct(params), opts...)
+}
+
+func (s *BookingService) FlightsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "booking-flights-search", params, opts...)
+}
+
+type BookingFlightsSearchParams struct {
+	Type        *string `crawlora:"type,omitempty"`
+	From        string  `crawlora:"from"`
+	To          string  `crawlora:"to"`
+	FromCountry *string `crawlora:"from_country,omitempty"`
+	ToCountry   *string `crawlora:"to_country,omitempty"`
+	Depart      string  `crawlora:"depart"`
+	Return      *string `crawlora:"return,omitempty"`
+	Adults      *int    `crawlora:"adults,omitempty"`
+	Children    *int    `crawlora:"children,omitempty"`
+	CabinClass  *string `crawlora:"cabin_class,omitempty"`
+	Sort        *string `crawlora:"sort,omitempty"`
+}
+
+type BookingFlightsSearchResponse = ModelBookingBookingFlightSearchResponseDoc
+
+func (s *BookingService) FlightsSearchTyped(ctx context.Context, params BookingFlightsSearchParams, opts ...RequestOption) (BookingFlightsSearchResponse, error) {
+	return requestTyped[BookingFlightsSearchResponse](s.client, ctx, "booking-flights-search", paramsFromStruct(params), opts...)
+}
+
+func (s *BookingService) HotelDetail(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "booking-hotel-detail", params, opts...)
+}
+
+type BookingHotelDetailParams struct {
+	HotelId int `crawlora:"hotel_id"`
+}
+
+type BookingHotelDetailResponse = ModelBookingBookingHotelDetailResponseDoc
+
+func (s *BookingService) HotelDetailTyped(ctx context.Context, params BookingHotelDetailParams, opts ...RequestOption) (BookingHotelDetailResponse, error) {
+	return requestTyped[BookingHotelDetailResponse](s.client, ctx, "booking-hotel-detail", paramsFromStruct(params), opts...)
+}
+
+func (s *BookingService) Reviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "booking-reviews", params, opts...)
+}
+
+type BookingReviewsParams struct {
+	HotelId          int      `crawlora:"hotel_id"`
+	DestinationId    *int     `crawlora:"destination_id,omitempty"`
+	HotelCountryCode string   `crawlora:"hotel_country_code"`
+	HotelScore       *float64 `crawlora:"hotel_score,omitempty"`
+	SearchText       *string  `crawlora:"search_text,omitempty"`
+	Page             *int     `crawlora:"page,omitempty"`
+	Limit            *int     `crawlora:"limit,omitempty"`
+}
+
+type BookingReviewsResponse = ModelBookingBookingReviewsResponseDoc
+
+func (s *BookingService) ReviewsTyped(ctx context.Context, params BookingReviewsParams, opts ...RequestOption) (BookingReviewsResponse, error) {
+	return requestTyped[BookingReviewsResponse](s.client, ctx, "booking-reviews", paramsFromStruct(params), opts...)
+}
+
+func (s *BookingService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "booking-search", params, opts...)
+}
+
+type BookingSearchParams struct {
+	Query    string `crawlora:"query"`
+	Checkin  string `crawlora:"checkin"`
+	Checkout string `crawlora:"checkout"`
+	Adults   *int   `crawlora:"adults,omitempty"`
+	Rooms    *int   `crawlora:"rooms,omitempty"`
+	Children *int   `crawlora:"children,omitempty"`
+	Page     *int   `crawlora:"page,omitempty"`
+}
+
+type BookingSearchResponse = ModelBookingBookingSearchResponseDoc
+
+func (s *BookingService) SearchTyped(ctx context.Context, params BookingSearchParams, opts ...RequestOption) (BookingSearchResponse, error) {
+	return requestTyped[BookingSearchResponse](s.client, ctx, "booking-search", paramsFromStruct(params), opts...)
 }
 
 type BoxOfficeMojoService struct{ client *Client }
@@ -27663,6 +29678,21 @@ func (s *DiscogsService) SearchTyped(ctx context.Context, params DiscogsSearchPa
 
 type DoorDashService struct{ client *Client }
 
+func (s *DoorDashService) DoordashExplore(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "doordash-explore", params, opts...)
+}
+
+type DoorDashDoordashExploreParams struct {
+	Latitude  float64 `crawlora:"latitude"`
+	Longitude float64 `crawlora:"longitude"`
+}
+
+type DoorDashDoordashExploreResponse = ModelDoordashExploreResponseDoc
+
+func (s *DoorDashService) DoordashExploreTyped(ctx context.Context, params DoorDashDoordashExploreParams, opts ...RequestOption) (DoorDashDoordashExploreResponse, error) {
+	return requestTyped[DoorDashDoordashExploreResponse](s.client, ctx, "doordash-explore", paramsFromStruct(params), opts...)
+}
+
 func (s *DoorDashService) DoordashFeed(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "doordash-feed", params, opts...)
 }
@@ -27778,6 +29808,22 @@ type DoorDashDoordashStoreFulfillmentResponse = ModelDoordashStoreFulfillmentRes
 
 func (s *DoorDashService) DoordashStoreFulfillmentTyped(ctx context.Context, params DoorDashDoordashStoreFulfillmentParams, opts ...RequestOption) (DoorDashDoordashStoreFulfillmentResponse, error) {
 	return requestTyped[DoorDashDoordashStoreFulfillmentResponse](s.client, ctx, "doordash-store-fulfillment", paramsFromStruct(params), opts...)
+}
+
+func (s *DoorDashService) DoordashStoreInfo(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "doordash-store-info", params, opts...)
+}
+
+type DoorDashDoordashStoreInfoParams struct {
+	StoreId   string  `crawlora:"store_id"`
+	Latitude  float64 `crawlora:"latitude"`
+	Longitude float64 `crawlora:"longitude"`
+}
+
+type DoorDashDoordashStoreInfoResponse = ModelDoordashStoreInfoResponseDoc
+
+func (s *DoorDashService) DoordashStoreInfoTyped(ctx context.Context, params DoorDashDoordashStoreInfoParams, opts ...RequestOption) (DoorDashDoordashStoreInfoResponse, error) {
+	return requestTyped[DoorDashDoordashStoreInfoResponse](s.client, ctx, "doordash-store-info", paramsFromStruct(params), opts...)
 }
 
 func (s *DoorDashService) DoordashStoreItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -28064,7 +30110,266 @@ func (s *EspnService) TeamsTyped(ctx context.Context, params EspnTeamsParams, op
 	return requestTyped[EspnTeamsResponse](s.client, ctx, "espn-teams", paramsFromStruct(params), opts...)
 }
 
+type EtsyService struct{ client *Client }
+
+func (s *EtsyService) Listing(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "etsy-listing", params, opts...)
+}
+
+type EtsyListingParams struct {
+	Id string `crawlora:"id"`
+}
+
+type EtsyListingResponse = ModelEtsyListingResponseDoc
+
+func (s *EtsyService) ListingTyped(ctx context.Context, params EtsyListingParams, opts ...RequestOption) (EtsyListingResponse, error) {
+	return requestTyped[EtsyListingResponse](s.client, ctx, "etsy-listing", paramsFromStruct(params), opts...)
+}
+
+func (s *EtsyService) ListingReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "etsy-listing-reviews", params, opts...)
+}
+
+type EtsyListingReviewsParams struct {
+	Id     string  `crawlora:"id"`
+	Offset *int    `crawlora:"offset,omitempty"`
+	Sort   *string `crawlora:"sort,omitempty"`
+}
+
+type EtsyListingReviewsResponse = ModelEtsyListingReviewsResponseDoc
+
+func (s *EtsyService) ListingReviewsTyped(ctx context.Context, params EtsyListingReviewsParams, opts ...RequestOption) (EtsyListingReviewsResponse, error) {
+	return requestTyped[EtsyListingReviewsResponse](s.client, ctx, "etsy-listing-reviews", paramsFromStruct(params), opts...)
+}
+
+func (s *EtsyService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "etsy-search", params, opts...)
+}
+
+type EtsySearchParams struct {
+	Q      string `crawlora:"q"`
+	Offset *int   `crawlora:"offset,omitempty"`
+	Limit  *int   `crawlora:"limit,omitempty"`
+}
+
+type EtsySearchResponse = ModelEtsySearchResponseDoc
+
+func (s *EtsyService) SearchTyped(ctx context.Context, params EtsySearchParams, opts ...RequestOption) (EtsySearchResponse, error) {
+	return requestTyped[EtsySearchResponse](s.client, ctx, "etsy-search", paramsFromStruct(params), opts...)
+}
+
+func (s *EtsyService) ShopSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "etsy-shop-search", params, opts...)
+}
+
+type EtsyShopSearchParams struct {
+	Q     string `crawlora:"q"`
+	Limit *int   `crawlora:"limit,omitempty"`
+}
+
+type EtsyShopSearchResponse = ModelEtsyShopSearchResponseDoc
+
+func (s *EtsyService) ShopSearchTyped(ctx context.Context, params EtsyShopSearchParams, opts ...RequestOption) (EtsyShopSearchResponse, error) {
+	return requestTyped[EtsyShopSearchResponse](s.client, ctx, "etsy-shop-search", paramsFromStruct(params), opts...)
+}
+
+func (s *EtsyService) Shop(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "etsy-shop", params, opts...)
+}
+
+type EtsyShopParams struct {
+	Id string `crawlora:"id"`
+}
+
+type EtsyShopResponse = ModelEtsyShopResponseDoc
+
+func (s *EtsyService) ShopTyped(ctx context.Context, params EtsyShopParams, opts ...RequestOption) (EtsyShopResponse, error) {
+	return requestTyped[EtsyShopResponse](s.client, ctx, "etsy-shop", paramsFromStruct(params), opts...)
+}
+
+func (s *EtsyService) ShopListings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "etsy-shop-listings", params, opts...)
+}
+
+type EtsyShopListingsParams struct {
+	Id     string  `crawlora:"id"`
+	Q      *string `crawlora:"q,omitempty"`
+	Offset *int    `crawlora:"offset,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+}
+
+type EtsyShopListingsResponse = ModelEtsyShopListingsResponseDoc
+
+func (s *EtsyService) ShopListingsTyped(ctx context.Context, params EtsyShopListingsParams, opts ...RequestOption) (EtsyShopListingsResponse, error) {
+	return requestTyped[EtsyShopListingsResponse](s.client, ctx, "etsy-shop-listings", paramsFromStruct(params), opts...)
+}
+
+func (s *EtsyService) ShopReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "etsy-shop-reviews", params, opts...)
+}
+
+type EtsyShopReviewsParams struct {
+	Id     string `crawlora:"id"`
+	Offset *int   `crawlora:"offset,omitempty"`
+	Limit  *int   `crawlora:"limit,omitempty"`
+}
+
+type EtsyShopReviewsResponse = ModelEtsyShopReviewsResponseDoc
+
+func (s *EtsyService) ShopReviewsTyped(ctx context.Context, params EtsyShopReviewsParams, opts ...RequestOption) (EtsyShopReviewsResponse, error) {
+	return requestTyped[EtsyShopReviewsResponse](s.client, ctx, "etsy-shop-reviews", paramsFromStruct(params), opts...)
+}
+
+type ExpediaService struct{ client *Client }
+
+func (s *ExpediaService) ActivitiesSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "expedia-activities-search", params, opts...)
+}
+
+type ExpediaActivitiesSearchParams struct {
+	Option ModelExpediaActivitySearchOption `crawlora:"option"`
+}
+
+type ExpediaActivitiesSearchResponse = ModelExpediaExpediaActivitySearchResponseDoc
+
+func (s *ExpediaService) ActivitiesSearchTyped(ctx context.Context, params ExpediaActivitiesSearchParams, opts ...RequestOption) (ExpediaActivitiesSearchResponse, error) {
+	return requestTyped[ExpediaActivitiesSearchResponse](s.client, ctx, "expedia-activities-search", paramsFromStruct(params), opts...)
+}
+
+func (s *ExpediaService) FlightsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "expedia-flights-search", params, opts...)
+}
+
+type ExpediaFlightsSearchParams struct {
+	Option ModelExpediaFlightsSearchOption `crawlora:"option"`
+}
+
+type ExpediaFlightsSearchResponse = ModelExpediaExpediaFlightsSearchResponseDoc
+
+func (s *ExpediaService) FlightsSearchTyped(ctx context.Context, params ExpediaFlightsSearchParams, opts ...RequestOption) (ExpediaFlightsSearchResponse, error) {
+	return requestTyped[ExpediaFlightsSearchResponse](s.client, ctx, "expedia-flights-search", paramsFromStruct(params), opts...)
+}
+
+func (s *ExpediaService) LocationsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "expedia-locations-search", params, opts...)
+}
+
+type ExpediaLocationsSearchParams struct {
+	Option ModelExpediaLocationSearchOption `crawlora:"option"`
+}
+
+type ExpediaLocationsSearchResponse = ModelExpediaExpediaLocationSearchResponseDoc
+
+func (s *ExpediaService) LocationsSearchTyped(ctx context.Context, params ExpediaLocationsSearchParams, opts ...RequestOption) (ExpediaLocationsSearchResponse, error) {
+	return requestTyped[ExpediaLocationsSearchResponse](s.client, ctx, "expedia-locations-search", paramsFromStruct(params), opts...)
+}
+
+func (s *ExpediaService) PropertiesDetail(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "expedia-properties-detail", params, opts...)
+}
+
+type ExpediaPropertiesDetailParams struct {
+	Option ModelExpediaPropertyDetailOption `crawlora:"option"`
+}
+
+type ExpediaPropertiesDetailResponse = ModelExpediaExpediaPropertyDetailResponseDoc
+
+func (s *ExpediaService) PropertiesDetailTyped(ctx context.Context, params ExpediaPropertiesDetailParams, opts ...RequestOption) (ExpediaPropertiesDetailResponse, error) {
+	return requestTyped[ExpediaPropertiesDetailResponse](s.client, ctx, "expedia-properties-detail", paramsFromStruct(params), opts...)
+}
+
+func (s *ExpediaService) PropertiesFilters(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "expedia-properties-filters", params, opts...)
+}
+
+type ExpediaPropertiesFiltersParams struct {
+	Option ModelExpediaPropertyFiltersOption `crawlora:"option"`
+}
+
+type ExpediaPropertiesFiltersResponse = ModelExpediaExpediaPropertyFiltersResponseDoc
+
+func (s *ExpediaService) PropertiesFiltersTyped(ctx context.Context, params ExpediaPropertiesFiltersParams, opts ...RequestOption) (ExpediaPropertiesFiltersResponse, error) {
+	return requestTyped[ExpediaPropertiesFiltersResponse](s.client, ctx, "expedia-properties-filters", paramsFromStruct(params), opts...)
+}
+
+func (s *ExpediaService) PropertiesReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "expedia-properties-reviews", params, opts...)
+}
+
+type ExpediaPropertiesReviewsParams struct {
+	Option ModelExpediaPropertyReviewsOption `crawlora:"option"`
+}
+
+type ExpediaPropertiesReviewsResponse = ModelExpediaExpediaPropertyReviewsResponseDoc
+
+func (s *ExpediaService) PropertiesReviewsTyped(ctx context.Context, params ExpediaPropertiesReviewsParams, opts ...RequestOption) (ExpediaPropertiesReviewsResponse, error) {
+	return requestTyped[ExpediaPropertiesReviewsResponse](s.client, ctx, "expedia-properties-reviews", paramsFromStruct(params), opts...)
+}
+
+func (s *ExpediaService) PropertiesSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "expedia-properties-search", params, opts...)
+}
+
+type ExpediaPropertiesSearchParams struct {
+	Option ModelExpediaPropertySearchOption `crawlora:"option"`
+}
+
+type ExpediaPropertiesSearchResponse = ModelExpediaExpediaPropertySearchResponseDoc
+
+func (s *ExpediaService) PropertiesSearchTyped(ctx context.Context, params ExpediaPropertiesSearchParams, opts ...RequestOption) (ExpediaPropertiesSearchResponse, error) {
+	return requestTyped[ExpediaPropertiesSearchResponse](s.client, ctx, "expedia-properties-search", paramsFromStruct(params), opts...)
+}
+
 type FacebookService struct{ client *Client }
+
+func (s *FacebookService) Group(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "facebook-group", params, opts...)
+}
+
+type FacebookGroupParams struct {
+	Group string `crawlora:"group"`
+}
+
+type FacebookGroupResponse = ModelFacebookGroupResponseDoc
+
+func (s *FacebookService) GroupTyped(ctx context.Context, params FacebookGroupParams, opts ...RequestOption) (FacebookGroupResponse, error) {
+	return requestTyped[FacebookGroupResponse](s.client, ctx, "facebook-group", paramsFromStruct(params), opts...)
+}
+
+func (s *FacebookService) MarketplaceItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "facebook-marketplace-item", params, opts...)
+}
+
+type FacebookMarketplaceItemParams struct {
+	Id string `crawlora:"id"`
+}
+
+type FacebookMarketplaceItemResponse = ModelFacebookMarketplaceItemResponseDoc
+
+func (s *FacebookService) MarketplaceItemTyped(ctx context.Context, params FacebookMarketplaceItemParams, opts ...RequestOption) (FacebookMarketplaceItemResponse, error) {
+	return requestTyped[FacebookMarketplaceItemResponse](s.client, ctx, "facebook-marketplace-item", paramsFromStruct(params), opts...)
+}
+
+func (s *FacebookService) MarketplaceSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "facebook-marketplace-search", params, opts...)
+}
+
+type FacebookMarketplaceSearchParams struct {
+	Location        string  `crawlora:"location"`
+	Query           *string `crawlora:"query,omitempty"`
+	Category        *string `crawlora:"category,omitempty"`
+	MinPrice        *int    `crawlora:"min_price,omitempty"`
+	MaxPrice        *int    `crawlora:"max_price,omitempty"`
+	SortBy          *string `crawlora:"sort_by,omitempty"`
+	DaysSinceListed *int    `crawlora:"days_since_listed,omitempty"`
+	Condition       *string `crawlora:"condition,omitempty"`
+}
+
+type FacebookMarketplaceSearchResponse = ModelFacebookMarketplaceSearchResponseDoc
+
+func (s *FacebookService) MarketplaceSearchTyped(ctx context.Context, params FacebookMarketplaceSearchParams, opts ...RequestOption) (FacebookMarketplaceSearchResponse, error) {
+	return requestTyped[FacebookMarketplaceSearchResponse](s.client, ctx, "facebook-marketplace-search", paramsFromStruct(params), opts...)
+}
 
 func (s *FacebookService) Page(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "facebook-page", params, opts...)
@@ -29709,6 +32014,87 @@ type ImdbTitleTriviaResponse = ModelImdbTitlePublicFactsResponseDoc
 
 func (s *ImdbService) TitleTriviaTyped(ctx context.Context, params ImdbTitleTriviaParams, opts ...RequestOption) (ImdbTitleTriviaResponse, error) {
 	return requestTyped[ImdbTitleTriviaResponse](s.client, ctx, "imdb-title-trivia", paramsFromStruct(params), opts...)
+}
+
+type ImportYetiService struct{ client *Client }
+
+func (s *ImportYetiService) ImportyetiCompany(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "importyeti-company", params, opts...)
+}
+
+type ImportYetiImportyetiCompanyParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type ImportYetiImportyetiCompanyResponse = ModelImportyetiCompanyResponseDoc
+
+func (s *ImportYetiService) ImportyetiCompanyTyped(ctx context.Context, params ImportYetiImportyetiCompanyParams, opts ...RequestOption) (ImportYetiImportyetiCompanyResponse, error) {
+	return requestTyped[ImportYetiImportyetiCompanyResponse](s.client, ctx, "importyeti-company", paramsFromStruct(params), opts...)
+}
+
+func (s *ImportYetiService) ImportyetiSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "importyeti-search", params, opts...)
+}
+
+type ImportYetiImportyetiSearchParams struct {
+	Q    string `crawlora:"q"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type ImportYetiImportyetiSearchResponse = ModelImportyetiSearchResponseDoc
+
+func (s *ImportYetiService) ImportyetiSearchTyped(ctx context.Context, params ImportYetiImportyetiSearchParams, opts ...RequestOption) (ImportYetiImportyetiSearchResponse, error) {
+	return requestTyped[ImportYetiImportyetiSearchResponse](s.client, ctx, "importyeti-search", paramsFromStruct(params), opts...)
+}
+
+type IndeedService struct{ client *Client }
+
+func (s *IndeedService) Job(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "indeed-job", params, opts...)
+}
+
+type IndeedJobParams struct {
+	Jk string `crawlora:"jk"`
+}
+
+type IndeedJobResponse = ModelIndeedJobResponseDoc
+
+func (s *IndeedService) JobTyped(ctx context.Context, params IndeedJobParams, opts ...RequestOption) (IndeedJobResponse, error) {
+	return requestTyped[IndeedJobResponse](s.client, ctx, "indeed-job", paramsFromStruct(params), opts...)
+}
+
+func (s *IndeedService) LocationsSuggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "indeed-locations-suggest", params, opts...)
+}
+
+type IndeedLocationsSuggestParams struct {
+	Q     string `crawlora:"q"`
+	Limit *int   `crawlora:"limit,omitempty"`
+}
+
+type IndeedLocationsSuggestResponse = ModelIndeedLocationSuggestResponseDoc
+
+func (s *IndeedService) LocationsSuggestTyped(ctx context.Context, params IndeedLocationsSuggestParams, opts ...RequestOption) (IndeedLocationsSuggestResponse, error) {
+	return requestTyped[IndeedLocationsSuggestResponse](s.client, ctx, "indeed-locations-suggest", paramsFromStruct(params), opts...)
+}
+
+func (s *IndeedService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "indeed-search", params, opts...)
+}
+
+type IndeedSearchParams struct {
+	Q       string  `crawlora:"q"`
+	L       *string `crawlora:"l,omitempty"`
+	Page    *int    `crawlora:"page,omitempty"`
+	Sort    *string `crawlora:"sort,omitempty"`
+	Radius  *int    `crawlora:"radius,omitempty"`
+	Fromage *int    `crawlora:"fromage,omitempty"`
+}
+
+type IndeedSearchResponse = ModelIndeedSearchResponseDoc
+
+func (s *IndeedService) SearchTyped(ctx context.Context, params IndeedSearchParams, opts ...RequestOption) (IndeedSearchResponse, error) {
+	return requestTyped[IndeedSearchResponse](s.client, ctx, "indeed-search", paramsFromStruct(params), opts...)
 }
 
 type InstagramService struct{ client *Client }
@@ -31806,6 +34192,73 @@ type NumbeoIndicesRankingsByCountryResponse = ModelNumbeoIndicesRankingsByCountr
 
 func (s *NumbeoService) IndicesRankingsByCountryTyped(ctx context.Context, params NumbeoIndicesRankingsByCountryParams, opts ...RequestOption) (NumbeoIndicesRankingsByCountryResponse, error) {
 	return requestTyped[NumbeoIndicesRankingsByCountryResponse](s.client, ctx, "numbeo-indices-rankings-by-country", paramsFromStruct(params), opts...)
+}
+
+type OpenTableService struct{ client *Client }
+
+func (s *OpenTableService) OpentableRestaurant(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opentable-restaurant", params, opts...)
+}
+
+type OpenTableOpentableRestaurantParams struct {
+	RestaurantId string  `crawlora:"restaurant_id"`
+	DateTime     *string `crawlora:"date_time,omitempty"`
+	PartySize    *int    `crawlora:"party_size,omitempty"`
+}
+
+type OpenTableOpentableRestaurantResponse = ModelOpentableRestaurantResponseDoc
+
+func (s *OpenTableService) OpentableRestaurantTyped(ctx context.Context, params OpenTableOpentableRestaurantParams, opts ...RequestOption) (OpenTableOpentableRestaurantResponse, error) {
+	return requestTyped[OpenTableOpentableRestaurantResponse](s.client, ctx, "opentable-restaurant", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenTableService) OpentableRestaurantMenus(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opentable-restaurant-menus", params, opts...)
+}
+
+type OpenTableOpentableRestaurantMenusParams struct {
+	RestaurantId string `crawlora:"restaurant_id"`
+}
+
+type OpenTableOpentableRestaurantMenusResponse = ModelOpentableMenusResponseDoc
+
+func (s *OpenTableService) OpentableRestaurantMenusTyped(ctx context.Context, params OpenTableOpentableRestaurantMenusParams, opts ...RequestOption) (OpenTableOpentableRestaurantMenusResponse, error) {
+	return requestTyped[OpenTableOpentableRestaurantMenusResponse](s.client, ctx, "opentable-restaurant-menus", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenTableService) OpentableRestaurantReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opentable-restaurant-reviews", params, opts...)
+}
+
+type OpenTableOpentableRestaurantReviewsParams struct {
+	RestaurantId string `crawlora:"restaurant_id"`
+	Page         *int   `crawlora:"page,omitempty"`
+	Size         *int   `crawlora:"size,omitempty"`
+}
+
+type OpenTableOpentableRestaurantReviewsResponse = ModelOpentableReviewsResponseDoc
+
+func (s *OpenTableService) OpentableRestaurantReviewsTyped(ctx context.Context, params OpenTableOpentableRestaurantReviewsParams, opts ...RequestOption) (OpenTableOpentableRestaurantReviewsResponse, error) {
+	return requestTyped[OpenTableOpentableRestaurantReviewsResponse](s.client, ctx, "opentable-restaurant-reviews", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenTableService) OpentableSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opentable-search", params, opts...)
+}
+
+type OpenTableOpentableSearchParams struct {
+	Term      string  `crawlora:"term"`
+	Latitude  float64 `crawlora:"latitude"`
+	Longitude float64 `crawlora:"longitude"`
+	DateTime  *string `crawlora:"date_time,omitempty"`
+	PartySize *int    `crawlora:"party_size,omitempty"`
+	Size      *int    `crawlora:"size,omitempty"`
+}
+
+type OpenTableOpentableSearchResponse = ModelOpentableSearchResponseDoc
+
+func (s *OpenTableService) OpentableSearchTyped(ctx context.Context, params OpenTableOpentableSearchParams, opts ...RequestOption) (OpenTableOpentableSearchResponse, error) {
+	return requestTyped[OpenTableOpentableSearchResponse](s.client, ctx, "opentable-search", paramsFromStruct(params), opts...)
 }
 
 type MetaService struct{ client *Client }
@@ -37714,6 +40167,128 @@ func (s *YahooFinanceService) TrendingTyped(ctx context.Context, params YahooFin
 	return requestTyped[YahooFinanceTrendingResponse](s.client, ctx, "yahoo-finance-trending", paramsFromStruct(params), opts...)
 }
 
+type YelpService struct{ client *Client }
+
+func (s *YelpService) Business(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yelp-business", params, opts...)
+}
+
+type YelpBusinessParams struct {
+	Id string `crawlora:"id"`
+}
+
+type YelpBusinessResponse = ModelYelpMobileBusinessResponseDoc
+
+func (s *YelpService) BusinessTyped(ctx context.Context, params YelpBusinessParams, opts ...RequestOption) (YelpBusinessResponse, error) {
+	return requestTyped[YelpBusinessResponse](s.client, ctx, "yelp-business", paramsFromStruct(params), opts...)
+}
+
+func (s *YelpService) BusinessMenu(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yelp-business-menu", params, opts...)
+}
+
+type YelpBusinessMenuParams struct {
+	Id string `crawlora:"id"`
+}
+
+type YelpBusinessMenuResponse = ModelYelpMobileBusinessMenuResponseDoc
+
+func (s *YelpService) BusinessMenuTyped(ctx context.Context, params YelpBusinessMenuParams, opts ...RequestOption) (YelpBusinessMenuResponse, error) {
+	return requestTyped[YelpBusinessMenuResponse](s.client, ctx, "yelp-business-menu", paramsFromStruct(params), opts...)
+}
+
+func (s *YelpService) BusinessPhotos(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yelp-business-photos", params, opts...)
+}
+
+type YelpBusinessPhotosParams struct {
+	Id     string `crawlora:"id"`
+	Limit  *int   `crawlora:"limit,omitempty"`
+	Offset *int   `crawlora:"offset,omitempty"`
+}
+
+type YelpBusinessPhotosResponse = ModelYelpMobileBusinessPhotosResponseDoc
+
+func (s *YelpService) BusinessPhotosTyped(ctx context.Context, params YelpBusinessPhotosParams, opts ...RequestOption) (YelpBusinessPhotosResponse, error) {
+	return requestTyped[YelpBusinessPhotosResponse](s.client, ctx, "yelp-business-photos", paramsFromStruct(params), opts...)
+}
+
+func (s *YelpService) BusinessReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yelp-business-reviews", params, opts...)
+}
+
+type YelpBusinessReviewsParams struct {
+	Id     string `crawlora:"id"`
+	Limit  *int   `crawlora:"limit,omitempty"`
+	Offset *int   `crawlora:"offset,omitempty"`
+}
+
+type YelpBusinessReviewsResponse = ModelYelpMobileBusinessReviewsResponseDoc
+
+func (s *YelpService) BusinessReviewsTyped(ctx context.Context, params YelpBusinessReviewsParams, opts ...RequestOption) (YelpBusinessReviewsResponse, error) {
+	return requestTyped[YelpBusinessReviewsResponse](s.client, ctx, "yelp-business-reviews", paramsFromStruct(params), opts...)
+}
+
+func (s *YelpService) BusinessReviewHighlights(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yelp-business-review-highlights", params, opts...)
+}
+
+type YelpBusinessReviewHighlightsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type YelpBusinessReviewHighlightsResponse = ModelYelpMobileBusinessReviewHighlightsResponseDoc
+
+func (s *YelpService) BusinessReviewHighlightsTyped(ctx context.Context, params YelpBusinessReviewHighlightsParams, opts ...RequestOption) (YelpBusinessReviewHighlightsResponse, error) {
+	return requestTyped[YelpBusinessReviewHighlightsResponse](s.client, ctx, "yelp-business-review-highlights", paramsFromStruct(params), opts...)
+}
+
+func (s *YelpService) BusinessReviewsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yelp-business-reviews-search", params, opts...)
+}
+
+type YelpBusinessReviewsSearchParams struct {
+	Id   string `crawlora:"id"`
+	Term string `crawlora:"term"`
+}
+
+type YelpBusinessReviewsSearchResponse = ModelYelpMobileBusinessReviewsSearchResponseDoc
+
+func (s *YelpService) BusinessReviewsSearchTyped(ctx context.Context, params YelpBusinessReviewsSearchParams, opts ...RequestOption) (YelpBusinessReviewsSearchResponse, error) {
+	return requestTyped[YelpBusinessReviewsSearchResponse](s.client, ctx, "yelp-business-reviews-search", paramsFromStruct(params), opts...)
+}
+
+func (s *YelpService) Geocode(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yelp-geocode", params, opts...)
+}
+
+type YelpGeocodeParams struct {
+	Address string `crawlora:"address"`
+}
+
+type YelpGeocodeResponse = ModelYelpMobileGeocodeResponseDoc
+
+func (s *YelpService) GeocodeTyped(ctx context.Context, params YelpGeocodeParams, opts ...RequestOption) (YelpGeocodeResponse, error) {
+	return requestTyped[YelpGeocodeResponse](s.client, ctx, "yelp-geocode", paramsFromStruct(params), opts...)
+}
+
+func (s *YelpService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yelp-search", params, opts...)
+}
+
+type YelpSearchParams struct {
+	Term     string `crawlora:"term"`
+	Location string `crawlora:"location"`
+	Limit    *int   `crawlora:"limit,omitempty"`
+	Offset   *int   `crawlora:"offset,omitempty"`
+}
+
+type YelpSearchResponse = ModelYelpMobileSearchResponseDoc
+
+func (s *YelpService) SearchTyped(ctx context.Context, params YelpSearchParams, opts ...RequestOption) (YelpSearchResponse, error) {
+	return requestTyped[YelpSearchResponse](s.client, ctx, "yelp-search", paramsFromStruct(params), opts...)
+}
+
 type YouTubeService struct{ client *Client }
 
 func (s *YouTubeService) Captions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -37917,6 +40492,81 @@ type YouTubeVideoResponse = ModelYoutubeVideoResponseDoc
 
 func (s *YouTubeService) VideoTyped(ctx context.Context, params YouTubeVideoParams, opts ...RequestOption) (YouTubeVideoResponse, error) {
 	return requestTyped[YouTubeVideoResponse](s.client, ctx, "youtube-video", paramsFromStruct(params), opts...)
+}
+
+type ZalandoService struct{ client *Client }
+
+func (s *ZalandoService) Category(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "zalando-category", params, opts...)
+}
+
+type ZalandoCategoryParams struct {
+	Category string `crawlora:"category"`
+	Market   string `crawlora:"market"`
+}
+
+type ZalandoCategoryResponse = ModelZalandoCategoryResponseDoc
+
+func (s *ZalandoService) CategoryTyped(ctx context.Context, params ZalandoCategoryParams, opts ...RequestOption) (ZalandoCategoryResponse, error) {
+	return requestTyped[ZalandoCategoryResponse](s.client, ctx, "zalando-category", paramsFromStruct(params), opts...)
+}
+
+func (s *ZalandoService) Markets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "zalando-markets", params, opts...)
+}
+
+type ZalandoMarketsParams struct {
+}
+
+type ZalandoMarketsResponse = ModelZalandoMarketsResponseDoc
+
+func (s *ZalandoService) MarketsTyped(ctx context.Context, params ZalandoMarketsParams, opts ...RequestOption) (ZalandoMarketsResponse, error) {
+	return requestTyped[ZalandoMarketsResponse](s.client, ctx, "zalando-markets", paramsFromStruct(params), opts...)
+}
+
+func (s *ZalandoService) Product(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "zalando-product", params, opts...)
+}
+
+type ZalandoProductParams struct {
+	Sku    string `crawlora:"sku"`
+	Market string `crawlora:"market"`
+}
+
+type ZalandoProductResponse = ModelZalandoProductResponseDoc
+
+func (s *ZalandoService) ProductTyped(ctx context.Context, params ZalandoProductParams, opts ...RequestOption) (ZalandoProductResponse, error) {
+	return requestTyped[ZalandoProductResponse](s.client, ctx, "zalando-product", paramsFromStruct(params), opts...)
+}
+
+func (s *ZalandoService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "zalando-search", params, opts...)
+}
+
+type ZalandoSearchParams struct {
+	Q      string `crawlora:"q"`
+	Market string `crawlora:"market"`
+}
+
+type ZalandoSearchResponse = ModelZalandoSearchResponseDoc
+
+func (s *ZalandoService) SearchTyped(ctx context.Context, params ZalandoSearchParams, opts ...RequestOption) (ZalandoSearchResponse, error) {
+	return requestTyped[ZalandoSearchResponse](s.client, ctx, "zalando-search", paramsFromStruct(params), opts...)
+}
+
+func (s *ZalandoService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "zalando-suggest", params, opts...)
+}
+
+type ZalandoSuggestParams struct {
+	Q      string `crawlora:"q"`
+	Market string `crawlora:"market"`
+}
+
+type ZalandoSuggestResponse = ModelZalandoSuggestResponseDoc
+
+func (s *ZalandoService) SuggestTyped(ctx context.Context, params ZalandoSuggestParams, opts ...RequestOption) (ZalandoSuggestResponse, error) {
+	return requestTyped[ZalandoSuggestResponse](s.client, ctx, "zalando-suggest", paramsFromStruct(params), opts...)
 }
 
 type ZillowService struct{ client *Client }

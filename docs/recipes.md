@@ -298,3 +298,11 @@ filters, _ := client.Request(ctx, "target-filter-options", crawlora.Params{"cate
 CRAWLORA_API_KEY=... go run ./examples/bing-search
 CRAWLORA_API_KEY=... CRAWLORA_YOUTUBE_VIDEO_ID=... go run ./examples/youtube-transcript
 ```
+
+## Etsy
+
+```go
+results, _ := client.Request(ctx, "etsy-search", crawlora.Params{"q": "handmade mug"})
+listing, _ := client.Request(ctx, "etsy-listing", crawlora.Params{"id": "4474501681"})
+shop, _ := client.Request(ctx, "etsy-shop", crawlora.Params{"id": "gaguatelier"})
+```

@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.33.0-sdk.1
+
+- Added Etsy platform support: product search, listing detail, listing reviews, shop profile, shop reviews, and shop listing search.
+- Added Booking.com attractions and flights search, Expedia activities/flights/locations/properties search, Facebook groups and marketplace search, ImportYeti company lookup and search, Indeed job search, OpenTable restaurant search and reviews, Yelp business search and reviews, and Zalando category/market/product/search/suggest endpoints.
+- Regenerated from the public API contract (947 operations).
+
 ## v1.32.0-sdk.1
 
 - Regenerated from the public API contract (890 to 895 operations). Adds DoorDash location discovery feed, dish and item keyword search, menu item options/details, store customer reviews snapshot, and store fulfillment schedules.
