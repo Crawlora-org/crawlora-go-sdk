@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.34.0-sdk.2
+
+- Added 1-based page pagination to congressional stock-disclosure search, including `page` and `limit` response metadata.
+
 ## v1.34.0-sdk.1
 
 - Regenerated from the public API contract (1041 operations).
