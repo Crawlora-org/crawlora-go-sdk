@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.34.0-sdk.3
+
+- Added exact Senate filer-name and independent Senator/Candidate state filters, plus `MM/DD/YYYY` date-range support, to congressional disclosure search.
+
 ## v1.34.0-sdk.2
 
 - Added 1-based page pagination to congressional stock-disclosure search, including `page` and `limit` response metadata.
