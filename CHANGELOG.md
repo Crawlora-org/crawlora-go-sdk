@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.34.0-sdk.1
+
+- Regenerated from the public API contract (1041 operations).
+
 ## v1.33.0-sdk.1
 
 - Added Etsy platform support: product search, listing detail, listing reviews, shop profile, shop reviews, and shop listing search.
