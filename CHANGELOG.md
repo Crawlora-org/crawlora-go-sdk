@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.34.0-sdk.4
+
+- Congressional disclosure search now validates state and territory codes, supports the Senate `all` filer selection, and preserves multi-word surnames.
+- Disclosure rows now identify whether the year is a filing or election year; Senate rows also include the exact filing date.
+- Clarified that the unsupported `ticker` search parameter is planned for removal.
+
 ## v1.34.0-sdk.3
 
 - Added exact Senate filer-name and independent Senator/Candidate state filters, plus `MM/DD/YYYY` date-range support, to congressional disclosure search.
