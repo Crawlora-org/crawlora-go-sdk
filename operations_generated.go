@@ -4866,22 +4866,36 @@ type ModelCongressHouseDisclosure struct {
 }
 
 type ModelCongressReportDetail struct {
-	Body       string                    `json:"body,omitempty"`
-	Chamber    ModelCongressChamber      `json:"chamber,omitempty"`
-	FetchedAt  string                    `json:"fetched_at,omitempty"`
-	FiledAt    string                    `json:"filed_at,omitempty"`
-	Filer      string                    `json:"filer,omitempty"`
-	Parts      []ModelCongressReportPart `json:"parts,omitempty"`
-	ReportId   string                    `json:"report_id,omitempty"`
-	ReportType string                    `json:"report_type,omitempty"`
-	SourceUrl  string                    `json:"source_url,omitempty"`
-	Title      string                    `json:"title,omitempty"`
+	Body         string                           `json:"body,omitempty"`
+	Chamber      ModelCongressChamber             `json:"chamber,omitempty"`
+	FetchedAt    string                           `json:"fetched_at,omitempty"`
+	FiledAt      string                           `json:"filed_at,omitempty"`
+	Filer        string                           `json:"filer,omitempty"`
+	Parts        []ModelCongressReportPart        `json:"parts,omitempty"`
+	ReportId     string                           `json:"report_id,omitempty"`
+	ReportType   string                           `json:"report_type,omitempty"`
+	SourceUrl    string                           `json:"source_url,omitempty"`
+	Title        string                           `json:"title,omitempty"`
+	Transactions []ModelCongressReportTransaction `json:"transactions,omitempty"`
 }
 
 type ModelCongressReportPart struct {
 	Answer string              `json:"answer,omitempty"`
 	Rows   []map[string]string `json:"rows,omitempty"`
 	Title  string              `json:"title,omitempty"`
+}
+
+type ModelCongressReportTransaction struct {
+	Amount          string `json:"amount,omitempty"`
+	AssetName       string `json:"asset_name,omitempty"`
+	AssetType       string `json:"asset_type,omitempty"`
+	Comment         string `json:"comment,omitempty"`
+	Owner           string `json:"owner,omitempty"`
+	SourcePart      string `json:"source_part,omitempty"`
+	SourceRowNumber string `json:"source_row_number,omitempty"`
+	Ticker          string `json:"ticker,omitempty"`
+	TransactionDate string `json:"transaction_date,omitempty"`
+	TransactionType string `json:"transaction_type,omitempty"`
 }
 
 type ModelCongressStockDisclosureResponse struct {

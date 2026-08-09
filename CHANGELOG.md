@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.34.0-sdk.5
+
+- Senate Annual and PTR report responses now include an ordered, normalized `transactions` list while preserving the original `parts[].rows` tables.
+
 ## v1.34.0-sdk.4
 
 - Congressional disclosure search now validates state and territory codes, supports the Senate `all` filer selection, and preserves multi-word surnames.
