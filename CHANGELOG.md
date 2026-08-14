@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.35.0-sdk.1
+
+- Added Twitch (channel profile/live status, streams by game, clips, videos, search, top games, team rosters, schedule, VOD chat replay) and SoundCloud (search, track, playlist, profile, user tracks) platform support.
+- Added H&M, Kohl's, Lululemon, Macy's, Nike, Old Navy, Sam's Club, Ulta Beauty, Wayfair, Wish, Zappos, and Zara retail platform support.
+- Added Yahoo's editorial content network: Autos, Entertainment, Health, Life, News, Shopping, Sports, and Tech verticals.
+- Added eBay live-stream endpoints (streams list, batch lookup, stream detail, stream items) and a billing rejections-history endpoint.
+- Regenerated from the public API contract (1176 operations).
+
 ## v1.34.0-sdk.5
 
 - Senate Annual and PTR report responses now include an ordered, normalized `transactions` list while preserving the original `parts[].rows` tables.

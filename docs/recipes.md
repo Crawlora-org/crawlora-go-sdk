@@ -306,3 +306,11 @@ results, _ := client.Request(ctx, "etsy-search", crawlora.Params{"q": "handmade 
 listing, _ := client.Request(ctx, "etsy-listing", crawlora.Params{"id": "4474501681"})
 shop, _ := client.Request(ctx, "etsy-shop", crawlora.Params{"id": "gaguatelier"})
 ```
+
+## Twitch And SoundCloud
+
+```go
+channel, _ := client.Request(ctx, "twitch-channel", crawlora.Params{"login": "caedrel"})
+streams, _ := client.Request(ctx, "twitch-streams", crawlora.Params{"game": "league-of-legends", "limit": 20})
+track, _ := client.Request(ctx, "soundcloud-track", crawlora.Params{"url": "https://soundcloud.com/artist/track-name"})
+```
