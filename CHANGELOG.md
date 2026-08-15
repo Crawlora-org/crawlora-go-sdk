@@ -2,7 +2,7 @@
 
 ## v1.36.0-sdk.1
 
-- Added DraftKings Sportsbook futures-market support and synchronized the current public API contract (1190 operations).
+- Added DraftKings Sportsbook futures-market support, USPTO Patent Public Search, and synchronized the current public API contract (1222 operations).
 
 ## v1.35.0-sdk.1
 
