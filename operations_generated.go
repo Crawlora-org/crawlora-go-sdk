@@ -1700,6 +1700,95 @@ type ModelAutotraderSearchResponseDoc struct {
 	Msg  string                        `json:"msg,omitempty"`
 }
 
+type ModelBestbuyBreadcrumb struct {
+	Name string `json:"name,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelBestbuyCategoryProduct struct {
+	ImageUrl    string  `json:"image_url,omitempty"`
+	Price       float64 `json:"price,omitempty"`
+	Rating      float64 `json:"rating,omitempty"`
+	ReviewCount int     `json:"review_count,omitempty"`
+	Sku         string  `json:"sku,omitempty"`
+	Title       string  `json:"title,omitempty"`
+	Url         string  `json:"url,omitempty"`
+}
+
+type ModelBestbuyCategoryResponse struct {
+	CategoryId string                        `json:"category_id,omitempty"`
+	Count      int                           `json:"count,omitempty"`
+	FetchedAt  string                        `json:"fetched_at,omitempty"`
+	Products   []ModelBestbuyCategoryProduct `json:"products,omitempty"`
+	SourceUrl  string                        `json:"source_url,omitempty"`
+	Total      int                           `json:"total,omitempty"`
+}
+
+type ModelBestbuyProduct struct {
+	Availability string                   `json:"availability,omitempty"`
+	Brand        string                   `json:"brand,omitempty"`
+	Breadcrumbs  []ModelBestbuyBreadcrumb `json:"breadcrumbs,omitempty"`
+	Color        string                   `json:"color,omitempty"`
+	Condition    string                   `json:"condition,omitempty"`
+	CurrencyCode string                   `json:"currency_code,omitempty"`
+	Description  string                   `json:"description,omitempty"`
+	Images       []string                 `json:"images,omitempty"`
+	Model        string                   `json:"model,omitempty"`
+	Name         string                   `json:"name,omitempty"`
+	Price        float64                  `json:"price,omitempty"`
+	ProductId    string                   `json:"product_id,omitempty"`
+	Rating       float64                  `json:"rating,omitempty"`
+	ReviewCount  int                      `json:"review_count,omitempty"`
+	Sku          string                   `json:"sku,omitempty"`
+	Url          string                   `json:"url,omitempty"`
+}
+
+type ModelBestbuyProductResponse struct {
+	FetchedAt string              `json:"fetched_at,omitempty"`
+	Product   ModelBestbuyProduct `json:"product,omitempty"`
+	SourceUrl string              `json:"source_url,omitempty"`
+}
+
+type ModelBestbuyProductReviewsResponse struct {
+	Count       int                  `json:"count,omitempty"`
+	FetchedAt   string               `json:"fetched_at,omitempty"`
+	Rating      float64              `json:"rating,omitempty"`
+	ReviewCount int                  `json:"review_count,omitempty"`
+	Reviews     []ModelBestbuyReview `json:"reviews,omitempty"`
+	Sku         string               `json:"sku,omitempty"`
+	SourceUrl   string               `json:"source_url,omitempty"`
+}
+
+type ModelBestbuyReview struct {
+	Author      string   `json:"author,omitempty"`
+	Helpful     int      `json:"helpful,omitempty"`
+	Posted      string   `json:"posted,omitempty"`
+	Rating      float64  `json:"rating,omitempty"`
+	Recommended bool     `json:"recommended,omitempty"`
+	Tags        []string `json:"tags,omitempty"`
+	Text        string   `json:"text,omitempty"`
+	Title       string   `json:"title,omitempty"`
+	Unhelpful   int      `json:"unhelpful,omitempty"`
+}
+
+type ModelBestbuyCategoryResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelBestbuyCategoryResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelBestbuyProductResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelBestbuyProductResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelBestbuyProductReviewsResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelBestbuyProductReviewsResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
 type ModelBillingBillingEndpointLedgerDoc struct {
 	ChargedRequests     int    `json:"charged_requests,omitempty"`
 	Credits             int    `json:"credits,omitempty"`
@@ -6495,6 +6584,7 @@ type ModelDepopItemSummary struct {
 	Currency      string   `json:"currency,omitempty"`
 	Description   string   `json:"description,omitempty"`
 	Id            string   `json:"id,omitempty"`
+	LikeCount     int      `json:"like_count,omitempty"`
 	Location      string   `json:"location,omitempty"`
 	Photos        []string `json:"photos,omitempty"`
 	PriceCents    int      `json:"price_cents,omitempty"`
@@ -6545,6 +6635,12 @@ type ModelDepopShopResponse struct {
 	Verified       bool                 `json:"verified,omitempty"`
 }
 
+type ModelDepopSimilarItemsResponse struct {
+	HasMore    bool                    `json:"has_more,omitempty"`
+	Items      []ModelDepopItemSummary `json:"items,omitempty"`
+	NextCursor string                  `json:"next_cursor,omitempty"`
+}
+
 type ModelDepopSubcategory struct {
 	Name string `json:"name,omitempty"`
 	Slug string `json:"slug,omitempty"`
@@ -6566,6 +6662,12 @@ type ModelDepopShopResponseDoc struct {
 	Code int                    `json:"code,omitempty"`
 	Data ModelDepopShopResponse `json:"data,omitempty"`
 	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelDepopSimilarItemsResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelDepopSimilarItemsResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
 }
 
 type ModelDiagnosticsAntibotCheckRequest struct {
@@ -7124,6 +7226,105 @@ type ModelDoordashStoreReviewsResponseDoc struct {
 	Code int                               `json:"code,omitempty"`
 	Data ModelDoordashStoreReviewsResponse `json:"data,omitempty"`
 	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelDraftkingsEvent struct {
+	Id           string                       `json:"id,omitempty"`
+	Markets      []ModelDraftkingsMarket      `json:"markets,omitempty"`
+	Name         string                       `json:"name,omitempty"`
+	Participants []ModelDraftkingsParticipant `json:"participants,omitempty"`
+	StartTime    string                       `json:"start_time,omitempty"`
+	Status       string                       `json:"status,omitempty"`
+}
+
+type ModelDraftkingsEventMarketsResponse struct {
+	Count         int                     `json:"count,omitempty"`
+	EventId       string                  `json:"event_id,omitempty"`
+	FetchedAt     string                  `json:"fetched_at,omitempty"`
+	Markets       []ModelDraftkingsMarket `json:"markets,omitempty"`
+	SourceUrl     string                  `json:"source_url,omitempty"`
+	SubcategoryId string                  `json:"subcategory_id,omitempty"`
+}
+
+type ModelDraftkingsEventResponse struct {
+	FetchedAt    string                       `json:"fetched_at,omitempty"`
+	Id           string                       `json:"id,omitempty"`
+	Name         string                       `json:"name,omitempty"`
+	Participants []ModelDraftkingsParticipant `json:"participants,omitempty"`
+	SourceUrl    string                       `json:"source_url,omitempty"`
+	StartTime    string                       `json:"start_time,omitempty"`
+	Status       string                       `json:"status,omitempty"`
+}
+
+type ModelDraftkingsFuturesResponse struct {
+	Count         int                    `json:"count,omitempty"`
+	Events        []ModelDraftkingsEvent `json:"events,omitempty"`
+	FetchedAt     string                 `json:"fetched_at,omitempty"`
+	League        string                 `json:"league,omitempty"`
+	LeagueId      string                 `json:"league_id,omitempty"`
+	SourceUrl     string                 `json:"source_url,omitempty"`
+	Sport         string                 `json:"sport,omitempty"`
+	SubcategoryId string                 `json:"subcategory_id,omitempty"`
+}
+
+type ModelDraftkingsMarket struct {
+	Id            string                     `json:"id,omitempty"`
+	Selections    []ModelDraftkingsSelection `json:"selections,omitempty"`
+	SubcategoryId string                     `json:"subcategory_id,omitempty"`
+	Type          string                     `json:"type,omitempty"`
+}
+
+type ModelDraftkingsOdds struct {
+	American   string `json:"american,omitempty"`
+	Decimal    string `json:"decimal,omitempty"`
+	Fractional string `json:"fractional,omitempty"`
+}
+
+type ModelDraftkingsOddsResponse struct {
+	Count     int                    `json:"count,omitempty"`
+	Events    []ModelDraftkingsEvent `json:"events,omitempty"`
+	FetchedAt string                 `json:"fetched_at,omitempty"`
+	League    string                 `json:"league,omitempty"`
+	LeagueId  string                 `json:"league_id,omitempty"`
+	SourceUrl string                 `json:"source_url,omitempty"`
+	Sport     string                 `json:"sport,omitempty"`
+}
+
+type ModelDraftkingsParticipant struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Role string `json:"role,omitempty"`
+}
+
+type ModelDraftkingsSelection struct {
+	Label       string              `json:"label,omitempty"`
+	Odds        ModelDraftkingsOdds `json:"odds,omitempty"`
+	OutcomeType string              `json:"outcome_type,omitempty"`
+	Points      float64             `json:"points,omitempty"`
+}
+
+type ModelDraftkingsEventMarketsResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelDraftkingsEventMarketsResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelDraftkingsEventResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelDraftkingsEventResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelDraftkingsFuturesResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelDraftkingsFuturesResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelDraftkingsOddsResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelDraftkingsOddsResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
 }
 
 type ModelDuckduckgoImageResponse struct {
@@ -10964,6 +11165,157 @@ type ModelGooglejobsSearchResponseDoc struct {
 	Msg  string                        `json:"msg,omitempty"`
 }
 
+type ModelGooglepatentsCitedPatent struct {
+	Assignee          string `json:"assignee,omitempty"`
+	PriorityDate      string `json:"priority_date,omitempty"`
+	PublicationDate   string `json:"publication_date,omitempty"`
+	PublicationNumber string `json:"publication_number,omitempty"`
+	Title             string `json:"title,omitempty"`
+}
+
+type ModelGooglepatentsClassification struct {
+	Code        string `json:"code,omitempty"`
+	Description string `json:"description,omitempty"`
+	IsCpc       bool   `json:"is_cpc,omitempty"`
+}
+
+type ModelGooglepatentsCountryStatus struct {
+	CountryCode string `json:"country_code,omitempty"`
+	State       string `json:"state,omitempty"`
+}
+
+type ModelGooglepatentsCoverageCountry struct {
+	CountryCode string                           `json:"country_code,omitempty"`
+	Years       []ModelGooglepatentsCoverageYear `json:"years,omitempty"`
+}
+
+type ModelGooglepatentsCoverageResponse struct {
+	Countries []ModelGooglepatentsCoverageCountry `json:"countries,omitempty"`
+	FetchedAt string                              `json:"fetched_at,omitempty"`
+	SourceUrl string                              `json:"source_url,omitempty"`
+}
+
+type ModelGooglepatentsCoverageYear struct {
+	Applications string `json:"applications,omitempty"`
+	Grants       string `json:"grants,omitempty"`
+	Year         int    `json:"year,omitempty"`
+}
+
+type ModelGooglepatentsDetailResponse struct {
+	Abstract          string                              `json:"abstract,omitempty"`
+	ApplicationNumber string                              `json:"application_number,omitempty"`
+	Citations         []ModelGooglepatentsCitedPatent     `json:"citations,omitempty"`
+	CitedBy           []ModelGooglepatentsCitedPatent     `json:"cited_by,omitempty"`
+	Claims            []string                            `json:"claims,omitempty"`
+	ClaimsCount       int                                 `json:"claims_count,omitempty"`
+	Classifications   []ModelGooglepatentsClassification  `json:"classifications,omitempty"`
+	CountryCode       string                              `json:"country_code,omitempty"`
+	CountryName       string                              `json:"country_name,omitempty"`
+	CurrentAssignees  []string                            `json:"current_assignees,omitempty"`
+	Description       []string                            `json:"description,omitempty"`
+	ExpirationDate    string                              `json:"expiration_date,omitempty"`
+	FamilyMembers     []ModelGooglepatentsFamilyMember    `json:"family_members,omitempty"`
+	FetchedAt         string                              `json:"fetched_at,omitempty"`
+	FilingDate        string                              `json:"filing_date,omitempty"`
+	Inventors         []string                            `json:"inventors,omitempty"`
+	KindCode          string                              `json:"kind_code,omitempty"`
+	LegalStatus       string                              `json:"legal_status,omitempty"`
+	OriginalAssignees []string                            `json:"original_assignees,omitempty"`
+	PdfUrl            string                              `json:"pdf_url,omitempty"`
+	PriorArtKeywords  []string                            `json:"prior_art_keywords,omitempty"`
+	PriorityDate      string                              `json:"priority_date,omitempty"`
+	PublicationDate   string                              `json:"publication_date,omitempty"`
+	PublicationNumber string                              `json:"publication_number,omitempty"`
+	SimilarDocuments  []ModelGooglepatentsSimilarDocument `json:"similar_documents,omitempty"`
+	SourceUrl         string                              `json:"source_url,omitempty"`
+	Title             string                              `json:"title,omitempty"`
+}
+
+type ModelGooglepatentsFacetEntry struct {
+	Key   string `json:"key,omitempty"`
+	Value int    `json:"value,omitempty"`
+}
+
+type ModelGooglepatentsFamilyMember struct {
+	PublicationDate   string `json:"publication_date,omitempty"`
+	PublicationNumber string `json:"publication_number,omitempty"`
+}
+
+type ModelGooglepatentsSearchResponse struct {
+	FetchedAt          string                           `json:"fetched_at,omitempty"`
+	ManyResults        bool                             `json:"many_results,omitempty"`
+	Page               int                              `json:"page,omitempty"`
+	Query              string                           `json:"query,omitempty"`
+	Results            []ModelGooglepatentsSearchResult `json:"results,omitempty"`
+	SourceUrl          string                           `json:"source_url,omitempty"`
+	TopAssignees       []ModelGooglepatentsFacetEntry   `json:"top_assignees,omitempty"`
+	TopClassifications []ModelGooglepatentsFacetEntry   `json:"top_classifications,omitempty"`
+	TopInventors       []ModelGooglepatentsFacetEntry   `json:"top_inventors,omitempty"`
+	TotalPages         int                              `json:"total_pages,omitempty"`
+	TotalResults       int                              `json:"total_results,omitempty"`
+}
+
+type ModelGooglepatentsSearchResult struct {
+	Assignee          string                            `json:"assignee,omitempty"`
+	CountryStatus     []ModelGooglepatentsCountryStatus `json:"country_status,omitempty"`
+	DetailUrl         string                            `json:"detail_url,omitempty"`
+	FilingDate        string                            `json:"filing_date,omitempty"`
+	GrantDate         string                            `json:"grant_date,omitempty"`
+	Inventor          string                            `json:"inventor,omitempty"`
+	IsSimilarDocument bool                              `json:"is_similar_document,omitempty"`
+	Language          string                            `json:"language,omitempty"`
+	PdfUrl            string                            `json:"pdf_url,omitempty"`
+	PriorityDate      string                            `json:"priority_date,omitempty"`
+	PublicationDate   string                            `json:"publication_date,omitempty"`
+	PublicationNumber string                            `json:"publication_number,omitempty"`
+	Snippet           string                            `json:"snippet,omitempty"`
+	ThumbnailUrl      string                            `json:"thumbnail_url,omitempty"`
+	Title             string                            `json:"title,omitempty"`
+}
+
+type ModelGooglepatentsSimilarDocument struct {
+	PublicationDate   string `json:"publication_date,omitempty"`
+	PublicationNumber string `json:"publication_number,omitempty"`
+	Title             string `json:"title,omitempty"`
+}
+
+type ModelGooglepatentsSuggestEntry struct {
+	Description string `json:"description,omitempty"`
+	Value       string `json:"value,omitempty"`
+}
+
+type ModelGooglepatentsSuggestResponse struct {
+	FetchedAt   string                           `json:"fetched_at,omitempty"`
+	Field       string                           `json:"field,omitempty"`
+	SourceUrl   string                           `json:"source_url,omitempty"`
+	Suggestions []ModelGooglepatentsSuggestEntry `json:"suggestions,omitempty"`
+	Value       string                           `json:"value,omitempty"`
+}
+
+type ModelGooglepatentsCoverageResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelGooglepatentsCoverageResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelGooglepatentsDetailResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelGooglepatentsDetailResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelGooglepatentsSearchResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelGooglepatentsSearchResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelGooglepatentsSuggestResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelGooglepatentsSuggestResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
 type ModelGoogleplayApp struct {
 	AdSupported               bool                      `json:"ad_supported,omitempty"`
 	AndroidMaxVersion         string                    `json:"android_max_version,omitempty"`
@@ -11281,6 +11633,18 @@ type ModelHmProductSummary struct {
 	Url            string               `json:"url,omitempty"`
 }
 
+type ModelHmRelatedList struct {
+	Label    string                  `json:"label,omitempty"`
+	Products []ModelHmProductSummary `json:"products,omitempty"`
+}
+
+type ModelHmRelatedResponse struct {
+	FetchedAt string               `json:"fetched_at,omitempty"`
+	Lists     []ModelHmRelatedList `json:"lists,omitempty"`
+	ProductId string               `json:"product_id,omitempty"`
+	SourceUrl string               `json:"source_url,omitempty"`
+}
+
 type ModelHmSearchMeta struct {
 	Blocked         bool     `json:"blocked,omitempty"`
 	DidYouMean      []string `json:"did_you_mean,omitempty"`
@@ -11332,6 +11696,26 @@ type ModelHmStoreResponse struct {
 	Stores       []ModelHmStore `json:"stores,omitempty"`
 }
 
+type ModelHmSuggestResponse struct {
+	Blocked            bool                    `json:"blocked,omitempty"`
+	ContentSuggestions []ModelHmSuggestionLink `json:"content_suggestions,omitempty"`
+	FetchedAt          string                  `json:"fetched_at,omitempty"`
+	PhraseSuggestions  []string                `json:"phrase_suggestions,omitempty"`
+	PopularSearches    []ModelHmSuggestionLink `json:"popular_searches,omitempty"`
+	Query              string                  `json:"query,omitempty"`
+	SearchHistory      []string                `json:"search_history,omitempty"`
+	SourceUrl          string                  `json:"source_url,omitempty"`
+	TrendingSearches   []string                `json:"trending_searches,omitempty"`
+}
+
+type ModelHmSuggestionLink struct {
+	ContentType string `json:"content_type,omitempty"`
+	DeepLink    string `json:"deep_link,omitempty"`
+	ImageUrl    string `json:"image_url,omitempty"`
+	Link        string `json:"link,omitempty"`
+	Title       string `json:"title,omitempty"`
+}
+
 type ModelHmCategoriesResponseDoc struct {
 	Code int                       `json:"code,omitempty"`
 	Data ModelHmCategoriesResponse `json:"data,omitempty"`
@@ -11350,6 +11734,12 @@ type ModelHmProductDetailResponseDoc struct {
 	Msg  string                       `json:"msg,omitempty"`
 }
 
+type ModelHmRelatedResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelHmRelatedResponse `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
 type ModelHmSearchResponseDoc struct {
 	Code int                   `json:"code,omitempty"`
 	Data ModelHmSearchResponse `json:"data,omitempty"`
@@ -11360,6 +11750,12 @@ type ModelHmStoresResponseDoc struct {
 	Code int                  `json:"code,omitempty"`
 	Data ModelHmStoreResponse `json:"data,omitempty"`
 	Msg  string               `json:"msg,omitempty"`
+}
+
+type ModelHmSuggestResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelHmSuggestResponse `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
 }
 
 type ModelImdbAlternateTitle struct {
@@ -29189,7 +29585,7 @@ type ModelZillowSearchResponse struct {
 	Results  []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 1176
+const operationCount = 1190
 
 const (
 	OperationAccountDeletionCancel                                  = "account-deletion-cancel"
@@ -29261,6 +29657,9 @@ const (
 	OperationAutotraderDealer                                       = "autotrader-dealer"
 	OperationAutotraderSearch                                       = "autotrader-search"
 	OperationAutotraderVehicle                                      = "autotrader-vehicle"
+	OperationBestBuyBestbuyCategory                                 = "bestbuy-category"
+	OperationBestBuyBestbuyProduct                                  = "bestbuy-product"
+	OperationBestBuyBestbuyProductReviews                           = "bestbuy-product-reviews"
 	OperationBillingMe                                              = "billing-me"
 	OperationBillingMeCheckout                                      = "billing-me-checkout"
 	OperationBillingMeEvents                                        = "billing-me-events"
@@ -29481,6 +29880,7 @@ const (
 	OperationDatasetsXUsersSearch                                   = "datasets-x-users-search"
 	OperationDepopCategories                                        = "depop-categories"
 	OperationDepopItem                                              = "depop-item"
+	OperationDepopItemSimilar                                       = "depop-item-similar"
 	OperationDepopSearch                                            = "depop-search"
 	OperationDepopShop                                              = "depop-shop"
 	OperationDiscogsArtist                                          = "discogs-artist"
@@ -29502,6 +29902,10 @@ const (
 	OperationDoorDashDoordashStoreItem                              = "doordash-store-item"
 	OperationDoorDashDoordashStoreMenu                              = "doordash-store-menu"
 	OperationDoorDashDoordashStoreReviews                           = "doordash-store-reviews"
+	OperationDraftKingsDraftkingsEvent                              = "draftkings-event"
+	OperationDraftKingsDraftkingsEventMarkets                       = "draftkings-event-markets"
+	OperationDraftKingsDraftkingsFutures                            = "draftkings-futures"
+	OperationDraftKingsDraftkingsOdds                               = "draftkings-odds"
 	OperationDuckDuckGoSearchDuckduckgoImage                        = "duckduckgo-image"
 	OperationDuckDuckGoSearchDuckduckgoNews                         = "duckduckgo-news"
 	OperationDuckDuckGoSearchDuckduckgoSearch                       = "duckduckgo-search"
@@ -29603,6 +30007,10 @@ const (
 	OperationGoogleMapPlaceReviews                                  = "google-map-place-reviews"
 	OperationGoogleMapSearch                                        = "google-map-search"
 	OperationGoogleNews                                             = "google-news"
+	OperationGooglePatentsGooglepatentsCoverage                     = "googlepatents-coverage"
+	OperationGooglePatentsGooglepatentsDetail                       = "googlepatents-detail"
+	OperationGooglePatentsGooglepatentsSearch                       = "googlepatents-search"
+	OperationGooglePatentsGooglepatentsSuggest                      = "googlepatents-suggest"
 	OperationGooglePlayApp                                          = "googleplay-app"
 	OperationGooglePlayCategories                                   = "googleplay-categories"
 	OperationGooglePlayDatasafety                                   = "googleplay-datasafety"
@@ -29631,7 +30039,9 @@ const (
 	OperationHMHmCategories                                         = "hm-categories"
 	OperationHMHmListing                                            = "hm-listing"
 	OperationHMHmProduct                                            = "hm-product"
+	OperationHMHmProductRelated                                     = "hm-product-related"
 	OperationHMHmSearch                                             = "hm-search"
+	OperationHMHmSearchSuggestions                                  = "hm-search-suggestions"
 	OperationHMHmStores                                             = "hm-stores"
 	OperationImdbName                                               = "imdb-name"
 	OperationImdbNameAwards                                         = "imdb-name-awards"
@@ -30437,6 +30847,9 @@ var operations = map[string]operationDefinition{
 	"autotrader-dealer":                             operationDefinition{Method: "GET", Path: "/autotrader/dealer/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"autotrader-search":                             operationDefinition{Method: "GET", Path: "/autotrader/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "zip", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "make", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "model", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "trim", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "condition", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"new", "used", "certified", "3p_cert"}}, parameterDefinition{Name: "body_style", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"convertible", "coupe", "hatchback", "sedan", "suv", "truck", "van", "wagon"}}, parameterDefinition{Name: "seller_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"dealer", "private"}}, parameterDefinition{Name: "min_year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_price", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_mileage", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"autotrader-vehicle":                            operationDefinition{Method: "GET", Path: "/autotrader/vehicle/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bestbuy-category":                              operationDefinition{Method: "GET", Path: "/bestbuy/category", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bestbuy-product":                               operationDefinition{Method: "GET", Path: "/bestbuy/product", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sku", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bestbuy-product-reviews":                       operationDefinition{Method: "GET", Path: "/bestbuy/product/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sku", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"billing-me":                                    operationDefinition{Method: "GET", Path: "/billing/me", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"billing-me-checkout":                           operationDefinition{Method: "POST", Path: "/billing/me/checkout", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"billing-me-events":                             operationDefinition{Method: "GET", Path: "/billing/me/events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "endpoint", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "request_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "event_status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"reserved", "charged", "non_billable", "failed"}}, parameterDefinition{Name: "billable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -30658,7 +31071,8 @@ var operations = map[string]operationDefinition{
 	"datasets-x-users-search":                       operationDefinition{Method: "GET", Path: "/datasets/x-users/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "username", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "source_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_blue_verified", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_bio", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_external_url", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_followers", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_ratio", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_ratio", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "created_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "created_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "crawled_after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "crawled_before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "followers_desc", "followers_asc", "crawled_at_desc", "crawled_at_asc", "created_at_desc", "created_at_asc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"depop-categories":                              operationDefinition{Method: "GET", Path: "/depop/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"depop-item":                                    operationDefinition{Method: "GET", Path: "/depop/item/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"depop-search":                                  operationDefinition{Method: "GET", Path: "/depop/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "price_min", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "price_max", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "condition", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "colours", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "on_sale", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "subcategory", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "gender", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "brand_ids", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"depop-item-similar":                            operationDefinition{Method: "GET", Path: "/depop/item/{slug}/similar", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"depop-search":                                  operationDefinition{Method: "GET", Path: "/depop/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "price_min", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "price_max", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "condition", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "colours", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "on_sale", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "subcategory", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "gender", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_kids", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "brand_ids", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"depop-shop":                                    operationDefinition{Method: "GET", Path: "/depop/shop/{username}", PathParams: []string{"username"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "price_min", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "price_max", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "condition", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "colours", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "on_sale", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "subcategory", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "gender", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"antibot-check":                                 operationDefinition{Method: "POST", Path: "/diagnostics/antibot-check", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"discogs-artist":                                operationDefinition{Method: "GET", Path: "/discogs/artist/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -30680,6 +31094,10 @@ var operations = map[string]operationDefinition{
 	"doordash-store-item":                           operationDefinition{Method: "GET", Path: "/doordash/store/{store_id}/item/{item_id}", PathParams: []string{"store_id", "item_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"doordash-store-menu":                           operationDefinition{Method: "GET", Path: "/doordash/store/{store_id}/menu", PathParams: []string{"store_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"doordash-store-reviews":                        operationDefinition{Method: "GET", Path: "/doordash/store/{store_id}/reviews", PathParams: []string{"store_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"draftkings-event":                              operationDefinition{Method: "GET", Path: "/draftkings/event", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "event_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"draftkings-event-markets":                      operationDefinition{Method: "GET", Path: "/draftkings/event-markets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "event_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "subcategory_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"draftkings-futures":                            operationDefinition{Method: "GET", Path: "/draftkings/futures", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "subcategory_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"draftkings-odds":                               operationDefinition{Method: "GET", Path: "/draftkings/odds", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"duckduckgo-image":                              operationDefinition{Method: "GET", Path: "/duckduckgo/image", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"duckduckgo-news":                               operationDefinition{Method: "GET", Path: "/duckduckgo/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"duckduckgo-search":                             operationDefinition{Method: "GET", Path: "/duckduckgo/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "time_range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"d", "w", "m", "y"}}, parameterDefinition{Name: "safe_search", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"strict", "moderate", "off"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -30796,6 +31214,10 @@ var operations = map[string]operationDefinition{
 	"google-trends-trending":                        operationDefinition{Method: "GET", Path: "/google/trends/trending", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "geo", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"AF", "AX", "AL", "DZ", "AS", "AD", "AO", "AI", "AQ", "AG", "AR", "AM", "AW", "AU", "AT", "AZ", "BS", "BH", "BD", "BB", "BY", "BE", "BZ", "BJ", "BM", "BT", "BO", "BA", "BW", "BV", "BR", "IO", "VG", "BN", "BG", "BF", "BI", "KH", "CM", "CA", "CV", "BQ", "KY", "CF", "TD", "CL", "CN", "CX", "CC", "CO", "KM", "CG", "CD", "CK", "CR", "CI", "HR", "CU", "CW", "CY", "CZ", "DK", "DJ", "DM", "DO", "EC", "EG", "SV", "GQ", "ER", "EE", "SZ", "ET", "FK", "FO", "FJ", "FI", "FR", "GF", "PF", "TF", "GA", "GM", "GE", "DE", "GH", "GI", "GR", "GL", "GD", "GP", "GU", "GT", "GG", "GN", "GW", "GY", "HT", "HM", "HN", "HK", "HU", "IS", "IN", "ID", "IR", "IQ", "IE", "IM", "IL", "IT", "JM", "JP", "JE", "JO", "KZ", "KE", "KI", "XK", "KW", "KG", "LA", "LV", "LB", "LS", "LR", "LY", "LI", "LT", "LU", "MO", "MG", "MW", "MY", "MV", "ML", "MT", "MH", "MQ", "MR", "MU", "YT", "MX", "FM", "MD", "MC", "MN", "ME", "MS", "MA", "MZ", "MM", "NA", "NR", "NP", "NL", "NC", "NZ", "NI", "NE", "NG", "NU", "NF", "KP", "MK", "MP", "NO", "OM", "PK", "PW", "PS", "PA", "PG", "PY", "PE", "PH", "PN", "PL", "PT", "PR", "QA", "RE", "RO", "RU", "RW", "WS", "SM", "ST", "SA", "SN", "RS", "SC", "SL", "SG", "SX", "SK", "SI", "SB", "SO", "ZA", "GS", "KR", "SS", "ES", "LK", "BL", "SH", "KN", "LC", "MF", "PM", "VC", "SD", "SR", "SJ", "SE", "CH", "SY", "TW", "TJ", "TZ", "TH", "TL", "TG", "TK", "TO", "TT", "TN", "TR", "TM", "TC", "TV", "UM", "VI", "UG", "UA", "AE", "GB", "US", "UY", "UZ", "VU", "VA", "VE", "VN", "WF", "EH", "YE", "ZM", "ZW"}}, parameterDefinition{Name: "hl", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tz", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "window", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"4h", "24h", "48h", "7d"}}, parameterDefinition{Name: "time_range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"4h", "24h", "48h", "7d"}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"0", "3", "47", "44", "22", "12", "5", "7", "71", "8", "45", "65", "11", "13", "958", "19", "16", "299", "14", "66", "29", "533", "174", "18", "20", "67"}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "active", "ended"}}, parameterDefinition{Name: "sort_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "title", "recency", "search_volume"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-trends-trending-detail":                 operationDefinition{Method: "POST", Path: "/google/trends/trending/detail", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-videos":                                 operationDefinition{Method: "GET", Path: "/google/videos", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"googlepatents-coverage":                        operationDefinition{Method: "GET", Path: "/googlepatents/coverage", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"googlepatents-detail":                          operationDefinition{Method: "GET", Path: "/googlepatents/detail", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "number", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"googlepatents-search":                          operationDefinition{Method: "GET", Path: "/googlepatents/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "inventor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "assignee", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"GRANT", "APPLICATION"}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PATENT", "DESIGN"}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"ENGLISH", "GERMAN", "CHINESE", "FRENCH", "SPANISH", "ARABIC", "JAPANESE", "KOREAN", "PORTUGUESE", "RUSSIAN", "ITALIAN", "DUTCH", "SWEDISH", "FINNISH", "NORWEGIAN", "DANISH"}}, parameterDefinition{Name: "date_field", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"priority", "filing", "publication"}}, parameterDefinition{Name: "before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "new", "old"}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"googlepatents-suggest":                         operationDefinition{Method: "GET", Path: "/googlepatents/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "field", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"inventor", "assignee"}}, parameterDefinition{Name: "value", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"googleplay-app":                                operationDefinition{Method: "GET", Path: "/googleplay/app", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"googleplay-categories":                         operationDefinition{Method: "GET", Path: "/googleplay/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"googleplay-datasafety":                         operationDefinition{Method: "GET", Path: "/googleplay/datasafety", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -30810,7 +31232,9 @@ var operations = map[string]operationDefinition{
 	"hm-categories":                                 operationDefinition{Method: "GET", Path: "/hm/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "department", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"women", "men", "kids", "home", "beauty"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"hm-listing":                                    operationDefinition{Method: "GET", Path: "/hm/listing", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"RELEVANCE", "NEWEST_FIRST", "PRICE_ASCENDING", "PRICE_DESCENDING"}}, parameterDefinition{Name: "is_new", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"hm-product":                                    operationDefinition{Method: "GET", Path: "/hm/product/{product_id}", PathParams: []string{"product_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"hm-product-related":                            operationDefinition{Method: "GET", Path: "/hm/product/{product_id}/related", PathParams: []string{"product_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"hm-search":                                     operationDefinition{Method: "GET", Path: "/hm/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"hm-search-suggestions":                         operationDefinition{Method: "GET", Path: "/hm/search/suggestions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"hm-stores":                                     operationDefinition{Method: "GET", Path: "/hm/stores", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "search", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lng", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_meters", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"imdb-name":                                     operationDefinition{Method: "GET", Path: "/imdb/name", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"imdb-name-awards":                              operationDefinition{Method: "GET", Path: "/imdb/name/awards", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -31560,6 +31984,7 @@ type Services struct {
 	ApplePodcasts      *ApplePodcastsService
 	AppStore           *AppStoreService
 	Autotrader         *AutotraderService
+	BestBuy            *BestBuyService
 	Billing            *BillingService
 	Bing               *BingService
 	Bluesky            *BlueskyService
@@ -31579,6 +32004,7 @@ type Services struct {
 	Depop              *DepopService
 	Discogs            *DiscogsService
 	DoorDash           *DoorDashService
+	DraftKings         *DraftKingsService
 	DuckDuckGoSearch   *DuckDuckGoSearchService
 	EBay               *EBayService
 	Espn               *EspnService
@@ -31591,6 +32017,7 @@ type Services struct {
 	Goodreads          *GoodreadsService
 	GoogleJobs         *GoogleJobsService
 	Google             *GoogleService
+	GooglePatents      *GooglePatentsService
 	GooglePlay         *GooglePlayService
 	HM                 *HMService
 	Imdb               *ImdbService
@@ -31692,6 +32119,7 @@ func initServices(c *Client) Services {
 		ApplePodcasts:      &ApplePodcastsService{client: c},
 		AppStore:           &AppStoreService{client: c},
 		Autotrader:         &AutotraderService{client: c},
+		BestBuy:            &BestBuyService{client: c},
 		Billing:            &BillingService{client: c},
 		Bing:               &BingService{client: c},
 		Bluesky:            &BlueskyService{client: c},
@@ -31711,6 +32139,7 @@ func initServices(c *Client) Services {
 		Depop:              &DepopService{client: c},
 		Discogs:            &DiscogsService{client: c},
 		DoorDash:           &DoorDashService{client: c},
+		DraftKings:         &DraftKingsService{client: c},
 		DuckDuckGoSearch:   &DuckDuckGoSearchService{client: c},
 		EBay:               &EBayService{client: c},
 		Espn:               &EspnService{client: c},
@@ -31723,6 +32152,7 @@ func initServices(c *Client) Services {
 		Goodreads:          &GoodreadsService{client: c},
 		GoogleJobs:         &GoogleJobsService{client: c},
 		Google:             &GoogleService{client: c},
+		GooglePatents:      &GooglePatentsService{client: c},
 		GooglePlay:         &GooglePlayService{client: c},
 		HM:                 &HMService{client: c},
 		Imdb:               &ImdbService{client: c},
@@ -32923,6 +33353,50 @@ type AutotraderVehicleResponse = ModelAutotraderVehicleResponse
 
 func (s *AutotraderService) VehicleTyped(ctx context.Context, params AutotraderVehicleParams, opts ...RequestOption) (AutotraderVehicleResponse, error) {
 	return requestTyped[AutotraderVehicleResponse](s.client, ctx, "autotrader-vehicle", paramsFromStruct(params), opts...)
+}
+
+type BestBuyService struct{ client *Client }
+
+func (s *BestBuyService) BestbuyCategory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bestbuy-category", params, opts...)
+}
+
+type BestBuyBestbuyCategoryParams struct {
+	CategoryId string `crawlora:"category_id"`
+}
+
+type BestBuyBestbuyCategoryResponse = ModelBestbuyCategoryResponseDoc
+
+func (s *BestBuyService) BestbuyCategoryTyped(ctx context.Context, params BestBuyBestbuyCategoryParams, opts ...RequestOption) (BestBuyBestbuyCategoryResponse, error) {
+	return requestTyped[BestBuyBestbuyCategoryResponse](s.client, ctx, "bestbuy-category", paramsFromStruct(params), opts...)
+}
+
+func (s *BestBuyService) BestbuyProduct(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bestbuy-product", params, opts...)
+}
+
+type BestBuyBestbuyProductParams struct {
+	Sku string `crawlora:"sku"`
+}
+
+type BestBuyBestbuyProductResponse = ModelBestbuyProductResponseDoc
+
+func (s *BestBuyService) BestbuyProductTyped(ctx context.Context, params BestBuyBestbuyProductParams, opts ...RequestOption) (BestBuyBestbuyProductResponse, error) {
+	return requestTyped[BestBuyBestbuyProductResponse](s.client, ctx, "bestbuy-product", paramsFromStruct(params), opts...)
+}
+
+func (s *BestBuyService) BestbuyProductReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bestbuy-product-reviews", params, opts...)
+}
+
+type BestBuyBestbuyProductReviewsParams struct {
+	Sku string `crawlora:"sku"`
+}
+
+type BestBuyBestbuyProductReviewsResponse = ModelBestbuyProductReviewsResponseDoc
+
+func (s *BestBuyService) BestbuyProductReviewsTyped(ctx context.Context, params BestBuyBestbuyProductReviewsParams, opts ...RequestOption) (BestBuyBestbuyProductReviewsResponse, error) {
+	return requestTyped[BestBuyBestbuyProductReviewsResponse](s.client, ctx, "bestbuy-product-reviews", paramsFromStruct(params), opts...)
 }
 
 type BillingService struct{ client *Client }
@@ -37236,6 +37710,22 @@ func (s *DepopService) ItemTyped(ctx context.Context, params DepopItemParams, op
 	return requestTyped[DepopItemResponse](s.client, ctx, "depop-item", paramsFromStruct(params), opts...)
 }
 
+func (s *DepopService) ItemSimilar(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "depop-item-similar", params, opts...)
+}
+
+type DepopItemSimilarParams struct {
+	Slug  string  `crawlora:"slug"`
+	Limit *int    `crawlora:"limit,omitempty"`
+	After *string `crawlora:"after,omitempty"`
+}
+
+type DepopItemSimilarResponse = ModelDepopSimilarItemsResponseDoc
+
+func (s *DepopService) ItemSimilarTyped(ctx context.Context, params DepopItemSimilarParams, opts ...RequestOption) (DepopItemSimilarResponse, error) {
+	return requestTyped[DepopItemSimilarResponse](s.client, ctx, "depop-item-similar", paramsFromStruct(params), opts...)
+}
+
 func (s *DepopService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "depop-search", params, opts...)
 }
@@ -37251,6 +37741,7 @@ type DepopSearchParams struct {
 	Category    *string  `crawlora:"category,omitempty"`
 	Subcategory *string  `crawlora:"subcategory,omitempty"`
 	Gender      *string  `crawlora:"gender,omitempty"`
+	IsKids      *bool    `crawlora:"is_kids,omitempty"`
 	BrandIds    *string  `crawlora:"brand_ids,omitempty"`
 	After       *string  `crawlora:"after,omitempty"`
 }
@@ -37588,6 +38079,66 @@ type DoorDashDoordashStoreReviewsResponse = ModelDoordashStoreReviewsResponseDoc
 
 func (s *DoorDashService) DoordashStoreReviewsTyped(ctx context.Context, params DoorDashDoordashStoreReviewsParams, opts ...RequestOption) (DoorDashDoordashStoreReviewsResponse, error) {
 	return requestTyped[DoorDashDoordashStoreReviewsResponse](s.client, ctx, "doordash-store-reviews", paramsFromStruct(params), opts...)
+}
+
+type DraftKingsService struct{ client *Client }
+
+func (s *DraftKingsService) DraftkingsEvent(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "draftkings-event", params, opts...)
+}
+
+type DraftKingsDraftkingsEventParams struct {
+	EventId string `crawlora:"event_id"`
+}
+
+type DraftKingsDraftkingsEventResponse = ModelDraftkingsEventResponseDoc
+
+func (s *DraftKingsService) DraftkingsEventTyped(ctx context.Context, params DraftKingsDraftkingsEventParams, opts ...RequestOption) (DraftKingsDraftkingsEventResponse, error) {
+	return requestTyped[DraftKingsDraftkingsEventResponse](s.client, ctx, "draftkings-event", paramsFromStruct(params), opts...)
+}
+
+func (s *DraftKingsService) DraftkingsEventMarkets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "draftkings-event-markets", params, opts...)
+}
+
+type DraftKingsDraftkingsEventMarketsParams struct {
+	EventId       string `crawlora:"event_id"`
+	SubcategoryId string `crawlora:"subcategory_id"`
+}
+
+type DraftKingsDraftkingsEventMarketsResponse = ModelDraftkingsEventMarketsResponseDoc
+
+func (s *DraftKingsService) DraftkingsEventMarketsTyped(ctx context.Context, params DraftKingsDraftkingsEventMarketsParams, opts ...RequestOption) (DraftKingsDraftkingsEventMarketsResponse, error) {
+	return requestTyped[DraftKingsDraftkingsEventMarketsResponse](s.client, ctx, "draftkings-event-markets", paramsFromStruct(params), opts...)
+}
+
+func (s *DraftKingsService) DraftkingsFutures(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "draftkings-futures", params, opts...)
+}
+
+type DraftKingsDraftkingsFuturesParams struct {
+	LeagueId      string `crawlora:"league_id"`
+	SubcategoryId string `crawlora:"subcategory_id"`
+}
+
+type DraftKingsDraftkingsFuturesResponse = ModelDraftkingsFuturesResponseDoc
+
+func (s *DraftKingsService) DraftkingsFuturesTyped(ctx context.Context, params DraftKingsDraftkingsFuturesParams, opts ...RequestOption) (DraftKingsDraftkingsFuturesResponse, error) {
+	return requestTyped[DraftKingsDraftkingsFuturesResponse](s.client, ctx, "draftkings-futures", paramsFromStruct(params), opts...)
+}
+
+func (s *DraftKingsService) DraftkingsOdds(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "draftkings-odds", params, opts...)
+}
+
+type DraftKingsDraftkingsOddsParams struct {
+	LeagueId string `crawlora:"league_id"`
+}
+
+type DraftKingsDraftkingsOddsResponse = ModelDraftkingsOddsResponseDoc
+
+func (s *DraftKingsService) DraftkingsOddsTyped(ctx context.Context, params DraftKingsDraftkingsOddsParams, opts ...RequestOption) (DraftKingsDraftkingsOddsResponse, error) {
+	return requestTyped[DraftKingsDraftkingsOddsResponse](s.client, ctx, "draftkings-odds", paramsFromStruct(params), opts...)
 }
 
 type DuckDuckGoSearchService struct{ client *Client }
@@ -39366,6 +39917,77 @@ func (s *GoogleService) VideosTyped(ctx context.Context, params GoogleVideosPara
 	return requestTyped[GoogleVideosResponse](s.client, ctx, "google-videos", paramsFromStruct(params), opts...)
 }
 
+type GooglePatentsService struct{ client *Client }
+
+func (s *GooglePatentsService) GooglepatentsCoverage(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "googlepatents-coverage", params, opts...)
+}
+
+type GooglePatentsGooglepatentsCoverageParams struct {
+}
+
+type GooglePatentsGooglepatentsCoverageResponse = ModelGooglepatentsCoverageResponseDoc
+
+func (s *GooglePatentsService) GooglepatentsCoverageTyped(ctx context.Context, params GooglePatentsGooglepatentsCoverageParams, opts ...RequestOption) (GooglePatentsGooglepatentsCoverageResponse, error) {
+	return requestTyped[GooglePatentsGooglepatentsCoverageResponse](s.client, ctx, "googlepatents-coverage", paramsFromStruct(params), opts...)
+}
+
+func (s *GooglePatentsService) GooglepatentsDetail(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "googlepatents-detail", params, opts...)
+}
+
+type GooglePatentsGooglepatentsDetailParams struct {
+	Number string  `crawlora:"number"`
+	Lang   *string `crawlora:"lang,omitempty"`
+}
+
+type GooglePatentsGooglepatentsDetailResponse = ModelGooglepatentsDetailResponseDoc
+
+func (s *GooglePatentsService) GooglepatentsDetailTyped(ctx context.Context, params GooglePatentsGooglepatentsDetailParams, opts ...RequestOption) (GooglePatentsGooglepatentsDetailResponse, error) {
+	return requestTyped[GooglePatentsGooglepatentsDetailResponse](s.client, ctx, "googlepatents-detail", paramsFromStruct(params), opts...)
+}
+
+func (s *GooglePatentsService) GooglepatentsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "googlepatents-search", params, opts...)
+}
+
+type GooglePatentsGooglepatentsSearchParams struct {
+	Q         string  `crawlora:"q"`
+	Inventor  *string `crawlora:"inventor,omitempty"`
+	Assignee  *string `crawlora:"assignee,omitempty"`
+	Country   *string `crawlora:"country,omitempty"`
+	Status    *string `crawlora:"status,omitempty"`
+	Type      *string `crawlora:"type,omitempty"`
+	Language  *string `crawlora:"language,omitempty"`
+	DateField *string `crawlora:"date_field,omitempty"`
+	Before    *string `crawlora:"before,omitempty"`
+	After     *string `crawlora:"after,omitempty"`
+	Sort      *string `crawlora:"sort,omitempty"`
+	Num       *int    `crawlora:"num,omitempty"`
+	Page      *int    `crawlora:"page,omitempty"`
+}
+
+type GooglePatentsGooglepatentsSearchResponse = ModelGooglepatentsSearchResponseDoc
+
+func (s *GooglePatentsService) GooglepatentsSearchTyped(ctx context.Context, params GooglePatentsGooglepatentsSearchParams, opts ...RequestOption) (GooglePatentsGooglepatentsSearchResponse, error) {
+	return requestTyped[GooglePatentsGooglepatentsSearchResponse](s.client, ctx, "googlepatents-search", paramsFromStruct(params), opts...)
+}
+
+func (s *GooglePatentsService) GooglepatentsSuggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "googlepatents-suggest", params, opts...)
+}
+
+type GooglePatentsGooglepatentsSuggestParams struct {
+	Field string `crawlora:"field"`
+	Value string `crawlora:"value"`
+}
+
+type GooglePatentsGooglepatentsSuggestResponse = ModelGooglepatentsSuggestResponseDoc
+
+func (s *GooglePatentsService) GooglepatentsSuggestTyped(ctx context.Context, params GooglePatentsGooglepatentsSuggestParams, opts ...RequestOption) (GooglePatentsGooglepatentsSuggestResponse, error) {
+	return requestTyped[GooglePatentsGooglepatentsSuggestResponse](s.client, ctx, "googlepatents-suggest", paramsFromStruct(params), opts...)
+}
+
 type GooglePlayService struct{ client *Client }
 
 func (s *GooglePlayService) App(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -39607,6 +40229,20 @@ func (s *HMService) HmProductTyped(ctx context.Context, params HMHmProductParams
 	return requestTyped[HMHmProductResponse](s.client, ctx, "hm-product", paramsFromStruct(params), opts...)
 }
 
+func (s *HMService) HmProductRelated(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "hm-product-related", params, opts...)
+}
+
+type HMHmProductRelatedParams struct {
+	ProductId string `crawlora:"product_id"`
+}
+
+type HMHmProductRelatedResponse = ModelHmRelatedResponseDoc
+
+func (s *HMService) HmProductRelatedTyped(ctx context.Context, params HMHmProductRelatedParams, opts ...RequestOption) (HMHmProductRelatedResponse, error) {
+	return requestTyped[HMHmProductRelatedResponse](s.client, ctx, "hm-product-related", paramsFromStruct(params), opts...)
+}
+
 func (s *HMService) HmSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "hm-search", params, opts...)
 }
@@ -39621,6 +40257,20 @@ type HMHmSearchResponse = ModelHmSearchResponseDoc
 
 func (s *HMService) HmSearchTyped(ctx context.Context, params HMHmSearchParams, opts ...RequestOption) (HMHmSearchResponse, error) {
 	return requestTyped[HMHmSearchResponse](s.client, ctx, "hm-search", paramsFromStruct(params), opts...)
+}
+
+func (s *HMService) HmSearchSuggestions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "hm-search-suggestions", params, opts...)
+}
+
+type HMHmSearchSuggestionsParams struct {
+	Query *string `crawlora:"query,omitempty"`
+}
+
+type HMHmSearchSuggestionsResponse = ModelHmSuggestResponseDoc
+
+func (s *HMService) HmSearchSuggestionsTyped(ctx context.Context, params HMHmSearchSuggestionsParams, opts ...RequestOption) (HMHmSearchSuggestionsResponse, error) {
+	return requestTyped[HMHmSearchSuggestionsResponse](s.client, ctx, "hm-search-suggestions", paramsFromStruct(params), opts...)
 }
 
 func (s *HMService) HmStores(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
