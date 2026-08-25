@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.39.0-sdk.1
+
+- Added Ticketmaster attraction endpoints (attraction, attraction events, attraction related, attraction reviews), trending attractions, and enhanced venue details.
+- Added TicketWeb platform support (event, search, venue).
+- Regenerated from the public API contract (1475 operations).
+
 ## v1.38.0-sdk.1
 
 - Regenerated from the public API contract (1468 operations).
