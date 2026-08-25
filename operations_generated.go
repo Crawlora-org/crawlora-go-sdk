@@ -10950,6 +10950,7 @@ type ModelEsTechstackDatasetFacetItem struct {
 
 type ModelEsTechstackRecord struct {
 	Analytics                    []string                        `json:"analytics,omitempty"`
+	BlockMatched                 []string                        `json:"block_matched,omitempty"`
 	Categories                   []string                        `json:"categories,omitempty"`
 	Category                     string                          `json:"category,omitempty"`
 	Cdn                          string                          `json:"cdn,omitempty"`
@@ -10957,9 +10958,12 @@ type ModelEsTechstackRecord struct {
 	DetectorVersion              string                          `json:"detector_version,omitempty"`
 	Domain                       string                          `json:"domain,omitempty"`
 	Ecommerce                    string                          `json:"ecommerce,omitempty"`
+	FailureReason                string                          `json:"failure_reason,omitempty"`
 	FinalUrl                     string                          `json:"final_url,omitempty"`
 	HasCaptcha                   bool                            `json:"has_captcha,omitempty"`
+	IsInfrastructure             bool                            `json:"is_infrastructure,omitempty"`
 	MethodVersion                string                          `json:"method_version,omitempty"`
+	ProbeError                   string                          `json:"probe_error,omitempty"`
 	ProbedAt                     string                          `json:"probed_at,omitempty"`
 	Rank                         int                             `json:"rank,omitempty"`
 	Reachable                    bool                            `json:"reachable,omitempty"`
@@ -24566,11 +24570,13 @@ type ModelSimilarwebSearchResp struct {
 }
 
 type ModelSimilarwebSimilarWebResp struct {
+	AiTrafficDetails       map[string]any   `json:"AiTrafficDetails,omitempty"`
 	Category               string           `json:"Category,omitempty"`
 	CategoryRank           map[string]any   `json:"CategoryRank,omitempty"`
 	Competitors            map[string]any   `json:"Competitors,omitempty"`
 	Countries              []map[string]any `json:"Countries,omitempty"`
 	CountryRank            map[string]any   `json:"CountryRank,omitempty"`
+	DataSource             string           `json:"DataSource,omitempty"`
 	Description            string           `json:"Description,omitempty"`
 	Engagments             map[string]any   `json:"Engagments,omitempty"`
 	EstimatedMonthlyVisits map[string]any   `json:"EstimatedMonthlyVisits,omitempty"`
@@ -27007,16 +27013,6 @@ type ModelTargetSearchResponseDoc struct {
 	Msg  string                    `json:"msg,omitempty"`
 }
 
-type ModelTechstackResult struct {
-	Categories        []string                        `json:"categories,omitempty"`
-	Count             int                             `json:"count,omitempty"`
-	DetectorVersion   string                          `json:"detector_version,omitempty"`
-	FinalUrl          string                          `json:"final_url,omitempty"`
-	Technologies      []ModelTechstackTechnology      `json:"technologies,omitempty"`
-	UnmatchedEvidence ModelTechstackUnmatchedEvidence `json:"unmatched_evidence,omitempty"`
-	Url               string                          `json:"url,omitempty"`
-}
-
 type ModelTechstackTechnology struct {
 	Categories []string `json:"categories,omitempty"`
 	Confidence string   `json:"confidence,omitempty"`
@@ -27170,13 +27166,16 @@ type ModelThreadsSearchResponseDoc struct {
 }
 
 type ModelTicketmasterAttraction struct {
-	Classification ModelTicketmasterClassification `json:"classification,omitempty"`
-	DiscoveryId    string                          `json:"discovery_id,omitempty"`
-	Id             string                          `json:"id,omitempty"`
-	ImageUrl       string                          `json:"image_url,omitempty"`
-	Name           string                          `json:"name,omitempty"`
-	Synopsis       string                          `json:"synopsis,omitempty"`
-	Url            string                          `json:"url,omitempty"`
+	Classification   ModelTicketmasterClassification `json:"classification,omitempty"`
+	DiscoveryId      string                          `json:"discovery_id,omitempty"`
+	HasArtistVideo   bool                            `json:"has_artist_video,omitempty"`
+	Id               string                          `json:"id,omitempty"`
+	ImageUrl         string                          `json:"image_url,omitempty"`
+	Name             string                          `json:"name,omitempty"`
+	SetlistSourceUrl string                          `json:"setlist_source_url,omitempty"`
+	Setlists         []ModelTicketmasterSetlist      `json:"setlists,omitempty"`
+	Synopsis         string                          `json:"synopsis,omitempty"`
+	Url              string                          `json:"url,omitempty"`
 }
 
 type ModelTicketmasterAttractionRef struct {
@@ -27187,10 +27186,32 @@ type ModelTicketmasterAttractionRef struct {
 	Url         string `json:"url,omitempty"`
 }
 
+type ModelTicketmasterAttractionRelatedResponse struct {
+	AttractionId string                           `json:"attraction_id,omitempty"`
+	Attractions  []ModelTicketmasterAttractionRef `json:"attractions,omitempty"`
+	Count        int                              `json:"count,omitempty"`
+	FetchedAt    string                           `json:"fetched_at,omitempty"`
+	SourceUrl    string                           `json:"source_url,omitempty"`
+}
+
 type ModelTicketmasterAttractionResponse struct {
 	Attraction ModelTicketmasterAttraction `json:"attraction,omitempty"`
 	FetchedAt  string                      `json:"fetched_at,omitempty"`
 	SourceUrl  string                      `json:"source_url,omitempty"`
+}
+
+type ModelTicketmasterAttractionReviewsResponse struct {
+	AiReviewSummary string                    `json:"ai_review_summary,omitempty"`
+	AttractionId    string                    `json:"attraction_id,omitempty"`
+	AverageRating   float64                   `json:"average_rating,omitempty"`
+	BestRating      float64                   `json:"best_rating,omitempty"`
+	FetchedAt       string                    `json:"fetched_at,omitempty"`
+	Limit           int                       `json:"limit,omitempty"`
+	Offset          int                       `json:"offset,omitempty"`
+	Reviews         []ModelTicketmasterReview `json:"reviews,omitempty"`
+	SourceUrl       string                    `json:"source_url,omitempty"`
+	TimeZone        string                    `json:"time_zone,omitempty"`
+	Total           int                       `json:"total,omitempty"`
 }
 
 type ModelTicketmasterClassification struct {
@@ -27317,6 +27338,37 @@ type ModelTicketmasterPresale struct {
 	StartTime string `json:"start_time,omitempty"`
 }
 
+type ModelTicketmasterReview struct {
+	City        string `json:"city,omitempty"`
+	DateCreated string `json:"date_created,omitempty"`
+	NickName    string `json:"nick_name,omitempty"`
+	Rating      int    `json:"rating,omitempty"`
+	Review      string `json:"review,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Venue       string `json:"venue,omitempty"`
+}
+
+type ModelTicketmasterSetlist struct {
+	CityName    string                        `json:"city_name,omitempty"`
+	CountryName string                        `json:"country_name,omitempty"`
+	EventDate   string                        `json:"event_date,omitempty"`
+	Sets        []ModelTicketmasterSetlistSet `json:"sets,omitempty"`
+	TourName    string                        `json:"tour_name,omitempty"`
+	VenueName   string                        `json:"venue_name,omitempty"`
+}
+
+type ModelTicketmasterSetlistSet struct {
+	Name  string                         `json:"name,omitempty"`
+	Songs []ModelTicketmasterSetlistSong `json:"songs,omitempty"`
+}
+
+type ModelTicketmasterSetlistSong struct {
+	Name             string `json:"name,omitempty"`
+	OriginalArtist   string `json:"original_artist,omitempty"`
+	PerformanceNotes string `json:"performance_notes,omitempty"`
+	PreRecorded      bool   `json:"pre_recorded,omitempty"`
+}
+
 type ModelTicketmasterSuggestion struct {
 	Category   string `json:"category,omitempty"`
 	EventCount int    `json:"event_count,omitempty"`
@@ -27334,21 +27386,63 @@ type ModelTicketmasterSuggestionsResponse struct {
 	Suggestions []ModelTicketmasterSuggestion `json:"suggestions,omitempty"`
 }
 
+type ModelTicketmasterTrendingAttraction struct {
+	DiscoveryId string                                     `json:"discovery_id,omitempty"`
+	Genre       string                                     `json:"genre,omitempty"`
+	GenreId     string                                     `json:"genre_id,omitempty"`
+	Id          string                                     `json:"id,omitempty"`
+	ImageUrl    string                                     `json:"image_url,omitempty"`
+	Images      []ModelTicketmasterTrendingAttractionImage `json:"images,omitempty"`
+	Name        string                                     `json:"name,omitempty"`
+	Rank        int                                        `json:"rank,omitempty"`
+	Segment     string                                     `json:"segment,omitempty"`
+	SegmentId   string                                     `json:"segment_id,omitempty"`
+	Url         string                                     `json:"url,omitempty"`
+}
+
+type ModelTicketmasterTrendingAttractionImage struct {
+	Ratio string `json:"ratio,omitempty"`
+	Url   string `json:"url,omitempty"`
+}
+
+type ModelTicketmasterTrendingAttractionsResponse struct {
+	Attractions []ModelTicketmasterTrendingAttraction `json:"attractions,omitempty"`
+	Count       int                                   `json:"count,omitempty"`
+	FetchedAt   string                                `json:"fetched_at,omitempty"`
+	SourceUrl   string                                `json:"source_url,omitempty"`
+}
+
 type ModelTicketmasterVenue struct {
-	Address     string                            `json:"address,omitempty"`
-	City        string                            `json:"city,omitempty"`
-	Country     string                            `json:"country,omitempty"`
-	DiscoveryId string                            `json:"discovery_id,omitempty"`
-	Id          string                            `json:"id,omitempty"`
-	ImageUrl    string                            `json:"image_url,omitempty"`
-	Info        []ModelTicketmasterVenueInfoBlock `json:"info,omitempty"`
-	Latitude    float64                           `json:"latitude,omitempty"`
-	Longitude   float64                           `json:"longitude,omitempty"`
-	Name        string                            `json:"name,omitempty"`
-	PostalCode  string                            `json:"postal_code,omitempty"`
-	State       string                            `json:"state,omitempty"`
-	TimeZone    string                            `json:"time_zone,omitempty"`
-	Url         string                            `json:"url,omitempty"`
+	Address        string                               `json:"address,omitempty"`
+	City           string                               `json:"city,omitempty"`
+	CityCategories []ModelTicketmasterVenueCityCategory `json:"city_categories,omitempty"`
+	Country        string                               `json:"country,omitempty"`
+	DiscoveryId    string                               `json:"discovery_id,omitempty"`
+	Id             string                               `json:"id,omitempty"`
+	ImageUrl       string                               `json:"image_url,omitempty"`
+	Info           []ModelTicketmasterVenueInfoBlock    `json:"info,omitempty"`
+	Latitude       float64                              `json:"latitude,omitempty"`
+	Longitude      float64                              `json:"longitude,omitempty"`
+	Name           string                               `json:"name,omitempty"`
+	PostalCode     string                               `json:"postal_code,omitempty"`
+	SeatMaps       []ModelTicketmasterVenueSeatMap      `json:"seat_maps,omitempty"`
+	State          string                               `json:"state,omitempty"`
+	TimeZone       string                               `json:"time_zone,omitempty"`
+	Url            string                               `json:"url,omitempty"`
+}
+
+type ModelTicketmasterVenueCityCategory struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelTicketmasterVenueEnhancedDetailsResponse struct {
+	FetchedAt      string                              `json:"fetched_at,omitempty"`
+	HeaderImageUrl string                              `json:"header_image_url,omitempty"`
+	RelatedLinks   []ModelTicketmasterVenueRelatedLink `json:"related_links,omitempty"`
+	SourceUrl      string                              `json:"source_url,omitempty"`
+	VenueId        string                              `json:"venue_id,omitempty"`
 }
 
 type ModelTicketmasterVenueInfoBlock struct {
@@ -27371,16 +27465,39 @@ type ModelTicketmasterVenueRef struct {
 	Url         string  `json:"url,omitempty"`
 }
 
+type ModelTicketmasterVenueRelatedLink struct {
+	ImageUrl string `json:"image_url,omitempty"`
+	Title    string `json:"title,omitempty"`
+	Url      string `json:"url,omitempty"`
+}
+
 type ModelTicketmasterVenueResponse struct {
 	FetchedAt string                 `json:"fetched_at,omitempty"`
 	SourceUrl string                 `json:"source_url,omitempty"`
 	Venue     ModelTicketmasterVenue `json:"venue,omitempty"`
 }
 
+type ModelTicketmasterVenueSeatMap struct {
+	ImageUrl string `json:"image_url,omitempty"`
+	Name     string `json:"name,omitempty"`
+}
+
+type ModelTicketmasterAttractionRelatedResponseDoc struct {
+	Code int                                        `json:"code,omitempty"`
+	Data ModelTicketmasterAttractionRelatedResponse `json:"data,omitempty"`
+	Msg  string                                     `json:"msg,omitempty"`
+}
+
 type ModelTicketmasterAttractionResponseDoc struct {
 	Code int                                 `json:"code,omitempty"`
 	Data ModelTicketmasterAttractionResponse `json:"data,omitempty"`
 	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelTicketmasterAttractionReviewsResponseDoc struct {
+	Code int                                        `json:"code,omitempty"`
+	Data ModelTicketmasterAttractionReviewsResponse `json:"data,omitempty"`
+	Msg  string                                     `json:"msg,omitempty"`
 }
 
 type ModelTicketmasterCategoriesResponseDoc struct {
@@ -27413,10 +27530,165 @@ type ModelTicketmasterSuggestionsResponseDoc struct {
 	Msg  string                               `json:"msg,omitempty"`
 }
 
+type ModelTicketmasterTrendingAttractionsResponseDoc struct {
+	Code int                                          `json:"code,omitempty"`
+	Data ModelTicketmasterTrendingAttractionsResponse `json:"data,omitempty"`
+	Msg  string                                       `json:"msg,omitempty"`
+}
+
+type ModelTicketmasterVenueEnhancedDetailsResponseDoc struct {
+	Code int                                           `json:"code,omitempty"`
+	Data ModelTicketmasterVenueEnhancedDetailsResponse `json:"data,omitempty"`
+	Msg  string                                        `json:"msg,omitempty"`
+}
+
 type ModelTicketmasterVenueResponseDoc struct {
 	Code int                            `json:"code,omitempty"`
 	Data ModelTicketmasterVenueResponse `json:"data,omitempty"`
 	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelTicketwebAttraction struct {
+	Category string `json:"category,omitempty"`
+	Genre    string `json:"genre,omitempty"`
+	Id       string `json:"id,omitempty"`
+	ImageUrl string `json:"image_url,omitempty"`
+	Name     string `json:"name,omitempty"`
+}
+
+type ModelTicketwebDeliveryMethod struct {
+	Description string `json:"description,omitempty"`
+	Fee         string `json:"fee,omitempty"`
+	Name        string `json:"name,omitempty"`
+}
+
+type ModelTicketwebEventDetail struct {
+	AgeRestriction        int                            `json:"age_restriction,omitempty"`
+	AgeRestrictionMessage string                         `json:"age_restriction_message,omitempty"`
+	AnnounceTime          string                         `json:"announce_time,omitempty"`
+	Attractions           []ModelTicketwebAttraction     `json:"attractions,omitempty"`
+	Currency              string                         `json:"currency,omitempty"`
+	DeliveryMethods       []ModelTicketwebDeliveryMethod `json:"delivery_methods,omitempty"`
+	Description           string                         `json:"description,omitempty"`
+	EndTime               string                         `json:"end_time,omitempty"`
+	HasTickets            bool                           `json:"has_tickets,omitempty"`
+	Id                    string                         `json:"id,omitempty"`
+	ImageUrl              string                         `json:"image_url,omitempty"`
+	Name                  string                         `json:"name,omitempty"`
+	OnSaleTime            string                         `json:"on_sale_time,omitempty"`
+	PriceRange            ModelTicketwebPriceRange       `json:"price_range,omitempty"`
+	Sections              []ModelTicketwebTicketSection  `json:"sections,omitempty"`
+	StartTime             string                         `json:"start_time,omitempty"`
+	TermsAndConditions    string                         `json:"terms_and_conditions,omitempty"`
+	Url                   string                         `json:"url,omitempty"`
+	Venue                 ModelTicketwebEventVenue       `json:"venue,omitempty"`
+}
+
+type ModelTicketwebEventResponse struct {
+	Event     ModelTicketwebEventDetail `json:"event,omitempty"`
+	FetchedAt string                    `json:"fetched_at,omitempty"`
+	SourceUrl string                    `json:"source_url,omitempty"`
+}
+
+type ModelTicketwebEventSummary struct {
+	Availability string                 `json:"availability,omitempty"`
+	Id           string                 `json:"id,omitempty"`
+	ImageUrl     string                 `json:"image_url,omitempty"`
+	Name         string                 `json:"name,omitempty"`
+	StartTime    string                 `json:"start_time,omitempty"`
+	Url          string                 `json:"url,omitempty"`
+	Venue        ModelTicketwebVenueRef `json:"venue,omitempty"`
+}
+
+type ModelTicketwebEventVenue struct {
+	Address    string `json:"address,omitempty"`
+	City       string `json:"city,omitempty"`
+	Country    string `json:"country,omitempty"`
+	Id         string `json:"id,omitempty"`
+	MapImage   string `json:"map_image,omitempty"`
+	Name       string `json:"name,omitempty"`
+	PostalCode string `json:"postal_code,omitempty"`
+	State      string `json:"state,omitempty"`
+	TimeZone   string `json:"time_zone,omitempty"`
+}
+
+type ModelTicketwebPriceRange struct {
+	Max float64 `json:"max,omitempty"`
+	Min float64 `json:"min,omitempty"`
+}
+
+type ModelTicketwebSearchResponse struct {
+	Count     int                          `json:"count,omitempty"`
+	Events    []ModelTicketwebEventSummary `json:"events,omitempty"`
+	FetchedAt string                       `json:"fetched_at,omitempty"`
+	Page      int                          `json:"page,omitempty"`
+	Query     string                       `json:"query,omitempty"`
+	SourceUrl string                       `json:"source_url,omitempty"`
+}
+
+type ModelTicketwebTicketFees struct {
+	CreditCard float64 `json:"credit_card,omitempty"`
+	Facility   float64 `json:"facility,omitempty"`
+	PerTicket  float64 `json:"per_ticket,omitempty"`
+	Rebate     float64 `json:"rebate,omitempty"`
+	Taxes      float64 `json:"taxes,omitempty"`
+}
+
+type ModelTicketwebTicketPrice struct {
+	Base             float64                  `json:"base,omitempty"`
+	Fees             ModelTicketwebTicketFees `json:"fees,omitempty"`
+	MaxPurchaseLimit int                      `json:"max_purchase_limit,omitempty"`
+	MinPurchaseLimit int                      `json:"min_purchase_limit,omitempty"`
+	Name             string                   `json:"name,omitempty"`
+	SoldOut          bool                     `json:"sold_out,omitempty"`
+	Total            float64                  `json:"total,omitempty"`
+}
+
+type ModelTicketwebTicketSection struct {
+	Name          string                      `json:"name,omitempty"`
+	Prices        []ModelTicketwebTicketPrice `json:"prices,omitempty"`
+	PurchaseLimit int                         `json:"purchase_limit,omitempty"`
+	SoldOut       bool                        `json:"sold_out,omitempty"`
+}
+
+type ModelTicketwebVenueDetail struct {
+	Address string `json:"address,omitempty"`
+	Id      string `json:"id,omitempty"`
+	Name    string `json:"name,omitempty"`
+	Url     string `json:"url,omitempty"`
+}
+
+type ModelTicketwebVenueRef struct {
+	Address string `json:"address,omitempty"`
+	Name    string `json:"name,omitempty"`
+	Url     string `json:"url,omitempty"`
+}
+
+type ModelTicketwebVenueResponse struct {
+	Count     int                          `json:"count,omitempty"`
+	Events    []ModelTicketwebEventSummary `json:"events,omitempty"`
+	FetchedAt string                       `json:"fetched_at,omitempty"`
+	Page      int                          `json:"page,omitempty"`
+	SourceUrl string                       `json:"source_url,omitempty"`
+	Venue     ModelTicketwebVenueDetail    `json:"venue,omitempty"`
+}
+
+type ModelTicketwebEventResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelTicketwebEventResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelTicketwebSearchResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelTicketwebSearchResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelTicketwebVenueResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelTicketwebVenueResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
 }
 
 type ModelTiktokCategory struct {
@@ -30493,6 +30765,19 @@ type ModelWebTechStackOption struct {
 	Url    string `json:"url"`
 }
 
+type ModelWebTechStackResult struct {
+	Categories        []string                        `json:"categories,omitempty"`
+	Count             int                             `json:"count,omitempty"`
+	DetectorVersion   string                          `json:"detector_version,omitempty"`
+	FailureReason     string                          `json:"failure_reason,omitempty"`
+	FinalUrl          string                          `json:"final_url,omitempty"`
+	IsInfrastructure  bool                            `json:"is_infrastructure,omitempty"`
+	Reachable         bool                            `json:"reachable,omitempty"`
+	Technologies      []ModelTechstackTechnology      `json:"technologies,omitempty"`
+	UnmatchedEvidence ModelTechstackUnmatchedEvidence `json:"unmatched_evidence,omitempty"`
+	Url               string                          `json:"url,omitempty"`
+}
+
 type ModelWebBillingRejectionDoc struct {
 	CreditCost            int    `json:"credit_cost,omitempty"`
 	CreditsIncluded       int    `json:"credits_included,omitempty"`
@@ -30525,9 +30810,9 @@ type ModelWebScrapeResponseDoc struct {
 }
 
 type ModelWebTechStackResponseDoc struct {
-	Code int                  `json:"code,omitempty"`
-	Data ModelTechstackResult `json:"data,omitempty"`
-	Msg  string               `json:"msg,omitempty"`
+	Code int                     `json:"code,omitempty"`
+	Data ModelWebTechStackResult `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
 }
 
 type ModelWebmonitorCheckDoc struct {
@@ -33894,7 +34179,7 @@ type ModelZillowSearchResponse struct {
 	Results  []ModelZillowPropertyItem `json:"results,omitempty"`
 }
 
-const operationCount = 1468
+const operationCount = 1475
 
 const (
 	OperationAccountDeletionCancel                                  = "account-deletion-cancel"
@@ -35104,8 +35389,13 @@ const (
 	OperationThreadsProfile                                         = "threads-profile"
 	OperationThreadsProfilePosts                                    = "threads-profile-posts"
 	OperationThreadsSearch                                          = "threads-search"
+	OperationTicketWebTicketwebEvent                                = "ticketweb-event"
+	OperationTicketWebTicketwebSearch                               = "ticketweb-search"
+	OperationTicketWebTicketwebVenue                                = "ticketweb-venue"
 	OperationTicketmasterAttraction                                 = "ticketmaster-attraction"
 	OperationTicketmasterAttractionEvents                           = "ticketmaster-attraction-events"
+	OperationTicketmasterAttractionRelated                          = "ticketmaster-attraction-related"
+	OperationTicketmasterAttractionReviews                          = "ticketmaster-attraction-reviews"
 	OperationTicketmasterDiscoverCategories                         = "ticketmaster-discover-categories"
 	OperationTicketmasterDiscoverCategoryEvents                     = "ticketmaster-discover-category-events"
 	OperationTicketmasterDiscoverCities                             = "ticketmaster-discover-cities"
@@ -35113,7 +35403,9 @@ const (
 	OperationTicketmasterEvent                                      = "ticketmaster-event"
 	OperationTicketmasterSearchEvents                               = "ticketmaster-search-events"
 	OperationTicketmasterSuggest                                    = "ticketmaster-suggest"
+	OperationTicketmasterTrendingAttractions                        = "ticketmaster-trending-attractions"
 	OperationTicketmasterVenue                                      = "ticketmaster-venue"
+	OperationTicketmasterVenueEnhancedDetails                       = "ticketmaster-venue-enhanced-details"
 	OperationTicketmasterVenueEvents                                = "ticketmaster-venue-events"
 	OperationTikTokCategory                                         = "tiktok-category"
 	OperationTikTokChallenge                                        = "tiktok-challenge"
@@ -35727,9 +36019,9 @@ var operations = map[string]operationDefinition{
 	"datasets-steam-playercounts-search":            operationDefinition{Method: "GET", Path: "/datasets/steam-playercounts/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"date_desc", "date_asc", "players_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-steam-prices-search":                  operationDefinition{Method: "GET", Path: "/datasets/steam-prices/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"date_desc", "date_asc", "price_asc", "price_desc", "discount_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-steam-reviews-search":                 operationDefinition{Method: "GET", Path: "/datasets/steam-reviews/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "voted_up", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"votes_desc", "weighted_desc", "date_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
-	"datasets-techstack-facets":                     operationDefinition{Method: "GET", Path: "/datasets/techstack/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"technology", "category", "cms", "ecommerce", "cdn", "web_server", "server_language", "analytics", "tld", "render_tier", "seed_source"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "technology", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "any_of", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "not", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cms", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ecommerce", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cdn", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "web_server", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "server_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tld", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "render_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"http", "browser"}}, parameterDefinition{Name: "seed_source", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_captcha", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "reachable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_tech_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-techstack-facets":                     operationDefinition{Method: "GET", Path: "/datasets/techstack/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"technology", "category", "cms", "ecommerce", "cdn", "web_server", "server_language", "analytics", "tld", "render_tier", "seed_source"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "technology", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "any_of", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "not", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cms", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ecommerce", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cdn", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "web_server", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "server_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tld", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "render_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"http", "browser"}}, parameterDefinition{Name: "seed_source", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_captcha", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_infrastructure", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "reachable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_tech_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-techstack-item":                       operationDefinition{Method: "GET", Path: "/datasets/techstack/items/{domain}", PathParams: []string{"domain"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"datasets-techstack-search":                     operationDefinition{Method: "GET", Path: "/datasets/techstack/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "technology", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "any_of", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "not", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cms", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ecommerce", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cdn", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "web_server", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "server_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tld", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "render_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"http", "browser"}}, parameterDefinition{Name: "seed_source", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_captcha", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "reachable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_tech_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "rank_asc", "tech_count_desc", "domain_asc", "crawled_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-techstack-search":                     operationDefinition{Method: "GET", Path: "/datasets/techstack/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "technology", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "any_of", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "not", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cms", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ecommerce", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cdn", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "web_server", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "server_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tld", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "render_tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"http", "browser"}}, parameterDefinition{Name: "seed_source", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_captcha", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_infrastructure", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "reachable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_tech_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "rank_asc", "tech_count_desc", "domain_asc", "crawled_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-trustmrr-facets":                      operationDefinition{Method: "GET", Path: "/datasets/trustmrr/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"category", "country", "payment_provider", "target_audience", "business_type", "tech", "channels", "listing_tier", "status", "on_sale", "is_sponsored", "tags"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "payment_provider", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "on_sale", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_mrr", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-trustmrr-history":                     operationDefinition{Method: "GET", Path: "/datasets/trustmrr/history/{slug}", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-trustmrr-item":                        operationDefinition{Method: "GET", Path: "/datasets/trustmrr/items/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -36577,6 +36869,8 @@ var operations = map[string]operationDefinition{
 	"threads-search":                                operationDefinition{Method: "GET", Path: "/threads/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"ticketmaster-attraction":                       operationDefinition{Method: "GET", Path: "/ticketmaster/attraction", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"ticketmaster-attraction-events":                operationDefinition{Method: "GET", Path: "/ticketmaster/attraction-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "date"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"ticketmaster-attraction-related":               operationDefinition{Method: "GET", Path: "/ticketmaster/attraction-related", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ticketmaster-attraction-reviews":               operationDefinition{Method: "GET", Path: "/ticketmaster/attraction-reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"ticketmaster-discover-categories":              operationDefinition{Method: "GET", Path: "/ticketmaster/discover-categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "concerts", "sports", "arts-theater", "family"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"ticketmaster-discover-category-events":         operationDefinition{Method: "GET", Path: "/ticketmaster/discover-category-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"ticketmaster-discover-cities":                  operationDefinition{Method: "GET", Path: "/ticketmaster/discover-cities", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -36584,8 +36878,13 @@ var operations = map[string]operationDefinition{
 	"ticketmaster-event":                            operationDefinition{Method: "GET", Path: "/ticketmaster/event", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"ticketmaster-search-events":                    operationDefinition{Method: "GET", Path: "/ticketmaster/search-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "date"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"ticketmaster-suggest":                          operationDefinition{Method: "GET", Path: "/ticketmaster/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ticketmaster-trending-attractions":             operationDefinition{Method: "GET", Path: "/ticketmaster/trending-attractions", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"ticketmaster-venue":                            operationDefinition{Method: "GET", Path: "/ticketmaster/venue", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ticketmaster-venue-enhanced-details":           operationDefinition{Method: "GET", Path: "/ticketmaster/venue-enhanced-details", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"ticketmaster-venue-events":                     operationDefinition{Method: "GET", Path: "/ticketmaster/venue-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "date"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"ticketweb-event":                               operationDefinition{Method: "GET", Path: "/ticketweb/event", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ticketweb-search":                              operationDefinition{Method: "GET", Path: "/ticketweb/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"ticketweb-venue":                               operationDefinition{Method: "GET", Path: "/ticketweb/venue", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"tiktok-category":                               operationDefinition{Method: "GET", Path: "/tiktok/category", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"tiktok-video-comments":                         operationDefinition{Method: "GET", Path: "/tiktok/comments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "aweme_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
 	"tiktok-creative-center-hashtags":               operationDefinition{Method: "GET", Path: "/tiktok/creative-center/hashtags", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country_code", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "period", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"7", "30"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -36960,6 +37259,7 @@ type Services struct {
 	TheBodyShop             *TheBodyShopService
 	Threads                 *ThreadsService
 	Ticketmaster            *TicketmasterService
+	TicketWeb               *TicketWebService
 	TikTok                  *TikTokService
 	Tmdb                    *TmdbService
 	TripAdvisor             *TripAdvisorService
@@ -37122,6 +37422,7 @@ func initServices(c *Client) Services {
 		TheBodyShop:             &TheBodyShopService{client: c},
 		Threads:                 &ThreadsService{client: c},
 		Ticketmaster:            &TicketmasterService{client: c},
+		TicketWeb:               &TicketWebService{client: c},
 		TikTok:                  &TikTokService{client: c},
 		Tmdb:                    &TmdbService{client: c},
 		TripAdvisor:             &TripAdvisorService{client: c},
@@ -43623,24 +43924,25 @@ func (s *DatasetsService) TechstackFacets(ctx context.Context, params Params, op
 }
 
 type DatasetsTechstackFacetsParams struct {
-	Facet          string   `crawlora:"facet"`
-	Q              *string  `crawlora:"q,omitempty"`
-	Technology     []string `crawlora:"technology"`
-	AnyOf          []string `crawlora:"any_of"`
-	Not            []string `crawlora:"not"`
-	Category       *string  `crawlora:"category,omitempty"`
-	Cms            *string  `crawlora:"cms,omitempty"`
-	Ecommerce      *string  `crawlora:"ecommerce,omitempty"`
-	Cdn            *string  `crawlora:"cdn,omitempty"`
-	WebServer      *string  `crawlora:"web_server,omitempty"`
-	ServerLanguage *string  `crawlora:"server_language,omitempty"`
-	Tld            *string  `crawlora:"tld,omitempty"`
-	RenderTier     *string  `crawlora:"render_tier,omitempty"`
-	SeedSource     *string  `crawlora:"seed_source,omitempty"`
-	HasCaptcha     *bool    `crawlora:"has_captcha,omitempty"`
-	Reachable      *bool    `crawlora:"reachable,omitempty"`
-	MinTechCount   *int     `crawlora:"min_tech_count,omitempty"`
-	RunId          *string  `crawlora:"run_id,omitempty"`
+	Facet            string   `crawlora:"facet"`
+	Q                *string  `crawlora:"q,omitempty"`
+	Technology       []string `crawlora:"technology"`
+	AnyOf            []string `crawlora:"any_of"`
+	Not              []string `crawlora:"not"`
+	Category         *string  `crawlora:"category,omitempty"`
+	Cms              *string  `crawlora:"cms,omitempty"`
+	Ecommerce        *string  `crawlora:"ecommerce,omitempty"`
+	Cdn              *string  `crawlora:"cdn,omitempty"`
+	WebServer        *string  `crawlora:"web_server,omitempty"`
+	ServerLanguage   *string  `crawlora:"server_language,omitempty"`
+	Tld              *string  `crawlora:"tld,omitempty"`
+	RenderTier       *string  `crawlora:"render_tier,omitempty"`
+	SeedSource       *string  `crawlora:"seed_source,omitempty"`
+	HasCaptcha       *bool    `crawlora:"has_captcha,omitempty"`
+	IsInfrastructure *bool    `crawlora:"is_infrastructure,omitempty"`
+	Reachable        *bool    `crawlora:"reachable,omitempty"`
+	MinTechCount     *int     `crawlora:"min_tech_count,omitempty"`
+	RunId            *string  `crawlora:"run_id,omitempty"`
 }
 
 type DatasetsTechstackFacetsResponse = ModelDatasetsTechstackFacetResponseDoc
@@ -43668,26 +43970,27 @@ func (s *DatasetsService) TechstackSearch(ctx context.Context, params Params, op
 }
 
 type DatasetsTechstackSearchParams struct {
-	Q              *string  `crawlora:"q,omitempty"`
-	Technology     []string `crawlora:"technology"`
-	AnyOf          []string `crawlora:"any_of"`
-	Not            []string `crawlora:"not"`
-	Category       *string  `crawlora:"category,omitempty"`
-	Cms            *string  `crawlora:"cms,omitempty"`
-	Ecommerce      *string  `crawlora:"ecommerce,omitempty"`
-	Cdn            *string  `crawlora:"cdn,omitempty"`
-	WebServer      *string  `crawlora:"web_server,omitempty"`
-	ServerLanguage *string  `crawlora:"server_language,omitempty"`
-	Tld            *string  `crawlora:"tld,omitempty"`
-	RenderTier     *string  `crawlora:"render_tier,omitempty"`
-	SeedSource     *string  `crawlora:"seed_source,omitempty"`
-	HasCaptcha     *bool    `crawlora:"has_captcha,omitempty"`
-	Reachable      *bool    `crawlora:"reachable,omitempty"`
-	MinTechCount   *int     `crawlora:"min_tech_count,omitempty"`
-	RunId          *string  `crawlora:"run_id,omitempty"`
-	Sort           *string  `crawlora:"sort,omitempty"`
-	Page           *int     `crawlora:"page,omitempty"`
-	PageSize       *int     `crawlora:"page_size,omitempty"`
+	Q                *string  `crawlora:"q,omitempty"`
+	Technology       []string `crawlora:"technology"`
+	AnyOf            []string `crawlora:"any_of"`
+	Not              []string `crawlora:"not"`
+	Category         *string  `crawlora:"category,omitempty"`
+	Cms              *string  `crawlora:"cms,omitempty"`
+	Ecommerce        *string  `crawlora:"ecommerce,omitempty"`
+	Cdn              *string  `crawlora:"cdn,omitempty"`
+	WebServer        *string  `crawlora:"web_server,omitempty"`
+	ServerLanguage   *string  `crawlora:"server_language,omitempty"`
+	Tld              *string  `crawlora:"tld,omitempty"`
+	RenderTier       *string  `crawlora:"render_tier,omitempty"`
+	SeedSource       *string  `crawlora:"seed_source,omitempty"`
+	HasCaptcha       *bool    `crawlora:"has_captcha,omitempty"`
+	IsInfrastructure *bool    `crawlora:"is_infrastructure,omitempty"`
+	Reachable        *bool    `crawlora:"reachable,omitempty"`
+	MinTechCount     *int     `crawlora:"min_tech_count,omitempty"`
+	RunId            *string  `crawlora:"run_id,omitempty"`
+	Sort             *string  `crawlora:"sort,omitempty"`
+	Page             *int     `crawlora:"page,omitempty"`
+	PageSize         *int     `crawlora:"page_size,omitempty"`
 }
 
 type DatasetsTechstackSearchResponse = ModelDatasetsTechstackSearchResponseDoc
@@ -57258,6 +57561,36 @@ func (s *TicketmasterService) AttractionEventsTyped(ctx context.Context, params 
 	return requestTyped[TicketmasterAttractionEventsResponse](s.client, ctx, "ticketmaster-attraction-events", paramsFromStruct(params), opts...)
 }
 
+func (s *TicketmasterService) AttractionRelated(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ticketmaster-attraction-related", params, opts...)
+}
+
+type TicketmasterAttractionRelatedParams struct {
+	Id string `crawlora:"id"`
+}
+
+type TicketmasterAttractionRelatedResponse = ModelTicketmasterAttractionRelatedResponseDoc
+
+func (s *TicketmasterService) AttractionRelatedTyped(ctx context.Context, params TicketmasterAttractionRelatedParams, opts ...RequestOption) (TicketmasterAttractionRelatedResponse, error) {
+	return requestTyped[TicketmasterAttractionRelatedResponse](s.client, ctx, "ticketmaster-attraction-related", paramsFromStruct(params), opts...)
+}
+
+func (s *TicketmasterService) AttractionReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ticketmaster-attraction-reviews", params, opts...)
+}
+
+type TicketmasterAttractionReviewsParams struct {
+	Id     string `crawlora:"id"`
+	Offset *int   `crawlora:"offset,omitempty"`
+	Limit  *int   `crawlora:"limit,omitempty"`
+}
+
+type TicketmasterAttractionReviewsResponse = ModelTicketmasterAttractionReviewsResponseDoc
+
+func (s *TicketmasterService) AttractionReviewsTyped(ctx context.Context, params TicketmasterAttractionReviewsParams, opts ...RequestOption) (TicketmasterAttractionReviewsResponse, error) {
+	return requestTyped[TicketmasterAttractionReviewsResponse](s.client, ctx, "ticketmaster-attraction-reviews", paramsFromStruct(params), opts...)
+}
+
 func (s *TicketmasterService) DiscoverCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "ticketmaster-discover-categories", params, opts...)
 }
@@ -57365,6 +57698,19 @@ func (s *TicketmasterService) SuggestTyped(ctx context.Context, params Ticketmas
 	return requestTyped[TicketmasterSuggestResponse](s.client, ctx, "ticketmaster-suggest", paramsFromStruct(params), opts...)
 }
 
+func (s *TicketmasterService) TrendingAttractions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ticketmaster-trending-attractions", params, opts...)
+}
+
+type TicketmasterTrendingAttractionsParams struct {
+}
+
+type TicketmasterTrendingAttractionsResponse = ModelTicketmasterTrendingAttractionsResponseDoc
+
+func (s *TicketmasterService) TrendingAttractionsTyped(ctx context.Context, params TicketmasterTrendingAttractionsParams, opts ...RequestOption) (TicketmasterTrendingAttractionsResponse, error) {
+	return requestTyped[TicketmasterTrendingAttractionsResponse](s.client, ctx, "ticketmaster-trending-attractions", paramsFromStruct(params), opts...)
+}
+
 func (s *TicketmasterService) Venue(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "ticketmaster-venue", params, opts...)
 }
@@ -57377,6 +57723,20 @@ type TicketmasterVenueResponse = ModelTicketmasterVenueResponseDoc
 
 func (s *TicketmasterService) VenueTyped(ctx context.Context, params TicketmasterVenueParams, opts ...RequestOption) (TicketmasterVenueResponse, error) {
 	return requestTyped[TicketmasterVenueResponse](s.client, ctx, "ticketmaster-venue", paramsFromStruct(params), opts...)
+}
+
+func (s *TicketmasterService) VenueEnhancedDetails(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ticketmaster-venue-enhanced-details", params, opts...)
+}
+
+type TicketmasterVenueEnhancedDetailsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type TicketmasterVenueEnhancedDetailsResponse = ModelTicketmasterVenueEnhancedDetailsResponseDoc
+
+func (s *TicketmasterService) VenueEnhancedDetailsTyped(ctx context.Context, params TicketmasterVenueEnhancedDetailsParams, opts ...RequestOption) (TicketmasterVenueEnhancedDetailsResponse, error) {
+	return requestTyped[TicketmasterVenueEnhancedDetailsResponse](s.client, ctx, "ticketmaster-venue-enhanced-details", paramsFromStruct(params), opts...)
 }
 
 func (s *TicketmasterService) VenueEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -57393,6 +57753,52 @@ type TicketmasterVenueEventsResponse = ModelTicketmasterEventsResponseDoc
 
 func (s *TicketmasterService) VenueEventsTyped(ctx context.Context, params TicketmasterVenueEventsParams, opts ...RequestOption) (TicketmasterVenueEventsResponse, error) {
 	return requestTyped[TicketmasterVenueEventsResponse](s.client, ctx, "ticketmaster-venue-events", paramsFromStruct(params), opts...)
+}
+
+type TicketWebService struct{ client *Client }
+
+func (s *TicketWebService) TicketwebEvent(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ticketweb-event", params, opts...)
+}
+
+type TicketWebTicketwebEventParams struct {
+	Id string `crawlora:"id"`
+}
+
+type TicketWebTicketwebEventResponse = ModelTicketwebEventResponseDoc
+
+func (s *TicketWebService) TicketwebEventTyped(ctx context.Context, params TicketWebTicketwebEventParams, opts ...RequestOption) (TicketWebTicketwebEventResponse, error) {
+	return requestTyped[TicketWebTicketwebEventResponse](s.client, ctx, "ticketweb-event", paramsFromStruct(params), opts...)
+}
+
+func (s *TicketWebService) TicketwebSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ticketweb-search", params, opts...)
+}
+
+type TicketWebTicketwebSearchParams struct {
+	Q    string `crawlora:"q"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type TicketWebTicketwebSearchResponse = ModelTicketwebSearchResponseDoc
+
+func (s *TicketWebService) TicketwebSearchTyped(ctx context.Context, params TicketWebTicketwebSearchParams, opts ...RequestOption) (TicketWebTicketwebSearchResponse, error) {
+	return requestTyped[TicketWebTicketwebSearchResponse](s.client, ctx, "ticketweb-search", paramsFromStruct(params), opts...)
+}
+
+func (s *TicketWebService) TicketwebVenue(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ticketweb-venue", params, opts...)
+}
+
+type TicketWebTicketwebVenueParams struct {
+	Id   string `crawlora:"id"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type TicketWebTicketwebVenueResponse = ModelTicketwebVenueResponseDoc
+
+func (s *TicketWebService) TicketwebVenueTyped(ctx context.Context, params TicketWebTicketwebVenueParams, opts ...RequestOption) (TicketWebTicketwebVenueResponse, error) {
+	return requestTyped[TicketWebTicketwebVenueResponse](s.client, ctx, "ticketweb-venue", paramsFromStruct(params), opts...)
 }
 
 type TikTokService struct{ client *Client }

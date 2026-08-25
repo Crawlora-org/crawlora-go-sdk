@@ -915,7 +915,7 @@
     "agoda.DetailResponse": {
       "properties": {
         "accommodation_type": {
-          "description": "AccommodationType is Agoda's own numeric property-type code\n(contentSummary.accommodationType), confirmed live 2026-08-05 --\nsee notes/agoda-maintenance.md for the full set of codes observed.\nKnown values: 34 = Hotel, 33 = Hostel, 37 = Resort, 120 = Apartment.",
+          "description": "AccommodationType is Agoda's own numeric property-type code\n(contentSummary.accommodationType), confirmed live 2026-08-05.\nKnown values: 34 = Hotel, 33 = Hostel, 37 = Resort, 120 = Apartment.",
           "example": 34,
           "type": "integer"
         },
@@ -965,7 +965,7 @@
           "type": "number"
         },
         "source_url": {
-          "description": "SourceURL is a real, live-verified Agoda URL that resolves directly to\nthis property (Agoda's own affiliate redirect target), even though it\nis not the pretty slug-based hotel page -- see notes/agoda-maintenance.md.",
+          "description": "SourceURL is a real, live-verified Agoda URL that resolves directly to\nthis property (Agoda's own affiliate redirect target), even though it\nis not the pretty slug-based hotel page.",
           "example": "https://www.agoda.com/search?cid=-1&selectedproperty=10637&city=9395",
           "type": "string"
         }
@@ -5742,7 +5742,7 @@
           "type": "string"
         },
         "is_preorderable": {
-          "description": "IsPreorderable and ProductState are what actually distinguishes a\n\"coming soon\" preorder title from an already-released one — there is\nno upstream query filter for this (confirmed no-op on every param\ntried, see notes/audible-maintenance.md), so combine\nsort_by=-ReleaseDate with filtering results on IsPreorderable\nyourself to build a \"coming soon\" view.",
+          "description": "IsPreorderable and ProductState are what actually distinguishes a\n\"coming soon\" preorder title from an already-released one — there is\nno upstream query filter for this, so combine sort_by=-ReleaseDate\nwith filtering results on IsPreorderable yourself to build a\n\"coming soon\" view.",
           "type": "boolean"
         },
         "language": {
@@ -9937,7 +9937,7 @@
           "$ref": "#/definitions/bing.SearchContext"
         },
         "low_confidence": {
-          "description": "LowConfidence is true when Bing returned a well-formed page whose\norganic results share no significant term with the query -- a known\nupstream anomaly (see notes/bing-maintenance.md, \"Bing serves\nwrong-topic organic results for long-tail queries\") where Bing serves\nan unrelated SERP for certain multi-word queries instead of a\nchallenge page or an error. The fields above are exactly what Bing\nreturned; nothing is fabricated, reordered, or filtered. Treat a true\nvalue as a hint to double-check relevance (or retry) before trusting\nthe results, not as a guarantee they are wrong -- some low-confidence\nresponses are still perfectly good, they just didn't literally repeat\na distinctive word from the query. Omitted (false) on every ordinary\nresponse.",
+          "description": "LowConfidence is true when Bing returned a well-formed page whose\norganic results share no significant term with the query -- a known\nupstream anomaly where Bing serves an unrelated SERP for certain\nmulti-word queries instead of a challenge page or an error. The\nfields above are exactly what Bing\nreturned; nothing is fabricated, reordered, or filtered. Treat a true\nvalue as a hint to double-check relevance (or retry) before trusting\nthe results, not as a guarantee they are wrong -- some low-confidence\nresponses are still perfectly good, they just didn't literally repeat\na distinctive word from the query. Omitted (false) on every ordinary\nresponse.",
           "example": false,
           "type": "boolean"
         },
@@ -14996,7 +14996,7 @@
           "type": "string"
         },
         "engine_torque_lb_ft": {
-          "description": "The fields below are only populated on the mobile-API-backed search\npath (Search) -- exact engine/performance numbers and listing\nmetadata the website scrape never carried. All omitempty and\nadditive; existing consumers reading only the fields above see no\nchange. See notes/carmax-maintenance.md's \"Search and vehicle detail\nmigrated onto the mobile API\" section.",
+          "description": "The fields below are only populated on the mobile-API-backed search\npath -- exact engine/performance numbers and listing metadata the\nwebsite scrape never carried. All omitempty and additive; existing\nconsumers reading only the fields above see no change.",
           "example": 480,
           "type": "integer"
         },
@@ -15206,7 +15206,7 @@
           "type": "string"
         },
         "engine_torque_lb_ft": {
-          "description": "The fields below are only populated on the mobile-API-backed search\npath (Search) -- exact engine/performance numbers and listing\nmetadata the website scrape never carried. All omitempty and\nadditive; existing consumers reading only the fields above see no\nchange. See notes/carmax-maintenance.md's \"Search and vehicle detail\nmigrated onto the mobile API\" section.",
+          "description": "The fields below are only populated on the mobile-API-backed search\npath -- exact engine/performance numbers and listing metadata the\nwebsite scrape never carried. All omitempty and additive; existing\nconsumers reading only the fields above see no change.",
           "example": 480,
           "type": "integer"
         },
@@ -24673,7 +24673,7 @@
           "type": "string"
         },
         "like_count": {
-          "description": "LikeCount is the listing's like count. Depop's search API only\nincludes this field when the request asks for it -- searchURL always\nrequests it (include_like_count=true), so this is populated on every\nsearch result. Confirmed live 2026-08-15 (see notes/depop-maintenance.md).",
+          "description": "LikeCount is the listing's like count. Depop's search API only\nincludes this field when the request asks for it -- this endpoint\nalways requests it, so this is populated on every search result.\nConfirmed live 2026-08-15.",
           "type": "integer"
         },
         "location": {
@@ -28603,7 +28603,7 @@
           "type": "array"
         },
         "next_cursor": {
-          "description": "NextCursor is upstream's own pagination cursor for this listing set.\nCursor-based continuation is not yet exposed as a caller-facing input\n(see notes/ebay-maintenance.md's coverage-expansion section); this\nfield is surfaced for forward compatibility and informational use.",
+          "description": "NextCursor is upstream's own pagination cursor for this listing set.\nCursor-based continuation is not yet exposed as a caller-facing input;\nthis field is surfaced for forward compatibility and informational use.",
           "type": "string"
         }
       },
@@ -29750,7 +29750,7 @@
           "type": "string"
         },
         "discovery_source": {
-          "description": "Crawl bookkeeping. DiscoverySource records how the CURRENT document\ncontent was obtained (last-crawl mechanism), not first-discovery\nprovenance -- v1's keyword-sweep, category-grid, and Common Crawl\ndiscovery all share one Redis queue keyed by the profile URL alone (so\nthe same business is never double-enqueued no matter how many\nsearch/category cells or CC records surface it), so a richer\nper-discovery-event location/category isn't tracked through to the\ncrawl worker, only the coarse source. See notes/bbb-dataset-maintenance.md\nand notes/public-source-cc-scans-maintenance.md.",
+          "description": "Crawl bookkeeping. DiscoverySource records how the CURRENT document\ncontent was obtained (last-crawl mechanism), not first-discovery\nprovenance -- keyword-sweep, category-grid, and Common Crawl discovery\nare deduplicated against the same business, so the same business is\nnever double-enqueued no matter how many search/category cells or CC\nrecords surface it. A richer per-discovery-event location/category\nisn't tracked, only the coarse source.",
           "type": "string"
         },
         "entity_type": {
@@ -32423,7 +32423,7 @@
           "type": "string"
         },
         "row_ids": {
-          "description": "RowIDs[i][j] is \"<kind>/<id>\" when Rows[i][j]'s cell links to another\nPitchBook profile, \"\" otherwise. Mirrors services/pitchbook.DataTable.RowIDs.",
+          "description": "RowIDs[i][j] is \"<kind>/<id>\" when Rows[i][j]'s cell links to another\nPitchBook profile, \"\" otherwise.",
           "items": {
             "items": {
               "type": "string"
@@ -33144,7 +33144,7 @@
           "type": "array"
         },
         "reporting_currency": {
-          "description": "Native-currency figures are exactly as the filer reported them (see\nReportingCurrency); the *USD fields are the same values converted at fixed\nreference rates (services/sec.CurrencyToUSD) so they can be sorted, banded\nand range-filtered ACROSS currencies. Screen on the USD fields; display the\nnative value + currency.",
+          "description": "Native-currency figures are exactly as the filer reported them (see\nReportingCurrency); the *USD fields are the same values converted at fixed\nreference rates so they can be sorted, banded and range-filtered ACROSS\ncurrencies. Screen on the USD fields; display the native value + currency.",
           "type": "string"
         },
         "revenue_band": {
@@ -33634,7 +33634,7 @@
           "type": "integer"
         },
         "tags": {
-          "description": "Tags is the weighted community-tag taxonomy (Roguelike/Metroidvania/Cozy...),\nordered most-weighted first — the crowd tags appdetails genres omit. Populated\nby the separate tag-enrichment pass (workers/steamdb tag mode via IStoreBrowseService),\nnot the main crawl. TagIDs is the parallel raw id list; PrimaryTag is Tags[0].",
+          "description": "Tags is the weighted community-tag taxonomy (Roguelike/Metroidvania/Cozy...),\nordered most-weighted first — the crowd tags appdetails genres omit.\nPopulated by a separate tag-enrichment pass, not the main crawl. TagIDs\nis the parallel raw id list; PrimaryTag is Tags[0].",
           "items": {
             "type": "string"
           },
@@ -33847,6 +33847,13 @@
           },
           "type": "array"
         },
+        "block_matched": {
+          "description": "block/challenge marker strings that matched, when FailureReason is a block/challenge classification",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "categories": {
           "description": "distinct, sorted; category facets",
           "items": {
@@ -33875,6 +33882,10 @@
         "ecommerce": {
           "type": "string"
         },
+        "failure_reason": {
+          "description": "failure diagnostics: populated whenever a probe attempt didn't fully\npass, even if the site still counts as reachable (e.g. a blocked page\nreturning a non-5xx status). Unset for a fully passing site.",
+          "type": "string"
+        },
         "final_url": {
           "description": "URL that produced the adopted body (after www. fallback / redirects)",
           "type": "string"
@@ -33882,7 +33893,15 @@
         "has_captcha": {
           "type": "boolean"
         },
+        "is_infrastructure": {
+          "description": "IsInfrastructure flags a backend CDN/DNS/cloud-vendor/registry hostname\n(e.g. cloudfront.net, gtld-servers.net) rather than a real,\nhuman-navigable website. Best-effort heuristic: a false negative\n(unflagged) is not proof a domain is a real site.",
+          "type": "boolean"
+        },
         "method_version": {
+          "type": "string"
+        },
+        "probe_error": {
+          "description": "raw transport error's first line (e.g. \"context deadline exceeded\", \"no such host\"), when there was one",
           "type": "string"
         },
         "probed_at": {
@@ -33937,7 +33956,7 @@
           "type": "array"
         },
         "secondary_pages_discovered": {
-          "description": "secondary-page telemetry (only populated when TECHSTACK_SECONDARY_PAGES\nis enabled and at least one secondary page was DISCOVERED on the\nhomepage nav for this domain — see workers/techstackscan1m's\ndiscoverSecondaryPages/fetchSecondaryPages). \"Discovered\" and\n\"fetched\" are deliberately distinct: a candidate can be found on the\nhomepage nav but still fail to fetch (403/timeout/block page) — that\nfailure is recorded in SecondaryPages (Fetched=false), not silently\ndropped.",
+          "description": "secondary-page telemetry: populated when the crawl looked for extra\nnon-homepage pages (opt-in per run) and discovered at least one on the\nhomepage nav for this domain. \"Discovered\" and \"fetched\" are\ndeliberately distinct: a candidate can be found on the homepage nav\nbut still fail to fetch (e.g. blocked or timed out) — that failure is\nrecorded in SecondaryPages (Fetched=false), not silently dropped.",
           "type": "integer"
         },
         "secondary_pages_fetched": {
@@ -34306,7 +34325,7 @@
     "es.VehicleListingRecord": {
       "properties": {
         "accident_count": {
-          "description": "AccidentCount/OwnerCount come from a source's vehicle-history detail\n(CarMax's own /vehicle/{stock_number} History block as of 2026-08-20;\nreserved for other sources with an equivalent field). Pointers, not\nplain ints: 0 is a real, safety-relevant claim (\"confirmed zero\naccidents\") distinct from \"we haven't enriched this listing yet\" --\nsee services/carmax/dto.go's History doc comment for the same\nreasoning. Populated only for a bounded number of newly-discovered\nlistings per crawl pass (see workers/vehiclelistings's\ncarMaxEnrichPerPass), not backfilled for the whole catalog at once.",
+          "description": "AccidentCount/OwnerCount come from a source's vehicle-history detail\n(CarMax's own /vehicle/{stock_number} History block as of 2026-08-20;\nreserved for other sources with an equivalent field). Pointers, not\nplain ints: 0 is a real, safety-relevant claim (\"confirmed zero\naccidents\") distinct from \"we haven't enriched this listing yet\".\nPopulated only for a bounded number of newly-discovered listings per\ncrawl pass, not backfilled for the whole catalog at once.",
           "type": "integer"
         },
         "body_style": {
@@ -57267,7 +57286,7 @@
           "type": "integer"
         },
         "rating_histogram": {
-          "description": "RatingHistogram is the count of ratings per star, ascending: index 0\nis 1-star, index 4 is 5-star. Matches\nservices/oldnavy.ProductReviewsResponse's own convention.",
+          "description": "RatingHistogram is the count of ratings per star, ascending: index 0\nis 1-star, index 4 is 5-star.",
           "items": {
             "type": "integer"
           },
@@ -72082,7 +72101,7 @@
           "type": "integer"
         },
         "ratings_only": {
-          "description": "RatingsOnly marks a review that carries only a star rating with no\nwritten title/body -- Bazaarvoice allows these and this endpoint still\nsurfaces them, matching the same field already documented for Macy's\n(services/macys/reviews.go) and Kohl's Bazaarvoice integrations.",
+          "description": "RatingsOnly marks a review that carries only a star rating with no\nwritten title/body -- Bazaarvoice allows these and this endpoint still\nsurfaces them.",
           "type": "boolean"
         },
         "recommended": {
@@ -76013,6 +76032,110 @@
     },
     "similarweb.SimilarWebResp": {
       "properties": {
+        "AiTrafficDetails": {
+          "description": "AiTrafficDetails carries SimilarWeb's AI-chatbot traffic insights (the\nextension's \"AI Traffic\" feature set): which AI platforms send traffic\nto this domain, how that mix changed over recent months, and the top\nprompts users asked those chatbots that referred visits here. Left at\nits zero value when DataSource is \"public_page\" because that source\ndoesn't expose it.",
+          "properties": {
+            "ReferralTraffic": {
+              "type": "number"
+            },
+            "TopPrompts": {
+              "properties": {
+                "ErrorMessage": {
+                  "type": "string"
+                },
+                "Prompts": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Status": {
+                  "type": "integer"
+                }
+              },
+              "type": "object"
+            },
+            "TotalVisits": {
+              "type": "number"
+            },
+            "Traffic": {
+              "properties": {
+                "Distribution": {
+                  "properties": {
+                    "Boundary": {
+                      "type": "string"
+                    },
+                    "Chart": {
+                      "items": {
+                        "properties": {
+                          "History": {
+                            "items": {
+                              "properties": {
+                                "Date": {
+                                  "type": "string"
+                                },
+                                "Value": {
+                                  "type": "number"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "Icon": {
+                            "type": "string"
+                          },
+                          "Name": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "Chatbots": {
+                      "items": {
+                        "properties": {
+                          "Icon": {
+                            "type": "string"
+                          },
+                          "Name": {
+                            "type": "string"
+                          },
+                          "Value": {
+                            "type": "number"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Split": {
+                  "items": {
+                    "properties": {
+                      "Icon": {
+                        "type": "string"
+                      },
+                      "Name": {
+                        "type": "string"
+                      },
+                      "Rank": {
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
         "Category": {
           "type": "string"
         },
@@ -76066,6 +76189,11 @@
             }
           },
           "type": "object"
+        },
+        "DataSource": {
+          "description": "DataSource reports which upstream this response was populated from.\n\"extension_api\" is the full-coverage source (SimilarWeb's undocumented\nbrowser-extension API); \"public_page\" is a narrower, credential-free\nfallback (see website.go) used only when the extension API is\nunreachable -- some fields above are left at their zero value when\nDataSource is \"public_page\" because this source doesn't expose them.\nSee docs/similarweb-web.md for the full field-availability breakdown.",
+          "example": "extension_api",
+          "type": "string"
         },
         "Description": {
           "type": "string"
@@ -83562,43 +83690,6 @@
       },
       "type": "object"
     },
-    "techstack.Result": {
-      "properties": {
-        "categories": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "count": {
-          "type": "integer"
-        },
-        "detector_version": {
-          "type": "string"
-        },
-        "final_url": {
-          "type": "string"
-        },
-        "technologies": {
-          "items": {
-            "$ref": "#/definitions/techstack.Technology"
-          },
-          "type": "array"
-        },
-        "unmatched_evidence": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/techstack.UnmatchedEvidence"
-            }
-          ],
-          "description": "UnmatchedEvidence is the SAME script-src/link-href/generator evidence\nthe signature matcher already parses out of the page, filtered down to\nwhat did NOT match any current signature — the raw material for\n\"what vendor should we add a signature for next?\" (see\nworkers/techstackscan1m's run-wide frequency tally, which is the actual\ndurable artifact; this per-page field is not persisted per-site)."
-        },
-        "url": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "techstack.Technology": {
       "properties": {
         "categories": {
@@ -84046,6 +84137,9 @@
           "example": "K8vZ9172Qo7",
           "type": "string"
         },
+        "has_artist_video": {
+          "type": "boolean"
+        },
         "id": {
           "example": "1688071",
           "type": "string"
@@ -84056,6 +84150,15 @@
         "name": {
           "example": "Ariana Grande",
           "type": "string"
+        },
+        "setlist_source_url": {
+          "type": "string"
+        },
+        "setlists": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.Setlist"
+          },
+          "type": "array"
         },
         "synopsis": {
           "type": "string"
@@ -84089,6 +84192,30 @@
       },
       "type": "object"
     },
+    "ticketmaster.AttractionRelatedResponse": {
+      "properties": {
+        "attraction_id": {
+          "example": "1688071",
+          "type": "string"
+        },
+        "attractions": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.AttractionRef"
+          },
+          "type": "array"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ticketmaster.AttractionResponse": {
       "properties": {
         "attraction": {
@@ -84099,6 +84226,54 @@
         },
         "source_url": {
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.AttractionReviewsResponse": {
+      "properties": {
+        "ai_review_summary": {
+          "type": "string"
+        },
+        "attraction_id": {
+          "example": "1688071",
+          "type": "string"
+        },
+        "average_rating": {
+          "example": 4.6,
+          "type": "number"
+        },
+        "best_rating": {
+          "example": 5,
+          "type": "number"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "limit": {
+          "example": 10,
+          "type": "integer"
+        },
+        "offset": {
+          "example": 0,
+          "type": "integer"
+        },
+        "reviews": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.Review"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "time_zone": {
+          "example": "America/New_York",
+          "type": "string"
+        },
+        "total": {
+          "example": 2024,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -84489,6 +84664,104 @@
       },
       "type": "object"
     },
+    "ticketmaster.Review": {
+      "properties": {
+        "city": {
+          "example": "Chicago",
+          "type": "string"
+        },
+        "date_created": {
+          "example": "2026-08-14T16:14:29Z",
+          "type": "string"
+        },
+        "nick_name": {
+          "example": "Lynn",
+          "type": "string"
+        },
+        "rating": {
+          "example": 5,
+          "type": "integer"
+        },
+        "review": {
+          "type": "string"
+        },
+        "title": {
+          "example": "Best concert of my life",
+          "type": "string"
+        },
+        "venue": {
+          "example": "United Center",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.Setlist": {
+      "properties": {
+        "city_name": {
+          "example": "London",
+          "type": "string"
+        },
+        "country_name": {
+          "example": "United Kingdom",
+          "type": "string"
+        },
+        "event_date": {
+          "example": "2026-08-20",
+          "type": "string"
+        },
+        "sets": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.SetlistSet"
+          },
+          "type": "array"
+        },
+        "tour_name": {
+          "example": "Eternal Sunshine",
+          "type": "string"
+        },
+        "venue_name": {
+          "example": "The O2 Arena",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.SetlistSet": {
+      "properties": {
+        "name": {
+          "example": "Act I",
+          "type": "string"
+        },
+        "songs": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.SetlistSong"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.SetlistSong": {
+      "properties": {
+        "name": {
+          "example": "thank u, next",
+          "type": "string"
+        },
+        "original_artist": {
+          "example": "Lady Gaga",
+          "type": "string"
+        },
+        "performance_notes": {
+          "example": "extended outro",
+          "type": "string"
+        },
+        "pre_recorded": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "ticketmaster.Suggestion": {
       "properties": {
         "category": {
@@ -84535,6 +84808,88 @@
       },
       "type": "object"
     },
+    "ticketmaster.TrendingAttraction": {
+      "properties": {
+        "discovery_id": {
+          "example": "K8vZ9172Qo7",
+          "type": "string"
+        },
+        "genre": {
+          "example": "Pop",
+          "type": "string"
+        },
+        "genre_id": {
+          "example": "KnvZfZ7vAev",
+          "type": "string"
+        },
+        "id": {
+          "example": "1688071",
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "images": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.TrendingAttractionImage"
+          },
+          "type": "array"
+        },
+        "name": {
+          "example": "Ariana Grande",
+          "type": "string"
+        },
+        "rank": {
+          "example": 1,
+          "type": "integer"
+        },
+        "segment": {
+          "example": "Music",
+          "type": "string"
+        },
+        "segment_id": {
+          "example": "KZFzniwnSyZfZ7v7nJ",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.TrendingAttractionImage": {
+      "properties": {
+        "ratio": {
+          "example": "16_9",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.TrendingAttractionsResponse": {
+      "properties": {
+        "attractions": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.TrendingAttraction"
+          },
+          "type": "array"
+        },
+        "count": {
+          "example": 10,
+          "type": "integer"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ticketmaster.Venue": {
       "properties": {
         "address": {
@@ -84544,6 +84899,12 @@
         "city": {
           "example": "Chicago",
           "type": "string"
+        },
+        "city_categories": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.VenueCityCategory"
+          },
+          "type": "array"
         },
         "country": {
           "example": "US",
@@ -84582,6 +84943,12 @@
           "example": "60612",
           "type": "string"
         },
+        "seat_maps": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.VenueSeatMap"
+          },
+          "type": "array"
+        },
         "state": {
           "example": "IL",
           "type": "string"
@@ -84591,6 +84958,46 @@
           "type": "string"
         },
         "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.VenueCityCategory": {
+      "properties": {
+        "id": {
+          "example": "KZFzniwnSyZfZ7v7nJ",
+          "type": "string"
+        },
+        "name": {
+          "example": "Concerts",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.VenueEnhancedDetailsResponse": {
+      "properties": {
+        "fetched_at": {
+          "type": "string"
+        },
+        "header_image_url": {
+          "type": "string"
+        },
+        "related_links": {
+          "items": {
+            "$ref": "#/definitions/ticketmaster.VenueRelatedLink"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "venue_id": {
+          "example": "32882",
           "type": "string"
         }
       },
@@ -84659,6 +85066,21 @@
       },
       "type": "object"
     },
+    "ticketmaster.VenueRelatedLink": {
+      "properties": {
+        "image_url": {
+          "type": "string"
+        },
+        "title": {
+          "example": "Chicago Bulls",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ticketmaster.VenueResponse": {
       "properties": {
         "fetched_at": {
@@ -84673,6 +85095,34 @@
       },
       "type": "object"
     },
+    "ticketmaster.VenueSeatMap": {
+      "properties": {
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Chicago Bulls",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.attractionRelatedResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/ticketmaster.AttractionRelatedResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ticketmaster.attractionResponseDoc": {
       "properties": {
         "code": {
@@ -84681,6 +85131,22 @@
         },
         "data": {
           "$ref": "#/definitions/ticketmaster.AttractionResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.attractionReviewsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/ticketmaster.AttractionReviewsResponse"
         },
         "msg": {
           "example": "OK",
@@ -84763,6 +85229,38 @@
       },
       "type": "object"
     },
+    "ticketmaster.trendingAttractionsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/ticketmaster.TrendingAttractionsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketmaster.venueEnhancedDetailsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/ticketmaster.VenueEnhancedDetailsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ticketmaster.venueResponseDoc": {
       "properties": {
         "code": {
@@ -84771,6 +85269,441 @@
         },
         "data": {
           "$ref": "#/definitions/ticketmaster.VenueResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketweb.Attraction": {
+      "properties": {
+        "category": {
+          "example": "Arts & Theater",
+          "type": "string"
+        },
+        "genre": {
+          "example": "Comedy",
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Comedy Beast",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketweb.DeliveryMethod": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "fee": {
+          "example": "Free",
+          "type": "string"
+        },
+        "name": {
+          "example": "eTickets",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketweb.EventDetail": {
+      "properties": {
+        "age_restriction": {
+          "example": 18,
+          "type": "integer"
+        },
+        "age_restriction_message": {
+          "example": "Ages 18+",
+          "type": "string"
+        },
+        "announce_time": {
+          "type": "string"
+        },
+        "attractions": {
+          "items": {
+            "$ref": "#/definitions/ticketweb.Attraction"
+          },
+          "type": "array"
+        },
+        "currency": {
+          "example": "USD",
+          "type": "string"
+        },
+        "delivery_methods": {
+          "items": {
+            "$ref": "#/definitions/ticketweb.DeliveryMethod"
+          },
+          "type": "array"
+        },
+        "description": {
+          "type": "string"
+        },
+        "end_time": {
+          "type": "string"
+        },
+        "has_tickets": {
+          "example": true,
+          "type": "boolean"
+        },
+        "id": {
+          "example": "14241184",
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Comedy Beast",
+          "type": "string"
+        },
+        "on_sale_time": {
+          "example": "2026-07-01T12:05:00.000-05:00",
+          "type": "string"
+        },
+        "price_range": {
+          "$ref": "#/definitions/ticketweb.PriceRange"
+        },
+        "sections": {
+          "items": {
+            "$ref": "#/definitions/ticketweb.TicketSection"
+          },
+          "type": "array"
+        },
+        "start_time": {
+          "example": "2026-08-25T19:30:00.000-05:00",
+          "type": "string"
+        },
+        "terms_and_conditions": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "venue": {
+          "$ref": "#/definitions/ticketweb.EventVenue"
+        }
+      },
+      "type": "object"
+    },
+    "ticketweb.EventResponse": {
+      "properties": {
+        "event": {
+          "$ref": "#/definitions/ticketweb.EventDetail"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketweb.EventSummary": {
+      "properties": {
+        "availability": {
+          "enum": [
+            "in_stock",
+            "sold_out",
+            "unknown"
+          ],
+          "example": "in_stock",
+          "type": "string"
+        },
+        "id": {
+          "example": "14241184",
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Comedy Beast",
+          "type": "string"
+        },
+        "start_time": {
+          "example": "2026-08-25T19:30",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "venue": {
+          "$ref": "#/definitions/ticketweb.VenueRef"
+        }
+      },
+      "type": "object"
+    },
+    "ticketweb.EventVenue": {
+      "properties": {
+        "address": {
+          "example": "907 South Peters",
+          "type": "string"
+        },
+        "city": {
+          "example": "New Orleans",
+          "type": "string"
+        },
+        "country": {
+          "example": "US",
+          "type": "string"
+        },
+        "id": {
+          "example": "15005",
+          "type": "string"
+        },
+        "map_image": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Howlin' Wolf",
+          "type": "string"
+        },
+        "postal_code": {
+          "example": "70130",
+          "type": "string"
+        },
+        "state": {
+          "example": "LA",
+          "type": "string"
+        },
+        "time_zone": {
+          "example": "US/Central",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketweb.PriceRange": {
+      "properties": {
+        "max": {
+          "example": 8.16,
+          "type": "number"
+        },
+        "min": {
+          "example": 8.16,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ticketweb.SearchResponse": {
+      "properties": {
+        "count": {
+          "example": 20,
+          "type": "integer"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/definitions/ticketweb.EventSummary"
+          },
+          "type": "array"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "query": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketweb.TicketFees": {
+      "properties": {
+        "credit_card": {
+          "example": 0.16,
+          "type": "number"
+        },
+        "facility": {
+          "type": "number"
+        },
+        "per_ticket": {
+          "example": 1.5,
+          "type": "number"
+        },
+        "rebate": {
+          "example": 1.5,
+          "type": "number"
+        },
+        "taxes": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ticketweb.TicketPrice": {
+      "properties": {
+        "base": {
+          "example": 5,
+          "type": "number"
+        },
+        "fees": {
+          "$ref": "#/definitions/ticketweb.TicketFees"
+        },
+        "max_purchase_limit": {
+          "example": 10,
+          "type": "integer"
+        },
+        "min_purchase_limit": {
+          "type": "integer"
+        },
+        "name": {
+          "example": "GA Seating",
+          "type": "string"
+        },
+        "sold_out": {
+          "type": "boolean"
+        },
+        "total": {
+          "example": 8.16,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ticketweb.TicketSection": {
+      "properties": {
+        "name": {
+          "example": "GA Seating",
+          "type": "string"
+        },
+        "prices": {
+          "items": {
+            "$ref": "#/definitions/ticketweb.TicketPrice"
+          },
+          "type": "array"
+        },
+        "purchase_limit": {
+          "example": 10,
+          "type": "integer"
+        },
+        "sold_out": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ticketweb.VenueDetail": {
+      "properties": {
+        "address": {
+          "example": "907 South Peters, New Orleans, LA 70130",
+          "type": "string"
+        },
+        "id": {
+          "example": "15005",
+          "type": "string"
+        },
+        "name": {
+          "example": "Howlin' Wolf",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketweb.VenueRef": {
+      "properties": {
+        "address": {
+          "example": "New Orleans, LA",
+          "type": "string"
+        },
+        "name": {
+          "example": "Howlin' Wolf",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketweb.VenueResponse": {
+      "properties": {
+        "count": {
+          "example": 20,
+          "type": "integer"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/definitions/ticketweb.EventSummary"
+          },
+          "type": "array"
+        },
+        "fetched_at": {
+          "type": "string"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "venue": {
+          "$ref": "#/definitions/ticketweb.VenueDetail"
+        }
+      },
+      "type": "object"
+    },
+    "ticketweb.eventResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/ticketweb.EventResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketweb.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/ticketweb.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ticketweb.venueResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/ticketweb.VenueResponse"
         },
         "msg": {
           "example": "OK",
@@ -95053,6 +95986,53 @@
       ],
       "type": "object"
     },
+    "web.TechStackResult": {
+      "properties": {
+        "categories": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "detector_version": {
+          "type": "string"
+        },
+        "failure_reason": {
+          "type": "string"
+        },
+        "final_url": {
+          "type": "string"
+        },
+        "is_infrastructure": {
+          "description": "IsInfrastructure is true when the URL's host looks like backend\ninfrastructure (a CDN, DNS, or cloud-vendor hostname) rather than a\nreal, human-navigable website.",
+          "type": "boolean"
+        },
+        "reachable": {
+          "type": "boolean"
+        },
+        "technologies": {
+          "items": {
+            "$ref": "#/definitions/techstack.Technology"
+          },
+          "type": "array"
+        },
+        "unmatched_evidence": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/techstack.UnmatchedEvidence"
+            }
+          ],
+          "description": "UnmatchedEvidence is the third-party script/stylesheet host domains and\n<meta generator> value seen on the page that don't match any current\nsignature — useful for spotting a vendor worth requesting coverage for."
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "web.billingRejectionDoc": {
       "properties": {
         "credit_cost": {
@@ -95189,7 +96169,7 @@
           "type": "integer"
         },
         "data": {
-          "$ref": "#/definitions/techstack.Result"
+          "$ref": "#/definitions/web.TechStackResult"
         },
         "msg": {
           "example": "OK",
@@ -137784,6 +138764,12 @@
             "type": "boolean"
           },
           {
+            "description": "false (the common case) excludes backend CDN/DNS/cloud-vendor hostnames that rank highly but were never meant to serve a public homepage, keeping only real, human-navigable sites; true keeps only those backend hostnames",
+            "in": "query",
+            "name": "is_infrastructure",
+            "type": "boolean"
+          },
+          {
             "description": "true keeps only sites whose homepage was fetched",
             "in": "query",
             "name": "reachable",
@@ -137847,7 +138833,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns one site by its domain from dataset id enum value `techstack`, including every detected technology (name, categories, confidence, version, evidence) plus the CMS / e-commerce / CDN / web-server / server-language rollups. Returns 404 when the domain is not in the index.",
+        "description": "Returns one site by its domain from dataset id enum value `techstack`, including every detected technology (name, categories, confidence, version, evidence) plus the CMS / e-commerce / CDN / web-server / server-language rollups. Also flags whether the domain looks like backend CDN/DNS/cloud-vendor infrastructure rather than a real, human-navigable site (see `is_infrastructure`). Returns 404 when the domain is not in the index.",
         "operationId": "datasets-techstack-item",
         "parameters": [
           {
@@ -138010,6 +138996,12 @@
             "description": "true keeps only sites with a detected CAPTCHA",
             "in": "query",
             "name": "has_captcha",
+            "type": "boolean"
+          },
+          {
+            "description": "false (the common case) excludes backend CDN/DNS/cloud-vendor hostnames that rank highly but were never meant to serve a public homepage, keeping only real, human-navigable sites; true keeps only those backend hostnames",
+            "in": "query",
+            "name": "is_infrastructure",
             "type": "boolean"
           },
           {
@@ -169173,7 +170165,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns lululemon's own complete physical store directory (480 US and 86 Canada locations as of this endpoint's own research), including regular weekly hours and in-store amenities. All filters are optional and applied locally after fetching the full directory -- there is no live geo-search API on a credential-free host for this platform (see notes/lululemon-maintenance.md). country and state are free-text equality filters against the values this directory actually carries (2-letter codes, e.g. US/CA, NY/CA), not an enforced enum. lat and lng (both required together) filter to stores within radius_miles (1 to 500, defaults to 50), sorted nearest-first.",
+        "description": "Returns lululemon's own complete physical store directory (480 US and 86 Canada locations as of this endpoint's own research), including regular weekly hours and in-store amenities. All filters are optional and applied locally after fetching the full directory -- there is no live geo-search API on a credential-free host for this platform. country and state are free-text equality filters against the values this directory actually carries (2-letter codes, e.g. US/CA, NY/CA), not an enforced enum. lat and lng (both required together) filter to stores within radius_miles (1 to 500, defaults to 50), sorted nearest-first.",
         "operationId": "lululemon-stores",
         "parameters": [
           {
@@ -172679,7 +173671,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Creates a monitor that periodically checks a page or sitemap for changes and can notify a webhook. Free to call -- only completed check runs (services/webmonitor's cron-driven scrape/sitemap fetch) consume credits, at 1 credit per completed run regardless of target type or whether a change was detected. `target_type` defaults to \"page\" (exact-fingerprint diff of the scraped page). \"sitemap\" watches the sitemap at `url` for added/removed entries instead, honoring `sitemap.include_patterns`/`exclude_patterns` (shell-style globs matched against each URL's path) and `sitemap.max_urls` (default 5000, hard cap 10000).",
+        "description": "Creates a monitor that periodically checks a page or sitemap for changes and can notify a webhook. Free to call -- only completed check runs consume credits, at 1 credit per completed run regardless of target type or whether a change was detected. `target_type` defaults to \"page\" (exact-fingerprint diff of the scraped page). \"sitemap\" watches the sitemap at `url` for added/removed entries instead, honoring `sitemap.include_patterns`/`exclude_patterns` (shell-style globs matched against each URL's path) and `sitemap.max_urls` (default 5000, hard cap 10000).",
         "operationId": "monitors-create",
         "parameters": [
           {
@@ -201216,6 +202208,150 @@
         ]
       }
     },
+    "/ticketmaster/attraction-related": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the \"Fans Also Viewed\" attractions shown on one attraction's own page. An attraction with no recommendation data returns a valid empty list.",
+        "operationId": "ticketmaster-attraction-related",
+        "parameters": [
+          {
+            "description": "Numeric Ticketmaster attraction id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "1688071"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ticketmaster.attractionRelatedResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Ticketmaster attraction's related attractions",
+        "tags": [
+          "Ticketmaster"
+        ]
+      }
+    },
+    "/ticketmaster/attraction-reviews": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns paginated fan reviews for one attraction, including its aggregate rating and Ticketmaster's own AI-generated review summary.",
+        "operationId": "ticketmaster-attraction-reviews",
+        "parameters": [
+          {
+            "description": "Numeric Ticketmaster attraction id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "1688071"
+          },
+          {
+            "default": 0,
+            "description": "Result offset (0-9995)",
+            "in": "query",
+            "maximum": 9995,
+            "minimum": 0,
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "description": "Reviews per page (10-50)",
+            "in": "query",
+            "maximum": 50,
+            "minimum": 10,
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ticketmaster.attractionReviewsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Ticketmaster attraction's fan reviews",
+        "tags": [
+          "Ticketmaster"
+        ]
+      }
+    },
     "/ticketmaster/discover-categories": {
       "get": {
         "description": "Lists every current Concerts, Sports, Arts & Theater, and Family category with pagination. Section accepts `all`, `concerts`, `sports`, `arts-theater`, and `family`.",
@@ -201663,6 +202799,47 @@
         ]
       }
     },
+    "/ticketmaster/trending-attractions": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a ranked list of currently-trending attractions across every segment (music, sports, arts and theater, family), not scoped to one category or city.",
+        "operationId": "ticketmaster-trending-attractions",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ticketmaster.trendingAttractionsResponseDoc"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List trending Ticketmaster attractions",
+        "tags": [
+          "Ticketmaster"
+        ]
+      }
+    },
     "/ticketmaster/venue": {
       "get": {
         "consumes": [
@@ -201721,6 +202898,69 @@
           }
         ],
         "summary": "Get a Ticketmaster venue",
+        "tags": [
+          "Ticketmaster"
+        ]
+      }
+    },
+    "/ticketmaster/venue-enhanced-details": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns header branding imagery and external links (the venue's own site, resident teams) for major venues. Smaller venues without enhanced content return 404.",
+        "operationId": "ticketmaster-venue-enhanced-details",
+        "parameters": [
+          {
+            "description": "Numeric Ticketmaster venue id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "32882"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ticketmaster.venueEnhancedDetailsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Ticketmaster venue's enhanced branding details",
         "tags": [
           "Ticketmaster"
         ]
@@ -201800,6 +203040,189 @@
         "summary": "List a venue's Ticketmaster events",
         "tags": [
           "Ticketmaster"
+        ]
+      }
+    },
+    "/ticketweb/event": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized details for one TicketWeb event: venue, dates, age restriction, delivery methods, and per-tier ticket pricing (base price, fee breakdown, and total) when tickets are on sale. `has_tickets` is false and `sections` is empty for a free/RSVP event with no paid tickets, a sold-out event, or an access-code-gated event -- TicketWeb's own data does not reliably distinguish these three cases at this level, so the response reports the shared observable state (no purchasable sections) rather than guessing which applies.",
+        "operationId": "ticketweb-event",
+        "parameters": [
+          {
+            "description": "Numeric TicketWeb event id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "14241184"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ticketweb.eventResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a TicketWeb event",
+        "tags": [
+          "TicketWeb"
+        ]
+      }
+    },
+    "/ticketweb/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches TicketWeb events by artist, event, or venue. A zero count with an empty events list is a valid no-results response. availability is one of `in_stock`, `sold_out`, `unknown` per event.",
+        "operationId": "ticketweb-search",
+        "parameters": [
+          {
+            "description": "Artist, event, or venue query",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string",
+            "x-example": "comedy"
+          },
+          {
+            "default": 1,
+            "description": "One-based result page, 1-50",
+            "in": "query",
+            "maximum": 50,
+            "minimum": 1,
+            "name": "page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ticketweb.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search TicketWeb events",
+        "tags": [
+          "TicketWeb"
+        ]
+      }
+    },
+    "/ticketweb/venue": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one TicketWeb venue's detail (name, address) plus one page of its upcoming events. A zero count with an empty events list on page 1 is a valid \"no upcoming events\" response.",
+        "operationId": "ticketweb-venue",
+        "parameters": [
+          {
+            "description": "Numeric TicketWeb venue id",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "15005"
+          },
+          {
+            "default": 1,
+            "description": "One-based page of upcoming events, 1-50",
+            "in": "query",
+            "maximum": 50,
+            "minimum": 1,
+            "name": "page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ticketweb.venueResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a TicketWeb venue",
+        "tags": [
+          "TicketWeb"
         ]
       }
     },
@@ -209420,7 +210843,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns a Wayfair category page's product grid, with real page-based pagination. category accepts a bare Wayfair category id (\"478390\"), a \"c\"-prefixed id (\"c478390\"), a category slug (\"office-chairs-c478390\"), or a full category URL copied from wayfair.com -- only the trailing category id is used. Returns normalized products with name, brand, pricing, and image.",
+        "description": "Returns a Wayfair category page's product grid, with real page-based pagination. category accepts a bare Wayfair category id (\"478390\"), a \"c\"-prefixed id (\"c478390\"), a category slug (\"office-chairs-c478390\"), or a full category URL copied from wayfair.com. The trailing category id is resolved to Wayfair's current canonical URL through its published sitemap. Returns normalized products with name, brand, pricing, and image.",
         "operationId": "wayfair-category",
         "parameters": [
           {
@@ -209623,7 +211046,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Fetches a public URL and fingerprints the web technologies it is built with — a BuiltWith / Wappalyzer-style detector. Returns a list of detected `technologies`, each with its `categories`, a `confidence` (`high`, `medium`, `low`), an optional `version`, and the `evidence` that matched. Covers JavaScript frameworks and libraries (React, Vue.js, Angular, Svelte, jQuery), web frameworks / static site generators (Next.js, Nuxt.js, Gatsby, Remix, SvelteKit, Astro, Hugo), CMS and website builders (WordPress, Drupal, Joomla, Ghost, Wix, Squarespace, Webflow), e-commerce (Shopify, WooCommerce, Magento, BigCommerce), analytics, ad pixels, and tag managers (Google Analytics, Google Tag Manager, Meta Pixel, LinkedIn, Bing, TikTok/Pinterest/Reddit pixels, Segment, Hotjar, Microsoft Clarity), CDNs, UI frameworks and fonts, payments (Stripe, PayPal, Klarna), live chat, marketing automation, A/B testing, consent management, CAPTCHAs (reCAPTCHA, hCaptcha, Turnstile), video, and search. It also inspects response headers (from a plain HTTP fetch) to identify the web server (nginx, Apache, IIS), the CDN / hosting provider (Cloudflare, CloudFront, Fastly, Vercel, Netlify), and the server-side language / framework (PHP, ASP.NET, Ruby on Rails, Django, Laravel, Express). Results are directional, not exhaustive. The `render` fetch strategy is one of `browser` (headless browser that executes JavaScript — the default, so client-injected scripts like analytics, tag managers and pixels are detected), `auto` (Chrome-impersonated HTTP, escalating to a real browser only when blocked or JS-rendered), or `http` (HTTP only, no JavaScript — fastest, but sees only the server HTML); defaults to `browser`. Only public pages are supported; respect each site's terms of use and robots directives. Also returns `unmatched_evidence` (when present) — third-party script/stylesheet host domains and a `<meta generator>` value the detector saw on the page but doesn't yet have a named signature for; useful for spotting a vendor worth requesting coverage for.",
+        "description": "Fetches a public URL and fingerprints the web technologies it is built with — a BuiltWith / Wappalyzer-style detector. Returns a list of detected `technologies`, each with its `categories`, a `confidence` (`high`, `medium`, `low`), an optional `version`, and the `evidence` that matched. Covers JavaScript frameworks and libraries (React, Vue.js, Angular, Svelte, jQuery), web frameworks / static site generators (Next.js, Nuxt.js, Gatsby, Remix, SvelteKit, Astro, Hugo), CMS and website builders (WordPress, Drupal, Joomla, Ghost, Wix, Squarespace, Webflow), e-commerce (Shopify, WooCommerce, Magento, BigCommerce), analytics, ad pixels, and tag managers (Google Analytics, Google Tag Manager, Meta Pixel, LinkedIn, Bing, TikTok/Pinterest/Reddit pixels, Segment, Hotjar, Microsoft Clarity), CDNs, UI frameworks and fonts, payments (Stripe, PayPal, Klarna), live chat, marketing automation, A/B testing, consent management, CAPTCHAs (reCAPTCHA, hCaptcha, Turnstile), video, and search. It also inspects response headers (from a plain HTTP fetch) to identify the web server (nginx, Apache, IIS), the CDN / hosting provider (Cloudflare, CloudFront, Fastly, Vercel, Netlify), and the server-side language / framework (PHP, ASP.NET, Ruby on Rails, Django, Laravel, Express). Results are directional, not exhaustive. The `render` fetch strategy is one of `browser` (headless browser that executes JavaScript — the default, so client-injected scripts like analytics, tag managers and pixels are detected), `auto` (Chrome-impersonated HTTP, escalating to a real browser only when blocked or JS-rendered), or `http` (HTTP only, no JavaScript — fastest, but sees only the server HTML); defaults to `browser`. Only public pages are supported; respect each site's terms of use and robots directives. Also returns `unmatched_evidence` (when present) — third-party script/stylesheet host domains and a `<meta generator>` value the detector saw on the page but doesn't yet have a named signature for; useful for spotting a vendor worth requesting coverage for. `is_infrastructure` flags a URL whose host looks like backend CDN/DNS/cloud-vendor infrastructure rather than a real, human-navigable website. `reachable` is false only when the target could not be fetched at all (even after an automatic www./plain-HTTP retry) — `technologies` may still be partially populated from DNS-based signals alone in that case, and `failure_reason` explains what happened.",
         "operationId": "web-techstack",
         "parameters": [
           {
