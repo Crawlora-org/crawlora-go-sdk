@@ -29622,6 +29622,71 @@
       },
       "type": "object"
     },
+    "contact.VerifiedAddress": {
+      "properties": {
+        "address": {
+          "example": "jane@acme.com",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "verified",
+            "risky",
+            "unverified",
+            "invalid"
+          ],
+          "example": "verified",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "personal",
+            "generic",
+            "role"
+          ],
+          "example": "personal",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "contact.VerifyRequest": {
+      "properties": {
+        "emails": {
+          "example": [
+            "jane@acme.com"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "emails"
+      ],
+      "type": "object"
+    },
+    "contact.VerifyResponse": {
+      "properties": {
+        "checked": {
+          "example": 3,
+          "type": "integer"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/contact.VerifiedAddress"
+          },
+          "type": "array"
+        },
+        "smtp_enabled": {
+          "description": "SMTPEnabled reports whether mailbox probing was available for this call.\nWhen false nothing can be reported \"verified\", so a caller can tell an\nundeliverable-looking result from an unverifiable one.",
+          "example": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "contact.contactResponseDoc": {
       "properties": {
         "code": {
@@ -29630,6 +29695,22 @@
         },
         "data": {
           "$ref": "#/definitions/contact.ContactResult"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "contact.verifyResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/contact.VerifyResponse"
         },
         "msg": {
           "example": "OK",
@@ -200978,6 +201059,64 @@
         "summary": "Get eBay seller shop listings",
         "tags": [
           "eBay"
+        ]
+      }
+    },
+    "/email/verify": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Classifies up to 50 caller-supplied email addresses and returns each one's `status` (`verified` — the mailbox accepts mail; `risky` — catch-all, role or disposable; `invalid` — bad syntax or no MX; `unverified` — could not be determined) and `type` (`generic`, `role`, `personal`). Crawls nothing: pass the addresses you already hold. This is the same classifier the Contact API applies to addresses it discovers, so statuses are directly comparable. When `smtp_enabled` is false, mailbox probing was unavailable for the call and nothing can be reported `verified` — an honest `unverified` rather than a guess.",
+        "operationId": "email-verify",
+        "parameters": [
+          {
+            "description": "Addresses to verify",
+            "in": "body",
+            "name": "option",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contact.VerifyRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/contact.verifyResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Invalid input, or no usable address in the batch",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error during verification",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Email verification — deliverability status for a batch of addresses",
+        "tags": [
+          "Web"
         ]
       }
     },

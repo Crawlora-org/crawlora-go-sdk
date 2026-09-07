@@ -2,7 +2,7 @@
 
 Generated from `openapi/public.json`. Deprecated, admin, and internal operations are excluded from this SDK contract.
 
-Total operations: `1938`
+Total operations: `1939`
 
 | Group | SDK method | Operation ID | HTTP | Params | Auth | Response | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -360,6 +360,7 @@ Total operations: `1938`
 | Congress | `Congress.StockDisclosures` | `congress-stock-disclosures` | `GET /congress/stock-disclosures` | `chamber` (query string)<br>`member` (query string)<br>`first_name` (query string)<br>`last_name` (query string)<br>`ticker` (query string)<br>`state` (query string)<br>`senator_state` (query string)<br>`candidate_state` (query string)<br>`district` (query string)<br>`filer_type` (query string)<br>`election_year` (query string)<br>`report_type` (query string)<br>`from` (query string)<br>`to` (query string)<br>`sort` (query string)<br>`page` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `CongressStockDisclosuresResponse` |  |
 | Web | `Web.Contact` | `contact` | `POST /contact` | `option` (body ModelContactContactRequest required) | `ApiKeyAuth` | `WebContactResponse` |  |
 | Web | `Web.AntibotCheck` | `antibot-check` | `POST /diagnostics/antibot-check` | `request` (body ModelDiagnosticsAntibotCheckRequest required) | `ApiKeyAuth` | `WebAntibotCheckResponse` |  |
+| Web | `Web.EmailVerify` | `email-verify` | `POST /email/verify` | `option` (body ModelContactVerifyRequest required) | `ApiKeyAuth` | `WebEmailVerifyResponse` |  |
 | Web | `Web.Extract` | `extract` | `POST /extract` | `extractOption` (body ModelExtractOption required) | `ApiKeyAuth` | `WebExtractResponse` |  |
 | Web | `Web.Scrape` | `web-scrape` | `POST /web/scrape` | `scrapeOption` (body ModelWebScrapeOption required) | `ApiKeyAuth` | `WebScrapeResponse` |  |
 | Web | `Web.Techstack` | `web-techstack` | `POST /web/techstack` | `request` (body ModelWebTechStackOption required) | `ApiKeyAuth` | `WebTechstackResponse` |  |

@@ -9406,10 +9406,32 @@ type ModelContactSocialProfile struct {
 	Url     string `json:"url,omitempty"`
 }
 
+type ModelContactVerifiedAddress struct {
+	Address string `json:"address,omitempty"`
+	Status  string `json:"status,omitempty"`
+	Type    string `json:"type,omitempty"`
+}
+
+type ModelContactVerifyRequest struct {
+	Emails []string `json:"emails"`
+}
+
+type ModelContactVerifyResponse struct {
+	Checked     int                           `json:"checked,omitempty"`
+	Results     []ModelContactVerifiedAddress `json:"results,omitempty"`
+	SmtpEnabled bool                          `json:"smtp_enabled,omitempty"`
+}
+
 type ModelContactContactResponseDoc struct {
 	Code int                       `json:"code,omitempty"`
 	Data ModelContactContactResult `json:"data,omitempty"`
 	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelContactVerifyResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelContactVerifyResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
 }
 
 type ModelCostcoCategoriesResponse struct {
@@ -48383,7 +48405,7 @@ type ModelZomatoSearchResponseDoc struct {
 	Msg  any                       `json:"msg,omitempty"`
 }
 
-const operationCount = 1938
+const operationCount = 1939
 
 const (
 	OperationAccorAmenities                                         = "accor-amenities"
@@ -50145,6 +50167,7 @@ const (
 	OperationWayfairProduct                                         = "wayfair-product"
 	OperationWebAntibotCheck                                        = "antibot-check"
 	OperationWebContact                                             = "contact"
+	OperationWebEmailVerify                                         = "email-verify"
 	OperationWebExtract                                             = "extract"
 	OperationWebScrape                                              = "web-scrape"
 	OperationWebTechstack                                           = "web-techstack"
@@ -50923,6 +50946,7 @@ var operations = map[string]operationDefinition{
 	"ebay-seller-about":                             operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}/about", PathParams: []string{"seller"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"ebay-seller-feedback":                          operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}/feedback", PathParams: []string{"seller"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"24", "48", "72"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"ebay-seller-shop":                              operationDefinition{Method: "GET", Path: "/ebay/seller/{seller}/shop", PathParams: []string{"seller"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"email-verify":                                  operationDefinition{Method: "POST", Path: "/email/verify", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "option", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"espn-athlete":                                  operationDefinition{Method: "GET", Path: "/espn/athlete", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}, parameterDefinition{Name: "athlete", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"espn-game-summary":                             operationDefinition{Method: "GET", Path: "/espn/game-summary", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}, parameterDefinition{Name: "event", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"espn-news":                                     operationDefinition{Method: "GET", Path: "/espn/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -58424,6 +58448,20 @@ type WebAntibotCheckResponse = ModelDiagnosticsAntibotCheckResponseDoc
 
 func (s *WebService) AntibotCheckTyped(ctx context.Context, params WebAntibotCheckParams, opts ...RequestOption) (WebAntibotCheckResponse, error) {
 	return requestTyped[WebAntibotCheckResponse](s.client, ctx, "antibot-check", paramsFromStruct(params), opts...)
+}
+
+func (s *WebService) EmailVerify(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "email-verify", params, opts...)
+}
+
+type WebEmailVerifyParams struct {
+	Option ModelContactVerifyRequest `crawlora:"option"`
+}
+
+type WebEmailVerifyResponse = ModelContactVerifyResponseDoc
+
+func (s *WebService) EmailVerifyTyped(ctx context.Context, params WebEmailVerifyParams, opts ...RequestOption) (WebEmailVerifyResponse, error) {
+	return requestTyped[WebEmailVerifyResponse](s.client, ctx, "email-verify", paramsFromStruct(params), opts...)
 }
 
 func (s *WebService) Extract(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
