@@ -24,6 +24,7 @@ POLICY = core.NamingPolicy(
     dedup_sep="",
     type_base_fn=lambda group, method: group + method,
     tag_group_overrides={
+        "7NOW": "SevenNow",
         "AppStore": "AppStore",
         "CoinGecko": "CoinGecko",
         "GooglePlay": "GooglePlay",

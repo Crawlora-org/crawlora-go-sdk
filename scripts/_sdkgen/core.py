@@ -25,6 +25,7 @@ from typing import Any, Callable
 # These values are language-neutral (lowercase, hyphenated) and identical across
 # every SDK. Group-name casing differs per language and lives in NamingPolicy.
 TAG_PREFIX_OVERRIDES = {
+    "7NOW": "7now",
     "AppStore": "appstore",
     "CoinGecko": "coingecko",
     "GooglePlay": "googleplay",
