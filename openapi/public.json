@@ -269866,7 +269866,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Return how much airtime a query's matching US television",
+        "description": "Returns the amount of US television news airtime matching the supplied query over time, using GDELT Television 2.0 AI timeline-volume data. A station is required. Supports the same caption, transcript, concept, and visual match operators as gdelt-tv-search; coverage and processing-delay caveats are documented there.",
         "operationId": "gdelt-tv-timeline",
         "parameters": [
           {
@@ -275007,7 +275007,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns normalized Google Finance context search results.",
+        "description": "Searches Google Finance for instruments matching a company name or ticker query and returns normalized results with ticker, exchange, name, price, currency, and change data. Use a returned ticker with quote, company, chart, or news endpoints.",
         "operationId": "google-finance-context",
         "parameters": [
           {
@@ -275058,7 +275058,7 @@
             "ApiKeyAuth": []
           }
         ],
-        "summary": "Google Finance context search",
+        "summary": "Find Google Finance instruments by query",
         "tags": [
           "Google"
         ]
