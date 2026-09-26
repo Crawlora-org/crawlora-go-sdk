@@ -93954,6 +93954,10 @@
           },
           "type": "array"
         },
+        "content": {
+          "example": "<p>The complete RSS story body.</p>",
+          "type": "string"
+        },
         "description": {
           "example": "A short summary of the latest story.",
           "type": "string"
@@ -93997,6 +94001,63 @@
             },
             "source_url": {
               "example": "https://www.livescore.com/en/news/rss.xml",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "livescore.livescoreNewsPublisherDoc": {
+      "properties": {
+        "contact": {
+          "example": "https://www.statsperform.com/contact/",
+          "type": "string"
+        },
+        "logo_url": {
+          "example": "https://www.livescore.com/ls-web-assets/images/publishers-stats-perform.webp",
+          "type": "string"
+        },
+        "name": {
+          "example": "Stats Perform",
+          "type": "string"
+        },
+        "telephone": {
+          "example": "+1 866 221 1426",
+          "type": "string"
+        },
+        "website": {
+          "example": "https://www.statsperform.com/",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "livescore.livescoreNewsPublishersResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "properties": {
+            "count": {
+              "example": 6,
+              "type": "integer"
+            },
+            "publishers": {
+              "items": {
+                "$ref": "#/definitions/livescore.livescoreNewsPublisherDoc"
+              },
+              "type": "array"
+            },
+            "source_url": {
+              "example": "https://www.livescore.com/en/news/publishers/",
               "type": "string"
             }
           },
@@ -305664,8 +305725,17 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns latest public news item metadata from LiveScore's global RSS feed. The source feed may include multiple sports and has no verified category filter.",
+        "description": "Returns latest public news items from LiveScore's global RSS feed. The source feed may include multiple sports and has no verified category filter. Set include_content=true to include each RSS item's full content:encoded body.",
         "operationId": "livescore-news-feed",
+        "parameters": [
+          {
+            "default": false,
+            "description": "Include full RSS article content when available",
+            "in": "query",
+            "name": "include_content",
+            "type": "boolean"
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -305695,6 +305765,47 @@
           }
         ],
         "summary": "LiveScore global RSS news feed",
+        "tags": [
+          "LiveScore"
+        ]
+      }
+    },
+    "/livescore/news-publishers": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the current public publisher directory linked from LiveScore News, including publisher names, logos, websites, contact links, and telephone numbers.",
+        "operationId": "livescore-news-publishers",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/livescore.livescoreNewsPublishersResponseDoc"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "LiveScore news publisher directory",
         "tags": [
           "LiveScore"
         ]

@@ -2,7 +2,7 @@
 
 Generated from `openapi/public.json`. Deprecated, admin, and internal operations are excluded from this SDK contract.
 
-Total operations: `3159`
+Total operations: `3160`
 
 | Group | SDK method | Operation ID | HTTP | Params | Auth | Response | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1579,7 +1579,8 @@ Total operations: `3159`
 | LiveScore | `LiveScore.LivescoreNews` | `livescore-news` | `GET /livescore/news` | `category` (query string required) | `ApiKeyAuth` | `LiveScoreLivescoreNewsResponse` |  |
 | LiveScore | `LiveScore.LivescoreNewsArticle` | `livescore-news-article` | `GET /livescore/news-article` | `path` (query string required) | `ApiKeyAuth` | `LiveScoreLivescoreNewsArticleResponse` |  |
 | LiveScore | `LiveScore.LivescoreNewsCategories` | `livescore-news-categories` | `GET /livescore/news-categories` | none | `ApiKeyAuth` | `LiveScoreLivescoreNewsCategoriesResponse` |  |
-| LiveScore | `LiveScore.LivescoreNewsFeed` | `livescore-news-feed` | `GET /livescore/news-feed` | none | `ApiKeyAuth` | `LiveScoreLivescoreNewsFeedResponse` |  |
+| LiveScore | `LiveScore.LivescoreNewsFeed` | `livescore-news-feed` | `GET /livescore/news-feed` | `include_content` (query bool) | `ApiKeyAuth` | `LiveScoreLivescoreNewsFeedResponse` |  |
+| LiveScore | `LiveScore.LivescoreNewsPublishers` | `livescore-news-publishers` | `GET /livescore/news-publishers` | none | `ApiKeyAuth` | `LiveScoreLivescoreNewsPublishersResponse` |  |
 | LiveScore | `LiveScore.LivescorePlayer` | `livescore-player` | `GET /livescore/player` | `path` (query string required) | `ApiKeyAuth` | `LiveScoreLivescorePlayerResponse` |  |
 | LiveScore | `LiveScore.LivescoreScores` | `livescore-scores` | `GET /livescore/scores` | `sport` (query string required)<br>`date` (query string required)<br>`timezone_offset` (query int)<br>`paging` (query bool)<br>`cursor` (query string)<br>`direction` (query string) | `ApiKeyAuth` | `LiveScoreLivescoreScoresResponse` |  |
 | LiveScore | `LiveScore.LivescoreScoresToc` | `livescore-scores-toc` | `GET /livescore/scores-toc` | `sport` (query string required)<br>`date` (query string required)<br>`timezone_offset` (query int) | `ApiKeyAuth` | `LiveScoreLivescoreScoresTocResponse` |  |

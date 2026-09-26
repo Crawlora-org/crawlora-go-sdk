@@ -417,7 +417,7 @@ func TestOperationMetadataCount(t *testing.T) {
 	if len(operations) != operationCount {
 		t.Fatalf("operations = %d, operationCount = %d", len(operations), operationCount)
 	}
-	if operationCount != 3159 {
+	if operationCount != 3160 {
 		t.Fatalf("operationCount = %d", operationCount)
 	}
 }
@@ -453,7 +453,7 @@ func TestDocsCoverOperationsAndRecipes(t *testing.T) {
 	operationsText := string(operationsDoc)
 	recipesText := string(recipesDoc)
 	for _, want := range []string{
-		"Total operations: `3159`",
+		"Total operations: `3160`",
 		"`bing-search`",
 		"`GET /bing/search`",
 		"`Bing.Search`",

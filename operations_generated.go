@@ -30673,6 +30673,7 @@ type ModelLivescienceAuthorSocialLink struct {
 type ModelLivescoreLivescoreNewsFeedItemDoc struct {
 	Author      string   `json:"author,omitempty"`
 	Categories  []string `json:"categories,omitempty"`
+	Content     string   `json:"content,omitempty"`
 	Description string   `json:"description,omitempty"`
 	Guid        string   `json:"guid,omitempty"`
 	Link        string   `json:"link,omitempty"`
@@ -30681,6 +30682,20 @@ type ModelLivescoreLivescoreNewsFeedItemDoc struct {
 }
 
 type ModelLivescoreLivescoreNewsFeedResponseDoc struct {
+	Code int            `json:"code,omitempty"`
+	Data map[string]any `json:"data,omitempty"`
+	Msg  string         `json:"msg,omitempty"`
+}
+
+type ModelLivescoreLivescoreNewsPublisherDoc struct {
+	Contact   string `json:"contact,omitempty"`
+	LogoUrl   string `json:"logo_url,omitempty"`
+	Name      string `json:"name,omitempty"`
+	Telephone string `json:"telephone,omitempty"`
+	Website   string `json:"website,omitempty"`
+}
+
+type ModelLivescoreLivescoreNewsPublishersResponseDoc struct {
 	Code int            `json:"code,omitempty"`
 	Data map[string]any `json:"data,omitempty"`
 	Msg  string         `json:"msg,omitempty"`
@@ -61937,7 +61952,7 @@ type ModelZomatoSearchResponseDoc struct {
 	Msg  any                       `json:"msg,omitempty"`
 }
 
-const operationCount = 3159
+const operationCount = 3160
 
 const (
 	OperationAbcNewsAbcnewsArticle                                  = "abcnews-article"
@@ -63469,6 +63484,7 @@ const (
 	OperationLiveScoreLivescoreNewsArticle                          = "livescore-news-article"
 	OperationLiveScoreLivescoreNewsCategories                       = "livescore-news-categories"
 	OperationLiveScoreLivescoreNewsFeed                             = "livescore-news-feed"
+	OperationLiveScoreLivescoreNewsPublishers                       = "livescore-news-publishers"
 	OperationLiveScoreLivescorePlayer                               = "livescore-player"
 	OperationLiveScoreLivescoreScores                               = "livescore-scores"
 	OperationLiveScoreLivescoreScoresToc                            = "livescore-scores-toc"
@@ -66673,7 +66689,8 @@ var operations = map[string]operationDefinition{
 	"livescore-news":                                operationDefinition{Method: "GET", Path: "/livescore/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"livescore-news-article":                        operationDefinition{Method: "GET", Path: "/livescore/news-article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"livescore-news-categories":                     operationDefinition{Method: "GET", Path: "/livescore/news-categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"livescore-news-feed":                           operationDefinition{Method: "GET", Path: "/livescore/news-feed", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"livescore-news-feed":                           operationDefinition{Method: "GET", Path: "/livescore/news-feed", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "include_content", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"livescore-news-publishers":                     operationDefinition{Method: "GET", Path: "/livescore/news-publishers", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"livescore-player":                              operationDefinition{Method: "GET", Path: "/livescore/player", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"livescore-scores":                              operationDefinition{Method: "GET", Path: "/livescore/scores", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"soccer", "hockey", "basketball", "tennis", "cricket"}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "timezone_offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "paging", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "direction", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"down", "up"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
 	"livescore-scores-toc":                          operationDefinition{Method: "GET", Path: "/livescore/scores-toc", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"soccer", "hockey", "basketball", "tennis", "cricket"}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "timezone_offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -94345,12 +94362,26 @@ func (s *LiveScoreService) LivescoreNewsFeed(ctx context.Context, params Params,
 }
 
 type LiveScoreLivescoreNewsFeedParams struct {
+	IncludeContent *bool `crawlora:"include_content,omitempty"`
 }
 
 type LiveScoreLivescoreNewsFeedResponse = ModelLivescoreLivescoreNewsFeedResponseDoc
 
 func (s *LiveScoreService) LivescoreNewsFeedTyped(ctx context.Context, params LiveScoreLivescoreNewsFeedParams, opts ...RequestOption) (LiveScoreLivescoreNewsFeedResponse, error) {
 	return requestTyped[LiveScoreLivescoreNewsFeedResponse](s.client, ctx, "livescore-news-feed", paramsFromStruct(params), opts...)
+}
+
+func (s *LiveScoreService) LivescoreNewsPublishers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "livescore-news-publishers", params, opts...)
+}
+
+type LiveScoreLivescoreNewsPublishersParams struct {
+}
+
+type LiveScoreLivescoreNewsPublishersResponse = ModelLivescoreLivescoreNewsPublishersResponseDoc
+
+func (s *LiveScoreService) LivescoreNewsPublishersTyped(ctx context.Context, params LiveScoreLivescoreNewsPublishersParams, opts ...RequestOption) (LiveScoreLivescoreNewsPublishersResponse, error) {
+	return requestTyped[LiveScoreLivescoreNewsPublishersResponse](s.client, ctx, "livescore-news-publishers", paramsFromStruct(params), opts...)
 }
 
 func (s *LiveScoreService) LivescorePlayer(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
