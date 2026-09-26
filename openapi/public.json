@@ -129974,6 +129974,65 @@
       },
       "type": "object"
     },
+    "rottentomatoes.BrowseFilter": {
+      "properties": {
+        "key": {
+          "example": "genres",
+          "type": "string"
+        },
+        "label": {
+          "example": "Genre",
+          "type": "string"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/rottentomatoes.BrowseFilterValue"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "rottentomatoes.BrowseFilterValue": {
+      "properties": {
+        "label": {
+          "example": "Action",
+          "type": "string"
+        },
+        "value": {
+          "example": "action",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "rottentomatoes.BrowseFiltersResponse": {
+      "properties": {
+        "fetched_at": {
+          "example": "2026-09-26T10:00:00Z",
+          "type": "string"
+        },
+        "filters": {
+          "items": {
+            "$ref": "#/definitions/rottentomatoes.BrowseFilter"
+          },
+          "type": "array"
+        },
+        "list": {
+          "example": "movies_in_theaters",
+          "type": "string"
+        },
+        "public_page_derived": {
+          "example": true,
+          "type": "boolean"
+        },
+        "source_url": {
+          "example": "https://www.rottentomatoes.com/browse/movies_in_theaters/sort:popular",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "rottentomatoes.BrowseItem": {
       "properties": {
         "critics_review_count": {
@@ -130037,6 +130096,9 @@
           "example": "movies_in_theaters",
           "type": "string"
         },
+        "page_info": {
+          "$ref": "#/definitions/rottentomatoes.ReviewPageInfo"
+        },
         "public_page_derived": {
           "example": true,
           "type": "boolean"
@@ -130051,6 +130113,194 @@
         },
         "title": {
           "example": "Movies in Theaters (2026)",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "rottentomatoes.CriticAuthor": {
+      "properties": {
+        "badges": {
+          "example": [
+            "Individually approved"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "example": "Mae Abdulbaki",
+          "type": "string"
+        },
+        "path": {
+          "example": "/critics/mae-abdulbaki",
+          "type": "string"
+        },
+        "publication_label": {
+          "example": "when published by",
+          "type": "string"
+        },
+        "publications": {
+          "items": {
+            "$ref": "#/definitions/rottentomatoes.CriticAuthorPublication"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "rottentomatoes.CriticAuthorPublication": {
+      "properties": {
+        "editorial_url": {
+          "example": "https://example.com/reviews",
+          "type": "string"
+        },
+        "id": {
+          "example": "2784",
+          "type": "string"
+        },
+        "name": {
+          "example": "Firstpost",
+          "type": "string"
+        },
+        "path": {
+          "example": "/critics/source/2784",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "rottentomatoes.CriticsAuthorsResponse": {
+      "properties": {
+        "after": {
+          "example": "",
+          "type": "string"
+        },
+        "authors": {
+          "items": {
+            "$ref": "#/definitions/rottentomatoes.CriticAuthor"
+          },
+          "type": "array"
+        },
+        "before": {
+          "example": "",
+          "type": "string"
+        },
+        "fetched_at": {
+          "example": "2026-09-26T10:00:00Z",
+          "type": "string"
+        },
+        "has_next_page": {
+          "example": true,
+          "type": "boolean"
+        },
+        "has_previous_page": {
+          "example": false,
+          "type": "boolean"
+        },
+        "inactive": {
+          "example": false,
+          "type": "boolean"
+        },
+        "letter": {
+          "example": "a",
+          "type": "string"
+        },
+        "limit": {
+          "example": 100,
+          "type": "integer"
+        },
+        "next_cursor": {
+          "example": "MQ==",
+          "type": "string"
+        },
+        "previous_cursor": {
+          "example": "MA==",
+          "type": "string"
+        },
+        "public_page_derived": {
+          "example": true,
+          "type": "boolean"
+        },
+        "search": {
+          "example": "",
+          "type": "string"
+        },
+        "source_url": {
+          "example": "https://www.rottentomatoes.com/napi/critics/authors?isInactiveCriticsList=false&letter=a&pageCount=100&userToken=null",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "rottentomatoes.EditorialSearchResponse": {
+      "properties": {
+        "fetched_at": {
+          "example": "2026-09-26T10:00:00Z",
+          "type": "string"
+        },
+        "has_next_page": {
+          "example": true,
+          "type": "boolean"
+        },
+        "limit": {
+          "example": 10,
+          "type": "integer"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        },
+        "public_page_derived": {
+          "example": true,
+          "type": "boolean"
+        },
+        "query": {
+          "example": "horror",
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/rottentomatoes.EditorialSearchResult"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "example": "https://editorial.rottentomatoes.com/wp-json/wp/v2/search?page=1&per_page=10&search=horror",
+          "type": "string"
+        },
+        "total": {
+          "example": 5110,
+          "type": "integer"
+        },
+        "total_pages": {
+          "example": 511,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "rottentomatoes.EditorialSearchResult": {
+      "properties": {
+        "id": {
+          "example": 282182,
+          "type": "integer"
+        },
+        "subtype": {
+          "example": "guide",
+          "type": "string"
+        },
+        "title": {
+          "example": "Best New Horror Movies of 2026",
+          "type": "string"
+        },
+        "type": {
+          "example": "post",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://editorial.rottentomatoes.com/guide/best-new-horror-movies-2026/",
           "type": "string"
         }
       },
@@ -130575,12 +130825,20 @@
     "rottentomatoes.ReviewPageInfo": {
       "properties": {
         "end_cursor": {
-          "example": "eyJ0eXBlIjoiUmV2aWV3In0",
+          "example": "Mjk=",
           "type": "string"
         },
         "has_next_page": {
           "example": true,
           "type": "boolean"
+        },
+        "has_previous_page": {
+          "example": true,
+          "type": "boolean"
+        },
+        "start_cursor": {
+          "example": "MA==",
+          "type": "string"
         }
       },
       "type": "object"
@@ -131033,6 +131291,110 @@
       },
       "type": "object"
     },
+    "rottentomatoes.Sitemap": {
+      "properties": {
+        "family": {
+          "example": "movie",
+          "type": "string"
+        },
+        "index": {
+          "example": 0,
+          "type": "integer"
+        },
+        "last_modified": {
+          "example": "2025-11-12",
+          "type": "string"
+        },
+        "name": {
+          "example": "movie_0",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.rottentomatoes.com/sitemaps/movie_0.xml",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "rottentomatoes.SitemapIndexResponse": {
+      "properties": {
+        "fetched_at": {
+          "example": "2026-09-26T10:00:00Z",
+          "type": "string"
+        },
+        "public_page_derived": {
+          "example": true,
+          "type": "boolean"
+        },
+        "sitemaps": {
+          "items": {
+            "$ref": "#/definitions/rottentomatoes.Sitemap"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "example": "https://www.rottentomatoes.com/sitemaps/sitemap.xml",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "rottentomatoes.SitemapURL": {
+      "properties": {
+        "last_modified": {
+          "example": "2025-11-12",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://www.rottentomatoes.com/m/inception",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "rottentomatoes.SitemapURLResponse": {
+      "properties": {
+        "fetched_at": {
+          "example": "2026-09-26T10:00:00Z",
+          "type": "string"
+        },
+        "has_more": {
+          "example": true,
+          "type": "boolean"
+        },
+        "limit": {
+          "example": 100,
+          "type": "integer"
+        },
+        "name": {
+          "example": "movie_0",
+          "type": "string"
+        },
+        "offset": {
+          "example": 0,
+          "type": "integer"
+        },
+        "public_page_derived": {
+          "example": true,
+          "type": "boolean"
+        },
+        "source_url": {
+          "example": "https://www.rottentomatoes.com/sitemaps/movie_0.xml",
+          "type": "string"
+        },
+        "total": {
+          "example": 16750,
+          "type": "integer"
+        },
+        "urls": {
+          "items": {
+            "$ref": "#/definitions/rottentomatoes.SitemapURL"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "rottentomatoes.TVSeason": {
       "properties": {
         "name": {
@@ -131050,6 +131412,22 @@
       },
       "type": "object"
     },
+    "rottentomatoes.browseFiltersResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/rottentomatoes.BrowseFiltersResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "rottentomatoes.browseResponseDoc": {
       "properties": {
         "code": {
@@ -131058,6 +131436,38 @@
         },
         "data": {
           "$ref": "#/definitions/rottentomatoes.BrowseResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "rottentomatoes.criticsAuthorsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/rottentomatoes.CriticsAuthorsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "rottentomatoes.editorialSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/rottentomatoes.EditorialSearchResponse"
         },
         "msg": {
           "example": "OK",
@@ -131170,6 +131580,38 @@
         },
         "data": {
           "$ref": "#/definitions/rottentomatoes.SeriesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "rottentomatoes.sitemapIndexResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/rottentomatoes.SitemapIndexResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "rottentomatoes.sitemapURLResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/rottentomatoes.SitemapURLResponse"
         },
         "msg": {
           "example": "OK",
@@ -350432,12 +350874,86 @@
         ]
       }
     },
+    "/rottentomatoes/browse/filters": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns every filter and accepted value exposed by the selected live Rotten Tomatoes browse page. Call this before building filtered movie or TV browse requests; values differ by list and update with the site's menus.",
+        "operationId": "rottentomatoes-browse-filters",
+        "parameters": [
+          {
+            "description": "Browse list: movies_in_theaters, movies_at_home, movies_coming_soon, tv_series_browse",
+            "enum": [
+              "movies_in_theaters",
+              "movies_at_home",
+              "movies_coming_soon",
+              "tv_series_browse"
+            ],
+            "in": "query",
+            "name": "list",
+            "type": "string",
+            "x-example": "movies_in_theaters"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/rottentomatoes.browseFiltersResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Rotten Tomatoes browse filter discovery",
+        "tags": [
+          "Rotten Tomatoes"
+        ]
+      }
+    },
     "/rottentomatoes/browse/movies": {
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "Returns normalized movie rows from Rotten Tomatoes public browse pages using credential-free JSON-LD ItemList data. Supported `list` values are `movies_in_theaters`, `movies_at_home`, and `movies_coming_soon`. Supported `sort` values are `popular`, `newest`, and `top_box_office`; `top_box_office` is only valid with `movies_in_theaters`.",
+        "description": "Returns normalized movie rows from Rotten Tomatoes' public browse JSON route. Use `/rottentomatoes/browse/filters` to discover current values for each list. Filters accept comma-separated values; pagination uses the opaque `after` cursor from the previous response.",
         "operationId": "rottentomatoes-browse-movies",
         "parameters": [
           {
@@ -350453,11 +350969,16 @@
             "x-example": "movies_in_theaters"
           },
           {
-            "description": "Sort: popular, newest, top_box_office",
+            "description": "Sort value from the selected list's browse/filters response",
             "enum": [
               "popular",
               "newest",
-              "top_box_office"
+              "top_box_office",
+              "a_z",
+              "critic_highest",
+              "critic_lowest",
+              "audience_highest",
+              "audience_lowest"
             ],
             "in": "query",
             "name": "sort",
@@ -350465,7 +350986,123 @@
             "x-example": "popular"
           },
           {
-            "description": "Rows to return, default 10, max 20",
+            "description": "Comma-separated genre values from browse/filters",
+            "enum": [
+              "action",
+              "adventure",
+              "animation",
+              "anime",
+              "biography",
+              "comedy",
+              "crime",
+              "documentary",
+              "drama",
+              "entertainment",
+              "faith_and_spirituality",
+              "fantasy",
+              "game_show",
+              "lgbtq",
+              "health_and_wellness",
+              "history",
+              "holiday",
+              "horror",
+              "house_and_garden",
+              "kids_and_family",
+              "music",
+              "musical",
+              "mystery_and_thriller",
+              "nature",
+              "news",
+              "reality",
+              "romance",
+              "sci_fi",
+              "short",
+              "soap",
+              "special_interest",
+              "sports",
+              "stand_up",
+              "talk_show",
+              "travel",
+              "variety",
+              "war",
+              "western"
+            ],
+            "in": "query",
+            "name": "genres",
+            "type": "string",
+            "x-example": "action,drama"
+          },
+          {
+            "description": "Comma-separated content ratings from browse/filters",
+            "enum": [
+              "g",
+              "pg",
+              "pg_13",
+              "r",
+              "nc_17",
+              "nr",
+              "ur"
+            ],
+            "in": "query",
+            "name": "ratings",
+            "type": "string",
+            "x-example": "pg_13"
+          },
+          {
+            "description": "Comma-separated Popcornmeter values from browse/filters",
+            "enum": [
+              "verified_hot",
+              "upright",
+              "spilled"
+            ],
+            "in": "query",
+            "name": "audience",
+            "type": "string",
+            "x-example": "upright"
+          },
+          {
+            "description": "Comma-separated Tomatometer values from browse/filters",
+            "enum": [
+              "certified_fresh",
+              "fresh",
+              "rotten"
+            ],
+            "in": "query",
+            "name": "critics",
+            "type": "string",
+            "x-example": "certified_fresh"
+          },
+          {
+            "description": "Comma-separated streaming/service values from browse/filters",
+            "enum": [
+              "theaters",
+              "fandango",
+              "apple-tv-plus",
+              "netflix",
+              "prime-video",
+              "disney-plus",
+              "max",
+              "peacock",
+              "hulu",
+              "paramount-plus",
+              "amc-plus",
+              "acorn-tv",
+              "apple-tv"
+            ],
+            "in": "query",
+            "name": "affiliates",
+            "type": "string",
+            "x-example": "netflix"
+          },
+          {
+            "description": "Opaque next-page cursor returned in data.page_info.end_cursor",
+            "in": "query",
+            "name": "after",
+            "type": "string",
+            "x-example": "Mjk="
+          },
+          {
+            "description": "Rows to return, default 10, max 30",
             "in": "query",
             "name": "limit",
             "type": "integer",
@@ -350529,7 +351166,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns normalized TV series rows from Rotten Tomatoes public browse pages using credential-free JSON-LD ItemList data. Supported `list` value is `tv_series_browse`. Supported `sort` values are `popular` and `newest`.",
+        "description": "Returns normalized TV series rows from Rotten Tomatoes' public browse JSON route. Use `/rottentomatoes/browse/filters?list=tv_series_browse` to discover current filters; pagination uses the opaque `after` cursor from the previous response.",
         "operationId": "rottentomatoes-browse-tv",
         "parameters": [
           {
@@ -350543,10 +351180,15 @@
             "x-example": "tv_series_browse"
           },
           {
-            "description": "Sort: popular, newest",
+            "description": "Sort value from browse/filters",
             "enum": [
               "popular",
-              "newest"
+              "newest",
+              "a_z",
+              "critic_highest",
+              "critic_lowest",
+              "audience_highest",
+              "audience_lowest"
             ],
             "in": "query",
             "name": "sort",
@@ -350554,7 +351196,120 @@
             "x-example": "popular"
           },
           {
-            "description": "Rows to return, default 10, max 20",
+            "description": "Comma-separated genre values from browse/filters",
+            "enum": [
+              "action",
+              "adventure",
+              "animation",
+              "anime",
+              "biography",
+              "comedy",
+              "crime",
+              "documentary",
+              "drama",
+              "entertainment",
+              "faith_and_spirituality",
+              "fantasy",
+              "game_show",
+              "lgbtq",
+              "health_and_wellness",
+              "history",
+              "holiday",
+              "horror",
+              "house_and_garden",
+              "kids_and_family",
+              "music",
+              "musical",
+              "mystery_and_thriller",
+              "nature",
+              "news",
+              "reality",
+              "romance",
+              "sci_fi",
+              "short",
+              "soap",
+              "special_interest",
+              "sports",
+              "stand_up",
+              "talk_show",
+              "travel",
+              "variety",
+              "war",
+              "western"
+            ],
+            "in": "query",
+            "name": "genres",
+            "type": "string",
+            "x-example": "action,drama"
+          },
+          {
+            "description": "Comma-separated content ratings from browse/filters",
+            "enum": [
+              "tvy",
+              "tvy7",
+              "tvg",
+              "tvpg",
+              "tv14",
+              "tvma"
+            ],
+            "in": "query",
+            "name": "ratings",
+            "type": "string",
+            "x-example": "tv14"
+          },
+          {
+            "description": "Comma-separated Popcornmeter values from browse/filters",
+            "enum": [
+              "upright",
+              "spilled"
+            ],
+            "in": "query",
+            "name": "audience",
+            "type": "string",
+            "x-example": "upright"
+          },
+          {
+            "description": "Comma-separated Tomatometer values from browse/filters",
+            "enum": [
+              "fresh",
+              "rotten"
+            ],
+            "in": "query",
+            "name": "critics",
+            "type": "string",
+            "x-example": "fresh"
+          },
+          {
+            "description": "Comma-separated streaming/service values from browse/filters",
+            "enum": [
+              "theaters",
+              "fandango",
+              "apple-tv-plus",
+              "netflix",
+              "prime-video",
+              "disney-plus",
+              "max",
+              "peacock",
+              "hulu",
+              "paramount-plus",
+              "amc-plus",
+              "acorn-tv",
+              "apple-tv"
+            ],
+            "in": "query",
+            "name": "affiliates",
+            "type": "string",
+            "x-example": "netflix"
+          },
+          {
+            "description": "Opaque next-page cursor returned in data.page_info.end_cursor",
+            "in": "query",
+            "name": "after",
+            "type": "string",
+            "x-example": "Mjk="
+          },
+          {
+            "description": "Rows to return, default 10, max 30",
             "in": "query",
             "name": "limit",
             "type": "integer",
@@ -350608,6 +351363,221 @@
           }
         ],
         "summary": "Rotten Tomatoes TV discovery rows",
+        "tags": [
+          "Rotten Tomatoes"
+        ]
+      }
+    },
+    "/rottentomatoes/critics/authors": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns current or inactive critics from Rotten Tomatoes' public author directory. Browse one letter or search by name; use `next_cursor` as `after` or `previous_cursor` as `before`, as indicated by the corresponding page flag. The letter values come from the live directory controls.",
+        "operationId": "rottentomatoes-critics-authors",
+        "parameters": [
+          {
+            "description": "Directory letter. Omit when using search; default a.",
+            "enum": [
+              "#",
+              "a",
+              "b",
+              "c",
+              "d",
+              "e",
+              "f",
+              "g",
+              "h",
+              "i",
+              "j",
+              "k",
+              "l",
+              "m",
+              "n",
+              "o",
+              "p",
+              "q",
+              "r",
+              "s",
+              "t",
+              "u",
+              "v",
+              "w",
+              "x",
+              "y",
+              "z"
+            ],
+            "in": "query",
+            "name": "letter",
+            "type": "string",
+            "x-example": "a"
+          },
+          {
+            "description": "Search critics by name; cannot be combined with letter",
+            "in": "query",
+            "name": "search",
+            "type": "string",
+            "x-example": "Mae Abdulbaki"
+          },
+          {
+            "description": "Include the site's inactive critics list",
+            "in": "query",
+            "name": "inactive",
+            "type": "boolean",
+            "x-example": false
+          },
+          {
+            "description": "Opaque cursor from data.next_cursor",
+            "in": "query",
+            "name": "after",
+            "type": "string",
+            "x-example": "MQ=="
+          },
+          {
+            "description": "Opaque cursor from data.previous_cursor; cannot be combined with after",
+            "in": "query",
+            "name": "before",
+            "type": "string",
+            "x-example": "MA=="
+          },
+          {
+            "description": "Rows per page, default 100, range 1 to 100",
+            "in": "query",
+            "name": "limit",
+            "type": "integer",
+            "x-example": 100
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/rottentomatoes.criticsAuthorsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Rotten Tomatoes critic directory",
+        "tags": [
+          "Rotten Tomatoes"
+        ]
+      }
+    },
+    "/rottentomatoes/editorial/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches public Rotten Tomatoes editorial content, including articles and guides. Results come from its anonymous WordPress REST search endpoint and include content subtype plus total-page metadata.",
+        "operationId": "rottentomatoes-editorial-search",
+        "parameters": [
+          {
+            "description": "Editorial search text; maximum 200 bytes",
+            "in": "query",
+            "name": "query",
+            "required": true,
+            "type": "string",
+            "x-example": "horror"
+          },
+          {
+            "description": "One-based result page from 1 to 10000; default 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer",
+            "x-example": 1
+          },
+          {
+            "description": "Rows per page, default 10, range 1 to 100",
+            "in": "query",
+            "name": "limit",
+            "type": "integer",
+            "x-example": 10
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/rottentomatoes.editorialSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Rotten Tomatoes editorial search",
         "tags": [
           "Rotten Tomatoes"
         ]
@@ -351160,6 +352130,136 @@
           }
         ],
         "summary": "Rotten Tomatoes series detail",
+        "tags": [
+          "Rotten Tomatoes"
+        ]
+      }
+    },
+    "/rottentomatoes/sitemap/urls": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of URLs from one child sitemap. Discover valid `name` values with `rottentomatoes-sitemaps`; use offset/limit to page through the complete sitemap.",
+        "operationId": "rottentomatoes-sitemap-urls",
+        "parameters": [
+          {
+            "description": "Sitemap name returned by /rottentomatoes/sitemaps",
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "type": "string",
+            "x-example": "movie_0"
+          },
+          {
+            "description": "Zero-based offset, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer",
+            "x-example": 0
+          },
+          {
+            "description": "URLs to return, default 100, max 500",
+            "in": "query",
+            "name": "limit",
+            "type": "integer",
+            "x-example": 100
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/rottentomatoes.sitemapURLResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Rotten Tomatoes sitemap URL page",
+        "tags": [
+          "Rotten Tomatoes"
+        ]
+      }
+    },
+    "/rottentomatoes/sitemaps": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the live sitemap index and every named child sitemap, including movie, TV series, season, episode, person, critic, publication, browse-list, and static route inventories.",
+        "operationId": "rottentomatoes-sitemaps",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/rottentomatoes.sitemapIndexResponseDoc"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Rotten Tomatoes sitemap discovery",
         "tags": [
           "Rotten Tomatoes"
         ]

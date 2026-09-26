@@ -42739,6 +42739,25 @@ type ModelRollingstoneHeadlineItem struct {
 	Url         string `json:"url,omitempty"`
 }
 
+type ModelRottentomatoesBrowseFilter struct {
+	Key    string                                 `json:"key,omitempty"`
+	Label  string                                 `json:"label,omitempty"`
+	Values []ModelRottentomatoesBrowseFilterValue `json:"values,omitempty"`
+}
+
+type ModelRottentomatoesBrowseFilterValue struct {
+	Label string `json:"label,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelRottentomatoesBrowseFiltersResponse struct {
+	FetchedAt         string                            `json:"fetched_at,omitempty"`
+	Filters           []ModelRottentomatoesBrowseFilter `json:"filters,omitempty"`
+	List              string                            `json:"list,omitempty"`
+	PublicPageDerived bool                              `json:"public_page_derived,omitempty"`
+	SourceUrl         string                            `json:"source_url,omitempty"`
+}
+
 type ModelRottentomatoesBrowseItem struct {
 	CriticsReviewCount int                             `json:"critics_review_count,omitempty"`
 	DateCreated        string                          `json:"date_created,omitempty"`
@@ -42753,14 +42772,68 @@ type ModelRottentomatoesBrowseItem struct {
 }
 
 type ModelRottentomatoesBrowseResponse struct {
-	FetchedAt         string                          `json:"fetched_at,omitempty"`
-	Items             []ModelRottentomatoesBrowseItem `json:"items,omitempty"`
-	Limit             int                             `json:"limit,omitempty"`
-	List              string                          `json:"list,omitempty"`
-	PublicPageDerived bool                            `json:"public_page_derived,omitempty"`
-	Sort              string                          `json:"sort,omitempty"`
-	SourceUrl         string                          `json:"source_url,omitempty"`
-	Title             string                          `json:"title,omitempty"`
+	FetchedAt         string                            `json:"fetched_at,omitempty"`
+	Items             []ModelRottentomatoesBrowseItem   `json:"items,omitempty"`
+	Limit             int                               `json:"limit,omitempty"`
+	List              string                            `json:"list,omitempty"`
+	PageInfo          ModelRottentomatoesReviewPageInfo `json:"page_info,omitempty"`
+	PublicPageDerived bool                              `json:"public_page_derived,omitempty"`
+	Sort              string                            `json:"sort,omitempty"`
+	SourceUrl         string                            `json:"source_url,omitempty"`
+	Title             string                            `json:"title,omitempty"`
+}
+
+type ModelRottentomatoesCriticAuthor struct {
+	Badges           []string                                     `json:"badges,omitempty"`
+	Name             string                                       `json:"name,omitempty"`
+	Path             string                                       `json:"path,omitempty"`
+	PublicationLabel string                                       `json:"publication_label,omitempty"`
+	Publications     []ModelRottentomatoesCriticAuthorPublication `json:"publications,omitempty"`
+}
+
+type ModelRottentomatoesCriticAuthorPublication struct {
+	EditorialUrl string `json:"editorial_url,omitempty"`
+	Id           string `json:"id,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Path         string `json:"path,omitempty"`
+}
+
+type ModelRottentomatoesCriticsAuthorsResponse struct {
+	After             string                            `json:"after,omitempty"`
+	Authors           []ModelRottentomatoesCriticAuthor `json:"authors,omitempty"`
+	Before            string                            `json:"before,omitempty"`
+	FetchedAt         string                            `json:"fetched_at,omitempty"`
+	HasNextPage       bool                              `json:"has_next_page,omitempty"`
+	HasPreviousPage   bool                              `json:"has_previous_page,omitempty"`
+	Inactive          bool                              `json:"inactive,omitempty"`
+	Letter            string                            `json:"letter,omitempty"`
+	Limit             int                               `json:"limit,omitempty"`
+	NextCursor        string                            `json:"next_cursor,omitempty"`
+	PreviousCursor    string                            `json:"previous_cursor,omitempty"`
+	PublicPageDerived bool                              `json:"public_page_derived,omitempty"`
+	Search            string                            `json:"search,omitempty"`
+	SourceUrl         string                            `json:"source_url,omitempty"`
+}
+
+type ModelRottentomatoesEditorialSearchResponse struct {
+	FetchedAt         string                                     `json:"fetched_at,omitempty"`
+	HasNextPage       bool                                       `json:"has_next_page,omitempty"`
+	Limit             int                                        `json:"limit,omitempty"`
+	Page              int                                        `json:"page,omitempty"`
+	PublicPageDerived bool                                       `json:"public_page_derived,omitempty"`
+	Query             string                                     `json:"query,omitempty"`
+	Results           []ModelRottentomatoesEditorialSearchResult `json:"results,omitempty"`
+	SourceUrl         string                                     `json:"source_url,omitempty"`
+	Total             int                                        `json:"total,omitempty"`
+	TotalPages        int                                        `json:"total_pages,omitempty"`
+}
+
+type ModelRottentomatoesEditorialSearchResult struct {
+	Id      int    `json:"id,omitempty"`
+	Subtype string `json:"subtype,omitempty"`
+	Title   string `json:"title,omitempty"`
+	Type    string `json:"type,omitempty"`
+	Url     string `json:"url,omitempty"`
 }
 
 type ModelRottentomatoesEpisodeResponse struct {
@@ -42910,8 +42983,10 @@ type ModelRottentomatoesReviewMovieSummary struct {
 }
 
 type ModelRottentomatoesReviewPageInfo struct {
-	EndCursor   string `json:"end_cursor,omitempty"`
-	HasNextPage bool   `json:"has_next_page,omitempty"`
+	EndCursor       string `json:"end_cursor,omitempty"`
+	HasNextPage     bool   `json:"has_next_page,omitempty"`
+	HasPreviousPage bool   `json:"has_previous_page,omitempty"`
+	StartCursor     string `json:"start_cursor,omitempty"`
 }
 
 type ModelRottentomatoesReviewsResponse struct {
@@ -43038,16 +43113,66 @@ type ModelRottentomatoesSeriesSummary struct {
 	Url   string `json:"url,omitempty"`
 }
 
+type ModelRottentomatoesSitemap struct {
+	Family       string `json:"family,omitempty"`
+	Index        int    `json:"index,omitempty"`
+	LastModified string `json:"last_modified,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Url          string `json:"url,omitempty"`
+}
+
+type ModelRottentomatoesSitemapIndexResponse struct {
+	FetchedAt         string                       `json:"fetched_at,omitempty"`
+	PublicPageDerived bool                         `json:"public_page_derived,omitempty"`
+	Sitemaps          []ModelRottentomatoesSitemap `json:"sitemaps,omitempty"`
+	SourceUrl         string                       `json:"source_url,omitempty"`
+}
+
+type ModelRottentomatoesSitemapUrl struct {
+	LastModified string `json:"last_modified,omitempty"`
+	Url          string `json:"url,omitempty"`
+}
+
+type ModelRottentomatoesSitemapUrlresponse struct {
+	FetchedAt         string                          `json:"fetched_at,omitempty"`
+	HasMore           bool                            `json:"has_more,omitempty"`
+	Limit             int                             `json:"limit,omitempty"`
+	Name              string                          `json:"name,omitempty"`
+	Offset            int                             `json:"offset,omitempty"`
+	PublicPageDerived bool                            `json:"public_page_derived,omitempty"`
+	SourceUrl         string                          `json:"source_url,omitempty"`
+	Total             int                             `json:"total,omitempty"`
+	Urls              []ModelRottentomatoesSitemapUrl `json:"urls,omitempty"`
+}
+
 type ModelRottentomatoesTvseason struct {
 	Name string `json:"name,omitempty"`
 	Path string `json:"path,omitempty"`
 	Url  string `json:"url,omitempty"`
 }
 
+type ModelRottentomatoesBrowseFiltersResponseDoc struct {
+	Code int                                      `json:"code,omitempty"`
+	Data ModelRottentomatoesBrowseFiltersResponse `json:"data,omitempty"`
+	Msg  string                                   `json:"msg,omitempty"`
+}
+
 type ModelRottentomatoesBrowseResponseDoc struct {
 	Code int                               `json:"code,omitempty"`
 	Data ModelRottentomatoesBrowseResponse `json:"data,omitempty"`
 	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelRottentomatoesCriticsAuthorsResponseDoc struct {
+	Code int                                       `json:"code,omitempty"`
+	Data ModelRottentomatoesCriticsAuthorsResponse `json:"data,omitempty"`
+	Msg  string                                    `json:"msg,omitempty"`
+}
+
+type ModelRottentomatoesEditorialSearchResponseDoc struct {
+	Code int                                        `json:"code,omitempty"`
+	Data ModelRottentomatoesEditorialSearchResponse `json:"data,omitempty"`
+	Msg  string                                     `json:"msg,omitempty"`
 }
 
 type ModelRottentomatoesEpisodeResponseDoc struct {
@@ -43090,6 +43215,18 @@ type ModelRottentomatoesSeriesResponseDoc struct {
 	Code int                               `json:"code,omitempty"`
 	Data ModelRottentomatoesSeriesResponse `json:"data,omitempty"`
 	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelRottentomatoesSitemapIndexResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelRottentomatoesSitemapIndexResponse `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
+}
+
+type ModelRottentomatoesSitemapUrlresponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelRottentomatoesSitemapUrlresponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
 }
 
 type ModelRoverProfileResponse struct {
@@ -61952,7 +62089,7 @@ type ModelZomatoSearchResponseDoc struct {
 	Msg  any                       `json:"msg,omitempty"`
 }
 
-const operationCount = 3160
+const operationCount = 3165
 
 const (
 	OperationAbcNewsAbcnewsArticle                                  = "abcnews-article"
@@ -64181,8 +64318,11 @@ const (
 	OperationRothySRothysSitemapUrls                                = "rothys-sitemap-urls"
 	OperationRothySRothysSitemaps                                   = "rothys-sitemaps"
 	OperationRothySRothysStore                                      = "rothys-store"
+	OperationRottenTomatoesRottentomatoesBrowseFilters              = "rottentomatoes-browse-filters"
 	OperationRottenTomatoesRottentomatoesBrowseMovies               = "rottentomatoes-browse-movies"
 	OperationRottenTomatoesRottentomatoesBrowseTv                   = "rottentomatoes-browse-tv"
+	OperationRottenTomatoesRottentomatoesCriticsAuthors             = "rottentomatoes-critics-authors"
+	OperationRottenTomatoesRottentomatoesEditorialSearch            = "rottentomatoes-editorial-search"
 	OperationRottenTomatoesRottentomatoesEpisode                    = "rottentomatoes-episode"
 	OperationRottenTomatoesRottentomatoesMovie                      = "rottentomatoes-movie"
 	OperationRottenTomatoesRottentomatoesMovieReviews               = "rottentomatoes-movie-reviews"
@@ -64190,6 +64330,8 @@ const (
 	OperationRottenTomatoesRottentomatoesSearch                     = "rottentomatoes-search"
 	OperationRottenTomatoesRottentomatoesSeason                     = "rottentomatoes-season"
 	OperationRottenTomatoesRottentomatoesSeries                     = "rottentomatoes-series"
+	OperationRottenTomatoesRottentomatoesSitemapUrls                = "rottentomatoes-sitemap-urls"
+	OperationRottenTomatoesRottentomatoesSitemaps                   = "rottentomatoes-sitemaps"
 	OperationRoverSitterProfile                                     = "rover-sitter-profile"
 	OperationRoverSitterSearch                                      = "rover-sitter-search"
 	OperationRoverTrainerProfile                                    = "rover-trainer-profile"
@@ -67368,8 +67510,11 @@ var operations = map[string]operationDefinition{
 	"rothys-sitemap-urls":                           operationDefinition{Method: "GET", Path: "/rothys/sitemap/urls", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "products", "collections", "pages", "blogs", "agentic_discovery", "other"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"rothys-sitemaps":                               operationDefinition{Method: "GET", Path: "/rothys/sitemaps", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"rothys-store":                                  operationDefinition{Method: "GET", Path: "/rothys/store", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"rottentomatoes-browse-movies":                  operationDefinition{Method: "GET", Path: "/rottentomatoes/browse/movies", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "list", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"movies_in_theaters", "movies_at_home", "movies_coming_soon"}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"popular", "newest", "top_box_office"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"rottentomatoes-browse-tv":                      operationDefinition{Method: "GET", Path: "/rottentomatoes/browse/tv", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "list", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"tv_series_browse"}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"popular", "newest"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"rottentomatoes-browse-filters":                 operationDefinition{Method: "GET", Path: "/rottentomatoes/browse/filters", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "list", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"movies_in_theaters", "movies_at_home", "movies_coming_soon", "tv_series_browse"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"rottentomatoes-browse-movies":                  operationDefinition{Method: "GET", Path: "/rottentomatoes/browse/movies", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "list", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"movies_in_theaters", "movies_at_home", "movies_coming_soon"}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"popular", "newest", "top_box_office", "a_z", "critic_highest", "critic_lowest", "audience_highest", "audience_lowest"}}, parameterDefinition{Name: "genres", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"action", "adventure", "animation", "anime", "biography", "comedy", "crime", "documentary", "drama", "entertainment", "faith_and_spirituality", "fantasy", "game_show", "lgbtq", "health_and_wellness", "history", "holiday", "horror", "house_and_garden", "kids_and_family", "music", "musical", "mystery_and_thriller", "nature", "news", "reality", "romance", "sci_fi", "short", "soap", "special_interest", "sports", "stand_up", "talk_show", "travel", "variety", "war", "western"}}, parameterDefinition{Name: "ratings", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"g", "pg", "pg_13", "r", "nc_17", "nr", "ur"}}, parameterDefinition{Name: "audience", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"verified_hot", "upright", "spilled"}}, parameterDefinition{Name: "critics", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"certified_fresh", "fresh", "rotten"}}, parameterDefinition{Name: "affiliates", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"theaters", "fandango", "apple-tv-plus", "netflix", "prime-video", "disney-plus", "max", "peacock", "hulu", "paramount-plus", "amc-plus", "acorn-tv", "apple-tv"}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"rottentomatoes-browse-tv":                      operationDefinition{Method: "GET", Path: "/rottentomatoes/browse/tv", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "list", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"tv_series_browse"}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"popular", "newest", "a_z", "critic_highest", "critic_lowest", "audience_highest", "audience_lowest"}}, parameterDefinition{Name: "genres", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"action", "adventure", "animation", "anime", "biography", "comedy", "crime", "documentary", "drama", "entertainment", "faith_and_spirituality", "fantasy", "game_show", "lgbtq", "health_and_wellness", "history", "holiday", "horror", "house_and_garden", "kids_and_family", "music", "musical", "mystery_and_thriller", "nature", "news", "reality", "romance", "sci_fi", "short", "soap", "special_interest", "sports", "stand_up", "talk_show", "travel", "variety", "war", "western"}}, parameterDefinition{Name: "ratings", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"tvy", "tvy7", "tvg", "tvpg", "tv14", "tvma"}}, parameterDefinition{Name: "audience", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"upright", "spilled"}}, parameterDefinition{Name: "critics", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"fresh", "rotten"}}, parameterDefinition{Name: "affiliates", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"theaters", "fandango", "apple-tv-plus", "netflix", "prime-video", "disney-plus", "max", "peacock", "hulu", "paramount-plus", "amc-plus", "acorn-tv", "apple-tv"}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"rottentomatoes-critics-authors":                operationDefinition{Method: "GET", Path: "/rottentomatoes/critics/authors", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "letter", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"#", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}}, parameterDefinition{Name: "search", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "inactive", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"rottentomatoes-editorial-search":               operationDefinition{Method: "GET", Path: "/rottentomatoes/editorial/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"rottentomatoes-episode":                        operationDefinition{Method: "GET", Path: "/rottentomatoes/episode", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"rottentomatoes-movie":                          operationDefinition{Method: "GET", Path: "/rottentomatoes/movie", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"rottentomatoes-movie-reviews":                  operationDefinition{Method: "GET", Path: "/rottentomatoes/movie/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"critics", "top-critics", "audience", "verified-audience"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -67377,6 +67522,8 @@ var operations = map[string]operationDefinition{
 	"rottentomatoes-search":                         operationDefinition{Method: "GET", Path: "/rottentomatoes/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"rottentomatoes-season":                         operationDefinition{Method: "GET", Path: "/rottentomatoes/season", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"rottentomatoes-series":                         operationDefinition{Method: "GET", Path: "/rottentomatoes/series", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"rottentomatoes-sitemap-urls":                   operationDefinition{Method: "GET", Path: "/rottentomatoes/sitemap/urls", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "name", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"rottentomatoes-sitemaps":                       operationDefinition{Method: "GET", Path: "/rottentomatoes/sitemaps", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"rover-sitter-search":                           operationDefinition{Method: "GET", Path: "/rover/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "service_type", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "pet_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_price", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "star_sitter_only", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"rover-sitter-profile":                          operationDefinition{Method: "GET", Path: "/rover/sitter/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"rover-trainer-search":                          operationDefinition{Method: "GET", Path: "/rover/trainer-search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -104686,14 +104833,34 @@ func (s *RothySService) RothysStoreTyped(ctx context.Context, params RothySRothy
 
 type RottenTomatoesService struct{ client *Client }
 
+func (s *RottenTomatoesService) RottentomatoesBrowseFilters(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "rottentomatoes-browse-filters", params, opts...)
+}
+
+type RottenTomatoesRottentomatoesBrowseFiltersParams struct {
+	List *string `crawlora:"list,omitempty"`
+}
+
+type RottenTomatoesRottentomatoesBrowseFiltersResponse = ModelRottentomatoesBrowseFiltersResponseDoc
+
+func (s *RottenTomatoesService) RottentomatoesBrowseFiltersTyped(ctx context.Context, params RottenTomatoesRottentomatoesBrowseFiltersParams, opts ...RequestOption) (RottenTomatoesRottentomatoesBrowseFiltersResponse, error) {
+	return requestTyped[RottenTomatoesRottentomatoesBrowseFiltersResponse](s.client, ctx, "rottentomatoes-browse-filters", paramsFromStruct(params), opts...)
+}
+
 func (s *RottenTomatoesService) RottentomatoesBrowseMovies(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "rottentomatoes-browse-movies", params, opts...)
 }
 
 type RottenTomatoesRottentomatoesBrowseMoviesParams struct {
-	List  *string `crawlora:"list,omitempty"`
-	Sort  *string `crawlora:"sort,omitempty"`
-	Limit *int    `crawlora:"limit,omitempty"`
+	List       *string `crawlora:"list,omitempty"`
+	Sort       *string `crawlora:"sort,omitempty"`
+	Genres     *string `crawlora:"genres,omitempty"`
+	Ratings    *string `crawlora:"ratings,omitempty"`
+	Audience   *string `crawlora:"audience,omitempty"`
+	Critics    *string `crawlora:"critics,omitempty"`
+	Affiliates *string `crawlora:"affiliates,omitempty"`
+	After      *string `crawlora:"after,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
 }
 
 type RottenTomatoesRottentomatoesBrowseMoviesResponse = ModelRottentomatoesBrowseResponseDoc
@@ -104707,15 +104874,56 @@ func (s *RottenTomatoesService) RottentomatoesBrowseTv(ctx context.Context, para
 }
 
 type RottenTomatoesRottentomatoesBrowseTvParams struct {
-	List  *string `crawlora:"list,omitempty"`
-	Sort  *string `crawlora:"sort,omitempty"`
-	Limit *int    `crawlora:"limit,omitempty"`
+	List       *string `crawlora:"list,omitempty"`
+	Sort       *string `crawlora:"sort,omitempty"`
+	Genres     *string `crawlora:"genres,omitempty"`
+	Ratings    *string `crawlora:"ratings,omitempty"`
+	Audience   *string `crawlora:"audience,omitempty"`
+	Critics    *string `crawlora:"critics,omitempty"`
+	Affiliates *string `crawlora:"affiliates,omitempty"`
+	After      *string `crawlora:"after,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
 }
 
 type RottenTomatoesRottentomatoesBrowseTvResponse = ModelRottentomatoesBrowseResponseDoc
 
 func (s *RottenTomatoesService) RottentomatoesBrowseTvTyped(ctx context.Context, params RottenTomatoesRottentomatoesBrowseTvParams, opts ...RequestOption) (RottenTomatoesRottentomatoesBrowseTvResponse, error) {
 	return requestTyped[RottenTomatoesRottentomatoesBrowseTvResponse](s.client, ctx, "rottentomatoes-browse-tv", paramsFromStruct(params), opts...)
+}
+
+func (s *RottenTomatoesService) RottentomatoesCriticsAuthors(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "rottentomatoes-critics-authors", params, opts...)
+}
+
+type RottenTomatoesRottentomatoesCriticsAuthorsParams struct {
+	Letter   *string `crawlora:"letter,omitempty"`
+	Search   *string `crawlora:"search,omitempty"`
+	Inactive *bool   `crawlora:"inactive,omitempty"`
+	After    *string `crawlora:"after,omitempty"`
+	Before   *string `crawlora:"before,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+}
+
+type RottenTomatoesRottentomatoesCriticsAuthorsResponse = ModelRottentomatoesCriticsAuthorsResponseDoc
+
+func (s *RottenTomatoesService) RottentomatoesCriticsAuthorsTyped(ctx context.Context, params RottenTomatoesRottentomatoesCriticsAuthorsParams, opts ...RequestOption) (RottenTomatoesRottentomatoesCriticsAuthorsResponse, error) {
+	return requestTyped[RottenTomatoesRottentomatoesCriticsAuthorsResponse](s.client, ctx, "rottentomatoes-critics-authors", paramsFromStruct(params), opts...)
+}
+
+func (s *RottenTomatoesService) RottentomatoesEditorialSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "rottentomatoes-editorial-search", params, opts...)
+}
+
+type RottenTomatoesRottentomatoesEditorialSearchParams struct {
+	Query string `crawlora:"query"`
+	Page  *int   `crawlora:"page,omitempty"`
+	Limit *int   `crawlora:"limit,omitempty"`
+}
+
+type RottenTomatoesRottentomatoesEditorialSearchResponse = ModelRottentomatoesEditorialSearchResponseDoc
+
+func (s *RottenTomatoesService) RottentomatoesEditorialSearchTyped(ctx context.Context, params RottenTomatoesRottentomatoesEditorialSearchParams, opts ...RequestOption) (RottenTomatoesRottentomatoesEditorialSearchResponse, error) {
+	return requestTyped[RottenTomatoesRottentomatoesEditorialSearchResponse](s.client, ctx, "rottentomatoes-editorial-search", paramsFromStruct(params), opts...)
 }
 
 func (s *RottenTomatoesService) RottentomatoesEpisode(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -104824,6 +105032,35 @@ type RottenTomatoesRottentomatoesSeriesResponse = ModelRottentomatoesSeriesRespo
 
 func (s *RottenTomatoesService) RottentomatoesSeriesTyped(ctx context.Context, params RottenTomatoesRottentomatoesSeriesParams, opts ...RequestOption) (RottenTomatoesRottentomatoesSeriesResponse, error) {
 	return requestTyped[RottenTomatoesRottentomatoesSeriesResponse](s.client, ctx, "rottentomatoes-series", paramsFromStruct(params), opts...)
+}
+
+func (s *RottenTomatoesService) RottentomatoesSitemapUrls(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "rottentomatoes-sitemap-urls", params, opts...)
+}
+
+type RottenTomatoesRottentomatoesSitemapUrlsParams struct {
+	Name   string `crawlora:"name"`
+	Offset *int   `crawlora:"offset,omitempty"`
+	Limit  *int   `crawlora:"limit,omitempty"`
+}
+
+type RottenTomatoesRottentomatoesSitemapUrlsResponse = ModelRottentomatoesSitemapUrlresponseDoc
+
+func (s *RottenTomatoesService) RottentomatoesSitemapUrlsTyped(ctx context.Context, params RottenTomatoesRottentomatoesSitemapUrlsParams, opts ...RequestOption) (RottenTomatoesRottentomatoesSitemapUrlsResponse, error) {
+	return requestTyped[RottenTomatoesRottentomatoesSitemapUrlsResponse](s.client, ctx, "rottentomatoes-sitemap-urls", paramsFromStruct(params), opts...)
+}
+
+func (s *RottenTomatoesService) RottentomatoesSitemaps(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "rottentomatoes-sitemaps", params, opts...)
+}
+
+type RottenTomatoesRottentomatoesSitemapsParams struct {
+}
+
+type RottenTomatoesRottentomatoesSitemapsResponse = ModelRottentomatoesSitemapIndexResponseDoc
+
+func (s *RottenTomatoesService) RottentomatoesSitemapsTyped(ctx context.Context, params RottenTomatoesRottentomatoesSitemapsParams, opts ...RequestOption) (RottenTomatoesRottentomatoesSitemapsResponse, error) {
+	return requestTyped[RottenTomatoesRottentomatoesSitemapsResponse](s.client, ctx, "rottentomatoes-sitemaps", paramsFromStruct(params), opts...)
 }
 
 type RoverService struct{ client *Client }

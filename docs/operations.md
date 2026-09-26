@@ -2,7 +2,7 @@
 
 Generated from `openapi/public.json`. Deprecated, admin, and internal operations are excluded from this SDK contract.
 
-Total operations: `3160`
+Total operations: `3165`
 
 | Group | SDK method | Operation ID | HTTP | Params | Auth | Response | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -2258,8 +2258,11 @@ Total operations: `3160`
 | RothyS | `RothyS.RothysSitemapUrls` | `rothys-sitemap-urls` | `GET /rothys/sitemap/urls` | `type` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `RothySRothysSitemapUrlsResponse` |  |
 | RothyS | `RothyS.RothysSitemaps` | `rothys-sitemaps` | `GET /rothys/sitemaps` | none | `ApiKeyAuth` | `RothySRothysSitemapsResponse` |  |
 | RothyS | `RothyS.RothysStore` | `rothys-store` | `GET /rothys/store` | none | `ApiKeyAuth` | `RothySRothysStoreResponse` |  |
-| RottenTomatoes | `RottenTomatoes.RottentomatoesBrowseMovies` | `rottentomatoes-browse-movies` | `GET /rottentomatoes/browse/movies` | `list` (query string)<br>`sort` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `RottenTomatoesRottentomatoesBrowseMoviesResponse` |  |
-| RottenTomatoes | `RottenTomatoes.RottentomatoesBrowseTv` | `rottentomatoes-browse-tv` | `GET /rottentomatoes/browse/tv` | `list` (query string)<br>`sort` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `RottenTomatoesRottentomatoesBrowseTvResponse` |  |
+| RottenTomatoes | `RottenTomatoes.RottentomatoesBrowseFilters` | `rottentomatoes-browse-filters` | `GET /rottentomatoes/browse/filters` | `list` (query string) | `ApiKeyAuth` | `RottenTomatoesRottentomatoesBrowseFiltersResponse` |  |
+| RottenTomatoes | `RottenTomatoes.RottentomatoesBrowseMovies` | `rottentomatoes-browse-movies` | `GET /rottentomatoes/browse/movies` | `list` (query string)<br>`sort` (query string)<br>`genres` (query string)<br>`ratings` (query string)<br>`audience` (query string)<br>`critics` (query string)<br>`affiliates` (query string)<br>`after` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `RottenTomatoesRottentomatoesBrowseMoviesResponse` |  |
+| RottenTomatoes | `RottenTomatoes.RottentomatoesBrowseTv` | `rottentomatoes-browse-tv` | `GET /rottentomatoes/browse/tv` | `list` (query string)<br>`sort` (query string)<br>`genres` (query string)<br>`ratings` (query string)<br>`audience` (query string)<br>`critics` (query string)<br>`affiliates` (query string)<br>`after` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `RottenTomatoesRottentomatoesBrowseTvResponse` |  |
+| RottenTomatoes | `RottenTomatoes.RottentomatoesCriticsAuthors` | `rottentomatoes-critics-authors` | `GET /rottentomatoes/critics/authors` | `letter` (query string)<br>`search` (query string)<br>`inactive` (query bool)<br>`after` (query string)<br>`before` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `RottenTomatoesRottentomatoesCriticsAuthorsResponse` |  |
+| RottenTomatoes | `RottenTomatoes.RottentomatoesEditorialSearch` | `rottentomatoes-editorial-search` | `GET /rottentomatoes/editorial/search` | `query` (query string required)<br>`page` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `RottenTomatoesRottentomatoesEditorialSearchResponse` |  |
 | RottenTomatoes | `RottenTomatoes.RottentomatoesEpisode` | `rottentomatoes-episode` | `GET /rottentomatoes/episode` | `path` (query string)<br>`url` (query string) | `ApiKeyAuth` | `RottenTomatoesRottentomatoesEpisodeResponse` |  |
 | RottenTomatoes | `RottenTomatoes.RottentomatoesMovie` | `rottentomatoes-movie` | `GET /rottentomatoes/movie` | `path` (query string)<br>`url` (query string) | `ApiKeyAuth` | `RottenTomatoesRottentomatoesMovieResponse` |  |
 | RottenTomatoes | `RottenTomatoes.RottentomatoesMovieReviews` | `rottentomatoes-movie-reviews` | `GET /rottentomatoes/movie/reviews` | `path` (query string)<br>`url` (query string)<br>`type` (query string)<br>`limit` (query int)<br>`after` (query string) | `ApiKeyAuth` | `RottenTomatoesRottentomatoesMovieReviewsResponse` |  |
@@ -2267,6 +2270,8 @@ Total operations: `3160`
 | RottenTomatoes | `RottenTomatoes.RottentomatoesSearch` | `rottentomatoes-search` | `GET /rottentomatoes/search` | `query` (query string required)<br>`limit` (query int) | `ApiKeyAuth` | `RottenTomatoesRottentomatoesSearchResponse` |  |
 | RottenTomatoes | `RottenTomatoes.RottentomatoesSeason` | `rottentomatoes-season` | `GET /rottentomatoes/season` | `path` (query string)<br>`url` (query string) | `ApiKeyAuth` | `RottenTomatoesRottentomatoesSeasonResponse` |  |
 | RottenTomatoes | `RottenTomatoes.RottentomatoesSeries` | `rottentomatoes-series` | `GET /rottentomatoes/series` | `path` (query string)<br>`url` (query string) | `ApiKeyAuth` | `RottenTomatoesRottentomatoesSeriesResponse` |  |
+| RottenTomatoes | `RottenTomatoes.RottentomatoesSitemapUrls` | `rottentomatoes-sitemap-urls` | `GET /rottentomatoes/sitemap/urls` | `name` (query string required)<br>`offset` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `RottenTomatoesRottentomatoesSitemapUrlsResponse` |  |
+| RottenTomatoes | `RottenTomatoes.RottentomatoesSitemaps` | `rottentomatoes-sitemaps` | `GET /rottentomatoes/sitemaps` | none | `ApiKeyAuth` | `RottenTomatoesRottentomatoesSitemapsResponse` |  |
 | Rover | `Rover.SitterSearch` | `rover-sitter-search` | `GET /rover/search` | `location` (query string required)<br>`service_type` (query string required)<br>`page` (query int)<br>`pet_type` (query string)<br>`min_price` (query int)<br>`max_price` (query int)<br>`star_sitter_only` (query bool) | `ApiKeyAuth` | `RoverSitterSearchResponse` |  |
 | Rover | `Rover.SitterProfile` | `rover-sitter-profile` | `GET /rover/sitter/{slug}` | `slug` (path string required) | `ApiKeyAuth` | `RoverSitterProfileResponse` |  |
 | Rover | `Rover.TrainerSearch` | `rover-trainer-search` | `GET /rover/trainer-search` | `location` (query string required) | `ApiKeyAuth` | `RoverTrainerSearchResponse` |  |
