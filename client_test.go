@@ -91,7 +91,7 @@ func TestMissingRequiredParamsFailBeforeRequest(t *testing.T) {
 	if _, err := client.Bing.Search(context.Background(), Params{}); err == nil || !strings.Contains(err.Error(), "missing required query parameter: q") {
 		t.Fatalf("missing query error = %v", err)
 	}
-	if _, err := client.Google.Search(context.Background(), Params{}); err == nil || !strings.Contains(err.Error(), "missing required body parameter: searchOption") {
+	if _, err := client.Web.EmailVerify(context.Background(), Params{}); err == nil || !strings.Contains(err.Error(), "missing required body parameter: option") {
 		t.Fatalf("missing body error = %v", err)
 	}
 	if calls != 0 {
@@ -204,7 +204,7 @@ func TestRequestHeadersOverrideDefaultAuthAndContentHeaders(t *testing.T) {
 	defer server.Close()
 
 	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_default"))
-	_, err := client.Google.Search(context.Background(), Params{"searchOption": Params{"q": "coffee"}},
+	_, err := client.Web.EmailVerify(context.Background(), Params{"option": Params{"emails": []string{"jane@example.com"}}},
 		WithRequestHeader("X-API-KEY", "api_request"),
 		WithRequestHeader("Content-Type", "application/custom+json"),
 	)
@@ -417,7 +417,7 @@ func TestOperationMetadataCount(t *testing.T) {
 	if len(operations) != operationCount {
 		t.Fatalf("operations = %d, operationCount = %d", len(operations), operationCount)
 	}
-	if operationCount != 1939 {
+	if operationCount != 3159 {
 		t.Fatalf("operationCount = %d", operationCount)
 	}
 }
@@ -453,7 +453,7 @@ func TestDocsCoverOperationsAndRecipes(t *testing.T) {
 	operationsText := string(operationsDoc)
 	recipesText := string(recipesDoc)
 	for _, want := range []string{
-		"Total operations: `1939`",
+		"Total operations: `3159`",
 		"`bing-search`",
 		"`GET /bing/search`",
 		"`Bing.Search`",
@@ -856,7 +856,7 @@ func TestIdempotencyKeyStableAcrossRetries(t *testing.T) {
 	defer server.Close()
 
 	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("k"), WithRetries(1), WithRetryDelay(0), WithIdempotencyKeys(true))
-	if _, err := client.Google.Search(context.Background(), Params{"searchOption": Params{"q": "c"}}); err != nil {
+	if _, err := client.Web.EmailVerify(context.Background(), Params{"option": Params{"emails": []string{"jane@example.com"}}}); err != nil {
 		t.Fatalf("search: %v", err)
 	}
 	if len(keys) != 2 || keys[0] == "" || keys[0] != keys[1] {
@@ -930,16 +930,12 @@ func TestTypedEndpointJSONBody(t *testing.T) {
 	defer server.Close()
 
 	client := NewClient(WithBaseURL(server.URL+"/api/v1"), WithAPIKey("api_test"))
-	if _, err := client.Google.SearchTyped(context.Background(), GoogleSearchParams{
-		SearchOption: ModelGoogleSearchOption{
-			Country:  "us",
-			Keyword:  "coffee",
-			Language: "en",
-		},
+	if _, err := client.Web.EmailVerifyTyped(context.Background(), WebEmailVerifyParams{
+		Option: ModelContactVerifyRequest{Emails: []string{"jane@example.com"}},
 	}); err != nil {
-		t.Fatalf("typed google search: %v", err)
+		t.Fatalf("typed email verify: %v", err)
 	}
-	if gotBody != `{"country":"us","keyword":"coffee","language":"en"}` {
+	if gotBody != `{"emails":["jane@example.com"]}` {
 		t.Fatalf("body = %q", gotBody)
 	}
 }

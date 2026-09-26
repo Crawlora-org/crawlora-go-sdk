@@ -26,6 +26,9 @@ from typing import Any, Callable
 # every SDK. Group-name casing differs per language and lives in NamingPolicy.
 TAG_PREFIX_OVERRIDES = {
     "7NOW": "7now",
+    "7NEWS Australia": "sevennewsau",
+    "9to5Mac": "ninetofivemac",
+    "1stDibs": "firstdibs",
     "AppStore": "appstore",
     "CoinGecko": "coingecko",
     "GooglePlay": "googleplay",
