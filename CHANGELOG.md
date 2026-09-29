@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.44.0-sdk.1
+
+- Added 110 public operations across global news publishers, sports coverage, and entertainment; regenerated for the 3,275-operation contract.
+
 ## v1.43.0-sdk.1
 
 - Regenerated from the public API contract (3165 operations).

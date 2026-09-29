@@ -314,3 +314,12 @@ channel, _ := client.Request(ctx, "twitch-channel", crawlora.Params{"login": "ca
 streams, _ := client.Request(ctx, "twitch-streams", crawlora.Params{"game": "league-of-legends", "limit": 20})
 track, _ := client.Request(ctx, "soundcloud-track", crawlora.Params{"url": "https://soundcloud.com/artist/track-name"})
 ```
+
+## News Publishers And Sports
+
+Fetch the latest stories from a public news publisher or sports desk:
+
+```go
+news, err := client.AlCom.AlcomNews(ctx, crawlora.Params{})
+sports, err := client.Sportskeeda.News(ctx, crawlora.Params{})
+```

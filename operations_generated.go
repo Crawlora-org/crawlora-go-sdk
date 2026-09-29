@@ -21851,6 +21851,66 @@ type ModelFortuneRankingYearsResponse struct {
 	Years       []string `json:"years,omitempty"`
 }
 
+type ModelFotmobFifaRankingPeriodData struct {
+	Data      []ModelFotmobFifaRankingPeriodItemDoc `json:"data,omitempty"`
+	SourceUrl string                                `json:"source_url,omitempty"`
+}
+
+type ModelFotmobFifaRankingPeriodItemDoc struct {
+	PeriodId   string `json:"periodId,omitempty"`
+	PeriodName string `json:"periodName,omitempty"`
+}
+
+type ModelFotmobFifaRankingPeriodsResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelFotmobFifaRankingPeriodData `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelFotmobFifaRankingRowDoc struct {
+	GainedRank     bool   `json:"gainedRank,omitempty"`
+	Id             int    `json:"id,omitempty"`
+	LostRank       bool   `json:"lostRank,omitempty"`
+	Name           string `json:"name,omitempty"`
+	PointsDiff     int    `json:"pointsDiff,omitempty"`
+	PreviousPoints int    `json:"previousPoints,omitempty"`
+	Rank           int    `json:"rank,omitempty"`
+	TotalPoints    int    `json:"totalPoints,omitempty"`
+}
+
+type ModelFotmobFifaRankingRowsDataDoc struct {
+	Data      []ModelFotmobFifaRankingRowDoc `json:"data,omitempty"`
+	SourceUrl string                         `json:"source_url,omitempty"`
+}
+
+type ModelFotmobFifaRankingsResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelFotmobFifaRankingRowsDataDoc `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelFotmobNewsItemDoc struct {
+	GmtTime       string                     `json:"gmtTime,omitempty"`
+	Id            string                     `json:"id,omitempty"`
+	ImageUrl      string                     `json:"imageUrl,omitempty"`
+	Language      string                     `json:"language,omitempty"`
+	Lead          string                     `json:"lead,omitempty"`
+	Page          ModelFotmobNewsItemPageDoc `json:"page,omitempty"`
+	SourceIconUrl string                     `json:"sourceIconUrl,omitempty"`
+	SourceStr     string                     `json:"sourceStr,omitempty"`
+	Title         string                     `json:"title,omitempty"`
+}
+
+type ModelFotmobNewsItemPageDoc struct {
+	Url string `json:"url,omitempty"`
+}
+
+type ModelFotmobNewsListResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelFotmobSourceNewsListDoc `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
 type ModelFotmobResponseDoc struct {
 	Code int                      `json:"code,omitempty"`
 	Data ModelFotmobSourceDataDoc `json:"data,omitempty"`
@@ -21860,6 +21920,11 @@ type ModelFotmobResponseDoc struct {
 type ModelFotmobSourceDataDoc struct {
 	Data      map[string]any `json:"data,omitempty"`
 	SourceUrl string         `json:"source_url,omitempty"`
+}
+
+type ModelFotmobSourceNewsListDoc struct {
+	Data      []ModelFotmobNewsItemDoc `json:"data,omitempty"`
+	SourceUrl string                   `json:"source_url,omitempty"`
 }
 
 type ModelFoxnewsArticleResponse struct {
@@ -21979,6 +22044,26 @@ type ModelFrance24HeadlineItem struct {
 	Title       string `json:"title,omitempty"`
 	Type        string `json:"type,omitempty"`
 	Url         string `json:"url,omitempty"`
+}
+
+type ModelFreemalaysiatodayNewsResponse struct {
+	Items []ModelNewsplatformHeadlineItem `json:"items,omitempty"`
+}
+
+type ModelFreemalaysiatodaySectionsResponse struct {
+	Sections []ModelNewsplatformSection `json:"sections,omitempty"`
+}
+
+type ModelFreemalaysiatodayNewsResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelFreemalaysiatodayNewsResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelFreemalaysiatodaySectionsResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelFreemalaysiatodaySectionsResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
 }
 
 type ModelFtArticleResponse struct {
@@ -22456,6 +22541,62 @@ type ModelGeocodingSearchResponseDoc struct {
 	Code int                          `json:"code,omitempty"`
 	Data ModelGeocodingSearchResponse `json:"data,omitempty"`
 	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelGhanawebArchiveItem struct {
+	UpdatedAt string `json:"updated_at,omitempty"`
+	Url       string `json:"url,omitempty"`
+}
+
+type ModelGhanawebArchiveMonth struct {
+	Month     string `json:"month,omitempty"`
+	UpdatedAt string `json:"updated_at,omitempty"`
+}
+
+type ModelGhanawebArchiveMonthsResponse struct {
+	Months []ModelGhanawebArchiveMonth `json:"months,omitempty"`
+}
+
+type ModelGhanawebArchiveResponse struct {
+	Items []ModelGhanawebArchiveItem `json:"items,omitempty"`
+	Limit int                        `json:"limit,omitempty"`
+	Month string                     `json:"month,omitempty"`
+	Page  int                        `json:"page,omitempty"`
+	Total int                        `json:"total,omitempty"`
+}
+
+type ModelGhanawebVideoItem struct {
+	Id          string `json:"id,omitempty"`
+	ImageUrl    string `json:"image_url,omitempty"`
+	PublishedAt string `json:"published_at,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Url         string `json:"url,omitempty"`
+	Views       string `json:"views,omitempty"`
+}
+
+type ModelGhanawebVideoResponse struct {
+	EmbedUrl    string `json:"embed_url,omitempty"`
+	Id          string `json:"id,omitempty"`
+	ImageUrl    string `json:"image_url,omitempty"`
+	PublishedAt string `json:"published_at,omitempty"`
+	Title       string `json:"title,omitempty"`
+	UpdatedAt   string `json:"updated_at,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelGhanawebVideoSection struct {
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelGhanawebVideoSectionsResponse struct {
+	Sections []ModelGhanawebVideoSection `json:"sections,omitempty"`
+}
+
+type ModelGhanawebVideosResponse struct {
+	Items   []ModelGhanawebVideoItem `json:"items,omitempty"`
+	Section string                   `json:"section,omitempty"`
 }
 
 type ModelGizmodoAuthorResponse struct {
@@ -27990,6 +28131,32 @@ type ModelJcrewSuggestResponseDoc struct {
 	Msg  string                    `json:"msg,omitempty"`
 }
 
+type ModelJerusalempostAuthorArticle struct {
+	PublishedAt string `json:"published_at,omitempty"`
+	Summary     string `json:"summary,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelJerusalempostAuthorRef struct {
+	Slug string `json:"slug,omitempty"`
+	Type string `json:"type,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelJerusalempostAuthorResponse struct {
+	Articles    []ModelJerusalempostAuthorArticle `json:"articles,omitempty"`
+	Description string                            `json:"description,omitempty"`
+	ImageUrl    string                            `json:"image_url,omitempty"`
+	Name        string                            `json:"name,omitempty"`
+	Type        string                            `json:"type,omitempty"`
+	Url         string                            `json:"url,omitempty"`
+}
+
+type ModelJerusalempostAuthorsResponse struct {
+	Authors []ModelJerusalempostAuthorRef `json:"authors,omitempty"`
+}
+
 type ModelJimmyjohnsMenuCategory struct {
 	CategoryId int                          `json:"category_id,omitempty"`
 	Name       string                       `json:"name,omitempty"`
@@ -30701,6 +30868,12 @@ type ModelLivescoreLivescoreNewsPublishersResponseDoc struct {
 	Msg  string         `json:"msg,omitempty"`
 }
 
+type ModelLivescoreLivescoreSearchResponseDoc struct {
+	Code int            `json:"code,omitempty"`
+	Data map[string]any `json:"data,omitempty"`
+	Msg  string         `json:"msg,omitempty"`
+}
+
 type ModelLivescoreNewsCategoriesResponseDoc struct {
 	Code int            `json:"code,omitempty"`
 	Data map[string]any `json:"data,omitempty"`
@@ -31270,6 +31443,70 @@ type ModelMediaiteAuthorResponse struct {
 	Slug      string                       `json:"slug,omitempty"`
 	Twitter   string                       `json:"twitter,omitempty"`
 	Url       string                       `json:"url,omitempty"`
+}
+
+type ModelMedicalnewstodayArticleResponse struct {
+	Authors     []string `json:"authors,omitempty"`
+	Description string   `json:"description,omitempty"`
+	ImageUrl    string   `json:"image_url,omitempty"`
+	Paragraphs  []string `json:"paragraphs,omitempty"`
+	Paywalled   bool     `json:"paywalled,omitempty"`
+	PublishedAt string   `json:"published_at,omitempty"`
+	Section     string   `json:"section,omitempty"`
+	Title       string   `json:"title,omitempty"`
+	UpdatedAt   string   `json:"updated_at,omitempty"`
+	Url         string   `json:"url,omitempty"`
+}
+
+type ModelMedicalnewstodayAuthorResponse struct {
+	Articles []ModelNewsplatformHeadlineItem `json:"articles,omitempty"`
+	Bio      string                          `json:"bio,omitempty"`
+	Name     string                          `json:"name,omitempty"`
+	Slug     string                          `json:"slug,omitempty"`
+	Url      string                          `json:"url,omitempty"`
+}
+
+type ModelMedicalnewstodayHeadlinesResponse struct {
+	Items   []ModelNewsplatformHeadlineItem `json:"items,omitempty"`
+	Section string                          `json:"section,omitempty"`
+}
+
+type ModelMedicalnewstodayNewsResponse struct {
+	Items []ModelNewsplatformHeadlineItem `json:"items,omitempty"`
+}
+
+type ModelMedicalnewstodaySectionsResponse struct {
+	Sections []ModelNewsplatformSection `json:"sections,omitempty"`
+}
+
+type ModelMedicalnewstodayArticleResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelMedicalnewstodayArticleResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelMedicalnewstodayAuthorResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelMedicalnewstodayAuthorResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelMedicalnewstodayHeadlinesResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelMedicalnewstodayHeadlinesResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelMedicalnewstodayNewsResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelMedicalnewstodayNewsResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelMedicalnewstodaySectionsResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelMedicalnewstodaySectionsResponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
 }
 
 type ModelMenAuthorArticle struct {
@@ -32240,6 +32477,21 @@ type ModelMlbDecision struct {
 	Winner ModelMlbNamedRef `json:"winner,omitempty"`
 }
 
+type ModelMlbEditorialFeedResponse struct {
+	FetchedAt string           `json:"fetched_at,omitempty"`
+	Items     []map[string]any `json:"items,omitempty"`
+	Language  string           `json:"language,omitempty"`
+	Limit     int              `json:"limit,omitempty"`
+	Skip      int              `json:"skip,omitempty"`
+	Slug      string           `json:"slug,omitempty"`
+	SourceUrl string           `json:"source_url,omitempty"`
+}
+
+type ModelMlbEnumValue struct {
+	Description string `json:"description,omitempty"`
+	Value       string `json:"value,omitempty"`
+}
+
 type ModelMlbGameResponse struct {
 	AwayBoxscore ModelMlbTeamBoxscore `json:"away_boxscore,omitempty"`
 	Decisions    ModelMlbDecision     `json:"decisions,omitempty"`
@@ -32282,6 +32534,11 @@ type ModelMlbGameSummary struct {
 	Venue             ModelMlbVenueRef   `json:"venue,omitempty"`
 }
 
+type ModelMlbImageRef struct {
+	Type string `json:"type,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
 type ModelMlbInning struct {
 	AwayErrors int `json:"away_errors,omitempty"`
 	AwayHits   int `json:"away_hits,omitempty"`
@@ -32290,6 +32547,34 @@ type ModelMlbInning struct {
 	HomeHits   int `json:"home_hits,omitempty"`
 	HomeRuns   int `json:"home_runs,omitempty"`
 	Number     int `json:"number,omitempty"`
+}
+
+type ModelMlbLeaderCategory struct {
+	Category string                `json:"category,omitempty"`
+	GameType string                `json:"game_type,omitempty"`
+	Group    string                `json:"group,omitempty"`
+	Leaders  []ModelMlbLeaderEntry `json:"leaders,omitempty"`
+	Season   string                `json:"season,omitempty"`
+	Total    int                   `json:"total,omitempty"`
+}
+
+type ModelMlbLeaderEntry struct {
+	League ModelMlbNamedRef `json:"league,omitempty"`
+	Player ModelMlbNamedRef `json:"player,omitempty"`
+	Rank   int              `json:"rank,omitempty"`
+	Season string           `json:"season,omitempty"`
+	Stats  map[string]any   `json:"stats,omitempty"`
+	Team   ModelMlbTeamRef  `json:"team,omitempty"`
+	Value  string           `json:"value,omitempty"`
+}
+
+type ModelMlbLeagueLeadersResponse struct {
+	Categories []string                 `json:"categories,omitempty"`
+	Count      int                      `json:"count,omitempty"`
+	FetchedAt  string                   `json:"fetched_at,omitempty"`
+	Results    []ModelMlbLeaderCategory `json:"results,omitempty"`
+	Season     int                      `json:"season,omitempty"`
+	SourceUrl  string                   `json:"source_url,omitempty"`
 }
 
 type ModelMlbLinescore struct {
@@ -32305,9 +32590,60 @@ type ModelMlbLinescore struct {
 	ScheduledInnings int              `json:"scheduled_innings,omitempty"`
 }
 
+type ModelMlbMlbdiscoveryResponse struct {
+	Divisions                      []ModelMlbNamedRef       `json:"divisions,omitempty"`
+	FetchedAt                      string                   `json:"fetched_at,omitempty"`
+	GameTypes                      []ModelMlbEnumValue      `json:"game_types,omitempty"`
+	LeaderCategories               []ModelMlbEnumValue      `json:"leader_categories,omitempty"`
+	Leagues                        []ModelMlbNamedRef       `json:"leagues,omitempty"`
+	ProspectDateRanges             []ModelMlbEnumValue      `json:"prospect_date_ranges,omitempty"`
+	ProspectMinimumPa              []int                    `json:"prospect_minimum_pa,omitempty"`
+	ProspectPositions              []ModelMlbEnumValue      `json:"prospect_positions,omitempty"`
+	RosterTypes                    []ModelMlbEnumValue      `json:"roster_types,omitempty"`
+	Sections                       []ModelMlbNavigationItem `json:"sections,omitempty"`
+	SourceUrl                      string                   `json:"source_url,omitempty"`
+	Sports                         []ModelMlbNamedRef       `json:"sports,omitempty"`
+	StandingsTypes                 []ModelMlbEnumValue      `json:"standings_types,omitempty"`
+	StatGroups                     []ModelMlbEnumValue      `json:"stat_groups,omitempty"`
+	StatHitterPositions            []ModelMlbEnumValue      `json:"stat_hitter_positions,omitempty"`
+	StatPlayerPools                []ModelMlbEnumValue      `json:"stat_player_pools,omitempty"`
+	StatTypes                      []ModelMlbEnumValue      `json:"stat_types,omitempty"`
+	StatcastEntityTypes            []ModelMlbEnumValue      `json:"statcast_entity_types,omitempty"`
+	StatcastExpectedFilterTypes    []ModelMlbEnumValue      `json:"statcast_expected_filter_types,omitempty"`
+	StatcastExpectedMaxYear        int                      `json:"statcast_expected_max_year,omitempty"`
+	StatcastExpectedMinYear        int                      `json:"statcast_expected_min_year,omitempty"`
+	StatcastExpectedMinimums       []ModelMlbEnumValue      `json:"statcast_expected_minimums,omitempty"`
+	StatcastExpectedSortDirections []ModelMlbEnumValue      `json:"statcast_expected_sort_directions,omitempty"`
+	StatcastExpectedSortFields     []ModelMlbEnumValue      `json:"statcast_expected_sort_fields,omitempty"`
+	StatcastExpectedTypes          []ModelMlbEnumValue      `json:"statcast_expected_types,omitempty"`
+	StatcastLeaderboards           []ModelMlbEnumValue      `json:"statcast_leaderboards,omitempty"`
+	StatcastMaxYear                int                      `json:"statcast_max_year,omitempty"`
+	StatcastMinYear                int                      `json:"statcast_min_year,omitempty"`
+	StatcastMinimumBbe             []ModelMlbEnumValue      `json:"statcast_minimum_bbe,omitempty"`
+	StatcastOaaMaxYear             int                      `json:"statcast_oaa_max_year,omitempty"`
+	StatcastOaaMinYear             int                      `json:"statcast_oaa_min_year,omitempty"`
+	StatcastOaaMinimums            []ModelMlbEnumValue      `json:"statcast_oaa_minimums,omitempty"`
+	StatcastOaaPositions           []ModelMlbEnumValue      `json:"statcast_oaa_positions,omitempty"`
+	StatcastOaaRanges              []ModelMlbEnumValue      `json:"statcast_oaa_ranges,omitempty"`
+	StatcastOaaRoles               []ModelMlbEnumValue      `json:"statcast_oaa_roles,omitempty"`
+	StatcastOaaSortDirections      []ModelMlbEnumValue      `json:"statcast_oaa_sort_directions,omitempty"`
+	StatcastOaaSortFields          []ModelMlbEnumValue      `json:"statcast_oaa_sort_fields,omitempty"`
+	StatcastOaaTypes               []ModelMlbEnumValue      `json:"statcast_oaa_types,omitempty"`
+	StatcastPositions              []ModelMlbEnumValue      `json:"statcast_positions,omitempty"`
+	StatcastSortDirections         []ModelMlbEnumValue      `json:"statcast_sort_directions,omitempty"`
+	StatcastSortFields             []ModelMlbEnumValue      `json:"statcast_sort_fields,omitempty"`
+}
+
 type ModelMlbNamedRef struct {
 	Id   int    `json:"id,omitempty"`
 	Name string `json:"name,omitempty"`
+}
+
+type ModelMlbNavigationItem struct {
+	Children []ModelMlbNavigationItem `json:"children,omitempty"`
+	Label    string                   `json:"label,omitempty"`
+	Url      string                   `json:"url,omitempty"`
+	Visible  bool                     `json:"visible,omitempty"`
 }
 
 type ModelMlbPlay struct {
@@ -32368,6 +32704,57 @@ type ModelMlbPlayerResponse struct {
 	SourceUrl string         `json:"source_url,omitempty"`
 }
 
+type ModelMlbPlayerSuggestion struct {
+	Active       bool               `json:"active,omitempty"`
+	BoxscoreName string             `json:"boxscore_name,omitempty"`
+	DisplayName  string             `json:"display_name,omitempty"`
+	Headshots    []ModelMlbImageRef `json:"headshots,omitempty"`
+	Id           int                `json:"id,omitempty"`
+	Name         string             `json:"name,omitempty"`
+	TeamId       int                `json:"team_id,omitempty"`
+	TeamTriCode  string             `json:"team_tri_code,omitempty"`
+	UseLastName  string             `json:"use_last_name,omitempty"`
+	UseName      string             `json:"use_name,omitempty"`
+}
+
+type ModelMlbProspectStat struct {
+	Age           int            `json:"age,omitempty"`
+	Average       string         `json:"average,omitempty"`
+	BattingStats  map[string]any `json:"batting_stats,omitempty"`
+	BlownSaves    int            `json:"blown_saves,omitempty"`
+	Era           string         `json:"era,omitempty"`
+	Holds         int            `json:"holds,omitempty"`
+	Losses        int            `json:"losses,omitempty"`
+	Name          string         `json:"name,omitempty"`
+	PitchingStats map[string]any `json:"pitching_stats,omitempty"`
+	PlayerId      int            `json:"player_id,omitempty"`
+	Position      string         `json:"position,omitempty"`
+	Rank          int            `json:"rank,omitempty"`
+	Saves         int            `json:"saves,omitempty"`
+	Slug          string         `json:"slug,omitempty"`
+	Team          string         `json:"team,omitempty"`
+	TeamId        int            `json:"team_id,omitempty"`
+	TeamLevel     string         `json:"team_level,omitempty"`
+	Wins          int            `json:"wins,omitempty"`
+}
+
+type ModelMlbProspectStatsResponse struct {
+	Count      int                    `json:"count,omitempty"`
+	DateRange  string                 `json:"date_range,omitempty"`
+	FetchedAt  string                 `json:"fetched_at,omitempty"`
+	Limit      int                    `json:"limit,omitempty"`
+	ListType   string                 `json:"list_type,omitempty"`
+	MinPa      int                    `json:"min_pa,omitempty"`
+	Offset     int                    `json:"offset,omitempty"`
+	PlayerType string                 `json:"player_type,omitempty"`
+	Players    []ModelMlbProspectStat `json:"players,omitempty"`
+	Position   string                 `json:"position,omitempty"`
+	Query      string                 `json:"query,omitempty"`
+	SourceUrl  string                 `json:"source_url,omitempty"`
+	TeamId     int                    `json:"team_id,omitempty"`
+	Total      int                    `json:"total,omitempty"`
+}
+
 type ModelMlbRosterPlayer struct {
 	JerseyNumber string           `json:"jersey_number,omitempty"`
 	Person       ModelMlbNamedRef `json:"person,omitempty"`
@@ -32397,6 +32784,16 @@ type ModelMlbScheduleResponse struct {
 	TotalGames int                   `json:"total_games,omitempty"`
 }
 
+type ModelMlbSearchResponse struct {
+	FetchedAt   string                     `json:"fetched_at,omitempty"`
+	Players     []ModelMlbPlayerSuggestion `json:"players,omitempty"`
+	Query       string                     `json:"query,omitempty"`
+	SearchTerms []ModelMlbTermSuggestion   `json:"search_terms,omitempty"`
+	SourceUrl   string                     `json:"source_url,omitempty"`
+	Teams       []ModelMlbTeamSuggestion   `json:"teams,omitempty"`
+	Topics      []ModelMlbTopicSuggestion  `json:"topics,omitempty"`
+}
+
 type ModelMlbStandingsGroup struct {
 	Division ModelMlbNamedRef        `json:"division,omitempty"`
 	League   ModelMlbNamedRef        `json:"league,omitempty"`
@@ -32405,6 +32802,7 @@ type ModelMlbStandingsGroup struct {
 }
 
 type ModelMlbStandingsResponse struct {
+	Date      string                   `json:"date,omitempty"`
 	FetchedAt string                   `json:"fetched_at,omitempty"`
 	Groups    []ModelMlbStandingsGroup `json:"groups,omitempty"`
 	Season    int                      `json:"season,omitempty"`
@@ -32439,9 +32837,62 @@ type ModelMlbStatSplit struct {
 	Team     ModelMlbTeamRef  `json:"team,omitempty"`
 }
 
+type ModelMlbStatcastBoardResponse struct {
+	Board         string                `json:"board,omitempty"`
+	EndYear       int                   `json:"end_year,omitempty"`
+	FetchedAt     string                `json:"fetched_at,omitempty"`
+	FilterType    string                `json:"filter_type,omitempty"`
+	LeagueAverage []any                 `json:"league_average,omitempty"`
+	Limit         int                   `json:"limit,omitempty"`
+	Minimum       string                `json:"minimum,omitempty"`
+	Offset        int                   `json:"offset,omitempty"`
+	Position      string                `json:"position,omitempty"`
+	Range         string                `json:"range,omitempty"`
+	Roles         []string              `json:"roles,omitempty"`
+	Rows          []ModelMlbStatcastRow `json:"rows,omitempty"`
+	Sort          string                `json:"sort,omitempty"`
+	SortDir       string                `json:"sort_dir,omitempty"`
+	SourceUrl     string                `json:"source_url,omitempty"`
+	Split         string                `json:"split,omitempty"`
+	StartYear     int                   `json:"start_year,omitempty"`
+	TeamId        int                   `json:"team_id,omitempty"`
+	Total         int                   `json:"total,omitempty"`
+	Type          string                `json:"type,omitempty"`
+	Year          int                   `json:"year,omitempty"`
+}
+
+type ModelMlbStatcastResponse struct {
+	FetchedAt string                `json:"fetched_at,omitempty"`
+	Limit     int                   `json:"limit,omitempty"`
+	MinBbe    string                `json:"min_bbe,omitempty"`
+	Offset    int                   `json:"offset,omitempty"`
+	Position  string                `json:"position,omitempty"`
+	Rows      []ModelMlbStatcastRow `json:"rows,omitempty"`
+	Sort      string                `json:"sort,omitempty"`
+	SortDir   string                `json:"sort_dir,omitempty"`
+	SourceUrl string                `json:"source_url,omitempty"`
+	TeamId    int                   `json:"team_id,omitempty"`
+	Total     int                   `json:"total,omitempty"`
+	Type      string                `json:"type,omitempty"`
+	Year      int                   `json:"year,omitempty"`
+}
+
+type ModelMlbStatcastRow struct {
+	EntityId  string         `json:"entity_id,omitempty"`
+	Metrics   map[string]any `json:"metrics,omitempty"`
+	Name      string         `json:"name,omitempty"`
+	Position  string         `json:"position,omitempty"`
+	Qualified bool           `json:"qualified,omitempty"`
+	Rank      int            `json:"rank,omitempty"`
+	Team      string         `json:"team,omitempty"`
+	TeamId    string         `json:"team_id,omitempty"`
+}
+
 type ModelMlbStatsResponse struct {
 	FetchedAt string              `json:"fetched_at,omitempty"`
 	Group     string              `json:"group,omitempty"`
+	Limit     int                 `json:"limit,omitempty"`
+	Offset    int                 `json:"offset,omitempty"`
 	PlayerId  int                 `json:"player_id,omitempty"`
 	Season    int                 `json:"season,omitempty"`
 	SourceUrl string              `json:"source_url,omitempty"`
@@ -32479,12 +32930,36 @@ type ModelMlbTeamRef struct {
 	Name         string `json:"name,omitempty"`
 }
 
+type ModelMlbTeamSuggestion struct {
+	ClubName      string             `json:"club_name,omitempty"`
+	DisplayName   string             `json:"display_name,omitempty"`
+	FranchiseName string             `json:"franchise_name,omitempty"`
+	Id            int                `json:"id,omitempty"`
+	Logos         []ModelMlbImageRef `json:"logos,omitempty"`
+	Name          string             `json:"name,omitempty"`
+	SportId       int                `json:"sport_id,omitempty"`
+	TeamName      string             `json:"team_name,omitempty"`
+	TriCode       string             `json:"tri_code,omitempty"`
+}
+
 type ModelMlbTeamsResponse struct {
 	Count     int            `json:"count,omitempty"`
 	FetchedAt string         `json:"fetched_at,omitempty"`
 	Season    int            `json:"season,omitempty"`
 	SourceUrl string         `json:"source_url,omitempty"`
 	Teams     []ModelMlbTeam `json:"teams,omitempty"`
+}
+
+type ModelMlbTermSuggestion struct {
+	DisplayName string `json:"display_name,omitempty"`
+	Name        string `json:"name,omitempty"`
+}
+
+type ModelMlbTopicSuggestion struct {
+	DisplayName string `json:"display_name,omitempty"`
+	Fields      []int  `json:"fields,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Slug        string `json:"slug,omitempty"`
 }
 
 type ModelMlbTransaction struct {
@@ -32518,10 +32993,28 @@ type ModelMlbBoxscoreResponseDoc struct {
 	Msg  string                   `json:"msg,omitempty"`
 }
 
+type ModelMlbDiscoveryResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelMlbMlbdiscoveryResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelMlbEditorialFeedResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelMlbEditorialFeedResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
 type ModelMlbGameResponseDoc struct {
 	Code int                  `json:"code,omitempty"`
 	Data ModelMlbGameResponse `json:"data,omitempty"`
 	Msg  string               `json:"msg,omitempty"`
+}
+
+type ModelMlbLeagueLeadersResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelMlbLeagueLeadersResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
 }
 
 type ModelMlbPlayByPlayResponseDoc struct {
@@ -32536,6 +33029,12 @@ type ModelMlbPlayerResponseDoc struct {
 	Msg  string                 `json:"msg,omitempty"`
 }
 
+type ModelMlbProspectStatsResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelMlbProspectStatsResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
 type ModelMlbRosterResponseDoc struct {
 	Code int                    `json:"code,omitempty"`
 	Data ModelMlbRosterResponse `json:"data,omitempty"`
@@ -32548,10 +33047,28 @@ type ModelMlbScheduleResponseDoc struct {
 	Msg  string                   `json:"msg,omitempty"`
 }
 
+type ModelMlbSearchResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelMlbSearchResponse `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
 type ModelMlbStandingsResponseDoc struct {
 	Code int                       `json:"code,omitempty"`
 	Data ModelMlbStandingsResponse `json:"data,omitempty"`
 	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelMlbStatcastBoardResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelMlbStatcastBoardResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelMlbStatcastResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelMlbStatcastResponse `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
 }
 
 type ModelMlbStatsResponseDoc struct {
@@ -32939,6 +33456,14 @@ type ModelMoneycontrolHeadlineItem struct {
 	Url         string `json:"url,omitempty"`
 }
 
+type ModelMotleyfoolAuthorResponse struct {
+	Articles  []ModelNewsplatformHeadlineItem `json:"articles,omitempty"`
+	Biography []string                        `json:"biography,omitempty"`
+	ImageUrl  string                          `json:"image_url,omitempty"`
+	Name      string                          `json:"name,omitempty"`
+	Url       string                          `json:"url,omitempty"`
+}
+
 type ModelNationafricaAuthorArticle struct {
 	Premium bool   `json:"premium,omitempty"`
 	Summary string `json:"summary,omitempty"`
@@ -33095,6 +33620,24 @@ type ModelNdtvAuthorResponse struct {
 	Name     string                   `json:"name,omitempty"`
 	SameAs   []string                 `json:"same_as,omitempty"`
 	Url      string                   `json:"url,omitempty"`
+}
+
+type ModelNdtvHeadlineItem struct {
+	Author      string `json:"author,omitempty"`
+	ImageUrl    string `json:"image_url,omitempty"`
+	PublishedAt string `json:"published_at,omitempty"`
+	Summary     string `json:"summary,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Type        string `json:"type,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelNdtvSearchResponse struct {
+	HasMore      bool                    `json:"has_more,omitempty"`
+	Items        []ModelNdtvHeadlineItem `json:"items,omitempty"`
+	Page         int                     `json:"page,omitempty"`
+	Query        string                  `json:"query,omitempty"`
+	TotalResults int                     `json:"total_results,omitempty"`
 }
 
 type ModelNews18AuthorResponse struct {
@@ -40811,6 +41354,26 @@ type ModelPublicnewsGbnewsAuthorResponseDoc struct {
 	Data ModelGbnewsAuthorResponse `json:"data,omitempty"`
 }
 
+type ModelPublicnewsGhanawebArchiveMonthsResponseDoc struct {
+	Data ModelGhanawebArchiveMonthsResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsGhanawebArchiveResponseDoc struct {
+	Data ModelGhanawebArchiveResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsGhanawebVideoResponseDoc struct {
+	Data ModelGhanawebVideoResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsGhanawebVideoSectionsResponseDoc struct {
+	Data ModelGhanawebVideoSectionsResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsGhanawebVideosResponseDoc struct {
+	Data ModelGhanawebVideosResponse `json:"data,omitempty"`
+}
+
 type ModelPublicnewsGizmodoAuthorResponseDoc struct {
 	Data ModelGizmodoAuthorResponse `json:"data,omitempty"`
 }
@@ -40887,6 +41450,14 @@ type ModelPublicnewsIrishtimesAuthorResponseDoc struct {
 	Data ModelIrishtimesAuthorResponse `json:"data,omitempty"`
 }
 
+type ModelPublicnewsJerusalemPostAuthorResponseDoc struct {
+	Data ModelJerusalempostAuthorResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsJerusalemPostAuthorsResponseDoc struct {
+	Data ModelJerusalempostAuthorsResponse `json:"data,omitempty"`
+}
+
 type ModelPublicnewsKhaleejTimesAuthorResponseDoc struct {
 	Data ModelKhaleejtimesAuthorResponse `json:"data,omitempty"`
 }
@@ -40935,6 +41506,10 @@ type ModelPublicnewsMoneycontrolAuthorResponseDoc struct {
 	Data ModelMoneycontrolAuthorResponse `json:"data,omitempty"`
 }
 
+type ModelPublicnewsMotleyfoolAuthorResponseDoc struct {
+	Data ModelMotleyfoolAuthorResponse `json:"data,omitempty"`
+}
+
 type ModelPublicnewsNationAfricaAuthorResponseDoc struct {
 	Data ModelNationafricaAuthorResponse `json:"data,omitempty"`
 }
@@ -40949,6 +41524,10 @@ type ModelPublicnewsNdtvArticleResponseDoc struct {
 
 type ModelPublicnewsNdtvAuthorResponseDoc struct {
 	Data ModelNdtvAuthorResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsNdtvSearchResponseDoc struct {
+	Data ModelNdtvSearchResponse `json:"data,omitempty"`
 }
 
 type ModelPublicnewsNews18AuthorResponseDoc struct {
@@ -41067,6 +41646,14 @@ type ModelPublicnewsSalonAuthorResponseDoc struct {
 	Data ModelSalonAuthorResponse `json:"data,omitempty"`
 }
 
+type ModelPublicnewsSbsnewsAuthorResponseDoc struct {
+	Data ModelSbsnewsAuthorResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsScienceAlertAuthorResponseDoc struct {
+	Data ModelSciencealertAuthorResponse `json:"data,omitempty"`
+}
+
 type ModelPublicnewsScreenrantAuthorResponseDoc struct {
 	Data ModelScreenrantAuthorResponse `json:"data,omitempty"`
 }
@@ -41099,6 +41686,10 @@ type ModelPublicnewsSkyNewsVideosResponseDoc struct {
 	Data ModelSkynewsVideosResponse `json:"data,omitempty"`
 }
 
+type ModelPublicnewsSkySportsAuthorResponseDoc struct {
+	Data ModelSkysportsAuthorResponse `json:"data,omitempty"`
+}
+
 type ModelPublicnewsSmhArticleResponseDoc struct {
 	Data ModelSmhArticleResponse `json:"data,omitempty"`
 }
@@ -41113,6 +41704,74 @@ type ModelPublicnewsSpaceAuthorResponseDoc struct {
 
 type ModelPublicnewsSportingNewsAuthorResponseDoc struct {
 	Data ModelSportingnewsAuthorResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsSportskeedaAuthorResponseDoc struct {
+	Data ModelSportskeedaAuthorResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsSportskeedaDepthChartResponseDoc struct {
+	Data ModelSportskeedaDepthChartResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsSportskeedaFeedResponseDoc struct {
+	Data ModelSportskeedaFeedResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsSportskeedaFootballDataResponseDoc struct {
+	Data ModelSportskeedaFootballDataResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsSportskeedaFootballOptionsResponseDoc struct {
+	Data ModelSportskeedaFootballOptionsResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsSportskeedaPageOptionsResponseDoc struct {
+	Data ModelSportskeedaPageOptionsResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsSportskeedaPlayerStatsResponseDoc struct {
+	Data ModelSportskeedaPlayerStatsResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsSportskeedaProfileResponseDoc struct {
+	Data ModelSportskeedaProfileResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsSportskeedaSectionsResponseDoc struct {
+	Data ModelSportskeedaSectionsResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsSportskeedaSitemapItemsResponseDoc struct {
+	Data ModelSportskeedaSitemapItemsResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsSportskeedaSitemapsResponseDoc struct {
+	Data ModelSportskeedaSitemapsResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsSportskeedaStandingsOptionsResponseDoc struct {
+	Data ModelSportskeedaStandingsOptionsResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsSportskeedaTablesResponseDoc struct {
+	Data ModelSportskeedaTablesResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsSportskeedaTaxonomySearchResponseDoc struct {
+	Data ModelSportskeedaTaxonomySearchResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsSportskeedaTradeValuesResponseDoc struct {
+	Data ModelSportskeedaTradeValuesResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsSportskeedaVideoResponseDoc struct {
+	Data ModelSportskeedaVideoResponse `json:"data,omitempty"`
+}
+
+type ModelPublicnewsSportskeedaVideosResponseDoc struct {
+	Data ModelSportskeedaVideosResponse `json:"data,omitempty"`
 }
 
 type ModelPublicnewsStandardAuthorResponseDoc struct {
@@ -42815,6 +43474,72 @@ type ModelRottentomatoesCriticsAuthorsResponse struct {
 	SourceUrl         string                            `json:"source_url,omitempty"`
 }
 
+type ModelRottentomatoesEditorialContentItem struct {
+	AuthorId        int    `json:"author_id,omitempty"`
+	Excerpt         string `json:"excerpt,omitempty"`
+	FeaturedMediaId int    `json:"featured_media_id,omitempty"`
+	Id              int    `json:"id,omitempty"`
+	ModifiedAt      string `json:"modified_at,omitempty"`
+	PublishedAt     string `json:"published_at,omitempty"`
+	TermIds         []int  `json:"term_ids,omitempty"`
+	Title           string `json:"title,omitempty"`
+	Type            string `json:"type,omitempty"`
+	Url             string `json:"url,omitempty"`
+}
+
+type ModelRottentomatoesEditorialContentResponse struct {
+	FetchedAt         string                                    `json:"fetched_at,omitempty"`
+	HasNextPage       bool                                      `json:"has_next_page,omitempty"`
+	Limit             int                                       `json:"limit,omitempty"`
+	Operator          string                                    `json:"operator,omitempty"`
+	Page              int                                       `json:"page,omitempty"`
+	PublicPageDerived bool                                      `json:"public_page_derived,omitempty"`
+	Query             string                                    `json:"query,omitempty"`
+	Results           []ModelRottentomatoesEditorialContentItem `json:"results,omitempty"`
+	SourceUrl         string                                    `json:"source_url,omitempty"`
+	Taxonomy          string                                    `json:"taxonomy,omitempty"`
+	TermIds           []int                                     `json:"term_ids,omitempty"`
+	Total             int                                       `json:"total,omitempty"`
+	TotalPages        int                                       `json:"total_pages,omitempty"`
+	Type              string                                    `json:"type,omitempty"`
+}
+
+type ModelRottentomatoesEditorialContentType struct {
+	Label string `json:"label,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelRottentomatoesEditorialContentTypesResponse struct {
+	PublicPageDerived bool                                      `json:"public_page_derived,omitempty"`
+	SourceUrl         string                                    `json:"source_url,omitempty"`
+	Types             []ModelRottentomatoesEditorialContentType `json:"types,omitempty"`
+	VerifiedAt        string                                    `json:"verified_at,omitempty"`
+}
+
+type ModelRottentomatoesEditorialDetailLink struct {
+	Text string `json:"text,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelRottentomatoesEditorialDetailResponse struct {
+	BodyHtml          string                                   `json:"body_html,omitempty"`
+	FetchedAt         string                                   `json:"fetched_at,omitempty"`
+	Headings          []string                                 `json:"headings,omitempty"`
+	ImageUrl          string                                   `json:"image_url,omitempty"`
+	Images            []string                                 `json:"images,omitempty"`
+	Links             []ModelRottentomatoesEditorialDetailLink `json:"links,omitempty"`
+	ModifiedAt        string                                   `json:"modified_at,omitempty"`
+	Paragraphs        []string                                 `json:"paragraphs,omitempty"`
+	Path              string                                   `json:"path,omitempty"`
+	PublicPageDerived bool                                     `json:"public_page_derived,omitempty"`
+	PublishedAt       string                                   `json:"published_at,omitempty"`
+	SourceUrl         string                                   `json:"source_url,omitempty"`
+	Subtitle          string                                   `json:"subtitle,omitempty"`
+	Title             string                                   `json:"title,omitempty"`
+	Type              string                                   `json:"type,omitempty"`
+	VideoUrls         []string                                 `json:"video_urls,omitempty"`
+}
+
 type ModelRottentomatoesEditorialSearchResponse struct {
 	FetchedAt         string                                     `json:"fetched_at,omitempty"`
 	HasNextPage       bool                                       `json:"has_next_page,omitempty"`
@@ -42834,6 +43559,63 @@ type ModelRottentomatoesEditorialSearchResult struct {
 	Title   string `json:"title,omitempty"`
 	Type    string `json:"type,omitempty"`
 	Url     string `json:"url,omitempty"`
+}
+
+type ModelRottentomatoesEditorialSectionItem struct {
+	ImageUrl    string `json:"image_url,omitempty"`
+	PublishedAt string `json:"published_at,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelRottentomatoesEditorialSectionResponse struct {
+	FetchedAt         string                                    `json:"fetched_at,omitempty"`
+	HasNextPage       bool                                      `json:"has_next_page,omitempty"`
+	Page              int                                       `json:"page,omitempty"`
+	Path              string                                    `json:"path,omitempty"`
+	PublicPageDerived bool                                      `json:"public_page_derived,omitempty"`
+	Results           []ModelRottentomatoesEditorialSectionItem `json:"results,omitempty"`
+	SourceUrl         string                                    `json:"source_url,omitempty"`
+	Title             string                                    `json:"title,omitempty"`
+	TotalPages        int                                       `json:"total_pages,omitempty"`
+}
+
+type ModelRottentomatoesEditorialTaxonomiesResponse struct {
+	PublicPageDerived bool                                   `json:"public_page_derived,omitempty"`
+	SourceUrl         string                                 `json:"source_url,omitempty"`
+	Taxonomies        []ModelRottentomatoesEditorialTaxonomy `json:"taxonomies,omitempty"`
+	VerifiedAt        string                                 `json:"verified_at,omitempty"`
+}
+
+type ModelRottentomatoesEditorialTaxonomy struct {
+	Hierarchical bool     `json:"hierarchical,omitempty"`
+	Label        string   `json:"label,omitempty"`
+	Types        []string `json:"types,omitempty"`
+	Value        string   `json:"value,omitempty"`
+}
+
+type ModelRottentomatoesEditorialTerm struct {
+	Count       int    `json:"count,omitempty"`
+	Description string `json:"description,omitempty"`
+	Id          int    `json:"id,omitempty"`
+	Link        string `json:"link,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Parent      int    `json:"parent,omitempty"`
+	Slug        string `json:"slug,omitempty"`
+}
+
+type ModelRottentomatoesEditorialTermsResponse struct {
+	FetchedAt         string                             `json:"fetched_at,omitempty"`
+	HasNextPage       bool                               `json:"has_next_page,omitempty"`
+	Limit             int                                `json:"limit,omitempty"`
+	Page              int                                `json:"page,omitempty"`
+	PublicPageDerived bool                               `json:"public_page_derived,omitempty"`
+	Results           []ModelRottentomatoesEditorialTerm `json:"results,omitempty"`
+	Search            string                             `json:"search,omitempty"`
+	SourceUrl         string                             `json:"source_url,omitempty"`
+	Taxonomy          string                             `json:"taxonomy,omitempty"`
+	Total             int                                `json:"total,omitempty"`
+	TotalPages        int                                `json:"total_pages,omitempty"`
 }
 
 type ModelRottentomatoesEpisodeResponse struct {
@@ -43169,10 +43951,46 @@ type ModelRottentomatoesCriticsAuthorsResponseDoc struct {
 	Msg  string                                    `json:"msg,omitempty"`
 }
 
+type ModelRottentomatoesEditorialContentResponseDoc struct {
+	Code int                                         `json:"code,omitempty"`
+	Data ModelRottentomatoesEditorialContentResponse `json:"data,omitempty"`
+	Msg  string                                      `json:"msg,omitempty"`
+}
+
+type ModelRottentomatoesEditorialContentTypesResponseDoc struct {
+	Code int                                              `json:"code,omitempty"`
+	Data ModelRottentomatoesEditorialContentTypesResponse `json:"data,omitempty"`
+	Msg  string                                           `json:"msg,omitempty"`
+}
+
+type ModelRottentomatoesEditorialDetailResponseDoc struct {
+	Code int                                        `json:"code,omitempty"`
+	Data ModelRottentomatoesEditorialDetailResponse `json:"data,omitempty"`
+	Msg  string                                     `json:"msg,omitempty"`
+}
+
 type ModelRottentomatoesEditorialSearchResponseDoc struct {
 	Code int                                        `json:"code,omitempty"`
 	Data ModelRottentomatoesEditorialSearchResponse `json:"data,omitempty"`
 	Msg  string                                     `json:"msg,omitempty"`
+}
+
+type ModelRottentomatoesEditorialSectionResponseDoc struct {
+	Code int                                         `json:"code,omitempty"`
+	Data ModelRottentomatoesEditorialSectionResponse `json:"data,omitempty"`
+	Msg  string                                      `json:"msg,omitempty"`
+}
+
+type ModelRottentomatoesEditorialTaxonomiesResponseDoc struct {
+	Code int                                            `json:"code,omitempty"`
+	Data ModelRottentomatoesEditorialTaxonomiesResponse `json:"data,omitempty"`
+	Msg  string                                         `json:"msg,omitempty"`
+}
+
+type ModelRottentomatoesEditorialTermsResponseDoc struct {
+	Code int                                       `json:"code,omitempty"`
+	Data ModelRottentomatoesEditorialTermsResponse `json:"data,omitempty"`
+	Msg  string                                    `json:"msg,omitempty"`
 }
 
 type ModelRottentomatoesEpisodeResponseDoc struct {
@@ -43535,6 +44353,40 @@ type ModelSamsclubRelatedItemsResponseDoc struct {
 	Code int                               `json:"code,omitempty"`
 	Data ModelSamsclubRelatedItemsResponse `json:"data,omitempty"`
 	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelSbsnewsAuthorArticle struct {
+	PublishedAt string `json:"published_at,omitempty"`
+	Summary     string `json:"summary,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelSbsnewsAuthorResponse struct {
+	Articles    []ModelSbsnewsAuthorArticle `json:"articles,omitempty"`
+	Biography   string                      `json:"biography,omitempty"`
+	HasNextPage bool                        `json:"has_next_page,omitempty"`
+	HeadshotUrl string                      `json:"headshot_url,omitempty"`
+	Name        string                      `json:"name,omitempty"`
+	Page        int                         `json:"page,omitempty"`
+	Url         string                      `json:"url,omitempty"`
+}
+
+type ModelSciencealertAuthorResponse struct {
+	Articles    []ModelNewsplatformHeadlineItem     `json:"articles,omitempty"`
+	Biography   []string                            `json:"biography,omitempty"`
+	HasNextPage bool                                `json:"has_next_page,omitempty"`
+	ImageUrl    string                              `json:"image_url,omitempty"`
+	Name        string                              `json:"name,omitempty"`
+	Page        int                                 `json:"page,omitempty"`
+	Slug        string                              `json:"slug,omitempty"`
+	SocialLinks []ModelSciencealertAuthorSocialLink `json:"social_links,omitempty"`
+	Url         string                              `json:"url,omitempty"`
+}
+
+type ModelSciencealertAuthorSocialLink struct {
+	Platform string `json:"platform,omitempty"`
+	Url      string `json:"url,omitempty"`
 }
 
 type ModelScmpArticleResponse struct {
@@ -46379,6 +47231,14 @@ type ModelSkynewsVideosResponse struct {
 	Items []ModelSkynewsHeadlineItem `json:"items,omitempty"`
 }
 
+type ModelSkysportsAuthorResponse struct {
+	Articles  []ModelNewsplatformHeadlineItem `json:"articles,omitempty"`
+	Biography []string                        `json:"biography,omitempty"`
+	JobTitle  string                          `json:"job_title,omitempty"`
+	Name      string                          `json:"name,omitempty"`
+	Url       string                          `json:"url,omitempty"`
+}
+
 type ModelSlateArticleResponse struct {
 	Authors     []string `json:"authors,omitempty"`
 	Description string   `json:"description,omitempty"`
@@ -47880,6 +48740,353 @@ type ModelSportingnewsAuthorResponse struct {
 	Slug        string                           `json:"slug,omitempty"`
 	SocialLinks []string                         `json:"social_links,omitempty"`
 	Url         string                           `json:"url,omitempty"`
+}
+
+type ModelSportskeedaAuthorResponse struct {
+	Articles  []ModelNewsplatformHeadlineItem `json:"articles,omitempty"`
+	Biography []string                        `json:"biography,omitempty"`
+	ImageUrl  string                          `json:"image_url,omitempty"`
+	Name      string                          `json:"name,omitempty"`
+	Role      string                          `json:"role,omitempty"`
+	Slug      string                          `json:"slug,omitempty"`
+	Url       string                          `json:"url,omitempty"`
+}
+
+type ModelSportskeedaDataTable struct {
+	Columns []string                      `json:"columns,omitempty"`
+	Name    string                        `json:"name,omitempty"`
+	Rows    [][]ModelSportskeedaTableCell `json:"rows,omitempty"`
+}
+
+type ModelSportskeedaDepthChartPosition struct {
+	Name    string                     `json:"name,omitempty"`
+	Players []ModelSportskeedaPageView `json:"players,omitempty"`
+}
+
+type ModelSportskeedaDepthChartResponse struct {
+	Slug  string                           `json:"slug,omitempty"`
+	Teams []ModelSportskeedaDepthChartTeam `json:"teams,omitempty"`
+	Title string                           `json:"title,omitempty"`
+}
+
+type ModelSportskeedaDepthChartTeam struct {
+	Name      string                               `json:"name,omitempty"`
+	Positions []ModelSportskeedaDepthChartPosition `json:"positions,omitempty"`
+	Slug      string                               `json:"slug,omitempty"`
+}
+
+type ModelSportskeedaFeedItem struct {
+	Age      string `json:"age,omitempty"`
+	Category string `json:"category,omitempty"`
+	Image    string `json:"image,omitempty"`
+	Section  string `json:"section,omitempty"`
+	Slug     string `json:"slug,omitempty"`
+	Title    string `json:"title,omitempty"`
+	Url      string `json:"url,omitempty"`
+}
+
+type ModelSportskeedaFeedResponse struct {
+	Items    []ModelSportskeedaFeedItem `json:"items,omitempty"`
+	NextPage int                        `json:"next_page,omitempty"`
+	Page     int                        `json:"page,omitempty"`
+	Slug     string                     `json:"slug,omitempty"`
+	Title    string                     `json:"title,omitempty"`
+}
+
+type ModelSportskeedaFootballDataResponse struct {
+	Event            string                             `json:"event,omitempty"`
+	EventName        string                             `json:"event_name,omitempty"`
+	Matchday         string                             `json:"matchday,omitempty"`
+	MatchdayName     string                             `json:"matchday_name,omitempty"`
+	Matches          []ModelSportskeedaFootballFixture  `json:"matches,omitempty"`
+	NextMatchday     string                             `json:"next_matchday,omitempty"`
+	PreviousMatchday string                             `json:"previous_matchday,omitempty"`
+	Standings        []ModelSportskeedaFootballStanding `json:"standings,omitempty"`
+	Status           string                             `json:"status,omitempty"`
+}
+
+type ModelSportskeedaFootballEvent struct {
+	Logo string `json:"logo,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelSportskeedaFootballFixture struct {
+	Away      string `json:"away,omitempty"`
+	AwayScore string `json:"away_score,omitempty"`
+	AwaySlug  string `json:"away_slug,omitempty"`
+	Datetime  string `json:"datetime,omitempty"`
+	Home      string `json:"home,omitempty"`
+	HomeScore string `json:"home_score,omitempty"`
+	HomeSlug  string `json:"home_slug,omitempty"`
+	Id        string `json:"id,omitempty"`
+	Postponed bool   `json:"postponed,omitempty"`
+	Result    string `json:"result,omitempty"`
+	Slug      string `json:"slug,omitempty"`
+	Status    string `json:"status,omitempty"`
+}
+
+type ModelSportskeedaFootballMatchday struct {
+	End        string `json:"end,omitempty"`
+	MatchCount int    `json:"match_count,omitempty"`
+	Name       string `json:"name,omitempty"`
+	Selected   bool   `json:"selected,omitempty"`
+	Slug       string `json:"slug,omitempty"`
+	Start      string `json:"start,omitempty"`
+}
+
+type ModelSportskeedaFootballOptionsResponse struct {
+	Event     string                             `json:"event,omitempty"`
+	Events    []ModelSportskeedaFootballEvent    `json:"events,omitempty"`
+	Matchdays []ModelSportskeedaFootballMatchday `json:"matchdays,omitempty"`
+}
+
+type ModelSportskeedaFootballStanding struct {
+	Draws          int    `json:"draws,omitempty"`
+	GoalDifference string `json:"goal_difference,omitempty"`
+	GoalsAgainst   string `json:"goals_against,omitempty"`
+	GoalsFor       string `json:"goals_for,omitempty"`
+	Group          string `json:"group,omitempty"`
+	League         string `json:"league,omitempty"`
+	Losses         int    `json:"losses,omitempty"`
+	Played         int    `json:"played,omitempty"`
+	Points         int    `json:"points,omitempty"`
+	Position       int    `json:"position,omitempty"`
+	Qualification  string `json:"qualification,omitempty"`
+	Team           string `json:"team,omitempty"`
+	TeamCode       string `json:"team_code,omitempty"`
+	TeamSlug       string `json:"team_slug,omitempty"`
+	Wins           int    `json:"wins,omitempty"`
+}
+
+type ModelSportskeedaNavigationGroup struct {
+	Items []ModelSportskeedaSectionLink `json:"items,omitempty"`
+	Name  string                        `json:"name,omitempty"`
+	Slug  string                        `json:"slug,omitempty"`
+	Url   string                        `json:"url,omitempty"`
+}
+
+type ModelSportskeedaPageFilter struct {
+	Label  string                            `json:"label,omitempty"`
+	Name   string                            `json:"name,omitempty"`
+	Values []ModelSportskeedaPageFilterValue `json:"values,omitempty"`
+}
+
+type ModelSportskeedaPageFilterValue struct {
+	Name     string `json:"name,omitempty"`
+	Selected bool   `json:"selected,omitempty"`
+	Slug     string `json:"slug,omitempty"`
+	Value    string `json:"value,omitempty"`
+}
+
+type ModelSportskeedaPageGroup struct {
+	Items []ModelSportskeedaPageView `json:"items,omitempty"`
+	Name  string                     `json:"name,omitempty"`
+}
+
+type ModelSportskeedaPageMenu struct {
+	Groups []ModelSportskeedaPageGroup `json:"groups,omitempty"`
+	Name   string                      `json:"name,omitempty"`
+}
+
+type ModelSportskeedaPageOptionsResponse struct {
+	Filters []ModelSportskeedaPageFilter `json:"filters,omitempty"`
+	Menus   []ModelSportskeedaPageMenu   `json:"menus,omitempty"`
+	Slug    string                       `json:"slug,omitempty"`
+	Sports  []ModelSportskeedaPageView   `json:"sports,omitempty"`
+	Tabs    []ModelSportskeedaPageView   `json:"tabs,omitempty"`
+	Title   string                       `json:"title,omitempty"`
+	Views   []ModelSportskeedaPageView   `json:"views,omitempty"`
+}
+
+type ModelSportskeedaPageView struct {
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelSportskeedaPlayerSeasonStats struct {
+	EventType    string                          `json:"event_type,omitempty"`
+	GamesPlayed  int                             `json:"games_played,omitempty"`
+	GamesStarted int                             `json:"games_started,omitempty"`
+	Metrics      map[string]any                  `json:"metrics,omitempty"`
+	Name         string                          `json:"name,omitempty"`
+	Season       int                             `json:"season,omitempty"`
+	Team         ModelSportskeedaPlayerStatsTeam `json:"team,omitempty"`
+}
+
+type ModelSportskeedaPlayerStatsResponse struct {
+	EventTypes        []ModelSportskeedaPageFilterValue   `json:"event_types,omitempty"`
+	Records           []ModelSportskeedaPlayerSeasonStats `json:"records,omitempty"`
+	SelectedEventType string                              `json:"selected_event_type,omitempty"`
+	Slug              string                              `json:"slug,omitempty"`
+	Sport             string                              `json:"sport,omitempty"`
+	StatFields        []string                            `json:"stat_fields,omitempty"`
+	Title             string                              `json:"title,omitempty"`
+}
+
+type ModelSportskeedaPlayerStatsTeam struct {
+	Abbreviation string `json:"abbreviation,omitempty"`
+	Id           int    `json:"id,omitempty"`
+	ImageUrl     string `json:"image_url,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Slug         string `json:"slug,omitempty"`
+}
+
+type ModelSportskeedaProfileFact struct {
+	Name  string `json:"name,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelSportskeedaProfileResponse struct {
+	Description string                        `json:"description,omitempty"`
+	Facts       []ModelSportskeedaProfileFact `json:"facts,omitempty"`
+	Kind        string                        `json:"kind,omitempty"`
+	Name        string                        `json:"name,omitempty"`
+	News        []ModelSportskeedaFeedItem    `json:"news,omitempty"`
+	Slug        string                        `json:"slug,omitempty"`
+}
+
+type ModelSportskeedaScheduleMatch struct {
+	Competition string `json:"competition,omitempty"`
+	DateTime    string `json:"date_time,omitempty"`
+	Result      string `json:"result,omitempty"`
+	Score1      string `json:"score_1,omitempty"`
+	Score2      string `json:"score_2,omitempty"`
+	Slug        string `json:"slug,omitempty"`
+	Status      string `json:"status,omitempty"`
+	Team1       string `json:"team_1,omitempty"`
+	Team2       string `json:"team_2,omitempty"`
+	Venue       string `json:"venue,omitempty"`
+}
+
+type ModelSportskeedaSectionLink struct {
+	External bool   `json:"external,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Slug     string `json:"slug,omitempty"`
+	Url      string `json:"url,omitempty"`
+}
+
+type ModelSportskeedaSectionsResponse struct {
+	Navigation []ModelSportskeedaNavigationGroup `json:"navigation,omitempty"`
+	Sections   []ModelSportskeedaSportSection    `json:"sections,omitempty"`
+}
+
+type ModelSportskeedaSitemapItem struct {
+	LastModified string `json:"last_modified,omitempty"`
+	Slug         string `json:"slug,omitempty"`
+	Url          string `json:"url,omitempty"`
+}
+
+type ModelSportskeedaSitemapItemsResponse struct {
+	HasMore    bool                          `json:"has_more,omitempty"`
+	Items      []ModelSportskeedaSitemapItem `json:"items,omitempty"`
+	Limit      int                           `json:"limit,omitempty"`
+	Offset     int                           `json:"offset,omitempty"`
+	SitemapUrl string                        `json:"sitemap_url,omitempty"`
+	Slug       string                        `json:"slug,omitempty"`
+	Total      int                           `json:"total,omitempty"`
+}
+
+type ModelSportskeedaSitemapSource struct {
+	LastModified string `json:"last_modified,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Slug         string `json:"slug,omitempty"`
+	Url          string `json:"url,omitempty"`
+}
+
+type ModelSportskeedaSitemapsResponse struct {
+	Sources []ModelSportskeedaSitemapSource `json:"sources,omitempty"`
+}
+
+type ModelSportskeedaSportSection struct {
+	LastModified string `json:"last_modified,omitempty"`
+	Slug         string `json:"slug,omitempty"`
+	Url          string `json:"url,omitempty"`
+}
+
+type ModelSportskeedaStandingsOptionsResponse struct {
+	Conferences []ModelSportskeedaPageView `json:"conferences,omitempty"`
+	Seasons     []int                      `json:"seasons,omitempty"`
+	Slug        string                     `json:"slug,omitempty"`
+}
+
+type ModelSportskeedaTableCell struct {
+	Slug string `json:"slug,omitempty"`
+	Text string `json:"text,omitempty"`
+}
+
+type ModelSportskeedaTablesResponse struct {
+	Matches []ModelSportskeedaScheduleMatch `json:"matches,omitempty"`
+	Slug    string                          `json:"slug,omitempty"`
+	Status  string                          `json:"status,omitempty"`
+	Tables  []ModelSportskeedaDataTable     `json:"tables,omitempty"`
+	Title   string                          `json:"title,omitempty"`
+	Views   []ModelSportskeedaPageView      `json:"views,omitempty"`
+}
+
+type ModelSportskeedaTaxonomyResult struct {
+	Id        string `json:"id,omitempty"`
+	Image     string `json:"image,omitempty"`
+	PathSlug  string `json:"path_slug,omitempty"`
+	PostCount int    `json:"post_count,omitempty"`
+	Slug      string `json:"slug,omitempty"`
+	Taxonomy  string `json:"taxonomy,omitempty"`
+	Title     string `json:"title,omitempty"`
+	Url       string `json:"url,omitempty"`
+}
+
+type ModelSportskeedaTaxonomySearchResponse struct {
+	Query      string                           `json:"query,omitempty"`
+	Results    []ModelSportskeedaTaxonomyResult `json:"results,omitempty"`
+	Taxonomies []string                         `json:"taxonomies,omitempty"`
+}
+
+type ModelSportskeedaTradeValuePlayer struct {
+	Name     string `json:"name,omitempty"`
+	Position string `json:"position,omitempty"`
+	Rank     int    `json:"rank,omitempty"`
+	Slug     string `json:"slug,omitempty"`
+	Team     string `json:"team,omitempty"`
+	Value    string `json:"value,omitempty"`
+}
+
+type ModelSportskeedaTradeValuesResponse struct {
+	Limit      int                                `json:"limit,omitempty"`
+	Mode       string                             `json:"mode,omitempty"`
+	NextOffset int                                `json:"next_offset,omitempty"`
+	Offset     int                                `json:"offset,omitempty"`
+	Players    []ModelSportskeedaTradeValuePlayer `json:"players,omitempty"`
+	Position   string                             `json:"position,omitempty"`
+	Scoring    string                             `json:"scoring,omitempty"`
+	Slug       string                             `json:"slug,omitempty"`
+	Superflex  bool                               `json:"superflex,omitempty"`
+	Total      int                                `json:"total,omitempty"`
+	UpdatedAt  string                             `json:"updated_at,omitempty"`
+}
+
+type ModelSportskeedaVideoItem struct {
+	Channel  string `json:"channel,omitempty"`
+	Duration string `json:"duration,omitempty"`
+	Image    string `json:"image,omitempty"`
+	Slug     string `json:"slug,omitempty"`
+	Title    string `json:"title,omitempty"`
+	Url      string `json:"url,omitempty"`
+}
+
+type ModelSportskeedaVideoResponse struct {
+	Description string `json:"description,omitempty"`
+	Id          string `json:"id,omitempty"`
+	Poster      string `json:"poster,omitempty"`
+	Slug        string `json:"slug,omitempty"`
+	StreamUrl   string `json:"stream_url,omitempty"`
+	Title       string `json:"title,omitempty"`
+}
+
+type ModelSportskeedaVideosResponse struct {
+	Channels []ModelSportskeedaPageView  `json:"channels,omitempty"`
+	Items    []ModelSportskeedaVideoItem `json:"items,omitempty"`
+	Slug     string                      `json:"slug,omitempty"`
+	Title    string                      `json:"title,omitempty"`
 }
 
 type ModelSpotifyAlbumMeta struct {
@@ -57690,6 +58897,29 @@ type ModelWhatnotLiveShow struct {
 	Url            string   `json:"url,omitempty"`
 }
 
+type ModelWhatnotSellerProfile struct {
+	AverageShipDays  int     `json:"average_ship_days,omitempty"`
+	Bio              string  `json:"bio,omitempty"`
+	DisplayName      string  `json:"display_name,omitempty"`
+	FollowerCount    int     `json:"follower_count,omitempty"`
+	FollowingCount   int     `json:"following_count,omitempty"`
+	IsLive           bool    `json:"is_live,omitempty"`
+	IsPremierShop    bool    `json:"is_premier_shop,omitempty"`
+	IsVerifiedSeller bool    `json:"is_verified_seller,omitempty"`
+	Rating           float64 `json:"rating,omitempty"`
+	ReviewCount      int     `json:"review_count,omitempty"`
+	SoldCount        int     `json:"sold_count,omitempty"`
+	Username         string  `json:"username,omitempty"`
+}
+
+type ModelWhatnotSellerResponse struct {
+	HasMore    bool                      `json:"has_more,omitempty"`
+	NextCursor string                    `json:"next_cursor,omitempty"`
+	Profile    ModelWhatnotSellerProfile `json:"profile,omitempty"`
+	Shows      []ModelWhatnotLiveShow    `json:"shows,omitempty"`
+	TotalCount int                       `json:"total_count,omitempty"`
+}
+
 type ModelWhatnotBrowseResponseDoc struct {
 	Code int                        `json:"code,omitempty"`
 	Data ModelWhatnotBrowseResponse `json:"data,omitempty"`
@@ -57706,6 +58936,12 @@ type ModelWhatnotLiveResponseDoc struct {
 	Code int                      `json:"code,omitempty"`
 	Data ModelWhatnotLiveResponse `json:"data,omitempty"`
 	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelWhatnotSellerResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelWhatnotSellerResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
 }
 
 type ModelWingstopDeliveryStoreResponse struct {
@@ -62089,7 +63325,7 @@ type ModelZomatoSearchResponseDoc struct {
 	Msg  any                       `json:"msg,omitempty"`
 }
 
-const operationCount = 3165
+const operationCount = 3275
 
 const (
 	OperationAbcNewsAbcnewsArticle                                  = "abcnews-article"
@@ -62135,6 +63371,9 @@ const (
 	OperationAirbnbRoomCalendar                                     = "airbnb-room-calendar"
 	OperationAirbnbRoomReviews                                      = "airbnb-room-reviews"
 	OperationAirbnbSearch                                           = "airbnb-search"
+	OperationAlComAlcomHeadlines                                    = "alcom-headlines"
+	OperationAlComAlcomNews                                         = "alcom-news"
+	OperationAlComAlcomSections                                     = "alcom-sections"
 	OperationAlJazeeraAljazeeraArticle                              = "aljazeera-article"
 	OperationAlJazeeraAljazeeraAuthor                               = "aljazeera-author"
 	OperationAlJazeeraAljazeeraCategories                           = "aljazeera-categories"
@@ -62386,6 +63625,7 @@ const (
 	OperationBookingSearch                                          = "booking-search"
 	OperationBootsSearch                                            = "boots-search"
 	OperationBootsSuggest                                           = "boots-suggest"
+	OperationBostonGlobeBostonglobeNews                             = "bostonglobe-news"
 	OperationBoxOfficeMojoBoxofficemojoBrand                        = "boxofficemojo-brand"
 	OperationBoxOfficeMojoBoxofficemojoBrands                       = "boxofficemojo-brands"
 	OperationBoxOfficeMojoBoxofficemojoCalendar                     = "boxofficemojo-calendar"
@@ -62536,6 +63776,7 @@ const (
 	OperationChrono24Listing                                        = "chrono24-listing"
 	OperationChrono24Models                                         = "chrono24-models"
 	OperationChrono24Search                                         = "chrono24-search"
+	OperationClevelandComClevelandcomNews                           = "clevelandcom-news"
 	OperationCnaArticle                                             = "cna-article"
 	OperationCnaAuthor                                              = "cna-author"
 	OperationCnaHeadlines                                           = "cna-headlines"
@@ -63077,33 +64318,54 @@ const (
 	OperationFortuneRankingLists                                    = "fortune-ranking-lists"
 	OperationFortuneRankingYears                                    = "fortune-ranking-years"
 	OperationFortuneSections                                        = "fortune-sections"
+	OperationFotMobFotmobAudioMatches                               = "fotmob-audio-matches"
+	OperationFotMobFotmobFifaRankingPeriods                         = "fotmob-fifa-ranking-periods"
+	OperationFotMobFotmobFifaRankings                               = "fotmob-fifa-rankings"
+	OperationFotMobFotmobLatestNews                                 = "fotmob-latest-news"
 	OperationFotMobFotmobLeague                                     = "fotmob-league"
 	OperationFotMobFotmobLeagues                                    = "fotmob-leagues"
+	OperationFotMobFotmobLineupBuilderPlayers                       = "fotmob-lineup-builder-players"
+	OperationFotMobFotmobLineupBuilderTeam                          = "fotmob-lineup-builder-team"
 	OperationFotMobFotmobMatch                                      = "fotmob-match"
+	OperationFotMobFotmobMatchMedia                                 = "fotmob-match-media"
 	OperationFotMobFotmobMatches                                    = "fotmob-matches"
 	OperationFotMobFotmobNews                                       = "fotmob-news"
+	OperationFotMobFotmobNewsArticle                                = "fotmob-news-article"
 	OperationFotMobFotmobPlayer                                     = "fotmob-player"
 	OperationFotMobFotmobPlayerMatchStats                           = "fotmob-player-match-stats"
 	OperationFotMobFotmobPlayerMatches                              = "fotmob-player-matches"
 	OperationFotMobFotmobPlayerStats                                = "fotmob-player-stats"
 	OperationFotMobFotmobSearch                                     = "fotmob-search"
+	OperationFotMobFotmobSeasons                                    = "fotmob-seasons"
 	OperationFotMobFotmobStats                                      = "fotmob-stats"
 	OperationFotMobFotmobStatsCategories                            = "fotmob-stats-categories"
 	OperationFotMobFotmobTable                                      = "fotmob-table"
 	OperationFotMobFotmobTeam                                       = "fotmob-team"
+	OperationFotMobFotmobTeamFixtures                               = "fotmob-team-fixtures"
 	OperationFotMobFotmobTeamNews                                   = "fotmob-team-news"
 	OperationFotMobFotmobTransfers                                  = "fotmob-transfers"
+	OperationFotMobFotmobTrendingNews                               = "fotmob-trending-news"
+	OperationFotMobFotmobTrendingSearches                           = "fotmob-trending-searches"
+	OperationFotMobFotmobTvGuide                                    = "fotmob-tv-guide"
+	OperationFotMobFotmobTvGuideChannels                            = "fotmob-tv-guide-channels"
+	OperationFotMobFotmobTvGuideCountries                           = "fotmob-tv-guide-countries"
 	OperationFoxNewsFoxnewsArticle                                  = "foxnews-article"
 	OperationFoxNewsFoxnewsAuthor                                   = "foxnews-author"
 	OperationFoxNewsFoxnewsHeadlines                                = "foxnews-headlines"
 	OperationFoxNewsFoxnewsNews                                     = "foxnews-news"
 	OperationFoxNewsFoxnewsSearch                                   = "foxnews-search"
 	OperationFoxNewsFoxnewsSections                                 = "foxnews-sections"
+	OperationFoxSportsFoxsportsArticle                              = "foxsports-article"
+	OperationFoxSportsFoxsportsHeadlines                            = "foxsports-headlines"
+	OperationFoxSportsFoxsportsNews                                 = "foxsports-news"
+	OperationFoxSportsFoxsportsSections                             = "foxsports-sections"
 	OperationFrance24France24Article                                = "france24-article"
 	OperationFrance24France24Author                                 = "france24-author"
 	OperationFrance24France24Headlines                              = "france24-headlines"
 	OperationFrance24France24News                                   = "france24-news"
 	OperationFrance24France24Sections                               = "france24-sections"
+	OperationFreeMalaysiaTodayFreemalaysiatodayNews                 = "freemalaysiatoday-news"
+	OperationFreeMalaysiaTodayFreemalaysiatodaySections             = "freemalaysiatoday-sections"
 	OperationFtArticle                                              = "ft-article"
 	OperationFtAuthor                                               = "ft-author"
 	OperationFtCategories                                           = "ft-categories"
@@ -63140,6 +64402,15 @@ const (
 	OperationGeocodingLookup                                        = "geocoding-lookup"
 	OperationGeocodingReverse                                       = "geocoding-reverse"
 	OperationGeocodingSearch                                        = "geocoding-search"
+	OperationGhanaWebGhanawebArchive                                = "ghanaweb-archive"
+	OperationGhanaWebGhanawebArchiveMonths                          = "ghanaweb-archive-months"
+	OperationGhanaWebGhanawebArticle                                = "ghanaweb-article"
+	OperationGhanaWebGhanawebHeadlines                              = "ghanaweb-headlines"
+	OperationGhanaWebGhanawebNews                                   = "ghanaweb-news"
+	OperationGhanaWebGhanawebSections                               = "ghanaweb-sections"
+	OperationGhanaWebGhanawebVideo                                  = "ghanaweb-video"
+	OperationGhanaWebGhanawebVideoSections                          = "ghanaweb-video-sections"
+	OperationGhanaWebGhanawebVideos                                 = "ghanaweb-videos"
 	OperationGitHubGithubOrg                                        = "github-org"
 	OperationGitHubGithubOrgRepos                                   = "github-org-repos"
 	OperationGitHubGithubRepo                                       = "github-repo"
@@ -63355,6 +64626,7 @@ const (
 	OperationHotelsComHotelsReviews                                 = "hotels-reviews"
 	OperationHotelsComHotelsReviewsArchive                          = "hotels-reviews-archive"
 	OperationHotelsComHotelsSearch                                  = "hotels-search"
+	OperationHowToGeekHowtogeekNews                                 = "howtogeek-news"
 	OperationHuffPostHuffpostArticle                                = "huffpost-article"
 	OperationHuffPostHuffpostAuthor                                 = "huffpost-author"
 	OperationHuffPostHuffpostHeadlines                              = "huffpost-headlines"
@@ -63461,6 +64733,12 @@ const (
 	OperationJCrewJcrewSizeChart                                    = "jcrew-size-chart"
 	OperationJCrewJcrewStores                                       = "jcrew-stores"
 	OperationJCrewJcrewSuggest                                      = "jcrew-suggest"
+	OperationJerusalemPostJerusalempostArticle                      = "jerusalempost-article"
+	OperationJerusalemPostJerusalempostAuthor                       = "jerusalempost-author"
+	OperationJerusalemPostJerusalempostAuthors                      = "jerusalempost-authors"
+	OperationJerusalemPostJerusalempostHeadlines                    = "jerusalempost-headlines"
+	OperationJerusalemPostJerusalempostNews                         = "jerusalempost-news"
+	OperationJerusalemPostJerusalempostSections                     = "jerusalempost-sections"
 	OperationJimmyJohnsMenu                                         = "jimmy-johns-menu"
 	OperationJimmyJohnsModifiers                                    = "jimmy-johns-modifiers"
 	OperationJimmyJohnsNearby                                       = "jimmy-johns-nearby"
@@ -63614,6 +64892,7 @@ const (
 	OperationLiveScienceLivescienceNews                             = "livescience-news"
 	OperationLiveScienceLivescienceSections                         = "livescience-sections"
 	OperationLiveScoreLivescoreCompetition                          = "livescore-competition"
+	OperationLiveScoreLivescoreCompetitions                         = "livescore-competitions"
 	OperationLiveScoreLivescoreLiveScores                           = "livescore-live-scores"
 	OperationLiveScoreLivescoreMatch                                = "livescore-match"
 	OperationLiveScoreLivescoreMatchStats                           = "livescore-match-stats"
@@ -63625,6 +64904,7 @@ const (
 	OperationLiveScoreLivescorePlayer                               = "livescore-player"
 	OperationLiveScoreLivescoreScores                               = "livescore-scores"
 	OperationLiveScoreLivescoreScoresToc                            = "livescore-scores-toc"
+	OperationLiveScoreLivescoreSearch                               = "livescore-search"
 	OperationLiveScoreLivescoreSports                               = "livescore-sports"
 	OperationLiveScoreLivescoreTeam                                 = "livescore-team"
 	OperationLiverpoolEchoLiverpoolechoArticle                      = "liverpoolecho-article"
@@ -63681,6 +64961,11 @@ const (
 	OperationMediaiteHeadlines                                      = "mediaite-headlines"
 	OperationMediaiteNews                                           = "mediaite-news"
 	OperationMediaiteSections                                       = "mediaite-sections"
+	OperationMedicalNewsTodayMedicalnewstodayArticle                = "medicalnewstoday-article"
+	OperationMedicalNewsTodayMedicalnewstodayAuthor                 = "medicalnewstoday-author"
+	OperationMedicalNewsTodayMedicalnewstodayHeadlines              = "medicalnewstoday-headlines"
+	OperationMedicalNewsTodayMedicalnewstodayNews                   = "medicalnewstoday-news"
+	OperationMedicalNewsTodayMedicalnewstodaySections               = "medicalnewstoday-sections"
 	OperationMercariAutocomplete                                    = "mercari-autocomplete"
 	OperationMercariHome                                            = "mercari-home"
 	OperationMercariItem                                            = "mercari-item"
@@ -63731,6 +65016,7 @@ const (
 	OperationMicrosoftStoreMicrosoftstoreSearch                     = "microsoftstore-search"
 	OperationMicrosoftStoreMicrosoftstoreSpotlight                  = "microsoftstore-spotlight"
 	OperationMicrosoftStoreMicrosoftstoreSuggest                    = "microsoftstore-suggest"
+	OperationMinnesotaStarTribuneStartribuneNews                    = "startribune-news"
 	OperationMintLivemintArticle                                    = "livemint-article"
 	OperationMintLivemintAuthor                                     = "livemint-author"
 	OperationMintLivemintHeadlines                                  = "livemint-headlines"
@@ -63746,18 +65032,27 @@ const (
 	OperationMitSloanManagementReviewSloanreviewCategories          = "sloanreview-categories"
 	OperationMitSloanManagementReviewSloanreviewHeadlines           = "sloanreview-headlines"
 	OperationMitSloanManagementReviewSloanreviewTopic               = "sloanreview-topic"
+	OperationMlbDiscovery                                           = "mlb-discovery"
+	OperationMlbEditorialFeed                                       = "mlb-editorial-feed"
 	OperationMlbGame                                                = "mlb-game"
 	OperationMlbGameBoxscore                                        = "mlb-game-boxscore"
 	OperationMlbGamePlayByPlay                                      = "mlb-game-play-by-play"
+	OperationMlbLeagueLeaders                                       = "mlb-league-leaders"
 	OperationMlbLeagueStats                                         = "mlb-league-stats"
 	OperationMlbPlayer                                              = "mlb-player"
 	OperationMlbPlayerStats                                         = "mlb-player-stats"
+	OperationMlbProspectStats                                       = "mlb-prospect-stats"
 	OperationMlbSchedule                                            = "mlb-schedule"
+	OperationMlbSearch                                              = "mlb-search"
 	OperationMlbStandings                                           = "mlb-standings"
+	OperationMlbStatcast                                            = "mlb-statcast"
+	OperationMlbStatcastExpected                                    = "mlb-statcast-expected"
+	OperationMlbStatcastOaa                                         = "mlb-statcast-oaa"
 	OperationMlbTeamRoster                                          = "mlb-team-roster"
 	OperationMlbTeamStats                                           = "mlb-team-stats"
 	OperationMlbTeams                                               = "mlb-teams"
 	OperationMlbTransactions                                        = "mlb-transactions"
+	OperationMliveNews                                              = "mlive-news"
 	OperationModaOperandiModaoperandiCategories                     = "modaoperandi-categories"
 	OperationModaOperandiModaoperandiDesigners                      = "modaoperandi-designers"
 	OperationModaOperandiModaoperandiProduct                        = "modaoperandi-product"
@@ -63798,6 +65093,7 @@ const (
 	OperationNdtvAuthor                                             = "ndtv-author"
 	OperationNdtvHeadlines                                          = "ndtv-headlines"
 	OperationNdtvNews                                               = "ndtv-news"
+	OperationNdtvSearch                                             = "ndtv-search"
 	OperationNdtvSections                                           = "ndtv-sections"
 	OperationNewYorkDailyNewsNydailynewsArticle                     = "nydailynews-article"
 	OperationNewYorkDailyNewsNydailynewsAuthor                      = "nydailynews-author"
@@ -63857,6 +65153,7 @@ const (
 	OperationNineToFiveMacHeadlines                                 = "ninetofivemac-headlines"
 	OperationNineToFiveMacNews                                      = "ninetofivemac-news"
 	OperationNineToFiveMacSections                                  = "ninetofivemac-sections"
+	OperationNjComNjcomNews                                         = "njcom-news"
 	OperationNprArticle                                             = "npr-article"
 	OperationNprAuthor                                              = "npr-author"
 	OperationNprCategories                                          = "npr-categories"
@@ -64134,6 +65431,7 @@ const (
 	OperationPopeyesPromotions                                      = "popeyes-promotions"
 	OperationPopeyesQuests                                          = "popeyes-quests"
 	OperationPopeyesRewards                                         = "popeyes-rewards"
+	OperationPopularMechanicsPopularmechanicsNews                   = "popularmechanics-news"
 	OperationPoshmarkBrand                                          = "poshmark-brand"
 	OperationPoshmarkBrands                                         = "poshmark-brands"
 	OperationPoshmarkCategories                                     = "poshmark-categories"
@@ -64322,7 +65620,13 @@ const (
 	OperationRottenTomatoesRottentomatoesBrowseMovies               = "rottentomatoes-browse-movies"
 	OperationRottenTomatoesRottentomatoesBrowseTv                   = "rottentomatoes-browse-tv"
 	OperationRottenTomatoesRottentomatoesCriticsAuthors             = "rottentomatoes-critics-authors"
+	OperationRottenTomatoesRottentomatoesEditorialContent           = "rottentomatoes-editorial-content"
+	OperationRottenTomatoesRottentomatoesEditorialDetail            = "rottentomatoes-editorial-detail"
 	OperationRottenTomatoesRottentomatoesEditorialSearch            = "rottentomatoes-editorial-search"
+	OperationRottenTomatoesRottentomatoesEditorialSection           = "rottentomatoes-editorial-section"
+	OperationRottenTomatoesRottentomatoesEditorialTaxonomies        = "rottentomatoes-editorial-taxonomies"
+	OperationRottenTomatoesRottentomatoesEditorialTerms             = "rottentomatoes-editorial-terms"
+	OperationRottenTomatoesRottentomatoesEditorialTypes             = "rottentomatoes-editorial-types"
 	OperationRottenTomatoesRottentomatoesEpisode                    = "rottentomatoes-episode"
 	OperationRottenTomatoesRottentomatoesMovie                      = "rottentomatoes-movie"
 	OperationRottenTomatoesRottentomatoesMovieReviews               = "rottentomatoes-movie-reviews"
@@ -64351,6 +65655,16 @@ const (
 	OperationSamSClubSamsclubDepartments                            = "samsclub-departments"
 	OperationSamSClubSamsclubProduct                                = "samsclub-product"
 	OperationSamSClubSamsclubProductRelated                         = "samsclub-product-related"
+	OperationSbsNewsSbsnewsArticle                                  = "sbsnews-article"
+	OperationSbsNewsSbsnewsAuthor                                   = "sbsnews-author"
+	OperationSbsNewsSbsnewsHeadlines                                = "sbsnews-headlines"
+	OperationSbsNewsSbsnewsNews                                     = "sbsnews-news"
+	OperationSbsNewsSbsnewsSections                                 = "sbsnews-sections"
+	OperationScienceAlertSciencealertArticle                        = "sciencealert-article"
+	OperationScienceAlertSciencealertAuthor                         = "sciencealert-author"
+	OperationScienceAlertSciencealertHeadlines                      = "sciencealert-headlines"
+	OperationScienceAlertSciencealertNews                           = "sciencealert-news"
+	OperationScienceAlertSciencealertSections                       = "sciencealert-sections"
 	OperationScmpArticle                                            = "scmp-article"
 	OperationScmpAuthor                                             = "scmp-author"
 	OperationScmpHeadlines                                          = "scmp-headlines"
@@ -64477,6 +65791,11 @@ const (
 	OperationSkyNewsSkynewsSections                                 = "skynews-sections"
 	OperationSkyNewsSkynewsVideo                                    = "skynews-video"
 	OperationSkyNewsSkynewsVideos                                   = "skynews-videos"
+	OperationSkySportsSkysportsArticle                              = "skysports-article"
+	OperationSkySportsSkysportsAuthor                               = "skysports-author"
+	OperationSkySportsSkysportsHeadlines                            = "skysports-headlines"
+	OperationSkySportsSkysportsNews                                 = "skysports-news"
+	OperationSkySportsSkysportsSections                             = "skysports-sections"
 	OperationSlateArticle                                           = "slate-article"
 	OperationSlateCategories                                        = "slate-categories"
 	OperationSlateHeadlines                                         = "slate-headlines"
@@ -64537,6 +65856,27 @@ const (
 	OperationSportingNewsSportingnewsHeadlines                      = "sportingnews-headlines"
 	OperationSportingNewsSportingnewsNews                           = "sportingnews-news"
 	OperationSportingNewsSportingnewsSections                       = "sportingnews-sections"
+	OperationSportskeedaArticle                                     = "sportskeeda-article"
+	OperationSportskeedaAuthor                                      = "sportskeeda-author"
+	OperationSportskeedaDepthChart                                  = "sportskeeda-depth-chart"
+	OperationSportskeedaFeed                                        = "sportskeeda-feed"
+	OperationSportskeedaFootballData                                = "sportskeeda-football-data"
+	OperationSportskeedaFootballOptions                             = "sportskeeda-football-options"
+	OperationSportskeedaNews                                        = "sportskeeda-news"
+	OperationSportskeedaPageData                                    = "sportskeeda-page-data"
+	OperationSportskeedaPageOptions                                 = "sportskeeda-page-options"
+	OperationSportskeedaPlayerStats                                 = "sportskeeda-player-stats"
+	OperationSportskeedaProfile                                     = "sportskeeda-profile"
+	OperationSportskeedaSchedule                                    = "sportskeeda-schedule"
+	OperationSportskeedaSections                                    = "sportskeeda-sections"
+	OperationSportskeedaSitemapItems                                = "sportskeeda-sitemap-items"
+	OperationSportskeedaSitemaps                                    = "sportskeeda-sitemaps"
+	OperationSportskeedaStandings                                   = "sportskeeda-standings"
+	OperationSportskeedaStandingsOptions                            = "sportskeeda-standings-options"
+	OperationSportskeedaTaxonomySearch                              = "sportskeeda-taxonomy-search"
+	OperationSportskeedaTradeValues                                 = "sportskeeda-trade-values"
+	OperationSportskeedaVideo                                       = "sportskeeda-video"
+	OperationSportskeedaVideos                                      = "sportskeeda-videos"
 	OperationSpotifyAlbum                                           = "spotify-album"
 	OperationSpotifyAlbumTracks                                     = "spotify-album-tracks"
 	OperationSpotifyAlbumsSearch                                    = "spotify-albums-search"
@@ -64756,6 +66096,11 @@ const (
 	OperationTheJournalIeThejournalHeadlines                        = "thejournal-headlines"
 	OperationTheJournalIeThejournalNews                             = "thejournal-news"
 	OperationTheJournalIeThejournalSections                         = "thejournal-sections"
+	OperationTheMotleyFoolMotleyfoolArticle                         = "motleyfool-article"
+	OperationTheMotleyFoolMotleyfoolAuthor                          = "motleyfool-author"
+	OperationTheMotleyFoolMotleyfoolHeadlines                       = "motleyfool-headlines"
+	OperationTheMotleyFoolMotleyfoolNews                            = "motleyfool-news"
+	OperationTheMotleyFoolMotleyfoolSections                        = "motleyfool-sections"
 	OperationTheNewYorkerNewyorkerArticle                           = "newyorker-article"
 	OperationTheNewYorkerNewyorkerAuthor                            = "newyorker-author"
 	OperationTheNewYorkerNewyorkerHeadlines                         = "newyorker-headlines"
@@ -65069,6 +66414,7 @@ const (
 	OperationWhatnotBrowse                                          = "whatnot-browse"
 	OperationWhatnotCategories                                      = "whatnot-categories"
 	OperationWhatnotLive                                            = "whatnot-live"
+	OperationWhatnotSeller                                          = "whatnot-seller"
 	OperationWingstopDeliveryStore                                  = "wingstop-delivery-store"
 	OperationWingstopDirectory                                      = "wingstop-directory"
 	OperationWingstopFlavors                                        = "wingstop-flavors"
@@ -65317,6 +66663,9 @@ var operations = map[string]operationDefinition{
 	"airbnb-room-calendar":                          operationDefinition{Method: "GET", Path: "/airbnb/room/{id}/calendar", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"airbnb-room-reviews":                           operationDefinition{Method: "GET", Path: "/airbnb/room/{id}/reviews", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"airbnb-search":                                 operationDefinition{Method: "GET", Path: "/airbnb/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "check_in", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "check_out", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "adults", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "ne_lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "ne_lng", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "sw_lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "sw_lng", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "zoom", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"alcom-headlines":                               operationDefinition{Method: "GET", Path: "/alcom/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"news", "sports", "life"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"alcom-news":                                    operationDefinition{Method: "GET", Path: "/alcom/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"alcom-sections":                                operationDefinition{Method: "GET", Path: "/alcom/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"aljazeera-article":                             operationDefinition{Method: "GET", Path: "/aljazeera/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"aljazeera-author":                              operationDefinition{Method: "GET", Path: "/aljazeera/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"aljazeera-categories":                          operationDefinition{Method: "GET", Path: "/aljazeera/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -65568,6 +66917,7 @@ var operations = map[string]operationDefinition{
 	"booking-search":                                operationDefinition{Method: "GET", Path: "/booking/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "checkin", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "checkout", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "adults", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "rooms", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "children", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"boots-search":                                  operationDefinition{Method: "GET", Path: "/boots/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "filter", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "price_min", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "price_max", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "in_stock", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "price_low_to_high", "price_high_to_low", "top_rated", "best_seller", "newest"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"boots-suggest":                                 operationDefinition{Method: "GET", Path: "/boots/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bostonglobe-news":                              operationDefinition{Method: "GET", Path: "/bostonglobe/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"boxofficemojo-brand":                           operationDefinition{Method: "GET", Path: "/boxofficemojo/brand", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"grossToDate", "maxNumTheaters", "openingWeekendGross", "openingNumTheaters", "releaseDate"}}, parameterDefinition{Name: "sortDir", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"boxofficemojo-brands":                          operationDefinition{Method: "GET", Path: "/boxofficemojo/brands", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"totalGross", "numReleases", "grossToDate"}}, parameterDefinition{Name: "sortDir", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"boxofficemojo-calendar":                        operationDefinition{Method: "GET", Path: "/boxofficemojo/calendar", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "year", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "month", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -65718,6 +67068,7 @@ var operations = map[string]operationDefinition{
 	"chrono24-listing":                              operationDefinition{Method: "GET", Path: "/chrono24/listing", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"chrono24-models":                               operationDefinition{Method: "GET", Path: "/chrono24/models", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "brand", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"chrono24-search":                               operationDefinition{Method: "GET", Path: "/chrono24/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "brand", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "model", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "price_asc", "price_desc", "newest", "popularity"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "condition", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"new", "like_new_unworn", "very_good", "good", "fair", "incomplete", "no_details"}}, parameterDefinition{Name: "used_or_new", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"new", "used", "no_details"}}, parameterDefinition{Name: "case_material", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"aluminum", "brass", "bronze", "carbon", "ceramic", "gold_steel", "gold_plated", "palladium", "plastic", "platinum", "rose_gold", "sapphire_crystal", "silver", "steel", "tantalum", "titanium", "tungsten", "white_gold", "yellow_gold", "no_details"}}, parameterDefinition{Name: "dial_color", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"black", "blue", "bordeaux", "bronze", "brown", "champagne", "gold", "green", "grey", "meteorite", "mother_of_pearl", "orange", "pink", "purple", "red", "silver", "skeletonized", "turquoise", "white", "yellow", "no_details"}}, parameterDefinition{Name: "bracelet_material", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"alligator_skin", "aluminium", "brass", "calf_skin", "ceramic", "crocodile_skin", "gold_steel", "gold_plated", "leather", "lizard_skin", "ostrich_skin", "plastic", "platinum", "red_gold", "rose_gold", "rubber", "satin", "shark_skin", "silicon", "silver", "snake_skin", "steel", "textile", "titanium", "white_gold", "yellow_gold", "no_details"}}, parameterDefinition{Name: "movement_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"automatic", "manual_winding", "quartz", "solar", "smartwatch", "no_details"}}, parameterDefinition{Name: "gender", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"mens_unisex", "womens"}}, parameterDefinition{Name: "watch_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"watches", "parts_accessories"}}, parameterDefinition{Name: "stock_info", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"in_stock", "on_order", "on_request"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"clevelandcom-news":                             operationDefinition{Method: "GET", Path: "/clevelandcom/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"cna-article":                                   operationDefinition{Method: "GET", Path: "/cna/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"cna-author":                                    operationDefinition{Method: "GET", Path: "/cna/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"cna-headlines":                                 operationDefinition{Method: "GET", Path: "/cna/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"asia", "business", "singapore", "sport", "world"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -65913,9 +67264,9 @@ var operations = map[string]operationDefinition{
 	"datasets-jobs-item":                            operationDefinition{Method: "GET", Path: "/datasets/jobs/items/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-jobs-nearby":                          operationDefinition{Method: "GET", Path: "/datasets/jobs/nearby", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "radius_km", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "provider", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"greenhouse", "lever", "ashby", "workday", "smartrecruiters", "workable", "recruitee", "rippling", "personio", "teamtailor", "oracle", "ukg", "icims", "eightfold", "gem", "pinpoint", "amazon-jobs", "apple-jobs", "google-jobs", "meta-jobs", "tesla-jobs"}}, parameterDefinition{Name: "include_closed", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-jobs-search":                          operationDefinition{Method: "GET", Path: "/datasets/jobs/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "company", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "provider", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"greenhouse", "lever", "ashby", "workday", "smartrecruiters", "workable", "recruitee", "rippling", "personio", "teamtailor", "oracle", "ukg", "icims", "eightfold", "gem", "pinpoint", "amazon-jobs", "apple-jobs", "google-jobs", "meta-jobs", "tesla-jobs"}}, parameterDefinition{Name: "department", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "employment_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "job_family", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "remote", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "workplace_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"onsite", "hybrid", "remote"}}, parameterDefinition{Name: "include_closed", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_salary", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_salary", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "salary_currency", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "posted_desc", "company_asc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
-	"datasets-journalists-facets":                   operationDefinition{Method: "GET", Path: "/datasets/journalists/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"outlet", "vertical", "topic", "contact_type", "record_type", "role_type", "email_kind", "outreach_readiness_band"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "outlet", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "vertical", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"tech", "crypto", "marketing", "consumer_tech", "consumer_policy", "cybersecurity", "health", "gaming", "climate", "business", "entertainment", "sports", "legal", "science", "politics", "real_estate", "automotive", "travel", "food", "education", "design", "film_tv", "fashion", "music", "personal_finance", "tech_independent", "culture_independent", "local_news", "construction", "banking", "retail", "aerospace_defense", "energy", "agriculture", "local_business"}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "contact_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"email", "social", "none"}}, parameterDefinition{Name: "record_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"person", "desk", "organization", "syndicated_byline", "unknown"}}, parameterDefinition{Name: "role_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"staff", "editor", "reporter", "contributor", "freelancer", "columnist", "non_editorial", "unknown"}}, parameterDefinition{Name: "email_kind", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"individual_work", "individual_personal_public", "shared_desk", "tips_or_submissions", "outlet_generic", "unknown"}}, parameterDefinition{Name: "min_outreach_readiness", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-journalists-facets":                   operationDefinition{Method: "GET", Path: "/datasets/journalists/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"outlet", "vertical", "topic", "contact_type", "record_type", "role_type", "email_kind", "outreach_readiness_band"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "outlet", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "vertical", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"tech", "crypto", "marketing", "consumer_tech", "consumer_policy", "cybersecurity", "health", "gaming", "climate", "business", "entertainment", "sports", "legal", "science", "politics", "real_estate", "automotive", "travel", "food", "education", "design", "film_tv", "fashion", "music", "personal_finance", "tech_independent", "culture_independent", "local_news", "construction", "banking", "retail", "aerospace_defense", "energy", "agriculture", "local_business", "general_news"}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "contact_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"email", "social", "none"}}, parameterDefinition{Name: "record_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"person", "desk", "organization", "syndicated_byline", "unknown"}}, parameterDefinition{Name: "role_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"staff", "editor", "reporter", "contributor", "freelancer", "columnist", "non_editorial", "unknown"}}, parameterDefinition{Name: "email_kind", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"individual_work", "individual_personal_public", "shared_desk", "tips_or_submissions", "outlet_generic", "unknown"}}, parameterDefinition{Name: "min_outreach_readiness", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-journalists-item":                     operationDefinition{Method: "GET", Path: "/datasets/journalists/items/{outlet}/{slug}", PathParams: []string{"outlet", "slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"datasets-journalists-search":                   operationDefinition{Method: "GET", Path: "/datasets/journalists/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "outlet", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "vertical", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"tech", "crypto", "marketing", "consumer_tech", "consumer_policy", "cybersecurity", "health", "gaming", "climate", "business", "entertainment", "sports", "legal", "science", "politics", "real_estate", "automotive", "travel", "food", "education", "design", "film_tv", "fashion", "music", "personal_finance", "tech_independent", "culture_independent", "local_news", "construction", "banking", "retail", "aerospace_defense", "energy", "agriculture", "local_business"}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "contact_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"email", "social", "none"}}, parameterDefinition{Name: "record_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"person", "desk", "organization", "syndicated_byline", "unknown"}}, parameterDefinition{Name: "role_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"staff", "editor", "reporter", "contributor", "freelancer", "columnist", "non_editorial", "unknown"}}, parameterDefinition{Name: "email_kind", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"individual_work", "individual_personal_public", "shared_desk", "tips_or_submissions", "outlet_generic", "unknown"}}, parameterDefinition{Name: "min_outreach_readiness", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "name_asc", "outlet_asc", "crawled_desc", "readiness_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-journalists-search":                   operationDefinition{Method: "GET", Path: "/datasets/journalists/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "outlet", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "vertical", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"tech", "crypto", "marketing", "consumer_tech", "consumer_policy", "cybersecurity", "health", "gaming", "climate", "business", "entertainment", "sports", "legal", "science", "politics", "real_estate", "automotive", "travel", "food", "education", "design", "film_tv", "fashion", "music", "personal_finance", "tech_independent", "culture_independent", "local_news", "construction", "banking", "retail", "aerospace_defense", "energy", "agriculture", "local_business", "general_news"}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "contact_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"email", "social", "none"}}, parameterDefinition{Name: "record_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"person", "desk", "organization", "syndicated_byline", "unknown"}}, parameterDefinition{Name: "role_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"staff", "editor", "reporter", "contributor", "freelancer", "columnist", "non_editorial", "unknown"}}, parameterDefinition{Name: "email_kind", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"individual_work", "individual_personal_public", "shared_desk", "tips_or_submissions", "outlet_generic", "unknown"}}, parameterDefinition{Name: "min_outreach_readiness", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "name_asc", "outlet_asc", "crawled_desc", "readiness_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-numbeo-cities-facets":                 operationDefinition{Method: "GET", Path: "/datasets/numbeo-cities/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"country"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_cost_of_living_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_cost_of_living_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_quality_of_life_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_crime_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_crime_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_safety_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_health_care_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_pollution_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_traffic_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-numbeo-cities-item":                   operationDefinition{Method: "GET", Path: "/datasets/numbeo-cities/items/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-numbeo-cities-search":                 operationDefinition{Method: "GET", Path: "/datasets/numbeo-cities/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_cost_of_living_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_cost_of_living_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_quality_of_life_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_crime_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_crime_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_safety_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_health_care_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_pollution_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_traffic_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"name_asc", "cost_of_living_asc", "cost_of_living_desc", "quality_of_life_desc", "safety_desc", "crime_asc", "health_care_desc", "pollution_asc", "traffic_asc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -66259,33 +67610,54 @@ var operations = map[string]operationDefinition{
 	"fortune-ranking-lists":                         operationDefinition{Method: "GET", Path: "/fortune/ranking/lists", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"fortune-ranking-years":                         operationDefinition{Method: "GET", Path: "/fortune/ranking/years", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "list", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"fortune-sections":                              operationDefinition{Method: "GET", Path: "/fortune/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"fotmob-league":                                 operationDefinition{Method: "GET", Path: "/fotmob/league", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"fotmob-audio-matches":                          operationDefinition{Method: "GET", Path: "/fotmob/audio-matches", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"fotmob-fifa-ranking-periods":                   operationDefinition{Method: "GET", Path: "/fotmob/fifa-ranking-periods", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "gender", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"men", "women"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"fotmob-fifa-rankings":                          operationDefinition{Method: "GET", Path: "/fotmob/fifa-rankings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "gender", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"men", "women"}}, parameterDefinition{Name: "period_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"fotmob-latest-news":                            operationDefinition{Method: "GET", Path: "/fotmob/latest-news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "start_index", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"fotmob-league":                                 operationDefinition{Method: "GET", Path: "/fotmob/league", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "shotmap", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"fotmob-leagues":                                operationDefinition{Method: "GET", Path: "/fotmob/leagues", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"fotmob-lineup-builder-players":                 operationDefinition{Method: "GET", Path: "/fotmob/lineup-builder-players", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "player_ids", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"fotmob-lineup-builder-team":                    operationDefinition{Method: "GET", Path: "/fotmob/lineup-builder-team", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"fotmob-match":                                  operationDefinition{Method: "GET", Path: "/fotmob/match", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"fotmob-match-media":                            operationDefinition{Method: "GET", Path: "/fotmob/match-media", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"fotmob-matches":                                operationDefinition{Method: "GET", Path: "/fotmob/matches", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "timezone", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"fotmob-news":                                   operationDefinition{Method: "GET", Path: "/fotmob/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "start_index", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"fotmob-news-article":                           operationDefinition{Method: "GET", Path: "/fotmob/news-article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"fotmob-player":                                 operationDefinition{Method: "GET", Path: "/fotmob/player", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "include_market_values", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"fotmob-player-match-stats":                     operationDefinition{Method: "GET", Path: "/fotmob/player-match-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "player_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "match_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"fotmob-player-matches":                         operationDefinition{Method: "GET", Path: "/fotmob/player-matches", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "player_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"fotmob-player-stats":                           operationDefinition{Method: "GET", Path: "/fotmob/player-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "player_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"fotmob-search":                                 operationDefinition{Method: "GET", Path: "/fotmob/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"fotmob-seasons":                                operationDefinition{Method: "GET", Path: "/fotmob/seasons", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"fotmob-stats":                                  operationDefinition{Method: "GET", Path: "/fotmob/stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"players", "teams"}}, parameterDefinition{Name: "stat", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "position", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "striker", "winger", "attackingMidfielder", "midfielder", "fullback", "centerBack"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"fotmob-stats-categories":                       operationDefinition{Method: "GET", Path: "/fotmob/stats-categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"players", "teams"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"fotmob-table":                                  operationDefinition{Method: "GET", Path: "/fotmob/table", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"fotmob-team":                                   operationDefinition{Method: "GET", Path: "/fotmob/team", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"fotmob-team-fixtures":                          operationDefinition{Method: "GET", Path: "/fotmob/team-fixtures", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
 	"fotmob-team-news":                              operationDefinition{Method: "GET", Path: "/fotmob/team-news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "start_index", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"fotmob-transfers":                              operationDefinition{Method: "GET", Path: "/fotmob/transfers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "rumours", "popular"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "last", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"6months", "1year", "2years", "3years"}}, parameterDefinition{Name: "direction", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "in", "out"}}, parameterDefinition{Name: "min_fee", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_fee", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "league_ids", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "team_ids", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "order_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"lastModified", "fee", "date", "name", "fromClubName", "toClubName"}}, parameterDefinition{Name: "exclude_extensions", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "likely_only", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"fotmob-trending-news":                          operationDefinition{Method: "GET", Path: "/fotmob/trending-news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"fotmob-trending-searches":                      operationDefinition{Method: "GET", Path: "/fotmob/trending-searches", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"fotmob-tv-guide":                               operationDefinition{Method: "GET", Path: "/fotmob/tv-guide", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"us", "se", "gb", "de", "no", "es", "mx", "ar", "bo", "cl", "co", "cr", "ec", "gt", "hn", "ni", "pa", "py", "pe", "uy", "ve", "da", "ca", "au", "at", "be", "bg", "hr", "cy", "cz", "ee", "fi", "fr", "gr", "hu", "is", "ie", "il", "it", "nl", "pl", "pt", "ro", "ru", "ch", "tr", "za", "br", "in", "me", "id", "th", "mm", "al", "az", "bl", "ba", "ks", "la", "li", "mk", "rs", "sk", "ua", "essv", "nz", "bd", "cn", "gh", "hk", "jp", "kr", "ma", "mt", "my", "ng", "ph", "pk", "sg", "si", "tz"}}, parameterDefinition{Name: "timezone", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"fotmob-tv-guide-channels":                      operationDefinition{Method: "GET", Path: "/fotmob/tv-guide-channels", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"us", "se", "gb", "de", "no", "es", "mx", "ar", "bo", "cl", "co", "cr", "ec", "gt", "hn", "ni", "pa", "py", "pe", "uy", "ve", "da", "ca", "au", "at", "be", "bg", "hr", "cy", "cz", "ee", "fi", "fr", "gr", "hu", "is", "ie", "il", "it", "nl", "pl", "pt", "ro", "ru", "ch", "tr", "za", "br", "in", "me", "id", "th", "mm", "al", "az", "bl", "ba", "ks", "la", "li", "mk", "rs", "sk", "ua", "essv", "nz", "bd", "cn", "gh", "hk", "jp", "kr", "ma", "mt", "my", "ng", "ph", "pk", "sg", "si", "tz"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"fotmob-tv-guide-countries":                     operationDefinition{Method: "GET", Path: "/fotmob/tv-guide-countries", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"foxnews-article":                               operationDefinition{Method: "GET", Path: "/foxnews/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"foxnews-author":                                operationDefinition{Method: "GET", Path: "/foxnews/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"foxnews-headlines":                             operationDefinition{Method: "GET", Path: "/foxnews/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"us", "world", "politics", "science", "health", "sports", "travel", "tech", "opinion", "entertainment", "media", "lifestyle"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"foxnews-news":                                  operationDefinition{Method: "GET", Path: "/foxnews/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"foxnews-search":                                operationDefinition{Method: "GET", Path: "/foxnews/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "start", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"article", "video", "slideshow"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"start"}},
 	"foxnews-sections":                              operationDefinition{Method: "GET", Path: "/foxnews/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"foxsports-article":                             operationDefinition{Method: "GET", Path: "/foxsports/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"foxsports-headlines":                           operationDefinition{Method: "GET", Path: "/foxsports/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"top", "mlb", "nfl", "college-football", "ufl", "nba", "nhl", "college-basketball", "nascar", "ufc", "motor-sports", "golf", "soccer", "fifa-world-cup", "fifa-womens-world-cup", "olympics", "tennis", "horseracing", "westminster-kennel-club-dog-show", "wnba", "womens-college-basketball", "world-baseball-classic", "wwe"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"foxsports-news":                                operationDefinition{Method: "GET", Path: "/foxsports/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"foxsports-sections":                            operationDefinition{Method: "GET", Path: "/foxsports/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"france24-article":                              operationDefinition{Method: "GET", Path: "/france24/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"france24-author":                               operationDefinition{Method: "GET", Path: "/france24/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"france24-headlines":                            operationDefinition{Method: "GET", Path: "/france24/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"africa", "americas", "asia-pacific", "europe", "france", "middle-east", "business-tech", "culture", "environment", "sport", "live-news", "tv-shows"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"france24-news":                                 operationDefinition{Method: "GET", Path: "/france24/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"france24-sections":                             operationDefinition{Method: "GET", Path: "/france24/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"freemalaysiatoday-news":                        operationDefinition{Method: "GET", Path: "/freemalaysiatoday/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"freemalaysiatoday-sections":                    operationDefinition{Method: "GET", Path: "/freemalaysiatoday/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"ft-article":                                    operationDefinition{Method: "GET", Path: "/ft/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"ft-author":                                     operationDefinition{Method: "GET", Path: "/ft/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"ft-categories":                                 operationDefinition{Method: "GET", Path: "/ft/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -66322,6 +67694,15 @@ var operations = map[string]operationDefinition{
 	"geocoding-lookup":                              operationDefinition{Method: "GET", Path: "/geocoding/lookup", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "osm_ids", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "accept_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"geocoding-reverse":                             operationDefinition{Method: "GET", Path: "/geocoding/reverse", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "zoom", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "accept_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"geocoding-search":                              operationDefinition{Method: "GET", Path: "/geocoding/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "street", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "county", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "postalcode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "countrycodes", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "accept_language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "addressdetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "extratags", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "namedetails", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ghanaweb-archive":                              operationDefinition{Method: "GET", Path: "/ghanaweb/archive", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "month", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"ghanaweb-archive-months":                       operationDefinition{Method: "GET", Path: "/ghanaweb/archive/months", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ghanaweb-article":                              operationDefinition{Method: "GET", Path: "/ghanaweb/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ghanaweb-headlines":                            operationDefinition{Method: "GET", Path: "/ghanaweb/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"news", "sports", "business", "entertainment", "africa", "opinions", "editorial", "crime", "regional", "health", "politics", "tabloid", "world", "lifestyle", "features"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ghanaweb-news":                                 operationDefinition{Method: "GET", Path: "/ghanaweb/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ghanaweb-sections":                             operationDefinition{Method: "GET", Path: "/ghanaweb/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ghanaweb-video":                                operationDefinition{Method: "GET", Path: "/ghanaweb/video", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ghanaweb-video-sections":                       operationDefinition{Method: "GET", Path: "/ghanaweb/video-sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ghanaweb-videos":                               operationDefinition{Method: "GET", Path: "/ghanaweb/videos", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"news", "sports", "business", "entertainment"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"github-org":                                    operationDefinition{Method: "GET", Path: "/github/org/{org}", PathParams: []string{"org"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"github-org-repos":                              operationDefinition{Method: "GET", Path: "/github/org/{org}/repos", PathParams: []string{"org"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"created", "updated", "pushed", "full_name"}}, parameterDefinition{Name: "direction", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "public", "forks", "sources", "member"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"github-repo":                                   operationDefinition{Method: "GET", Path: "/github/repo/{owner}/{repo}", PathParams: []string{"owner", "repo"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -66537,6 +67918,7 @@ var operations = map[string]operationDefinition{
 	"hotels-reviews":                                operationDefinition{Method: "POST", Path: "/hotels/reviews", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"hotels-reviews-archive":                        operationDefinition{Method: "POST", Path: "/hotels/reviews/archive", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"hotels-search":                                 operationDefinition{Method: "POST", Path: "/hotels/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"howtogeek-news":                                operationDefinition{Method: "GET", Path: "/howtogeek/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"huffpost-article":                              operationDefinition{Method: "GET", Path: "/huffpost/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"huffpost-author":                               operationDefinition{Method: "GET", Path: "/huffpost/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"huffpost-headlines":                            operationDefinition{Method: "GET", Path: "/huffpost/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"news", "news/us-news", "news/world-news", "impact/business", "impact/green", "section/health", "impact/topic/social-justice", "news/crime", "news/politics", "news/topic/us-congress", "news/topic/extremism", "section/opinion", "entertainment", "entertainment/arts", "news/media", "entertainment/celebrity", "entertainment/tv", "section/sports", "life", "life/healthy-living", "life/travel", "life/technology", "life/taste", "life/style", "life/family", "life/relationships", "life/money", "life/huffpost-home", "life/worklife", "life/huffpost-shopping", "voices", "voices/black-voices", "voices/queer-voices", "voices/latino-voices", "voices/indigenous-voices", "voices/asian-voices", "voices/womens-voices", "voices/voices-of-disabled-people", "section/huffpost-personal", "section/video"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -66658,6 +68040,12 @@ var operations = map[string]operationDefinition{
 	"jcrew-size-chart":                              operationDefinition{Method: "GET", Path: "/jcrew/size-chart", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "pid", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "site", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"jcrew", "factory"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"jcrew-stores":                                  operationDefinition{Method: "GET", Path: "/jcrew/stores", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "site", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"jcrew", "factory"}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lng", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"jcrew-suggest":                                 operationDefinition{Method: "GET", Path: "/jcrew/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "site", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"jcrew", "factory"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"jerusalempost-article":                         operationDefinition{Method: "GET", Path: "/jerusalempost/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"jerusalempost-author":                          operationDefinition{Method: "GET", Path: "/jerusalempost/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"jerusalempost-authors":                         operationDefinition{Method: "GET", Path: "/jerusalempost/authors", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"jerusalempost-headlines":                       operationDefinition{Method: "GET", Path: "/jerusalempost/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"aliyah", "american-politics", "arab-israeli-conflict", "archaeology", "bds-movement", "all-news", "banking-and-finance", "business-and-innovation", "business-opinion", "christian-world", "consumerism", "culture", "defense-and-tech", "diaspora", "environment", "food-and-recipes", "health-and-wellness", "health-around-the-world", "history", "home", "iran-news", "israel-election-2026", "israel-news", "israel-politics", "israeli-sports", "j-spot", "jewish-holidays", "judaism", "kabbalah", "middle-east", "must", "nutrition", "omg", "opinion", "science", "tech-and-startups", "terrorism", "torah-portion", "ukraine-russia-war", "world-news"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"jerusalempost-news":                            operationDefinition{Method: "GET", Path: "/jerusalempost/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"jerusalempost-sections":                        operationDefinition{Method: "GET", Path: "/jerusalempost/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"jimmy-johns-menu":                              operationDefinition{Method: "GET", Path: "/jimmy-johns/menu", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "restaurant_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"jimmy-johns-modifiers":                         operationDefinition{Method: "GET", Path: "/jimmy-johns/modifiers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "product_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"jimmy-johns-nearby":                            operationDefinition{Method: "GET", Path: "/jimmy-johns/nearby", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "radius", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -66825,6 +68213,7 @@ var operations = map[string]operationDefinition{
 	"livescience-news":                              operationDefinition{Method: "GET", Path: "/livescience/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"livescience-sections":                          operationDefinition{Method: "GET", Path: "/livescience/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"livescore-competition":                         operationDefinition{Method: "GET", Path: "/livescore/competition", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"livescore-competitions":                        operationDefinition{Method: "GET", Path: "/livescore/competitions", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"livescore-live-scores":                         operationDefinition{Method: "GET", Path: "/livescore/live-scores", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"soccer", "hockey", "basketball", "tennis", "cricket"}}, parameterDefinition{Name: "timezone_offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "paging", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "direction", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"down", "up"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
 	"livescore-match":                               operationDefinition{Method: "GET", Path: "/livescore/match", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"livescore-match-stats":                         operationDefinition{Method: "GET", Path: "/livescore/match-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -66836,6 +68225,7 @@ var operations = map[string]operationDefinition{
 	"livescore-player":                              operationDefinition{Method: "GET", Path: "/livescore/player", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"livescore-scores":                              operationDefinition{Method: "GET", Path: "/livescore/scores", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"soccer", "hockey", "basketball", "tennis", "cricket"}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "timezone_offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "paging", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "direction", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"down", "up"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
 	"livescore-scores-toc":                          operationDefinition{Method: "GET", Path: "/livescore/scores-toc", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"soccer", "hockey", "basketball", "tennis", "cricket"}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "timezone_offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"livescore-search":                              operationDefinition{Method: "GET", Path: "/livescore/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"soccer", "hockey", "basketball", "tennis", "cricket"}}, parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"livescore-sports":                              operationDefinition{Method: "GET", Path: "/livescore/sports", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"livescore-team":                                operationDefinition{Method: "GET", Path: "/livescore/team", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"lululemon-categories":                          operationDefinition{Method: "GET", Path: "/lululemon/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"new-featured", "women", "men", "accessories", "bags", "activity", "we-made-too-much"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -66878,6 +68268,11 @@ var operations = map[string]operationDefinition{
 	"mediaite-headlines":                            operationDefinition{Method: "GET", Path: "/mediaite/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"media", "tv", "news", "entertainment", "sports", "podcasts", "tech", "online", "politics", "trump", "election-2020", "opinion", "columnists", "crime", "premium"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"mediaite-news":                                 operationDefinition{Method: "GET", Path: "/mediaite/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"mediaite-sections":                             operationDefinition{Method: "GET", Path: "/mediaite/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"medicalnewstoday-article":                      operationDefinition{Method: "GET", Path: "/medicalnewstoday/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"medicalnewstoday-author":                       operationDefinition{Method: "GET", Path: "/medicalnewstoday/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"medicalnewstoday-headlines":                    operationDefinition{Method: "GET", Path: "/medicalnewstoday/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"news"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"medicalnewstoday-news":                         operationDefinition{Method: "GET", Path: "/medicalnewstoday/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"medicalnewstoday-sections":                     operationDefinition{Method: "GET", Path: "/medicalnewstoday/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"men-article":                                   operationDefinition{Method: "GET", Path: "/men/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"men-author":                                    operationDefinition{Method: "GET", Path: "/men/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"men-headlines":                                 operationDefinition{Method: "GET", Path: "/men/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"news", "news/uk-news", "news/greater-manchester-news", "news/local-news", "news/world-news", "news/health", "news/property", "news/cost-of-living", "news/money-saving", "news/parenting", "news/real-life", "news/showbiz-news", "news/tv", "sport", "sport/football", "sport/football/football-news", "sport/football/transfer-news", "sport/boxing", "sport/cricket", "whats-on", "whats-on/whats-on-news", "whats-on/family-kids-news", "whats-on/food-drink-news", "whats-on/music-nightlife-news", "whats-on/theatre-news", "whats-on/shopping", "trips-and-breaks"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -66936,18 +68331,27 @@ var operations = map[string]operationDefinition{
 	"mirror-headlines":                              operationDefinition{Method: "GET", Path: "/mirror/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"news", "news/uk-news", "news/world-news", "news/politics", "news/weird-news", "news/royals", "news/health", "news/us-news", "news/real-life-stories", "sport", "sport/football", "sport/boxing", "sport/cricket", "sport/formula-1", "sport/golf", "sport/horse-racing", "sport/rugby-league", "sport/rugby-union", "3am", "3am/style", "3am/us-celebrity-news", "lifestyle", "lifestyle/family", "lifestyle/food-drink", "lifestyle/gardening", "lifestyle/motoring", "lifestyle/sex-relationships", "travel", "money", "money/shopping-deals", "tv", "film", "gaming", "tech"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"mirror-news":                                   operationDefinition{Method: "GET", Path: "/mirror/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"mirror-sections":                               operationDefinition{Method: "GET", Path: "/mirror/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"mlb-discovery":                                 operationDefinition{Method: "GET", Path: "/mlb/discovery", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"mlb-editorial-feed":                            operationDefinition{Method: "GET", Path: "/mlb/editorial-feed", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"EN_US", "ES_US"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "skip", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"mlb-game":                                      operationDefinition{Method: "GET", Path: "/mlb/game", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"mlb-game-boxscore":                             operationDefinition{Method: "GET", Path: "/mlb/game-boxscore", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"mlb-game-play-by-play":                         operationDefinition{Method: "GET", Path: "/mlb/game-play-by-play", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"mlb-league-stats":                              operationDefinition{Method: "GET", Path: "/mlb/league-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "group", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"hitting", "pitching", "fielding"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"mlb-league-leaders":                            operationDefinition{Method: "GET", Path: "/mlb/league-leaders", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "categories", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "group", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hitting", "pitching", "fielding", "catching", "running", "game", "team", "streak"}}, parameterDefinition{Name: "game_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"S", "R", "F", "D", "L", "W", "C", "P", "A", "I", "E"}}, parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"103", "104"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"mlb-league-stats":                              operationDefinition{Method: "GET", Path: "/mlb/league-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "group", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"hitting", "pitching", "fielding", "catching", "running", "game", "team", "streak"}}, parameterDefinition{Name: "stat_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"projected", "projectedRos", "yearByYear", "yearByYearAdvanced", "yearByYearPlayoffs", "season", "standard", "advanced", "career", "careerRegularSeason", "careerAdvanced", "seasonAdvanced", "careerStatSplits", "careerPlayoffs", "gameLog", "playLog", "pitchLog", "pitchArsenal", "outsAboveAverage", "expectedStatistics", "sabermetrics", "sprayChart", "tracking", "vsPlayer", "vsPlayerTotal", "vsPlayer5Y", "vsTeam", "vsTeam5Y", "vsTeamTotal", "lastXGames", "byDateRange", "byDateRangeAdvanced", "byMonth", "byMonthPlayoffs", "byDayOfWeek", "byDayOfWeekPlayoffs", "homeAndAway", "homeAndAwayPlayoffs", "winLoss", "winLossPlayoffs", "rankings", "rankingsByYear", "statsSingleSeason", "statsSingleSeasonAdvanced", "hotColdZones", "availableStats", "opponentsFaced", "gameTypeStats", "firstYearStats", "lastYearStats", "statSplits", "statSplitsAdvanced", "atGameStart", "vsOpponents", "sabermetricsMultiTeam", "projected_Zips", "projected_ZipsRos", "projected_Zips2YR", "projected_Zips3YR"}}, parameterDefinition{Name: "game_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"S", "R", "F", "D", "L", "W", "C", "P", "A", "I", "E"}}, parameterDefinition{Name: "start_date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "end_date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "opponent_team_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "opponent_player_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"103", "104"}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "position", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"C", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "DH", "OF", "IF"}}, parameterDefinition{Name: "player_pool", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"QUALIFIED", "ALL"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"mlb-player":                                    operationDefinition{Method: "GET", Path: "/mlb/player", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"mlb-player-stats":                              operationDefinition{Method: "GET", Path: "/mlb/player-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "group", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"hitting", "pitching", "fielding"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"mlb-schedule":                                  operationDefinition{Method: "GET", Path: "/mlb/schedule", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "start_date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "end_date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"mlb-standings":                                 operationDefinition{Method: "GET", Path: "/mlb/standings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"regularSeason", "wildCard", "springTraining"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"mlb-team-roster":                               operationDefinition{Method: "GET", Path: "/mlb/team-roster", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "roster_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"active", "40Man", "fullSeason"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"mlb-team-stats":                                operationDefinition{Method: "GET", Path: "/mlb/team-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "group", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"hitting", "pitching", "fielding"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"mlb-player-stats":                              operationDefinition{Method: "GET", Path: "/mlb/player-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "group", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"hitting", "pitching", "fielding", "catching", "running", "game", "team", "streak"}}, parameterDefinition{Name: "stat_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"projected", "projectedRos", "yearByYear", "yearByYearAdvanced", "yearByYearPlayoffs", "season", "standard", "advanced", "career", "careerRegularSeason", "careerAdvanced", "seasonAdvanced", "careerStatSplits", "careerPlayoffs", "gameLog", "playLog", "pitchLog", "pitchArsenal", "outsAboveAverage", "expectedStatistics", "sabermetrics", "sprayChart", "tracking", "vsPlayer", "vsPlayerTotal", "vsPlayer5Y", "vsTeam", "vsTeam5Y", "vsTeamTotal", "lastXGames", "byDateRange", "byDateRangeAdvanced", "byMonth", "byMonthPlayoffs", "byDayOfWeek", "byDayOfWeekPlayoffs", "homeAndAway", "homeAndAwayPlayoffs", "winLoss", "winLossPlayoffs", "rankings", "rankingsByYear", "statsSingleSeason", "statsSingleSeasonAdvanced", "hotColdZones", "availableStats", "opponentsFaced", "gameTypeStats", "firstYearStats", "lastYearStats", "statSplits", "statSplitsAdvanced", "atGameStart", "vsOpponents", "sabermetricsMultiTeam", "projected_Zips", "projected_ZipsRos", "projected_Zips2YR", "projected_Zips3YR"}}, parameterDefinition{Name: "game_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"S", "R", "F", "D", "L", "W", "C", "P", "A", "I", "E"}}, parameterDefinition{Name: "start_date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "end_date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "opponent_team_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "opponent_player_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"mlb-prospect-stats":                            operationDefinition{Method: "GET", Path: "/mlb/prospect-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "list_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"top100", "all"}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"today", "1day", "10day", "30day", "springTraining", "Year2019", "Year2020", "Year2021", "Year2022", "Year2023", "Year2024", "Year2025", "Year2026"}}, parameterDefinition{Name: "player_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"batters", "pitchers"}}, parameterDefinition{Name: "min_pa", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"1", "5", "10", "25", "50", "100", "150", "200", "250"}}, parameterDefinition{Name: "position", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"1b", "2b", "ss", "3b", "c", "of", "rhp", "lhp"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"mlb-schedule":                                  operationDefinition{Method: "GET", Path: "/mlb/schedule", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "start_date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "end_date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "game_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"S", "R", "F", "D", "L", "W", "C", "P", "A", "I", "E"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"mlb-search":                                    operationDefinition{Method: "GET", Path: "/mlb/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"mlb-standings":                                 operationDefinition{Method: "GET", Path: "/mlb/standings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"regularSeason", "wildCard", "divisionLeaders", "wildCardWithLeaders", "firstHalf", "secondHalf", "springTraining", "postseason", "byDivision", "byConference", "byLeague", "byOrganization", "currentHalf"}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"mlb-statcast-expected":                         operationDefinition{Method: "GET", Path: "/mlb/statcast-expected", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"batter", "pitcher", "batter-team", "pitcher-team"}}, parameterDefinition{Name: "year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "position", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"C", "1B", "2B", "SS", "3B", "LF", "CF", "RF", "DH"}}, parameterDefinition{Name: "filter_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"bip", "pa"}}, parameterDefinition{Name: "minimum", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"q", "1", "25", "50", "100", "150", "200", "250", "350", "450", "500", "600"}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"entity_name", "entity_team_name", "pa", "bip", "ba", "est_ba", "ba_minus_est_ba_diff", "slg", "est_slg", "slg_minus_est_slg_diff", "woba", "est_woba", "woba_minus_est_woba_diff", "wobacon", "est_wobacon", "wobacon_minus_est_wobacon_diff", "exit_velocity_avg", "hard_hit_percent", "barrels_per_bip", "barrels_per_pa"}}, parameterDefinition{Name: "sort_dir", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"mlb-statcast":                                  operationDefinition{Method: "GET", Path: "/mlb/statcast-leaders", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"batter", "pitcher", "batter-team", "pitcher-team"}}, parameterDefinition{Name: "year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "position", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"C", "1B", "2B", "SS", "3B", "LF", "CF", "RF", "DH"}}, parameterDefinition{Name: "min_bbe", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"q", "1", "25", "50", "100", "150", "200", "250", "350", "450", "500", "600"}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"entity_name", "bip", "launch_angle_avg", "sweet_spot_percent", "exit_velocity_max", "exit_velocity_avg", "avg_best_speed", "exit_velocity_fbld", "distance_max", "distance_hr_avg", "hard_hit_ct", "hard_hit_percent", "hard_hit_per_swing", "barrel_ct", "barrels_per_bip", "barrels_per_pa"}}, parameterDefinition{Name: "sort_dir", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"mlb-statcast-oaa":                              operationDefinition{Method: "GET", Path: "/mlb/statcast-oaa", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Fielder", "Fielding_Team", "Batter", "Batting_Team", "Pitcher"}}, parameterDefinition{Name: "start_year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "end_year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "split", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"no", "yes"}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"year", "4", "5", "6", "7", "8", "9"}}, parameterDefinition{Name: "minimum", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"q", "10", "25", "50", "75", "100", "150", "200", "250"}}, parameterDefinition{Name: "position", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"if", "of", "3", "4", "5", "6", "7", "8", "9"}}, parameterDefinition{Name: "roles", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"entity_name", "display_team_name", "primary_pos_formatted", "fielding_runs_prevented", "outs_above_average", "outs_above_average_infront", "outs_above_average_lateral", "outs_above_average_behind", "actual_success_rate", "adj_estimated_success_rate", "diff_success_rate", "n"}}, parameterDefinition{Name: "sort_dir", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"mlb-team-roster":                               operationDefinition{Method: "GET", Path: "/mlb/team-roster", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "roster_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"40Man", "fullSeason", "fullRoster", "nonRosterInvitees", "active", "allTime", "depthChart", "gameday", "coach"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"mlb-team-stats":                                operationDefinition{Method: "GET", Path: "/mlb/team-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "group", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"hitting", "pitching", "fielding", "catching", "running", "game", "team", "streak"}}, parameterDefinition{Name: "stat_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"projected", "projectedRos", "yearByYear", "yearByYearAdvanced", "yearByYearPlayoffs", "season", "standard", "advanced", "career", "careerRegularSeason", "careerAdvanced", "seasonAdvanced", "careerStatSplits", "careerPlayoffs", "gameLog", "playLog", "pitchLog", "pitchArsenal", "outsAboveAverage", "expectedStatistics", "sabermetrics", "sprayChart", "tracking", "vsPlayer", "vsPlayerTotal", "vsPlayer5Y", "vsTeam", "vsTeam5Y", "vsTeamTotal", "lastXGames", "byDateRange", "byDateRangeAdvanced", "byMonth", "byMonthPlayoffs", "byDayOfWeek", "byDayOfWeekPlayoffs", "homeAndAway", "homeAndAwayPlayoffs", "winLoss", "winLossPlayoffs", "rankings", "rankingsByYear", "statsSingleSeason", "statsSingleSeasonAdvanced", "hotColdZones", "availableStats", "opponentsFaced", "gameTypeStats", "firstYearStats", "lastYearStats", "statSplits", "statSplitsAdvanced", "atGameStart", "vsOpponents", "sabermetricsMultiTeam", "projected_Zips", "projected_ZipsRos", "projected_Zips2YR", "projected_Zips3YR"}}, parameterDefinition{Name: "game_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"S", "R", "F", "D", "L", "W", "C", "P", "A", "I", "E"}}, parameterDefinition{Name: "start_date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "end_date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "opponent_team_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "opponent_player_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"mlb-teams":                                     operationDefinition{Method: "GET", Path: "/mlb/teams", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"mlb-transactions":                              operationDefinition{Method: "GET", Path: "/mlb/transactions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "start_date", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "end_date", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "player_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"mlive-news":                                    operationDefinition{Method: "GET", Path: "/mlive/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"modaoperandi-categories":                       operationDefinition{Method: "GET", Path: "/modaoperandi/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"modaoperandi-designers":                        operationDefinition{Method: "GET", Path: "/modaoperandi/designers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "gender", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"women", "men"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"modaoperandi-product":                          operationDefinition{Method: "GET", Path: "/modaoperandi/product", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -66969,6 +68373,11 @@ var operations = map[string]operationDefinition{
 	"monitors-get":                                  operationDefinition{Method: "GET", Path: "/monitors/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"monitors-update":                               operationDefinition{Method: "PATCH", Path: "/monitors/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"monitors-checks":                               operationDefinition{Method: "GET", Path: "/monitors/{id}/checks", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"motleyfool-article":                            operationDefinition{Method: "GET", Path: "/motleyfool/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"motleyfool-author":                             operationDefinition{Method: "GET", Path: "/motleyfool/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"motleyfool-headlines":                          operationDefinition{Method: "GET", Path: "/motleyfool/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"trending-news", "news", "market-movers", "tech-stock-news", "market-trends", "crypto-news", "markets", "most-active-stocks", "top-stock-gainers", "top-stock-losers"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"motleyfool-news":                               operationDefinition{Method: "GET", Path: "/motleyfool/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"motleyfool-sections":                           operationDefinition{Method: "GET", Path: "/motleyfool/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nationafrica-article":                          operationDefinition{Method: "GET", Path: "/nationafrica/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nationafrica-author":                           operationDefinition{Method: "GET", Path: "/nationafrica/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nationafrica-headlines":                        operationDefinition{Method: "GET", Path: "/nationafrica/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"news", "politics", "world", "gender", "education", "business", "companies", "enterprise", "finance-and-markets", "seeds-of-gold", "sports", "football", "athletics", "rugby", "motorsports", "other-sports", "talkup", "counties", "coast", "lake-region", "mountain", "nairobi-metro", "northern", "rift-valley", "blogs-opinion", "opinion", "editorials", "letters", "blogs", "cutting-edge", "life-and-style", "wellness", "travel", "relationships", "motoring", "family", "culture", "art-books", "health", "healthy-nation", "elections", "elections-news", "presidential", "governor-race", "constituencies", "explainers", "fact-checks"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -66988,6 +68397,7 @@ var operations = map[string]operationDefinition{
 	"ndtv-author":                                   operationDefinition{Method: "GET", Path: "/ndtv/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"ndtv-headlines":                                operationDefinition{Method: "GET", Path: "/ndtv/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"latest", "india", "world", "world-india-global", "world-diaspora", "opinion", "spotlight", "business-news", "south", "cities", "bangalore-news", "chennai-news", "delhi-news", "mumbai-news", "others-news", "ahmedabad-news", "allahabad-news", "amritsar-news", "bhopal-news", "bhubaneshwar-news", "chandigarh-news", "ghaziabad-news", "goa-news", "gurgaon-news", "guwahati-news", "hyderabad-news", "jaipur-news", "kanpur-news", "kolkata-news", "lucknow-news", "noida-news", "patna-news", "pune-news", "srinagar-news", "thiruvananthapuram-news", "andhra-pradesh-news", "karnataka-news", "kerala-news", "tamil-nadu-news", "telangana-news", "education", "education-exams-news", "education-school-news", "education-campus-news", "education-study-abroad", "education-latest", "health", "entertainment", "lifestyle", "food", "travel", "auto", "science", "offbeat", "trends", "feature"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"ndtv-news":                                     operationDefinition{Method: "GET", Path: "/ndtv/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"ndtv-search":                                   operationDefinition{Method: "GET", Path: "/ndtv/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"ndtv-sections":                                 operationDefinition{Method: "GET", Path: "/ndtv/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"news18-article":                                operationDefinition{Method: "GET", Path: "/news18/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"news18-author":                                 operationDefinition{Method: "GET", Path: "/news18/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -67032,6 +68442,7 @@ var operations = map[string]operationDefinition{
 	"ninetofivemac-headlines":                       operationDefinition{Method: "GET", Path: "/ninetofivemac/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"iphone", "mac", "macbook-pro", "macbook-air", "imac", "mac-mini", "mac-studio", "mac-pro", "ipad-pro", "ipad-air", "ipad-mini", "ipad", "ipados", "apple-watch", "apple-watch-ultra", "apple-health", "apple-watch-se", "vision-pro", "visionos", "apple-music", "airpods", "homepod", "apple-tv", "review", "how-to", "aapl", "apple-store", "apple-arcade", "apple-card", "apple-silicon", "apple-one", "apple-fitness", "carplay", "siri", "homekit"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"ninetofivemac-news":                            operationDefinition{Method: "GET", Path: "/ninetofivemac/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"ninetofivemac-sections":                        operationDefinition{Method: "GET", Path: "/ninetofivemac/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"njcom-news":                                    operationDefinition{Method: "GET", Path: "/njcom/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"npr-article":                                   operationDefinition{Method: "GET", Path: "/npr/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"npr-author":                                    operationDefinition{Method: "GET", Path: "/npr/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"npr-categories":                                operationDefinition{Method: "GET", Path: "/npr/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -67325,6 +68736,7 @@ var operations = map[string]operationDefinition{
 	"popeyes-promotions":                            operationDefinition{Method: "GET", Path: "/popeyes/promotions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"popeyes-quests":                                operationDefinition{Method: "GET", Path: "/popeyes/quests", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"popeyes-rewards":                               operationDefinition{Method: "GET", Path: "/popeyes/rewards", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"popularmechanics-news":                         operationDefinition{Method: "GET", Path: "/popularmechanics/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"poshmark-brand":                                operationDefinition{Method: "GET", Path: "/poshmark/brand/{name}", PathParams: []string{"name"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "max_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"poshmark-brands":                               operationDefinition{Method: "GET", Path: "/poshmark/brands", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"poshmark-categories":                           operationDefinition{Method: "GET", Path: "/poshmark/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -67514,7 +68926,13 @@ var operations = map[string]operationDefinition{
 	"rottentomatoes-browse-movies":                  operationDefinition{Method: "GET", Path: "/rottentomatoes/browse/movies", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "list", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"movies_in_theaters", "movies_at_home", "movies_coming_soon"}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"popular", "newest", "top_box_office", "a_z", "critic_highest", "critic_lowest", "audience_highest", "audience_lowest"}}, parameterDefinition{Name: "genres", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"action", "adventure", "animation", "anime", "biography", "comedy", "crime", "documentary", "drama", "entertainment", "faith_and_spirituality", "fantasy", "game_show", "lgbtq", "health_and_wellness", "history", "holiday", "horror", "house_and_garden", "kids_and_family", "music", "musical", "mystery_and_thriller", "nature", "news", "reality", "romance", "sci_fi", "short", "soap", "special_interest", "sports", "stand_up", "talk_show", "travel", "variety", "war", "western"}}, parameterDefinition{Name: "ratings", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"g", "pg", "pg_13", "r", "nc_17", "nr", "ur"}}, parameterDefinition{Name: "audience", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"verified_hot", "upright", "spilled"}}, parameterDefinition{Name: "critics", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"certified_fresh", "fresh", "rotten"}}, parameterDefinition{Name: "affiliates", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"theaters", "fandango", "apple-tv-plus", "netflix", "prime-video", "disney-plus", "max", "peacock", "hulu", "paramount-plus", "amc-plus", "acorn-tv", "apple-tv"}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"rottentomatoes-browse-tv":                      operationDefinition{Method: "GET", Path: "/rottentomatoes/browse/tv", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "list", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"tv_series_browse"}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"popular", "newest", "a_z", "critic_highest", "critic_lowest", "audience_highest", "audience_lowest"}}, parameterDefinition{Name: "genres", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"action", "adventure", "animation", "anime", "biography", "comedy", "crime", "documentary", "drama", "entertainment", "faith_and_spirituality", "fantasy", "game_show", "lgbtq", "health_and_wellness", "history", "holiday", "horror", "house_and_garden", "kids_and_family", "music", "musical", "mystery_and_thriller", "nature", "news", "reality", "romance", "sci_fi", "short", "soap", "special_interest", "sports", "stand_up", "talk_show", "travel", "variety", "war", "western"}}, parameterDefinition{Name: "ratings", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"tvy", "tvy7", "tvg", "tvpg", "tv14", "tvma"}}, parameterDefinition{Name: "audience", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"upright", "spilled"}}, parameterDefinition{Name: "critics", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"fresh", "rotten"}}, parameterDefinition{Name: "affiliates", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"theaters", "fandango", "apple-tv-plus", "netflix", "prime-video", "disney-plus", "max", "peacock", "hulu", "paramount-plus", "amc-plus", "acorn-tv", "apple-tv"}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"rottentomatoes-critics-authors":                operationDefinition{Method: "GET", Path: "/rottentomatoes/critics/authors", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "letter", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"#", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}}, parameterDefinition{Name: "search", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "inactive", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "before", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"rottentomatoes-editorial-content":              operationDefinition{Method: "GET", Path: "/rottentomatoes/editorial/content", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"article", "guide", "gallery", "hub-subpage", "non-rt-publication", "rt-hub", "how-to", "otg-article", "prev", "rt_poll", "pages"}}, parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "taxonomy", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"categories", "tags", "related-movie-id", "related-tv-season-id", "related-tv-series-id", "related-tv-episode-id", "related-celebrity-id", "publication", "franchise", "coauthors"}}, parameterDefinition{Name: "term_ids", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "operator", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"AND", "OR"}}, parameterDefinition{Name: "include_children", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"rottentomatoes-editorial-detail":               operationDefinition{Method: "GET", Path: "/rottentomatoes/editorial/detail", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"rottentomatoes-editorial-search":               operationDefinition{Method: "GET", Path: "/rottentomatoes/editorial/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"rottentomatoes-editorial-section":              operationDefinition{Method: "GET", Path: "/rottentomatoes/editorial/section", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"rottentomatoes-editorial-taxonomies":           operationDefinition{Method: "GET", Path: "/rottentomatoes/editorial/taxonomies", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"rottentomatoes-editorial-terms":                operationDefinition{Method: "GET", Path: "/rottentomatoes/editorial/terms", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "taxonomy", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"categories", "tags", "related-movie-id", "related-tv-season-id", "related-tv-series-id", "related-tv-episode-id", "related-celebrity-id", "publication", "franchise", "coauthors"}}, parameterDefinition{Name: "search", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "hide_empty", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}, parameterDefinition{Name: "orderby", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"id", "include", "name", "slug", "include_slugs", "term_group", "description", "count"}}, parameterDefinition{Name: "include", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "exclude", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "post", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "parent", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"rottentomatoes-editorial-types":                operationDefinition{Method: "GET", Path: "/rottentomatoes/editorial/types", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"rottentomatoes-episode":                        operationDefinition{Method: "GET", Path: "/rottentomatoes/episode", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"rottentomatoes-movie":                          operationDefinition{Method: "GET", Path: "/rottentomatoes/movie", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"rottentomatoes-movie-reviews":                  operationDefinition{Method: "GET", Path: "/rottentomatoes/movie/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"critics", "top-critics", "audience", "verified-audience"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -67543,6 +68961,16 @@ var operations = map[string]operationDefinition{
 	"samsclub-departments":                          operationDefinition{Method: "GET", Path: "/samsclub/departments", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"samsclub-product":                              operationDefinition{Method: "GET", Path: "/samsclub/product/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"samsclub-product-related":                      operationDefinition{Method: "GET", Path: "/samsclub/product/{id}/related", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sbsnews-article":                               operationDefinition{Method: "GET", Path: "/sbsnews/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sbsnews-author":                                operationDefinition{Method: "GET", Path: "/sbsnews/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"sbsnews-headlines":                             operationDefinition{Method: "GET", Path: "/sbsnews/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"top", "latest", "australia", "world", "politics", "indigenous", "environment", "life", "cost-of-living", "immigration", "health-and-wellbeing", "sport", "education", "technology-and-social-media", "arts-and-entertainment"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sbsnews-news":                                  operationDefinition{Method: "GET", Path: "/sbsnews/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sbsnews-sections":                              operationDefinition{Method: "GET", Path: "/sbsnews/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sciencealert-article":                          operationDefinition{Method: "GET", Path: "/sciencealert/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sciencealert-author":                           operationDefinition{Method: "GET", Path: "/sciencealert/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sciencealert-headlines":                        operationDefinition{Method: "GET", Path: "/sciencealert/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"space", "health", "environment", "humans", "tech", "nature", "physics", "this-week-in-science"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sciencealert-news":                             operationDefinition{Method: "GET", Path: "/sciencealert/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sciencealert-sections":                         operationDefinition{Method: "GET", Path: "/sciencealert/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"scmp-article":                                  operationDefinition{Method: "GET", Path: "/scmp/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"scmp-author":                                   operationDefinition{Method: "GET", Path: "/scmp/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"scmp-headlines":                                operationDefinition{Method: "GET", Path: "/scmp/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"news", "business", "property", "tech", "lifestyle", "culture", "sport", "postmag", "style", "this-week-in-asia", "cooking", "hong-kong", "china", "asia", "world", "people-culture", "china-politics", "china-diplomacy", "china-economy", "hong-kong-politics", "hong-kong-economy", "hong-kong-health-environment", "hong-kong-education", "world-us-canada", "world-europe", "world-middle-east", "world-americas", "world-africa", "world-russia-central-asia", "asia-australasia", "asia-diplomacy", "asia-east-asia", "asia-southeast-asia", "asia-south-asia", "business-companies", "business-investor-relations", "business-global-economy", "business-money-wealth", "opinion-comment", "opinion-harrys-view", "opinion-blogs", "opinion-polls", "opinion-letters", "property-hong-kong-china", "property-international", "tech-big-tech", "tech-enterprises", "tech-innovation", "tech-leaders-founders", "tech-science-research", "lifestyle-fashion-beauty", "lifestyle-travel-leisure", "lifestyle-motoring", "lifestyle-food-drink", "lifestyle-health-wellness", "lifestyle-watches", "culture-books", "culture-music", "culture-film-tv", "culture-arts", "sport-hong-kong", "sport-china", "sport-golf", "sport-racing", "sport-rugby", "sport-football", "sport-tennis", "sport-other", "sport-boxing", "sport-hong-kong-sevens", "postmag-culture", "postmag-travel", "postmag-food-drink", "postmag-passions", "postmag-wellness", "postmag-design-interiors", "style-luxury", "style-fashion", "style-beauty", "style-people", "style-lifestyle", "this-week-in-asia-politics", "this-week-in-asia-geopolitics", "this-week-in-asia-economics", "this-week-in-asia-society", "this-week-in-asia-opinion", "this-week-in-asia-asia-buzz", "this-week-in-asia-people"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -67656,6 +69084,11 @@ var operations = map[string]operationDefinition{
 	"skynews-sections":                              operationDefinition{Method: "GET", Path: "/skynews/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"skynews-video":                                 operationDefinition{Method: "GET", Path: "/skynews/video", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"skynews-videos":                                operationDefinition{Method: "GET", Path: "/skynews/videos", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"skysports-article":                             operationDefinition{Method: "GET", Path: "/skysports/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"skysports-author":                              operationDefinition{Method: "GET", Path: "/skysports/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"skysports-headlines":                           operationDefinition{Method: "GET", Path: "/skysports/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "f1", "cricket", "rugby-union", "rugby-league", "golf", "boxing", "nfl", "tennis", "nba", "racing", "darts", "netball", "mma", "more-sports", "athletics", "basketball", "cycling", "snooker", "motor-sport", "wwe", "olympics"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"skysports-news":                                operationDefinition{Method: "GET", Path: "/skysports/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"skysports-sections":                            operationDefinition{Method: "GET", Path: "/skysports/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"slate-article":                                 operationDefinition{Method: "GET", Path: "/slate/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"slate-categories":                              operationDefinition{Method: "GET", Path: "/slate/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"slate-headlines":                               operationDefinition{Method: "GET", Path: "/slate/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "news-and-politics", "culture", "technology", "business", "life", "advice"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -67726,6 +69159,27 @@ var operations = map[string]operationDefinition{
 	"sportingnews-headlines":                        operationDefinition{Method: "GET", Path: "/sportingnews/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"baseball", "basketball", "boxing", "bundesliga", "champions-league", "club-world-cup", "college", "cricket", "culture", "darts", "fantasy", "football", "formula-1", "golf", "high-school", "horse-racing", "la-liga", "liga-mx", "mlb", "mls", "mma", "nascar", "nba", "nba-draft", "ncaa", "ncaa-basketball", "ncaa-football", "nfl", "nfl-draft", "nhl", "olympics", "premier-league", "sec", "serie-a", "soccer", "softball", "tennis", "tickets", "tsn", "ufc", "watch", "wnba", "womens-college-basketball", "wwe"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sportingnews-news":                             operationDefinition{Method: "GET", Path: "/sportingnews/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sportingnews-sections":                         operationDefinition{Method: "GET", Path: "/sportingnews/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sportskeeda-article":                           operationDefinition{Method: "GET", Path: "/sportskeeda/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sportskeeda-author":                            operationDefinition{Method: "GET", Path: "/sportskeeda/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sportskeeda-depth-chart":                       operationDefinition{Method: "GET", Path: "/sportskeeda/depth-chart", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl/depth-chart"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sportskeeda-feed":                              operationDefinition{Method: "GET", Path: "/sportskeeda/feed", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"sportskeeda-football-data":                     operationDefinition{Method: "GET", Path: "/sportskeeda/football-data", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "event", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "matchday", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sportskeeda-football-options":                  operationDefinition{Method: "GET", Path: "/sportskeeda/football-options", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "event", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sportskeeda-news":                              operationDefinition{Method: "GET", Path: "/sportskeeda/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sportskeeda-page-data":                         operationDefinition{Method: "GET", Path: "/sportskeeda/page-data", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sportskeeda-page-options":                      operationDefinition{Method: "GET", Path: "/sportskeeda/page-options", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sportskeeda-player-stats":                      operationDefinition{Method: "GET", Path: "/sportskeeda/player-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "event_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"0", "1", "2", "3"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sportskeeda-profile":                           operationDefinition{Method: "GET", Path: "/sportskeeda/profile", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sportskeeda-schedule":                          operationDefinition{Method: "GET", Path: "/sportskeeda/schedule", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sportskeeda-sections":                          operationDefinition{Method: "GET", Path: "/sportskeeda/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sportskeeda-sitemap-items":                     operationDefinition{Method: "GET", Path: "/sportskeeda/sitemap-items", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sitemap_url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"sportskeeda-sitemaps":                          operationDefinition{Method: "GET", Path: "/sportskeeda/sitemaps", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sportskeeda-standings":                         operationDefinition{Method: "GET", Path: "/sportskeeda/standings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"2026", "2025", "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sportskeeda-standings-options":                 operationDefinition{Method: "GET", Path: "/sportskeeda/standings-options", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"2026", "2025", "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sportskeeda-taxonomy-search":                   operationDefinition{Method: "GET", Path: "/sportskeeda/taxonomy-search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sportskeeda-trade-values":                      operationDefinition{Method: "GET", Path: "/sportskeeda/trade-values", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl/fantasy-football-trade-value-charts", "nfl/dynasty-trade-value-charts"}}, parameterDefinition{Name: "position", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"All", "QB", "RB", "WR", "TE"}}, parameterDefinition{Name: "scoring", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"ppr", "non_ppr", "0.5_ppr"}}, parameterDefinition{Name: "superflex", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"sportskeeda-video":                             operationDefinition{Method: "GET", Path: "/sportskeeda/video", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sportskeeda-videos":                            operationDefinition{Method: "GET", Path: "/sportskeeda/videos", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"spotify-podcasts-categories":                   operationDefinition{Method: "GET", Path: "/spotify-podcasts/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "section_offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "section_limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "include_episode_content_ratings_v2", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"spotify-podcasts-charts":                       operationDefinition{Method: "GET", Path: "/spotify-podcasts/charts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "chart", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"top-podcasts", "top-episodes", "trending", "arts", "business", "comedy", "education", "fiction", "health-fitness", "history", "leisure", "music", "news", "religion-spirituality", "science", "society-culture", "sports", "technology", "true-crime", "tv-film"}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"ar", "au", "at", "br", "ca", "cl", "co", "dk", "fi", "fr", "de", "in", "id", "ie", "it", "jp", "mx", "nz", "no", "ph", "pl", "es", "se", "nl", "gb", "us"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"spotify-podcasts-episode":                      operationDefinition{Method: "GET", Path: "/spotify-podcasts/episode", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "uri", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -67774,6 +69228,7 @@ var operations = map[string]operationDefinition{
 	"starbucks-product":                             operationDefinition{Method: "GET", Path: "/starbucks/product/{product_number}/{form}", PathParams: []string{"product_number", "form"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "store_number", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"us", "ca"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"starbucks-nutrition":                           operationDefinition{Method: "POST", Path: "/starbucks/product/{product_number}/{form}/nutrition", PathParams: []string{"product_number", "form"}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"starbucks-stores":                              operationDefinition{Method: "GET", Path: "/starbucks/stores", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "place", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lng", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"us", "ca"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"startribune-news":                              operationDefinition{Method: "GET", Path: "/startribune/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"steam-achievements":                            operationDefinition{Method: "GET", Path: "/steam/achievements", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "appid", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"steam-app":                                     operationDefinition{Method: "GET", Path: "/steam/app", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "appid", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cc", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "l", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "filters", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"steam-category":                                operationDefinition{Method: "GET", Path: "/steam/category/{slug}", PathParams: []string{"slug"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "free", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "released_only", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "coming_soon_only", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "start", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "cc", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "l", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"start"}},
@@ -68235,6 +69690,7 @@ var operations = map[string]operationDefinition{
 	"whatnot-browse":                                operationDefinition{Method: "GET", Path: "/whatnot/browse", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"whatnot-categories":                            operationDefinition{Method: "GET", Path: "/whatnot/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"whatnot-live":                                  operationDefinition{Method: "GET", Path: "/whatnot/live/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"whatnot-seller":                                operationDefinition{Method: "GET", Path: "/whatnot/seller/{username}", PathParams: []string{"username"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
 	"wingstop-delivery-store":                       operationDefinition{Method: "GET", Path: "/wingstop/delivery-store", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "address1", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "postal_code", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"wingstop-directory":                            operationDefinition{Method: "GET", Path: "/wingstop/directory", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"wingstop-flavors":                              operationDefinition{Method: "GET", Path: "/wingstop/flavors", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -68436,6 +69892,7 @@ type Services struct {
 	Adidas                   *AdidasService
 	Agoda                    *AgodaService
 	Airbnb                   *AirbnbService
+	AlCom                    *AlComService
 	AlJazeera                *AlJazeeraService
 	Allbirds                 *AllbirdsService
 	Alt                      *AltService
@@ -68472,6 +69929,7 @@ type Services struct {
 	Bonhams                  *BonhamsService
 	Booking                  *BookingService
 	Boots                    *BootsService
+	BostonGlobe              *BostonGlobeService
 	BoxOfficeMojo            *BoxOfficeMojoService
 	Brand                    *BrandService
 	Brave                    *BraveService
@@ -68494,6 +69952,7 @@ type Services struct {
 	Chipotle                 *ChipotleService
 	ChromeWebStore           *ChromeWebStoreService
 	Chrono24                 *Chrono24Service
+	ClevelandCom             *ClevelandComService
 	Cna                      *CnaService
 	Cnbc                     *CnbcService
 	Cnet                     *CnetService
@@ -68556,13 +70015,16 @@ type Services struct {
 	Fortune                  *FortuneService
 	FotMob                   *FotMobService
 	FoxNews                  *FoxNewsService
+	FoxSports                *FoxSportsService
 	France24                 *France24Service
+	FreeMalaysiaToday        *FreeMalaysiaTodayService
 	Ft                       *FtService
 	GameRant                 *GameRantService
 	GamesRadar               *GamesRadarService
 	GbNews                   *GbNewsService
 	Gdelt                    *GdeltService
 	Geocoding                *GeocodingService
+	GhanaWeb                 *GhanaWebService
 	GitHub                   *GitHubService
 	Gizmodo                  *GizmodoService
 	GlobalNews               *GlobalNewsService
@@ -68589,6 +70051,7 @@ type Services struct {
 	HollywoodReporter        *HollywoodReporterService
 	HomeDepot                *HomeDepotService
 	HotelsCom                *HotelsComService
+	HowToGeek                *HowToGeekService
 	HuffPost                 *HuffPostService
 	Ign                      *IgnService
 	Ikea                     *IkeaService
@@ -68608,6 +70071,7 @@ type Services struct {
 	IrishIndependent         *IrishIndependentService
 	IrishTimes               *IrishTimesService
 	JCrew                    *JCrewService
+	JerusalemPost            *JerusalemPostService
 	JimmyJohns               *JimmyJohnsService
 	Jobs                     *JobsService
 	JustEat                  *JustEatService
@@ -68637,6 +70101,7 @@ type Services struct {
 	Mashable                 *MashableService
 	McDonalds                *McDonaldsService
 	Mediaite                 *MediaiteService
+	MedicalNewsToday         *MedicalNewsTodayService
 	ManchesterEveningNews    *ManchesterEveningNewsService
 	Mercari                  *MercariService
 	MetaJobs                 *MetaJobsService
@@ -68646,10 +70111,12 @@ type Services struct {
 	MicrosoftStore           *MicrosoftStoreService
 	Mirror                   *MirrorService
 	Mlb                      *MlbService
+	Mlive                    *MliveService
 	ModaOperandi             *ModaOperandiService
 	Moncler                  *MonclerService
 	Moneycontrol             *MoneycontrolService
 	Monitors                 *MonitorsService
+	TheMotleyFool            *TheMotleyFoolService
 	NationAfrica             *NationAfricaService
 	NationalPost             *NationalPostService
 	NbcNews                  *NbcNewsService
@@ -68662,6 +70129,7 @@ type Services struct {
 	TheNewYorker             *TheNewYorkerService
 	Nike                     *NikeService
 	NineToFiveMac            *NineToFiveMacService
+	NjCom                    *NjComService
 	Npr                      *NprService
 	Numbeo                   *NumbeoService
 	NewYorkDailyNews         *NewYorkDailyNewsService
@@ -68694,6 +70162,7 @@ type Services struct {
 	Polygon                  *PolygonService
 	Polymarket               *PolymarketService
 	Popeyes                  *PopeyesService
+	PopularMechanics         *PopularMechanicsService
 	Poshmark                 *PoshmarkService
 	Prada                    *PradaService
 	PristineAuction          *PristineAuctionService
@@ -68723,6 +70192,8 @@ type Services struct {
 	RtNews                   *RtNewsService
 	Salon                    *SalonService
 	SamSClub                 *SamSClubService
+	SbsNews                  *SbsNewsService
+	ScienceAlert             *ScienceAlertService
 	Scmp                     *ScmpService
 	ScreenRant               *ScreenRantService
 	SeatGeek                 *SeatGeekService
@@ -68738,6 +70209,7 @@ type Services struct {
 	SimilarWeb               *SimilarWebService
 	Skims                    *SkimsService
 	SkyNews                  *SkyNewsService
+	SkySports                *SkySportsService
 	Slate                    *SlateService
 	Slickdeals               *SlickdealsService
 	MitSloanManagementReview *MitSloanManagementReviewService
@@ -68748,10 +70220,12 @@ type Services struct {
 	Space                    *SpaceService
 	SparkFun                 *SparkFunService
 	SportingNews             *SportingNewsService
+	Sportskeeda              *SportskeedaService
 	SpotifyPodcasts          *SpotifyPodcastsService
 	Spotify                  *SpotifyService
 	EveningStandard          *EveningStandardService
 	Starbucks                *StarbucksService
+	MinnesotaStarTribune     *MinnesotaStarTribuneService
 	Steam                    *SteamService
 	SteveMadden              *SteveMaddenService
 	StockX                   *StockXService
@@ -68865,6 +70339,7 @@ func initServices(c *Client) Services {
 		Adidas:                   &AdidasService{client: c},
 		Agoda:                    &AgodaService{client: c},
 		Airbnb:                   &AirbnbService{client: c},
+		AlCom:                    &AlComService{client: c},
 		AlJazeera:                &AlJazeeraService{client: c},
 		Allbirds:                 &AllbirdsService{client: c},
 		Alt:                      &AltService{client: c},
@@ -68901,6 +70376,7 @@ func initServices(c *Client) Services {
 		Bonhams:                  &BonhamsService{client: c},
 		Booking:                  &BookingService{client: c},
 		Boots:                    &BootsService{client: c},
+		BostonGlobe:              &BostonGlobeService{client: c},
 		BoxOfficeMojo:            &BoxOfficeMojoService{client: c},
 		Brand:                    &BrandService{client: c},
 		Brave:                    &BraveService{client: c},
@@ -68923,6 +70399,7 @@ func initServices(c *Client) Services {
 		Chipotle:                 &ChipotleService{client: c},
 		ChromeWebStore:           &ChromeWebStoreService{client: c},
 		Chrono24:                 &Chrono24Service{client: c},
+		ClevelandCom:             &ClevelandComService{client: c},
 		Cna:                      &CnaService{client: c},
 		Cnbc:                     &CnbcService{client: c},
 		Cnet:                     &CnetService{client: c},
@@ -68985,13 +70462,16 @@ func initServices(c *Client) Services {
 		Fortune:                  &FortuneService{client: c},
 		FotMob:                   &FotMobService{client: c},
 		FoxNews:                  &FoxNewsService{client: c},
+		FoxSports:                &FoxSportsService{client: c},
 		France24:                 &France24Service{client: c},
+		FreeMalaysiaToday:        &FreeMalaysiaTodayService{client: c},
 		Ft:                       &FtService{client: c},
 		GameRant:                 &GameRantService{client: c},
 		GamesRadar:               &GamesRadarService{client: c},
 		GbNews:                   &GbNewsService{client: c},
 		Gdelt:                    &GdeltService{client: c},
 		Geocoding:                &GeocodingService{client: c},
+		GhanaWeb:                 &GhanaWebService{client: c},
 		GitHub:                   &GitHubService{client: c},
 		Gizmodo:                  &GizmodoService{client: c},
 		GlobalNews:               &GlobalNewsService{client: c},
@@ -69018,6 +70498,7 @@ func initServices(c *Client) Services {
 		HollywoodReporter:        &HollywoodReporterService{client: c},
 		HomeDepot:                &HomeDepotService{client: c},
 		HotelsCom:                &HotelsComService{client: c},
+		HowToGeek:                &HowToGeekService{client: c},
 		HuffPost:                 &HuffPostService{client: c},
 		Ign:                      &IgnService{client: c},
 		Ikea:                     &IkeaService{client: c},
@@ -69037,6 +70518,7 @@ func initServices(c *Client) Services {
 		IrishIndependent:         &IrishIndependentService{client: c},
 		IrishTimes:               &IrishTimesService{client: c},
 		JCrew:                    &JCrewService{client: c},
+		JerusalemPost:            &JerusalemPostService{client: c},
 		JimmyJohns:               &JimmyJohnsService{client: c},
 		Jobs:                     &JobsService{client: c},
 		JustEat:                  &JustEatService{client: c},
@@ -69066,6 +70548,7 @@ func initServices(c *Client) Services {
 		Mashable:                 &MashableService{client: c},
 		McDonalds:                &McDonaldsService{client: c},
 		Mediaite:                 &MediaiteService{client: c},
+		MedicalNewsToday:         &MedicalNewsTodayService{client: c},
 		ManchesterEveningNews:    &ManchesterEveningNewsService{client: c},
 		Mercari:                  &MercariService{client: c},
 		MetaJobs:                 &MetaJobsService{client: c},
@@ -69075,10 +70558,12 @@ func initServices(c *Client) Services {
 		MicrosoftStore:           &MicrosoftStoreService{client: c},
 		Mirror:                   &MirrorService{client: c},
 		Mlb:                      &MlbService{client: c},
+		Mlive:                    &MliveService{client: c},
 		ModaOperandi:             &ModaOperandiService{client: c},
 		Moncler:                  &MonclerService{client: c},
 		Moneycontrol:             &MoneycontrolService{client: c},
 		Monitors:                 &MonitorsService{client: c},
+		TheMotleyFool:            &TheMotleyFoolService{client: c},
 		NationAfrica:             &NationAfricaService{client: c},
 		NationalPost:             &NationalPostService{client: c},
 		NbcNews:                  &NbcNewsService{client: c},
@@ -69091,6 +70576,7 @@ func initServices(c *Client) Services {
 		TheNewYorker:             &TheNewYorkerService{client: c},
 		Nike:                     &NikeService{client: c},
 		NineToFiveMac:            &NineToFiveMacService{client: c},
+		NjCom:                    &NjComService{client: c},
 		Npr:                      &NprService{client: c},
 		Numbeo:                   &NumbeoService{client: c},
 		NewYorkDailyNews:         &NewYorkDailyNewsService{client: c},
@@ -69123,6 +70609,7 @@ func initServices(c *Client) Services {
 		Polygon:                  &PolygonService{client: c},
 		Polymarket:               &PolymarketService{client: c},
 		Popeyes:                  &PopeyesService{client: c},
+		PopularMechanics:         &PopularMechanicsService{client: c},
 		Poshmark:                 &PoshmarkService{client: c},
 		Prada:                    &PradaService{client: c},
 		PristineAuction:          &PristineAuctionService{client: c},
@@ -69152,6 +70639,8 @@ func initServices(c *Client) Services {
 		RtNews:                   &RtNewsService{client: c},
 		Salon:                    &SalonService{client: c},
 		SamSClub:                 &SamSClubService{client: c},
+		SbsNews:                  &SbsNewsService{client: c},
+		ScienceAlert:             &ScienceAlertService{client: c},
 		Scmp:                     &ScmpService{client: c},
 		ScreenRant:               &ScreenRantService{client: c},
 		SeatGeek:                 &SeatGeekService{client: c},
@@ -69167,6 +70656,7 @@ func initServices(c *Client) Services {
 		SimilarWeb:               &SimilarWebService{client: c},
 		Skims:                    &SkimsService{client: c},
 		SkyNews:                  &SkyNewsService{client: c},
+		SkySports:                &SkySportsService{client: c},
 		Slate:                    &SlateService{client: c},
 		Slickdeals:               &SlickdealsService{client: c},
 		MitSloanManagementReview: &MitSloanManagementReviewService{client: c},
@@ -69177,10 +70667,12 @@ func initServices(c *Client) Services {
 		Space:                    &SpaceService{client: c},
 		SparkFun:                 &SparkFunService{client: c},
 		SportingNews:             &SportingNewsService{client: c},
+		Sportskeeda:              &SportskeedaService{client: c},
 		SpotifyPodcasts:          &SpotifyPodcastsService{client: c},
 		Spotify:                  &SpotifyService{client: c},
 		EveningStandard:          &EveningStandardService{client: c},
 		Starbucks:                &StarbucksService{client: c},
+		MinnesotaStarTribune:     &MinnesotaStarTribuneService{client: c},
 		Steam:                    &SteamService{client: c},
 		SteveMadden:              &SteveMaddenService{client: c},
 		StockX:                   &StockXService{client: c},
@@ -70192,6 +71684,48 @@ type AirbnbSearchResponse = ModelAirbnbSearchResponse
 
 func (s *AirbnbService) SearchTyped(ctx context.Context, params AirbnbSearchParams, opts ...RequestOption) (AirbnbSearchResponse, error) {
 	return requestTyped[AirbnbSearchResponse](s.client, ctx, "airbnb-search", paramsFromStruct(params), opts...)
+}
+
+type AlComService struct{ client *Client }
+
+func (s *AlComService) AlcomHeadlines(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "alcom-headlines", params, opts...)
+}
+
+type AlComAlcomHeadlinesParams struct {
+	Section string `crawlora:"section"`
+}
+
+type AlComAlcomHeadlinesResponse = ModelPublicnewsHeadlinesResponseDoc
+
+func (s *AlComService) AlcomHeadlinesTyped(ctx context.Context, params AlComAlcomHeadlinesParams, opts ...RequestOption) (AlComAlcomHeadlinesResponse, error) {
+	return requestTyped[AlComAlcomHeadlinesResponse](s.client, ctx, "alcom-headlines", paramsFromStruct(params), opts...)
+}
+
+func (s *AlComService) AlcomNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "alcom-news", params, opts...)
+}
+
+type AlComAlcomNewsParams struct {
+}
+
+type AlComAlcomNewsResponse = ModelPublicnewsNewsResponseDoc
+
+func (s *AlComService) AlcomNewsTyped(ctx context.Context, params AlComAlcomNewsParams, opts ...RequestOption) (AlComAlcomNewsResponse, error) {
+	return requestTyped[AlComAlcomNewsResponse](s.client, ctx, "alcom-news", paramsFromStruct(params), opts...)
+}
+
+func (s *AlComService) AlcomSections(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "alcom-sections", params, opts...)
+}
+
+type AlComAlcomSectionsParams struct {
+}
+
+type AlComAlcomSectionsResponse = ModelPublicnewsSectionsResponseDoc
+
+func (s *AlComService) AlcomSectionsTyped(ctx context.Context, params AlComAlcomSectionsParams, opts ...RequestOption) (AlComAlcomSectionsResponse, error) {
+	return requestTyped[AlComAlcomSectionsResponse](s.client, ctx, "alcom-sections", paramsFromStruct(params), opts...)
 }
 
 type AlJazeeraService struct{ client *Client }
@@ -74152,6 +75686,21 @@ func (s *BootsService) SuggestTyped(ctx context.Context, params BootsSuggestPara
 	return requestTyped[BootsSuggestResponse](s.client, ctx, "boots-suggest", paramsFromStruct(params), opts...)
 }
 
+type BostonGlobeService struct{ client *Client }
+
+func (s *BostonGlobeService) BostonglobeNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bostonglobe-news", params, opts...)
+}
+
+type BostonGlobeBostonglobeNewsParams struct {
+}
+
+type BostonGlobeBostonglobeNewsResponse = ModelPublicnewsNewsResponseDoc
+
+func (s *BostonGlobeService) BostonglobeNewsTyped(ctx context.Context, params BostonGlobeBostonglobeNewsParams, opts ...RequestOption) (BostonGlobeBostonglobeNewsResponse, error) {
+	return requestTyped[BostonGlobeBostonglobeNewsResponse](s.client, ctx, "bostonglobe-news", paramsFromStruct(params), opts...)
+}
+
 type BoxOfficeMojoService struct{ client *Client }
 
 func (s *BoxOfficeMojoService) BoxofficemojoBrand(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -76480,6 +78029,21 @@ type Chrono24SearchResponse = ModelChrono24SearchResponseDoc
 
 func (s *Chrono24Service) SearchTyped(ctx context.Context, params Chrono24SearchParams, opts ...RequestOption) (Chrono24SearchResponse, error) {
 	return requestTyped[Chrono24SearchResponse](s.client, ctx, "chrono24-search", paramsFromStruct(params), opts...)
+}
+
+type ClevelandComService struct{ client *Client }
+
+func (s *ClevelandComService) ClevelandcomNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "clevelandcom-news", params, opts...)
+}
+
+type ClevelandComClevelandcomNewsParams struct {
+}
+
+type ClevelandComClevelandcomNewsResponse = ModelPublicnewsNewsResponseDoc
+
+func (s *ClevelandComService) ClevelandcomNewsTyped(ctx context.Context, params ClevelandComClevelandcomNewsParams, opts ...RequestOption) (ClevelandComClevelandcomNewsResponse, error) {
+	return requestTyped[ClevelandComClevelandcomNewsResponse](s.client, ctx, "clevelandcom-news", paramsFromStruct(params), opts...)
 }
 
 type CnaService struct{ client *Client }
@@ -85608,12 +87172,70 @@ func (s *FortuneService) SectionsTyped(ctx context.Context, params FortuneSectio
 
 type FotMobService struct{ client *Client }
 
+func (s *FotMobService) FotmobAudioMatches(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "fotmob-audio-matches", params, opts...)
+}
+
+type FotMobFotmobAudioMatchesParams struct {
+}
+
+type FotMobFotmobAudioMatchesResponse = ModelFotmobResponseDoc
+
+func (s *FotMobService) FotmobAudioMatchesTyped(ctx context.Context, params FotMobFotmobAudioMatchesParams, opts ...RequestOption) (FotMobFotmobAudioMatchesResponse, error) {
+	return requestTyped[FotMobFotmobAudioMatchesResponse](s.client, ctx, "fotmob-audio-matches", paramsFromStruct(params), opts...)
+}
+
+func (s *FotMobService) FotmobFifaRankingPeriods(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "fotmob-fifa-ranking-periods", params, opts...)
+}
+
+type FotMobFotmobFifaRankingPeriodsParams struct {
+	Gender string `crawlora:"gender"`
+}
+
+type FotMobFotmobFifaRankingPeriodsResponse = ModelFotmobFifaRankingPeriodsResponseDoc
+
+func (s *FotMobService) FotmobFifaRankingPeriodsTyped(ctx context.Context, params FotMobFotmobFifaRankingPeriodsParams, opts ...RequestOption) (FotMobFotmobFifaRankingPeriodsResponse, error) {
+	return requestTyped[FotMobFotmobFifaRankingPeriodsResponse](s.client, ctx, "fotmob-fifa-ranking-periods", paramsFromStruct(params), opts...)
+}
+
+func (s *FotMobService) FotmobFifaRankings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "fotmob-fifa-rankings", params, opts...)
+}
+
+type FotMobFotmobFifaRankingsParams struct {
+	Gender   string `crawlora:"gender"`
+	PeriodId string `crawlora:"period_id"`
+}
+
+type FotMobFotmobFifaRankingsResponse = ModelFotmobFifaRankingsResponseDoc
+
+func (s *FotMobService) FotmobFifaRankingsTyped(ctx context.Context, params FotMobFotmobFifaRankingsParams, opts ...RequestOption) (FotMobFotmobFifaRankingsResponse, error) {
+	return requestTyped[FotMobFotmobFifaRankingsResponse](s.client, ctx, "fotmob-fifa-rankings", paramsFromStruct(params), opts...)
+}
+
+func (s *FotMobService) FotmobLatestNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "fotmob-latest-news", params, opts...)
+}
+
+type FotMobFotmobLatestNewsParams struct {
+	StartIndex *int `crawlora:"start_index,omitempty"`
+}
+
+type FotMobFotmobLatestNewsResponse = ModelFotmobNewsListResponseDoc
+
+func (s *FotMobService) FotmobLatestNewsTyped(ctx context.Context, params FotMobFotmobLatestNewsParams, opts ...RequestOption) (FotMobFotmobLatestNewsResponse, error) {
+	return requestTyped[FotMobFotmobLatestNewsResponse](s.client, ctx, "fotmob-latest-news", paramsFromStruct(params), opts...)
+}
+
 func (s *FotMobService) FotmobLeague(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "fotmob-league", params, opts...)
 }
 
 type FotMobFotmobLeagueParams struct {
-	LeagueId int `crawlora:"league_id"`
+	LeagueId int     `crawlora:"league_id"`
+	Season   *string `crawlora:"season,omitempty"`
+	Shotmap  *bool   `crawlora:"shotmap,omitempty"`
 }
 
 type FotMobFotmobLeagueResponse = ModelFotmobResponseDoc
@@ -85635,6 +87257,34 @@ func (s *FotMobService) FotmobLeaguesTyped(ctx context.Context, params FotMobFot
 	return requestTyped[FotMobFotmobLeaguesResponse](s.client, ctx, "fotmob-leagues", paramsFromStruct(params), opts...)
 }
 
+func (s *FotMobService) FotmobLineupBuilderPlayers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "fotmob-lineup-builder-players", params, opts...)
+}
+
+type FotMobFotmobLineupBuilderPlayersParams struct {
+	PlayerIds string `crawlora:"player_ids"`
+}
+
+type FotMobFotmobLineupBuilderPlayersResponse = ModelFotmobResponseDoc
+
+func (s *FotMobService) FotmobLineupBuilderPlayersTyped(ctx context.Context, params FotMobFotmobLineupBuilderPlayersParams, opts ...RequestOption) (FotMobFotmobLineupBuilderPlayersResponse, error) {
+	return requestTyped[FotMobFotmobLineupBuilderPlayersResponse](s.client, ctx, "fotmob-lineup-builder-players", paramsFromStruct(params), opts...)
+}
+
+func (s *FotMobService) FotmobLineupBuilderTeam(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "fotmob-lineup-builder-team", params, opts...)
+}
+
+type FotMobFotmobLineupBuilderTeamParams struct {
+	TeamId string `crawlora:"team_id"`
+}
+
+type FotMobFotmobLineupBuilderTeamResponse = ModelFotmobResponseDoc
+
+func (s *FotMobService) FotmobLineupBuilderTeamTyped(ctx context.Context, params FotMobFotmobLineupBuilderTeamParams, opts ...RequestOption) (FotMobFotmobLineupBuilderTeamResponse, error) {
+	return requestTyped[FotMobFotmobLineupBuilderTeamResponse](s.client, ctx, "fotmob-lineup-builder-team", paramsFromStruct(params), opts...)
+}
+
 func (s *FotMobService) FotmobMatch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "fotmob-match", params, opts...)
 }
@@ -85647,6 +87297,20 @@ type FotMobFotmobMatchResponse = ModelFotmobResponseDoc
 
 func (s *FotMobService) FotmobMatchTyped(ctx context.Context, params FotMobFotmobMatchParams, opts ...RequestOption) (FotMobFotmobMatchResponse, error) {
 	return requestTyped[FotMobFotmobMatchResponse](s.client, ctx, "fotmob-match", paramsFromStruct(params), opts...)
+}
+
+func (s *FotMobService) FotmobMatchMedia(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "fotmob-match-media", params, opts...)
+}
+
+type FotMobFotmobMatchMediaParams struct {
+	Id string `crawlora:"id"`
+}
+
+type FotMobFotmobMatchMediaResponse = ModelFotmobResponseDoc
+
+func (s *FotMobService) FotmobMatchMediaTyped(ctx context.Context, params FotMobFotmobMatchMediaParams, opts ...RequestOption) (FotMobFotmobMatchMediaResponse, error) {
+	return requestTyped[FotMobFotmobMatchMediaResponse](s.client, ctx, "fotmob-match-media", paramsFromStruct(params), opts...)
 }
 
 func (s *FotMobService) FotmobMatches(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -85677,6 +87341,20 @@ type FotMobFotmobNewsResponse = ModelFotmobResponseDoc
 
 func (s *FotMobService) FotmobNewsTyped(ctx context.Context, params FotMobFotmobNewsParams, opts ...RequestOption) (FotMobFotmobNewsResponse, error) {
 	return requestTyped[FotMobFotmobNewsResponse](s.client, ctx, "fotmob-news", paramsFromStruct(params), opts...)
+}
+
+func (s *FotMobService) FotmobNewsArticle(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "fotmob-news-article", params, opts...)
+}
+
+type FotMobFotmobNewsArticleParams struct {
+	Id string `crawlora:"id"`
+}
+
+type FotMobFotmobNewsArticleResponse = ModelFotmobResponseDoc
+
+func (s *FotMobService) FotmobNewsArticleTyped(ctx context.Context, params FotMobFotmobNewsArticleParams, opts ...RequestOption) (FotMobFotmobNewsArticleResponse, error) {
+	return requestTyped[FotMobFotmobNewsArticleResponse](s.client, ctx, "fotmob-news-article", paramsFromStruct(params), opts...)
 }
 
 func (s *FotMobService) FotmobPlayer(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -85755,6 +87433,20 @@ func (s *FotMobService) FotmobSearchTyped(ctx context.Context, params FotMobFotm
 	return requestTyped[FotMobFotmobSearchResponse](s.client, ctx, "fotmob-search", paramsFromStruct(params), opts...)
 }
 
+func (s *FotMobService) FotmobSeasons(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "fotmob-seasons", params, opts...)
+}
+
+type FotMobFotmobSeasonsParams struct {
+	LeagueId int `crawlora:"league_id"`
+}
+
+type FotMobFotmobSeasonsResponse = ModelFotmobResponseDoc
+
+func (s *FotMobService) FotmobSeasonsTyped(ctx context.Context, params FotMobFotmobSeasonsParams, opts ...RequestOption) (FotMobFotmobSeasonsResponse, error) {
+	return requestTyped[FotMobFotmobSeasonsResponse](s.client, ctx, "fotmob-seasons", paramsFromStruct(params), opts...)
+}
+
 func (s *FotMobService) FotmobStats(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "fotmob-stats", params, opts...)
 }
@@ -85818,6 +87510,21 @@ func (s *FotMobService) FotmobTeamTyped(ctx context.Context, params FotMobFotmob
 	return requestTyped[FotMobFotmobTeamResponse](s.client, ctx, "fotmob-team", paramsFromStruct(params), opts...)
 }
 
+func (s *FotMobService) FotmobTeamFixtures(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "fotmob-team-fixtures", params, opts...)
+}
+
+type FotMobFotmobTeamFixturesParams struct {
+	TeamId string `crawlora:"team_id"`
+	Cursor string `crawlora:"cursor"`
+}
+
+type FotMobFotmobTeamFixturesResponse = ModelFotmobResponseDoc
+
+func (s *FotMobService) FotmobTeamFixturesTyped(ctx context.Context, params FotMobFotmobTeamFixturesParams, opts ...RequestOption) (FotMobFotmobTeamFixturesResponse, error) {
+	return requestTyped[FotMobFotmobTeamFixturesResponse](s.client, ctx, "fotmob-team-fixtures", paramsFromStruct(params), opts...)
+}
+
 func (s *FotMobService) FotmobTeamNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "fotmob-team-news", params, opts...)
 }
@@ -85855,6 +87562,74 @@ type FotMobFotmobTransfersResponse = ModelFotmobResponseDoc
 
 func (s *FotMobService) FotmobTransfersTyped(ctx context.Context, params FotMobFotmobTransfersParams, opts ...RequestOption) (FotMobFotmobTransfersResponse, error) {
 	return requestTyped[FotMobFotmobTransfersResponse](s.client, ctx, "fotmob-transfers", paramsFromStruct(params), opts...)
+}
+
+func (s *FotMobService) FotmobTrendingNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "fotmob-trending-news", params, opts...)
+}
+
+type FotMobFotmobTrendingNewsParams struct {
+}
+
+type FotMobFotmobTrendingNewsResponse = ModelFotmobNewsListResponseDoc
+
+func (s *FotMobService) FotmobTrendingNewsTyped(ctx context.Context, params FotMobFotmobTrendingNewsParams, opts ...RequestOption) (FotMobFotmobTrendingNewsResponse, error) {
+	return requestTyped[FotMobFotmobTrendingNewsResponse](s.client, ctx, "fotmob-trending-news", paramsFromStruct(params), opts...)
+}
+
+func (s *FotMobService) FotmobTrendingSearches(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "fotmob-trending-searches", params, opts...)
+}
+
+type FotMobFotmobTrendingSearchesParams struct {
+}
+
+type FotMobFotmobTrendingSearchesResponse = ModelFotmobResponseDoc
+
+func (s *FotMobService) FotmobTrendingSearchesTyped(ctx context.Context, params FotMobFotmobTrendingSearchesParams, opts ...RequestOption) (FotMobFotmobTrendingSearchesResponse, error) {
+	return requestTyped[FotMobFotmobTrendingSearchesResponse](s.client, ctx, "fotmob-trending-searches", paramsFromStruct(params), opts...)
+}
+
+func (s *FotMobService) FotmobTvGuide(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "fotmob-tv-guide", params, opts...)
+}
+
+type FotMobFotmobTvGuideParams struct {
+	Country  string  `crawlora:"country"`
+	Timezone *string `crawlora:"timezone,omitempty"`
+}
+
+type FotMobFotmobTvGuideResponse = ModelFotmobResponseDoc
+
+func (s *FotMobService) FotmobTvGuideTyped(ctx context.Context, params FotMobFotmobTvGuideParams, opts ...RequestOption) (FotMobFotmobTvGuideResponse, error) {
+	return requestTyped[FotMobFotmobTvGuideResponse](s.client, ctx, "fotmob-tv-guide", paramsFromStruct(params), opts...)
+}
+
+func (s *FotMobService) FotmobTvGuideChannels(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "fotmob-tv-guide-channels", params, opts...)
+}
+
+type FotMobFotmobTvGuideChannelsParams struct {
+	Country string `crawlora:"country"`
+}
+
+type FotMobFotmobTvGuideChannelsResponse = ModelFotmobResponseDoc
+
+func (s *FotMobService) FotmobTvGuideChannelsTyped(ctx context.Context, params FotMobFotmobTvGuideChannelsParams, opts ...RequestOption) (FotMobFotmobTvGuideChannelsResponse, error) {
+	return requestTyped[FotMobFotmobTvGuideChannelsResponse](s.client, ctx, "fotmob-tv-guide-channels", paramsFromStruct(params), opts...)
+}
+
+func (s *FotMobService) FotmobTvGuideCountries(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "fotmob-tv-guide-countries", params, opts...)
+}
+
+type FotMobFotmobTvGuideCountriesParams struct {
+}
+
+type FotMobFotmobTvGuideCountriesResponse = ModelFotmobResponseDoc
+
+func (s *FotMobService) FotmobTvGuideCountriesTyped(ctx context.Context, params FotMobFotmobTvGuideCountriesParams, opts ...RequestOption) (FotMobFotmobTvGuideCountriesResponse, error) {
+	return requestTyped[FotMobFotmobTvGuideCountriesResponse](s.client, ctx, "fotmob-tv-guide-countries", paramsFromStruct(params), opts...)
 }
 
 type FoxNewsService struct{ client *Client }
@@ -85944,6 +87719,62 @@ func (s *FoxNewsService) FoxnewsSectionsTyped(ctx context.Context, params FoxNew
 	return requestTyped[FoxNewsFoxnewsSectionsResponse](s.client, ctx, "foxnews-sections", paramsFromStruct(params), opts...)
 }
 
+type FoxSportsService struct{ client *Client }
+
+func (s *FoxSportsService) FoxsportsArticle(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "foxsports-article", params, opts...)
+}
+
+type FoxSportsFoxsportsArticleParams struct {
+	Url string `crawlora:"url"`
+}
+
+type FoxSportsFoxsportsArticleResponse = ModelPublicnewsArticleResponseDoc
+
+func (s *FoxSportsService) FoxsportsArticleTyped(ctx context.Context, params FoxSportsFoxsportsArticleParams, opts ...RequestOption) (FoxSportsFoxsportsArticleResponse, error) {
+	return requestTyped[FoxSportsFoxsportsArticleResponse](s.client, ctx, "foxsports-article", paramsFromStruct(params), opts...)
+}
+
+func (s *FoxSportsService) FoxsportsHeadlines(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "foxsports-headlines", params, opts...)
+}
+
+type FoxSportsFoxsportsHeadlinesParams struct {
+	Section string `crawlora:"section"`
+}
+
+type FoxSportsFoxsportsHeadlinesResponse = ModelPublicnewsHeadlinesResponseDoc
+
+func (s *FoxSportsService) FoxsportsHeadlinesTyped(ctx context.Context, params FoxSportsFoxsportsHeadlinesParams, opts ...RequestOption) (FoxSportsFoxsportsHeadlinesResponse, error) {
+	return requestTyped[FoxSportsFoxsportsHeadlinesResponse](s.client, ctx, "foxsports-headlines", paramsFromStruct(params), opts...)
+}
+
+func (s *FoxSportsService) FoxsportsNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "foxsports-news", params, opts...)
+}
+
+type FoxSportsFoxsportsNewsParams struct {
+}
+
+type FoxSportsFoxsportsNewsResponse = ModelPublicnewsNewsResponseDoc
+
+func (s *FoxSportsService) FoxsportsNewsTyped(ctx context.Context, params FoxSportsFoxsportsNewsParams, opts ...RequestOption) (FoxSportsFoxsportsNewsResponse, error) {
+	return requestTyped[FoxSportsFoxsportsNewsResponse](s.client, ctx, "foxsports-news", paramsFromStruct(params), opts...)
+}
+
+func (s *FoxSportsService) FoxsportsSections(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "foxsports-sections", params, opts...)
+}
+
+type FoxSportsFoxsportsSectionsParams struct {
+}
+
+type FoxSportsFoxsportsSectionsResponse = ModelPublicnewsSectionsResponseDoc
+
+func (s *FoxSportsService) FoxsportsSectionsTyped(ctx context.Context, params FoxSportsFoxsportsSectionsParams, opts ...RequestOption) (FoxSportsFoxsportsSectionsResponse, error) {
+	return requestTyped[FoxSportsFoxsportsSectionsResponse](s.client, ctx, "foxsports-sections", paramsFromStruct(params), opts...)
+}
+
 type France24Service struct{ client *Client }
 
 func (s *France24Service) France24Article(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -86012,6 +87843,34 @@ type France24France24SectionsResponse = ModelPublicnewsSectionsResponseDoc
 
 func (s *France24Service) France24SectionsTyped(ctx context.Context, params France24France24SectionsParams, opts ...RequestOption) (France24France24SectionsResponse, error) {
 	return requestTyped[France24France24SectionsResponse](s.client, ctx, "france24-sections", paramsFromStruct(params), opts...)
+}
+
+type FreeMalaysiaTodayService struct{ client *Client }
+
+func (s *FreeMalaysiaTodayService) FreemalaysiatodayNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "freemalaysiatoday-news", params, opts...)
+}
+
+type FreeMalaysiaTodayFreemalaysiatodayNewsParams struct {
+}
+
+type FreeMalaysiaTodayFreemalaysiatodayNewsResponse = ModelFreemalaysiatodayNewsResponseDoc
+
+func (s *FreeMalaysiaTodayService) FreemalaysiatodayNewsTyped(ctx context.Context, params FreeMalaysiaTodayFreemalaysiatodayNewsParams, opts ...RequestOption) (FreeMalaysiaTodayFreemalaysiatodayNewsResponse, error) {
+	return requestTyped[FreeMalaysiaTodayFreemalaysiatodayNewsResponse](s.client, ctx, "freemalaysiatoday-news", paramsFromStruct(params), opts...)
+}
+
+func (s *FreeMalaysiaTodayService) FreemalaysiatodaySections(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "freemalaysiatoday-sections", params, opts...)
+}
+
+type FreeMalaysiaTodayFreemalaysiatodaySectionsParams struct {
+}
+
+type FreeMalaysiaTodayFreemalaysiatodaySectionsResponse = ModelFreemalaysiatodaySectionsResponseDoc
+
+func (s *FreeMalaysiaTodayService) FreemalaysiatodaySectionsTyped(ctx context.Context, params FreeMalaysiaTodayFreemalaysiatodaySectionsParams, opts ...RequestOption) (FreeMalaysiaTodayFreemalaysiatodaySectionsResponse, error) {
+	return requestTyped[FreeMalaysiaTodayFreemalaysiatodaySectionsResponse](s.client, ctx, "freemalaysiatoday-sections", paramsFromStruct(params), opts...)
 }
 
 type FtService struct{ client *Client }
@@ -86655,6 +88514,132 @@ type GeocodingSearchResponse = ModelGeocodingSearchResponseDoc
 
 func (s *GeocodingService) SearchTyped(ctx context.Context, params GeocodingSearchParams, opts ...RequestOption) (GeocodingSearchResponse, error) {
 	return requestTyped[GeocodingSearchResponse](s.client, ctx, "geocoding-search", paramsFromStruct(params), opts...)
+}
+
+type GhanaWebService struct{ client *Client }
+
+func (s *GhanaWebService) GhanawebArchive(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ghanaweb-archive", params, opts...)
+}
+
+type GhanaWebGhanawebArchiveParams struct {
+	Month string `crawlora:"month"`
+	Page  *int   `crawlora:"page,omitempty"`
+	Limit *int   `crawlora:"limit,omitempty"`
+}
+
+type GhanaWebGhanawebArchiveResponse = ModelPublicnewsGhanawebArchiveResponseDoc
+
+func (s *GhanaWebService) GhanawebArchiveTyped(ctx context.Context, params GhanaWebGhanawebArchiveParams, opts ...RequestOption) (GhanaWebGhanawebArchiveResponse, error) {
+	return requestTyped[GhanaWebGhanawebArchiveResponse](s.client, ctx, "ghanaweb-archive", paramsFromStruct(params), opts...)
+}
+
+func (s *GhanaWebService) GhanawebArchiveMonths(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ghanaweb-archive-months", params, opts...)
+}
+
+type GhanaWebGhanawebArchiveMonthsParams struct {
+}
+
+type GhanaWebGhanawebArchiveMonthsResponse = ModelPublicnewsGhanawebArchiveMonthsResponseDoc
+
+func (s *GhanaWebService) GhanawebArchiveMonthsTyped(ctx context.Context, params GhanaWebGhanawebArchiveMonthsParams, opts ...RequestOption) (GhanaWebGhanawebArchiveMonthsResponse, error) {
+	return requestTyped[GhanaWebGhanawebArchiveMonthsResponse](s.client, ctx, "ghanaweb-archive-months", paramsFromStruct(params), opts...)
+}
+
+func (s *GhanaWebService) GhanawebArticle(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ghanaweb-article", params, opts...)
+}
+
+type GhanaWebGhanawebArticleParams struct {
+	Url string `crawlora:"url"`
+}
+
+type GhanaWebGhanawebArticleResponse = ModelPublicnewsArticleResponseDoc
+
+func (s *GhanaWebService) GhanawebArticleTyped(ctx context.Context, params GhanaWebGhanawebArticleParams, opts ...RequestOption) (GhanaWebGhanawebArticleResponse, error) {
+	return requestTyped[GhanaWebGhanawebArticleResponse](s.client, ctx, "ghanaweb-article", paramsFromStruct(params), opts...)
+}
+
+func (s *GhanaWebService) GhanawebHeadlines(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ghanaweb-headlines", params, opts...)
+}
+
+type GhanaWebGhanawebHeadlinesParams struct {
+	Section string `crawlora:"section"`
+}
+
+type GhanaWebGhanawebHeadlinesResponse = ModelPublicnewsHeadlinesResponseDoc
+
+func (s *GhanaWebService) GhanawebHeadlinesTyped(ctx context.Context, params GhanaWebGhanawebHeadlinesParams, opts ...RequestOption) (GhanaWebGhanawebHeadlinesResponse, error) {
+	return requestTyped[GhanaWebGhanawebHeadlinesResponse](s.client, ctx, "ghanaweb-headlines", paramsFromStruct(params), opts...)
+}
+
+func (s *GhanaWebService) GhanawebNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ghanaweb-news", params, opts...)
+}
+
+type GhanaWebGhanawebNewsParams struct {
+}
+
+type GhanaWebGhanawebNewsResponse = ModelPublicnewsNewsResponseDoc
+
+func (s *GhanaWebService) GhanawebNewsTyped(ctx context.Context, params GhanaWebGhanawebNewsParams, opts ...RequestOption) (GhanaWebGhanawebNewsResponse, error) {
+	return requestTyped[GhanaWebGhanawebNewsResponse](s.client, ctx, "ghanaweb-news", paramsFromStruct(params), opts...)
+}
+
+func (s *GhanaWebService) GhanawebSections(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ghanaweb-sections", params, opts...)
+}
+
+type GhanaWebGhanawebSectionsParams struct {
+}
+
+type GhanaWebGhanawebSectionsResponse = ModelPublicnewsSectionsResponseDoc
+
+func (s *GhanaWebService) GhanawebSectionsTyped(ctx context.Context, params GhanaWebGhanawebSectionsParams, opts ...RequestOption) (GhanaWebGhanawebSectionsResponse, error) {
+	return requestTyped[GhanaWebGhanawebSectionsResponse](s.client, ctx, "ghanaweb-sections", paramsFromStruct(params), opts...)
+}
+
+func (s *GhanaWebService) GhanawebVideo(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ghanaweb-video", params, opts...)
+}
+
+type GhanaWebGhanawebVideoParams struct {
+	Id string `crawlora:"id"`
+}
+
+type GhanaWebGhanawebVideoResponse = ModelPublicnewsGhanawebVideoResponseDoc
+
+func (s *GhanaWebService) GhanawebVideoTyped(ctx context.Context, params GhanaWebGhanawebVideoParams, opts ...RequestOption) (GhanaWebGhanawebVideoResponse, error) {
+	return requestTyped[GhanaWebGhanawebVideoResponse](s.client, ctx, "ghanaweb-video", paramsFromStruct(params), opts...)
+}
+
+func (s *GhanaWebService) GhanawebVideoSections(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ghanaweb-video-sections", params, opts...)
+}
+
+type GhanaWebGhanawebVideoSectionsParams struct {
+}
+
+type GhanaWebGhanawebVideoSectionsResponse = ModelPublicnewsGhanawebVideoSectionsResponseDoc
+
+func (s *GhanaWebService) GhanawebVideoSectionsTyped(ctx context.Context, params GhanaWebGhanawebVideoSectionsParams, opts ...RequestOption) (GhanaWebGhanawebVideoSectionsResponse, error) {
+	return requestTyped[GhanaWebGhanawebVideoSectionsResponse](s.client, ctx, "ghanaweb-video-sections", paramsFromStruct(params), opts...)
+}
+
+func (s *GhanaWebService) GhanawebVideos(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ghanaweb-videos", params, opts...)
+}
+
+type GhanaWebGhanawebVideosParams struct {
+	Section string `crawlora:"section"`
+}
+
+type GhanaWebGhanawebVideosResponse = ModelPublicnewsGhanawebVideosResponseDoc
+
+func (s *GhanaWebService) GhanawebVideosTyped(ctx context.Context, params GhanaWebGhanawebVideosParams, opts ...RequestOption) (GhanaWebGhanawebVideosResponse, error) {
+	return requestTyped[GhanaWebGhanawebVideosResponse](s.client, ctx, "ghanaweb-videos", paramsFromStruct(params), opts...)
 }
 
 type GitHubService struct{ client *Client }
@@ -89942,6 +91927,21 @@ func (s *HotelsComService) HotelsSearchTyped(ctx context.Context, params HotelsC
 	return requestTyped[HotelsComHotelsSearchResponse](s.client, ctx, "hotels-search", paramsFromStruct(params), opts...)
 }
 
+type HowToGeekService struct{ client *Client }
+
+func (s *HowToGeekService) HowtogeekNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "howtogeek-news", params, opts...)
+}
+
+type HowToGeekHowtogeekNewsParams struct {
+}
+
+type HowToGeekHowtogeekNewsResponse = ModelPublicnewsNewsResponseDoc
+
+func (s *HowToGeekService) HowtogeekNewsTyped(ctx context.Context, params HowToGeekHowtogeekNewsParams, opts ...RequestOption) (HowToGeekHowtogeekNewsResponse, error) {
+	return requestTyped[HowToGeekHowtogeekNewsResponse](s.client, ctx, "howtogeek-news", paramsFromStruct(params), opts...)
+}
+
 type HuffPostService struct{ client *Client }
 
 func (s *HuffPostService) HuffpostArticle(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -91772,6 +93772,89 @@ type JCrewJcrewSuggestResponse = ModelJcrewSuggestResponseDoc
 
 func (s *JCrewService) JcrewSuggestTyped(ctx context.Context, params JCrewJcrewSuggestParams, opts ...RequestOption) (JCrewJcrewSuggestResponse, error) {
 	return requestTyped[JCrewJcrewSuggestResponse](s.client, ctx, "jcrew-suggest", paramsFromStruct(params), opts...)
+}
+
+type JerusalemPostService struct{ client *Client }
+
+func (s *JerusalemPostService) JerusalempostArticle(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jerusalempost-article", params, opts...)
+}
+
+type JerusalemPostJerusalempostArticleParams struct {
+	Url string `crawlora:"url"`
+}
+
+type JerusalemPostJerusalempostArticleResponse = ModelPublicnewsArticleResponseDoc
+
+func (s *JerusalemPostService) JerusalempostArticleTyped(ctx context.Context, params JerusalemPostJerusalempostArticleParams, opts ...RequestOption) (JerusalemPostJerusalempostArticleResponse, error) {
+	return requestTyped[JerusalemPostJerusalempostArticleResponse](s.client, ctx, "jerusalempost-article", paramsFromStruct(params), opts...)
+}
+
+func (s *JerusalemPostService) JerusalempostAuthor(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jerusalempost-author", params, opts...)
+}
+
+type JerusalemPostJerusalempostAuthorParams struct {
+	Url string `crawlora:"url"`
+}
+
+type JerusalemPostJerusalempostAuthorResponse = ModelPublicnewsJerusalemPostAuthorResponseDoc
+
+func (s *JerusalemPostService) JerusalempostAuthorTyped(ctx context.Context, params JerusalemPostJerusalempostAuthorParams, opts ...RequestOption) (JerusalemPostJerusalempostAuthorResponse, error) {
+	return requestTyped[JerusalemPostJerusalempostAuthorResponse](s.client, ctx, "jerusalempost-author", paramsFromStruct(params), opts...)
+}
+
+func (s *JerusalemPostService) JerusalempostAuthors(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jerusalempost-authors", params, opts...)
+}
+
+type JerusalemPostJerusalempostAuthorsParams struct {
+}
+
+type JerusalemPostJerusalempostAuthorsResponse = ModelPublicnewsJerusalemPostAuthorsResponseDoc
+
+func (s *JerusalemPostService) JerusalempostAuthorsTyped(ctx context.Context, params JerusalemPostJerusalempostAuthorsParams, opts ...RequestOption) (JerusalemPostJerusalempostAuthorsResponse, error) {
+	return requestTyped[JerusalemPostJerusalempostAuthorsResponse](s.client, ctx, "jerusalempost-authors", paramsFromStruct(params), opts...)
+}
+
+func (s *JerusalemPostService) JerusalempostHeadlines(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jerusalempost-headlines", params, opts...)
+}
+
+type JerusalemPostJerusalempostHeadlinesParams struct {
+	Section string `crawlora:"section"`
+}
+
+type JerusalemPostJerusalempostHeadlinesResponse = ModelPublicnewsHeadlinesResponseDoc
+
+func (s *JerusalemPostService) JerusalempostHeadlinesTyped(ctx context.Context, params JerusalemPostJerusalempostHeadlinesParams, opts ...RequestOption) (JerusalemPostJerusalempostHeadlinesResponse, error) {
+	return requestTyped[JerusalemPostJerusalempostHeadlinesResponse](s.client, ctx, "jerusalempost-headlines", paramsFromStruct(params), opts...)
+}
+
+func (s *JerusalemPostService) JerusalempostNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jerusalempost-news", params, opts...)
+}
+
+type JerusalemPostJerusalempostNewsParams struct {
+}
+
+type JerusalemPostJerusalempostNewsResponse = ModelPublicnewsNewsResponseDoc
+
+func (s *JerusalemPostService) JerusalempostNewsTyped(ctx context.Context, params JerusalemPostJerusalempostNewsParams, opts ...RequestOption) (JerusalemPostJerusalempostNewsResponse, error) {
+	return requestTyped[JerusalemPostJerusalempostNewsResponse](s.client, ctx, "jerusalempost-news", paramsFromStruct(params), opts...)
+}
+
+func (s *JerusalemPostService) JerusalempostSections(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jerusalempost-sections", params, opts...)
+}
+
+type JerusalemPostJerusalempostSectionsParams struct {
+}
+
+type JerusalemPostJerusalempostSectionsResponse = ModelPublicnewsSectionsResponseDoc
+
+func (s *JerusalemPostService) JerusalempostSectionsTyped(ctx context.Context, params JerusalemPostJerusalempostSectionsParams, opts ...RequestOption) (JerusalemPostJerusalempostSectionsResponse, error) {
+	return requestTyped[JerusalemPostJerusalempostSectionsResponse](s.client, ctx, "jerusalempost-sections", paramsFromStruct(params), opts...)
 }
 
 type JimmyJohnsService struct{ client *Client }
@@ -94417,6 +96500,19 @@ func (s *LiveScoreService) LivescoreCompetitionTyped(ctx context.Context, params
 	return requestTyped[LiveScoreLivescoreCompetitionResponse](s.client, ctx, "livescore-competition", paramsFromStruct(params), opts...)
 }
 
+func (s *LiveScoreService) LivescoreCompetitions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "livescore-competitions", params, opts...)
+}
+
+type LiveScoreLivescoreCompetitionsParams struct {
+}
+
+type LiveScoreLivescoreCompetitionsResponse = ModelLivescoreResponseDoc
+
+func (s *LiveScoreService) LivescoreCompetitionsTyped(ctx context.Context, params LiveScoreLivescoreCompetitionsParams, opts ...RequestOption) (LiveScoreLivescoreCompetitionsResponse, error) {
+	return requestTyped[LiveScoreLivescoreCompetitionsResponse](s.client, ctx, "livescore-competitions", paramsFromStruct(params), opts...)
+}
+
 func (s *LiveScoreService) LivescoreLiveScores(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "livescore-live-scores", params, opts...)
 }
@@ -94578,6 +96674,22 @@ type LiveScoreLivescoreScoresTocResponse = ModelLivescoreResponseDoc
 
 func (s *LiveScoreService) LivescoreScoresTocTyped(ctx context.Context, params LiveScoreLivescoreScoresTocParams, opts ...RequestOption) (LiveScoreLivescoreScoresTocResponse, error) {
 	return requestTyped[LiveScoreLivescoreScoresTocResponse](s.client, ctx, "livescore-scores-toc", paramsFromStruct(params), opts...)
+}
+
+func (s *LiveScoreService) LivescoreSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "livescore-search", params, opts...)
+}
+
+type LiveScoreLivescoreSearchParams struct {
+	Sport string  `crawlora:"sport"`
+	Query *string `crawlora:"query,omitempty"`
+	Limit *int    `crawlora:"limit,omitempty"`
+}
+
+type LiveScoreLivescoreSearchResponse = ModelLivescoreLivescoreSearchResponseDoc
+
+func (s *LiveScoreService) LivescoreSearchTyped(ctx context.Context, params LiveScoreLivescoreSearchParams, opts ...RequestOption) (LiveScoreLivescoreSearchResponse, error) {
+	return requestTyped[LiveScoreLivescoreSearchResponse](s.client, ctx, "livescore-search", paramsFromStruct(params), opts...)
 }
 
 func (s *LiveScoreService) LivescoreSports(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -95209,6 +97321,77 @@ type MediaiteSectionsResponse = ModelPublicnewsSectionsResponseDoc
 
 func (s *MediaiteService) SectionsTyped(ctx context.Context, params MediaiteSectionsParams, opts ...RequestOption) (MediaiteSectionsResponse, error) {
 	return requestTyped[MediaiteSectionsResponse](s.client, ctx, "mediaite-sections", paramsFromStruct(params), opts...)
+}
+
+type MedicalNewsTodayService struct{ client *Client }
+
+func (s *MedicalNewsTodayService) MedicalnewstodayArticle(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "medicalnewstoday-article", params, opts...)
+}
+
+type MedicalNewsTodayMedicalnewstodayArticleParams struct {
+	Url string `crawlora:"url"`
+}
+
+type MedicalNewsTodayMedicalnewstodayArticleResponse = ModelMedicalnewstodayArticleResponseDoc
+
+func (s *MedicalNewsTodayService) MedicalnewstodayArticleTyped(ctx context.Context, params MedicalNewsTodayMedicalnewstodayArticleParams, opts ...RequestOption) (MedicalNewsTodayMedicalnewstodayArticleResponse, error) {
+	return requestTyped[MedicalNewsTodayMedicalnewstodayArticleResponse](s.client, ctx, "medicalnewstoday-article", paramsFromStruct(params), opts...)
+}
+
+func (s *MedicalNewsTodayService) MedicalnewstodayAuthor(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "medicalnewstoday-author", params, opts...)
+}
+
+type MedicalNewsTodayMedicalnewstodayAuthorParams struct {
+	Slug *string `crawlora:"slug,omitempty"`
+	Url  *string `crawlora:"url,omitempty"`
+}
+
+type MedicalNewsTodayMedicalnewstodayAuthorResponse = ModelMedicalnewstodayAuthorResponseDoc
+
+func (s *MedicalNewsTodayService) MedicalnewstodayAuthorTyped(ctx context.Context, params MedicalNewsTodayMedicalnewstodayAuthorParams, opts ...RequestOption) (MedicalNewsTodayMedicalnewstodayAuthorResponse, error) {
+	return requestTyped[MedicalNewsTodayMedicalnewstodayAuthorResponse](s.client, ctx, "medicalnewstoday-author", paramsFromStruct(params), opts...)
+}
+
+func (s *MedicalNewsTodayService) MedicalnewstodayHeadlines(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "medicalnewstoday-headlines", params, opts...)
+}
+
+type MedicalNewsTodayMedicalnewstodayHeadlinesParams struct {
+	Section string `crawlora:"section"`
+}
+
+type MedicalNewsTodayMedicalnewstodayHeadlinesResponse = ModelMedicalnewstodayHeadlinesResponseDoc
+
+func (s *MedicalNewsTodayService) MedicalnewstodayHeadlinesTyped(ctx context.Context, params MedicalNewsTodayMedicalnewstodayHeadlinesParams, opts ...RequestOption) (MedicalNewsTodayMedicalnewstodayHeadlinesResponse, error) {
+	return requestTyped[MedicalNewsTodayMedicalnewstodayHeadlinesResponse](s.client, ctx, "medicalnewstoday-headlines", paramsFromStruct(params), opts...)
+}
+
+func (s *MedicalNewsTodayService) MedicalnewstodayNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "medicalnewstoday-news", params, opts...)
+}
+
+type MedicalNewsTodayMedicalnewstodayNewsParams struct {
+}
+
+type MedicalNewsTodayMedicalnewstodayNewsResponse = ModelMedicalnewstodayNewsResponseDoc
+
+func (s *MedicalNewsTodayService) MedicalnewstodayNewsTyped(ctx context.Context, params MedicalNewsTodayMedicalnewstodayNewsParams, opts ...RequestOption) (MedicalNewsTodayMedicalnewstodayNewsResponse, error) {
+	return requestTyped[MedicalNewsTodayMedicalnewstodayNewsResponse](s.client, ctx, "medicalnewstoday-news", paramsFromStruct(params), opts...)
+}
+
+func (s *MedicalNewsTodayService) MedicalnewstodaySections(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "medicalnewstoday-sections", params, opts...)
+}
+
+type MedicalNewsTodayMedicalnewstodaySectionsParams struct {
+}
+
+type MedicalNewsTodayMedicalnewstodaySectionsResponse = ModelMedicalnewstodaySectionsResponseDoc
+
+func (s *MedicalNewsTodayService) MedicalnewstodaySectionsTyped(ctx context.Context, params MedicalNewsTodayMedicalnewstodaySectionsParams, opts ...RequestOption) (MedicalNewsTodayMedicalnewstodaySectionsResponse, error) {
+	return requestTyped[MedicalNewsTodayMedicalnewstodaySectionsResponse](s.client, ctx, "medicalnewstoday-sections", paramsFromStruct(params), opts...)
 }
 
 type ManchesterEveningNewsService struct{ client *Client }
@@ -96122,6 +98305,36 @@ func (s *MirrorService) SectionsTyped(ctx context.Context, params MirrorSections
 
 type MlbService struct{ client *Client }
 
+func (s *MlbService) Discovery(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "mlb-discovery", params, opts...)
+}
+
+type MlbDiscoveryParams struct {
+}
+
+type MlbDiscoveryResponse = ModelMlbDiscoveryResponseDoc
+
+func (s *MlbService) DiscoveryTyped(ctx context.Context, params MlbDiscoveryParams, opts ...RequestOption) (MlbDiscoveryResponse, error) {
+	return requestTyped[MlbDiscoveryResponse](s.client, ctx, "mlb-discovery", paramsFromStruct(params), opts...)
+}
+
+func (s *MlbService) EditorialFeed(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "mlb-editorial-feed", params, opts...)
+}
+
+type MlbEditorialFeedParams struct {
+	Slug     string  `crawlora:"slug"`
+	Language *string `crawlora:"language,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+	Skip     *int    `crawlora:"skip,omitempty"`
+}
+
+type MlbEditorialFeedResponse = ModelMlbEditorialFeedResponseDoc
+
+func (s *MlbService) EditorialFeedTyped(ctx context.Context, params MlbEditorialFeedParams, opts ...RequestOption) (MlbEditorialFeedResponse, error) {
+	return requestTyped[MlbEditorialFeedResponse](s.client, ctx, "mlb-editorial-feed", paramsFromStruct(params), opts...)
+}
+
 func (s *MlbService) Game(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "mlb-game", params, opts...)
 }
@@ -96164,14 +98377,44 @@ func (s *MlbService) GamePlayByPlayTyped(ctx context.Context, params MlbGamePlay
 	return requestTyped[MlbGamePlayByPlayResponse](s.client, ctx, "mlb-game-play-by-play", paramsFromStruct(params), opts...)
 }
 
+func (s *MlbService) LeagueLeaders(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "mlb-league-leaders", params, opts...)
+}
+
+type MlbLeagueLeadersParams struct {
+	Categories string  `crawlora:"categories"`
+	Season     *int    `crawlora:"season,omitempty"`
+	Group      *string `crawlora:"group,omitempty"`
+	GameType   *string `crawlora:"game_type,omitempty"`
+	LeagueId   *string `crawlora:"league_id,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+}
+
+type MlbLeagueLeadersResponse = ModelMlbLeagueLeadersResponseDoc
+
+func (s *MlbService) LeagueLeadersTyped(ctx context.Context, params MlbLeagueLeadersParams, opts ...RequestOption) (MlbLeagueLeadersResponse, error) {
+	return requestTyped[MlbLeagueLeadersResponse](s.client, ctx, "mlb-league-leaders", paramsFromStruct(params), opts...)
+}
+
 func (s *MlbService) LeagueStats(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "mlb-league-stats", params, opts...)
 }
 
 type MlbLeagueStatsParams struct {
-	Season *int   `crawlora:"season,omitempty"`
-	Group  string `crawlora:"group"`
-	Limit  *int   `crawlora:"limit,omitempty"`
+	Season           *int    `crawlora:"season,omitempty"`
+	Group            string  `crawlora:"group"`
+	StatType         *string `crawlora:"stat_type,omitempty"`
+	GameType         *string `crawlora:"game_type,omitempty"`
+	StartDate        *string `crawlora:"start_date,omitempty"`
+	EndDate          *string `crawlora:"end_date,omitempty"`
+	OpponentTeamId   *string `crawlora:"opponent_team_id,omitempty"`
+	OpponentPlayerId *string `crawlora:"opponent_player_id,omitempty"`
+	LeagueId         *string `crawlora:"league_id,omitempty"`
+	TeamId           *string `crawlora:"team_id,omitempty"`
+	Position         *string `crawlora:"position,omitempty"`
+	PlayerPool       *string `crawlora:"player_pool,omitempty"`
+	Limit            *int    `crawlora:"limit,omitempty"`
+	Offset           *int    `crawlora:"offset,omitempty"`
 }
 
 type MlbLeagueStatsResponse = ModelMlbStatsResponseDoc
@@ -96199,15 +98442,43 @@ func (s *MlbService) PlayerStats(ctx context.Context, params Params, opts ...Req
 }
 
 type MlbPlayerStatsParams struct {
-	Id     string `crawlora:"id"`
-	Season *int   `crawlora:"season,omitempty"`
-	Group  string `crawlora:"group"`
+	Id               string  `crawlora:"id"`
+	Season           *int    `crawlora:"season,omitempty"`
+	Group            string  `crawlora:"group"`
+	StatType         *string `crawlora:"stat_type,omitempty"`
+	GameType         *string `crawlora:"game_type,omitempty"`
+	StartDate        *string `crawlora:"start_date,omitempty"`
+	EndDate          *string `crawlora:"end_date,omitempty"`
+	OpponentTeamId   *string `crawlora:"opponent_team_id,omitempty"`
+	OpponentPlayerId *string `crawlora:"opponent_player_id,omitempty"`
 }
 
 type MlbPlayerStatsResponse = ModelMlbStatsResponseDoc
 
 func (s *MlbService) PlayerStatsTyped(ctx context.Context, params MlbPlayerStatsParams, opts ...RequestOption) (MlbPlayerStatsResponse, error) {
 	return requestTyped[MlbPlayerStatsResponse](s.client, ctx, "mlb-player-stats", paramsFromStruct(params), opts...)
+}
+
+func (s *MlbService) ProspectStats(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "mlb-prospect-stats", params, opts...)
+}
+
+type MlbProspectStatsParams struct {
+	ListType   *string `crawlora:"list_type,omitempty"`
+	TeamId     *string `crawlora:"team_id,omitempty"`
+	DateRange  *string `crawlora:"date_range,omitempty"`
+	PlayerType *string `crawlora:"player_type,omitempty"`
+	MinPa      *int    `crawlora:"min_pa,omitempty"`
+	Position   *string `crawlora:"position,omitempty"`
+	Q          *string `crawlora:"q,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	Offset     *int    `crawlora:"offset,omitempty"`
+}
+
+type MlbProspectStatsResponse = ModelMlbProspectStatsResponseDoc
+
+func (s *MlbService) ProspectStatsTyped(ctx context.Context, params MlbProspectStatsParams, opts ...RequestOption) (MlbProspectStatsResponse, error) {
+	return requestTyped[MlbProspectStatsResponse](s.client, ctx, "mlb-prospect-stats", paramsFromStruct(params), opts...)
 }
 
 func (s *MlbService) Schedule(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -96219,12 +98490,27 @@ type MlbScheduleParams struct {
 	StartDate *string `crawlora:"start_date,omitempty"`
 	EndDate   *string `crawlora:"end_date,omitempty"`
 	TeamId    *string `crawlora:"team_id,omitempty"`
+	GameType  *string `crawlora:"game_type,omitempty"`
 }
 
 type MlbScheduleResponse = ModelMlbScheduleResponseDoc
 
 func (s *MlbService) ScheduleTyped(ctx context.Context, params MlbScheduleParams, opts ...RequestOption) (MlbScheduleResponse, error) {
 	return requestTyped[MlbScheduleResponse](s.client, ctx, "mlb-schedule", paramsFromStruct(params), opts...)
+}
+
+func (s *MlbService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "mlb-search", params, opts...)
+}
+
+type MlbSearchParams struct {
+	Q string `crawlora:"q"`
+}
+
+type MlbSearchResponse = ModelMlbSearchResponseDoc
+
+func (s *MlbService) SearchTyped(ctx context.Context, params MlbSearchParams, opts ...RequestOption) (MlbSearchResponse, error) {
+	return requestTyped[MlbSearchResponse](s.client, ctx, "mlb-search", paramsFromStruct(params), opts...)
 }
 
 func (s *MlbService) Standings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -96234,12 +98520,84 @@ func (s *MlbService) Standings(ctx context.Context, params Params, opts ...Reque
 type MlbStandingsParams struct {
 	Season *int    `crawlora:"season,omitempty"`
 	Type   *string `crawlora:"type,omitempty"`
+	Date   *string `crawlora:"date,omitempty"`
 }
 
 type MlbStandingsResponse = ModelMlbStandingsResponseDoc
 
 func (s *MlbService) StandingsTyped(ctx context.Context, params MlbStandingsParams, opts ...RequestOption) (MlbStandingsResponse, error) {
 	return requestTyped[MlbStandingsResponse](s.client, ctx, "mlb-standings", paramsFromStruct(params), opts...)
+}
+
+func (s *MlbService) StatcastExpected(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "mlb-statcast-expected", params, opts...)
+}
+
+type MlbStatcastExpectedParams struct {
+	Type       *string `crawlora:"type,omitempty"`
+	Year       *int    `crawlora:"year,omitempty"`
+	TeamId     *string `crawlora:"team_id,omitempty"`
+	Position   *string `crawlora:"position,omitempty"`
+	FilterType *string `crawlora:"filter_type,omitempty"`
+	Minimum    *string `crawlora:"minimum,omitempty"`
+	Sort       *string `crawlora:"sort,omitempty"`
+	SortDir    *string `crawlora:"sort_dir,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	Offset     *int    `crawlora:"offset,omitempty"`
+}
+
+type MlbStatcastExpectedResponse = ModelMlbStatcastBoardResponseDoc
+
+func (s *MlbService) StatcastExpectedTyped(ctx context.Context, params MlbStatcastExpectedParams, opts ...RequestOption) (MlbStatcastExpectedResponse, error) {
+	return requestTyped[MlbStatcastExpectedResponse](s.client, ctx, "mlb-statcast-expected", paramsFromStruct(params), opts...)
+}
+
+func (s *MlbService) Statcast(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "mlb-statcast", params, opts...)
+}
+
+type MlbStatcastParams struct {
+	Type     *string `crawlora:"type,omitempty"`
+	Year     *int    `crawlora:"year,omitempty"`
+	TeamId   *string `crawlora:"team_id,omitempty"`
+	Position *string `crawlora:"position,omitempty"`
+	MinBbe   *string `crawlora:"min_bbe,omitempty"`
+	Sort     *string `crawlora:"sort,omitempty"`
+	SortDir  *string `crawlora:"sort_dir,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+	Offset   *int    `crawlora:"offset,omitempty"`
+}
+
+type MlbStatcastResponse = ModelMlbStatcastResponseDoc
+
+func (s *MlbService) StatcastTyped(ctx context.Context, params MlbStatcastParams, opts ...RequestOption) (MlbStatcastResponse, error) {
+	return requestTyped[MlbStatcastResponse](s.client, ctx, "mlb-statcast", paramsFromStruct(params), opts...)
+}
+
+func (s *MlbService) StatcastOaa(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "mlb-statcast-oaa", params, opts...)
+}
+
+type MlbStatcastOaaParams struct {
+	Type      *string `crawlora:"type,omitempty"`
+	StartYear *int    `crawlora:"start_year,omitempty"`
+	EndYear   *int    `crawlora:"end_year,omitempty"`
+	Split     *string `crawlora:"split,omitempty"`
+	TeamId    *string `crawlora:"team_id,omitempty"`
+	Range     *string `crawlora:"range,omitempty"`
+	Minimum   *string `crawlora:"minimum,omitempty"`
+	Position  *string `crawlora:"position,omitempty"`
+	Roles     *string `crawlora:"roles,omitempty"`
+	Sort      *string `crawlora:"sort,omitempty"`
+	SortDir   *string `crawlora:"sort_dir,omitempty"`
+	Limit     *int    `crawlora:"limit,omitempty"`
+	Offset    *int    `crawlora:"offset,omitempty"`
+}
+
+type MlbStatcastOaaResponse = ModelMlbStatcastBoardResponseDoc
+
+func (s *MlbService) StatcastOaaTyped(ctx context.Context, params MlbStatcastOaaParams, opts ...RequestOption) (MlbStatcastOaaResponse, error) {
+	return requestTyped[MlbStatcastOaaResponse](s.client, ctx, "mlb-statcast-oaa", paramsFromStruct(params), opts...)
 }
 
 func (s *MlbService) TeamRoster(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -96263,9 +98621,15 @@ func (s *MlbService) TeamStats(ctx context.Context, params Params, opts ...Reque
 }
 
 type MlbTeamStatsParams struct {
-	TeamId string `crawlora:"team_id"`
-	Season *int   `crawlora:"season,omitempty"`
-	Group  string `crawlora:"group"`
+	TeamId           string  `crawlora:"team_id"`
+	Season           *int    `crawlora:"season,omitempty"`
+	Group            string  `crawlora:"group"`
+	StatType         *string `crawlora:"stat_type,omitempty"`
+	GameType         *string `crawlora:"game_type,omitempty"`
+	StartDate        *string `crawlora:"start_date,omitempty"`
+	EndDate          *string `crawlora:"end_date,omitempty"`
+	OpponentTeamId   *string `crawlora:"opponent_team_id,omitempty"`
+	OpponentPlayerId *string `crawlora:"opponent_player_id,omitempty"`
 }
 
 type MlbTeamStatsResponse = ModelMlbStatsResponseDoc
@@ -96303,6 +98667,21 @@ type MlbTransactionsResponse = ModelMlbTransactionsResponseDoc
 
 func (s *MlbService) TransactionsTyped(ctx context.Context, params MlbTransactionsParams, opts ...RequestOption) (MlbTransactionsResponse, error) {
 	return requestTyped[MlbTransactionsResponse](s.client, ctx, "mlb-transactions", paramsFromStruct(params), opts...)
+}
+
+type MliveService struct{ client *Client }
+
+func (s *MliveService) News(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "mlive-news", params, opts...)
+}
+
+type MliveNewsParams struct {
+}
+
+type MliveNewsResponse = ModelPublicnewsNewsResponseDoc
+
+func (s *MliveService) NewsTyped(ctx context.Context, params MliveNewsParams, opts ...RequestOption) (MliveNewsResponse, error) {
+	return requestTyped[MliveNewsResponse](s.client, ctx, "mlive-news", paramsFromStruct(params), opts...)
 }
 
 type ModaOperandiService struct{ client *Client }
@@ -96624,6 +99003,76 @@ func (s *MonitorsService) ChecksTyped(ctx context.Context, params MonitorsChecks
 	return requestTyped[MonitorsChecksResponse](s.client, ctx, "monitors-checks", paramsFromStruct(params), opts...)
 }
 
+type TheMotleyFoolService struct{ client *Client }
+
+func (s *TheMotleyFoolService) MotleyfoolArticle(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "motleyfool-article", params, opts...)
+}
+
+type TheMotleyFoolMotleyfoolArticleParams struct {
+	Url string `crawlora:"url"`
+}
+
+type TheMotleyFoolMotleyfoolArticleResponse = ModelPublicnewsArticleResponseDoc
+
+func (s *TheMotleyFoolService) MotleyfoolArticleTyped(ctx context.Context, params TheMotleyFoolMotleyfoolArticleParams, opts ...RequestOption) (TheMotleyFoolMotleyfoolArticleResponse, error) {
+	return requestTyped[TheMotleyFoolMotleyfoolArticleResponse](s.client, ctx, "motleyfool-article", paramsFromStruct(params), opts...)
+}
+
+func (s *TheMotleyFoolService) MotleyfoolAuthor(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "motleyfool-author", params, opts...)
+}
+
+type TheMotleyFoolMotleyfoolAuthorParams struct {
+	Url string `crawlora:"url"`
+}
+
+type TheMotleyFoolMotleyfoolAuthorResponse = ModelPublicnewsMotleyfoolAuthorResponseDoc
+
+func (s *TheMotleyFoolService) MotleyfoolAuthorTyped(ctx context.Context, params TheMotleyFoolMotleyfoolAuthorParams, opts ...RequestOption) (TheMotleyFoolMotleyfoolAuthorResponse, error) {
+	return requestTyped[TheMotleyFoolMotleyfoolAuthorResponse](s.client, ctx, "motleyfool-author", paramsFromStruct(params), opts...)
+}
+
+func (s *TheMotleyFoolService) MotleyfoolHeadlines(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "motleyfool-headlines", params, opts...)
+}
+
+type TheMotleyFoolMotleyfoolHeadlinesParams struct {
+	Section string `crawlora:"section"`
+}
+
+type TheMotleyFoolMotleyfoolHeadlinesResponse = ModelPublicnewsHeadlinesResponseDoc
+
+func (s *TheMotleyFoolService) MotleyfoolHeadlinesTyped(ctx context.Context, params TheMotleyFoolMotleyfoolHeadlinesParams, opts ...RequestOption) (TheMotleyFoolMotleyfoolHeadlinesResponse, error) {
+	return requestTyped[TheMotleyFoolMotleyfoolHeadlinesResponse](s.client, ctx, "motleyfool-headlines", paramsFromStruct(params), opts...)
+}
+
+func (s *TheMotleyFoolService) MotleyfoolNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "motleyfool-news", params, opts...)
+}
+
+type TheMotleyFoolMotleyfoolNewsParams struct {
+}
+
+type TheMotleyFoolMotleyfoolNewsResponse = ModelPublicnewsNewsResponseDoc
+
+func (s *TheMotleyFoolService) MotleyfoolNewsTyped(ctx context.Context, params TheMotleyFoolMotleyfoolNewsParams, opts ...RequestOption) (TheMotleyFoolMotleyfoolNewsResponse, error) {
+	return requestTyped[TheMotleyFoolMotleyfoolNewsResponse](s.client, ctx, "motleyfool-news", paramsFromStruct(params), opts...)
+}
+
+func (s *TheMotleyFoolService) MotleyfoolSections(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "motleyfool-sections", params, opts...)
+}
+
+type TheMotleyFoolMotleyfoolSectionsParams struct {
+}
+
+type TheMotleyFoolMotleyfoolSectionsResponse = ModelPublicnewsSectionsResponseDoc
+
+func (s *TheMotleyFoolService) MotleyfoolSectionsTyped(ctx context.Context, params TheMotleyFoolMotleyfoolSectionsParams, opts ...RequestOption) (TheMotleyFoolMotleyfoolSectionsResponse, error) {
+	return requestTyped[TheMotleyFoolMotleyfoolSectionsResponse](s.client, ctx, "motleyfool-sections", paramsFromStruct(params), opts...)
+}
+
 type NationAfricaService struct{ client *Client }
 
 func (s *NationAfricaService) NationafricaArticle(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -96891,6 +99340,21 @@ type NdtvNewsResponse = ModelPublicnewsNewsResponseDoc
 
 func (s *NdtvService) NewsTyped(ctx context.Context, params NdtvNewsParams, opts ...RequestOption) (NdtvNewsResponse, error) {
 	return requestTyped[NdtvNewsResponse](s.client, ctx, "ndtv-news", paramsFromStruct(params), opts...)
+}
+
+func (s *NdtvService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "ndtv-search", params, opts...)
+}
+
+type NdtvSearchParams struct {
+	Query string `crawlora:"query"`
+	Page  *int   `crawlora:"page,omitempty"`
+}
+
+type NdtvSearchResponse = ModelPublicnewsNdtvSearchResponseDoc
+
+func (s *NdtvService) SearchTyped(ctx context.Context, params NdtvSearchParams, opts ...RequestOption) (NdtvSearchResponse, error) {
+	return requestTyped[NdtvSearchResponse](s.client, ctx, "ndtv-search", paramsFromStruct(params), opts...)
 }
 
 func (s *NdtvService) Sections(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -97517,6 +99981,21 @@ type NineToFiveMacSectionsResponse = ModelPublicnewsSectionsResponseDoc
 
 func (s *NineToFiveMacService) SectionsTyped(ctx context.Context, params NineToFiveMacSectionsParams, opts ...RequestOption) (NineToFiveMacSectionsResponse, error) {
 	return requestTyped[NineToFiveMacSectionsResponse](s.client, ctx, "ninetofivemac-sections", paramsFromStruct(params), opts...)
+}
+
+type NjComService struct{ client *Client }
+
+func (s *NjComService) NjcomNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "njcom-news", params, opts...)
+}
+
+type NjComNjcomNewsParams struct {
+}
+
+type NjComNjcomNewsResponse = ModelPublicnewsNewsResponseDoc
+
+func (s *NjComService) NjcomNewsTyped(ctx context.Context, params NjComNjcomNewsParams, opts ...RequestOption) (NjComNjcomNewsResponse, error) {
+	return requestTyped[NjComNjcomNewsResponse](s.client, ctx, "njcom-news", paramsFromStruct(params), opts...)
 }
 
 type NprService struct{ client *Client }
@@ -102017,6 +104496,21 @@ func (s *PopeyesService) RewardsTyped(ctx context.Context, params PopeyesRewards
 	return requestTyped[PopeyesRewardsResponse](s.client, ctx, "popeyes-rewards", paramsFromStruct(params), opts...)
 }
 
+type PopularMechanicsService struct{ client *Client }
+
+func (s *PopularMechanicsService) PopularmechanicsNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "popularmechanics-news", params, opts...)
+}
+
+type PopularMechanicsPopularmechanicsNewsParams struct {
+}
+
+type PopularMechanicsPopularmechanicsNewsResponse = ModelPublicnewsNewsResponseDoc
+
+func (s *PopularMechanicsService) PopularmechanicsNewsTyped(ctx context.Context, params PopularMechanicsPopularmechanicsNewsParams, opts ...RequestOption) (PopularMechanicsPopularmechanicsNewsResponse, error) {
+	return requestTyped[PopularMechanicsPopularmechanicsNewsResponse](s.client, ctx, "popularmechanics-news", paramsFromStruct(params), opts...)
+}
+
 type PoshmarkService struct{ client *Client }
 
 func (s *PoshmarkService) Brand(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -104910,6 +107404,41 @@ func (s *RottenTomatoesService) RottentomatoesCriticsAuthorsTyped(ctx context.Co
 	return requestTyped[RottenTomatoesRottentomatoesCriticsAuthorsResponse](s.client, ctx, "rottentomatoes-critics-authors", paramsFromStruct(params), opts...)
 }
 
+func (s *RottenTomatoesService) RottentomatoesEditorialContent(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "rottentomatoes-editorial-content", params, opts...)
+}
+
+type RottenTomatoesRottentomatoesEditorialContentParams struct {
+	Type            string  `crawlora:"type"`
+	Query           *string `crawlora:"query,omitempty"`
+	Page            *int    `crawlora:"page,omitempty"`
+	Limit           *int    `crawlora:"limit,omitempty"`
+	Taxonomy        *string `crawlora:"taxonomy,omitempty"`
+	TermIds         *string `crawlora:"term_ids,omitempty"`
+	Operator        *string `crawlora:"operator,omitempty"`
+	IncludeChildren *bool   `crawlora:"include_children,omitempty"`
+}
+
+type RottenTomatoesRottentomatoesEditorialContentResponse = ModelRottentomatoesEditorialContentResponseDoc
+
+func (s *RottenTomatoesService) RottentomatoesEditorialContentTyped(ctx context.Context, params RottenTomatoesRottentomatoesEditorialContentParams, opts ...RequestOption) (RottenTomatoesRottentomatoesEditorialContentResponse, error) {
+	return requestTyped[RottenTomatoesRottentomatoesEditorialContentResponse](s.client, ctx, "rottentomatoes-editorial-content", paramsFromStruct(params), opts...)
+}
+
+func (s *RottenTomatoesService) RottentomatoesEditorialDetail(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "rottentomatoes-editorial-detail", params, opts...)
+}
+
+type RottenTomatoesRottentomatoesEditorialDetailParams struct {
+	Path string `crawlora:"path"`
+}
+
+type RottenTomatoesRottentomatoesEditorialDetailResponse = ModelRottentomatoesEditorialDetailResponseDoc
+
+func (s *RottenTomatoesService) RottentomatoesEditorialDetailTyped(ctx context.Context, params RottenTomatoesRottentomatoesEditorialDetailParams, opts ...RequestOption) (RottenTomatoesRottentomatoesEditorialDetailResponse, error) {
+	return requestTyped[RottenTomatoesRottentomatoesEditorialDetailResponse](s.client, ctx, "rottentomatoes-editorial-detail", paramsFromStruct(params), opts...)
+}
+
 func (s *RottenTomatoesService) RottentomatoesEditorialSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "rottentomatoes-editorial-search", params, opts...)
 }
@@ -104924,6 +107453,73 @@ type RottenTomatoesRottentomatoesEditorialSearchResponse = ModelRottentomatoesEd
 
 func (s *RottenTomatoesService) RottentomatoesEditorialSearchTyped(ctx context.Context, params RottenTomatoesRottentomatoesEditorialSearchParams, opts ...RequestOption) (RottenTomatoesRottentomatoesEditorialSearchResponse, error) {
 	return requestTyped[RottenTomatoesRottentomatoesEditorialSearchResponse](s.client, ctx, "rottentomatoes-editorial-search", paramsFromStruct(params), opts...)
+}
+
+func (s *RottenTomatoesService) RottentomatoesEditorialSection(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "rottentomatoes-editorial-section", params, opts...)
+}
+
+type RottenTomatoesRottentomatoesEditorialSectionParams struct {
+	Path string `crawlora:"path"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type RottenTomatoesRottentomatoesEditorialSectionResponse = ModelRottentomatoesEditorialSectionResponseDoc
+
+func (s *RottenTomatoesService) RottentomatoesEditorialSectionTyped(ctx context.Context, params RottenTomatoesRottentomatoesEditorialSectionParams, opts ...RequestOption) (RottenTomatoesRottentomatoesEditorialSectionResponse, error) {
+	return requestTyped[RottenTomatoesRottentomatoesEditorialSectionResponse](s.client, ctx, "rottentomatoes-editorial-section", paramsFromStruct(params), opts...)
+}
+
+func (s *RottenTomatoesService) RottentomatoesEditorialTaxonomies(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "rottentomatoes-editorial-taxonomies", params, opts...)
+}
+
+type RottenTomatoesRottentomatoesEditorialTaxonomiesParams struct {
+}
+
+type RottenTomatoesRottentomatoesEditorialTaxonomiesResponse = ModelRottentomatoesEditorialTaxonomiesResponseDoc
+
+func (s *RottenTomatoesService) RottentomatoesEditorialTaxonomiesTyped(ctx context.Context, params RottenTomatoesRottentomatoesEditorialTaxonomiesParams, opts ...RequestOption) (RottenTomatoesRottentomatoesEditorialTaxonomiesResponse, error) {
+	return requestTyped[RottenTomatoesRottentomatoesEditorialTaxonomiesResponse](s.client, ctx, "rottentomatoes-editorial-taxonomies", paramsFromStruct(params), opts...)
+}
+
+func (s *RottenTomatoesService) RottentomatoesEditorialTerms(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "rottentomatoes-editorial-terms", params, opts...)
+}
+
+type RottenTomatoesRottentomatoesEditorialTermsParams struct {
+	Taxonomy  string  `crawlora:"taxonomy"`
+	Search    *string `crawlora:"search,omitempty"`
+	Page      *int    `crawlora:"page,omitempty"`
+	Limit     *int    `crawlora:"limit,omitempty"`
+	HideEmpty *bool   `crawlora:"hide_empty,omitempty"`
+	Order     *string `crawlora:"order,omitempty"`
+	Orderby   *string `crawlora:"orderby,omitempty"`
+	Include   *string `crawlora:"include,omitempty"`
+	Exclude   *string `crawlora:"exclude,omitempty"`
+	Slug      *string `crawlora:"slug,omitempty"`
+	Post      *int    `crawlora:"post,omitempty"`
+	Offset    *int    `crawlora:"offset,omitempty"`
+	Parent    *int    `crawlora:"parent,omitempty"`
+}
+
+type RottenTomatoesRottentomatoesEditorialTermsResponse = ModelRottentomatoesEditorialTermsResponseDoc
+
+func (s *RottenTomatoesService) RottentomatoesEditorialTermsTyped(ctx context.Context, params RottenTomatoesRottentomatoesEditorialTermsParams, opts ...RequestOption) (RottenTomatoesRottentomatoesEditorialTermsResponse, error) {
+	return requestTyped[RottenTomatoesRottentomatoesEditorialTermsResponse](s.client, ctx, "rottentomatoes-editorial-terms", paramsFromStruct(params), opts...)
+}
+
+func (s *RottenTomatoesService) RottentomatoesEditorialTypes(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "rottentomatoes-editorial-types", params, opts...)
+}
+
+type RottenTomatoesRottentomatoesEditorialTypesParams struct {
+}
+
+type RottenTomatoesRottentomatoesEditorialTypesResponse = ModelRottentomatoesEditorialContentTypesResponseDoc
+
+func (s *RottenTomatoesService) RottentomatoesEditorialTypesTyped(ctx context.Context, params RottenTomatoesRottentomatoesEditorialTypesParams, opts ...RequestOption) (RottenTomatoesRottentomatoesEditorialTypesResponse, error) {
+	return requestTyped[RottenTomatoesRottentomatoesEditorialTypesResponse](s.client, ctx, "rottentomatoes-editorial-types", paramsFromStruct(params), opts...)
 }
 
 func (s *RottenTomatoesService) RottentomatoesEpisode(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -105337,6 +107933,147 @@ type SamSClubSamsclubProductRelatedResponse = ModelSamsclubRelatedItemsResponseD
 
 func (s *SamSClubService) SamsclubProductRelatedTyped(ctx context.Context, params SamSClubSamsclubProductRelatedParams, opts ...RequestOption) (SamSClubSamsclubProductRelatedResponse, error) {
 	return requestTyped[SamSClubSamsclubProductRelatedResponse](s.client, ctx, "samsclub-product-related", paramsFromStruct(params), opts...)
+}
+
+type SbsNewsService struct{ client *Client }
+
+func (s *SbsNewsService) SbsnewsArticle(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sbsnews-article", params, opts...)
+}
+
+type SbsNewsSbsnewsArticleParams struct {
+	Url string `crawlora:"url"`
+}
+
+type SbsNewsSbsnewsArticleResponse = ModelPublicnewsArticleResponseDoc
+
+func (s *SbsNewsService) SbsnewsArticleTyped(ctx context.Context, params SbsNewsSbsnewsArticleParams, opts ...RequestOption) (SbsNewsSbsnewsArticleResponse, error) {
+	return requestTyped[SbsNewsSbsnewsArticleResponse](s.client, ctx, "sbsnews-article", paramsFromStruct(params), opts...)
+}
+
+func (s *SbsNewsService) SbsnewsAuthor(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sbsnews-author", params, opts...)
+}
+
+type SbsNewsSbsnewsAuthorParams struct {
+	Url  string `crawlora:"url"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type SbsNewsSbsnewsAuthorResponse = ModelPublicnewsSbsnewsAuthorResponseDoc
+
+func (s *SbsNewsService) SbsnewsAuthorTyped(ctx context.Context, params SbsNewsSbsnewsAuthorParams, opts ...RequestOption) (SbsNewsSbsnewsAuthorResponse, error) {
+	return requestTyped[SbsNewsSbsnewsAuthorResponse](s.client, ctx, "sbsnews-author", paramsFromStruct(params), opts...)
+}
+
+func (s *SbsNewsService) SbsnewsHeadlines(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sbsnews-headlines", params, opts...)
+}
+
+type SbsNewsSbsnewsHeadlinesParams struct {
+	Section string `crawlora:"section"`
+}
+
+type SbsNewsSbsnewsHeadlinesResponse = ModelPublicnewsHeadlinesResponseDoc
+
+func (s *SbsNewsService) SbsnewsHeadlinesTyped(ctx context.Context, params SbsNewsSbsnewsHeadlinesParams, opts ...RequestOption) (SbsNewsSbsnewsHeadlinesResponse, error) {
+	return requestTyped[SbsNewsSbsnewsHeadlinesResponse](s.client, ctx, "sbsnews-headlines", paramsFromStruct(params), opts...)
+}
+
+func (s *SbsNewsService) SbsnewsNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sbsnews-news", params, opts...)
+}
+
+type SbsNewsSbsnewsNewsParams struct {
+}
+
+type SbsNewsSbsnewsNewsResponse = ModelPublicnewsNewsResponseDoc
+
+func (s *SbsNewsService) SbsnewsNewsTyped(ctx context.Context, params SbsNewsSbsnewsNewsParams, opts ...RequestOption) (SbsNewsSbsnewsNewsResponse, error) {
+	return requestTyped[SbsNewsSbsnewsNewsResponse](s.client, ctx, "sbsnews-news", paramsFromStruct(params), opts...)
+}
+
+func (s *SbsNewsService) SbsnewsSections(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sbsnews-sections", params, opts...)
+}
+
+type SbsNewsSbsnewsSectionsParams struct {
+}
+
+type SbsNewsSbsnewsSectionsResponse = ModelPublicnewsSectionsResponseDoc
+
+func (s *SbsNewsService) SbsnewsSectionsTyped(ctx context.Context, params SbsNewsSbsnewsSectionsParams, opts ...RequestOption) (SbsNewsSbsnewsSectionsResponse, error) {
+	return requestTyped[SbsNewsSbsnewsSectionsResponse](s.client, ctx, "sbsnews-sections", paramsFromStruct(params), opts...)
+}
+
+type ScienceAlertService struct{ client *Client }
+
+func (s *ScienceAlertService) SciencealertArticle(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sciencealert-article", params, opts...)
+}
+
+type ScienceAlertSciencealertArticleParams struct {
+	Url string `crawlora:"url"`
+}
+
+type ScienceAlertSciencealertArticleResponse = ModelPublicnewsArticleResponseDoc
+
+func (s *ScienceAlertService) SciencealertArticleTyped(ctx context.Context, params ScienceAlertSciencealertArticleParams, opts ...RequestOption) (ScienceAlertSciencealertArticleResponse, error) {
+	return requestTyped[ScienceAlertSciencealertArticleResponse](s.client, ctx, "sciencealert-article", paramsFromStruct(params), opts...)
+}
+
+func (s *ScienceAlertService) SciencealertAuthor(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sciencealert-author", params, opts...)
+}
+
+type ScienceAlertSciencealertAuthorParams struct {
+	Url string `crawlora:"url"`
+}
+
+type ScienceAlertSciencealertAuthorResponse = ModelPublicnewsScienceAlertAuthorResponseDoc
+
+func (s *ScienceAlertService) SciencealertAuthorTyped(ctx context.Context, params ScienceAlertSciencealertAuthorParams, opts ...RequestOption) (ScienceAlertSciencealertAuthorResponse, error) {
+	return requestTyped[ScienceAlertSciencealertAuthorResponse](s.client, ctx, "sciencealert-author", paramsFromStruct(params), opts...)
+}
+
+func (s *ScienceAlertService) SciencealertHeadlines(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sciencealert-headlines", params, opts...)
+}
+
+type ScienceAlertSciencealertHeadlinesParams struct {
+	Section string `crawlora:"section"`
+}
+
+type ScienceAlertSciencealertHeadlinesResponse = ModelPublicnewsHeadlinesResponseDoc
+
+func (s *ScienceAlertService) SciencealertHeadlinesTyped(ctx context.Context, params ScienceAlertSciencealertHeadlinesParams, opts ...RequestOption) (ScienceAlertSciencealertHeadlinesResponse, error) {
+	return requestTyped[ScienceAlertSciencealertHeadlinesResponse](s.client, ctx, "sciencealert-headlines", paramsFromStruct(params), opts...)
+}
+
+func (s *ScienceAlertService) SciencealertNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sciencealert-news", params, opts...)
+}
+
+type ScienceAlertSciencealertNewsParams struct {
+}
+
+type ScienceAlertSciencealertNewsResponse = ModelPublicnewsNewsResponseDoc
+
+func (s *ScienceAlertService) SciencealertNewsTyped(ctx context.Context, params ScienceAlertSciencealertNewsParams, opts ...RequestOption) (ScienceAlertSciencealertNewsResponse, error) {
+	return requestTyped[ScienceAlertSciencealertNewsResponse](s.client, ctx, "sciencealert-news", paramsFromStruct(params), opts...)
+}
+
+func (s *ScienceAlertService) SciencealertSections(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sciencealert-sections", params, opts...)
+}
+
+type ScienceAlertSciencealertSectionsParams struct {
+}
+
+type ScienceAlertSciencealertSectionsResponse = ModelPublicnewsSectionsResponseDoc
+
+func (s *ScienceAlertService) SciencealertSectionsTyped(ctx context.Context, params ScienceAlertSciencealertSectionsParams, opts ...RequestOption) (ScienceAlertSciencealertSectionsResponse, error) {
+	return requestTyped[ScienceAlertSciencealertSectionsResponse](s.client, ctx, "sciencealert-sections", paramsFromStruct(params), opts...)
 }
 
 type ScmpService struct{ client *Client }
@@ -107084,6 +109821,76 @@ func (s *SkyNewsService) SkynewsVideosTyped(ctx context.Context, params SkyNewsS
 	return requestTyped[SkyNewsSkynewsVideosResponse](s.client, ctx, "skynews-videos", paramsFromStruct(params), opts...)
 }
 
+type SkySportsService struct{ client *Client }
+
+func (s *SkySportsService) SkysportsArticle(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "skysports-article", params, opts...)
+}
+
+type SkySportsSkysportsArticleParams struct {
+	Url string `crawlora:"url"`
+}
+
+type SkySportsSkysportsArticleResponse = ModelPublicnewsArticleResponseDoc
+
+func (s *SkySportsService) SkysportsArticleTyped(ctx context.Context, params SkySportsSkysportsArticleParams, opts ...RequestOption) (SkySportsSkysportsArticleResponse, error) {
+	return requestTyped[SkySportsSkysportsArticleResponse](s.client, ctx, "skysports-article", paramsFromStruct(params), opts...)
+}
+
+func (s *SkySportsService) SkysportsAuthor(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "skysports-author", params, opts...)
+}
+
+type SkySportsSkysportsAuthorParams struct {
+	Url string `crawlora:"url"`
+}
+
+type SkySportsSkysportsAuthorResponse = ModelPublicnewsSkySportsAuthorResponseDoc
+
+func (s *SkySportsService) SkysportsAuthorTyped(ctx context.Context, params SkySportsSkysportsAuthorParams, opts ...RequestOption) (SkySportsSkysportsAuthorResponse, error) {
+	return requestTyped[SkySportsSkysportsAuthorResponse](s.client, ctx, "skysports-author", paramsFromStruct(params), opts...)
+}
+
+func (s *SkySportsService) SkysportsHeadlines(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "skysports-headlines", params, opts...)
+}
+
+type SkySportsSkysportsHeadlinesParams struct {
+	Section string `crawlora:"section"`
+}
+
+type SkySportsSkysportsHeadlinesResponse = ModelPublicnewsHeadlinesResponseDoc
+
+func (s *SkySportsService) SkysportsHeadlinesTyped(ctx context.Context, params SkySportsSkysportsHeadlinesParams, opts ...RequestOption) (SkySportsSkysportsHeadlinesResponse, error) {
+	return requestTyped[SkySportsSkysportsHeadlinesResponse](s.client, ctx, "skysports-headlines", paramsFromStruct(params), opts...)
+}
+
+func (s *SkySportsService) SkysportsNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "skysports-news", params, opts...)
+}
+
+type SkySportsSkysportsNewsParams struct {
+}
+
+type SkySportsSkysportsNewsResponse = ModelPublicnewsNewsResponseDoc
+
+func (s *SkySportsService) SkysportsNewsTyped(ctx context.Context, params SkySportsSkysportsNewsParams, opts ...RequestOption) (SkySportsSkysportsNewsResponse, error) {
+	return requestTyped[SkySportsSkysportsNewsResponse](s.client, ctx, "skysports-news", paramsFromStruct(params), opts...)
+}
+
+func (s *SkySportsService) SkysportsSections(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "skysports-sections", params, opts...)
+}
+
+type SkySportsSkysportsSectionsParams struct {
+}
+
+type SkySportsSkysportsSectionsResponse = ModelPublicnewsSectionsResponseDoc
+
+func (s *SkySportsService) SkysportsSectionsTyped(ctx context.Context, params SkySportsSkysportsSectionsParams, opts ...RequestOption) (SkySportsSkysportsSectionsResponse, error) {
+	return requestTyped[SkySportsSkysportsSectionsResponse](s.client, ctx, "skysports-sections", paramsFromStruct(params), opts...)
+}
+
 type SlateService struct{ client *Client }
 
 func (s *SlateService) Article(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -108109,6 +110916,316 @@ func (s *SportingNewsService) SportingnewsSectionsTyped(ctx context.Context, par
 	return requestTyped[SportingNewsSportingnewsSectionsResponse](s.client, ctx, "sportingnews-sections", paramsFromStruct(params), opts...)
 }
 
+type SportskeedaService struct{ client *Client }
+
+func (s *SportskeedaService) Article(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-article", params, opts...)
+}
+
+type SportskeedaArticleParams struct {
+	Slug *string `crawlora:"slug,omitempty"`
+	Url  *string `crawlora:"url,omitempty"`
+}
+
+type SportskeedaArticleResponse = ModelPublicnewsArticleResponseDoc
+
+func (s *SportskeedaService) ArticleTyped(ctx context.Context, params SportskeedaArticleParams, opts ...RequestOption) (SportskeedaArticleResponse, error) {
+	return requestTyped[SportskeedaArticleResponse](s.client, ctx, "sportskeeda-article", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) Author(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-author", params, opts...)
+}
+
+type SportskeedaAuthorParams struct {
+	Slug *string `crawlora:"slug,omitempty"`
+	Url  *string `crawlora:"url,omitempty"`
+}
+
+type SportskeedaAuthorResponse = ModelPublicnewsSportskeedaAuthorResponseDoc
+
+func (s *SportskeedaService) AuthorTyped(ctx context.Context, params SportskeedaAuthorParams, opts ...RequestOption) (SportskeedaAuthorResponse, error) {
+	return requestTyped[SportskeedaAuthorResponse](s.client, ctx, "sportskeeda-author", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) DepthChart(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-depth-chart", params, opts...)
+}
+
+type SportskeedaDepthChartParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type SportskeedaDepthChartResponse = ModelPublicnewsSportskeedaDepthChartResponseDoc
+
+func (s *SportskeedaService) DepthChartTyped(ctx context.Context, params SportskeedaDepthChartParams, opts ...RequestOption) (SportskeedaDepthChartResponse, error) {
+	return requestTyped[SportskeedaDepthChartResponse](s.client, ctx, "sportskeeda-depth-chart", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) Feed(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-feed", params, opts...)
+}
+
+type SportskeedaFeedParams struct {
+	Slug string `crawlora:"slug"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type SportskeedaFeedResponse = ModelPublicnewsSportskeedaFeedResponseDoc
+
+func (s *SportskeedaService) FeedTyped(ctx context.Context, params SportskeedaFeedParams, opts ...RequestOption) (SportskeedaFeedResponse, error) {
+	return requestTyped[SportskeedaFeedResponse](s.client, ctx, "sportskeeda-feed", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) FootballData(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-football-data", params, opts...)
+}
+
+type SportskeedaFootballDataParams struct {
+	Event    string  `crawlora:"event"`
+	Matchday *string `crawlora:"matchday,omitempty"`
+}
+
+type SportskeedaFootballDataResponse = ModelPublicnewsSportskeedaFootballDataResponseDoc
+
+func (s *SportskeedaService) FootballDataTyped(ctx context.Context, params SportskeedaFootballDataParams, opts ...RequestOption) (SportskeedaFootballDataResponse, error) {
+	return requestTyped[SportskeedaFootballDataResponse](s.client, ctx, "sportskeeda-football-data", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) FootballOptions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-football-options", params, opts...)
+}
+
+type SportskeedaFootballOptionsParams struct {
+	Event *string `crawlora:"event,omitempty"`
+}
+
+type SportskeedaFootballOptionsResponse = ModelPublicnewsSportskeedaFootballOptionsResponseDoc
+
+func (s *SportskeedaService) FootballOptionsTyped(ctx context.Context, params SportskeedaFootballOptionsParams, opts ...RequestOption) (SportskeedaFootballOptionsResponse, error) {
+	return requestTyped[SportskeedaFootballOptionsResponse](s.client, ctx, "sportskeeda-football-options", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) News(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-news", params, opts...)
+}
+
+type SportskeedaNewsParams struct {
+}
+
+type SportskeedaNewsResponse = ModelPublicnewsNewsResponseDoc
+
+func (s *SportskeedaService) NewsTyped(ctx context.Context, params SportskeedaNewsParams, opts ...RequestOption) (SportskeedaNewsResponse, error) {
+	return requestTyped[SportskeedaNewsResponse](s.client, ctx, "sportskeeda-news", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) PageData(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-page-data", params, opts...)
+}
+
+type SportskeedaPageDataParams struct {
+	Slug   string  `crawlora:"slug"`
+	Season *int    `crawlora:"season,omitempty"`
+	Type   *string `crawlora:"type,omitempty"`
+}
+
+type SportskeedaPageDataResponse = ModelPublicnewsSportskeedaTablesResponseDoc
+
+func (s *SportskeedaService) PageDataTyped(ctx context.Context, params SportskeedaPageDataParams, opts ...RequestOption) (SportskeedaPageDataResponse, error) {
+	return requestTyped[SportskeedaPageDataResponse](s.client, ctx, "sportskeeda-page-data", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) PageOptions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-page-options", params, opts...)
+}
+
+type SportskeedaPageOptionsParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type SportskeedaPageOptionsResponse = ModelPublicnewsSportskeedaPageOptionsResponseDoc
+
+func (s *SportskeedaService) PageOptionsTyped(ctx context.Context, params SportskeedaPageOptionsParams, opts ...RequestOption) (SportskeedaPageOptionsResponse, error) {
+	return requestTyped[SportskeedaPageOptionsResponse](s.client, ctx, "sportskeeda-page-options", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) PlayerStats(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-player-stats", params, opts...)
+}
+
+type SportskeedaPlayerStatsParams struct {
+	Slug      string  `crawlora:"slug"`
+	EventType *string `crawlora:"event_type,omitempty"`
+}
+
+type SportskeedaPlayerStatsResponse = ModelPublicnewsSportskeedaPlayerStatsResponseDoc
+
+func (s *SportskeedaService) PlayerStatsTyped(ctx context.Context, params SportskeedaPlayerStatsParams, opts ...RequestOption) (SportskeedaPlayerStatsResponse, error) {
+	return requestTyped[SportskeedaPlayerStatsResponse](s.client, ctx, "sportskeeda-player-stats", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) Profile(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-profile", params, opts...)
+}
+
+type SportskeedaProfileParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type SportskeedaProfileResponse = ModelPublicnewsSportskeedaProfileResponseDoc
+
+func (s *SportskeedaService) ProfileTyped(ctx context.Context, params SportskeedaProfileParams, opts ...RequestOption) (SportskeedaProfileResponse, error) {
+	return requestTyped[SportskeedaProfileResponse](s.client, ctx, "sportskeeda-profile", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) Schedule(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-schedule", params, opts...)
+}
+
+type SportskeedaScheduleParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type SportskeedaScheduleResponse = ModelPublicnewsSportskeedaTablesResponseDoc
+
+func (s *SportskeedaService) ScheduleTyped(ctx context.Context, params SportskeedaScheduleParams, opts ...RequestOption) (SportskeedaScheduleResponse, error) {
+	return requestTyped[SportskeedaScheduleResponse](s.client, ctx, "sportskeeda-schedule", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) Sections(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-sections", params, opts...)
+}
+
+type SportskeedaSectionsParams struct {
+}
+
+type SportskeedaSectionsResponse = ModelPublicnewsSportskeedaSectionsResponseDoc
+
+func (s *SportskeedaService) SectionsTyped(ctx context.Context, params SportskeedaSectionsParams, opts ...RequestOption) (SportskeedaSectionsResponse, error) {
+	return requestTyped[SportskeedaSectionsResponse](s.client, ctx, "sportskeeda-sections", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) SitemapItems(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-sitemap-items", params, opts...)
+}
+
+type SportskeedaSitemapItemsParams struct {
+	Slug       *string `crawlora:"slug,omitempty"`
+	SitemapUrl *string `crawlora:"sitemap_url,omitempty"`
+	Offset     *int    `crawlora:"offset,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+}
+
+type SportskeedaSitemapItemsResponse = ModelPublicnewsSportskeedaSitemapItemsResponseDoc
+
+func (s *SportskeedaService) SitemapItemsTyped(ctx context.Context, params SportskeedaSitemapItemsParams, opts ...RequestOption) (SportskeedaSitemapItemsResponse, error) {
+	return requestTyped[SportskeedaSitemapItemsResponse](s.client, ctx, "sportskeeda-sitemap-items", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) Sitemaps(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-sitemaps", params, opts...)
+}
+
+type SportskeedaSitemapsParams struct {
+}
+
+type SportskeedaSitemapsResponse = ModelPublicnewsSportskeedaSitemapsResponseDoc
+
+func (s *SportskeedaService) SitemapsTyped(ctx context.Context, params SportskeedaSitemapsParams, opts ...RequestOption) (SportskeedaSitemapsResponse, error) {
+	return requestTyped[SportskeedaSitemapsResponse](s.client, ctx, "sportskeeda-sitemaps", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) Standings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-standings", params, opts...)
+}
+
+type SportskeedaStandingsParams struct {
+	Slug   string `crawlora:"slug"`
+	Season *int   `crawlora:"season,omitempty"`
+}
+
+type SportskeedaStandingsResponse = ModelPublicnewsSportskeedaTablesResponseDoc
+
+func (s *SportskeedaService) StandingsTyped(ctx context.Context, params SportskeedaStandingsParams, opts ...RequestOption) (SportskeedaStandingsResponse, error) {
+	return requestTyped[SportskeedaStandingsResponse](s.client, ctx, "sportskeeda-standings", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) StandingsOptions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-standings-options", params, opts...)
+}
+
+type SportskeedaStandingsOptionsParams struct {
+	Slug   string `crawlora:"slug"`
+	Season *int   `crawlora:"season,omitempty"`
+}
+
+type SportskeedaStandingsOptionsResponse = ModelPublicnewsSportskeedaStandingsOptionsResponseDoc
+
+func (s *SportskeedaService) StandingsOptionsTyped(ctx context.Context, params SportskeedaStandingsOptionsParams, opts ...RequestOption) (SportskeedaStandingsOptionsResponse, error) {
+	return requestTyped[SportskeedaStandingsOptionsResponse](s.client, ctx, "sportskeeda-standings-options", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) TaxonomySearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-taxonomy-search", params, opts...)
+}
+
+type SportskeedaTaxonomySearchParams struct {
+	Q string `crawlora:"q"`
+}
+
+type SportskeedaTaxonomySearchResponse = ModelPublicnewsSportskeedaTaxonomySearchResponseDoc
+
+func (s *SportskeedaService) TaxonomySearchTyped(ctx context.Context, params SportskeedaTaxonomySearchParams, opts ...RequestOption) (SportskeedaTaxonomySearchResponse, error) {
+	return requestTyped[SportskeedaTaxonomySearchResponse](s.client, ctx, "sportskeeda-taxonomy-search", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) TradeValues(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-trade-values", params, opts...)
+}
+
+type SportskeedaTradeValuesParams struct {
+	Slug      string  `crawlora:"slug"`
+	Position  *string `crawlora:"position,omitempty"`
+	Scoring   *string `crawlora:"scoring,omitempty"`
+	Superflex *bool   `crawlora:"superflex,omitempty"`
+	Offset    *int    `crawlora:"offset,omitempty"`
+	Limit     *int    `crawlora:"limit,omitempty"`
+}
+
+type SportskeedaTradeValuesResponse = ModelPublicnewsSportskeedaTradeValuesResponseDoc
+
+func (s *SportskeedaService) TradeValuesTyped(ctx context.Context, params SportskeedaTradeValuesParams, opts ...RequestOption) (SportskeedaTradeValuesResponse, error) {
+	return requestTyped[SportskeedaTradeValuesResponse](s.client, ctx, "sportskeeda-trade-values", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) Video(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-video", params, opts...)
+}
+
+type SportskeedaVideoParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type SportskeedaVideoResponse = ModelPublicnewsSportskeedaVideoResponseDoc
+
+func (s *SportskeedaService) VideoTyped(ctx context.Context, params SportskeedaVideoParams, opts ...RequestOption) (SportskeedaVideoResponse, error) {
+	return requestTyped[SportskeedaVideoResponse](s.client, ctx, "sportskeeda-video", paramsFromStruct(params), opts...)
+}
+
+func (s *SportskeedaService) Videos(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sportskeeda-videos", params, opts...)
+}
+
+type SportskeedaVideosParams struct {
+	Slug *string `crawlora:"slug,omitempty"`
+}
+
+type SportskeedaVideosResponse = ModelPublicnewsSportskeedaVideosResponseDoc
+
+func (s *SportskeedaService) VideosTyped(ctx context.Context, params SportskeedaVideosParams, opts ...RequestOption) (SportskeedaVideosResponse, error) {
+	return requestTyped[SportskeedaVideosResponse](s.client, ctx, "sportskeeda-videos", paramsFromStruct(params), opts...)
+}
+
 type SpotifyPodcastsService struct{ client *Client }
 
 func (s *SpotifyPodcastsService) Categories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -108935,6 +112052,21 @@ type StarbucksStoresResponse = ModelStarbucksStoresResponseDoc
 
 func (s *StarbucksService) StoresTyped(ctx context.Context, params StarbucksStoresParams, opts ...RequestOption) (StarbucksStoresResponse, error) {
 	return requestTyped[StarbucksStoresResponse](s.client, ctx, "starbucks-stores", paramsFromStruct(params), opts...)
+}
+
+type MinnesotaStarTribuneService struct{ client *Client }
+
+func (s *MinnesotaStarTribuneService) StartribuneNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "startribune-news", params, opts...)
+}
+
+type MinnesotaStarTribuneStartribuneNewsParams struct {
+}
+
+type MinnesotaStarTribuneStartribuneNewsResponse = ModelPublicnewsNewsResponseDoc
+
+func (s *MinnesotaStarTribuneService) StartribuneNewsTyped(ctx context.Context, params MinnesotaStarTribuneStartribuneNewsParams, opts ...RequestOption) (MinnesotaStarTribuneStartribuneNewsResponse, error) {
+	return requestTyped[MinnesotaStarTribuneStartribuneNewsResponse](s.client, ctx, "startribune-news", paramsFromStruct(params), opts...)
 }
 
 type SteamService struct{ client *Client }
@@ -115908,6 +119040,21 @@ type WhatnotLiveResponse = ModelWhatnotLiveResponseDoc
 
 func (s *WhatnotService) LiveTyped(ctx context.Context, params WhatnotLiveParams, opts ...RequestOption) (WhatnotLiveResponse, error) {
 	return requestTyped[WhatnotLiveResponse](s.client, ctx, "whatnot-live", paramsFromStruct(params), opts...)
+}
+
+func (s *WhatnotService) Seller(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "whatnot-seller", params, opts...)
+}
+
+type WhatnotSellerParams struct {
+	Username string  `crawlora:"username"`
+	Cursor   *string `crawlora:"cursor,omitempty"`
+}
+
+type WhatnotSellerResponse = ModelWhatnotSellerResponseDoc
+
+func (s *WhatnotService) SellerTyped(ctx context.Context, params WhatnotSellerParams, opts ...RequestOption) (WhatnotSellerResponse, error) {
+	return requestTyped[WhatnotSellerResponse](s.client, ctx, "whatnot-seller", paramsFromStruct(params), opts...)
 }
 
 type WingstopService struct{ client *Client }
