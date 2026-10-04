@@ -28,6 +28,7 @@ TAG_PREFIX_OVERRIDES = {
     "7NOW": "7now",
     "7NEWS Australia": "sevennewsau",
     "9to5Mac": "ninetofivemac",
+    "9to5Google": "ninetofivegoogle",
     "1stDibs": "firstdibs",
     "AppStore": "appstore",
     "CoinGecko": "coingecko",

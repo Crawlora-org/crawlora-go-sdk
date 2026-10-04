@@ -28,6 +28,7 @@ POLICY = core.NamingPolicy(
         "7NOW": "SevenNow",
         "7NEWS Australia": "SevenNewsAustralia",
         "9to5Mac": "NineToFiveMac",
+        "9to5Google": "NineToFiveGoogle",
         "AppStore": "AppStore",
         "CoinGecko": "CoinGecko",
         "GooglePlay": "GooglePlay",
