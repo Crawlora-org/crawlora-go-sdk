@@ -2,7 +2,7 @@
 
 Generated from `openapi/public.json`. Deprecated, admin, and internal operations are excluded from this SDK contract.
 
-Total operations: `3529`
+Total operations: `3539`
 
 | Group | SDK method | Operation ID | HTTP | Params | Auth | Response | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -216,6 +216,8 @@ Total operations: `3529`
 | Axios | `Axios.Article` | `axios-article` | `GET /axios/article` | `url` (query string required) | `ApiKeyAuth` | `AxiosArticleResponse` |  |
 | Axios | `Axios.Categories` | `axios-categories` | `GET /axios/categories` | none | `ApiKeyAuth` | `AxiosCategoriesResponse` |  |
 | Axios | `Axios.Headlines` | `axios-headlines` | `GET /axios/headlines` | `topic` (query string required) | `ApiKeyAuth` | `AxiosHeadlinesResponse` |  |
+| Baidu | `Baidu.Search` | `baidu-search` | `GET /baidu/search` | `q` (query string required)<br>`page` (query int) | `ApiKeyAuth` | `BaiduSearchResponse` |  |
+| Baidu | `Baidu.Suggest` | `baidu-suggest` | `GET /baidu/suggest` | `q` (query string required)<br>`count` (query int) | `ApiKeyAuth` | `BaiduSuggestResponse` |  |
 | Balenciaga | `Balenciaga.Categories` | `balenciaga-categories` | `GET /balenciaga/categories` | none | `ApiKeyAuth` | `BalenciagaCategoriesResponse` |  |
 | Balenciaga | `Balenciaga.Category` | `balenciaga-category` | `GET /balenciaga/category` | `path` (query string required)<br>`sort` (query string)<br>`page` (query int)<br>`limit` (query int)<br>`filters` (query string) | `ApiKeyAuth` | `BalenciagaCategoryResponse` |  |
 | Balenciaga | `Balenciaga.Product` | `balenciaga-product` | `GET /balenciaga/product` | `url` (query string required) | `ApiKeyAuth` | `BalenciagaProductResponse` |  |
@@ -288,7 +290,7 @@ Total operations: `3529`
 | Bing | `Bing.Images` | `bing-images` | `GET /bing/images` | `q` (query string required)<br>`page` (query int)<br>`count` (query int)<br>`country` (query string)<br>`lang` (query string) | `ApiKeyAuth` | `BingImagesResponse` |  |
 | Bing | `Bing.News` | `bing-news` | `GET /bing/news` | `q` (query string required)<br>`page` (query int)<br>`count` (query int)<br>`country` (query string)<br>`lang` (query string) | `ApiKeyAuth` | `BingNewsResponse` |  |
 | Bing | `Bing.Search` | `bing-search` | `GET /bing/search` | `q` (query string required)<br>`page` (query int)<br>`count` (query int)<br>`country` (query string)<br>`lang` (query string) | `ApiKeyAuth` | `BingSearchResponse` |  |
-| Bing | `Bing.Suggest` | `bing-suggest` | `GET /bing/suggest` | `q` (query string required)<br>`count` (query int)<br>`country` (query string)<br>`lang` (query string) | `ApiKeyAuth` | `BingSuggestResponse` |  |
+| Bing | `Bing.Suggest` | `bing-suggest` | `GET /bing/suggest` | `q` (query string required)<br>`count` (query int)<br>`country` (query string)<br>`lang` (query string)<br>`rich` (query bool) | `ApiKeyAuth` | `BingSuggestResponse` |  |
 | Bing | `Bing.Videos` | `bing-videos` | `GET /bing/videos` | `q` (query string required)<br>`page` (query int)<br>`count` (query int)<br>`country` (query string)<br>`lang` (query string) | `ApiKeyAuth` | `BingVideosResponse` |  |
 | BirminghamMail | `BirminghamMail.BirminghammailArticle` | `birminghammail-article` | `GET /birminghammail/article` | `url` (query string required) | `ApiKeyAuth` | `BirminghamMailBirminghammailArticleResponse` |  |
 | BirminghamMail | `BirminghamMail.BirminghammailAuthor` | `birminghammail-author` | `GET /birminghammail/author` | `slug` (query string)<br>`url` (query string)<br>`page` (query int) | `ApiKeyAuth` | `BirminghamMailBirminghammailAuthorResponse` |  |
@@ -358,7 +360,7 @@ Total operations: `3529`
 | Brave | `Brave.Images` | `brave-images` | `GET /brave/images` | `q` (query string required)<br>`offset` (query int)<br>`count` (query int)<br>`country` (query string)<br>`lang` (query string) | `ApiKeyAuth` | `BraveImagesResponse` |  |
 | Brave | `Brave.News` | `brave-news` | `GET /brave/news` | `q` (query string required)<br>`offset` (query int)<br>`count` (query int)<br>`country` (query string)<br>`lang` (query string)<br>`time_range` (query string)<br>`date_from` (query string)<br>`date_to` (query string) | `ApiKeyAuth` | `BraveNewsResponse` |  |
 | Brave | `Brave.Search` | `brave-search` | `GET /brave/search` | `q` (query string required)<br>`offset` (query int)<br>`country` (query string)<br>`lang` (query string)<br>`time_range` (query string)<br>`date_from` (query string)<br>`date_to` (query string) | `ApiKeyAuth` | `BraveSearchResponse` |  |
-| Brave | `Brave.Suggest` | `brave-suggest` | `GET /brave/suggest` | `q` (query string required)<br>`count` (query int)<br>`country` (query string)<br>`lang` (query string) | `ApiKeyAuth` | `BraveSuggestResponse` |  |
+| Brave | `Brave.Suggest` | `brave-suggest` | `GET /brave/suggest` | `q` (query string required)<br>`count` (query int)<br>`country` (query string)<br>`lang` (query string)<br>`rich` (query bool) | `ApiKeyAuth` | `BraveSuggestResponse` |  |
 | Brave | `Brave.Videos` | `brave-videos` | `GET /brave/videos` | `q` (query string required)<br>`offset` (query int)<br>`count` (query int)<br>`country` (query string)<br>`lang` (query string)<br>`time_range` (query string)<br>`date_from` (query string)<br>`date_to` (query string) | `ApiKeyAuth` | `BraveVideosResponse` |  |
 | Breitbart | `Breitbart.Article` | `breitbart-article` | `GET /breitbart/article` | `url` (query string required) | `ApiKeyAuth` | `BreitbartArticleResponse` |  |
 | Breitbart | `Breitbart.Author` | `breitbart-author` | `GET /breitbart/author` | `slug` (query string)<br>`url` (query string)<br>`page` (query int) | `ApiKeyAuth` | `BreitbartAuthorResponse` |  |
@@ -844,6 +846,7 @@ Total operations: `3529`
 | DuckDuckGoSearch | `DuckDuckGoSearch.DuckduckgoNews` | `duckduckgo-news` | `GET /duckduckgo/news` | `q` (query string required)<br>`page` (query int)<br>`region` (query string) | `ApiKeyAuth` | `DuckDuckGoSearchDuckduckgoNewsResponse` |  |
 | DuckDuckGoSearch | `DuckDuckGoSearch.DuckduckgoSearch` | `duckduckgo-search` | `GET /duckduckgo/search` | `q` (query string required)<br>`page` (query int)<br>`region` (query string)<br>`time_range` (query string)<br>`safe_search` (query string) | `ApiKeyAuth` | `DuckDuckGoSearchDuckduckgoSearchResponse` |  |
 | DuckDuckGoSearch | `DuckDuckGoSearch.DuckduckgoShopping` | `duckduckgo-shopping` | `GET /duckduckgo/shopping` | `q` (query string required)<br>`region` (query string) | `ApiKeyAuth` | `DuckDuckGoSearchDuckduckgoShoppingResponse` |  |
+| DuckDuckGoSearch | `DuckDuckGoSearch.DuckduckgoSuggest` | `duckduckgo-suggest` | `GET /duckduckgo/suggest` | `q` (query string required)<br>`count` (query int)<br>`region` (query string) | `ApiKeyAuth` | `DuckDuckGoSearchDuckduckgoSuggestResponse` |  |
 | DuckDuckGoSearch | `DuckDuckGoSearch.DuckduckgoVideo` | `duckduckgo-video` | `GET /duckduckgo/video` | `q` (query string required)<br>`page` (query int)<br>`region` (query string) | `ApiKeyAuth` | `DuckDuckGoSearchDuckduckgoVideoResponse` |  |
 | Dunkin | `Dunkin.Directory` | `dunkin-directory` | `GET /dunkin/directory` | `path` (query string) | `ApiKeyAuth` | `DunkinDirectoryResponse` |  |
 | Dunkin | `Dunkin.Menu` | `dunkin-menu` | `GET /dunkin/menu` | none | `ApiKeyAuth` | `DunkinMenuResponse` |  |
@@ -1257,7 +1260,7 @@ Total operations: `3529`
 | Google | `Google.MapSearch` | `google-map-search` | `POST /google/map/search` | `mapSearchOption` (body ModelGoogleMapSearchOption required) | `ApiKeyAuth` | `GoogleMapSearchResponse` |  |
 | Google | `Google.News` | `google-news` | `GET /google/news` | `q` (query string required)<br>`page` (query int)<br>`count` (query int)<br>`country` (query string)<br>`lang` (query string) | `ApiKeyAuth` | `GoogleNewsResponse` |  |
 | Google | `Google.NewsSearch` | `google-news-search` | `POST /google/news` | `searchOption` (body ModelGoogleSearchOption required) | `ApiKeyAuth` | `GoogleNewsSearchResponse` |  |
-| Google | `Google.Suggest` | `google-suggest` | `GET /google/suggest` | `q` (query string required)<br>`count` (query int)<br>`country` (query string)<br>`lang` (query string) | `ApiKeyAuth` | `GoogleSuggestResponse` |  |
+| Google | `Google.Suggest` | `google-suggest` | `GET /google/suggest` | `q` (query string required)<br>`count` (query int)<br>`country` (query string)<br>`lang` (query string)<br>`source` (query string)<br>`rich` (query bool) | `ApiKeyAuth` | `GoogleSuggestResponse` |  |
 | Google | `Google.TrendsCategories` | `google-trends-categories` | `GET /google/trends/categories` | none | `ApiKeyAuth` | `GoogleTrendsCategoriesResponse` |  |
 | Google | `Google.TrendsEnums` | `google-trends-enums` | `GET /google/trends/enums` | none | `ApiKeyAuth` | `GoogleTrendsEnumsResponse` |  |
 | Google | `Google.TrendsExplore` | `google-trends-explore` | `POST /google/trends/explore` | `request` (body ModelTrendsExploreRequest required) | `ApiKeyAuth` | `GoogleTrendsExploreResponse` |  |
@@ -1312,6 +1315,8 @@ Total operations: `3529`
 | Greystar | `Greystar.NewsroomArticle` | `greystar-newsroom-article` | `GET /greystar/newsroom/{slug}` | `slug` (path string required) | `ApiKeyAuth` | `GreystarNewsroomArticleResponse` |  |
 | Greystar | `Greystar.Property` | `greystar-property` | `GET /greystar/properties/{id}` | `id` (path string required) | `ApiKeyAuth` | `GreystarPropertyResponse` |  |
 | Greystar | `Greystar.Search` | `greystar-search` | `GET /greystar/search` | `query` (query string)<br>`market_area` (query string)<br>`neighborhood` (query string)<br>`city` (query string)<br>`state` (query string)<br>`country_code` (query string)<br>`min_price` (query float64)<br>`max_price` (query float64)<br>`sort` (query string)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `GreystarSearchResponse` |  |
+| Greystar | `Greystar.UnitLocations` | `greystar-unit-locations` | `GET /greystar/unit-locations` | `query` (query string) | `ApiKeyAuth` | `GreystarUnitLocationsResponse` |  |
+| Greystar | `Greystar.Units` | `greystar-units` | `GET /greystar/units` | `location` (query string)<br>`bedrooms` (query []string)<br>`bathrooms` (query []string)<br>`building_type` (query []string)<br>`highlights` (query []string)<br>`min_price` (query float64)<br>`max_price` (query float64)<br>`sort` (query string)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `GreystarUnitsResponse` |  |
 | Grubhub | `Grubhub.Availability` | `grubhub-availability` | `GET /grubhub/availability` | `restaurant_ids` (query string required)<br>`latitude` (query float64 required)<br>`longitude` (query float64 required) | `ApiKeyAuth` | `GrubhubAvailabilityResponse` |  |
 | Grubhub | `Grubhub.Offers` | `grubhub-offers` | `GET /grubhub/offers` | `restaurant_id` (query string required)<br>`latitude` (query float64 required)<br>`longitude` (query float64 required) | `ApiKeyAuth` | `GrubhubOffersResponse` |  |
 | Grubhub | `Grubhub.Restaurant` | `grubhub-restaurant` | `GET /grubhub/restaurant` | `restaurant_id` (query string required) | `ApiKeyAuth` | `GrubhubRestaurantResponse` |  |
@@ -2402,6 +2407,7 @@ Total operations: `3529`
 | Quince | `Quince.SitemapUrls` | `quince-sitemap-urls` | `GET /quince/sitemap/urls` | `type` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `QuinceSitemapUrlsResponse` |  |
 | Quince | `Quince.Sitemaps` | `quince-sitemaps` | `GET /quince/sitemaps` | none | `ApiKeyAuth` | `QuinceSitemapsResponse` |  |
 | Quince | `Quince.Suggest` | `quince-suggest` | `GET /quince/suggest` | `q` (query string required) | `ApiKeyAuth` | `QuinceSuggestResponse` |  |
+| Qwant | `Qwant.Suggest` | `qwant-suggest` | `GET /qwant/suggest` | `q` (query string required)<br>`count` (query int)<br>`locale` (query string) | `ApiKeyAuth` | `QwantSuggestResponse` |  |
 | RaisingCaneS | `RaisingCaneS.RaisingcanesDirectory` | `raisingcanes-directory` | `GET /raisingcanes/directory` | `path` (query string) | `ApiKeyAuth` | `RaisingCaneSRaisingcanesDirectoryResponse` |  |
 | RaisingCaneS | `RaisingCaneS.RaisingcanesMenu` | `raisingcanes-menu` | `GET /raisingcanes/menu` | none | `ApiKeyAuth` | `RaisingCaneSRaisingcanesMenuResponse` |  |
 | RaisingCaneS | `RaisingCaneS.RaisingcanesNearby` | `raisingcanes-nearby` | `GET /raisingcanes/nearby` | `latitude` (query float64 required)<br>`longitude` (query float64 required)<br>`radius` (query int)<br>`limit` (query int)<br>`offset` (query int) | `ApiKeyAuth` | `RaisingCaneSRaisingcanesNearbyResponse` |  |
@@ -2842,6 +2848,7 @@ Total operations: `3529`
 | Starbucks | `Starbucks.Product` | `starbucks-product` | `GET /starbucks/product/{product_number}/{form}` | `product_number` (path string required)<br>`form` (path string required)<br>`store_number` (query string)<br>`market` (query string) | `ApiKeyAuth` | `StarbucksProductResponse` |  |
 | Starbucks | `Starbucks.Nutrition` | `starbucks-nutrition` | `POST /starbucks/product/{product_number}/{form}/nutrition` | `product_number` (path string required)<br>`form` (path string required)<br>`request` (body ModelStarbucksNutritionOption required) | `ApiKeyAuth` | `StarbucksNutritionResponse` |  |
 | Starbucks | `Starbucks.Stores` | `starbucks-stores` | `GET /starbucks/stores` | `place` (query string)<br>`lat` (query float64)<br>`lng` (query float64)<br>`market` (query string) | `ApiKeyAuth` | `StarbucksStoresResponse` |  |
+| Startpage | `Startpage.Suggest` | `startpage-suggest` | `GET /startpage/suggest` | `q` (query string required)<br>`count` (query int) | `ApiKeyAuth` | `StartpageSuggestResponse` |  |
 | MinnesotaStarTribune | `MinnesotaStarTribune.StartribuneNews` | `startribune-news` | `GET /startribune/news` | none | `ApiKeyAuth` | `MinnesotaStarTribuneStartribuneNewsResponse` |  |
 | Steam | `Steam.Achievements` | `steam-achievements` | `GET /steam/achievements` | `appid` (query string required) | `ApiKeyAuth` | `SteamAchievementsResponse` |  |
 | Steam | `Steam.App` | `steam-app` | `GET /steam/app` | `appid` (query string required)<br>`cc` (query string)<br>`l` (query string)<br>`filters` (query string) | `ApiKeyAuth` | `SteamAppResponse` |  |
@@ -3471,6 +3478,8 @@ Total operations: `3529`
 | YahooTech | `YahooTech.Article` | `yahoo-tech-article` | `GET /yahoo-tech/article` | `url` (query string required) | `ApiKeyAuth` | `YahooTechArticleResponse` |  |
 | YahooTech | `YahooTech.Category` | `yahoo-tech-category` | `GET /yahoo-tech/category` | `category` (query string required)<br>`page` (query int) | `ApiKeyAuth` | `YahooTechCategoryResponse` |  |
 | YahooTech | `YahooTech.Home` | `yahoo-tech-home` | `GET /yahoo-tech/home` | none | `ApiKeyAuth` | `YahooTechHomeResponse` |  |
+| Yandex | `Yandex.Search` | `yandex-search` | `GET /yandex/search` | `q` (query string required)<br>`page` (query int) | `ApiKeyAuth` | `YandexSearchResponse` |  |
+| Yandex | `Yandex.Suggest` | `yandex-suggest` | `GET /yandex/suggest` | `q` (query string required)<br>`count` (query int)<br>`lang` (query string) | `ApiKeyAuth` | `YandexSuggestResponse` |  |
 | Yardbarker | `Yardbarker.Article` | `yardbarker-article` | `GET /yardbarker/article` | `url` (query string required) | `ApiKeyAuth` | `YardbarkerArticleResponse` |  |
 | Yardbarker | `Yardbarker.Author` | `yardbarker-author` | `GET /yardbarker/author` | `url` (query string required) | `ApiKeyAuth` | `YardbarkerAuthorResponse` |  |
 | Yardbarker | `Yardbarker.Headlines` | `yardbarker-headlines` | `GET /yardbarker/headlines` | `section` (query string required) | `ApiKeyAuth` | `YardbarkerHeadlinesResponse` |  |
@@ -3497,6 +3506,7 @@ Total operations: `3529`
 | YouTube | `YouTube.Playlist` | `youtube-playlist` | `GET /youtube/playlist/{id}` | `id` (path string required)<br>`continuation_token` (query string) | `ApiKeyAuth` | `YouTubePlaylistResponse` |  |
 | YouTube | `YouTube.Profile` | `youtube-profile` | `GET /youtube/profile/{id}` | `id` (path string required) | `ApiKeyAuth` | `YouTubeProfileResponse` |  |
 | YouTube | `YouTube.Search` | `youtube-search` | `GET /youtube/search` | `q` (query string)<br>`search_query` (query string)<br>`continuation_token` (query string)<br>`type` (query string)<br>`sort_by` (query string)<br>`upload_date` (query string)<br>`duration` (query string)<br>`features` (query string)<br>`hl` (query string)<br>`gl` (query string)<br>`params` (query string) | `ApiKeyAuth` | `YouTubeSearchResponse` |  |
+| YouTube | `YouTube.Suggest` | `youtube-suggest` | `GET /youtube/suggest` | `q` (query string required)<br>`count` (query int)<br>`hl` (query string)<br>`gl` (query string) | `ApiKeyAuth` | `YouTubeSuggestResponse` |  |
 | YouTube | `YouTube.Tag` | `youtube-tag` | `GET /youtube/tag/{tag}` | `tag` (path string required)<br>`type` (query string)<br>`continuation_token` (query string) | `ApiKeyAuth` | `YouTubeTagResponse` |  |
 | YouTube | `YouTube.Transcript` | `youtube-transcript` | `GET /youtube/transcript/{id}` | `id` (path string required)<br>`lang` (query string)<br>`translate_to` (query string)<br>`format` (query string)<br>`timestamps` (query bool) | `ApiKeyAuth` | `YouTubeTranscriptResponse` | Supports text response mode. |
 | YouTube | `YouTube.TranscriptLanguages` | `youtube-transcript-languages` | `GET /youtube/transcript/{id}/languages` | `id` (path string required) | `ApiKeyAuth` | `YouTubeTranscriptLanguagesResponse` |  |

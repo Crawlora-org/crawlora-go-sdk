@@ -4376,6 +4376,39 @@ type ModelAxiosHeadlinesResponseDoc struct {
 	Msg  string                      `json:"msg,omitempty"`
 }
 
+type ModelBaiduSearchPagination struct {
+	NextPage int `json:"next_page,omitempty"`
+	Page     int `json:"page,omitempty"`
+}
+
+type ModelBaiduSearchResponse struct {
+	Pagination ModelBaiduSearchPagination `json:"pagination,omitempty"`
+	Query      string                     `json:"query,omitempty"`
+	Results    []ModelBaiduSearchResult   `json:"results,omitempty"`
+}
+
+type ModelBaiduSearchResult struct {
+	Date        string `json:"date,omitempty"`
+	Description string `json:"description,omitempty"`
+	Position    int    `json:"position,omitempty"`
+	Source      string `json:"source,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Type        string `json:"type,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelBaiduSearchResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelBaiduSearchResponse `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelBaiduSuggestResponseDoc struct {
+	Code int                  `json:"code,omitempty"`
+	Data ModelSuggestResponse `json:"data,omitempty"`
+	Msg  string               `json:"msg,omitempty"`
+}
+
 type ModelBalenciagaCategoriesResponse struct {
 	Categories []ModelBalenciagaCategory `json:"categories,omitempty"`
 	Count      int                       `json:"count,omitempty"`
@@ -6166,9 +6199,16 @@ type ModelBingSuggestResponse struct {
 	Suggestions []ModelBingSuggestionResult `json:"suggestions,omitempty"`
 }
 
+type ModelBingSuggestionEntity struct {
+	Description string `json:"description,omitempty"`
+	ImageUrl    string `json:"image_url,omitempty"`
+	Name        string `json:"name,omitempty"`
+}
+
 type ModelBingSuggestionResult struct {
-	Position int    `json:"position,omitempty"`
-	Query    string `json:"query,omitempty"`
+	Entity   ModelBingSuggestionEntity `json:"entity,omitempty"`
+	Position int                       `json:"position,omitempty"`
+	Query    string                    `json:"query,omitempty"`
 }
 
 type ModelBingVideoResult struct {
@@ -7796,9 +7836,18 @@ type ModelBraveSuggestResponse struct {
 	Suggestions []ModelBraveSuggestionResult `json:"suggestions,omitempty"`
 }
 
+type ModelBraveSuggestionEntity struct {
+	Category    string `json:"category,omitempty"`
+	Description string `json:"description,omitempty"`
+	ImageUrl    string `json:"image_url,omitempty"`
+	Logo        bool   `json:"logo,omitempty"`
+	Name        string `json:"name,omitempty"`
+}
+
 type ModelBraveSuggestionResult struct {
-	Position int    `json:"position,omitempty"`
-	Query    string `json:"query,omitempty"`
+	Entity   ModelBraveSuggestionEntity `json:"entity,omitempty"`
+	Position int                        `json:"position,omitempty"`
+	Query    string                     `json:"query,omitempty"`
 }
 
 type ModelBraveVideoResult struct {
@@ -16012,6 +16061,12 @@ type ModelDuckduckgoShoppingResponseDoc struct {
 	Code int                             `json:"code,omitempty"`
 	Data ModelDuckduckgoShoppingResponse `json:"data,omitempty"`
 	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelDuckduckgoSuggestResponseDoc struct {
+	Code int                  `json:"code,omitempty"`
+	Data ModelSuggestResponse `json:"data,omitempty"`
+	Msg  string               `json:"msg,omitempty"`
 }
 
 type ModelDuckduckgoVideoResponseDoc struct {
@@ -24244,12 +24299,16 @@ type ModelGoogleSearchOption struct {
 
 type ModelGoogleSuggestResponse struct {
 	Query       string                        `json:"query,omitempty"`
+	Source      string                        `json:"source,omitempty"`
 	Suggestions []ModelGoogleSuggestionResult `json:"suggestions,omitempty"`
 }
 
 type ModelGoogleSuggestionResult struct {
-	Position int    `json:"position,omitempty"`
-	Query    string `json:"query,omitempty"`
+	Description string `json:"description,omitempty"`
+	Position    int    `json:"position,omitempty"`
+	Query       string `json:"query,omitempty"`
+	Relevance   int    `json:"relevance,omitempty"`
+	Type        string `json:"type,omitempty"`
 }
 
 type ModelGoogleVerticalPagination struct {
@@ -25206,6 +25265,11 @@ type ModelGreystarFaq struct {
 	Question string `json:"question,omitempty"`
 }
 
+type ModelGreystarFacetCount struct {
+	Count int    `json:"count,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
 type ModelGreystarFee struct {
 	Amount           float64 `json:"amount,omitempty"`
 	Category         string  `json:"category,omitempty"`
@@ -25240,6 +25304,21 @@ type ModelGreystarImage struct {
 	Height int    `json:"height,omitempty"`
 	Url    string `json:"url,omitempty"`
 	Width  int    `json:"width,omitempty"`
+}
+
+type ModelGreystarListedUnit struct {
+	Banner                 string  `json:"banner,omitempty"`
+	Bathrooms              float64 `json:"bathrooms,omitempty"`
+	Bedrooms               float64 `json:"bedrooms,omitempty"`
+	Floorplan              string  `json:"floorplan,omitempty"`
+	MaxPrice               float64 `json:"max_price,omitempty"`
+	MinBaseRentLeaseTerm   int     `json:"min_base_rent_lease_term,omitempty"`
+	MinPrice               float64 `json:"min_price,omitempty"`
+	Price                  float64 `json:"price,omitempty"`
+	RequiredMonthlyFeesMax float64 `json:"required_monthly_fees_max,omitempty"`
+	RequiredMonthlyFeesMin float64 `json:"required_monthly_fees_min,omitempty"`
+	UnitId                 string  `json:"unit_id,omitempty"`
+	UnitNumber             string  `json:"unit_number,omitempty"`
 }
 
 type ModelGreystarLocation struct {
@@ -25414,6 +25493,50 @@ type ModelGreystarUnit struct {
 	MinPrice             float64 `json:"min_price,omitempty"`
 	UnitId               string  `json:"unit_id,omitempty"`
 	UnitNumber           string  `json:"unit_number,omitempty"`
+}
+
+type ModelGreystarUnitFacets struct {
+	Bathrooms     []ModelGreystarFacetCount `json:"bathrooms,omitempty"`
+	Bedrooms      []ModelGreystarFacetCount `json:"bedrooms,omitempty"`
+	BuildingTypes []ModelGreystarFacetCount `json:"building_types,omitempty"`
+	Highlights    []ModelGreystarFacetCount `json:"highlights,omitempty"`
+}
+
+type ModelGreystarUnitLocation struct {
+	Location string `json:"location,omitempty"`
+	Parent   string `json:"parent,omitempty"`
+	Url      string `json:"url,omitempty"`
+}
+
+type ModelGreystarUnitLocationList struct {
+	Locations  []ModelGreystarUnitLocation `json:"locations,omitempty"`
+	TotalCount int                         `json:"total_count,omitempty"`
+}
+
+type ModelGreystarUnitProperty struct {
+	Address        string                    `json:"address,omitempty"`
+	City           string                    `json:"city,omitempty"`
+	Latitude       float64                   `json:"latitude,omitempty"`
+	Longitude      float64                   `json:"longitude,omitempty"`
+	MatchingUnits  int                       `json:"matching_units,omitempty"`
+	Name           string                    `json:"name,omitempty"`
+	PostalCode     string                    `json:"postal_code,omitempty"`
+	PropertyId     string                    `json:"property_id,omitempty"`
+	State          string                    `json:"state,omitempty"`
+	StateName      string                    `json:"state_name,omitempty"`
+	ThumbnailUrl   string                    `json:"thumbnail_url,omitempty"`
+	Units          []ModelGreystarListedUnit `json:"units,omitempty"`
+	UnitsTruncated bool                      `json:"units_truncated,omitempty"`
+}
+
+type ModelGreystarUnitSearchResult struct {
+	Facets     ModelGreystarUnitFacets     `json:"facets,omitempty"`
+	Location   string                      `json:"location,omitempty"`
+	Page       int                         `json:"page,omitempty"`
+	PerPage    int                         `json:"per_page,omitempty"`
+	Properties []ModelGreystarUnitProperty `json:"properties,omitempty"`
+	TotalCount int                         `json:"total_count,omitempty"`
+	TotalPages int                         `json:"total_pages,omitempty"`
 }
 
 type ModelGrubhubAvailabilityResponse struct {
@@ -29128,10 +29251,6 @@ type ModelInstagramImageCandidate struct {
 	Width  int    `json:"width,omitempty"`
 }
 
-type ModelInstagramImageVersions struct {
-	Candidates []ModelInstagramImageCandidate `json:"candidates,omitempty"`
-}
-
 type ModelInstagramImageVersions2 struct {
 	Candidates []ModelInstagramImageCandidate `json:"candidates,omitempty"`
 }
@@ -29141,16 +29260,16 @@ type ModelInstagramItem struct {
 }
 
 type ModelInstagramMedia struct {
-	Caption        ModelInstagramCaption       `json:"caption,omitempty"`
-	Code           string                      `json:"code,omitempty"`
-	CommentCount   int                         `json:"comment_count,omitempty"`
-	DisplayUri     string                      `json:"display_uri,omitempty"`
-	Id             string                      `json:"id,omitempty"`
-	ImageVersions2 ModelInstagramImageVersions `json:"image_versions2,omitempty"`
-	LikeCount      int                         `json:"like_count,omitempty"`
-	MediaType      int                         `json:"media_type,omitempty"`
-	PlayCount      int                         `json:"play_count,omitempty"`
-	TakenAt        int                         `json:"taken_at,omitempty"`
+	Caption        ModelInstagramCaption           `json:"caption,omitempty"`
+	Code           string                          `json:"code,omitempty"`
+	CommentCount   int                             `json:"comment_count,omitempty"`
+	DisplayUri     string                          `json:"display_uri,omitempty"`
+	Id             string                          `json:"id,omitempty"`
+	ImageVersions2 ModelInstagramReelImageVersions `json:"image_versions2,omitempty"`
+	LikeCount      int                             `json:"like_count,omitempty"`
+	MediaType      int                             `json:"media_type,omitempty"`
+	PlayCount      int                             `json:"play_count,omitempty"`
+	TakenAt        int                             `json:"taken_at,omitempty"`
 }
 
 type ModelInstagramMediaItem struct {
@@ -29205,6 +29324,16 @@ type ModelInstagramPost struct {
 	VideoUrl     string               `json:"video_url,omitempty"`
 	ViewCount    int                  `json:"view_count,omitempty"`
 	Width        int                  `json:"width,omitempty"`
+}
+
+type ModelInstagramReelImageCandidate struct {
+	Height int    `json:"height,omitempty"`
+	Url    string `json:"url,omitempty"`
+	Width  int    `json:"width,omitempty"`
+}
+
+type ModelInstagramReelImageVersions struct {
+	Candidates []ModelInstagramReelImageCandidate `json:"candidates,omitempty"`
 }
 
 type ModelInstagramReelResponse struct {
@@ -45106,6 +45235,12 @@ type ModelQuinceSuggestResponseDoc struct {
 	Msg  string                     `json:"msg,omitempty"`
 }
 
+type ModelQwantSuggestResponseDoc struct {
+	Code int                  `json:"code,omitempty"`
+	Data ModelSuggestResponse `json:"data,omitempty"`
+	Msg  string               `json:"msg,omitempty"`
+}
+
 type ModelRaisingcanesDirectoryChild struct {
 	IsStore    bool   `json:"is_store,omitempty"`
 	Name       string `json:"name,omitempty"`
@@ -54028,6 +54163,12 @@ type ModelStarbucksStoresResponseDoc struct {
 	Msg  string                      `json:"msg,omitempty"`
 }
 
+type ModelStartpageSuggestResponseDoc struct {
+	Code int                  `json:"code,omitempty"`
+	Data ModelSuggestResponse `json:"data,omitempty"`
+	Msg  string               `json:"msg,omitempty"`
+}
+
 type ModelSteamAchievementsResponse struct {
 	Achievements []ModelSteamGlobalAchievement `json:"achievements,omitempty"`
 	Appid        string                        `json:"appid,omitempty"`
@@ -56077,6 +56218,16 @@ type ModelSubwayStoreResponseDoc struct {
 	Code int                      `json:"code,omitempty"`
 	Data ModelSubwayStoreResponse `json:"data,omitempty"`
 	Msg  any                      `json:"msg,omitempty"`
+}
+
+type ModelSuggestResponse struct {
+	Query       string                   `json:"query,omitempty"`
+	Suggestions []ModelSuggestSuggestion `json:"suggestions,omitempty"`
+}
+
+type ModelSuggestSuggestion struct {
+	Position int    `json:"position,omitempty"`
+	Query    string `json:"query,omitempty"`
 }
 
 type ModelSunAuthorArticle struct {
@@ -62753,6 +62904,7 @@ type ModelWebScrapeMetadata struct {
 
 type ModelWebScrapeOption struct {
 	Backend         string   `json:"backend,omitempty"`
+	Dedicated       bool     `json:"dedicated,omitempty"`
 	Formats         []string `json:"formats,omitempty"`
 	MaxAge          int      `json:"max_age,omitempty"`
 	OnlyMainContent bool     `json:"only_main_content,omitempty"`
@@ -66107,6 +66259,37 @@ type ModelYahootechHomeResponseDoc struct {
 	Msg  string                     `json:"msg,omitempty"`
 }
 
+type ModelYandexSearchPagination struct {
+	NextPage int `json:"next_page,omitempty"`
+	Page     int `json:"page,omitempty"`
+}
+
+type ModelYandexSearchResponse struct {
+	Pagination ModelYandexSearchPagination `json:"pagination,omitempty"`
+	Query      string                      `json:"query,omitempty"`
+	Results    []ModelYandexSearchResult   `json:"results,omitempty"`
+}
+
+type ModelYandexSearchResult struct {
+	Description string `json:"description,omitempty"`
+	DisplayUrl  string `json:"display_url,omitempty"`
+	Position    int    `json:"position,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelYandexSearchResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelYandexSearchResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelYandexSuggestResponseDoc struct {
+	Code int                  `json:"code,omitempty"`
+	Data ModelSuggestResponse `json:"data,omitempty"`
+	Msg  string               `json:"msg,omitempty"`
+}
+
 type ModelYardbarkerAuthorResponse struct {
 	Articles []ModelNewsplatformHeadlineItem `json:"articles,omitempty"`
 	ImageUrl string                          `json:"image_url,omitempty"`
@@ -66653,6 +66836,12 @@ type ModelYoutubeSearchResponseDoc struct {
 	Code int                        `json:"code,omitempty"`
 	Data ModelYoutubeSearchResponse `json:"data,omitempty"`
 	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelYoutubeSuggestResponseDoc struct {
+	Code int                  `json:"code,omitempty"`
+	Data ModelSuggestResponse `json:"data,omitempty"`
+	Msg  string               `json:"msg,omitempty"`
 }
 
 type ModelYoutubeTagMeta struct {
@@ -67824,7 +68013,7 @@ type ModelZomatoSearchResponseDoc struct {
 	Msg  any                       `json:"msg,omitempty"`
 }
 
-const operationCount = 3529
+const operationCount = 3539
 
 const (
 	OperationAbcNewsAbcnewsArticle                                  = "abcnews-article"
@@ -68023,6 +68212,8 @@ const (
 	OperationAxiosArticle                                           = "axios-article"
 	OperationAxiosCategories                                        = "axios-categories"
 	OperationAxiosHeadlines                                         = "axios-headlines"
+	OperationBaiduSearch                                            = "baidu-search"
+	OperationBaiduSuggest                                           = "baidu-suggest"
 	OperationBalenciagaCategories                                   = "balenciaga-categories"
 	OperationBalenciagaCategory                                     = "balenciaga-category"
 	OperationBalenciagaProduct                                      = "balenciaga-product"
@@ -68635,6 +68826,7 @@ const (
 	OperationDuckDuckGoSearchDuckduckgoNews                         = "duckduckgo-news"
 	OperationDuckDuckGoSearchDuckduckgoSearch                       = "duckduckgo-search"
 	OperationDuckDuckGoSearchDuckduckgoShopping                     = "duckduckgo-shopping"
+	OperationDuckDuckGoSearchDuckduckgoSuggest                      = "duckduckgo-suggest"
 	OperationDuckDuckGoSearchDuckduckgoVideo                        = "duckduckgo-video"
 	OperationDunkinDirectory                                        = "dunkin-directory"
 	OperationDunkinMenu                                             = "dunkin-menu"
@@ -69107,6 +69299,8 @@ const (
 	OperationGreystarNewsroomArticle                                = "greystar-newsroom-article"
 	OperationGreystarProperty                                       = "greystar-property"
 	OperationGreystarSearch                                         = "greystar-search"
+	OperationGreystarUnitLocations                                  = "greystar-unit-locations"
+	OperationGreystarUnits                                          = "greystar-units"
 	OperationGrubhubAvailability                                    = "grubhub-availability"
 	OperationGrubhubOffers                                          = "grubhub-offers"
 	OperationGrubhubRestaurant                                      = "grubhub-restaurant"
@@ -70173,6 +70367,7 @@ const (
 	OperationQuinceSitemapUrls                                      = "quince-sitemap-urls"
 	OperationQuinceSitemaps                                         = "quince-sitemaps"
 	OperationQuinceSuggest                                          = "quince-suggest"
+	OperationQwantSuggest                                           = "qwant-suggest"
 	OperationRaisingCaneSRaisingcanesDirectory                      = "raisingcanes-directory"
 	OperationRaisingCaneSRaisingcanesMenu                           = "raisingcanes-menu"
 	OperationRaisingCaneSRaisingcanesNearby                         = "raisingcanes-nearby"
@@ -70611,6 +70806,7 @@ const (
 	OperationStarbucksNutrition                                     = "starbucks-nutrition"
 	OperationStarbucksProduct                                       = "starbucks-product"
 	OperationStarbucksStores                                        = "starbucks-stores"
+	OperationStartpageSuggest                                       = "startpage-suggest"
 	OperationSteamAchievements                                      = "steam-achievements"
 	OperationSteamApp                                               = "steam-app"
 	OperationSteamCategory                                          = "steam-category"
@@ -71292,6 +71488,8 @@ const (
 	OperationYahooTechArticle                                       = "yahoo-tech-article"
 	OperationYahooTechCategory                                      = "yahoo-tech-category"
 	OperationYahooTechHome                                          = "yahoo-tech-home"
+	OperationYandexSearch                                           = "yandex-search"
+	OperationYandexSuggest                                          = "yandex-suggest"
 	OperationYardbarkerArticle                                      = "yardbarker-article"
 	OperationYardbarkerAuthor                                       = "yardbarker-author"
 	OperationYardbarkerHeadlines                                    = "yardbarker-headlines"
@@ -71318,6 +71516,7 @@ const (
 	OperationYouTubePlaylist                                        = "youtube-playlist"
 	OperationYouTubeProfile                                         = "youtube-profile"
 	OperationYouTubeSearch                                          = "youtube-search"
+	OperationYouTubeSuggest                                         = "youtube-suggest"
 	OperationYouTubeTag                                             = "youtube-tag"
 	OperationYouTubeTranscript                                      = "youtube-transcript"
 	OperationYouTubeTranscriptLanguages                             = "youtube-transcript-languages"
@@ -71569,6 +71768,8 @@ var operations = map[string]operationDefinition{
 	"axios-article":                                   operationDefinition{Method: "GET", Path: "/axios/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"axios-categories":                                operationDefinition{Method: "GET", Path: "/axios/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"axios-headlines":                                 operationDefinition{Method: "GET", Path: "/axios/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"baidu-search":                                    operationDefinition{Method: "GET", Path: "/baidu/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"baidu-suggest":                                   operationDefinition{Method: "GET", Path: "/baidu/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"balenciaga-categories":                           operationDefinition{Method: "GET", Path: "/balenciaga/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"balenciaga-category":                             operationDefinition{Method: "GET", Path: "/balenciaga/category", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"latest", "price_ascending", "price_descending"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "filters", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"balenciaga-product":                              operationDefinition{Method: "GET", Path: "/balenciaga/product", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -71641,7 +71842,7 @@ var operations = map[string]operationDefinition{
 	"bing-images":                                     operationDefinition{Method: "GET", Path: "/bing/images", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"bing-news":                                       operationDefinition{Method: "GET", Path: "/bing/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"bing-search":                                     operationDefinition{Method: "GET", Path: "/bing/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
-	"bing-suggest":                                    operationDefinition{Method: "GET", Path: "/bing/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bing-suggest":                                    operationDefinition{Method: "GET", Path: "/bing/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "rich", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"bing-videos":                                     operationDefinition{Method: "GET", Path: "/bing/videos", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"birminghammail-article":                          operationDefinition{Method: "GET", Path: "/birminghammail/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"birminghammail-author":                           operationDefinition{Method: "GET", Path: "/birminghammail/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -71711,7 +71912,7 @@ var operations = map[string]operationDefinition{
 	"brave-images":                                    operationDefinition{Method: "GET", Path: "/brave/images", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"brave-news":                                      operationDefinition{Method: "GET", Path: "/brave/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}, parameterDefinition{Name: "time_range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"any", "day", "week", "month", "year", "custom"}}, parameterDefinition{Name: "date_from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"brave-search":                                    operationDefinition{Method: "GET", Path: "/brave/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}, parameterDefinition{Name: "time_range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"any", "day", "week", "month", "year", "custom"}}, parameterDefinition{Name: "date_from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
-	"brave-suggest":                                   operationDefinition{Method: "GET", Path: "/brave/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"brave-suggest":                                   operationDefinition{Method: "GET", Path: "/brave/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}, parameterDefinition{Name: "rich", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"brave-videos":                                    operationDefinition{Method: "GET", Path: "/brave/videos", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ar", "at", "au", "be", "br", "ca", "ch", "cl", "cn", "de", "dk", "es", "fi", "fr", "gb", "gr", "hk", "id", "in", "it", "jp", "kr", "mx", "my", "nl", "no", "nz", "ph", "pl", "pt", "ru", "sa", "se", "sg", "tr", "tw", "us", "za"}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"de-de", "en-ca", "en-gb", "en-in", "en-us", "fi-fi", "fr-ca", "fr-fr", "ja-jp", "pt-br", "sq-al", "sw-ke", "zh-tw"}}, parameterDefinition{Name: "time_range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"any", "day", "week", "month", "year", "custom"}}, parameterDefinition{Name: "date_from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"breitbart-article":                               operationDefinition{Method: "GET", Path: "/breitbart/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"breitbart-author":                                operationDefinition{Method: "GET", Path: "/breitbart/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -72193,6 +72394,7 @@ var operations = map[string]operationDefinition{
 	"duckduckgo-news":                                 operationDefinition{Method: "GET", Path: "/duckduckgo/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"duckduckgo-search":                               operationDefinition{Method: "GET", Path: "/duckduckgo/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "time_range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"d", "w", "m", "y"}}, parameterDefinition{Name: "safe_search", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"strict", "moderate", "off"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"duckduckgo-shopping":                             operationDefinition{Method: "GET", Path: "/duckduckgo/shopping", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"duckduckgo-suggest":                              operationDefinition{Method: "GET", Path: "/duckduckgo/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"duckduckgo-video":                                operationDefinition{Method: "GET", Path: "/duckduckgo/video", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"dunkin-directory":                                operationDefinition{Method: "GET", Path: "/dunkin/directory", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"dunkin-menu":                                     operationDefinition{Method: "GET", Path: "/dunkin/menu", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -72608,7 +72810,7 @@ var operations = map[string]operationDefinition{
 	"google-map-search":                               operationDefinition{Method: "POST", Path: "/google/map/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "mapSearchOption", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-news":                                     operationDefinition{Method: "GET", Path: "/google/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"google-news-search":                              operationDefinition{Method: "POST", Path: "/google/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "searchOption", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"google-suggest":                                  operationDefinition{Method: "GET", Path: "/google/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"google-suggest":                                  operationDefinition{Method: "GET", Path: "/google/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "source", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"web", "youtube", "shopping"}}, parameterDefinition{Name: "rich", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-trends-categories":                        operationDefinition{Method: "GET", Path: "/google/trends/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-trends-enums":                             operationDefinition{Method: "GET", Path: "/google/trends/enums", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"google-trends-explore":                           operationDefinition{Method: "POST", Path: "/google/trends/explore", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -72663,6 +72865,8 @@ var operations = map[string]operationDefinition{
 	"greystar-newsroom-article":                       operationDefinition{Method: "GET", Path: "/greystar/newsroom/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"greystar-property":                               operationDefinition{Method: "GET", Path: "/greystar/properties/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"greystar-search":                                 operationDefinition{Method: "GET", Path: "/greystar/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "market_area", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "neighborhood", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "name", "price_asc", "price_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"greystar-unit-locations":                         operationDefinition{Method: "GET", Path: "/greystar/unit-locations", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"greystar-units":                                  operationDefinition{Method: "GET", Path: "/greystar/units", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "bedrooms", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{"0", "1", "2", "3", "4", "5", "6"}}, parameterDefinition{Name: "bathrooms", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{"0", "1", "2", "3", "4"}}, parameterDefinition{Name: "building_type", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{"Active Adult", "Garden", "High-Rise", "Mid-Rise", "Single Family Home", "Student", "Townhome"}}, parameterDefinition{Name: "highlights", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{"airCon", "dishwasher", "eco", "fitness", "garages", "limitedAccess", "patioBalcony", "pets", "playground", "pools", "smokeFree", "walkInClosets", "washerDryer"}}, parameterDefinition{Name: "min_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "price_asc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"grubhub-availability":                            operationDefinition{Method: "GET", Path: "/grubhub/availability", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "restaurant_ids", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"grubhub-offers":                                  operationDefinition{Method: "GET", Path: "/grubhub/offers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "restaurant_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"grubhub-restaurant":                              operationDefinition{Method: "GET", Path: "/grubhub/restaurant", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "restaurant_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -73752,6 +73956,7 @@ var operations = map[string]operationDefinition{
 	"quince-sitemap-urls":                             operationDefinition{Method: "GET", Path: "/quince/sitemap/urls", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "products", "collections", "subcollections", "pages"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"quince-sitemaps":                                 operationDefinition{Method: "GET", Path: "/quince/sitemaps", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"quince-suggest":                                  operationDefinition{Method: "GET", Path: "/quince/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"qwant-suggest":                                   operationDefinition{Method: "GET", Path: "/qwant/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "locale", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"raisingcanes-directory":                          operationDefinition{Method: "GET", Path: "/raisingcanes/directory", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"raisingcanes-menu":                               operationDefinition{Method: "GET", Path: "/raisingcanes/menu", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"raisingcanes-nearby":                             operationDefinition{Method: "GET", Path: "/raisingcanes/nearby", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "radius", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -74193,6 +74398,7 @@ var operations = map[string]operationDefinition{
 	"starbucks-product":                               operationDefinition{Method: "GET", Path: "/starbucks/product/{product_number}/{form}", PathParams: []string{"product_number", "form"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "store_number", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"us", "ca"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"starbucks-nutrition":                             operationDefinition{Method: "POST", Path: "/starbucks/product/{product_number}/{form}/nutrition", PathParams: []string{"product_number", "form"}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"starbucks-stores":                                operationDefinition{Method: "GET", Path: "/starbucks/stores", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "place", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lng", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"us", "ca"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"startpage-suggest":                               operationDefinition{Method: "GET", Path: "/startpage/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"startribune-news":                                operationDefinition{Method: "GET", Path: "/startribune/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"steam-achievements":                              operationDefinition{Method: "GET", Path: "/steam/achievements", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "appid", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"steam-app":                                       operationDefinition{Method: "GET", Path: "/steam/app", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "appid", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cc", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "l", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "filters", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -74824,6 +75030,8 @@ var operations = map[string]operationDefinition{
 	"yahoo-tech-article":                              operationDefinition{Method: "GET", Path: "/yahoo-tech/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"yahoo-tech-category":                             operationDefinition{Method: "GET", Path: "/yahoo-tech/category", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"ai", "apps", "audio", "computing", "deals", "gaming", "home", "home-entertainment", "phones", "puzzles", "science", "streaming", "vpn", "wearables"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"yahoo-tech-home":                                 operationDefinition{Method: "GET", Path: "/yahoo-tech/home", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"yandex-search":                                   operationDefinition{Method: "GET", Path: "/yandex/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"yandex-suggest":                                  operationDefinition{Method: "GET", Path: "/yandex/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"yardbarker-article":                              operationDefinition{Method: "GET", Path: "/yardbarker/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"yardbarker-author":                               operationDefinition{Method: "GET", Path: "/yardbarker/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"yardbarker-headlines":                            operationDefinition{Method: "GET", Path: "/yardbarker/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -74850,6 +75058,7 @@ var operations = map[string]operationDefinition{
 	"youtube-playlist":                                operationDefinition{Method: "GET", Path: "/youtube/playlist/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "continuation_token", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"youtube-profile":                                 operationDefinition{Method: "GET", Path: "/youtube/profile/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"youtube-search":                                  operationDefinition{Method: "GET", Path: "/youtube/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "search_query", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "continuation_token", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"video", "shorts", "channel", "playlist", "movie"}}, parameterDefinition{Name: "sort_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "upload_date", "view_count", "popularity", "rating"}}, parameterDefinition{Name: "upload_date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"last_hour", "today", "this_week", "this_month", "this_year"}}, parameterDefinition{Name: "duration", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"under_3_minutes", "three_to_20_minutes", "over_20_minutes", "under_3", "three_to_20", "over_20", "short", "medium", "long"}}, parameterDefinition{Name: "features", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "hl", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "gl", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "params", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"youtube-suggest":                                 operationDefinition{Method: "GET", Path: "/youtube/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "hl", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "gl", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"youtube-tag":                                     operationDefinition{Method: "GET", Path: "/youtube/tag/{tag}", PathParams: []string{"tag"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "shorts"}}, parameterDefinition{Name: "continuation_token", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"youtube-transcript":                              operationDefinition{Method: "GET", Path: "/youtube/transcript/{id}", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "translate_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "format", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"json", "text", "srt", "vtt"}}, parameterDefinition{Name: "timestamps", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json", "text/plain"}, Security: []string{"ApiKeyAuth"}},
 	"youtube-transcript-languages":                    operationDefinition{Method: "GET", Path: "/youtube/transcript/{id}/languages", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -74921,6 +75130,7 @@ type Services struct {
 	Audible                  *AudibleService
 	Autotrader               *AutotraderService
 	Axios                    *AxiosService
+	Baidu                    *BaiduService
 	Balenciaga               *BalenciagaService
 	Barrons                  *BarronsService
 	Bbb                      *BbbService
@@ -75198,6 +75408,7 @@ type Services struct {
 	Psastore                 *PsastoreService
 	Punch                    *PunchService
 	Quince                   *QuinceService
+	Qwant                    *QwantService
 	RaisingCaneS             *RaisingCaneSService
 	Rappler                  *RapplerService
 	RawStory                 *RawStoryService
@@ -75251,6 +75462,7 @@ type Services struct {
 	Spotify                  *SpotifyService
 	EveningStandard          *EveningStandardService
 	Starbucks                *StarbucksService
+	Startpage                *StartpageService
 	MinnesotaStarTribune     *MinnesotaStarTribuneService
 	Steam                    *SteamService
 	SteveMadden              *SteveMaddenService
@@ -75349,6 +75561,7 @@ type Services struct {
 	YahooShopping            *YahooShoppingService
 	YahooSports              *YahooSportsService
 	YahooTech                *YahooTechService
+	Yandex                   *YandexService
 	Yardbarker               *YardbarkerService
 	Yelp                     *YelpService
 	Yoox                     *YooxService
@@ -75394,6 +75607,7 @@ func initServices(c *Client) Services {
 		Audible:                  &AudibleService{client: c},
 		Autotrader:               &AutotraderService{client: c},
 		Axios:                    &AxiosService{client: c},
+		Baidu:                    &BaiduService{client: c},
 		Balenciaga:               &BalenciagaService{client: c},
 		Barrons:                  &BarronsService{client: c},
 		Bbb:                      &BbbService{client: c},
@@ -75671,6 +75885,7 @@ func initServices(c *Client) Services {
 		Psastore:                 &PsastoreService{client: c},
 		Punch:                    &PunchService{client: c},
 		Quince:                   &QuinceService{client: c},
+		Qwant:                    &QwantService{client: c},
 		RaisingCaneS:             &RaisingCaneSService{client: c},
 		Rappler:                  &RapplerService{client: c},
 		RawStory:                 &RawStoryService{client: c},
@@ -75724,6 +75939,7 @@ func initServices(c *Client) Services {
 		Spotify:                  &SpotifyService{client: c},
 		EveningStandard:          &EveningStandardService{client: c},
 		Starbucks:                &StarbucksService{client: c},
+		Startpage:                &StartpageService{client: c},
 		MinnesotaStarTribune:     &MinnesotaStarTribuneService{client: c},
 		Steam:                    &SteamService{client: c},
 		SteveMadden:              &SteveMaddenService{client: c},
@@ -75822,6 +76038,7 @@ func initServices(c *Client) Services {
 		YahooShopping:            &YahooShoppingService{client: c},
 		YahooSports:              &YahooSportsService{client: c},
 		YahooTech:                &YahooTechService{client: c},
+		Yandex:                   &YandexService{client: c},
 		Yardbarker:               &YardbarkerService{client: c},
 		Yelp:                     &YelpService{client: c},
 		Yoox:                     &YooxService{client: c},
@@ -79204,6 +79421,38 @@ func (s *AxiosService) HeadlinesTyped(ctx context.Context, params AxiosHeadlines
 	return requestTyped[AxiosHeadlinesResponse](s.client, ctx, "axios-headlines", paramsFromStruct(params), opts...)
 }
 
+type BaiduService struct{ client *Client }
+
+func (s *BaiduService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "baidu-search", params, opts...)
+}
+
+type BaiduSearchParams struct {
+	Q    string `crawlora:"q"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type BaiduSearchResponse = ModelBaiduSearchResponseDoc
+
+func (s *BaiduService) SearchTyped(ctx context.Context, params BaiduSearchParams, opts ...RequestOption) (BaiduSearchResponse, error) {
+	return requestTyped[BaiduSearchResponse](s.client, ctx, "baidu-search", paramsFromStruct(params), opts...)
+}
+
+func (s *BaiduService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "baidu-suggest", params, opts...)
+}
+
+type BaiduSuggestParams struct {
+	Q     string `crawlora:"q"`
+	Count *int   `crawlora:"count,omitempty"`
+}
+
+type BaiduSuggestResponse = ModelBaiduSuggestResponseDoc
+
+func (s *BaiduService) SuggestTyped(ctx context.Context, params BaiduSuggestParams, opts ...RequestOption) (BaiduSuggestResponse, error) {
+	return requestTyped[BaiduSuggestResponse](s.client, ctx, "baidu-suggest", paramsFromStruct(params), opts...)
+}
+
 type BalenciagaService struct{ client *Client }
 
 func (s *BalenciagaService) Categories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -80272,6 +80521,7 @@ type BingSuggestParams struct {
 	Count   *int    `crawlora:"count,omitempty"`
 	Country *string `crawlora:"country,omitempty"`
 	Lang    *string `crawlora:"lang,omitempty"`
+	Rich    *bool   `crawlora:"rich,omitempty"`
 }
 
 type BingSuggestResponse = ModelBingSuggestResponseDoc
@@ -81401,6 +81651,7 @@ type BraveSuggestParams struct {
 	Count   *int    `crawlora:"count,omitempty"`
 	Country *string `crawlora:"country,omitempty"`
 	Lang    *string `crawlora:"lang,omitempty"`
+	Rich    *bool   `crawlora:"rich,omitempty"`
 }
 
 type BraveSuggestResponse = ModelBraveSuggestResponseDoc
@@ -89715,6 +89966,22 @@ func (s *DuckDuckGoSearchService) DuckduckgoShoppingTyped(ctx context.Context, p
 	return requestTyped[DuckDuckGoSearchDuckduckgoShoppingResponse](s.client, ctx, "duckduckgo-shopping", paramsFromStruct(params), opts...)
 }
 
+func (s *DuckDuckGoSearchService) DuckduckgoSuggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "duckduckgo-suggest", params, opts...)
+}
+
+type DuckDuckGoSearchDuckduckgoSuggestParams struct {
+	Q      string  `crawlora:"q"`
+	Count  *int    `crawlora:"count,omitempty"`
+	Region *string `crawlora:"region,omitempty"`
+}
+
+type DuckDuckGoSearchDuckduckgoSuggestResponse = ModelDuckduckgoSuggestResponseDoc
+
+func (s *DuckDuckGoSearchService) DuckduckgoSuggestTyped(ctx context.Context, params DuckDuckGoSearchDuckduckgoSuggestParams, opts ...RequestOption) (DuckDuckGoSearchDuckduckgoSuggestResponse, error) {
+	return requestTyped[DuckDuckGoSearchDuckduckgoSuggestResponse](s.client, ctx, "duckduckgo-suggest", paramsFromStruct(params), opts...)
+}
+
 func (s *DuckDuckGoSearchService) DuckduckgoVideo(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "duckduckgo-video", params, opts...)
 }
@@ -95995,6 +96262,8 @@ type GoogleSuggestParams struct {
 	Count   *int    `crawlora:"count,omitempty"`
 	Country *string `crawlora:"country,omitempty"`
 	Lang    *string `crawlora:"lang,omitempty"`
+	Source  *string `crawlora:"source,omitempty"`
+	Rich    *bool   `crawlora:"rich,omitempty"`
 }
 
 type GoogleSuggestResponse = ModelGoogleSuggestResponseDoc
@@ -96873,6 +97142,43 @@ type GreystarSearchResponse = ModelGreystarSearchResult
 
 func (s *GreystarService) SearchTyped(ctx context.Context, params GreystarSearchParams, opts ...RequestOption) (GreystarSearchResponse, error) {
 	return requestTyped[GreystarSearchResponse](s.client, ctx, "greystar-search", paramsFromStruct(params), opts...)
+}
+
+func (s *GreystarService) UnitLocations(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "greystar-unit-locations", params, opts...)
+}
+
+type GreystarUnitLocationsParams struct {
+	Query *string `crawlora:"query,omitempty"`
+}
+
+type GreystarUnitLocationsResponse = ModelGreystarUnitLocationList
+
+func (s *GreystarService) UnitLocationsTyped(ctx context.Context, params GreystarUnitLocationsParams, opts ...RequestOption) (GreystarUnitLocationsResponse, error) {
+	return requestTyped[GreystarUnitLocationsResponse](s.client, ctx, "greystar-unit-locations", paramsFromStruct(params), opts...)
+}
+
+func (s *GreystarService) Units(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "greystar-units", params, opts...)
+}
+
+type GreystarUnitsParams struct {
+	Location     *string  `crawlora:"location,omitempty"`
+	Bedrooms     []string `crawlora:"bedrooms"`
+	Bathrooms    []string `crawlora:"bathrooms"`
+	BuildingType []string `crawlora:"building_type"`
+	Highlights   []string `crawlora:"highlights"`
+	MinPrice     *float64 `crawlora:"min_price,omitempty"`
+	MaxPrice     *float64 `crawlora:"max_price,omitempty"`
+	Sort         *string  `crawlora:"sort,omitempty"`
+	Page         *int     `crawlora:"page,omitempty"`
+	PerPage      *int     `crawlora:"per_page,omitempty"`
+}
+
+type GreystarUnitsResponse = ModelGreystarUnitSearchResult
+
+func (s *GreystarService) UnitsTyped(ctx context.Context, params GreystarUnitsParams, opts ...RequestOption) (GreystarUnitsResponse, error) {
+	return requestTyped[GreystarUnitsResponse](s.client, ctx, "greystar-units", paramsFromStruct(params), opts...)
 }
 
 type GrubhubService struct{ client *Client }
@@ -113955,6 +114261,24 @@ func (s *QuinceService) SuggestTyped(ctx context.Context, params QuinceSuggestPa
 	return requestTyped[QuinceSuggestResponse](s.client, ctx, "quince-suggest", paramsFromStruct(params), opts...)
 }
 
+type QwantService struct{ client *Client }
+
+func (s *QwantService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "qwant-suggest", params, opts...)
+}
+
+type QwantSuggestParams struct {
+	Q      string  `crawlora:"q"`
+	Count  *int    `crawlora:"count,omitempty"`
+	Locale *string `crawlora:"locale,omitempty"`
+}
+
+type QwantSuggestResponse = ModelQwantSuggestResponseDoc
+
+func (s *QwantService) SuggestTyped(ctx context.Context, params QwantSuggestParams, opts ...RequestOption) (QwantSuggestResponse, error) {
+	return requestTyped[QwantSuggestResponse](s.client, ctx, "qwant-suggest", paramsFromStruct(params), opts...)
+}
+
 type RaisingCaneSService struct{ client *Client }
 
 func (s *RaisingCaneSService) RaisingcanesDirectory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -120747,6 +121071,23 @@ type StarbucksStoresResponse = ModelStarbucksStoresResponseDoc
 
 func (s *StarbucksService) StoresTyped(ctx context.Context, params StarbucksStoresParams, opts ...RequestOption) (StarbucksStoresResponse, error) {
 	return requestTyped[StarbucksStoresResponse](s.client, ctx, "starbucks-stores", paramsFromStruct(params), opts...)
+}
+
+type StartpageService struct{ client *Client }
+
+func (s *StartpageService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "startpage-suggest", params, opts...)
+}
+
+type StartpageSuggestParams struct {
+	Q     string `crawlora:"q"`
+	Count *int   `crawlora:"count,omitempty"`
+}
+
+type StartpageSuggestResponse = ModelStartpageSuggestResponseDoc
+
+func (s *StartpageService) SuggestTyped(ctx context.Context, params StartpageSuggestParams, opts ...RequestOption) (StartpageSuggestResponse, error) {
+	return requestTyped[StartpageSuggestResponse](s.client, ctx, "startpage-suggest", paramsFromStruct(params), opts...)
 }
 
 type MinnesotaStarTribuneService struct{ client *Client }
@@ -130315,6 +130656,39 @@ func (s *YahooTechService) HomeTyped(ctx context.Context, params YahooTechHomePa
 	return requestTyped[YahooTechHomeResponse](s.client, ctx, "yahoo-tech-home", paramsFromStruct(params), opts...)
 }
 
+type YandexService struct{ client *Client }
+
+func (s *YandexService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yandex-search", params, opts...)
+}
+
+type YandexSearchParams struct {
+	Q    string `crawlora:"q"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type YandexSearchResponse = ModelYandexSearchResponseDoc
+
+func (s *YandexService) SearchTyped(ctx context.Context, params YandexSearchParams, opts ...RequestOption) (YandexSearchResponse, error) {
+	return requestTyped[YandexSearchResponse](s.client, ctx, "yandex-search", paramsFromStruct(params), opts...)
+}
+
+func (s *YandexService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "yandex-suggest", params, opts...)
+}
+
+type YandexSuggestParams struct {
+	Q     string  `crawlora:"q"`
+	Count *int    `crawlora:"count,omitempty"`
+	Lang  *string `crawlora:"lang,omitempty"`
+}
+
+type YandexSuggestResponse = ModelYandexSuggestResponseDoc
+
+func (s *YandexService) SuggestTyped(ctx context.Context, params YandexSuggestParams, opts ...RequestOption) (YandexSuggestResponse, error) {
+	return requestTyped[YandexSuggestResponse](s.client, ctx, "yandex-suggest", paramsFromStruct(params), opts...)
+}
+
 type YardbarkerService struct{ client *Client }
 
 func (s *YardbarkerService) Article(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -130719,6 +131093,23 @@ type YouTubeSearchResponse = ModelYoutubeSearchResponseDoc
 
 func (s *YouTubeService) SearchTyped(ctx context.Context, params YouTubeSearchParams, opts ...RequestOption) (YouTubeSearchResponse, error) {
 	return requestTyped[YouTubeSearchResponse](s.client, ctx, "youtube-search", paramsFromStruct(params), opts...)
+}
+
+func (s *YouTubeService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "youtube-suggest", params, opts...)
+}
+
+type YouTubeSuggestParams struct {
+	Q     string  `crawlora:"q"`
+	Count *int    `crawlora:"count,omitempty"`
+	Hl    *string `crawlora:"hl,omitempty"`
+	Gl    *string `crawlora:"gl,omitempty"`
+}
+
+type YouTubeSuggestResponse = ModelYoutubeSuggestResponseDoc
+
+func (s *YouTubeService) SuggestTyped(ctx context.Context, params YouTubeSuggestParams, opts ...RequestOption) (YouTubeSuggestResponse, error) {
+	return requestTyped[YouTubeSuggestResponse](s.client, ctx, "youtube-suggest", paramsFromStruct(params), opts...)
 }
 
 func (s *YouTubeService) Tag(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
