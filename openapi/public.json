@@ -13195,6 +13195,107 @@
       },
       "type": "object"
     },
+    "baidu.SearchPagination": {
+      "properties": {
+        "next_page": {
+          "example": 2,
+          "type": "integer"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "baidu.SearchResponse": {
+      "properties": {
+        "pagination": {
+          "$ref": "#/definitions/baidu.SearchPagination"
+        },
+        "query": {
+          "example": "openai",
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/baidu.SearchResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "baidu.SearchResult": {
+      "properties": {
+        "date": {
+          "example": "2025年10月30日",
+          "type": "string"
+        },
+        "description": {
+          "example": "据路透社援引知情人士爆料，OpenAI 正推进最早于2027年的上市计划",
+          "type": "string"
+        },
+        "position": {
+          "example": 1,
+          "type": "integer"
+        },
+        "source": {
+          "example": "新浪财经",
+          "type": "string"
+        },
+        "title": {
+          "example": "OpenAI 万亿估值之谜",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "web",
+            "video",
+            "baike"
+          ],
+          "example": "web",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://baijiahao.baidu.com/s?id=1847370812297480431",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "baidu.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/baidu.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "baidu.suggestResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/suggest.Response"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "balenciaga.CategoriesResponse": {
       "properties": {
         "categories": {
@@ -18863,8 +18964,28 @@
       },
       "type": "object"
     },
+    "bing.SuggestionEntity": {
+      "properties": {
+        "description": {
+          "example": "American AI company",
+          "type": "string"
+        },
+        "image_url": {
+          "example": "https://ts3.tc.mm.bing.net/th/id/OSK.example?w=120&h=120",
+          "type": "string"
+        },
+        "name": {
+          "example": "OpenAI",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "bing.SuggestionResult": {
       "properties": {
+        "entity": {
+          "$ref": "#/definitions/bing.SuggestionEntity"
+        },
         "position": {
           "example": 1,
           "type": "integer"
@@ -23917,8 +24038,36 @@
       },
       "type": "object"
     },
+    "brave.SuggestionEntity": {
+      "properties": {
+        "category": {
+          "example": "person",
+          "type": "string"
+        },
+        "description": {
+          "example": "American singer-songwriter (born 1989)",
+          "type": "string"
+        },
+        "image_url": {
+          "example": "https://imgs.search.brave.com/example.jpg",
+          "type": "string"
+        },
+        "logo": {
+          "example": false,
+          "type": "boolean"
+        },
+        "name": {
+          "example": "Taylor Swift",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "brave.SuggestionResult": {
       "properties": {
+        "entity": {
+          "$ref": "#/definitions/brave.SuggestionEntity"
+        },
         "position": {
           "example": 1,
           "type": "integer"
@@ -48817,6 +48966,22 @@
         },
         "data": {
           "$ref": "#/definitions/duckduckgo.ShoppingResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "duckduckgo.suggestResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/suggest.Response"
         },
         "msg": {
           "example": "OK",
@@ -74142,6 +74307,10 @@
           "example": "openai",
           "type": "string"
         },
+        "source": {
+          "example": "web",
+          "type": "string"
+        },
         "suggestions": {
           "items": {
             "$ref": "#/definitions/google.SuggestionResult"
@@ -74153,12 +74322,24 @@
     },
     "google.SuggestionResult": {
       "properties": {
+        "description": {
+          "example": "OpenAI Blog",
+          "type": "string"
+        },
         "position": {
           "example": 1,
           "type": "integer"
         },
         "query": {
           "example": "openai api",
+          "type": "string"
+        },
+        "relevance": {
+          "example": 601,
+          "type": "integer"
+        },
+        "type": {
+          "example": "QUERY",
           "type": "string"
         }
       },
@@ -77116,6 +77297,17 @@
       },
       "type": "object"
     },
+    "greystar.FacetCount": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "greystar.Fee": {
       "properties": {
         "amount": {
@@ -77208,6 +77400,47 @@
         },
         "width": {
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "greystar.ListedUnit": {
+      "properties": {
+        "banner": {
+          "type": "string"
+        },
+        "bathrooms": {
+          "type": "number"
+        },
+        "bedrooms": {
+          "type": "number"
+        },
+        "floorplan": {
+          "type": "string"
+        },
+        "max_price": {
+          "type": "number"
+        },
+        "min_base_rent_lease_term": {
+          "type": "integer"
+        },
+        "min_price": {
+          "type": "number"
+        },
+        "price": {
+          "type": "number"
+        },
+        "required_monthly_fees_max": {
+          "type": "number"
+        },
+        "required_monthly_fees_min": {
+          "type": "number"
+        },
+        "unit_id": {
+          "type": "string"
+        },
+        "unit_number": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -77724,6 +77957,139 @@
         },
         "unit_number": {
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "greystar.UnitFacets": {
+      "properties": {
+        "bathrooms": {
+          "items": {
+            "$ref": "#/definitions/greystar.FacetCount"
+          },
+          "type": "array"
+        },
+        "bedrooms": {
+          "items": {
+            "$ref": "#/definitions/greystar.FacetCount"
+          },
+          "type": "array"
+        },
+        "building_types": {
+          "items": {
+            "$ref": "#/definitions/greystar.FacetCount"
+          },
+          "type": "array"
+        },
+        "highlights": {
+          "items": {
+            "$ref": "#/definitions/greystar.FacetCount"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "greystar.UnitLocation": {
+      "properties": {
+        "location": {
+          "type": "string"
+        },
+        "parent": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "greystar.UnitLocationList": {
+      "properties": {
+        "locations": {
+          "items": {
+            "$ref": "#/definitions/greystar.UnitLocation"
+          },
+          "type": "array"
+        },
+        "total_count": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "greystar.UnitProperty": {
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "matching_units": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "property_id": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "state_name": {
+          "type": "string"
+        },
+        "thumbnail_url": {
+          "type": "string"
+        },
+        "units": {
+          "items": {
+            "$ref": "#/definitions/greystar.ListedUnit"
+          },
+          "type": "array"
+        },
+        "units_truncated": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "greystar.UnitSearchResult": {
+      "properties": {
+        "facets": {
+          "$ref": "#/definitions/greystar.UnitFacets"
+        },
+        "location": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "per_page": {
+          "type": "integer"
+        },
+        "properties": {
+          "items": {
+            "$ref": "#/definitions/greystar.UnitProperty"
+          },
+          "type": "array"
+        },
+        "total_count": {
+          "type": "integer"
+        },
+        "total_pages": {
+          "type": "integer"
         }
       },
       "type": "object"
@@ -89016,17 +89382,6 @@
       },
       "type": "object"
     },
-    "instagram.ImageVersions": {
-      "properties": {
-        "candidates": {
-          "items": {
-            "$ref": "#/definitions/instagram.ImageCandidate"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "instagram.ImageVersions2": {
       "properties": {
         "candidates": {
@@ -89069,7 +89424,7 @@
           "type": "string"
         },
         "image_versions2": {
-          "$ref": "#/definitions/instagram.ImageVersions"
+          "$ref": "#/definitions/instagram.ReelImageVersions"
         },
         "like_count": {
           "type": "integer"
@@ -89250,6 +89605,31 @@
         "width": {
           "example": 750,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "instagram.ReelImageCandidate": {
+      "properties": {
+        "height": {
+          "type": "integer"
+        },
+        "url": {
+          "type": "string"
+        },
+        "width": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "instagram.ReelImageVersions": {
+      "properties": {
+        "candidates": {
+          "items": {
+            "$ref": "#/definitions/instagram.ReelImageCandidate"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -137596,6 +137976,22 @@
       },
       "type": "object"
     },
+    "qwant.suggestResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/suggest.Response"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "raisingcanes.DirectoryChild": {
       "properties": {
         "is_store": {
@@ -165531,6 +165927,22 @@
       },
       "type": "object"
     },
+    "startpage.suggestResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/suggest.Response"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "steam.AchievementsResponse": {
       "properties": {
         "achievements": {
@@ -171663,6 +172075,34 @@
         },
         "msg": {
           "description": "Msg is the message that describes the result of the request\n@example \"Request successful\""
+        }
+      },
+      "type": "object"
+    },
+    "suggest.Response": {
+      "properties": {
+        "query": {
+          "example": "openai",
+          "type": "string"
+        },
+        "suggestions": {
+          "items": {
+            "$ref": "#/definitions/suggest.Suggestion"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "suggest.Suggestion": {
+      "properties": {
+        "position": {
+          "example": 1,
+          "type": "integer"
+        },
+        "query": {
+          "example": "openai api key",
+          "type": "string"
         }
       },
       "type": "object"
@@ -192622,6 +193062,9 @@
           "example": "",
           "type": "string"
         },
+        "dedicated": {
+          "type": "boolean"
+        },
         "formats": {
           "example": [
             "markdown"
@@ -202869,6 +203312,94 @@
       },
       "type": "object"
     },
+    "yandex.SearchPagination": {
+      "properties": {
+        "next_page": {
+          "example": 2,
+          "type": "integer"
+        },
+        "page": {
+          "example": 1,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "yandex.SearchResponse": {
+      "properties": {
+        "pagination": {
+          "$ref": "#/definitions/yandex.SearchPagination"
+        },
+        "query": {
+          "example": "openai",
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/definitions/yandex.SearchResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "yandex.SearchResult": {
+      "properties": {
+        "description": {
+          "example": "OpenAI is an AI research and deployment company.",
+          "type": "string"
+        },
+        "display_url": {
+          "example": "openai.com",
+          "type": "string"
+        },
+        "position": {
+          "example": 1,
+          "type": "integer"
+        },
+        "title": {
+          "example": "OpenAI | Research & Deployment",
+          "type": "string"
+        },
+        "url": {
+          "example": "https://openai.com/",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "yandex.searchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/yandex.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "yandex.suggestResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/suggest.Response"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "yardbarker.AuthorResponse": {
       "properties": {
         "articles": {
@@ -204515,6 +205046,22 @@
         },
         "data": {
           "$ref": "#/definitions/youtube.SearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "youtube.suggestResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/suggest.Response"
         },
         "msg": {
           "example": "OK",
@@ -223141,6 +223688,150 @@
         ]
       }
     },
+    "/baidu/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized Baidu result cards for a query, read from Baidu's mobile search page: title, destination URL, snippet, publisher, and date, with page-based pagination. Each result's `type` is `web` (standard pages), `video` (video cards), or `baike` (Baidu Baike encyclopedia entries); answer widgets such as weather, entity panels, and recommendation lists are not returned. Baidu challenges a portion of requests with a security verification page; the service retries across browser profiles and returns 503 if every attempt is challenged, so callers should retry on 503.",
+        "operationId": "baidu-search",
+        "parameters": [
+          {
+            "description": "Search query",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string",
+            "x-example": "openai"
+          },
+          {
+            "description": "1-based result page; defaults to 1, maximum 10",
+            "in": "query",
+            "maximum": 10,
+            "minimum": 1,
+            "name": "page",
+            "type": "integer",
+            "x-example": 1
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/baidu.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Baidu upstream request failed or was challenged with a security verification",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Baidu web results",
+        "tags": [
+          "Baidu"
+        ]
+      }
+    },
+    "/baidu/suggest": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns Baidu search-box autocomplete completions for a query prefix, in Baidu's own ranking order. Baidu never returns more than 10 suggestions per prefix; Chinese prefixes are supported.",
+        "operationId": "baidu-suggest",
+        "parameters": [
+          {
+            "description": "Search query prefix",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string",
+            "x-example": "openai"
+          },
+          {
+            "description": "Suggestions to return; defaults to 10, clamped to 1..10",
+            "in": "query",
+            "maximum": 10,
+            "minimum": 1,
+            "name": "count",
+            "type": "integer",
+            "x-example": 10
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/baidu.suggestResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Baidu upstream request failed",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Suggest Baidu search queries",
+        "tags": [
+          "Baidu"
+        ]
+      }
+    },
     "/balenciaga/categories": {
       "get": {
         "consumes": [
@@ -227579,7 +228270,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns Bing autosuggest query completions for a query prefix. Locale defaults to country=us and lang=en-us. Suggestions are fetched from public Bing suggest endpoints and trimmed to the requested count.",
+        "description": "Returns Bing autosuggest query completions for a query prefix. Locale defaults to country=us and lang=en-us. Suggestions are fetched from public Bing suggest endpoints and trimmed to the requested count. `rich=true` adds entity cards (name, description, image) where Bing shows them.",
         "operationId": "bing-suggest",
         "parameters": [
           {
@@ -227612,6 +228303,13 @@
             "name": "lang",
             "type": "string",
             "x-example": "en-us"
+          },
+          {
+            "description": "Add entity name, description, and image to suggestions Bing resolves to a known entity; defaults to false",
+            "in": "query",
+            "name": "rich",
+            "type": "boolean",
+            "x-example": false
           }
         ],
         "produces": [
@@ -233070,7 +233768,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns Brave autosuggest query completions for a query prefix. Locale defaults to country=us and lang=en-us. Suggestions are fetched from public Brave Search suggest JSON and trimmed to the requested count.",
+        "description": "Returns Brave autosuggest query completions for a query prefix. Locale defaults to country=us and lang=en-us. Suggestions are fetched from public Brave Search suggest JSON and trimmed to the requested count. `rich=true` adds entity metadata (name, description, category, image) where Brave resolves a suggestion to a known entity.",
         "operationId": "brave-suggest",
         "parameters": [
           {
@@ -233159,6 +233857,13 @@
             "name": "lang",
             "type": "string",
             "x-example": "en-us"
+          },
+          {
+            "description": "Add entity name, description, category, and image to suggestions Brave resolves to a known entity; defaults to false",
+            "in": "query",
+            "name": "rich",
+            "type": "boolean",
+            "x-example": false
           }
         ],
         "produces": [
@@ -272505,6 +273210,85 @@
         ]
       }
     },
+    "/duckduckgo/suggest": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns DuckDuckGo search-box autocomplete completions for a query prefix, in DuckDuckGo's own ranking order. DuckDuckGo never returns more than 8 suggestions per prefix.",
+        "operationId": "duckduckgo-suggest",
+        "parameters": [
+          {
+            "description": "Search query prefix",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string",
+            "x-example": "openai"
+          },
+          {
+            "description": "Suggestions to return; defaults to 8, clamped to 1..8",
+            "in": "query",
+            "maximum": 8,
+            "minimum": 1,
+            "name": "count",
+            "type": "integer",
+            "x-example": 8
+          },
+          {
+            "description": "DuckDuckGo region code such as us-en, uk-en, de-de, or wt-wt (worldwide, the default)",
+            "in": "query",
+            "name": "region",
+            "type": "string",
+            "x-example": "us-en"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/duckduckgo.suggestResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Suggest DuckDuckGo search queries",
+        "tags": [
+          "DuckDuckGo Search"
+        ]
+      }
+    },
     "/duckduckgo/video": {
       "get": {
         "consumes": [
@@ -300530,7 +301314,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns Google autosuggest query completions from the public unauthenticated suggest JSON endpoint.",
+        "description": "Returns Google autosuggest query completions from the public unauthenticated suggest JSON endpoint. `source` selects the web, YouTube, or shopping suggestion list, and `rich=true` adds a type, relevance score, and short description to each suggestion.",
         "operationId": "google-suggest",
         "parameters": [
           {
@@ -300563,6 +301347,25 @@
             "name": "lang",
             "type": "string",
             "x-example": "en"
+          },
+          {
+            "default": "web",
+            "description": "Suggestion source; defaults to web",
+            "enum": [
+              "web",
+              "youtube",
+              "shopping"
+            ],
+            "in": "query",
+            "name": "source",
+            "type": "string"
+          },
+          {
+            "description": "Add Google's type, relevance score, and description to each suggestion; defaults to false",
+            "in": "query",
+            "name": "rich",
+            "type": "boolean",
+            "x-example": false
           }
         ],
         "produces": [
@@ -304848,7 +305651,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Lists Greystar communities published on greystar.com, optionally filtered by market area, neighborhood, city, state, country, starting rent, or free text. Filter values must come from /greystar/markets; an unknown value returns 400. Starting prices reflect each community's published minimum and are null when none is published. Results come from a snapshot refreshed every few minutes.",
+        "description": "Lists Greystar communities published on greystar.com, optionally filtered by market area, neighborhood, city, state, country, starting rent, or free text. Filter values must come from /greystar/markets; an unknown value returns 400. Starting prices reflect each community's published minimum and are null when none is published. Results come from an hourly snapshot of every community listed on greystar.com; the default order follows the site.",
         "operationId": "greystar-search",
         "parameters": [
           {
@@ -304901,7 +305704,7 @@
           },
           {
             "default": "relevance",
-            "description": "Result order",
+            "description": "Result order; relevance keeps the site's own order",
             "enum": [
               "relevance",
               "name",
@@ -304962,6 +305765,240 @@
           }
         ],
         "summary": "Search Greystar apartment communities",
+        "tags": [
+          "Greystar"
+        ]
+      }
+    },
+    "/greystar/unit-locations": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Lists every location accepted by /greystar/units: the nationwide us listing, states, metros, cities, and neighborhoods (nested ones carry their parent), taken from the site's own search pages. Locations Greystar has no unit listing for are dropped once detected.",
+        "operationId": "greystar-unit-locations",
+        "parameters": [
+          {
+            "description": "Text matched against the location slug, e.g. austin",
+            "in": "query",
+            "name": "query",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/greystar.UnitLocationList"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Greystar unit search locations",
+        "tags": [
+          "Greystar"
+        ]
+      }
+    },
+    "/greystar/units": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches apartment units currently available to rent on greystar.com within one location (nationwide by default), filtered by bedrooms, bathrooms, building type, community highlights, and monthly price, sorted by relevance or price. Results are grouped by community: each carries its address, coordinates, the number of matching units, and up to about 100 units with unit number, floor plan, bedrooms, bathrooms, price range, and lease term. The response also returns filter counts for the location. Several values of one filter match any of them. Get location values from /greystar/unit-locations.",
+        "operationId": "greystar-units",
+        "parameters": [
+          {
+            "default": "us",
+            "description": "Search location slug from /greystar/unit-locations, e.g. austin-tx, texas or greater-austin/round-rock",
+            "in": "query",
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "Bedroom count; repeat for several (0 is studio)",
+            "in": "query",
+            "items": {
+              "enum": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ],
+              "type": "string"
+            },
+            "name": "bedrooms",
+            "type": "array"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "Bathroom count; repeat for several",
+            "in": "query",
+            "items": {
+              "enum": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4"
+              ],
+              "type": "string"
+            },
+            "name": "bathrooms",
+            "type": "array"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "Building type; repeat for several",
+            "in": "query",
+            "items": {
+              "enum": [
+                "Active Adult",
+                "Garden",
+                "High-Rise",
+                "Mid-Rise",
+                "Single Family Home",
+                "Student",
+                "Townhome"
+              ],
+              "type": "string"
+            },
+            "name": "building_type",
+            "type": "array"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "Community highlight; repeat for several (matches any)",
+            "in": "query",
+            "items": {
+              "enum": [
+                "airCon",
+                "dishwasher",
+                "eco",
+                "fitness",
+                "garages",
+                "limitedAccess",
+                "patioBalcony",
+                "pets",
+                "playground",
+                "pools",
+                "smokeFree",
+                "walkInClosets",
+                "washerDryer"
+              ],
+              "type": "string"
+            },
+            "name": "highlights",
+            "type": "array"
+          },
+          {
+            "description": "Minimum monthly unit price",
+            "in": "query",
+            "name": "min_price",
+            "type": "number"
+          },
+          {
+            "description": "Maximum monthly unit price",
+            "in": "query",
+            "name": "max_price",
+            "type": "number"
+          },
+          {
+            "default": "relevance",
+            "description": "Result order",
+            "enum": [
+              "relevance",
+              "price_asc"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "default": 1,
+            "description": "1-based page",
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "default": 20,
+            "description": "Communities per page, 1-100",
+            "in": "query",
+            "name": "per_page",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/greystar.UnitSearchResult"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search available Greystar apartment units",
         "tags": [
           "Greystar"
         ]
@@ -318055,7 +319092,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns a feed of Instagram Reels for the specified user ID. Supports pagination via `max_id`.",
+        "description": "Returns up to 12 public Reels via anonymous proxied HTTP for the numeric Instagram user ID. Supports opaque `max_id` pagination. Captions, timestamps and original image dimensions are omitted when the public source does not expose them.",
         "operationId": "instagram-reels",
         "parameters": [
           {
@@ -381707,7 +382744,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns the core Product Hunt product details.",
+        "description": "Returns the core Product Hunt product details. The path takes an exact Product Hunt slug; if you only know the product name, look the slug up first with `/producthunt/search` (live) or `/datasets/producthunt-products/search` (indexed). Unknown slugs return 404, and that 404 is cached for one hour.",
         "operationId": "producthunt-product",
         "parameters": [
           {
@@ -385145,6 +386182,85 @@
         "summary": "Get Quince search suggestions",
         "tags": [
           "Quince"
+        ]
+      }
+    },
+    "/qwant/suggest": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns Qwant search-box autocomplete completions for a query prefix, in Qwant's own ranking order. `locale` selects the Qwant market (en_US, fr_FR, de_DE, en_GB, ...); Qwant ignores locale codes it does not support and uses its default market.",
+        "operationId": "qwant-suggest",
+        "parameters": [
+          {
+            "description": "Search query prefix",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string",
+            "x-example": "openai"
+          },
+          {
+            "description": "Suggestions to return; defaults to 10, clamped to 1..10",
+            "in": "query",
+            "maximum": 10,
+            "minimum": 1,
+            "name": "count",
+            "type": "integer",
+            "x-example": 10
+          },
+          {
+            "description": "Qwant market locale in ll_CC form, such as en_US, fr_FR, de_DE, or en_GB; defaults to en_US",
+            "in": "query",
+            "name": "locale",
+            "type": "string",
+            "x-example": "en_US"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/qwant.suggestResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Qwant upstream request failed",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Suggest Qwant search queries",
+        "tags": [
+          "Qwant"
         ]
       }
     },
@@ -415562,6 +416678,78 @@
         "summary": "Find nearby Starbucks stores worldwide",
         "tags": [
           "Starbucks"
+        ]
+      }
+    },
+    "/startpage/suggest": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns Startpage search-box autocomplete completions for a query prefix, in Startpage's own ranking order. Startpage never returns more than 10 suggestions per prefix.",
+        "operationId": "startpage-suggest",
+        "parameters": [
+          {
+            "description": "Search query prefix",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string",
+            "x-example": "openai"
+          },
+          {
+            "description": "Suggestions to return; defaults to 10, clamped to 1..10",
+            "in": "query",
+            "maximum": 10,
+            "minimum": 1,
+            "name": "count",
+            "type": "integer",
+            "x-example": 10
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/startpage.suggestResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Startpage upstream request failed",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Suggest Startpage search queries",
+        "tags": [
+          "Startpage"
         ]
       }
     },
@@ -446589,7 +447777,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Fetches a single public URL and returns clean content in the requested formats (markdown, html, raw_html, links, metadata). The request body IS the ScrapeOption object itself — e.g. {\"url\": \"https://example.com\"} — do not wrap it in an extra key. With render=auto the request starts as a fast HTTP fetch and escalates to a real browser when the page is blocked or rendered with JavaScript; backend only pins a specific headless-browser engine for the browser tier and is not a render mode. only_main_content (default true) strips navigation, headers, footers and other boilerplate before conversion. Only public pages are supported; respect each site's terms of use and robots directives. A handful of popular sites (Amazon, Reddit, Yelp, LinkedIn, and others) already have a dedicated, more reliable endpoint elsewhere in this API — a failed scrape against one of them names it.",
+        "description": "Fetches a single public URL and returns clean content in the requested formats (markdown, html, raw_html, links, metadata). The request body IS the ScrapeOption object itself — e.g. {\"url\": \"https://example.com\"} — do not wrap it in an extra key. With render=auto the request starts as a fast HTTP fetch and escalates to a real browser when the page is blocked or rendered with JavaScript; backend only pins a specific headless-browser engine for the browser tier and is not a render mode. only_main_content (default true) strips navigation, headers, footers and other boilerplate before conversion. Only public pages are supported; respect each site's terms of use and robots directives. A handful of popular sites (Amazon, Reddit, Yelp, LinkedIn, and others) already have a dedicated, more reliable endpoint elsewhere in this API — a failed scrape against one of them names it. A Reddit URL that maps onto a dedicated Reddit endpoint (listings, search, comment threads, user and domain pages) is answered by that endpoint instead, and its response is returned as-is in data with an X-Routed-To header; send dedicated=false to always get the scraped page.",
         "operationId": "web-scrape",
         "parameters": [
           {
@@ -457148,6 +458336,157 @@
         ]
       }
     },
+    "/yandex/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns normalized organic Yandex web results for a query: title, destination URL, display URL, and snippet, with page-based pagination. Advertisements are not returned. Yandex challenges a portion of requests with a captcha; the service retries across browser profiles and returns 503 if every attempt is challenged, so callers should retry on 503. Results are localized by Yandex to the egress location.",
+        "operationId": "yandex-search",
+        "parameters": [
+          {
+            "description": "Search query",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string",
+            "x-example": "openai"
+          },
+          {
+            "description": "1-based result page; defaults to 1, maximum 10",
+            "in": "query",
+            "maximum": 10,
+            "minimum": 1,
+            "name": "page",
+            "type": "integer",
+            "x-example": 1
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/yandex.searchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Yandex upstream request failed or was challenged with a captcha",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Yandex web results",
+        "tags": [
+          "Yandex"
+        ]
+      }
+    },
+    "/yandex/suggest": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns Yandex search-box autocomplete completions for a query prefix, in Yandex's own ranking order. `lang` is the two-letter Yandex UI language (en, ru, tr, ...) and re-ranks the list; Yandex ignores codes it does not support.",
+        "operationId": "yandex-suggest",
+        "parameters": [
+          {
+            "description": "Search query prefix",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string",
+            "x-example": "openai"
+          },
+          {
+            "description": "Suggestions to return; defaults to 10, clamped to 1..20",
+            "in": "query",
+            "maximum": 20,
+            "minimum": 1,
+            "name": "count",
+            "type": "integer",
+            "x-example": 10
+          },
+          {
+            "description": "Two-letter Yandex UI language, such as en, ru, or tr; defaults to en",
+            "in": "query",
+            "name": "lang",
+            "type": "string",
+            "x-example": "en"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/yandex.suggestResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Yandex upstream request failed",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Suggest Yandex search queries",
+        "tags": [
+          "Yandex"
+        ]
+      }
+    },
     "/yardbarker/article": {
       "get": {
         "description": "Extracts metadata and the publicly served text paragraphs from a canonical Yardbarker story URL. Quiz, account, player, and non-article URLs are rejected.",
@@ -458882,6 +460221,92 @@
           }
         ],
         "summary": "Search YouTube",
+        "tags": [
+          "YouTube"
+        ]
+      }
+    },
+    "/youtube/suggest": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns YouTube search-box autocomplete completions for a query prefix, in YouTube's own ranking order.\n`hl` and `gl` localize the list; they default to `en` and `US`.",
+        "operationId": "youtube-suggest",
+        "parameters": [
+          {
+            "description": "Search query prefix",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string",
+            "x-example": "openai"
+          },
+          {
+            "description": "Suggestions to return; defaults to 10, clamped to 1..20",
+            "in": "query",
+            "maximum": 20,
+            "minimum": 1,
+            "name": "count",
+            "type": "integer",
+            "x-example": 10
+          },
+          {
+            "description": "YouTube interface language, such as en, de, or pt-BR; defaults to en",
+            "in": "query",
+            "name": "hl",
+            "type": "string",
+            "x-example": "en"
+          },
+          {
+            "description": "Two-letter YouTube region code; defaults to US",
+            "in": "query",
+            "name": "gl",
+            "type": "string",
+            "x-example": "US"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/youtube.suggestResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "YouTube upstream request failed",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Suggest YouTube search queries",
         "tags": [
           "YouTube"
         ]

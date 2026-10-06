@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.46.0-sdk.1
+
+- Regenerated from the public API contract (3539 operations).
+
 ## v1.45.0-sdk.1
 
 - Regenerated from the public API contract (3529 operations).
