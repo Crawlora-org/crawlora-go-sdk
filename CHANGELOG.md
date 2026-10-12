@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.47.0-sdk.1
+
+- Regenerated from the public API contract (3695 operations).
+- `sofascore-search-typed` is exposed as `SofaScore.SofascoreSearchTypedRaw` and `SofaScore.SofascoreSearchTypedRawTyped`, because `SofascoreSearchTyped` is already the typed helper for `sofascore-search`.
+
 ## v1.46.0-sdk.1
 
 - Regenerated from the public API contract (3539 operations).

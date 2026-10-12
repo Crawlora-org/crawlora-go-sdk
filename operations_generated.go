@@ -1405,7 +1405,10 @@ type ModelAltSoldListing struct {
 	GradingCompany string          `json:"grading_company,omitempty"`
 	Id             string          `json:"id,omitempty"`
 	Images         []ModelAltImage `json:"images,omitempty"`
+	ListingId      string          `json:"listing_id,omitempty"`
+	ListingType    string          `json:"listing_type,omitempty"`
 	Name           string          `json:"name,omitempty"`
+	PaymentState   string          `json:"payment_state,omitempty"`
 	Pop            int             `json:"pop,omitempty"`
 	Price          float64         `json:"price,omitempty"`
 	SoldDate       string          `json:"sold_date,omitempty"`
@@ -4700,42 +4703,62 @@ type ModelBarronsTopicsResponseDoc struct {
 	Msg  string                     `json:"msg,omitempty"`
 }
 
+type ModelBbbBusinessAlert struct {
+	Id     string                      `json:"id,omitempty"`
+	Links  []ModelBbbBusinessAlertLink `json:"links,omitempty"`
+	Text   string                      `json:"text,omitempty"`
+	Title  string                      `json:"title,omitempty"`
+	TypeId int                         `json:"type_id,omitempty"`
+	Url    string                      `json:"url,omitempty"`
+}
+
+type ModelBbbBusinessAlertLink struct {
+	Text string `json:"text,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
 type ModelBbbBusinessHoursDay struct {
 	Day   string `json:"day,omitempty"`
 	Hours string `json:"hours,omitempty"`
 }
 
 type ModelBbbBusinessResponse struct {
-	Accredited             bool                       `json:"accredited,omitempty"`
-	AccreditedSince        string                     `json:"accredited_since,omitempty"`
-	AdditionalPhoneNumbers []string                   `json:"additional_phone_numbers,omitempty"`
-	AdditionalWebsites     []string                   `json:"additional_websites,omitempty"`
-	Address                string                     `json:"address,omitempty"`
-	AlternateNames         []string                   `json:"alternate_names,omitempty"`
-	BbbFileOpened          string                     `json:"bbb_file_opened,omitempty"`
-	BusinessIncorporated   string                     `json:"business_incorporated,omitempty"`
-	BusinessManagement     string                     `json:"business_management,omitempty"`
-	BusinessStarted        string                     `json:"business_started,omitempty"`
-	Categories             []string                   `json:"categories,omitempty"`
-	Category               string                     `json:"category,omitempty"`
-	EntityType             string                     `json:"entity_type,omitempty"`
-	Hours                  []ModelBbbBusinessHoursDay `json:"hours,omitempty"`
-	ImageUrl               string                     `json:"image_url,omitempty"`
-	LatestReviews          []ModelBbbReviewPreview    `json:"latest_reviews,omitempty"`
-	LicensingNote          string                     `json:"licensing_note,omitempty"`
-	LocalBbb               string                     `json:"local_bbb,omitempty"`
-	LocalBbbUrl            string                     `json:"local_bbb_url,omitempty"`
-	MoreInfoUrl            string                     `json:"more_info_url,omitempty"`
-	Name                   string                     `json:"name,omitempty"`
-	Phone                  string                     `json:"phone,omitempty"`
-	ProductsAndServices    []string                   `json:"products_and_services,omitempty"`
-	Rating                 string                     `json:"rating,omitempty"`
-	RatingReasons          []string                   `json:"rating_reasons,omitempty"`
-	SocialMedia            []string                   `json:"social_media,omitempty"`
-	SourceUrl              string                     `json:"source_url,omitempty"`
-	Url                    string                     `json:"url,omitempty"`
-	Website                string                     `json:"website,omitempty"`
-	YearsInBusiness        string                     `json:"years_in_business,omitempty"`
+	Accredited                   bool                       `json:"accredited,omitempty"`
+	AccreditedSince              string                     `json:"accredited_since,omitempty"`
+	AdditionalPhoneNumbers       []string                   `json:"additional_phone_numbers,omitempty"`
+	AdditionalWebsites           []string                   `json:"additional_websites,omitempty"`
+	Address                      string                     `json:"address,omitempty"`
+	Alerts                       []ModelBbbBusinessAlert    `json:"alerts,omitempty"`
+	AlternateNames               []string                   `json:"alternate_names,omitempty"`
+	AverageReviewRating          float64                    `json:"average_review_rating,omitempty"`
+	BbbFileOpened                string                     `json:"bbb_file_opened,omitempty"`
+	BusinessIncorporated         string                     `json:"business_incorporated,omitempty"`
+	BusinessManagement           string                     `json:"business_management,omitempty"`
+	BusinessStarted              string                     `json:"business_started,omitempty"`
+	Categories                   []string                   `json:"categories,omitempty"`
+	Category                     string                     `json:"category,omitempty"`
+	ComplaintsClosedLast12Months int                        `json:"complaints_closed_last_12_months,omitempty"`
+	ComplaintsClosedLast3Years   int                        `json:"complaints_closed_last_3_years,omitempty"`
+	EntityType                   string                     `json:"entity_type,omitempty"`
+	Hours                        []ModelBbbBusinessHoursDay `json:"hours,omitempty"`
+	ImageUrl                     string                     `json:"image_url,omitempty"`
+	LatestReviews                []ModelBbbReviewPreview    `json:"latest_reviews,omitempty"`
+	LicensingNote                string                     `json:"licensing_note,omitempty"`
+	LocalBbb                     string                     `json:"local_bbb,omitempty"`
+	LocalBbbUrl                  string                     `json:"local_bbb_url,omitempty"`
+	MoreInfoUrl                  string                     `json:"more_info_url,omitempty"`
+	Name                         string                     `json:"name,omitempty"`
+	Phone                        string                     `json:"phone,omitempty"`
+	ProductsAndServices          []string                   `json:"products_and_services,omitempty"`
+	Rating                       string                     `json:"rating,omitempty"`
+	RatingReasons                []string                   `json:"rating_reasons,omitempty"`
+	SocialMedia                  []string                   `json:"social_media,omitempty"`
+	SourceUrl                    string                     `json:"source_url,omitempty"`
+	TotalComplaints              int                        `json:"total_complaints,omitempty"`
+	TotalReviews                 int                        `json:"total_reviews,omitempty"`
+	Url                          string                     `json:"url,omitempty"`
+	Website                      string                     `json:"website,omitempty"`
+	YearsInBusiness              string                     `json:"years_in_business,omitempty"`
 }
 
 type ModelBbbBusinessSearchResult struct {
@@ -4753,10 +4776,13 @@ type ModelBbbBusinessSearchResult struct {
 }
 
 type ModelBbbCategoryResponse struct {
-	Page         int                            `json:"page,omitempty"`
-	Results      []ModelBbbBusinessSearchResult `json:"results,omitempty"`
-	SourceUrl    string                         `json:"source_url,omitempty"`
-	TotalResults int                            `json:"total_results,omitempty"`
+	HasMore       bool                           `json:"has_more,omitempty"`
+	Page          int                            `json:"page,omitempty"`
+	Results       []ModelBbbBusinessSearchResult `json:"results,omitempty"`
+	ResultsCapped bool                           `json:"results_capped,omitempty"`
+	SourceUrl     string                         `json:"source_url,omitempty"`
+	TotalPages    int                            `json:"total_pages,omitempty"`
+	TotalResults  int                            `json:"total_results,omitempty"`
 }
 
 type ModelBbbComplaint struct {
@@ -4779,10 +4805,16 @@ type ModelBbbComplaintsResponse struct {
 	ClosedLast12Months       int                 `json:"closed_last_12_months,omitempty"`
 	Complaints               []ModelBbbComplaint `json:"complaints,omitempty"`
 	ComplaintsListIncomplete bool                `json:"complaints_list_incomplete,omitempty"`
+	FiledLast12Months        int                 `json:"filed_last_12_months,omitempty"`
+	HasMore                  bool                `json:"has_more,omitempty"`
+	HiddenComplaints         int                 `json:"hidden_complaints,omitempty"`
+	Page                     int                 `json:"page,omitempty"`
 	PeriodText               string              `json:"period_text,omitempty"`
+	PublishedComplaints      int                 `json:"published_complaints,omitempty"`
 	SourceUrl                string              `json:"source_url,omitempty"`
 	SubmitComplaintUrl       string              `json:"submit_complaint_url,omitempty"`
 	TotalComplaints          int                 `json:"total_complaints,omitempty"`
+	TotalPages               int                 `json:"total_pages,omitempty"`
 }
 
 type ModelBbbMoreInfoResponse struct {
@@ -4829,14 +4861,39 @@ type ModelBbbReviewsResponse struct {
 	TotalReviews  int                  `json:"total_reviews,omitempty"`
 }
 
+type ModelBbbSearchFilterValue struct {
+	Label string `json:"label,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelBbbSearchFiltersResponse struct {
+	Categories   []ModelBbbSearchFilterValue `json:"categories,omitempty"`
+	Country      string                      `json:"country,omitempty"`
+	Location     string                      `json:"location,omitempty"`
+	Page         int                         `json:"page,omitempty"`
+	Query        string                      `json:"query,omitempty"`
+	Sorts        []ModelBbbSearchSortOption  `json:"sorts,omitempty"`
+	States       []ModelBbbSearchFilterValue `json:"states,omitempty"`
+	TotalResults int                         `json:"total_results,omitempty"`
+}
+
 type ModelBbbSearchResponse struct {
+	HasMore           bool                           `json:"has_more,omitempty"`
 	Location          string                         `json:"location,omitempty"`
 	Page              int                            `json:"page,omitempty"`
 	Query             string                         `json:"query,omitempty"`
 	RelatedCategories []ModelBbbRelatedCategory      `json:"related_categories,omitempty"`
 	Results           []ModelBbbBusinessSearchResult `json:"results,omitempty"`
+	ResultsCapped     bool                           `json:"results_capped,omitempty"`
 	SourceUrl         string                         `json:"source_url,omitempty"`
+	TotalPages        int                            `json:"total_pages,omitempty"`
 	TotalResults      int                            `json:"total_results,omitempty"`
+}
+
+type ModelBbbSearchSortOption struct {
+	IsActive bool   `json:"is_active,omitempty"`
+	Label    string `json:"label,omitempty"`
+	Value    string `json:"value,omitempty"`
 }
 
 type ModelBbbBusinessResponseDoc struct {
@@ -4869,10 +4926,179 @@ type ModelBbbReviewsResponseDoc struct {
 	Msg  string                  `json:"msg,omitempty"`
 }
 
+type ModelBbbSearchFiltersResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelBbbSearchFiltersResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
 type ModelBbbSearchResponseDoc struct {
 	Code int                    `json:"code,omitempty"`
 	Data ModelBbbSearchResponse `json:"data,omitempty"`
 	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelBbbdirectoryBbbevent struct {
+	EndsAt   string `json:"ends_at,omitempty"`
+	StartsAt string `json:"starts_at,omitempty"`
+	Summary  string `json:"summary,omitempty"`
+	Title    string `json:"title,omitempty"`
+	Url      string `json:"url,omitempty"`
+}
+
+type ModelBbbdirectoryCountryRegions struct {
+	Code    string                          `json:"code,omitempty"`
+	Name    string                          `json:"name,omitempty"`
+	Regions []ModelBbbdirectoryRegionOption `json:"regions,omitempty"`
+}
+
+type ModelBbbdirectoryLocalBbbchapter struct {
+	Id           string                    `json:"id,omitempty"`
+	Name         string                    `json:"name,omitempty"`
+	Offices      []ModelBbbdirectoryOffice `json:"offices,omitempty"`
+	OpenToPublic bool                      `json:"open_to_public,omitempty"`
+	Url          string                    `json:"url,omitempty"`
+}
+
+type ModelBbbdirectoryLocalBbbresponse struct {
+	About            string                      `json:"about,omitempty"`
+	Events           []ModelBbbdirectoryBbbevent `json:"events,omitempty"`
+	Id               string                      `json:"id,omitempty"`
+	Languages        []string                    `json:"languages,omitempty"`
+	Name             string                      `json:"name,omitempty"`
+	Offices          []ModelBbbdirectoryOffice   `json:"offices,omitempty"`
+	OpenToPublic     bool                        `json:"open_to_public,omitempty"`
+	ServiceTerritory []string                    `json:"service_territory,omitempty"`
+	Tagline          string                      `json:"tagline,omitempty"`
+	Url              string                      `json:"url,omitempty"`
+}
+
+type ModelBbbdirectoryLocalBbbsResponse struct {
+	Chapters []ModelBbbdirectoryLocalBbbchapter `json:"chapters,omitempty"`
+	Country  string                             `json:"country,omitempty"`
+	Region   ModelBbbdirectoryRegionOption      `json:"region,omitempty"`
+}
+
+type ModelBbbdirectoryOffice struct {
+	Address          ModelBbbdirectoryOfficeAddress `json:"address,omitempty"`
+	Contact          ModelBbbdirectoryOfficeContact `json:"contact,omitempty"`
+	FormattedAddress string                         `json:"formatted_address,omitempty"`
+	IsPrimary        bool                           `json:"is_primary,omitempty"`
+	Jurisdictions    []string                       `json:"jurisdictions,omitempty"`
+	OfficeHours      []string                       `json:"office_hours,omitempty"`
+	PhoneHours       []string                       `json:"phone_hours,omitempty"`
+	Type             string                         `json:"type,omitempty"`
+}
+
+type ModelBbbdirectoryOfficeAddress struct {
+	City          string `json:"city,omitempty"`
+	Country       string `json:"country,omitempty"`
+	County        string `json:"county,omitempty"`
+	Line1         string `json:"line1,omitempty"`
+	Line2         string `json:"line2,omitempty"`
+	LocationName  string `json:"location_name,omitempty"`
+	PostalCode    string `json:"postal_code,omitempty"`
+	StateProvince string `json:"state_province,omitempty"`
+}
+
+type ModelBbbdirectoryOfficeContact struct {
+	Email       string `json:"email,omitempty"`
+	FaxNumber   string `json:"fax_number,omitempty"`
+	PhoneNumber string `json:"phone_number,omitempty"`
+}
+
+type ModelBbbdirectoryRegionOption struct {
+	Code string `json:"code,omitempty"`
+	Name string `json:"name,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelBbbdirectoryRegionsResponse struct {
+	Countries []ModelBbbdirectoryCountryRegions `json:"countries,omitempty"`
+}
+
+type ModelBbbdirectoryLocalBbbresponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelBbbdirectoryLocalBbbresponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelBbbdirectoryLocalBbbsResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelBbbdirectoryLocalBbbsResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelBbbdirectoryRegionsResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelBbbdirectoryRegionsResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelBbbnewsArticleResponse struct {
+	Authors     []ModelBbbnewsAuthor `json:"authors,omitempty"`
+	Body        string               `json:"body,omitempty"`
+	Id          string               `json:"id,omitempty"`
+	Image       ModelBbbnewsImage    `json:"image,omitempty"`
+	Links       []ModelBbbnewsLink   `json:"links,omitempty"`
+	ModifiedAt  string               `json:"modified_at,omitempty"`
+	PublishedAt string               `json:"published_at,omitempty"`
+	SourceUrl   string               `json:"source_url,omitempty"`
+	Summary     string               `json:"summary,omitempty"`
+	Title       string               `json:"title,omitempty"`
+	Topics      []string             `json:"topics,omitempty"`
+	Type        string               `json:"type,omitempty"`
+}
+
+type ModelBbbnewsAuthor struct {
+	Name string `json:"name,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelBbbnewsImage struct {
+	AltText string `json:"alt_text,omitempty"`
+	Caption string `json:"caption,omitempty"`
+	Credit  string `json:"credit,omitempty"`
+	Url     string `json:"url,omitempty"`
+}
+
+type ModelBbbnewsLink struct {
+	Text string `json:"text,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelBbbnewsNewsItem struct {
+	EventStartDate string            `json:"event_start_date,omitempty"`
+	EventUrl       string            `json:"event_url,omitempty"`
+	Id             string            `json:"id,omitempty"`
+	Image          ModelBbbnewsImage `json:"image,omitempty"`
+	ModifiedDate   string            `json:"modified_date,omitempty"`
+	Summary        string            `json:"summary,omitempty"`
+	Title          string            `json:"title,omitempty"`
+	Type           string            `json:"type,omitempty"`
+	Url            string            `json:"url,omitempty"`
+}
+
+type ModelBbbnewsNewsResponse struct {
+	Country   string                 `json:"country,omitempty"`
+	Items     []ModelBbbnewsNewsItem `json:"items,omitempty"`
+	Page      int                    `json:"page,omitempty"`
+	PageSize  int                    `json:"page_size,omitempty"`
+	SourceUrl string                 `json:"source_url,omitempty"`
+	Topic     string                 `json:"topic,omitempty"`
+	Total     int                    `json:"total,omitempty"`
+}
+
+type ModelBbbnewsTopic struct {
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelBbbnewsTopicsResponse struct {
+	Country   string              `json:"country,omitempty"`
+	SourceUrl string              `json:"source_url,omitempty"`
+	Topics    []ModelBbbnewsTopic `json:"topics,omitempty"`
 }
 
 type ModelBbbscamtrackerDetailResponse struct {
@@ -4908,18 +5134,19 @@ type ModelBbbscamtrackerScamTypeShare struct {
 }
 
 type ModelBbbscamtrackerSearchResponse struct {
-	DateFrom       string                          `json:"date_from,omitempty"`
-	DateTo         string                          `json:"date_to,omitempty"`
-	MaxDollarsLost int                             `json:"max_dollars_lost,omitempty"`
-	MinDollarsLost int                             `json:"min_dollars_lost,omitempty"`
-	Page           int                             `json:"page,omitempty"`
-	Query          string                          `json:"query,omitempty"`
-	Results        []ModelBbbscamtrackerScamResult `json:"results,omitempty"`
-	ScamType       string                          `json:"scam_type,omitempty"`
-	ScammerState   string                          `json:"scammer_state,omitempty"`
-	SourceUrl      string                          `json:"source_url,omitempty"`
-	State          string                          `json:"state,omitempty"`
-	TotalResults   int                             `json:"total_results,omitempty"`
+	DateFrom               string                          `json:"date_from,omitempty"`
+	DateTo                 string                          `json:"date_to,omitempty"`
+	MaxDollarsLost         int                             `json:"max_dollars_lost,omitempty"`
+	MinDollarsLost         int                             `json:"min_dollars_lost,omitempty"`
+	Page                   int                             `json:"page,omitempty"`
+	Query                  string                          `json:"query,omitempty"`
+	Results                []ModelBbbscamtrackerScamResult `json:"results,omitempty"`
+	ScamType               string                          `json:"scam_type,omitempty"`
+	ScammerState           string                          `json:"scammer_state,omitempty"`
+	SourceUrl              string                          `json:"source_url,omitempty"`
+	State                  string                          `json:"state,omitempty"`
+	TotalResults           int                             `json:"total_results,omitempty"`
+	TotalResultsLowerBound bool                            `json:"total_results_lower_bound,omitempty"`
 }
 
 type ModelBbbscamtrackerStateStat struct {
@@ -11696,6 +11923,117 @@ type ModelCourtlistenerSearchResponseDoc struct {
 	Msg  string                           `json:"msg,omitempty"`
 }
 
+type ModelCrawlretrievalCrawlFailureDoc struct {
+	Message           string `json:"message,omitempty"`
+	Reason            string `json:"reason,omitempty"`
+	RetryAfterSeconds int    `json:"retry_after_seconds,omitempty"`
+	Retryable         bool   `json:"retryable,omitempty"`
+}
+
+type ModelCrawlretrievalCrawlFetchDoc struct {
+	MaxAge          int    `json:"max_age,omitempty"`
+	OnlyMainContent bool   `json:"only_main_content,omitempty"`
+	Render          string `json:"render,omitempty"`
+	WaitFor         int    `json:"wait_for,omitempty"`
+}
+
+type ModelCrawlretrievalCrawlJobStatusDoc struct {
+	CancelRequested  bool                                 `json:"cancel_requested,omitempty"`
+	CompletionReason string                               `json:"completion_reason,omitempty"`
+	CreatedAt        string                               `json:"created_at,omitempty"`
+	DeadlineAt       string                               `json:"deadline_at,omitempty"`
+	Error            ModelCrawlretrievalCrawlFailureDoc   `json:"error,omitempty"`
+	ExpiresAt        string                               `json:"expires_at,omitempty"`
+	JobId            string                               `json:"job_id,omitempty"`
+	Kind             string                               `json:"kind,omitempty"`
+	Partial          bool                                 `json:"partial,omitempty"`
+	Progress         ModelRetrievaltypesJobProgress       `json:"progress,omitempty"`
+	State            string                               `json:"state,omitempty"`
+	UpdatedAt        string                               `json:"updated_at,omitempty"`
+	Usage            ModelRetrievaltypesUsage             `json:"usage,omitempty"`
+	Warnings         []ModelCrawlretrievalCrawlWarningDoc `json:"warnings,omitempty"`
+}
+
+type ModelCrawlretrievalCrawlJobSubmissionDoc struct {
+	DeadlineAt string `json:"deadline_at,omitempty"`
+	JobId      string `json:"job_id,omitempty"`
+	Replayed   bool   `json:"replayed,omitempty"`
+	ResultsUrl string `json:"results_url,omitempty"`
+	State      string `json:"state,omitempty"`
+	StatusUrl  string `json:"status_url,omitempty"`
+}
+
+type ModelCrawlretrievalCrawlLimitsDoc struct {
+	MaxBrowserRenders int `json:"max_browser_renders,omitempty"`
+	MaxCredits        int `json:"max_credits"`
+	MaxDepth          int `json:"max_depth,omitempty"`
+	MaxPages          int `json:"max_pages,omitempty"`
+	MaxTotalBytes     int `json:"max_total_bytes,omitempty"`
+	TimeoutSeconds    int `json:"timeout_seconds,omitempty"`
+}
+
+type ModelCrawlretrievalCrawlOutcomeDoc struct {
+	Depth    int                                `json:"depth,omitempty"`
+	Document ModelRetrievaltypesDocument        `json:"document,omitempty"`
+	Failure  ModelCrawlretrievalCrawlFailureDoc `json:"failure,omitempty"`
+	Outcome  string                             `json:"outcome,omitempty"`
+	Sequence int                                `json:"sequence,omitempty"`
+	Url      string                             `json:"url,omitempty"`
+}
+
+type ModelCrawlretrievalCrawlRequestDoc struct {
+	Fetch          ModelCrawlretrievalCrawlFetchDoc  `json:"fetch,omitempty"`
+	IdempotencyKey string                            `json:"idempotency_key"`
+	Limits         ModelCrawlretrievalCrawlLimitsDoc `json:"limits"`
+	Scope          ModelCrawlretrievalCrawlScopeDoc  `json:"scope,omitempty"`
+	Sitemap        string                            `json:"sitemap,omitempty"`
+	Url            string                            `json:"url"`
+}
+
+type ModelCrawlretrievalCrawlResultsDoc struct {
+	ExpiresAt        string                               `json:"expires_at,omitempty"`
+	HasMore          bool                                 `json:"has_more,omitempty"`
+	Items            []ModelCrawlretrievalCrawlOutcomeDoc `json:"items,omitempty"`
+	JobId            string                               `json:"job_id,omitempty"`
+	NextCursor       string                               `json:"next_cursor,omitempty"`
+	Partial          bool                                 `json:"partial,omitempty"`
+	Progress         ModelRetrievaltypesJobProgress       `json:"progress,omitempty"`
+	SnapshotSequence int                                  `json:"snapshot_sequence,omitempty"`
+	State            string                               `json:"state,omitempty"`
+	Usage            ModelRetrievaltypesUsage             `json:"usage,omitempty"`
+}
+
+type ModelCrawlretrievalCrawlResultsEnvelope struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelCrawlretrievalCrawlResultsDoc `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelCrawlretrievalCrawlScopeDoc struct {
+	ExcludePaths      []string `json:"exclude_paths,omitempty"`
+	IncludePaths      []string `json:"include_paths,omitempty"`
+	IncludeSubdomains bool     `json:"include_subdomains,omitempty"`
+	QueryPolicy       string   `json:"query_policy,omitempty"`
+}
+
+type ModelCrawlretrievalCrawlStatusEnvelope struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelCrawlretrievalCrawlJobStatusDoc `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelCrawlretrievalCrawlSubmissionEnvelope struct {
+	Code int                                      `json:"code,omitempty"`
+	Data ModelCrawlretrievalCrawlJobSubmissionDoc `json:"data,omitempty"`
+	Msg  string                                   `json:"msg,omitempty"`
+}
+
+type ModelCrawlretrievalCrawlWarningDoc struct {
+	Code     string `json:"code,omitempty"`
+	Message  string `json:"message,omitempty"`
+	SourceId string `json:"source_id,omitempty"`
+}
+
 type ModelCreativecenterHashtagTopCreator struct {
 	AvatarUrl     string `json:"avatar_url,omitempty"`
 	CountryCode   string `json:"country_code,omitempty"`
@@ -13265,6 +13603,44 @@ type ModelDatasetsJournalistsSearchResponse struct {
 	Total    int                       `json:"total,omitempty"`
 }
 
+type ModelDatasetsLlmsFacetResponse struct {
+	Dataset string                        `json:"dataset,omitempty"`
+	Facet   string                        `json:"facet,omitempty"`
+	Items   []ModelEsLlmsDatasetFacetItem `json:"items,omitempty"`
+}
+
+type ModelDatasetsLlmsRecord struct {
+	AnalyzerVersion  string            `json:"analyzer_version,omitempty"`
+	Category         string            `json:"category,omitempty"`
+	Domain           string            `json:"domain,omitempty"`
+	Full             ModelEsLlmsFile   `json:"full,omitempty"`
+	HomeBlocked      bool              `json:"home_blocked,omitempty"`
+	HomeChallenge    bool              `json:"home_challenge,omitempty"`
+	HomeStatus       int               `json:"home_status,omitempty"`
+	IsInfrastructure bool              `json:"is_infrastructure,omitempty"`
+	Llms             ModelEsLlmsFile   `json:"llms,omitempty"`
+	MethodVersion    string            `json:"method_version,omitempty"`
+	Origin           string            `json:"origin,omitempty"`
+	ProbeError       string            `json:"probe_error,omitempty"`
+	ProbedAt         string            `json:"probed_at,omitempty"`
+	Rank             int               `json:"rank,omitempty"`
+	Reachable        bool              `json:"reachable,omitempty"`
+	Robots           ModelEsLlmsRobots `json:"robots,omitempty"`
+	RunDate          string            `json:"run_date,omitempty"`
+	RunId            string            `json:"run_id,omitempty"`
+	SeedSource       string            `json:"seed_source,omitempty"`
+	Tld              string            `json:"tld,omitempty"`
+}
+
+type ModelDatasetsLlmsSearchResponse struct {
+	Dataset  string                    `json:"dataset,omitempty"`
+	Items    []ModelDatasetsLlmsRecord `json:"items,omitempty"`
+	Page     int                       `json:"page,omitempty"`
+	PageSize int                       `json:"page_size,omitempty"`
+	Sort     string                    `json:"sort,omitempty"`
+	Total    int                       `json:"total,omitempty"`
+}
+
 type ModelDatasetsNumbeoCityFacetResponse struct {
 	Dataset string                          `json:"dataset,omitempty"`
 	Facet   string                          `json:"facet,omitempty"`
@@ -13443,6 +13819,21 @@ type ModelDatasetsReviewsSearchResponse struct {
 	PageSize int                `json:"page_size,omitempty"`
 	Sort     string             `json:"sort,omitempty"`
 	Total    int                `json:"total,omitempty"`
+}
+
+type ModelDatasetsScamTrackerReportsFacetResponse struct {
+	Dataset string                               `json:"dataset,omitempty"`
+	Facet   string                               `json:"facet,omitempty"`
+	Items   []ModelEsScamTrackerReportsFacetItem `json:"items,omitempty"`
+}
+
+type ModelDatasetsScamTrackerReportsSearchResponse struct {
+	Dataset  string                     `json:"dataset,omitempty"`
+	Items    []ModelEsScamTrackerReport `json:"items,omitempty"`
+	Page     int                        `json:"page,omitempty"`
+	PageSize int                        `json:"page_size,omitempty"`
+	Sort     string                     `json:"sort,omitempty"`
+	Total    int                        `json:"total,omitempty"`
 }
 
 type ModelDatasetsSecCompanyFacetResponse struct {
@@ -13985,6 +14376,24 @@ type ModelDatasetsListResponseDoc struct {
 	Msg  string                           `json:"msg,omitempty"`
 }
 
+type ModelDatasetsLlmsFacetResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelDatasetsLlmsFacetResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelDatasetsLlmsItemResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelDatasetsLlmsRecord `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelDatasetsLlmsSearchResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelDatasetsLlmsSearchResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
 type ModelDatasetsNumbeoCitiesFacetResponseDoc struct {
 	Code int                                  `json:"code,omitempty"`
 	Data ModelDatasetsNumbeoCityFacetResponse `json:"data,omitempty"`
@@ -14181,6 +14590,24 @@ type ModelDatasetsReviewsSearchResponseDoc struct {
 	Code int                                `json:"code,omitempty"`
 	Data ModelDatasetsReviewsSearchResponse `json:"data,omitempty"`
 	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelDatasetsScamTrackerReportResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelEsScamTrackerReport `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelDatasetsScamTrackerReportsFacetResponseDoc struct {
+	Code int                                          `json:"code,omitempty"`
+	Data ModelDatasetsScamTrackerReportsFacetResponse `json:"data,omitempty"`
+	Msg  string                                       `json:"msg,omitempty"`
+}
+
+type ModelDatasetsScamTrackerReportsSearchResponseDoc struct {
+	Code int                                           `json:"code,omitempty"`
+	Data ModelDatasetsScamTrackerReportsSearchResponse `json:"data,omitempty"`
+	Msg  string                                        `json:"msg,omitempty"`
 }
 
 type ModelDatasetsSecCompaniesFacetResponseDoc struct {
@@ -14842,6 +15269,97 @@ type ModelDepopSuggestResponseDoc struct {
 	Code int                       `json:"code,omitempty"`
 	Data ModelDepopSuggestResponse `json:"data,omitempty"`
 	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelDeveloperretrievalArtifactType = string
+
+type ModelDeveloperretrievalDeveloperHit struct {
+	Id         string                              `json:"id,omitempty"`
+	IndexedAt  string                              `json:"indexed_at,omitempty"`
+	Passages   []ModelRetrievaltypesPassage        `json:"passages,omitempty"`
+	Rank       int                                 `json:"rank,omitempty"`
+	Repository string                              `json:"repository,omitempty"`
+	Revision   string                              `json:"revision,omitempty"`
+	SourceId   string                              `json:"source_id,omitempty"`
+	Title      string                              `json:"title,omitempty"`
+	Type       ModelDeveloperretrievalArtifactType `json:"type,omitempty"`
+	UpdatedAt  string                              `json:"updated_at,omitempty"`
+	Url        string                              `json:"url,omitempty"`
+	Version    string                              `json:"version,omitempty"`
+}
+
+type ModelDeveloperretrievalDeveloperSearchRequest struct {
+	Cursor            string                                `json:"cursor,omitempty"`
+	Limit             int                                   `json:"limit,omitempty"`
+	PassagesPerResult int                                   `json:"passages_per_result,omitempty"`
+	Q                 string                                `json:"q,omitempty"`
+	Sources           []string                              `json:"sources,omitempty"`
+	Types             []ModelDeveloperretrievalArtifactType `json:"types,omitempty"`
+	Version           string                                `json:"version,omitempty"`
+}
+
+type ModelDeveloperretrievalDeveloperCoverageDoc struct {
+	CorpusRevision string                                     `json:"corpus_revision,omitempty"`
+	Failure        ModelDeveloperretrievalDeveloperFailureDoc `json:"failure,omitempty"`
+	IndexedAt      string                                     `json:"indexed_at,omitempty"`
+	RetrievedAt    string                                     `json:"retrieved_at,omitempty"`
+	SourceId       string                                     `json:"source_id,omitempty"`
+	Status         string                                     `json:"status,omitempty"`
+}
+
+type ModelDeveloperretrievalDeveloperFailureDoc struct {
+	Message           string `json:"message,omitempty"`
+	Reason            string `json:"reason,omitempty"`
+	RetryAfterSeconds int    `json:"retry_after_seconds,omitempty"`
+	Retryable         bool   `json:"retryable,omitempty"`
+}
+
+type ModelDeveloperretrievalDeveloperSearchDataDoc struct {
+	Coverage   []ModelDeveloperretrievalDeveloperCoverageDoc `json:"coverage,omitempty"`
+	HasMore    bool                                          `json:"has_more,omitempty"`
+	Items      []ModelDeveloperretrievalDeveloperHit         `json:"items,omitempty"`
+	NextCursor string                                        `json:"next_cursor,omitempty"`
+	Partial    bool                                          `json:"partial,omitempty"`
+	Usage      ModelRetrievaltypesUsage                      `json:"usage,omitempty"`
+	Warnings   []ModelDeveloperretrievalDeveloperWarningDoc  `json:"warnings,omitempty"`
+}
+
+type ModelDeveloperretrievalDeveloperSearchResponseDoc struct {
+	Code int                                           `json:"code,omitempty"`
+	Data ModelDeveloperretrievalDeveloperSearchDataDoc `json:"data,omitempty"`
+	Msg  string                                        `json:"msg,omitempty"`
+}
+
+type ModelDeveloperretrievalDeveloperSourceDescriptorDoc struct {
+	ArtifactTypes  []string `json:"artifact_types,omitempty"`
+	Corpus         string   `json:"corpus,omitempty"`
+	CorpusRevision string   `json:"corpus_revision,omitempty"`
+	Filters        []string `json:"filters,omitempty"`
+	LastSuccessAt  string   `json:"last_success_at,omitempty"`
+	Name           string   `json:"name,omitempty"`
+	Operations     []string `json:"operations,omitempty"`
+	SourceId       string   `json:"source_id,omitempty"`
+	State          string   `json:"state,omitempty"`
+	Url            string   `json:"url,omitempty"`
+}
+
+type ModelDeveloperretrievalDeveloperSourcesDataDoc struct {
+	HasMore          bool                                                  `json:"has_more,omitempty"`
+	Items            []ModelDeveloperretrievalDeveloperSourceDescriptorDoc `json:"items,omitempty"`
+	NextCursor       string                                                `json:"next_cursor,omitempty"`
+	RegistryRevision string                                                `json:"registry_revision,omitempty"`
+}
+
+type ModelDeveloperretrievalDeveloperSourcesResponseDoc struct {
+	Code int                                            `json:"code,omitempty"`
+	Data ModelDeveloperretrievalDeveloperSourcesDataDoc `json:"data,omitempty"`
+	Msg  string                                         `json:"msg,omitempty"`
+}
+
+type ModelDeveloperretrievalDeveloperWarningDoc struct {
+	Code     string `json:"code,omitempty"`
+	Message  string `json:"message,omitempty"`
+	SourceId string `json:"source_id,omitempty"`
 }
 
 type ModelDiagnosticsAntibotCheckRequest struct {
@@ -16751,50 +17269,72 @@ type ModelEsApplePodcastsShowsDatasetFacetItem struct {
 	Value string `json:"value,omitempty"`
 }
 
+type ModelEsBbbbusinessAlert struct {
+	Id     string                        `json:"id,omitempty"`
+	Links  []ModelEsBbbbusinessAlertLink `json:"links,omitempty"`
+	Text   string                        `json:"text,omitempty"`
+	Title  string                        `json:"title,omitempty"`
+	TypeId int                           `json:"type_id,omitempty"`
+	Url    string                        `json:"url,omitempty"`
+}
+
+type ModelEsBbbbusinessAlertLink struct {
+	Text string `json:"text,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
 type ModelEsBbbbusinessHoursDay struct {
 	Day   string `json:"day,omitempty"`
 	Hours string `json:"hours,omitempty"`
 }
 
 type ModelEsBbbbusinessRecord struct {
-	Accredited             bool                         `json:"accredited,omitempty"`
-	AccreditedSince        string                       `json:"accredited_since,omitempty"`
-	AdditionalPhoneNumbers []string                     `json:"additional_phone_numbers,omitempty"`
-	AdditionalWebsites     []string                     `json:"additional_websites,omitempty"`
-	Address                string                       `json:"address,omitempty"`
-	AlternateNames         []string                     `json:"alternate_names,omitempty"`
-	BbbFileOpened          string                       `json:"bbb_file_opened,omitempty"`
-	BbbLocalId             string                       `json:"bbb_local_id,omitempty"`
-	BusinessId             string                       `json:"business_id,omitempty"`
-	BusinessIncorporated   string                       `json:"business_incorporated,omitempty"`
-	BusinessManagement     string                       `json:"business_management,omitempty"`
-	BusinessStarted        string                       `json:"business_started,omitempty"`
-	Categories             []string                     `json:"categories,omitempty"`
-	Category               string                       `json:"category,omitempty"`
-	City                   string                       `json:"city,omitempty"`
-	ComplaintsUrl          string                       `json:"complaints_url,omitempty"`
-	Country                string                       `json:"country,omitempty"`
-	CrawledAt              string                       `json:"crawled_at,omitempty"`
-	DiscoverySource        string                       `json:"discovery_source,omitempty"`
-	EntityType             string                       `json:"entity_type,omitempty"`
-	Hours                  []ModelEsBbbbusinessHoursDay `json:"hours,omitempty"`
-	LicensingNote          string                       `json:"licensing_note,omitempty"`
-	MoreInfoUrl            string                       `json:"more_info_url,omitempty"`
-	Name                   string                       `json:"name,omitempty"`
-	Phone                  string                       `json:"phone,omitempty"`
-	ProductsAndServices    []string                     `json:"products_and_services,omitempty"`
-	Rating                 string                       `json:"rating,omitempty"`
-	RatingRank             int                          `json:"rating_rank,omitempty"`
-	RatingReasons          []string                     `json:"rating_reasons,omitempty"`
-	ReviewsUrl             string                       `json:"reviews_url,omitempty"`
-	RunId                  string                       `json:"run_id,omitempty"`
-	SchemaVersion          int                          `json:"schema_version,omitempty"`
-	SocialMedia            []string                     `json:"social_media,omitempty"`
-	State                  string                       `json:"state,omitempty"`
-	Url                    string                       `json:"url,omitempty"`
-	Website                string                       `json:"website,omitempty"`
-	YearsInBusiness        string                       `json:"years_in_business,omitempty"`
-	YearsInBusinessNum     int                          `json:"years_in_business_num,omitempty"`
+	Accredited                   bool                         `json:"accredited,omitempty"`
+	AccreditedSince              string                       `json:"accredited_since,omitempty"`
+	AdditionalPhoneNumbers       []string                     `json:"additional_phone_numbers,omitempty"`
+	AdditionalWebsites           []string                     `json:"additional_websites,omitempty"`
+	Address                      string                       `json:"address,omitempty"`
+	AlertTitles                  []string                     `json:"alert_titles,omitempty"`
+	Alerts                       []ModelEsBbbbusinessAlert    `json:"alerts,omitempty"`
+	AlternateNames               []string                     `json:"alternate_names,omitempty"`
+	AverageReviewRating          float64                      `json:"average_review_rating,omitempty"`
+	BbbFileOpened                string                       `json:"bbb_file_opened,omitempty"`
+	BbbLocalId                   string                       `json:"bbb_local_id,omitempty"`
+	BusinessId                   string                       `json:"business_id,omitempty"`
+	BusinessIncorporated         string                       `json:"business_incorporated,omitempty"`
+	BusinessManagement           string                       `json:"business_management,omitempty"`
+	BusinessStarted              string                       `json:"business_started,omitempty"`
+	Categories                   []string                     `json:"categories,omitempty"`
+	Category                     string                       `json:"category,omitempty"`
+	City                         string                       `json:"city,omitempty"`
+	ComplaintsClosedLast12Months int                          `json:"complaints_closed_last_12_months,omitempty"`
+	ComplaintsClosedLast3Years   int                          `json:"complaints_closed_last_3_years,omitempty"`
+	ComplaintsUrl                string                       `json:"complaints_url,omitempty"`
+	Country                      string                       `json:"country,omitempty"`
+	CrawledAt                    string                       `json:"crawled_at,omitempty"`
+	DiscoverySource              string                       `json:"discovery_source,omitempty"`
+	EntityType                   string                       `json:"entity_type,omitempty"`
+	HasAlerts                    bool                         `json:"has_alerts,omitempty"`
+	Hours                        []ModelEsBbbbusinessHoursDay `json:"hours,omitempty"`
+	LicensingNote                string                       `json:"licensing_note,omitempty"`
+	MoreInfoUrl                  string                       `json:"more_info_url,omitempty"`
+	Name                         string                       `json:"name,omitempty"`
+	Phone                        string                       `json:"phone,omitempty"`
+	ProductsAndServices          []string                     `json:"products_and_services,omitempty"`
+	Rating                       string                       `json:"rating,omitempty"`
+	RatingRank                   int                          `json:"rating_rank,omitempty"`
+	RatingReasons                []string                     `json:"rating_reasons,omitempty"`
+	ReviewsUrl                   string                       `json:"reviews_url,omitempty"`
+	RunId                        string                       `json:"run_id,omitempty"`
+	SchemaVersion                int                          `json:"schema_version,omitempty"`
+	SocialMedia                  []string                     `json:"social_media,omitempty"`
+	State                        string                       `json:"state,omitempty"`
+	TotalComplaints              int                          `json:"total_complaints,omitempty"`
+	TotalReviews                 int                          `json:"total_reviews,omitempty"`
+	Url                          string                       `json:"url,omitempty"`
+	Website                      string                       `json:"website,omitempty"`
+	YearsInBusiness              string                       `json:"years_in_business,omitempty"`
+	YearsInBusinessNum           int                          `json:"years_in_business_num,omitempty"`
 }
 
 type ModelEsBbbbusinessesFacetItem struct {
@@ -17584,6 +18124,72 @@ type ModelEsJournalistsFacetItem struct {
 	Value string `json:"value,omitempty"`
 }
 
+type ModelEsLlmsCrawlerStance struct {
+	Explicit bool   `json:"explicit,omitempty"`
+	Stance   string `json:"stance,omitempty"`
+}
+
+type ModelEsLlmsDatasetFacetItem struct {
+	Count int    `json:"count,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelEsLlmsFile struct {
+	Body            string   `json:"body,omitempty"`
+	BodySha256      string   `json:"body_sha256,omitempty"`
+	BodyTruncated   bool     `json:"body_truncated,omitempty"`
+	BodyWithheld    string   `json:"body_withheld,omitempty"`
+	Bots            []string `json:"bots,omitempty"`
+	Bytes           int      `json:"bytes,omitempty"`
+	ContentType     string   `json:"content_type,omitempty"`
+	CtypeMismatch   bool     `json:"ctype_mismatch,omitempty"`
+	ExternalHosts   int      `json:"external_hosts,omitempty"`
+	FetchedAt       string   `json:"fetched_at,omitempty"`
+	FinalUrl        string   `json:"final_url,omitempty"`
+	Generator       string   `json:"generator,omitempty"`
+	HasOptional     bool     `json:"has_optional,omitempty"`
+	Injection       bool     `json:"injection,omitempty"`
+	Kind            string   `json:"kind,omitempty"`
+	LinkHosts       []string `json:"link_hosts,omitempty"`
+	Links           int      `json:"links,omitempty"`
+	LinksWithNote   int      `json:"links_with_note,omitempty"`
+	LlmArtifact     bool     `json:"llm_artifact,omitempty"`
+	MarkdownLinks   int      `json:"markdown_links,omitempty"`
+	MentionsApi     bool     `json:"mentions_api,omitempty"`
+	MentionsMcp     bool     `json:"mentions_mcp,omitempty"`
+	MentionsOpenapi bool     `json:"mentions_openapi,omitempty"`
+	MentionsSitemap bool     `json:"mentions_sitemap,omitempty"`
+	Placeholder     bool     `json:"placeholder,omitempty"`
+	Policy          []string `json:"policy,omitempty"`
+	Sections        int      `json:"sections,omitempty"`
+	SourceKind      string   `json:"source_kind,omitempty"`
+	State           string   `json:"state,omitempty"`
+	Status          int      `json:"status,omitempty"`
+	Summary         string   `json:"summary,omitempty"`
+	TemplateKey     string   `json:"template_key,omitempty"`
+	Title           string   `json:"title,omitempty"`
+	Valid           bool     `json:"valid,omitempty"`
+}
+
+type ModelEsLlmsRobots struct {
+	AllAiBlocked    bool                                `json:"all_ai_blocked,omitempty"`
+	Bytes           int                                 `json:"bytes,omitempty"`
+	ContentSignal   map[string]string                   `json:"content_signal,omitempty"`
+	CrawlDelaySecs  int                                 `json:"crawl_delay_secs,omitempty"`
+	Crawlers        map[string]ModelEsLlmsCrawlerStance `json:"crawlers,omitempty"`
+	DefaultStance   string                              `json:"default_stance,omitempty"`
+	FetchedAt       string                              `json:"fetched_at,omitempty"`
+	Groups          int                                 `json:"groups,omitempty"`
+	Kind            string                              `json:"kind,omitempty"`
+	MentionsAi      bool                                `json:"mentions_ai,omitempty"`
+	MentionsLlmsTxt bool                                `json:"mentions_llms_txt,omitempty"`
+	Rules           int                                 `json:"rules,omitempty"`
+	Sitemaps        []string                            `json:"sitemaps,omitempty"`
+	State           string                              `json:"state,omitempty"`
+	Status          int                                 `json:"status,omitempty"`
+	TrainBlocked    int                                 `json:"train_blocked,omitempty"`
+}
+
 type ModelEsNumbeoCityRecord struct {
 	City                                  string                    `json:"city,omitempty"`
 	CitySlug                              string                    `json:"city_slug,omitempty"`
@@ -17941,6 +18547,33 @@ type ModelEsRedditTrendingEntry struct {
 	Subreddit    string `json:"subreddit,omitempty"`
 	Title        string `json:"title,omitempty"`
 	Url          string `json:"url,omitempty"`
+}
+
+type ModelEsScamTrackerReport struct {
+	BusinessName     string  `json:"business_name,omitempty"`
+	Country          string  `json:"country,omitempty"`
+	CrawledAt        string  `json:"crawled_at,omitempty"`
+	DateReported     string  `json:"date_reported,omitempty"`
+	Description      string  `json:"description,omitempty"`
+	DiscoverySource  string  `json:"discovery_source,omitempty"`
+	DollarsLost      string  `json:"dollars_lost,omitempty"`
+	LossAmount       float64 `json:"loss_amount,omitempty"`
+	ReportId         string  `json:"report_id,omitempty"`
+	ReportedAt       string  `json:"reported_at,omitempty"`
+	ScamType         string  `json:"scam_type,omitempty"`
+	ScammerEmail     string  `json:"scammer_email,omitempty"`
+	ScammerLocation  string  `json:"scammer_location,omitempty"`
+	ScammerPhone     string  `json:"scammer_phone,omitempty"`
+	ScammerUrl       string  `json:"scammer_url,omitempty"`
+	SchemaVersion    int     `json:"schema_version,omitempty"`
+	SourceUrl        string  `json:"source_url,omitempty"`
+	State            string  `json:"state,omitempty"`
+	TargetedLocation string  `json:"targeted_location,omitempty"`
+}
+
+type ModelEsScamTrackerReportsFacetItem struct {
+	Count int    `json:"count,omitempty"`
+	Value string `json:"value,omitempty"`
 }
 
 type ModelEsSecCompanyFacetItem struct {
@@ -19326,11 +19959,12 @@ type ModelExtractOption struct {
 }
 
 type ModelExtractResult struct {
-	Data     any               `json:"data,omitempty"`
-	FinalUrl string            `json:"final_url,omitempty"`
-	Model    string            `json:"model,omitempty"`
-	Url      string            `json:"url,omitempty"`
-	Usage    ModelExtractUsage `json:"usage,omitempty"`
+	Data      any               `json:"data,omitempty"`
+	FinalUrl  string            `json:"final_url,omitempty"`
+	Model     string            `json:"model,omitempty"`
+	Truncated bool              `json:"truncated,omitempty"`
+	Url       string            `json:"url,omitempty"`
+	Usage     ModelExtractUsage `json:"usage,omitempty"`
 }
 
 type ModelExtractUsage struct {
@@ -21092,6 +21726,559 @@ type ModelFiverrSellerResponseDoc struct {
 	Msg  string                    `json:"msg,omitempty"`
 }
 
+type ModelFlashscoreArchiveSeason struct {
+	EndYear      string                         `json:"end_year,omitempty"`
+	IsCurrent    bool                           `json:"is_current,omitempty"`
+	IsRequested  bool                           `json:"is_requested,omitempty"`
+	Season       string                         `json:"season,omitempty"`
+	StageIds     []string                       `json:"stage_ids,omitempty"`
+	StartYear    string                         `json:"start_year,omitempty"`
+	TournamentId string                         `json:"tournament_id,omitempty"`
+	Winners      []ModelFlashscoreArchiveWinner `json:"winners,omitempty"`
+}
+
+type ModelFlashscoreArchiveStage struct {
+	Country        string                      `json:"country,omitempty"`
+	EndEstimated   string                      `json:"end_estimated,omitempty"`
+	Group          string                      `json:"group,omitempty"`
+	Id             string                      `json:"id,omitempty"`
+	IsFinal        bool                        `json:"is_final,omitempty"`
+	Name           string                      `json:"name,omitempty"`
+	StartEstimated string                      `json:"start_estimated,omitempty"`
+	Tabs           []ModelFlashscoreArchiveTab `json:"tabs,omitempty"`
+	Tournament     string                      `json:"tournament,omitempty"`
+	TypeId         int                         `json:"type_id,omitempty"`
+}
+
+type ModelFlashscoreArchiveTab struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelFlashscoreArchiveWinner struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelFlashscoreCareerCompetition struct {
+	Name string `json:"name,omitempty"`
+	Path string `json:"path,omitempty"`
+}
+
+type ModelFlashscoreCareerPart struct {
+	Stage string         `json:"stage,omitempty"`
+	Stats map[string]any `json:"stats,omitempty"`
+}
+
+type ModelFlashscoreCareerRow struct {
+	Competition ModelFlashscoreCareerCompetition `json:"competition,omitempty"`
+	Parts       []ModelFlashscoreCareerPart      `json:"parts,omitempty"`
+	Season      string                           `json:"season,omitempty"`
+	Stats       map[string]any                   `json:"stats,omitempty"`
+	Team        ModelFlashscoreCareerTeam        `json:"team,omitempty"`
+}
+
+type ModelFlashscoreCareerTab struct {
+	Columns []ModelFlashscoreSquadColumn `json:"columns,omitempty"`
+	Key     string                       `json:"key,omitempty"`
+	Name    string                       `json:"name,omitempty"`
+	Rows    []ModelFlashscoreCareerRow   `json:"rows,omitempty"`
+	Total   map[string]any               `json:"total,omitempty"`
+}
+
+type ModelFlashscoreCareerTeam struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Path string `json:"path,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelFlashscoreEntityNewsResponse struct {
+	ArticleCount int                                `json:"article_count,omitempty"`
+	Entity       ModelFlashscoreEntityNewsTag       `json:"entity,omitempty"`
+	Id           string                             `json:"id,omitempty"`
+	Sections     []ModelFlashscoreEntityNewsSection `json:"sections,omitempty"`
+	SourceUrl    string                             `json:"source_url,omitempty"`
+	Title        string                             `json:"title,omitempty"`
+	Type         string                             `json:"type,omitempty"`
+}
+
+type ModelFlashscoreEntityNewsSection struct {
+	ArticleCount int      `json:"article_count,omitempty"`
+	ArticleIds   []string `json:"article_ids,omitempty"`
+	SectionType  string   `json:"section_type,omitempty"`
+	Title        string   `json:"title,omitempty"`
+}
+
+type ModelFlashscoreEntityNewsTag struct {
+	EntityId   string `json:"entity_id,omitempty"`
+	EntityType string `json:"entity_type,omitempty"`
+	Label      string `json:"label,omitempty"`
+	Slug       string `json:"slug,omitempty"`
+}
+
+type ModelFlashscoreEventCompetition struct {
+	Country           string `json:"country,omitempty"`
+	FullName          string `json:"full_name,omitempty"`
+	Id                string `json:"id,omitempty"`
+	Name              string `json:"name,omitempty"`
+	Path              string `json:"path,omitempty"`
+	StageId           string `json:"stage_id,omitempty"`
+	TournamentId      string `json:"tournament_id,omitempty"`
+	TournamentStageId string `json:"tournament_stage_id,omitempty"`
+}
+
+type ModelFlashscoreEventSide struct {
+	Id        string `json:"id,omitempty"`
+	LogoUrl   string `json:"logo_url,omitempty"`
+	Name      string `json:"name,omitempty"`
+	ShortName string `json:"short_name,omitempty"`
+	Slug      string `json:"slug,omitempty"`
+}
+
+type ModelFlashscoreMostReadArticle struct {
+	EditedAt       int    `json:"edited_at,omitempty"`
+	Id             string `json:"id,omitempty"`
+	ImageAlt       string `json:"image_alt,omitempty"`
+	ImageCredit    string `json:"image_credit,omitempty"`
+	ImageUrl       string `json:"image_url,omitempty"`
+	Path           string `json:"path,omitempty"`
+	PublishedAt    int    `json:"published_at,omitempty"`
+	PublishedAtIso string `json:"published_at_iso,omitempty"`
+	Slug           string `json:"slug,omitempty"`
+	Title          string `json:"title,omitempty"`
+	Type           string `json:"type,omitempty"`
+}
+
+type ModelFlashscoreNewsArticleBody struct {
+	Author         string                          `json:"author,omitempty"`
+	BlockCount     int                             `json:"block_count,omitempty"`
+	Blocks         []ModelFlashscoreNewsBodyBlock  `json:"blocks,omitempty"`
+	Credit         string                          `json:"credit,omitempty"`
+	EditedAt       int                             `json:"edited_at,omitempty"`
+	EditedAtIso    string                          `json:"edited_at_iso,omitempty"`
+	Id             string                          `json:"id,omitempty"`
+	Image          ModelFlashscoreNewsCoverImage   `json:"image,omitempty"`
+	Perex          string                          `json:"perex,omitempty"`
+	PublishedAt    int                             `json:"published_at,omitempty"`
+	PublishedAtIso string                          `json:"published_at_iso,omitempty"`
+	Slug           string                          `json:"slug,omitempty"`
+	Tags           []ModelFlashscoreNewsArticleTag `json:"tags,omitempty"`
+	Text           string                          `json:"text,omitempty"`
+	Title          string                          `json:"title,omitempty"`
+	Type           string                          `json:"type,omitempty"`
+	Url            string                          `json:"url,omitempty"`
+}
+
+type ModelFlashscoreNewsArticleBodyResponse struct {
+	Article   ModelFlashscoreNewsArticleBody `json:"article,omitempty"`
+	SourceUrl string                         `json:"source_url,omitempty"`
+}
+
+type ModelFlashscoreNewsArticleTag struct {
+	EntityId   string `json:"entity_id,omitempty"`
+	EntityType string `json:"entity_type,omitempty"`
+	Label      string `json:"label,omitempty"`
+	Slug       string `json:"slug,omitempty"`
+}
+
+type ModelFlashscoreNewsBodyBlock struct {
+	Alt      string                        `json:"alt,omitempty"`
+	Credit   string                        `json:"credit,omitempty"`
+	Height   int                           `json:"height,omitempty"`
+	Id       string                        `json:"id,omitempty"`
+	Level    int                           `json:"level,omitempty"`
+	Links    []ModelFlashscoreNewsBodyLink `json:"links,omitempty"`
+	Provider string                        `json:"provider,omitempty"`
+	Text     string                        `json:"text,omitempty"`
+	Type     string                        `json:"type,omitempty"`
+	Url      string                        `json:"url,omitempty"`
+	Width    int                           `json:"width,omitempty"`
+}
+
+type ModelFlashscoreNewsBodyLink struct {
+	Id      string `json:"id,omitempty"`
+	Kind    string `json:"kind,omitempty"`
+	SportId int    `json:"sport_id,omitempty"`
+	Text    string `json:"text,omitempty"`
+	Url     string `json:"url,omitempty"`
+}
+
+type ModelFlashscoreNewsCoverImage struct {
+	AltText string `json:"alt_text,omitempty"`
+	Credit  string `json:"credit,omitempty"`
+	Url     string `json:"url,omitempty"`
+}
+
+type ModelFlashscoreNewsMostReadResponse struct {
+	ArticleCount int                              `json:"article_count,omitempty"`
+	Articles     []ModelFlashscoreMostReadArticle `json:"articles,omitempty"`
+	SourceUrl    string                           `json:"source_url,omitempty"`
+}
+
+type ModelFlashscoreOddsBookmaker struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelFlashscoreOutrightOffer struct {
+	Active      bool    `json:"active,omitempty"`
+	Best        bool    `json:"best,omitempty"`
+	BookmakerId int     `json:"bookmaker_id,omitempty"`
+	Change      string  `json:"change,omitempty"`
+	Odds        float64 `json:"odds,omitempty"`
+}
+
+type ModelFlashscoreOutrightParticipant struct {
+	Id     string                         `json:"id,omitempty"`
+	Name   string                         `json:"name,omitempty"`
+	Offers []ModelFlashscoreOutrightOffer `json:"offers,omitempty"`
+}
+
+type ModelFlashscoreOutrightTournament struct {
+	Id     string                         `json:"id,omitempty"`
+	Name   string                         `json:"name,omitempty"`
+	Offers []ModelFlashscoreOutrightOffer `json:"offers,omitempty"`
+}
+
+type ModelFlashscorePlayerDetail struct {
+	Label string `json:"label,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelFlashscorePlayerEventsResponse struct {
+	EventCount int                        `json:"event_count,omitempty"`
+	Events     []ModelFlashscoreTeamEvent `json:"events,omitempty"`
+	Page       int                        `json:"page,omitempty"`
+	PlayerId   string                     `json:"player_id,omitempty"`
+	PlayerName string                     `json:"player_name,omitempty"`
+	Section    string                     `json:"section,omitempty"`
+	SourceUrl  string                     `json:"source_url,omitempty"`
+}
+
+type ModelFlashscorePlayerInjuriesResponse struct {
+	Injuries    []ModelFlashscorePlayerInjury `json:"injuries,omitempty"`
+	InjuryCount int                           `json:"injury_count,omitempty"`
+	PageUrl     string                        `json:"page_url,omitempty"`
+	Player      ModelFlashscorePlayerProfile  `json:"player,omitempty"`
+	SourceUrl   string                        `json:"source_url,omitempty"`
+}
+
+type ModelFlashscorePlayerInjury struct {
+	From  string `json:"from,omitempty"`
+	Type  string `json:"type,omitempty"`
+	Until string `json:"until,omitempty"`
+}
+
+type ModelFlashscorePlayerMatchLogAbsence struct {
+	Category string `json:"category,omitempty"`
+	Detail   string `json:"detail,omitempty"`
+}
+
+type ModelFlashscorePlayerMatchLogResponse struct {
+	HasMore   bool                               `json:"has_more,omitempty"`
+	Page      int                                `json:"page,omitempty"`
+	Player    ModelFlashscorePlayerProfile       `json:"player,omitempty"`
+	RowCount  int                                `json:"row_count,omitempty"`
+	Rows      []ModelFlashscorePlayerMatchLogRow `json:"rows,omitempty"`
+	SourceUrl string                             `json:"source_url,omitempty"`
+}
+
+type ModelFlashscorePlayerMatchLogRow struct {
+	Absence        ModelFlashscorePlayerMatchLogAbsence    `json:"absence,omitempty"`
+	Away           ModelFlashscorePlayerMatchLogSide       `json:"away,omitempty"`
+	Date           string                                  `json:"date,omitempty"`
+	DateText       string                                  `json:"date_text,omitempty"`
+	EventId        string                                  `json:"event_id,omitempty"`
+	Home           ModelFlashscorePlayerMatchLogSide       `json:"home,omitempty"`
+	Rating         float64                                 `json:"rating,omitempty"`
+	RatingRank     int                                     `json:"rating_rank,omitempty"`
+	Result         string                                  `json:"result,omitempty"`
+	Stage          string                                  `json:"stage,omitempty"`
+	StageCode      int                                     `json:"stage_code,omitempty"`
+	Stats          []ModelFlashscorePlayerMatchLogStat     `json:"stats,omitempty"`
+	StatsAvailable bool                                    `json:"stats_available,omitempty"`
+	Tournament     ModelFlashscorePlayerMatchLogTournament `json:"tournament,omitempty"`
+}
+
+type ModelFlashscorePlayerMatchLogSide struct {
+	FullTimeScore       int    `json:"full_time_score,omitempty"`
+	Id                  string `json:"id,omitempty"`
+	LogoUrl             string `json:"logo_url,omitempty"`
+	Name                string `json:"name,omitempty"`
+	PenaltiesScore      int    `json:"penalties_score,omitempty"`
+	Score               int    `json:"score,omitempty"`
+	ScoreAfterExtraTime int    `json:"score_after_extra_time,omitempty"`
+	ShortName           string `json:"short_name,omitempty"`
+	Slug                string `json:"slug,omitempty"`
+}
+
+type ModelFlashscorePlayerMatchLogStat struct {
+	Id    int    `json:"id,omitempty"`
+	Key   string `json:"key,omitempty"`
+	Label string `json:"label,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelFlashscorePlayerMatchLogTournament struct {
+	Country   string `json:"country,omitempty"`
+	CountryId int    `json:"country_id,omitempty"`
+	Name      string `json:"name,omitempty"`
+	Path      string `json:"path,omitempty"`
+	Season    string `json:"season,omitempty"`
+	ShortCode string `json:"short_code,omitempty"`
+}
+
+type ModelFlashscorePlayerNewsResponse struct {
+	ItemCount  int                           `json:"item_count,omitempty"`
+	Items      []ModelFlashscoreTeamNewsItem `json:"items,omitempty"`
+	PlayerId   string                        `json:"player_id,omitempty"`
+	PlayerName string                        `json:"player_name,omitempty"`
+	SourceUrl  string                        `json:"source_url,omitempty"`
+}
+
+type ModelFlashscorePlayerProfile struct {
+	BirthDate string                    `json:"birth_date,omitempty"`
+	Country   string                    `json:"country,omitempty"`
+	CountryId int                       `json:"country_id,omitempty"`
+	FullName  string                    `json:"full_name,omitempty"`
+	Id        string                    `json:"id,omitempty"`
+	Name      string                    `json:"name,omitempty"`
+	Path      string                    `json:"path,omitempty"`
+	PhotoUrl  string                    `json:"photo_url,omitempty"`
+	Ranking   string                    `json:"ranking,omitempty"`
+	Slug      string                    `json:"slug,omitempty"`
+	Sport     string                    `json:"sport,omitempty"`
+	SportId   int                       `json:"sport_id,omitempty"`
+	Team      ModelFlashscorePlayerTeam `json:"team,omitempty"`
+	Url       string                    `json:"url,omitempty"`
+}
+
+type ModelFlashscorePlayerResponse struct {
+	Age             int                           `json:"age,omitempty"`
+	Career          []ModelFlashscoreCareerTab    `json:"career,omitempty"`
+	ContractExpires string                        `json:"contract_expires,omitempty"`
+	Details         []ModelFlashscorePlayerDetail `json:"details,omitempty"`
+	MarketValue     string                        `json:"market_value,omitempty"`
+	PageUrl         string                        `json:"page_url,omitempty"`
+	Player          ModelFlashscorePlayerProfile  `json:"player,omitempty"`
+	Position        string                        `json:"position,omitempty"`
+	SourceUrl       string                        `json:"source_url,omitempty"`
+}
+
+type ModelFlashscorePlayerTeam struct {
+	Id      string `json:"id,omitempty"`
+	LogoUrl string `json:"logo_url,omitempty"`
+	Name    string `json:"name,omitempty"`
+	Path    string `json:"path,omitempty"`
+	Slug    string `json:"slug,omitempty"`
+}
+
+type ModelFlashscorePlayerTransfer struct {
+	Date string                      `json:"date,omitempty"`
+	Fee  string                      `json:"fee,omitempty"`
+	From ModelFlashscoreTransferTeam `json:"from,omitempty"`
+	To   ModelFlashscoreTransferTeam `json:"to,omitempty"`
+	Type string                      `json:"type,omitempty"`
+}
+
+type ModelFlashscorePlayerTransfersResponse struct {
+	PageUrl       string                          `json:"page_url,omitempty"`
+	Player        ModelFlashscorePlayerProfile    `json:"player,omitempty"`
+	SourceUrl     string                          `json:"source_url,omitempty"`
+	TransferCount int                             `json:"transfer_count,omitempty"`
+	Transfers     []ModelFlashscorePlayerTransfer `json:"transfers,omitempty"`
+}
+
+type ModelFlashscoreSquadColumn struct {
+	Key   string `json:"key,omitempty"`
+	Label string `json:"label,omitempty"`
+}
+
+type ModelFlashscoreSquadGroup struct {
+	Columns []ModelFlashscoreSquadColumn `json:"columns,omitempty"`
+	Name    string                       `json:"name,omitempty"`
+	Players []ModelFlashscoreSquadPlayer `json:"players,omitempty"`
+}
+
+type ModelFlashscoreSquadPlayer struct {
+	Absence      string         `json:"absence,omitempty"`
+	Age          int            `json:"age,omitempty"`
+	Club         string         `json:"club,omitempty"`
+	Country      string         `json:"country,omitempty"`
+	JerseyNumber string         `json:"jersey_number,omitempty"`
+	Name         string         `json:"name,omitempty"`
+	Path         string         `json:"path,omitempty"`
+	PlayerId     string         `json:"player_id,omitempty"`
+	Slug         string         `json:"slug,omitempty"`
+	Stats        map[string]any `json:"stats,omitempty"`
+}
+
+type ModelFlashscoreSquadScope struct {
+	Key  string `json:"key,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelFlashscoreTeamCompetition struct {
+	Country  string `json:"country,omitempty"`
+	FullName string `json:"full_name,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Path     string `json:"path,omitempty"`
+}
+
+type ModelFlashscoreTeamEvent struct {
+	Away         ModelFlashscoreEventSide        `json:"away,omitempty"`
+	AwayScore    int                             `json:"away_score,omitempty"`
+	Competition  ModelFlashscoreEventCompetition `json:"competition,omitempty"`
+	Home         ModelFlashscoreEventSide        `json:"home,omitempty"`
+	HomeScore    int                             `json:"home_score,omitempty"`
+	Id           string                          `json:"id,omitempty"`
+	Stage        string                          `json:"stage,omitempty"`
+	StageCode    int                             `json:"stage_code,omitempty"`
+	StartTime    int                             `json:"start_time,omitempty"`
+	StartTimeIso string                          `json:"start_time_iso,omitempty"`
+	StatusCode   int                             `json:"status_code,omitempty"`
+}
+
+type ModelFlashscoreTeamEventsResponse struct {
+	EventCount int                        `json:"event_count,omitempty"`
+	Events     []ModelFlashscoreTeamEvent `json:"events,omitempty"`
+	Page       int                        `json:"page,omitempty"`
+	Section    string                     `json:"section,omitempty"`
+	SourceUrl  string                     `json:"source_url,omitempty"`
+	TeamId     string                     `json:"team_id,omitempty"`
+	TeamName   string                     `json:"team_name,omitempty"`
+}
+
+type ModelFlashscoreTeamNewsItem struct {
+	Id             string `json:"id,omitempty"`
+	ImageUrl       string `json:"image_url,omitempty"`
+	Link           string `json:"link,omitempty"`
+	PublishedAt    int    `json:"published_at,omitempty"`
+	PublishedAtIso string `json:"published_at_iso,omitempty"`
+	Publisher      string `json:"publisher,omitempty"`
+	Title          string `json:"title,omitempty"`
+}
+
+type ModelFlashscoreTeamNewsResponse struct {
+	ItemCount int                           `json:"item_count,omitempty"`
+	Items     []ModelFlashscoreTeamNewsItem `json:"items,omitempty"`
+	SourceUrl string                        `json:"source_url,omitempty"`
+	TeamId    string                        `json:"team_id,omitempty"`
+	TeamName  string                        `json:"team_name,omitempty"`
+}
+
+type ModelFlashscoreTeamOutrightOddsResponse struct {
+	Bookmakers  []ModelFlashscoreOddsBookmaker      `json:"bookmakers,omitempty"`
+	Geo         string                              `json:"geo,omitempty"`
+	HasMore     bool                                `json:"has_more,omitempty"`
+	SourceUrl   string                              `json:"source_url,omitempty"`
+	Subdivision string                              `json:"subdivision,omitempty"`
+	TeamId      string                              `json:"team_id,omitempty"`
+	TeamName    string                              `json:"team_name,omitempty"`
+	Tournaments []ModelFlashscoreOutrightTournament `json:"tournaments,omitempty"`
+}
+
+type ModelFlashscoreTeamProfile struct {
+	Country   string `json:"country,omitempty"`
+	CountryId int    `json:"country_id,omitempty"`
+	FullName  string `json:"full_name,omitempty"`
+	Id        string `json:"id,omitempty"`
+	LogoUrl   string `json:"logo_url,omitempty"`
+	Name      string `json:"name,omitempty"`
+	Path      string `json:"path,omitempty"`
+	Slug      string `json:"slug,omitempty"`
+	Sport     string `json:"sport,omitempty"`
+	SportId   int    `json:"sport_id,omitempty"`
+	Url       string `json:"url,omitempty"`
+}
+
+type ModelFlashscoreTeamResponse struct {
+	Competitions []ModelFlashscoreTeamCompetition `json:"competitions,omitempty"`
+	PageUrl      string                           `json:"page_url,omitempty"`
+	SourceUrl    string                           `json:"source_url,omitempty"`
+	Team         ModelFlashscoreTeamProfile       `json:"team,omitempty"`
+	Venue        ModelFlashscoreTeamVenue         `json:"venue,omitempty"`
+}
+
+type ModelFlashscoreTeamSquadResponse struct {
+	Groups    []ModelFlashscoreSquadGroup `json:"groups,omitempty"`
+	Scope     ModelFlashscoreSquadScope   `json:"scope,omitempty"`
+	Scopes    []ModelFlashscoreSquadScope `json:"scopes,omitempty"`
+	SourceUrl string                      `json:"source_url,omitempty"`
+	Team      ModelFlashscoreTeamProfile  `json:"team,omitempty"`
+}
+
+type ModelFlashscoreTeamTransfer struct {
+	Date      string                        `json:"date,omitempty"`
+	Direction string                        `json:"direction,omitempty"`
+	Fee       string                        `json:"fee,omitempty"`
+	From      ModelFlashscoreTransferTeam   `json:"from,omitempty"`
+	Player    ModelFlashscoreTransferPlayer `json:"player,omitempty"`
+	To        ModelFlashscoreTransferTeam   `json:"to,omitempty"`
+	Type      string                        `json:"type,omitempty"`
+}
+
+type ModelFlashscoreTeamTransfersResponse struct {
+	Page          int                           `json:"page,omitempty"`
+	SourceUrl     string                        `json:"source_url,omitempty"`
+	TeamId        string                        `json:"team_id,omitempty"`
+	TeamName      string                        `json:"team_name,omitempty"`
+	TransferCount int                           `json:"transfer_count,omitempty"`
+	Transfers     []ModelFlashscoreTeamTransfer `json:"transfers,omitempty"`
+	Type          string                        `json:"type,omitempty"`
+}
+
+type ModelFlashscoreTeamVenue struct {
+	Capacity int    `json:"capacity,omitempty"`
+	City     string `json:"city,omitempty"`
+	Stadium  string `json:"stadium,omitempty"`
+}
+
+type ModelFlashscoreTournamentArchiveSeasonsResponse struct {
+	LeagueKey            string                         `json:"league_key,omitempty"`
+	SeasonCount          int                            `json:"season_count,omitempty"`
+	Seasons              []ModelFlashscoreArchiveSeason `json:"seasons,omitempty"`
+	SourceUrl            string                         `json:"source_url,omitempty"`
+	Stage                ModelFlashscoreArchiveStage    `json:"stage,omitempty"`
+	StageId              string                         `json:"stage_id,omitempty"`
+	TournamentTemplateId string                         `json:"tournament_template_id,omitempty"`
+}
+
+type ModelFlashscoreTournamentOutrightOddsResponse struct {
+	Bookmakers   []ModelFlashscoreOddsBookmaker       `json:"bookmakers,omitempty"`
+	Geo          string                               `json:"geo,omitempty"`
+	HasMore      bool                                 `json:"has_more,omitempty"`
+	Participants []ModelFlashscoreOutrightParticipant `json:"participants,omitempty"`
+	SourceUrl    string                               `json:"source_url,omitempty"`
+	Subdivision  string                               `json:"subdivision,omitempty"`
+	TournamentId string                               `json:"tournament_id,omitempty"`
+}
+
+type ModelFlashscoreTransferPlayer struct {
+	Country string `json:"country,omitempty"`
+	Id      string `json:"id,omitempty"`
+	Name    string `json:"name,omitempty"`
+	Path    string `json:"path,omitempty"`
+	Slug    string `json:"slug,omitempty"`
+}
+
+type ModelFlashscoreTransferTeam struct {
+	Id      string `json:"id,omitempty"`
+	LogoUrl string `json:"logo_url,omitempty"`
+	Name    string `json:"name,omitempty"`
+	Path    string `json:"path,omitempty"`
+	Slug    string `json:"slug,omitempty"`
+}
+
+type ModelFlashscoreBroadcasterDoc struct {
+	Affiliate bool   `json:"affiliate,omitempty"`
+	Id        int    `json:"id,omitempty"`
+	Name      string `json:"name,omitempty"`
+	Url       string `json:"url,omitempty"`
+}
+
 type ModelFlashscoreCalendarCategoriesDataDoc struct {
 	Categories []ModelFlashscoreCalendarCategoryDoc `json:"categories,omitempty"`
 	SourceUrl  string                               `json:"source_url,omitempty"`
@@ -21118,11 +22305,15 @@ type ModelFlashscoreCalendarDataDoc struct {
 }
 
 type ModelFlashscoreCalendarEventDoc struct {
-	Date   string `json:"date,omitempty"`
-	Month  string `json:"month,omitempty"`
-	Name   string `json:"name,omitempty"`
-	Path   string `json:"path,omitempty"`
-	Winner string `json:"winner,omitempty"`
+	Country    string `json:"country,omitempty"`
+	Date       string `json:"date,omitempty"`
+	EndTime    string `json:"end_time,omitempty"`
+	Month      string `json:"month,omitempty"`
+	Name       string `json:"name,omitempty"`
+	Path       string `json:"path,omitempty"`
+	StartTime  string `json:"start_time,omitempty"`
+	Winner     string `json:"winner,omitempty"`
+	WinnerPath string `json:"winner_path,omitempty"`
 }
 
 type ModelFlashscoreCalendarResponseDoc struct {
@@ -21152,6 +22343,156 @@ type ModelFlashscoreCompetitionsResponseDoc struct {
 	Msg  string                             `json:"msg,omitempty"`
 }
 
+type ModelFlashscoreDartsLegDoc struct {
+	AwayLegs   int                            `json:"away_legs,omitempty"`
+	Checkout   int                            `json:"checkout,omitempty"`
+	HomeLegs   int                            `json:"home_legs,omitempty"`
+	Number     int                            `json:"number,omitempty"`
+	StartScore int                            `json:"start_score,omitempty"`
+	Starter    string                         `json:"starter,omitempty"`
+	Visits     []ModelFlashscoreDartsVisitDoc `json:"visits,omitempty"`
+	Winner     string                         `json:"winner,omitempty"`
+}
+
+type ModelFlashscoreDartsStatisticDoc struct {
+	Away string `json:"away,omitempty"`
+	Home string `json:"home,omitempty"`
+	Id   string `json:"id,omitempty"`
+	Key  string `json:"key,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelFlashscoreDartsVisitDoc struct {
+	Highlight string `json:"highlight,omitempty"`
+	Number    int    `json:"number,omitempty"`
+	Remaining int    `json:"remaining,omitempty"`
+	Scored    int    `json:"scored,omitempty"`
+	Side      string `json:"side,omitempty"`
+}
+
+type ModelFlashscoreFormationLineDoc struct {
+	Number int                              `json:"number,omitempty"`
+	Rows   []ModelFlashscoreFormationRowDoc `json:"rows,omitempty"`
+}
+
+type ModelFlashscoreFormationRowDoc struct {
+	PlayerIds []string `json:"player_ids,omitempty"`
+	SortKey   int      `json:"sort_key,omitempty"`
+}
+
+type ModelFlashscoreLineupAggregatedStatsDoc struct {
+	AverageAge      float64 `json:"average_age,omitempty"`
+	AverageHeightCm float64 `json:"average_height_cm,omitempty"`
+	AverageRating   float64 `json:"average_rating,omitempty"`
+	SumMarketValue  float64 `json:"sum_market_value,omitempty"`
+}
+
+type ModelFlashscoreLineupGroupDoc struct {
+	Name      string   `json:"name,omitempty"`
+	PlayerIds []string `json:"player_ids,omitempty"`
+	Type      string   `json:"type,omitempty"`
+}
+
+type ModelFlashscoreLineupPlayerDoc struct {
+	Age           float64                        `json:"age,omitempty"`
+	AverageRating float64                        `json:"average_rating,omitempty"`
+	Country       string                         `json:"country,omitempty"`
+	HeightCm      float64                        `json:"height_cm,omitempty"`
+	Id            string                         `json:"id,omitempty"`
+	ListName      string                         `json:"list_name,omitempty"`
+	MarketValue   float64                        `json:"market_value,omitempty"`
+	Name          string                         `json:"name,omitempty"`
+	Number        string                         `json:"number,omitempty"`
+	Roles         []ModelFlashscoreLineupRoleDoc `json:"roles,omitempty"`
+	Slug          string                         `json:"slug,omitempty"`
+}
+
+type ModelFlashscoreLineupRoleDoc struct {
+	Suffix string `json:"suffix,omitempty"`
+	Title  string `json:"title,omitempty"`
+}
+
+type ModelFlashscoreMatchBoxScoreColumnDoc struct {
+	Format string `json:"format,omitempty"`
+	Key    string `json:"key,omitempty"`
+	Label  string `json:"label,omitempty"`
+}
+
+type ModelFlashscoreMatchBoxScoreDataDoc struct {
+	MatchId   string                                `json:"match_id,omitempty"`
+	SourceUrl string                                `json:"source_url,omitempty"`
+	Teams     []ModelFlashscoreMatchBoxScoreTeamDoc `json:"teams,omitempty"`
+}
+
+type ModelFlashscoreMatchBoxScorePlayerDoc struct {
+	Country  string            `json:"country,omitempty"`
+	Name     string            `json:"name,omitempty"`
+	PlayerId string            `json:"player_id,omitempty"`
+	Slug     string            `json:"slug,omitempty"`
+	Stats    map[string]string `json:"stats,omitempty"`
+	Status   string            `json:"status,omitempty"`
+}
+
+type ModelFlashscoreMatchBoxScoreResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelFlashscoreMatchBoxScoreDataDoc `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelFlashscoreMatchBoxScoreTableDoc struct {
+	Columns     []ModelFlashscoreMatchBoxScoreColumnDoc `json:"columns,omitempty"`
+	PlayerLabel string                                  `json:"player_label,omitempty"`
+	Players     []ModelFlashscoreMatchBoxScorePlayerDoc `json:"players,omitempty"`
+	Type        string                                  `json:"type,omitempty"`
+}
+
+type ModelFlashscoreMatchBoxScoreTeamDoc struct {
+	Name   string                                 `json:"name,omitempty"`
+	Side   string                                 `json:"side,omitempty"`
+	Tables []ModelFlashscoreMatchBoxScoreTableDoc `json:"tables,omitempty"`
+}
+
+type ModelFlashscoreMatchDartsDataDoc struct {
+	Legs          []ModelFlashscoreDartsLegDoc       `json:"legs,omitempty"`
+	MatchId       string                             `json:"match_id,omitempty"`
+	SourceUrl     string                             `json:"source_url,omitempty"`
+	Statistics    []ModelFlashscoreDartsStatisticDoc `json:"statistics,omitempty"`
+	StatisticsUrl string                             `json:"statistics_url,omitempty"`
+}
+
+type ModelFlashscoreMatchDartsResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelFlashscoreMatchDartsDataDoc `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelFlashscoreMatchMissingPlayersDataDoc struct {
+	MatchId   string                                 `json:"match_id,omitempty"`
+	SourceUrl string                                 `json:"source_url,omitempty"`
+	Teams     []ModelFlashscoreMissingPlayersTeamDoc `json:"teams,omitempty"`
+}
+
+type ModelFlashscoreMatchMissingPlayersResponseDoc struct {
+	Code int                                       `json:"code,omitempty"`
+	Data ModelFlashscoreMatchMissingPlayersDataDoc `json:"data,omitempty"`
+	Msg  string                                    `json:"msg,omitempty"`
+}
+
+type ModelFlashscoreMatchMomentumDataDoc struct {
+	EventTypes []ModelFlashscoreMomentumEventTypeDoc `json:"event_types,omitempty"`
+	Events     []ModelFlashscoreMomentumEventDoc     `json:"events,omitempty"`
+	MatchId    string                                `json:"match_id,omitempty"`
+	Momentum   []ModelFlashscoreMomentumFrameDoc     `json:"momentum,omitempty"`
+	SourceUrl  string                                `json:"source_url,omitempty"`
+	Teams      []ModelFlashscoreMomentumTeamDoc      `json:"teams,omitempty"`
+}
+
+type ModelFlashscoreMatchMomentumResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelFlashscoreMatchMomentumDataDoc `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
 type ModelFlashscoreMatchNewsArticleRefDoc struct {
 	Article ModelFlashscoreMatchNewsArticleSortKeyDoc `json:"article,omitempty"`
 	Id      string                                    `json:"id,omitempty"`
@@ -21179,6 +22520,148 @@ type ModelFlashscoreMatchNewsSectionDoc struct {
 	Articles []ModelFlashscoreMatchNewsArticleRefDoc `json:"articles,omitempty"`
 	Id       int                                     `json:"id,omitempty"`
 	Name     string                                  `json:"name,omitempty"`
+}
+
+type ModelFlashscoreMatchOddsDataDoc struct {
+	Bookmakers   []ModelFlashscoreOddsBookmakerDoc   `json:"bookmakers,omitempty"`
+	Geo          string                              `json:"geo,omitempty"`
+	Markets      []ModelFlashscoreOddsMarketDoc      `json:"markets,omitempty"`
+	MatchId      string                              `json:"match_id,omitempty"`
+	Participants []ModelFlashscoreOddsParticipantDoc `json:"participants,omitempty"`
+	SourceUrl    string                              `json:"source_url,omitempty"`
+	Subdivision  string                              `json:"subdivision,omitempty"`
+}
+
+type ModelFlashscoreMatchOddsResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelFlashscoreMatchOddsDataDoc `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelFlashscoreMatchPlayerStatsDataDoc struct {
+	Groups    []ModelFlashscorePlayerStatGroupDoc  `json:"groups,omitempty"`
+	MatchId   string                               `json:"match_id,omitempty"`
+	Players   []ModelFlashscorePlayerMatchStatsDoc `json:"players,omitempty"`
+	SourceUrl string                               `json:"source_url,omitempty"`
+	StatTypes []ModelFlashscorePlayerStatTypeDoc   `json:"stat_types,omitempty"`
+	Teams     []ModelFlashscorePlayerStatTeamDoc   `json:"teams,omitempty"`
+}
+
+type ModelFlashscoreMatchPlayerStatsResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelFlashscoreMatchPlayerStatsDataDoc `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelFlashscoreMatchPointByPointDataDoc struct {
+	CurrentGame ModelFlashscorePointByPointCurrentGameDoc `json:"current_game,omitempty"`
+	MatchId     string                                    `json:"match_id,omitempty"`
+	Periods     []ModelFlashscorePointByPointPeriodDoc    `json:"periods,omitempty"`
+	SourceUrl   string                                    `json:"source_url,omitempty"`
+}
+
+type ModelFlashscoreMatchPointByPointResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelFlashscoreMatchPointByPointDataDoc `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
+}
+
+type ModelFlashscoreMatchPredictedLineupsDataDoc struct {
+	MatchId   string                                  `json:"match_id,omitempty"`
+	SourceUrl string                                  `json:"source_url,omitempty"`
+	Teams     []ModelFlashscorePredictedLineupTeamDoc `json:"teams,omitempty"`
+}
+
+type ModelFlashscoreMatchPredictedLineupsResponseDoc struct {
+	Code int                                         `json:"code,omitempty"`
+	Data ModelFlashscoreMatchPredictedLineupsDataDoc `json:"data,omitempty"`
+	Msg  string                                      `json:"msg,omitempty"`
+}
+
+type ModelFlashscoreMatchReportDataDoc struct {
+	MatchId   string                        `json:"match_id,omitempty"`
+	Report    ModelFlashscoreMatchReportDoc `json:"report,omitempty"`
+	SourceUrl string                        `json:"source_url,omitempty"`
+}
+
+type ModelFlashscoreMatchReportDoc struct {
+	Author      string                          `json:"author,omitempty"`
+	Content     []ModelFlashscoreReportBlockDoc `json:"content,omitempty"`
+	EditedAt    string                          `json:"edited_at,omitempty"`
+	Id          string                          `json:"id,omitempty"`
+	Images      []ModelFlashscoreReportImageDoc `json:"images,omitempty"`
+	PublishedAt string                          `json:"published_at,omitempty"`
+	Text        string                          `json:"text,omitempty"`
+	Title       string                          `json:"title,omitempty"`
+}
+
+type ModelFlashscoreMatchReportResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelFlashscoreMatchReportDataDoc `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelFlashscoreMatchTvdataDoc struct {
+	Broadcasters []ModelFlashscoreBroadcasterDoc `json:"broadcasters,omitempty"`
+	Geo          string                          `json:"geo,omitempty"`
+	MatchId      string                          `json:"match_id,omitempty"`
+	SourceUrl    string                          `json:"source_url,omitempty"`
+}
+
+type ModelFlashscoreMatchTvresponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelFlashscoreMatchTvdataDoc `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelFlashscoreMissingPlayerDoc struct {
+	Country  string `json:"country,omitempty"`
+	ListName string `json:"list_name,omitempty"`
+	Name     string `json:"name,omitempty"`
+	PlayerId string `json:"player_id,omitempty"`
+	Reason   string `json:"reason,omitempty"`
+	Slug     string `json:"slug,omitempty"`
+}
+
+type ModelFlashscoreMissingPlayersTeamDoc struct {
+	Doubtful      []ModelFlashscoreMissingPlayerDoc `json:"doubtful,omitempty"`
+	Missing       []ModelFlashscoreMissingPlayerDoc `json:"missing,omitempty"`
+	ParticipantId string                            `json:"participant_id,omitempty"`
+	Side          string                            `json:"side,omitempty"`
+}
+
+type ModelFlashscoreMomentumEventDoc struct {
+	Id         string `json:"id,omitempty"`
+	Label      string `json:"label,omitempty"`
+	Minute     string `json:"minute,omitempty"`
+	Period     string `json:"period,omitempty"`
+	PlayerId   string `json:"player_id,omitempty"`
+	PlayerName string `json:"player_name,omitempty"`
+	Side       string `json:"side,omitempty"`
+	StageId    int    `json:"stage_id,omitempty"`
+	TeamId     string `json:"team_id,omitempty"`
+	Type       string `json:"type,omitempty"`
+}
+
+type ModelFlashscoreMomentumEventTypeDoc struct {
+	Label string `json:"label,omitempty"`
+	Type  string `json:"type,omitempty"`
+}
+
+type ModelFlashscoreMomentumFrameDoc struct {
+	AddedTime     int     `json:"added_time,omitempty"`
+	ElapsedMinute int     `json:"elapsed_minute,omitempty"`
+	ElapsedSecond int     `json:"elapsed_second,omitempty"`
+	Minute        string  `json:"minute,omitempty"`
+	Period        string  `json:"period,omitempty"`
+	StageId       int     `json:"stage_id,omitempty"`
+	Value         float64 `json:"value,omitempty"`
+}
+
+type ModelFlashscoreMomentumTeamDoc struct {
+	Code string `json:"code,omitempty"`
+	Id   string `json:"id,omitempty"`
+	Side string `json:"side,omitempty"`
 }
 
 type ModelFlashscoreNavigationDataDoc struct {
@@ -21239,9 +22722,11 @@ type ModelFlashscoreNewsCategoriesResponseDoc struct {
 }
 
 type ModelFlashscoreNewsCategoryDoc struct {
-	Key  string `json:"key,omitempty"`
-	Name string `json:"name,omitempty"`
-	Path string `json:"path,omitempty"`
+	EntityId   string `json:"entity_id,omitempty"`
+	EntityType string `json:"entity_type,omitempty"`
+	Key        string `json:"key,omitempty"`
+	Name       string `json:"name,omitempty"`
+	Path       string `json:"path,omitempty"`
 }
 
 type ModelFlashscoreNewsImageDoc struct {
@@ -21272,6 +22757,180 @@ type ModelFlashscoreNewsPreviewDoc struct {
 	ImageUrl string `json:"image_url,omitempty"`
 	Path     string `json:"path,omitempty"`
 	Title    string `json:"title,omitempty"`
+}
+
+type ModelFlashscoreOddsBookmakerDoc struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelFlashscoreOddsGeoDoc struct {
+	Code          string `json:"code,omitempty"`
+	HasBookmakers bool   `json:"has_bookmakers,omitempty"`
+	Name          string `json:"name,omitempty"`
+}
+
+type ModelFlashscoreOddsGeosDataDoc struct {
+	BettingScopes    []string                            `json:"betting_scopes,omitempty"`
+	BettingTypes     []string                            `json:"betting_types,omitempty"`
+	DefaultGeo       string                              `json:"default_geo,omitempty"`
+	Geos             []ModelFlashscoreOddsGeoDoc         `json:"geos,omitempty"`
+	HandicapTypes    []string                            `json:"handicap_types,omitempty"`
+	SubdivisionNotes string                              `json:"subdivision_notes,omitempty"`
+	Subdivisions     []ModelFlashscoreOddsSubdivisionDoc `json:"subdivisions,omitempty"`
+	VerifiedOn       string                              `json:"verified_on,omitempty"`
+}
+
+type ModelFlashscoreOddsGeosResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelFlashscoreOddsGeosDataDoc `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelFlashscoreOddsMarketDoc struct {
+	BettingType string                        `json:"betting_type,omitempty"`
+	Offers      []ModelFlashscoreOddsOfferDoc `json:"offers,omitempty"`
+	Scope       string                        `json:"scope,omitempty"`
+}
+
+type ModelFlashscoreOddsOfferDoc struct {
+	BookmakerId int                             `json:"bookmaker_id,omitempty"`
+	Outcomes    []ModelFlashscoreOddsOutcomeDoc `json:"outcomes,omitempty"`
+}
+
+type ModelFlashscoreOddsOutcomeDoc struct {
+	Active        bool    `json:"active,omitempty"`
+	HalfFullTime  string  `json:"half_full_time,omitempty"`
+	Handicap      float64 `json:"handicap,omitempty"`
+	HandicapType  string  `json:"handicap_type,omitempty"`
+	Odds          float64 `json:"odds,omitempty"`
+	OpeningOdds   float64 `json:"opening_odds,omitempty"`
+	ParticipantId string  `json:"participant_id,omitempty"`
+	Score         string  `json:"score,omitempty"`
+	Selection     string  `json:"selection,omitempty"`
+	Side          string  `json:"side,omitempty"`
+}
+
+type ModelFlashscoreOddsParticipantDoc struct {
+	Id   string `json:"id,omitempty"`
+	Side string `json:"side,omitempty"`
+}
+
+type ModelFlashscoreOddsSubdivisionDoc struct {
+	Code string `json:"code,omitempty"`
+	Geo  string `json:"geo,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelFlashscorePlayerMatchStatsDoc struct {
+	Highlights []string                                     `json:"highlights,omitempty"`
+	Id         string                                       `json:"id,omitempty"`
+	Name       string                                       `json:"name,omitempty"`
+	Position   string                                       `json:"position,omitempty"`
+	Rating     float64                                      `json:"rating,omitempty"`
+	ShortName  string                                       `json:"short_name,omitempty"`
+	Side       string                                       `json:"side,omitempty"`
+	Slug       string                                       `json:"slug,omitempty"`
+	Starter    bool                                         `json:"starter,omitempty"`
+	Stats      map[string]ModelFlashscorePlayerStatValueDoc `json:"stats,omitempty"`
+	TeamId     string                                       `json:"team_id,omitempty"`
+	TopRated   bool                                         `json:"top_rated,omitempty"`
+}
+
+type ModelFlashscorePlayerStatCombinedDoc struct {
+	Stats    []string `json:"stats,omitempty"`
+	Template string   `json:"template,omitempty"`
+}
+
+type ModelFlashscorePlayerStatGroupDoc struct {
+	GoalkeeperOnly bool     `json:"goalkeeper_only,omitempty"`
+	Key            string   `json:"key,omitempty"`
+	Label          string   `json:"label,omitempty"`
+	Stats          []string `json:"stats,omitempty"`
+}
+
+type ModelFlashscorePlayerStatTeamDoc struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Side string `json:"side,omitempty"`
+}
+
+type ModelFlashscorePlayerStatTypeDoc struct {
+	Combined  ModelFlashscorePlayerStatCombinedDoc `json:"combined,omitempty"`
+	Format    string                               `json:"format,omitempty"`
+	Groups    []string                             `json:"groups,omitempty"`
+	Key       string                               `json:"key,omitempty"`
+	Label     string                               `json:"label,omitempty"`
+	Sentiment string                               `json:"sentiment,omitempty"`
+}
+
+type ModelFlashscorePlayerStatValueDoc struct {
+	Rank  int     `json:"rank,omitempty"`
+	Raw   float64 `json:"raw,omitempty"`
+	Value string  `json:"value,omitempty"`
+}
+
+type ModelFlashscorePointByPointCurrentGameDoc struct {
+	Points []ModelFlashscorePointScoreDoc `json:"points,omitempty"`
+	Server string                         `json:"server,omitempty"`
+	Title  string                         `json:"title,omitempty"`
+}
+
+type ModelFlashscorePointByPointEntryDoc struct {
+	AwayScore         int                                `json:"away_score,omitempty"`
+	AwayTiebreakScore int                                `json:"away_tiebreak_score,omitempty"`
+	HomeScore         int                                `json:"home_score,omitempty"`
+	HomeTiebreakScore int                                `json:"home_tiebreak_score,omitempty"`
+	Lead              ModelFlashscorePointByPointLeadDoc `json:"lead,omitempty"`
+	Markers           []ModelFlashscorePointMarkerDoc    `json:"markers,omitempty"`
+	Number            int                                `json:"number,omitempty"`
+	Points            []ModelFlashscorePointScoreDoc     `json:"points,omitempty"`
+	Server            string                             `json:"server,omitempty"`
+	ServerLost        bool                               `json:"server_lost,omitempty"`
+	Winner            string                             `json:"winner,omitempty"`
+}
+
+type ModelFlashscorePointByPointLeadDoc struct {
+	Margin   int    `json:"margin,omitempty"`
+	Narrowed bool   `json:"narrowed,omitempty"`
+	Side     string `json:"side,omitempty"`
+}
+
+type ModelFlashscorePointByPointPeriodDoc struct {
+	Sections []ModelFlashscorePointByPointSectionDoc `json:"sections,omitempty"`
+	Title    string                                  `json:"title,omitempty"`
+}
+
+type ModelFlashscorePointByPointSectionDoc struct {
+	Entries []ModelFlashscorePointByPointEntryDoc `json:"entries,omitempty"`
+	Title   string                                `json:"title,omitempty"`
+}
+
+type ModelFlashscorePointMarkerDoc struct {
+	Side string `json:"side,omitempty"`
+	Type string `json:"type,omitempty"`
+}
+
+type ModelFlashscorePointScoreDoc struct {
+	Away    string                          `json:"away,omitempty"`
+	Home    string                          `json:"home,omitempty"`
+	Markers []ModelFlashscorePointMarkerDoc `json:"markers,omitempty"`
+}
+
+type ModelFlashscorePredictedFormationDoc struct {
+	Lines []ModelFlashscoreFormationLineDoc `json:"lines,omitempty"`
+	Name  string                            `json:"name,omitempty"`
+}
+
+type ModelFlashscorePredictedLineupTeamDoc struct {
+	AggregatedStats ModelFlashscoreLineupAggregatedStatsDoc `json:"aggregated_stats,omitempty"`
+	Coaches         []ModelFlashscoreLineupPlayerDoc        `json:"coaches,omitempty"`
+	Formation       ModelFlashscorePredictedFormationDoc    `json:"formation,omitempty"`
+	Groups          []ModelFlashscoreLineupGroupDoc         `json:"groups,omitempty"`
+	Name            string                                  `json:"name,omitempty"`
+	ParticipantId   string                                  `json:"participant_id,omitempty"`
+	Players         []ModelFlashscoreLineupPlayerDoc        `json:"players,omitempty"`
+	Side            string                                  `json:"side,omitempty"`
 }
 
 type ModelFlashscoreRankingCategoriesDataDoc struct {
@@ -21310,6 +22969,32 @@ type ModelFlashscoreRankingResponseDoc struct {
 	Code int                           `json:"code,omitempty"`
 	Data ModelFlashscoreRankingDataDoc `json:"data,omitempty"`
 	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelFlashscoreReportBlockDoc struct {
+	Alt    string                         `json:"alt,omitempty"`
+	Bold   bool                           `json:"bold,omitempty"`
+	Credit string                         `json:"credit,omitempty"`
+	Height int                            `json:"height,omitempty"`
+	Links  []ModelFlashscoreReportLinkDoc `json:"links,omitempty"`
+	Text   string                         `json:"text,omitempty"`
+	Type   string                         `json:"type,omitempty"`
+	Url    string                         `json:"url,omitempty"`
+	Width  int                            `json:"width,omitempty"`
+}
+
+type ModelFlashscoreReportImageDoc struct {
+	Alt          string `json:"alt,omitempty"`
+	Credit       string `json:"credit,omitempty"`
+	ThumbnailUrl string `json:"thumbnail_url,omitempty"`
+	Url          string `json:"url,omitempty"`
+}
+
+type ModelFlashscoreReportLinkDoc struct {
+	Id   string `json:"id,omitempty"`
+	Text string `json:"text,omitempty"`
+	Type string `json:"type,omitempty"`
+	Url  string `json:"url,omitempty"`
 }
 
 type ModelFlashscoreResponseDoc struct {
@@ -21409,13 +23094,19 @@ type ModelFlashscoreTournamentEventsResponseDoc struct {
 }
 
 type ModelFlashscoreTournamentSeasonDoc struct {
-	FixturesPath string `json:"fixtures_path,omitempty"`
-	Name         string `json:"name,omitempty"`
-	Path         string `json:"path,omitempty"`
-	ResultsPath  string `json:"results_path,omitempty"`
-	Season       string `json:"season,omitempty"`
-	Winner       string `json:"winner,omitempty"`
-	WinnerPath   string `json:"winner_path,omitempty"`
+	FixturesPath string                                     `json:"fixtures_path,omitempty"`
+	Name         string                                     `json:"name,omitempty"`
+	Path         string                                     `json:"path,omitempty"`
+	ResultsPath  string                                     `json:"results_path,omitempty"`
+	Season       string                                     `json:"season,omitempty"`
+	Winner       string                                     `json:"winner,omitempty"`
+	WinnerPath   string                                     `json:"winner_path,omitempty"`
+	Winners      []ModelFlashscoreTournamentSeasonWinnerDoc `json:"winners,omitempty"`
+}
+
+type ModelFlashscoreTournamentSeasonWinnerDoc struct {
+	Name string `json:"name,omitempty"`
+	Path string `json:"path,omitempty"`
 }
 
 type ModelFlashscoreTournamentSeasonsDataDoc struct {
@@ -45859,6 +47550,255 @@ type ModelReferralsReferralsStatsDoc struct {
 	Rewarded       int `json:"rewarded,omitempty"`
 }
 
+type ModelResearchjobsResearchResult struct {
+	Claims           []ModelRetrievaltypesClaim          `json:"claims,omitempty"`
+	Coverage         []ModelRetrievaltypesSourceCoverage `json:"coverage,omitempty"`
+	Evidence         []ModelRetrievaltypesEvidence       `json:"evidence,omitempty"`
+	JobId            string                              `json:"job_id,omitempty"`
+	Partial          bool                                `json:"partial,omitempty"`
+	Ready            bool                                `json:"ready,omitempty"`
+	ReportMarkdown   string                              `json:"report_markdown,omitempty"`
+	ResultKind       string                              `json:"result_kind,omitempty"`
+	Searches         []ModelResearchjobsSearchRecord     `json:"searches,omitempty"`
+	SnapshotSequence int                                 `json:"snapshot_sequence,omitempty"`
+	SourceSnapshot   ModelResearchjobsSourceSnapshot     `json:"source_snapshot,omitempty"`
+	StructuredData   map[string]any                      `json:"structured_data,omitempty"`
+	Usage            ModelRetrievaltypesUsage            `json:"usage,omitempty"`
+	Warnings         []ModelRetrievaltypesWarning        `json:"warnings,omitempty"`
+}
+
+type ModelResearchjobsScope = string
+
+type ModelResearchjobsSearchRecord struct {
+	Hits       []ModelResearchjobsSearchRecordHit `json:"hits,omitempty"`
+	Query      string                             `json:"query,omitempty"`
+	SourceId   string                             `json:"source_id,omitempty"`
+	SourceKind ModelRetrievaltypesSourceKind      `json:"source_kind,omitempty"`
+}
+
+type ModelResearchjobsSearchRecordHit struct {
+	Snippet  string `json:"snippet,omitempty"`
+	SourceId string `json:"source_id,omitempty"`
+	Title    string `json:"title,omitempty"`
+	Url      string `json:"url,omitempty"`
+}
+
+type ModelResearchjobsSourceGeneration struct {
+	GenerationId   string                        `json:"generation_id,omitempty"`
+	Kind           ModelRetrievaltypesSourceKind `json:"kind,omitempty"`
+	SourceId       string                        `json:"source_id,omitempty"`
+	SourceRevision string                        `json:"source_revision,omitempty"`
+}
+
+type ModelResearchjobsSourceSnapshot struct {
+	RegistryRevision string                              `json:"registry_revision,omitempty"`
+	Scope            ModelResearchjobsScope              `json:"scope,omitempty"`
+	Sources          []ModelResearchjobsSourceGeneration `json:"sources,omitempty"`
+}
+
+type ModelResearchjobsResearchEventsResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelRetrievaltypesJobEventsResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelResearchjobsResearchLimitsDoc struct {
+	BrowserRenders int `json:"browser_renders,omitempty"`
+	InputTokens    int `json:"input_tokens,omitempty"`
+	MaxCredits     int `json:"max_credits"`
+	OutputTokens   int `json:"output_tokens,omitempty"`
+	Rounds         int `json:"rounds,omitempty"`
+	Searches       int `json:"searches,omitempty"`
+	Sources        int `json:"sources,omitempty"`
+	TimeoutSeconds int `json:"timeout_seconds,omitempty"`
+}
+
+type ModelResearchjobsResearchResultsResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelResearchjobsResearchResult `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelResearchjobsResearchStartRequestDoc struct {
+	ExcludeDomains []string                           `json:"exclude_domains,omitempty"`
+	IdempotencyKey string                             `json:"idempotency_key"`
+	IncludeDomains []string                           `json:"include_domains,omitempty"`
+	Limits         ModelResearchjobsResearchLimitsDoc `json:"limits"`
+	OutputFormat   string                             `json:"output_format,omitempty"`
+	Query          string                             `json:"query"`
+	Schema         map[string]any                     `json:"schema,omitempty"`
+	Scope          string                             `json:"scope,omitempty"`
+	SeedUrls       []string                           `json:"seed_urls,omitempty"`
+	Sources        []string                           `json:"sources,omitempty"`
+}
+
+type ModelResearchjobsResearchStartResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelRetrievaltypesJobSubmission `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelResearchjobsResearchStatusResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelRetrievaltypesJobStatus `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelResearchpapersCitationRelation struct {
+	FromId      string `json:"from_id,omitempty"`
+	RetrievedAt string `json:"retrieved_at,omitempty"`
+	SourceId    string `json:"source_id,omitempty"`
+	SourceUrl   string `json:"source_url,omitempty"`
+	ToId        string `json:"to_id,omitempty"`
+}
+
+type ModelResearchpapersEuropePmcfullText struct {
+	Attribution    string `json:"attribution,omitempty"`
+	ContentSha256  string `json:"content_sha256,omitempty"`
+	Copyright      string `json:"copyright,omitempty"`
+	ExtractionNote string `json:"extraction_note,omitempty"`
+	LicenseText    string `json:"license_text,omitempty"`
+	LicenseUrl     string `json:"license_url,omitempty"`
+	RetrievedAt    string `json:"retrieved_at,omitempty"`
+	SourceUrl      string `json:"source_url,omitempty"`
+	Text           string `json:"text,omitempty"`
+}
+
+type ModelResearchpapersPaperGraphSeed struct {
+	PaperId   string `json:"paper_id,omitempty"`
+	PrimaryId string `json:"primary_id,omitempty"`
+	Status    string `json:"status,omitempty"`
+}
+
+type ModelResearchpapersPaperReadRequest struct {
+	Limit    int    `json:"limit,omitempty"`
+	PaperId  string `json:"paper_id"`
+	Question string `json:"question"`
+}
+
+type ModelResearchpapersPaperRelatedRequest struct {
+	Cursor  string                         `json:"cursor,omitempty"`
+	Intent  string                         `json:"intent,omitempty"`
+	Limit   int                            `json:"limit,omitempty"`
+	Mode    ModelResearchpapersRelatedMode `json:"mode,omitempty"`
+	SeedIds []string                       `json:"seed_ids,omitempty"`
+}
+
+type ModelResearchpapersRelatedMode = string
+
+type ModelResearchretrievalPaper struct {
+	Abstract        string                                  `json:"abstract,omitempty"`
+	Authors         []ModelResearchretrievalPaperAuthor     `json:"authors,omitempty"`
+	ContentLevel    string                                  `json:"content_level,omitempty"`
+	Identifiers     []ModelResearchretrievalPaperIdentifier `json:"identifiers,omitempty"`
+	PaperId         string                                  `json:"paper_id,omitempty"`
+	PrimaryId       string                                  `json:"primary_id,omitempty"`
+	PublicationYear int                                     `json:"publication_year,omitempty"`
+	PublishedAt     string                                  `json:"published_at,omitempty"`
+	RetrievedAt     string                                  `json:"retrieved_at,omitempty"`
+	SourceUrls      []string                                `json:"source_urls,omitempty"`
+	Title           string                                  `json:"title,omitempty"`
+	UpdatedAt       string                                  `json:"updated_at,omitempty"`
+}
+
+type ModelResearchretrievalPaperAuthor struct {
+	Affiliation string `json:"affiliation,omitempty"`
+	Name        string `json:"name,omitempty"`
+}
+
+type ModelResearchretrievalPaperFailure struct {
+	Message           string `json:"message,omitempty"`
+	Reason            string `json:"reason,omitempty"`
+	RetryAfterSeconds int    `json:"retry_after_seconds,omitempty"`
+	Retryable         bool   `json:"retryable,omitempty"`
+}
+
+type ModelResearchretrievalPaperHit struct {
+	Paper ModelResearchretrievalPaper `json:"paper,omitempty"`
+	Rank  int                         `json:"rank,omitempty"`
+	Score float64                     `json:"score,omitempty"`
+}
+
+type ModelResearchretrievalPaperIdentifier struct {
+	Namespace string `json:"namespace,omitempty"`
+	Value     string `json:"value,omitempty"`
+}
+
+type ModelResearchretrievalPaperMetadataResponse struct {
+	Coverage []ModelResearchretrievalPaperSourceCoverage `json:"coverage,omitempty"`
+	Paper    ModelResearchretrievalPaper                 `json:"paper,omitempty"`
+	Usage    ModelRetrievaltypesUsage                    `json:"usage,omitempty"`
+	Warnings []ModelResearchretrievalPaperWarning        `json:"warnings,omitempty"`
+}
+
+type ModelResearchretrievalPaperReadResponse struct {
+	Coverage          []ModelResearchretrievalPaperSourceCoverage `json:"coverage,omitempty"`
+	FullText          ModelResearchpapersEuropePmcfullText        `json:"full_text,omitempty"`
+	FullTextAvailable bool                                        `json:"full_text_available,omitempty"`
+	Paper             ModelResearchretrievalPaper                 `json:"paper,omitempty"`
+	Passages          []ModelRetrievaltypesPassage                `json:"passages,omitempty"`
+	UnavailableReason string                                      `json:"unavailable_reason,omitempty"`
+	Usage             ModelRetrievaltypesUsage                    `json:"usage,omitempty"`
+	Warnings          []ModelResearchretrievalPaperWarning        `json:"warnings,omitempty"`
+}
+
+type ModelResearchretrievalPaperRelatedResponse struct {
+	Coverage   []ModelResearchretrievalPaperSourceCoverage `json:"coverage,omitempty"`
+	HasMore    bool                                        `json:"has_more,omitempty"`
+	Items      []ModelResearchretrievalPaperHit            `json:"items,omitempty"`
+	NextCursor string                                      `json:"next_cursor,omitempty"`
+	Partial    bool                                        `json:"partial,omitempty"`
+	Relations  []ModelResearchpapersCitationRelation       `json:"relations,omitempty"`
+	Seeds      []ModelResearchpapersPaperGraphSeed         `json:"seeds,omitempty"`
+	Usage      ModelRetrievaltypesUsage                    `json:"usage,omitempty"`
+	Warnings   []ModelResearchretrievalPaperWarning        `json:"warnings,omitempty"`
+}
+
+type ModelResearchretrievalPaperSearchResponse struct {
+	Coverage   []ModelResearchretrievalPaperSourceCoverage `json:"coverage,omitempty"`
+	HasMore    bool                                        `json:"has_more,omitempty"`
+	Items      []ModelResearchretrievalPaperHit            `json:"items,omitempty"`
+	NextCursor string                                      `json:"next_cursor,omitempty"`
+	Partial    bool                                        `json:"partial,omitempty"`
+	Usage      ModelRetrievaltypesUsage                    `json:"usage,omitempty"`
+	Warnings   []ModelResearchretrievalPaperWarning        `json:"warnings,omitempty"`
+}
+
+type ModelResearchretrievalPaperSourceCoverage struct {
+	CorpusRevision string                             `json:"corpus_revision,omitempty"`
+	Failure        ModelResearchretrievalPaperFailure `json:"failure,omitempty"`
+	IndexedAt      string                             `json:"indexed_at,omitempty"`
+	RetrievedAt    string                             `json:"retrieved_at,omitempty"`
+	SourceId       string                             `json:"source_id,omitempty"`
+	Status         string                             `json:"status,omitempty"`
+}
+
+type ModelResearchretrievalPaperSourceDescriptor struct {
+	ArtifactTypes  []string `json:"artifact_types,omitempty"`
+	Corpus         string   `json:"corpus,omitempty"`
+	CorpusRevision string   `json:"corpus_revision,omitempty"`
+	Filters        []string `json:"filters,omitempty"`
+	LastSuccessAt  string   `json:"last_success_at,omitempty"`
+	Name           string   `json:"name,omitempty"`
+	Operations     []string `json:"operations,omitempty"`
+	SourceId       string   `json:"source_id,omitempty"`
+	State          string   `json:"state,omitempty"`
+	Url            string   `json:"url,omitempty"`
+}
+
+type ModelResearchretrievalPaperSourcesResponse struct {
+	HasMore          bool                                          `json:"has_more,omitempty"`
+	Items            []ModelResearchretrievalPaperSourceDescriptor `json:"items,omitempty"`
+	NextCursor       string                                        `json:"next_cursor,omitempty"`
+	RegistryRevision string                                        `json:"registry_revision,omitempty"`
+}
+
+type ModelResearchretrievalPaperWarning struct {
+	Code     string `json:"code,omitempty"`
+	Message  string `json:"message,omitempty"`
+	SourceId string `json:"source_id,omitempty"`
+}
+
 type ModelResyAvailabilityResponse struct {
 	Date         string              `json:"date,omitempty"`
 	PartySize    int                 `json:"party_size,omitempty"`
@@ -46366,6 +48306,280 @@ type ModelRetailmenotStoreResponseDoc struct {
 type ModelRetailmenotStoresResponseDoc struct {
 	Data ModelRetailmenotStoresResponse `json:"data,omitempty"`
 }
+
+type ModelRetrievalplatformCapabilitiesResponse struct {
+	AvailableOperations []string                                   `json:"available_operations,omitempty"`
+	BillingBypassed     bool                                       `json:"billing_bypassed,omitempty"`
+	ContractVersion     string                                     `json:"contract_version,omitempty"`
+	CrawlAvailable      bool                                       `json:"crawl_available,omitempty"`
+	CrawlMaxPages       int                                        `json:"crawl_max_pages,omitempty"`
+	MapMaxUrls          int                                        `json:"map_max_urls,omitempty"`
+	MaxActiveJobs       int                                        `json:"max_active_jobs,omitempty"`
+	MaxJobCredits       int                                        `json:"max_job_credits,omitempty"`
+	ModelRates          map[string]ModelRetrievalpricingModelRates `json:"model_rates,omitempty"`
+	Pricing             ModelRetrievalplatformUnitPrices           `json:"pricing,omitempty"`
+	QueryPolicies       []string                                   `json:"query_policies,omitempty"`
+	RenderModes         []string                                   `json:"render_modes,omitempty"`
+	ResearchAvailable   bool                                       `json:"research_available,omitempty"`
+	SearchMaxResults    int                                        `json:"search_max_results,omitempty"`
+	SitemapModes        []string                                   `json:"sitemap_modes,omitempty"`
+}
+
+type ModelRetrievalplatformMapRequest struct {
+	Cursor   string                      `json:"cursor,omitempty"`
+	MaxUrls  int                         `json:"max_urls,omitempty"`
+	PageSize int                         `json:"page_size,omitempty"`
+	Scope    ModelRetrievaltypesUrlscope `json:"scope,omitempty"`
+	Sitemap  string                      `json:"sitemap,omitempty"`
+	Url      string                      `json:"url,omitempty"`
+}
+
+type ModelRetrievalplatformMapResponse struct {
+	Coverage   string                           `json:"coverage,omitempty"`
+	ExpiresAt  string                           `json:"expires_at,omitempty"`
+	HasMore    bool                             `json:"has_more,omitempty"`
+	Items      []ModelWebretrievalDiscoveredUrl `json:"items,omitempty"`
+	NextCursor string                           `json:"next_cursor,omitempty"`
+	Partial    bool                             `json:"partial,omitempty"`
+	Truncated  bool                             `json:"truncated,omitempty"`
+	Usage      ModelRetrievaltypesUsage         `json:"usage,omitempty"`
+	Warnings   []ModelRetrievaltypesWarning     `json:"warnings,omitempty"`
+}
+
+type ModelRetrievalplatformUnitPrices struct {
+	BrowserDocumentCredits  int    `json:"browser_document_credits,omitempty"`
+	CachedReadCredits       int    `json:"cached_read_credits,omitempty"`
+	CitationSeedCredits     int    `json:"citation_seed_credits,omitempty"`
+	ControlRequestCredits   int    `json:"control_request_credits,omitempty"`
+	Currency                string `json:"currency,omitempty"`
+	HttpDocumentCredits     int    `json:"http_document_credits,omitempty"`
+	JobSubmissionCredits    int    `json:"job_submission_credits,omitempty"`
+	MapBaseCredits          int    `json:"map_base_credits,omitempty"`
+	MapResourceCredits      int    `json:"map_resource_credits,omitempty"`
+	PaperFullTextCredits    int    `json:"paper_full_text_credits,omitempty"`
+	PaperMetadataCredits    int    `json:"paper_metadata_credits,omitempty"`
+	PaperSearchQueryCredits int    `json:"paper_search_query_credits,omitempty"`
+	SearchRequestCredits    int    `json:"search_request_credits,omitempty"`
+}
+
+type ModelRetrievalplatformWebSearchRequest struct {
+	Country        string                          `json:"country,omitempty"`
+	ExcludeDomains []string                        `json:"exclude_domains,omitempty"`
+	IncludeDomains []string                        `json:"include_domains,omitempty"`
+	Language       string                          `json:"language,omitempty"`
+	Limit          int                             `json:"limit,omitempty"`
+	MaxCredits     int                             `json:"max_credits,omitempty"`
+	Q              string                          `json:"q"`
+	Scrape         ModelRetrievaltypesFetchOptions `json:"scrape,omitempty"`
+	ScrapeLimit    int                             `json:"scrape_limit,omitempty"`
+}
+
+type ModelRetrievalplatformWebSearchResponse struct {
+	Coverage []ModelRetrievaltypesSourceCoverage `json:"coverage,omitempty"`
+	Items    []ModelWebretrievalWebSearchHit     `json:"items,omitempty"`
+	Partial  bool                                `json:"partial,omitempty"`
+	Usage    ModelRetrievaltypesUsage            `json:"usage,omitempty"`
+	Warnings []ModelRetrievaltypesWarning        `json:"warnings,omitempty"`
+}
+
+type ModelRetrievalpricingModelRates struct {
+	CachedInputCreditsPerMillion int `json:"cached_input_credits_per_million,omitempty"`
+	InputCreditsPerMillion       int `json:"input_credits_per_million,omitempty"`
+	OutputCreditsPerMillion      int `json:"output_credits_per_million,omitempty"`
+}
+
+type ModelRetrievaltypesClaim struct {
+	ClaimId       string                                `json:"claim_id,omitempty"`
+	EvidenceIds   []string                              `json:"evidence_ids,omitempty"`
+	SupportStatus ModelRetrievaltypesClaimSupportStatus `json:"support_status,omitempty"`
+	Text          string                                `json:"text,omitempty"`
+}
+
+type ModelRetrievaltypesClaimSupportStatus = string
+
+type ModelRetrievaltypesCompletionReason = string
+
+type ModelRetrievaltypesCoverageStatus = string
+
+type ModelRetrievaltypesDocument struct {
+	ContentSha256 string                              `json:"content_sha256,omitempty"`
+	ContentType   string                              `json:"content_type,omitempty"`
+	DocumentId    string                              `json:"document_id,omitempty"`
+	FetchedAt     string                              `json:"fetched_at,omitempty"`
+	FinalUrl      string                              `json:"final_url,omitempty"`
+	Links         []string                            `json:"links,omitempty"`
+	Markdown      string                              `json:"markdown,omitempty"`
+	Metadata      ModelRetrievaltypesDocumentMetadata `json:"metadata,omitempty"`
+	Passages      []ModelRetrievaltypesPassage        `json:"passages,omitempty"`
+	Revision      string                              `json:"revision,omitempty"`
+	SourceUrl     string                              `json:"source_url,omitempty"`
+	Truncated     bool                                `json:"truncated,omitempty"`
+}
+
+type ModelRetrievaltypesDocumentMetadata struct {
+	Author      string `json:"author,omitempty"`
+	Description string `json:"description,omitempty"`
+	Language    string `json:"language,omitempty"`
+	ModifiedAt  string `json:"modified_at,omitempty"`
+	PublishedAt string `json:"published_at,omitempty"`
+	Title       string `json:"title,omitempty"`
+}
+
+type ModelRetrievaltypesEvidence struct {
+	ContentSha256 string                        `json:"content_sha256,omitempty"`
+	EvidenceId    string                        `json:"evidence_id,omitempty"`
+	Passage       ModelRetrievaltypesPassage    `json:"passage,omitempty"`
+	RetrievedAt   string                        `json:"retrieved_at,omitempty"`
+	Revision      string                        `json:"revision,omitempty"`
+	SourceId      string                        `json:"source_id,omitempty"`
+	SourceKind    ModelRetrievaltypesSourceKind `json:"source_kind,omitempty"`
+	Title         string                        `json:"title,omitempty"`
+	Url           string                        `json:"url,omitempty"`
+}
+
+type ModelRetrievaltypesFailure struct {
+	Message           string                           `json:"message,omitempty"`
+	Reason            ModelRetrievaltypesFailureReason `json:"reason,omitempty"`
+	RetryAfterSeconds int                              `json:"retry_after_seconds,omitempty"`
+	Retryable         bool                             `json:"retryable,omitempty"`
+}
+
+type ModelRetrievaltypesFailureReason = string
+
+type ModelRetrievaltypesFetchOptions struct {
+	MaxAge          int                           `json:"max_age,omitempty"`
+	OnlyMainContent bool                          `json:"only_main_content,omitempty"`
+	Render          ModelRetrievaltypesRenderMode `json:"render,omitempty"`
+	WaitFor         int                           `json:"wait_for,omitempty"`
+}
+
+type ModelRetrievaltypesJobEvent struct {
+	Message   string                          `json:"message,omitempty"`
+	Sequence  int                             `json:"sequence,omitempty"`
+	SourceId  string                          `json:"source_id,omitempty"`
+	Timestamp string                          `json:"timestamp,omitempty"`
+	Type      ModelRetrievaltypesJobEventType `json:"type,omitempty"`
+}
+
+type ModelRetrievaltypesJobEventType = string
+
+type ModelRetrievaltypesJobEventsResponse struct {
+	HasMore    bool                          `json:"has_more,omitempty"`
+	Items      []ModelRetrievaltypesJobEvent `json:"items,omitempty"`
+	JobId      string                        `json:"job_id,omitempty"`
+	NextCursor string                        `json:"next_cursor,omitempty"`
+}
+
+type ModelRetrievaltypesJobKind = string
+
+type ModelRetrievaltypesJobProgress struct {
+	Admitted          int `json:"admitted,omitempty"`
+	Discovered        int `json:"discovered,omitempty"`
+	DiscoveryExcluded int `json:"discovery_excluded,omitempty"`
+	Failed            int `json:"failed,omitempty"`
+	InFlight          int `json:"in_flight,omitempty"`
+	Queued            int `json:"queued,omitempty"`
+	Skipped           int `json:"skipped,omitempty"`
+	Succeeded         int `json:"succeeded,omitempty"`
+}
+
+type ModelRetrievaltypesJobState = string
+
+type ModelRetrievaltypesJobStatus struct {
+	CancelRequested  bool                                `json:"cancel_requested,omitempty"`
+	CompletionReason ModelRetrievaltypesCompletionReason `json:"completion_reason,omitempty"`
+	CreatedAt        string                              `json:"created_at,omitempty"`
+	DeadlineAt       string                              `json:"deadline_at,omitempty"`
+	Error            ModelRetrievaltypesFailure          `json:"error,omitempty"`
+	ExpiresAt        string                              `json:"expires_at,omitempty"`
+	JobId            string                              `json:"job_id,omitempty"`
+	Kind             ModelRetrievaltypesJobKind          `json:"kind,omitempty"`
+	Partial          bool                                `json:"partial,omitempty"`
+	Progress         ModelRetrievaltypesJobProgress      `json:"progress,omitempty"`
+	Research         ModelRetrievaltypesResearchProgress `json:"research,omitempty"`
+	State            ModelRetrievaltypesJobState         `json:"state,omitempty"`
+	UpdatedAt        string                              `json:"updated_at,omitempty"`
+	Usage            ModelRetrievaltypesUsage            `json:"usage,omitempty"`
+	Warnings         []ModelRetrievaltypesWarning        `json:"warnings,omitempty"`
+}
+
+type ModelRetrievaltypesJobSubmission struct {
+	DeadlineAt string                      `json:"deadline_at,omitempty"`
+	JobId      string                      `json:"job_id,omitempty"`
+	Replayed   bool                        `json:"replayed,omitempty"`
+	ResultsUrl string                      `json:"results_url,omitempty"`
+	State      ModelRetrievaltypesJobState `json:"state,omitempty"`
+	StatusUrl  string                      `json:"status_url,omitempty"`
+}
+
+type ModelRetrievaltypesPassage struct {
+	Locator   ModelRetrievaltypesPassageLocator `json:"locator,omitempty"`
+	PassageId string                            `json:"passage_id,omitempty"`
+	Score     float64                           `json:"score,omitempty"`
+	Text      string                            `json:"text,omitempty"`
+}
+
+type ModelRetrievaltypesPassageLocator struct {
+	Anchor    string `json:"anchor,omitempty"`
+	EndByte   int    `json:"end_byte,omitempty"`
+	EndLine   int    `json:"end_line,omitempty"`
+	Heading   string `json:"heading,omitempty"`
+	Page      int    `json:"page,omitempty"`
+	StartByte int    `json:"start_byte,omitempty"`
+	StartLine int    `json:"start_line,omitempty"`
+}
+
+type ModelRetrievaltypesQueryPolicy = string
+
+type ModelRetrievaltypesRenderMode = string
+
+type ModelRetrievaltypesResearchProgress struct {
+	MaxRounds         int `json:"max_rounds,omitempty"`
+	QuestionsAnswered int `json:"questions_answered,omitempty"`
+	QuestionsTotal    int `json:"questions_total,omitempty"`
+	Round             int `json:"round,omitempty"`
+	SearchesCompleted int `json:"searches_completed,omitempty"`
+	SourcesRead       int `json:"sources_read,omitempty"`
+}
+
+type ModelRetrievaltypesSourceCoverage struct {
+	CorpusRevision string                            `json:"corpus_revision,omitempty"`
+	Failure        ModelRetrievaltypesFailure        `json:"failure,omitempty"`
+	IndexedAt      string                            `json:"indexed_at,omitempty"`
+	RetrievedAt    string                            `json:"retrieved_at,omitempty"`
+	SourceId       string                            `json:"source_id,omitempty"`
+	Status         ModelRetrievaltypesCoverageStatus `json:"status,omitempty"`
+}
+
+type ModelRetrievaltypesSourceKind = string
+
+type ModelRetrievaltypesUrlscope struct {
+	ExcludePaths      []string                       `json:"exclude_paths,omitempty"`
+	IncludePaths      []string                       `json:"include_paths,omitempty"`
+	IncludeSubdomains bool                           `json:"include_subdomains,omitempty"`
+	QueryPolicy       ModelRetrievaltypesQueryPolicy `json:"query_policy,omitempty"`
+}
+
+type ModelRetrievaltypesUsage struct {
+	BrowserRenders    int  `json:"browser_renders,omitempty"`
+	CreditsCharged    int  `json:"credits_charged,omitempty"`
+	CreditsReleased   int  `json:"credits_released,omitempty"`
+	CreditsReserved   int  `json:"credits_reserved,omitempty"`
+	FetchAttempts     int  `json:"fetch_attempts,omitempty"`
+	FetchedUrls       int  `json:"fetched_urls,omitempty"`
+	InputTokens       int  `json:"input_tokens,omitempty"`
+	OutputTokens      int  `json:"output_tokens,omitempty"`
+	SearchRequests    int  `json:"search_requests,omitempty"`
+	SettlementPending bool `json:"settlement_pending,omitempty"`
+}
+
+type ModelRetrievaltypesWarning struct {
+	Code     ModelRetrievaltypesWarningCode `json:"code,omitempty"`
+	Message  string                         `json:"message,omitempty"`
+	SourceId string                         `json:"source_id,omitempty"`
+}
+
+type ModelRetrievaltypesWarningCode = string
 
 type ModelReutersArticleItem struct {
 	ImageUrl  string `json:"image_url,omitempty"`
@@ -51118,6 +53332,488 @@ type ModelSmhHeadlineItem struct {
 	Url         string `json:"url,omitempty"`
 }
 
+type ModelSofascoreAchievementSeason struct {
+	SeasonId int    `json:"season_id,omitempty"`
+	Year     string `json:"year,omitempty"`
+}
+
+type ModelSofascoreAveragePosition struct {
+	AverageX    float64                   `json:"average_x,omitempty"`
+	AverageY    float64                   `json:"average_y,omitempty"`
+	Player      ModelSofascorePlayerBrief `json:"player,omitempty"`
+	PointsCount int                       `json:"points_count,omitempty"`
+}
+
+type ModelSofascoreAveragePositionSubstitution struct {
+	IsHome    bool                      `json:"is_home,omitempty"`
+	Minute    int                       `json:"minute,omitempty"`
+	PlayerIn  ModelSofascorePlayerBrief `json:"player_in,omitempty"`
+	PlayerOut ModelSofascorePlayerBrief `json:"player_out,omitempty"`
+}
+
+type ModelSofascoreBaseballAtBat struct {
+	AwayWinProbability      float64                   `json:"away_win_probability,omitempty"`
+	AwayWinProbabilityStart float64                   `json:"away_win_probability_start,omitempty"`
+	EndTime                 string                    `json:"end_time,omitempty"`
+	EndTimestamp            int                       `json:"end_timestamp,omitempty"`
+	Hitter                  ModelSofascorePlayerBrief `json:"hitter,omitempty"`
+	HitterTeam              ModelSofascoreTeamRef     `json:"hitter_team,omitempty"`
+	HomeWinProbability      float64                   `json:"home_win_probability,omitempty"`
+	HomeWinProbabilityStart float64                   `json:"home_win_probability_start,omitempty"`
+	Id                      int                       `json:"id,omitempty"`
+	Inning                  int                       `json:"inning,omitempty"`
+	InningHalf              string                    `json:"inning_half,omitempty"`
+	Pitcher                 ModelSofascorePlayerBrief `json:"pitcher,omitempty"`
+	PitcherTeam             ModelSofascoreTeamRef     `json:"pitcher_team,omitempty"`
+}
+
+type ModelSofascoreBaseballFielder struct {
+	FirstName    string `json:"first_name,omitempty"`
+	JerseyNumber string `json:"jersey_number,omitempty"`
+	LastName     string `json:"last_name,omitempty"`
+	PlayerId     int    `json:"player_id,omitempty"`
+	Sequence     int    `json:"sequence,omitempty"`
+	Type         string `json:"type,omitempty"`
+}
+
+type ModelSofascoreBaseballPerformer struct {
+	Player     ModelSofascorePlayerBrief `json:"player,omitempty"`
+	Rating     float64                   `json:"rating,omitempty"`
+	Role       string                    `json:"role,omitempty"`
+	Statistics map[string]float64        `json:"statistics,omitempty"`
+	Team       ModelSofascoreTeamRef     `json:"team,omitempty"`
+}
+
+type ModelSofascoreBaseballPitch struct {
+	AtBatOver        bool                            `json:"at_bat_over,omitempty"`
+	AwayTeamRuns     int                             `json:"away_team_runs,omitempty"`
+	Balls            int                             `json:"balls,omitempty"`
+	Bunt             bool                            `json:"bunt,omitempty"`
+	DoublePlay       bool                            `json:"double_play,omitempty"`
+	EndTime          string                          `json:"end_time,omitempty"`
+	Fielders         []ModelSofascoreBaseballFielder `json:"fielders,omitempty"`
+	Hit              bool                            `json:"hit,omitempty"`
+	HitHardness      string                          `json:"hit_hardness,omitempty"`
+	HitLocation      string                          `json:"hit_location,omitempty"`
+	HitTrajectory    string                          `json:"hit_trajectory,omitempty"`
+	HitType          string                          `json:"hit_type,omitempty"`
+	HitX             float64                         `json:"hit_x,omitempty"`
+	HitY             float64                         `json:"hit_y,omitempty"`
+	HitterHand       string                          `json:"hitter_hand,omitempty"`
+	HomeTeamRuns     int                             `json:"home_team_runs,omitempty"`
+	Id               int                             `json:"id,omitempty"`
+	Inning           int                             `json:"inning,omitempty"`
+	InningHalf       string                          `json:"inning_half,omitempty"`
+	MlbX             float64                         `json:"mlb_x,omitempty"`
+	MlbY             float64                         `json:"mlb_y,omitempty"`
+	MlbZone          int                             `json:"mlb_zone,omitempty"`
+	Outcome          string                          `json:"outcome,omitempty"`
+	Outs             int                             `json:"outs,omitempty"`
+	PassedBall       bool                            `json:"passed_ball,omitempty"`
+	PitchCode        string                          `json:"pitch_code,omitempty"`
+	PitchCount       int                             `json:"pitch_count,omitempty"`
+	PitchDescription string                          `json:"pitch_description,omitempty"`
+	PitchSpeed       float64                         `json:"pitch_speed,omitempty"`
+	PitchType        string                          `json:"pitch_type,omitempty"`
+	PitchX           int                             `json:"pitch_x,omitempty"`
+	PitchY           int                             `json:"pitch_y,omitempty"`
+	PitchZone        int                             `json:"pitch_zone,omitempty"`
+	PitcherHand      string                          `json:"pitcher_hand,omitempty"`
+	Runners          []ModelSofascoreBaseballRunner  `json:"runners,omitempty"`
+	Sequence         int                             `json:"sequence,omitempty"`
+	StartTime        string                          `json:"start_time,omitempty"`
+	Status           string                          `json:"status,omitempty"`
+	StrikeZoneBottom float64                         `json:"strike_zone_bottom,omitempty"`
+	StrikeZoneTop    float64                         `json:"strike_zone_top,omitempty"`
+	Strikes          int                             `json:"strikes,omitempty"`
+	TriplePlay       bool                            `json:"triple_play,omitempty"`
+	Type             string                          `json:"type,omitempty"`
+	WildPitch        bool                            `json:"wild_pitch,omitempty"`
+}
+
+type ModelSofascoreBaseballRunner struct {
+	Description  string `json:"description,omitempty"`
+	EndingBase   int    `json:"ending_base,omitempty"`
+	JerseyNumber string `json:"jersey_number,omitempty"`
+	Out          bool   `json:"out,omitempty"`
+	OutcomeCode  string `json:"outcome_code,omitempty"`
+	PlayerId     int    `json:"player_id,omitempty"`
+	PlayerName   string `json:"player_name,omitempty"`
+	StartingBase int    `json:"starting_base,omitempty"`
+}
+
+type ModelSofascoreBestPlayer struct {
+	Label     string                    `json:"label,omitempty"`
+	Player    ModelSofascorePlayerBrief `json:"player,omitempty"`
+	Team      ModelSofascoreTeamRef     `json:"team,omitempty"`
+	Value     float64                   `json:"value,omitempty"`
+	ValueText string                    `json:"value_text,omitempty"`
+}
+
+type ModelSofascoreCategoriesResponse struct {
+	Categories []ModelSofascoreCategory `json:"categories,omitempty"`
+	Count      int                      `json:"count,omitempty"`
+	FetchedAt  string                   `json:"fetched_at,omitempty"`
+	SourceUrl  string                   `json:"source_url,omitempty"`
+	Sport      string                   `json:"sport,omitempty"`
+}
+
+type ModelSofascoreCategory struct {
+	Alpha2   string `json:"alpha2,omitempty"`
+	Flag     string `json:"flag,omitempty"`
+	Id       int    `json:"id,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Priority int    `json:"priority,omitempty"`
+	Slug     string `json:"slug,omitempty"`
+}
+
+type ModelSofascoreCategoryTournament struct {
+	CategoryId   int    `json:"category_id,omitempty"`
+	CategoryName string `json:"category_name,omitempty"`
+	Id           int    `json:"id,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Slug         string `json:"slug,omitempty"`
+	UserCount    int    `json:"user_count,omitempty"`
+}
+
+type ModelSofascoreCategoryTournamentsResponse struct {
+	CategoryId  int                                `json:"category_id,omitempty"`
+	Count       int                                `json:"count,omitempty"`
+	FetchedAt   string                             `json:"fetched_at,omitempty"`
+	SourceUrl   string                             `json:"source_url,omitempty"`
+	Tournaments []ModelSofascoreCategoryTournament `json:"tournaments,omitempty"`
+}
+
+type ModelSofascoreCompetitionRef struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelSofascoreCoordinates struct {
+	X float64 `json:"x,omitempty"`
+	Y float64 `json:"y,omitempty"`
+	Z float64 `json:"z,omitempty"`
+}
+
+type ModelSofascoreCricketBattingLine struct {
+	Balls             int                       `json:"balls,omitempty"`
+	Bowler            ModelSofascorePlayerBrief `json:"bowler,omitempty"`
+	Dismissal         string                    `json:"dismissal,omitempty"`
+	DismissalCode     int                       `json:"dismissal_code,omitempty"`
+	FallOfWicketOver  float64                   `json:"fall_of_wicket_over,omitempty"`
+	FallOfWicketScore int                       `json:"fall_of_wicket_score,omitempty"`
+	Fielder           ModelSofascorePlayerBrief `json:"fielder,omitempty"`
+	Fours             int                       `json:"fours,omitempty"`
+	Player            ModelSofascorePlayerBrief `json:"player,omitempty"`
+	Runs              int                       `json:"runs,omitempty"`
+	ScorecardName     string                    `json:"scorecard_name,omitempty"`
+	Sixes             int                       `json:"sixes,omitempty"`
+}
+
+type ModelSofascoreCricketBowlingLine struct {
+	Maidens       int                       `json:"maidens,omitempty"`
+	NoBalls       int                       `json:"no_balls,omitempty"`
+	Overs         float64                   `json:"overs,omitempty"`
+	Player        ModelSofascorePlayerBrief `json:"player,omitempty"`
+	Runs          int                       `json:"runs,omitempty"`
+	ScorecardName string                    `json:"scorecard_name,omitempty"`
+	Wickets       int                       `json:"wickets,omitempty"`
+	Wides         int                       `json:"wides,omitempty"`
+}
+
+type ModelSofascoreCricketExtras struct {
+	Byes    int `json:"byes,omitempty"`
+	LegByes int `json:"leg_byes,omitempty"`
+	NoBalls int `json:"no_balls,omitempty"`
+	Penalty int `json:"penalty,omitempty"`
+	Total   int `json:"total,omitempty"`
+	Wides   int `json:"wides,omitempty"`
+}
+
+type ModelSofascoreCricketFallOfWicket struct {
+	Over   float64                   `json:"over,omitempty"`
+	Player ModelSofascorePlayerBrief `json:"player,omitempty"`
+	Score  int                       `json:"score,omitempty"`
+	Wicket int                       `json:"wicket,omitempty"`
+}
+
+type ModelSofascoreCricketInnings struct {
+	Batting       []ModelSofascoreCricketBattingLine  `json:"batting,omitempty"`
+	BattingTeam   ModelSofascoreTeamRef               `json:"batting_team,omitempty"`
+	Bowling       []ModelSofascoreCricketBowlingLine  `json:"bowling,omitempty"`
+	BowlingTeam   ModelSofascoreTeamRef               `json:"bowling_team,omitempty"`
+	Extras        ModelSofascoreCricketExtras         `json:"extras,omitempty"`
+	FallOfWickets []ModelSofascoreCricketFallOfWicket `json:"fall_of_wickets,omitempty"`
+	Id            int                                 `json:"id,omitempty"`
+	Number        int                                 `json:"number,omitempty"`
+	Overs         float64                             `json:"overs,omitempty"`
+	Partnerships  []ModelSofascoreCricketPartnership  `json:"partnerships,omitempty"`
+	Runs          int                                 `json:"runs,omitempty"`
+	Wickets       int                                 `json:"wickets,omitempty"`
+}
+
+type ModelSofascoreCricketPartnership struct {
+	Balls   int                       `json:"balls,omitempty"`
+	Number  int                       `json:"number,omitempty"`
+	Player1 ModelSofascorePlayerBrief `json:"player1,omitempty"`
+	Player2 ModelSofascorePlayerBrief `json:"player2,omitempty"`
+	Runs    int                       `json:"runs,omitempty"`
+}
+
+type ModelSofascoreCupTree struct {
+	CurrentRound    int                          `json:"current_round,omitempty"`
+	FinalMatch      ModelSofascoreCupTreeBlock   `json:"final_match,omitempty"`
+	Id              int                          `json:"id,omitempty"`
+	Name            string                       `json:"name,omitempty"`
+	Rounds          []ModelSofascoreCupTreeRound `json:"rounds,omitempty"`
+	ThirdPlaceMatch ModelSofascoreCupTreeBlock   `json:"third_place_match,omitempty"`
+	TournamentName  string                       `json:"tournament_name,omitempty"`
+}
+
+type ModelSofascoreCupTreeBlock struct {
+	AwayScore            string                             `json:"away_score,omitempty"`
+	BlockId              int                                `json:"block_id,omitempty"`
+	EventIds             []int                              `json:"event_ids,omitempty"`
+	Finished             bool                               `json:"finished,omitempty"`
+	HomeScore            string                             `json:"home_score,omitempty"`
+	Id                   int                                `json:"id,omitempty"`
+	InProgress           bool                               `json:"in_progress,omitempty"`
+	Matches              int                                `json:"matches,omitempty"`
+	Order                int                                `json:"order,omitempty"`
+	Participants         []ModelSofascoreCupTreeParticipant `json:"participants,omitempty"`
+	Result               string                             `json:"result,omitempty"`
+	SeriesStartTime      string                             `json:"series_start_time,omitempty"`
+	SeriesStartTimestamp int                                `json:"series_start_timestamp,omitempty"`
+	Venue                ModelSofascoreVenue                `json:"venue,omitempty"`
+}
+
+type ModelSofascoreCupTreeParticipant struct {
+	Order         int                   `json:"order,omitempty"`
+	Seed          string                `json:"seed,omitempty"`
+	SourceBlockId int                   `json:"source_block_id,omitempty"`
+	Team          ModelSofascoreTeamRef `json:"team,omitempty"`
+	Winner        bool                  `json:"winner,omitempty"`
+}
+
+type ModelSofascoreCupTreeRound struct {
+	Blocks      []ModelSofascoreCupTreeBlock `json:"blocks,omitempty"`
+	Description string                       `json:"description,omitempty"`
+	Id          int                          `json:"id,omitempty"`
+	Order       int                          `json:"order,omitempty"`
+	RoundType   int                          `json:"round_type,omitempty"`
+}
+
+type ModelSofascoreDraftInfo struct {
+	EndTime           string `json:"end_time,omitempty"`
+	EndTimestamp      int    `json:"end_timestamp,omitempty"`
+	IsLotteryComplete bool   `json:"is_lottery_complete,omitempty"`
+	Rounds            []int  `json:"rounds,omitempty"`
+	StartTime         string `json:"start_time,omitempty"`
+	StartTimestamp    int    `json:"start_timestamp,omitempty"`
+	Status            string `json:"status,omitempty"`
+	Year              int    `json:"year,omitempty"`
+}
+
+type ModelSofascoreDraftPick struct {
+	OverallPick int                         `json:"overall_pick,omitempty"`
+	PickInRound int                         `json:"pick_in_round,omitempty"`
+	Prospect    ModelSofascoreDraftProspect `json:"prospect,omitempty"`
+	Round       int                         `json:"round,omitempty"`
+	Team        ModelSofascoreTeamRef       `json:"team,omitempty"`
+}
+
+type ModelSofascoreDraftPicksResponse struct {
+	Count                 int                       `json:"count,omitempty"`
+	FetchedAt             string                    `json:"fetched_at,omitempty"`
+	League                string                    `json:"league,omitempty"`
+	Picks                 []ModelSofascoreDraftPick `json:"picks,omitempty"`
+	Round                 int                       `json:"round,omitempty"`
+	SourceUrl             string                    `json:"source_url,omitempty"`
+	TeamsWithoutRoundPick []ModelSofascoreTeamRef   `json:"teams_without_round_pick,omitempty"`
+	Year                  int                       `json:"year,omitempty"`
+}
+
+type ModelSofascoreDraftProspect struct {
+	FirstName     string                    `json:"first_name,omitempty"`
+	IsTopProspect bool                      `json:"is_top_prospect,omitempty"`
+	LastName      string                    `json:"last_name,omitempty"`
+	Name          string                    `json:"name,omitempty"`
+	Player        ModelSofascorePlayerBrief `json:"player,omitempty"`
+	Position      string                    `json:"position,omitempty"`
+	School        ModelSofascoreTeamRef     `json:"school,omitempty"`
+	SchoolName    string                    `json:"school_name,omitempty"`
+}
+
+type ModelSofascoreDraftResponse struct {
+	Draft          ModelSofascoreDraftInfo `json:"draft,omitempty"`
+	FetchedAt      string                  `json:"fetched_at,omitempty"`
+	HasLotteryDraw bool                    `json:"has_lottery_draw,omitempty"`
+	League         string                  `json:"league,omitempty"`
+	LotteryYear    int                     `json:"lottery_year,omitempty"`
+	PreviousDraft  ModelSofascoreDraftInfo `json:"previous_draft,omitempty"`
+	ProspectsYear  int                     `json:"prospects_year,omitempty"`
+	Season         int                     `json:"season,omitempty"`
+	SourceUrl      string                  `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreEsportsCharacter struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelSofascoreEsportsGame struct {
+	AwayScore                ModelSofascoreEsportsGameScore `json:"away_score,omitempty"`
+	HasCompleteStatistics    bool                           `json:"has_complete_statistics,omitempty"`
+	HomeScore                ModelSofascoreEsportsGameScore `json:"home_score,omitempty"`
+	HomeTeamStartingSideCode int                            `json:"home_team_starting_side_code,omitempty"`
+	Id                       int                            `json:"id,omitempty"`
+	LengthSeconds            int                            `json:"length_seconds,omitempty"`
+	Map                      ModelSofascoreEsportsGameMap   `json:"map,omitempty"`
+	StartTime                string                         `json:"start_time,omitempty"`
+	StartTimestamp           int                            `json:"start_timestamp,omitempty"`
+	Status                   ModelSofascoreEventStatus      `json:"status,omitempty"`
+	WinnerCode               int                            `json:"winner_code,omitempty"`
+}
+
+type ModelSofascoreEsportsGameBans struct {
+	Away []ModelSofascoreEsportsCharacter `json:"away,omitempty"`
+	Home []ModelSofascoreEsportsCharacter `json:"home,omitempty"`
+}
+
+type ModelSofascoreEsportsGameLineups struct {
+	AwayPlayers []ModelSofascoreEsportsPlayerLine `json:"away_players,omitempty"`
+	HomePlayers []ModelSofascoreEsportsPlayerLine `json:"home_players,omitempty"`
+}
+
+type ModelSofascoreEsportsGameMap struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelSofascoreEsportsGameResponse struct {
+	Bans       ModelSofascoreEsportsGameBans       `json:"bans,omitempty"`
+	FetchedAt  string                              `json:"fetched_at,omitempty"`
+	GameId     int                                 `json:"game_id,omitempty"`
+	Lineups    ModelSofascoreEsportsGameLineups    `json:"lineups,omitempty"`
+	Part       string                              `json:"part,omitempty"`
+	Rounds     ModelSofascoreEsportsGameRounds     `json:"rounds,omitempty"`
+	SourceUrl  string                              `json:"source_url,omitempty"`
+	Statistics ModelSofascoreEsportsGameStatistics `json:"statistics,omitempty"`
+}
+
+type ModelSofascoreEsportsGameRounds struct {
+	Normaltime        []ModelSofascoreEsportsRound `json:"normaltime,omitempty"`
+	Overtime          []ModelSofascoreEsportsRound `json:"overtime,omitempty"`
+	OvertimeChunkSize int                          `json:"overtime_chunk_size,omitempty"`
+	RoundsInAHalf     int                          `json:"rounds_in_a_half,omitempty"`
+}
+
+type ModelSofascoreEsportsGameScore struct {
+	Display  int `json:"display,omitempty"`
+	Overtime int `json:"overtime,omitempty"`
+	Period1  int `json:"period1,omitempty"`
+	Period2  int `json:"period2,omitempty"`
+}
+
+type ModelSofascoreEsportsGameStatistics struct {
+	Away ModelSofascoreEsportsTeamStatistics `json:"away,omitempty"`
+	Home ModelSofascoreEsportsTeamStatistics `json:"home,omitempty"`
+}
+
+type ModelSofascoreEsportsPlayerLine struct {
+	Character  ModelSofascoreEsportsCharacter `json:"character,omitempty"`
+	Flags      map[string]bool                `json:"flags,omitempty"`
+	Player     ModelSofascorePlayerBrief      `json:"player,omitempty"`
+	Role       string                         `json:"role,omitempty"`
+	Statistics map[string]float64             `json:"statistics,omitempty"`
+}
+
+type ModelSofascoreEsportsRound struct {
+	HomeTeamSide     string `json:"home_team_side,omitempty"`
+	HomeTeamSideCode int    `json:"home_team_side_code,omitempty"`
+	Outcome          string `json:"outcome,omitempty"`
+	OutcomeCode      int    `json:"outcome_code,omitempty"`
+	WinnerCode       int    `json:"winner_code,omitempty"`
+}
+
+type ModelSofascoreEsportsTeamStatistics struct {
+	Flags      map[string]bool    `json:"flags,omitempty"`
+	Statistics map[string]float64 `json:"statistics,omitempty"`
+}
+
+type ModelSofascoreEventAtBatPitchesResponse struct {
+	AtBatId   int                           `json:"at_bat_id,omitempty"`
+	Count     int                           `json:"count,omitempty"`
+	EventId   int                           `json:"event_id,omitempty"`
+	FetchedAt string                        `json:"fetched_at,omitempty"`
+	Hitter    ModelSofascorePlayerBrief     `json:"hitter,omitempty"`
+	Pitcher   ModelSofascorePlayerBrief     `json:"pitcher,omitempty"`
+	Pitches   []ModelSofascoreBaseballPitch `json:"pitches,omitempty"`
+	SourceUrl string                        `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreEventAtBatsResponse struct {
+	AtBats    []ModelSofascoreBaseballAtBat `json:"at_bats,omitempty"`
+	Count     int                           `json:"count,omitempty"`
+	EventId   int                           `json:"event_id,omitempty"`
+	FetchedAt string                        `json:"fetched_at,omitempty"`
+	SourceUrl string                        `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreEventAveragePositionsResponse struct {
+	Away          []ModelSofascoreAveragePosition             `json:"away,omitempty"`
+	EventId       int                                         `json:"event_id,omitempty"`
+	FetchedAt     string                                      `json:"fetched_at,omitempty"`
+	Home          []ModelSofascoreAveragePosition             `json:"home,omitempty"`
+	SourceUrl     string                                      `json:"source_url,omitempty"`
+	Substitutions []ModelSofascoreAveragePositionSubstitution `json:"substitutions,omitempty"`
+}
+
+type ModelSofascoreEventBaseballTopPerformersResponse struct {
+	EventId    int                               `json:"event_id,omitempty"`
+	FetchedAt  string                            `json:"fetched_at,omitempty"`
+	Performers []ModelSofascoreBaseballPerformer `json:"performers,omitempty"`
+	SourceUrl  string                            `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreEventBestPlayersResponse struct {
+	AwayPlayers      []ModelSofascoreBestPlayer `json:"away_players,omitempty"`
+	EventId          int                        `json:"event_id,omitempty"`
+	FetchedAt        string                     `json:"fetched_at,omitempty"`
+	HomePlayers      []ModelSofascoreBestPlayer `json:"home_players,omitempty"`
+	PlayerOfTheMatch ModelSofascoreBestPlayer   `json:"player_of_the_match,omitempty"`
+	SourceUrl        string                     `json:"source_url,omitempty"`
+	TopPlayers       []ModelSofascoreBestPlayer `json:"top_players,omitempty"`
+}
+
+type ModelSofascoreEventComment struct {
+	Assist         ModelSofascorePlayerBrief `json:"assist,omitempty"`
+	AwayScore      int                       `json:"away_score,omitempty"`
+	GoalType       string                    `json:"goal_type,omitempty"`
+	HomeScore      int                       `json:"home_score,omitempty"`
+	Id             int                       `json:"id,omitempty"`
+	IsHome         bool                      `json:"is_home,omitempty"`
+	Minute         int                       `json:"minute,omitempty"`
+	PenaltyDrawnBy ModelSofascorePlayerBrief `json:"penalty_drawn_by,omitempty"`
+	Period         string                    `json:"period,omitempty"`
+	Player         ModelSofascorePlayerBrief `json:"player,omitempty"`
+	PlayerIn       ModelSofascorePlayerBrief `json:"player_in,omitempty"`
+	PlayerOut      ModelSofascorePlayerBrief `json:"player_out,omitempty"`
+	Text           string                    `json:"text,omitempty"`
+	TimeSeconds    int                       `json:"time_seconds,omitempty"`
+	Type           string                    `json:"type,omitempty"`
+}
+
+type ModelSofascoreEventCommentsResponse struct {
+	Comments  []ModelSofascoreEventComment `json:"comments,omitempty"`
+	Count     int                          `json:"count,omitempty"`
+	EventId   int                          `json:"event_id,omitempty"`
+	FetchedAt string                       `json:"fetched_at,omitempty"`
+	SourceUrl string                       `json:"source_url,omitempty"`
+}
+
 type ModelSofascoreEventDetail struct {
 	Attendance     int                         `json:"attendance,omitempty"`
 	AwayScore      ModelSofascoreScoreLine     `json:"away_score,omitempty"`
@@ -51135,6 +53831,26 @@ type ModelSofascoreEventDetail struct {
 	WinnerCode     int                         `json:"winner_code,omitempty"`
 }
 
+type ModelSofascoreEventEsportsGamesResponse struct {
+	Count     int                         `json:"count,omitempty"`
+	EventId   int                         `json:"event_id,omitempty"`
+	FetchedAt string                      `json:"fetched_at,omitempty"`
+	Games     []ModelSofascoreEsportsGame `json:"games,omitempty"`
+	SourceUrl string                      `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreEventGraphResponse struct {
+	Count          int                        `json:"count,omitempty"`
+	EventId        int                        `json:"event_id,omitempty"`
+	FetchedAt      string                     `json:"fetched_at,omitempty"`
+	OvertimeCount  int                        `json:"overtime_count,omitempty"`
+	OvertimeLength int                        `json:"overtime_length,omitempty"`
+	PeriodCount    int                        `json:"period_count,omitempty"`
+	PeriodTime     int                        `json:"period_time,omitempty"`
+	Points         []ModelSofascoreGraphPoint `json:"points,omitempty"`
+	SourceUrl      string                     `json:"source_url,omitempty"`
+}
+
 type ModelSofascoreEventH2Hresponse struct {
 	EventId     int                    `json:"event_id,omitempty"`
 	FetchedAt   string                 `json:"fetched_at,omitempty"`
@@ -51143,12 +53859,42 @@ type ModelSofascoreEventH2Hresponse struct {
 	TeamDuel    ModelSofascoreTeamDuel `json:"team_duel,omitempty"`
 }
 
+type ModelSofascoreEventHighlight struct {
+	CreatedAt        string   `json:"created_at,omitempty"`
+	CreatedTimestamp int      `json:"created_timestamp,omitempty"`
+	ForCountries     []string `json:"for_countries,omitempty"`
+	Id               int      `json:"id,omitempty"`
+	KeyHighlight     bool     `json:"key_highlight,omitempty"`
+	Livestream       bool     `json:"livestream,omitempty"`
+	MediaTypeCode    int      `json:"media_type_code,omitempty"`
+	Subtitle         string   `json:"subtitle,omitempty"`
+	ThumbnailUrl     string   `json:"thumbnail_url,omitempty"`
+	Title            string   `json:"title,omitempty"`
+	Url              string   `json:"url,omitempty"`
+}
+
+type ModelSofascoreEventHighlightsResponse struct {
+	Count      int                            `json:"count,omitempty"`
+	EventId    int                            `json:"event_id,omitempty"`
+	FetchedAt  string                         `json:"fetched_at,omitempty"`
+	Highlights []ModelSofascoreEventHighlight `json:"highlights,omitempty"`
+	SourceUrl  string                         `json:"source_url,omitempty"`
+}
+
 type ModelSofascoreEventIncidentsResponse struct {
 	Count     int                      `json:"count,omitempty"`
 	EventId   int                      `json:"event_id,omitempty"`
 	FetchedAt string                   `json:"fetched_at,omitempty"`
 	Incidents []ModelSofascoreIncident `json:"incidents,omitempty"`
 	SourceUrl string                   `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreEventInningsResponse struct {
+	Count     int                            `json:"count,omitempty"`
+	EventId   int                            `json:"event_id,omitempty"`
+	FetchedAt string                         `json:"fetched_at,omitempty"`
+	Innings   []ModelSofascoreCricketInnings `json:"innings,omitempty"`
+	SourceUrl string                         `json:"source_url,omitempty"`
 }
 
 type ModelSofascoreEventLineupsResponse struct {
@@ -51160,6 +53906,14 @@ type ModelSofascoreEventLineupsResponse struct {
 	SourceUrl string                   `json:"source_url,omitempty"`
 }
 
+type ModelSofascoreEventManagersResponse struct {
+	Away      ModelSofascoreManagerBrief `json:"away,omitempty"`
+	EventId   int                        `json:"event_id,omitempty"`
+	FetchedAt string                     `json:"fetched_at,omitempty"`
+	Home      ModelSofascoreManagerBrief `json:"home,omitempty"`
+	SourceUrl string                     `json:"source_url,omitempty"`
+}
+
 type ModelSofascoreEventOddsResponse struct {
 	Count     int                        `json:"count,omitempty"`
 	EventId   int                        `json:"event_id,omitempty"`
@@ -51168,10 +53922,55 @@ type ModelSofascoreEventOddsResponse struct {
 	SourceUrl string                     `json:"source_url,omitempty"`
 }
 
+type ModelSofascoreEventPlayerHeatmapResponse struct {
+	Count     int                          `json:"count,omitempty"`
+	EventId   int                          `json:"event_id,omitempty"`
+	FetchedAt string                       `json:"fetched_at,omitempty"`
+	PlayerId  int                          `json:"player_id,omitempty"`
+	Points    []ModelSofascoreHeatmapPoint `json:"points,omitempty"`
+	SourceUrl string                       `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreEventPlayerStatisticsResponse struct {
+	EventId    int                       `json:"event_id,omitempty"`
+	FetchedAt  string                    `json:"fetched_at,omitempty"`
+	Player     ModelSofascorePlayerBrief `json:"player,omitempty"`
+	PlayerId   int                       `json:"player_id,omitempty"`
+	Position   string                    `json:"position,omitempty"`
+	SourceUrl  string                    `json:"source_url,omitempty"`
+	Statistics map[string]float64        `json:"statistics,omitempty"`
+	Team       ModelSofascoreTeamRef     `json:"team,omitempty"`
+}
+
+type ModelSofascoreEventPointByPointResponse struct {
+	EventId   int                             `json:"event_id,omitempty"`
+	FetchedAt string                          `json:"fetched_at,omitempty"`
+	SetCount  int                             `json:"set_count,omitempty"`
+	Sets      []ModelSofascorePointByPointSet `json:"sets,omitempty"`
+	SourceUrl string                          `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreEventPregameFormResponse struct {
+	Away      ModelSofascorePregameFormSide `json:"away,omitempty"`
+	EventId   int                           `json:"event_id,omitempty"`
+	FetchedAt string                        `json:"fetched_at,omitempty"`
+	Home      ModelSofascorePregameFormSide `json:"home,omitempty"`
+	Label     string                        `json:"label,omitempty"`
+	SourceUrl string                        `json:"source_url,omitempty"`
+}
+
 type ModelSofascoreEventResponse struct {
 	Event     ModelSofascoreEventDetail `json:"event,omitempty"`
 	FetchedAt string                    `json:"fetched_at,omitempty"`
 	SourceUrl string                    `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreEventShotmapResponse struct {
+	Count     int                  `json:"count,omitempty"`
+	EventId   int                  `json:"event_id,omitempty"`
+	FetchedAt string               `json:"fetched_at,omitempty"`
+	Shots     []ModelSofascoreShot `json:"shots,omitempty"`
+	SourceUrl string               `json:"source_url,omitempty"`
 }
 
 type ModelSofascoreEventStatisticsResponse struct {
@@ -51199,6 +53998,100 @@ type ModelSofascoreEventSummary struct {
 	Status         ModelSofascoreEventStatus   `json:"status,omitempty"`
 	Tournament     ModelSofascoreTournamentRef `json:"tournament,omitempty"`
 	WinnerCode     int                         `json:"winner_code,omitempty"`
+}
+
+type ModelSofascoreEventTvchannelsResponse struct {
+	AvailableCountries []ModelSofascoreTvcountryChannels `json:"available_countries,omitempty"`
+	Channels           []ModelSofascoreTvchannel         `json:"channels,omitempty"`
+	Country            string                            `json:"country,omitempty"`
+	EventId            int                               `json:"event_id,omitempty"`
+	FetchedAt          string                            `json:"fetched_at,omitempty"`
+	SourceUrl          string                            `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreEventTeamHeatmapResponse struct {
+	EventId          int                          `json:"event_id,omitempty"`
+	FetchedAt        string                       `json:"fetched_at,omitempty"`
+	GoalkeeperPoints []ModelSofascoreHeatmapPoint `json:"goalkeeper_points,omitempty"`
+	PlayerPoints     []ModelSofascoreHeatmapPoint `json:"player_points,omitempty"`
+	SourceUrl        string                       `json:"source_url,omitempty"`
+	TeamId           int                          `json:"team_id,omitempty"`
+}
+
+type ModelSofascoreEventTeamStreaksResponse struct {
+	EventId   int                        `json:"event_id,omitempty"`
+	FetchedAt string                     `json:"fetched_at,omitempty"`
+	General   []ModelSofascoreTeamStreak `json:"general,omitempty"`
+	Head2head []ModelSofascoreTeamStreak `json:"head2head,omitempty"`
+	SourceUrl string                     `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreEventTennisPowerResponse struct {
+	Count     int                             `json:"count,omitempty"`
+	EventId   int                             `json:"event_id,omitempty"`
+	FetchedAt string                          `json:"fetched_at,omitempty"`
+	Games     []ModelSofascoreTennisPowerGame `json:"games,omitempty"`
+	SourceUrl string                          `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreEventVotesResponse struct {
+	BothTeamsToScore ModelSofascoreVoteBothTeamsToScore `json:"both_teams_to_score,omitempty"`
+	EventId          int                                `json:"event_id,omitempty"`
+	FetchedAt        string                             `json:"fetched_at,omitempty"`
+	FirstToScore     ModelSofascoreVoteFirstToScore     `json:"first_to_score,omitempty"`
+	MatchResult      ModelSofascoreVoteMatchResult      `json:"match_result,omitempty"`
+	SourceUrl        string                             `json:"source_url,omitempty"`
+	WhoShouldHaveWon ModelSofascoreVoteWhoShouldHaveWon `json:"who_should_have_won,omitempty"`
+}
+
+type ModelSofascoreFeatureTournament struct {
+	CategoryId   int    `json:"category_id,omitempty"`
+	CategoryName string `json:"category_name,omitempty"`
+	Id           int    `json:"id,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Slug         string `json:"slug,omitempty"`
+	Sport        string `json:"sport,omitempty"`
+	UserCount    int    `json:"user_count,omitempty"`
+}
+
+type ModelSofascoreGoalDistribution struct {
+	ConcededGoals int                        `json:"conceded_goals,omitempty"`
+	Matches       int                        `json:"matches,omitempty"`
+	Periods       []ModelSofascoreGoalPeriod `json:"periods,omitempty"`
+	ScoredGoals   int                        `json:"scored_goals,omitempty"`
+	Type          string                     `json:"type,omitempty"`
+}
+
+type ModelSofascoreGoalPeriod struct {
+	ConcededGoals int `json:"conceded_goals,omitempty"`
+	EndMinute     int `json:"end_minute,omitempty"`
+	ScoredGoals   int `json:"scored_goals,omitempty"`
+	StartMinute   int `json:"start_minute,omitempty"`
+}
+
+type ModelSofascoreGrandSlamTournament struct {
+	Name         string                        `json:"name,omitempty"`
+	TournamentId int                           `json:"tournament_id,omitempty"`
+	Years        []ModelSofascoreGrandSlamYear `json:"years,omitempty"`
+}
+
+type ModelSofascoreGrandSlamYear struct {
+	IsLive     bool   `json:"is_live,omitempty"`
+	IsUpcoming bool   `json:"is_upcoming,omitempty"`
+	Round      string `json:"round,omitempty"`
+	SeasonId   int    `json:"season_id,omitempty"`
+	Winner     bool   `json:"winner,omitempty"`
+	Year       int    `json:"year,omitempty"`
+}
+
+type ModelSofascoreGraphPoint struct {
+	Minute float64 `json:"minute,omitempty"`
+	Value  float64 `json:"value,omitempty"`
+}
+
+type ModelSofascoreHeatmapPoint struct {
+	X float64 `json:"x,omitempty"`
+	Y float64 `json:"y,omitempty"`
 }
 
 type ModelSofascoreIncident struct {
@@ -51231,10 +54124,160 @@ type ModelSofascoreLiveEventsResponse struct {
 	Sport     string                       `json:"sport,omitempty"`
 }
 
+type ModelSofascoreMmacardResponse struct {
+	CardId    int                      `json:"card_id,omitempty"`
+	CardName  string                   `json:"card_name,omitempty"`
+	Count     int                      `json:"count,omitempty"`
+	FetchedAt string                   `json:"fetched_at,omitempty"`
+	Fights    []ModelSofascoreMmafight `json:"fights,omitempty"`
+	OrgId     int                      `json:"org_id,omitempty"`
+	Part      string                   `json:"part,omitempty"`
+	SourceUrl string                   `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreMmafight struct {
+	AwayFighter       ModelSofascoreMmafighter  `json:"away_fighter,omitempty"`
+	CardId            int                       `json:"card_id,omitempty"`
+	CardName          string                    `json:"card_name,omitempty"`
+	FightType         string                    `json:"fight_type,omitempty"`
+	FinalRound        int                       `json:"final_round,omitempty"`
+	Gender            string                    `json:"gender,omitempty"`
+	HomeFighter       ModelSofascoreMmafighter  `json:"home_fighter,omitempty"`
+	Id                int                       `json:"id,omitempty"`
+	Order             int                       `json:"order,omitempty"`
+	ScheduledRounds   int                       `json:"scheduled_rounds,omitempty"`
+	Slug              string                    `json:"slug,omitempty"`
+	StartTime         string                    `json:"start_time,omitempty"`
+	StartTimestamp    int                       `json:"start_timestamp,omitempty"`
+	Status            ModelSofascoreEventStatus `json:"status,omitempty"`
+	TimePlayedSeconds int                       `json:"time_played_seconds,omitempty"`
+	WeightClass       string                    `json:"weight_class,omitempty"`
+	WinType           string                    `json:"win_type,omitempty"`
+	WinnerCode        int                       `json:"winner_code,omitempty"`
+}
+
+type ModelSofascoreMmafighter struct {
+	Country  string `json:"country,omitempty"`
+	Draws    int    `json:"draws,omitempty"`
+	Id       int    `json:"id,omitempty"`
+	Losses   int    `json:"losses,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Nickname string `json:"nickname,omitempty"`
+	Ranking  int    `json:"ranking,omitempty"`
+	Slug     string `json:"slug,omitempty"`
+	Wins     int    `json:"wins,omitempty"`
+}
+
+type ModelSofascoreMmascheduleResponse struct {
+	Count      int                      `json:"count,omitempty"`
+	FetchedAt  string                   `json:"fetched_at,omitempty"`
+	MainEvents []ModelSofascoreMmafight `json:"main_events,omitempty"`
+	Month      string                   `json:"month,omitempty"`
+	OrgId      int                      `json:"org_id,omitempty"`
+	SourceUrl  string                   `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreManagerBrief struct {
+	Id        int    `json:"id,omitempty"`
+	Name      string `json:"name,omitempty"`
+	ShortName string `json:"short_name,omitempty"`
+	Slug      string `json:"slug,omitempty"`
+}
+
+type ModelSofascoreManagerDetail struct {
+	Country            string                           `json:"country,omitempty"`
+	DateOfBirth        string                           `json:"date_of_birth,omitempty"`
+	Deceased           bool                             `json:"deceased,omitempty"`
+	FormerPlayerId     int                              `json:"former_player_id,omitempty"`
+	Id                 int                              `json:"id,omitempty"`
+	Name               string                           `json:"name,omitempty"`
+	NationalityCode    string                           `json:"nationality_code,omitempty"`
+	NationalityIso2    string                           `json:"nationality_iso2,omitempty"`
+	Performance        ModelSofascoreManagerPerformance `json:"performance,omitempty"`
+	PreferredFormation string                           `json:"preferred_formation,omitempty"`
+	ShortName          string                           `json:"short_name,omitempty"`
+	Slug               string                           `json:"slug,omitempty"`
+	Team               ModelSofascoreTeamRef            `json:"team,omitempty"`
+	Teams              []ModelSofascoreTeamRef          `json:"teams,omitempty"`
+}
+
+type ModelSofascoreManagerEventsResponse struct {
+	Count       int                          `json:"count,omitempty"`
+	Events      []ModelSofascoreEventSummary `json:"events,omitempty"`
+	FetchedAt   string                       `json:"fetched_at,omitempty"`
+	HasNextPage bool                         `json:"has_next_page,omitempty"`
+	ManagerId   int                          `json:"manager_id,omitempty"`
+	Page        int                          `json:"page,omitempty"`
+	SourceUrl   string                       `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreManagerPerformance struct {
+	Draws         int `json:"draws,omitempty"`
+	GoalsConceded int `json:"goals_conceded,omitempty"`
+	GoalsScored   int `json:"goals_scored,omitempty"`
+	Losses        int `json:"losses,omitempty"`
+	Total         int `json:"total,omitempty"`
+	TotalPoints   int `json:"total_points,omitempty"`
+	Wins          int `json:"wins,omitempty"`
+}
+
+type ModelSofascoreManagerResponse struct {
+	FetchedAt string                      `json:"fetched_at,omitempty"`
+	Manager   ModelSofascoreManagerDetail `json:"manager,omitempty"`
+	SourceUrl string                      `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreMoverOddsChoice struct {
+	Change       int    `json:"change,omitempty"`
+	InitialValue string `json:"initial_value,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Value        string `json:"value,omitempty"`
+}
+
+type ModelSofascoreMoverOddsMarket struct {
+	Choices   []ModelSofascoreMoverOddsChoice `json:"choices,omitempty"`
+	Group     string                          `json:"group,omitempty"`
+	IsLive    bool                            `json:"is_live,omitempty"`
+	Name      string                          `json:"name,omitempty"`
+	Period    string                          `json:"period,omitempty"`
+	Suspended bool                            `json:"suspended,omitempty"`
+}
+
+type ModelSofascoreNamedCode struct {
+	Code string `json:"code,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
 type ModelSofascoreOddsChoice struct {
 	Name    string `json:"name,omitempty"`
 	Value   string `json:"value,omitempty"`
 	Winning bool   `json:"winning,omitempty"`
+}
+
+type ModelSofascoreOddsDroppingEvent struct {
+	AwayScore      ModelSofascoreScoreLine       `json:"away_score,omitempty"`
+	AwayTeam       ModelSofascoreTeamRef         `json:"away_team,omitempty"`
+	ChoiceName     string                        `json:"choice_name,omitempty"`
+	HomeScore      ModelSofascoreScoreLine       `json:"home_score,omitempty"`
+	HomeTeam       ModelSofascoreTeamRef         `json:"home_team,omitempty"`
+	Id             int                           `json:"id,omitempty"`
+	Market         ModelSofascoreMoverOddsMarket `json:"market,omitempty"`
+	Percentage     float64                       `json:"percentage,omitempty"`
+	Slug           string                        `json:"slug,omitempty"`
+	Sport          string                        `json:"sport,omitempty"`
+	StartTime      string                        `json:"start_time,omitempty"`
+	StartTimestamp int                           `json:"start_timestamp,omitempty"`
+	Status         ModelSofascoreEventStatus     `json:"status,omitempty"`
+	Tournament     ModelSofascoreTournamentRef   `json:"tournament,omitempty"`
+	WinnerCode     int                           `json:"winner_code,omitempty"`
+}
+
+type ModelSofascoreOddsDroppingResponse struct {
+	Count     int                               `json:"count,omitempty"`
+	Events    []ModelSofascoreOddsDroppingEvent `json:"events,omitempty"`
+	FetchedAt string                            `json:"fetched_at,omitempty"`
+	SourceUrl string                            `json:"source_url,omitempty"`
+	Sport     string                            `json:"sport,omitempty"`
 }
 
 type ModelSofascoreOddsMarket struct {
@@ -51243,6 +54286,72 @@ type ModelSofascoreOddsMarket struct {
 	Name      string                     `json:"name,omitempty"`
 	Period    string                     `json:"period,omitempty"`
 	Suspended bool                       `json:"suspended,omitempty"`
+}
+
+type ModelSofascoreOddsWinningEvent struct {
+	Actual         float64                       `json:"actual,omitempty"`
+	AwayScore      ModelSofascoreScoreLine       `json:"away_score,omitempty"`
+	AwayTeam       ModelSofascoreTeamRef         `json:"away_team,omitempty"`
+	Expected       float64                       `json:"expected,omitempty"`
+	HomeScore      ModelSofascoreScoreLine       `json:"home_score,omitempty"`
+	HomeTeam       ModelSofascoreTeamRef         `json:"home_team,omitempty"`
+	Id             int                           `json:"id,omitempty"`
+	Market         ModelSofascoreMoverOddsMarket `json:"market,omitempty"`
+	Slug           string                        `json:"slug,omitempty"`
+	Sport          string                        `json:"sport,omitempty"`
+	StartTime      string                        `json:"start_time,omitempty"`
+	StartTimestamp int                           `json:"start_timestamp,omitempty"`
+	Status         ModelSofascoreEventStatus     `json:"status,omitempty"`
+	Tournament     ModelSofascoreTournamentRef   `json:"tournament,omitempty"`
+	WinnerCode     int                           `json:"winner_code,omitempty"`
+	WinningOdds    string                        `json:"winning_odds,omitempty"`
+}
+
+type ModelSofascoreOddsWinningResponse struct {
+	Count     int                              `json:"count,omitempty"`
+	Events    []ModelSofascoreOddsWinningEvent `json:"events,omitempty"`
+	FetchedAt string                           `json:"fetched_at,omitempty"`
+	SourceUrl string                           `json:"source_url,omitempty"`
+	Sport     string                           `json:"sport,omitempty"`
+}
+
+type ModelSofascorePlayerAttributeOverview struct {
+	Attributes map[string]float64 `json:"attributes,omitempty"`
+	Position   string             `json:"position,omitempty"`
+	YearShift  int                `json:"year_shift,omitempty"`
+}
+
+type ModelSofascorePlayerAttributesResponse struct {
+	Characteristics    ModelSofascorePlayerCharacteristics     `json:"characteristics,omitempty"`
+	CharacteristicsUrl string                                  `json:"characteristics_url,omitempty"`
+	FetchedAt          string                                  `json:"fetched_at,omitempty"`
+	Overviews          []ModelSofascorePlayerAttributeOverview `json:"overviews,omitempty"`
+	PlayerId           int                                     `json:"player_id,omitempty"`
+	PositionAverages   []ModelSofascorePlayerAttributeOverview `json:"position_averages,omitempty"`
+	SourceUrl          string                                  `json:"source_url,omitempty"`
+	Sport              string                                  `json:"sport,omitempty"`
+}
+
+type ModelSofascorePlayerBrief struct {
+	Id           int    `json:"id,omitempty"`
+	JerseyNumber string `json:"jersey_number,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Position     string `json:"position,omitempty"`
+	ShortName    string `json:"short_name,omitempty"`
+	Slug         string `json:"slug,omitempty"`
+}
+
+type ModelSofascorePlayerCharacteristic struct {
+	Code int    `json:"code,omitempty"`
+	Key  string `json:"key,omitempty"`
+	Name string `json:"name,omitempty"`
+	Rank int    `json:"rank,omitempty"`
+}
+
+type ModelSofascorePlayerCharacteristics struct {
+	Positions  []string                             `json:"positions,omitempty"`
+	Strengths  []ModelSofascorePlayerCharacteristic `json:"strengths,omitempty"`
+	Weaknesses []ModelSofascorePlayerCharacteristic `json:"weaknesses,omitempty"`
 }
 
 type ModelSofascorePlayerDetail struct {
@@ -51262,6 +54371,99 @@ type ModelSofascorePlayerDetail struct {
 	Team                ModelSofascoreTeamRef `json:"team,omitempty"`
 }
 
+type ModelSofascorePlayerEventRow struct {
+	Event           ModelSofascoreEventSummary `json:"event,omitempty"`
+	IncidentCounts  map[string]float64         `json:"incident_counts,omitempty"`
+	OnBench         bool                       `json:"on_bench,omitempty"`
+	PlayedForTeamId int                        `json:"played_for_team_id,omitempty"`
+	Statistics      map[string]float64         `json:"statistics,omitempty"`
+}
+
+type ModelSofascorePlayerEventsResponse struct {
+	Count       int                            `json:"count,omitempty"`
+	Events      []ModelSofascorePlayerEventRow `json:"events,omitempty"`
+	FetchedAt   string                         `json:"fetched_at,omitempty"`
+	HasNextPage bool                           `json:"has_next_page,omitempty"`
+	Page        int                            `json:"page,omitempty"`
+	PlayerId    int                            `json:"player_id,omitempty"`
+	SourceUrl   string                         `json:"source_url,omitempty"`
+}
+
+type ModelSofascorePlayerFormEntry struct {
+	Date         string  `json:"date,omitempty"`
+	Rating       float64 `json:"rating,omitempty"`
+	Timestamp    int     `json:"timestamp,omitempty"`
+	TournamentId int     `json:"tournament_id,omitempty"`
+	Type         string  `json:"type,omitempty"`
+	Value        string  `json:"value,omitempty"`
+}
+
+type ModelSofascorePlayerLastYearSummaryResponse struct {
+	Count       int                                   `json:"count,omitempty"`
+	FetchedAt   string                                `json:"fetched_at,omitempty"`
+	PlayerId    int                                   `json:"player_id,omitempty"`
+	SourceUrl   string                                `json:"source_url,omitempty"`
+	Summary     []ModelSofascorePlayerFormEntry       `json:"summary,omitempty"`
+	Tournaments []ModelSofascoreUniqueTournamentBrief `json:"tournaments,omitempty"`
+}
+
+type ModelSofascorePlayerMatchRating struct {
+	Event          ModelSofascoreEventSummary `json:"event,omitempty"`
+	EventId        int                        `json:"event_id,omitempty"`
+	IsHome         bool                       `json:"is_home,omitempty"`
+	Opponent       ModelSofascoreTeamRef      `json:"opponent,omitempty"`
+	Rating         float64                    `json:"rating,omitempty"`
+	StartTime      string                     `json:"start_time,omitempty"`
+	StartTimestamp int                        `json:"start_timestamp,omitempty"`
+}
+
+type ModelSofascorePlayerNationalTeamRecord struct {
+	Appearances    int                   `json:"appearances,omitempty"`
+	DebutDate      string                `json:"debut_date,omitempty"`
+	DebutTimestamp int                   `json:"debut_timestamp,omitempty"`
+	Goals          int                   `json:"goals,omitempty"`
+	Team           ModelSofascoreTeamRef `json:"team,omitempty"`
+}
+
+type ModelSofascorePlayerNationalTeamStatisticsResponse struct {
+	Count     int                                      `json:"count,omitempty"`
+	FetchedAt string                                   `json:"fetched_at,omitempty"`
+	PlayerId  int                                      `json:"player_id,omitempty"`
+	SourceUrl string                                   `json:"source_url,omitempty"`
+	Teams     []ModelSofascorePlayerNationalTeamRecord `json:"teams,omitempty"`
+}
+
+type ModelSofascorePlayerPenalty struct {
+	Event   ModelSofascoreEventSummary `json:"event,omitempty"`
+	Id      int                        `json:"id,omitempty"`
+	Outcome string                     `json:"outcome,omitempty"`
+	X       float64                    `json:"x,omitempty"`
+	Xg      float64                    `json:"xg,omitempty"`
+	Y       float64                    `json:"y,omitempty"`
+	Zone    string                     `json:"zone,omitempty"`
+}
+
+type ModelSofascorePlayerPenaltyHistoryResponse struct {
+	Attempts  int                           `json:"attempts,omitempty"`
+	Count     int                           `json:"count,omitempty"`
+	FetchedAt string                        `json:"fetched_at,omitempty"`
+	Penalties []ModelSofascorePlayerPenalty `json:"penalties,omitempty"`
+	PlayerId  int                           `json:"player_id,omitempty"`
+	Scored    int                           `json:"scored,omitempty"`
+	SourceUrl string                        `json:"source_url,omitempty"`
+}
+
+type ModelSofascorePlayerRatingsResponse struct {
+	Count        int                               `json:"count,omitempty"`
+	FetchedAt    string                            `json:"fetched_at,omitempty"`
+	PlayerId     int                               `json:"player_id,omitempty"`
+	Ratings      []ModelSofascorePlayerMatchRating `json:"ratings,omitempty"`
+	Season       int                               `json:"season,omitempty"`
+	SourceUrl    string                            `json:"source_url,omitempty"`
+	TournamentId int                               `json:"tournament_id,omitempty"`
+	Type         string                            `json:"type,omitempty"`
+}
+
 type ModelSofascorePlayerRef struct {
 	Country   string `json:"country,omitempty"`
 	Id        int    `json:"id,omitempty"`
@@ -51277,10 +54479,234 @@ type ModelSofascorePlayerResponse struct {
 	SourceUrl string                     `json:"source_url,omitempty"`
 }
 
+type ModelSofascorePlayerSeasonHeatmapResponse struct {
+	Count        int                                `json:"count,omitempty"`
+	Events       []ModelSofascoreEventSummary       `json:"events,omitempty"`
+	FetchedAt    string                             `json:"fetched_at,omitempty"`
+	Matches      int                                `json:"matches,omitempty"`
+	PlayerId     int                                `json:"player_id,omitempty"`
+	Points       []ModelSofascoreSeasonHeatmapPoint `json:"points,omitempty"`
+	Season       int                                `json:"season,omitempty"`
+	SourceUrl    string                             `json:"source_url,omitempty"`
+	TournamentId int                                `json:"tournament_id,omitempty"`
+}
+
+type ModelSofascorePlayerSeasonStatisticsResponse struct {
+	FetchedAt       string                `json:"fetched_at,omitempty"`
+	PlayerId        int                   `json:"player_id,omitempty"`
+	RatingBreakdown map[string]float64    `json:"rating_breakdown,omitempty"`
+	Season          int                   `json:"season,omitempty"`
+	SourceUrl       string                `json:"source_url,omitempty"`
+	Statistics      map[string]float64    `json:"statistics,omitempty"`
+	Team            ModelSofascoreTeamRef `json:"team,omitempty"`
+	TournamentId    int                   `json:"tournament_id,omitempty"`
+	Type            string                `json:"type,omitempty"`
+}
+
+type ModelSofascorePlayerStatisticRank struct {
+	Count     int     `json:"count,omitempty"`
+	Order     int     `json:"order,omitempty"`
+	Rank      int     `json:"rank,omitempty"`
+	Statistic string  `json:"statistic,omitempty"`
+	Value     float64 `json:"value,omitempty"`
+}
+
+type ModelSofascorePlayerStatisticalRankingsResponse struct {
+	Count     int                                 `json:"count,omitempty"`
+	FetchedAt string                              `json:"fetched_at,omitempty"`
+	PlayerId  int                                 `json:"player_id,omitempty"`
+	Rankings  []ModelSofascorePlayerStatisticRank `json:"rankings,omitempty"`
+	Season    ModelSofascoreSeason                `json:"season,omitempty"`
+	SourceUrl string                              `json:"source_url,omitempty"`
+	Type      string                              `json:"type,omitempty"`
+}
+
+type ModelSofascorePlayerStatisticsFilters struct {
+	MinAppearances int      `json:"min_appearances,omitempty"`
+	MinMinutes     int      `json:"min_minutes,omitempty"`
+	Nationalities  []string `json:"nationalities,omitempty"`
+	Positions      []string `json:"positions,omitempty"`
+	TeamIds        []int    `json:"team_ids,omitempty"`
+}
+
+type ModelSofascorePlayerStatisticsRow struct {
+	Player     ModelSofascorePlayerRef `json:"player,omitempty"`
+	Rank       int                     `json:"rank,omitempty"`
+	Statistics map[string]float64      `json:"statistics,omitempty"`
+	Team       ModelSofascoreTeamRef   `json:"team,omitempty"`
+}
+
+type ModelSofascorePlayerStatisticsSeasonsResponse struct {
+	Count       int                                  `json:"count,omitempty"`
+	FetchedAt   string                               `json:"fetched_at,omitempty"`
+	PlayerId    int                                  `json:"player_id,omitempty"`
+	SourceUrl   string                               `json:"source_url,omitempty"`
+	Tournaments []ModelSofascoreStatisticsTournament `json:"tournaments,omitempty"`
+}
+
+type ModelSofascorePlayerTournamentsResponse struct {
+	Count       int                                   `json:"count,omitempty"`
+	FetchedAt   string                                `json:"fetched_at,omitempty"`
+	PlayerId    int                                   `json:"player_id,omitempty"`
+	SourceUrl   string                                `json:"source_url,omitempty"`
+	Tournaments []ModelSofascoreUniqueTournamentBrief `json:"tournaments,omitempty"`
+}
+
+type ModelSofascorePlayerTransfersResponse struct {
+	Count     int                      `json:"count,omitempty"`
+	FetchedAt string                   `json:"fetched_at,omitempty"`
+	PlayerId  int                      `json:"player_id,omitempty"`
+	SourceUrl string                   `json:"source_url,omitempty"`
+	Transfers []ModelSofascoreTransfer `json:"transfers,omitempty"`
+}
+
+type ModelSofascorePointByPointGame struct {
+	Game   int                               `json:"game,omitempty"`
+	Points []ModelSofascorePointByPointPoint `json:"points,omitempty"`
+	Score  ModelSofascorePointByPointScore   `json:"score,omitempty"`
+}
+
+type ModelSofascorePointByPointPoint struct {
+	AwayMarker      string `json:"away_marker,omitempty"`
+	AwayPoint       string `json:"away_point,omitempty"`
+	AwayPointType   int    `json:"away_point_type,omitempty"`
+	Description     string `json:"description,omitempty"`
+	DescriptionCode int    `json:"description_code,omitempty"`
+	HomeMarker      string `json:"home_marker,omitempty"`
+	HomePoint       string `json:"home_point,omitempty"`
+	HomePointType   int    `json:"home_point_type,omitempty"`
+}
+
+type ModelSofascorePointByPointScore struct {
+	AwayScore int    `json:"away_score,omitempty"`
+	HomeScore int    `json:"home_score,omitempty"`
+	Server    string `json:"server,omitempty"`
+	Winner    string `json:"winner,omitempty"`
+}
+
+type ModelSofascorePointByPointSet struct {
+	Games  []ModelSofascorePointByPointGame  `json:"games,omitempty"`
+	Points []ModelSofascorePointByPointPoint `json:"points,omitempty"`
+	Score  ModelSofascorePointByPointScore   `json:"score,omitempty"`
+	Set    int                               `json:"set,omitempty"`
+}
+
+type ModelSofascorePregameFormSide struct {
+	AvgRating float64  `json:"avg_rating,omitempty"`
+	Form      []string `json:"form,omitempty"`
+	Position  int      `json:"position,omitempty"`
+	Value     string   `json:"value,omitempty"`
+}
+
+type ModelSofascoreRankingEntity struct {
+	Country     string                  `json:"country,omitempty"`
+	CountryCode string                  `json:"country_code,omitempty"`
+	Gender      string                  `json:"gender,omitempty"`
+	Id          int                     `json:"id,omitempty"`
+	Name        string                  `json:"name,omitempty"`
+	National    bool                    `json:"national,omitempty"`
+	Record      ModelSofascoreWdlrecord `json:"record,omitempty"`
+	ShortName   string                  `json:"short_name,omitempty"`
+	Slug        string                  `json:"slug,omitempty"`
+	Sport       string                  `json:"sport,omitempty"`
+	Type        string                  `json:"type,omitempty"`
+}
+
+type ModelSofascoreRankingRow struct {
+	BestRank          int                         `json:"best_rank,omitempty"`
+	Entity            ModelSofascoreRankingEntity `json:"entity,omitempty"`
+	Label             string                      `json:"label,omitempty"`
+	MaxPoints         float64                     `json:"max_points,omitempty"`
+	NextWinPoints     float64                     `json:"next_win_points,omitempty"`
+	PlayingTeams      int                         `json:"playing_teams,omitempty"`
+	Points            float64                     `json:"points,omitempty"`
+	PreviousPoints    float64                     `json:"previous_points,omitempty"`
+	PreviousRank      int                         `json:"previous_rank,omitempty"`
+	Rank              int                         `json:"rank,omitempty"`
+	TotalTeams        int                         `json:"total_teams,omitempty"`
+	TournamentsPlayed int                         `json:"tournaments_played,omitempty"`
+	Year              string                      `json:"year,omitempty"`
+}
+
+type ModelSofascoreRankingType struct {
+	Description string `json:"description,omitempty"`
+	EntityType  string `json:"entity_type,omitempty"`
+	Gender      string `json:"gender,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Sport       string `json:"sport,omitempty"`
+	Type        int    `json:"type,omitempty"`
+}
+
+type ModelSofascoreRankingTypesResponse struct {
+	Count int                         `json:"count,omitempty"`
+	Types []ModelSofascoreRankingType `json:"types,omitempty"`
+}
+
+type ModelSofascoreRankingsResponse struct {
+	Count            int                        `json:"count,omitempty"`
+	EntityType       string                     `json:"entity_type,omitempty"`
+	FetchedAt        string                     `json:"fetched_at,omitempty"`
+	Name             string                     `json:"name,omitempty"`
+	Rankings         []ModelSofascoreRankingRow `json:"rankings,omitempty"`
+	SourceUrl        string                     `json:"source_url,omitempty"`
+	Sport            string                     `json:"sport,omitempty"`
+	TotalRows        int                        `json:"total_rows,omitempty"`
+	Type             int                        `json:"type,omitempty"`
+	UpdatedAt        string                     `json:"updated_at,omitempty"`
+	UpdatedTimestamp int                        `json:"updated_timestamp,omitempty"`
+}
+
 type ModelSofascoreReferee struct {
 	Country string `json:"country,omitempty"`
 	Id      int    `json:"id,omitempty"`
 	Name    string `json:"name,omitempty"`
+}
+
+type ModelSofascoreRefereeCompetitionStatistics struct {
+	Appearances    int                                 `json:"appearances,omitempty"`
+	Competition    ModelSofascoreUniqueTournamentBrief `json:"competition,omitempty"`
+	Penalties      int                                 `json:"penalties,omitempty"`
+	RedCards       int                                 `json:"red_cards,omitempty"`
+	YellowCards    int                                 `json:"yellow_cards,omitempty"`
+	YellowRedCards int                                 `json:"yellow_red_cards,omitempty"`
+}
+
+type ModelSofascoreRefereeDetail struct {
+	Country          string `json:"country,omitempty"`
+	DateOfBirth      string `json:"date_of_birth,omitempty"`
+	FirstLeagueDebut string `json:"first_league_debut,omitempty"`
+	Games            int    `json:"games,omitempty"`
+	Id               int    `json:"id,omitempty"`
+	Name             string `json:"name,omitempty"`
+	RedCards         int    `json:"red_cards,omitempty"`
+	Slug             string `json:"slug,omitempty"`
+	Sport            string `json:"sport,omitempty"`
+	YellowCards      int    `json:"yellow_cards,omitempty"`
+	YellowRedCards   int    `json:"yellow_red_cards,omitempty"`
+}
+
+type ModelSofascoreRefereeEventsResponse struct {
+	Count       int                          `json:"count,omitempty"`
+	Events      []ModelSofascoreEventSummary `json:"events,omitempty"`
+	FetchedAt   string                       `json:"fetched_at,omitempty"`
+	HasNextPage bool                         `json:"has_next_page,omitempty"`
+	Page        int                          `json:"page,omitempty"`
+	RefereeId   int                          `json:"referee_id,omitempty"`
+	SourceUrl   string                       `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreRefereeResponse struct {
+	FetchedAt string                      `json:"fetched_at,omitempty"`
+	Referee   ModelSofascoreRefereeDetail `json:"referee,omitempty"`
+	SourceUrl string                      `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreRefereeStatisticsResponse struct {
+	Competitions []ModelSofascoreRefereeCompetitionStatistics `json:"competitions,omitempty"`
+	Count        int                                          `json:"count,omitempty"`
+	FetchedAt    string                                       `json:"fetched_at,omitempty"`
+	RefereeId    int                                          `json:"referee_id,omitempty"`
+	SourceUrl    string                                       `json:"source_url,omitempty"`
 }
 
 type ModelSofascoreRoundEventsResponse struct {
@@ -51288,10 +54714,50 @@ type ModelSofascoreRoundEventsResponse struct {
 	Events       []ModelSofascoreEventSummary `json:"events,omitempty"`
 	FetchedAt    string                       `json:"fetched_at,omitempty"`
 	HasNextPage  bool                         `json:"has_next_page,omitempty"`
+	Prefix       string                       `json:"prefix,omitempty"`
 	Round        int                          `json:"round,omitempty"`
 	SeasonId     int                          `json:"season_id,omitempty"`
+	Slug         string                       `json:"slug,omitempty"`
 	SourceUrl    string                       `json:"source_url,omitempty"`
 	TournamentId int                          `json:"tournament_id,omitempty"`
+}
+
+type ModelSofascoreRoundRef struct {
+	Name   string `json:"name,omitempty"`
+	Prefix string `json:"prefix,omitempty"`
+	Round  int    `json:"round,omitempty"`
+	Slug   string `json:"slug,omitempty"`
+}
+
+type ModelSofascoreScheduledEventsResponse struct {
+	CategoryId int                          `json:"category_id,omitempty"`
+	Count      int                          `json:"count,omitempty"`
+	Date       string                       `json:"date,omitempty"`
+	Events     []ModelSofascoreEventSummary `json:"events,omitempty"`
+	FetchedAt  string                       `json:"fetched_at,omitempty"`
+	SourceUrl  string                       `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreScheduledTournament struct {
+	CategoryId           int    `json:"category_id,omitempty"`
+	CategoryName         string `json:"category_name,omitempty"`
+	EventCount           int    `json:"event_count,omitempty"`
+	Id                   int    `json:"id,omitempty"`
+	Name                 string `json:"name,omitempty"`
+	Slug                 string `json:"slug,omitempty"`
+	UniqueTournamentId   int    `json:"unique_tournament_id,omitempty"`
+	UniqueTournamentName string `json:"unique_tournament_name,omitempty"`
+}
+
+type ModelSofascoreScheduledTournamentsResponse struct {
+	Count       int                                 `json:"count,omitempty"`
+	Date        string                              `json:"date,omitempty"`
+	FetchedAt   string                              `json:"fetched_at,omitempty"`
+	HasNextPage bool                                `json:"has_next_page,omitempty"`
+	Page        int                                 `json:"page,omitempty"`
+	SourceUrl   string                              `json:"source_url,omitempty"`
+	Sport       string                              `json:"sport,omitempty"`
+	Tournaments []ModelSofascoreScheduledTournament `json:"tournaments,omitempty"`
 }
 
 type ModelSofascoreScoreLine struct {
@@ -51319,10 +54785,129 @@ type ModelSofascoreSearchResult struct {
 	Type     string `json:"type,omitempty"`
 }
 
+type ModelSofascoreSearchTypedResponse struct {
+	Count     int                               `json:"count,omitempty"`
+	FetchedAt string                            `json:"fetched_at,omitempty"`
+	Page      int                               `json:"page,omitempty"`
+	Query     string                            `json:"query,omitempty"`
+	Results   []ModelSofascoreTypedSearchResult `json:"results,omitempty"`
+	SourceUrl string                            `json:"source_url,omitempty"`
+	Sport     string                            `json:"sport,omitempty"`
+	Type      string                            `json:"type,omitempty"`
+}
+
 type ModelSofascoreSeason struct {
 	Id   int    `json:"id,omitempty"`
 	Name string `json:"name,omitempty"`
 	Year string `json:"year,omitempty"`
+}
+
+type ModelSofascoreSeasonEvent struct {
+	AwayScore      ModelSofascoreScoreLine     `json:"away_score,omitempty"`
+	AwayTeam       ModelSofascoreTeamRef       `json:"away_team,omitempty"`
+	HomeScore      ModelSofascoreScoreLine     `json:"home_score,omitempty"`
+	HomeTeam       ModelSofascoreTeamRef       `json:"home_team,omitempty"`
+	Id             int                         `json:"id,omitempty"`
+	Round          int                         `json:"round,omitempty"`
+	RoundName      string                      `json:"round_name,omitempty"`
+	Slug           string                      `json:"slug,omitempty"`
+	StartTime      string                      `json:"start_time,omitempty"`
+	StartTimestamp int                         `json:"start_timestamp,omitempty"`
+	Status         ModelSofascoreEventStatus   `json:"status,omitempty"`
+	Tournament     ModelSofascoreTournamentRef `json:"tournament,omitempty"`
+	WinnerCode     int                         `json:"winner_code,omitempty"`
+}
+
+type ModelSofascoreSeasonEventsResponse struct {
+	Count        int                         `json:"count,omitempty"`
+	Direction    string                      `json:"direction,omitempty"`
+	Events       []ModelSofascoreSeasonEvent `json:"events,omitempty"`
+	FetchedAt    string                      `json:"fetched_at,omitempty"`
+	HasNextPage  bool                        `json:"has_next_page,omitempty"`
+	Page         int                         `json:"page,omitempty"`
+	SeasonId     int                         `json:"season_id,omitempty"`
+	SourceUrl    string                      `json:"source_url,omitempty"`
+	TournamentId int                         `json:"tournament_id,omitempty"`
+}
+
+type ModelSofascoreSeasonHeatmapPoint struct {
+	Count int     `json:"count,omitempty"`
+	X     float64 `json:"x,omitempty"`
+	Y     float64 `json:"y,omitempty"`
+}
+
+type ModelSofascoreSeasonInfo struct {
+	AwayTeamWins           int                     `json:"away_team_wins,omitempty"`
+	Draws                  int                     `json:"draws,omitempty"`
+	Goals                  int                     `json:"goals,omitempty"`
+	HomeTeamWins           int                     `json:"home_team_wins,omitempty"`
+	Id                     int                     `json:"id,omitempty"`
+	Name                   string                  `json:"name,omitempty"`
+	NewcomersLowerDivision []ModelSofascoreTeamRef `json:"newcomers_lower_division,omitempty"`
+	NewcomersOther         []ModelSofascoreTeamRef `json:"newcomers_other,omitempty"`
+	NewcomersUpperDivision []ModelSofascoreTeamRef `json:"newcomers_upper_division,omitempty"`
+	NumberOfCompetitors    int                     `json:"number_of_competitors,omitempty"`
+	RedCards               int                     `json:"red_cards,omitempty"`
+	Year                   string                  `json:"year,omitempty"`
+	YellowCards            int                     `json:"yellow_cards,omitempty"`
+}
+
+type ModelSofascoreSeasonTeam struct {
+	Country     string `json:"country,omitempty"`
+	CountryCode string `json:"country_code,omitempty"`
+	Gender      string `json:"gender,omitempty"`
+	Id          int    `json:"id,omitempty"`
+	Name        string `json:"name,omitempty"`
+	NameCode    string `json:"name_code,omitempty"`
+	National    bool   `json:"national,omitempty"`
+	Ranking     int    `json:"ranking,omitempty"`
+	ShortName   string `json:"short_name,omitempty"`
+	Slug        string `json:"slug,omitempty"`
+	Sport       string `json:"sport,omitempty"`
+	Type        int    `json:"type,omitempty"`
+	UserCount   int    `json:"user_count,omitempty"`
+}
+
+type ModelSofascoreShot struct {
+	AddedTime                 int                       `json:"added_time,omitempty"`
+	BlockCoordinates          ModelSofascoreCoordinates `json:"block_coordinates,omitempty"`
+	BodyPart                  string                    `json:"body_part,omitempty"`
+	Coordinates               ModelSofascoreCoordinates `json:"coordinates,omitempty"`
+	GoalMouthCoordinates      ModelSofascoreCoordinates `json:"goal_mouth_coordinates,omitempty"`
+	GoalMouthLocation         string                    `json:"goal_mouth_location,omitempty"`
+	GoalType                  string                    `json:"goal_type,omitempty"`
+	Goalkeeper                ModelSofascorePlayerBrief `json:"goalkeeper,omitempty"`
+	Id                        int                       `json:"id,omitempty"`
+	IsHome                    bool                      `json:"is_home,omitempty"`
+	Minute                    int                       `json:"minute,omitempty"`
+	Outcome                   string                    `json:"outcome,omitempty"`
+	Period                    string                    `json:"period,omitempty"`
+	PeriodTimeSeconds         int                       `json:"period_time_seconds,omitempty"`
+	Player                    ModelSofascorePlayerBrief `json:"player,omitempty"`
+	PlayerCoordinates         ModelSofascoreCoordinates `json:"player_coordinates,omitempty"`
+	ReversedPeriodTimeSeconds int                       `json:"reversed_period_time_seconds,omitempty"`
+	ShotType                  string                    `json:"shot_type,omitempty"`
+	Situation                 string                    `json:"situation,omitempty"`
+	Strength                  string                    `json:"strength,omitempty"`
+	Team                      ModelSofascoreTeamRef     `json:"team,omitempty"`
+	TimeSeconds               int                       `json:"time_seconds,omitempty"`
+	Xg                        float64                   `json:"xg,omitempty"`
+	Xgot                      float64                   `json:"xgot,omitempty"`
+}
+
+type ModelSofascoreSportEntry struct {
+	Key         string `json:"key,omitempty"`
+	LiveEvents  int    `json:"live_events,omitempty"`
+	Name        string `json:"name,omitempty"`
+	TotalEvents int    `json:"total_events,omitempty"`
+}
+
+type ModelSofascoreSportsResponse struct {
+	Count           int                        `json:"count,omitempty"`
+	CountsAvailable bool                       `json:"counts_available,omitempty"`
+	FetchedAt       string                     `json:"fetched_at,omitempty"`
+	SourceUrl       string                     `json:"source_url,omitempty"`
+	Sports          []ModelSofascoreSportEntry `json:"sports,omitempty"`
 }
 
 type ModelSofascoreSquadPlayer struct {
@@ -51338,6 +54923,268 @@ type ModelSofascoreSquadPlayer struct {
 	PreferredFoot       string `json:"preferred_foot,omitempty"`
 	ShortName           string `json:"short_name,omitempty"`
 	Slug                string `json:"slug,omitempty"`
+}
+
+type ModelSofascoreStage struct {
+	Competition            ModelSofascoreStageCompetition `json:"competition,omitempty"`
+	Country                string                         `json:"country,omitempty"`
+	CountryCode            string                         `json:"country_code,omitempty"`
+	EndTimestamp           int                            `json:"end_timestamp,omitempty"`
+	Id                     int                            `json:"id,omitempty"`
+	Info                   ModelSofascoreStageInfo        `json:"info,omitempty"`
+	Name                   string                         `json:"name,omitempty"`
+	OnDate                 bool                           `json:"on_date,omitempty"`
+	Parent                 ModelSofascoreStageRef         `json:"parent,omitempty"`
+	Parts                  []ModelSofascoreStageSession   `json:"parts,omitempty"`
+	SeasonName             string                         `json:"season_name,omitempty"`
+	Sequence               int                            `json:"sequence,omitempty"`
+	Session                ModelSofascoreStageSession     `json:"session,omitempty"`
+	SessionStartTimestamps []int                          `json:"session_start_timestamps,omitempty"`
+	Slug                   string                         `json:"slug,omitempty"`
+	StartTime              string                         `json:"start_time,omitempty"`
+	StartTimestamp         int                            `json:"start_timestamp,omitempty"`
+	Status                 ModelSofascoreStageStatus      `json:"status,omitempty"`
+	Type                   ModelSofascoreStageType        `json:"type,omitempty"`
+	Winner                 ModelSofascoreStageEntity      `json:"winner,omitempty"`
+	Year                   string                         `json:"year,omitempty"`
+}
+
+type ModelSofascoreStageCategoriesResponse struct {
+	Categories []ModelSofascoreStageCategory `json:"categories,omitempty"`
+	Count      int                           `json:"count,omitempty"`
+	FetchedAt  string                        `json:"fetched_at,omitempty"`
+	SourceUrl  string                        `json:"source_url,omitempty"`
+	Sport      string                        `json:"sport,omitempty"`
+}
+
+type ModelSofascoreStageCategory struct {
+	Competitions []ModelSofascoreStageCompetition `json:"competitions,omitempty"`
+	Flag         string                           `json:"flag,omitempty"`
+	Id           int                              `json:"id,omitempty"`
+	Name         string                           `json:"name,omitempty"`
+	Priority     int                              `json:"priority,omitempty"`
+	Slug         string                           `json:"slug,omitempty"`
+}
+
+type ModelSofascoreStageCompetition struct {
+	CategoryId   int    `json:"category_id,omitempty"`
+	CategoryName string `json:"category_name,omitempty"`
+	Id           int    `json:"id,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Slug         string `json:"slug,omitempty"`
+	Sport        string `json:"sport,omitempty"`
+}
+
+type ModelSofascoreStageDetailResponse struct {
+	FetchedAt string              `json:"fetched_at,omitempty"`
+	SourceUrl string              `json:"source_url,omitempty"`
+	Stage     ModelSofascoreStage `json:"stage,omitempty"`
+}
+
+type ModelSofascoreStageDriverPerformanceResponse struct {
+	Competitors []ModelSofascoreStagePerformance `json:"competitors,omitempty"`
+	Count       int                              `json:"count,omitempty"`
+	FetchedAt   string                           `json:"fetched_at,omitempty"`
+	SourceUrl   string                           `json:"source_url,omitempty"`
+	Stage       ModelSofascoreStage              `json:"stage,omitempty"`
+	StageId     int                              `json:"stage_id,omitempty"`
+}
+
+type ModelSofascoreStageEntity struct {
+	Code        string                     `json:"code,omitempty"`
+	Country     string                     `json:"country,omitempty"`
+	CountryCode string                     `json:"country_code,omitempty"`
+	Id          int                        `json:"id,omitempty"`
+	Kind        string                     `json:"kind,omitempty"`
+	Name        string                     `json:"name,omitempty"`
+	ShortName   string                     `json:"short_name,omitempty"`
+	Slug        string                     `json:"slug,omitempty"`
+	Team        ModelSofascoreStageTeamRef `json:"team,omitempty"`
+}
+
+type ModelSofascoreStageFeaturedResponse struct {
+	Count     int                   `json:"count,omitempty"`
+	FetchedAt string                `json:"fetched_at,omitempty"`
+	SourceUrl string                `json:"source_url,omitempty"`
+	Sport     string                `json:"sport,omitempty"`
+	Stages    []ModelSofascoreStage `json:"stages,omitempty"`
+}
+
+type ModelSofascoreStageInfo struct {
+	ActualDistance   float64 `json:"actual_distance,omitempty"`
+	AirTemperature   float64 `json:"air_temperature,omitempty"`
+	ArrivalCity      string  `json:"arrival_city,omitempty"`
+	AverageSpeed     float64 `json:"average_speed,omitempty"`
+	CautionLaps      int     `json:"caution_laps,omitempty"`
+	Cautions         int     `json:"cautions,omitempty"`
+	Circuit          string  `json:"circuit,omitempty"`
+	CircuitCity      string  `json:"circuit_city,omitempty"`
+	CircuitCountry   string  `json:"circuit_country,omitempty"`
+	CircuitLengthM   float64 `json:"circuit_length_m,omitempty"`
+	DepartureCity    string  `json:"departure_city,omitempty"`
+	Discipline       string  `json:"discipline,omitempty"`
+	Distance         float64 `json:"distance,omitempty"`
+	ElapsedTime      string  `json:"elapsed_time,omitempty"`
+	Humidity         float64 `json:"humidity,omitempty"`
+	LapRecord        string  `json:"lap_record,omitempty"`
+	Laps             int     `json:"laps,omitempty"`
+	LapsCompleted    int     `json:"laps_completed,omitempty"`
+	LeadChanges      int     `json:"lead_changes,omitempty"`
+	RaceDistanceM    float64 `json:"race_distance_m,omitempty"`
+	RaceSegments     int     `json:"race_segments,omitempty"`
+	RaceType         string  `json:"race_type,omitempty"`
+	Round            int     `json:"round,omitempty"`
+	SafetyCar        bool    `json:"safety_car,omitempty"`
+	SpecialStages    int     `json:"special_stages,omitempty"`
+	StageDay         string  `json:"stage_day,omitempty"`
+	Summary          string  `json:"summary,omitempty"`
+	TrackCondition   string  `json:"track_condition,omitempty"`
+	TrackTemperature float64 `json:"track_temperature,omitempty"`
+	Weather          string  `json:"weather,omitempty"`
+}
+
+type ModelSofascoreStageLap struct {
+	Lap      int    `json:"lap,omitempty"`
+	PitStop  bool   `json:"pit_stop,omitempty"`
+	Position int    `json:"position,omitempty"`
+	Retired  bool   `json:"retired,omitempty"`
+	TyreType string `json:"tyre_type,omitempty"`
+}
+
+type ModelSofascoreStagePerformance struct {
+	Competitor     ModelSofascoreStageEntity                 `json:"competitor,omitempty"`
+	Laps           []ModelSofascoreStageLap                  `json:"laps,omitempty"`
+	StagePositions []ModelSofascoreStageSpecialStagePosition `json:"stage_positions,omitempty"`
+	StartNumber    int                                       `json:"start_number,omitempty"`
+}
+
+type ModelSofascoreStageRef struct {
+	Id             int    `json:"id,omitempty"`
+	Name           string `json:"name,omitempty"`
+	Slug           string `json:"slug,omitempty"`
+	StartTimestamp int    `json:"start_timestamp,omitempty"`
+}
+
+type ModelSofascoreStageScheduleResponse struct {
+	Count     int                   `json:"count,omitempty"`
+	Date      string                `json:"date,omitempty"`
+	FetchedAt string                `json:"fetched_at,omitempty"`
+	SourceUrl string                `json:"source_url,omitempty"`
+	Sport     string                `json:"sport,omitempty"`
+	Stages    []ModelSofascoreStage `json:"stages,omitempty"`
+}
+
+type ModelSofascoreStageSeason struct {
+	EndTimestamp   int    `json:"end_timestamp,omitempty"`
+	Id             int    `json:"id,omitempty"`
+	Name           string `json:"name,omitempty"`
+	Slug           string `json:"slug,omitempty"`
+	StartTimestamp int    `json:"start_timestamp,omitempty"`
+	Year           string `json:"year,omitempty"`
+}
+
+type ModelSofascoreStageSeasonsResponse struct {
+	Competition ModelSofascoreStageCompetition `json:"competition,omitempty"`
+	Count       int                            `json:"count,omitempty"`
+	FetchedAt   string                         `json:"fetched_at,omitempty"`
+	Seasons     []ModelSofascoreStageSeason    `json:"seasons,omitempty"`
+	SourceUrl   string                         `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreStageSession struct {
+	Id             int                       `json:"id,omitempty"`
+	Name           string                    `json:"name,omitempty"`
+	Sequence       int                       `json:"sequence,omitempty"`
+	Slug           string                    `json:"slug,omitempty"`
+	StartTimestamp int                       `json:"start_timestamp,omitempty"`
+	Status         ModelSofascoreStageStatus `json:"status,omitempty"`
+	Type           ModelSofascoreStageType   `json:"type,omitempty"`
+}
+
+type ModelSofascoreStageSpecialStagePosition struct {
+	Position int `json:"position,omitempty"`
+	Stage    int `json:"stage,omitempty"`
+}
+
+type ModelSofascoreStageStanding struct {
+	BonusPoints            float64                        `json:"bonus_points,omitempty"`
+	Comment                string                         `json:"comment,omitempty"`
+	Competitor             ModelSofascoreStageEntity      `json:"competitor,omitempty"`
+	DidNotFinish           int                            `json:"did_not_finish,omitempty"`
+	Distance               float64                        `json:"distance,omitempty"`
+	FastestLapTime         string                         `json:"fastest_lap_time,omitempty"`
+	FastestLaps            int                            `json:"fastest_laps,omitempty"`
+	Gap                    string                         `json:"gap,omitempty"`
+	GridPosition           int                            `json:"grid_position,omitempty"`
+	Interval               string                         `json:"interval,omitempty"`
+	Jersey                 string                         `json:"jersey,omitempty"`
+	Laps                   int                            `json:"laps,omitempty"`
+	LapsBehind             int                            `json:"laps_behind,omitempty"`
+	LapsLed                int                            `json:"laps_led,omitempty"`
+	PersonalFastestLap     int                            `json:"personal_fastest_lap,omitempty"`
+	PersonalFastestLapTime string                         `json:"personal_fastest_lap_time,omitempty"`
+	PitStops               int                            `json:"pit_stops,omitempty"`
+	Podiums                int                            `json:"podiums,omitempty"`
+	Points                 float64                        `json:"points,omitempty"`
+	PolePositions          int                            `json:"pole_positions,omitempty"`
+	Position               int                            `json:"position,omitempty"`
+	RacesStarted           int                            `json:"races_started,omitempty"`
+	RacesWithPoints        int                            `json:"races_with_points,omitempty"`
+	Rank                   int                            `json:"rank,omitempty"`
+	StartNumber            int                            `json:"start_number,omitempty"`
+	Status                 string                         `json:"status,omitempty"`
+	SubStatus              string                         `json:"sub_status,omitempty"`
+	Time                   string                         `json:"time,omitempty"`
+	Top10                  int                            `json:"top10,omitempty"`
+	Top5                   int                            `json:"top5,omitempty"`
+	TotalTime              string                         `json:"total_time,omitempty"`
+	TyreState              string                         `json:"tyre_state,omitempty"`
+	TyreStints             []ModelSofascoreStageTyreStint `json:"tyre_stints,omitempty"`
+	TyreType               string                         `json:"tyre_type,omitempty"`
+	UpdatedTimestamp       int                            `json:"updated_timestamp,omitempty"`
+	Victories              int                            `json:"victories,omitempty"`
+}
+
+type ModelSofascoreStageStandingsResponse struct {
+	Count     int                           `json:"count,omitempty"`
+	FetchedAt string                        `json:"fetched_at,omitempty"`
+	SourceUrl string                        `json:"source_url,omitempty"`
+	StageId   int                           `json:"stage_id,omitempty"`
+	Standings []ModelSofascoreStageStanding `json:"standings,omitempty"`
+	Type      string                        `json:"type,omitempty"`
+}
+
+type ModelSofascoreStageStatus struct {
+	Description string `json:"description,omitempty"`
+	Type        string `json:"type,omitempty"`
+}
+
+type ModelSofascoreStageSubstagesResponse struct {
+	Count     int                   `json:"count,omitempty"`
+	FetchedAt string                `json:"fetched_at,omitempty"`
+	SourceUrl string                `json:"source_url,omitempty"`
+	StageId   int                   `json:"stage_id,omitempty"`
+	Stages    []ModelSofascoreStage `json:"stages,omitempty"`
+}
+
+type ModelSofascoreStageTeamRef struct {
+	Chassis   string `json:"chassis,omitempty"`
+	Code      string `json:"code,omitempty"`
+	Country   string `json:"country,omitempty"`
+	Engine    string `json:"engine,omitempty"`
+	Id        int    `json:"id,omitempty"`
+	Name      string `json:"name,omitempty"`
+	ShortName string `json:"short_name,omitempty"`
+}
+
+type ModelSofascoreStageType struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelSofascoreStageTyreStint struct {
+	Laps int    `json:"laps,omitempty"`
+	Type string `json:"type,omitempty"`
 }
 
 type ModelSofascoreStandingsGroup struct {
@@ -51384,6 +55231,46 @@ type ModelSofascoreStatPeriod struct {
 	Period string                    `json:"period,omitempty"`
 }
 
+type ModelSofascoreStatisticsSeason struct {
+	Id    int      `json:"id,omitempty"`
+	Name  string   `json:"name,omitempty"`
+	Types []string `json:"types,omitempty"`
+	Year  string   `json:"year,omitempty"`
+}
+
+type ModelSofascoreStatisticsTournament struct {
+	Category           string                           `json:"category,omitempty"`
+	Name               string                           `json:"name,omitempty"`
+	Seasons            []ModelSofascoreStatisticsSeason `json:"seasons,omitempty"`
+	Slug               string                           `json:"slug,omitempty"`
+	UniqueTournamentId int                              `json:"unique_tournament_id,omitempty"`
+}
+
+type ModelSofascoreTvchannel struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelSofascoreTvcountryChannels struct {
+	ChannelIds []int  `json:"channel_ids,omitempty"`
+	Country    string `json:"country,omitempty"`
+}
+
+type ModelSofascoreTeamAchievement struct {
+	Competition ModelSofascoreUniqueTournamentBrief `json:"competition,omitempty"`
+	Seasons     []ModelSofascoreAchievementSeason   `json:"seasons,omitempty"`
+	TrophiesWon int                                 `json:"trophies_won,omitempty"`
+}
+
+type ModelSofascoreTeamAchievementsResponse struct {
+	Achievements  []ModelSofascoreTeamAchievement `json:"achievements,omitempty"`
+	Count         int                             `json:"count,omitempty"`
+	FetchedAt     string                          `json:"fetched_at,omitempty"`
+	SourceUrl     string                          `json:"source_url,omitempty"`
+	TeamId        int                             `json:"team_id,omitempty"`
+	TotalTrophies int                             `json:"total_trophies,omitempty"`
+}
+
 type ModelSofascoreTeamDetail struct {
 	Country        string `json:"country,omitempty"`
 	Id             int    `json:"id,omitempty"`
@@ -51418,15 +55305,146 @@ type ModelSofascoreTeamEventsResponse struct {
 	TeamId      int                          `json:"team_id,omitempty"`
 }
 
+type ModelSofascoreTeamGoalDistributionsResponse struct {
+	Distributions []ModelSofascoreGoalDistribution `json:"distributions,omitempty"`
+	FetchedAt     string                           `json:"fetched_at,omitempty"`
+	SeasonId      int                              `json:"season_id,omitempty"`
+	SourceUrl     string                           `json:"source_url,omitempty"`
+	TeamId        int                              `json:"team_id,omitempty"`
+	TournamentId  int                              `json:"tournament_id,omitempty"`
+}
+
 type ModelSofascoreTeamLineup struct {
 	Formation string                       `json:"formation,omitempty"`
 	Players   []ModelSofascoreLineupPlayer `json:"players,omitempty"`
+}
+
+type ModelSofascoreTeamNearEventsResponse struct {
+	FetchedAt     string                     `json:"fetched_at,omitempty"`
+	NextEvent     ModelSofascoreEventSummary `json:"next_event,omitempty"`
+	PreviousEvent ModelSofascoreEventSummary `json:"previous_event,omitempty"`
+	SourceUrl     string                     `json:"source_url,omitempty"`
+	TeamId        int                        `json:"team_id,omitempty"`
+}
+
+type ModelSofascoreTeamOfTheWeekPeriod struct {
+	CreatedAt string `json:"created_at,omitempty"`
+	DateFrom  string `json:"date_from,omitempty"`
+	DateTo    string `json:"date_to,omitempty"`
+	Id        int    `json:"id,omitempty"`
+	Name      string `json:"name,omitempty"`
+	Round     int    `json:"round,omitempty"`
+	RoundName string `json:"round_name,omitempty"`
+	Sequence  int    `json:"sequence,omitempty"`
+	Type      string `json:"type,omitempty"`
+}
+
+type ModelSofascoreTeamOfTheWeekPeriodsResponse struct {
+	Count        int                                 `json:"count,omitempty"`
+	FetchedAt    string                              `json:"fetched_at,omitempty"`
+	Periods      []ModelSofascoreTeamOfTheWeekPeriod `json:"periods,omitempty"`
+	SeasonId     int                                 `json:"season_id,omitempty"`
+	SourceUrl    string                              `json:"source_url,omitempty"`
+	TournamentId int                                 `json:"tournament_id,omitempty"`
+}
+
+type ModelSofascoreTeamOfTheWeekPlayer struct {
+	Event        ModelSofascoreEventSummary `json:"event,omitempty"`
+	JerseyNumber string                     `json:"jersey_number,omitempty"`
+	Order        int                        `json:"order,omitempty"`
+	Player       ModelSofascorePlayerRef    `json:"player,omitempty"`
+	Rating       float64                    `json:"rating,omitempty"`
+	Team         ModelSofascoreTeamRef      `json:"team,omitempty"`
+}
+
+type ModelSofascoreTeamOfTheWeekResponse struct {
+	Count        int                                 `json:"count,omitempty"`
+	FetchedAt    string                              `json:"fetched_at,omitempty"`
+	Formation    string                              `json:"formation,omitempty"`
+	Period       ModelSofascoreTeamOfTheWeekPeriod   `json:"period,omitempty"`
+	Players      []ModelSofascoreTeamOfTheWeekPlayer `json:"players,omitempty"`
+	SeasonId     int                                 `json:"season_id,omitempty"`
+	SourceUrl    string                              `json:"source_url,omitempty"`
+	TournamentId int                                 `json:"tournament_id,omitempty"`
+}
+
+type ModelSofascoreTeamPerformanceEvent struct {
+	Event  ModelSofascoreEventSummary `json:"event,omitempty"`
+	Points float64                    `json:"points,omitempty"`
+}
+
+type ModelSofascoreTeamPerformanceResponse struct {
+	Count     int                                  `json:"count,omitempty"`
+	Events    []ModelSofascoreTeamPerformanceEvent `json:"events,omitempty"`
+	FetchedAt string                               `json:"fetched_at,omitempty"`
+	SourceUrl string                               `json:"source_url,omitempty"`
+	TeamId    int                                  `json:"team_id,omitempty"`
+}
+
+type ModelSofascoreTeamPlayerStatistics struct {
+	PlayedEnough bool                      `json:"played_enough,omitempty"`
+	Player       ModelSofascorePlayerBrief `json:"player,omitempty"`
+	Statistics   map[string]float64        `json:"statistics,omitempty"`
+}
+
+type ModelSofascoreTeamPlayerStatisticsResponse struct {
+	Count        int                                  `json:"count,omitempty"`
+	FetchedAt    string                               `json:"fetched_at,omitempty"`
+	Players      []ModelSofascoreTeamPlayerStatistics `json:"players,omitempty"`
+	Season       int                                  `json:"season,omitempty"`
+	SourceUrl    string                               `json:"source_url,omitempty"`
+	TeamId       int                                  `json:"team_id,omitempty"`
+	TournamentId int                                  `json:"tournament_id,omitempty"`
+	Type         string                               `json:"type,omitempty"`
+}
+
+type ModelSofascoreTeamPlayerStatisticsSeasonsResponse struct {
+	Count       int                                  `json:"count,omitempty"`
+	FetchedAt   string                               `json:"fetched_at,omitempty"`
+	SourceUrl   string                               `json:"source_url,omitempty"`
+	TeamId      int                                  `json:"team_id,omitempty"`
+	Tournaments []ModelSofascoreStatisticsTournament `json:"tournaments,omitempty"`
 }
 
 type ModelSofascoreTeamPlayersResponse struct {
 	Count     int                         `json:"count,omitempty"`
 	FetchedAt string                      `json:"fetched_at,omitempty"`
 	Players   []ModelSofascoreSquadPlayer `json:"players,omitempty"`
+	SourceUrl string                      `json:"source_url,omitempty"`
+	TeamId    int                         `json:"team_id,omitempty"`
+}
+
+type ModelSofascoreTeamRanking struct {
+	Category             string                         `json:"category,omitempty"`
+	Gender               string                         `json:"gender,omitempty"`
+	LastUpdated          string                         `json:"last_updated,omitempty"`
+	LastUpdatedTimestamp int                            `json:"last_updated_timestamp,omitempty"`
+	Name                 string                         `json:"name,omitempty"`
+	Rows                 []ModelSofascoreTeamRankingRow `json:"rows,omitempty"`
+	Slug                 string                         `json:"slug,omitempty"`
+	Sport                string                         `json:"sport,omitempty"`
+	TypeId               int                            `json:"type_id,omitempty"`
+}
+
+type ModelSofascoreTeamRankingRow struct {
+	BestPosition      int                   `json:"best_position,omitempty"`
+	MaxPoints         float64               `json:"max_points,omitempty"`
+	NextWinPoints     float64               `json:"next_win_points,omitempty"`
+	Points            float64               `json:"points,omitempty"`
+	Position          int                   `json:"position,omitempty"`
+	PreviousPoints    float64               `json:"previous_points,omitempty"`
+	PreviousPosition  int                   `json:"previous_position,omitempty"`
+	Team              ModelSofascoreTeamRef `json:"team,omitempty"`
+	TournamentsPlayed int                   `json:"tournaments_played,omitempty"`
+	UpdatedAt         string                `json:"updated_at,omitempty"`
+	UpdatedTimestamp  int                   `json:"updated_timestamp,omitempty"`
+	Year              int                   `json:"year,omitempty"`
+}
+
+type ModelSofascoreTeamRankingsResponse struct {
+	Count     int                         `json:"count,omitempty"`
+	FetchedAt string                      `json:"fetched_at,omitempty"`
+	Rankings  []ModelSofascoreTeamRanking `json:"rankings,omitempty"`
 	SourceUrl string                      `json:"source_url,omitempty"`
 	TeamId    int                         `json:"team_id,omitempty"`
 }
@@ -51446,6 +55464,177 @@ type ModelSofascoreTeamResponse struct {
 	Team      ModelSofascoreTeamDetail `json:"team,omitempty"`
 }
 
+type ModelSofascoreTeamSeasonStatisticsResponse struct {
+	FetchedAt    string             `json:"fetched_at,omitempty"`
+	Season       int                `json:"season,omitempty"`
+	SourceUrl    string             `json:"source_url,omitempty"`
+	Statistics   map[string]float64 `json:"statistics,omitempty"`
+	TeamId       int                `json:"team_id,omitempty"`
+	TournamentId int                `json:"tournament_id,omitempty"`
+	Type         string             `json:"type,omitempty"`
+}
+
+type ModelSofascoreTeamStatisticsSeasonsResponse struct {
+	Count       int                                  `json:"count,omitempty"`
+	FetchedAt   string                               `json:"fetched_at,omitempty"`
+	SourceUrl   string                               `json:"source_url,omitempty"`
+	TeamId      int                                  `json:"team_id,omitempty"`
+	Tournaments []ModelSofascoreStatisticsTournament `json:"tournaments,omitempty"`
+}
+
+type ModelSofascoreTeamStreak struct {
+	Continued bool   `json:"continued,omitempty"`
+	Name      string `json:"name,omitempty"`
+	Team      string `json:"team,omitempty"`
+	Value     string `json:"value,omitempty"`
+}
+
+type ModelSofascoreTeamTopPlayersResponse struct {
+	Categories    []ModelSofascoreTopPlayerCategory `json:"categories,omitempty"`
+	CategoryCount int                               `json:"category_count,omitempty"`
+	FetchedAt     string                            `json:"fetched_at,omitempty"`
+	SeasonId      int                               `json:"season_id,omitempty"`
+	SourceUrl     string                            `json:"source_url,omitempty"`
+	Sport         string                            `json:"sport,omitempty"`
+	TeamId        int                               `json:"team_id,omitempty"`
+	TournamentId  int                               `json:"tournament_id,omitempty"`
+	Type          string                            `json:"type,omitempty"`
+}
+
+type ModelSofascoreTeamTournamentsResponse struct {
+	All         bool                                  `json:"all,omitempty"`
+	Count       int                                   `json:"count,omitempty"`
+	FetchedAt   string                                `json:"fetched_at,omitempty"`
+	SourceUrl   string                                `json:"source_url,omitempty"`
+	TeamId      int                                   `json:"team_id,omitempty"`
+	Tournaments []ModelSofascoreUniqueTournamentBrief `json:"tournaments,omitempty"`
+}
+
+type ModelSofascoreTeamTransfersResponse struct {
+	FetchedAt    string                   `json:"fetched_at,omitempty"`
+	SourceUrl    string                   `json:"source_url,omitempty"`
+	TeamId       int                      `json:"team_id,omitempty"`
+	TransfersIn  []ModelSofascoreTransfer `json:"transfers_in,omitempty"`
+	TransfersOut []ModelSofascoreTransfer `json:"transfers_out,omitempty"`
+}
+
+type ModelSofascoreTennisGrandSlamResultsResponse struct {
+	FetchedAt   string                              `json:"fetched_at,omitempty"`
+	SourceUrl   string                              `json:"source_url,omitempty"`
+	TeamId      int                                 `json:"team_id,omitempty"`
+	Tournaments []ModelSofascoreGrandSlamTournament `json:"tournaments,omitempty"`
+}
+
+type ModelSofascoreTennisPowerGame struct {
+	BreakOccurred bool    `json:"break_occurred,omitempty"`
+	Game          int     `json:"game,omitempty"`
+	Set           int     `json:"set,omitempty"`
+	Value         float64 `json:"value,omitempty"`
+}
+
+type ModelSofascoreTopPlayerCategory struct {
+	Count   int                            `json:"count,omitempty"`
+	Key     string                         `json:"key,omitempty"`
+	Players []ModelSofascoreTopPlayerEntry `json:"players,omitempty"`
+}
+
+type ModelSofascoreTopPlayerEntry struct {
+	Appearances  int                     `json:"appearances,omitempty"`
+	Details      map[string]float64      `json:"details,omitempty"`
+	PlayedEnough bool                    `json:"played_enough,omitempty"`
+	Player       ModelSofascorePlayerRef `json:"player,omitempty"`
+	Rank         int                     `json:"rank,omitempty"`
+	Team         ModelSofascoreTeamRef   `json:"team,omitempty"`
+	Value        float64                 `json:"value,omitempty"`
+}
+
+type ModelSofascoreTopTeamCategory struct {
+	Count int                          `json:"count,omitempty"`
+	Key   string                       `json:"key,omitempty"`
+	Teams []ModelSofascoreTopTeamEntry `json:"teams,omitempty"`
+}
+
+type ModelSofascoreTopTeamEntry struct {
+	Details map[string]float64    `json:"details,omitempty"`
+	Matches int                   `json:"matches,omitempty"`
+	Rank    int                   `json:"rank,omitempty"`
+	Team    ModelSofascoreTeamRef `json:"team,omitempty"`
+	Value   float64               `json:"value,omitempty"`
+}
+
+type ModelSofascoreTournamentCupTreeResponse struct {
+	Count        int                     `json:"count,omitempty"`
+	FetchedAt    string                  `json:"fetched_at,omitempty"`
+	SeasonId     int                     `json:"season_id,omitempty"`
+	SourceUrl    string                  `json:"source_url,omitempty"`
+	TournamentId int                     `json:"tournament_id,omitempty"`
+	Trees        []ModelSofascoreCupTree `json:"trees,omitempty"`
+}
+
+type ModelSofascoreTournamentDetail struct {
+	Category           string                         `json:"category,omitempty"`
+	CurrentSeasonEnd   string                         `json:"current_season_end,omitempty"`
+	CurrentSeasonStart string                         `json:"current_season_start,omitempty"`
+	Gender             string                         `json:"gender,omitempty"`
+	HasGroups          bool                           `json:"has_groups,omitempty"`
+	HasPlayoffSeries   bool                           `json:"has_playoff_series,omitempty"`
+	HasRounds          bool                           `json:"has_rounds,omitempty"`
+	Id                 int                            `json:"id,omitempty"`
+	LinkedTournaments  []ModelSofascoreCompetitionRef `json:"linked_tournaments,omitempty"`
+	LowerDivisions     []ModelSofascoreCompetitionRef `json:"lower_divisions,omitempty"`
+	MostTitles         int                            `json:"most_titles,omitempty"`
+	MostTitlesTeams    []ModelSofascoreTeamRef        `json:"most_titles_teams,omitempty"`
+	Name               string                         `json:"name,omitempty"`
+	Slug               string                         `json:"slug,omitempty"`
+	Sport              string                         `json:"sport,omitempty"`
+	Tier               int                            `json:"tier,omitempty"`
+	TitleHolder        ModelSofascoreTeamRef          `json:"title_holder,omitempty"`
+	TitleHolderTitles  int                            `json:"title_holder_titles,omitempty"`
+	UpperDivisions     []ModelSofascoreCompetitionRef `json:"upper_divisions,omitempty"`
+}
+
+type ModelSofascoreTournamentInfoResponse struct {
+	FetchedAt       string                         `json:"fetched_at,omitempty"`
+	Season          ModelSofascoreSeasonInfo       `json:"season,omitempty"`
+	SeasonId        int                            `json:"season_id,omitempty"`
+	SeasonSourceUrl string                         `json:"season_source_url,omitempty"`
+	SourceUrl       string                         `json:"source_url,omitempty"`
+	Tournament      ModelSofascoreTournamentDetail `json:"tournament,omitempty"`
+	TournamentId    int                            `json:"tournament_id,omitempty"`
+}
+
+type ModelSofascoreTournamentPlayerOfTheSeasonResponse struct {
+	Appearances    int                     `json:"appearances,omitempty"`
+	FetchedAt      string                  `json:"fetched_at,omitempty"`
+	JerseyNumber   string                  `json:"jersey_number,omitempty"`
+	Player         ModelSofascorePlayerRef `json:"player,omitempty"`
+	Rating         float64                 `json:"rating,omitempty"`
+	SeasonId       int                     `json:"season_id,omitempty"`
+	SourceUrl      string                  `json:"source_url,omitempty"`
+	StatisticsType string                  `json:"statistics_type,omitempty"`
+	Team           ModelSofascoreTeamRef   `json:"team,omitempty"`
+	TournamentId   int                     `json:"tournament_id,omitempty"`
+}
+
+type ModelSofascoreTournamentPlayerStatisticsResponse struct {
+	Accumulation string                                `json:"accumulation,omitempty"`
+	Count        int                                   `json:"count,omitempty"`
+	Direction    string                                `json:"direction,omitempty"`
+	FetchedAt    string                                `json:"fetched_at,omitempty"`
+	Filters      ModelSofascorePlayerStatisticsFilters `json:"filters,omitempty"`
+	Group        string                                `json:"group,omitempty"`
+	HasNextPage  bool                                  `json:"has_next_page,omitempty"`
+	Limit        int                                   `json:"limit,omitempty"`
+	Offset       int                                   `json:"offset,omitempty"`
+	Order        string                                `json:"order,omitempty"`
+	Page         int                                   `json:"page,omitempty"`
+	Players      []ModelSofascorePlayerStatisticsRow   `json:"players,omitempty"`
+	SeasonId     int                                   `json:"season_id,omitempty"`
+	SourceUrl    string                                `json:"source_url,omitempty"`
+	TotalPages   int                                   `json:"total_pages,omitempty"`
+	TournamentId int                                   `json:"tournament_id,omitempty"`
+}
+
 type ModelSofascoreTournamentRef struct {
 	Category             string `json:"category,omitempty"`
 	Id                   int    `json:"id,omitempty"`
@@ -51453,6 +55642,16 @@ type ModelSofascoreTournamentRef struct {
 	Slug                 string `json:"slug,omitempty"`
 	UniqueTournamentId   int    `json:"unique_tournament_id,omitempty"`
 	UniqueTournamentName string `json:"unique_tournament_name,omitempty"`
+}
+
+type ModelSofascoreTournamentRoundsResponse struct {
+	Count        int                      `json:"count,omitempty"`
+	CurrentRound ModelSofascoreRoundRef   `json:"current_round,omitempty"`
+	FetchedAt    string                   `json:"fetched_at,omitempty"`
+	Rounds       []ModelSofascoreRoundRef `json:"rounds,omitempty"`
+	SeasonId     int                      `json:"season_id,omitempty"`
+	SourceUrl    string                   `json:"source_url,omitempty"`
+	TournamentId int                      `json:"tournament_id,omitempty"`
 }
 
 type ModelSofascoreTournamentSeasonsResponse struct {
@@ -51463,11 +55662,348 @@ type ModelSofascoreTournamentSeasonsResponse struct {
 	TournamentId int                    `json:"tournament_id,omitempty"`
 }
 
+type ModelSofascoreTournamentStatisticsInfoResponse struct {
+	DetailedGroups map[string][]string       `json:"detailed_groups,omitempty"`
+	FetchedAt      string                    `json:"fetched_at,omitempty"`
+	Groups         map[string][]string       `json:"groups,omitempty"`
+	Nationalities  []ModelSofascoreNamedCode `json:"nationalities,omitempty"`
+	Positions      []ModelSofascoreNamedCode `json:"positions,omitempty"`
+	SeasonId       int                       `json:"season_id,omitempty"`
+	SourceUrl      string                    `json:"source_url,omitempty"`
+	Teams          []ModelSofascoreTeamRef   `json:"teams,omitempty"`
+	TournamentId   int                       `json:"tournament_id,omitempty"`
+}
+
+type ModelSofascoreTournamentTeamOfTheSeasonResponse struct {
+	Count        int                                 `json:"count,omitempty"`
+	CreatedAt    string                              `json:"created_at,omitempty"`
+	FetchedAt    string                              `json:"fetched_at,omitempty"`
+	Formation    string                              `json:"formation,omitempty"`
+	Players      []ModelSofascoreTeamOfTheWeekPlayer `json:"players,omitempty"`
+	SeasonId     int                                 `json:"season_id,omitempty"`
+	SourceUrl    string                              `json:"source_url,omitempty"`
+	TournamentId int                                 `json:"tournament_id,omitempty"`
+}
+
+type ModelSofascoreTournamentTeamsResponse struct {
+	Count        int                        `json:"count,omitempty"`
+	FetchedAt    string                     `json:"fetched_at,omitempty"`
+	SeasonId     int                        `json:"season_id,omitempty"`
+	SourceUrl    string                     `json:"source_url,omitempty"`
+	Teams        []ModelSofascoreSeasonTeam `json:"teams,omitempty"`
+	TournamentId int                        `json:"tournament_id,omitempty"`
+}
+
+type ModelSofascoreTournamentTopPlayersResponse struct {
+	Categories    []ModelSofascoreTopPlayerCategory `json:"categories,omitempty"`
+	CategoryCount int                               `json:"category_count,omitempty"`
+	FetchedAt     string                            `json:"fetched_at,omitempty"`
+	SeasonId      int                               `json:"season_id,omitempty"`
+	SourceUrl     string                            `json:"source_url,omitempty"`
+	Sport         string                            `json:"sport,omitempty"`
+	TournamentId  int                               `json:"tournament_id,omitempty"`
+	Type          string                            `json:"type,omitempty"`
+}
+
+type ModelSofascoreTournamentTopTeamsResponse struct {
+	Categories    []ModelSofascoreTopTeamCategory `json:"categories,omitempty"`
+	CategoryCount int                             `json:"category_count,omitempty"`
+	FetchedAt     string                          `json:"fetched_at,omitempty"`
+	SeasonId      int                             `json:"season_id,omitempty"`
+	SourceUrl     string                          `json:"source_url,omitempty"`
+	Sport         string                          `json:"sport,omitempty"`
+	TournamentId  int                             `json:"tournament_id,omitempty"`
+	Type          string                          `json:"type,omitempty"`
+}
+
+type ModelSofascoreTournamentVenuesResponse struct {
+	Count        int                         `json:"count,omitempty"`
+	FetchedAt    string                      `json:"fetched_at,omitempty"`
+	SeasonId     int                         `json:"season_id,omitempty"`
+	SourceUrl    string                      `json:"source_url,omitempty"`
+	TournamentId int                         `json:"tournament_id,omitempty"`
+	Venues       []ModelSofascoreVenueRecord `json:"venues,omitempty"`
+}
+
+type ModelSofascoreTournamentWinner struct {
+	SeasonId int                   `json:"season_id,omitempty"`
+	Winner   ModelSofascoreTeamRef `json:"winner,omitempty"`
+	Year     int                   `json:"year,omitempty"`
+}
+
+type ModelSofascoreTournamentWinnersResponse struct {
+	Count        int                              `json:"count,omitempty"`
+	FetchedAt    string                           `json:"fetched_at,omitempty"`
+	HasNextPage  bool                             `json:"has_next_page,omitempty"`
+	Page         int                              `json:"page,omitempty"`
+	SourceUrl    string                           `json:"source_url,omitempty"`
+	TournamentId int                              `json:"tournament_id,omitempty"`
+	Winners      []ModelSofascoreTournamentWinner `json:"winners,omitempty"`
+}
+
+type ModelSofascoreTournamentsWithFeatureResponse struct {
+	Count       int                               `json:"count,omitempty"`
+	Feature     string                            `json:"feature,omitempty"`
+	FetchedAt   string                            `json:"fetched_at,omitempty"`
+	SourceUrl   string                            `json:"source_url,omitempty"`
+	Sport       string                            `json:"sport,omitempty"`
+	Tournaments []ModelSofascoreFeatureTournament `json:"tournaments,omitempty"`
+}
+
+type ModelSofascoreTransfer struct {
+	Fee               int                       `json:"fee,omitempty"`
+	FeeCurrency       string                    `json:"fee_currency,omitempty"`
+	FeeDescription    string                    `json:"fee_description,omitempty"`
+	FromTeam          ModelSofascoreTeamRef     `json:"from_team,omitempty"`
+	FromTeamName      string                    `json:"from_team_name,omitempty"`
+	Id                int                       `json:"id,omitempty"`
+	Player            ModelSofascorePlayerBrief `json:"player,omitempty"`
+	ToTeam            ModelSofascoreTeamRef     `json:"to_team,omitempty"`
+	ToTeamName        string                    `json:"to_team_name,omitempty"`
+	TransferDate      string                    `json:"transfer_date,omitempty"`
+	TransferTimestamp int                       `json:"transfer_timestamp,omitempty"`
+	TypeCode          int                       `json:"type_code,omitempty"`
+}
+
+type ModelSofascoreTrendingEvent struct {
+	AwayScore      ModelSofascoreScoreLine     `json:"away_score,omitempty"`
+	AwayTeam       ModelSofascoreTeamRef       `json:"away_team,omitempty"`
+	HomeScore      ModelSofascoreScoreLine     `json:"home_score,omitempty"`
+	HomeTeam       ModelSofascoreTeamRef       `json:"home_team,omitempty"`
+	Id             int                         `json:"id,omitempty"`
+	Slug           string                      `json:"slug,omitempty"`
+	Sport          string                      `json:"sport,omitempty"`
+	StartTime      string                      `json:"start_time,omitempty"`
+	StartTimestamp int                         `json:"start_timestamp,omitempty"`
+	Status         ModelSofascoreEventStatus   `json:"status,omitempty"`
+	Tournament     ModelSofascoreTournamentRef `json:"tournament,omitempty"`
+	WinnerCode     int                         `json:"winner_code,omitempty"`
+}
+
+type ModelSofascoreTrendingEventsResponse struct {
+	Count     int                           `json:"count,omitempty"`
+	Country   string                        `json:"country,omitempty"`
+	Events    []ModelSofascoreTrendingEvent `json:"events,omitempty"`
+	FetchedAt string                        `json:"fetched_at,omitempty"`
+	SourceUrl string                        `json:"source_url,omitempty"`
+}
+
+type ModelSofascoreTrendingPlayer struct {
+	Event      ModelSofascoreEventSummary `json:"event,omitempty"`
+	Player     ModelSofascorePlayerBrief  `json:"player,omitempty"`
+	Statistics map[string]float64         `json:"statistics,omitempty"`
+	Team       ModelSofascoreTeamRef      `json:"team,omitempty"`
+}
+
+type ModelSofascoreTrendingPlayersResponse struct {
+	Count     int                            `json:"count,omitempty"`
+	FetchedAt string                         `json:"fetched_at,omitempty"`
+	Players   []ModelSofascoreTrendingPlayer `json:"players,omitempty"`
+	SourceUrl string                         `json:"source_url,omitempty"`
+	Sport     string                         `json:"sport,omitempty"`
+}
+
+type ModelSofascoreTypedSearchResult struct {
+	Capacity     int                        `json:"capacity,omitempty"`
+	CategoryId   int                        `json:"category_id,omitempty"`
+	CategoryName string                     `json:"category_name,omitempty"`
+	City         string                     `json:"city,omitempty"`
+	Country      string                     `json:"country,omitempty"`
+	Deceased     bool                       `json:"deceased,omitempty"`
+	Event        ModelSofascoreEventSummary `json:"event,omitempty"`
+	Gender       string                     `json:"gender,omitempty"`
+	Id           int                        `json:"id,omitempty"`
+	JerseyNumber string                     `json:"jersey_number,omitempty"`
+	Name         string                     `json:"name,omitempty"`
+	NameCode     string                     `json:"name_code,omitempty"`
+	National     bool                       `json:"national,omitempty"`
+	Position     string                     `json:"position,omitempty"`
+	Retired      bool                       `json:"retired,omitempty"`
+	Score        float64                    `json:"score,omitempty"`
+	ShortName    string                     `json:"short_name,omitempty"`
+	Slug         string                     `json:"slug,omitempty"`
+	Sport        string                     `json:"sport,omitempty"`
+	Team         ModelSofascoreTeamRef      `json:"team,omitempty"`
+	Type         string                     `json:"type,omitempty"`
+	UserCount    int                        `json:"user_count,omitempty"`
+}
+
+type ModelSofascoreUniqueTournamentBrief struct {
+	Category string `json:"category,omitempty"`
+	Gender   string `json:"gender,omitempty"`
+	Id       int    `json:"id,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Slug     string `json:"slug,omitempty"`
+	Sport    string `json:"sport,omitempty"`
+}
+
 type ModelSofascoreVenue struct {
 	Capacity int    `json:"capacity,omitempty"`
 	City     string `json:"city,omitempty"`
 	Country  string `json:"country,omitempty"`
 	Name     string `json:"name,omitempty"`
+}
+
+type ModelSofascoreVenueEventsResponse struct {
+	Count        int                          `json:"count,omitempty"`
+	Direction    string                       `json:"direction,omitempty"`
+	Events       []ModelSofascoreEventSummary `json:"events,omitempty"`
+	FetchedAt    string                       `json:"fetched_at,omitempty"`
+	HasNextPage  bool                         `json:"has_next_page,omitempty"`
+	Page         int                          `json:"page,omitempty"`
+	SeasonId     int                          `json:"season_id,omitempty"`
+	SourceUrl    string                       `json:"source_url,omitempty"`
+	Sport        string                       `json:"sport,omitempty"`
+	TournamentId int                          `json:"tournament_id,omitempty"`
+	VenueId      int                          `json:"venue_id,omitempty"`
+}
+
+type ModelSofascoreVenueRecord struct {
+	Capacity  int     `json:"capacity,omitempty"`
+	City      string  `json:"city,omitempty"`
+	Country   string  `json:"country,omitempty"`
+	Hidden    bool    `json:"hidden,omitempty"`
+	Id        int     `json:"id,omitempty"`
+	Latitude  float64 `json:"latitude,omitempty"`
+	Longitude float64 `json:"longitude,omitempty"`
+	Name      string  `json:"name,omitempty"`
+	Slug      string  `json:"slug,omitempty"`
+	State     string  `json:"state,omitempty"`
+}
+
+type ModelSofascoreVenueResponse struct {
+	FetchedAt string                               `json:"fetched_at,omitempty"`
+	MainTeams []ModelSofascoreTeamRef              `json:"main_teams,omitempty"`
+	SourceUrl string                               `json:"source_url,omitempty"`
+	Sports    []ModelSofascoreVenueSportStatistics `json:"sports,omitempty"`
+	Totals    ModelSofascoreVenueTotals            `json:"totals,omitempty"`
+	Venue     ModelSofascoreVenueRecord            `json:"venue,omitempty"`
+}
+
+type ModelSofascoreVenueSportStatistics struct {
+	DrawPercentage    float64 `json:"draw_percentage,omitempty"`
+	GoalsScored       float64 `json:"goals_scored,omitempty"`
+	HomeWinPercentage float64 `json:"home_win_percentage,omitempty"`
+	Sport             string  `json:"sport,omitempty"`
+	TotalMatches      int     `json:"total_matches,omitempty"`
+}
+
+type ModelSofascoreVenueTotals struct {
+	AvgCornerKicksPerGame  float64 `json:"avg_corner_kicks_per_game,omitempty"`
+	AvgRedCardsPerGame     float64 `json:"avg_red_cards_per_game,omitempty"`
+	AwayTeamGoalsScored    float64 `json:"away_team_goals_scored,omitempty"`
+	AwayTeamWinsPercentage float64 `json:"away_team_wins_percentage,omitempty"`
+	DrawsPercentage        float64 `json:"draws_percentage,omitempty"`
+	HomeTeamGoalsScored    float64 `json:"home_team_goals_scored,omitempty"`
+	HomeTeamWinsPercentage float64 `json:"home_team_wins_percentage,omitempty"`
+	TotalMatches           int     `json:"total_matches,omitempty"`
+}
+
+type ModelSofascoreVoteBothTeamsToScore struct {
+	No  int `json:"no,omitempty"`
+	Yes int `json:"yes,omitempty"`
+}
+
+type ModelSofascoreVoteFirstToScore struct {
+	Away   int `json:"away,omitempty"`
+	Home   int `json:"home,omitempty"`
+	NoGoal int `json:"no_goal,omitempty"`
+}
+
+type ModelSofascoreVoteMatchResult struct {
+	Away  int `json:"away,omitempty"`
+	Draw  int `json:"draw,omitempty"`
+	Home  int `json:"home,omitempty"`
+	Total int `json:"total,omitempty"`
+}
+
+type ModelSofascoreVoteWhoShouldHaveWon struct {
+	Away int `json:"away,omitempty"`
+	Home int `json:"home,omitempty"`
+}
+
+type ModelSofascoreWdlrecord struct {
+	Draws  int `json:"draws,omitempty"`
+	Losses int `json:"losses,omitempty"`
+	Wins   int `json:"wins,omitempty"`
+}
+
+type ModelSofascoreCategoriesResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelSofascoreCategoriesResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelSofascoreCategoryTournamentsResponseDoc struct {
+	Code int                                       `json:"code,omitempty"`
+	Data ModelSofascoreCategoryTournamentsResponse `json:"data,omitempty"`
+	Msg  string                                    `json:"msg,omitempty"`
+}
+
+type ModelSofascoreDraftPicksResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelSofascoreDraftPicksResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelSofascoreDraftResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelSofascoreDraftResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEsportsGameResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelSofascoreEsportsGameResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventAtBatPitchesResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelSofascoreEventAtBatPitchesResponse `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventAtBatsResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelSofascoreEventAtBatsResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventAveragePositionsResponseDoc struct {
+	Code int                                         `json:"code,omitempty"`
+	Data ModelSofascoreEventAveragePositionsResponse `json:"data,omitempty"`
+	Msg  string                                      `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventBaseballTopPerformersResponseDoc struct {
+	Code int                                              `json:"code,omitempty"`
+	Data ModelSofascoreEventBaseballTopPerformersResponse `json:"data,omitempty"`
+	Msg  string                                           `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventBestPlayersResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelSofascoreEventBestPlayersResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventCommentsResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelSofascoreEventCommentsResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventEsportsGamesResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelSofascoreEventEsportsGamesResponse `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventGraphResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelSofascoreEventGraphResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
 }
 
 type ModelSofascoreEventH2HresponseDoc struct {
@@ -51476,10 +56012,22 @@ type ModelSofascoreEventH2HresponseDoc struct {
 	Msg  string                         `json:"msg,omitempty"`
 }
 
+type ModelSofascoreEventHighlightsResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelSofascoreEventHighlightsResponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
+}
+
 type ModelSofascoreEventIncidentsResponseDoc struct {
 	Code int                                  `json:"code,omitempty"`
 	Data ModelSofascoreEventIncidentsResponse `json:"data,omitempty"`
 	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventInningsResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelSofascoreEventInningsResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
 }
 
 type ModelSofascoreEventLineupsResponseDoc struct {
@@ -51488,10 +56036,40 @@ type ModelSofascoreEventLineupsResponseDoc struct {
 	Msg  string                             `json:"msg,omitempty"`
 }
 
+type ModelSofascoreEventManagersResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelSofascoreEventManagersResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
 type ModelSofascoreEventOddsResponseDoc struct {
 	Code int                             `json:"code,omitempty"`
 	Data ModelSofascoreEventOddsResponse `json:"data,omitempty"`
 	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventPlayerHeatmapResponseDoc struct {
+	Code int                                      `json:"code,omitempty"`
+	Data ModelSofascoreEventPlayerHeatmapResponse `json:"data,omitempty"`
+	Msg  string                                   `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventPlayerStatisticsResponseDoc struct {
+	Code int                                         `json:"code,omitempty"`
+	Data ModelSofascoreEventPlayerStatisticsResponse `json:"data,omitempty"`
+	Msg  string                                      `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventPointByPointResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelSofascoreEventPointByPointResponse `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventPregameFormResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelSofascoreEventPregameFormResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
 }
 
 type ModelSofascoreEventResponseDoc struct {
@@ -51500,10 +56078,46 @@ type ModelSofascoreEventResponseDoc struct {
 	Msg  string                      `json:"msg,omitempty"`
 }
 
+type ModelSofascoreEventShotmapResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelSofascoreEventShotmapResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
 type ModelSofascoreEventStatisticsResponseDoc struct {
 	Code int                                   `json:"code,omitempty"`
 	Data ModelSofascoreEventStatisticsResponse `json:"data,omitempty"`
 	Msg  string                                `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventTvchannelsResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelSofascoreEventTvchannelsResponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventTeamHeatmapResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelSofascoreEventTeamHeatmapResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventTeamStreaksResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelSofascoreEventTeamStreaksResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventTennisPowerResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelSofascoreEventTennisPowerResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelSofascoreEventVotesResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelSofascoreEventVotesResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
 }
 
 type ModelSofascoreLiveEventsResponseDoc struct {
@@ -51512,10 +56126,148 @@ type ModelSofascoreLiveEventsResponseDoc struct {
 	Msg  string                           `json:"msg,omitempty"`
 }
 
+type ModelSofascoreManagerEventsResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelSofascoreManagerEventsResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelSofascoreManagerResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelSofascoreManagerResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelSofascoreMmaCardResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelSofascoreMmacardResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelSofascoreMmaScheduleResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelSofascoreMmascheduleResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelSofascoreOddsDroppingResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelSofascoreOddsDroppingResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelSofascoreOddsWinningResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelSofascoreOddsWinningResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelSofascorePlayerAttributesResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelSofascorePlayerAttributesResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelSofascorePlayerEventsResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelSofascorePlayerEventsResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelSofascorePlayerLastYearSummaryResponseDoc struct {
+	Code int                                         `json:"code,omitempty"`
+	Data ModelSofascorePlayerLastYearSummaryResponse `json:"data,omitempty"`
+	Msg  string                                      `json:"msg,omitempty"`
+}
+
+type ModelSofascorePlayerNationalTeamStatisticsResponseDoc struct {
+	Code int                                                `json:"code,omitempty"`
+	Data ModelSofascorePlayerNationalTeamStatisticsResponse `json:"data,omitempty"`
+	Msg  string                                             `json:"msg,omitempty"`
+}
+
+type ModelSofascorePlayerPenaltyHistoryResponseDoc struct {
+	Code int                                        `json:"code,omitempty"`
+	Data ModelSofascorePlayerPenaltyHistoryResponse `json:"data,omitempty"`
+	Msg  string                                     `json:"msg,omitempty"`
+}
+
+type ModelSofascorePlayerRatingsResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelSofascorePlayerRatingsResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
 type ModelSofascorePlayerResponseDoc struct {
 	Code int                          `json:"code,omitempty"`
 	Data ModelSofascorePlayerResponse `json:"data,omitempty"`
 	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelSofascorePlayerSeasonHeatmapResponseDoc struct {
+	Code int                                       `json:"code,omitempty"`
+	Data ModelSofascorePlayerSeasonHeatmapResponse `json:"data,omitempty"`
+	Msg  string                                    `json:"msg,omitempty"`
+}
+
+type ModelSofascorePlayerSeasonStatisticsResponseDoc struct {
+	Code int                                          `json:"code,omitempty"`
+	Data ModelSofascorePlayerSeasonStatisticsResponse `json:"data,omitempty"`
+	Msg  string                                       `json:"msg,omitempty"`
+}
+
+type ModelSofascorePlayerStatisticalRankingsResponseDoc struct {
+	Code int                                             `json:"code,omitempty"`
+	Data ModelSofascorePlayerStatisticalRankingsResponse `json:"data,omitempty"`
+	Msg  string                                          `json:"msg,omitempty"`
+}
+
+type ModelSofascorePlayerStatisticsSeasonsResponseDoc struct {
+	Code int                                           `json:"code,omitempty"`
+	Data ModelSofascorePlayerStatisticsSeasonsResponse `json:"data,omitempty"`
+	Msg  string                                        `json:"msg,omitempty"`
+}
+
+type ModelSofascorePlayerTournamentsResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelSofascorePlayerTournamentsResponse `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
+}
+
+type ModelSofascorePlayerTransfersResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelSofascorePlayerTransfersResponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
+}
+
+type ModelSofascoreRankingTypesResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelSofascoreRankingTypesResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelSofascoreRankingsResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelSofascoreRankingsResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelSofascoreRefereeEventsResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelSofascoreRefereeEventsResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelSofascoreRefereeResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelSofascoreRefereeResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelSofascoreRefereeStatisticsResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelSofascoreRefereeStatisticsResponse `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
 }
 
 type ModelSofascoreRoundEventsResponseDoc struct {
@@ -51524,10 +56276,88 @@ type ModelSofascoreRoundEventsResponseDoc struct {
 	Msg  string                            `json:"msg,omitempty"`
 }
 
+type ModelSofascoreScheduledEventsResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelSofascoreScheduledEventsResponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
+}
+
+type ModelSofascoreScheduledTournamentsResponseDoc struct {
+	Code int                                        `json:"code,omitempty"`
+	Data ModelSofascoreScheduledTournamentsResponse `json:"data,omitempty"`
+	Msg  string                                     `json:"msg,omitempty"`
+}
+
 type ModelSofascoreSearchResponseDoc struct {
 	Code int                          `json:"code,omitempty"`
 	Data ModelSofascoreSearchResponse `json:"data,omitempty"`
 	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelSofascoreSearchTypedResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelSofascoreSearchTypedResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelSofascoreSeasonEventsResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelSofascoreSeasonEventsResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelSofascoreSportsResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelSofascoreSportsResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelSofascoreStageCategoriesResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelSofascoreStageCategoriesResponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
+}
+
+type ModelSofascoreStageDetailResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelSofascoreStageDetailResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelSofascoreStageDriverPerformanceResponseDoc struct {
+	Code int                                          `json:"code,omitempty"`
+	Data ModelSofascoreStageDriverPerformanceResponse `json:"data,omitempty"`
+	Msg  string                                       `json:"msg,omitempty"`
+}
+
+type ModelSofascoreStageFeaturedResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelSofascoreStageFeaturedResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelSofascoreStageScheduleResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelSofascoreStageScheduleResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelSofascoreStageSeasonsResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelSofascoreStageSeasonsResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelSofascoreStageStandingsResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelSofascoreStageStandingsResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelSofascoreStageSubstagesResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelSofascoreStageSubstagesResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
 }
 
 type ModelSofascoreStandingsResponseDoc struct {
@@ -51536,10 +56366,58 @@ type ModelSofascoreStandingsResponseDoc struct {
 	Msg  string                          `json:"msg,omitempty"`
 }
 
+type ModelSofascoreTeamAchievementsResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelSofascoreTeamAchievementsResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
 type ModelSofascoreTeamEventsResponseDoc struct {
 	Code int                              `json:"code,omitempty"`
 	Data ModelSofascoreTeamEventsResponse `json:"data,omitempty"`
 	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTeamGoalDistributionsResponseDoc struct {
+	Code int                                         `json:"code,omitempty"`
+	Data ModelSofascoreTeamGoalDistributionsResponse `json:"data,omitempty"`
+	Msg  string                                      `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTeamNearEventsResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelSofascoreTeamNearEventsResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTeamOfTheWeekPeriodsResponseDoc struct {
+	Code int                                        `json:"code,omitempty"`
+	Data ModelSofascoreTeamOfTheWeekPeriodsResponse `json:"data,omitempty"`
+	Msg  string                                     `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTeamOfTheWeekResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelSofascoreTeamOfTheWeekResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTeamPerformanceResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelSofascoreTeamPerformanceResponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTeamPlayerStatisticsResponseDoc struct {
+	Code int                                        `json:"code,omitempty"`
+	Data ModelSofascoreTeamPlayerStatisticsResponse `json:"data,omitempty"`
+	Msg  string                                     `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTeamPlayerStatisticsSeasonsResponseDoc struct {
+	Code int                                               `json:"code,omitempty"`
+	Data ModelSofascoreTeamPlayerStatisticsSeasonsResponse `json:"data,omitempty"`
+	Msg  string                                            `json:"msg,omitempty"`
 }
 
 type ModelSofascoreTeamPlayersResponseDoc struct {
@@ -51548,16 +56426,160 @@ type ModelSofascoreTeamPlayersResponseDoc struct {
 	Msg  string                            `json:"msg,omitempty"`
 }
 
+type ModelSofascoreTeamRankingsResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelSofascoreTeamRankingsResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
 type ModelSofascoreTeamResponseDoc struct {
 	Code int                        `json:"code,omitempty"`
 	Data ModelSofascoreTeamResponse `json:"data,omitempty"`
 	Msg  string                     `json:"msg,omitempty"`
 }
 
+type ModelSofascoreTeamSeasonStatisticsResponseDoc struct {
+	Code int                                        `json:"code,omitempty"`
+	Data ModelSofascoreTeamSeasonStatisticsResponse `json:"data,omitempty"`
+	Msg  string                                     `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTeamStatisticsSeasonsResponseDoc struct {
+	Code int                                         `json:"code,omitempty"`
+	Data ModelSofascoreTeamStatisticsSeasonsResponse `json:"data,omitempty"`
+	Msg  string                                      `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTeamTopPlayersResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelSofascoreTeamTopPlayersResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTeamTournamentsResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelSofascoreTeamTournamentsResponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTeamTransfersResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelSofascoreTeamTransfersResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTennisGrandSlamResultsResponseDoc struct {
+	Code int                                          `json:"code,omitempty"`
+	Data ModelSofascoreTennisGrandSlamResultsResponse `json:"data,omitempty"`
+	Msg  string                                       `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTournamentCupTreeResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelSofascoreTournamentCupTreeResponse `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTournamentInfoResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelSofascoreTournamentInfoResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTournamentPlayerOfTheSeasonResponseDoc struct {
+	Code int                                               `json:"code,omitempty"`
+	Data ModelSofascoreTournamentPlayerOfTheSeasonResponse `json:"data,omitempty"`
+	Msg  string                                            `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTournamentPlayerStatisticsResponseDoc struct {
+	Code int                                              `json:"code,omitempty"`
+	Data ModelSofascoreTournamentPlayerStatisticsResponse `json:"data,omitempty"`
+	Msg  string                                           `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTournamentRoundsResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelSofascoreTournamentRoundsResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
 type ModelSofascoreTournamentSeasonsResponseDoc struct {
 	Code int                                     `json:"code,omitempty"`
 	Data ModelSofascoreTournamentSeasonsResponse `json:"data,omitempty"`
 	Msg  string                                  `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTournamentStatisticsInfoResponseDoc struct {
+	Code int                                            `json:"code,omitempty"`
+	Data ModelSofascoreTournamentStatisticsInfoResponse `json:"data,omitempty"`
+	Msg  string                                         `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTournamentTeamOfTheSeasonResponseDoc struct {
+	Code int                                             `json:"code,omitempty"`
+	Data ModelSofascoreTournamentTeamOfTheSeasonResponse `json:"data,omitempty"`
+	Msg  string                                          `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTournamentTeamsResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelSofascoreTournamentTeamsResponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTournamentTopPlayersResponseDoc struct {
+	Code int                                        `json:"code,omitempty"`
+	Data ModelSofascoreTournamentTopPlayersResponse `json:"data,omitempty"`
+	Msg  string                                     `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTournamentTopTeamsResponseDoc struct {
+	Code int                                      `json:"code,omitempty"`
+	Data ModelSofascoreTournamentTopTeamsResponse `json:"data,omitempty"`
+	Msg  string                                   `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTournamentVenuesResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelSofascoreTournamentVenuesResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTournamentWinnersResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelSofascoreTournamentWinnersResponse `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTournamentsWithFeatureResponseDoc struct {
+	Code int                                          `json:"code,omitempty"`
+	Data ModelSofascoreTournamentsWithFeatureResponse `json:"data,omitempty"`
+	Msg  string                                       `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTrendingEventsResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelSofascoreTrendingEventsResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelSofascoreTrendingPlayersResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelSofascoreTrendingPlayersResponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
+}
+
+type ModelSofascoreVenueEventsResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelSofascoreVenueEventsResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelSofascoreVenueResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelSofascoreVenueResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
 }
 
 type ModelSonicAvailabilityChannel struct {
@@ -62872,11 +67894,12 @@ type ModelWccftechAuthorResponse struct {
 }
 
 type ModelWebScrapeInfo struct {
-	Backend    string `json:"backend,omitempty"`
-	CacheState string `json:"cache_state,omitempty"`
-	CachedAt   string `json:"cached_at,omitempty"`
-	Escalated  bool   `json:"escalated,omitempty"`
-	Method     string `json:"method,omitempty"`
+	Backend      string `json:"backend,omitempty"`
+	CacheState   string `json:"cache_state,omitempty"`
+	CachedAt     string `json:"cached_at,omitempty"`
+	Escalated    bool   `json:"escalated,omitempty"`
+	Method       string `json:"method,omitempty"`
+	RenderFailed bool   `json:"render_failed,omitempty"`
 }
 
 type ModelWebScrapeLink struct {
@@ -63086,6 +68109,26 @@ type ModelWebmonitorWebhookDeliveryDoc struct {
 	Event       string `json:"event,omitempty"`
 	Status      string `json:"status,omitempty"`
 	StatusCode  int    `json:"status_code,omitempty"`
+}
+
+type ModelWebretrievalDiscoveredUrl struct {
+	DiscoveredVia string `json:"discovered_via,omitempty"`
+	LastModified  string `json:"last_modified,omitempty"`
+	ObservedAt    string `json:"observed_at,omitempty"`
+	ParentUrl     string `json:"parent_url,omitempty"`
+	Title         string `json:"title,omitempty"`
+	Url           string `json:"url,omitempty"`
+}
+
+type ModelWebretrievalWebSearchHit struct {
+	Document     ModelRetrievaltypesDocument `json:"document,omitempty"`
+	FetchFailure ModelRetrievaltypesFailure  `json:"fetch_failure,omitempty"`
+	Provider     string                      `json:"provider,omitempty"`
+	Rank         int                         `json:"rank,omitempty"`
+	RetrievedAt  string                      `json:"retrieved_at,omitempty"`
+	Snippet      string                      `json:"snippet,omitempty"`
+	Title        string                      `json:"title,omitempty"`
+	Url          string                      `json:"url,omitempty"`
 }
 
 type ModelWendysCategoriesResponse struct {
@@ -68013,7 +73056,7 @@ type ModelZomatoSearchResponseDoc struct {
 	Msg  any                       `json:"msg,omitempty"`
 }
 
-const operationCount = 3539
+const operationCount = 3695
 
 const (
 	OperationAbcNewsAbcnewsArticle                                  = "abcnews-article"
@@ -68225,15 +73268,22 @@ const (
 	OperationBarronsHeadlines                                       = "barrons-headlines"
 	OperationBarronsNews                                            = "barrons-news"
 	OperationBarronsTopics                                          = "barrons-topics"
+	OperationBbbArticle                                             = "bbb-article"
 	OperationBbbBusiness                                            = "bbb-business"
 	OperationBbbBusinessComplaints                                  = "bbb-business-complaints"
 	OperationBbbBusinessMoreInfo                                    = "bbb-business-more-info"
 	OperationBbbBusinessReviews                                     = "bbb-business-reviews"
 	OperationBbbCategory                                            = "bbb-category"
+	OperationBbbLocalBbb                                            = "bbb-local-bbb"
+	OperationBbbLocalBbbs                                           = "bbb-local-bbbs"
+	OperationBbbNews                                                = "bbb-news"
+	OperationBbbNewsTopics                                          = "bbb-news-topics"
+	OperationBbbRegions                                             = "bbb-regions"
 	OperationBbbScamtrackerDetail                                   = "bbb-scamtracker-detail"
 	OperationBbbScamtrackerSearch                                   = "bbb-scamtracker-search"
 	OperationBbbScamtrackerStateStats                               = "bbb-scamtracker-state-stats"
 	OperationBbbSearch                                              = "bbb-search"
+	OperationBbbSearchFilters                                       = "bbb-search-filters"
 	OperationBbcArticle                                             = "bbc-article"
 	OperationBbcAuthor                                              = "bbc-author"
 	OperationBbcHeadlines                                           = "bbc-headlines"
@@ -68643,6 +73693,9 @@ const (
 	OperationDatasetsBbbBusinessesFacets                            = "datasets-bbb-businesses-facets"
 	OperationDatasetsBbbBusinessesItem                              = "datasets-bbb-businesses-item"
 	OperationDatasetsBbbBusinessesSearch                            = "datasets-bbb-businesses-search"
+	OperationDatasetsBbbScamtrackerReportsFacets                    = "datasets-bbb-scamtracker-reports-facets"
+	OperationDatasetsBbbScamtrackerReportsItem                      = "datasets-bbb-scamtracker-reports-item"
+	OperationDatasetsBbbScamtrackerReportsSearch                    = "datasets-bbb-scamtracker-reports-search"
 	OperationDatasetsBoxofficemojoFacets                            = "datasets-boxofficemojo-facets"
 	OperationDatasetsBoxofficemojoItem                              = "datasets-boxofficemojo-item"
 	OperationDatasetsBoxofficemojoSearch                            = "datasets-boxofficemojo-search"
@@ -68691,6 +73744,9 @@ const (
 	OperationDatasetsJournalistsItem                                = "datasets-journalists-item"
 	OperationDatasetsJournalistsSearch                              = "datasets-journalists-search"
 	OperationDatasetsList                                           = "datasets-list"
+	OperationDatasetsLlmsFacets                                     = "datasets-llms-facets"
+	OperationDatasetsLlmsItem                                       = "datasets-llms-item"
+	OperationDatasetsLlmsSearch                                     = "datasets-llms-search"
 	OperationDatasetsNumbeoCitiesFacets                             = "datasets-numbeo-cities-facets"
 	OperationDatasetsNumbeoCitiesItem                               = "datasets-numbeo-cities-item"
 	OperationDatasetsNumbeoCitiesSearch                             = "datasets-numbeo-cities-search"
@@ -68984,24 +74040,54 @@ const (
 	OperationFlashscoreCalendar                                     = "flashscore-calendar"
 	OperationFlashscoreCalendarCategories                           = "flashscore-calendar-categories"
 	OperationFlashscoreCompetitions                                 = "flashscore-competitions"
+	OperationFlashscoreEntityNews                                   = "flashscore-entity-news"
+	OperationFlashscoreMatchBoxScore                                = "flashscore-match-box-score"
+	OperationFlashscoreMatchDarts                                   = "flashscore-match-darts"
 	OperationFlashscoreMatchH2h                                     = "flashscore-match-h2h"
 	OperationFlashscoreMatchHighlights                              = "flashscore-match-highlights"
 	OperationFlashscoreMatchInfo                                    = "flashscore-match-info"
 	OperationFlashscoreMatchLineups                                 = "flashscore-match-lineups"
+	OperationFlashscoreMatchMissingPlayers                          = "flashscore-match-missing-players"
+	OperationFlashscoreMatchMomentum                                = "flashscore-match-momentum"
 	OperationFlashscoreMatchNews                                    = "flashscore-match-news"
+	OperationFlashscoreMatchOdds                                    = "flashscore-match-odds"
+	OperationFlashscoreMatchPlayerStats                             = "flashscore-match-player-stats"
+	OperationFlashscoreMatchPointByPoint                            = "flashscore-match-point-by-point"
+	OperationFlashscoreMatchPredictedLineups                        = "flashscore-match-predicted-lineups"
+	OperationFlashscoreMatchReport                                  = "flashscore-match-report"
 	OperationFlashscoreMatchStandings                               = "flashscore-match-standings"
 	OperationFlashscoreMatchStats                                   = "flashscore-match-stats"
+	OperationFlashscoreMatchTv                                      = "flashscore-match-tv"
 	OperationFlashscoreNavigation                                   = "flashscore-navigation"
 	OperationFlashscoreNews                                         = "flashscore-news"
 	OperationFlashscoreNewsArticle                                  = "flashscore-news-article"
+	OperationFlashscoreNewsArticleBody                              = "flashscore-news-article-body"
 	OperationFlashscoreNewsCategories                               = "flashscore-news-categories"
+	OperationFlashscoreNewsMostRead                                 = "flashscore-news-most-read"
+	OperationFlashscoreOddsGeos                                     = "flashscore-odds-geos"
+	OperationFlashscorePlayer                                       = "flashscore-player"
+	OperationFlashscorePlayerFixtures                               = "flashscore-player-fixtures"
+	OperationFlashscorePlayerInjuries                               = "flashscore-player-injuries"
+	OperationFlashscorePlayerMatchLog                               = "flashscore-player-match-log"
+	OperationFlashscorePlayerNews                                   = "flashscore-player-news"
+	OperationFlashscorePlayerResults                                = "flashscore-player-results"
+	OperationFlashscorePlayerTransfers                              = "flashscore-player-transfers"
 	OperationFlashscoreRankingCategories                            = "flashscore-ranking-categories"
 	OperationFlashscoreRankings                                     = "flashscore-rankings"
 	OperationFlashscoreScores                                       = "flashscore-scores"
 	OperationFlashscoreSearch                                       = "flashscore-search"
 	OperationFlashscoreSports                                       = "flashscore-sports"
+	OperationFlashscoreTeam                                         = "flashscore-team"
+	OperationFlashscoreTeamFixtures                                 = "flashscore-team-fixtures"
+	OperationFlashscoreTeamNews                                     = "flashscore-team-news"
+	OperationFlashscoreTeamOutrightOdds                             = "flashscore-team-outright-odds"
+	OperationFlashscoreTeamResults                                  = "flashscore-team-results"
+	OperationFlashscoreTeamSquad                                    = "flashscore-team-squad"
+	OperationFlashscoreTeamTransfers                                = "flashscore-team-transfers"
 	OperationFlashscoreTopSearch                                    = "flashscore-top-search"
+	OperationFlashscoreTournamentArchiveSeasons                     = "flashscore-tournament-archive-seasons"
 	OperationFlashscoreTournamentEvents                             = "flashscore-tournament-events"
+	OperationFlashscoreTournamentOutrightOdds                       = "flashscore-tournament-outright-odds"
 	OperationFlashscoreTournamentSeasons                            = "flashscore-tournament-seasons"
 	OperationFlashscoreTournamentStandings                          = "flashscore-tournament-standings"
 	OperationFlashscoreTournamentStandingsViews                     = "flashscore-tournament-standings-views"
@@ -70416,6 +75502,16 @@ const (
 	OperationReferralsClick                                         = "referrals-click"
 	OperationReferralsMe                                            = "referrals-me"
 	OperationReferralsMeEvents                                      = "referrals-me-events"
+	OperationResearchInspectPaper                                   = "research-inspect-paper"
+	OperationResearchJobsResearchCancel                             = "research-cancel"
+	OperationResearchJobsResearchEvents                             = "research-events"
+	OperationResearchJobsResearchResults                            = "research-results"
+	OperationResearchJobsResearchStart                              = "research-start"
+	OperationResearchJobsResearchStatus                             = "research-status"
+	OperationResearchReadPaper                                      = "research-read-paper"
+	OperationResearchRelatedPapers                                  = "research-related-papers"
+	OperationResearchSearchPapers                                   = "research-search-papers"
+	OperationResearchSources                                        = "research-sources"
 	OperationResyAvailability                                       = "resy-availability"
 	OperationResyCuisines                                           = "resy-cuisines"
 	OperationResyEventDetail                                        = "resy-event-detail"
@@ -70436,6 +75532,15 @@ const (
 	OperationRetailMeNotRetailmenotHome                             = "retailmenot-home"
 	OperationRetailMeNotRetailmenotStore                            = "retailmenot-store"
 	OperationRetailMeNotRetailmenotStores                           = "retailmenot-stores"
+	OperationRetrievalDeveloperSearch                               = "developer-search"
+	OperationRetrievalDeveloperSources                              = "developer-sources"
+	OperationRetrievalWebCapabilities                               = "web-capabilities"
+	OperationRetrievalWebCrawl                                      = "web-crawl"
+	OperationRetrievalWebCrawlCancel                                = "web-crawl-cancel"
+	OperationRetrievalWebCrawlResults                               = "web-crawl-results"
+	OperationRetrievalWebCrawlStatus                                = "web-crawl-status"
+	OperationRetrievalWebMap                                        = "web-map"
+	OperationRetrievalWebSearch                                     = "web-search"
 	OperationReutersArticle                                         = "reuters-article"
 	OperationReutersArticles                                        = "reuters-articles"
 	OperationReutersAuthor                                          = "reuters-author"
@@ -70669,21 +75774,115 @@ const (
 	OperationSlickdealsPrimaryCategory                              = "slickdeals-primary-category"
 	OperationSlickdealsSearch                                       = "slickdeals-search"
 	OperationSlickdealsSearchAdvanced                               = "slickdeals-search-advanced"
+	OperationSofaScoreSofascoreCategories                           = "sofascore-categories"
+	OperationSofaScoreSofascoreCategoryTournaments                  = "sofascore-category-tournaments"
+	OperationSofaScoreSofascoreDraft                                = "sofascore-draft"
+	OperationSofaScoreSofascoreDraftPicks                           = "sofascore-draft-picks"
+	OperationSofaScoreSofascoreEsportsGame                          = "sofascore-esports-game"
 	OperationSofaScoreSofascoreEvent                                = "sofascore-event"
+	OperationSofaScoreSofascoreEventAtBatPitches                    = "sofascore-event-at-bat-pitches"
+	OperationSofaScoreSofascoreEventAtBats                          = "sofascore-event-at-bats"
+	OperationSofaScoreSofascoreEventAveragePositions                = "sofascore-event-average-positions"
+	OperationSofaScoreSofascoreEventBaseballTopPerformers           = "sofascore-event-baseball-top-performers"
+	OperationSofaScoreSofascoreEventBestPlayers                     = "sofascore-event-best-players"
+	OperationSofaScoreSofascoreEventComments                        = "sofascore-event-comments"
+	OperationSofaScoreSofascoreEventEsportsGames                    = "sofascore-event-esports-games"
+	OperationSofaScoreSofascoreEventGraph                           = "sofascore-event-graph"
 	OperationSofaScoreSofascoreEventH2h                             = "sofascore-event-h2h"
+	OperationSofaScoreSofascoreEventHighlights                      = "sofascore-event-highlights"
 	OperationSofaScoreSofascoreEventIncidents                       = "sofascore-event-incidents"
+	OperationSofaScoreSofascoreEventInnings                         = "sofascore-event-innings"
 	OperationSofaScoreSofascoreEventLineups                         = "sofascore-event-lineups"
+	OperationSofaScoreSofascoreEventManagers                        = "sofascore-event-managers"
 	OperationSofaScoreSofascoreEventOdds                            = "sofascore-event-odds"
+	OperationSofaScoreSofascoreEventPlayerHeatmap                   = "sofascore-event-player-heatmap"
+	OperationSofaScoreSofascoreEventPlayerStatistics                = "sofascore-event-player-statistics"
+	OperationSofaScoreSofascoreEventPointByPoint                    = "sofascore-event-point-by-point"
+	OperationSofaScoreSofascoreEventPregameForm                     = "sofascore-event-pregame-form"
+	OperationSofaScoreSofascoreEventShotmap                         = "sofascore-event-shotmap"
 	OperationSofaScoreSofascoreEventStatistics                      = "sofascore-event-statistics"
+	OperationSofaScoreSofascoreEventTeamHeatmap                     = "sofascore-event-team-heatmap"
+	OperationSofaScoreSofascoreEventTeamStreaks                     = "sofascore-event-team-streaks"
+	OperationSofaScoreSofascoreEventTennisPower                     = "sofascore-event-tennis-power"
+	OperationSofaScoreSofascoreEventTvChannels                      = "sofascore-event-tv-channels"
+	OperationSofaScoreSofascoreEventVotes                           = "sofascore-event-votes"
 	OperationSofaScoreSofascoreLiveEvents                           = "sofascore-live-events"
+	OperationSofaScoreSofascoreManager                              = "sofascore-manager"
+	OperationSofaScoreSofascoreManagerEvents                        = "sofascore-manager-events"
+	OperationSofaScoreSofascoreMmaCard                              = "sofascore-mma-card"
+	OperationSofaScoreSofascoreMmaSchedule                          = "sofascore-mma-schedule"
+	OperationSofaScoreSofascoreOddsDropping                         = "sofascore-odds-dropping"
+	OperationSofaScoreSofascoreOddsWinning                          = "sofascore-odds-winning"
 	OperationSofaScoreSofascorePlayer                               = "sofascore-player"
+	OperationSofaScoreSofascorePlayerAttributes                     = "sofascore-player-attributes"
+	OperationSofaScoreSofascorePlayerEvents                         = "sofascore-player-events"
+	OperationSofaScoreSofascorePlayerLastYearSummary                = "sofascore-player-last-year-summary"
+	OperationSofaScoreSofascorePlayerNationalTeamStatistics         = "sofascore-player-national-team-statistics"
+	OperationSofaScoreSofascorePlayerPenaltyHistory                 = "sofascore-player-penalty-history"
+	OperationSofaScoreSofascorePlayerRatings                        = "sofascore-player-ratings"
+	OperationSofaScoreSofascorePlayerSeasonHeatmap                  = "sofascore-player-season-heatmap"
+	OperationSofaScoreSofascorePlayerSeasonStatistics               = "sofascore-player-season-statistics"
+	OperationSofaScoreSofascorePlayerStatisticalRankings            = "sofascore-player-statistical-rankings"
+	OperationSofaScoreSofascorePlayerStatisticsSeasons              = "sofascore-player-statistics-seasons"
+	OperationSofaScoreSofascorePlayerTournaments                    = "sofascore-player-tournaments"
+	OperationSofaScoreSofascorePlayerTransfers                      = "sofascore-player-transfers"
+	OperationSofaScoreSofascoreRankingTypes                         = "sofascore-ranking-types"
+	OperationSofaScoreSofascoreRankings                             = "sofascore-rankings"
+	OperationSofaScoreSofascoreReferee                              = "sofascore-referee"
+	OperationSofaScoreSofascoreRefereeEvents                        = "sofascore-referee-events"
+	OperationSofaScoreSofascoreRefereeStatistics                    = "sofascore-referee-statistics"
 	OperationSofaScoreSofascoreRoundEvents                          = "sofascore-round-events"
+	OperationSofaScoreSofascoreScheduledEvents                      = "sofascore-scheduled-events"
+	OperationSofaScoreSofascoreScheduledTournaments                 = "sofascore-scheduled-tournaments"
 	OperationSofaScoreSofascoreSearch                               = "sofascore-search"
+	OperationSofaScoreSofascoreSearchTyped                          = "sofascore-search-typed"
+	OperationSofaScoreSofascoreSeasonEvents                         = "sofascore-season-events"
+	OperationSofaScoreSofascoreSports                               = "sofascore-sports"
+	OperationSofaScoreSofascoreStage                                = "sofascore-stage"
+	OperationSofaScoreSofascoreStageCategories                      = "sofascore-stage-categories"
+	OperationSofaScoreSofascoreStageDriverPerformance               = "sofascore-stage-driver-performance"
+	OperationSofaScoreSofascoreStageFeatured                        = "sofascore-stage-featured"
+	OperationSofaScoreSofascoreStageSchedule                        = "sofascore-stage-schedule"
+	OperationSofaScoreSofascoreStageSeasons                         = "sofascore-stage-seasons"
+	OperationSofaScoreSofascoreStageStandings                       = "sofascore-stage-standings"
+	OperationSofaScoreSofascoreStageSubstages                       = "sofascore-stage-substages"
 	OperationSofaScoreSofascoreStandings                            = "sofascore-standings"
 	OperationSofaScoreSofascoreTeam                                 = "sofascore-team"
+	OperationSofaScoreSofascoreTeamAchievements                     = "sofascore-team-achievements"
 	OperationSofaScoreSofascoreTeamEvents                           = "sofascore-team-events"
+	OperationSofaScoreSofascoreTeamGoalDistributions                = "sofascore-team-goal-distributions"
+	OperationSofaScoreSofascoreTeamNearEvents                       = "sofascore-team-near-events"
+	OperationSofaScoreSofascoreTeamOfTheWeek                        = "sofascore-team-of-the-week"
+	OperationSofaScoreSofascoreTeamOfTheWeekPeriods                 = "sofascore-team-of-the-week-periods"
+	OperationSofaScoreSofascoreTeamPerformance                      = "sofascore-team-performance"
+	OperationSofaScoreSofascoreTeamPlayerStatistics                 = "sofascore-team-player-statistics"
+	OperationSofaScoreSofascoreTeamPlayerStatisticsSeasons          = "sofascore-team-player-statistics-seasons"
 	OperationSofaScoreSofascoreTeamPlayers                          = "sofascore-team-players"
+	OperationSofaScoreSofascoreTeamRankings                         = "sofascore-team-rankings"
+	OperationSofaScoreSofascoreTeamSeasonStatistics                 = "sofascore-team-season-statistics"
+	OperationSofaScoreSofascoreTeamStatisticsSeasons                = "sofascore-team-statistics-seasons"
+	OperationSofaScoreSofascoreTeamTopPlayers                       = "sofascore-team-top-players"
+	OperationSofaScoreSofascoreTeamTournaments                      = "sofascore-team-tournaments"
+	OperationSofaScoreSofascoreTeamTransfers                        = "sofascore-team-transfers"
+	OperationSofaScoreSofascoreTennisPlayerGrandSlamResults         = "sofascore-tennis-player-grand-slam-results"
+	OperationSofaScoreSofascoreTournamentCuptree                    = "sofascore-tournament-cuptree"
+	OperationSofaScoreSofascoreTournamentInfo                       = "sofascore-tournament-info"
+	OperationSofaScoreSofascoreTournamentPlayerOfTheSeason          = "sofascore-tournament-player-of-the-season"
+	OperationSofaScoreSofascoreTournamentPlayerStatistics           = "sofascore-tournament-player-statistics"
+	OperationSofaScoreSofascoreTournamentRounds                     = "sofascore-tournament-rounds"
 	OperationSofaScoreSofascoreTournamentSeasons                    = "sofascore-tournament-seasons"
+	OperationSofaScoreSofascoreTournamentStatisticsInfo             = "sofascore-tournament-statistics-info"
+	OperationSofaScoreSofascoreTournamentTeamOfTheSeason            = "sofascore-tournament-team-of-the-season"
+	OperationSofaScoreSofascoreTournamentTeams                      = "sofascore-tournament-teams"
+	OperationSofaScoreSofascoreTournamentTopPlayers                 = "sofascore-tournament-top-players"
+	OperationSofaScoreSofascoreTournamentTopTeams                   = "sofascore-tournament-top-teams"
+	OperationSofaScoreSofascoreTournamentVenues                     = "sofascore-tournament-venues"
+	OperationSofaScoreSofascoreTournamentWinners                    = "sofascore-tournament-winners"
+	OperationSofaScoreSofascoreTournamentsWithFeature               = "sofascore-tournaments-with-feature"
+	OperationSofaScoreSofascoreTrendingEvents                       = "sofascore-trending-events"
+	OperationSofaScoreSofascoreTrendingPlayers                      = "sofascore-trending-players"
+	OperationSofaScoreSofascoreVenue                                = "sofascore-venue"
+	OperationSofaScoreSofascoreVenueEvents                          = "sofascore-venue-events"
 	OperationSonicAvailability                                      = "sonic-availability"
 	OperationSonicCategories                                        = "sonic-categories"
 	OperationSonicDeals                                             = "sonic-deals"
@@ -71781,15 +76980,22 @@ var operations = map[string]operationDefinition{
 	"barrons-headlines":                               operationDefinition{Method: "GET", Path: "/barrons/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"barrons-news":                                    operationDefinition{Method: "GET", Path: "/barrons/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"barrons-topics":                                  operationDefinition{Method: "GET", Path: "/barrons/topics", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bbb-article":                                     operationDefinition{Method: "GET", Path: "/bbb/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"bbb-business":                                    operationDefinition{Method: "GET", Path: "/bbb/business", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"bbb-business-complaints":                         operationDefinition{Method: "GET", Path: "/bbb/business/complaints", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bbb-business-complaints":                         operationDefinition{Method: "GET", Path: "/bbb/business/complaints", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"bbb-business-more-info":                          operationDefinition{Method: "GET", Path: "/bbb/business/more-info", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"bbb-business-reviews":                            operationDefinition{Method: "GET", Path: "/bbb/business/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
-	"bbb-category":                                    operationDefinition{Method: "GET", Path: "/bbb/category", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"bbb-category":                                    operationDefinition{Method: "GET", Path: "/bbb/category", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Relevance", "Distance", "Rating", "AToZ", "ZToA"}}, parameterDefinition{Name: "distance", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"5", "10", "25", "50", "100"}}, parameterDefinition{Name: "rating", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{"A", "B", "C", "D", "F"}}, parameterDefinition{Name: "category_id", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "accredited", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "get_quote", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "service_area", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"bbb-local-bbb":                                   operationDefinition{Method: "GET", Path: "/bbb/local-bbb", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bbb-local-bbbs":                                  operationDefinition{Method: "GET", Path: "/bbb/local-bbbs", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"us", "ca"}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bbb-news":                                        operationDefinition{Method: "GET", Path: "/bbb/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bbb-news-topics":                                 operationDefinition{Method: "GET", Path: "/bbb/news/topics", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bbb-regions":                                     operationDefinition{Method: "GET", Path: "/bbb/regions", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"bbb-scamtracker-search":                          operationDefinition{Method: "GET", Path: "/bbb/scamtracker/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "scam_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Advance Fee Loan", "Bank/Credit Card Company Imposter", "Business Email Compromise", "Charity", "Counterfeit Product", "COVID-19", "Credit Cards", "Credit Repair/Debt Relief", "CryptoCurrency", "Debt Collections", "Employment", "Fake Check/Money Order", "Fake Invoice/Supplier Bill", "Family/Friend Emergency", "Foreign Money Exchange", "Government Agency Imposter", "Government Grant", "Healthcare/Medicaid/Medicare", "Home Improvement", "Identity Theft", "Investment", "Moving", "Online Purchase", "Other", "Phishing", "Rental", "Retail Business", "Romance", "Scholarship", "Sweepstakes/Lottery/Prizes", "Tax Collection", "Tech Support", "Travel/Vacation/Timeshare", "Utility", "Vanity Award", "Worthless Problem-solving Service", "Yellow Pages/Directories"}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "scammer_state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_dollars_lost", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_dollars_lost", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"bbb-scamtracker-state-stats":                     operationDefinition{Method: "GET", Path: "/bbb/scamtracker/state-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "period", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"30", "90", "365", "all"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"bbb-scamtracker-detail":                          operationDefinition{Method: "GET", Path: "/bbb/scamtracker/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"bbb-search":                                      operationDefinition{Method: "GET", Path: "/bbb/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"bbb-search":                                      operationDefinition{Method: "GET", Path: "/bbb/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"USA", "CAN"}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Relevance", "Distance", "Rating", "AToZ", "ZToA"}}, parameterDefinition{Name: "distance", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"5", "10", "25", "50", "100"}}, parameterDefinition{Name: "rating", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{"A", "B", "C", "D", "F"}}, parameterDefinition{Name: "category_id", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "accredited", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "get_quote", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "service_area", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"bbb-search-filters":                              operationDefinition{Method: "GET", Path: "/bbb/search/filters", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category_url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"USA", "CAN"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Relevance", "Distance", "Rating", "AToZ", "ZToA"}}, parameterDefinition{Name: "distance", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"5", "10", "25", "50", "100"}}, parameterDefinition{Name: "rating", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{"A", "B", "C", "D", "F"}}, parameterDefinition{Name: "category_id", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "accredited", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "get_quote", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "service_area", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"bbc-article":                                     operationDefinition{Method: "GET", Path: "/bbc/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"bbc-author":                                      operationDefinition{Method: "GET", Path: "/bbc/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"bbc-headlines":                                   operationDefinition{Method: "GET", Path: "/bbc/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "world", "uk", "politics", "business", "health", "science_and_environment", "technology", "entertainment_and_arts"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -72203,9 +77409,12 @@ var operations = map[string]operationDefinition{
 	"datasets-apps-charts-search":                     operationDefinition{Method: "GET", Path: "/datasets/apps-charts/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"ios", "android"}}, parameterDefinition{Name: "chart_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"top_free", "top_paid", "top_grossing", "new"}}, parameterDefinition{Name: "platform", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "collection", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"rank", "rank_desc", "date_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-apps-reviews-search":                    operationDefinition{Method: "GET", Path: "/datasets/apps-reviews/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"ios", "android"}}, parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_score", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"recent", "score_desc", "score_asc", "helpful_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-apps-search":                            operationDefinition{Method: "GET", Path: "/datasets/apps/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"ios", "android", "both"}}, parameterDefinition{Name: "platforms", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "developer", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "free", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_reviews", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "rating_desc", "reviews_desc", "installs_desc", "updated_at_desc", "popularity_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
-	"datasets-bbb-businesses-facets":                  operationDefinition{Method: "GET", Path: "/datasets/bbb-businesses/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"category", "state", "city", "rating", "accredited", "entity_type", "run_id"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "rating", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"}}, parameterDefinition{Name: "accredited", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "entity_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-bbb-businesses-facets":                  operationDefinition{Method: "GET", Path: "/datasets/bbb-businesses/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"category", "state", "city", "rating", "accredited", "entity_type", "run_id", "alert_title", "has_alerts"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "rating", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"}}, parameterDefinition{Name: "accredited", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_alerts", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "alert_title", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_complaints", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "entity_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-bbb-businesses-item":                    operationDefinition{Method: "GET", Path: "/datasets/bbb-businesses/items/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"datasets-bbb-businesses-search":                  operationDefinition{Method: "GET", Path: "/datasets/bbb-businesses/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "rating", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"}}, parameterDefinition{Name: "min_rating_rank", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "accredited", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "entity_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "rating_desc", "rating_asc", "accredited_first", "name_asc", "years_in_business_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-bbb-businesses-search":                  operationDefinition{Method: "GET", Path: "/datasets/bbb-businesses/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "rating", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"}}, parameterDefinition{Name: "min_rating_rank", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "accredited", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_alerts", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "alert_title", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_complaints", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "entity_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "rating_desc", "rating_asc", "accredited_first", "name_asc", "years_in_business_desc", "complaints_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-bbb-scamtracker-reports-facets":         operationDefinition{Method: "GET", Path: "/datasets/bbb-scamtracker-reports/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"scam_type", "state", "country"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "scam_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"USA", "CAN"}}, parameterDefinition{Name: "date_from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_loss", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_loss", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-bbb-scamtracker-reports-item":           operationDefinition{Method: "GET", Path: "/datasets/bbb-scamtracker-reports/items/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-bbb-scamtracker-reports-search":         operationDefinition{Method: "GET", Path: "/datasets/bbb-scamtracker-reports/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "scam_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"USA", "CAN"}}, parameterDefinition{Name: "date_from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_loss", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_loss", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "reported_desc", "reported_asc", "loss_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-boxofficemojo-facets":                   operationDefinition{Method: "GET", Path: "/datasets/boxofficemojo/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"gross_band", "years_active", "lifetime_year", "franchise_names", "brand_names", "genre_names", "hydrated", "is_billion_dollar", "in_lifetime_top_1000_ww"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "title_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "lifetime_year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "gross_band", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "franchise", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "brand", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "genre", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "in_lifetime_top_1000", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_worldwide", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_worldwide", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_domestic", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_foreign_share", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_domestic_share", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "hydrated", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_billion_dollar", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-boxofficemojo-item":                     operationDefinition{Method: "GET", Path: "/datasets/boxofficemojo/items/{title_id}", PathParams: []string{"title_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-boxofficemojo-search":                   operationDefinition{Method: "GET", Path: "/datasets/boxofficemojo/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "title_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "lifetime_year", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "gross_band", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"under_50m", "50_100m", "100_250m", "250_500m", "500m_1b", "over_1b"}}, parameterDefinition{Name: "franchise", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "brand", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "genre", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "in_lifetime_top_1000", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "hydrated", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_billion_dollar", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_worldwide", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_worldwide", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_domestic", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_foreign_share", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_domestic_share", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "worldwide_desc", "domestic_desc", "peak_worldwide_desc", "lifetime_rank_asc", "year_desc", "year_asc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -72253,6 +77462,9 @@ var operations = map[string]operationDefinition{
 	"datasets-journalists-facets":                     operationDefinition{Method: "GET", Path: "/datasets/journalists/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"outlet", "vertical", "topic", "contact_type", "record_type", "role_type", "email_kind", "outreach_readiness_band"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "outlet", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "vertical", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"tech", "crypto", "marketing", "consumer_tech", "consumer_policy", "cybersecurity", "health", "gaming", "climate", "business", "entertainment", "sports", "legal", "science", "politics", "real_estate", "automotive", "travel", "food", "education", "design", "film_tv", "fashion", "music", "personal_finance", "tech_independent", "culture_independent", "local_news", "construction", "banking", "retail", "aerospace_defense", "energy", "agriculture", "local_business", "general_news"}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "contact_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"email", "social", "none"}}, parameterDefinition{Name: "record_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"person", "desk", "organization", "syndicated_byline", "unknown"}}, parameterDefinition{Name: "role_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"staff", "editor", "reporter", "contributor", "freelancer", "columnist", "non_editorial", "unknown"}}, parameterDefinition{Name: "email_kind", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"individual_work", "individual_personal_public", "shared_desk", "tips_or_submissions", "outlet_generic", "unknown"}}, parameterDefinition{Name: "min_outreach_readiness", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-journalists-item":                       operationDefinition{Method: "GET", Path: "/datasets/journalists/items/{outlet}/{slug}", PathParams: []string{"outlet", "slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-journalists-search":                     operationDefinition{Method: "GET", Path: "/datasets/journalists/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "outlet", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "vertical", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"tech", "crypto", "marketing", "consumer_tech", "consumer_policy", "cybersecurity", "health", "gaming", "climate", "business", "entertainment", "sports", "legal", "science", "politics", "real_estate", "automotive", "travel", "food", "education", "design", "film_tv", "fashion", "music", "personal_finance", "tech_independent", "culture_independent", "local_news", "construction", "banking", "retail", "aerospace_defense", "energy", "agriculture", "local_business", "general_news"}}, parameterDefinition{Name: "topic", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "contact_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"email", "social", "none"}}, parameterDefinition{Name: "record_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"person", "desk", "organization", "syndicated_byline", "unknown"}}, parameterDefinition{Name: "role_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"staff", "editor", "reporter", "contributor", "freelancer", "columnist", "non_editorial", "unknown"}}, parameterDefinition{Name: "email_kind", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"individual_work", "individual_personal_public", "shared_desk", "tips_or_submissions", "outlet_generic", "unknown"}}, parameterDefinition{Name: "min_outreach_readiness", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "name_asc", "outlet_asc", "crawled_desc", "readiness_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-llms-facets":                            operationDefinition{Method: "GET", Path: "/datasets/llms/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"state", "source_kind", "generator", "bot", "policy", "tld", "category", "robots_state", "robots_default", "blocked_crawler", "partial_crawler", "content_signal_train", "full_state", "home_status"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "text", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"present", "absent", "blocked", "error", "skipped"}}, parameterDefinition{Name: "valid", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "source_kind", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"shopify_agent_template", "seo_plugin", "platform_default", "parked", "custom"}}, parameterDefinition{Name: "generator", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"yoast", "aioseo", "rankmath", "wix", "shopify", "parked"}}, parameterDefinition{Name: "bot", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_links", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "mentions_mcp", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "mentions_openapi", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "placeholder", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "injection", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "full_valid", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "robots_state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"present", "absent", "blocked", "error", "skipped"}}, parameterDefinition{Name: "robots_default", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"allowed", "partial", "blocked"}}, parameterDefinition{Name: "blocks_all", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{"GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User", "anthropic-ai", "Google-Extended", "PerplexityBot", "Perplexity-User", "CCBot", "Bytespider", "Applebot-Extended", "Amazonbot", "meta-externalagent", "cohere-ai", "Diffbot"}}, parameterDefinition{Name: "blocks_any", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{"GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User", "anthropic-ai", "Google-Extended", "PerplexityBot", "Perplexity-User", "CCBot", "Bytespider", "Applebot-Extended", "Amazonbot", "meta-externalagent", "cohere-ai", "Diffbot"}}, parameterDefinition{Name: "not_blocked", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{"GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User", "anthropic-ai", "Google-Extended", "PerplexityBot", "Perplexity-User", "CCBot", "Bytespider", "Applebot-Extended", "Amazonbot", "meta-externalagent", "cohere-ai", "Diffbot"}}, parameterDefinition{Name: "all_ai_blocked", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_train_blocked", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "content_signal_train", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"yes", "no"}}, parameterDefinition{Name: "tld", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "reachable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "home_blocked", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_infrastructure", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-llms-item":                              operationDefinition{Method: "GET", Path: "/datasets/llms/items/{domain}", PathParams: []string{"domain"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-llms-search":                            operationDefinition{Method: "GET", Path: "/datasets/llms/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "text", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"present", "absent", "blocked", "error", "skipped"}}, parameterDefinition{Name: "valid", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "source_kind", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"shopify_agent_template", "seo_plugin", "platform_default", "parked", "custom"}}, parameterDefinition{Name: "generator", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"yoast", "aioseo", "rankmath", "wix", "shopify", "parked"}}, parameterDefinition{Name: "bot", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_links", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "mentions_mcp", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "mentions_openapi", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "placeholder", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "injection", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "full_valid", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "robots_state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"present", "absent", "blocked", "error", "skipped"}}, parameterDefinition{Name: "robots_default", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"allowed", "partial", "blocked"}}, parameterDefinition{Name: "blocks_all", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{"GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User", "anthropic-ai", "Google-Extended", "PerplexityBot", "Perplexity-User", "CCBot", "Bytespider", "Applebot-Extended", "Amazonbot", "meta-externalagent", "cohere-ai", "Diffbot"}}, parameterDefinition{Name: "blocks_any", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{"GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User", "anthropic-ai", "Google-Extended", "PerplexityBot", "Perplexity-User", "CCBot", "Bytespider", "Applebot-Extended", "Amazonbot", "meta-externalagent", "cohere-ai", "Diffbot"}}, parameterDefinition{Name: "not_blocked", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{"GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User", "anthropic-ai", "Google-Extended", "PerplexityBot", "Perplexity-User", "CCBot", "Bytespider", "Applebot-Extended", "Amazonbot", "meta-externalagent", "cohere-ai", "Diffbot"}}, parameterDefinition{Name: "all_ai_blocked", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_train_blocked", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "content_signal_train", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"yes", "no"}}, parameterDefinition{Name: "tld", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "reachable", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "home_blocked", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_infrastructure", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "rank_asc", "links_desc", "bytes_desc", "domain_asc", "crawled_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-numbeo-cities-facets":                   operationDefinition{Method: "GET", Path: "/datasets/numbeo-cities/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"country"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_cost_of_living_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_cost_of_living_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_quality_of_life_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_crime_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_crime_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_safety_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_health_care_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_pollution_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_traffic_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-numbeo-cities-item":                     operationDefinition{Method: "GET", Path: "/datasets/numbeo-cities/items/{slug}", PathParams: []string{"slug"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-numbeo-cities-search":                   operationDefinition{Method: "GET", Path: "/datasets/numbeo-cities/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_cost_of_living_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_cost_of_living_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_quality_of_life_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_crime_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_crime_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_safety_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_health_care_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_pollution_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_traffic_index", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"name_asc", "cost_of_living_asc", "cost_of_living_desc", "quality_of_life_desc", "safety_desc", "crime_asc", "health_care_desc", "pollution_asc", "traffic_asc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -72352,6 +77564,8 @@ var operations = map[string]operationDefinition{
 	"depop-shop":                                      operationDefinition{Method: "GET", Path: "/depop/shop/{username}", PathParams: []string{"username"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "price_min", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "price_max", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "condition", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "colours", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "on_sale", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "subcategory", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "gender", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sizes", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"depop-sizes":                                     operationDefinition{Method: "GET", Path: "/depop/sizes", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"depop-suggest":                                   operationDefinition{Method: "GET", Path: "/depop/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"developer-search":                                operationDefinition{Method: "POST", Path: "/developer/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"developer-sources":                               operationDefinition{Method: "GET", Path: "/developer/sources", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"antibot-check":                                   operationDefinition{Method: "POST", Path: "/diagnostics/antibot-check", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"discogs-artist":                                  operationDefinition{Method: "GET", Path: "/discogs/artist/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"discogs-artist-releases":                         operationDefinition{Method: "GET", Path: "/discogs/artist/{id}/releases", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -72549,25 +77763,55 @@ var operations = map[string]operationDefinition{
 	"fiverr-seller":                                   operationDefinition{Method: "GET", Path: "/fiverr/seller/{username}", PathParams: []string{"username"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-calendar":                             operationDefinition{Method: "GET", Path: "/flashscore/calendar", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"tennis-atp", "tennis-wta", "golf-pga", "golf-dp-world", "badminton-bwf", "motorsport-f1"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-calendar-categories":                  operationDefinition{Method: "GET", Path: "/flashscore/calendar-categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"flashscore-competitions":                         operationDefinition{Method: "GET", Path: "/flashscore/competitions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "tennis", "basketball", "hockey", "golf", "formula-1", "baseball", "snooker", "american-football", "aussie-rules", "badminton", "bandy", "beach-soccer", "beach-volleyball", "boxing", "cricket", "cycling", "darts", "esports", "field-hockey", "floorball", "futsal", "handball", "horse-racing", "kabaddi", "mma", "motorsport", "netball", "pesapallo", "rugby-league", "rugby-union", "table-tennis", "volleyball", "water-polo", "winter-sports"}}, parameterDefinition{Name: "day_offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-competitions":                         operationDefinition{Method: "GET", Path: "/flashscore/competitions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "tennis", "basketball", "hockey", "golf", "formula-1", "baseball", "snooker", "american-football", "aussie-rules", "badminton", "bandy", "beach-soccer", "beach-volleyball", "boxing", "cricket", "cycling", "darts", "esports", "field-hockey", "floorball", "futsal", "handball", "horse-racing", "kabaddi", "mma", "motorsport", "netball", "pesapallo", "rugby-league", "rugby-union", "table-tennis", "volleyball", "water-polo", "winter-sports", "moto-racing", "ski-jumping", "alpine-skiing", "cross-country-skiing", "biathlon"}}, parameterDefinition{Name: "day_offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-entity-news":                          operationDefinition{Method: "GET", Path: "/flashscore/entity-news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"team", "player", "tournament", "sport"}}, parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-match-box-score":                      operationDefinition{Method: "GET", Path: "/flashscore/match-box-score", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-match-darts":                          operationDefinition{Method: "GET", Path: "/flashscore/match-darts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-match-h2h":                            operationDefinition{Method: "GET", Path: "/flashscore/match-h2h", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-match-highlights":                     operationDefinition{Method: "GET", Path: "/flashscore/match-highlights", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-match-info":                           operationDefinition{Method: "GET", Path: "/flashscore/match-info", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-match-lineups":                        operationDefinition{Method: "GET", Path: "/flashscore/match-lineups", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-match-missing-players":                operationDefinition{Method: "GET", Path: "/flashscore/match-missing-players", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-match-momentum":                       operationDefinition{Method: "GET", Path: "/flashscore/match-momentum", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-match-news":                           operationDefinition{Method: "GET", Path: "/flashscore/match-news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-match-odds":                           operationDefinition{Method: "GET", Path: "/flashscore/match-odds", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "geo", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"AE", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BD", "BE", "BG", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CN", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "ET", "FI", "FR", "GB", "GE", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IQ", "IR", "IS", "IT", "JO", "JP", "KE", "KG", "KH", "KR", "KW", "KZ", "LA", "LB", "LK", "LT", "LU", "LV", "LY", "MA", "MD", "ME", "MK", "MM", "MN", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NP", "NZ", "PA", "PE", "PH", "PK", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SD", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VE", "VN", "XK", "ZA", "ZM", "ZW"}}, parameterDefinition{Name: "subdivision", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"AB", "AK", "AL", "AR", "AZ", "BC", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MB", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NB", "NC", "ND", "NE", "NH", "NJ", "NL", "NM", "NS", "NT", "NU", "NV", "NY", "OH", "OK", "ON", "OR", "PA", "PE", "QC", "RI", "SC", "SD", "SK", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY", "YT"}}, parameterDefinition{Name: "betting_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"HOME_DRAW_AWAY", "HOME_AWAY", "DRAW_NO_BET", "DOUBLE_CHANCE", "ASIAN_HANDICAP", "EUROPEAN_HANDICAP", "OVER_UNDER", "BOTH_TEAMS_TO_SCORE", "CORRECT_SCORE", "HALF_FULL_TIME", "ODD_OR_EVEN", "TO_QUALIFY", "NEXT_GOAL", "TOP_POSITION_MERGED", "TO_WIN_AND_TOP_POSITION", "WIN_EACH_WAY"}}, parameterDefinition{Name: "scope", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"FULL_TIME", "FULL_TIME_OVER_TIME", "FIRST_HALF", "SECOND_HALF", "FIRST_PERIOD", "FIRST_QUARTER", "FIRST_SET", "SECOND_SET"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-match-player-stats":                   operationDefinition{Method: "GET", Path: "/flashscore/match-player-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "player_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "group", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"top_stats", "shots", "attack", "passes", "defense", "goalkeeping", "general"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-match-point-by-point":                 operationDefinition{Method: "GET", Path: "/flashscore/match-point-by-point", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-match-predicted-lineups":              operationDefinition{Method: "GET", Path: "/flashscore/match-predicted-lineups", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-match-report":                         operationDefinition{Method: "GET", Path: "/flashscore/match-report", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-match-standings":                      operationDefinition{Method: "GET", Path: "/flashscore/match-standings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "view", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"overall", "home", "away", "form_overall", "overunder_overall", "form_home", "form_away", "top_scorers", "htft_overall", "htft_home", "htft_away", "live_overall", "overunder_home", "overunder_away"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-match-stats":                          operationDefinition{Method: "GET", Path: "/flashscore/match-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-match-tv":                             operationDefinition{Method: "GET", Path: "/flashscore/match-tv", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "geo", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"AE", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BD", "BE", "BG", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CN", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "ET", "FI", "FR", "GB", "GE", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IQ", "IR", "IS", "IT", "JO", "JP", "KE", "KG", "KH", "KR", "KW", "KZ", "LA", "LB", "LK", "LT", "LU", "LV", "LY", "MA", "MD", "ME", "MK", "MM", "MN", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NP", "NZ", "PA", "PE", "PH", "PK", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SD", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VE", "VN", "XK", "ZA", "ZM", "ZW"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-navigation":                           operationDefinition{Method: "GET", Path: "/flashscore/navigation", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-news":                                 operationDefinition{Method: "GET", Path: "/flashscore/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "football", "uefa-nations-league", "tennis", "features", "premier-league", "nfl", "mlb", "nba", "nhl", "formula-1", "champions-league", "europa-league", "conference-league", "darts", "snooker", "golf", "road-cycling", "laliga", "bundesliga", "serie-a", "ligue-1", "badminton", "handball", "hockey", "basketball", "cricket", "rugby-union", "athletics", "baseball", "fifa", "rugby-league", "motorsport", "aussie-rules", "flashscore-ratings", "american-sports", "african-football", "combat-sports", "winter-sports", "transfer-news"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"flashscore-news-article":                         operationDefinition{Method: "GET", Path: "/flashscore/news-article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-news-article-body":                    operationDefinition{Method: "GET", Path: "/flashscore/news-article-body", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-news-categories":                      operationDefinition{Method: "GET", Path: "/flashscore/news-categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-news-most-read":                       operationDefinition{Method: "GET", Path: "/flashscore/news-most-read", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-odds-geos":                            operationDefinition{Method: "GET", Path: "/flashscore/odds-geos", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-player":                               operationDefinition{Method: "GET", Path: "/flashscore/player", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-player-fixtures":                      operationDefinition{Method: "GET", Path: "/flashscore/player-fixtures", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"flashscore-player-injuries":                      operationDefinition{Method: "GET", Path: "/flashscore/player-injuries", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-player-match-log":                     operationDefinition{Method: "GET", Path: "/flashscore/player-match-log", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"flashscore-player-news":                          operationDefinition{Method: "GET", Path: "/flashscore/player-news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-player-results":                       operationDefinition{Method: "GET", Path: "/flashscore/player-results", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"flashscore-player-transfers":                     operationDefinition{Method: "GET", Path: "/flashscore/player-transfers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-ranking-categories":                   operationDefinition{Method: "GET", Path: "/flashscore/ranking-categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-rankings":                             operationDefinition{Method: "GET", Path: "/flashscore/rankings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"fifa", "tennis-atp", "tennis-wta", "tennis-atp-race", "tennis-wta-race", "tennis-atp-doubles", "tennis-wta-doubles", "tennis-atp-doubles-race", "tennis-wta-doubles-race", "badminton-bwf-singles-men", "badminton-bwf-singles-women", "badminton-bwf-doubles-men", "badminton-bwf-doubles-women", "badminton-bwf-mixed-doubles", "golf-owgr", "golf-wwgr", "golf-pga-fedexcup", "golf-pga-money", "golf-dp-world-tour", "golf-lpga", "golf-asian-tour", "golf-japan-tour", "golf-sunshine-tour", "golf-korn-ferry", "golf-champions-tour", "darts-world-ranking", "snooker-world-ranking", "tennis-atp-live", "tennis-wta-live", "tennis-atp-race-live", "tennis-wta-race-live", "tennis-atp-doubles-live", "tennis-wta-doubles-live", "tennis-atp-doubles-race-live", "tennis-wta-doubles-race-live"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"flashscore-scores":                               operationDefinition{Method: "GET", Path: "/flashscore/scores", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "tennis", "basketball", "hockey", "golf", "formula-1", "baseball", "snooker", "american-football", "aussie-rules", "badminton", "bandy", "beach-soccer", "beach-volleyball", "boxing", "cricket", "cycling", "darts", "esports", "field-hockey", "floorball", "futsal", "handball", "horse-racing", "kabaddi", "mma", "motorsport", "netball", "pesapallo", "rugby-league", "rugby-union", "table-tennis", "volleyball", "water-polo", "winter-sports"}}, parameterDefinition{Name: "day_offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-scores":                               operationDefinition{Method: "GET", Path: "/flashscore/scores", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "tennis", "basketball", "hockey", "golf", "formula-1", "baseball", "snooker", "american-football", "aussie-rules", "badminton", "bandy", "beach-soccer", "beach-volleyball", "boxing", "cricket", "cycling", "darts", "esports", "field-hockey", "floorball", "futsal", "handball", "horse-racing", "kabaddi", "mma", "motorsport", "netball", "pesapallo", "rugby-league", "rugby-union", "table-tennis", "volleyball", "water-polo", "winter-sports", "moto-racing", "ski-jumping", "alpine-skiing", "cross-country-skiing", "biathlon"}}, parameterDefinition{Name: "day_offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-search":                               operationDefinition{Method: "GET", Path: "/flashscore/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-sports":                               operationDefinition{Method: "GET", Path: "/flashscore/sports", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-team":                                 operationDefinition{Method: "GET", Path: "/flashscore/team", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-team-fixtures":                        operationDefinition{Method: "GET", Path: "/flashscore/team-fixtures", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"flashscore-team-news":                            operationDefinition{Method: "GET", Path: "/flashscore/team-news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-team-outright-odds":                   operationDefinition{Method: "GET", Path: "/flashscore/team-outright-odds", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "geo", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"AE", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BD", "BE", "BG", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CN", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "ET", "FI", "FR", "GB", "GE", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IQ", "IR", "IS", "IT", "JO", "JP", "KE", "KG", "KH", "KR", "KW", "KZ", "LA", "LB", "LK", "LT", "LU", "LV", "LY", "MA", "MD", "ME", "MK", "MM", "MN", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NP", "NZ", "PA", "PE", "PH", "PK", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SD", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VE", "VN", "XK", "ZA", "ZM", "ZW"}}, parameterDefinition{Name: "subdivision", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"AB", "AK", "AL", "AR", "AZ", "BC", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MB", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NB", "NC", "ND", "NE", "NH", "NJ", "NL", "NM", "NS", "NT", "NU", "NV", "NY", "OH", "OK", "ON", "OR", "PA", "PE", "QC", "RI", "SC", "SD", "SK", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY", "YT"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-team-results":                         operationDefinition{Method: "GET", Path: "/flashscore/team-results", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"flashscore-team-squad":                           operationDefinition{Method: "GET", Path: "/flashscore/team-squad", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "scope", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-team-transfers":                       operationDefinition{Method: "GET", Path: "/flashscore/team-transfers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "arrivals", "departures"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"flashscore-top-search":                           operationDefinition{Method: "GET", Path: "/flashscore/top-search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"flashscore-tournament-archive-seasons":           operationDefinition{Method: "GET", Path: "/flashscore/tournament-archive-seasons", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "stage_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-tournament-events":                    operationDefinition{Method: "GET", Path: "/flashscore/tournament-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"flashscore-tournament-outright-odds":             operationDefinition{Method: "GET", Path: "/flashscore/tournament-outright-odds", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "tournament_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "geo", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"AE", "AL", "AM", "AO", "AR", "AT", "AU", "AZ", "BA", "BD", "BE", "BG", "BO", "BR", "BY", "CA", "CH", "CI", "CL", "CM", "CN", "CO", "CR", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "ET", "FI", "FR", "GB", "GE", "GH", "GR", "GT", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IN", "IQ", "IR", "IS", "IT", "JO", "JP", "KE", "KG", "KH", "KR", "KW", "KZ", "LA", "LB", "LK", "LT", "LU", "LV", "LY", "MA", "MD", "ME", "MK", "MM", "MN", "MT", "MX", "MY", "NG", "NI", "NL", "NO", "NP", "NZ", "PA", "PE", "PH", "PK", "PL", "PT", "PY", "QA", "RO", "RS", "RU", "SA", "SD", "SE", "SG", "SI", "SK", "SN", "SV", "TH", "TN", "TR", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VE", "VN", "XK", "ZA", "ZM", "ZW"}}, parameterDefinition{Name: "subdivision", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"AB", "AK", "AL", "AR", "AZ", "BC", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MB", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NB", "NC", "ND", "NE", "NH", "NJ", "NL", "NM", "NS", "NT", "NU", "NV", "NY", "OH", "OK", "ON", "OR", "PA", "PE", "QC", "RI", "SC", "SD", "SK", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY", "YT"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-tournament-seasons":                   operationDefinition{Method: "GET", Path: "/flashscore/tournament-seasons", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-tournament-standings":                 operationDefinition{Method: "GET", Path: "/flashscore/tournament-standings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "view", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"overall", "home", "away", "form_overall", "form_home", "form_away", "overunder_overall", "overunder_home", "overunder_away", "htft_overall", "htft_home", "htft_away", "top_scorers"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"flashscore-tournament-standings-views":           operationDefinition{Method: "GET", Path: "/flashscore/tournament-standings-views", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -74006,7 +79250,17 @@ var operations = map[string]operationDefinition{
 	"referrals-click":                                 operationDefinition{Method: "POST", Path: "/referrals/click", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{}},
 	"referrals-me":                                    operationDefinition{Method: "GET", Path: "/referrals/me", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
 	"referrals-me-events":                             operationDefinition{Method: "GET", Path: "/referrals/me/events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
-	"resy-availability":                               operationDefinition{Method: "GET", Path: "/resy/availability", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "restaurant_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "party_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"research-start":                                  operationDefinition{Method: "POST", Path: "/research/jobs", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"research-status":                                 operationDefinition{Method: "GET", Path: "/research/jobs/{job_id}", PathParams: []string{"job_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"research-cancel":                                 operationDefinition{Method: "POST", Path: "/research/jobs/{job_id}/cancel", PathParams: []string{"job_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"research-events":                                 operationDefinition{Method: "GET", Path: "/research/jobs/{job_id}/events", PathParams: []string{"job_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
+	"research-results":                                operationDefinition{Method: "GET", Path: "/research/jobs/{job_id}/results", PathParams: []string{"job_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"research-inspect-paper":                          operationDefinition{Method: "GET", Path: "/research/papers/metadata", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "paper_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"research-read-paper":                             operationDefinition{Method: "POST", Path: "/research/papers/read", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"research-related-papers":                         operationDefinition{Method: "POST", Path: "/research/papers/related", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"research-search-papers":                          operationDefinition{Method: "GET", Path: "/research/papers/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sources", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{"arxiv"}}, parameterDefinition{Name: "authors", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "published_from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "published_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
+	"research-sources":                                operationDefinition{Method: "GET", Path: "/research/sources", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"resy-availability":                               operationDefinition{Method: "GET", Path: "/resy/availability", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "restaurant_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "party_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"resy-cuisines":                                   operationDefinition{Method: "GET", Path: "/resy/cuisines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"resy-event-detail":                               operationDefinition{Method: "GET", Path: "/resy/event", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "event_url_slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "restaurant_url_slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "party_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"resy-events":                                     operationDefinition{Method: "GET", Path: "/resy/events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -74256,21 +79510,115 @@ var operations = map[string]operationDefinition{
 	"smh-headlines":                                   operationDefinition{Method: "GET", Path: "/smh/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"sydney-news", "national/nsw", "politics", "politics/federal", "politics/nsw", "politics/victoria", "politics/queensland", "politics/western-australia", "business", "business/companies", "business/markets", "business/bullsnbears", "business/the-economy", "business/banking-and-finance", "business/small-business", "business/workplace", "world", "world/north-america", "world/europe", "world/asia", "world/middle-east", "world/south-america", "world/africa", "national", "national/victoria", "national/queensland", "national/western-australia", "opinion", "property", "property/news", "property/living", "sport", "sport/nrl", "sport/rugby-union", "sport/cricket", "sport/soccer", "sport/afl", "sport/racing", "sport/tennis", "sport/netball", "sport/basketball", "sport/motorsport", "sport/cycling", "sport/golf", "sport/nfl", "sport/athletics", "sport/swimming", "sport/boxing", "goodfood", "goodfood/sydney-eating-out", "goodfood/recipes", "goodfood/tips-and-advice", "goodfood/drinks", "culture", "culture/movies", "culture/tv-and-radio", "culture/music", "culture/celebrity", "culture/books", "culture/comedy", "culture/dance", "culture/musicals", "culture/opera", "culture/theatre", "culture/art-and-design", "culture/live-reviews", "lifestyle", "lifestyle/health-and-wellness", "lifestyle/fashion", "lifestyle/life-and-relationships", "lifestyle/beauty", "traveller", "traveller/inspiration/destination-guides", "traveller/inspiration", "traveller/reviews-and-advice", "traveller/travel-news", "good-weekend", "sunday-life", "money", "money/super-and-retirement", "money/investing", "money/banking", "money/borrowing", "money/saving", "money/tax", "money/planning-and-budgeting", "education", "healthcare", "environment", "environment/conservation", "environment/climate-change", "environment/sustainability", "environment/weather", "technology", "technology/video-games", "australia-higher-education"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"smh-news":                                        operationDefinition{Method: "GET", Path: "/smh/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"smh-sections":                                    operationDefinition{Method: "GET", Path: "/smh/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-categories":                            operationDefinition{Method: "GET", Path: "/sofascore/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"american-football", "aussie-rules", "badminton", "bandy", "baseball", "basketball", "beach-volley", "cricket", "darts", "esports", "floorball", "football", "futsal", "handball", "ice-hockey", "mma", "minifootball", "padel", "rugby", "snooker", "table-tennis", "tennis", "volleyball", "waterpolo"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-category-tournaments":                  operationDefinition{Method: "GET", Path: "/sofascore/category-tournaments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-draft":                                 operationDefinition{Method: "GET", Path: "/sofascore/draft", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nba", "nfl"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-draft-picks":                           operationDefinition{Method: "GET", Path: "/sofascore/draft-picks", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nba", "nfl"}}, parameterDefinition{Name: "year", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "round", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-esports-game":                          operationDefinition{Method: "GET", Path: "/sofascore/esports-game", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "part", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"statistics", "lineups", "bans", "rounds"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sofascore-event":                                 operationDefinition{Method: "GET", Path: "/sofascore/event", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-at-bat-pitches":                  operationDefinition{Method: "GET", Path: "/sofascore/event-at-bat-pitches", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "at_bat_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-at-bats":                         operationDefinition{Method: "GET", Path: "/sofascore/event-at-bats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-average-positions":               operationDefinition{Method: "GET", Path: "/sofascore/event-average-positions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-baseball-top-performers":         operationDefinition{Method: "GET", Path: "/sofascore/event-baseball-top-performers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-best-players":                    operationDefinition{Method: "GET", Path: "/sofascore/event-best-players", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-comments":                        operationDefinition{Method: "GET", Path: "/sofascore/event-comments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-esports-games":                   operationDefinition{Method: "GET", Path: "/sofascore/event-esports-games", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-graph":                           operationDefinition{Method: "GET", Path: "/sofascore/event-graph", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sofascore-event-h2h":                             operationDefinition{Method: "GET", Path: "/sofascore/event-h2h", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-highlights":                      operationDefinition{Method: "GET", Path: "/sofascore/event-highlights", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sofascore-event-incidents":                       operationDefinition{Method: "GET", Path: "/sofascore/event-incidents", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-innings":                         operationDefinition{Method: "GET", Path: "/sofascore/event-innings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sofascore-event-lineups":                         operationDefinition{Method: "GET", Path: "/sofascore/event-lineups", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-managers":                        operationDefinition{Method: "GET", Path: "/sofascore/event-managers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sofascore-event-odds":                            operationDefinition{Method: "GET", Path: "/sofascore/event-odds", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-player-heatmap":                  operationDefinition{Method: "GET", Path: "/sofascore/event-player-heatmap", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "player_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-player-statistics":               operationDefinition{Method: "GET", Path: "/sofascore/event-player-statistics", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "player_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-point-by-point":                  operationDefinition{Method: "GET", Path: "/sofascore/event-point-by-point", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-pregame-form":                    operationDefinition{Method: "GET", Path: "/sofascore/event-pregame-form", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-shotmap":                         operationDefinition{Method: "GET", Path: "/sofascore/event-shotmap", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sofascore-event-statistics":                      operationDefinition{Method: "GET", Path: "/sofascore/event-statistics", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"sofascore-live-events":                           operationDefinition{Method: "GET", Path: "/sofascore/live-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "tennis"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-team-heatmap":                    operationDefinition{Method: "GET", Path: "/sofascore/event-team-heatmap", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-team-streaks":                    operationDefinition{Method: "GET", Path: "/sofascore/event-team-streaks", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-tennis-power":                    operationDefinition{Method: "GET", Path: "/sofascore/event-tennis-power", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-tv-channels":                     operationDefinition{Method: "GET", Path: "/sofascore/event-tv-channels", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-event-votes":                           operationDefinition{Method: "GET", Path: "/sofascore/event-votes", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-live-events":                           operationDefinition{Method: "GET", Path: "/sofascore/live-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"american-football", "aussie-rules", "badminton", "bandy", "baseball", "basketball", "beach-volley", "cricket", "darts", "esports", "floorball", "football", "futsal", "handball", "ice-hockey", "mma", "minifootball", "padel", "rugby", "snooker", "table-tennis", "tennis", "volleyball", "waterpolo"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-manager":                               operationDefinition{Method: "GET", Path: "/sofascore/manager", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-manager-events":                        operationDefinition{Method: "GET", Path: "/sofascore/manager-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"sofascore-mma-card":                              operationDefinition{Method: "GET", Path: "/sofascore/mma-card", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "org_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "card_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "part", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"all", "maincard", "prelims", "earlyprelims"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-mma-schedule":                          operationDefinition{Method: "GET", Path: "/sofascore/mma-schedule", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "org_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "month", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-odds-dropping":                         operationDefinition{Method: "GET", Path: "/sofascore/odds-dropping", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "american-football", "aussie-rules", "badminton", "bandy", "baseball", "basketball", "beach-volley", "cricket", "darts", "esports", "floorball", "football", "futsal", "handball", "ice-hockey", "mma", "minifootball", "padel", "rugby", "snooker", "table-tennis", "tennis", "volleyball", "waterpolo"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-odds-winning":                          operationDefinition{Method: "GET", Path: "/sofascore/odds-winning", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "american-football", "aussie-rules", "badminton", "bandy", "baseball", "basketball", "beach-volley", "cricket", "darts", "esports", "floorball", "football", "futsal", "handball", "ice-hockey", "mma", "minifootball", "padel", "rugby", "snooker", "table-tennis", "tennis", "volleyball", "waterpolo"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sofascore-player":                                operationDefinition{Method: "GET", Path: "/sofascore/player", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"sofascore-round-events":                          operationDefinition{Method: "GET", Path: "/sofascore/round-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "round", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-player-attributes":                     operationDefinition{Method: "GET", Path: "/sofascore/player-attributes", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-player-events":                         operationDefinition{Method: "GET", Path: "/sofascore/player-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"sofascore-player-last-year-summary":              operationDefinition{Method: "GET", Path: "/sofascore/player-last-year-summary", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-player-national-team-statistics":       operationDefinition{Method: "GET", Path: "/sofascore/player-national-team-statistics", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-player-penalty-history":                operationDefinition{Method: "GET", Path: "/sofascore/player-penalty-history", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-player-ratings":                        operationDefinition{Method: "GET", Path: "/sofascore/player-ratings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "tournament_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"overall", "home", "away", "regular_season", "playoffs"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-player-season-heatmap":                 operationDefinition{Method: "GET", Path: "/sofascore/player-season-heatmap", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "tournament_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-player-season-statistics":              operationDefinition{Method: "GET", Path: "/sofascore/player-season-statistics", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "tournament_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"overall", "home", "away", "regular_season", "playoffs"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-player-statistical-rankings":           operationDefinition{Method: "GET", Path: "/sofascore/player-statistical-rankings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"overall"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-player-statistics-seasons":             operationDefinition{Method: "GET", Path: "/sofascore/player-statistics-seasons", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-player-tournaments":                    operationDefinition{Method: "GET", Path: "/sofascore/player-tournaments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-player-transfers":                      operationDefinition{Method: "GET", Path: "/sofascore/player-transfers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-ranking-types":                         operationDefinition{Method: "GET", Path: "/sofascore/ranking-types", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-rankings":                              operationDefinition{Method: "GET", Path: "/sofascore/rankings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{"1", "2", "3", "4", "5", "6", "7", "8", "9", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "34", "35", "36", "37", "40", "41", "42", "43", "44", "45", "46"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-referee":                               operationDefinition{Method: "GET", Path: "/sofascore/referee", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-referee-events":                        operationDefinition{Method: "GET", Path: "/sofascore/referee-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"sofascore-referee-statistics":                    operationDefinition{Method: "GET", Path: "/sofascore/referee-statistics", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-round-events":                          operationDefinition{Method: "GET", Path: "/sofascore/round-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "round", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "prefix", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-scheduled-events":                      operationDefinition{Method: "GET", Path: "/sofascore/scheduled-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-scheduled-tournaments":                 operationDefinition{Method: "GET", Path: "/sofascore/scheduled-tournaments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"american-football", "aussie-rules", "badminton", "bandy", "baseball", "basketball", "beach-volley", "cricket", "darts", "esports", "floorball", "football", "futsal", "handball", "ice-hockey", "mma", "minifootball", "padel", "rugby", "snooker", "table-tennis", "tennis", "volleyball", "waterpolo"}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"sofascore-search":                                operationDefinition{Method: "GET", Path: "/sofascore/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-search-typed":                          operationDefinition{Method: "GET", Path: "/sofascore/search-typed", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"events", "teams", "players", "managers", "referees", "venues", "unique_tournaments"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"american-football", "aussie-rules", "badminton", "bandy", "baseball", "basketball", "beach-volley", "cricket", "darts", "esports", "floorball", "football", "futsal", "handball", "ice-hockey", "mma", "minifootball", "padel", "rugby", "snooker", "table-tennis", "tennis", "volleyball", "waterpolo"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"sofascore-season-events":                         operationDefinition{Method: "GET", Path: "/sofascore/season-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "direction", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"next", "last"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"sofascore-sports":                                operationDefinition{Method: "GET", Path: "/sofascore/sports", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-stage":                                 operationDefinition{Method: "GET", Path: "/sofascore/stage", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-stage-categories":                      operationDefinition{Method: "GET", Path: "/sofascore/stage-categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"motorsport", "cycling"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-stage-driver-performance":              operationDefinition{Method: "GET", Path: "/sofascore/stage-driver-performance", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-stage-featured":                        operationDefinition{Method: "GET", Path: "/sofascore/stage-featured", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"motorsport", "cycling"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-stage-schedule":                        operationDefinition{Method: "GET", Path: "/sofascore/stage-schedule", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"motorsport", "cycling"}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-stage-seasons":                         operationDefinition{Method: "GET", Path: "/sofascore/stage-seasons", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-stage-standings":                       operationDefinition{Method: "GET", Path: "/sofascore/stage-standings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"competitor", "team"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-stage-substages":                       operationDefinition{Method: "GET", Path: "/sofascore/stage-substages", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sofascore-standings":                             operationDefinition{Method: "GET", Path: "/sofascore/standings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"total", "home", "away"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sofascore-team":                                  operationDefinition{Method: "GET", Path: "/sofascore/team", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-team-achievements":                     operationDefinition{Method: "GET", Path: "/sofascore/team-achievements", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sofascore-team-events":                           operationDefinition{Method: "GET", Path: "/sofascore/team-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "direction", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"next", "last"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"sofascore-team-goal-distributions":               operationDefinition{Method: "GET", Path: "/sofascore/team-goal-distributions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "tournament_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-team-near-events":                      operationDefinition{Method: "GET", Path: "/sofascore/team-near-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-team-of-the-week":                      operationDefinition{Method: "GET", Path: "/sofascore/team-of-the-week", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "period", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-team-of-the-week-periods":              operationDefinition{Method: "GET", Path: "/sofascore/team-of-the-week-periods", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-team-performance":                      operationDefinition{Method: "GET", Path: "/sofascore/team-performance", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-team-player-statistics":                operationDefinition{Method: "GET", Path: "/sofascore/team-player-statistics", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "tournament_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"overall", "home", "away", "regular_season", "playoffs"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-team-player-statistics-seasons":        operationDefinition{Method: "GET", Path: "/sofascore/team-player-statistics-seasons", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sofascore-team-players":                          operationDefinition{Method: "GET", Path: "/sofascore/team-players", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-team-rankings":                         operationDefinition{Method: "GET", Path: "/sofascore/team-rankings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-team-season-statistics":                operationDefinition{Method: "GET", Path: "/sofascore/team-season-statistics", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "tournament_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"overall", "home", "away", "regular_season", "playoffs"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-team-statistics-seasons":               operationDefinition{Method: "GET", Path: "/sofascore/team-statistics-seasons", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-team-top-players":                      operationDefinition{Method: "GET", Path: "/sofascore/team-top-players", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "tournament_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"overall", "regular_season", "playoffs"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-team-tournaments":                      operationDefinition{Method: "GET", Path: "/sofascore/team-tournaments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "all", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-team-transfers":                        operationDefinition{Method: "GET", Path: "/sofascore/team-transfers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-tennis-player-grand-slam-results":      operationDefinition{Method: "GET", Path: "/sofascore/tennis-player-grand-slam-results", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-tournament-cuptree":                    operationDefinition{Method: "GET", Path: "/sofascore/tournament-cuptree", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-tournament-info":                       operationDefinition{Method: "GET", Path: "/sofascore/tournament-info", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-tournament-player-of-the-season":       operationDefinition{Method: "GET", Path: "/sofascore/tournament-player-of-the-season", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-tournament-player-statistics":          operationDefinition{Method: "GET", Path: "/sofascore/tournament-player-statistics", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"rating", "goals", "expectedGoals", "assists", "successfulDribbles", "tackles", "accuratePassesPercentage", "bigChancesMissed", "totalShots", "goalConversionPercentage", "interceptions", "clearances", "errorLeadToGoal", "outfielderBlocks", "bigChancesCreated", "accuratePasses", "keyPasses", "saves", "cleanSheet", "penaltySave", "savedShotsFromInsideTheBox", "runsOut"}}, parameterDefinition{Name: "direction", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"desc", "asc"}}, parameterDefinition{Name: "accumulation", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"total", "perGame", "per90"}}, parameterDefinition{Name: "group", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"summary", "attack", "defence", "passing", "goalkeeper"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "team", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "nationality", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "position", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{"G", "D", "M", "F"}}, parameterDefinition{Name: "min_appearances", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_minutes", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"sofascore-tournament-rounds":                     operationDefinition{Method: "GET", Path: "/sofascore/tournament-rounds", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sofascore-tournament-seasons":                    operationDefinition{Method: "GET", Path: "/sofascore/tournament-seasons", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-tournament-statistics-info":            operationDefinition{Method: "GET", Path: "/sofascore/tournament-statistics-info", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-tournament-team-of-the-season":         operationDefinition{Method: "GET", Path: "/sofascore/tournament-team-of-the-season", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-tournament-teams":                      operationDefinition{Method: "GET", Path: "/sofascore/tournament-teams", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-tournament-top-players":                operationDefinition{Method: "GET", Path: "/sofascore/tournament-top-players", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"overall", "regular_season", "playoffs"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-tournament-top-teams":                  operationDefinition{Method: "GET", Path: "/sofascore/tournament-top-teams", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"overall", "regular_season", "playoffs"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-tournament-venues":                     operationDefinition{Method: "GET", Path: "/sofascore/tournament-venues", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-tournament-winners":                    operationDefinition{Method: "GET", Path: "/sofascore/tournament-winners", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"sofascore-tournaments-with-feature":              operationDefinition{Method: "GET", Path: "/sofascore/tournaments-with-feature", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "feature", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"cuptree", "standings", "totw", "power_rankings"}}, parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"american-football", "aussie-rules", "badminton", "bandy", "baseball", "basketball", "beach-volley", "cricket", "darts", "esports", "floorball", "football", "futsal", "handball", "ice-hockey", "minifootball", "rugby", "snooker", "table-tennis", "tennis", "volleyball", "waterpolo"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-trending-events":                       operationDefinition{Method: "GET", Path: "/sofascore/trending-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-trending-players":                      operationDefinition{Method: "GET", Path: "/sofascore/trending-players", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-venue":                                 operationDefinition{Method: "GET", Path: "/sofascore/venue", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"sofascore-venue-events":                          operationDefinition{Method: "GET", Path: "/sofascore/venue-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "direction", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"next", "last"}}, parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "american-football", "aussie-rules", "badminton", "bandy", "baseball", "basketball", "beach-volley", "cricket", "darts", "esports", "floorball", "football", "futsal", "handball", "ice-hockey", "mma", "minifootball", "padel", "rugby", "snooker", "table-tennis", "tennis", "volleyball", "waterpolo"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "tournament", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"sonic-availability":                              operationDefinition{Method: "GET", Path: "/sonic/availability", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "store_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "fulfillment", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PICKUP", "DELIVERY"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sonic-categories":                                operationDefinition{Method: "GET", Path: "/sonic/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sonic-deals":                                     operationDefinition{Method: "GET", Path: "/sonic/deals", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -74881,7 +80229,14 @@ var operations = map[string]operationDefinition{
 	"wccftech-headlines":                              operationDefinition{Method: "GET", Path: "/wccftech/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"wccftech-news":                                   operationDefinition{Method: "GET", Path: "/wccftech/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"wccftech-sections":                               operationDefinition{Method: "GET", Path: "/wccftech/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"web-capabilities":                                operationDefinition{Method: "GET", Path: "/web/capabilities", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"web-crawl":                                       operationDefinition{Method: "POST", Path: "/web/crawl", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"web-crawl-status":                                operationDefinition{Method: "GET", Path: "/web/crawl/{job_id}", PathParams: []string{"job_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"web-crawl-cancel":                                operationDefinition{Method: "POST", Path: "/web/crawl/{job_id}/cancel", PathParams: []string{"job_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"web-crawl-results":                               operationDefinition{Method: "GET", Path: "/web/crawl/{job_id}/results", PathParams: []string{"job_id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
+	"web-map":                                         operationDefinition{Method: "POST", Path: "/web/map", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"web-scrape":                                      operationDefinition{Method: "POST", Path: "/web/scrape", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "scrapeOption", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"web-search":                                      operationDefinition{Method: "POST", Path: "/web/search", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"web-techstack":                                   operationDefinition{Method: "POST", Path: "/web/techstack", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"wendys-categories":                               operationDefinition{Method: "GET", Path: "/wendys/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"wendys-directory":                                operationDefinition{Method: "GET", Path: "/wendys/directory", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -75204,6 +80559,7 @@ type Services struct {
 	Deliveroo                *DeliverooService
 	TheDenverPost            *TheDenverPostService
 	Depop                    *DepopService
+	Retrieval                *RetrievalService
 	Discogs                  *DiscogsService
 	Dominos                  *DominosService
 	DoorDash                 *DoorDashService
@@ -75416,6 +80772,8 @@ type Services struct {
 	Reddit                   *RedditService
 	Redfin                   *RedfinService
 	Referrals                *ReferralsService
+	ResearchJobs             *ResearchJobsService
+	Research                 *ResearchService
 	Resy                     *ResyService
 	RetailMeNot              *RetailMeNotService
 	Reuters                  *ReutersService
@@ -75681,6 +81039,7 @@ func initServices(c *Client) Services {
 		Deliveroo:                &DeliverooService{client: c},
 		TheDenverPost:            &TheDenverPostService{client: c},
 		Depop:                    &DepopService{client: c},
+		Retrieval:                &RetrievalService{client: c},
 		Discogs:                  &DiscogsService{client: c},
 		Dominos:                  &DominosService{client: c},
 		DoorDash:                 &DoorDashService{client: c},
@@ -75893,6 +81252,8 @@ func initServices(c *Client) Services {
 		Reddit:                   &RedditService{client: c},
 		Redfin:                   &RedfinService{client: c},
 		Referrals:                &ReferralsService{client: c},
+		ResearchJobs:             &ResearchJobsService{client: c},
+		Research:                 &ResearchService{client: c},
 		Resy:                     &ResyService{client: c},
 		RetailMeNot:              &RetailMeNotService{client: c},
 		Reuters:                  &ReutersService{client: c},
@@ -79617,6 +84978,20 @@ func (s *BarronsService) TopicsTyped(ctx context.Context, params BarronsTopicsPa
 
 type BbbService struct{ client *Client }
 
+func (s *BbbService) Article(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bbb-article", params, opts...)
+}
+
+type BbbArticleParams struct {
+	Url string `crawlora:"url"`
+}
+
+type BbbArticleResponse = any
+
+func (s *BbbService) ArticleTyped(ctx context.Context, params BbbArticleParams, opts ...RequestOption) (BbbArticleResponse, error) {
+	return requestTyped[BbbArticleResponse](s.client, ctx, "bbb-article", paramsFromStruct(params), opts...)
+}
+
 func (s *BbbService) Business(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "bbb-business", params, opts...)
 }
@@ -79636,7 +85011,8 @@ func (s *BbbService) BusinessComplaints(ctx context.Context, params Params, opts
 }
 
 type BbbBusinessComplaintsParams struct {
-	Url string `crawlora:"url"`
+	Url  string `crawlora:"url"`
+	Page *int   `crawlora:"page,omitempty"`
 }
 
 type BbbBusinessComplaintsResponse = ModelBbbComplaintsResponseDoc
@@ -79679,14 +85055,92 @@ func (s *BbbService) Category(ctx context.Context, params Params, opts ...Reques
 }
 
 type BbbCategoryParams struct {
-	Url  string `crawlora:"url"`
-	Page *int   `crawlora:"page,omitempty"`
+	Url         string   `crawlora:"url"`
+	Page        *int     `crawlora:"page,omitempty"`
+	Sort        *string  `crawlora:"sort,omitempty"`
+	Distance    *string  `crawlora:"distance,omitempty"`
+	Rating      []string `crawlora:"rating"`
+	CategoryId  []string `crawlora:"category_id"`
+	State       []string `crawlora:"state"`
+	Accredited  *bool    `crawlora:"accredited,omitempty"`
+	GetQuote    *bool    `crawlora:"get_quote,omitempty"`
+	ServiceArea *bool    `crawlora:"service_area,omitempty"`
 }
 
 type BbbCategoryResponse = ModelBbbCategoryResponseDoc
 
 func (s *BbbService) CategoryTyped(ctx context.Context, params BbbCategoryParams, opts ...RequestOption) (BbbCategoryResponse, error) {
 	return requestTyped[BbbCategoryResponse](s.client, ctx, "bbb-category", paramsFromStruct(params), opts...)
+}
+
+func (s *BbbService) LocalBbb(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bbb-local-bbb", params, opts...)
+}
+
+type BbbLocalBbbParams struct {
+	Url string `crawlora:"url"`
+}
+
+type BbbLocalBbbResponse = ModelBbbdirectoryLocalBbbresponseDoc
+
+func (s *BbbService) LocalBbbTyped(ctx context.Context, params BbbLocalBbbParams, opts ...RequestOption) (BbbLocalBbbResponse, error) {
+	return requestTyped[BbbLocalBbbResponse](s.client, ctx, "bbb-local-bbb", paramsFromStruct(params), opts...)
+}
+
+func (s *BbbService) LocalBbbs(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bbb-local-bbbs", params, opts...)
+}
+
+type BbbLocalBbbsParams struct {
+	Country string `crawlora:"country"`
+	Region  string `crawlora:"region"`
+}
+
+type BbbLocalBbbsResponse = ModelBbbdirectoryLocalBbbsResponseDoc
+
+func (s *BbbService) LocalBbbsTyped(ctx context.Context, params BbbLocalBbbsParams, opts ...RequestOption) (BbbLocalBbbsResponse, error) {
+	return requestTyped[BbbLocalBbbsResponse](s.client, ctx, "bbb-local-bbbs", paramsFromStruct(params), opts...)
+}
+
+func (s *BbbService) News(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bbb-news", params, opts...)
+}
+
+type BbbNewsParams struct {
+	Url string `crawlora:"url"`
+}
+
+type BbbNewsResponse = any
+
+func (s *BbbService) NewsTyped(ctx context.Context, params BbbNewsParams, opts ...RequestOption) (BbbNewsResponse, error) {
+	return requestTyped[BbbNewsResponse](s.client, ctx, "bbb-news", paramsFromStruct(params), opts...)
+}
+
+func (s *BbbService) NewsTopics(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bbb-news-topics", params, opts...)
+}
+
+type BbbNewsTopicsParams struct {
+	Url string `crawlora:"url"`
+}
+
+type BbbNewsTopicsResponse = any
+
+func (s *BbbService) NewsTopicsTyped(ctx context.Context, params BbbNewsTopicsParams, opts ...RequestOption) (BbbNewsTopicsResponse, error) {
+	return requestTyped[BbbNewsTopicsResponse](s.client, ctx, "bbb-news-topics", paramsFromStruct(params), opts...)
+}
+
+func (s *BbbService) Regions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bbb-regions", params, opts...)
+}
+
+type BbbRegionsParams struct {
+}
+
+type BbbRegionsResponse = ModelBbbdirectoryRegionsResponseDoc
+
+func (s *BbbService) RegionsTyped(ctx context.Context, params BbbRegionsParams, opts ...RequestOption) (BbbRegionsResponse, error) {
+	return requestTyped[BbbRegionsResponse](s.client, ctx, "bbb-regions", paramsFromStruct(params), opts...)
 }
 
 func (s *BbbService) ScamtrackerSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -79744,15 +85198,50 @@ func (s *BbbService) Search(ctx context.Context, params Params, opts ...RequestO
 }
 
 type BbbSearchParams struct {
-	Query    string `crawlora:"query"`
-	Location string `crawlora:"location"`
-	Page     *int   `crawlora:"page,omitempty"`
+	Query       string   `crawlora:"query"`
+	Location    string   `crawlora:"location"`
+	Page        *int     `crawlora:"page,omitempty"`
+	Country     *string  `crawlora:"country,omitempty"`
+	Sort        *string  `crawlora:"sort,omitempty"`
+	Distance    *string  `crawlora:"distance,omitempty"`
+	Rating      []string `crawlora:"rating"`
+	CategoryId  []string `crawlora:"category_id"`
+	State       []string `crawlora:"state"`
+	Accredited  *bool    `crawlora:"accredited,omitempty"`
+	GetQuote    *bool    `crawlora:"get_quote,omitempty"`
+	ServiceArea *bool    `crawlora:"service_area,omitempty"`
 }
 
 type BbbSearchResponse = ModelBbbSearchResponseDoc
 
 func (s *BbbService) SearchTyped(ctx context.Context, params BbbSearchParams, opts ...RequestOption) (BbbSearchResponse, error) {
 	return requestTyped[BbbSearchResponse](s.client, ctx, "bbb-search", paramsFromStruct(params), opts...)
+}
+
+func (s *BbbService) SearchFilters(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bbb-search-filters", params, opts...)
+}
+
+type BbbSearchFiltersParams struct {
+	Query       *string  `crawlora:"query,omitempty"`
+	Location    *string  `crawlora:"location,omitempty"`
+	CategoryUrl *string  `crawlora:"category_url,omitempty"`
+	Country     *string  `crawlora:"country,omitempty"`
+	Page        *int     `crawlora:"page,omitempty"`
+	Sort        *string  `crawlora:"sort,omitempty"`
+	Distance    *string  `crawlora:"distance,omitempty"`
+	Rating      []string `crawlora:"rating"`
+	CategoryId  []string `crawlora:"category_id"`
+	State       []string `crawlora:"state"`
+	Accredited  *bool    `crawlora:"accredited,omitempty"`
+	GetQuote    *bool    `crawlora:"get_quote,omitempty"`
+	ServiceArea *bool    `crawlora:"service_area,omitempty"`
+}
+
+type BbbSearchFiltersResponse = ModelBbbSearchFiltersResponseDoc
+
+func (s *BbbService) SearchFiltersTyped(ctx context.Context, params BbbSearchFiltersParams, opts ...RequestOption) (BbbSearchFiltersResponse, error) {
+	return requestTyped[BbbSearchFiltersResponse](s.client, ctx, "bbb-search-filters", paramsFromStruct(params), opts...)
 }
 
 type BbcService struct{ client *Client }
@@ -86162,15 +91651,18 @@ func (s *DatasetsService) BbbBusinessesFacets(ctx context.Context, params Params
 }
 
 type DatasetsBbbBusinessesFacetsParams struct {
-	Facet      string  `crawlora:"facet"`
-	Q          *string `crawlora:"q,omitempty"`
-	Category   *string `crawlora:"category,omitempty"`
-	State      *string `crawlora:"state,omitempty"`
-	City       *string `crawlora:"city,omitempty"`
-	Rating     *string `crawlora:"rating,omitempty"`
-	Accredited *bool   `crawlora:"accredited,omitempty"`
-	EntityType *string `crawlora:"entity_type,omitempty"`
-	RunId      *string `crawlora:"run_id,omitempty"`
+	Facet         string  `crawlora:"facet"`
+	Q             *string `crawlora:"q,omitempty"`
+	Category      *string `crawlora:"category,omitempty"`
+	State         *string `crawlora:"state,omitempty"`
+	City          *string `crawlora:"city,omitempty"`
+	Rating        *string `crawlora:"rating,omitempty"`
+	Accredited    *bool   `crawlora:"accredited,omitempty"`
+	HasAlerts     *bool   `crawlora:"has_alerts,omitempty"`
+	AlertTitle    *string `crawlora:"alert_title,omitempty"`
+	MinComplaints *int    `crawlora:"min_complaints,omitempty"`
+	EntityType    *string `crawlora:"entity_type,omitempty"`
+	RunId         *string `crawlora:"run_id,omitempty"`
 }
 
 type DatasetsBbbBusinessesFacetsResponse = ModelDatasetsBbbBusinessesFacetResponseDoc
@@ -86205,6 +91697,9 @@ type DatasetsBbbBusinessesSearchParams struct {
 	Rating        *string `crawlora:"rating,omitempty"`
 	MinRatingRank *int    `crawlora:"min_rating_rank,omitempty"`
 	Accredited    *bool   `crawlora:"accredited,omitempty"`
+	HasAlerts     *bool   `crawlora:"has_alerts,omitempty"`
+	AlertTitle    *string `crawlora:"alert_title,omitempty"`
+	MinComplaints *int    `crawlora:"min_complaints,omitempty"`
 	EntityType    *string `crawlora:"entity_type,omitempty"`
 	RunId         *string `crawlora:"run_id,omitempty"`
 	Sort          *string `crawlora:"sort,omitempty"`
@@ -86216,6 +91711,66 @@ type DatasetsBbbBusinessesSearchResponse = ModelDatasetsBbbBusinessesSearchRespo
 
 func (s *DatasetsService) BbbBusinessesSearchTyped(ctx context.Context, params DatasetsBbbBusinessesSearchParams, opts ...RequestOption) (DatasetsBbbBusinessesSearchResponse, error) {
 	return requestTyped[DatasetsBbbBusinessesSearchResponse](s.client, ctx, "datasets-bbb-businesses-search", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) BbbScamtrackerReportsFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-bbb-scamtracker-reports-facets", params, opts...)
+}
+
+type DatasetsBbbScamtrackerReportsFacetsParams struct {
+	Facet    string   `crawlora:"facet"`
+	Q        *string  `crawlora:"q,omitempty"`
+	ScamType *string  `crawlora:"scam_type,omitempty"`
+	State    *string  `crawlora:"state,omitempty"`
+	Country  *string  `crawlora:"country,omitempty"`
+	DateFrom *string  `crawlora:"date_from,omitempty"`
+	DateTo   *string  `crawlora:"date_to,omitempty"`
+	MinLoss  *float64 `crawlora:"min_loss,omitempty"`
+	MaxLoss  *float64 `crawlora:"max_loss,omitempty"`
+}
+
+type DatasetsBbbScamtrackerReportsFacetsResponse = ModelDatasetsScamTrackerReportsFacetResponseDoc
+
+func (s *DatasetsService) BbbScamtrackerReportsFacetsTyped(ctx context.Context, params DatasetsBbbScamtrackerReportsFacetsParams, opts ...RequestOption) (DatasetsBbbScamtrackerReportsFacetsResponse, error) {
+	return requestTyped[DatasetsBbbScamtrackerReportsFacetsResponse](s.client, ctx, "datasets-bbb-scamtracker-reports-facets", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) BbbScamtrackerReportsItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-bbb-scamtracker-reports-item", params, opts...)
+}
+
+type DatasetsBbbScamtrackerReportsItemParams struct {
+	Id string `crawlora:"id"`
+}
+
+type DatasetsBbbScamtrackerReportsItemResponse = ModelDatasetsScamTrackerReportResponseDoc
+
+func (s *DatasetsService) BbbScamtrackerReportsItemTyped(ctx context.Context, params DatasetsBbbScamtrackerReportsItemParams, opts ...RequestOption) (DatasetsBbbScamtrackerReportsItemResponse, error) {
+	return requestTyped[DatasetsBbbScamtrackerReportsItemResponse](s.client, ctx, "datasets-bbb-scamtracker-reports-item", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) BbbScamtrackerReportsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-bbb-scamtracker-reports-search", params, opts...)
+}
+
+type DatasetsBbbScamtrackerReportsSearchParams struct {
+	Q        *string  `crawlora:"q,omitempty"`
+	ScamType *string  `crawlora:"scam_type,omitempty"`
+	State    *string  `crawlora:"state,omitempty"`
+	Country  *string  `crawlora:"country,omitempty"`
+	DateFrom *string  `crawlora:"date_from,omitempty"`
+	DateTo   *string  `crawlora:"date_to,omitempty"`
+	MinLoss  *float64 `crawlora:"min_loss,omitempty"`
+	MaxLoss  *float64 `crawlora:"max_loss,omitempty"`
+	Sort     *string  `crawlora:"sort,omitempty"`
+	Page     *int     `crawlora:"page,omitempty"`
+	PageSize *int     `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsBbbScamtrackerReportsSearchResponse = ModelDatasetsScamTrackerReportsSearchResponseDoc
+
+func (s *DatasetsService) BbbScamtrackerReportsSearchTyped(ctx context.Context, params DatasetsBbbScamtrackerReportsSearchParams, opts ...RequestOption) (DatasetsBbbScamtrackerReportsSearchResponse, error) {
+	return requestTyped[DatasetsBbbScamtrackerReportsSearchResponse](s.client, ctx, "datasets-bbb-scamtracker-reports-search", paramsFromStruct(params), opts...)
 }
 
 func (s *DatasetsService) BoxofficemojoFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -87327,6 +92882,104 @@ type DatasetsJournalistsSearchResponse = ModelDatasetsJournalistsSearchResponseD
 
 func (s *DatasetsService) JournalistsSearchTyped(ctx context.Context, params DatasetsJournalistsSearchParams, opts ...RequestOption) (DatasetsJournalistsSearchResponse, error) {
 	return requestTyped[DatasetsJournalistsSearchResponse](s.client, ctx, "datasets-journalists-search", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) LlmsFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-llms-facets", params, opts...)
+}
+
+type DatasetsLlmsFacetsParams struct {
+	Facet              string   `crawlora:"facet"`
+	Q                  *string  `crawlora:"q,omitempty"`
+	Text               *string  `crawlora:"text,omitempty"`
+	State              *string  `crawlora:"state,omitempty"`
+	Valid              *bool    `crawlora:"valid,omitempty"`
+	SourceKind         *string  `crawlora:"source_kind,omitempty"`
+	Generator          *string  `crawlora:"generator,omitempty"`
+	Bot                *string  `crawlora:"bot,omitempty"`
+	MinLinks           *int     `crawlora:"min_links,omitempty"`
+	MentionsMcp        *bool    `crawlora:"mentions_mcp,omitempty"`
+	MentionsOpenapi    *bool    `crawlora:"mentions_openapi,omitempty"`
+	Placeholder        *bool    `crawlora:"placeholder,omitempty"`
+	Injection          *bool    `crawlora:"injection,omitempty"`
+	FullValid          *bool    `crawlora:"full_valid,omitempty"`
+	RobotsState        *string  `crawlora:"robots_state,omitempty"`
+	RobotsDefault      *string  `crawlora:"robots_default,omitempty"`
+	BlocksAll          []string `crawlora:"blocks_all"`
+	BlocksAny          []string `crawlora:"blocks_any"`
+	NotBlocked         []string `crawlora:"not_blocked"`
+	AllAiBlocked       *bool    `crawlora:"all_ai_blocked,omitempty"`
+	MinTrainBlocked    *int     `crawlora:"min_train_blocked,omitempty"`
+	ContentSignalTrain *string  `crawlora:"content_signal_train,omitempty"`
+	Tld                *string  `crawlora:"tld,omitempty"`
+	Category           *string  `crawlora:"category,omitempty"`
+	Reachable          *bool    `crawlora:"reachable,omitempty"`
+	HomeBlocked        *bool    `crawlora:"home_blocked,omitempty"`
+	IsInfrastructure   *bool    `crawlora:"is_infrastructure,omitempty"`
+	RunId              *string  `crawlora:"run_id,omitempty"`
+}
+
+type DatasetsLlmsFacetsResponse = ModelDatasetsLlmsFacetResponseDoc
+
+func (s *DatasetsService) LlmsFacetsTyped(ctx context.Context, params DatasetsLlmsFacetsParams, opts ...RequestOption) (DatasetsLlmsFacetsResponse, error) {
+	return requestTyped[DatasetsLlmsFacetsResponse](s.client, ctx, "datasets-llms-facets", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) LlmsItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-llms-item", params, opts...)
+}
+
+type DatasetsLlmsItemParams struct {
+	Domain string `crawlora:"domain"`
+}
+
+type DatasetsLlmsItemResponse = ModelDatasetsLlmsItemResponseDoc
+
+func (s *DatasetsService) LlmsItemTyped(ctx context.Context, params DatasetsLlmsItemParams, opts ...RequestOption) (DatasetsLlmsItemResponse, error) {
+	return requestTyped[DatasetsLlmsItemResponse](s.client, ctx, "datasets-llms-item", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) LlmsSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-llms-search", params, opts...)
+}
+
+type DatasetsLlmsSearchParams struct {
+	Q                  *string  `crawlora:"q,omitempty"`
+	Text               *string  `crawlora:"text,omitempty"`
+	State              *string  `crawlora:"state,omitempty"`
+	Valid              *bool    `crawlora:"valid,omitempty"`
+	SourceKind         *string  `crawlora:"source_kind,omitempty"`
+	Generator          *string  `crawlora:"generator,omitempty"`
+	Bot                *string  `crawlora:"bot,omitempty"`
+	MinLinks           *int     `crawlora:"min_links,omitempty"`
+	MentionsMcp        *bool    `crawlora:"mentions_mcp,omitempty"`
+	MentionsOpenapi    *bool    `crawlora:"mentions_openapi,omitempty"`
+	Placeholder        *bool    `crawlora:"placeholder,omitempty"`
+	Injection          *bool    `crawlora:"injection,omitempty"`
+	FullValid          *bool    `crawlora:"full_valid,omitempty"`
+	RobotsState        *string  `crawlora:"robots_state,omitempty"`
+	RobotsDefault      *string  `crawlora:"robots_default,omitempty"`
+	BlocksAll          []string `crawlora:"blocks_all"`
+	BlocksAny          []string `crawlora:"blocks_any"`
+	NotBlocked         []string `crawlora:"not_blocked"`
+	AllAiBlocked       *bool    `crawlora:"all_ai_blocked,omitempty"`
+	MinTrainBlocked    *int     `crawlora:"min_train_blocked,omitempty"`
+	ContentSignalTrain *string  `crawlora:"content_signal_train,omitempty"`
+	Tld                *string  `crawlora:"tld,omitempty"`
+	Category           *string  `crawlora:"category,omitempty"`
+	Reachable          *bool    `crawlora:"reachable,omitempty"`
+	HomeBlocked        *bool    `crawlora:"home_blocked,omitempty"`
+	IsInfrastructure   *bool    `crawlora:"is_infrastructure,omitempty"`
+	RunId              *string  `crawlora:"run_id,omitempty"`
+	Sort               *string  `crawlora:"sort,omitempty"`
+	Page               *int     `crawlora:"page,omitempty"`
+	PageSize           *int     `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsLlmsSearchResponse = ModelDatasetsLlmsSearchResponseDoc
+
+func (s *DatasetsService) LlmsSearchTyped(ctx context.Context, params DatasetsLlmsSearchParams, opts ...RequestOption) (DatasetsLlmsSearchResponse, error) {
+	return requestTyped[DatasetsLlmsSearchResponse](s.client, ctx, "datasets-llms-search", paramsFromStruct(params), opts...)
 }
 
 func (s *DatasetsService) NumbeoCitiesFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -89322,6 +94975,135 @@ type DepopSuggestResponse = ModelDepopSuggestResponseDoc
 
 func (s *DepopService) SuggestTyped(ctx context.Context, params DepopSuggestParams, opts ...RequestOption) (DepopSuggestResponse, error) {
 	return requestTyped[DepopSuggestResponse](s.client, ctx, "depop-suggest", paramsFromStruct(params), opts...)
+}
+
+type RetrievalService struct{ client *Client }
+
+func (s *RetrievalService) DeveloperSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "developer-search", params, opts...)
+}
+
+type RetrievalDeveloperSearchParams struct {
+	Request ModelDeveloperretrievalDeveloperSearchRequest `crawlora:"request"`
+}
+
+type RetrievalDeveloperSearchResponse = ModelDeveloperretrievalDeveloperSearchResponseDoc
+
+func (s *RetrievalService) DeveloperSearchTyped(ctx context.Context, params RetrievalDeveloperSearchParams, opts ...RequestOption) (RetrievalDeveloperSearchResponse, error) {
+	return requestTyped[RetrievalDeveloperSearchResponse](s.client, ctx, "developer-search", paramsFromStruct(params), opts...)
+}
+
+func (s *RetrievalService) DeveloperSources(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "developer-sources", params, opts...)
+}
+
+type RetrievalDeveloperSourcesParams struct {
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type RetrievalDeveloperSourcesResponse = ModelDeveloperretrievalDeveloperSourcesResponseDoc
+
+func (s *RetrievalService) DeveloperSourcesTyped(ctx context.Context, params RetrievalDeveloperSourcesParams, opts ...RequestOption) (RetrievalDeveloperSourcesResponse, error) {
+	return requestTyped[RetrievalDeveloperSourcesResponse](s.client, ctx, "developer-sources", paramsFromStruct(params), opts...)
+}
+
+func (s *RetrievalService) WebCapabilities(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "web-capabilities", params, opts...)
+}
+
+type RetrievalWebCapabilitiesParams struct {
+}
+
+type RetrievalWebCapabilitiesResponse = any
+
+func (s *RetrievalService) WebCapabilitiesTyped(ctx context.Context, params RetrievalWebCapabilitiesParams, opts ...RequestOption) (RetrievalWebCapabilitiesResponse, error) {
+	return requestTyped[RetrievalWebCapabilitiesResponse](s.client, ctx, "web-capabilities", paramsFromStruct(params), opts...)
+}
+
+func (s *RetrievalService) WebCrawl(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "web-crawl", params, opts...)
+}
+
+type RetrievalWebCrawlParams struct {
+	Request ModelCrawlretrievalCrawlRequestDoc `crawlora:"request"`
+}
+
+type RetrievalWebCrawlResponse = any
+
+func (s *RetrievalService) WebCrawlTyped(ctx context.Context, params RetrievalWebCrawlParams, opts ...RequestOption) (RetrievalWebCrawlResponse, error) {
+	return requestTyped[RetrievalWebCrawlResponse](s.client, ctx, "web-crawl", paramsFromStruct(params), opts...)
+}
+
+func (s *RetrievalService) WebCrawlStatus(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "web-crawl-status", params, opts...)
+}
+
+type RetrievalWebCrawlStatusParams struct {
+	JobId string `crawlora:"job_id"`
+}
+
+type RetrievalWebCrawlStatusResponse = ModelCrawlretrievalCrawlStatusEnvelope
+
+func (s *RetrievalService) WebCrawlStatusTyped(ctx context.Context, params RetrievalWebCrawlStatusParams, opts ...RequestOption) (RetrievalWebCrawlStatusResponse, error) {
+	return requestTyped[RetrievalWebCrawlStatusResponse](s.client, ctx, "web-crawl-status", paramsFromStruct(params), opts...)
+}
+
+func (s *RetrievalService) WebCrawlCancel(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "web-crawl-cancel", params, opts...)
+}
+
+type RetrievalWebCrawlCancelParams struct {
+	JobId string `crawlora:"job_id"`
+}
+
+type RetrievalWebCrawlCancelResponse = ModelCrawlretrievalCrawlStatusEnvelope
+
+func (s *RetrievalService) WebCrawlCancelTyped(ctx context.Context, params RetrievalWebCrawlCancelParams, opts ...RequestOption) (RetrievalWebCrawlCancelResponse, error) {
+	return requestTyped[RetrievalWebCrawlCancelResponse](s.client, ctx, "web-crawl-cancel", paramsFromStruct(params), opts...)
+}
+
+func (s *RetrievalService) WebCrawlResults(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "web-crawl-results", params, opts...)
+}
+
+type RetrievalWebCrawlResultsParams struct {
+	JobId  string  `crawlora:"job_id"`
+	Cursor *string `crawlora:"cursor,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+}
+
+type RetrievalWebCrawlResultsResponse = ModelCrawlretrievalCrawlResultsEnvelope
+
+func (s *RetrievalService) WebCrawlResultsTyped(ctx context.Context, params RetrievalWebCrawlResultsParams, opts ...RequestOption) (RetrievalWebCrawlResultsResponse, error) {
+	return requestTyped[RetrievalWebCrawlResultsResponse](s.client, ctx, "web-crawl-results", paramsFromStruct(params), opts...)
+}
+
+func (s *RetrievalService) WebMap(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "web-map", params, opts...)
+}
+
+type RetrievalWebMapParams struct {
+	Request ModelRetrievalplatformMapRequest `crawlora:"request"`
+}
+
+type RetrievalWebMapResponse = any
+
+func (s *RetrievalService) WebMapTyped(ctx context.Context, params RetrievalWebMapParams, opts ...RequestOption) (RetrievalWebMapResponse, error) {
+	return requestTyped[RetrievalWebMapResponse](s.client, ctx, "web-map", paramsFromStruct(params), opts...)
+}
+
+func (s *RetrievalService) WebSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "web-search", params, opts...)
+}
+
+type RetrievalWebSearchParams struct {
+	Request ModelRetrievalplatformWebSearchRequest `crawlora:"request"`
+}
+
+type RetrievalWebSearchResponse = any
+
+func (s *RetrievalService) WebSearchTyped(ctx context.Context, params RetrievalWebSearchParams, opts ...RequestOption) (RetrievalWebSearchResponse, error) {
+	return requestTyped[RetrievalWebSearchResponse](s.client, ctx, "web-search", paramsFromStruct(params), opts...)
 }
 
 type DiscogsService struct{ client *Client }
@@ -92289,6 +98071,49 @@ func (s *FlashscoreService) CompetitionsTyped(ctx context.Context, params Flashs
 	return requestTyped[FlashscoreCompetitionsResponse](s.client, ctx, "flashscore-competitions", paramsFromStruct(params), opts...)
 }
 
+func (s *FlashscoreService) EntityNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-entity-news", params, opts...)
+}
+
+type FlashscoreEntityNewsParams struct {
+	Type string `crawlora:"type"`
+	Id   string `crawlora:"id"`
+}
+
+type FlashscoreEntityNewsResponse = any
+
+func (s *FlashscoreService) EntityNewsTyped(ctx context.Context, params FlashscoreEntityNewsParams, opts ...RequestOption) (FlashscoreEntityNewsResponse, error) {
+	return requestTyped[FlashscoreEntityNewsResponse](s.client, ctx, "flashscore-entity-news", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) MatchBoxScore(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-match-box-score", params, opts...)
+}
+
+type FlashscoreMatchBoxScoreParams struct {
+	Id string `crawlora:"id"`
+}
+
+type FlashscoreMatchBoxScoreResponse = ModelFlashscoreMatchBoxScoreResponseDoc
+
+func (s *FlashscoreService) MatchBoxScoreTyped(ctx context.Context, params FlashscoreMatchBoxScoreParams, opts ...RequestOption) (FlashscoreMatchBoxScoreResponse, error) {
+	return requestTyped[FlashscoreMatchBoxScoreResponse](s.client, ctx, "flashscore-match-box-score", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) MatchDarts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-match-darts", params, opts...)
+}
+
+type FlashscoreMatchDartsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type FlashscoreMatchDartsResponse = ModelFlashscoreMatchDartsResponseDoc
+
+func (s *FlashscoreService) MatchDartsTyped(ctx context.Context, params FlashscoreMatchDartsParams, opts ...RequestOption) (FlashscoreMatchDartsResponse, error) {
+	return requestTyped[FlashscoreMatchDartsResponse](s.client, ctx, "flashscore-match-darts", paramsFromStruct(params), opts...)
+}
+
 func (s *FlashscoreService) MatchH2h(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "flashscore-match-h2h", params, opts...)
 }
@@ -92345,6 +98170,34 @@ func (s *FlashscoreService) MatchLineupsTyped(ctx context.Context, params Flashs
 	return requestTyped[FlashscoreMatchLineupsResponse](s.client, ctx, "flashscore-match-lineups", paramsFromStruct(params), opts...)
 }
 
+func (s *FlashscoreService) MatchMissingPlayers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-match-missing-players", params, opts...)
+}
+
+type FlashscoreMatchMissingPlayersParams struct {
+	Id string `crawlora:"id"`
+}
+
+type FlashscoreMatchMissingPlayersResponse = ModelFlashscoreMatchMissingPlayersResponseDoc
+
+func (s *FlashscoreService) MatchMissingPlayersTyped(ctx context.Context, params FlashscoreMatchMissingPlayersParams, opts ...RequestOption) (FlashscoreMatchMissingPlayersResponse, error) {
+	return requestTyped[FlashscoreMatchMissingPlayersResponse](s.client, ctx, "flashscore-match-missing-players", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) MatchMomentum(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-match-momentum", params, opts...)
+}
+
+type FlashscoreMatchMomentumParams struct {
+	Id string `crawlora:"id"`
+}
+
+type FlashscoreMatchMomentumResponse = ModelFlashscoreMatchMomentumResponseDoc
+
+func (s *FlashscoreService) MatchMomentumTyped(ctx context.Context, params FlashscoreMatchMomentumParams, opts ...RequestOption) (FlashscoreMatchMomentumResponse, error) {
+	return requestTyped[FlashscoreMatchMomentumResponse](s.client, ctx, "flashscore-match-momentum", paramsFromStruct(params), opts...)
+}
+
 func (s *FlashscoreService) MatchNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "flashscore-match-news", params, opts...)
 }
@@ -92357,6 +98210,82 @@ type FlashscoreMatchNewsResponse = ModelFlashscoreMatchNewsResponseDoc
 
 func (s *FlashscoreService) MatchNewsTyped(ctx context.Context, params FlashscoreMatchNewsParams, opts ...RequestOption) (FlashscoreMatchNewsResponse, error) {
 	return requestTyped[FlashscoreMatchNewsResponse](s.client, ctx, "flashscore-match-news", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) MatchOdds(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-match-odds", params, opts...)
+}
+
+type FlashscoreMatchOddsParams struct {
+	Id          string  `crawlora:"id"`
+	Geo         *string `crawlora:"geo,omitempty"`
+	Subdivision *string `crawlora:"subdivision,omitempty"`
+	BettingType *string `crawlora:"betting_type,omitempty"`
+	Scope       *string `crawlora:"scope,omitempty"`
+}
+
+type FlashscoreMatchOddsResponse = ModelFlashscoreMatchOddsResponseDoc
+
+func (s *FlashscoreService) MatchOddsTyped(ctx context.Context, params FlashscoreMatchOddsParams, opts ...RequestOption) (FlashscoreMatchOddsResponse, error) {
+	return requestTyped[FlashscoreMatchOddsResponse](s.client, ctx, "flashscore-match-odds", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) MatchPlayerStats(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-match-player-stats", params, opts...)
+}
+
+type FlashscoreMatchPlayerStatsParams struct {
+	Id       string  `crawlora:"id"`
+	PlayerId *string `crawlora:"player_id,omitempty"`
+	Group    *string `crawlora:"group,omitempty"`
+}
+
+type FlashscoreMatchPlayerStatsResponse = ModelFlashscoreMatchPlayerStatsResponseDoc
+
+func (s *FlashscoreService) MatchPlayerStatsTyped(ctx context.Context, params FlashscoreMatchPlayerStatsParams, opts ...RequestOption) (FlashscoreMatchPlayerStatsResponse, error) {
+	return requestTyped[FlashscoreMatchPlayerStatsResponse](s.client, ctx, "flashscore-match-player-stats", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) MatchPointByPoint(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-match-point-by-point", params, opts...)
+}
+
+type FlashscoreMatchPointByPointParams struct {
+	Id string `crawlora:"id"`
+}
+
+type FlashscoreMatchPointByPointResponse = ModelFlashscoreMatchPointByPointResponseDoc
+
+func (s *FlashscoreService) MatchPointByPointTyped(ctx context.Context, params FlashscoreMatchPointByPointParams, opts ...RequestOption) (FlashscoreMatchPointByPointResponse, error) {
+	return requestTyped[FlashscoreMatchPointByPointResponse](s.client, ctx, "flashscore-match-point-by-point", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) MatchPredictedLineups(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-match-predicted-lineups", params, opts...)
+}
+
+type FlashscoreMatchPredictedLineupsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type FlashscoreMatchPredictedLineupsResponse = ModelFlashscoreMatchPredictedLineupsResponseDoc
+
+func (s *FlashscoreService) MatchPredictedLineupsTyped(ctx context.Context, params FlashscoreMatchPredictedLineupsParams, opts ...RequestOption) (FlashscoreMatchPredictedLineupsResponse, error) {
+	return requestTyped[FlashscoreMatchPredictedLineupsResponse](s.client, ctx, "flashscore-match-predicted-lineups", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) MatchReport(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-match-report", params, opts...)
+}
+
+type FlashscoreMatchReportParams struct {
+	Id string `crawlora:"id"`
+}
+
+type FlashscoreMatchReportResponse = ModelFlashscoreMatchReportResponseDoc
+
+func (s *FlashscoreService) MatchReportTyped(ctx context.Context, params FlashscoreMatchReportParams, opts ...RequestOption) (FlashscoreMatchReportResponse, error) {
+	return requestTyped[FlashscoreMatchReportResponse](s.client, ctx, "flashscore-match-report", paramsFromStruct(params), opts...)
 }
 
 func (s *FlashscoreService) MatchStandings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -92386,6 +98315,21 @@ type FlashscoreMatchStatsResponse = ModelFlashscoreResponseDoc
 
 func (s *FlashscoreService) MatchStatsTyped(ctx context.Context, params FlashscoreMatchStatsParams, opts ...RequestOption) (FlashscoreMatchStatsResponse, error) {
 	return requestTyped[FlashscoreMatchStatsResponse](s.client, ctx, "flashscore-match-stats", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) MatchTv(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-match-tv", params, opts...)
+}
+
+type FlashscoreMatchTvParams struct {
+	Id  string  `crawlora:"id"`
+	Geo *string `crawlora:"geo,omitempty"`
+}
+
+type FlashscoreMatchTvResponse = ModelFlashscoreMatchTvresponseDoc
+
+func (s *FlashscoreService) MatchTvTyped(ctx context.Context, params FlashscoreMatchTvParams, opts ...RequestOption) (FlashscoreMatchTvResponse, error) {
+	return requestTyped[FlashscoreMatchTvResponse](s.client, ctx, "flashscore-match-tv", paramsFromStruct(params), opts...)
 }
 
 func (s *FlashscoreService) Navigation(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -92431,6 +98375,20 @@ func (s *FlashscoreService) NewsArticleTyped(ctx context.Context, params Flashsc
 	return requestTyped[FlashscoreNewsArticleResponse](s.client, ctx, "flashscore-news-article", paramsFromStruct(params), opts...)
 }
 
+func (s *FlashscoreService) NewsArticleBody(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-news-article-body", params, opts...)
+}
+
+type FlashscoreNewsArticleBodyParams struct {
+	Id string `crawlora:"id"`
+}
+
+type FlashscoreNewsArticleBodyResponse = any
+
+func (s *FlashscoreService) NewsArticleBodyTyped(ctx context.Context, params FlashscoreNewsArticleBodyParams, opts ...RequestOption) (FlashscoreNewsArticleBodyResponse, error) {
+	return requestTyped[FlashscoreNewsArticleBodyResponse](s.client, ctx, "flashscore-news-article-body", paramsFromStruct(params), opts...)
+}
+
 func (s *FlashscoreService) NewsCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "flashscore-news-categories", params, opts...)
 }
@@ -92442,6 +98400,136 @@ type FlashscoreNewsCategoriesResponse = ModelFlashscoreNewsCategoriesResponseDoc
 
 func (s *FlashscoreService) NewsCategoriesTyped(ctx context.Context, params FlashscoreNewsCategoriesParams, opts ...RequestOption) (FlashscoreNewsCategoriesResponse, error) {
 	return requestTyped[FlashscoreNewsCategoriesResponse](s.client, ctx, "flashscore-news-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) NewsMostRead(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-news-most-read", params, opts...)
+}
+
+type FlashscoreNewsMostReadParams struct {
+}
+
+type FlashscoreNewsMostReadResponse = any
+
+func (s *FlashscoreService) NewsMostReadTyped(ctx context.Context, params FlashscoreNewsMostReadParams, opts ...RequestOption) (FlashscoreNewsMostReadResponse, error) {
+	return requestTyped[FlashscoreNewsMostReadResponse](s.client, ctx, "flashscore-news-most-read", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) OddsGeos(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-odds-geos", params, opts...)
+}
+
+type FlashscoreOddsGeosParams struct {
+}
+
+type FlashscoreOddsGeosResponse = ModelFlashscoreOddsGeosResponseDoc
+
+func (s *FlashscoreService) OddsGeosTyped(ctx context.Context, params FlashscoreOddsGeosParams, opts ...RequestOption) (FlashscoreOddsGeosResponse, error) {
+	return requestTyped[FlashscoreOddsGeosResponse](s.client, ctx, "flashscore-odds-geos", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) Player(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-player", params, opts...)
+}
+
+type FlashscorePlayerParams struct {
+	Id   string  `crawlora:"id"`
+	Slug *string `crawlora:"slug,omitempty"`
+}
+
+type FlashscorePlayerResponse = any
+
+func (s *FlashscoreService) PlayerTyped(ctx context.Context, params FlashscorePlayerParams, opts ...RequestOption) (FlashscorePlayerResponse, error) {
+	return requestTyped[FlashscorePlayerResponse](s.client, ctx, "flashscore-player", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) PlayerFixtures(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-player-fixtures", params, opts...)
+}
+
+type FlashscorePlayerFixturesParams struct {
+	Id   string `crawlora:"id"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type FlashscorePlayerFixturesResponse = any
+
+func (s *FlashscoreService) PlayerFixturesTyped(ctx context.Context, params FlashscorePlayerFixturesParams, opts ...RequestOption) (FlashscorePlayerFixturesResponse, error) {
+	return requestTyped[FlashscorePlayerFixturesResponse](s.client, ctx, "flashscore-player-fixtures", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) PlayerInjuries(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-player-injuries", params, opts...)
+}
+
+type FlashscorePlayerInjuriesParams struct {
+	Id   string  `crawlora:"id"`
+	Slug *string `crawlora:"slug,omitempty"`
+}
+
+type FlashscorePlayerInjuriesResponse = any
+
+func (s *FlashscoreService) PlayerInjuriesTyped(ctx context.Context, params FlashscorePlayerInjuriesParams, opts ...RequestOption) (FlashscorePlayerInjuriesResponse, error) {
+	return requestTyped[FlashscorePlayerInjuriesResponse](s.client, ctx, "flashscore-player-injuries", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) PlayerMatchLog(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-player-match-log", params, opts...)
+}
+
+type FlashscorePlayerMatchLogParams struct {
+	Id   string `crawlora:"id"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type FlashscorePlayerMatchLogResponse = any
+
+func (s *FlashscoreService) PlayerMatchLogTyped(ctx context.Context, params FlashscorePlayerMatchLogParams, opts ...RequestOption) (FlashscorePlayerMatchLogResponse, error) {
+	return requestTyped[FlashscorePlayerMatchLogResponse](s.client, ctx, "flashscore-player-match-log", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) PlayerNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-player-news", params, opts...)
+}
+
+type FlashscorePlayerNewsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type FlashscorePlayerNewsResponse = any
+
+func (s *FlashscoreService) PlayerNewsTyped(ctx context.Context, params FlashscorePlayerNewsParams, opts ...RequestOption) (FlashscorePlayerNewsResponse, error) {
+	return requestTyped[FlashscorePlayerNewsResponse](s.client, ctx, "flashscore-player-news", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) PlayerResults(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-player-results", params, opts...)
+}
+
+type FlashscorePlayerResultsParams struct {
+	Id   string `crawlora:"id"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type FlashscorePlayerResultsResponse = any
+
+func (s *FlashscoreService) PlayerResultsTyped(ctx context.Context, params FlashscorePlayerResultsParams, opts ...RequestOption) (FlashscorePlayerResultsResponse, error) {
+	return requestTyped[FlashscorePlayerResultsResponse](s.client, ctx, "flashscore-player-results", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) PlayerTransfers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-player-transfers", params, opts...)
+}
+
+type FlashscorePlayerTransfersParams struct {
+	Id   string  `crawlora:"id"`
+	Slug *string `crawlora:"slug,omitempty"`
+}
+
+type FlashscorePlayerTransfersResponse = any
+
+func (s *FlashscoreService) PlayerTransfersTyped(ctx context.Context, params FlashscorePlayerTransfersParams, opts ...RequestOption) (FlashscorePlayerTransfersResponse, error) {
+	return requestTyped[FlashscorePlayerTransfersResponse](s.client, ctx, "flashscore-player-transfers", paramsFromStruct(params), opts...)
 }
 
 func (s *FlashscoreService) RankingCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -92513,6 +98601,112 @@ func (s *FlashscoreService) SportsTyped(ctx context.Context, params FlashscoreSp
 	return requestTyped[FlashscoreSportsResponse](s.client, ctx, "flashscore-sports", paramsFromStruct(params), opts...)
 }
 
+func (s *FlashscoreService) Team(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-team", params, opts...)
+}
+
+type FlashscoreTeamParams struct {
+	Id string `crawlora:"id"`
+}
+
+type FlashscoreTeamResponse = any
+
+func (s *FlashscoreService) TeamTyped(ctx context.Context, params FlashscoreTeamParams, opts ...RequestOption) (FlashscoreTeamResponse, error) {
+	return requestTyped[FlashscoreTeamResponse](s.client, ctx, "flashscore-team", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) TeamFixtures(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-team-fixtures", params, opts...)
+}
+
+type FlashscoreTeamFixturesParams struct {
+	Id   string `crawlora:"id"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type FlashscoreTeamFixturesResponse = any
+
+func (s *FlashscoreService) TeamFixturesTyped(ctx context.Context, params FlashscoreTeamFixturesParams, opts ...RequestOption) (FlashscoreTeamFixturesResponse, error) {
+	return requestTyped[FlashscoreTeamFixturesResponse](s.client, ctx, "flashscore-team-fixtures", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) TeamNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-team-news", params, opts...)
+}
+
+type FlashscoreTeamNewsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type FlashscoreTeamNewsResponse = any
+
+func (s *FlashscoreService) TeamNewsTyped(ctx context.Context, params FlashscoreTeamNewsParams, opts ...RequestOption) (FlashscoreTeamNewsResponse, error) {
+	return requestTyped[FlashscoreTeamNewsResponse](s.client, ctx, "flashscore-team-news", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) TeamOutrightOdds(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-team-outright-odds", params, opts...)
+}
+
+type FlashscoreTeamOutrightOddsParams struct {
+	Id          string  `crawlora:"id"`
+	Geo         *string `crawlora:"geo,omitempty"`
+	Subdivision *string `crawlora:"subdivision,omitempty"`
+}
+
+type FlashscoreTeamOutrightOddsResponse = any
+
+func (s *FlashscoreService) TeamOutrightOddsTyped(ctx context.Context, params FlashscoreTeamOutrightOddsParams, opts ...RequestOption) (FlashscoreTeamOutrightOddsResponse, error) {
+	return requestTyped[FlashscoreTeamOutrightOddsResponse](s.client, ctx, "flashscore-team-outright-odds", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) TeamResults(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-team-results", params, opts...)
+}
+
+type FlashscoreTeamResultsParams struct {
+	Id   string `crawlora:"id"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type FlashscoreTeamResultsResponse = any
+
+func (s *FlashscoreService) TeamResultsTyped(ctx context.Context, params FlashscoreTeamResultsParams, opts ...RequestOption) (FlashscoreTeamResultsResponse, error) {
+	return requestTyped[FlashscoreTeamResultsResponse](s.client, ctx, "flashscore-team-results", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) TeamSquad(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-team-squad", params, opts...)
+}
+
+type FlashscoreTeamSquadParams struct {
+	Id    string  `crawlora:"id"`
+	Slug  *string `crawlora:"slug,omitempty"`
+	Scope *string `crawlora:"scope,omitempty"`
+}
+
+type FlashscoreTeamSquadResponse = any
+
+func (s *FlashscoreService) TeamSquadTyped(ctx context.Context, params FlashscoreTeamSquadParams, opts ...RequestOption) (FlashscoreTeamSquadResponse, error) {
+	return requestTyped[FlashscoreTeamSquadResponse](s.client, ctx, "flashscore-team-squad", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) TeamTransfers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-team-transfers", params, opts...)
+}
+
+type FlashscoreTeamTransfersParams struct {
+	Id   string  `crawlora:"id"`
+	Type *string `crawlora:"type,omitempty"`
+	Page *int    `crawlora:"page,omitempty"`
+}
+
+type FlashscoreTeamTransfersResponse = any
+
+func (s *FlashscoreService) TeamTransfersTyped(ctx context.Context, params FlashscoreTeamTransfersParams, opts ...RequestOption) (FlashscoreTeamTransfersResponse, error) {
+	return requestTyped[FlashscoreTeamTransfersResponse](s.client, ctx, "flashscore-team-transfers", paramsFromStruct(params), opts...)
+}
+
 func (s *FlashscoreService) TopSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "flashscore-top-search", params, opts...)
 }
@@ -92524,6 +98718,20 @@ type FlashscoreTopSearchResponse = ModelFlashscoreTopSearchResponseDoc
 
 func (s *FlashscoreService) TopSearchTyped(ctx context.Context, params FlashscoreTopSearchParams, opts ...RequestOption) (FlashscoreTopSearchResponse, error) {
 	return requestTyped[FlashscoreTopSearchResponse](s.client, ctx, "flashscore-top-search", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) TournamentArchiveSeasons(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-tournament-archive-seasons", params, opts...)
+}
+
+type FlashscoreTournamentArchiveSeasonsParams struct {
+	StageId string `crawlora:"stage_id"`
+}
+
+type FlashscoreTournamentArchiveSeasonsResponse = any
+
+func (s *FlashscoreService) TournamentArchiveSeasonsTyped(ctx context.Context, params FlashscoreTournamentArchiveSeasonsParams, opts ...RequestOption) (FlashscoreTournamentArchiveSeasonsResponse, error) {
+	return requestTyped[FlashscoreTournamentArchiveSeasonsResponse](s.client, ctx, "flashscore-tournament-archive-seasons", paramsFromStruct(params), opts...)
 }
 
 func (s *FlashscoreService) TournamentEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -92539,6 +98747,22 @@ type FlashscoreTournamentEventsResponse = ModelFlashscoreTournamentEventsRespons
 
 func (s *FlashscoreService) TournamentEventsTyped(ctx context.Context, params FlashscoreTournamentEventsParams, opts ...RequestOption) (FlashscoreTournamentEventsResponse, error) {
 	return requestTyped[FlashscoreTournamentEventsResponse](s.client, ctx, "flashscore-tournament-events", paramsFromStruct(params), opts...)
+}
+
+func (s *FlashscoreService) TournamentOutrightOdds(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "flashscore-tournament-outright-odds", params, opts...)
+}
+
+type FlashscoreTournamentOutrightOddsParams struct {
+	TournamentId string  `crawlora:"tournament_id"`
+	Geo          *string `crawlora:"geo,omitempty"`
+	Subdivision  *string `crawlora:"subdivision,omitempty"`
+}
+
+type FlashscoreTournamentOutrightOddsResponse = any
+
+func (s *FlashscoreService) TournamentOutrightOddsTyped(ctx context.Context, params FlashscoreTournamentOutrightOddsParams, opts ...RequestOption) (FlashscoreTournamentOutrightOddsResponse, error) {
+	return requestTyped[FlashscoreTournamentOutrightOddsResponse](s.client, ctx, "flashscore-tournament-outright-odds", paramsFromStruct(params), opts...)
 }
 
 func (s *FlashscoreService) TournamentSeasons(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -115024,6 +121248,157 @@ func (s *ReferralsService) MeEventsTyped(ctx context.Context, params ReferralsMe
 	return requestTyped[ReferralsMeEventsResponse](s.client, ctx, "referrals-me-events", paramsFromStruct(params), opts...)
 }
 
+type ResearchJobsService struct{ client *Client }
+
+func (s *ResearchJobsService) ResearchStart(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "research-start", params, opts...)
+}
+
+type ResearchJobsResearchStartParams struct {
+	Request ModelResearchjobsResearchStartRequestDoc `crawlora:"request"`
+}
+
+type ResearchJobsResearchStartResponse = any
+
+func (s *ResearchJobsService) ResearchStartTyped(ctx context.Context, params ResearchJobsResearchStartParams, opts ...RequestOption) (ResearchJobsResearchStartResponse, error) {
+	return requestTyped[ResearchJobsResearchStartResponse](s.client, ctx, "research-start", paramsFromStruct(params), opts...)
+}
+
+func (s *ResearchJobsService) ResearchStatus(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "research-status", params, opts...)
+}
+
+type ResearchJobsResearchStatusParams struct {
+	JobId string `crawlora:"job_id"`
+}
+
+type ResearchJobsResearchStatusResponse = ModelResearchjobsResearchStatusResponseDoc
+
+func (s *ResearchJobsService) ResearchStatusTyped(ctx context.Context, params ResearchJobsResearchStatusParams, opts ...RequestOption) (ResearchJobsResearchStatusResponse, error) {
+	return requestTyped[ResearchJobsResearchStatusResponse](s.client, ctx, "research-status", paramsFromStruct(params), opts...)
+}
+
+func (s *ResearchJobsService) ResearchCancel(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "research-cancel", params, opts...)
+}
+
+type ResearchJobsResearchCancelParams struct {
+	JobId string `crawlora:"job_id"`
+}
+
+type ResearchJobsResearchCancelResponse = ModelResearchjobsResearchStatusResponseDoc
+
+func (s *ResearchJobsService) ResearchCancelTyped(ctx context.Context, params ResearchJobsResearchCancelParams, opts ...RequestOption) (ResearchJobsResearchCancelResponse, error) {
+	return requestTyped[ResearchJobsResearchCancelResponse](s.client, ctx, "research-cancel", paramsFromStruct(params), opts...)
+}
+
+func (s *ResearchJobsService) ResearchEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "research-events", params, opts...)
+}
+
+type ResearchJobsResearchEventsParams struct {
+	JobId  string  `crawlora:"job_id"`
+	Cursor *string `crawlora:"cursor,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+}
+
+type ResearchJobsResearchEventsResponse = ModelResearchjobsResearchEventsResponseDoc
+
+func (s *ResearchJobsService) ResearchEventsTyped(ctx context.Context, params ResearchJobsResearchEventsParams, opts ...RequestOption) (ResearchJobsResearchEventsResponse, error) {
+	return requestTyped[ResearchJobsResearchEventsResponse](s.client, ctx, "research-events", paramsFromStruct(params), opts...)
+}
+
+func (s *ResearchJobsService) ResearchResults(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "research-results", params, opts...)
+}
+
+type ResearchJobsResearchResultsParams struct {
+	JobId string `crawlora:"job_id"`
+}
+
+type ResearchJobsResearchResultsResponse = ModelResearchjobsResearchResultsResponseDoc
+
+func (s *ResearchJobsService) ResearchResultsTyped(ctx context.Context, params ResearchJobsResearchResultsParams, opts ...RequestOption) (ResearchJobsResearchResultsResponse, error) {
+	return requestTyped[ResearchJobsResearchResultsResponse](s.client, ctx, "research-results", paramsFromStruct(params), opts...)
+}
+
+type ResearchService struct{ client *Client }
+
+func (s *ResearchService) InspectPaper(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "research-inspect-paper", params, opts...)
+}
+
+type ResearchInspectPaperParams struct {
+	PaperId string `crawlora:"paper_id"`
+}
+
+type ResearchInspectPaperResponse = any
+
+func (s *ResearchService) InspectPaperTyped(ctx context.Context, params ResearchInspectPaperParams, opts ...RequestOption) (ResearchInspectPaperResponse, error) {
+	return requestTyped[ResearchInspectPaperResponse](s.client, ctx, "research-inspect-paper", paramsFromStruct(params), opts...)
+}
+
+func (s *ResearchService) ReadPaper(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "research-read-paper", params, opts...)
+}
+
+type ResearchReadPaperParams struct {
+	Request ModelResearchpapersPaperReadRequest `crawlora:"request"`
+}
+
+type ResearchReadPaperResponse = any
+
+func (s *ResearchService) ReadPaperTyped(ctx context.Context, params ResearchReadPaperParams, opts ...RequestOption) (ResearchReadPaperResponse, error) {
+	return requestTyped[ResearchReadPaperResponse](s.client, ctx, "research-read-paper", paramsFromStruct(params), opts...)
+}
+
+func (s *ResearchService) RelatedPapers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "research-related-papers", params, opts...)
+}
+
+type ResearchRelatedPapersParams struct {
+	Request ModelResearchpapersPaperRelatedRequest `crawlora:"request"`
+}
+
+type ResearchRelatedPapersResponse = any
+
+func (s *ResearchService) RelatedPapersTyped(ctx context.Context, params ResearchRelatedPapersParams, opts ...RequestOption) (ResearchRelatedPapersResponse, error) {
+	return requestTyped[ResearchRelatedPapersResponse](s.client, ctx, "research-related-papers", paramsFromStruct(params), opts...)
+}
+
+func (s *ResearchService) SearchPapers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "research-search-papers", params, opts...)
+}
+
+type ResearchSearchPapersParams struct {
+	Q             *string  `crawlora:"q,omitempty"`
+	Limit         *int     `crawlora:"limit,omitempty"`
+	Sources       []string `crawlora:"sources"`
+	Authors       []string `crawlora:"authors"`
+	PublishedFrom *string  `crawlora:"published_from,omitempty"`
+	PublishedTo   *string  `crawlora:"published_to,omitempty"`
+	Cursor        *string  `crawlora:"cursor,omitempty"`
+}
+
+type ResearchSearchPapersResponse = any
+
+func (s *ResearchService) SearchPapersTyped(ctx context.Context, params ResearchSearchPapersParams, opts ...RequestOption) (ResearchSearchPapersResponse, error) {
+	return requestTyped[ResearchSearchPapersResponse](s.client, ctx, "research-search-papers", paramsFromStruct(params), opts...)
+}
+
+func (s *ResearchService) Sources(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "research-sources", params, opts...)
+}
+
+type ResearchSourcesParams struct {
+}
+
+type ResearchSourcesResponse = any
+
+func (s *ResearchService) SourcesTyped(ctx context.Context, params ResearchSourcesParams, opts ...RequestOption) (ResearchSourcesResponse, error) {
+	return requestTyped[ResearchSourcesResponse](s.client, ctx, "research-sources", paramsFromStruct(params), opts...)
+}
+
 type ResyService struct{ client *Client }
 
 func (s *ResyService) Availability(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -115031,9 +121406,9 @@ func (s *ResyService) Availability(ctx context.Context, params Params, opts ...R
 }
 
 type ResyAvailabilityParams struct {
-	RestaurantId string `crawlora:"restaurant_id"`
-	Date         string `crawlora:"date"`
-	PartySize    *int   `crawlora:"party_size,omitempty"`
+	RestaurantId string  `crawlora:"restaurant_id"`
+	Date         *string `crawlora:"date,omitempty"`
+	PartySize    *int    `crawlora:"party_size,omitempty"`
 }
 
 type ResyAvailabilityResponse = ModelResyAvailabilityResponseDoc
@@ -118847,6 +125222,80 @@ func (s *TheSydneyMorningHeraldService) SmhSectionsTyped(ctx context.Context, pa
 
 type SofaScoreService struct{ client *Client }
 
+func (s *SofaScoreService) SofascoreCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-categories", params, opts...)
+}
+
+type SofaScoreSofascoreCategoriesParams struct {
+	Sport string `crawlora:"sport"`
+}
+
+type SofaScoreSofascoreCategoriesResponse = ModelSofascoreCategoriesResponseDoc
+
+func (s *SofaScoreService) SofascoreCategoriesTyped(ctx context.Context, params SofaScoreSofascoreCategoriesParams, opts ...RequestOption) (SofaScoreSofascoreCategoriesResponse, error) {
+	return requestTyped[SofaScoreSofascoreCategoriesResponse](s.client, ctx, "sofascore-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreCategoryTournaments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-category-tournaments", params, opts...)
+}
+
+type SofaScoreSofascoreCategoryTournamentsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreCategoryTournamentsResponse = ModelSofascoreCategoryTournamentsResponseDoc
+
+func (s *SofaScoreService) SofascoreCategoryTournamentsTyped(ctx context.Context, params SofaScoreSofascoreCategoryTournamentsParams, opts ...RequestOption) (SofaScoreSofascoreCategoryTournamentsResponse, error) {
+	return requestTyped[SofaScoreSofascoreCategoryTournamentsResponse](s.client, ctx, "sofascore-category-tournaments", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreDraft(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-draft", params, opts...)
+}
+
+type SofaScoreSofascoreDraftParams struct {
+	League string `crawlora:"league"`
+	Season string `crawlora:"season"`
+}
+
+type SofaScoreSofascoreDraftResponse = ModelSofascoreDraftResponseDoc
+
+func (s *SofaScoreService) SofascoreDraftTyped(ctx context.Context, params SofaScoreSofascoreDraftParams, opts ...RequestOption) (SofaScoreSofascoreDraftResponse, error) {
+	return requestTyped[SofaScoreSofascoreDraftResponse](s.client, ctx, "sofascore-draft", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreDraftPicks(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-draft-picks", params, opts...)
+}
+
+type SofaScoreSofascoreDraftPicksParams struct {
+	League string `crawlora:"league"`
+	Year   string `crawlora:"year"`
+	Round  int    `crawlora:"round"`
+}
+
+type SofaScoreSofascoreDraftPicksResponse = ModelSofascoreDraftPicksResponseDoc
+
+func (s *SofaScoreService) SofascoreDraftPicksTyped(ctx context.Context, params SofaScoreSofascoreDraftPicksParams, opts ...RequestOption) (SofaScoreSofascoreDraftPicksResponse, error) {
+	return requestTyped[SofaScoreSofascoreDraftPicksResponse](s.client, ctx, "sofascore-draft-picks", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEsportsGame(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-esports-game", params, opts...)
+}
+
+type SofaScoreSofascoreEsportsGameParams struct {
+	Id   string `crawlora:"id"`
+	Part string `crawlora:"part"`
+}
+
+type SofaScoreSofascoreEsportsGameResponse = ModelSofascoreEsportsGameResponseDoc
+
+func (s *SofaScoreService) SofascoreEsportsGameTyped(ctx context.Context, params SofaScoreSofascoreEsportsGameParams, opts ...RequestOption) (SofaScoreSofascoreEsportsGameResponse, error) {
+	return requestTyped[SofaScoreSofascoreEsportsGameResponse](s.client, ctx, "sofascore-esports-game", paramsFromStruct(params), opts...)
+}
+
 func (s *SofaScoreService) SofascoreEvent(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "sofascore-event", params, opts...)
 }
@@ -118859,6 +125308,119 @@ type SofaScoreSofascoreEventResponse = ModelSofascoreEventResponseDoc
 
 func (s *SofaScoreService) SofascoreEventTyped(ctx context.Context, params SofaScoreSofascoreEventParams, opts ...RequestOption) (SofaScoreSofascoreEventResponse, error) {
 	return requestTyped[SofaScoreSofascoreEventResponse](s.client, ctx, "sofascore-event", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventAtBatPitches(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-at-bat-pitches", params, opts...)
+}
+
+type SofaScoreSofascoreEventAtBatPitchesParams struct {
+	Id      string `crawlora:"id"`
+	AtBatId string `crawlora:"at_bat_id"`
+}
+
+type SofaScoreSofascoreEventAtBatPitchesResponse = ModelSofascoreEventAtBatPitchesResponseDoc
+
+func (s *SofaScoreService) SofascoreEventAtBatPitchesTyped(ctx context.Context, params SofaScoreSofascoreEventAtBatPitchesParams, opts ...RequestOption) (SofaScoreSofascoreEventAtBatPitchesResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventAtBatPitchesResponse](s.client, ctx, "sofascore-event-at-bat-pitches", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventAtBats(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-at-bats", params, opts...)
+}
+
+type SofaScoreSofascoreEventAtBatsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventAtBatsResponse = ModelSofascoreEventAtBatsResponseDoc
+
+func (s *SofaScoreService) SofascoreEventAtBatsTyped(ctx context.Context, params SofaScoreSofascoreEventAtBatsParams, opts ...RequestOption) (SofaScoreSofascoreEventAtBatsResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventAtBatsResponse](s.client, ctx, "sofascore-event-at-bats", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventAveragePositions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-average-positions", params, opts...)
+}
+
+type SofaScoreSofascoreEventAveragePositionsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventAveragePositionsResponse = ModelSofascoreEventAveragePositionsResponseDoc
+
+func (s *SofaScoreService) SofascoreEventAveragePositionsTyped(ctx context.Context, params SofaScoreSofascoreEventAveragePositionsParams, opts ...RequestOption) (SofaScoreSofascoreEventAveragePositionsResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventAveragePositionsResponse](s.client, ctx, "sofascore-event-average-positions", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventBaseballTopPerformers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-baseball-top-performers", params, opts...)
+}
+
+type SofaScoreSofascoreEventBaseballTopPerformersParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventBaseballTopPerformersResponse = ModelSofascoreEventBaseballTopPerformersResponseDoc
+
+func (s *SofaScoreService) SofascoreEventBaseballTopPerformersTyped(ctx context.Context, params SofaScoreSofascoreEventBaseballTopPerformersParams, opts ...RequestOption) (SofaScoreSofascoreEventBaseballTopPerformersResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventBaseballTopPerformersResponse](s.client, ctx, "sofascore-event-baseball-top-performers", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventBestPlayers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-best-players", params, opts...)
+}
+
+type SofaScoreSofascoreEventBestPlayersParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventBestPlayersResponse = ModelSofascoreEventBestPlayersResponseDoc
+
+func (s *SofaScoreService) SofascoreEventBestPlayersTyped(ctx context.Context, params SofaScoreSofascoreEventBestPlayersParams, opts ...RequestOption) (SofaScoreSofascoreEventBestPlayersResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventBestPlayersResponse](s.client, ctx, "sofascore-event-best-players", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventComments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-comments", params, opts...)
+}
+
+type SofaScoreSofascoreEventCommentsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventCommentsResponse = ModelSofascoreEventCommentsResponseDoc
+
+func (s *SofaScoreService) SofascoreEventCommentsTyped(ctx context.Context, params SofaScoreSofascoreEventCommentsParams, opts ...RequestOption) (SofaScoreSofascoreEventCommentsResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventCommentsResponse](s.client, ctx, "sofascore-event-comments", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventEsportsGames(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-esports-games", params, opts...)
+}
+
+type SofaScoreSofascoreEventEsportsGamesParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventEsportsGamesResponse = ModelSofascoreEventEsportsGamesResponseDoc
+
+func (s *SofaScoreService) SofascoreEventEsportsGamesTyped(ctx context.Context, params SofaScoreSofascoreEventEsportsGamesParams, opts ...RequestOption) (SofaScoreSofascoreEventEsportsGamesResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventEsportsGamesResponse](s.client, ctx, "sofascore-event-esports-games", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventGraph(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-graph", params, opts...)
+}
+
+type SofaScoreSofascoreEventGraphParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventGraphResponse = ModelSofascoreEventGraphResponseDoc
+
+func (s *SofaScoreService) SofascoreEventGraphTyped(ctx context.Context, params SofaScoreSofascoreEventGraphParams, opts ...RequestOption) (SofaScoreSofascoreEventGraphResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventGraphResponse](s.client, ctx, "sofascore-event-graph", paramsFromStruct(params), opts...)
 }
 
 func (s *SofaScoreService) SofascoreEventH2h(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -118875,6 +125437,20 @@ func (s *SofaScoreService) SofascoreEventH2hTyped(ctx context.Context, params So
 	return requestTyped[SofaScoreSofascoreEventH2hResponse](s.client, ctx, "sofascore-event-h2h", paramsFromStruct(params), opts...)
 }
 
+func (s *SofaScoreService) SofascoreEventHighlights(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-highlights", params, opts...)
+}
+
+type SofaScoreSofascoreEventHighlightsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventHighlightsResponse = ModelSofascoreEventHighlightsResponseDoc
+
+func (s *SofaScoreService) SofascoreEventHighlightsTyped(ctx context.Context, params SofaScoreSofascoreEventHighlightsParams, opts ...RequestOption) (SofaScoreSofascoreEventHighlightsResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventHighlightsResponse](s.client, ctx, "sofascore-event-highlights", paramsFromStruct(params), opts...)
+}
+
 func (s *SofaScoreService) SofascoreEventIncidents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "sofascore-event-incidents", params, opts...)
 }
@@ -118887,6 +125463,20 @@ type SofaScoreSofascoreEventIncidentsResponse = ModelSofascoreEventIncidentsResp
 
 func (s *SofaScoreService) SofascoreEventIncidentsTyped(ctx context.Context, params SofaScoreSofascoreEventIncidentsParams, opts ...RequestOption) (SofaScoreSofascoreEventIncidentsResponse, error) {
 	return requestTyped[SofaScoreSofascoreEventIncidentsResponse](s.client, ctx, "sofascore-event-incidents", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventInnings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-innings", params, opts...)
+}
+
+type SofaScoreSofascoreEventInningsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventInningsResponse = ModelSofascoreEventInningsResponseDoc
+
+func (s *SofaScoreService) SofascoreEventInningsTyped(ctx context.Context, params SofaScoreSofascoreEventInningsParams, opts ...RequestOption) (SofaScoreSofascoreEventInningsResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventInningsResponse](s.client, ctx, "sofascore-event-innings", paramsFromStruct(params), opts...)
 }
 
 func (s *SofaScoreService) SofascoreEventLineups(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -118903,6 +125493,20 @@ func (s *SofaScoreService) SofascoreEventLineupsTyped(ctx context.Context, param
 	return requestTyped[SofaScoreSofascoreEventLineupsResponse](s.client, ctx, "sofascore-event-lineups", paramsFromStruct(params), opts...)
 }
 
+func (s *SofaScoreService) SofascoreEventManagers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-managers", params, opts...)
+}
+
+type SofaScoreSofascoreEventManagersParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventManagersResponse = ModelSofascoreEventManagersResponseDoc
+
+func (s *SofaScoreService) SofascoreEventManagersTyped(ctx context.Context, params SofaScoreSofascoreEventManagersParams, opts ...RequestOption) (SofaScoreSofascoreEventManagersResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventManagersResponse](s.client, ctx, "sofascore-event-managers", paramsFromStruct(params), opts...)
+}
+
 func (s *SofaScoreService) SofascoreEventOdds(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "sofascore-event-odds", params, opts...)
 }
@@ -118915,6 +125519,78 @@ type SofaScoreSofascoreEventOddsResponse = ModelSofascoreEventOddsResponseDoc
 
 func (s *SofaScoreService) SofascoreEventOddsTyped(ctx context.Context, params SofaScoreSofascoreEventOddsParams, opts ...RequestOption) (SofaScoreSofascoreEventOddsResponse, error) {
 	return requestTyped[SofaScoreSofascoreEventOddsResponse](s.client, ctx, "sofascore-event-odds", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventPlayerHeatmap(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-player-heatmap", params, opts...)
+}
+
+type SofaScoreSofascoreEventPlayerHeatmapParams struct {
+	Id       string `crawlora:"id"`
+	PlayerId string `crawlora:"player_id"`
+}
+
+type SofaScoreSofascoreEventPlayerHeatmapResponse = ModelSofascoreEventPlayerHeatmapResponseDoc
+
+func (s *SofaScoreService) SofascoreEventPlayerHeatmapTyped(ctx context.Context, params SofaScoreSofascoreEventPlayerHeatmapParams, opts ...RequestOption) (SofaScoreSofascoreEventPlayerHeatmapResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventPlayerHeatmapResponse](s.client, ctx, "sofascore-event-player-heatmap", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventPlayerStatistics(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-player-statistics", params, opts...)
+}
+
+type SofaScoreSofascoreEventPlayerStatisticsParams struct {
+	Id       string `crawlora:"id"`
+	PlayerId string `crawlora:"player_id"`
+}
+
+type SofaScoreSofascoreEventPlayerStatisticsResponse = ModelSofascoreEventPlayerStatisticsResponseDoc
+
+func (s *SofaScoreService) SofascoreEventPlayerStatisticsTyped(ctx context.Context, params SofaScoreSofascoreEventPlayerStatisticsParams, opts ...RequestOption) (SofaScoreSofascoreEventPlayerStatisticsResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventPlayerStatisticsResponse](s.client, ctx, "sofascore-event-player-statistics", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventPointByPoint(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-point-by-point", params, opts...)
+}
+
+type SofaScoreSofascoreEventPointByPointParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventPointByPointResponse = ModelSofascoreEventPointByPointResponseDoc
+
+func (s *SofaScoreService) SofascoreEventPointByPointTyped(ctx context.Context, params SofaScoreSofascoreEventPointByPointParams, opts ...RequestOption) (SofaScoreSofascoreEventPointByPointResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventPointByPointResponse](s.client, ctx, "sofascore-event-point-by-point", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventPregameForm(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-pregame-form", params, opts...)
+}
+
+type SofaScoreSofascoreEventPregameFormParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventPregameFormResponse = ModelSofascoreEventPregameFormResponseDoc
+
+func (s *SofaScoreService) SofascoreEventPregameFormTyped(ctx context.Context, params SofaScoreSofascoreEventPregameFormParams, opts ...RequestOption) (SofaScoreSofascoreEventPregameFormResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventPregameFormResponse](s.client, ctx, "sofascore-event-pregame-form", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventShotmap(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-shotmap", params, opts...)
+}
+
+type SofaScoreSofascoreEventShotmapParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventShotmapResponse = ModelSofascoreEventShotmapResponseDoc
+
+func (s *SofaScoreService) SofascoreEventShotmapTyped(ctx context.Context, params SofaScoreSofascoreEventShotmapParams, opts ...RequestOption) (SofaScoreSofascoreEventShotmapResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventShotmapResponse](s.client, ctx, "sofascore-event-shotmap", paramsFromStruct(params), opts...)
 }
 
 func (s *SofaScoreService) SofascoreEventStatistics(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -118931,6 +125607,78 @@ func (s *SofaScoreService) SofascoreEventStatisticsTyped(ctx context.Context, pa
 	return requestTyped[SofaScoreSofascoreEventStatisticsResponse](s.client, ctx, "sofascore-event-statistics", paramsFromStruct(params), opts...)
 }
 
+func (s *SofaScoreService) SofascoreEventTeamHeatmap(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-team-heatmap", params, opts...)
+}
+
+type SofaScoreSofascoreEventTeamHeatmapParams struct {
+	Id     string `crawlora:"id"`
+	TeamId string `crawlora:"team_id"`
+}
+
+type SofaScoreSofascoreEventTeamHeatmapResponse = ModelSofascoreEventTeamHeatmapResponseDoc
+
+func (s *SofaScoreService) SofascoreEventTeamHeatmapTyped(ctx context.Context, params SofaScoreSofascoreEventTeamHeatmapParams, opts ...RequestOption) (SofaScoreSofascoreEventTeamHeatmapResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventTeamHeatmapResponse](s.client, ctx, "sofascore-event-team-heatmap", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventTeamStreaks(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-team-streaks", params, opts...)
+}
+
+type SofaScoreSofascoreEventTeamStreaksParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventTeamStreaksResponse = ModelSofascoreEventTeamStreaksResponseDoc
+
+func (s *SofaScoreService) SofascoreEventTeamStreaksTyped(ctx context.Context, params SofaScoreSofascoreEventTeamStreaksParams, opts ...RequestOption) (SofaScoreSofascoreEventTeamStreaksResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventTeamStreaksResponse](s.client, ctx, "sofascore-event-team-streaks", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventTennisPower(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-tennis-power", params, opts...)
+}
+
+type SofaScoreSofascoreEventTennisPowerParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventTennisPowerResponse = ModelSofascoreEventTennisPowerResponseDoc
+
+func (s *SofaScoreService) SofascoreEventTennisPowerTyped(ctx context.Context, params SofaScoreSofascoreEventTennisPowerParams, opts ...RequestOption) (SofaScoreSofascoreEventTennisPowerResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventTennisPowerResponse](s.client, ctx, "sofascore-event-tennis-power", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventTvChannels(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-tv-channels", params, opts...)
+}
+
+type SofaScoreSofascoreEventTvChannelsParams struct {
+	Id      string  `crawlora:"id"`
+	Country *string `crawlora:"country,omitempty"`
+}
+
+type SofaScoreSofascoreEventTvChannelsResponse = ModelSofascoreEventTvchannelsResponseDoc
+
+func (s *SofaScoreService) SofascoreEventTvChannelsTyped(ctx context.Context, params SofaScoreSofascoreEventTvChannelsParams, opts ...RequestOption) (SofaScoreSofascoreEventTvChannelsResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventTvChannelsResponse](s.client, ctx, "sofascore-event-tv-channels", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreEventVotes(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-event-votes", params, opts...)
+}
+
+type SofaScoreSofascoreEventVotesParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreEventVotesResponse = ModelSofascoreEventVotesResponseDoc
+
+func (s *SofaScoreService) SofascoreEventVotesTyped(ctx context.Context, params SofaScoreSofascoreEventVotesParams, opts ...RequestOption) (SofaScoreSofascoreEventVotesResponse, error) {
+	return requestTyped[SofaScoreSofascoreEventVotesResponse](s.client, ctx, "sofascore-event-votes", paramsFromStruct(params), opts...)
+}
+
 func (s *SofaScoreService) SofascoreLiveEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "sofascore-live-events", params, opts...)
 }
@@ -118943,6 +125691,94 @@ type SofaScoreSofascoreLiveEventsResponse = ModelSofascoreLiveEventsResponseDoc
 
 func (s *SofaScoreService) SofascoreLiveEventsTyped(ctx context.Context, params SofaScoreSofascoreLiveEventsParams, opts ...RequestOption) (SofaScoreSofascoreLiveEventsResponse, error) {
 	return requestTyped[SofaScoreSofascoreLiveEventsResponse](s.client, ctx, "sofascore-live-events", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreManager(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-manager", params, opts...)
+}
+
+type SofaScoreSofascoreManagerParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreManagerResponse = ModelSofascoreManagerResponseDoc
+
+func (s *SofaScoreService) SofascoreManagerTyped(ctx context.Context, params SofaScoreSofascoreManagerParams, opts ...RequestOption) (SofaScoreSofascoreManagerResponse, error) {
+	return requestTyped[SofaScoreSofascoreManagerResponse](s.client, ctx, "sofascore-manager", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreManagerEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-manager-events", params, opts...)
+}
+
+type SofaScoreSofascoreManagerEventsParams struct {
+	Id   string `crawlora:"id"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type SofaScoreSofascoreManagerEventsResponse = ModelSofascoreManagerEventsResponseDoc
+
+func (s *SofaScoreService) SofascoreManagerEventsTyped(ctx context.Context, params SofaScoreSofascoreManagerEventsParams, opts ...RequestOption) (SofaScoreSofascoreManagerEventsResponse, error) {
+	return requestTyped[SofaScoreSofascoreManagerEventsResponse](s.client, ctx, "sofascore-manager-events", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreMmaCard(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-mma-card", params, opts...)
+}
+
+type SofaScoreSofascoreMmaCardParams struct {
+	OrgId  string `crawlora:"org_id"`
+	CardId string `crawlora:"card_id"`
+	Part   string `crawlora:"part"`
+}
+
+type SofaScoreSofascoreMmaCardResponse = ModelSofascoreMmaCardResponseDoc
+
+func (s *SofaScoreService) SofascoreMmaCardTyped(ctx context.Context, params SofaScoreSofascoreMmaCardParams, opts ...RequestOption) (SofaScoreSofascoreMmaCardResponse, error) {
+	return requestTyped[SofaScoreSofascoreMmaCardResponse](s.client, ctx, "sofascore-mma-card", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreMmaSchedule(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-mma-schedule", params, opts...)
+}
+
+type SofaScoreSofascoreMmaScheduleParams struct {
+	OrgId string `crawlora:"org_id"`
+	Month string `crawlora:"month"`
+}
+
+type SofaScoreSofascoreMmaScheduleResponse = ModelSofascoreMmaScheduleResponseDoc
+
+func (s *SofaScoreService) SofascoreMmaScheduleTyped(ctx context.Context, params SofaScoreSofascoreMmaScheduleParams, opts ...RequestOption) (SofaScoreSofascoreMmaScheduleResponse, error) {
+	return requestTyped[SofaScoreSofascoreMmaScheduleResponse](s.client, ctx, "sofascore-mma-schedule", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreOddsDropping(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-odds-dropping", params, opts...)
+}
+
+type SofaScoreSofascoreOddsDroppingParams struct {
+	Sport *string `crawlora:"sport,omitempty"`
+}
+
+type SofaScoreSofascoreOddsDroppingResponse = ModelSofascoreOddsDroppingResponseDoc
+
+func (s *SofaScoreService) SofascoreOddsDroppingTyped(ctx context.Context, params SofaScoreSofascoreOddsDroppingParams, opts ...RequestOption) (SofaScoreSofascoreOddsDroppingResponse, error) {
+	return requestTyped[SofaScoreSofascoreOddsDroppingResponse](s.client, ctx, "sofascore-odds-dropping", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreOddsWinning(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-odds-winning", params, opts...)
+}
+
+type SofaScoreSofascoreOddsWinningParams struct {
+	Sport *string `crawlora:"sport,omitempty"`
+}
+
+type SofaScoreSofascoreOddsWinningResponse = ModelSofascoreOddsWinningResponseDoc
+
+func (s *SofaScoreService) SofascoreOddsWinningTyped(ctx context.Context, params SofaScoreSofascoreOddsWinningParams, opts ...RequestOption) (SofaScoreSofascoreOddsWinningResponse, error) {
+	return requestTyped[SofaScoreSofascoreOddsWinningResponse](s.client, ctx, "sofascore-odds-winning", paramsFromStruct(params), opts...)
 }
 
 func (s *SofaScoreService) SofascorePlayer(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -118959,20 +125795,303 @@ func (s *SofaScoreService) SofascorePlayerTyped(ctx context.Context, params Sofa
 	return requestTyped[SofaScoreSofascorePlayerResponse](s.client, ctx, "sofascore-player", paramsFromStruct(params), opts...)
 }
 
+func (s *SofaScoreService) SofascorePlayerAttributes(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-player-attributes", params, opts...)
+}
+
+type SofaScoreSofascorePlayerAttributesParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascorePlayerAttributesResponse = ModelSofascorePlayerAttributesResponseDoc
+
+func (s *SofaScoreService) SofascorePlayerAttributesTyped(ctx context.Context, params SofaScoreSofascorePlayerAttributesParams, opts ...RequestOption) (SofaScoreSofascorePlayerAttributesResponse, error) {
+	return requestTyped[SofaScoreSofascorePlayerAttributesResponse](s.client, ctx, "sofascore-player-attributes", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascorePlayerEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-player-events", params, opts...)
+}
+
+type SofaScoreSofascorePlayerEventsParams struct {
+	Id   string `crawlora:"id"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type SofaScoreSofascorePlayerEventsResponse = ModelSofascorePlayerEventsResponseDoc
+
+func (s *SofaScoreService) SofascorePlayerEventsTyped(ctx context.Context, params SofaScoreSofascorePlayerEventsParams, opts ...RequestOption) (SofaScoreSofascorePlayerEventsResponse, error) {
+	return requestTyped[SofaScoreSofascorePlayerEventsResponse](s.client, ctx, "sofascore-player-events", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascorePlayerLastYearSummary(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-player-last-year-summary", params, opts...)
+}
+
+type SofaScoreSofascorePlayerLastYearSummaryParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascorePlayerLastYearSummaryResponse = ModelSofascorePlayerLastYearSummaryResponseDoc
+
+func (s *SofaScoreService) SofascorePlayerLastYearSummaryTyped(ctx context.Context, params SofaScoreSofascorePlayerLastYearSummaryParams, opts ...RequestOption) (SofaScoreSofascorePlayerLastYearSummaryResponse, error) {
+	return requestTyped[SofaScoreSofascorePlayerLastYearSummaryResponse](s.client, ctx, "sofascore-player-last-year-summary", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascorePlayerNationalTeamStatistics(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-player-national-team-statistics", params, opts...)
+}
+
+type SofaScoreSofascorePlayerNationalTeamStatisticsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascorePlayerNationalTeamStatisticsResponse = ModelSofascorePlayerNationalTeamStatisticsResponseDoc
+
+func (s *SofaScoreService) SofascorePlayerNationalTeamStatisticsTyped(ctx context.Context, params SofaScoreSofascorePlayerNationalTeamStatisticsParams, opts ...RequestOption) (SofaScoreSofascorePlayerNationalTeamStatisticsResponse, error) {
+	return requestTyped[SofaScoreSofascorePlayerNationalTeamStatisticsResponse](s.client, ctx, "sofascore-player-national-team-statistics", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascorePlayerPenaltyHistory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-player-penalty-history", params, opts...)
+}
+
+type SofaScoreSofascorePlayerPenaltyHistoryParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascorePlayerPenaltyHistoryResponse = ModelSofascorePlayerPenaltyHistoryResponseDoc
+
+func (s *SofaScoreService) SofascorePlayerPenaltyHistoryTyped(ctx context.Context, params SofaScoreSofascorePlayerPenaltyHistoryParams, opts ...RequestOption) (SofaScoreSofascorePlayerPenaltyHistoryResponse, error) {
+	return requestTyped[SofaScoreSofascorePlayerPenaltyHistoryResponse](s.client, ctx, "sofascore-player-penalty-history", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascorePlayerRatings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-player-ratings", params, opts...)
+}
+
+type SofaScoreSofascorePlayerRatingsParams struct {
+	Id           string  `crawlora:"id"`
+	TournamentId string  `crawlora:"tournament_id"`
+	Season       string  `crawlora:"season"`
+	Type         *string `crawlora:"type,omitempty"`
+}
+
+type SofaScoreSofascorePlayerRatingsResponse = ModelSofascorePlayerRatingsResponseDoc
+
+func (s *SofaScoreService) SofascorePlayerRatingsTyped(ctx context.Context, params SofaScoreSofascorePlayerRatingsParams, opts ...RequestOption) (SofaScoreSofascorePlayerRatingsResponse, error) {
+	return requestTyped[SofaScoreSofascorePlayerRatingsResponse](s.client, ctx, "sofascore-player-ratings", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascorePlayerSeasonHeatmap(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-player-season-heatmap", params, opts...)
+}
+
+type SofaScoreSofascorePlayerSeasonHeatmapParams struct {
+	Id           string `crawlora:"id"`
+	TournamentId string `crawlora:"tournament_id"`
+	Season       string `crawlora:"season"`
+}
+
+type SofaScoreSofascorePlayerSeasonHeatmapResponse = ModelSofascorePlayerSeasonHeatmapResponseDoc
+
+func (s *SofaScoreService) SofascorePlayerSeasonHeatmapTyped(ctx context.Context, params SofaScoreSofascorePlayerSeasonHeatmapParams, opts ...RequestOption) (SofaScoreSofascorePlayerSeasonHeatmapResponse, error) {
+	return requestTyped[SofaScoreSofascorePlayerSeasonHeatmapResponse](s.client, ctx, "sofascore-player-season-heatmap", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascorePlayerSeasonStatistics(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-player-season-statistics", params, opts...)
+}
+
+type SofaScoreSofascorePlayerSeasonStatisticsParams struct {
+	Id           string  `crawlora:"id"`
+	TournamentId string  `crawlora:"tournament_id"`
+	Season       string  `crawlora:"season"`
+	Type         *string `crawlora:"type,omitempty"`
+}
+
+type SofaScoreSofascorePlayerSeasonStatisticsResponse = ModelSofascorePlayerSeasonStatisticsResponseDoc
+
+func (s *SofaScoreService) SofascorePlayerSeasonStatisticsTyped(ctx context.Context, params SofaScoreSofascorePlayerSeasonStatisticsParams, opts ...RequestOption) (SofaScoreSofascorePlayerSeasonStatisticsResponse, error) {
+	return requestTyped[SofaScoreSofascorePlayerSeasonStatisticsResponse](s.client, ctx, "sofascore-player-season-statistics", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascorePlayerStatisticalRankings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-player-statistical-rankings", params, opts...)
+}
+
+type SofaScoreSofascorePlayerStatisticalRankingsParams struct {
+	Id     string  `crawlora:"id"`
+	Season string  `crawlora:"season"`
+	Type   *string `crawlora:"type,omitempty"`
+}
+
+type SofaScoreSofascorePlayerStatisticalRankingsResponse = ModelSofascorePlayerStatisticalRankingsResponseDoc
+
+func (s *SofaScoreService) SofascorePlayerStatisticalRankingsTyped(ctx context.Context, params SofaScoreSofascorePlayerStatisticalRankingsParams, opts ...RequestOption) (SofaScoreSofascorePlayerStatisticalRankingsResponse, error) {
+	return requestTyped[SofaScoreSofascorePlayerStatisticalRankingsResponse](s.client, ctx, "sofascore-player-statistical-rankings", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascorePlayerStatisticsSeasons(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-player-statistics-seasons", params, opts...)
+}
+
+type SofaScoreSofascorePlayerStatisticsSeasonsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascorePlayerStatisticsSeasonsResponse = ModelSofascorePlayerStatisticsSeasonsResponseDoc
+
+func (s *SofaScoreService) SofascorePlayerStatisticsSeasonsTyped(ctx context.Context, params SofaScoreSofascorePlayerStatisticsSeasonsParams, opts ...RequestOption) (SofaScoreSofascorePlayerStatisticsSeasonsResponse, error) {
+	return requestTyped[SofaScoreSofascorePlayerStatisticsSeasonsResponse](s.client, ctx, "sofascore-player-statistics-seasons", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascorePlayerTournaments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-player-tournaments", params, opts...)
+}
+
+type SofaScoreSofascorePlayerTournamentsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascorePlayerTournamentsResponse = ModelSofascorePlayerTournamentsResponseDoc
+
+func (s *SofaScoreService) SofascorePlayerTournamentsTyped(ctx context.Context, params SofaScoreSofascorePlayerTournamentsParams, opts ...RequestOption) (SofaScoreSofascorePlayerTournamentsResponse, error) {
+	return requestTyped[SofaScoreSofascorePlayerTournamentsResponse](s.client, ctx, "sofascore-player-tournaments", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascorePlayerTransfers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-player-transfers", params, opts...)
+}
+
+type SofaScoreSofascorePlayerTransfersParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascorePlayerTransfersResponse = ModelSofascorePlayerTransfersResponseDoc
+
+func (s *SofaScoreService) SofascorePlayerTransfersTyped(ctx context.Context, params SofaScoreSofascorePlayerTransfersParams, opts ...RequestOption) (SofaScoreSofascorePlayerTransfersResponse, error) {
+	return requestTyped[SofaScoreSofascorePlayerTransfersResponse](s.client, ctx, "sofascore-player-transfers", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreRankingTypes(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-ranking-types", params, opts...)
+}
+
+type SofaScoreSofascoreRankingTypesParams struct {
+}
+
+type SofaScoreSofascoreRankingTypesResponse = ModelSofascoreRankingTypesResponseDoc
+
+func (s *SofaScoreService) SofascoreRankingTypesTyped(ctx context.Context, params SofaScoreSofascoreRankingTypesParams, opts ...RequestOption) (SofaScoreSofascoreRankingTypesResponse, error) {
+	return requestTyped[SofaScoreSofascoreRankingTypesResponse](s.client, ctx, "sofascore-ranking-types", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreRankings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-rankings", params, opts...)
+}
+
+type SofaScoreSofascoreRankingsParams struct {
+	Type  int  `crawlora:"type"`
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type SofaScoreSofascoreRankingsResponse = ModelSofascoreRankingsResponseDoc
+
+func (s *SofaScoreService) SofascoreRankingsTyped(ctx context.Context, params SofaScoreSofascoreRankingsParams, opts ...RequestOption) (SofaScoreSofascoreRankingsResponse, error) {
+	return requestTyped[SofaScoreSofascoreRankingsResponse](s.client, ctx, "sofascore-rankings", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreReferee(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-referee", params, opts...)
+}
+
+type SofaScoreSofascoreRefereeParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreRefereeResponse = ModelSofascoreRefereeResponseDoc
+
+func (s *SofaScoreService) SofascoreRefereeTyped(ctx context.Context, params SofaScoreSofascoreRefereeParams, opts ...RequestOption) (SofaScoreSofascoreRefereeResponse, error) {
+	return requestTyped[SofaScoreSofascoreRefereeResponse](s.client, ctx, "sofascore-referee", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreRefereeEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-referee-events", params, opts...)
+}
+
+type SofaScoreSofascoreRefereeEventsParams struct {
+	Id   string `crawlora:"id"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type SofaScoreSofascoreRefereeEventsResponse = ModelSofascoreRefereeEventsResponseDoc
+
+func (s *SofaScoreService) SofascoreRefereeEventsTyped(ctx context.Context, params SofaScoreSofascoreRefereeEventsParams, opts ...RequestOption) (SofaScoreSofascoreRefereeEventsResponse, error) {
+	return requestTyped[SofaScoreSofascoreRefereeEventsResponse](s.client, ctx, "sofascore-referee-events", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreRefereeStatistics(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-referee-statistics", params, opts...)
+}
+
+type SofaScoreSofascoreRefereeStatisticsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreRefereeStatisticsResponse = ModelSofascoreRefereeStatisticsResponseDoc
+
+func (s *SofaScoreService) SofascoreRefereeStatisticsTyped(ctx context.Context, params SofaScoreSofascoreRefereeStatisticsParams, opts ...RequestOption) (SofaScoreSofascoreRefereeStatisticsResponse, error) {
+	return requestTyped[SofaScoreSofascoreRefereeStatisticsResponse](s.client, ctx, "sofascore-referee-statistics", paramsFromStruct(params), opts...)
+}
+
 func (s *SofaScoreService) SofascoreRoundEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "sofascore-round-events", params, opts...)
 }
 
 type SofaScoreSofascoreRoundEventsParams struct {
-	Id     string `crawlora:"id"`
-	Season string `crawlora:"season"`
-	Round  int    `crawlora:"round"`
+	Id     string  `crawlora:"id"`
+	Season string  `crawlora:"season"`
+	Round  int     `crawlora:"round"`
+	Slug   *string `crawlora:"slug,omitempty"`
+	Prefix *string `crawlora:"prefix,omitempty"`
 }
 
 type SofaScoreSofascoreRoundEventsResponse = ModelSofascoreRoundEventsResponseDoc
 
 func (s *SofaScoreService) SofascoreRoundEventsTyped(ctx context.Context, params SofaScoreSofascoreRoundEventsParams, opts ...RequestOption) (SofaScoreSofascoreRoundEventsResponse, error) {
 	return requestTyped[SofaScoreSofascoreRoundEventsResponse](s.client, ctx, "sofascore-round-events", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreScheduledEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-scheduled-events", params, opts...)
+}
+
+type SofaScoreSofascoreScheduledEventsParams struct {
+	CategoryId string `crawlora:"category_id"`
+	Date       string `crawlora:"date"`
+}
+
+type SofaScoreSofascoreScheduledEventsResponse = ModelSofascoreScheduledEventsResponseDoc
+
+func (s *SofaScoreService) SofascoreScheduledEventsTyped(ctx context.Context, params SofaScoreSofascoreScheduledEventsParams, opts ...RequestOption) (SofaScoreSofascoreScheduledEventsResponse, error) {
+	return requestTyped[SofaScoreSofascoreScheduledEventsResponse](s.client, ctx, "sofascore-scheduled-events", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreScheduledTournaments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-scheduled-tournaments", params, opts...)
+}
+
+type SofaScoreSofascoreScheduledTournamentsParams struct {
+	Sport string `crawlora:"sport"`
+	Date  string `crawlora:"date"`
+	Page  *int   `crawlora:"page,omitempty"`
+}
+
+type SofaScoreSofascoreScheduledTournamentsResponse = ModelSofascoreScheduledTournamentsResponseDoc
+
+func (s *SofaScoreService) SofascoreScheduledTournamentsTyped(ctx context.Context, params SofaScoreSofascoreScheduledTournamentsParams, opts ...RequestOption) (SofaScoreSofascoreScheduledTournamentsResponse, error) {
+	return requestTyped[SofaScoreSofascoreScheduledTournamentsResponse](s.client, ctx, "sofascore-scheduled-tournaments", paramsFromStruct(params), opts...)
 }
 
 func (s *SofaScoreService) SofascoreSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -118987,6 +126106,167 @@ type SofaScoreSofascoreSearchResponse = ModelSofascoreSearchResponseDoc
 
 func (s *SofaScoreService) SofascoreSearchTyped(ctx context.Context, params SofaScoreSofascoreSearchParams, opts ...RequestOption) (SofaScoreSofascoreSearchResponse, error) {
 	return requestTyped[SofaScoreSofascoreSearchResponse](s.client, ctx, "sofascore-search", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreSearchTypedRaw(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-search-typed", params, opts...)
+}
+
+type SofaScoreSofascoreSearchTypedParams struct {
+	Type  string  `crawlora:"type"`
+	Q     string  `crawlora:"q"`
+	Page  *int    `crawlora:"page,omitempty"`
+	Sport *string `crawlora:"sport,omitempty"`
+}
+
+type SofaScoreSofascoreSearchTypedResponse = ModelSofascoreSearchTypedResponseDoc
+
+func (s *SofaScoreService) SofascoreSearchTypedRawTyped(ctx context.Context, params SofaScoreSofascoreSearchTypedParams, opts ...RequestOption) (SofaScoreSofascoreSearchTypedResponse, error) {
+	return requestTyped[SofaScoreSofascoreSearchTypedResponse](s.client, ctx, "sofascore-search-typed", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreSeasonEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-season-events", params, opts...)
+}
+
+type SofaScoreSofascoreSeasonEventsParams struct {
+	Id        string `crawlora:"id"`
+	Season    string `crawlora:"season"`
+	Direction string `crawlora:"direction"`
+	Page      *int   `crawlora:"page,omitempty"`
+}
+
+type SofaScoreSofascoreSeasonEventsResponse = ModelSofascoreSeasonEventsResponseDoc
+
+func (s *SofaScoreService) SofascoreSeasonEventsTyped(ctx context.Context, params SofaScoreSofascoreSeasonEventsParams, opts ...RequestOption) (SofaScoreSofascoreSeasonEventsResponse, error) {
+	return requestTyped[SofaScoreSofascoreSeasonEventsResponse](s.client, ctx, "sofascore-season-events", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreSports(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-sports", params, opts...)
+}
+
+type SofaScoreSofascoreSportsParams struct {
+}
+
+type SofaScoreSofascoreSportsResponse = ModelSofascoreSportsResponseDoc
+
+func (s *SofaScoreService) SofascoreSportsTyped(ctx context.Context, params SofaScoreSofascoreSportsParams, opts ...RequestOption) (SofaScoreSofascoreSportsResponse, error) {
+	return requestTyped[SofaScoreSofascoreSportsResponse](s.client, ctx, "sofascore-sports", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreStage(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-stage", params, opts...)
+}
+
+type SofaScoreSofascoreStageParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreStageResponse = ModelSofascoreStageDetailResponseDoc
+
+func (s *SofaScoreService) SofascoreStageTyped(ctx context.Context, params SofaScoreSofascoreStageParams, opts ...RequestOption) (SofaScoreSofascoreStageResponse, error) {
+	return requestTyped[SofaScoreSofascoreStageResponse](s.client, ctx, "sofascore-stage", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreStageCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-stage-categories", params, opts...)
+}
+
+type SofaScoreSofascoreStageCategoriesParams struct {
+	Sport string `crawlora:"sport"`
+}
+
+type SofaScoreSofascoreStageCategoriesResponse = ModelSofascoreStageCategoriesResponseDoc
+
+func (s *SofaScoreService) SofascoreStageCategoriesTyped(ctx context.Context, params SofaScoreSofascoreStageCategoriesParams, opts ...RequestOption) (SofaScoreSofascoreStageCategoriesResponse, error) {
+	return requestTyped[SofaScoreSofascoreStageCategoriesResponse](s.client, ctx, "sofascore-stage-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreStageDriverPerformance(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-stage-driver-performance", params, opts...)
+}
+
+type SofaScoreSofascoreStageDriverPerformanceParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreStageDriverPerformanceResponse = ModelSofascoreStageDriverPerformanceResponseDoc
+
+func (s *SofaScoreService) SofascoreStageDriverPerformanceTyped(ctx context.Context, params SofaScoreSofascoreStageDriverPerformanceParams, opts ...RequestOption) (SofaScoreSofascoreStageDriverPerformanceResponse, error) {
+	return requestTyped[SofaScoreSofascoreStageDriverPerformanceResponse](s.client, ctx, "sofascore-stage-driver-performance", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreStageFeatured(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-stage-featured", params, opts...)
+}
+
+type SofaScoreSofascoreStageFeaturedParams struct {
+	Sport string `crawlora:"sport"`
+}
+
+type SofaScoreSofascoreStageFeaturedResponse = ModelSofascoreStageFeaturedResponseDoc
+
+func (s *SofaScoreService) SofascoreStageFeaturedTyped(ctx context.Context, params SofaScoreSofascoreStageFeaturedParams, opts ...RequestOption) (SofaScoreSofascoreStageFeaturedResponse, error) {
+	return requestTyped[SofaScoreSofascoreStageFeaturedResponse](s.client, ctx, "sofascore-stage-featured", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreStageSchedule(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-stage-schedule", params, opts...)
+}
+
+type SofaScoreSofascoreStageScheduleParams struct {
+	Sport string `crawlora:"sport"`
+	Date  string `crawlora:"date"`
+}
+
+type SofaScoreSofascoreStageScheduleResponse = ModelSofascoreStageScheduleResponseDoc
+
+func (s *SofaScoreService) SofascoreStageScheduleTyped(ctx context.Context, params SofaScoreSofascoreStageScheduleParams, opts ...RequestOption) (SofaScoreSofascoreStageScheduleResponse, error) {
+	return requestTyped[SofaScoreSofascoreStageScheduleResponse](s.client, ctx, "sofascore-stage-schedule", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreStageSeasons(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-stage-seasons", params, opts...)
+}
+
+type SofaScoreSofascoreStageSeasonsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreStageSeasonsResponse = ModelSofascoreStageSeasonsResponseDoc
+
+func (s *SofaScoreService) SofascoreStageSeasonsTyped(ctx context.Context, params SofaScoreSofascoreStageSeasonsParams, opts ...RequestOption) (SofaScoreSofascoreStageSeasonsResponse, error) {
+	return requestTyped[SofaScoreSofascoreStageSeasonsResponse](s.client, ctx, "sofascore-stage-seasons", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreStageStandings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-stage-standings", params, opts...)
+}
+
+type SofaScoreSofascoreStageStandingsParams struct {
+	Id   string `crawlora:"id"`
+	Type string `crawlora:"type"`
+}
+
+type SofaScoreSofascoreStageStandingsResponse = ModelSofascoreStageStandingsResponseDoc
+
+func (s *SofaScoreService) SofascoreStageStandingsTyped(ctx context.Context, params SofaScoreSofascoreStageStandingsParams, opts ...RequestOption) (SofaScoreSofascoreStageStandingsResponse, error) {
+	return requestTyped[SofaScoreSofascoreStageStandingsResponse](s.client, ctx, "sofascore-stage-standings", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreStageSubstages(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-stage-substages", params, opts...)
+}
+
+type SofaScoreSofascoreStageSubstagesParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreStageSubstagesResponse = ModelSofascoreStageSubstagesResponseDoc
+
+func (s *SofaScoreService) SofascoreStageSubstagesTyped(ctx context.Context, params SofaScoreSofascoreStageSubstagesParams, opts ...RequestOption) (SofaScoreSofascoreStageSubstagesResponse, error) {
+	return requestTyped[SofaScoreSofascoreStageSubstagesResponse](s.client, ctx, "sofascore-stage-substages", paramsFromStruct(params), opts...)
 }
 
 func (s *SofaScoreService) SofascoreStandings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -119019,6 +126299,20 @@ func (s *SofaScoreService) SofascoreTeamTyped(ctx context.Context, params SofaSc
 	return requestTyped[SofaScoreSofascoreTeamResponse](s.client, ctx, "sofascore-team", paramsFromStruct(params), opts...)
 }
 
+func (s *SofaScoreService) SofascoreTeamAchievements(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-team-achievements", params, opts...)
+}
+
+type SofaScoreSofascoreTeamAchievementsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreTeamAchievementsResponse = ModelSofascoreTeamAchievementsResponseDoc
+
+func (s *SofaScoreService) SofascoreTeamAchievementsTyped(ctx context.Context, params SofaScoreSofascoreTeamAchievementsParams, opts ...RequestOption) (SofaScoreSofascoreTeamAchievementsResponse, error) {
+	return requestTyped[SofaScoreSofascoreTeamAchievementsResponse](s.client, ctx, "sofascore-team-achievements", paramsFromStruct(params), opts...)
+}
+
 func (s *SofaScoreService) SofascoreTeamEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "sofascore-team-events", params, opts...)
 }
@@ -119035,6 +126329,112 @@ func (s *SofaScoreService) SofascoreTeamEventsTyped(ctx context.Context, params 
 	return requestTyped[SofaScoreSofascoreTeamEventsResponse](s.client, ctx, "sofascore-team-events", paramsFromStruct(params), opts...)
 }
 
+func (s *SofaScoreService) SofascoreTeamGoalDistributions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-team-goal-distributions", params, opts...)
+}
+
+type SofaScoreSofascoreTeamGoalDistributionsParams struct {
+	Id           string `crawlora:"id"`
+	TournamentId string `crawlora:"tournament_id"`
+	Season       string `crawlora:"season"`
+}
+
+type SofaScoreSofascoreTeamGoalDistributionsResponse = ModelSofascoreTeamGoalDistributionsResponseDoc
+
+func (s *SofaScoreService) SofascoreTeamGoalDistributionsTyped(ctx context.Context, params SofaScoreSofascoreTeamGoalDistributionsParams, opts ...RequestOption) (SofaScoreSofascoreTeamGoalDistributionsResponse, error) {
+	return requestTyped[SofaScoreSofascoreTeamGoalDistributionsResponse](s.client, ctx, "sofascore-team-goal-distributions", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTeamNearEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-team-near-events", params, opts...)
+}
+
+type SofaScoreSofascoreTeamNearEventsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreTeamNearEventsResponse = ModelSofascoreTeamNearEventsResponseDoc
+
+func (s *SofaScoreService) SofascoreTeamNearEventsTyped(ctx context.Context, params SofaScoreSofascoreTeamNearEventsParams, opts ...RequestOption) (SofaScoreSofascoreTeamNearEventsResponse, error) {
+	return requestTyped[SofaScoreSofascoreTeamNearEventsResponse](s.client, ctx, "sofascore-team-near-events", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTeamOfTheWeek(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-team-of-the-week", params, opts...)
+}
+
+type SofaScoreSofascoreTeamOfTheWeekParams struct {
+	Id     string `crawlora:"id"`
+	Season string `crawlora:"season"`
+	Period string `crawlora:"period"`
+}
+
+type SofaScoreSofascoreTeamOfTheWeekResponse = ModelSofascoreTeamOfTheWeekResponseDoc
+
+func (s *SofaScoreService) SofascoreTeamOfTheWeekTyped(ctx context.Context, params SofaScoreSofascoreTeamOfTheWeekParams, opts ...RequestOption) (SofaScoreSofascoreTeamOfTheWeekResponse, error) {
+	return requestTyped[SofaScoreSofascoreTeamOfTheWeekResponse](s.client, ctx, "sofascore-team-of-the-week", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTeamOfTheWeekPeriods(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-team-of-the-week-periods", params, opts...)
+}
+
+type SofaScoreSofascoreTeamOfTheWeekPeriodsParams struct {
+	Id     string `crawlora:"id"`
+	Season string `crawlora:"season"`
+}
+
+type SofaScoreSofascoreTeamOfTheWeekPeriodsResponse = ModelSofascoreTeamOfTheWeekPeriodsResponseDoc
+
+func (s *SofaScoreService) SofascoreTeamOfTheWeekPeriodsTyped(ctx context.Context, params SofaScoreSofascoreTeamOfTheWeekPeriodsParams, opts ...RequestOption) (SofaScoreSofascoreTeamOfTheWeekPeriodsResponse, error) {
+	return requestTyped[SofaScoreSofascoreTeamOfTheWeekPeriodsResponse](s.client, ctx, "sofascore-team-of-the-week-periods", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTeamPerformance(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-team-performance", params, opts...)
+}
+
+type SofaScoreSofascoreTeamPerformanceParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreTeamPerformanceResponse = ModelSofascoreTeamPerformanceResponseDoc
+
+func (s *SofaScoreService) SofascoreTeamPerformanceTyped(ctx context.Context, params SofaScoreSofascoreTeamPerformanceParams, opts ...RequestOption) (SofaScoreSofascoreTeamPerformanceResponse, error) {
+	return requestTyped[SofaScoreSofascoreTeamPerformanceResponse](s.client, ctx, "sofascore-team-performance", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTeamPlayerStatistics(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-team-player-statistics", params, opts...)
+}
+
+type SofaScoreSofascoreTeamPlayerStatisticsParams struct {
+	Id           string  `crawlora:"id"`
+	TournamentId string  `crawlora:"tournament_id"`
+	Season       string  `crawlora:"season"`
+	Type         *string `crawlora:"type,omitempty"`
+}
+
+type SofaScoreSofascoreTeamPlayerStatisticsResponse = ModelSofascoreTeamPlayerStatisticsResponseDoc
+
+func (s *SofaScoreService) SofascoreTeamPlayerStatisticsTyped(ctx context.Context, params SofaScoreSofascoreTeamPlayerStatisticsParams, opts ...RequestOption) (SofaScoreSofascoreTeamPlayerStatisticsResponse, error) {
+	return requestTyped[SofaScoreSofascoreTeamPlayerStatisticsResponse](s.client, ctx, "sofascore-team-player-statistics", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTeamPlayerStatisticsSeasons(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-team-player-statistics-seasons", params, opts...)
+}
+
+type SofaScoreSofascoreTeamPlayerStatisticsSeasonsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreTeamPlayerStatisticsSeasonsResponse = ModelSofascoreTeamPlayerStatisticsSeasonsResponseDoc
+
+func (s *SofaScoreService) SofascoreTeamPlayerStatisticsSeasonsTyped(ctx context.Context, params SofaScoreSofascoreTeamPlayerStatisticsSeasonsParams, opts ...RequestOption) (SofaScoreSofascoreTeamPlayerStatisticsSeasonsResponse, error) {
+	return requestTyped[SofaScoreSofascoreTeamPlayerStatisticsSeasonsResponse](s.client, ctx, "sofascore-team-player-statistics-seasons", paramsFromStruct(params), opts...)
+}
+
 func (s *SofaScoreService) SofascoreTeamPlayers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "sofascore-team-players", params, opts...)
 }
@@ -119049,6 +126449,198 @@ func (s *SofaScoreService) SofascoreTeamPlayersTyped(ctx context.Context, params
 	return requestTyped[SofaScoreSofascoreTeamPlayersResponse](s.client, ctx, "sofascore-team-players", paramsFromStruct(params), opts...)
 }
 
+func (s *SofaScoreService) SofascoreTeamRankings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-team-rankings", params, opts...)
+}
+
+type SofaScoreSofascoreTeamRankingsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreTeamRankingsResponse = ModelSofascoreTeamRankingsResponseDoc
+
+func (s *SofaScoreService) SofascoreTeamRankingsTyped(ctx context.Context, params SofaScoreSofascoreTeamRankingsParams, opts ...RequestOption) (SofaScoreSofascoreTeamRankingsResponse, error) {
+	return requestTyped[SofaScoreSofascoreTeamRankingsResponse](s.client, ctx, "sofascore-team-rankings", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTeamSeasonStatistics(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-team-season-statistics", params, opts...)
+}
+
+type SofaScoreSofascoreTeamSeasonStatisticsParams struct {
+	Id           string  `crawlora:"id"`
+	TournamentId string  `crawlora:"tournament_id"`
+	Season       string  `crawlora:"season"`
+	Type         *string `crawlora:"type,omitempty"`
+}
+
+type SofaScoreSofascoreTeamSeasonStatisticsResponse = ModelSofascoreTeamSeasonStatisticsResponseDoc
+
+func (s *SofaScoreService) SofascoreTeamSeasonStatisticsTyped(ctx context.Context, params SofaScoreSofascoreTeamSeasonStatisticsParams, opts ...RequestOption) (SofaScoreSofascoreTeamSeasonStatisticsResponse, error) {
+	return requestTyped[SofaScoreSofascoreTeamSeasonStatisticsResponse](s.client, ctx, "sofascore-team-season-statistics", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTeamStatisticsSeasons(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-team-statistics-seasons", params, opts...)
+}
+
+type SofaScoreSofascoreTeamStatisticsSeasonsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreTeamStatisticsSeasonsResponse = ModelSofascoreTeamStatisticsSeasonsResponseDoc
+
+func (s *SofaScoreService) SofascoreTeamStatisticsSeasonsTyped(ctx context.Context, params SofaScoreSofascoreTeamStatisticsSeasonsParams, opts ...RequestOption) (SofaScoreSofascoreTeamStatisticsSeasonsResponse, error) {
+	return requestTyped[SofaScoreSofascoreTeamStatisticsSeasonsResponse](s.client, ctx, "sofascore-team-statistics-seasons", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTeamTopPlayers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-team-top-players", params, opts...)
+}
+
+type SofaScoreSofascoreTeamTopPlayersParams struct {
+	Id           string  `crawlora:"id"`
+	TournamentId string  `crawlora:"tournament_id"`
+	Season       string  `crawlora:"season"`
+	Type         *string `crawlora:"type,omitempty"`
+	Limit        *int    `crawlora:"limit,omitempty"`
+}
+
+type SofaScoreSofascoreTeamTopPlayersResponse = ModelSofascoreTeamTopPlayersResponseDoc
+
+func (s *SofaScoreService) SofascoreTeamTopPlayersTyped(ctx context.Context, params SofaScoreSofascoreTeamTopPlayersParams, opts ...RequestOption) (SofaScoreSofascoreTeamTopPlayersResponse, error) {
+	return requestTyped[SofaScoreSofascoreTeamTopPlayersResponse](s.client, ctx, "sofascore-team-top-players", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTeamTournaments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-team-tournaments", params, opts...)
+}
+
+type SofaScoreSofascoreTeamTournamentsParams struct {
+	Id  string `crawlora:"id"`
+	All *bool  `crawlora:"all,omitempty"`
+}
+
+type SofaScoreSofascoreTeamTournamentsResponse = ModelSofascoreTeamTournamentsResponseDoc
+
+func (s *SofaScoreService) SofascoreTeamTournamentsTyped(ctx context.Context, params SofaScoreSofascoreTeamTournamentsParams, opts ...RequestOption) (SofaScoreSofascoreTeamTournamentsResponse, error) {
+	return requestTyped[SofaScoreSofascoreTeamTournamentsResponse](s.client, ctx, "sofascore-team-tournaments", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTeamTransfers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-team-transfers", params, opts...)
+}
+
+type SofaScoreSofascoreTeamTransfersParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreTeamTransfersResponse = ModelSofascoreTeamTransfersResponseDoc
+
+func (s *SofaScoreService) SofascoreTeamTransfersTyped(ctx context.Context, params SofaScoreSofascoreTeamTransfersParams, opts ...RequestOption) (SofaScoreSofascoreTeamTransfersResponse, error) {
+	return requestTyped[SofaScoreSofascoreTeamTransfersResponse](s.client, ctx, "sofascore-team-transfers", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTennisPlayerGrandSlamResults(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-tennis-player-grand-slam-results", params, opts...)
+}
+
+type SofaScoreSofascoreTennisPlayerGrandSlamResultsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreTennisPlayerGrandSlamResultsResponse = ModelSofascoreTennisGrandSlamResultsResponseDoc
+
+func (s *SofaScoreService) SofascoreTennisPlayerGrandSlamResultsTyped(ctx context.Context, params SofaScoreSofascoreTennisPlayerGrandSlamResultsParams, opts ...RequestOption) (SofaScoreSofascoreTennisPlayerGrandSlamResultsResponse, error) {
+	return requestTyped[SofaScoreSofascoreTennisPlayerGrandSlamResultsResponse](s.client, ctx, "sofascore-tennis-player-grand-slam-results", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTournamentCuptree(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-tournament-cuptree", params, opts...)
+}
+
+type SofaScoreSofascoreTournamentCuptreeParams struct {
+	Id     string `crawlora:"id"`
+	Season string `crawlora:"season"`
+}
+
+type SofaScoreSofascoreTournamentCuptreeResponse = ModelSofascoreTournamentCupTreeResponseDoc
+
+func (s *SofaScoreService) SofascoreTournamentCuptreeTyped(ctx context.Context, params SofaScoreSofascoreTournamentCuptreeParams, opts ...RequestOption) (SofaScoreSofascoreTournamentCuptreeResponse, error) {
+	return requestTyped[SofaScoreSofascoreTournamentCuptreeResponse](s.client, ctx, "sofascore-tournament-cuptree", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTournamentInfo(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-tournament-info", params, opts...)
+}
+
+type SofaScoreSofascoreTournamentInfoParams struct {
+	Id     string  `crawlora:"id"`
+	Season *string `crawlora:"season,omitempty"`
+}
+
+type SofaScoreSofascoreTournamentInfoResponse = ModelSofascoreTournamentInfoResponseDoc
+
+func (s *SofaScoreService) SofascoreTournamentInfoTyped(ctx context.Context, params SofaScoreSofascoreTournamentInfoParams, opts ...RequestOption) (SofaScoreSofascoreTournamentInfoResponse, error) {
+	return requestTyped[SofaScoreSofascoreTournamentInfoResponse](s.client, ctx, "sofascore-tournament-info", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTournamentPlayerOfTheSeason(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-tournament-player-of-the-season", params, opts...)
+}
+
+type SofaScoreSofascoreTournamentPlayerOfTheSeasonParams struct {
+	Id     string `crawlora:"id"`
+	Season string `crawlora:"season"`
+}
+
+type SofaScoreSofascoreTournamentPlayerOfTheSeasonResponse = ModelSofascoreTournamentPlayerOfTheSeasonResponseDoc
+
+func (s *SofaScoreService) SofascoreTournamentPlayerOfTheSeasonTyped(ctx context.Context, params SofaScoreSofascoreTournamentPlayerOfTheSeasonParams, opts ...RequestOption) (SofaScoreSofascoreTournamentPlayerOfTheSeasonResponse, error) {
+	return requestTyped[SofaScoreSofascoreTournamentPlayerOfTheSeasonResponse](s.client, ctx, "sofascore-tournament-player-of-the-season", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTournamentPlayerStatistics(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-tournament-player-statistics", params, opts...)
+}
+
+type SofaScoreSofascoreTournamentPlayerStatisticsParams struct {
+	Id             string   `crawlora:"id"`
+	Season         string   `crawlora:"season"`
+	Order          *string  `crawlora:"order,omitempty"`
+	Direction      *string  `crawlora:"direction,omitempty"`
+	Accumulation   *string  `crawlora:"accumulation,omitempty"`
+	Group          *string  `crawlora:"group,omitempty"`
+	Limit          *int     `crawlora:"limit,omitempty"`
+	Offset         *int     `crawlora:"offset,omitempty"`
+	Team           []string `crawlora:"team"`
+	Nationality    []string `crawlora:"nationality"`
+	Position       []string `crawlora:"position"`
+	MinAppearances *int     `crawlora:"min_appearances,omitempty"`
+	MinMinutes     *int     `crawlora:"min_minutes,omitempty"`
+}
+
+type SofaScoreSofascoreTournamentPlayerStatisticsResponse = ModelSofascoreTournamentPlayerStatisticsResponseDoc
+
+func (s *SofaScoreService) SofascoreTournamentPlayerStatisticsTyped(ctx context.Context, params SofaScoreSofascoreTournamentPlayerStatisticsParams, opts ...RequestOption) (SofaScoreSofascoreTournamentPlayerStatisticsResponse, error) {
+	return requestTyped[SofaScoreSofascoreTournamentPlayerStatisticsResponse](s.client, ctx, "sofascore-tournament-player-statistics", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTournamentRounds(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-tournament-rounds", params, opts...)
+}
+
+type SofaScoreSofascoreTournamentRoundsParams struct {
+	Id     string `crawlora:"id"`
+	Season string `crawlora:"season"`
+}
+
+type SofaScoreSofascoreTournamentRoundsResponse = ModelSofascoreTournamentRoundsResponseDoc
+
+func (s *SofaScoreService) SofascoreTournamentRoundsTyped(ctx context.Context, params SofaScoreSofascoreTournamentRoundsParams, opts ...RequestOption) (SofaScoreSofascoreTournamentRoundsResponse, error) {
+	return requestTyped[SofaScoreSofascoreTournamentRoundsResponse](s.client, ctx, "sofascore-tournament-rounds", paramsFromStruct(params), opts...)
+}
+
 func (s *SofaScoreService) SofascoreTournamentSeasons(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "sofascore-tournament-seasons", params, opts...)
 }
@@ -119061,6 +126653,191 @@ type SofaScoreSofascoreTournamentSeasonsResponse = ModelSofascoreTournamentSeaso
 
 func (s *SofaScoreService) SofascoreTournamentSeasonsTyped(ctx context.Context, params SofaScoreSofascoreTournamentSeasonsParams, opts ...RequestOption) (SofaScoreSofascoreTournamentSeasonsResponse, error) {
 	return requestTyped[SofaScoreSofascoreTournamentSeasonsResponse](s.client, ctx, "sofascore-tournament-seasons", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTournamentStatisticsInfo(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-tournament-statistics-info", params, opts...)
+}
+
+type SofaScoreSofascoreTournamentStatisticsInfoParams struct {
+	Id     string `crawlora:"id"`
+	Season string `crawlora:"season"`
+}
+
+type SofaScoreSofascoreTournamentStatisticsInfoResponse = ModelSofascoreTournamentStatisticsInfoResponseDoc
+
+func (s *SofaScoreService) SofascoreTournamentStatisticsInfoTyped(ctx context.Context, params SofaScoreSofascoreTournamentStatisticsInfoParams, opts ...RequestOption) (SofaScoreSofascoreTournamentStatisticsInfoResponse, error) {
+	return requestTyped[SofaScoreSofascoreTournamentStatisticsInfoResponse](s.client, ctx, "sofascore-tournament-statistics-info", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTournamentTeamOfTheSeason(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-tournament-team-of-the-season", params, opts...)
+}
+
+type SofaScoreSofascoreTournamentTeamOfTheSeasonParams struct {
+	Id     string `crawlora:"id"`
+	Season string `crawlora:"season"`
+}
+
+type SofaScoreSofascoreTournamentTeamOfTheSeasonResponse = ModelSofascoreTournamentTeamOfTheSeasonResponseDoc
+
+func (s *SofaScoreService) SofascoreTournamentTeamOfTheSeasonTyped(ctx context.Context, params SofaScoreSofascoreTournamentTeamOfTheSeasonParams, opts ...RequestOption) (SofaScoreSofascoreTournamentTeamOfTheSeasonResponse, error) {
+	return requestTyped[SofaScoreSofascoreTournamentTeamOfTheSeasonResponse](s.client, ctx, "sofascore-tournament-team-of-the-season", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTournamentTeams(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-tournament-teams", params, opts...)
+}
+
+type SofaScoreSofascoreTournamentTeamsParams struct {
+	Id     string `crawlora:"id"`
+	Season string `crawlora:"season"`
+}
+
+type SofaScoreSofascoreTournamentTeamsResponse = ModelSofascoreTournamentTeamsResponseDoc
+
+func (s *SofaScoreService) SofascoreTournamentTeamsTyped(ctx context.Context, params SofaScoreSofascoreTournamentTeamsParams, opts ...RequestOption) (SofaScoreSofascoreTournamentTeamsResponse, error) {
+	return requestTyped[SofaScoreSofascoreTournamentTeamsResponse](s.client, ctx, "sofascore-tournament-teams", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTournamentTopPlayers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-tournament-top-players", params, opts...)
+}
+
+type SofaScoreSofascoreTournamentTopPlayersParams struct {
+	Id     string  `crawlora:"id"`
+	Season string  `crawlora:"season"`
+	Type   *string `crawlora:"type,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+}
+
+type SofaScoreSofascoreTournamentTopPlayersResponse = ModelSofascoreTournamentTopPlayersResponseDoc
+
+func (s *SofaScoreService) SofascoreTournamentTopPlayersTyped(ctx context.Context, params SofaScoreSofascoreTournamentTopPlayersParams, opts ...RequestOption) (SofaScoreSofascoreTournamentTopPlayersResponse, error) {
+	return requestTyped[SofaScoreSofascoreTournamentTopPlayersResponse](s.client, ctx, "sofascore-tournament-top-players", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTournamentTopTeams(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-tournament-top-teams", params, opts...)
+}
+
+type SofaScoreSofascoreTournamentTopTeamsParams struct {
+	Id     string  `crawlora:"id"`
+	Season string  `crawlora:"season"`
+	Type   *string `crawlora:"type,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+}
+
+type SofaScoreSofascoreTournamentTopTeamsResponse = ModelSofascoreTournamentTopTeamsResponseDoc
+
+func (s *SofaScoreService) SofascoreTournamentTopTeamsTyped(ctx context.Context, params SofaScoreSofascoreTournamentTopTeamsParams, opts ...RequestOption) (SofaScoreSofascoreTournamentTopTeamsResponse, error) {
+	return requestTyped[SofaScoreSofascoreTournamentTopTeamsResponse](s.client, ctx, "sofascore-tournament-top-teams", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTournamentVenues(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-tournament-venues", params, opts...)
+}
+
+type SofaScoreSofascoreTournamentVenuesParams struct {
+	Id     string `crawlora:"id"`
+	Season string `crawlora:"season"`
+}
+
+type SofaScoreSofascoreTournamentVenuesResponse = ModelSofascoreTournamentVenuesResponseDoc
+
+func (s *SofaScoreService) SofascoreTournamentVenuesTyped(ctx context.Context, params SofaScoreSofascoreTournamentVenuesParams, opts ...RequestOption) (SofaScoreSofascoreTournamentVenuesResponse, error) {
+	return requestTyped[SofaScoreSofascoreTournamentVenuesResponse](s.client, ctx, "sofascore-tournament-venues", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTournamentWinners(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-tournament-winners", params, opts...)
+}
+
+type SofaScoreSofascoreTournamentWinnersParams struct {
+	Id   string `crawlora:"id"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type SofaScoreSofascoreTournamentWinnersResponse = ModelSofascoreTournamentWinnersResponseDoc
+
+func (s *SofaScoreService) SofascoreTournamentWinnersTyped(ctx context.Context, params SofaScoreSofascoreTournamentWinnersParams, opts ...RequestOption) (SofaScoreSofascoreTournamentWinnersResponse, error) {
+	return requestTyped[SofaScoreSofascoreTournamentWinnersResponse](s.client, ctx, "sofascore-tournament-winners", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTournamentsWithFeature(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-tournaments-with-feature", params, opts...)
+}
+
+type SofaScoreSofascoreTournamentsWithFeatureParams struct {
+	Feature string `crawlora:"feature"`
+	Sport   string `crawlora:"sport"`
+}
+
+type SofaScoreSofascoreTournamentsWithFeatureResponse = ModelSofascoreTournamentsWithFeatureResponseDoc
+
+func (s *SofaScoreService) SofascoreTournamentsWithFeatureTyped(ctx context.Context, params SofaScoreSofascoreTournamentsWithFeatureParams, opts ...RequestOption) (SofaScoreSofascoreTournamentsWithFeatureResponse, error) {
+	return requestTyped[SofaScoreSofascoreTournamentsWithFeatureResponse](s.client, ctx, "sofascore-tournaments-with-feature", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTrendingEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-trending-events", params, opts...)
+}
+
+type SofaScoreSofascoreTrendingEventsParams struct {
+	Country string `crawlora:"country"`
+}
+
+type SofaScoreSofascoreTrendingEventsResponse = ModelSofascoreTrendingEventsResponseDoc
+
+func (s *SofaScoreService) SofascoreTrendingEventsTyped(ctx context.Context, params SofaScoreSofascoreTrendingEventsParams, opts ...RequestOption) (SofaScoreSofascoreTrendingEventsResponse, error) {
+	return requestTyped[SofaScoreSofascoreTrendingEventsResponse](s.client, ctx, "sofascore-trending-events", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreTrendingPlayers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-trending-players", params, opts...)
+}
+
+type SofaScoreSofascoreTrendingPlayersParams struct {
+	Sport string `crawlora:"sport"`
+}
+
+type SofaScoreSofascoreTrendingPlayersResponse = ModelSofascoreTrendingPlayersResponseDoc
+
+func (s *SofaScoreService) SofascoreTrendingPlayersTyped(ctx context.Context, params SofaScoreSofascoreTrendingPlayersParams, opts ...RequestOption) (SofaScoreSofascoreTrendingPlayersResponse, error) {
+	return requestTyped[SofaScoreSofascoreTrendingPlayersResponse](s.client, ctx, "sofascore-trending-players", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreVenue(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-venue", params, opts...)
+}
+
+type SofaScoreSofascoreVenueParams struct {
+	Id string `crawlora:"id"`
+}
+
+type SofaScoreSofascoreVenueResponse = ModelSofascoreVenueResponseDoc
+
+func (s *SofaScoreService) SofascoreVenueTyped(ctx context.Context, params SofaScoreSofascoreVenueParams, opts ...RequestOption) (SofaScoreSofascoreVenueResponse, error) {
+	return requestTyped[SofaScoreSofascoreVenueResponse](s.client, ctx, "sofascore-venue", paramsFromStruct(params), opts...)
+}
+
+func (s *SofaScoreService) SofascoreVenueEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "sofascore-venue-events", params, opts...)
+}
+
+type SofaScoreSofascoreVenueEventsParams struct {
+	Id         string  `crawlora:"id"`
+	Direction  string  `crawlora:"direction"`
+	Sport      *string `crawlora:"sport,omitempty"`
+	Page       *int    `crawlora:"page,omitempty"`
+	Tournament *string `crawlora:"tournament,omitempty"`
+	Season     *string `crawlora:"season,omitempty"`
+}
+
+type SofaScoreSofascoreVenueEventsResponse = ModelSofascoreVenueEventsResponseDoc
+
+func (s *SofaScoreService) SofascoreVenueEventsTyped(ctx context.Context, params SofaScoreSofascoreVenueEventsParams, opts ...RequestOption) (SofaScoreSofascoreVenueEventsResponse, error) {
+	return requestTyped[SofaScoreSofascoreVenueEventsResponse](s.client, ctx, "sofascore-venue-events", paramsFromStruct(params), opts...)
 }
 
 type SonicService struct{ client *Client }

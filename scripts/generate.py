@@ -216,6 +216,30 @@ def model_definitions(definitions):
     return lines
 
 
+def resolve_typed_helper_collisions(groups):
+    """Rename a method whose name equals another operation's typed helper.
+
+    Every operation emits `Name` and `NameTyped`, so an operation id ending in
+    `-typed` (for example `sofascore-search-typed` beside `sofascore-search`)
+    would declare `SofascoreSearchTyped` twice. The typed helper keeps its
+    name, because it may already be published; the colliding operation's
+    untyped method gets a `Raw` suffix, and its own typed helper follows from
+    that name.
+    """
+    for group_name, methods in groups.items():
+        taken = set(methods) | {name + "Typed" for name in methods}
+        renamed = {}
+        for method_name, operation_id in methods.items():
+            name = method_name
+            if any(name == other + "Typed" for other in methods if other != method_name):
+                name = method_name + "Raw"
+                while name in taken or name + "Typed" in taken:
+                    name += "Raw"
+                taken.update({name, name + "Typed"})
+            renamed[name] = operation_id
+        groups[group_name] = renamed
+
+
 def main():
     if not SPEC_PATH.exists():
         raise SystemExit(f"public OpenAPI spec not found: {SPEC_PATH}")
@@ -226,6 +250,7 @@ def main():
         shutil.copyfile(SPEC_PATH, target_spec)
 
     model = core.build_model(spec, POLICY)
+    resolve_typed_helper_collisions(model.groups)
 
     lines = [
         "package crawlora",
