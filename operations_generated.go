@@ -4748,8 +4748,10 @@ type ModelBbbBusinessResponse struct {
 	LocalBbbUrl                  string                     `json:"local_bbb_url,omitempty"`
 	MoreInfoUrl                  string                     `json:"more_info_url,omitempty"`
 	Name                         string                     `json:"name,omitempty"`
+	Notice                       string                     `json:"notice,omitempty"`
 	Phone                        string                     `json:"phone,omitempty"`
 	ProductsAndServices          []string                   `json:"products_and_services,omitempty"`
+	ProfileUnderReview           bool                       `json:"profile_under_review,omitempty"`
 	Rating                       string                     `json:"rating,omitempty"`
 	RatingReasons                []string                   `json:"rating_reasons,omitempty"`
 	SocialMedia                  []string                   `json:"social_media,omitempty"`
@@ -4808,8 +4810,10 @@ type ModelBbbComplaintsResponse struct {
 	FiledLast12Months        int                 `json:"filed_last_12_months,omitempty"`
 	HasMore                  bool                `json:"has_more,omitempty"`
 	HiddenComplaints         int                 `json:"hidden_complaints,omitempty"`
+	Notice                   string              `json:"notice,omitempty"`
 	Page                     int                 `json:"page,omitempty"`
 	PeriodText               string              `json:"period_text,omitempty"`
+	ProfileUnderReview       bool                `json:"profile_under_review,omitempty"`
 	PublishedComplaints      int                 `json:"published_complaints,omitempty"`
 	SourceUrl                string              `json:"source_url,omitempty"`
 	SubmitComplaintUrl       string              `json:"submit_complaint_url,omitempty"`
@@ -4955,6 +4959,7 @@ type ModelBbbdirectoryCountryRegions struct {
 type ModelBbbdirectoryLocalBbbchapter struct {
 	Id           string                    `json:"id,omitempty"`
 	Name         string                    `json:"name,omitempty"`
+	NewsUrl      string                    `json:"news_url,omitempty"`
 	Offices      []ModelBbbdirectoryOffice `json:"offices,omitempty"`
 	OpenToPublic bool                      `json:"open_to_public,omitempty"`
 	Url          string                    `json:"url,omitempty"`
@@ -4966,6 +4971,7 @@ type ModelBbbdirectoryLocalBbbresponse struct {
 	Id               string                      `json:"id,omitempty"`
 	Languages        []string                    `json:"languages,omitempty"`
 	Name             string                      `json:"name,omitempty"`
+	NewsUrl          string                      `json:"news_url,omitempty"`
 	Offices          []ModelBbbdirectoryOffice   `json:"offices,omitempty"`
 	OpenToPublic     bool                        `json:"open_to_public,omitempty"`
 	ServiceTerritory []string                    `json:"service_territory,omitempty"`
@@ -5080,13 +5086,17 @@ type ModelBbbnewsNewsItem struct {
 }
 
 type ModelBbbnewsNewsResponse struct {
-	Country   string                 `json:"country,omitempty"`
-	Items     []ModelBbbnewsNewsItem `json:"items,omitempty"`
-	Page      int                    `json:"page,omitempty"`
-	PageSize  int                    `json:"page_size,omitempty"`
-	SourceUrl string                 `json:"source_url,omitempty"`
-	Topic     string                 `json:"topic,omitempty"`
-	Total     int                    `json:"total,omitempty"`
+	City         string                 `json:"city,omitempty"`
+	Country      string                 `json:"country,omitempty"`
+	Items        []ModelBbbnewsNewsItem `json:"items,omitempty"`
+	LocalBbbId   string                 `json:"local_bbb_id,omitempty"`
+	LocalBbbName string                 `json:"local_bbb_name,omitempty"`
+	Page         int                    `json:"page,omitempty"`
+	PageSize     int                    `json:"page_size,omitempty"`
+	SourceUrl    string                 `json:"source_url,omitempty"`
+	State        string                 `json:"state,omitempty"`
+	Topic        string                 `json:"topic,omitempty"`
+	Total        int                    `json:"total,omitempty"`
 }
 
 type ModelBbbnewsTopic struct {
@@ -5096,9 +5106,13 @@ type ModelBbbnewsTopic struct {
 }
 
 type ModelBbbnewsTopicsResponse struct {
-	Country   string              `json:"country,omitempty"`
-	SourceUrl string              `json:"source_url,omitempty"`
-	Topics    []ModelBbbnewsTopic `json:"topics,omitempty"`
+	City         string              `json:"city,omitempty"`
+	Country      string              `json:"country,omitempty"`
+	LocalBbbId   string              `json:"local_bbb_id,omitempty"`
+	LocalBbbName string              `json:"local_bbb_name,omitempty"`
+	SourceUrl    string              `json:"source_url,omitempty"`
+	State        string              `json:"state,omitempty"`
+	Topics       []ModelBbbnewsTopic `json:"topics,omitempty"`
 }
 
 type ModelBbbscamtrackerDetailResponse struct {
@@ -13341,9 +13355,16 @@ type ModelDatasetsAppsSearchResponse struct {
 }
 
 type ModelDatasetsBbbbusinessesFacetResponse struct {
-	Dataset string                          `json:"dataset,omitempty"`
-	Facet   string                          `json:"facet,omitempty"`
-	Items   []ModelEsBbbbusinessesFacetItem `json:"items,omitempty"`
+	Dataset         string                          `json:"dataset,omitempty"`
+	Facet           string                          `json:"facet,omitempty"`
+	HasMore         bool                            `json:"has_more,omitempty"`
+	Items           []ModelEsBbbbusinessesFacetItem `json:"items,omitempty"`
+	Limit           int                             `json:"limit,omitempty"`
+	Missing         int                             `json:"missing,omitempty"`
+	Offset          int                             `json:"offset,omitempty"`
+	Total           int                             `json:"total,omitempty"`
+	TotalValues     int                             `json:"total_values,omitempty"`
+	ValuesTruncated bool                            `json:"values_truncated,omitempty"`
 }
 
 type ModelDatasetsBbbbusinessesSearchResponse struct {
@@ -77409,9 +77430,9 @@ var operations = map[string]operationDefinition{
 	"datasets-apps-charts-search":                     operationDefinition{Method: "GET", Path: "/datasets/apps-charts/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"ios", "android"}}, parameterDefinition{Name: "chart_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"top_free", "top_paid", "top_grossing", "new"}}, parameterDefinition{Name: "platform", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "collection", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"rank", "rank_desc", "date_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-apps-reviews-search":                    operationDefinition{Method: "GET", Path: "/datasets/apps-reviews/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"ios", "android"}}, parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_score", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"recent", "score_desc", "score_asc", "helpful_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-apps-search":                            operationDefinition{Method: "GET", Path: "/datasets/apps/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "store", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"ios", "android", "both"}}, parameterDefinition{Name: "platforms", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "developer", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "free", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_reviews", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "rating_desc", "reviews_desc", "installs_desc", "updated_at_desc", "popularity_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
-	"datasets-bbb-businesses-facets":                  operationDefinition{Method: "GET", Path: "/datasets/bbb-businesses/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"category", "state", "city", "rating", "accredited", "entity_type", "run_id", "alert_title", "has_alerts"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "rating", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"}}, parameterDefinition{Name: "accredited", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_alerts", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "alert_title", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_complaints", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "entity_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-bbb-businesses-facets":                  operationDefinition{Method: "GET", Path: "/datasets/bbb-businesses/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"country", "category", "state", "city", "rating", "accredited", "entity_type", "run_id", "alert_title", "has_alerts"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"us", "ca"}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "rating", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"}}, parameterDefinition{Name: "min_rating_rank", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "accredited", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_alerts", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "alert_title", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_complaints", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "entity_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-bbb-businesses-item":                    operationDefinition{Method: "GET", Path: "/datasets/bbb-businesses/items/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"datasets-bbb-businesses-search":                  operationDefinition{Method: "GET", Path: "/datasets/bbb-businesses/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "rating", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"}}, parameterDefinition{Name: "min_rating_rank", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "accredited", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_alerts", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "alert_title", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_complaints", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "entity_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "rating_desc", "rating_asc", "accredited_first", "name_asc", "years_in_business_desc", "complaints_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-bbb-businesses-search":                  operationDefinition{Method: "GET", Path: "/datasets/bbb-businesses/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"us", "ca"}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "rating", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"}}, parameterDefinition{Name: "min_rating_rank", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "accredited", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_alerts", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "alert_title", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_complaints", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "entity_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "rating_desc", "rating_asc", "accredited_first", "name_asc", "years_in_business_desc", "complaints_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-bbb-scamtracker-reports-facets":         operationDefinition{Method: "GET", Path: "/datasets/bbb-scamtracker-reports/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"scam_type", "state", "country"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "scam_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"USA", "CAN"}}, parameterDefinition{Name: "date_from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_loss", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_loss", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-bbb-scamtracker-reports-item":           operationDefinition{Method: "GET", Path: "/datasets/bbb-scamtracker-reports/items/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-bbb-scamtracker-reports-search":         operationDefinition{Method: "GET", Path: "/datasets/bbb-scamtracker-reports/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "scam_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"USA", "CAN"}}, parameterDefinition{Name: "date_from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date_to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_loss", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_loss", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "reported_desc", "reported_asc", "loss_desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -91652,11 +91673,15 @@ func (s *DatasetsService) BbbBusinessesFacets(ctx context.Context, params Params
 
 type DatasetsBbbBusinessesFacetsParams struct {
 	Facet         string  `crawlora:"facet"`
+	Limit         *int    `crawlora:"limit,omitempty"`
+	Offset        *int    `crawlora:"offset,omitempty"`
 	Q             *string `crawlora:"q,omitempty"`
 	Category      *string `crawlora:"category,omitempty"`
+	Country       *string `crawlora:"country,omitempty"`
 	State         *string `crawlora:"state,omitempty"`
 	City          *string `crawlora:"city,omitempty"`
 	Rating        *string `crawlora:"rating,omitempty"`
+	MinRatingRank *int    `crawlora:"min_rating_rank,omitempty"`
 	Accredited    *bool   `crawlora:"accredited,omitempty"`
 	HasAlerts     *bool   `crawlora:"has_alerts,omitempty"`
 	AlertTitle    *string `crawlora:"alert_title,omitempty"`
@@ -91692,6 +91717,7 @@ func (s *DatasetsService) BbbBusinessesSearch(ctx context.Context, params Params
 type DatasetsBbbBusinessesSearchParams struct {
 	Q             *string `crawlora:"q,omitempty"`
 	Category      *string `crawlora:"category,omitempty"`
+	Country       *string `crawlora:"country,omitempty"`
 	State         *string `crawlora:"state,omitempty"`
 	City          *string `crawlora:"city,omitempty"`
 	Rating        *string `crawlora:"rating,omitempty"`
