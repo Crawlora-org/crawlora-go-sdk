@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.47.1-sdk.1
+
+- Regenerated Go, TypeScript, Python, Ruby, Java, and PHP clients from the public API contract (3,695 operations; operation set unchanged).
+- Added BBB response fields for profile-review state and notices, local chapter newsroom URLs, and expanded BBB news, topic, and business-facet schemas.
+- Refreshed the affected BBB and dataset endpoint descriptions and parameter metadata from the current Swagger contract.
+
 ## v1.47.0-sdk.1
 
 - Regenerated from the public API contract (3695 operations).
