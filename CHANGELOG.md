@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.48.0-sdk.1
+
+- Regenerated from the public API contract (3737 operations).
+
 ## v1.47.1-sdk.1
 
 - Regenerated Go, TypeScript, Python, Ruby, Java, and PHP clients from the public API contract (3,695 operations; operation set unchanged).
