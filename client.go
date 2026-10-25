@@ -23,7 +23,7 @@ import (
 )
 
 const DefaultBaseURL = "https://api.crawlora.net/api/v1"
-const Version = "1.48.0-sdk.1"
+const Version = "1.49.0-sdk.4"
 
 const (
 	ResponseAuto   = "auto"
