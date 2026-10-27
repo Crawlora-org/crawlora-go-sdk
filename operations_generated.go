@@ -1035,6 +1035,59 @@ type ModelAliexpressAttributeValue struct {
 	Value string `json:"value,omitempty"`
 }
 
+type ModelAliexpressCategoriesResponse struct {
+	Categories  []ModelAliexpressCategory `json:"categories,omitempty"`
+	CategoryTab string                    `json:"category_tab,omitempty"`
+	Count       int                       `json:"count,omitempty"`
+	FetchedAt   string                    `json:"fetched_at,omitempty"`
+	SourceUrl   string                    `json:"source_url,omitempty"`
+}
+
+type ModelAliexpressCategory struct {
+	CategoryId    string                    `json:"category_id,omitempty"`
+	Children      []ModelAliexpressCategory `json:"children,omitempty"`
+	IconUrl       string                    `json:"icon_url,omitempty"`
+	Id            string                    `json:"id,omitempty"`
+	Level         int                       `json:"level,omitempty"`
+	Name          string                    `json:"name,omitempty"`
+	ParentId      string                    `json:"parent_id,omitempty"`
+	SearchKeyword string                    `json:"search_keyword,omitempty"`
+	SearchUrl     string                    `json:"search_url,omitempty"`
+}
+
+type ModelAliexpressCategoryIdsResponse struct {
+	Categories   []ModelAliexpressWebCategory  `json:"categories,omitempty"`
+	CategoryId   int                           `json:"category_id,omitempty"`
+	Count        int                           `json:"count,omitempty"`
+	FetchedAt    string                        `json:"fetched_at,omitempty"`
+	Page         int                           `json:"page,omitempty"`
+	Paths        []ModelAliexpressCategoryPath `json:"paths,omitempty"`
+	Query        string                        `json:"query,omitempty"`
+	Source       string                        `json:"source,omitempty"`
+	SourceUrl    string                        `json:"source_url,omitempty"`
+	TotalResults int                           `json:"total_results,omitempty"`
+}
+
+type ModelAliexpressCategoryPath struct {
+	Depth    int   `json:"depth,omitempty"`
+	LeafId   int   `json:"leaf_id,omitempty"`
+	Path     []int `json:"path,omitempty"`
+	Products int   `json:"products,omitempty"`
+}
+
+type ModelAliexpressCategoryProductsResponse struct {
+	CategoryId   int                             `json:"category_id,omitempty"`
+	Count        int                             `json:"count,omitempty"`
+	FetchedAt    string                          `json:"fetched_at,omitempty"`
+	Page         int                             `json:"page,omitempty"`
+	PageSize     int                             `json:"page_size,omitempty"`
+	Products     []ModelAliexpressProductSummary `json:"products,omitempty"`
+	Slug         string                          `json:"slug,omitempty"`
+	SourceUrl    string                          `json:"source_url,omitempty"`
+	TotalPages   int                             `json:"total_pages,omitempty"`
+	TotalResults int                             `json:"total_results,omitempty"`
+}
+
 type ModelAliexpressFiltersResponse struct {
 	AttributeGroups []ModelAliexpressAttributeGroup `json:"attribute_groups,omitempty"`
 	FetchedAt       string                          `json:"fetched_at,omitempty"`
@@ -1111,9 +1164,69 @@ type ModelAliexpressSortOption struct {
 	Value string `json:"value,omitempty"`
 }
 
+type ModelAliexpressSuggestResponse struct {
+	Count       int                         `json:"count,omitempty"`
+	FetchedAt   string                      `json:"fetched_at,omitempty"`
+	Limit       int                         `json:"limit,omitempty"`
+	Query       string                      `json:"query,omitempty"`
+	SourceUrl   string                      `json:"source_url,omitempty"`
+	Suggestions []ModelAliexpressSuggestion `json:"suggestions,omitempty"`
+}
+
+type ModelAliexpressSuggestion struct {
+	Keyword string `json:"keyword,omitempty"`
+	Url     string `json:"url,omitempty"`
+}
+
 type ModelAliexpressSwitchOption struct {
 	Label string `json:"label,omitempty"`
 	Param string `json:"param,omitempty"`
+}
+
+type ModelAliexpressTrendingSearch struct {
+	Category       string `json:"category,omitempty"`
+	DisplayKeyword string `json:"display_keyword,omitempty"`
+	ImageUrl       string `json:"image_url,omitempty"`
+	Keyword        string `json:"keyword,omitempty"`
+	Kind           string `json:"kind,omitempty"`
+	Label          string `json:"label,omitempty"`
+	SearchUrl      string `json:"search_url,omitempty"`
+}
+
+type ModelAliexpressTrendingSearchesResponse struct {
+	Available int                             `json:"available,omitempty"`
+	Count     int                             `json:"count,omitempty"`
+	FetchedAt string                          `json:"fetched_at,omitempty"`
+	Items     []ModelAliexpressTrendingSearch `json:"items,omitempty"`
+	Limit     int                             `json:"limit,omitempty"`
+	SourceUrl string                          `json:"source_url,omitempty"`
+}
+
+type ModelAliexpressWebCategory struct {
+	CategoryId  int   `json:"category_id,omitempty"`
+	Leaf        bool  `json:"leaf,omitempty"`
+	Level       int   `json:"level,omitempty"`
+	ParentId    int   `json:"parent_id,omitempty"`
+	Path        []int `json:"path,omitempty"`
+	ProductHits int   `json:"product_hits,omitempty"`
+}
+
+type ModelAliexpressCategoriesResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelAliexpressCategoriesResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelAliexpressCategoryIdsResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelAliexpressCategoryIdsResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelAliexpressCategoryProductsResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelAliexpressCategoryProductsResponse `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
 }
 
 type ModelAliexpressFiltersResponseDoc struct {
@@ -1132,6 +1245,18 @@ type ModelAliexpressSearchResponseDoc struct {
 	Code int                           `json:"code,omitempty"`
 	Data ModelAliexpressSearchResponse `json:"data,omitempty"`
 	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelAliexpressSuggestResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelAliexpressSuggestResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelAliexpressTrendingSearchesResponseDoc struct {
+	Code int                                     `json:"code,omitempty"`
+	Data ModelAliexpressTrendingSearchesResponse `json:"data,omitempty"`
+	Msg  string                                  `json:"msg,omitempty"`
 }
 
 type ModelAljazeeraArticleResponse struct {
@@ -13556,6 +13681,21 @@ type ModelDatasetsAirbnbMarketSearchResponse struct {
 	Total       int                            `json:"total,omitempty"`
 }
 
+type ModelDatasetsApplePlaceFacetResponse struct {
+	Dataset string                              `json:"dataset,omitempty"`
+	Facet   string                              `json:"facet,omitempty"`
+	Items   []ModelEsApplePlaceDatasetFacetItem `json:"items,omitempty"`
+}
+
+type ModelDatasetsApplePlaceSearchResponse struct {
+	Dataset  string                         `json:"dataset,omitempty"`
+	Items    []ModelEsApplePlaceDatasetItem `json:"items,omitempty"`
+	Page     int                            `json:"page,omitempty"`
+	PageSize int                            `json:"page_size,omitempty"`
+	Sort     string                         `json:"sort,omitempty"`
+	Total    int                            `json:"total,omitempty"`
+}
+
 type ModelDatasetsApplePodcastsShowsFacetResponse struct {
 	Dataset string                                      `json:"dataset,omitempty"`
 	Facet   string                                      `json:"facet,omitempty"`
@@ -14321,6 +14461,24 @@ type ModelDatasetsAirbnbMarketsSearchResponseDoc struct {
 	Code int                                     `json:"code,omitempty"`
 	Data ModelDatasetsAirbnbMarketSearchResponse `json:"data,omitempty"`
 	Msg  string                                  `json:"msg,omitempty"`
+}
+
+type ModelDatasetsApplePlaceResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelEsApplePlaceRecord `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelDatasetsApplePlacesFacetResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelDatasetsApplePlaceFacetResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelDatasetsApplePlacesSearchResponseDoc struct {
+	Code int                                   `json:"code,omitempty"`
+	Data ModelDatasetsApplePlaceSearchResponse `json:"data,omitempty"`
+	Msg  string                                `json:"msg,omitempty"`
 }
 
 type ModelDatasetsApplePodcastsShowResponseDoc struct {
@@ -16510,6 +16668,365 @@ type ModelDoordashStoreReviewsResponseDoc struct {
 	Msg  string                            `json:"msg,omitempty"`
 }
 
+type ModelDramaboxAppTagRef struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelDramaboxAppTitle struct {
+	CoverUrl    string                   `json:"cover_url,omitempty"`
+	Description string                   `json:"description,omitempty"`
+	Episodes    int                      `json:"episodes,omitempty"`
+	Id          string                   `json:"id,omitempty"`
+	InLibrary   bool                     `json:"in_library,omitempty"`
+	PlayCount   int                      `json:"play_count,omitempty"`
+	Protagonist string                   `json:"protagonist,omitempty"`
+	ShelfTime   string                   `json:"shelf_time,omitempty"`
+	ShelfTimeMs int                      `json:"shelf_time_ms,omitempty"`
+	TagRefs     []ModelDramaboxAppTagRef `json:"tag_refs,omitempty"`
+	Tags        []string                 `json:"tags,omitempty"`
+	Title       string                   `json:"title,omitempty"`
+	Url         string                   `json:"url,omitempty"`
+}
+
+type ModelDramaboxBook struct {
+	CoverUrl     string               `json:"cover_url,omitempty"`
+	Description  string               `json:"description,omitempty"`
+	Episodes     int                  `json:"episodes,omitempty"`
+	Follows      int                  `json:"follows,omitempty"`
+	Genres       []ModelDramaboxGenre `json:"genres,omitempty"`
+	Id           string               `json:"id,omitempty"`
+	Language     string               `json:"language,omitempty"`
+	ListedAt     string               `json:"listed_at,omitempty"`
+	Rating       float64              `json:"rating,omitempty"`
+	Status       string               `json:"status,omitempty"`
+	Tags         []string             `json:"tags,omitempty"`
+	Title        string               `json:"title,omitempty"`
+	Url          string               `json:"url,omitempty"`
+	ViewsDisplay string               `json:"views_display,omitempty"`
+}
+
+type ModelDramaboxBrowseResponse struct {
+	Books      []ModelDramaboxBook `json:"books,omitempty"`
+	GenreId    int                 `json:"genre_id,omitempty"`
+	GenreName  string              `json:"genre_name,omitempty"`
+	Language   string              `json:"language,omitempty"`
+	Page       int                 `json:"page,omitempty"`
+	TotalPages int                 `json:"total_pages,omitempty"`
+}
+
+type ModelDramaboxCategoriesResponse struct {
+	Groups []ModelDramaboxCategoryGroup `json:"groups,omitempty"`
+}
+
+type ModelDramaboxCategoryBooksResponse struct {
+	HasMore bool                    `json:"has_more,omitempty"`
+	Limit   int                     `json:"limit,omitempty"`
+	Page    int                     `json:"page,omitempty"`
+	Titles  []ModelDramaboxAppTitle `json:"titles,omitempty"`
+}
+
+type ModelDramaboxCategoryGroup struct {
+	Key     string                        `json:"key,omitempty"`
+	Options []ModelDramaboxCategoryOption `json:"options,omitempty"`
+	Row     int                           `json:"row,omitempty"`
+	Type    int                           `json:"type,omitempty"`
+}
+
+type ModelDramaboxCategoryOption struct {
+	Name  string `json:"name,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelDramaboxChannel struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelDramaboxChannelsResponse struct {
+	Channels []ModelDramaboxChannel `json:"channels,omitempty"`
+}
+
+type ModelDramaboxDramaResponse struct {
+	AvailableLanguages []string               `json:"available_languages,omitempty"`
+	CoverUrl           string                 `json:"cover_url,omitempty"`
+	Description        string                 `json:"description,omitempty"`
+	EpisodeCount       int                    `json:"episode_count,omitempty"`
+	Episodes           []ModelDramaboxEpisode `json:"episodes,omitempty"`
+	Follows            int                    `json:"follows,omitempty"`
+	Genres             []ModelDramaboxGenre   `json:"genres,omitempty"`
+	Id                 string                 `json:"id,omitempty"`
+	Language           string                 `json:"language,omitempty"`
+	ListedAt           string                 `json:"listed_at,omitempty"`
+	Related            []ModelDramaboxBook    `json:"related,omitempty"`
+	Tags               []string               `json:"tags,omitempty"`
+	Title              string                 `json:"title,omitempty"`
+	UpdatedAt          string                 `json:"updated_at,omitempty"`
+	Url                string                 `json:"url,omitempty"`
+	Views              int                    `json:"views,omitempty"`
+}
+
+type ModelDramaboxEpisode struct {
+	DurationMs   int    `json:"duration_ms,omitempty"`
+	Free         bool   `json:"free,omitempty"`
+	Id           string `json:"id,omitempty"`
+	Number       int    `json:"number,omitempty"`
+	ThumbnailUrl string `json:"thumbnail_url,omitempty"`
+	UpdatedAt    string `json:"updated_at,omitempty"`
+}
+
+type ModelDramaboxGenre struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelDramaboxGenresResponse struct {
+	Genres   []ModelDramaboxGenre `json:"genres,omitempty"`
+	Language string               `json:"language,omitempty"`
+}
+
+type ModelDramaboxHomeResponse struct {
+	Featured []ModelDramaboxBook  `json:"featured,omitempty"`
+	Language string               `json:"language,omitempty"`
+	Shelves  []ModelDramaboxShelf `json:"shelves,omitempty"`
+}
+
+type ModelDramaboxMoreResponse struct {
+	Books      []ModelDramaboxBook `json:"books,omitempty"`
+	Language   string              `json:"language,omitempty"`
+	Name       string              `json:"name,omitempty"`
+	Page       int                 `json:"page,omitempty"`
+	Position   string              `json:"position,omitempty"`
+	TotalPages int                 `json:"total_pages,omitempty"`
+}
+
+type ModelDramaboxPerformerResponse struct {
+	Avatar     string                  `json:"avatar,omitempty"`
+	Followed   bool                    `json:"followed,omitempty"`
+	Gender     int                     `json:"gender,omitempty"`
+	HasMore    bool                    `json:"has_more,omitempty"`
+	Id         string                  `json:"id,omitempty"`
+	Limit      int                     `json:"limit,omitempty"`
+	Name       string                  `json:"name,omitempty"`
+	Page       int                     `json:"page,omitempty"`
+	Titles     []ModelDramaboxAppTitle `json:"titles,omitempty"`
+	VideoCount int                     `json:"video_count,omitempty"`
+}
+
+type ModelDramaboxRankMeta struct {
+	HotCode string `json:"hot_code,omitempty"`
+	Sort    int    `json:"sort,omitempty"`
+	Type    int    `json:"type,omitempty"`
+}
+
+type ModelDramaboxRankResponse struct {
+	RankType int                        `json:"rank_type,omitempty"`
+	Tabs     []ModelDramaboxRankTab     `json:"tabs,omitempty"`
+	Titles   []ModelDramaboxRankedTitle `json:"titles,omitempty"`
+}
+
+type ModelDramaboxRankTab struct {
+	Name string `json:"name,omitempty"`
+	Type int    `json:"type,omitempty"`
+}
+
+type ModelDramaboxRankedTitle struct {
+	CoverUrl    string                `json:"cover_url,omitempty"`
+	DataFrom    string                `json:"data_from,omitempty"`
+	Description string                `json:"description,omitempty"`
+	Episodes    int                   `json:"episodes,omitempty"`
+	Id          string                `json:"id,omitempty"`
+	InLibrary   bool                  `json:"in_library,omitempty"`
+	Position    int                   `json:"position,omitempty"`
+	Protagonist string                `json:"protagonist,omitempty"`
+	Rank        ModelDramaboxRankMeta `json:"rank,omitempty"`
+	ShelfTime   string                `json:"shelf_time,omitempty"`
+	ShelfTimeMs int                   `json:"shelf_time_ms,omitempty"`
+	Tags        []string              `json:"tags,omitempty"`
+	Title       string                `json:"title,omitempty"`
+	Url         string                `json:"url,omitempty"`
+}
+
+type ModelDramaboxRecommendResponse struct {
+	HasMore  bool                    `json:"has_more,omitempty"`
+	Page     int                     `json:"page,omitempty"`
+	PageSize int                     `json:"page_size,omitempty"`
+	Title    string                  `json:"title,omitempty"`
+	Titles   []ModelDramaboxAppTitle `json:"titles,omitempty"`
+}
+
+type ModelDramaboxSearchPerson struct {
+	Avatar string `json:"avatar,omitempty"`
+	Id     string `json:"id,omitempty"`
+	Name   string `json:"name,omitempty"`
+	Videos int    `json:"videos,omitempty"`
+}
+
+type ModelDramaboxSearchResponse struct {
+	IsMore  bool                        `json:"is_more,omitempty"`
+	Keyword string                      `json:"keyword,omitempty"`
+	Limit   int                         `json:"limit,omitempty"`
+	Page    int                         `json:"page,omitempty"`
+	People  []ModelDramaboxSearchPerson `json:"people,omitempty"`
+	Titles  []ModelDramaboxAppTitle     `json:"titles,omitempty"`
+}
+
+type ModelDramaboxShelf struct {
+	Books    []ModelDramaboxBook `json:"books,omitempty"`
+	Id       int                 `json:"id,omitempty"`
+	Name     string              `json:"name,omitempty"`
+	Position string              `json:"position,omitempty"`
+}
+
+type ModelDramaboxSuggestItem struct {
+	Avatar   string `json:"avatar,omitempty"`
+	CoverUrl string `json:"cover_url,omitempty"`
+	Id       string `json:"id,omitempty"`
+	Kind     string `json:"kind,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Videos   int    `json:"videos,omitempty"`
+}
+
+type ModelDramaboxSuggestResponse struct {
+	Items   []ModelDramaboxSuggestItem `json:"items,omitempty"`
+	Keyword string                     `json:"keyword,omitempty"`
+}
+
+type ModelDramaboxTagResponse struct {
+	HasMore bool                    `json:"has_more,omitempty"`
+	Limit   int                     `json:"limit,omitempty"`
+	Page    int                     `json:"page,omitempty"`
+	TagId   int                     `json:"tag_id,omitempty"`
+	TagName string                  `json:"tag_name,omitempty"`
+	Titles  []ModelDramaboxAppTitle `json:"titles,omitempty"`
+}
+
+type ModelDramaboxTheaterBanner struct {
+	ImageUrl string `json:"image_url,omitempty"`
+	Title    string `json:"title,omitempty"`
+	TitleId  string `json:"title_id,omitempty"`
+}
+
+type ModelDramaboxTheaterResponse struct {
+	Banners  []ModelDramaboxTheaterBanner  `json:"banners,omitempty"`
+	Channel  ModelDramaboxChannel          `json:"channel,omitempty"`
+	HasMore  bool                          `json:"has_more,omitempty"`
+	HotWords []string                      `json:"hot_words,omitempty"`
+	Limit    int                           `json:"limit,omitempty"`
+	Page     int                           `json:"page,omitempty"`
+	Sections []ModelDramaboxTheaterSection `json:"sections,omitempty"`
+}
+
+type ModelDramaboxTheaterSection struct {
+	Style  string                  `json:"style,omitempty"`
+	Title  string                  `json:"title,omitempty"`
+	Titles []ModelDramaboxAppTitle `json:"titles,omitempty"`
+}
+
+type ModelDramaboxTrendingResponse struct {
+	Hot           []ModelDramaboxAppTitle `json:"hot,omitempty"`
+	NewReleases   []ModelDramaboxAppTitle `json:"new_releases,omitempty"`
+	PresetKeyword string                  `json:"preset_keyword,omitempty"`
+	RankTabs      []ModelDramaboxRankTab  `json:"rank_tabs,omitempty"`
+	Trending      []ModelDramaboxAppTitle `json:"trending,omitempty"`
+}
+
+type ModelDramaboxBrowseResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelDramaboxBrowseResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelDramaboxCategoriesResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelDramaboxCategoriesResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelDramaboxCategoryBooksResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelDramaboxCategoryBooksResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelDramaboxChannelsResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelDramaboxChannelsResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelDramaboxDramaResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelDramaboxDramaResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelDramaboxGenresResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelDramaboxGenresResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelDramaboxHomeResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelDramaboxHomeResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelDramaboxMoreResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelDramaboxMoreResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelDramaboxPerformerResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelDramaboxPerformerResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelDramaboxRankResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelDramaboxRankResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelDramaboxRecommendResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelDramaboxRecommendResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelDramaboxSearchResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelDramaboxSearchResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelDramaboxSuggestResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelDramaboxSuggestResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelDramaboxTagResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelDramaboxTagResponse `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelDramaboxTheaterResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelDramaboxTheaterResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelDramaboxTrendingResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelDramaboxTrendingResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
 type ModelDuckduckgoImageResponse struct {
 	Pagination ModelDuckduckgoSearchPagination `json:"pagination,omitempty"`
 	Query      string                          `json:"query,omitempty"`
@@ -17289,6 +17806,100 @@ type ModelEsAppReview struct {
 	Url         string `json:"url,omitempty"`
 	UserName    string `json:"user_name,omitempty"`
 	Version     string `json:"version,omitempty"`
+}
+
+type ModelEsApplePlaceDatasetFacetItem struct {
+	Count int    `json:"count,omitempty"`
+	Key   string `json:"key,omitempty"`
+}
+
+type ModelEsApplePlaceDatasetItem struct {
+	Address          string                   `json:"address,omitempty"`
+	AltPhones        []string                 `json:"alt_phones,omitempty"`
+	CatalogCountry   string                   `json:"catalog_country,omitempty"`
+	Categories       []string                 `json:"categories,omitempty"`
+	Category         string                   `json:"category,omitempty"`
+	CategoryIds      []string                 `json:"category_ids,omitempty"`
+	City             string                   `json:"city,omitempty"`
+	Country          string                   `json:"country,omitempty"`
+	CountryCode      string                   `json:"country_code,omitempty"`
+	County           string                   `json:"county,omitempty"`
+	CrawledAt        string                   `json:"crawled_at,omitempty"`
+	DiscoveryKeyword string                   `json:"discovery_keyword,omitempty"`
+	DistanceM        float64                  `json:"distance_m,omitempty"`
+	FirstSeenAt      string                   `json:"first_seen_at,omitempty"`
+	Hours            []ModelEsApplePlaceHours `json:"hours,omitempty"`
+	HoursType        string                   `json:"hours_type,omitempty"`
+	Id               string                   `json:"id,omitempty"`
+	LastSeenAt       string                   `json:"last_seen_at,omitempty"`
+	Latitude         float64                  `json:"latitude,omitempty"`
+	Location         ModelEsGeoPoint          `json:"location,omitempty"`
+	Longitude        float64                  `json:"longitude,omitempty"`
+	Name             string                   `json:"name,omitempty"`
+	Neighborhood     string                   `json:"neighborhood,omitempty"`
+	Phone            string                   `json:"phone,omitempty"`
+	PhotoUrl         string                   `json:"photo_url,omitempty"`
+	PlaceId          string                   `json:"place_id,omitempty"`
+	PostalCode       string                   `json:"postal_code,omitempty"`
+	PriceLevel       int                      `json:"price_level,omitempty"`
+	PriceSymbol      string                   `json:"price_symbol,omitempty"`
+	Rating           float64                  `json:"rating,omitempty"`
+	RatingCount      int                      `json:"rating_count,omitempty"`
+	RatingMax        int                      `json:"rating_max,omitempty"`
+	SchemaVersion    int                      `json:"schema_version,omitempty"`
+	State            string                   `json:"state,omitempty"`
+	StateCode        string                   `json:"state_code,omitempty"`
+	Street           string                   `json:"street,omitempty"`
+	Type             string                   `json:"type,omitempty"`
+	Url              string                   `json:"url,omitempty"`
+	Website          string                   `json:"website,omitempty"`
+}
+
+type ModelEsApplePlaceHours struct {
+	Close string `json:"close,omitempty"`
+	Day   string `json:"day,omitempty"`
+	Open  string `json:"open,omitempty"`
+}
+
+type ModelEsApplePlaceRecord struct {
+	Address          string                   `json:"address,omitempty"`
+	AltPhones        []string                 `json:"alt_phones,omitempty"`
+	CatalogCountry   string                   `json:"catalog_country,omitempty"`
+	Categories       []string                 `json:"categories,omitempty"`
+	Category         string                   `json:"category,omitempty"`
+	CategoryIds      []string                 `json:"category_ids,omitempty"`
+	City             string                   `json:"city,omitempty"`
+	Country          string                   `json:"country,omitempty"`
+	CountryCode      string                   `json:"country_code,omitempty"`
+	County           string                   `json:"county,omitempty"`
+	CrawledAt        string                   `json:"crawled_at,omitempty"`
+	DiscoveryKeyword string                   `json:"discovery_keyword,omitempty"`
+	FirstSeenAt      string                   `json:"first_seen_at,omitempty"`
+	Hours            []ModelEsApplePlaceHours `json:"hours,omitempty"`
+	HoursType        string                   `json:"hours_type,omitempty"`
+	Id               string                   `json:"id,omitempty"`
+	LastSeenAt       string                   `json:"last_seen_at,omitempty"`
+	Latitude         float64                  `json:"latitude,omitempty"`
+	Location         ModelEsGeoPoint          `json:"location,omitempty"`
+	Longitude        float64                  `json:"longitude,omitempty"`
+	Name             string                   `json:"name,omitempty"`
+	Neighborhood     string                   `json:"neighborhood,omitempty"`
+	Phone            string                   `json:"phone,omitempty"`
+	PhotoUrl         string                   `json:"photo_url,omitempty"`
+	PlaceId          string                   `json:"place_id,omitempty"`
+	PostalCode       string                   `json:"postal_code,omitempty"`
+	PriceLevel       int                      `json:"price_level,omitempty"`
+	PriceSymbol      string                   `json:"price_symbol,omitempty"`
+	Rating           float64                  `json:"rating,omitempty"`
+	RatingCount      int                      `json:"rating_count,omitempty"`
+	RatingMax        int                      `json:"rating_max,omitempty"`
+	SchemaVersion    int                      `json:"schema_version,omitempty"`
+	State            string                   `json:"state,omitempty"`
+	StateCode        string                   `json:"state_code,omitempty"`
+	Street           string                   `json:"street,omitempty"`
+	Type             string                   `json:"type,omitempty"`
+	Url              string                   `json:"url,omitempty"`
+	Website          string                   `json:"website,omitempty"`
 }
 
 type ModelEsApplePodcastsShowRecord struct {
@@ -35258,6 +35869,35 @@ type ModelJumiaProduct struct {
 	Url             string                    `json:"url,omitempty"`
 }
 
+type ModelJumiaRatingBucket struct {
+	Count int `json:"count,omitempty"`
+	Stars int `json:"stars,omitempty"`
+}
+
+type ModelJumiaReview struct {
+	Author   string `json:"author,omitempty"`
+	Date     string `json:"date,omitempty"`
+	Rating   int    `json:"rating,omitempty"`
+	Text     string `json:"text,omitempty"`
+	Title    string `json:"title,omitempty"`
+	Verified bool   `json:"verified,omitempty"`
+}
+
+type ModelJumiaReviewsResponse struct {
+	AverageRating float64                  `json:"average_rating,omitempty"`
+	Count         int                      `json:"count,omitempty"`
+	Country       string                   `json:"country,omitempty"`
+	FetchedAt     string                   `json:"fetched_at,omitempty"`
+	HasNext       bool                     `json:"has_next,omitempty"`
+	Histogram     []ModelJumiaRatingBucket `json:"histogram,omitempty"`
+	Page          int                      `json:"page,omitempty"`
+	RatingCount   int                      `json:"rating_count,omitempty"`
+	ReviewCount   int                      `json:"review_count,omitempty"`
+	Reviews       []ModelJumiaReview       `json:"reviews,omitempty"`
+	Sku           string                   `json:"sku,omitempty"`
+	SourceUrl     string                   `json:"source_url,omitempty"`
+}
+
 type ModelJumiaSeller struct {
 	Followers     int     `json:"followers,omitempty"`
 	Id            string  `json:"id,omitempty"`
@@ -35265,6 +35905,42 @@ type ModelJumiaSeller struct {
 	ScorePercent  float64 `json:"score_percent,omitempty"`
 	ShippingSpeed string  `json:"shipping_speed,omitempty"`
 	Url           string  `json:"url,omitempty"`
+}
+
+type ModelJumiaSitemapFile struct {
+	Language     string `json:"language,omitempty"`
+	LastModified string `json:"last_modified,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Type         string `json:"type,omitempty"`
+	Url          string `json:"url,omitempty"`
+}
+
+type ModelJumiaSitemapUrl struct {
+	Image        string `json:"image,omitempty"`
+	LastModified string `json:"last_modified,omitempty"`
+	Url          string `json:"url,omitempty"`
+}
+
+type ModelJumiaSitemapUrlsResponse struct {
+	Count      int                    `json:"count,omitempty"`
+	Country    string                 `json:"country,omitempty"`
+	FetchedAt  string                 `json:"fetched_at,omitempty"`
+	HasNext    bool                   `json:"has_next,omitempty"`
+	Page       int                    `json:"page,omitempty"`
+	PageSize   int                    `json:"page_size,omitempty"`
+	Sitemap    string                 `json:"sitemap,omitempty"`
+	SourceUrl  string                 `json:"source_url,omitempty"`
+	TotalCount int                    `json:"total_count,omitempty"`
+	Urls       []ModelJumiaSitemapUrl `json:"urls,omitempty"`
+}
+
+type ModelJumiaSitemapsResponse struct {
+	Count     int                     `json:"count,omitempty"`
+	Country   string                  `json:"country,omitempty"`
+	FetchedAt string                  `json:"fetched_at,omitempty"`
+	Sitemaps  []ModelJumiaSitemapFile `json:"sitemaps,omitempty"`
+	SourceUrl string                  `json:"source_url,omitempty"`
+	Type      string                  `json:"type,omitempty"`
 }
 
 type ModelJumiaSpecification struct {
@@ -35294,6 +35970,24 @@ type ModelJumiaProductResponseDoc struct {
 	Code int               `json:"code,omitempty"`
 	Data ModelJumiaProduct `json:"data,omitempty"`
 	Msg  string            `json:"msg,omitempty"`
+}
+
+type ModelJumiaReviewsResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelJumiaReviewsResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelJumiaSitemapUrlsResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelJumiaSitemapUrlsResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelJumiaSitemapsResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelJumiaSitemapsResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
 }
 
 type ModelJusteatFilterOption struct {
@@ -36444,6 +37138,490 @@ type ModelKhaleejtimesAuthorResponse struct {
 	TotalArticles int                             `json:"total_articles,omitempty"`
 	TwitterHandle string                          `json:"twitter_handle,omitempty"`
 	Url           string                          `json:"url,omitempty"`
+}
+
+type ModelKickCategoriesResponse struct {
+	Categories []ModelKickCategory `json:"categories,omitempty"`
+}
+
+type ModelKickCategory struct {
+	Icon string `json:"icon,omitempty"`
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelKickCategoryHit struct {
+	Id           int      `json:"id,omitempty"`
+	Mature       bool     `json:"mature,omitempty"`
+	Name         string   `json:"name,omitempty"`
+	Slug         string   `json:"slug,omitempty"`
+	Tags         []string `json:"tags,omitempty"`
+	ThumbnailUrl string   `json:"thumbnail_url,omitempty"`
+	Url          string   `json:"url,omitempty"`
+	Viewers      int      `json:"viewers,omitempty"`
+}
+
+type ModelKickCategoryRef struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelKickChannelChatroomResponse struct {
+	AccountAge      ModelKickChatMode `json:"account_age,omitempty"`
+	ChatroomId      int               `json:"chatroom_id,omitempty"`
+	EmotesOnly      ModelKickChatMode `json:"emotes_only,omitempty"`
+	FollowersOnly   ModelKickChatMode `json:"followers_only,omitempty"`
+	GiftsEnabled    bool              `json:"gifts_enabled,omitempty"`
+	Rules           string            `json:"rules,omitempty"`
+	SlowMode        ModelKickChatMode `json:"slow_mode,omitempty"`
+	Slug            string            `json:"slug,omitempty"`
+	SubscribersOnly ModelKickChatMode `json:"subscribers_only,omitempty"`
+}
+
+type ModelKickChannelEmotesResponse struct {
+	Channel []ModelKickEmote `json:"channel,omitempty"`
+	Emoji   []ModelKickEmote `json:"emoji,omitempty"`
+	Global  []ModelKickEmote `json:"global,omitempty"`
+	Slug    string           `json:"slug,omitempty"`
+}
+
+type ModelKickChannelHit struct {
+	Followers      int    `json:"followers,omitempty"`
+	Id             int    `json:"id,omitempty"`
+	Live           bool   `json:"live,omitempty"`
+	ProfilePicture string `json:"profile_picture,omitempty"`
+	Slug           string `json:"slug,omitempty"`
+	Url            string `json:"url,omitempty"`
+	Username       string `json:"username,omitempty"`
+	Verified       bool   `json:"verified,omitempty"`
+}
+
+type ModelKickChannelLink struct {
+	Description string `json:"description,omitempty"`
+	Id          int    `json:"id,omitempty"`
+	ImageUrl    string `json:"image_url,omitempty"`
+	Kind        string `json:"kind,omitempty"`
+	Order       int    `json:"order,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelKickChannelLinksResponse struct {
+	Links []ModelKickChannelLink `json:"links,omitempty"`
+	Slug  string                 `json:"slug,omitempty"`
+}
+
+type ModelKickChannelRef struct {
+	Id             int    `json:"id,omitempty"`
+	ProfilePicture string `json:"profile_picture,omitempty"`
+	Slug           string `json:"slug,omitempty"`
+	Url            string `json:"url,omitempty"`
+	Username       string `json:"username,omitempty"`
+	Verified       bool   `json:"verified,omitempty"`
+}
+
+type ModelKickChannelResponse struct {
+	Affiliate           bool                   `json:"affiliate,omitempty"`
+	Banned              bool                   `json:"banned,omitempty"`
+	BannerUrl           string                 `json:"banner_url,omitempty"`
+	Bio                 string                 `json:"bio,omitempty"`
+	Followers           int                    `json:"followers,omitempty"`
+	Id                  int                    `json:"id,omitempty"`
+	Live                ModelKickLiveStream    `json:"live,omitempty"`
+	ProfilePicture      string                 `json:"profile_picture,omitempty"`
+	RecentCategories    []ModelKickCategoryRef `json:"recent_categories,omitempty"`
+	Slug                string                 `json:"slug,omitempty"`
+	Socials             ModelKickSocials       `json:"socials,omitempty"`
+	SubscriptionEnabled bool                   `json:"subscription_enabled,omitempty"`
+	Url                 string                 `json:"url,omitempty"`
+	Username            string                 `json:"username,omitempty"`
+	Verified            bool                   `json:"verified,omitempty"`
+	VodEnabled          bool                   `json:"vod_enabled,omitempty"`
+}
+
+type ModelKickChannelStreamsResponse struct {
+	Slug    string                   `json:"slug,omitempty"`
+	Streams []ModelKickStreamSession `json:"streams,omitempty"`
+}
+
+type ModelKickChannelVideosResponse struct {
+	Slug   string           `json:"slug,omitempty"`
+	Videos []ModelKickVideo `json:"videos,omitempty"`
+}
+
+type ModelKickChatMode struct {
+	Enabled         bool `json:"enabled,omitempty"`
+	IntervalSeconds int  `json:"interval_seconds,omitempty"`
+	Minutes         int  `json:"minutes,omitempty"`
+}
+
+type ModelKickClip struct {
+	Category           ModelKickCategoryRef `json:"category,omitempty"`
+	Channel            ModelKickChannelRef  `json:"channel,omitempty"`
+	CreatedAt          string               `json:"created_at,omitempty"`
+	DurationSeconds    int                  `json:"duration_seconds,omitempty"`
+	Id                 string               `json:"id,omitempty"`
+	Likes              int                  `json:"likes,omitempty"`
+	Mature             bool                 `json:"mature,omitempty"`
+	StartedAt          string               `json:"started_at,omitempty"`
+	ThumbnailUrl       string               `json:"thumbnail_url,omitempty"`
+	Title              string               `json:"title,omitempty"`
+	Url                string               `json:"url,omitempty"`
+	VideoId            string               `json:"video_id,omitempty"`
+	VideoOffsetSeconds int                  `json:"video_offset_seconds,omitempty"`
+	Views              int                  `json:"views,omitempty"`
+}
+
+type ModelKickClipResponse struct {
+	Clip ModelKickClip `json:"clip,omitempty"`
+}
+
+type ModelKickClipsResponse struct {
+	Category   string          `json:"category,omitempty"`
+	Clips      []ModelKickClip `json:"clips,omitempty"`
+	NextCursor string          `json:"next_cursor,omitempty"`
+	Slug       string          `json:"slug,omitempty"`
+	Sort       string          `json:"sort,omitempty"`
+	Time       string          `json:"time,omitempty"`
+}
+
+type ModelKickDirectoryStream struct {
+	Category     ModelKickCategoryRef `json:"category,omitempty"`
+	Channel      ModelKickChannelRef  `json:"channel,omitempty"`
+	Id           string               `json:"id,omitempty"`
+	Language     string               `json:"language,omitempty"`
+	Mature       bool                 `json:"mature,omitempty"`
+	StartedAt    string               `json:"started_at,omitempty"`
+	Tags         []string             `json:"tags,omitempty"`
+	ThumbnailUrl string               `json:"thumbnail_url,omitempty"`
+	Title        string               `json:"title,omitempty"`
+	Viewers      int                  `json:"viewers,omitempty"`
+}
+
+type ModelKickDropCampaign struct {
+	Category     ModelKickCategoryRef      `json:"category,omitempty"`
+	ChannelCount int                       `json:"channel_count,omitempty"`
+	Channels     []ModelKickDropChannel    `json:"channels,omitempty"`
+	EndsAt       string                    `json:"ends_at,omitempty"`
+	Id           string                    `json:"id,omitempty"`
+	Name         string                    `json:"name,omitempty"`
+	Organization ModelKickDropOrganization `json:"organization,omitempty"`
+	Rewards      []ModelKickDropReward     `json:"rewards,omitempty"`
+	Rule         string                    `json:"rule,omitempty"`
+	StartsAt     string                    `json:"starts_at,omitempty"`
+	Status       string                    `json:"status,omitempty"`
+	Url          string                    `json:"url,omitempty"`
+}
+
+type ModelKickDropChannel struct {
+	Id             int    `json:"id,omitempty"`
+	ProfilePicture string `json:"profile_picture,omitempty"`
+	Slug           string `json:"slug,omitempty"`
+	Url            string `json:"url,omitempty"`
+	Username       string `json:"username,omitempty"`
+}
+
+type ModelKickDropOrganization struct {
+	Id      string `json:"id,omitempty"`
+	LogoUrl string `json:"logo_url,omitempty"`
+	Name    string `json:"name,omitempty"`
+	Url     string `json:"url,omitempty"`
+}
+
+type ModelKickDropReward struct {
+	CategoryId    int    `json:"category_id,omitempty"`
+	Id            string `json:"id,omitempty"`
+	ImageUrl      string `json:"image_url,omitempty"`
+	Name          string `json:"name,omitempty"`
+	RequiredUnits int    `json:"required_units,omitempty"`
+}
+
+type ModelKickDropsResponse struct {
+	Campaigns []ModelKickDropCampaign `json:"campaigns,omitempty"`
+	Status    string                  `json:"status,omitempty"`
+	Total     int                     `json:"total,omitempty"`
+}
+
+type ModelKickEmote struct {
+	Id              int    `json:"id,omitempty"`
+	ImageUrl        string `json:"image_url,omitempty"`
+	Name            string `json:"name,omitempty"`
+	SubscribersOnly bool   `json:"subscribers_only,omitempty"`
+}
+
+type ModelKickGift struct {
+	CharacterLimit int    `json:"character_limit,omitempty"`
+	Id             string `json:"id,omitempty"`
+	Kicks          int    `json:"kicks,omitempty"`
+	Name           string `json:"name,omitempty"`
+	PinnedSeconds  int    `json:"pinned_seconds,omitempty"`
+	Tier           string `json:"tier,omitempty"`
+	Type           string `json:"type,omitempty"`
+}
+
+type ModelKickGiftsResponse struct {
+	Gifts []ModelKickGift `json:"gifts,omitempty"`
+}
+
+type ModelKickLanguage struct {
+	Code string `json:"code,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelKickLanguagesResponse struct {
+	Languages []ModelKickLanguage `json:"languages,omitempty"`
+}
+
+type ModelKickLiveStream struct {
+	Categories   []ModelKickCategoryRef `json:"categories,omitempty"`
+	Id           int                    `json:"id,omitempty"`
+	Language     string                 `json:"language,omitempty"`
+	Mature       bool                   `json:"mature,omitempty"`
+	StartedAt    string                 `json:"started_at,omitempty"`
+	Tags         []string               `json:"tags,omitempty"`
+	ThumbnailUrl string                 `json:"thumbnail_url,omitempty"`
+	Title        string                 `json:"title,omitempty"`
+	Viewers      int                    `json:"viewers,omitempty"`
+}
+
+type ModelKickLivestreamsResponse struct {
+	CategoryId  int                        `json:"category_id,omitempty"`
+	Language    string                     `json:"language,omitempty"`
+	Livestreams []ModelKickDirectoryStream `json:"livestreams,omitempty"`
+	NextCursor  string                     `json:"next_cursor,omitempty"`
+	Sort        string                     `json:"sort,omitempty"`
+}
+
+type ModelKickSearchCategoriesResponse struct {
+	Categories []ModelKickCategoryHit `json:"categories,omitempty"`
+	Query      string                 `json:"query,omitempty"`
+}
+
+type ModelKickSearchChannelsResponse struct {
+	Channels []ModelKickChannelHit `json:"channels,omitempty"`
+	Query    string                `json:"query,omitempty"`
+}
+
+type ModelKickSocials struct {
+	Discord   string `json:"discord,omitempty"`
+	Facebook  string `json:"facebook,omitempty"`
+	Instagram string `json:"instagram,omitempty"`
+	Tiktok    string `json:"tiktok,omitempty"`
+	Twitter   string `json:"twitter,omitempty"`
+	Youtube   string `json:"youtube,omitempty"`
+}
+
+type ModelKickStreamSession struct {
+	Categories   []ModelKickCategoryRef `json:"categories,omitempty"`
+	DurationMs   int                    `json:"duration_ms,omitempty"`
+	Id           int                    `json:"id,omitempty"`
+	Language     string                 `json:"language,omitempty"`
+	Live         bool                   `json:"live,omitempty"`
+	Mature       bool                   `json:"mature,omitempty"`
+	StartedAt    string                 `json:"started_at,omitempty"`
+	Tags         []string               `json:"tags,omitempty"`
+	ThumbnailUrl string                 `json:"thumbnail_url,omitempty"`
+	Title        string                 `json:"title,omitempty"`
+	VideoUrl     string                 `json:"video_url,omitempty"`
+	VideoUuid    string                 `json:"video_uuid,omitempty"`
+	VideoViews   int                    `json:"video_views,omitempty"`
+	ViewerCount  int                    `json:"viewer_count,omitempty"`
+}
+
+type ModelKickSubcategoriesResponse struct {
+	Category      string                 `json:"category,omitempty"`
+	Limit         int                    `json:"limit,omitempty"`
+	Page          int                    `json:"page,omitempty"`
+	Reachable     int                    `json:"reachable,omitempty"`
+	Subcategories []ModelKickSubcategory `json:"subcategories,omitempty"`
+	Total         int                    `json:"total,omitempty"`
+}
+
+type ModelKickSubcategory struct {
+	BannerUrl   string   `json:"banner_url,omitempty"`
+	Description string   `json:"description,omitempty"`
+	Followers   int      `json:"followers,omitempty"`
+	Id          int      `json:"id,omitempty"`
+	Mature      bool     `json:"mature,omitempty"`
+	Name        string   `json:"name,omitempty"`
+	ParentId    int      `json:"parent_id,omitempty"`
+	ParentName  string   `json:"parent_name,omitempty"`
+	ParentSlug  string   `json:"parent_slug,omitempty"`
+	Slug        string   `json:"slug,omitempty"`
+	Tags        []string `json:"tags,omitempty"`
+	Url         string   `json:"url,omitempty"`
+	Viewers     int      `json:"viewers,omitempty"`
+}
+
+type ModelKickSubcategoryResponse struct {
+	Subcategory ModelKickSubcategory `json:"subcategory,omitempty"`
+}
+
+type ModelKickTopChannelsResponse struct {
+	Channels []ModelKickChannelHit `json:"channels,omitempty"`
+}
+
+type ModelKickVideo struct {
+	Categories   []ModelKickCategoryRef `json:"categories,omitempty"`
+	DurationMs   int                    `json:"duration_ms,omitempty"`
+	Id           int                    `json:"id,omitempty"`
+	Language     string                 `json:"language,omitempty"`
+	Live         bool                   `json:"live,omitempty"`
+	Mature       bool                   `json:"mature,omitempty"`
+	StartedAt    string                 `json:"started_at,omitempty"`
+	Tags         []string               `json:"tags,omitempty"`
+	ThumbnailUrl string                 `json:"thumbnail_url,omitempty"`
+	Title        string                 `json:"title,omitempty"`
+	Url          string                 `json:"url,omitempty"`
+	Uuid         string                 `json:"uuid,omitempty"`
+	Views        int                    `json:"views,omitempty"`
+}
+
+type ModelKickVideoResponse struct {
+	Categories   []ModelKickCategoryRef `json:"categories,omitempty"`
+	Channel      ModelKickChannelRef    `json:"channel,omitempty"`
+	CreatedAt    string                 `json:"created_at,omitempty"`
+	DurationMs   int                    `json:"duration_ms,omitempty"`
+	Id           int                    `json:"id,omitempty"`
+	Language     string                 `json:"language,omitempty"`
+	Mature       bool                   `json:"mature,omitempty"`
+	StartedAt    string                 `json:"started_at,omitempty"`
+	Status       string                 `json:"status,omitempty"`
+	Tags         []string               `json:"tags,omitempty"`
+	ThumbnailUrl string                 `json:"thumbnail_url,omitempty"`
+	Title        string                 `json:"title,omitempty"`
+	Url          string                 `json:"url,omitempty"`
+	Uuid         string                 `json:"uuid,omitempty"`
+	ViewerCount  int                    `json:"viewer_count,omitempty"`
+	Views        int                    `json:"views,omitempty"`
+}
+
+type ModelKickCategoriesResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelKickCategoriesResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelKickCategoryClipsResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelKickClipsResponse `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelKickChannelChatroomResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelKickChannelChatroomResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelKickChannelClipsResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelKickClipsResponse `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelKickChannelEmotesResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelKickChannelEmotesResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelKickChannelLinksResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelKickChannelLinksResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelKickChannelResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelKickChannelResponse `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelKickChannelStreamsResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelKickChannelStreamsResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelKickChannelVideosResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelKickChannelVideosResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelKickClipResponseDoc struct {
+	Code int                   `json:"code,omitempty"`
+	Data ModelKickClipResponse `json:"data,omitempty"`
+	Msg  string                `json:"msg,omitempty"`
+}
+
+type ModelKickClipsResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelKickClipsResponse `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelKickDropsResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelKickDropsResponse `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelKickGiftsResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelKickGiftsResponse `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
+}
+
+type ModelKickLanguagesResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelKickLanguagesResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelKickLivestreamsResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelKickLivestreamsResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelKickSearchCategoriesResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelKickSearchCategoriesResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelKickSearchChannelsResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelKickSearchChannelsResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelKickSubcategoriesResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelKickSubcategoriesResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelKickSubcategoryResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelKickSubcategoryResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelKickTopChannelsResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelKickTopChannelsResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelKickVideoResponseDoc struct {
+	Code int                    `json:"code,omitempty"`
+	Data ModelKickVideoResponse `json:"data,omitempty"`
+	Msg  string                 `json:"msg,omitempty"`
 }
 
 type ModelKickstarterCategory struct {
@@ -47996,6 +49174,192 @@ type ModelPredictionsPredictionsRulesResponseDoc struct {
 	Msg  string                                   `json:"msg,omitempty"`
 }
 
+type ModelPricechartingBigMover struct {
+	Change      float64 `json:"change,omitempty"`
+	Console     string  `json:"console,omitempty"`
+	ConsoleSlug string  `json:"console_slug,omitempty"`
+	Id          int     `json:"id,omitempty"`
+	Name        string  `json:"name,omitempty"`
+	Price       float64 `json:"price,omitempty"`
+	Slug        string  `json:"slug,omitempty"`
+	Url         string  `json:"url,omitempty"`
+}
+
+type ModelPricechartingBigMoversResponse struct {
+	Categories []ModelPricechartingCategory `json:"categories,omitempty"`
+	Category   string                       `json:"category,omitempty"`
+	ChangeUnit string                       `json:"change_unit,omitempty"`
+	PriceLabel string                       `json:"price_label,omitempty"`
+	Products   []ModelPricechartingBigMover `json:"products,omitempty"`
+	Region     string                       `json:"region,omitempty"`
+	Sort       string                       `json:"sort,omitempty"`
+	Title      string                       `json:"title,omitempty"`
+}
+
+type ModelPricechartingCategoriesResponse struct {
+	Categories []ModelPricechartingCategory `json:"categories,omitempty"`
+	Category   string                       `json:"category,omitempty"`
+	Consoles   []ModelPricechartingConsole  `json:"consoles,omitempty"`
+}
+
+type ModelPricechartingCategory struct {
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelPricechartingConsole struct {
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelPricechartingConsoleProduct struct {
+	CompletePrice float64 `json:"complete_price,omitempty"`
+	Id            int     `json:"id,omitempty"`
+	ImageUrl      string  `json:"image_url,omitempty"`
+	LoosePrice    float64 `json:"loose_price,omitempty"`
+	Name          string  `json:"name,omitempty"`
+	NewPrice      float64 `json:"new_price,omitempty"`
+	Slug          string  `json:"slug,omitempty"`
+	Url           string  `json:"url,omitempty"`
+}
+
+type ModelPricechartingConsoleResponse struct {
+	Console     string                             `json:"console,omitempty"`
+	Cursor      int                                `json:"cursor,omitempty"`
+	NextCursor  int                                `json:"next_cursor,omitempty"`
+	PriceLabels []string                           `json:"price_labels,omitempty"`
+	Products    []ModelPricechartingConsoleProduct `json:"products,omitempty"`
+	Sort        string                             `json:"sort,omitempty"`
+	Title       string                             `json:"title,omitempty"`
+}
+
+type ModelPricechartingGradeCount struct {
+	Count int `json:"count,omitempty"`
+	Grade int `json:"grade,omitempty"`
+}
+
+type ModelPricechartingPopulation struct {
+	Cgc []ModelPricechartingGradeCount `json:"cgc,omitempty"`
+	Psa []ModelPricechartingGradeCount `json:"psa,omitempty"`
+}
+
+type ModelPricechartingPriceCell struct {
+	Change float64 `json:"change,omitempty"`
+	Label  string  `json:"label,omitempty"`
+	Price  float64 `json:"price,omitempty"`
+}
+
+type ModelPricechartingPriceHistoryResponse struct {
+	Currency   string                          `json:"currency,omitempty"`
+	Population ModelPricechartingPopulation    `json:"population,omitempty"`
+	Product    ModelPricechartingProductRef    `json:"product,omitempty"`
+	Series     []ModelPricechartingPriceSeries `json:"series,omitempty"`
+}
+
+type ModelPricechartingPricePoint struct {
+	Date  string  `json:"date,omitempty"`
+	Price float64 `json:"price,omitempty"`
+}
+
+type ModelPricechartingPriceSeries struct {
+	Label  string                         `json:"label,omitempty"`
+	Points []ModelPricechartingPricePoint `json:"points,omitempty"`
+	Tab    string                         `json:"tab,omitempty"`
+}
+
+type ModelPricechartingProduct struct {
+	Attributes  map[string]string             `json:"attributes,omitempty"`
+	Console     string                        `json:"console,omitempty"`
+	ConsoleSlug string                        `json:"console_slug,omitempty"`
+	FullPrices  []ModelPricechartingPriceCell `json:"full_prices,omitempty"`
+	Id          int                           `json:"id,omitempty"`
+	ImageUrl    string                        `json:"image_url,omitempty"`
+	Name        string                        `json:"name,omitempty"`
+	Prices      []ModelPricechartingPriceCell `json:"prices,omitempty"`
+	RecentSales []ModelPricechartingSale      `json:"recent_sales,omitempty"`
+	Slug        string                        `json:"slug,omitempty"`
+	Url         string                        `json:"url,omitempty"`
+}
+
+type ModelPricechartingProductRef struct {
+	Console     string `json:"console,omitempty"`
+	ConsoleSlug string `json:"console_slug,omitempty"`
+	Id          int    `json:"id,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Slug        string `json:"slug,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelPricechartingProductResponse struct {
+	Product ModelPricechartingProduct `json:"product,omitempty"`
+}
+
+type ModelPricechartingSale struct {
+	Date    string  `json:"date,omitempty"`
+	Grade   string  `json:"grade,omitempty"`
+	ItemId  string  `json:"item_id,omitempty"`
+	ItemUrl string  `json:"item_url,omitempty"`
+	Price   float64 `json:"price,omitempty"`
+	Source  string  `json:"source,omitempty"`
+	Tab     string  `json:"tab,omitempty"`
+	Title   string  `json:"title,omitempty"`
+}
+
+type ModelPricechartingSearchProduct struct {
+	Category      string  `json:"category,omitempty"`
+	CompletePrice float64 `json:"complete_price,omitempty"`
+	Console       string  `json:"console,omitempty"`
+	ConsoleUid    string  `json:"console_uid,omitempty"`
+	Id            int     `json:"id,omitempty"`
+	ImageUrl      string  `json:"image_url,omitempty"`
+	LoosePrice    float64 `json:"loose_price,omitempty"`
+	Name          string  `json:"name,omitempty"`
+	NewPrice      float64 `json:"new_price,omitempty"`
+}
+
+type ModelPricechartingSearchResponse struct {
+	Products []ModelPricechartingSearchProduct `json:"products,omitempty"`
+	Query    string                            `json:"query,omitempty"`
+	Sort     string                            `json:"sort,omitempty"`
+	Total    int                               `json:"total,omitempty"`
+}
+
+type ModelPricechartingBigMoversResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelPricechartingBigMoversResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelPricechartingCategoriesResponseDoc struct {
+	Code int                                  `json:"code,omitempty"`
+	Data ModelPricechartingCategoriesResponse `json:"data,omitempty"`
+	Msg  string                               `json:"msg,omitempty"`
+}
+
+type ModelPricechartingConsoleResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelPricechartingConsoleResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelPricechartingPriceHistoryResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelPricechartingPriceHistoryResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelPricechartingProductResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelPricechartingProductResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelPricechartingSearchResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelPricechartingSearchResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
 type ModelPristineauctionAuctionStatus struct {
 	Slug string `json:"slug,omitempty"`
 }
@@ -49293,6 +50657,24 @@ type ModelPsaPriceGuideSetResponse struct {
 	Title     string                        `json:"title,omitempty"`
 }
 
+type ModelPsaPriceGuideSetSummary struct {
+	CategoryName string `json:"category_name,omitempty"`
+	CategoryPath string `json:"category_path,omitempty"`
+	SetId        int    `json:"set_id,omitempty"`
+	SetName      string `json:"set_name,omitempty"`
+	SetPath      string `json:"set_path,omitempty"`
+}
+
+type ModelPsaPriceGuideSetsResponse struct {
+	CategoryPath          string                         `json:"category_path,omitempty"`
+	Page                  int                            `json:"page,omitempty"`
+	PageSize              int                            `json:"page_size,omitempty"`
+	Query                 string                         `json:"query,omitempty"`
+	Sets                  []ModelPsaPriceGuideSetSummary `json:"sets,omitempty"`
+	TotalCount            int                            `json:"total_count,omitempty"`
+	UnavailableCategories []string                       `json:"unavailable_categories,omitempty"`
+}
+
 type ModelPsaProBatFactsCategoriesResponse struct {
 	Categories []ModelPsaProBatFactsCategory `json:"categories,omitempty"`
 }
@@ -49436,6 +50818,12 @@ type ModelPsaPriceGuideSetResponseDoc struct {
 	Code int                           `json:"code,omitempty"`
 	Data ModelPsaPriceGuideSetResponse `json:"data,omitempty"`
 	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelPsaPriceGuideSetsResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelPsaPriceGuideSetsResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
 }
 
 type ModelPsaProbatFactsCategoriesResponseDoc struct {
@@ -51536,6 +52924,263 @@ type ModelRedfinSearchResponse struct {
 type ModelRedfinSimilarResponse struct {
 	PropertyId string                    `json:"property_id,omitempty"`
 	Results    []ModelRedfinPropertyItem `json:"results,omitempty"`
+}
+
+type ModelReelshortActor struct {
+	ImdbUrl  string `json:"imdb_url,omitempty"`
+	Name     string `json:"name,omitempty"`
+	PhotoUrl string `json:"photo_url,omitempty"`
+}
+
+type ModelReelshortBook struct {
+	CoverUrl         string   `json:"cover_url,omitempty"`
+	Description      string   `json:"description,omitempty"`
+	Episodes         int      `json:"episodes,omitempty"`
+	Favorites        int      `json:"favorites,omitempty"`
+	FirstPaidEpisode int      `json:"first_paid_episode,omitempty"`
+	HasTrailer       bool     `json:"has_trailer,omitempty"`
+	Id               string   `json:"id,omitempty"`
+	Language         string   `json:"language,omitempty"`
+	Plays            int      `json:"plays,omitempty"`
+	Tags             []string `json:"tags,omitempty"`
+	Title            string   `json:"title,omitempty"`
+	Url              string   `json:"url,omitempty"`
+}
+
+type ModelReelshortEpisode struct {
+	Free         bool   `json:"free,omitempty"`
+	Id           string `json:"id,omitempty"`
+	Kind         string `json:"kind,omitempty"`
+	Likes        int    `json:"likes,omitempty"`
+	Number       int    `json:"number,omitempty"`
+	PublishedAt  string `json:"published_at,omitempty"`
+	ThumbnailUrl string `json:"thumbnail_url,omitempty"`
+	Url          string `json:"url,omitempty"`
+}
+
+type ModelReelshortFandomCategoriesResponse struct {
+	Categories []ModelReelshortFandomCategory `json:"categories,omitempty"`
+}
+
+type ModelReelshortFandomCategory struct {
+	Description string `json:"description,omitempty"`
+	Id          int    `json:"id,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Posts       int    `json:"posts,omitempty"`
+	Slug        string `json:"slug,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelReelshortFandomPost struct {
+	Categories  []string `json:"categories,omitempty"`
+	Excerpt     string   `json:"excerpt,omitempty"`
+	Id          int      `json:"id,omitempty"`
+	ImageUrl    string   `json:"image_url,omitempty"`
+	ModifiedAt  string   `json:"modified_at,omitempty"`
+	PublishedAt string   `json:"published_at,omitempty"`
+	Slug        string   `json:"slug,omitempty"`
+	Title       string   `json:"title,omitempty"`
+	Url         string   `json:"url,omitempty"`
+}
+
+type ModelReelshortFandomPostResponse struct {
+	Categories  []string `json:"categories,omitempty"`
+	Content     string   `json:"content,omitempty"`
+	Excerpt     string   `json:"excerpt,omitempty"`
+	Id          int      `json:"id,omitempty"`
+	ImageUrl    string   `json:"image_url,omitempty"`
+	ModifiedAt  string   `json:"modified_at,omitempty"`
+	PublishedAt string   `json:"published_at,omitempty"`
+	Slug        string   `json:"slug,omitempty"`
+	Title       string   `json:"title,omitempty"`
+	TitleIds    []string `json:"title_ids,omitempty"`
+	Url         string   `json:"url,omitempty"`
+}
+
+type ModelReelshortFandomPostsResponse struct {
+	Category   string                     `json:"category,omitempty"`
+	Limit      int                        `json:"limit,omitempty"`
+	Page       int                        `json:"page,omitempty"`
+	Posts      []ModelReelshortFandomPost `json:"posts,omitempty"`
+	Search     string                     `json:"search,omitempty"`
+	Total      int                        `json:"total,omitempty"`
+	TotalPages int                        `json:"total_pages,omitempty"`
+}
+
+type ModelReelshortHomeResponse struct {
+	Language string                `json:"language,omitempty"`
+	Shelves  []ModelReelshortShelf `json:"shelves,omitempty"`
+}
+
+type ModelReelshortMovieResponse struct {
+	Actors           []ModelReelshortActor   `json:"actors,omitempty"`
+	AiGenerated      bool                    `json:"ai_generated,omitempty"`
+	Badge            string                  `json:"badge,omitempty"`
+	CoverUrl         string                  `json:"cover_url,omitempty"`
+	Description      string                  `json:"description,omitempty"`
+	Dubbed           bool                    `json:"dubbed,omitempty"`
+	EpisodeCount     int                     `json:"episode_count,omitempty"`
+	Episodes         []ModelReelshortEpisode `json:"episodes,omitempty"`
+	Favorites        int                     `json:"favorites,omitempty"`
+	FirstPaidEpisode int                     `json:"first_paid_episode,omitempty"`
+	Id               string                  `json:"id,omitempty"`
+	ImdbUrl          string                  `json:"imdb_url,omitempty"`
+	Language         string                  `json:"language,omitempty"`
+	OnlineAt         string                  `json:"online_at,omitempty"`
+	OriginalLanguage string                  `json:"original_language,omitempty"`
+	Plays            int                     `json:"plays,omitempty"`
+	PublishedAt      string                  `json:"published_at,omitempty"`
+	Tags             []ModelReelshortTag     `json:"tags,omitempty"`
+	Title            string                  `json:"title,omitempty"`
+	UpdateStatus     int                     `json:"update_status,omitempty"`
+	Url              string                  `json:"url,omitempty"`
+}
+
+type ModelReelshortNewReleasesResponse struct {
+	Books    []ModelReelshortBook `json:"books,omitempty"`
+	Language string               `json:"language,omitempty"`
+}
+
+type ModelReelshortRelatedTag struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelReelshortSearchResponse struct {
+	Books      []ModelReelshortBook `json:"books,omitempty"`
+	Keywords   string               `json:"keywords,omitempty"`
+	Language   string               `json:"language,omitempty"`
+	Page       int                  `json:"page,omitempty"`
+	Total      int                  `json:"total,omitempty"`
+	TotalPages int                  `json:"total_pages,omitempty"`
+}
+
+type ModelReelshortShelf struct {
+	Books []ModelReelshortBook `json:"books,omitempty"`
+	Id    int                  `json:"id,omitempty"`
+	Name  string               `json:"name,omitempty"`
+}
+
+type ModelReelshortShelfResponse struct {
+	Books []ModelReelshortBook `json:"books,omitempty"`
+	Id    int                  `json:"id,omitempty"`
+	Name  string               `json:"name,omitempty"`
+	Total int                  `json:"total,omitempty"`
+}
+
+type ModelReelshortTag struct {
+	CategoryId string `json:"category_id,omitempty"`
+	Id         string `json:"id,omitempty"`
+	Kind       string `json:"kind,omitempty"`
+	Name       string `json:"name,omitempty"`
+}
+
+type ModelReelshortTagBooksResponse struct {
+	Books       []ModelReelshortBook       `json:"books,omitempty"`
+	Description string                     `json:"description,omitempty"`
+	Limit       int                        `json:"limit,omitempty"`
+	Page        int                        `json:"page,omitempty"`
+	RelatedTags []ModelReelshortRelatedTag `json:"related_tags,omitempty"`
+	Tag         ModelReelshortTag          `json:"tag,omitempty"`
+	TopTitles   []ModelReelshortTitleRef   `json:"top_titles,omitempty"`
+	TotalItems  int                        `json:"total_items,omitempty"`
+}
+
+type ModelReelshortTagMatch struct {
+	CategoryId  int    `json:"category_id,omitempty"`
+	Description string `json:"description,omitempty"`
+	Id          string `json:"id,omitempty"`
+	ImageUrl    string `json:"image_url,omitempty"`
+	Kind        string `json:"kind,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Titles      int    `json:"titles,omitempty"`
+}
+
+type ModelReelshortTagSearchResponse struct {
+	Language string                   `json:"language,omitempty"`
+	Page     int                      `json:"page,omitempty"`
+	PageSize int                      `json:"page_size,omitempty"`
+	Tags     []ModelReelshortTagMatch `json:"tags,omitempty"`
+	Total    int                      `json:"total,omitempty"`
+	Word     string                   `json:"word,omitempty"`
+}
+
+type ModelReelshortTagsResponse struct {
+	Category   string              `json:"category,omitempty"`
+	CategoryId int                 `json:"category_id,omitempty"`
+	Language   string              `json:"language,omitempty"`
+	Tags       []ModelReelshortTag `json:"tags,omitempty"`
+}
+
+type ModelReelshortTitleRef struct {
+	Id    string `json:"id,omitempty"`
+	Title string `json:"title,omitempty"`
+}
+
+type ModelReelshortFandomCategoriesResponseDoc struct {
+	Code int                                    `json:"code,omitempty"`
+	Data ModelReelshortFandomCategoriesResponse `json:"data,omitempty"`
+	Msg  string                                 `json:"msg,omitempty"`
+}
+
+type ModelReelshortFandomPostResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelReelshortFandomPostResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelReelshortFandomPostsResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelReelshortFandomPostsResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelReelshortHomeResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelReelshortHomeResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelReelshortMovieResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelReelshortMovieResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelReelshortNewReleasesResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelReelshortNewReleasesResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelReelshortSearchResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelReelshortSearchResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelReelshortShelfResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelReelshortShelfResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelReelshortTagBooksResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelReelshortTagBooksResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelReelshortTagSearchResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelReelshortTagSearchResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelReelshortTagsResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelReelshortTagsResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
 }
 
 type ModelReferralsReferralAttributionDoc struct {
@@ -66832,6 +68477,297 @@ type ModelTargetStoresResponseDoc struct {
 	Msg  string                    `json:"msg,omitempty"`
 }
 
+type ModelTcgplayerFacet struct {
+	Count    int    `json:"count,omitempty"`
+	UrlValue string `json:"url_value,omitempty"`
+	Value    string `json:"value,omitempty"`
+}
+
+type ModelTcgplayerFacets struct {
+	CardTypes    []ModelTcgplayerFacet `json:"card_types,omitempty"`
+	EnergyTypes  []ModelTcgplayerFacet `json:"energy_types,omitempty"`
+	ProductLines []ModelTcgplayerFacet `json:"product_lines,omitempty"`
+	ProductTypes []ModelTcgplayerFacet `json:"product_types,omitempty"`
+	Rarities     []ModelTcgplayerFacet `json:"rarities,omitempty"`
+	Sets         []ModelTcgplayerFacet `json:"sets,omitempty"`
+}
+
+type ModelTcgplayerFilterValue struct {
+	Abbreviation string `json:"abbreviation,omitempty"`
+	Id           int    `json:"id,omitempty"`
+	Name         string `json:"name,omitempty"`
+}
+
+type ModelTcgplayerFiltersResponse struct {
+	Conditions    []ModelTcgplayerFilterValue `json:"conditions,omitempty"`
+	Languages     []ModelTcgplayerFilterValue `json:"languages,omitempty"`
+	ListingTypes  []string                    `json:"listing_types,omitempty"`
+	ProductId     int                         `json:"product_id,omitempty"`
+	ProductLine   string                      `json:"product_line,omitempty"`
+	ProductLineId int                         `json:"product_line_id,omitempty"`
+	Variants      []ModelTcgplayerFilterValue `json:"variants,omitempty"`
+}
+
+type ModelTcgplayerListing struct {
+	Condition      string  `json:"condition,omitempty"`
+	DirectSeller   bool    `json:"direct_seller,omitempty"`
+	GoldSeller     bool    `json:"gold_seller,omitempty"`
+	Language       string  `json:"language,omitempty"`
+	ListingId      int     `json:"listing_id,omitempty"`
+	ListingType    string  `json:"listing_type,omitempty"`
+	Price          float64 `json:"price,omitempty"`
+	Printing       string  `json:"printing,omitempty"`
+	Quantity       int     `json:"quantity,omitempty"`
+	SellerCity     string  `json:"seller_city,omitempty"`
+	SellerCountry  string  `json:"seller_country,omitempty"`
+	SellerName     string  `json:"seller_name,omitempty"`
+	SellerRating   float64 `json:"seller_rating,omitempty"`
+	SellerSales    string  `json:"seller_sales,omitempty"`
+	SellerState    string  `json:"seller_state,omitempty"`
+	ShippingPrice  float64 `json:"shipping_price,omitempty"`
+	VerifiedSeller bool    `json:"verified_seller,omitempty"`
+}
+
+type ModelTcgplayerListingFacets struct {
+	Conditions []ModelTcgplayerFacet `json:"conditions,omitempty"`
+	Languages  []ModelTcgplayerFacet `json:"languages,omitempty"`
+	Printings  []ModelTcgplayerFacet `json:"printings,omitempty"`
+}
+
+type ModelTcgplayerListingsResponse struct {
+	Facets     ModelTcgplayerListingFacets `json:"facets,omitempty"`
+	Limit      int                         `json:"limit,omitempty"`
+	Listings   []ModelTcgplayerListing     `json:"listings,omitempty"`
+	NextOffset int                         `json:"next_offset,omitempty"`
+	Offset     int                         `json:"offset,omitempty"`
+	ProductId  int                         `json:"product_id,omitempty"`
+	Total      int                         `json:"total,omitempty"`
+}
+
+type ModelTcgplayerPriceBucket struct {
+	HighSalePrice             float64 `json:"high_sale_price,omitempty"`
+	HighSalePriceWithShipping float64 `json:"high_sale_price_with_shipping,omitempty"`
+	LowSalePrice              float64 `json:"low_sale_price,omitempty"`
+	LowSalePriceWithShipping  float64 `json:"low_sale_price_with_shipping,omitempty"`
+	MarketPrice               float64 `json:"market_price,omitempty"`
+	QuantitySold              int     `json:"quantity_sold,omitempty"`
+	StartDate                 string  `json:"start_date,omitempty"`
+	TransactionCount          int     `json:"transaction_count,omitempty"`
+}
+
+type ModelTcgplayerPriceGuideResponse struct {
+	Game            string                        `json:"game,omitempty"`
+	Limit           int                           `json:"limit,omitempty"`
+	NextOffset      int                           `json:"next_offset,omitempty"`
+	Offset          int                           `json:"offset,omitempty"`
+	Rows            []ModelTcgplayerPriceGuideRow `json:"rows,omitempty"`
+	SetAbbreviation string                        `json:"set_abbreviation,omitempty"`
+	SetId           int                           `json:"set_id,omitempty"`
+	SetName         string                        `json:"set_name,omitempty"`
+	Total           int                           `json:"total,omitempty"`
+}
+
+type ModelTcgplayerPriceGuideRow struct {
+	Condition   string  `json:"condition,omitempty"`
+	Language    string  `json:"language,omitempty"`
+	LowPrice    float64 `json:"low_price,omitempty"`
+	MarketPrice float64 `json:"market_price,omitempty"`
+	Name        string  `json:"name,omitempty"`
+	Number      string  `json:"number,omitempty"`
+	Printing    string  `json:"printing,omitempty"`
+	ProductId   int     `json:"product_id,omitempty"`
+	Rarity      string  `json:"rarity,omitempty"`
+	Sales       int     `json:"sales,omitempty"`
+}
+
+type ModelTcgplayerPriceHistoryResponse struct {
+	ProductId int                        `json:"product_id,omitempty"`
+	Range     string                     `json:"range,omitempty"`
+	Skus      []ModelTcgplayerSkuhistory `json:"skus,omitempty"`
+}
+
+type ModelTcgplayerPricePoint struct {
+	BuylistMarketPrice float64 `json:"buylist_market_price,omitempty"`
+	ListedMedianPrice  float64 `json:"listed_median_price,omitempty"`
+	MarketPrice        float64 `json:"market_price,omitempty"`
+	Printing           string  `json:"printing,omitempty"`
+}
+
+type ModelTcgplayerProduct struct {
+	Attributes              map[string]string          `json:"attributes,omitempty"`
+	Description             string                     `json:"description,omitempty"`
+	FoilOnly                bool                       `json:"foil_only,omitempty"`
+	ImageUrl                string                     `json:"image_url,omitempty"`
+	LowestPrice             float64                    `json:"lowest_price,omitempty"`
+	LowestPriceWithShipping float64                    `json:"lowest_price_with_shipping,omitempty"`
+	MarketPrice             float64                    `json:"market_price,omitempty"`
+	MedianPrice             float64                    `json:"median_price,omitempty"`
+	Name                    string                     `json:"name,omitempty"`
+	NormalOnly              bool                       `json:"normal_only,omitempty"`
+	Number                  string                     `json:"number,omitempty"`
+	PricePoints             []ModelTcgplayerPricePoint `json:"price_points,omitempty"`
+	ProductId               int                        `json:"product_id,omitempty"`
+	ProductLine             string                     `json:"product_line,omitempty"`
+	ProductLineUrlName      string                     `json:"product_line_url_name,omitempty"`
+	ProductType             string                     `json:"product_type,omitempty"`
+	Rarity                  string                     `json:"rarity,omitempty"`
+	Sealed                  bool                       `json:"sealed,omitempty"`
+	SetCode                 string                     `json:"set_code,omitempty"`
+	SetName                 string                     `json:"set_name,omitempty"`
+	Skus                    []ModelTcgplayerSku        `json:"skus,omitempty"`
+	TotalListings           int                        `json:"total_listings,omitempty"`
+	TotalSellers            int                        `json:"total_sellers,omitempty"`
+	Url                     string                     `json:"url,omitempty"`
+}
+
+type ModelTcgplayerProductLine struct {
+	Direct  bool   `json:"direct,omitempty"`
+	Id      int    `json:"id,omitempty"`
+	Name    string `json:"name,omitempty"`
+	UrlName string `json:"url_name,omitempty"`
+}
+
+type ModelTcgplayerProductLinesResponse struct {
+	ProductLines []ModelTcgplayerProductLine `json:"product_lines,omitempty"`
+}
+
+type ModelTcgplayerProductResponse struct {
+	Product ModelTcgplayerProduct `json:"product,omitempty"`
+}
+
+type ModelTcgplayerProductSummary struct {
+	CardTypes               []string `json:"card_types,omitempty"`
+	FoilOnly                bool     `json:"foil_only,omitempty"`
+	ImageUrl                string   `json:"image_url,omitempty"`
+	LowestPrice             float64  `json:"lowest_price,omitempty"`
+	LowestPriceWithShipping float64  `json:"lowest_price_with_shipping,omitempty"`
+	MarketPrice             float64  `json:"market_price,omitempty"`
+	MedianPrice             float64  `json:"median_price,omitempty"`
+	Name                    string   `json:"name,omitempty"`
+	Number                  string   `json:"number,omitempty"`
+	ProductId               int      `json:"product_id,omitempty"`
+	ProductLine             string   `json:"product_line,omitempty"`
+	Rarity                  string   `json:"rarity,omitempty"`
+	Sealed                  bool     `json:"sealed,omitempty"`
+	SetCode                 string   `json:"set_code,omitempty"`
+	SetName                 string   `json:"set_name,omitempty"`
+	TotalListings           int      `json:"total_listings,omitempty"`
+	Url                     string   `json:"url,omitempty"`
+}
+
+type ModelTcgplayerSku struct {
+	Condition string `json:"condition,omitempty"`
+	Language  string `json:"language,omitempty"`
+	Sku       int    `json:"sku,omitempty"`
+	Variant   string `json:"variant,omitempty"`
+}
+
+type ModelTcgplayerSkuhistory struct {
+	AverageDailyQuantitySold     float64                     `json:"average_daily_quantity_sold,omitempty"`
+	AverageDailyTransactionCount float64                     `json:"average_daily_transaction_count,omitempty"`
+	Buckets                      []ModelTcgplayerPriceBucket `json:"buckets,omitempty"`
+	Condition                    string                      `json:"condition,omitempty"`
+	Language                     string                      `json:"language,omitempty"`
+	Sku                          int                         `json:"sku,omitempty"`
+	TotalQuantitySold            int                         `json:"total_quantity_sold,omitempty"`
+	TotalTransactionCount        int                         `json:"total_transaction_count,omitempty"`
+	Variant                      string                      `json:"variant,omitempty"`
+}
+
+type ModelTcgplayerSale struct {
+	Condition     string  `json:"condition,omitempty"`
+	Language      string  `json:"language,omitempty"`
+	ListingType   string  `json:"listing_type,omitempty"`
+	OrderDate     string  `json:"order_date,omitempty"`
+	PurchasePrice float64 `json:"purchase_price,omitempty"`
+	Quantity      int     `json:"quantity,omitempty"`
+	ShippingPrice float64 `json:"shipping_price,omitempty"`
+	Variant       string  `json:"variant,omitempty"`
+}
+
+type ModelTcgplayerSalesResponse struct {
+	ProductId int                  `json:"product_id,omitempty"`
+	Sales     []ModelTcgplayerSale `json:"sales,omitempty"`
+}
+
+type ModelTcgplayerSearchResponse struct {
+	Facets     ModelTcgplayerFacets           `json:"facets,omitempty"`
+	Limit      int                            `json:"limit,omitempty"`
+	NextOffset int                            `json:"next_offset,omitempty"`
+	Offset     int                            `json:"offset,omitempty"`
+	Products   []ModelTcgplayerProductSummary `json:"products,omitempty"`
+	Query      string                         `json:"query,omitempty"`
+	Total      int                            `json:"total,omitempty"`
+}
+
+type ModelTcgplayerSet struct {
+	Abbreviation string `json:"abbreviation,omitempty"`
+	Id           int    `json:"id,omitempty"`
+	Name         string `json:"name,omitempty"`
+	ReleaseDate  string `json:"release_date,omitempty"`
+	Supplemental bool   `json:"supplemental,omitempty"`
+	UrlName      string `json:"url_name,omitempty"`
+}
+
+type ModelTcgplayerSetsResponse struct {
+	ProductLine string              `json:"product_line,omitempty"`
+	Sets        []ModelTcgplayerSet `json:"sets,omitempty"`
+}
+
+type ModelTcgplayerFiltersResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelTcgplayerFiltersResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelTcgplayerListingsResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelTcgplayerListingsResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelTcgplayerPriceGuideResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelTcgplayerPriceGuideResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelTcgplayerPriceHistoryResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelTcgplayerPriceHistoryResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelTcgplayerProductLinesResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelTcgplayerProductLinesResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelTcgplayerProductResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelTcgplayerProductResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelTcgplayerSalesResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelTcgplayerSalesResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelTcgplayerSearchResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelTcgplayerSearchResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelTcgplayerSetsResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelTcgplayerSetsResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
 type ModelTechcrunchAuthorArticle struct {
 	Category string `json:"category,omitempty"`
 	Title    string `json:"title,omitempty"`
@@ -66877,6 +68813,135 @@ type ModelTechstackTechnology struct {
 type ModelTechstackUnmatchedEvidence struct {
 	Domains   []string `json:"domains,omitempty"`
 	Generator string   `json:"generator,omitempty"`
+}
+
+type ModelTelegramBotResponse struct {
+	AvatarUrl    string `json:"avatar_url,omitempty"`
+	Description  string `json:"description,omitempty"`
+	MonthlyUsers int    `json:"monthly_users,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Url          string `json:"url,omitempty"`
+	Username     string `json:"username,omitempty"`
+	Verified     bool   `json:"verified,omitempty"`
+}
+
+type ModelTelegramChannelPostsResponse struct {
+	HasMore    bool                `json:"has_more,omitempty"`
+	NextBefore int                 `json:"next_before,omitempty"`
+	Posts      []ModelTelegramPost `json:"posts,omitempty"`
+	Query      string              `json:"query,omitempty"`
+	Title      string              `json:"title,omitempty"`
+	Username   string              `json:"username,omitempty"`
+}
+
+type ModelTelegramChannelResponse struct {
+	AvatarUrl              string `json:"avatar_url,omitempty"`
+	Description            string `json:"description,omitempty"`
+	FilesCount             int    `json:"files_count,omitempty"`
+	LinksCount             int    `json:"links_count,omitempty"`
+	PhotosCount            int    `json:"photos_count,omitempty"`
+	PreviewUrl             string `json:"preview_url,omitempty"`
+	Subscribers            int    `json:"subscribers,omitempty"`
+	SubscribersApproximate bool   `json:"subscribers_approximate,omitempty"`
+	Title                  string `json:"title,omitempty"`
+	Url                    string `json:"url,omitempty"`
+	Username               string `json:"username,omitempty"`
+	Verified               bool   `json:"verified,omitempty"`
+	VideosCount            int    `json:"videos_count,omitempty"`
+}
+
+type ModelTelegramForwardedRef struct {
+	Name string `json:"name,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelTelegramGroupResponse struct {
+	AvatarUrl   string `json:"avatar_url,omitempty"`
+	Description string `json:"description,omitempty"`
+	Members     int    `json:"members,omitempty"`
+	Online      int    `json:"online,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Url         string `json:"url,omitempty"`
+	Username    string `json:"username,omitempty"`
+}
+
+type ModelTelegramLinkPreview struct {
+	Description string `json:"description,omitempty"`
+	ImageUrl    string `json:"image_url,omitempty"`
+	SiteName    string `json:"site_name,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelTelegramMedia struct {
+	ThumbnailUrl string `json:"thumbnail_url,omitempty"`
+	Type         string `json:"type,omitempty"`
+	Url          string `json:"url,omitempty"`
+}
+
+type ModelTelegramPost struct {
+	Author        string                    `json:"author,omitempty"`
+	Edited        bool                      `json:"edited,omitempty"`
+	ForwardedFrom ModelTelegramForwardedRef `json:"forwarded_from,omitempty"`
+	Id            int                       `json:"id,omitempty"`
+	LinkPreview   ModelTelegramLinkPreview  `json:"link_preview,omitempty"`
+	Links         []string                  `json:"links,omitempty"`
+	Media         []ModelTelegramMedia      `json:"media,omitempty"`
+	PublishedAt   string                    `json:"published_at,omitempty"`
+	Reactions     []ModelTelegramReaction   `json:"reactions,omitempty"`
+	ReplyTo       ModelTelegramReplyRef     `json:"reply_to,omitempty"`
+	Text          string                    `json:"text,omitempty"`
+	Url           string                    `json:"url,omitempty"`
+	Username      string                    `json:"username,omitempty"`
+	Views         int                       `json:"views,omitempty"`
+}
+
+type ModelTelegramPostResponse struct {
+	Post ModelTelegramPost `json:"post,omitempty"`
+}
+
+type ModelTelegramReaction struct {
+	Count         int    `json:"count,omitempty"`
+	CustomEmojiId string `json:"custom_emoji_id,omitempty"`
+	Emoji         string `json:"emoji,omitempty"`
+	Paid          bool   `json:"paid,omitempty"`
+}
+
+type ModelTelegramReplyRef struct {
+	Author string `json:"author,omitempty"`
+	Id     int    `json:"id,omitempty"`
+	Text   string `json:"text,omitempty"`
+	Url    string `json:"url,omitempty"`
+}
+
+type ModelTelegramBotResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelTelegramBotResponse `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelTelegramChannelPostsResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelTelegramChannelPostsResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelTelegramChannelResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelTelegramChannelResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelTelegramGroupResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelTelegramGroupResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelTelegramPostResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelTelegramPostResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
 }
 
 type ModelTelegraphAuthorArticle struct {
@@ -73536,6 +75601,200 @@ type ModelWalgreensStoresResponseDoc struct {
 	Msg  string                       `json:"msg,omitempty"`
 }
 
+type ModelWallapopCategoriesResponse struct {
+	Categories []ModelWallapopCategory `json:"categories,omitempty"`
+	Count      int                     `json:"count,omitempty"`
+	FetchedAt  string                  `json:"fetched_at,omitempty"`
+	MaxDepth   int                     `json:"max_depth,omitempty"`
+	RootCount  int                     `json:"root_count,omitempty"`
+	SourceUrl  string                  `json:"source_url,omitempty"`
+}
+
+type ModelWallapopCategory struct {
+	Depth      int    `json:"depth,omitempty"`
+	Id         int    `json:"id,omitempty"`
+	IsLeaf     bool   `json:"is_leaf,omitempty"`
+	Name       string `json:"name,omitempty"`
+	ParentId   int    `json:"parent_id,omitempty"`
+	Path       string `json:"path,omitempty"`
+	RootId     int    `json:"root_id,omitempty"`
+	VerticalId string `json:"vertical_id,omitempty"`
+}
+
+type ModelWallapopFilterDefinition struct {
+	Format            string                                     `json:"format,omitempty"`
+	Id                string                                     `json:"id,omitempty"`
+	IsSearchEnabled   bool                                       `json:"is_search_enabled,omitempty"`
+	Label             string                                     `json:"label,omitempty"`
+	Options           []ModelWallapopFilterOption                `json:"options,omitempty"`
+	OptionsEndpoint   string                                     `json:"options_endpoint,omitempty"`
+	ReloadWhenChanged bool                                       `json:"reload_when_changed,omitempty"`
+	SearchParams      map[string]ModelWallapopFilterParamBinding `json:"search_params,omitempty"`
+	Selection         string                                     `json:"selection,omitempty"`
+	Source            string                                     `json:"source,omitempty"`
+	Steps             []ModelWallapopFilterRangeStep             `json:"steps,omitempty"`
+	Title             string                                     `json:"title,omitempty"`
+	Type              string                                     `json:"type,omitempty"`
+	Unit              string                                     `json:"unit,omitempty"`
+}
+
+type ModelWallapopFilterOption struct {
+	Id    string `json:"id,omitempty"`
+	Title string `json:"title,omitempty"`
+}
+
+type ModelWallapopFilterOptionsResponse struct {
+	Brand        string                      `json:"brand,omitempty"`
+	CategoryId   int                         `json:"category_id,omitempty"`
+	FetchedAt    string                      `json:"fetched_at,omitempty"`
+	FilterId     string                      `json:"filter_id,omitempty"`
+	NextCursor   string                      `json:"next_cursor,omitempty"`
+	Options      []ModelWallapopFilterOption `json:"options,omitempty"`
+	OptionsQuery string                      `json:"options_query,omitempty"`
+	PageSize     int                         `json:"page_size,omitempty"`
+	Q            string                      `json:"q,omitempty"`
+	Sort         string                      `json:"sort,omitempty"`
+	SourceUrl    string                      `json:"source_url,omitempty"`
+}
+
+type ModelWallapopFilterParamBinding struct {
+	ParamKey   string `json:"param_key,omitempty"`
+	ParamValue string `json:"param_value,omitempty"`
+}
+
+type ModelWallapopFilterRangeStep struct {
+	End       float64 `json:"end,omitempty"`
+	Increment float64 `json:"increment,omitempty"`
+	Start     float64 `json:"start,omitempty"`
+}
+
+type ModelWallapopFiltersResponse struct {
+	CategoryId     int                             `json:"category_id,omitempty"`
+	Count          int                             `json:"count,omitempty"`
+	FetchedAt      string                          `json:"fetched_at,omitempty"`
+	Filters        []ModelWallapopFilterDefinition `json:"filters,omitempty"`
+	Query          string                          `json:"query,omitempty"`
+	RootCategoryId int                             `json:"root_category_id,omitempty"`
+	SourceUrl      string                          `json:"source_url,omitempty"`
+}
+
+type ModelWallapopItemDetailAttribute struct {
+	Key   string `json:"key,omitempty"`
+	Text  string `json:"text,omitempty"`
+	Title string `json:"title,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelWallapopItemDetailCharacteristic struct {
+	Attribute string `json:"attribute,omitempty"`
+	Value     string `json:"value,omitempty"`
+}
+
+type ModelWallapopItemDetailCondition struct {
+	Text  string `json:"text,omitempty"`
+	Title string `json:"title,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelWallapopItemDetailRelatedSearch struct {
+	Title string `json:"title,omitempty"`
+	Url   string `json:"url,omitempty"`
+}
+
+type ModelWallapopItemDetailResponse struct {
+	Attributes      []ModelWallapopItemDetailAttribute      `json:"attributes,omitempty"`
+	CategoryId      int                                     `json:"category_id,omitempty"`
+	Characteristics []ModelWallapopItemDetailCharacteristic `json:"characteristics,omitempty"`
+	Condition       ModelWallapopItemDetailCondition        `json:"condition,omitempty"`
+	Currency        string                                  `json:"currency,omitempty"`
+	Description     string                                  `json:"description,omitempty"`
+	FetchedAt       string                                  `json:"fetched_at,omitempty"`
+	Hashtags        []string                                `json:"hashtags,omitempty"`
+	Id              string                                  `json:"id,omitempty"`
+	Images          []string                                `json:"images,omitempty"`
+	Location        ModelWallapopListingLocation            `json:"location,omitempty"`
+	Price           float64                                 `json:"price,omitempty"`
+	RelatedSearches []ModelWallapopItemDetailRelatedSearch  `json:"related_searches,omitempty"`
+	Shipping        ModelWallapopListingShipping            `json:"shipping,omitempty"`
+	Slug            string                                  `json:"slug,omitempty"`
+	Taxonomy        []ModelWallapopListingTaxonomy          `json:"taxonomy,omitempty"`
+	Title           string                                  `json:"title,omitempty"`
+	Url             string                                  `json:"url,omitempty"`
+}
+
+type ModelWallapopListingCard struct {
+	CategoryId int                            `json:"category_id,omitempty"`
+	Currency   string                         `json:"currency,omitempty"`
+	Id         string                         `json:"id,omitempty"`
+	Images     []string                       `json:"images,omitempty"`
+	Location   ModelWallapopListingLocation   `json:"location,omitempty"`
+	Price      float64                        `json:"price,omitempty"`
+	Shipping   ModelWallapopListingShipping   `json:"shipping,omitempty"`
+	Slug       string                         `json:"slug,omitempty"`
+	Taxonomy   []ModelWallapopListingTaxonomy `json:"taxonomy,omitempty"`
+	Title      string                         `json:"title,omitempty"`
+	Url        string                         `json:"url,omitempty"`
+}
+
+type ModelWallapopListingLocation struct {
+	City        string `json:"city,omitempty"`
+	CountryCode string `json:"country_code,omitempty"`
+	Region      string `json:"region,omitempty"`
+	Region2     string `json:"region2,omitempty"`
+}
+
+type ModelWallapopListingShipping struct {
+	ItemIsShippable    bool `json:"item_is_shippable,omitempty"`
+	UserAllowsShipping bool `json:"user_allows_shipping,omitempty"`
+}
+
+type ModelWallapopListingTaxonomy struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelWallapopSearchResponse struct {
+	CategoryId  int                        `json:"category_id,omitempty"`
+	Count       int                        `json:"count,omitempty"`
+	CountryCode string                     `json:"country_code,omitempty"`
+	FetchedAt   string                     `json:"fetched_at,omitempty"`
+	Items       []ModelWallapopListingCard `json:"items,omitempty"`
+	NextCursor  string                     `json:"next_cursor,omitempty"`
+	Query       string                     `json:"query,omitempty"`
+	Sort        string                     `json:"sort,omitempty"`
+	SourceUrl   string                     `json:"source_url,omitempty"`
+}
+
+type ModelWallapopCategoriesResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelWallapopCategoriesResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelWallapopFilterOptionsResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelWallapopFilterOptionsResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelWallapopFiltersResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelWallapopFiltersResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelWallapopItemDetailResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelWallapopItemDetailResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelWallapopSearchResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelWallapopSearchResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
 type ModelWalmartProduct struct {
 	Attributes   map[string]string            `json:"attributes,omitempty"`
 	Availability string                       `json:"availability,omitempty"`
@@ -73730,6 +75989,272 @@ type ModelWapoSectionsResponseDoc struct {
 	Code int                       `json:"code,omitempty"`
 	Data ModelWapoSectionsResponse `json:"data,omitempty"`
 	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelWattpadAuthor struct {
+	Avatar   string `json:"avatar,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Username string `json:"username,omitempty"`
+	Verified bool   `json:"verified,omitempty"`
+}
+
+type ModelWattpadCategoriesResponse struct {
+	Categories []ModelWattpadCategory `json:"categories,omitempty"`
+}
+
+type ModelWattpadCategory struct {
+	Id          int    `json:"id,omitempty"`
+	Name        string `json:"name,omitempty"`
+	NameEnglish string `json:"name_english,omitempty"`
+}
+
+type ModelWattpadComment struct {
+	Author       string `json:"author,omitempty"`
+	AuthorAvatar string `json:"author_avatar,omitempty"`
+	Body         string `json:"body,omitempty"`
+	CreatedAt    string `json:"created_at,omitempty"`
+	Id           string `json:"id,omitempty"`
+	IsReply      bool   `json:"is_reply,omitempty"`
+	ParentId     string `json:"parent_id,omitempty"`
+	Replies      int    `json:"replies,omitempty"`
+	Url          string `json:"url,omitempty"`
+}
+
+type ModelWattpadLanguage struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelWattpadLanguagesResponse struct {
+	Languages []ModelWattpadLanguage `json:"languages,omitempty"`
+}
+
+type ModelWattpadPart struct {
+	Comments   int    `json:"comments,omitempty"`
+	CreatedAt  string `json:"created_at,omitempty"`
+	Draft      bool   `json:"draft,omitempty"`
+	Id         string `json:"id,omitempty"`
+	Length     int    `json:"length,omitempty"`
+	ModifiedAt string `json:"modified_at,omitempty"`
+	Reads      int    `json:"reads,omitempty"`
+	Title      string `json:"title,omitempty"`
+	Url        string `json:"url,omitempty"`
+	Votes      int    `json:"votes,omitempty"`
+	WordCount  int    `json:"word_count,omitempty"`
+}
+
+type ModelWattpadPartCommentsResponse struct {
+	Comments   []ModelWattpadComment `json:"comments,omitempty"`
+	Limit      int                   `json:"limit,omitempty"`
+	NextOffset int                   `json:"next_offset,omitempty"`
+	Offset     int                   `json:"offset,omitempty"`
+	PartId     string                `json:"part_id,omitempty"`
+}
+
+type ModelWattpadPartDetail struct {
+	Comments   int    `json:"comments,omitempty"`
+	CreatedAt  string `json:"created_at,omitempty"`
+	Draft      bool   `json:"draft,omitempty"`
+	Id         string `json:"id,omitempty"`
+	Length     int    `json:"length,omitempty"`
+	ModifiedAt string `json:"modified_at,omitempty"`
+	Reads      int    `json:"reads,omitempty"`
+	StoryId    string `json:"story_id,omitempty"`
+	StoryTitle string `json:"story_title,omitempty"`
+	Title      string `json:"title,omitempty"`
+	Url        string `json:"url,omitempty"`
+	Votes      int    `json:"votes,omitempty"`
+	WordCount  int    `json:"word_count,omitempty"`
+}
+
+type ModelWattpadPartResponse struct {
+	Part ModelWattpadPartDetail `json:"part,omitempty"`
+}
+
+type ModelWattpadRecommendationsResponse struct {
+	Stories []ModelWattpadStory `json:"stories,omitempty"`
+	StoryId string              `json:"story_id,omitempty"`
+}
+
+type ModelWattpadSearchResponse struct {
+	Limit      int                 `json:"limit,omitempty"`
+	NextOffset int                 `json:"next_offset,omitempty"`
+	Offset     int                 `json:"offset,omitempty"`
+	Stories    []ModelWattpadStory `json:"stories,omitempty"`
+	Total      int                 `json:"total,omitempty"`
+}
+
+type ModelWattpadSearchUsersResponse struct {
+	Limit      int                       `json:"limit,omitempty"`
+	NextOffset int                       `json:"next_offset,omitempty"`
+	Offset     int                       `json:"offset,omitempty"`
+	Users      []ModelWattpadUserSummary `json:"users,omitempty"`
+}
+
+type ModelWattpadStory struct {
+	Author      ModelWattpadAuthor   `json:"author,omitempty"`
+	CategoryIds []int                `json:"category_ids,omitempty"`
+	Comments    int                  `json:"comments,omitempty"`
+	Completed   bool                 `json:"completed,omitempty"`
+	Cover       string               `json:"cover,omitempty"`
+	CreatedAt   string               `json:"created_at,omitempty"`
+	Description string               `json:"description,omitempty"`
+	Id          string               `json:"id,omitempty"`
+	Language    ModelWattpadLanguage `json:"language,omitempty"`
+	Mature      bool                 `json:"mature,omitempty"`
+	ModifiedAt  string               `json:"modified_at,omitempty"`
+	Parts       int                  `json:"parts,omitempty"`
+	Reads       int                  `json:"reads,omitempty"`
+	Tags        []string             `json:"tags,omitempty"`
+	Title       string               `json:"title,omitempty"`
+	Url         string               `json:"url,omitempty"`
+	Votes       int                  `json:"votes,omitempty"`
+}
+
+type ModelWattpadStoryDetail struct {
+	Author          ModelWattpadAuthor   `json:"author,omitempty"`
+	CategoryIds     []int                `json:"category_ids,omitempty"`
+	Comments        int                  `json:"comments,omitempty"`
+	Completed       bool                 `json:"completed,omitempty"`
+	Copyright       int                  `json:"copyright,omitempty"`
+	Cover           string               `json:"cover,omitempty"`
+	CreatedAt       string               `json:"created_at,omitempty"`
+	Description     string               `json:"description,omitempty"`
+	FirstPartId     string               `json:"first_part_id,omitempty"`
+	Id              string               `json:"id,omitempty"`
+	Language        ModelWattpadLanguage `json:"language,omitempty"`
+	LastPublishedAt string               `json:"last_published_at,omitempty"`
+	Mature          bool                 `json:"mature,omitempty"`
+	ModifiedAt      string               `json:"modified_at,omitempty"`
+	PaidModel       string               `json:"paid_model,omitempty"`
+	Parts           int                  `json:"parts,omitempty"`
+	Paywalled       bool                 `json:"paywalled,omitempty"`
+	Rating          int                  `json:"rating,omitempty"`
+	Reads           int                  `json:"reads,omitempty"`
+	Tags            []string             `json:"tags,omitempty"`
+	Title           string               `json:"title,omitempty"`
+	Url             string               `json:"url,omitempty"`
+	Votes           int                  `json:"votes,omitempty"`
+}
+
+type ModelWattpadStoryPartsResponse struct {
+	Parts   []ModelWattpadPart `json:"parts,omitempty"`
+	StoryId string             `json:"story_id,omitempty"`
+	Title   string             `json:"title,omitempty"`
+	Total   int                `json:"total,omitempty"`
+}
+
+type ModelWattpadStoryResponse struct {
+	Story ModelWattpadStoryDetail `json:"story,omitempty"`
+}
+
+type ModelWattpadUserProfile struct {
+	Ambassador       bool   `json:"ambassador,omitempty"`
+	Avatar           string `json:"avatar,omitempty"`
+	Background       string `json:"background,omitempty"`
+	Description      string `json:"description,omitempty"`
+	Followers        int    `json:"followers,omitempty"`
+	Following        int    `json:"following,omitempty"`
+	JoinedAt         string `json:"joined_at,omitempty"`
+	Lists            int    `json:"lists,omitempty"`
+	Location         string `json:"location,omitempty"`
+	ModifiedAt       string `json:"modified_at,omitempty"`
+	Name             string `json:"name,omitempty"`
+	StoriesPublished int    `json:"stories_published,omitempty"`
+	Url              string `json:"url,omitempty"`
+	Username         string `json:"username,omitempty"`
+	Verified         bool   `json:"verified,omitempty"`
+	VotesReceived    int    `json:"votes_received,omitempty"`
+	Website          string `json:"website,omitempty"`
+}
+
+type ModelWattpadUserResponse struct {
+	User ModelWattpadUserProfile `json:"user,omitempty"`
+}
+
+type ModelWattpadUserStoriesResponse struct {
+	Limit      int                 `json:"limit,omitempty"`
+	NextOffset int                 `json:"next_offset,omitempty"`
+	Offset     int                 `json:"offset,omitempty"`
+	Stories    []ModelWattpadStory `json:"stories,omitempty"`
+	Total      int                 `json:"total,omitempty"`
+	Username   string              `json:"username,omitempty"`
+}
+
+type ModelWattpadUserSummary struct {
+	Avatar           string `json:"avatar,omitempty"`
+	Description      string `json:"description,omitempty"`
+	Followers        int    `json:"followers,omitempty"`
+	Name             string `json:"name,omitempty"`
+	StoriesPublished int    `json:"stories_published,omitempty"`
+	Username         string `json:"username,omitempty"`
+	Verified         bool   `json:"verified,omitempty"`
+}
+
+type ModelWattpadCategoriesResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelWattpadCategoriesResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelWattpadLanguagesResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelWattpadLanguagesResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelWattpadPartCommentsResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelWattpadPartCommentsResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelWattpadPartResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelWattpadPartResponse `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelWattpadRecommendationsResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelWattpadRecommendationsResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelWattpadSearchResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelWattpadSearchResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelWattpadSearchUsersResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelWattpadSearchUsersResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelWattpadStoryPartsResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelWattpadStoryPartsResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelWattpadStoryResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelWattpadStoryResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelWattpadUserResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelWattpadUserResponse `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelWattpadUserStoriesResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelWattpadUserStoriesResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
 }
 
 type ModelWayfairCategoriesResponse struct {
@@ -79003,7 +81528,7 @@ type ModelZomatoSearchResponseDoc struct {
 	Msg  any                       `json:"msg,omitempty"`
 }
 
-const operationCount = 3915
+const operationCount = 4012
 
 const (
 	OperationAbcNewsAbcnewsArticle                                                = "abcnews-article"
@@ -79057,9 +81582,14 @@ const (
 	OperationAlJazeeraAljazeeraCategories                                         = "aljazeera-categories"
 	OperationAlJazeeraAljazeeraHeadlines                                          = "aljazeera-headlines"
 	OperationAlJazeeraAljazeeraTopic                                              = "aljazeera-topic"
+	OperationAliExpressAliexpressCategories                                       = "aliexpress-categories"
+	OperationAliExpressAliexpressCategoryIds                                      = "aliexpress-category-ids"
+	OperationAliExpressAliexpressCategoryProducts                                 = "aliexpress-category-products"
 	OperationAliExpressAliexpressReviews                                          = "aliexpress-reviews"
 	OperationAliExpressAliexpressSearch                                           = "aliexpress-search"
 	OperationAliExpressAliexpressSearchFilters                                    = "aliexpress-search-filters"
+	OperationAliExpressAliexpressSuggest                                          = "aliexpress-suggest"
+	OperationAliExpressAliexpressTrendingSearches                                 = "aliexpress-trending-searches"
 	OperationAllbirdsCollectionProducts                                           = "allbirds-collection-products"
 	OperationAllbirdsCollections                                                  = "allbirds-collections"
 	OperationAllbirdsPage                                                         = "allbirds-page"
@@ -79632,6 +82162,10 @@ const (
 	OperationDatasetsAirbnbMarketsItem                                            = "datasets-airbnb-markets-item"
 	OperationDatasetsAirbnbMarketsNearby                                          = "datasets-airbnb-markets-nearby"
 	OperationDatasetsAirbnbMarketsSearch                                          = "datasets-airbnb-markets-search"
+	OperationDatasetsAppleMapsPlacesFacets                                        = "datasets-apple-maps-places-facets"
+	OperationDatasetsAppleMapsPlacesItem                                          = "datasets-apple-maps-places-item"
+	OperationDatasetsAppleMapsPlacesNearby                                        = "datasets-apple-maps-places-nearby"
+	OperationDatasetsAppleMapsPlacesSearch                                        = "datasets-apple-maps-places-search"
 	OperationDatasetsApplePodcastsShowsFacets                                     = "datasets-apple-podcasts-shows-facets"
 	OperationDatasetsApplePodcastsShowsItem                                       = "datasets-apple-podcasts-shows-item"
 	OperationDatasetsApplePodcastsShowsSearch                                     = "datasets-apple-podcasts-shows-search"
@@ -79845,6 +82379,22 @@ const (
 	OperationDraftKingsSportsbookDraftkingsQuickLinks                             = "draftkings-quick-links"
 	OperationDraftKingsSportsbookDraftkingsTeam                                   = "draftkings-team"
 	OperationDraftKingsSportsbookDraftkingsTeams                                  = "draftkings-teams"
+	OperationDramaBoxDramaboxBrowse                                               = "dramabox-browse"
+	OperationDramaBoxDramaboxCategories                                           = "dramabox-categories"
+	OperationDramaBoxDramaboxCategoryBooks                                        = "dramabox-category-books"
+	OperationDramaBoxDramaboxChannels                                             = "dramabox-channels"
+	OperationDramaBoxDramaboxDrama                                                = "dramabox-drama"
+	OperationDramaBoxDramaboxGenres                                               = "dramabox-genres"
+	OperationDramaBoxDramaboxHome                                                 = "dramabox-home"
+	OperationDramaBoxDramaboxMore                                                 = "dramabox-more"
+	OperationDramaBoxDramaboxPerformer                                            = "dramabox-performer"
+	OperationDramaBoxDramaboxRank                                                 = "dramabox-rank"
+	OperationDramaBoxDramaboxRecommend                                            = "dramabox-recommend"
+	OperationDramaBoxDramaboxSearch                                               = "dramabox-search"
+	OperationDramaBoxDramaboxSuggest                                              = "dramabox-suggest"
+	OperationDramaBoxDramaboxTag                                                  = "dramabox-tag"
+	OperationDramaBoxDramaboxTheater                                              = "dramabox-theater"
+	OperationDramaBoxDramaboxTrending                                             = "dramabox-trending"
 	OperationDuckDuckGoSearchDuckduckgoImage                                      = "duckduckgo-image"
 	OperationDuckDuckGoSearchDuckduckgoNews                                       = "duckduckgo-news"
 	OperationDuckDuckGoSearchDuckduckgoSearch                                     = "duckduckgo-search"
@@ -80707,7 +83257,10 @@ const (
 	OperationJumiaCategory                                                        = "jumia-category"
 	OperationJumiaCountries                                                       = "jumia-countries"
 	OperationJumiaProduct                                                         = "jumia-product"
+	OperationJumiaReviews                                                         = "jumia-reviews"
 	OperationJumiaSearch                                                          = "jumia-search"
+	OperationJumiaSitemapUrls                                                     = "jumia-sitemap-urls"
+	OperationJumiaSitemaps                                                        = "jumia-sitemaps"
 	OperationJustEatJusteatRestaurant                                             = "justeat-restaurant"
 	OperationJustEatJusteatRestaurantMenu                                         = "justeat-restaurant-menu"
 	OperationJustEatJusteatSearch                                                 = "justeat-search"
@@ -80766,6 +83319,27 @@ const (
 	OperationKhaleejTimesKhaleejtimesHeadlines                                    = "khaleejtimes-headlines"
 	OperationKhaleejTimesKhaleejtimesNews                                         = "khaleejtimes-news"
 	OperationKhaleejTimesKhaleejtimesSections                                     = "khaleejtimes-sections"
+	OperationKickCategories                                                       = "kick-categories"
+	OperationKickCategoryClips                                                    = "kick-category-clips"
+	OperationKickChannel                                                          = "kick-channel"
+	OperationKickChannelChatroom                                                  = "kick-channel-chatroom"
+	OperationKickChannelClips                                                     = "kick-channel-clips"
+	OperationKickChannelEmotes                                                    = "kick-channel-emotes"
+	OperationKickChannelLinks                                                     = "kick-channel-links"
+	OperationKickChannelStreams                                                   = "kick-channel-streams"
+	OperationKickChannelVideos                                                    = "kick-channel-videos"
+	OperationKickClip                                                             = "kick-clip"
+	OperationKickClips                                                            = "kick-clips"
+	OperationKickDrops                                                            = "kick-drops"
+	OperationKickGifts                                                            = "kick-gifts"
+	OperationKickLanguages                                                        = "kick-languages"
+	OperationKickLivestreams                                                      = "kick-livestreams"
+	OperationKickSearchCategories                                                 = "kick-search-categories"
+	OperationKickSearchChannels                                                   = "kick-search-channels"
+	OperationKickSubcategories                                                    = "kick-subcategories"
+	OperationKickSubcategory                                                      = "kick-subcategory"
+	OperationKickTopChannels                                                      = "kick-top-channels"
+	OperationKickVideo                                                            = "kick-video"
 	OperationKickstarterComments                                                  = "kickstarter-comments"
 	OperationKickstarterDiscover                                                  = "kickstarter-discover"
 	OperationKickstarterProject                                                   = "kickstarter-project"
@@ -81450,6 +84024,12 @@ const (
 	OperationPradaSearch                                                          = "prada-search"
 	OperationPradaStores                                                          = "prada-stores"
 	OperationPradaSuggest                                                         = "prada-suggest"
+	OperationPriceChartingPricechartingBigMovers                                  = "pricecharting-big-movers"
+	OperationPriceChartingPricechartingCategories                                 = "pricecharting-categories"
+	OperationPriceChartingPricechartingConsole                                    = "pricecharting-console"
+	OperationPriceChartingPricechartingPriceHistory                               = "pricecharting-price-history"
+	OperationPriceChartingPricechartingProduct                                    = "pricecharting-product"
+	OperationPriceChartingPricechartingSearch                                     = "pricecharting-search"
 	OperationPristineAuctionCategories                                            = "pristine-auction-categories"
 	OperationPristineAuctionLotDetail                                             = "pristine-auction-lot-detail"
 	OperationPristineAuctionSearch                                                = "pristine-auction-search"
@@ -81493,6 +84073,7 @@ const (
 	OperationPsaPriceGuideCategories                                              = "psa-price-guide-categories"
 	OperationPsaPriceGuideSearch                                                  = "psa-price-guide-search"
 	OperationPsaPriceGuideSet                                                     = "psa-price-guide-set"
+	OperationPsaPriceGuideSets                                                    = "psa-price-guide-sets"
 	OperationPsaProbatfactsCategories                                             = "psa-probatfacts-categories"
 	OperationPsaProbatfactsGallery                                                = "psa-probatfacts-gallery"
 	OperationPsaProbatfactsSubject                                                = "psa-probatfacts-subject"
@@ -81579,6 +84160,17 @@ const (
 	OperationRedfinRegionTrends                                                   = "redfin-region-trends"
 	OperationRedfinSearch                                                         = "redfin-search"
 	OperationRedfinSimilar                                                        = "redfin-similar"
+	OperationReelShortReelshortFandomCategories                                   = "reelshort-fandom-categories"
+	OperationReelShortReelshortFandomPost                                         = "reelshort-fandom-post"
+	OperationReelShortReelshortFandomPosts                                        = "reelshort-fandom-posts"
+	OperationReelShortReelshortHome                                               = "reelshort-home"
+	OperationReelShortReelshortMovie                                              = "reelshort-movie"
+	OperationReelShortReelshortNewReleases                                        = "reelshort-new-releases"
+	OperationReelShortReelshortSearch                                             = "reelshort-search"
+	OperationReelShortReelshortShelf                                              = "reelshort-shelf"
+	OperationReelShortReelshortTagBooks                                           = "reelshort-tag-books"
+	OperationReelShortReelshortTagSearch                                          = "reelshort-tag-search"
+	OperationReelShortReelshortTags                                               = "reelshort-tags"
 	OperationReferralsClick                                                       = "referrals-click"
 	OperationReferralsMe                                                          = "referrals-me"
 	OperationReferralsMeEvents                                                    = "referrals-me-events"
@@ -82215,6 +84807,15 @@ const (
 	OperationTargetReviews                                                        = "target-reviews"
 	OperationTargetSearch                                                         = "target-search"
 	OperationTargetStores                                                         = "target-stores"
+	OperationTcgplayerFilters                                                     = "tcgplayer-filters"
+	OperationTcgplayerListings                                                    = "tcgplayer-listings"
+	OperationTcgplayerPriceGuide                                                  = "tcgplayer-price-guide"
+	OperationTcgplayerPriceHistory                                                = "tcgplayer-price-history"
+	OperationTcgplayerProduct                                                     = "tcgplayer-product"
+	OperationTcgplayerProductLines                                                = "tcgplayer-product-lines"
+	OperationTcgplayerSales                                                       = "tcgplayer-sales"
+	OperationTcgplayerSearch                                                      = "tcgplayer-search"
+	OperationTcgplayerSets                                                        = "tcgplayer-sets"
 	OperationTechCrunchTechcrunchArticle                                          = "techcrunch-article"
 	OperationTechCrunchTechcrunchAuthor                                           = "techcrunch-author"
 	OperationTechCrunchTechcrunchHeadlines                                        = "techcrunch-headlines"
@@ -82225,6 +84826,11 @@ const (
 	OperationTechRadarTechradarHeadlines                                          = "techradar-headlines"
 	OperationTechRadarTechradarNews                                               = "techradar-news"
 	OperationTechRadarTechradarSections                                           = "techradar-sections"
+	OperationTelegramBot                                                          = "telegram-bot"
+	OperationTelegramChannel                                                      = "telegram-channel"
+	OperationTelegramChannelPosts                                                 = "telegram-channel-posts"
+	OperationTelegramGroup                                                        = "telegram-group"
+	OperationTelegramPost                                                         = "telegram-post"
 	OperationTesJobDetail                                                         = "tes-job-detail"
 	OperationTesJobEmployer                                                       = "tes-job-employer"
 	OperationTesJobSearch                                                         = "tes-job-search"
@@ -82686,6 +85292,11 @@ const (
 	OperationWalgreensStores                                                      = "walgreens-stores"
 	OperationWallStreetJournalWsjArticle                                          = "wsj-article"
 	OperationWallStreetJournalWsjAuthor                                           = "wsj-author"
+	OperationWallapopCategories                                                   = "wallapop-categories"
+	OperationWallapopFilterOptions                                                = "wallapop-filter-options"
+	OperationWallapopFilters                                                      = "wallapop-filters"
+	OperationWallapopItemDetail                                                   = "wallapop-item-detail"
+	OperationWallapopSearch                                                       = "wallapop-search"
 	OperationWalmartProduct                                                       = "walmart-product"
 	OperationWalmartProductReviews                                                = "walmart-product-reviews"
 	OperationWalmartSearch                                                        = "walmart-search"
@@ -82694,6 +85305,17 @@ const (
 	OperationWashingtonPostWapoHeadlines                                          = "wapo-headlines"
 	OperationWashingtonPostWapoNews                                               = "wapo-news"
 	OperationWashingtonPostWapoSections                                           = "wapo-sections"
+	OperationWattpadCategories                                                    = "wattpad-categories"
+	OperationWattpadLanguages                                                     = "wattpad-languages"
+	OperationWattpadPart                                                          = "wattpad-part"
+	OperationWattpadPartComments                                                  = "wattpad-part-comments"
+	OperationWattpadSearch                                                        = "wattpad-search"
+	OperationWattpadSearchUsers                                                   = "wattpad-search-users"
+	OperationWattpadStory                                                         = "wattpad-story"
+	OperationWattpadStoryParts                                                    = "wattpad-story-parts"
+	OperationWattpadStoryRecommendations                                          = "wattpad-story-recommendations"
+	OperationWattpadUser                                                          = "wattpad-user"
+	OperationWattpadUserStories                                                   = "wattpad-user-stories"
 	OperationWayfairCategories                                                    = "wayfair-categories"
 	OperationWayfairCategory                                                      = "wayfair-category"
 	OperationWayfairProduct                                                       = "wayfair-product"
@@ -82984,9 +85606,14 @@ var operations = map[string]operationDefinition{
 	"alcom-headlines":                                 operationDefinition{Method: "GET", Path: "/alcom/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"news", "sports", "life"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"alcom-news":                                      operationDefinition{Method: "GET", Path: "/alcom/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"alcom-sections":                                  operationDefinition{Method: "GET", Path: "/alcom/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"aliexpress-categories":                           operationDefinition{Method: "GET", Path: "/aliexpress/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category_tab", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"aliexpress-category-ids":                         operationDefinition{Method: "GET", Path: "/aliexpress/category-ids", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"aliexpress-category-products":                    operationDefinition{Method: "GET", Path: "/aliexpress/category-products", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"aliexpress-reviews":                              operationDefinition{Method: "GET", Path: "/aliexpress/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "product_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
-	"aliexpress-search":                               operationDefinition{Method: "GET", Path: "/aliexpress/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"best_match", "orders", "price_asc", "price_desc"}}, parameterDefinition{Name: "min_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "free_shipping", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "choice", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "attr", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"aliexpress-search":                               operationDefinition{Method: "GET", Path: "/aliexpress/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"best_match", "orders", "price_asc", "price_desc"}}, parameterDefinition{Name: "min_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "free_shipping", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "choice", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "attr", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cat_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"aliexpress-search-filters":                       operationDefinition{Method: "GET", Path: "/aliexpress/search-filters", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"aliexpress-suggest":                              operationDefinition{Method: "GET", Path: "/aliexpress/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"aliexpress-trending-searches":                    operationDefinition{Method: "GET", Path: "/aliexpress/trending-searches", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"aljazeera-article":                               operationDefinition{Method: "GET", Path: "/aljazeera/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"aljazeera-author":                                operationDefinition{Method: "GET", Path: "/aljazeera/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"aljazeera-categories":                            operationDefinition{Method: "GET", Path: "/aljazeera/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -83571,6 +86198,10 @@ var operations = map[string]operationDefinition{
 	"datasets-airbnb-markets-item":                    operationDefinition{Method: "GET", Path: "/datasets/airbnb-markets/items/{country}", PathParams: []string{"country"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-airbnb-markets-nearby":                  operationDefinition{Method: "GET", Path: "/datasets/airbnb-markets/nearby", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "precision", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_listings", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "superhost", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "active_since", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-airbnb-markets-search":                  operationDefinition{Method: "GET", Path: "/datasets/airbnb-markets/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "group_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"country", "market", "admin1", "locality", "room_type", "property_type"}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "market", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "superhost", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "guest_favorite", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_review_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "active_since", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_listings", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"listings_desc", "superhost_pct_desc", "rating_desc", "key_asc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-apple-maps-places-facets":               operationDefinition{Method: "GET", Path: "/datasets/apple-maps-places/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"category", "country_code", "state", "city", "price_symbol", "catalog_country"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "postal_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_website", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_phone", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-apple-maps-places-item":                 operationDefinition{Method: "GET", Path: "/datasets/apple-maps-places/items/{place_id}", PathParams: []string{"place_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"datasets-apple-maps-places-nearby":               operationDefinition{Method: "GET", Path: "/datasets/apple-maps-places/nearby", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"datasets-apple-maps-places-search":               operationDefinition{Method: "GET", Path: "/datasets/apple-maps-places/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "city", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "postal_code", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_website", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "has_phone", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lon", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_m", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "rating_desc", "review_count_desc", "updated_at_desc", "distance_asc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"datasets-apple-podcasts-shows-facets":            operationDefinition{Method: "GET", Path: "/datasets/apple-podcasts-shows/facets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "facet", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"genre", "genre_id", "country", "content_advisory_rating", "run_id"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "genre", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "genre_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "explicitness", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_track_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-apple-podcasts-shows-item":              operationDefinition{Method: "GET", Path: "/datasets/apple-podcasts-shows/items/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"datasets-apple-podcasts-shows-search":            operationDefinition{Method: "GET", Path: "/datasets/apple-podcasts-shows/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "genre", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "genre_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "explicitness", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "run_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_track_count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "popularity", "track_count_desc", "release_desc", "title_asc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -83791,6 +86422,22 @@ var operations = map[string]operationDefinition{
 	"draftkings-quick-links":                          operationDefinition{Method: "GET", Path: "/draftkings/sportsbook/quick-links", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"draftkings-team":                                 operationDefinition{Method: "GET", Path: "/draftkings/sportsbook/team", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "hockey", "basketball", "baseball"}}, parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"draftkings-teams":                                operationDefinition{Method: "GET", Path: "/draftkings/sportsbook/teams", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "nhl", "nba", "cbb", "mlb", "cfb"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"dramabox-browse":                                 operationDefinition{Method: "GET", Path: "/dramabox/browse", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "genre_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"en", "ko", "zhHans", "zh", "es", "ja", "de", "in", "th", "tl", "pt", "fr", "ar", "it"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"dramabox-categories":                             operationDefinition{Method: "GET", Path: "/dramabox/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"dramabox-category-books":                         operationDefinition{Method: "GET", Path: "/dramabox/category-books", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "production", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"3", "1", "2"}}, parameterDefinition{Name: "dub", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"1", "0"}}, parameterDefinition{Name: "genre", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "genre_2", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"1", "2", "3"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"dramabox-channels":                               operationDefinition{Method: "GET", Path: "/dramabox/channels", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"dramabox-drama":                                  operationDefinition{Method: "GET", Path: "/dramabox/drama", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"dramabox-genres":                                 operationDefinition{Method: "GET", Path: "/dramabox/genres", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"en", "ko", "zhHans", "zh", "es", "ja", "de", "in", "th", "tl", "pt", "fr", "ar", "it"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"dramabox-home":                                   operationDefinition{Method: "GET", Path: "/dramabox/home", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"en", "ko", "zhHans", "zh", "es", "ja", "de", "in", "th", "tl", "pt", "fr", "ar", "it"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"dramabox-more":                                   operationDefinition{Method: "GET", Path: "/dramabox/more", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "position", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"trending", "must-sees", "hidden-gems"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"en", "ko", "zhHans", "zh", "es", "ja", "de", "in", "th", "tl", "pt", "fr", "ar", "it"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"dramabox-performer":                              operationDefinition{Method: "GET", Path: "/dramabox/performer", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "performer_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"dramabox-rank":                                   operationDefinition{Method: "GET", Path: "/dramabox/rank", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "rank_type", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"1", "2", "3"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"dramabox-recommend":                              operationDefinition{Method: "GET", Path: "/dramabox/recommend", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"dramabox-search":                                 operationDefinition{Method: "GET", Path: "/dramabox/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "keyword", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"1", "2", "3"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"dramabox-suggest":                                operationDefinition{Method: "GET", Path: "/dramabox/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "keyword", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"dramabox-tag":                                    operationDefinition{Method: "GET", Path: "/dramabox/tag", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "tag_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"dramabox-theater":                                operationDefinition{Method: "GET", Path: "/dramabox/theater", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "channel", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"popular", "new", "rankings", "categories", "anime", "live-action", "vip", "original"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"dramabox-trending":                               operationDefinition{Method: "GET", Path: "/dramabox/trending", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"duckduckgo-image":                                operationDefinition{Method: "GET", Path: "/duckduckgo/image", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"duckduckgo-news":                                 operationDefinition{Method: "GET", Path: "/duckduckgo/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"duckduckgo-search":                               operationDefinition{Method: "GET", Path: "/duckduckgo/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "time_range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"d", "w", "m", "y"}}, parameterDefinition{Name: "safe_search", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"strict", "moderate", "off"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -84671,7 +87318,10 @@ var operations = map[string]operationDefinition{
 	"jumia-category":                                  operationDefinition{Method: "GET", Path: "/jumia/category", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"ci", "eg", "ke", "ma", "ng", "sn"}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"jumia-countries":                                 operationDefinition{Method: "GET", Path: "/jumia/countries", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"jumia-product":                                   operationDefinition{Method: "GET", Path: "/jumia/product", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"jumia-reviews":                                   operationDefinition{Method: "GET", Path: "/jumia/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"ci", "eg", "ke", "ma", "ng", "sn"}}, parameterDefinition{Name: "sku", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"jumia-search":                                    operationDefinition{Method: "GET", Path: "/jumia/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"ci", "eg", "ke", "ma", "ng", "sn"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"jumia-sitemap-urls":                              operationDefinition{Method: "GET", Path: "/jumia/sitemap-urls", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"ci", "eg", "ke", "ma", "ng", "sn"}}, parameterDefinition{Name: "sitemap", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"jumia-sitemaps":                                  operationDefinition{Method: "GET", Path: "/jumia/sitemaps", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"ci", "eg", "ke", "ma", "ng", "sn"}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"products", "brands", "categories", "mlps"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"justeat-restaurant":                              operationDefinition{Method: "GET", Path: "/justeat/restaurant", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "unique_name", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"justeat-restaurant-menu":                         operationDefinition{Method: "GET", Path: "/justeat/restaurant/menu", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "unique_name", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"justeat-search":                                  operationDefinition{Method: "GET", Path: "/justeat/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "postcode", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "filter", In: "query", CollectionFormat: "multi", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"best_match", "review_rating", "distance", "delivery_time", "minimum_order_value", "delivery_fee"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -84730,6 +87380,27 @@ var operations = map[string]operationDefinition{
 	"khaleejtimes-headlines":                          operationDefinition{Method: "GET", Path: "/khaleejtimes/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"business", "business-property", "metaverse", "metaverse-blockchain", "metaverse-web3", "business-auto", "business-aviation", "business-corporate", "business-cryptocurrency", "business-currency-exchange", "business-economy", "business-energy", "business-finance", "business-infrastructure", "business-markets", "business-personal-finance", "business-tech", "business-telecom", "entertainment", "entertainment-gaming", "entertainment-local-events", "entertainment-movies", "entertainment-music", "entertainment-ott", "entertainment-things-to-do-in-the-uae", "life-and-living", "life-and-living-banking-in-uae", "life-and-living-housing-in-uae", "life-and-living-public-transport-in-uae", "life-and-living-schooling-in-uae", "life-and-living-uae-holidays", "life-and-living-visa-and-immigration-in-uae", "lifestyle", "lifestyle-arts", "lifestyle-beauty", "lifestyle-books", "lifestyle-fashion", "lifestyle-food", "lifestyle-gadgets", "lifestyle-health", "lifestyle-home", "lifestyle-mental-health", "lifestyle-parenting", "lifestyle-restaurant-reviews", "lifestyle-shopping", "lifestyle-wellness", "lifestyle-women-and-money", "lifestyle-writers-corner", "opinion", "opinion-columnists", "opinion-editorial", "offbeat", "long-reads", "space", "reviews", "reviews-movie-reviews", "reviews-tech-reviews", "sports", "sports-cricket", "sports-f1", "sports-fifa-world-cup", "sports-football", "sports-golf", "sports-horse-racing", "sports-tennis", "sports-local-sports", "travel", "travel-uae-attractions", "uae", "uae-crime", "uae-education", "uae-emergencies", "uae-environment", "uae-expo-city-dubai", "uae-government", "uae-legal", "uae-transport", "uae-weather", "world", "world-africa", "world-americas", "world-asia", "world-europe", "world-gulf", "world-mena", "uae-eid-al-etihad", "metaverse-nfts", "leadership", "leadership-interviews", "leadership-breaking-bread", "leadership-stories", "leadership-contributors", "uae-schools-and-parents", "uae-global-indians"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"khaleejtimes-news":                               operationDefinition{Method: "GET", Path: "/khaleejtimes/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"khaleejtimes-sections":                           operationDefinition{Method: "GET", Path: "/khaleejtimes/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"kick-categories":                                 operationDefinition{Method: "GET", Path: "/kick/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"kick-category-clips":                             operationDefinition{Method: "GET", Path: "/kick/category-clips", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
+	"kick-channel":                                    operationDefinition{Method: "GET", Path: "/kick/channel", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"kick-channel-chatroom":                           operationDefinition{Method: "GET", Path: "/kick/channel-chatroom", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"kick-channel-clips":                              operationDefinition{Method: "GET", Path: "/kick/channel-clips", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
+	"kick-channel-emotes":                             operationDefinition{Method: "GET", Path: "/kick/channel-emotes", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"kick-channel-links":                              operationDefinition{Method: "GET", Path: "/kick/channel-links", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"kick-channel-streams":                            operationDefinition{Method: "GET", Path: "/kick/channel-streams", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"kick-channel-videos":                             operationDefinition{Method: "GET", Path: "/kick/channel-videos", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"kick-clip":                                       operationDefinition{Method: "GET", Path: "/kick/clip", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"kick-clips":                                      operationDefinition{Method: "GET", Path: "/kick/clips", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"date", "views"}}, parameterDefinition{Name: "time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"day", "week", "month", "all"}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
+	"kick-drops":                                      operationDefinition{Method: "GET", Path: "/kick/drops", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"active", "expired", "all"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"kick-gifts":                                      operationDefinition{Method: "GET", Path: "/kick/gifts", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"kick-languages":                                  operationDefinition{Method: "GET", Path: "/kick/languages", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"kick-livestreams":                                operationDefinition{Method: "GET", Path: "/kick/livestreams", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"viewer_count_desc", "featured"}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "after", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"kick-search-categories":                          operationDefinition{Method: "GET", Path: "/kick/search-categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"kick-search-channels":                            operationDefinition{Method: "GET", Path: "/kick/search-channels", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "live", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"kick-subcategories":                              operationDefinition{Method: "GET", Path: "/kick/subcategories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"games", "irl", "music", "gambling", "creative", "alternative", "chat-roulette"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"kick-subcategory":                                operationDefinition{Method: "GET", Path: "/kick/subcategory", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"kick-top-channels":                               operationDefinition{Method: "GET", Path: "/kick/top-channels", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"kick-video":                                      operationDefinition{Method: "GET", Path: "/kick/video", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"kickstarter-comments":                            operationDefinition{Method: "GET", Path: "/kickstarter/comments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "creator", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"kickstarter-discover":                            operationDefinition{Method: "GET", Path: "/kickstarter/discover", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "term", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"magic", "popularity", "newest", "end_date", "most_funded"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{"upcoming", "live", "late_pledge", "canceled", "failed", "successful"}}, parameterDefinition{Name: "staff_pick_only", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"kickstarter-project":                             operationDefinition{Method: "GET", Path: "/kickstarter/project", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "creator", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -85417,6 +88088,12 @@ var operations = map[string]operationDefinition{
 	"prada-search":                                    operationDefinition{Method: "GET", Path: "/prada/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "gender", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Woman", "Man"}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"suggested", "price_asc", "price_desc", "newest"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"prada-stores":                                    operationDefinition{Method: "GET", Path: "/prada/stores", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lng", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "radius_km", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"prada-suggest":                                   operationDefinition{Method: "GET", Path: "/prada/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"pricecharting-big-movers":                        operationDefinition{Method: "GET", Path: "/pricecharting/big-movers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"video-games", "coins", "comic-books", "funko-pops", "pokemon-cards", "dragon-ball-cards", "lorcana-cards", "magic-cards", "marvel-cards", "one-piece-cards", "star-wars-cards", "yugioh-cards", "garbage-pail-cards", "other-tcg-cards", "other-cards", "lego-sets"}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"dollar-increase", "dollar-decrease", "percent-increase", "percent-decrease"}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "japan", "ntsc", "pal"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"pricecharting-categories":                        operationDefinition{Method: "GET", Path: "/pricecharting/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"pricecharting-console":                           operationDefinition{Method: "GET", Path: "/pricecharting/console", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "console", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"popularity", "highest-price", "lowest-price", "name"}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
+	"pricecharting-price-history":                     operationDefinition{Method: "GET", Path: "/pricecharting/price-history", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "console", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"pricecharting-product":                           operationDefinition{Method: "GET", Path: "/pricecharting/product", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "console", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"pricecharting-search":                            operationDefinition{Method: "GET", Path: "/pricecharting/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "console_uid", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "exclude_variants", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"popularity", "highest-price", "name"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"pristine-auction-categories":                     operationDefinition{Method: "GET", Path: "/pristine-auction/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"pristine-auction-lot-detail":                     operationDefinition{Method: "GET", Path: "/pristine-auction/lot/{lot_number}", PathParams: []string{"lot_number"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"pristine-auction-search":                         operationDefinition{Method: "GET", Path: "/pristine-auction/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"fine-art", "baseball", "basketball", "boxing-ufc", "coins-bullion", "comic-books", "football", "golf", "historical", "hockey", "music", "other-sports", "pop-culture", "racing", "soccer", "trading-cards", "wrestling"}}, parameterDefinition{Name: "auction_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"previous_featured", "ten_minute", "daily", "classic", "fine_art", "jewelry", "pop_culture", "tcg", "helmet", "nascar_foundation", "sports_cards", "coin", "sports_gear", "jersey", "frame_it_up", "fall_showcase", "elite", "live_stream"}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"future", "active", "canceled", "completed", "forfeited"}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"newly-listed", "bid-time-descending", "price-descending", "price-ascending", "ending-soonest", "ending-last", "bid-count-descending", "bid-count-ascending"}}, parameterDefinition{Name: "min_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"15", "30", "60"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -85460,6 +88137,7 @@ var operations = map[string]operationDefinition{
 	"psa-price-guide-categories":                      operationDefinition{Method: "GET", Path: "/psa/price-guide/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"psa-price-guide-search":                          operationDefinition{Method: "GET", Path: "/psa/price-guide/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"psa-price-guide-set":                             operationDefinition{Method: "GET", Path: "/psa/price-guide/set", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category_path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "set_path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "set_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"psa-price-guide-sets":                            operationDefinition{Method: "GET", Path: "/psa/price-guide/sets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "category_path", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"baseball-card-values", "basketball-card-values", "boxing-card-values", "football-card-values", "golf-card-values", "hockey-card-values", "soccer-card-values", "non-sports-tcg-card-values", "racing-card-values", "sports-ticket-values", "tennis-card-values", "unopened-pack-values", "presidential-autograph-values", "sports-autograph-values", "game-used-bat-values", "graded-baseball-values"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"psa-probatfacts-categories":                      operationDefinition{Method: "GET", Path: "/psa/probatfacts/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"psa-probatfacts-gallery":                         operationDefinition{Method: "GET", Path: "/psa/probatfacts/gallery", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "subject_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"psa-probatfacts-subject":                         operationDefinition{Method: "GET", Path: "/psa/probatfacts/subject", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "subject_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -85547,6 +88225,17 @@ var operations = map[string]operationDefinition{
 	"redfin-region-trends":                            operationDefinition{Method: "GET", Path: "/redfin/region-trends", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "region_type", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"1", "2", "5", "6"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"redfin-search":                                   operationDefinition{Method: "GET", Path: "/redfin/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "region_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "region_type", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"1", "2", "5", "6"}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"for_sale", "sold"}}, parameterDefinition{Name: "min_price", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_beds", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_baths", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"redfin-similar":                                  operationDefinition{Method: "GET", Path: "/redfin/similar", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "property_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reelshort-fandom-categories":                     operationDefinition{Method: "GET", Path: "/reelshort/fandom-categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reelshort-fandom-post":                           operationDefinition{Method: "GET", Path: "/reelshort/fandom-post", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reelshort-fandom-posts":                          operationDefinition{Method: "GET", Path: "/reelshort/fandom-posts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "search", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"general-topic", "movie-cast-list", "top-movie-stories", "where-to-watch", "where-to-watch-2"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"reelshort-home":                                  operationDefinition{Method: "GET", Path: "/reelshort/home", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"en", "es", "pt", "fr", "de", "it", "ja", "ko", "th", "id", "tr", "ar", "ru", "pl", "ro", "cs", "bg", "vi", "zh-TW"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reelshort-movie":                                 operationDefinition{Method: "GET", Path: "/reelshort/movie", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reelshort-new-releases":                          operationDefinition{Method: "GET", Path: "/reelshort/new-releases", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "book_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"en", "es", "pt", "fr", "de", "it", "ja", "ko", "th", "id", "tr", "ar", "ru", "pl", "ro", "cs", "bg", "vi", "zh-TW"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reelshort-search":                                operationDefinition{Method: "GET", Path: "/reelshort/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "keywords", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"en", "es", "pt", "fr", "de", "it", "ja", "ko", "th", "id", "tr", "ar", "ru", "pl", "ro", "cs", "bg", "vi", "zh-TW"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"reelshort-shelf":                                 operationDefinition{Method: "GET", Path: "/reelshort/shelf", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"reelshort-tag-books":                             operationDefinition{Method: "GET", Path: "/reelshort/tag-books", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "tag_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"en", "es", "pt", "fr", "de", "it", "ja", "ko", "th", "id", "tr", "ar", "ru", "pl", "ro", "cs", "bg", "vi", "zh-TW"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"reelshort-tag-search":                            operationDefinition{Method: "GET", Path: "/reelshort/tag-search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "word", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"en", "es", "pt", "fr", "de", "it", "ja", "ko", "th", "id", "tr", "ar", "ru", "pl", "ro", "cs", "bg", "vi", "zh-TW"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"reelshort-tags":                                  operationDefinition{Method: "GET", Path: "/reelshort/tags", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"actor", "actress", "identity", "trope"}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"en", "es", "pt", "fr", "de", "it", "ja", "ko", "th", "id", "tr", "ar", "ru", "pl", "ro", "cs", "bg", "vi", "zh-TW"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"referrals-click":                                 operationDefinition{Method: "POST", Path: "/referrals/click", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "request", BodyRequired: true, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{}},
 	"referrals-me":                                    operationDefinition{Method: "GET", Path: "/referrals/me", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
 	"referrals-me-events":                             operationDefinition{Method: "GET", Path: "/referrals/me/events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"JWTAuth"}},
@@ -86187,6 +88876,15 @@ var operations = map[string]operationDefinition{
 	"target-reviews":                                  operationDefinition{Method: "GET", Path: "/target/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "tcin", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"target-search":                                   operationDefinition{Method: "GET", Path: "/target/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "featured", "price-low", "price-high", "rating", "bestselling", "newest"}}, parameterDefinition{Name: "store_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "filter_ids", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"target-stores":                                   operationDefinition{Method: "GET", Path: "/target/stores", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "place", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "within", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tcgplayer-filters":                               operationDefinition{Method: "GET", Path: "/tcgplayer/filters", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "product_line", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tcgplayer-listings":                              operationDefinition{Method: "GET", Path: "/tcgplayer/listings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "condition", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"near-mint", "lightly-played", "moderately-played", "heavily-played", "damaged"}}, parameterDefinition{Name: "printing", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"price", "price-with-shipping"}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"tcgplayer-price-guide":                           operationDefinition{Method: "GET", Path: "/tcgplayer/price-guide", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "set_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"tcgplayer-price-history":                         operationDefinition{Method: "GET", Path: "/tcgplayer/price-history", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"month", "quarter", "semi-annual", "annual"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tcgplayer-product":                               operationDefinition{Method: "GET", Path: "/tcgplayer/product", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tcgplayer-product-lines":                         operationDefinition{Method: "GET", Path: "/tcgplayer/product-lines", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tcgplayer-sales":                                 operationDefinition{Method: "GET", Path: "/tcgplayer/sales", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "condition", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"near-mint", "lightly-played", "moderately-played", "heavily-played", "damaged", "unopened"}}, parameterDefinition{Name: "variant", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "listing_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "with-photos", "without-photos"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"tcgplayer-search":                                operationDefinition{Method: "GET", Path: "/tcgplayer/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "product_line", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "set", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "product_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "rarity", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "card_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"market-price", "lowest-price", "lowest-price-with-shipping", "median-price", "listings", "sales", "product-name"}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"tcgplayer-sets":                                  operationDefinition{Method: "GET", Path: "/tcgplayer/sets", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "product_line", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"techcrunch-article":                              operationDefinition{Method: "GET", Path: "/techcrunch/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"techcrunch-author":                               operationDefinition{Method: "GET", Path: "/techcrunch/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"techcrunch-headlines":                            operationDefinition{Method: "GET", Path: "/techcrunch/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"apps", "artificial-intelligence", "biotech-health", "climate", "commerce", "cryptocurrency", "enterprise", "fintech", "fundraising", "gadgets", "gaming", "government-policy", "hardware", "media-entertainment", "privacy", "robotics", "security", "social", "space", "startups", "transportation", "venture"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -86197,6 +88895,11 @@ var operations = map[string]operationDefinition{
 	"techradar-headlines":                             operationDefinition{Method: "GET", Path: "/techradar/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"ai-platforms-assistants", "audio", "best", "cameras", "computing", "deals", "gaming", "health-fitness", "home", "how-to", "how-to-watch", "news", "opinion", "phones", "pro", "reviews", "seasonal-sales", "streaming", "tablets", "tech", "tech-events", "televisions", "vehicle-tech", "versus", "vpn"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"techradar-news":                                  operationDefinition{Method: "GET", Path: "/techradar/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"techradar-sections":                              operationDefinition{Method: "GET", Path: "/techradar/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"telegram-bot":                                    operationDefinition{Method: "GET", Path: "/telegram/bot", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "username", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"telegram-channel":                                operationDefinition{Method: "GET", Path: "/telegram/channel", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "username", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"telegram-channel-posts":                          operationDefinition{Method: "GET", Path: "/telegram/channel-posts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "username", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "before", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"telegram-group":                                  operationDefinition{Method: "GET", Path: "/telegram/group", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "username", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"telegram-post":                                   operationDefinition{Method: "GET", Path: "/telegram/post", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "username", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"telegraph-article":                               operationDefinition{Method: "GET", Path: "/telegraph/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"telegraph-author":                                operationDefinition{Method: "GET", Path: "/telegraph/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"telegraph-headlines":                             operationDefinition{Method: "GET", Path: "/telegraph/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"uk-news", "world-news", "politics", "business", "finance", "technology", "sport", "culture", "travel", "lifestyle", "health", "science", "opinion"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -86352,7 +89055,7 @@ var operations = map[string]operationDefinition{
 	"tiktok-mobile-live-search":                       operationDefinition{Method: "GET", Path: "/tiktok/mobile/live/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "keyword", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"tiktok-mobile-live-tabs":                         operationDefinition{Method: "GET", Path: "/tiktok/mobile/live/tabs", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"tiktok-mobile-music-beats":                       operationDefinition{Method: "GET", Path: "/tiktok/mobile/music/beats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
-	"tiktok-mobile-music-chart":                       operationDefinition{Method: "GET", Path: "/tiktok/mobile/music/chart", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "chart_region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
+	"tiktok-mobile-music-chart":                       operationDefinition{Method: "GET", Path: "/tiktok/mobile/music/chart", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "chart_region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"AE", "BR", "CA", "DE", "EG", "FR", "JP", "KR", "LB", "MX", "NG", "SA", "TR", "US", "ZA"}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
 	"tiktok-mobile-music-choices":                     operationDefinition{Method: "GET", Path: "/tiktok/mobile/music/choices", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"tiktok-mobile-music-collection-list":             operationDefinition{Method: "GET", Path: "/tiktok/mobile/music/collection-list", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
 	"tiktok-mobile-music-collections":                 operationDefinition{Method: "GET", Path: "/tiktok/mobile/music/collections", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "count", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
@@ -86599,6 +89302,11 @@ var operations = map[string]operationDefinition{
 	"walesonline-news":                                operationDefinition{Method: "GET", Path: "/walesonline/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"walesonline-sections":                            operationDefinition{Method: "GET", Path: "/walesonline/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"walgreens-stores":                                operationDefinition{Method: "GET", Path: "/walgreens/stores", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "zip", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"wallapop-categories":                             operationDefinition{Method: "GET", Path: "/wallapop/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"wallapop-filter-options":                         operationDefinition{Method: "GET", Path: "/wallapop/filter-options", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "filter_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "category_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "brand", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"closest", "most_relevance", "newest", "price_low_to_high", "price_high_to_low"}}, parameterDefinition{Name: "options_query", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
+	"wallapop-filters":                                operationDefinition{Method: "GET", Path: "/wallapop/filters", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"wallapop-item-detail":                            operationDefinition{Method: "GET", Path: "/wallapop/item", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"wallapop-search":                                 operationDefinition{Method: "GET", Path: "/wallapop/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "category_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"closest", "most_relevance", "newest", "price_low_to_high", "price_high_to_low"}}, parameterDefinition{Name: "min_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "condition", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_shippable", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"true"}}, parameterDefinition{Name: "time_filter", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"today", "lastWeek", "lastMonth"}}, parameterDefinition{Name: "distance_in_km", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "filter", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
 	"walmart-product":                                 operationDefinition{Method: "GET", Path: "/walmart/product/{item_id}", PathParams: []string{"item_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"walmart-product-reviews":                         operationDefinition{Method: "GET", Path: "/walmart/product/{item_id}/reviews", PathParams: []string{"item_id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"walmart-search":                                  operationDefinition{Method: "GET", Path: "/walmart/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"best_match", "price_low", "price_high", "best_seller", "new_arrivals", "rating_high"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -86607,6 +89315,17 @@ var operations = map[string]operationDefinition{
 	"wapo-headlines":                                  operationDefinition{Method: "GET", Path: "/wapo/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"wapo-news":                                       operationDefinition{Method: "GET", Path: "/wapo/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"wapo-sections":                                   operationDefinition{Method: "GET", Path: "/wapo/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"wattpad-categories":                              operationDefinition{Method: "GET", Path: "/wattpad/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"wattpad-languages":                               operationDefinition{Method: "GET", Path: "/wattpad/languages", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"wattpad-part":                                    operationDefinition{Method: "GET", Path: "/wattpad/part", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "part_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"wattpad-part-comments":                           operationDefinition{Method: "GET", Path: "/wattpad/part-comments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "part_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"wattpad-search":                                  operationDefinition{Method: "GET", Path: "/wattpad/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "filter", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"hot", "new", "featured"}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "46", "47", "48", "49", "50", "51", "53"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"wattpad-search-users":                            operationDefinition{Method: "GET", Path: "/wattpad/search-users", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"wattpad-story":                                   operationDefinition{Method: "GET", Path: "/wattpad/story", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "story_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"wattpad-story-parts":                             operationDefinition{Method: "GET", Path: "/wattpad/story-parts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "story_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"wattpad-story-recommendations":                   operationDefinition{Method: "GET", Path: "/wattpad/story-recommendations", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "story_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"wattpad-user":                                    operationDefinition{Method: "GET", Path: "/wattpad/user", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "username", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"wattpad-user-stories":                            operationDefinition{Method: "GET", Path: "/wattpad/user-stories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "username", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"wayfair-categories":                              operationDefinition{Method: "GET", Path: "/wayfair/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"wayfair-category":                                operationDefinition{Method: "GET", Path: "/wayfair/category", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"wayfair-product":                                 operationDefinition{Method: "GET", Path: "/wayfair/product/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -86956,6 +89675,7 @@ type Services struct {
 	DraftKingsPredictions        *DraftKingsPredictionsService
 	DraftKingsRacing             *DraftKingsRacingService
 	DraftKingsSportsbook         *DraftKingsSportsbookService
+	DramaBox                     *DramaBoxService
 	DuckDuckGoSearch             *DuckDuckGoSearchService
 	Dunkin                       *DunkinService
 	Dw                           *DwService
@@ -87060,6 +89780,7 @@ type Services struct {
 	Kalshi                       *KalshiService
 	Kfc                          *KfcService
 	KhaleejTimes                 *KhaleejTimesService
+	Kick                         *KickService
 	Kickstarter                  *KickstarterService
 	KohlS                        *KohlSService
 	Kotaku                       *KotakuService
@@ -87151,6 +89872,7 @@ type Services struct {
 	PopularMechanics             *PopularMechanicsService
 	Poshmark                     *PoshmarkService
 	Prada                        *PradaService
+	PriceCharting                *PriceChartingService
 	PristineAuction              *PristineAuctionService
 	PristineMarketplace          *PristineMarketplaceService
 	ProductHunt                  *ProductHuntService
@@ -87166,6 +89888,7 @@ type Services struct {
 	Rebag                        *RebagService
 	Reddit                       *RedditService
 	Redfin                       *RedfinService
+	ReelShort                    *ReelShortService
 	Referrals                    *ReferralsService
 	ResearchJobs                 *ResearchJobsService
 	Research                     *ResearchService
@@ -87232,8 +89955,10 @@ type Services struct {
 	Swiggy                       *SwiggyService
 	TacoBell                     *TacoBellService
 	Target                       *TargetService
+	Tcgplayer                    *TcgplayerService
 	TechCrunch                   *TechCrunchService
 	TechRadar                    *TechRadarService
+	Telegram                     *TelegramService
 	TheTelegraph                 *TheTelegraphService
 	Tes                          *TesService
 	TeslaJobs                    *TeslaJobsService
@@ -87290,8 +90015,10 @@ type Services struct {
 	Vrbo                         *VrboService
 	WalesOnline                  *WalesOnlineService
 	Walgreens                    *WalgreensService
+	Wallapop                     *WallapopService
 	Walmart                      *WalmartService
 	WashingtonPost               *WashingtonPostService
+	Wattpad                      *WattpadService
 	Wayfair                      *WayfairService
 	Wccftech                     *WccftechService
 	Wendys                       *WendysService
@@ -87445,6 +90172,7 @@ func initServices(c *Client) Services {
 		DraftKingsPredictions:        &DraftKingsPredictionsService{client: c},
 		DraftKingsRacing:             &DraftKingsRacingService{client: c},
 		DraftKingsSportsbook:         &DraftKingsSportsbookService{client: c},
+		DramaBox:                     &DramaBoxService{client: c},
 		DuckDuckGoSearch:             &DuckDuckGoSearchService{client: c},
 		Dunkin:                       &DunkinService{client: c},
 		Dw:                           &DwService{client: c},
@@ -87549,6 +90277,7 @@ func initServices(c *Client) Services {
 		Kalshi:                       &KalshiService{client: c},
 		Kfc:                          &KfcService{client: c},
 		KhaleejTimes:                 &KhaleejTimesService{client: c},
+		Kick:                         &KickService{client: c},
 		Kickstarter:                  &KickstarterService{client: c},
 		KohlS:                        &KohlSService{client: c},
 		Kotaku:                       &KotakuService{client: c},
@@ -87640,6 +90369,7 @@ func initServices(c *Client) Services {
 		PopularMechanics:             &PopularMechanicsService{client: c},
 		Poshmark:                     &PoshmarkService{client: c},
 		Prada:                        &PradaService{client: c},
+		PriceCharting:                &PriceChartingService{client: c},
 		PristineAuction:              &PristineAuctionService{client: c},
 		PristineMarketplace:          &PristineMarketplaceService{client: c},
 		ProductHunt:                  &ProductHuntService{client: c},
@@ -87655,6 +90385,7 @@ func initServices(c *Client) Services {
 		Rebag:                        &RebagService{client: c},
 		Reddit:                       &RedditService{client: c},
 		Redfin:                       &RedfinService{client: c},
+		ReelShort:                    &ReelShortService{client: c},
 		Referrals:                    &ReferralsService{client: c},
 		ResearchJobs:                 &ResearchJobsService{client: c},
 		Research:                     &ResearchService{client: c},
@@ -87721,8 +90452,10 @@ func initServices(c *Client) Services {
 		Swiggy:                       &SwiggyService{client: c},
 		TacoBell:                     &TacoBellService{client: c},
 		Target:                       &TargetService{client: c},
+		Tcgplayer:                    &TcgplayerService{client: c},
 		TechCrunch:                   &TechCrunchService{client: c},
 		TechRadar:                    &TechRadarService{client: c},
+		Telegram:                     &TelegramService{client: c},
 		TheTelegraph:                 &TheTelegraphService{client: c},
 		Tes:                          &TesService{client: c},
 		TeslaJobs:                    &TeslaJobsService{client: c},
@@ -87779,8 +90512,10 @@ func initServices(c *Client) Services {
 		Vrbo:                         &VrboService{client: c},
 		WalesOnline:                  &WalesOnlineService{client: c},
 		Walgreens:                    &WalgreensService{client: c},
+		Wallapop:                     &WallapopService{client: c},
 		Walmart:                      &WalmartService{client: c},
 		WashingtonPost:               &WashingtonPostService{client: c},
+		Wattpad:                      &WattpadService{client: c},
 		Wayfair:                      &WayfairService{client: c},
 		Wccftech:                     &WccftechService{client: c},
 		Wendys:                       &WendysService{client: c},
@@ -88772,6 +91507,52 @@ func (s *AlComService) AlcomSectionsTyped(ctx context.Context, params AlComAlcom
 
 type AliExpressService struct{ client *Client }
 
+func (s *AliExpressService) AliexpressCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "aliexpress-categories", params, opts...)
+}
+
+type AliExpressAliexpressCategoriesParams struct {
+	CategoryTab *string `crawlora:"category_tab,omitempty"`
+}
+
+type AliExpressAliexpressCategoriesResponse = ModelAliexpressCategoriesResponseDoc
+
+func (s *AliExpressService) AliexpressCategoriesTyped(ctx context.Context, params AliExpressAliexpressCategoriesParams, opts ...RequestOption) (AliExpressAliexpressCategoriesResponse, error) {
+	return requestTyped[AliExpressAliexpressCategoriesResponse](s.client, ctx, "aliexpress-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *AliExpressService) AliexpressCategoryIds(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "aliexpress-category-ids", params, opts...)
+}
+
+type AliExpressAliexpressCategoryIdsParams struct {
+	Q          *string `crawlora:"q,omitempty"`
+	CategoryId *int    `crawlora:"category_id,omitempty"`
+	Page       *int    `crawlora:"page,omitempty"`
+}
+
+type AliExpressAliexpressCategoryIdsResponse = ModelAliexpressCategoryIdsResponseDoc
+
+func (s *AliExpressService) AliexpressCategoryIdsTyped(ctx context.Context, params AliExpressAliexpressCategoryIdsParams, opts ...RequestOption) (AliExpressAliexpressCategoryIdsResponse, error) {
+	return requestTyped[AliExpressAliexpressCategoryIdsResponse](s.client, ctx, "aliexpress-category-ids", paramsFromStruct(params), opts...)
+}
+
+func (s *AliExpressService) AliexpressCategoryProducts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "aliexpress-category-products", params, opts...)
+}
+
+type AliExpressAliexpressCategoryProductsParams struct {
+	CategoryId int     `crawlora:"category_id"`
+	Slug       *string `crawlora:"slug,omitempty"`
+	Page       *int    `crawlora:"page,omitempty"`
+}
+
+type AliExpressAliexpressCategoryProductsResponse = ModelAliexpressCategoryProductsResponseDoc
+
+func (s *AliExpressService) AliexpressCategoryProductsTyped(ctx context.Context, params AliExpressAliexpressCategoryProductsParams, opts ...RequestOption) (AliExpressAliexpressCategoryProductsResponse, error) {
+	return requestTyped[AliExpressAliexpressCategoryProductsResponse](s.client, ctx, "aliexpress-category-products", paramsFromStruct(params), opts...)
+}
+
 func (s *AliExpressService) AliexpressReviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "aliexpress-reviews", params, opts...)
 }
@@ -88800,6 +91581,7 @@ type AliExpressAliexpressSearchParams struct {
 	FreeShipping *bool    `crawlora:"free_shipping,omitempty"`
 	Choice       *bool    `crawlora:"choice,omitempty"`
 	Attr         *string  `crawlora:"attr,omitempty"`
+	CatId        *int     `crawlora:"cat_id,omitempty"`
 }
 
 type AliExpressAliexpressSearchResponse = ModelAliexpressSearchResponseDoc
@@ -88820,6 +91602,35 @@ type AliExpressAliexpressSearchFiltersResponse = ModelAliexpressFiltersResponseD
 
 func (s *AliExpressService) AliexpressSearchFiltersTyped(ctx context.Context, params AliExpressAliexpressSearchFiltersParams, opts ...RequestOption) (AliExpressAliexpressSearchFiltersResponse, error) {
 	return requestTyped[AliExpressAliexpressSearchFiltersResponse](s.client, ctx, "aliexpress-search-filters", paramsFromStruct(params), opts...)
+}
+
+func (s *AliExpressService) AliexpressSuggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "aliexpress-suggest", params, opts...)
+}
+
+type AliExpressAliexpressSuggestParams struct {
+	Q     string `crawlora:"q"`
+	Limit *int   `crawlora:"limit,omitempty"`
+}
+
+type AliExpressAliexpressSuggestResponse = ModelAliexpressSuggestResponseDoc
+
+func (s *AliExpressService) AliexpressSuggestTyped(ctx context.Context, params AliExpressAliexpressSuggestParams, opts ...RequestOption) (AliExpressAliexpressSuggestResponse, error) {
+	return requestTyped[AliExpressAliexpressSuggestResponse](s.client, ctx, "aliexpress-suggest", paramsFromStruct(params), opts...)
+}
+
+func (s *AliExpressService) AliexpressTrendingSearches(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "aliexpress-trending-searches", params, opts...)
+}
+
+type AliExpressAliexpressTrendingSearchesParams struct {
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type AliExpressAliexpressTrendingSearchesResponse = ModelAliexpressTrendingSearchesResponseDoc
+
+func (s *AliExpressService) AliexpressTrendingSearchesTyped(ctx context.Context, params AliExpressAliexpressTrendingSearchesParams, opts ...RequestOption) (AliExpressAliexpressTrendingSearchesResponse, error) {
+	return requestTyped[AliExpressAliexpressTrendingSearchesResponse](s.client, ctx, "aliexpress-trending-searches", paramsFromStruct(params), opts...)
 }
 
 type AlJazeeraService struct{ client *Client }
@@ -97936,6 +100747,97 @@ func (s *DatasetsService) AirbnbMarketsSearchTyped(ctx context.Context, params D
 	return requestTyped[DatasetsAirbnbMarketsSearchResponse](s.client, ctx, "datasets-airbnb-markets-search", paramsFromStruct(params), opts...)
 }
 
+func (s *DatasetsService) AppleMapsPlacesFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-apple-maps-places-facets", params, opts...)
+}
+
+type DatasetsAppleMapsPlacesFacetsParams struct {
+	Facet          string   `crawlora:"facet"`
+	Q              *string  `crawlora:"q,omitempty"`
+	Category       *string  `crawlora:"category,omitempty"`
+	City           *string  `crawlora:"city,omitempty"`
+	State          *string  `crawlora:"state,omitempty"`
+	CountryCode    *string  `crawlora:"country_code,omitempty"`
+	PostalCode     *string  `crawlora:"postal_code,omitempty"`
+	MinRating      *float64 `crawlora:"min_rating,omitempty"`
+	MinRatingCount *int     `crawlora:"min_rating_count,omitempty"`
+	HasWebsite     *bool    `crawlora:"has_website,omitempty"`
+	HasPhone       *bool    `crawlora:"has_phone,omitempty"`
+	Lat            *float64 `crawlora:"lat,omitempty"`
+	Lon            *float64 `crawlora:"lon,omitempty"`
+	RadiusM        *int     `crawlora:"radius_m,omitempty"`
+}
+
+type DatasetsAppleMapsPlacesFacetsResponse = ModelDatasetsApplePlacesFacetResponseDoc
+
+func (s *DatasetsService) AppleMapsPlacesFacetsTyped(ctx context.Context, params DatasetsAppleMapsPlacesFacetsParams, opts ...RequestOption) (DatasetsAppleMapsPlacesFacetsResponse, error) {
+	return requestTyped[DatasetsAppleMapsPlacesFacetsResponse](s.client, ctx, "datasets-apple-maps-places-facets", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) AppleMapsPlacesItem(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-apple-maps-places-item", params, opts...)
+}
+
+type DatasetsAppleMapsPlacesItemParams struct {
+	PlaceId string `crawlora:"place_id"`
+}
+
+type DatasetsAppleMapsPlacesItemResponse = ModelDatasetsApplePlaceResponseDoc
+
+func (s *DatasetsService) AppleMapsPlacesItemTyped(ctx context.Context, params DatasetsAppleMapsPlacesItemParams, opts ...RequestOption) (DatasetsAppleMapsPlacesItemResponse, error) {
+	return requestTyped[DatasetsAppleMapsPlacesItemResponse](s.client, ctx, "datasets-apple-maps-places-item", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) AppleMapsPlacesNearby(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-apple-maps-places-nearby", params, opts...)
+}
+
+type DatasetsAppleMapsPlacesNearbyParams struct {
+	Lat            float64  `crawlora:"lat"`
+	Lon            float64  `crawlora:"lon"`
+	RadiusM        int      `crawlora:"radius_m"`
+	Category       *string  `crawlora:"category,omitempty"`
+	MinRating      *float64 `crawlora:"min_rating,omitempty"`
+	MinRatingCount *int     `crawlora:"min_rating_count,omitempty"`
+	Page           *int     `crawlora:"page,omitempty"`
+	PageSize       *int     `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsAppleMapsPlacesNearbyResponse = ModelDatasetsApplePlacesSearchResponseDoc
+
+func (s *DatasetsService) AppleMapsPlacesNearbyTyped(ctx context.Context, params DatasetsAppleMapsPlacesNearbyParams, opts ...RequestOption) (DatasetsAppleMapsPlacesNearbyResponse, error) {
+	return requestTyped[DatasetsAppleMapsPlacesNearbyResponse](s.client, ctx, "datasets-apple-maps-places-nearby", paramsFromStruct(params), opts...)
+}
+
+func (s *DatasetsService) AppleMapsPlacesSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "datasets-apple-maps-places-search", params, opts...)
+}
+
+type DatasetsAppleMapsPlacesSearchParams struct {
+	Q              *string  `crawlora:"q,omitempty"`
+	Category       *string  `crawlora:"category,omitempty"`
+	City           *string  `crawlora:"city,omitempty"`
+	State          *string  `crawlora:"state,omitempty"`
+	CountryCode    *string  `crawlora:"country_code,omitempty"`
+	PostalCode     *string  `crawlora:"postal_code,omitempty"`
+	MinRating      *float64 `crawlora:"min_rating,omitempty"`
+	MinRatingCount *int     `crawlora:"min_rating_count,omitempty"`
+	HasWebsite     *bool    `crawlora:"has_website,omitempty"`
+	HasPhone       *bool    `crawlora:"has_phone,omitempty"`
+	Lat            *float64 `crawlora:"lat,omitempty"`
+	Lon            *float64 `crawlora:"lon,omitempty"`
+	RadiusM        *int     `crawlora:"radius_m,omitempty"`
+	Sort           *string  `crawlora:"sort,omitempty"`
+	Page           *int     `crawlora:"page,omitempty"`
+	PageSize       *int     `crawlora:"page_size,omitempty"`
+}
+
+type DatasetsAppleMapsPlacesSearchResponse = ModelDatasetsApplePlacesSearchResponseDoc
+
+func (s *DatasetsService) AppleMapsPlacesSearchTyped(ctx context.Context, params DatasetsAppleMapsPlacesSearchParams, opts ...RequestOption) (DatasetsAppleMapsPlacesSearchResponse, error) {
+	return requestTyped[DatasetsAppleMapsPlacesSearchResponse](s.client, ctx, "datasets-apple-maps-places-search", paramsFromStruct(params), opts...)
+}
+
 func (s *DatasetsService) ApplePodcastsShowsFacets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "datasets-apple-podcasts-shows-facets", params, opts...)
 }
@@ -102364,6 +105266,249 @@ type DraftKingsSportsbookDraftkingsTeamsResponse = ModelSportsbookTeamsResponseD
 
 func (s *DraftKingsSportsbookService) DraftkingsTeamsTyped(ctx context.Context, params DraftKingsSportsbookDraftkingsTeamsParams, opts ...RequestOption) (DraftKingsSportsbookDraftkingsTeamsResponse, error) {
 	return requestTyped[DraftKingsSportsbookDraftkingsTeamsResponse](s.client, ctx, "draftkings-teams", paramsFromStruct(params), opts...)
+}
+
+type DramaBoxService struct{ client *Client }
+
+func (s *DramaBoxService) DramaboxBrowse(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "dramabox-browse", params, opts...)
+}
+
+type DramaBoxDramaboxBrowseParams struct {
+	GenreId  *int    `crawlora:"genre_id,omitempty"`
+	Page     *int    `crawlora:"page,omitempty"`
+	Language *string `crawlora:"language,omitempty"`
+}
+
+type DramaBoxDramaboxBrowseResponse = ModelDramaboxBrowseResponseDoc
+
+func (s *DramaBoxService) DramaboxBrowseTyped(ctx context.Context, params DramaBoxDramaboxBrowseParams, opts ...RequestOption) (DramaBoxDramaboxBrowseResponse, error) {
+	return requestTyped[DramaBoxDramaboxBrowseResponse](s.client, ctx, "dramabox-browse", paramsFromStruct(params), opts...)
+}
+
+func (s *DramaBoxService) DramaboxCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "dramabox-categories", params, opts...)
+}
+
+type DramaBoxDramaboxCategoriesParams struct {
+}
+
+type DramaBoxDramaboxCategoriesResponse = ModelDramaboxCategoriesResponseDoc
+
+func (s *DramaBoxService) DramaboxCategoriesTyped(ctx context.Context, params DramaBoxDramaboxCategoriesParams, opts ...RequestOption) (DramaBoxDramaboxCategoriesResponse, error) {
+	return requestTyped[DramaBoxDramaboxCategoriesResponse](s.client, ctx, "dramabox-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *DramaBoxService) DramaboxCategoryBooks(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "dramabox-category-books", params, opts...)
+}
+
+type DramaBoxDramaboxCategoryBooksParams struct {
+	Language   *string `crawlora:"language,omitempty"`
+	Production *string `crawlora:"production,omitempty"`
+	Dub        *string `crawlora:"dub,omitempty"`
+	Genre      *string `crawlora:"genre,omitempty"`
+	Genre2     *string `crawlora:"genre_2,omitempty"`
+	Sort       *string `crawlora:"sort,omitempty"`
+	Page       *int    `crawlora:"page,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+}
+
+type DramaBoxDramaboxCategoryBooksResponse = ModelDramaboxCategoryBooksResponseDoc
+
+func (s *DramaBoxService) DramaboxCategoryBooksTyped(ctx context.Context, params DramaBoxDramaboxCategoryBooksParams, opts ...RequestOption) (DramaBoxDramaboxCategoryBooksResponse, error) {
+	return requestTyped[DramaBoxDramaboxCategoryBooksResponse](s.client, ctx, "dramabox-category-books", paramsFromStruct(params), opts...)
+}
+
+func (s *DramaBoxService) DramaboxChannels(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "dramabox-channels", params, opts...)
+}
+
+type DramaBoxDramaboxChannelsParams struct {
+}
+
+type DramaBoxDramaboxChannelsResponse = ModelDramaboxChannelsResponseDoc
+
+func (s *DramaBoxService) DramaboxChannelsTyped(ctx context.Context, params DramaBoxDramaboxChannelsParams, opts ...RequestOption) (DramaBoxDramaboxChannelsResponse, error) {
+	return requestTyped[DramaBoxDramaboxChannelsResponse](s.client, ctx, "dramabox-channels", paramsFromStruct(params), opts...)
+}
+
+func (s *DramaBoxService) DramaboxDrama(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "dramabox-drama", params, opts...)
+}
+
+type DramaBoxDramaboxDramaParams struct {
+	Id string `crawlora:"id"`
+}
+
+type DramaBoxDramaboxDramaResponse = ModelDramaboxDramaResponseDoc
+
+func (s *DramaBoxService) DramaboxDramaTyped(ctx context.Context, params DramaBoxDramaboxDramaParams, opts ...RequestOption) (DramaBoxDramaboxDramaResponse, error) {
+	return requestTyped[DramaBoxDramaboxDramaResponse](s.client, ctx, "dramabox-drama", paramsFromStruct(params), opts...)
+}
+
+func (s *DramaBoxService) DramaboxGenres(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "dramabox-genres", params, opts...)
+}
+
+type DramaBoxDramaboxGenresParams struct {
+	Language *string `crawlora:"language,omitempty"`
+}
+
+type DramaBoxDramaboxGenresResponse = ModelDramaboxGenresResponseDoc
+
+func (s *DramaBoxService) DramaboxGenresTyped(ctx context.Context, params DramaBoxDramaboxGenresParams, opts ...RequestOption) (DramaBoxDramaboxGenresResponse, error) {
+	return requestTyped[DramaBoxDramaboxGenresResponse](s.client, ctx, "dramabox-genres", paramsFromStruct(params), opts...)
+}
+
+func (s *DramaBoxService) DramaboxHome(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "dramabox-home", params, opts...)
+}
+
+type DramaBoxDramaboxHomeParams struct {
+	Language *string `crawlora:"language,omitempty"`
+}
+
+type DramaBoxDramaboxHomeResponse = ModelDramaboxHomeResponseDoc
+
+func (s *DramaBoxService) DramaboxHomeTyped(ctx context.Context, params DramaBoxDramaboxHomeParams, opts ...RequestOption) (DramaBoxDramaboxHomeResponse, error) {
+	return requestTyped[DramaBoxDramaboxHomeResponse](s.client, ctx, "dramabox-home", paramsFromStruct(params), opts...)
+}
+
+func (s *DramaBoxService) DramaboxMore(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "dramabox-more", params, opts...)
+}
+
+type DramaBoxDramaboxMoreParams struct {
+	Position string  `crawlora:"position"`
+	Page     *int    `crawlora:"page,omitempty"`
+	Language *string `crawlora:"language,omitempty"`
+}
+
+type DramaBoxDramaboxMoreResponse = ModelDramaboxMoreResponseDoc
+
+func (s *DramaBoxService) DramaboxMoreTyped(ctx context.Context, params DramaBoxDramaboxMoreParams, opts ...RequestOption) (DramaBoxDramaboxMoreResponse, error) {
+	return requestTyped[DramaBoxDramaboxMoreResponse](s.client, ctx, "dramabox-more", paramsFromStruct(params), opts...)
+}
+
+func (s *DramaBoxService) DramaboxPerformer(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "dramabox-performer", params, opts...)
+}
+
+type DramaBoxDramaboxPerformerParams struct {
+	PerformerId int  `crawlora:"performer_id"`
+	Page        *int `crawlora:"page,omitempty"`
+	Limit       *int `crawlora:"limit,omitempty"`
+}
+
+type DramaBoxDramaboxPerformerResponse = ModelDramaboxPerformerResponseDoc
+
+func (s *DramaBoxService) DramaboxPerformerTyped(ctx context.Context, params DramaBoxDramaboxPerformerParams, opts ...RequestOption) (DramaBoxDramaboxPerformerResponse, error) {
+	return requestTyped[DramaBoxDramaboxPerformerResponse](s.client, ctx, "dramabox-performer", paramsFromStruct(params), opts...)
+}
+
+func (s *DramaBoxService) DramaboxRank(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "dramabox-rank", params, opts...)
+}
+
+type DramaBoxDramaboxRankParams struct {
+	RankType *int `crawlora:"rank_type,omitempty"`
+}
+
+type DramaBoxDramaboxRankResponse = ModelDramaboxRankResponseDoc
+
+func (s *DramaBoxService) DramaboxRankTyped(ctx context.Context, params DramaBoxDramaboxRankParams, opts ...RequestOption) (DramaBoxDramaboxRankResponse, error) {
+	return requestTyped[DramaBoxDramaboxRankResponse](s.client, ctx, "dramabox-rank", paramsFromStruct(params), opts...)
+}
+
+func (s *DramaBoxService) DramaboxRecommend(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "dramabox-recommend", params, opts...)
+}
+
+type DramaBoxDramaboxRecommendParams struct {
+	Page *int `crawlora:"page,omitempty"`
+}
+
+type DramaBoxDramaboxRecommendResponse = ModelDramaboxRecommendResponseDoc
+
+func (s *DramaBoxService) DramaboxRecommendTyped(ctx context.Context, params DramaBoxDramaboxRecommendParams, opts ...RequestOption) (DramaBoxDramaboxRecommendResponse, error) {
+	return requestTyped[DramaBoxDramaboxRecommendResponse](s.client, ctx, "dramabox-recommend", paramsFromStruct(params), opts...)
+}
+
+func (s *DramaBoxService) DramaboxSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "dramabox-search", params, opts...)
+}
+
+type DramaBoxDramaboxSearchParams struct {
+	Keyword string `crawlora:"keyword"`
+	Page    *int   `crawlora:"page,omitempty"`
+	Limit   *int   `crawlora:"limit,omitempty"`
+	Sort    *int   `crawlora:"sort,omitempty"`
+}
+
+type DramaBoxDramaboxSearchResponse = ModelDramaboxSearchResponseDoc
+
+func (s *DramaBoxService) DramaboxSearchTyped(ctx context.Context, params DramaBoxDramaboxSearchParams, opts ...RequestOption) (DramaBoxDramaboxSearchResponse, error) {
+	return requestTyped[DramaBoxDramaboxSearchResponse](s.client, ctx, "dramabox-search", paramsFromStruct(params), opts...)
+}
+
+func (s *DramaBoxService) DramaboxSuggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "dramabox-suggest", params, opts...)
+}
+
+type DramaBoxDramaboxSuggestParams struct {
+	Keyword string `crawlora:"keyword"`
+}
+
+type DramaBoxDramaboxSuggestResponse = ModelDramaboxSuggestResponseDoc
+
+func (s *DramaBoxService) DramaboxSuggestTyped(ctx context.Context, params DramaBoxDramaboxSuggestParams, opts ...RequestOption) (DramaBoxDramaboxSuggestResponse, error) {
+	return requestTyped[DramaBoxDramaboxSuggestResponse](s.client, ctx, "dramabox-suggest", paramsFromStruct(params), opts...)
+}
+
+func (s *DramaBoxService) DramaboxTag(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "dramabox-tag", params, opts...)
+}
+
+type DramaBoxDramaboxTagParams struct {
+	TagId int  `crawlora:"tag_id"`
+	Page  *int `crawlora:"page,omitempty"`
+	Limit *int `crawlora:"limit,omitempty"`
+}
+
+type DramaBoxDramaboxTagResponse = ModelDramaboxTagResponseDoc
+
+func (s *DramaBoxService) DramaboxTagTyped(ctx context.Context, params DramaBoxDramaboxTagParams, opts ...RequestOption) (DramaBoxDramaboxTagResponse, error) {
+	return requestTyped[DramaBoxDramaboxTagResponse](s.client, ctx, "dramabox-tag", paramsFromStruct(params), opts...)
+}
+
+func (s *DramaBoxService) DramaboxTheater(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "dramabox-theater", params, opts...)
+}
+
+type DramaBoxDramaboxTheaterParams struct {
+	Channel string `crawlora:"channel"`
+	Page    *int   `crawlora:"page,omitempty"`
+	Limit   *int   `crawlora:"limit,omitempty"`
+}
+
+type DramaBoxDramaboxTheaterResponse = ModelDramaboxTheaterResponseDoc
+
+func (s *DramaBoxService) DramaboxTheaterTyped(ctx context.Context, params DramaBoxDramaboxTheaterParams, opts ...RequestOption) (DramaBoxDramaboxTheaterResponse, error) {
+	return requestTyped[DramaBoxDramaboxTheaterResponse](s.client, ctx, "dramabox-theater", paramsFromStruct(params), opts...)
+}
+
+func (s *DramaBoxService) DramaboxTrending(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "dramabox-trending", params, opts...)
+}
+
+type DramaBoxDramaboxTrendingParams struct {
+}
+
+type DramaBoxDramaboxTrendingResponse = ModelDramaboxTrendingResponseDoc
+
+func (s *DramaBoxService) DramaboxTrendingTyped(ctx context.Context, params DramaBoxDramaboxTrendingParams, opts ...RequestOption) (DramaBoxDramaboxTrendingResponse, error) {
+	return requestTyped[DramaBoxDramaboxTrendingResponse](s.client, ctx, "dramabox-trending", paramsFromStruct(params), opts...)
 }
 
 type DuckDuckGoSearchService struct{ client *Client }
@@ -115883,6 +119028,22 @@ func (s *JumiaService) ProductTyped(ctx context.Context, params JumiaProductPara
 	return requestTyped[JumiaProductResponse](s.client, ctx, "jumia-product", paramsFromStruct(params), opts...)
 }
 
+func (s *JumiaService) Reviews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jumia-reviews", params, opts...)
+}
+
+type JumiaReviewsParams struct {
+	Country string `crawlora:"country"`
+	Sku     string `crawlora:"sku"`
+	Page    *int   `crawlora:"page,omitempty"`
+}
+
+type JumiaReviewsResponse = ModelJumiaReviewsResponseDoc
+
+func (s *JumiaService) ReviewsTyped(ctx context.Context, params JumiaReviewsParams, opts ...RequestOption) (JumiaReviewsResponse, error) {
+	return requestTyped[JumiaReviewsResponse](s.client, ctx, "jumia-reviews", paramsFromStruct(params), opts...)
+}
+
 func (s *JumiaService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "jumia-search", params, opts...)
 }
@@ -115897,6 +119058,38 @@ type JumiaSearchResponse = ModelJumiaListingResponseDoc
 
 func (s *JumiaService) SearchTyped(ctx context.Context, params JumiaSearchParams, opts ...RequestOption) (JumiaSearchResponse, error) {
 	return requestTyped[JumiaSearchResponse](s.client, ctx, "jumia-search", paramsFromStruct(params), opts...)
+}
+
+func (s *JumiaService) SitemapUrls(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jumia-sitemap-urls", params, opts...)
+}
+
+type JumiaSitemapUrlsParams struct {
+	Country  string `crawlora:"country"`
+	Sitemap  string `crawlora:"sitemap"`
+	Page     *int   `crawlora:"page,omitempty"`
+	PageSize *int   `crawlora:"page_size,omitempty"`
+}
+
+type JumiaSitemapUrlsResponse = ModelJumiaSitemapUrlsResponseDoc
+
+func (s *JumiaService) SitemapUrlsTyped(ctx context.Context, params JumiaSitemapUrlsParams, opts ...RequestOption) (JumiaSitemapUrlsResponse, error) {
+	return requestTyped[JumiaSitemapUrlsResponse](s.client, ctx, "jumia-sitemap-urls", paramsFromStruct(params), opts...)
+}
+
+func (s *JumiaService) Sitemaps(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "jumia-sitemaps", params, opts...)
+}
+
+type JumiaSitemapsParams struct {
+	Country string  `crawlora:"country"`
+	Type    *string `crawlora:"type,omitempty"`
+}
+
+type JumiaSitemapsResponse = ModelJumiaSitemapsResponseDoc
+
+func (s *JumiaService) SitemapsTyped(ctx context.Context, params JumiaSitemapsParams, opts ...RequestOption) (JumiaSitemapsResponse, error) {
+	return requestTyped[JumiaSitemapsResponse](s.client, ctx, "jumia-sitemaps", paramsFromStruct(params), opts...)
 }
 
 type JustEatService struct{ client *Client }
@@ -116839,6 +120032,311 @@ type KhaleejTimesKhaleejtimesSectionsResponse = ModelPublicnewsSectionsResponseD
 
 func (s *KhaleejTimesService) KhaleejtimesSectionsTyped(ctx context.Context, params KhaleejTimesKhaleejtimesSectionsParams, opts ...RequestOption) (KhaleejTimesKhaleejtimesSectionsResponse, error) {
 	return requestTyped[KhaleejTimesKhaleejtimesSectionsResponse](s.client, ctx, "khaleejtimes-sections", paramsFromStruct(params), opts...)
+}
+
+type KickService struct{ client *Client }
+
+func (s *KickService) Categories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-categories", params, opts...)
+}
+
+type KickCategoriesParams struct {
+}
+
+type KickCategoriesResponse = ModelKickCategoriesResponseDoc
+
+func (s *KickService) CategoriesTyped(ctx context.Context, params KickCategoriesParams, opts ...RequestOption) (KickCategoriesResponse, error) {
+	return requestTyped[KickCategoriesResponse](s.client, ctx, "kick-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) CategoryClips(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-category-clips", params, opts...)
+}
+
+type KickCategoryClipsParams struct {
+	Slug   string  `crawlora:"slug"`
+	Cursor *string `crawlora:"cursor,omitempty"`
+}
+
+type KickCategoryClipsResponse = ModelKickCategoryClipsResponseDoc
+
+func (s *KickService) CategoryClipsTyped(ctx context.Context, params KickCategoryClipsParams, opts ...RequestOption) (KickCategoryClipsResponse, error) {
+	return requestTyped[KickCategoryClipsResponse](s.client, ctx, "kick-category-clips", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) Channel(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-channel", params, opts...)
+}
+
+type KickChannelParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type KickChannelResponse = ModelKickChannelResponseDoc
+
+func (s *KickService) ChannelTyped(ctx context.Context, params KickChannelParams, opts ...RequestOption) (KickChannelResponse, error) {
+	return requestTyped[KickChannelResponse](s.client, ctx, "kick-channel", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) ChannelChatroom(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-channel-chatroom", params, opts...)
+}
+
+type KickChannelChatroomParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type KickChannelChatroomResponse = ModelKickChannelChatroomResponseDoc
+
+func (s *KickService) ChannelChatroomTyped(ctx context.Context, params KickChannelChatroomParams, opts ...RequestOption) (KickChannelChatroomResponse, error) {
+	return requestTyped[KickChannelChatroomResponse](s.client, ctx, "kick-channel-chatroom", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) ChannelClips(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-channel-clips", params, opts...)
+}
+
+type KickChannelClipsParams struct {
+	Slug   string  `crawlora:"slug"`
+	Cursor *string `crawlora:"cursor,omitempty"`
+}
+
+type KickChannelClipsResponse = ModelKickChannelClipsResponseDoc
+
+func (s *KickService) ChannelClipsTyped(ctx context.Context, params KickChannelClipsParams, opts ...RequestOption) (KickChannelClipsResponse, error) {
+	return requestTyped[KickChannelClipsResponse](s.client, ctx, "kick-channel-clips", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) ChannelEmotes(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-channel-emotes", params, opts...)
+}
+
+type KickChannelEmotesParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type KickChannelEmotesResponse = ModelKickChannelEmotesResponseDoc
+
+func (s *KickService) ChannelEmotesTyped(ctx context.Context, params KickChannelEmotesParams, opts ...RequestOption) (KickChannelEmotesResponse, error) {
+	return requestTyped[KickChannelEmotesResponse](s.client, ctx, "kick-channel-emotes", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) ChannelLinks(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-channel-links", params, opts...)
+}
+
+type KickChannelLinksParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type KickChannelLinksResponse = ModelKickChannelLinksResponseDoc
+
+func (s *KickService) ChannelLinksTyped(ctx context.Context, params KickChannelLinksParams, opts ...RequestOption) (KickChannelLinksResponse, error) {
+	return requestTyped[KickChannelLinksResponse](s.client, ctx, "kick-channel-links", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) ChannelStreams(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-channel-streams", params, opts...)
+}
+
+type KickChannelStreamsParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type KickChannelStreamsResponse = ModelKickChannelStreamsResponseDoc
+
+func (s *KickService) ChannelStreamsTyped(ctx context.Context, params KickChannelStreamsParams, opts ...RequestOption) (KickChannelStreamsResponse, error) {
+	return requestTyped[KickChannelStreamsResponse](s.client, ctx, "kick-channel-streams", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) ChannelVideos(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-channel-videos", params, opts...)
+}
+
+type KickChannelVideosParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type KickChannelVideosResponse = ModelKickChannelVideosResponseDoc
+
+func (s *KickService) ChannelVideosTyped(ctx context.Context, params KickChannelVideosParams, opts ...RequestOption) (KickChannelVideosResponse, error) {
+	return requestTyped[KickChannelVideosResponse](s.client, ctx, "kick-channel-videos", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) Clip(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-clip", params, opts...)
+}
+
+type KickClipParams struct {
+	Id string `crawlora:"id"`
+}
+
+type KickClipResponse = ModelKickClipResponseDoc
+
+func (s *KickService) ClipTyped(ctx context.Context, params KickClipParams, opts ...RequestOption) (KickClipResponse, error) {
+	return requestTyped[KickClipResponse](s.client, ctx, "kick-clip", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) Clips(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-clips", params, opts...)
+}
+
+type KickClipsParams struct {
+	Sort   *string `crawlora:"sort,omitempty"`
+	Time   *string `crawlora:"time,omitempty"`
+	Cursor *string `crawlora:"cursor,omitempty"`
+}
+
+type KickClipsResponse = ModelKickClipsResponseDoc
+
+func (s *KickService) ClipsTyped(ctx context.Context, params KickClipsParams, opts ...RequestOption) (KickClipsResponse, error) {
+	return requestTyped[KickClipsResponse](s.client, ctx, "kick-clips", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) Drops(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-drops", params, opts...)
+}
+
+type KickDropsParams struct {
+	Status *string `crawlora:"status,omitempty"`
+}
+
+type KickDropsResponse = ModelKickDropsResponseDoc
+
+func (s *KickService) DropsTyped(ctx context.Context, params KickDropsParams, opts ...RequestOption) (KickDropsResponse, error) {
+	return requestTyped[KickDropsResponse](s.client, ctx, "kick-drops", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) Gifts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-gifts", params, opts...)
+}
+
+type KickGiftsParams struct {
+}
+
+type KickGiftsResponse = ModelKickGiftsResponseDoc
+
+func (s *KickService) GiftsTyped(ctx context.Context, params KickGiftsParams, opts ...RequestOption) (KickGiftsResponse, error) {
+	return requestTyped[KickGiftsResponse](s.client, ctx, "kick-gifts", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) Languages(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-languages", params, opts...)
+}
+
+type KickLanguagesParams struct {
+}
+
+type KickLanguagesResponse = ModelKickLanguagesResponseDoc
+
+func (s *KickService) LanguagesTyped(ctx context.Context, params KickLanguagesParams, opts ...RequestOption) (KickLanguagesResponse, error) {
+	return requestTyped[KickLanguagesResponse](s.client, ctx, "kick-languages", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) Livestreams(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-livestreams", params, opts...)
+}
+
+type KickLivestreamsParams struct {
+	Sort       *string `crawlora:"sort,omitempty"`
+	Language   *string `crawlora:"language,omitempty"`
+	CategoryId *int    `crawlora:"category_id,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+	After      *string `crawlora:"after,omitempty"`
+}
+
+type KickLivestreamsResponse = ModelKickLivestreamsResponseDoc
+
+func (s *KickService) LivestreamsTyped(ctx context.Context, params KickLivestreamsParams, opts ...RequestOption) (KickLivestreamsResponse, error) {
+	return requestTyped[KickLivestreamsResponse](s.client, ctx, "kick-livestreams", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) SearchCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-search-categories", params, opts...)
+}
+
+type KickSearchCategoriesParams struct {
+	Query string `crawlora:"query"`
+	Limit *int   `crawlora:"limit,omitempty"`
+}
+
+type KickSearchCategoriesResponse = ModelKickSearchCategoriesResponseDoc
+
+func (s *KickService) SearchCategoriesTyped(ctx context.Context, params KickSearchCategoriesParams, opts ...RequestOption) (KickSearchCategoriesResponse, error) {
+	return requestTyped[KickSearchCategoriesResponse](s.client, ctx, "kick-search-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) SearchChannels(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-search-channels", params, opts...)
+}
+
+type KickSearchChannelsParams struct {
+	Query string `crawlora:"query"`
+	Live  *bool  `crawlora:"live,omitempty"`
+	Limit *int   `crawlora:"limit,omitempty"`
+}
+
+type KickSearchChannelsResponse = ModelKickSearchChannelsResponseDoc
+
+func (s *KickService) SearchChannelsTyped(ctx context.Context, params KickSearchChannelsParams, opts ...RequestOption) (KickSearchChannelsResponse, error) {
+	return requestTyped[KickSearchChannelsResponse](s.client, ctx, "kick-search-channels", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) Subcategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-subcategories", params, opts...)
+}
+
+type KickSubcategoriesParams struct {
+	Category *string `crawlora:"category,omitempty"`
+	Page     *int    `crawlora:"page,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+}
+
+type KickSubcategoriesResponse = ModelKickSubcategoriesResponseDoc
+
+func (s *KickService) SubcategoriesTyped(ctx context.Context, params KickSubcategoriesParams, opts ...RequestOption) (KickSubcategoriesResponse, error) {
+	return requestTyped[KickSubcategoriesResponse](s.client, ctx, "kick-subcategories", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) Subcategory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-subcategory", params, opts...)
+}
+
+type KickSubcategoryParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type KickSubcategoryResponse = ModelKickSubcategoryResponseDoc
+
+func (s *KickService) SubcategoryTyped(ctx context.Context, params KickSubcategoryParams, opts ...RequestOption) (KickSubcategoryResponse, error) {
+	return requestTyped[KickSubcategoryResponse](s.client, ctx, "kick-subcategory", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) TopChannels(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-top-channels", params, opts...)
+}
+
+type KickTopChannelsParams struct {
+}
+
+type KickTopChannelsResponse = ModelKickTopChannelsResponseDoc
+
+func (s *KickService) TopChannelsTyped(ctx context.Context, params KickTopChannelsParams, opts ...RequestOption) (KickTopChannelsResponse, error) {
+	return requestTyped[KickTopChannelsResponse](s.client, ctx, "kick-top-channels", paramsFromStruct(params), opts...)
+}
+
+func (s *KickService) Video(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "kick-video", params, opts...)
+}
+
+type KickVideoParams struct {
+	Id string `crawlora:"id"`
+}
+
+type KickVideoResponse = ModelKickVideoResponseDoc
+
+func (s *KickService) VideoTyped(ctx context.Context, params KickVideoParams, opts ...RequestOption) (KickVideoResponse, error) {
+	return requestTyped[KickVideoResponse](s.client, ctx, "kick-video", paramsFromStruct(params), opts...)
 }
 
 type KickstarterService struct{ client *Client }
@@ -127748,6 +131246,105 @@ func (s *PradaService) SuggestTyped(ctx context.Context, params PradaSuggestPara
 	return requestTyped[PradaSuggestResponse](s.client, ctx, "prada-suggest", paramsFromStruct(params), opts...)
 }
 
+type PriceChartingService struct{ client *Client }
+
+func (s *PriceChartingService) PricechartingBigMovers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "pricecharting-big-movers", params, opts...)
+}
+
+type PriceChartingPricechartingBigMoversParams struct {
+	Category *string `crawlora:"category,omitempty"`
+	Sort     *string `crawlora:"sort,omitempty"`
+	Region   *string `crawlora:"region,omitempty"`
+}
+
+type PriceChartingPricechartingBigMoversResponse = ModelPricechartingBigMoversResponseDoc
+
+func (s *PriceChartingService) PricechartingBigMoversTyped(ctx context.Context, params PriceChartingPricechartingBigMoversParams, opts ...RequestOption) (PriceChartingPricechartingBigMoversResponse, error) {
+	return requestTyped[PriceChartingPricechartingBigMoversResponse](s.client, ctx, "pricecharting-big-movers", paramsFromStruct(params), opts...)
+}
+
+func (s *PriceChartingService) PricechartingCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "pricecharting-categories", params, opts...)
+}
+
+type PriceChartingPricechartingCategoriesParams struct {
+	Category *string `crawlora:"category,omitempty"`
+}
+
+type PriceChartingPricechartingCategoriesResponse = ModelPricechartingCategoriesResponseDoc
+
+func (s *PriceChartingService) PricechartingCategoriesTyped(ctx context.Context, params PriceChartingPricechartingCategoriesParams, opts ...RequestOption) (PriceChartingPricechartingCategoriesResponse, error) {
+	return requestTyped[PriceChartingPricechartingCategoriesResponse](s.client, ctx, "pricecharting-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *PriceChartingService) PricechartingConsole(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "pricecharting-console", params, opts...)
+}
+
+type PriceChartingPricechartingConsoleParams struct {
+	Console string  `crawlora:"console"`
+	Sort    *string `crawlora:"sort,omitempty"`
+	Cursor  *int    `crawlora:"cursor,omitempty"`
+}
+
+type PriceChartingPricechartingConsoleResponse = ModelPricechartingConsoleResponseDoc
+
+func (s *PriceChartingService) PricechartingConsoleTyped(ctx context.Context, params PriceChartingPricechartingConsoleParams, opts ...RequestOption) (PriceChartingPricechartingConsoleResponse, error) {
+	return requestTyped[PriceChartingPricechartingConsoleResponse](s.client, ctx, "pricecharting-console", paramsFromStruct(params), opts...)
+}
+
+func (s *PriceChartingService) PricechartingPriceHistory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "pricecharting-price-history", params, opts...)
+}
+
+type PriceChartingPricechartingPriceHistoryParams struct {
+	Id      *int    `crawlora:"id,omitempty"`
+	Url     *string `crawlora:"url,omitempty"`
+	Console *string `crawlora:"console,omitempty"`
+	Slug    *string `crawlora:"slug,omitempty"`
+}
+
+type PriceChartingPricechartingPriceHistoryResponse = ModelPricechartingPriceHistoryResponseDoc
+
+func (s *PriceChartingService) PricechartingPriceHistoryTyped(ctx context.Context, params PriceChartingPricechartingPriceHistoryParams, opts ...RequestOption) (PriceChartingPricechartingPriceHistoryResponse, error) {
+	return requestTyped[PriceChartingPricechartingPriceHistoryResponse](s.client, ctx, "pricecharting-price-history", paramsFromStruct(params), opts...)
+}
+
+func (s *PriceChartingService) PricechartingProduct(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "pricecharting-product", params, opts...)
+}
+
+type PriceChartingPricechartingProductParams struct {
+	Id      *int    `crawlora:"id,omitempty"`
+	Console *string `crawlora:"console,omitempty"`
+	Slug    *string `crawlora:"slug,omitempty"`
+	Url     *string `crawlora:"url,omitempty"`
+}
+
+type PriceChartingPricechartingProductResponse = ModelPricechartingProductResponseDoc
+
+func (s *PriceChartingService) PricechartingProductTyped(ctx context.Context, params PriceChartingPricechartingProductParams, opts ...RequestOption) (PriceChartingPricechartingProductResponse, error) {
+	return requestTyped[PriceChartingPricechartingProductResponse](s.client, ctx, "pricecharting-product", paramsFromStruct(params), opts...)
+}
+
+func (s *PriceChartingService) PricechartingSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "pricecharting-search", params, opts...)
+}
+
+type PriceChartingPricechartingSearchParams struct {
+	Q               string  `crawlora:"q"`
+	ConsoleUid      *string `crawlora:"console_uid,omitempty"`
+	ExcludeVariants *bool   `crawlora:"exclude_variants,omitempty"`
+	Sort            *string `crawlora:"sort,omitempty"`
+}
+
+type PriceChartingPricechartingSearchResponse = ModelPricechartingSearchResponseDoc
+
+func (s *PriceChartingService) PricechartingSearchTyped(ctx context.Context, params PriceChartingPricechartingSearchParams, opts ...RequestOption) (PriceChartingPricechartingSearchResponse, error) {
+	return requestTyped[PriceChartingPricechartingSearchResponse](s.client, ctx, "pricecharting-search", paramsFromStruct(params), opts...)
+}
+
 type PristineAuctionService struct{ client *Client }
 
 func (s *PristineAuctionService) Categories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -128403,6 +132000,23 @@ type PsaPriceGuideSetResponse = ModelPsaPriceGuideSetResponseDoc
 
 func (s *PsaService) PriceGuideSetTyped(ctx context.Context, params PsaPriceGuideSetParams, opts ...RequestOption) (PsaPriceGuideSetResponse, error) {
 	return requestTyped[PsaPriceGuideSetResponse](s.client, ctx, "psa-price-guide-set", paramsFromStruct(params), opts...)
+}
+
+func (s *PsaService) PriceGuideSets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "psa-price-guide-sets", params, opts...)
+}
+
+type PsaPriceGuideSetsParams struct {
+	Query        string  `crawlora:"query"`
+	CategoryPath *string `crawlora:"category_path,omitempty"`
+	Page         *int    `crawlora:"page,omitempty"`
+	PageSize     *int    `crawlora:"page_size,omitempty"`
+}
+
+type PsaPriceGuideSetsResponse = ModelPsaPriceGuideSetsResponseDoc
+
+func (s *PsaService) PriceGuideSetsTyped(ctx context.Context, params PsaPriceGuideSetsParams, opts ...RequestOption) (PsaPriceGuideSetsResponse, error) {
+	return requestTyped[PsaPriceGuideSetsResponse](s.client, ctx, "psa-price-guide-sets", paramsFromStruct(params), opts...)
 }
 
 func (s *PsaService) ProbatfactsCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -129730,6 +133344,173 @@ type RedfinSimilarResponse = ModelRedfinSimilarResponse
 
 func (s *RedfinService) SimilarTyped(ctx context.Context, params RedfinSimilarParams, opts ...RequestOption) (RedfinSimilarResponse, error) {
 	return requestTyped[RedfinSimilarResponse](s.client, ctx, "redfin-similar", paramsFromStruct(params), opts...)
+}
+
+type ReelShortService struct{ client *Client }
+
+func (s *ReelShortService) ReelshortFandomCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "reelshort-fandom-categories", params, opts...)
+}
+
+type ReelShortReelshortFandomCategoriesParams struct {
+}
+
+type ReelShortReelshortFandomCategoriesResponse = ModelReelshortFandomCategoriesResponseDoc
+
+func (s *ReelShortService) ReelshortFandomCategoriesTyped(ctx context.Context, params ReelShortReelshortFandomCategoriesParams, opts ...RequestOption) (ReelShortReelshortFandomCategoriesResponse, error) {
+	return requestTyped[ReelShortReelshortFandomCategoriesResponse](s.client, ctx, "reelshort-fandom-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *ReelShortService) ReelshortFandomPost(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "reelshort-fandom-post", params, opts...)
+}
+
+type ReelShortReelshortFandomPostParams struct {
+	Id string `crawlora:"id"`
+}
+
+type ReelShortReelshortFandomPostResponse = ModelReelshortFandomPostResponseDoc
+
+func (s *ReelShortService) ReelshortFandomPostTyped(ctx context.Context, params ReelShortReelshortFandomPostParams, opts ...RequestOption) (ReelShortReelshortFandomPostResponse, error) {
+	return requestTyped[ReelShortReelshortFandomPostResponse](s.client, ctx, "reelshort-fandom-post", paramsFromStruct(params), opts...)
+}
+
+func (s *ReelShortService) ReelshortFandomPosts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "reelshort-fandom-posts", params, opts...)
+}
+
+type ReelShortReelshortFandomPostsParams struct {
+	Search   *string `crawlora:"search,omitempty"`
+	Category *string `crawlora:"category,omitempty"`
+	Page     *int    `crawlora:"page,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+}
+
+type ReelShortReelshortFandomPostsResponse = ModelReelshortFandomPostsResponseDoc
+
+func (s *ReelShortService) ReelshortFandomPostsTyped(ctx context.Context, params ReelShortReelshortFandomPostsParams, opts ...RequestOption) (ReelShortReelshortFandomPostsResponse, error) {
+	return requestTyped[ReelShortReelshortFandomPostsResponse](s.client, ctx, "reelshort-fandom-posts", paramsFromStruct(params), opts...)
+}
+
+func (s *ReelShortService) ReelshortHome(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "reelshort-home", params, opts...)
+}
+
+type ReelShortReelshortHomeParams struct {
+	Language *string `crawlora:"language,omitempty"`
+}
+
+type ReelShortReelshortHomeResponse = ModelReelshortHomeResponseDoc
+
+func (s *ReelShortService) ReelshortHomeTyped(ctx context.Context, params ReelShortReelshortHomeParams, opts ...RequestOption) (ReelShortReelshortHomeResponse, error) {
+	return requestTyped[ReelShortReelshortHomeResponse](s.client, ctx, "reelshort-home", paramsFromStruct(params), opts...)
+}
+
+func (s *ReelShortService) ReelshortMovie(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "reelshort-movie", params, opts...)
+}
+
+type ReelShortReelshortMovieParams struct {
+	Id string `crawlora:"id"`
+}
+
+type ReelShortReelshortMovieResponse = ModelReelshortMovieResponseDoc
+
+func (s *ReelShortService) ReelshortMovieTyped(ctx context.Context, params ReelShortReelshortMovieParams, opts ...RequestOption) (ReelShortReelshortMovieResponse, error) {
+	return requestTyped[ReelShortReelshortMovieResponse](s.client, ctx, "reelshort-movie", paramsFromStruct(params), opts...)
+}
+
+func (s *ReelShortService) ReelshortNewReleases(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "reelshort-new-releases", params, opts...)
+}
+
+type ReelShortReelshortNewReleasesParams struct {
+	BookId   string  `crawlora:"book_id"`
+	Language *string `crawlora:"language,omitempty"`
+}
+
+type ReelShortReelshortNewReleasesResponse = ModelReelshortNewReleasesResponseDoc
+
+func (s *ReelShortService) ReelshortNewReleasesTyped(ctx context.Context, params ReelShortReelshortNewReleasesParams, opts ...RequestOption) (ReelShortReelshortNewReleasesResponse, error) {
+	return requestTyped[ReelShortReelshortNewReleasesResponse](s.client, ctx, "reelshort-new-releases", paramsFromStruct(params), opts...)
+}
+
+func (s *ReelShortService) ReelshortSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "reelshort-search", params, opts...)
+}
+
+type ReelShortReelshortSearchParams struct {
+	Keywords string  `crawlora:"keywords"`
+	Page     *int    `crawlora:"page,omitempty"`
+	Language *string `crawlora:"language,omitempty"`
+}
+
+type ReelShortReelshortSearchResponse = ModelReelshortSearchResponseDoc
+
+func (s *ReelShortService) ReelshortSearchTyped(ctx context.Context, params ReelShortReelshortSearchParams, opts ...RequestOption) (ReelShortReelshortSearchResponse, error) {
+	return requestTyped[ReelShortReelshortSearchResponse](s.client, ctx, "reelshort-search", paramsFromStruct(params), opts...)
+}
+
+func (s *ReelShortService) ReelshortShelf(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "reelshort-shelf", params, opts...)
+}
+
+type ReelShortReelshortShelfParams struct {
+	Id string `crawlora:"id"`
+}
+
+type ReelShortReelshortShelfResponse = ModelReelshortShelfResponseDoc
+
+func (s *ReelShortService) ReelshortShelfTyped(ctx context.Context, params ReelShortReelshortShelfParams, opts ...RequestOption) (ReelShortReelshortShelfResponse, error) {
+	return requestTyped[ReelShortReelshortShelfResponse](s.client, ctx, "reelshort-shelf", paramsFromStruct(params), opts...)
+}
+
+func (s *ReelShortService) ReelshortTagBooks(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "reelshort-tag-books", params, opts...)
+}
+
+type ReelShortReelshortTagBooksParams struct {
+	TagId    string  `crawlora:"tag_id"`
+	Page     *int    `crawlora:"page,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+	Language *string `crawlora:"language,omitempty"`
+}
+
+type ReelShortReelshortTagBooksResponse = ModelReelshortTagBooksResponseDoc
+
+func (s *ReelShortService) ReelshortTagBooksTyped(ctx context.Context, params ReelShortReelshortTagBooksParams, opts ...RequestOption) (ReelShortReelshortTagBooksResponse, error) {
+	return requestTyped[ReelShortReelshortTagBooksResponse](s.client, ctx, "reelshort-tag-books", paramsFromStruct(params), opts...)
+}
+
+func (s *ReelShortService) ReelshortTagSearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "reelshort-tag-search", params, opts...)
+}
+
+type ReelShortReelshortTagSearchParams struct {
+	Word     string  `crawlora:"word"`
+	Page     *int    `crawlora:"page,omitempty"`
+	Language *string `crawlora:"language,omitempty"`
+}
+
+type ReelShortReelshortTagSearchResponse = ModelReelshortTagSearchResponseDoc
+
+func (s *ReelShortService) ReelshortTagSearchTyped(ctx context.Context, params ReelShortReelshortTagSearchParams, opts ...RequestOption) (ReelShortReelshortTagSearchResponse, error) {
+	return requestTyped[ReelShortReelshortTagSearchResponse](s.client, ctx, "reelshort-tag-search", paramsFromStruct(params), opts...)
+}
+
+func (s *ReelShortService) ReelshortTags(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "reelshort-tags", params, opts...)
+}
+
+type ReelShortReelshortTagsParams struct {
+	Category string  `crawlora:"category"`
+	Language *string `crawlora:"language,omitempty"`
+}
+
+type ReelShortReelshortTagsResponse = ModelReelshortTagsResponseDoc
+
+func (s *ReelShortService) ReelshortTagsTyped(ctx context.Context, params ReelShortReelshortTagsParams, opts ...RequestOption) (ReelShortReelshortTagsResponse, error) {
+	return requestTyped[ReelShortReelshortTagsResponse](s.client, ctx, "reelshort-tags", paramsFromStruct(params), opts...)
 }
 
 type ReferralsService struct{ client *Client }
@@ -139627,6 +143408,159 @@ func (s *TargetService) StoresTyped(ctx context.Context, params TargetStoresPara
 	return requestTyped[TargetStoresResponse](s.client, ctx, "target-stores", paramsFromStruct(params), opts...)
 }
 
+type TcgplayerService struct{ client *Client }
+
+func (s *TcgplayerService) Filters(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tcgplayer-filters", params, opts...)
+}
+
+type TcgplayerFiltersParams struct {
+	ProductLine *string `crawlora:"product_line,omitempty"`
+	Id          *int    `crawlora:"id,omitempty"`
+}
+
+type TcgplayerFiltersResponse = ModelTcgplayerFiltersResponseDoc
+
+func (s *TcgplayerService) FiltersTyped(ctx context.Context, params TcgplayerFiltersParams, opts ...RequestOption) (TcgplayerFiltersResponse, error) {
+	return requestTyped[TcgplayerFiltersResponse](s.client, ctx, "tcgplayer-filters", paramsFromStruct(params), opts...)
+}
+
+func (s *TcgplayerService) Listings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tcgplayer-listings", params, opts...)
+}
+
+type TcgplayerListingsParams struct {
+	Id        int     `crawlora:"id"`
+	Condition *string `crawlora:"condition,omitempty"`
+	Printing  *string `crawlora:"printing,omitempty"`
+	Language  *string `crawlora:"language,omitempty"`
+	Sort      *string `crawlora:"sort,omitempty"`
+	Order     *string `crawlora:"order,omitempty"`
+	Limit     *int    `crawlora:"limit,omitempty"`
+	Offset    *int    `crawlora:"offset,omitempty"`
+}
+
+type TcgplayerListingsResponse = ModelTcgplayerListingsResponseDoc
+
+func (s *TcgplayerService) ListingsTyped(ctx context.Context, params TcgplayerListingsParams, opts ...RequestOption) (TcgplayerListingsResponse, error) {
+	return requestTyped[TcgplayerListingsResponse](s.client, ctx, "tcgplayer-listings", paramsFromStruct(params), opts...)
+}
+
+func (s *TcgplayerService) PriceGuide(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tcgplayer-price-guide", params, opts...)
+}
+
+type TcgplayerPriceGuideParams struct {
+	SetId  int  `crawlora:"set_id"`
+	Limit  *int `crawlora:"limit,omitempty"`
+	Offset *int `crawlora:"offset,omitempty"`
+}
+
+type TcgplayerPriceGuideResponse = ModelTcgplayerPriceGuideResponseDoc
+
+func (s *TcgplayerService) PriceGuideTyped(ctx context.Context, params TcgplayerPriceGuideParams, opts ...RequestOption) (TcgplayerPriceGuideResponse, error) {
+	return requestTyped[TcgplayerPriceGuideResponse](s.client, ctx, "tcgplayer-price-guide", paramsFromStruct(params), opts...)
+}
+
+func (s *TcgplayerService) PriceHistory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tcgplayer-price-history", params, opts...)
+}
+
+type TcgplayerPriceHistoryParams struct {
+	Id    int     `crawlora:"id"`
+	Range *string `crawlora:"range,omitempty"`
+}
+
+type TcgplayerPriceHistoryResponse = ModelTcgplayerPriceHistoryResponseDoc
+
+func (s *TcgplayerService) PriceHistoryTyped(ctx context.Context, params TcgplayerPriceHistoryParams, opts ...RequestOption) (TcgplayerPriceHistoryResponse, error) {
+	return requestTyped[TcgplayerPriceHistoryResponse](s.client, ctx, "tcgplayer-price-history", paramsFromStruct(params), opts...)
+}
+
+func (s *TcgplayerService) Product(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tcgplayer-product", params, opts...)
+}
+
+type TcgplayerProductParams struct {
+	Id int `crawlora:"id"`
+}
+
+type TcgplayerProductResponse = ModelTcgplayerProductResponseDoc
+
+func (s *TcgplayerService) ProductTyped(ctx context.Context, params TcgplayerProductParams, opts ...RequestOption) (TcgplayerProductResponse, error) {
+	return requestTyped[TcgplayerProductResponse](s.client, ctx, "tcgplayer-product", paramsFromStruct(params), opts...)
+}
+
+func (s *TcgplayerService) ProductLines(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tcgplayer-product-lines", params, opts...)
+}
+
+type TcgplayerProductLinesParams struct {
+}
+
+type TcgplayerProductLinesResponse = ModelTcgplayerProductLinesResponseDoc
+
+func (s *TcgplayerService) ProductLinesTyped(ctx context.Context, params TcgplayerProductLinesParams, opts ...RequestOption) (TcgplayerProductLinesResponse, error) {
+	return requestTyped[TcgplayerProductLinesResponse](s.client, ctx, "tcgplayer-product-lines", paramsFromStruct(params), opts...)
+}
+
+func (s *TcgplayerService) Sales(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tcgplayer-sales", params, opts...)
+}
+
+type TcgplayerSalesParams struct {
+	Id          int     `crawlora:"id"`
+	Condition   *string `crawlora:"condition,omitempty"`
+	Variant     *string `crawlora:"variant,omitempty"`
+	Language    *string `crawlora:"language,omitempty"`
+	ListingType *string `crawlora:"listing_type,omitempty"`
+}
+
+type TcgplayerSalesResponse = ModelTcgplayerSalesResponseDoc
+
+func (s *TcgplayerService) SalesTyped(ctx context.Context, params TcgplayerSalesParams, opts ...RequestOption) (TcgplayerSalesResponse, error) {
+	return requestTyped[TcgplayerSalesResponse](s.client, ctx, "tcgplayer-sales", paramsFromStruct(params), opts...)
+}
+
+func (s *TcgplayerService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tcgplayer-search", params, opts...)
+}
+
+type TcgplayerSearchParams struct {
+	Q           *string  `crawlora:"q,omitempty"`
+	ProductLine *string  `crawlora:"product_line,omitempty"`
+	Set         *string  `crawlora:"set,omitempty"`
+	ProductType *string  `crawlora:"product_type,omitempty"`
+	Rarity      *string  `crawlora:"rarity,omitempty"`
+	CardType    *string  `crawlora:"card_type,omitempty"`
+	MinPrice    *float64 `crawlora:"min_price,omitempty"`
+	MaxPrice    *float64 `crawlora:"max_price,omitempty"`
+	Sort        *string  `crawlora:"sort,omitempty"`
+	Order       *string  `crawlora:"order,omitempty"`
+	Limit       *int     `crawlora:"limit,omitempty"`
+	Offset      *int     `crawlora:"offset,omitempty"`
+}
+
+type TcgplayerSearchResponse = ModelTcgplayerSearchResponseDoc
+
+func (s *TcgplayerService) SearchTyped(ctx context.Context, params TcgplayerSearchParams, opts ...RequestOption) (TcgplayerSearchResponse, error) {
+	return requestTyped[TcgplayerSearchResponse](s.client, ctx, "tcgplayer-search", paramsFromStruct(params), opts...)
+}
+
+func (s *TcgplayerService) Sets(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "tcgplayer-sets", params, opts...)
+}
+
+type TcgplayerSetsParams struct {
+	ProductLine string `crawlora:"product_line"`
+}
+
+type TcgplayerSetsResponse = ModelTcgplayerSetsResponseDoc
+
+func (s *TcgplayerService) SetsTyped(ctx context.Context, params TcgplayerSetsParams, opts ...RequestOption) (TcgplayerSetsResponse, error) {
+	return requestTyped[TcgplayerSetsResponse](s.client, ctx, "tcgplayer-sets", paramsFromStruct(params), opts...)
+}
+
 type TechCrunchService struct{ client *Client }
 
 func (s *TechCrunchService) TechcrunchArticle(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -139768,6 +143702,81 @@ type TechRadarTechradarSectionsResponse = ModelPublicnewsSectionsResponseDoc
 
 func (s *TechRadarService) TechradarSectionsTyped(ctx context.Context, params TechRadarTechradarSectionsParams, opts ...RequestOption) (TechRadarTechradarSectionsResponse, error) {
 	return requestTyped[TechRadarTechradarSectionsResponse](s.client, ctx, "techradar-sections", paramsFromStruct(params), opts...)
+}
+
+type TelegramService struct{ client *Client }
+
+func (s *TelegramService) Bot(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "telegram-bot", params, opts...)
+}
+
+type TelegramBotParams struct {
+	Username string `crawlora:"username"`
+}
+
+type TelegramBotResponse = ModelTelegramBotResponseDoc
+
+func (s *TelegramService) BotTyped(ctx context.Context, params TelegramBotParams, opts ...RequestOption) (TelegramBotResponse, error) {
+	return requestTyped[TelegramBotResponse](s.client, ctx, "telegram-bot", paramsFromStruct(params), opts...)
+}
+
+func (s *TelegramService) Channel(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "telegram-channel", params, opts...)
+}
+
+type TelegramChannelParams struct {
+	Username string `crawlora:"username"`
+}
+
+type TelegramChannelResponse = ModelTelegramChannelResponseDoc
+
+func (s *TelegramService) ChannelTyped(ctx context.Context, params TelegramChannelParams, opts ...RequestOption) (TelegramChannelResponse, error) {
+	return requestTyped[TelegramChannelResponse](s.client, ctx, "telegram-channel", paramsFromStruct(params), opts...)
+}
+
+func (s *TelegramService) ChannelPosts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "telegram-channel-posts", params, opts...)
+}
+
+type TelegramChannelPostsParams struct {
+	Username string  `crawlora:"username"`
+	Before   *int    `crawlora:"before,omitempty"`
+	Query    *string `crawlora:"query,omitempty"`
+}
+
+type TelegramChannelPostsResponse = ModelTelegramChannelPostsResponseDoc
+
+func (s *TelegramService) ChannelPostsTyped(ctx context.Context, params TelegramChannelPostsParams, opts ...RequestOption) (TelegramChannelPostsResponse, error) {
+	return requestTyped[TelegramChannelPostsResponse](s.client, ctx, "telegram-channel-posts", paramsFromStruct(params), opts...)
+}
+
+func (s *TelegramService) Group(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "telegram-group", params, opts...)
+}
+
+type TelegramGroupParams struct {
+	Username string `crawlora:"username"`
+}
+
+type TelegramGroupResponse = ModelTelegramGroupResponseDoc
+
+func (s *TelegramService) GroupTyped(ctx context.Context, params TelegramGroupParams, opts ...RequestOption) (TelegramGroupResponse, error) {
+	return requestTyped[TelegramGroupResponse](s.client, ctx, "telegram-group", paramsFromStruct(params), opts...)
+}
+
+func (s *TelegramService) Post(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "telegram-post", params, opts...)
+}
+
+type TelegramPostParams struct {
+	Username string `crawlora:"username"`
+	Id       int    `crawlora:"id"`
+}
+
+type TelegramPostResponse = ModelTelegramPostResponseDoc
+
+func (s *TelegramService) PostTyped(ctx context.Context, params TelegramPostParams, opts ...RequestOption) (TelegramPostResponse, error) {
+	return requestTyped[TelegramPostResponse](s.client, ctx, "telegram-post", paramsFromStruct(params), opts...)
 }
 
 type TheTelegraphService struct{ client *Client }
@@ -145822,6 +149831,96 @@ func (s *WalgreensService) StoresTyped(ctx context.Context, params WalgreensStor
 	return requestTyped[WalgreensStoresResponse](s.client, ctx, "walgreens-stores", paramsFromStruct(params), opts...)
 }
 
+type WallapopService struct{ client *Client }
+
+func (s *WallapopService) Categories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "wallapop-categories", params, opts...)
+}
+
+type WallapopCategoriesParams struct {
+}
+
+type WallapopCategoriesResponse = ModelWallapopCategoriesResponseDoc
+
+func (s *WallapopService) CategoriesTyped(ctx context.Context, params WallapopCategoriesParams, opts ...RequestOption) (WallapopCategoriesResponse, error) {
+	return requestTyped[WallapopCategoriesResponse](s.client, ctx, "wallapop-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *WallapopService) FilterOptions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "wallapop-filter-options", params, opts...)
+}
+
+type WallapopFilterOptionsParams struct {
+	FilterId     string  `crawlora:"filter_id"`
+	CategoryId   int     `crawlora:"category_id"`
+	Brand        *string `crawlora:"brand,omitempty"`
+	Q            *string `crawlora:"q,omitempty"`
+	Sort         *string `crawlora:"sort,omitempty"`
+	OptionsQuery *string `crawlora:"options_query,omitempty"`
+	Cursor       *string `crawlora:"cursor,omitempty"`
+}
+
+type WallapopFilterOptionsResponse = ModelWallapopFilterOptionsResponseDoc
+
+func (s *WallapopService) FilterOptionsTyped(ctx context.Context, params WallapopFilterOptionsParams, opts ...RequestOption) (WallapopFilterOptionsResponse, error) {
+	return requestTyped[WallapopFilterOptionsResponse](s.client, ctx, "wallapop-filter-options", paramsFromStruct(params), opts...)
+}
+
+func (s *WallapopService) Filters(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "wallapop-filters", params, opts...)
+}
+
+type WallapopFiltersParams struct {
+	Q          *string `crawlora:"q,omitempty"`
+	CategoryId *int    `crawlora:"category_id,omitempty"`
+}
+
+type WallapopFiltersResponse = ModelWallapopFiltersResponseDoc
+
+func (s *WallapopService) FiltersTyped(ctx context.Context, params WallapopFiltersParams, opts ...RequestOption) (WallapopFiltersResponse, error) {
+	return requestTyped[WallapopFiltersResponse](s.client, ctx, "wallapop-filters", paramsFromStruct(params), opts...)
+}
+
+func (s *WallapopService) ItemDetail(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "wallapop-item-detail", params, opts...)
+}
+
+type WallapopItemDetailParams struct {
+	Url string `crawlora:"url"`
+}
+
+type WallapopItemDetailResponse = ModelWallapopItemDetailResponseDoc
+
+func (s *WallapopService) ItemDetailTyped(ctx context.Context, params WallapopItemDetailParams, opts ...RequestOption) (WallapopItemDetailResponse, error) {
+	return requestTyped[WallapopItemDetailResponse](s.client, ctx, "wallapop-item-detail", paramsFromStruct(params), opts...)
+}
+
+func (s *WallapopService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "wallapop-search", params, opts...)
+}
+
+type WallapopSearchParams struct {
+	Q            string   `crawlora:"q"`
+	Latitude     float64  `crawlora:"latitude"`
+	Longitude    float64  `crawlora:"longitude"`
+	CategoryId   *int     `crawlora:"category_id,omitempty"`
+	Sort         *string  `crawlora:"sort,omitempty"`
+	MinPrice     *float64 `crawlora:"min_price,omitempty"`
+	MaxPrice     *float64 `crawlora:"max_price,omitempty"`
+	Condition    *string  `crawlora:"condition,omitempty"`
+	IsShippable  *string  `crawlora:"is_shippable,omitempty"`
+	TimeFilter   *string  `crawlora:"time_filter,omitempty"`
+	DistanceInKm *int     `crawlora:"distance_in_km,omitempty"`
+	Filter       []string `crawlora:"filter"`
+	Cursor       *string  `crawlora:"cursor,omitempty"`
+}
+
+type WallapopSearchResponse = ModelWallapopSearchResponseDoc
+
+func (s *WallapopService) SearchTyped(ctx context.Context, params WallapopSearchParams, opts ...RequestOption) (WallapopSearchResponse, error) {
+	return requestTyped[WallapopSearchResponse](s.client, ctx, "wallapop-search", paramsFromStruct(params), opts...)
+}
+
 type WalmartService struct{ client *Client }
 
 func (s *WalmartService) Product(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -145938,6 +150037,172 @@ type WashingtonPostWapoSectionsResponse = ModelWapoSectionsResponseDoc
 
 func (s *WashingtonPostService) WapoSectionsTyped(ctx context.Context, params WashingtonPostWapoSectionsParams, opts ...RequestOption) (WashingtonPostWapoSectionsResponse, error) {
 	return requestTyped[WashingtonPostWapoSectionsResponse](s.client, ctx, "wapo-sections", paramsFromStruct(params), opts...)
+}
+
+type WattpadService struct{ client *Client }
+
+func (s *WattpadService) Categories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "wattpad-categories", params, opts...)
+}
+
+type WattpadCategoriesParams struct {
+}
+
+type WattpadCategoriesResponse = ModelWattpadCategoriesResponseDoc
+
+func (s *WattpadService) CategoriesTyped(ctx context.Context, params WattpadCategoriesParams, opts ...RequestOption) (WattpadCategoriesResponse, error) {
+	return requestTyped[WattpadCategoriesResponse](s.client, ctx, "wattpad-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *WattpadService) Languages(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "wattpad-languages", params, opts...)
+}
+
+type WattpadLanguagesParams struct {
+}
+
+type WattpadLanguagesResponse = ModelWattpadLanguagesResponseDoc
+
+func (s *WattpadService) LanguagesTyped(ctx context.Context, params WattpadLanguagesParams, opts ...RequestOption) (WattpadLanguagesResponse, error) {
+	return requestTyped[WattpadLanguagesResponse](s.client, ctx, "wattpad-languages", paramsFromStruct(params), opts...)
+}
+
+func (s *WattpadService) Part(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "wattpad-part", params, opts...)
+}
+
+type WattpadPartParams struct {
+	PartId string `crawlora:"part_id"`
+}
+
+type WattpadPartResponse = ModelWattpadPartResponseDoc
+
+func (s *WattpadService) PartTyped(ctx context.Context, params WattpadPartParams, opts ...RequestOption) (WattpadPartResponse, error) {
+	return requestTyped[WattpadPartResponse](s.client, ctx, "wattpad-part", paramsFromStruct(params), opts...)
+}
+
+func (s *WattpadService) PartComments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "wattpad-part-comments", params, opts...)
+}
+
+type WattpadPartCommentsParams struct {
+	PartId string `crawlora:"part_id"`
+	Limit  *int   `crawlora:"limit,omitempty"`
+	Offset *int   `crawlora:"offset,omitempty"`
+}
+
+type WattpadPartCommentsResponse = ModelWattpadPartCommentsResponseDoc
+
+func (s *WattpadService) PartCommentsTyped(ctx context.Context, params WattpadPartCommentsParams, opts ...RequestOption) (WattpadPartCommentsResponse, error) {
+	return requestTyped[WattpadPartCommentsResponse](s.client, ctx, "wattpad-part-comments", paramsFromStruct(params), opts...)
+}
+
+func (s *WattpadService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "wattpad-search", params, opts...)
+}
+
+type WattpadSearchParams struct {
+	Query    *string `crawlora:"query,omitempty"`
+	Filter   *string `crawlora:"filter,omitempty"`
+	Category *int    `crawlora:"category,omitempty"`
+	Language *int    `crawlora:"language,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+	Offset   *int    `crawlora:"offset,omitempty"`
+}
+
+type WattpadSearchResponse = ModelWattpadSearchResponseDoc
+
+func (s *WattpadService) SearchTyped(ctx context.Context, params WattpadSearchParams, opts ...RequestOption) (WattpadSearchResponse, error) {
+	return requestTyped[WattpadSearchResponse](s.client, ctx, "wattpad-search", paramsFromStruct(params), opts...)
+}
+
+func (s *WattpadService) SearchUsers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "wattpad-search-users", params, opts...)
+}
+
+type WattpadSearchUsersParams struct {
+	Query  string `crawlora:"query"`
+	Limit  *int   `crawlora:"limit,omitempty"`
+	Offset *int   `crawlora:"offset,omitempty"`
+}
+
+type WattpadSearchUsersResponse = ModelWattpadSearchUsersResponseDoc
+
+func (s *WattpadService) SearchUsersTyped(ctx context.Context, params WattpadSearchUsersParams, opts ...RequestOption) (WattpadSearchUsersResponse, error) {
+	return requestTyped[WattpadSearchUsersResponse](s.client, ctx, "wattpad-search-users", paramsFromStruct(params), opts...)
+}
+
+func (s *WattpadService) Story(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "wattpad-story", params, opts...)
+}
+
+type WattpadStoryParams struct {
+	StoryId string `crawlora:"story_id"`
+}
+
+type WattpadStoryResponse = ModelWattpadStoryResponseDoc
+
+func (s *WattpadService) StoryTyped(ctx context.Context, params WattpadStoryParams, opts ...RequestOption) (WattpadStoryResponse, error) {
+	return requestTyped[WattpadStoryResponse](s.client, ctx, "wattpad-story", paramsFromStruct(params), opts...)
+}
+
+func (s *WattpadService) StoryParts(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "wattpad-story-parts", params, opts...)
+}
+
+type WattpadStoryPartsParams struct {
+	StoryId string `crawlora:"story_id"`
+}
+
+type WattpadStoryPartsResponse = ModelWattpadStoryPartsResponseDoc
+
+func (s *WattpadService) StoryPartsTyped(ctx context.Context, params WattpadStoryPartsParams, opts ...RequestOption) (WattpadStoryPartsResponse, error) {
+	return requestTyped[WattpadStoryPartsResponse](s.client, ctx, "wattpad-story-parts", paramsFromStruct(params), opts...)
+}
+
+func (s *WattpadService) StoryRecommendations(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "wattpad-story-recommendations", params, opts...)
+}
+
+type WattpadStoryRecommendationsParams struct {
+	StoryId string `crawlora:"story_id"`
+	Limit   *int   `crawlora:"limit,omitempty"`
+}
+
+type WattpadStoryRecommendationsResponse = ModelWattpadRecommendationsResponseDoc
+
+func (s *WattpadService) StoryRecommendationsTyped(ctx context.Context, params WattpadStoryRecommendationsParams, opts ...RequestOption) (WattpadStoryRecommendationsResponse, error) {
+	return requestTyped[WattpadStoryRecommendationsResponse](s.client, ctx, "wattpad-story-recommendations", paramsFromStruct(params), opts...)
+}
+
+func (s *WattpadService) User(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "wattpad-user", params, opts...)
+}
+
+type WattpadUserParams struct {
+	Username string `crawlora:"username"`
+}
+
+type WattpadUserResponse = ModelWattpadUserResponseDoc
+
+func (s *WattpadService) UserTyped(ctx context.Context, params WattpadUserParams, opts ...RequestOption) (WattpadUserResponse, error) {
+	return requestTyped[WattpadUserResponse](s.client, ctx, "wattpad-user", paramsFromStruct(params), opts...)
+}
+
+func (s *WattpadService) UserStories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "wattpad-user-stories", params, opts...)
+}
+
+type WattpadUserStoriesParams struct {
+	Username string `crawlora:"username"`
+	Limit    *int   `crawlora:"limit,omitempty"`
+	Offset   *int   `crawlora:"offset,omitempty"`
+}
+
+type WattpadUserStoriesResponse = ModelWattpadUserStoriesResponseDoc
+
+func (s *WattpadService) UserStoriesTyped(ctx context.Context, params WattpadUserStoriesParams, opts ...RequestOption) (WattpadUserStoriesResponse, error) {
+	return requestTyped[WattpadUserStoriesResponse](s.client, ctx, "wattpad-user-stories", paramsFromStruct(params), opts...)
 }
 
 type WayfairService struct{ client *Client }

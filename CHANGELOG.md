@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.50.0-sdk.1
+
+- Regenerated from the public API contract (4012 operations).
+
 ## v1.49.0-sdk.4
 
 - Synchronized all seven generated SDKs with the 3,915-operation public API contract from current API master (up from 3,910).
