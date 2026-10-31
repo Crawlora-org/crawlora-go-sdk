@@ -2,7 +2,7 @@
 
 Generated from `openapi/public.json`. Deprecated, admin, and internal operations are excluded from this SDK contract.
 
-Total operations: `4012`
+Total operations: `4140`
 
 | Group | SDK method | Operation ID | HTTP | Params | Auth | Response | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -332,6 +332,34 @@ Total operations: `4012`
 | Bluesky | `Bluesky.Profile` | `bluesky-profile` | `GET /bluesky/profile` | `actor` (query string required) | `ApiKeyAuth` | `BlueskyProfileResponse` |  |
 | Bluesky | `Bluesky.SearchActors` | `bluesky-search-actors` | `GET /bluesky/search-actors` | `q` (query string required)<br>`limit` (query int)<br>`cursor` (query string) | `ApiKeyAuth` | `BlueskySearchActorsResponse` |  |
 | Bluesky | `Bluesky.TrendingTopics` | `bluesky-trending-topics` | `GET /bluesky/trending-topics` | none | `ApiKeyAuth` | `BlueskyTrendingTopicsResponse` |  |
+| Bo3 | `Bo3.EconomyBaseline` | `bo3-economy-baseline` | `GET /bo3/economy-baseline` | none | `ApiKeyAuth` | `Bo3EconomyBaselineResponse` |  |
+| Bo3 | `Bo3.Forum` | `bo3-forum` | `GET /bo3/forum` | `game` (query string)<br>`category` (query int)<br>`sort` (query string)<br>`offset` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `Bo3ForumResponse` |  |
+| Bo3 | `Bo3.ForumCategories` | `bo3-forum-categories` | `GET /bo3/forum-categories` | `game` (query string) | `ApiKeyAuth` | `Bo3ForumCategoriesResponse` |  |
+| Bo3 | `Bo3.Match` | `bo3-match` | `GET /bo3/match` | `slug` (query string required) | `ApiKeyAuth` | `Bo3MatchResponse` |  |
+| Bo3 | `Bo3.MatchGames` | `bo3-match-games` | `GET /bo3/match-games` | `match_id` (query int required) | `ApiKeyAuth` | `Bo3MatchGamesResponse` |  |
+| Bo3 | `Bo3.MatchHistory` | `bo3-match-history` | `GET /bo3/match-history` | `game` (query string)<br>`status` (query string)<br>`tier` (query string)<br>`from` (query string)<br>`to` (query string)<br>`sort` (query string)<br>`offset` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `Bo3MatchHistoryResponse` |  |
+| Bo3 | `Bo3.MatchPlayers` | `bo3-match-players` | `GET /bo3/match-players` | `slug` (query string required) | `ApiKeyAuth` | `Bo3MatchPlayersResponse` |  |
+| Bo3 | `Bo3.NewsCategories` | `bo3-news-categories` | `GET /bo3/news-categories` | none | `ApiKeyAuth` | `Bo3NewsCategoriesResponse` |  |
+| Bo3 | `Bo3.NewsFeed` | `bo3-news-feed` | `GET /bo3/news-feed` | `game` (query string)<br>`section` (query string)<br>`category` (query int)<br>`sort` (query string)<br>`offset` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `Bo3NewsFeedResponse` |  |
+| Bo3 | `Bo3.Player` | `bo3-player` | `GET /bo3/player` | `slug` (query string required)<br>`game` (query string) | `ApiKeyAuth` | `Bo3PlayerResponse` |  |
+| Bo3 | `Bo3.PlayerLeaderboard` | `bo3-player-leaderboard` | `GET /bo3/player-leaderboard` | `from` (query string)<br>`to` (query string)<br>`tier` (query string)<br>`sort` (query string)<br>`order` (query string)<br>`offset` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `Bo3PlayerLeaderboardResponse` |  |
+| Bo3 | `Bo3.PlayerRecentMatches` | `bo3-player-recent-matches` | `GET /bo3/player-recent-matches` | `slug` (query string required)<br>`opponent` (query string)<br>`tournament` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `Bo3PlayerRecentMatchesResponse` |  |
+| Bo3 | `Bo3.PlayerStats` | `bo3-player-stats` | `GET /bo3/player-stats` | `slug` (query string required)<br>`kind` (query string)<br>`from` (query string)<br>`to` (query string) | `ApiKeyAuth` | `Bo3PlayerStatsResponse` |  |
+| Bo3 | `Bo3.Records` | `bo3-records` | `GET /bo3/records` | `from` (query string)<br>`to` (query string)<br>`record_type` (query string)<br>`match` (query string)<br>`tournament` (query string)<br>`team` (query string)<br>`player` (query string)<br>`sort` (query string)<br>`offset` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `Bo3RecordsResponse` |  |
+| Bo3 | `Bo3.Team` | `bo3-team` | `GET /bo3/team` | `slug` (query string required)<br>`game` (query string) | `ApiKeyAuth` | `Bo3TeamResponse` |  |
+| Bo3 | `Bo3.TeamPrizeMoney` | `bo3-team-prize-money` | `GET /bo3/team-prize-money` | `game` (query string)<br>`from` (query string)<br>`to` (query string)<br>`offset` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `Bo3TeamPrizeMoneyResponse` |  |
+| Bo3 | `Bo3.TeamRankingDates` | `bo3-team-ranking-dates` | `GET /bo3/team-ranking-dates` | `game` (query string) | `ApiKeyAuth` | `Bo3TeamRankingDatesResponse` |  |
+| Bo3 | `Bo3.TeamRankings` | `bo3-team-rankings` | `GET /bo3/team-rankings` | `game` (query string)<br>`region` (query string)<br>`date` (query string)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `Bo3TeamRankingsResponse` |  |
+| Bo3 | `Bo3.TeamRecentMatches` | `bo3-team-recent-matches` | `GET /bo3/team-recent-matches` | `slug` (query string required)<br>`opponent` (query string)<br>`tournament` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `Bo3TeamRecentMatchesResponse` |  |
+| Bo3 | `Bo3.TeamStats` | `bo3-team-stats` | `GET /bo3/team-stats` | `slug` (query string required)<br>`kind` (query string)<br>`from` (query string)<br>`to` (query string) | `ApiKeyAuth` | `Bo3TeamStatsResponse` |  |
+| Bo3 | `Bo3.Tournament` | `bo3-tournament` | `GET /bo3/tournament` | `slug` (query string required)<br>`game` (query string) | `ApiKeyAuth` | `Bo3TournamentResponse` |  |
+| Bo3 | `Bo3.TournamentMapPool` | `bo3-tournament-map-pool` | `GET /bo3/tournament-map-pool` | `slug` (query string required) | `ApiKeyAuth` | `Bo3TournamentMapPoolResponse` |  |
+| Bo3 | `Bo3.TournamentMvps` | `bo3-tournament-mvps` | `GET /bo3/tournament-mvps` | `game` (query string)<br>`offset` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `Bo3TournamentMvpsResponse` |  |
+| Bo3 | `Bo3.TournamentSquads` | `bo3-tournament-squads` | `GET /bo3/tournament-squads` | `slug` (query string required) | `ApiKeyAuth` | `Bo3TournamentSquadsResponse` |  |
+| Bo3 | `Bo3.TournamentStages` | `bo3-tournament-stages` | `GET /bo3/tournament-stages` | `game` (query string)<br>`slug` (query string required) | `ApiKeyAuth` | `Bo3TournamentStagesResponse` |  |
+| Bo3 | `Bo3.Tournaments` | `bo3-tournaments` | `GET /bo3/tournaments` | `game` (query string)<br>`status` (query string)<br>`tier` (query string)<br>`event_type` (query string)<br>`sort` (query string)<br>`offset` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `Bo3TournamentsResponse` |  |
+| Bo3 | `Bo3.Transfers` | `bo3-transfers` | `GET /bo3/transfers` | `team_id` (query int)<br>`player_id` (query int)<br>`action` (query string)<br>`role` (query string)<br>`sort` (query string)<br>`offset` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `Bo3TransfersResponse` |  |
+| Bo3 | `Bo3.ValorantLeaderboard` | `bo3-valorant-leaderboard` | `GET /bo3/valorant-leaderboard` | `from` (query string)<br>`to` (query string)<br>`sort` (query string)<br>`order` (query string)<br>`offset` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `Bo3ValorantLeaderboardResponse` |  |
 | Bonhams | `Bonhams.AuctionSearch` | `bonhams-auction-search` | `GET /bonhams/auctions/search` | `q` (query string)<br>`country` (query string)<br>`category` (query string)<br>`month` (query string)<br>`auction_type` (query string)<br>`status` (query string)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `BonhamsAuctionSearchResponse` |  |
 | Bonhams | `Bonhams.AuctionDetail` | `bonhams-auction-detail` | `GET /bonhams/auctions/{id}` | `id` (path string required) | `ApiKeyAuth` | `BonhamsAuctionDetailResponse` |  |
 | Bonhams | `Bonhams.AuctionLots` | `bonhams-auction-lots` | `GET /bonhams/auctions/{id}/lots` | `id` (path string required)<br>`q` (query string)<br>`department` (query string)<br>`page` (query int)<br>`per_page` (query int) | `ApiKeyAuth` | `BonhamsAuctionLotsResponse` |  |
@@ -1486,6 +1514,21 @@ Total operations: `4012`
 | GooglePlay | `GooglePlay.Search` | `googleplay-search` | `GET /googleplay/search` | `term` (query string required)<br>`num` (query int)<br>`country` (query string)<br>`lang` (query string)<br>`full_detail` (query bool)<br>`price` (query string) | `ApiKeyAuth` | `GooglePlaySearchResponse` |  |
 | GooglePlay | `GooglePlay.Similar` | `googleplay-similar` | `GET /googleplay/similar` | `app_id` (query string required)<br>`num` (query int)<br>`country` (query string)<br>`lang` (query string)<br>`full_detail` (query bool) | `ApiKeyAuth` | `GooglePlaySimilarResponse` |  |
 | GooglePlay | `GooglePlay.Suggest` | `googleplay-suggest` | `GET /googleplay/suggest/{term}` | `term` (path string required)<br>`country` (query string)<br>`lang` (query string) | `ApiKeyAuth` | `GooglePlaySuggestResponse` |  |
+| GosuGamers | `GosuGamers.GosugamersEncounters` | `gosugamers-encounters` | `GET /gosugamers/encounters` | `game` (query string required)<br>`match_id` (query string required)<br>`team1_id` (query string required)<br>`team2_id` (query string required) | `ApiKeyAuth` | `GosuGamersGosugamersEncountersResponse` |  |
+| GosuGamers | `GosuGamers.GosugamersGames` | `gosugamers-games` | `GET /gosugamers/games` | none | `ApiKeyAuth` | `GosuGamersGosugamersGamesResponse` |  |
+| GosuGamers | `GosuGamers.GosugamersMatch` | `gosugamers-match` | `GET /gosugamers/match` | `game` (query string required)<br>`tournament_id` (query string required)<br>`match_id` (query string required) | `ApiKeyAuth` | `GosuGamersGosugamersMatchResponse` |  |
+| GosuGamers | `GosuGamers.GosugamersMatchGame` | `gosugamers-match-game` | `GET /gosugamers/match-game` | `game_id` (query string required) | `ApiKeyAuth` | `GosuGamersGosugamersMatchGameResponse` |  |
+| GosuGamers | `GosuGamers.GosugamersMatches` | `gosugamers-matches` | `GET /gosugamers/matches` | `game` (query string)<br>`page` (query int)<br>`page_size` (query int) | `ApiKeyAuth` | `GosuGamersGosugamersMatchesResponse` |  |
+| GosuGamers | `GosuGamers.GosugamersPlayer` | `gosugamers-player` | `GET /gosugamers/player` | `game` (query string required)<br>`player_id` (query string required) | `ApiKeyAuth` | `GosuGamersGosugamersPlayerResponse` |  |
+| GosuGamers | `GosuGamers.GosugamersRankings` | `gosugamers-rankings` | `GET /gosugamers/rankings` | `game` (query string required)<br>`region_id` (query int)<br>`q` (query string)<br>`page` (query int)<br>`page_size` (query int) | `ApiKeyAuth` | `GosuGamersGosugamersRankingsResponse` |  |
+| GosuGamers | `GosuGamers.GosugamersResults` | `gosugamers-results` | `GET /gosugamers/results` | `game` (query string)<br>`page` (query int)<br>`page_size` (query int) | `ApiKeyAuth` | `GosuGamersGosugamersResultsResponse` |  |
+| GosuGamers | `GosuGamers.GosugamersStageGroups` | `gosugamers-stage-groups` | `GET /gosugamers/stage-groups` | `tournament_id` (query string required)<br>`stage_id` (query string required) | `ApiKeyAuth` | `GosuGamersGosugamersStageGroupsResponse` |  |
+| GosuGamers | `GosuGamers.GosugamersTeam` | `gosugamers-team` | `GET /gosugamers/team` | `game` (query string required)<br>`team_id` (query string required) | `ApiKeyAuth` | `GosuGamersGosugamersTeamResponse` |  |
+| GosuGamers | `GosuGamers.GosugamersTeamResults` | `gosugamers-team-results` | `GET /gosugamers/team-results` | `team_id` (query string required)<br>`page` (query int)<br>`page_size` (query int) | `ApiKeyAuth` | `GosuGamersGosugamersTeamResultsResponse` |  |
+| GosuGamers | `GosuGamers.GosugamersTournament` | `gosugamers-tournament` | `GET /gosugamers/tournament` | `game` (query string required)<br>`tournament_id` (query string required) | `ApiKeyAuth` | `GosuGamersGosugamersTournamentResponse` |  |
+| GosuGamers | `GosuGamers.GosugamersTournamentParticipants` | `gosugamers-tournament-participants` | `GET /gosugamers/tournament-participants` | `game` (query string required)<br>`tournament_id` (query string required) | `ApiKeyAuth` | `GosuGamersGosugamersTournamentParticipantsResponse` |  |
+| GosuGamers | `GosuGamers.GosugamersTournamentTalents` | `gosugamers-tournament-talents` | `GET /gosugamers/tournament-talents` | `tournament_id` (query string required) | `ApiKeyAuth` | `GosuGamersGosugamersTournamentTalentsResponse` |  |
+| GosuGamers | `GosuGamers.GosugamersTournaments` | `gosugamers-tournaments` | `GET /gosugamers/tournaments` | `game` (query string)<br>`state` (query string)<br>`q` (query string)<br>`page` (query int)<br>`page_size` (query int) | `ApiKeyAuth` | `GosuGamersGosugamersTournamentsResponse` |  |
 | Gq | `Gq.Article` | `gq-article` | `GET /gq/article` | `url` (query string required) | `ApiKeyAuth` | `GqArticleResponse` |  |
 | Gq | `Gq.Author` | `gq-author` | `GET /gq/author` | `slug` (query string)<br>`url` (query string)<br>`page` (query int) | `ApiKeyAuth` | `GqAuthorResponse` |  |
 | Gq | `Gq.Headlines` | `gq-headlines` | `GET /gq/headlines` | `section` (query string required) | `ApiKeyAuth` | `GqHeadlinesResponse` |  |
@@ -1959,6 +2002,19 @@ Total operations: `4012`
 | LiveScore | `LiveScore.LivescoreSearch` | `livescore-search` | `GET /livescore/search` | `sport` (query string required)<br>`query` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `LiveScoreLivescoreSearchResponse` |  |
 | LiveScore | `LiveScore.LivescoreSports` | `livescore-sports` | `GET /livescore/sports` | none | `ApiKeyAuth` | `LiveScoreLivescoreSportsResponse` |  |
 | LiveScore | `LiveScore.LivescoreTeam` | `livescore-team` | `GET /livescore/team` | `path` (query string required) | `ApiKeyAuth` | `LiveScoreLivescoreTeamResponse` |  |
+| LoLEsports | `LoLEsports.LolesportsCompletedEvents` | `lolesports-completed-events` | `GET /lolesports/completed-events` | `hl` (query string)<br>`tournament_id` (query string required) | `ApiKeyAuth` | `LoLEsportsLolesportsCompletedEventsResponse` |  |
+| LoLEsports | `LoLEsports.LolesportsEvent` | `lolesports-event` | `GET /lolesports/event` | `hl` (query string)<br>`match_id` (query string required) | `ApiKeyAuth` | `LoLEsportsLolesportsEventResponse` |  |
+| LoLEsports | `LoLEsports.LolesportsGameDetails` | `lolesports-game-details` | `GET /lolesports/game-details` | `game_id` (query string required)<br>`starting_time` (query string)<br>`participant_ids` (query string) | `ApiKeyAuth` | `LoLEsportsLolesportsGameDetailsResponse` |  |
+| LoLEsports | `LoLEsports.LolesportsGameWindow` | `lolesports-game-window` | `GET /lolesports/game-window` | `game_id` (query string required)<br>`starting_time` (query string) | `ApiKeyAuth` | `LoLEsportsLolesportsGameWindowResponse` |  |
+| LoLEsports | `LoLEsports.LolesportsGpr` | `lolesports-gpr` | `GET /lolesports/gpr` | `season` (query string)<br>`league` (query string)<br>`limit` (query int)<br>`history` (query bool) | `ApiKeyAuth` | `LoLEsportsLolesportsGprResponse` |  |
+| LoLEsports | `LoLEsports.LolesportsLeagues` | `lolesports-leagues` | `GET /lolesports/leagues` | `hl` (query string) | `ApiKeyAuth` | `LoLEsportsLolesportsLeaguesResponse` |  |
+| LoLEsports | `LoLEsports.LolesportsLive` | `lolesports-live` | `GET /lolesports/live` | `hl` (query string) | `ApiKeyAuth` | `LoLEsportsLolesportsLiveResponse` |  |
+| LoLEsports | `LoLEsports.LolesportsNews` | `lolesports-news` | `GET /lolesports/news` | `hl` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `LoLEsportsLolesportsNewsResponse` |  |
+| LoLEsports | `LoLEsports.LolesportsSchedule` | `lolesports-schedule` | `GET /lolesports/schedule` | `hl` (query string)<br>`league_id` (query string)<br>`page_token` (query string) | `ApiKeyAuth` | `LoLEsportsLolesportsScheduleResponse` |  |
+| LoLEsports | `LoLEsports.LolesportsSeasons` | `lolesports-seasons` | `GET /lolesports/seasons` | `hl` (query string)<br>`season_id` (query string)<br>`region` (query string)<br>`league_id` (query string) | `ApiKeyAuth` | `LoLEsportsLolesportsSeasonsResponse` |  |
+| LoLEsports | `LoLEsports.LolesportsStandings` | `lolesports-standings` | `GET /lolesports/standings` | `hl` (query string)<br>`tournament_id` (query string required) | `ApiKeyAuth` | `LoLEsportsLolesportsStandingsResponse` |  |
+| LoLEsports | `LoLEsports.LolesportsTeams` | `lolesports-teams` | `GET /lolesports/teams` | `hl` (query string)<br>`slug` (query string)<br>`q` (query string)<br>`status` (query string)<br>`page` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `LoLEsportsLolesportsTeamsResponse` |  |
+| LoLEsports | `LoLEsports.LolesportsTournaments` | `lolesports-tournaments` | `GET /lolesports/tournaments` | `hl` (query string)<br>`league_id` (query string required) | `ApiKeyAuth` | `LoLEsportsLolesportsTournamentsResponse` |  |
 | Lululemon | `Lululemon.Categories` | `lululemon-categories` | `GET /lululemon/categories` | `section` (query string) | `ApiKeyAuth` | `LululemonCategoriesResponse` |  |
 | Lululemon | `Lululemon.Category` | `lululemon-category` | `GET /lululemon/category` | `category` (query string required)<br>`cdp_hash` (query string required)<br>`page` (query int)<br>`page_size` (query int) | `ApiKeyAuth` | `LululemonCategoryResponse` |  |
 | Lululemon | `Lululemon.Outfit` | `lululemon-outfit` | `GET /lululemon/outfit` | `unified_id` (query string required)<br>`color_code` (query string required) | `ApiKeyAuth` | `LululemonOutfitResponse` |  |
@@ -2301,6 +2357,32 @@ Total operations: `4012`
 | OldNavy | `OldNavy.OldnavyProductReviews` | `oldnavy-product-reviews` | `GET /oldnavy/product/reviews` | `pid` (query string required)<br>`brand` (query string)<br>`page` (query int) | `ApiKeyAuth` | `OldNavyOldnavyProductReviewsResponse` |  |
 | OldNavy | `OldNavy.OldnavySearch` | `oldnavy-search` | `GET /oldnavy/search` | `keyword` (query string required)<br>`brand` (query string)<br>`page` (query int) | `ApiKeyAuth` | `OldNavyOldnavySearchResponse` |  |
 | OldNavy | `OldNavy.OldnavyStores` | `oldnavy-stores` | `GET /oldnavy/stores` | `search` (query string)<br>`lat` (query float64)<br>`lng` (query float64)<br>`brand` (query string) | `ApiKeyAuth` | `OldNavyOldnavyStoresResponse` |  |
+| OpenDota | `OpenDota.OpendotaAbilities` | `opendota-abilities` | `GET /opendota/abilities` | `q` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `OpenDotaOpendotaAbilitiesResponse` |  |
+| OpenDota | `OpenDota.OpendotaBenchmarks` | `opendota-benchmarks` | `GET /opendota/benchmarks` | `hero_id` (query int required) | `ApiKeyAuth` | `OpenDotaOpendotaBenchmarksResponse` |  |
+| OpenDota | `OpenDota.OpendotaConstants` | `opendota-constants` | `GET /opendota/constants` | `resource` (query string required) | `ApiKeyAuth` | `OpenDotaOpendotaConstantsResponse` |  |
+| OpenDota | `OpenDota.OpendotaHeroDurations` | `opendota-hero-durations` | `GET /opendota/hero-durations` | `hero_id` (query int required) | `ApiKeyAuth` | `OpenDotaOpendotaHeroDurationsResponse` |  |
+| OpenDota | `OpenDota.OpendotaHeroItems` | `opendota-hero-items` | `GET /opendota/hero-items` | `hero_id` (query int required) | `ApiKeyAuth` | `OpenDotaOpendotaHeroItemsResponse` |  |
+| OpenDota | `OpenDota.OpendotaHeroMatchups` | `opendota-hero-matchups` | `GET /opendota/hero-matchups` | `hero_id` (query int required) | `ApiKeyAuth` | `OpenDotaOpendotaHeroMatchupsResponse` |  |
+| OpenDota | `OpenDota.OpendotaHeroStats` | `opendota-hero-stats` | `GET /opendota/hero-stats` | `primary_attr` (query string)<br>`attack_type` (query string)<br>`role` (query string)<br>`sort` (query string)<br>`desc` (query bool)<br>`limit` (query int) | `ApiKeyAuth` | `OpenDotaOpendotaHeroStatsResponse` |  |
+| OpenDota | `OpenDota.OpendotaHeroes` | `opendota-heroes` | `GET /opendota/heroes` | none | `ApiKeyAuth` | `OpenDotaOpendotaHeroesResponse` |  |
+| OpenDota | `OpenDota.OpendotaItems` | `opendota-items` | `GET /opendota/items` | `q` (query string)<br>`quality` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `OpenDotaOpendotaItemsResponse` |  |
+| OpenDota | `OpenDota.OpendotaLeague` | `opendota-league` | `GET /opendota/league` | `league_id` (query int required) | `ApiKeyAuth` | `OpenDotaOpendotaLeagueResponse` |  |
+| OpenDota | `OpenDota.OpendotaLeagueMatchIds` | `opendota-league-match-ids` | `GET /opendota/league-match-ids` | `league_id` (query int required) | `ApiKeyAuth` | `OpenDotaOpendotaLeagueMatchIdsResponse` |  |
+| OpenDota | `OpenDota.OpendotaLeagueMatches` | `opendota-league-matches` | `GET /opendota/league-matches` | `league_id` (query int required)<br>`team_id` (query int) | `ApiKeyAuth` | `OpenDotaOpendotaLeagueMatchesResponse` |  |
+| OpenDota | `OpenDota.OpendotaLeagues` | `opendota-leagues` | `GET /opendota/leagues` | `tier` (query string) | `ApiKeyAuth` | `OpenDotaOpendotaLeaguesResponse` |  |
+| OpenDota | `OpenDota.OpendotaLive` | `opendota-live` | `GET /opendota/live` | none | `ApiKeyAuth` | `OpenDotaOpendotaLiveResponse` |  |
+| OpenDota | `OpenDota.OpendotaMatch` | `opendota-match` | `GET /opendota/match` | `id` (query int required) | `ApiKeyAuth` | `OpenDotaOpendotaMatchResponse` |  |
+| OpenDota | `OpenDota.OpendotaPatchNotes` | `opendota-patch-notes` | `GET /opendota/patch-notes` | `patch` (query string) | `ApiKeyAuth` | `OpenDotaOpendotaPatchNotesResponse` |  |
+| OpenDota | `OpenDota.OpendotaProMatches` | `opendota-pro-matches` | `GET /opendota/pro-matches` | `less_than_match_id` (query int) | `ApiKeyAuth` | `OpenDotaOpendotaProMatchesResponse` |  |
+| OpenDota | `OpenDota.OpendotaProPlayers` | `opendota-pro-players` | `GET /opendota/pro-players` | `team_id` (query int)<br>`q` (query string)<br>`limit` (query int)<br>`offset` (query int) | `ApiKeyAuth` | `OpenDotaOpendotaProPlayersResponse` |  |
+| OpenDota | `OpenDota.OpendotaRankDistribution` | `opendota-rank-distribution` | `GET /opendota/rank-distribution` | none | `ApiKeyAuth` | `OpenDotaOpendotaRankDistributionResponse` |  |
+| OpenDota | `OpenDota.OpendotaRecords` | `opendota-records` | `GET /opendota/records` | `field` (query string required) | `ApiKeyAuth` | `OpenDotaOpendotaRecordsResponse` |  |
+| OpenDota | `OpenDota.OpendotaScenarios` | `opendota-scenarios` | `GET /opendota/scenarios` | `kind` (query string required)<br>`hero_id` (query int)<br>`item` (query string)<br>`lane_role` (query int)<br>`scenario` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `OpenDotaOpendotaScenariosResponse` |  |
+| OpenDota | `OpenDota.OpendotaTeam` | `opendota-team` | `GET /opendota/team` | `team_id` (query int required) | `ApiKeyAuth` | `OpenDotaOpendotaTeamResponse` |  |
+| OpenDota | `OpenDota.OpendotaTeamHeroes` | `opendota-team-heroes` | `GET /opendota/team-heroes` | `team_id` (query int required) | `ApiKeyAuth` | `OpenDotaOpendotaTeamHeroesResponse` |  |
+| OpenDota | `OpenDota.OpendotaTeamMatches` | `opendota-team-matches` | `GET /opendota/team-matches` | `team_id` (query int required) | `ApiKeyAuth` | `OpenDotaOpendotaTeamMatchesResponse` |  |
+| OpenDota | `OpenDota.OpendotaTeamPlayers` | `opendota-team-players` | `GET /opendota/team-players` | `team_id` (query int required) | `ApiKeyAuth` | `OpenDotaOpendotaTeamPlayersResponse` |  |
+| OpenDota | `OpenDota.OpendotaTeams` | `opendota-teams` | `GET /opendota/teams` | `page` (query int) | `ApiKeyAuth` | `OpenDotaOpendotaTeamsResponse` |  |
 | OpenSea | `OpenSea.OpenseaActivity` | `opensea-activity` | `GET /opensea/activity` | `limit` (query int)<br>`cursor` (query string)<br>`event_types` (query string) | `ApiKeyAuth` | `OpenSeaOpenseaActivityResponse` |  |
 | OpenSea | `OpenSea.OpenseaCategories` | `opensea-categories` | `GET /opensea/categories` | none | `ApiKeyAuth` | `OpenSeaOpenseaCategoriesResponse` |  |
 | OpenSea | `OpenSea.OpenseaChains` | `opensea-chains` | `GET /opensea/chains` | none | `ApiKeyAuth` | `OpenSeaOpenseaChainsResponse` |  |
@@ -2694,6 +2776,10 @@ Total operations: `4012`
 | Redfin | `Redfin.RegionTrends` | `redfin-region-trends` | `GET /redfin/region-trends` | `region_id` (query int required)<br>`region_type` (query int) | `ApiKeyAuth` | `RedfinRegionTrendsResponse` |  |
 | Redfin | `Redfin.Search` | `redfin-search` | `GET /redfin/search` | `location` (query string)<br>`page` (query int)<br>`region_id` (query int)<br>`region_type` (query int)<br>`status` (query string)<br>`min_price` (query int)<br>`max_price` (query int)<br>`min_beds` (query int)<br>`min_baths` (query float64) | `ApiKeyAuth` | `RedfinSearchResponse` |  |
 | Redfin | `Redfin.Similar` | `redfin-similar` | `GET /redfin/similar` | `property_id` (query string required) | `ApiKeyAuth` | `RedfinSimilarResponse` |  |
+| Rednote | `Rednote.Explore` | `rednote-explore` | `GET /rednote/explore` | `channel_id` (query string) | `ApiKeyAuth` | `RednoteExploreResponse` |  |
+| Rednote | `Rednote.Note` | `rednote-note` | `GET /rednote/note` | `url` (query string)<br>`note_id` (query string) | `ApiKeyAuth` | `RednoteNoteResponse` |  |
+| Rednote | `Rednote.NoteComments` | `rednote-note-comments` | `GET /rednote/note-comments` | `url` (query string)<br>`note_id` (query string)<br>`cursor` (query string) | `ApiKeyAuth` | `RednoteNoteCommentsResponse` |  |
+| Rednote | `Rednote.SearchSuggest` | `rednote-search-suggest` | `GET /rednote/search-suggest` | `keyword` (query string required) | `ApiKeyAuth` | `RednoteSearchSuggestResponse` |  |
 | ReelShort | `ReelShort.ReelshortFandomCategories` | `reelshort-fandom-categories` | `GET /reelshort/fandom-categories` | none | `ApiKeyAuth` | `ReelShortReelshortFandomCategoriesResponse` |  |
 | ReelShort | `ReelShort.ReelshortFandomPost` | `reelshort-fandom-post` | `GET /reelshort/fandom-post` | `id` (query string required) | `ApiKeyAuth` | `ReelShortReelshortFandomPostResponse` |  |
 | ReelShort | `ReelShort.ReelshortFandomPosts` | `reelshort-fandom-posts` | `GET /reelshort/fandom-posts` | `search` (query string)<br>`category` (query string)<br>`page` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `ReelShortReelshortFandomPostsResponse` |  |
@@ -2924,6 +3010,21 @@ Total operations: `4012`
 | ShopApp | `ShopApp.ShopReviews` | `shop-app-shop-reviews` | `GET /shop-app/shops/{handle}/reviews` | `handle` (path string required)<br>`limit` (query int) | `ApiKeyAuth` | `ShopAppShopReviewsResponse` |  |
 | ShopApp | `ShopApp.ShopTypeahead` | `shop-app-shop-typeahead` | `GET /shop-app/shops/{handle}/typeahead` | `handle` (path string required)<br>`query` (query string required)<br>`limit` (query int) | `ApiKeyAuth` | `ShopAppShopTypeaheadResponse` |  |
 | ShopApp | `ShopApp.Suggestions` | `shop-app-suggestions` | `GET /shop-app/suggestions` | `query` (query string required)<br>`limit` (query int) | `ApiKeyAuth` | `ShopAppSuggestionsResponse` |  |
+| Shopee | `Shopee.Banners` | `shopee-banners` | `GET /shopee/banners` | `region` (query string)<br>`slot` (query string)<br>`space_key` (query string) | `ApiKeyAuth` | `ShopeeBannersResponse` |  |
+| Shopee | `Shopee.Categories` | `shopee-categories` | `GET /shopee/categories` | `region` (query string) | `ApiKeyAuth` | `ShopeeCategoriesResponse` |  |
+| Shopee | `Shopee.CategoryDetail` | `shopee-category-detail` | `GET /shopee/category-detail` | `region` (query string)<br>`catids` (query string required) | `ApiKeyAuth` | `ShopeeCategoryDetailResponse` |  |
+| Shopee | `Shopee.FlashSale` | `shopee-flash-sale` | `GET /shopee/flash-sale` | `region` (query string)<br>`limit` (query int)<br>`offset` (query int) | `ApiKeyAuth` | `ShopeeFlashSaleResponse` |  |
+| Shopee | `Shopee.Footer` | `shopee-footer` | `GET /shopee/footer` | `region` (query string) | `ApiKeyAuth` | `ShopeeFooterResponse` |  |
+| Shopee | `Shopee.Home` | `shopee-home` | `GET /shopee/home` | `region` (query string) | `ApiKeyAuth` | `ShopeeHomeResponse` |  |
+| Shopee | `Shopee.HomeCategories` | `shopee-home-categories` | `GET /shopee/home-categories` | `region` (query string) | `ApiKeyAuth` | `ShopeeHomeCategoriesResponse` |  |
+| Shopee | `Shopee.LocationFilters` | `shopee-location-filters` | `GET /shopee/location-filters` | `region` (query string) | `ApiKeyAuth` | `ShopeeLocationFiltersResponse` |  |
+| Shopee | `Shopee.MallCategories` | `shopee-mall-categories` | `GET /shopee/mall-categories` | `region` (query string) | `ApiKeyAuth` | `ShopeeMallCategoriesResponse` |  |
+| Shopee | `Shopee.Prefills` | `shopee-prefills` | `GET /shopee/prefills` | `region` (query string) | `ApiKeyAuth` | `ShopeePrefillsResponse` |  |
+| Shopee | `Shopee.SearchFilters` | `shopee-search-filters` | `GET /shopee/search-filters` | `region` (query string)<br>`keyword` (query string)<br>`category` (query string) | `ApiKeyAuth` | `ShopeeSearchFiltersResponse` |  |
+| Shopee | `Shopee.SearchHints` | `shopee-search-hints` | `GET /shopee/search-hints` | `region` (query string)<br>`keyword` (query string required)<br>`version` (query int) | `ApiKeyAuth` | `ShopeeSearchHintsResponse` |  |
+| Shopee | `Shopee.ShopInfo` | `shopee-shop-info` | `GET /shopee/shop-info` | `region` (query string)<br>`shop_id` (query int required) | `ApiKeyAuth` | `ShopeeShopInfoResponse` |  |
+| Shopee | `Shopee.Shops` | `shopee-shops` | `GET /shopee/shops` | `region` (query string)<br>`limit` (query int)<br>`offset` (query int) | `ApiKeyAuth` | `ShopeeShopsResponse` |  |
+| Shopee | `Shopee.Suggest` | `shopee-suggest` | `GET /shopee/suggest` | `region` (query string)<br>`keyword` (query string required) | `ApiKeyAuth` | `ShopeeSuggestResponse` |  |
 | Shopify | `Shopify.Collections` | `shopify-collections` | `GET /shopify/collections` | `url` (query string required)<br>`page` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `ShopifyCollectionsResponse` |  |
 | Shopify | `Shopify.CollectionProducts` | `shopify-collection-products` | `GET /shopify/collections/{handle}/products` | `handle` (path string required)<br>`url` (query string required)<br>`page` (query int)<br>`limit` (query int)<br>`sortBy` (query string)<br>`sort_by` (query string)<br>`min_price` (query float64)<br>`max_price` (query float64)<br>`product_type` (query string)<br>`in_stock_only` (query bool)<br>`option_size` (query string) | `ApiKeyAuth` | `ShopifyCollectionProductsResponse` |  |
 | Shopify | `Shopify.Pages` | `shopify-pages` | `GET /shopify/pages` | `url` (query string required)<br>`page` (query int)<br>`limit` (query int) | `ApiKeyAuth` | `ShopifyPagesResponse` |  |
@@ -3753,6 +3854,29 @@ Total operations: `4012`
 | Vinted | `Vinted.Category` | `vinted-category` | `GET /vinted/category` | `id` (query string required)<br>`price_from` (query float64)<br>`price_to` (query float64)<br>`order` (query string)<br>`page` (query int) | `ApiKeyAuth` | `VintedCategoryResponse` |  |
 | Vinted | `Vinted.Item` | `vinted-item` | `GET /vinted/item` | `id` (query string required) | `ApiKeyAuth` | `VintedItemResponse` |  |
 | Vinted | `Vinted.Member` | `vinted-member` | `GET /vinted/member` | `id` (query string required) | `ApiKeyAuth` | `VintedMemberResponse` |  |
+| Vlr | `Vlr.Event` | `vlr-event` | `GET /vlr/event` | `id` (query string required) | `ApiKeyAuth` | `VlrEventResponse` |  |
+| Vlr | `Vlr.EventAgents` | `vlr-event-agents` | `GET /vlr/event-agents` | `id` (query string required) | `ApiKeyAuth` | `VlrEventAgentsResponse` |  |
+| Vlr | `Vlr.EventMatches` | `vlr-event-matches` | `GET /vlr/event-matches` | `id` (query string required) | `ApiKeyAuth` | `VlrEventMatchesResponse` |  |
+| Vlr | `Vlr.EventStats` | `vlr-event-stats` | `GET /vlr/event-stats` | `id` (query string required)<br>`side` (query string) | `ApiKeyAuth` | `VlrEventStatsResponse` |  |
+| Vlr | `Vlr.Events` | `vlr-events` | `GET /vlr/events` | `tier` (query string)<br>`region` (query string)<br>`page` (query int) | `ApiKeyAuth` | `VlrEventsResponse` |  |
+| Vlr | `Vlr.ForumCategories` | `vlr-forum-categories` | `GET /vlr/forum-categories` | none | `ApiKeyAuth` | `VlrForumCategoriesResponse` |  |
+| Vlr | `Vlr.ForumThreads` | `vlr-forum-threads` | `GET /vlr/forum-threads` | `category` (query string)<br>`page` (query int) | `ApiKeyAuth` | `VlrForumThreadsResponse` |  |
+| Vlr | `Vlr.Match` | `vlr-match` | `GET /vlr/match` | `id` (query string required) | `ApiKeyAuth` | `VlrMatchResponse` |  |
+| Vlr | `Vlr.MatchEconomy` | `vlr-match-economy` | `GET /vlr/match-economy` | `id` (query string required) | `ApiKeyAuth` | `VlrMatchEconomyResponse` |  |
+| Vlr | `Vlr.MatchPerformance` | `vlr-match-performance` | `GET /vlr/match-performance` | `id` (query string required) | `ApiKeyAuth` | `VlrMatchPerformanceResponse` |  |
+| Vlr | `Vlr.MatchRounds` | `vlr-match-rounds` | `GET /vlr/match-rounds` | `id` (query string required) | `ApiKeyAuth` | `VlrMatchRoundsResponse` |  |
+| Vlr | `Vlr.Matches` | `vlr-matches` | `GET /vlr/matches` | `page` (query int) | `ApiKeyAuth` | `VlrMatchesResponse` |  |
+| Vlr | `Vlr.News` | `vlr-news` | `GET /vlr/news` | `page` (query int) | `ApiKeyAuth` | `VlrNewsResponse` |  |
+| Vlr | `Vlr.NewsArticle` | `vlr-news-article` | `GET /vlr/news-article` | `id` (query string required) | `ApiKeyAuth` | `VlrNewsArticleResponse` |  |
+| Vlr | `Vlr.Player` | `vlr-player` | `GET /vlr/player` | `id` (query string required) | `ApiKeyAuth` | `VlrPlayerResponse` |  |
+| Vlr | `Vlr.PlayerMatches` | `vlr-player-matches` | `GET /vlr/player-matches` | `id` (query string required)<br>`page` (query int) | `ApiKeyAuth` | `VlrPlayerMatchesResponse` |  |
+| Vlr | `Vlr.Rankings` | `vlr-rankings` | `GET /vlr/rankings` | `region` (query string)<br>`limit` (query int) | `ApiKeyAuth` | `VlrRankingsResponse` |  |
+| Vlr | `Vlr.Results` | `vlr-results` | `GET /vlr/results` | `page` (query int) | `ApiKeyAuth` | `VlrResultsResponse` |  |
+| Vlr | `Vlr.Search` | `vlr-search` | `GET /vlr/search` | `q` (query string required)<br>`type` (query string) | `ApiKeyAuth` | `VlrSearchResponse` |  |
+| Vlr | `Vlr.Stats` | `vlr-stats` | `GET /vlr/stats` | `tier` (query string)<br>`region` (query string)<br>`timespan` (query string)<br>`side` (query string)<br>`role` (query string)<br>`agent` (query string)<br>`map` (query string)<br>`min_rounds` (query int)<br>`from` (query string)<br>`to` (query string)<br>`min_rating` (query int)<br>`sort` (query string)<br>`dir` (query string)<br>`page` (query int) | `ApiKeyAuth` | `VlrStatsResponse` |  |
+| Vlr | `Vlr.Team` | `vlr-team` | `GET /vlr/team` | `id` (query string required) | `ApiKeyAuth` | `VlrTeamResponse` |  |
+| Vlr | `Vlr.TeamMaps` | `vlr-team-maps` | `GET /vlr/team-maps` | `id` (query string required) | `ApiKeyAuth` | `VlrTeamMapsResponse` |  |
+| Vlr | `Vlr.TeamMatches` | `vlr-team-matches` | `GET /vlr/team-matches` | `id` (query string required)<br>`page` (query int) | `ApiKeyAuth` | `VlrTeamMatchesResponse` |  |
 | Vox | `Vox.Article` | `vox-article` | `GET /vox/article` | `url` (query string required) | `ApiKeyAuth` | `VoxArticleResponse` |  |
 | Vox | `Vox.Author` | `vox-author` | `GET /vox/author` | `url` (query string required) | `ApiKeyAuth` | `VoxAuthorResponse` |  |
 | Vox | `Vox.Headlines` | `vox-headlines` | `GET /vox/headlines` | `section` (query string required) | `ApiKeyAuth` | `VoxHeadlinesResponse` |  |
@@ -3859,6 +3983,10 @@ Total operations: `4012`
 | Xda | `Xda.Headlines` | `xda-headlines` | `GET /xda/headlines` | `section` (query string required) | `ApiKeyAuth` | `XdaHeadlinesResponse` |  |
 | Xda | `Xda.News` | `xda-news` | `GET /xda/news` | none | `ApiKeyAuth` | `XdaNewsResponse` |  |
 | Xda | `Xda.Sections` | `xda-sections` | `GET /xda/sections` | none | `ApiKeyAuth` | `XdaSectionsResponse` |  |
+| Xiaohongshu | `Xiaohongshu.Explore` | `xiaohongshu-explore` | `GET /xiaohongshu/explore` | `channel_id` (query string) | `ApiKeyAuth` | `XiaohongshuExploreResponse` |  |
+| Xiaohongshu | `Xiaohongshu.Note` | `xiaohongshu-note` | `GET /xiaohongshu/note` | `url` (query string)<br>`note_id` (query string)<br>`xsec_token` (query string) | `ApiKeyAuth` | `XiaohongshuNoteResponse` |  |
+| Xiaohongshu | `Xiaohongshu.NoteComments` | `xiaohongshu-note-comments` | `GET /xiaohongshu/note-comments` | `url` (query string)<br>`note_id` (query string)<br>`xsec_token` (query string)<br>`cursor` (query string) | `ApiKeyAuth` | `XiaohongshuNoteCommentsResponse` |  |
+| Xiaohongshu | `Xiaohongshu.SearchSuggest` | `xiaohongshu-search-suggest` | `GET /xiaohongshu/search-suggest` | `keyword` (query string required) | `ApiKeyAuth` | `XiaohongshuSearchSuggestResponse` |  |
 | YahooAutos | `YahooAutos.Article` | `yahoo-autos-article` | `GET /yahoo-autos/article` | `url` (query string required) | `ApiKeyAuth` | `YahooAutosArticleResponse` |  |
 | YahooAutos | `YahooAutos.Category` | `yahoo-autos-category` | `GET /yahoo-autos/category` | `category` (query string required)<br>`page` (query int) | `ApiKeyAuth` | `YahooAutosCategoryResponse` |  |
 | YahooAutos | `YahooAutos.Home` | `yahoo-autos-home` | `GET /yahoo-autos/home` | none | `ApiKeyAuth` | `YahooAutosHomeResponse` |  |

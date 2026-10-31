@@ -6949,6 +6949,808 @@ type ModelBlueskyTrendingTopicsResponseDoc struct {
 	Msg  string                             `json:"msg,omitempty"`
 }
 
+type ModelBo3Achievement struct {
+	Date           string `json:"date,omitempty"`
+	Title          string `json:"title,omitempty"`
+	TournamentId   int    `json:"tournament_id,omitempty"`
+	TournamentName string `json:"tournament_name,omitempty"`
+	TournamentSlug string `json:"tournament_slug,omitempty"`
+}
+
+type ModelBo3EarningPlayer struct {
+	Id                int     `json:"id,omitempty"`
+	IsCoach           bool    `json:"is_coach,omitempty"`
+	Nickname          string  `json:"nickname,omitempty"`
+	SixMonthAvgRating float64 `json:"six_month_avg_rating,omitempty"`
+	Slug              string  `json:"slug,omitempty"`
+	TotalPrizeUsd     int     `json:"total_prize_usd,omitempty"`
+}
+
+type ModelBo3EconomyBaselineResponse struct {
+	Cells     []ModelBo3EconomyCell `json:"cells,omitempty"`
+	Count     int                   `json:"count,omitempty"`
+	FetchedAt string                `json:"fetched_at,omitempty"`
+	SourceUrl string                `json:"source_url,omitempty"`
+}
+
+type ModelBo3EconomyCell struct {
+	EnemyLevel int     `json:"enemy_level,omitempty"`
+	Rounds     int     `json:"rounds,omitempty"`
+	TeamLevel  int     `json:"team_level,omitempty"`
+	WinRate    float64 `json:"win_rate,omitempty"`
+	Wins       int     `json:"wins,omitempty"`
+}
+
+type ModelBo3FeedCategory struct {
+	Id    int    `json:"id,omitempty"`
+	Title string `json:"title,omitempty"`
+}
+
+type ModelBo3ForumCategoriesResponse struct {
+	Categories []ModelBo3ForumCategory `json:"categories,omitempty"`
+	Count      int                     `json:"count,omitempty"`
+	FetchedAt  string                  `json:"fetched_at,omitempty"`
+	Game       string                  `json:"game,omitempty"`
+	SourceUrl  string                  `json:"source_url,omitempty"`
+}
+
+type ModelBo3ForumCategory struct {
+	Id    int    `json:"id,omitempty"`
+	Slug  string `json:"slug,omitempty"`
+	Title string `json:"title,omitempty"`
+}
+
+type ModelBo3ForumFeedResponse struct {
+	Category  int                   `json:"category,omitempty"`
+	Count     int                   `json:"count,omitempty"`
+	FetchedAt string                `json:"fetched_at,omitempty"`
+	Game      string                `json:"game,omitempty"`
+	HasMore   bool                  `json:"has_more,omitempty"`
+	Limit     int                   `json:"limit,omitempty"`
+	Offset    int                   `json:"offset,omitempty"`
+	Sort      string                `json:"sort,omitempty"`
+	SourceUrl string                `json:"source_url,omitempty"`
+	Threads   []ModelBo3ForumThread `json:"threads,omitempty"`
+	Total     int                   `json:"total,omitempty"`
+}
+
+type ModelBo3ForumThread struct {
+	Author         ModelBo3PersonRef `json:"author,omitempty"`
+	Category       string            `json:"category,omitempty"`
+	CategoryId     int               `json:"category_id,omitempty"`
+	Comments       int               `json:"comments,omitempty"`
+	CreatedAt      string            `json:"created_at,omitempty"`
+	Id             int               `json:"id,omitempty"`
+	LastActivityAt string            `json:"last_activity_at,omitempty"`
+	Pinned         bool              `json:"pinned,omitempty"`
+	Rating         int               `json:"rating,omitempty"`
+	Slug           string            `json:"slug,omitempty"`
+	Title          string            `json:"title,omitempty"`
+}
+
+type ModelBo3GameRow struct {
+	BeginAt         string               `json:"begin_at,omitempty"`
+	DurationSeconds float64              `json:"duration_seconds,omitempty"`
+	Id              int                  `json:"id,omitempty"`
+	LoserName       string               `json:"loser_name,omitempty"`
+	LoserScore      int                  `json:"loser_score,omitempty"`
+	Map             string               `json:"map,omitempty"`
+	Number          int                  `json:"number,omitempty"`
+	Rounds          []ModelBo3RoundRow   `json:"rounds,omitempty"`
+	RoundsCount     int                  `json:"rounds_count,omitempty"`
+	SideResults     []ModelBo3SideResult `json:"side_results,omitempty"`
+	State           string               `json:"state,omitempty"`
+	Status          string               `json:"status,omitempty"`
+	WinnerName      string               `json:"winner_name,omitempty"`
+	WinnerScore     int                  `json:"winner_score,omitempty"`
+}
+
+type ModelBo3Insight struct {
+	Facts []string `json:"facts,omitempty"`
+	Team  string   `json:"team,omitempty"`
+}
+
+type ModelBo3LeaderboardResponse struct {
+	Count         int                 `json:"count,omitempty"`
+	FetchedAt     string              `json:"fetched_at,omitempty"`
+	From          string              `json:"from,omitempty"`
+	Limit         int                 `json:"limit,omitempty"`
+	MinGamesCount int                 `json:"min_games_count,omitempty"`
+	NextOffset    int                 `json:"next_offset,omitempty"`
+	Offset        int                 `json:"offset,omitempty"`
+	Order         string              `json:"order,omitempty"`
+	Players       []ModelBo3TopPlayer `json:"players,omitempty"`
+	Sort          string              `json:"sort,omitempty"`
+	SourceUrl     string              `json:"source_url,omitempty"`
+	Tier          string              `json:"tier,omitempty"`
+	To            string              `json:"to,omitempty"`
+}
+
+type ModelBo3Links struct {
+	Facebook  string `json:"facebook,omitempty"`
+	Instagram string `json:"instagram,omitempty"`
+	Twitch    string `json:"twitch,omitempty"`
+	Twitter   string `json:"twitter,omitempty"`
+	Website   string `json:"website,omitempty"`
+	Youtube   string `json:"youtube,omitempty"`
+}
+
+type ModelBo3Mvprow struct {
+	ArticleUrl string                `json:"article_url,omitempty"`
+	Game       string                `json:"game,omitempty"`
+	Id         int                   `json:"id,omitempty"`
+	Player     ModelBo3PersonRef     `json:"player,omitempty"`
+	Team       ModelBo3TransferTeam  `json:"team,omitempty"`
+	Tournament ModelBo3TournamentRef `json:"tournament,omitempty"`
+	Type       string                `json:"type,omitempty"`
+}
+
+type ModelBo3MapRow struct {
+	BeginAt        string `json:"begin_at,omitempty"`
+	LoserScore     int    `json:"loser_score,omitempty"`
+	Map            string `json:"map,omitempty"`
+	Number         int    `json:"number,omitempty"`
+	Status         string `json:"status,omitempty"`
+	WinnerScore    int    `json:"winner_score,omitempty"`
+	WinnerTeamId   int    `json:"winner_team_id,omitempty"`
+	WinnerTeamName string `json:"winner_team_name,omitempty"`
+}
+
+type ModelBo3MatchGamesResponse struct {
+	Count     int               `json:"count,omitempty"`
+	FetchedAt string            `json:"fetched_at,omitempty"`
+	Games     []ModelBo3GameRow `json:"games,omitempty"`
+	MatchId   int               `json:"match_id,omitempty"`
+	SourceUrl string            `json:"source_url,omitempty"`
+}
+
+type ModelBo3MatchHistoryResponse struct {
+	Count     int                    `json:"count,omitempty"`
+	FetchedAt string                 `json:"fetched_at,omitempty"`
+	Game      string                 `json:"game,omitempty"`
+	HasMore   bool                   `json:"has_more,omitempty"`
+	Limit     int                    `json:"limit,omitempty"`
+	Matches   []ModelBo3MatchSummary `json:"matches,omitempty"`
+	Offset    int                    `json:"offset,omitempty"`
+	SourceUrl string                 `json:"source_url,omitempty"`
+	Status    string                 `json:"status,omitempty"`
+	Total     int                    `json:"total,omitempty"`
+}
+
+type ModelBo3MatchInfo struct {
+	BestOf       int                   `json:"best_of,omitempty"`
+	EndTime      string                `json:"end_time,omitempty"`
+	EventType    string                `json:"event_type,omitempty"`
+	FetchedAt    string                `json:"fetched_at,omitempty"`
+	Game         string                `json:"game,omitempty"`
+	Id           int                   `json:"id,omitempty"`
+	Insights     []ModelBo3Insight     `json:"insights,omitempty"`
+	LiveCoverage bool                  `json:"live_coverage,omitempty"`
+	Maps         []ModelBo3MapRow      `json:"maps,omitempty"`
+	Prediction   ModelBo3Prediction    `json:"prediction,omitempty"`
+	Round        string                `json:"round,omitempty"`
+	Slug         string                `json:"slug,omitempty"`
+	SourceUrl    string                `json:"source_url,omitempty"`
+	Stage        string                `json:"stage,omitempty"`
+	Stars        int                   `json:"stars,omitempty"`
+	StartTime    string                `json:"start_time,omitempty"`
+	Status       string                `json:"status,omitempty"`
+	Streams      []ModelBo3Stream      `json:"streams,omitempty"`
+	Teams        []ModelBo3Team        `json:"teams,omitempty"`
+	Tier         string                `json:"tier,omitempty"`
+	Tournament   ModelBo3TournamentRef `json:"tournament,omitempty"`
+	Url          string                `json:"url,omitempty"`
+}
+
+type ModelBo3MatchPlayerStats struct {
+	Multikills map[string]int     `json:"multikills,omitempty"`
+	Nickname   string             `json:"nickname,omitempty"`
+	Opponent   string             `json:"opponent,omitempty"`
+	PlayerId   int                `json:"player_id,omitempty"`
+	Stats      map[string]float64 `json:"stats,omitempty"`
+	Team       string             `json:"team,omitempty"`
+	Win        bool               `json:"win,omitempty"`
+}
+
+type ModelBo3MatchPlayersResponse struct {
+	Count     int                        `json:"count,omitempty"`
+	FetchedAt string                     `json:"fetched_at,omitempty"`
+	Players   []ModelBo3MatchPlayerStats `json:"players,omitempty"`
+	Slug      string                     `json:"slug,omitempty"`
+	SourceUrl string                     `json:"source_url,omitempty"`
+}
+
+type ModelBo3MatchSummary struct {
+	BestOf       int                   `json:"best_of,omitempty"`
+	EndTime      string                `json:"end_time,omitempty"`
+	Game         string                `json:"game,omitempty"`
+	Id           int                   `json:"id,omitempty"`
+	LiveCoverage bool                  `json:"live_coverage,omitempty"`
+	Maps         []ModelBo3MapRow      `json:"maps,omitempty"`
+	Prediction   ModelBo3Prediction    `json:"prediction,omitempty"`
+	Slug         string                `json:"slug,omitempty"`
+	Stars        int                   `json:"stars,omitempty"`
+	StartTime    string                `json:"start_time,omitempty"`
+	Status       string                `json:"status,omitempty"`
+	Teams        []ModelBo3Team        `json:"teams,omitempty"`
+	Tier         string                `json:"tier,omitempty"`
+	Tournament   ModelBo3TournamentRef `json:"tournament,omitempty"`
+	Url          string                `json:"url,omitempty"`
+}
+
+type ModelBo3NewsCategoriesResponse struct {
+	Categories []ModelBo3FeedCategory `json:"categories,omitempty"`
+	Count      int                    `json:"count,omitempty"`
+	FetchedAt  string                 `json:"fetched_at,omitempty"`
+	SourceUrl  string                 `json:"source_url,omitempty"`
+}
+
+type ModelBo3NewsFeedResponse struct {
+	Category  int                `json:"category,omitempty"`
+	Count     int                `json:"count,omitempty"`
+	FetchedAt string             `json:"fetched_at,omitempty"`
+	Game      string             `json:"game,omitempty"`
+	HasMore   bool               `json:"has_more,omitempty"`
+	Items     []ModelBo3NewsItem `json:"items,omitempty"`
+	Limit     int                `json:"limit,omitempty"`
+	Offset    int                `json:"offset,omitempty"`
+	Section   string             `json:"section,omitempty"`
+	SourceUrl string             `json:"source_url,omitempty"`
+	Total     int                `json:"total,omitempty"`
+}
+
+type ModelBo3NewsItem struct {
+	Author      ModelBo3PersonRef `json:"author,omitempty"`
+	Category    string            `json:"category,omitempty"`
+	CategoryId  int               `json:"category_id,omitempty"`
+	Description string            `json:"description,omitempty"`
+	Game        string            `json:"game,omitempty"`
+	Id          int               `json:"id,omitempty"`
+	ImageUrl    string            `json:"image_url,omitempty"`
+	Likes       int               `json:"likes,omitempty"`
+	Pinned      bool              `json:"pinned,omitempty"`
+	PublishedAt string            `json:"published_at,omitempty"`
+	Slug        string            `json:"slug,omitempty"`
+	Tags        []ModelBo3TagRef  `json:"tags,omitempty"`
+	Title       string            `json:"title,omitempty"`
+	Url         string            `json:"url,omitempty"`
+}
+
+type ModelBo3PersonRef struct {
+	Id       int    `json:"id,omitempty"`
+	Nickname string `json:"nickname,omitempty"`
+	Slug     string `json:"slug,omitempty"`
+}
+
+type ModelBo3PlayerInfo struct {
+	AchievementCount  int                   `json:"achievement_count,omitempty"`
+	Achievements      []ModelBo3Achievement `json:"achievements,omitempty"`
+	AlternativeNames  []string              `json:"alternative_names,omitempty"`
+	Birthday          string                `json:"birthday,omitempty"`
+	Country           string                `json:"country,omitempty"`
+	CountryCode       string                `json:"country_code,omitempty"`
+	FetchedAt         string                `json:"fetched_at,omitempty"`
+	FirstName         string                `json:"first_name,omitempty"`
+	Game              string                `json:"game,omitempty"`
+	Id                int                   `json:"id,omitempty"`
+	ImageUrl          string                `json:"image_url,omitempty"`
+	IsCoach           bool                  `json:"is_coach,omitempty"`
+	JoinedTeamAt      string                `json:"joined_team_at,omitempty"`
+	LastName          string                `json:"last_name,omitempty"`
+	Links             ModelBo3Links         `json:"links,omitempty"`
+	Nickname          string                `json:"nickname,omitempty"`
+	Role              string                `json:"role,omitempty"`
+	SixMonthAvgRating float64               `json:"six_month_avg_rating,omitempty"`
+	Slug              string                `json:"slug,omitempty"`
+	SourceUrl         string                `json:"source_url,omitempty"`
+	Team              ModelBo3TeamRef       `json:"team,omitempty"`
+	TotalPrizeUsd     int                   `json:"total_prize_usd,omitempty"`
+}
+
+type ModelBo3Prediction struct {
+	Team1Score   int `json:"team1_score,omitempty"`
+	Team2Score   int `json:"team2_score,omitempty"`
+	WinnerTeamId int `json:"winner_team_id,omitempty"`
+}
+
+type ModelBo3Prize struct {
+	Place    string `json:"place,omitempty"`
+	Points   int    `json:"points,omitempty"`
+	PrizeUsd int    `json:"prize_usd,omitempty"`
+	TeamId   int    `json:"team_id,omitempty"`
+}
+
+type ModelBo3RankedPlayer struct {
+	CountryCode string  `json:"country_code,omitempty"`
+	Id          int     `json:"id,omitempty"`
+	ImageUrl    string  `json:"image_url,omitempty"`
+	Nickname    string  `json:"nickname,omitempty"`
+	Rating      float64 `json:"rating,omitempty"`
+	Slug        string  `json:"slug,omitempty"`
+}
+
+type ModelBo3RankingRow struct {
+	Country     string                 `json:"country,omitempty"`
+	CountryCode string                 `json:"country_code,omitempty"`
+	LogoUrl     string                 `json:"logo_url,omitempty"`
+	Name        string                 `json:"name,omitempty"`
+	Points      float64                `json:"points,omitempty"`
+	Rank        int                    `json:"rank,omitempty"`
+	RankChange  int                    `json:"rank_change,omitempty"`
+	Region      string                 `json:"region,omitempty"`
+	Roster      []ModelBo3RankedPlayer `json:"roster,omitempty"`
+	Slug        string                 `json:"slug,omitempty"`
+	TeamId      int                    `json:"team_id,omitempty"`
+}
+
+type ModelBo3RecentLine struct {
+	Accuracy       float64 `json:"accuracy,omitempty"`
+	Assists        int     `json:"assists,omitempty"`
+	AvgKillCost    float64 `json:"avg_kill_cost,omitempty"`
+	Damage         int     `json:"damage,omitempty"`
+	Deaths         int     `json:"deaths,omitempty"`
+	EquipmentValue int     `json:"equipment_value,omitempty"`
+	FirstDeaths    int     `json:"first_deaths,omitempty"`
+	FirstKills     int     `json:"first_kills,omitempty"`
+	HeadshotRatio  float64 `json:"headshot_ratio,omitempty"`
+	Headshots      int     `json:"headshots,omitempty"`
+	Hits           int     `json:"hits,omitempty"`
+	Kills          int     `json:"kills,omitempty"`
+	MoneySaved     int     `json:"money_saved,omitempty"`
+	Multikills     float64 `json:"multikills,omitempty"`
+	Nickname       string  `json:"nickname,omitempty"`
+	PlayerSlug     string  `json:"player_slug,omitempty"`
+	Rating         float64 `json:"rating,omitempty"`
+	Shots          int     `json:"shots,omitempty"`
+	TeamSlug       string  `json:"team_slug,omitempty"`
+	TradeDeaths    int     `json:"trade_deaths,omitempty"`
+	TradeKills     int     `json:"trade_kills,omitempty"`
+}
+
+type ModelBo3RecentMap struct {
+	GameId     int    `json:"game_id,omitempty"`
+	GameNumber int    `json:"game_number,omitempty"`
+	Map        string `json:"map,omitempty"`
+	Won        bool   `json:"won,omitempty"`
+}
+
+type ModelBo3RecentMatch struct {
+	Lines          []ModelBo3RecentLine `json:"lines,omitempty"`
+	Maps           []ModelBo3RecentMap  `json:"maps,omitempty"`
+	MatchSlug      string               `json:"match_slug,omitempty"`
+	Opponent       ModelBo3TeamRef      `json:"opponent,omitempty"`
+	Rounds         int                  `json:"rounds,omitempty"`
+	StartedAt      string               `json:"started_at,omitempty"`
+	TournamentSlug string               `json:"tournament_slug,omitempty"`
+}
+
+type ModelBo3RecentMatchesResponse struct {
+	Count      int                   `json:"count,omitempty"`
+	FetchedAt  string                `json:"fetched_at,omitempty"`
+	Matches    []ModelBo3RecentMatch `json:"matches,omitempty"`
+	Opponent   string                `json:"opponent,omitempty"`
+	Slug       string                `json:"slug,omitempty"`
+	SourceUrl  string                `json:"source_url,omitempty"`
+	Subject    string                `json:"subject,omitempty"`
+	Tournament string                `json:"tournament,omitempty"`
+}
+
+type ModelBo3RecordRow struct {
+	Average     float64           `json:"average,omitempty"`
+	BeginAt     string            `json:"begin_at,omitempty"`
+	CountryCode string            `json:"country_code,omitempty"`
+	Detail      string            `json:"detail,omitempty"`
+	Map         string            `json:"map,omitempty"`
+	MatchSlug   string            `json:"match_slug,omitempty"`
+	Opponents   []string          `json:"opponents,omitempty"`
+	Player      ModelBo3PersonRef `json:"player,omitempty"`
+	RoundNumber int               `json:"round_number,omitempty"`
+	Series      string            `json:"series,omitempty"`
+	Side        string            `json:"side,omitempty"`
+	TeamName    string            `json:"team_name,omitempty"`
+	Type        string            `json:"type,omitempty"`
+	Unit        string            `json:"unit,omitempty"`
+	Value       float64           `json:"value,omitempty"`
+}
+
+type ModelBo3RecordsFeedResponse struct {
+	Count     int                 `json:"count,omitempty"`
+	FetchedAt string              `json:"fetched_at,omitempty"`
+	From      string              `json:"from,omitempty"`
+	HasMore   bool                `json:"has_more,omitempty"`
+	Items     []ModelBo3RecordRow `json:"items,omitempty"`
+	Limit     int                 `json:"limit,omitempty"`
+	Offset    int                 `json:"offset,omitempty"`
+	SourceUrl string              `json:"source_url,omitempty"`
+	To        string              `json:"to,omitempty"`
+	Total     int                 `json:"total,omitempty"`
+	Types     []string            `json:"types,omitempty"`
+}
+
+type ModelBo3RoundRow struct {
+	DurationSeconds float64 `json:"duration_seconds,omitempty"`
+	EndReason       string  `json:"end_reason,omitempty"`
+	LoserScore      int     `json:"loser_score,omitempty"`
+	Number          int     `json:"number,omitempty"`
+	WinnerName      string  `json:"winner_name,omitempty"`
+	WinnerScore     int     `json:"winner_score,omitempty"`
+	WinnerSide      string  `json:"winner_side,omitempty"`
+}
+
+type ModelBo3SideResult struct {
+	LoserName   string `json:"loser_name,omitempty"`
+	LoserScore  int    `json:"loser_score,omitempty"`
+	LoserSide   string `json:"loser_side,omitempty"`
+	Order       int    `json:"order,omitempty"`
+	Overtime    bool   `json:"overtime,omitempty"`
+	WinnerName  string `json:"winner_name,omitempty"`
+	WinnerScore int    `json:"winner_score,omitempty"`
+	WinnerSide  string `json:"winner_side,omitempty"`
+}
+
+type ModelBo3SquadPlayer struct {
+	FirstName string `json:"first_name,omitempty"`
+	Id        int    `json:"id,omitempty"`
+	ImageUrl  string `json:"image_url,omitempty"`
+	IsCoach   bool   `json:"is_coach,omitempty"`
+	IsStandin bool   `json:"is_standin,omitempty"`
+	LastName  string `json:"last_name,omitempty"`
+	Nickname  string `json:"nickname,omitempty"`
+	Slug      string `json:"slug,omitempty"`
+}
+
+type ModelBo3StageRow struct {
+	EndDate            string `json:"end_date,omitempty"`
+	FormatType         string `json:"format_type,omitempty"`
+	Hold               bool   `json:"hold,omitempty"`
+	Id                 int    `json:"id,omitempty"`
+	PromotionTeamCount int    `json:"promotion_team_count,omitempty"`
+	Sequence           int    `json:"sequence,omitempty"`
+	StartDate          string `json:"start_date,omitempty"`
+	Title              string `json:"title,omitempty"`
+}
+
+type ModelBo3StatsResponse struct {
+	FetchedAt string             `json:"fetched_at,omitempty"`
+	From      string             `json:"from,omitempty"`
+	Id        int                `json:"id,omitempty"`
+	Kind      string             `json:"kind,omitempty"`
+	Name      string             `json:"name,omitempty"`
+	Rows      []map[string]any   `json:"rows,omitempty"`
+	Slug      string             `json:"slug,omitempty"`
+	SourceUrl string             `json:"source_url,omitempty"`
+	Stats     map[string]float64 `json:"stats,omitempty"`
+	Subject   string             `json:"subject,omitempty"`
+	To        string             `json:"to,omitempty"`
+}
+
+type ModelBo3Stream struct {
+	Language    string `json:"language,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Official    bool   `json:"official,omitempty"`
+	Platform    string `json:"platform,omitempty"`
+	Url         string `json:"url,omitempty"`
+	ViewerCount int    `json:"viewer_count,omitempty"`
+}
+
+type ModelBo3TagRef struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelBo3Team struct {
+	Country     string `json:"country,omitempty"`
+	CountryCode string `json:"country_code,omitempty"`
+	Id          int    `json:"id,omitempty"`
+	LogoUrl     string `json:"logo_url,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Rank        int    `json:"rank,omitempty"`
+	Score       int    `json:"score,omitempty"`
+	Slug        string `json:"slug,omitempty"`
+	Winner      bool   `json:"winner,omitempty"`
+}
+
+type ModelBo3TeamEarningsRow struct {
+	Country        string                  `json:"country,omitempty"`
+	CountryCode    string                  `json:"country_code,omitempty"`
+	EarningsUsd    int                     `json:"earnings_usd,omitempty"`
+	LogoUrl        string                  `json:"logo_url,omitempty"`
+	Name           string                  `json:"name,omitempty"`
+	Players        []ModelBo3EarningPlayer `json:"players,omitempty"`
+	Position       int                     `json:"position,omitempty"`
+	Region         string                  `json:"region,omitempty"`
+	Slug           string                  `json:"slug,omitempty"`
+	TeamId         int                     `json:"team_id,omitempty"`
+	TournamentWins int                     `json:"tournament_wins,omitempty"`
+}
+
+type ModelBo3TeamInfo struct {
+	AchievementCount    int                   `json:"achievement_count,omitempty"`
+	Achievements        []ModelBo3Achievement `json:"achievements,omitempty"`
+	Acronym             string                `json:"acronym,omitempty"`
+	AlternativeNames    []string              `json:"alternative_names,omitempty"`
+	Country             string                `json:"country,omitempty"`
+	CountryCode         string                `json:"country_code,omitempty"`
+	EstablishedDate     string                `json:"established_date,omitempty"`
+	FetchedAt           string                `json:"fetched_at,omitempty"`
+	Game                string                `json:"game,omitempty"`
+	Id                  int                   `json:"id,omitempty"`
+	Links               ModelBo3Links         `json:"links,omitempty"`
+	LogoUrl             string                `json:"logo_url,omitempty"`
+	Name                string                `json:"name,omitempty"`
+	Rank                int                   `json:"rank,omitempty"`
+	RankChange          int                   `json:"rank_change,omitempty"`
+	Region              string                `json:"region,omitempty"`
+	Roster              []ModelBo3TeamMember  `json:"roster,omitempty"`
+	SixMonthEarningsUsd int                   `json:"six_month_earnings_usd,omitempty"`
+	Slug                string                `json:"slug,omitempty"`
+	SourceUrl           string                `json:"source_url,omitempty"`
+}
+
+type ModelBo3TeamMember struct {
+	Birthday          string  `json:"birthday,omitempty"`
+	FirstName         string  `json:"first_name,omitempty"`
+	Id                int     `json:"id,omitempty"`
+	ImageUrl          string  `json:"image_url,omitempty"`
+	LastName          string  `json:"last_name,omitempty"`
+	Nickname          string  `json:"nickname,omitempty"`
+	SixMonthAvgRating float64 `json:"six_month_avg_rating,omitempty"`
+	Slug              string  `json:"slug,omitempty"`
+}
+
+type ModelBo3TeamPrizeMoneyResponse struct {
+	Count     int                       `json:"count,omitempty"`
+	FetchedAt string                    `json:"fetched_at,omitempty"`
+	From      string                    `json:"from,omitempty"`
+	Game      string                    `json:"game,omitempty"`
+	HasMore   bool                      `json:"has_more,omitempty"`
+	Limit     int                       `json:"limit,omitempty"`
+	Offset    int                       `json:"offset,omitempty"`
+	SourceUrl string                    `json:"source_url,omitempty"`
+	Teams     []ModelBo3TeamEarningsRow `json:"teams,omitempty"`
+	To        string                    `json:"to,omitempty"`
+	Total     int                       `json:"total,omitempty"`
+}
+
+type ModelBo3TeamRankingDatesResponse struct {
+	Count     int      `json:"count,omitempty"`
+	Dates     []string `json:"dates,omitempty"`
+	FetchedAt string   `json:"fetched_at,omitempty"`
+	Game      string   `json:"game,omitempty"`
+	Regions   []string `json:"regions,omitempty"`
+	SourceUrl string   `json:"source_url,omitempty"`
+}
+
+type ModelBo3TeamRankingsResponse struct {
+	Count       int                  `json:"count,omitempty"`
+	FetchedAt   string               `json:"fetched_at,omitempty"`
+	Game        string               `json:"game,omitempty"`
+	Official    bool                 `json:"official,omitempty"`
+	Page        int                  `json:"page,omitempty"`
+	PerPage     int                  `json:"per_page,omitempty"`
+	RankingDate string               `json:"ranking_date,omitempty"`
+	Region      string               `json:"region,omitempty"`
+	Source      string               `json:"source,omitempty"`
+	SourceUrl   string               `json:"source_url,omitempty"`
+	Teams       []ModelBo3RankingRow `json:"teams,omitempty"`
+	TotalPages  int                  `json:"total_pages,omitempty"`
+	TotalTeams  int                  `json:"total_teams,omitempty"`
+}
+
+type ModelBo3TeamRef struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelBo3TopPlayer struct {
+	CountryCode string             `json:"country_code,omitempty"`
+	Games       int                `json:"games,omitempty"`
+	ImageUrl    string             `json:"image_url,omitempty"`
+	Nickname    string             `json:"nickname,omitempty"`
+	PlayerId    int                `json:"player_id,omitempty"`
+	Position    int                `json:"position,omitempty"`
+	Rounds      int                `json:"rounds,omitempty"`
+	Slug        string             `json:"slug,omitempty"`
+	Stats       map[string]float64 `json:"stats,omitempty"`
+	TeamId      int                `json:"team_id,omitempty"`
+	TeamName    string             `json:"team_name,omitempty"`
+}
+
+type ModelBo3TournamentInfo struct {
+	City        string                    `json:"city,omitempty"`
+	Country     string                    `json:"country,omitempty"`
+	Description string                    `json:"description,omitempty"`
+	EndDate     string                    `json:"end_date,omitempty"`
+	EventType   string                    `json:"event_type,omitempty"`
+	FetchedAt   string                    `json:"fetched_at,omitempty"`
+	Game        string                    `json:"game,omitempty"`
+	Id          int                       `json:"id,omitempty"`
+	ImageUrl    string                    `json:"image_url,omitempty"`
+	Name        string                    `json:"name,omitempty"`
+	PrizeUsd    int                       `json:"prize_usd,omitempty"`
+	Prizes      []ModelBo3Prize           `json:"prizes,omitempty"`
+	Region      string                    `json:"region,omitempty"`
+	Series      string                    `json:"series,omitempty"`
+	Slug        string                    `json:"slug,omitempty"`
+	SourceUrl   string                    `json:"source_url,omitempty"`
+	Stages      []ModelBo3TournamentStage `json:"stages,omitempty"`
+	StartDate   string                    `json:"start_date,omitempty"`
+	Status      string                    `json:"status,omitempty"`
+	Teams       []ModelBo3TournamentTeam  `json:"teams,omitempty"`
+	Tier        string                    `json:"tier,omitempty"`
+}
+
+type ModelBo3TournamentListItem struct {
+	EndDate   string `json:"end_date,omitempty"`
+	EventType string `json:"event_type,omitempty"`
+	Game      string `json:"game,omitempty"`
+	Id        int    `json:"id,omitempty"`
+	ImageUrl  string `json:"image_url,omitempty"`
+	Name      string `json:"name,omitempty"`
+	PrizeUsd  int    `json:"prize_usd,omitempty"`
+	Slug      string `json:"slug,omitempty"`
+	StartDate string `json:"start_date,omitempty"`
+	Status    string `json:"status,omitempty"`
+	Tier      string `json:"tier,omitempty"`
+	Url       string `json:"url,omitempty"`
+}
+
+type ModelBo3TournamentListResponse struct {
+	Count       int                          `json:"count,omitempty"`
+	FetchedAt   string                       `json:"fetched_at,omitempty"`
+	Game        string                       `json:"game,omitempty"`
+	HasMore     bool                         `json:"has_more,omitempty"`
+	Limit       int                          `json:"limit,omitempty"`
+	Offset      int                          `json:"offset,omitempty"`
+	SourceUrl   string                       `json:"source_url,omitempty"`
+	Total       int                          `json:"total,omitempty"`
+	Tournaments []ModelBo3TournamentListItem `json:"tournaments,omitempty"`
+}
+
+type ModelBo3TournamentMvpsResponse struct {
+	Count     int              `json:"count,omitempty"`
+	FetchedAt string           `json:"fetched_at,omitempty"`
+	Game      string           `json:"game,omitempty"`
+	HasMore   bool             `json:"has_more,omitempty"`
+	Limit     int              `json:"limit,omitempty"`
+	Mvps      []ModelBo3Mvprow `json:"mvps,omitempty"`
+	Offset    int              `json:"offset,omitempty"`
+	SourceUrl string           `json:"source_url,omitempty"`
+	Total     int              `json:"total,omitempty"`
+}
+
+type ModelBo3TournamentMapPoolResponse struct {
+	Count     int                        `json:"count,omitempty"`
+	FetchedAt string                     `json:"fetched_at,omitempty"`
+	Maps      []ModelBo3TournamentMapRow `json:"maps,omitempty"`
+	Slug      string                     `json:"slug,omitempty"`
+	SourceUrl string                     `json:"source_url,omitempty"`
+}
+
+type ModelBo3TournamentMapRow struct {
+	BannedMaps   int    `json:"banned_maps,omitempty"`
+	CtRoundWins  int    `json:"ct_round_wins,omitempty"`
+	CtWinPercent int    `json:"ct_win_percent,omitempty"`
+	Games        int    `json:"games,omitempty"`
+	Map          string `json:"map,omitempty"`
+	PickedMaps   int    `json:"picked_maps,omitempty"`
+	Rounds       int    `json:"rounds,omitempty"`
+	TRoundWins   int    `json:"t_round_wins,omitempty"`
+}
+
+type ModelBo3TournamentRef struct {
+	Id       int    `json:"id,omitempty"`
+	Name     string `json:"name,omitempty"`
+	PrizeUsd int    `json:"prize_usd,omitempty"`
+	Slug     string `json:"slug,omitempty"`
+	Tier     string `json:"tier,omitempty"`
+}
+
+type ModelBo3TournamentSquad struct {
+	LogoUrl  string                `json:"logo_url,omitempty"`
+	Players  []ModelBo3SquadPlayer `json:"players,omitempty"`
+	TeamId   int                   `json:"team_id,omitempty"`
+	TeamName string                `json:"team_name,omitempty"`
+	TeamSlug string                `json:"team_slug,omitempty"`
+}
+
+type ModelBo3TournamentSquadsResponse struct {
+	Count     int                       `json:"count,omitempty"`
+	FetchedAt string                    `json:"fetched_at,omitempty"`
+	Slug      string                    `json:"slug,omitempty"`
+	SourceUrl string                    `json:"source_url,omitempty"`
+	Squads    []ModelBo3TournamentSquad `json:"squads,omitempty"`
+}
+
+type ModelBo3TournamentStage struct {
+	EndDate    string `json:"end_date,omitempty"`
+	FormatType string `json:"format_type,omitempty"`
+	Id         int    `json:"id,omitempty"`
+	Sequence   int    `json:"sequence,omitempty"`
+	StartDate  string `json:"start_date,omitempty"`
+	Status     string `json:"status,omitempty"`
+	Title      string `json:"title,omitempty"`
+}
+
+type ModelBo3TournamentStagesResponse struct {
+	Count     int                `json:"count,omitempty"`
+	FetchedAt string             `json:"fetched_at,omitempty"`
+	Game      string             `json:"game,omitempty"`
+	Slug      string             `json:"slug,omitempty"`
+	SourceUrl string             `json:"source_url,omitempty"`
+	Stages    []ModelBo3StageRow `json:"stages,omitempty"`
+}
+
+type ModelBo3TournamentTeam struct {
+	LogoUrl  string `json:"logo_url,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Place    string `json:"place,omitempty"`
+	PrizeUsd int    `json:"prize_usd,omitempty"`
+	Slug     string `json:"slug,omitempty"`
+	TeamId   int    `json:"team_id,omitempty"`
+}
+
+type ModelBo3TransferRow struct {
+	Action       string               `json:"action,omitempty"`
+	ActionCode   int                  `json:"action_code,omitempty"`
+	Compensation string               `json:"compensation,omitempty"`
+	Date         string               `json:"date,omitempty"`
+	From         ModelBo3TransferTeam `json:"from,omitempty"`
+	Game         string               `json:"game,omitempty"`
+	Id           int                  `json:"id,omitempty"`
+	IsCoach      bool                 `json:"is_coach,omitempty"`
+	Nickname     string               `json:"nickname,omitempty"`
+	PlayerId     int                  `json:"player_id,omitempty"`
+	PlayerSlug   string               `json:"player_slug,omitempty"`
+	SourceUrl    string               `json:"source_url,omitempty"`
+	To           ModelBo3TransferTeam `json:"to,omitempty"`
+}
+
+type ModelBo3TransferTeam struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelBo3TransfersResponse struct {
+	Count     int                   `json:"count,omitempty"`
+	FetchedAt string                `json:"fetched_at,omitempty"`
+	HasMore   bool                  `json:"has_more,omitempty"`
+	Limit     int                   `json:"limit,omitempty"`
+	Offset    int                   `json:"offset,omitempty"`
+	SourceUrl string                `json:"source_url,omitempty"`
+	Total     int                   `json:"total,omitempty"`
+	Transfers []ModelBo3TransferRow `json:"transfers,omitempty"`
+}
+
+type ModelBo3ValorantLeaderboardResponse struct {
+	Count         int                      `json:"count,omitempty"`
+	FetchedAt     string                   `json:"fetched_at,omitempty"`
+	From          string                   `json:"from,omitempty"`
+	HasMore       bool                     `json:"has_more,omitempty"`
+	Limit         int                      `json:"limit,omitempty"`
+	MinGamesCount int                      `json:"min_games_count,omitempty"`
+	Offset        int                      `json:"offset,omitempty"`
+	Order         string                   `json:"order,omitempty"`
+	Players       []ModelBo3ValorantPlayer `json:"players,omitempty"`
+	Sort          string                   `json:"sort,omitempty"`
+	SourceUrl     string                   `json:"source_url,omitempty"`
+	To            string                   `json:"to,omitempty"`
+	Total         int                      `json:"total,omitempty"`
+}
+
+type ModelBo3ValorantPlayer struct {
+	Games    int                `json:"games,omitempty"`
+	Nickname string             `json:"nickname,omitempty"`
+	PlayerId int                `json:"player_id,omitempty"`
+	Position int                `json:"position,omitempty"`
+	Rounds   int                `json:"rounds,omitempty"`
+	Slug     string             `json:"slug,omitempty"`
+	Stats    map[string]float64 `json:"stats,omitempty"`
+}
+
 type ModelBonhamsAuctionLotsResponse struct {
 	AuctionId  string            `json:"auction_id,omitempty"`
 	Page       int               `json:"page,omitempty"`
@@ -30518,6 +31320,456 @@ type ModelGoogleplaySuggestResponseDoc struct {
 	Msg  string                      `json:"msg,omitempty"`
 }
 
+type ModelGosugamersBattleRoyalePlayer struct {
+	CountryCode string `json:"country_code,omitempty"`
+	Id          string `json:"id,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Slug        string `json:"slug,omitempty"`
+}
+
+type ModelGosugamersBattleRoyaleTeam struct {
+	CountryCode     string                              `json:"country_code,omitempty"`
+	Id              string                              `json:"id,omitempty"`
+	KillPoints      int                                 `json:"kill_points,omitempty"`
+	Kills           int                                 `json:"kills,omitempty"`
+	Name            string                              `json:"name,omitempty"`
+	Placement       int                                 `json:"placement,omitempty"`
+	PlacementPoints int                                 `json:"placement_points,omitempty"`
+	Players         []ModelGosugamersBattleRoyalePlayer `json:"players,omitempty"`
+	PointsAddition  int                                 `json:"points_addition,omitempty"`
+	PointsDeduction int                                 `json:"points_deduction,omitempty"`
+	Slug            string                              `json:"slug,omitempty"`
+	TotalPoints     int                                 `json:"total_points,omitempty"`
+}
+
+type ModelGosugamersBroadcastTalent struct {
+	CountryCode  string   `json:"country_code,omitempty"`
+	CountryName  string   `json:"country_name,omitempty"`
+	Game         string   `json:"game,omitempty"`
+	Id           string   `json:"id,omitempty"`
+	ImageUrl     string   `json:"image_url,omitempty"`
+	LanguageCode string   `json:"language_code,omitempty"`
+	Name         string   `json:"name,omitempty"`
+	Roles        []string `json:"roles,omitempty"`
+	Slug         string   `json:"slug,omitempty"`
+	Url          string   `json:"url,omitempty"`
+}
+
+type ModelGosugamersEncountersResponse struct {
+	Count     int                           `json:"count,omitempty"`
+	FetchedAt string                        `json:"fetched_at,omitempty"`
+	Game      string                        `json:"game,omitempty"`
+	MatchId   string                        `json:"match_id,omitempty"`
+	Matches   []ModelGosugamersMatchSummary `json:"matches,omitempty"`
+	SourceUrl string                        `json:"source_url,omitempty"`
+	Team1Id   string                        `json:"team1_id,omitempty"`
+	Team2Id   string                        `json:"team2_id,omitempty"`
+}
+
+type ModelGosugamersGame struct {
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelGosugamersGameMap struct {
+	Id       string `json:"id,omitempty"`
+	ImageUrl string `json:"image_url,omitempty"`
+	Name     string `json:"name,omitempty"`
+}
+
+type ModelGosugamersGamePick struct {
+	ImageUrl string                    `json:"image_url,omitempty"`
+	Pick     string                    `json:"pick,omitempty"`
+	Player   ModelGosugamersGamePlayer `json:"player,omitempty"`
+	Slot     int                       `json:"slot,omitempty"`
+	Type     int                       `json:"type,omitempty"`
+}
+
+type ModelGosugamersGamePlayer struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelGosugamersGameRef struct {
+	Id     string `json:"id,omitempty"`
+	Number int    `json:"number,omitempty"`
+}
+
+type ModelGosugamersGameRound struct {
+	Overtime   bool `json:"overtime,omitempty"`
+	Period     int  `json:"period,omitempty"`
+	Team1Score int  `json:"team1_score,omitempty"`
+	Team2Score int  `json:"team2_score,omitempty"`
+}
+
+type ModelGosugamersGameTeam struct {
+	FirstPick bool                        `json:"first_pick,omitempty"`
+	Id        string                      `json:"id,omitempty"`
+	Lineup    []ModelGosugamersGamePlayer `json:"lineup,omitempty"`
+	LogoUrl   string                      `json:"logo_url,omitempty"`
+	Name      string                      `json:"name,omitempty"`
+	Picks     []ModelGosugamersGamePick   `json:"picks,omitempty"`
+	Placement int                         `json:"placement,omitempty"`
+	Score     int                         `json:"score,omitempty"`
+	Side      string                      `json:"side,omitempty"`
+	Slug      string                      `json:"slug,omitempty"`
+	Winner    bool                        `json:"winner,omitempty"`
+}
+
+type ModelGosugamersGameVod struct {
+	Channel  string `json:"channel,omitempty"`
+	Host     int    `json:"host,omitempty"`
+	ThumbUrl string `json:"thumb_url,omitempty"`
+	Title    string `json:"title,omitempty"`
+	VideoId  string `json:"video_id,omitempty"`
+}
+
+type ModelGosugamersGamesResponse struct {
+	Count     int                   `json:"count,omitempty"`
+	FetchedAt string                `json:"fetched_at,omitempty"`
+	Games     []ModelGosugamersGame `json:"games,omitempty"`
+	SourceUrl string                `json:"source_url,omitempty"`
+}
+
+type ModelGosugamersMatchDetail struct {
+	BestOf      int                          `json:"best_of,omitempty"`
+	FetchedAt   string                       `json:"fetched_at,omitempty"`
+	Finished    bool                         `json:"finished,omitempty"`
+	Game        string                       `json:"game,omitempty"`
+	GameNumbers []int                        `json:"game_numbers,omitempty"`
+	Games       []ModelGosugamersGameRef     `json:"games,omitempty"`
+	Group       string                       `json:"group,omitempty"`
+	Id          string                       `json:"id,omitempty"`
+	Opponents   []ModelGosugamersOpponent    `json:"opponents,omitempty"`
+	Round       string                       `json:"round,omitempty"`
+	SourceUrl   string                       `json:"source_url,omitempty"`
+	Stage       string                       `json:"stage,omitempty"`
+	StartTime   string                       `json:"start_time,omitempty"`
+	Streams     []ModelGosugamersStream      `json:"streams,omitempty"`
+	Tournament  ModelGosugamersTournamentRef `json:"tournament,omitempty"`
+	Url         string                       `json:"url,omitempty"`
+	Venue       string                       `json:"venue,omitempty"`
+}
+
+type ModelGosugamersMatchGameResponse struct {
+	BattleRoyaleTeams []ModelGosugamersBattleRoyaleTeam `json:"battle_royale_teams,omitempty"`
+	BestOf            int                               `json:"best_of,omitempty"`
+	FetchedAt         string                            `json:"fetched_at,omitempty"`
+	Game              string                            `json:"game,omitempty"`
+	Id                string                            `json:"id,omitempty"`
+	Map               ModelGosugamersGameMap            `json:"map,omitempty"`
+	MatchNumber       int                               `json:"match_number,omitempty"`
+	Number            int                               `json:"number,omitempty"`
+	PlayerBased       bool                              `json:"player_based,omitempty"`
+	Round             string                            `json:"round,omitempty"`
+	Rounds            []ModelGosugamersGameRound        `json:"rounds,omitempty"`
+	SourceUrl         string                            `json:"source_url,omitempty"`
+	StartTime         string                            `json:"start_time,omitempty"`
+	Teams             []ModelGosugamersGameTeam         `json:"teams,omitempty"`
+	Vods              []ModelGosugamersGameVod          `json:"vods,omitempty"`
+}
+
+type ModelGosugamersMatchListResponse struct {
+	Count      int                           `json:"count,omitempty"`
+	FetchedAt  string                        `json:"fetched_at,omitempty"`
+	Game       string                        `json:"game,omitempty"`
+	Matches    []ModelGosugamersMatchSummary `json:"matches,omitempty"`
+	Page       int                           `json:"page,omitempty"`
+	PageSize   int                           `json:"page_size,omitempty"`
+	SourceUrl  string                        `json:"source_url,omitempty"`
+	TotalPages int                           `json:"total_pages,omitempty"`
+	TotalRows  int                           `json:"total_rows,omitempty"`
+}
+
+type ModelGosugamersMatchSummary struct {
+	Finished    bool                         `json:"finished,omitempty"`
+	Game        string                       `json:"game,omitempty"`
+	Group       string                       `json:"group,omitempty"`
+	Id          string                       `json:"id,omitempty"`
+	MatchNumber int                          `json:"match_number,omitempty"`
+	Round       string                       `json:"round,omitempty"`
+	Stage       string                       `json:"stage,omitempty"`
+	StartTime   string                       `json:"start_time,omitempty"`
+	Teams       []ModelGosugamersTeam        `json:"teams,omitempty"`
+	Tournament  ModelGosugamersTournamentRef `json:"tournament,omitempty"`
+	Url         string                       `json:"url,omitempty"`
+	Venue       string                       `json:"venue,omitempty"`
+}
+
+type ModelGosugamersOpponent struct {
+	Country      string `json:"country,omitempty"`
+	CountryCode  string `json:"country_code,omitempty"`
+	Id           string `json:"id,omitempty"`
+	LogoUrl      string `json:"logo_url,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Placement    int    `json:"placement,omitempty"`
+	Score        int    `json:"score,omitempty"`
+	Slug         string `json:"slug,omitempty"`
+	Tag          string `json:"tag,omitempty"`
+	Winner       bool   `json:"winner,omitempty"`
+	WorldRanking int    `json:"world_ranking,omitempty"`
+}
+
+type ModelGosugamersParticipant struct {
+	CountryCode string `json:"country_code,omitempty"`
+	CountryName string `json:"country_name,omitempty"`
+	Id          string `json:"id,omitempty"`
+	LogoUrl     string `json:"logo_url,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Ranking     int    `json:"ranking,omitempty"`
+	Slug        string `json:"slug,omitempty"`
+	Type        string `json:"type,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelGosugamersPlayerDetail struct {
+	About          string                     `json:"about,omitempty"`
+	Country        string                     `json:"country,omitempty"`
+	CountryCode    string                     `json:"country_code,omitempty"`
+	CurrentTeam    ModelGosugamersTeamStint   `json:"current_team,omitempty"`
+	Draws          int                        `json:"draws,omitempty"`
+	EarningsUsd    float64                    `json:"earnings_usd,omitempty"`
+	EloRating      int                        `json:"elo_rating,omitempty"`
+	Facebook       string                     `json:"facebook,omitempty"`
+	FetchedAt      string                     `json:"fetched_at,omitempty"`
+	FirstName      string                     `json:"first_name,omitempty"`
+	Game           string                     `json:"game,omitempty"`
+	Id             string                     `json:"id,omitempty"`
+	ImageUrl       string                     `json:"image_url,omitempty"`
+	LastName       string                     `json:"last_name,omitempty"`
+	Losses         int                        `json:"losses,omitempty"`
+	Name           string                     `json:"name,omitempty"`
+	PreviousTeams  []ModelGosugamersTeamStint `json:"previous_teams,omitempty"`
+	Region         string                     `json:"region,omitempty"`
+	RegionRanking  int                        `json:"region_ranking,omitempty"`
+	SourceUrl      string                     `json:"source_url,omitempty"`
+	Streak         int                        `json:"streak,omitempty"`
+	Twitter        string                     `json:"twitter,omitempty"`
+	Url            string                     `json:"url,omitempty"`
+	WinRatePercent int                        `json:"win_rate_percent,omitempty"`
+	Wins           int                        `json:"wins,omitempty"`
+	WorldRanking   int                        `json:"world_ranking,omitempty"`
+	Youtube        string                     `json:"youtube,omitempty"`
+}
+
+type ModelGosugamersRankRegion struct {
+	Id   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelGosugamersRankedTeam struct {
+	Elo            float64 `json:"elo,omitempty"`
+	Id             string  `json:"id,omitempty"`
+	LogoUrl        string  `json:"logo_url,omitempty"`
+	Name           string  `json:"name,omitempty"`
+	PreviousRank   int     `json:"previous_rank,omitempty"`
+	Rank           int     `json:"rank,omitempty"`
+	RankChange     int     `json:"rank_change,omitempty"`
+	RankChangeName string  `json:"rank_change_name,omitempty"`
+	Slug           string  `json:"slug,omitempty"`
+	Tag            string  `json:"tag,omitempty"`
+	Url            string  `json:"url,omitempty"`
+}
+
+type ModelGosugamersRankingsResponse struct {
+	Count      int                         `json:"count,omitempty"`
+	FetchedAt  string                      `json:"fetched_at,omitempty"`
+	Game       string                      `json:"game,omitempty"`
+	Page       int                         `json:"page,omitempty"`
+	PageSize   int                         `json:"page_size,omitempty"`
+	Q          string                      `json:"q,omitempty"`
+	RegionId   int                         `json:"region_id,omitempty"`
+	Regions    []ModelGosugamersRankRegion `json:"regions,omitempty"`
+	SourceUrl  string                      `json:"source_url,omitempty"`
+	Teams      []ModelGosugamersRankedTeam `json:"teams,omitempty"`
+	TotalPages int                         `json:"total_pages,omitempty"`
+	TotalRows  int                         `json:"total_rows,omitempty"`
+}
+
+type ModelGosugamersRosterPlayer struct {
+	Country     string `json:"country,omitempty"`
+	CountryCode string `json:"country_code,omitempty"`
+	Id          string `json:"id,omitempty"`
+	JoinedAt    string `json:"joined_at,omitempty"`
+	LeftAt      string `json:"left_at,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Slug        string `json:"slug,omitempty"`
+}
+
+type ModelGosugamersStageGroup struct {
+	Format           string                       `json:"format,omitempty"`
+	Id               string                       `json:"id,omitempty"`
+	Name             string                       `json:"name,omitempty"`
+	ParticipantCount int                          `json:"participant_count,omitempty"`
+	Participants     []ModelGosugamersParticipant `json:"participants,omitempty"`
+	ResultType       string                       `json:"result_type,omitempty"`
+	StartTime        string                       `json:"start_time,omitempty"`
+	Status           string                       `json:"status,omitempty"`
+}
+
+type ModelGosugamersStageGroupsResponse struct {
+	Count        int                         `json:"count,omitempty"`
+	FetchedAt    string                      `json:"fetched_at,omitempty"`
+	Groups       []ModelGosugamersStageGroup `json:"groups,omitempty"`
+	SourceUrl    string                      `json:"source_url,omitempty"`
+	StageId      string                      `json:"stage_id,omitempty"`
+	StageName    string                      `json:"stage_name,omitempty"`
+	TournamentId string                      `json:"tournament_id,omitempty"`
+}
+
+type ModelGosugamersStageInfo struct {
+	Id     string `json:"id,omitempty"`
+	Live   bool   `json:"live,omitempty"`
+	Name   string `json:"name,omitempty"`
+	Order  int    `json:"order,omitempty"`
+	Status string `json:"status,omitempty"`
+}
+
+type ModelGosugamersStream struct {
+	Language     string `json:"language,omitempty"`
+	Live         bool   `json:"live,omitempty"`
+	PlatformId   int    `json:"platform_id,omitempty"`
+	ThumbnailUrl string `json:"thumbnail_url,omitempty"`
+	Title        string `json:"title,omitempty"`
+	ViewerCount  int    `json:"viewer_count,omitempty"`
+}
+
+type ModelGosugamersTeam struct {
+	Id      string `json:"id,omitempty"`
+	LogoUrl string `json:"logo_url,omitempty"`
+	Name    string `json:"name,omitempty"`
+	Score   int    `json:"score,omitempty"`
+	Slug    string `json:"slug,omitempty"`
+	Tag     string `json:"tag,omitempty"`
+	Winner  bool   `json:"winner,omitempty"`
+}
+
+type ModelGosugamersTeamDetail struct {
+	About           string                        `json:"about,omitempty"`
+	Country         string                        `json:"country,omitempty"`
+	CountryCode     string                        `json:"country_code,omitempty"`
+	Draws           int                           `json:"draws,omitempty"`
+	EarningsUsd     float64                       `json:"earnings_usd,omitempty"`
+	EloRating       int                           `json:"elo_rating,omitempty"`
+	Facebook        string                        `json:"facebook,omitempty"`
+	FetchedAt       string                        `json:"fetched_at,omitempty"`
+	Game            string                        `json:"game,omitempty"`
+	Id              string                        `json:"id,omitempty"`
+	LogoUrl         string                        `json:"logo_url,omitempty"`
+	Losses          int                           `json:"losses,omitempty"`
+	Name            string                        `json:"name,omitempty"`
+	Region          string                        `json:"region,omitempty"`
+	RegionRanking   int                           `json:"region_ranking,omitempty"`
+	Roster          []ModelGosugamersRosterPlayer `json:"roster,omitempty"`
+	Slug            string                        `json:"slug,omitempty"`
+	SourceUrl       string                        `json:"source_url,omitempty"`
+	Streak          int                           `json:"streak,omitempty"`
+	Tag             string                        `json:"tag,omitempty"`
+	Twitter         string                        `json:"twitter,omitempty"`
+	UpcomingMatches []ModelGosugamersMatchSummary `json:"upcoming_matches,omitempty"`
+	Url             string                        `json:"url,omitempty"`
+	WinRatePercent  int                           `json:"win_rate_percent,omitempty"`
+	Wins            int                           `json:"wins,omitempty"`
+	WorldRanking    int                           `json:"world_ranking,omitempty"`
+	Youtube         string                        `json:"youtube,omitempty"`
+}
+
+type ModelGosugamersTeamResultsResponse struct {
+	Count      int                           `json:"count,omitempty"`
+	FetchedAt  string                        `json:"fetched_at,omitempty"`
+	Matches    []ModelGosugamersMatchSummary `json:"matches,omitempty"`
+	Page       int                           `json:"page,omitempty"`
+	PageSize   int                           `json:"page_size,omitempty"`
+	SourceUrl  string                        `json:"source_url,omitempty"`
+	TeamId     string                        `json:"team_id,omitempty"`
+	TotalPages int                           `json:"total_pages,omitempty"`
+	TotalRows  int                           `json:"total_rows,omitempty"`
+}
+
+type ModelGosugamersTeamStint struct {
+	JoinedAt string `json:"joined_at,omitempty"`
+	LeftAt   string `json:"left_at,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Position string `json:"position,omitempty"`
+	Slug     string `json:"slug,omitempty"`
+	Tag      string `json:"tag,omitempty"`
+	TeamId   string `json:"team_id,omitempty"`
+}
+
+type ModelGosugamersTournamentDetail struct {
+	Country         string                        `json:"country,omitempty"`
+	Description     string                        `json:"description,omitempty"`
+	FetchedAt       string                        `json:"fetched_at,omitempty"`
+	Game            string                        `json:"game,omitempty"`
+	GameName        string                        `json:"game_name,omitempty"`
+	ImageUrl        string                        `json:"image_url,omitempty"`
+	Lan             bool                          `json:"lan,omitempty"`
+	PrizePoolUsd    float64                       `json:"prize_pool_usd,omitempty"`
+	SourceUrl       string                        `json:"source_url,omitempty"`
+	Sponsors        []string                      `json:"sponsors,omitempty"`
+	Stages          []ModelGosugamersStageInfo    `json:"stages,omitempty"`
+	StartTime       string                        `json:"start_time,omitempty"`
+	Status          string                        `json:"status,omitempty"`
+	Tournament      ModelGosugamersTournamentRef  `json:"tournament,omitempty"`
+	UpcomingMatches []ModelGosugamersMatchSummary `json:"upcoming_matches,omitempty"`
+	Venue           string                        `json:"venue,omitempty"`
+}
+
+type ModelGosugamersTournamentParticipantsResponse struct {
+	Count        int                          `json:"count,omitempty"`
+	FetchedAt    string                       `json:"fetched_at,omitempty"`
+	Game         string                       `json:"game,omitempty"`
+	Participants []ModelGosugamersParticipant `json:"participants,omitempty"`
+	SourceUrl    string                       `json:"source_url,omitempty"`
+	TournamentId string                       `json:"tournament_id,omitempty"`
+}
+
+type ModelGosugamersTournamentRef struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelGosugamersTournamentRow struct {
+	Featured         bool    `json:"featured,omitempty"`
+	Game             string  `json:"game,omitempty"`
+	GameName         string  `json:"game_name,omitempty"`
+	Id               string  `json:"id,omitempty"`
+	ImageUrl         string  `json:"image_url,omitempty"`
+	Name             string  `json:"name,omitempty"`
+	ParticipantCount int     `json:"participant_count,omitempty"`
+	PrizeCurrency    string  `json:"prize_currency,omitempty"`
+	PrizePool        float64 `json:"prize_pool,omitempty"`
+	PrizePoolUsd     float64 `json:"prize_pool_usd,omitempty"`
+	Slug             string  `json:"slug,omitempty"`
+	StartTime        string  `json:"start_time,omitempty"`
+	Status           string  `json:"status,omitempty"`
+	Url              string  `json:"url,omitempty"`
+}
+
+type ModelGosugamersTournamentTalentsResponse struct {
+	Count        int                              `json:"count,omitempty"`
+	FetchedAt    string                           `json:"fetched_at,omitempty"`
+	SourceUrl    string                           `json:"source_url,omitempty"`
+	Talents      []ModelGosugamersBroadcastTalent `json:"talents,omitempty"`
+	TournamentId string                           `json:"tournament_id,omitempty"`
+}
+
+type ModelGosugamersTournamentsResponse struct {
+	Count       int                            `json:"count,omitempty"`
+	FetchedAt   string                         `json:"fetched_at,omitempty"`
+	Game        string                         `json:"game,omitempty"`
+	Page        int                            `json:"page,omitempty"`
+	PageSize    int                            `json:"page_size,omitempty"`
+	Q           string                         `json:"q,omitempty"`
+	SourceUrl   string                         `json:"source_url,omitempty"`
+	State       string                         `json:"state,omitempty"`
+	TotalPages  int                            `json:"total_pages,omitempty"`
+	TotalRows   int                            `json:"total_rows,omitempty"`
+	Tournaments []ModelGosugamersTournamentRow `json:"tournaments,omitempty"`
+}
+
 type ModelGqAuthorArticle struct {
 	ImageUrl    string `json:"image_url,omitempty"`
 	PublishedAt string `json:"published_at,omitempty"`
@@ -38968,6 +40220,460 @@ type ModelLivescoreSportsResponseDoc struct {
 	Msg  string         `json:"msg,omitempty"`
 }
 
+type ModelLolesportsCompletedEventsResponse struct {
+	Count        int                    `json:"count,omitempty"`
+	Events       []ModelLolesportsEvent `json:"events,omitempty"`
+	FetchedAt    string                 `json:"fetched_at,omitempty"`
+	SourceUrl    string                 `json:"source_url,omitempty"`
+	TournamentId string                 `json:"tournament_id,omitempty"`
+}
+
+type ModelLolesportsDetailsFrame struct {
+	Participants []ModelLolesportsDetailsParticipant `json:"participants,omitempty"`
+	Timestamp    string                              `json:"timestamp,omitempty"`
+}
+
+type ModelLolesportsDetailsParticipant struct {
+	AbilityPower        int      `json:"ability_power,omitempty"`
+	Armor               int      `json:"armor,omitempty"`
+	Assists             int      `json:"assists,omitempty"`
+	AttackDamage        int      `json:"attack_damage,omitempty"`
+	AttackSpeed         int      `json:"attack_speed,omitempty"`
+	ChampionDamageShare float64  `json:"champion_damage_share,omitempty"`
+	CreepScore          int      `json:"creep_score,omitempty"`
+	CriticalChance      float64  `json:"critical_chance,omitempty"`
+	Deaths              int      `json:"deaths,omitempty"`
+	Items               []int    `json:"items,omitempty"`
+	KillParticipation   float64  `json:"kill_participation,omitempty"`
+	Kills               int      `json:"kills,omitempty"`
+	Level               int      `json:"level,omitempty"`
+	LifeSteal           int      `json:"life_steal,omitempty"`
+	MagicResistance     int      `json:"magic_resistance,omitempty"`
+	ParticipantId       int      `json:"participant_id,omitempty"`
+	RuneIds             []int    `json:"rune_ids,omitempty"`
+	RuneStyleId         int      `json:"rune_style_id,omitempty"`
+	RuneSubStyleId      int      `json:"rune_sub_style_id,omitempty"`
+	SkillOrder          []string `json:"skill_order,omitempty"`
+	Tenacity            float64  `json:"tenacity,omitempty"`
+	TotalGoldEarned     int      `json:"total_gold_earned,omitempty"`
+	WardsDestroyed      int      `json:"wards_destroyed,omitempty"`
+	WardsPlaced         int      `json:"wards_placed,omitempty"`
+}
+
+type ModelLolesportsEvent struct {
+	BlockName string                     `json:"block_name,omitempty"`
+	Games     []ModelLolesportsGameVods  `json:"games,omitempty"`
+	League    ModelLolesportsEventLeague `json:"league,omitempty"`
+	Match     ModelLolesportsMatch       `json:"match,omitempty"`
+	StartTime string                     `json:"start_time,omitempty"`
+	State     string                     `json:"state,omitempty"`
+	Type      string                     `json:"type,omitempty"`
+}
+
+type ModelLolesportsEventDetailResponse struct {
+	FetchedAt    string                     `json:"fetched_at,omitempty"`
+	Games        []ModelLolesportsGame      `json:"games,omitempty"`
+	Id           string                     `json:"id,omitempty"`
+	League       ModelLolesportsEventLeague `json:"league,omitempty"`
+	SourceUrl    string                     `json:"source_url,omitempty"`
+	Strategy     ModelLolesportsStrategy    `json:"strategy,omitempty"`
+	Streams      []ModelLolesportsStream    `json:"streams,omitempty"`
+	Teams        []ModelLolesportsTeam      `json:"teams,omitempty"`
+	TournamentId string                     `json:"tournament_id,omitempty"`
+	Type         string                     `json:"type,omitempty"`
+}
+
+type ModelLolesportsEventLeague struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+}
+
+type ModelLolesportsGprleague struct {
+	Id    string `json:"id,omitempty"`
+	Name  string `json:"name,omitempty"`
+	Slug  string `json:"slug,omitempty"`
+	Teams int    `json:"teams,omitempty"`
+}
+
+type ModelLolesportsGprpoint struct {
+	Date  string `json:"date,omitempty"`
+	Elo   int    `json:"elo,omitempty"`
+	Rank  int    `json:"rank,omitempty"`
+	Score int    `json:"score,omitempty"`
+}
+
+type ModelLolesportsGprrecord struct {
+	Losses int `json:"losses,omitempty"`
+	Wins   int `json:"wins,omitempty"`
+}
+
+type ModelLolesportsGprresponse struct {
+	Count     int                            `json:"count,omitempty"`
+	EndDate   string                         `json:"end_date,omitempty"`
+	FetchedAt string                         `json:"fetched_at,omitempty"`
+	Leagues   []ModelLolesportsGprleague     `json:"leagues,omitempty"`
+	Season    string                         `json:"season,omitempty"`
+	Seasons   []ModelLolesportsGprseasonLink `json:"seasons,omitempty"`
+	SourceUrl string                         `json:"source_url,omitempty"`
+	StartDate string                         `json:"start_date,omitempty"`
+	Teams     []ModelLolesportsGprteam       `json:"teams,omitempty"`
+	Total     int                            `json:"total,omitempty"`
+}
+
+type ModelLolesportsGprseasonLink struct {
+	Kind   string `json:"kind,omitempty"`
+	Season string `json:"season,omitempty"`
+	Url    string `json:"url,omitempty"`
+	Year   string `json:"year,omitempty"`
+}
+
+type ModelLolesportsGprteam struct {
+	AverageOpponentGpr int                            `json:"average_opponent_gpr,omitempty"`
+	DateCalculated     string                         `json:"date_calculated,omitempty"`
+	Elo                int                            `json:"elo,omitempty"`
+	GameRecord         ModelLolesportsGprrecord       `json:"game_record,omitempty"`
+	History            []ModelLolesportsGprpoint      `json:"history,omitempty"`
+	MatchRecord        ModelLolesportsGprrecord       `json:"match_record,omitempty"`
+	PreviousRank       int                            `json:"previous_rank,omitempty"`
+	PreviousScore      int                            `json:"previous_score,omitempty"`
+	Rank               int                            `json:"rank,omitempty"`
+	RankChange         int                            `json:"rank_change,omitempty"`
+	Score              int                            `json:"score,omitempty"`
+	Team               ModelLolesportsGprteamRef      `json:"team,omitempty"`
+	Tournaments        []ModelLolesportsGprtournament `json:"tournaments,omitempty"`
+}
+
+type ModelLolesportsGprteamRef struct {
+	Code       string `json:"code,omitempty"`
+	Id         string `json:"id,omitempty"`
+	ImageUrl   string `json:"image_url,omitempty"`
+	League     string `json:"league,omitempty"`
+	LeagueId   string `json:"league_id,omitempty"`
+	LeagueSlug string `json:"league_slug,omitempty"`
+	Name       string `json:"name,omitempty"`
+	Slug       string `json:"slug,omitempty"`
+}
+
+type ModelLolesportsGprtournament struct {
+	EndTime    string `json:"end_time,omitempty"`
+	Id         string `json:"id,omitempty"`
+	League     string `json:"league,omitempty"`
+	Losses     int    `json:"losses,omitempty"`
+	Name       string `json:"name,omitempty"`
+	Placement  int    `json:"placement,omitempty"`
+	RegionSlug string `json:"region_slug,omitempty"`
+	Slug       string `json:"slug,omitempty"`
+	StartTime  string `json:"start_time,omitempty"`
+	State      string `json:"state,omitempty"`
+	Wins       int    `json:"wins,omitempty"`
+}
+
+type ModelLolesportsGame struct {
+	Id     string                    `json:"id,omitempty"`
+	Number int                       `json:"number,omitempty"`
+	Sides  []ModelLolesportsGameSide `json:"sides,omitempty"`
+	State  string                    `json:"state,omitempty"`
+	Vods   []ModelLolesportsVod      `json:"vods,omitempty"`
+}
+
+type ModelLolesportsGameDetailsResponse struct {
+	Count     int                           `json:"count,omitempty"`
+	FetchedAt string                        `json:"fetched_at,omitempty"`
+	Frames    []ModelLolesportsDetailsFrame `json:"frames,omitempty"`
+	GameId    string                        `json:"game_id,omitempty"`
+	SourceUrl string                        `json:"source_url,omitempty"`
+}
+
+type ModelLolesportsGameSide struct {
+	Side   string `json:"side,omitempty"`
+	TeamId string `json:"team_id,omitempty"`
+}
+
+type ModelLolesportsGameVods struct {
+	Id   string               `json:"id,omitempty"`
+	Vods []ModelLolesportsVod `json:"vods,omitempty"`
+}
+
+type ModelLolesportsGameWindowResponse struct {
+	Blue      ModelLolesportsTeamMetadata  `json:"blue,omitempty"`
+	Count     int                          `json:"count,omitempty"`
+	FetchedAt string                       `json:"fetched_at,omitempty"`
+	Frames    []ModelLolesportsWindowFrame `json:"frames,omitempty"`
+	GameId    string                       `json:"game_id,omitempty"`
+	MatchId   string                       `json:"match_id,omitempty"`
+	Patch     string                       `json:"patch,omitempty"`
+	Red       ModelLolesportsTeamMetadata  `json:"red,omitempty"`
+	SourceUrl string                       `json:"source_url,omitempty"`
+}
+
+type ModelLolesportsHomeLeague struct {
+	Name   string `json:"name,omitempty"`
+	Region string `json:"region,omitempty"`
+}
+
+type ModelLolesportsLeague struct {
+	DisplayStatus string `json:"display_status,omitempty"`
+	Id            string `json:"id,omitempty"`
+	ImageUrl      string `json:"image_url,omitempty"`
+	Name          string `json:"name,omitempty"`
+	Priority      int    `json:"priority,omitempty"`
+	Region        string `json:"region,omitempty"`
+	Slug          string `json:"slug,omitempty"`
+}
+
+type ModelLolesportsLeaguesResponse struct {
+	Count     int                     `json:"count,omitempty"`
+	FetchedAt string                  `json:"fetched_at,omitempty"`
+	Leagues   []ModelLolesportsLeague `json:"leagues,omitempty"`
+	SourceUrl string                  `json:"source_url,omitempty"`
+}
+
+type ModelLolesportsLiveResponse struct {
+	Count     int                    `json:"count,omitempty"`
+	Events    []ModelLolesportsEvent `json:"events,omitempty"`
+	FetchedAt string                 `json:"fetched_at,omitempty"`
+	SourceUrl string                 `json:"source_url,omitempty"`
+}
+
+type ModelLolesportsMatch struct {
+	Flags    []string                `json:"flags,omitempty"`
+	Id       string                  `json:"id,omitempty"`
+	Strategy ModelLolesportsStrategy `json:"strategy,omitempty"`
+	Teams    []ModelLolesportsTeam   `json:"teams,omitempty"`
+}
+
+type ModelLolesportsNewsArticle struct {
+	Authors     []string `json:"authors,omitempty"`
+	Description string   `json:"description,omitempty"`
+	External    bool     `json:"external,omitempty"`
+	ExternalUrl string   `json:"external_url,omitempty"`
+	Id          string   `json:"id,omitempty"`
+	ImageUrl    string   `json:"image_url,omitempty"`
+	Path        string   `json:"path,omitempty"`
+	PublishedAt string   `json:"published_at,omitempty"`
+	Title       string   `json:"title,omitempty"`
+	Url         string   `json:"url,omitempty"`
+}
+
+type ModelLolesportsNewsResponse struct {
+	Articles  []ModelLolesportsNewsArticle `json:"articles,omitempty"`
+	Count     int                          `json:"count,omitempty"`
+	FetchedAt string                       `json:"fetched_at,omitempty"`
+	Hl        string                       `json:"hl,omitempty"`
+	SourceUrl string                       `json:"source_url,omitempty"`
+	Total     int                          `json:"total,omitempty"`
+}
+
+type ModelLolesportsParticipantMetadata struct {
+	ChampionId    string `json:"champion_id,omitempty"`
+	ParticipantId int    `json:"participant_id,omitempty"`
+	PlayerId      string `json:"player_id,omitempty"`
+	Role          string `json:"role,omitempty"`
+	SummonerName  string `json:"summoner_name,omitempty"`
+}
+
+type ModelLolesportsPlayer struct {
+	FirstName    string `json:"first_name,omitempty"`
+	Id           string `json:"id,omitempty"`
+	ImageUrl     string `json:"image_url,omitempty"`
+	LastName     string `json:"last_name,omitempty"`
+	Role         string `json:"role,omitempty"`
+	SummonerName string `json:"summoner_name,omitempty"`
+}
+
+type ModelLolesportsRanking struct {
+	Ordinal int                   `json:"ordinal,omitempty"`
+	Teams   []ModelLolesportsTeam `json:"teams,omitempty"`
+}
+
+type ModelLolesportsRecord struct {
+	Losses int `json:"losses,omitempty"`
+	Wins   int `json:"wins,omitempty"`
+}
+
+type ModelLolesportsScheduleResponse struct {
+	Count          int                    `json:"count,omitempty"`
+	Events         []ModelLolesportsEvent `json:"events,omitempty"`
+	FetchedAt      string                 `json:"fetched_at,omitempty"`
+	NewerPageToken string                 `json:"newer_page_token,omitempty"`
+	OlderPageToken string                 `json:"older_page_token,omitempty"`
+	SourceUrl      string                 `json:"source_url,omitempty"`
+}
+
+type ModelLolesportsSeason struct {
+	EndTime    string                 `json:"end_time,omitempty"`
+	Id         string                 `json:"id,omitempty"`
+	Name       string                 `json:"name,omitempty"`
+	Slug       string                 `json:"slug,omitempty"`
+	SplitCount int                    `json:"split_count,omitempty"`
+	Splits     []ModelLolesportsSplit `json:"splits,omitempty"`
+	StartTime  string                 `json:"start_time,omitempty"`
+}
+
+type ModelLolesportsSeasonLeague struct {
+	Id       string `json:"id,omitempty"`
+	ImageUrl string `json:"image_url,omitempty"`
+	Name     string `json:"name,omitempty"`
+}
+
+type ModelLolesportsSeasonsResponse struct {
+	Count     int                     `json:"count,omitempty"`
+	FetchedAt string                  `json:"fetched_at,omitempty"`
+	LeagueId  string                  `json:"league_id,omitempty"`
+	Region    string                  `json:"region,omitempty"`
+	SeasonId  string                  `json:"season_id,omitempty"`
+	Seasons   []ModelLolesportsSeason `json:"seasons,omitempty"`
+	SourceUrl string                  `json:"source_url,omitempty"`
+}
+
+type ModelLolesportsSplit struct {
+	Description string                           `json:"description,omitempty"`
+	EndTime     string                           `json:"end_time,omitempty"`
+	Id          string                           `json:"id,omitempty"`
+	Name        string                           `json:"name,omitempty"`
+	Region      string                           `json:"region,omitempty"`
+	Slug        string                           `json:"slug,omitempty"`
+	StartTime   string                           `json:"start_time,omitempty"`
+	Tournaments []ModelLolesportsSplitTournament `json:"tournaments,omitempty"`
+}
+
+type ModelLolesportsSplitTournament struct {
+	Id     string                      `json:"id,omitempty"`
+	League ModelLolesportsSeasonLeague `json:"league,omitempty"`
+	Name   string                      `json:"name,omitempty"`
+}
+
+type ModelLolesportsStandingMatch struct {
+	Flags            []string              `json:"flags,omitempty"`
+	Id               string                `json:"id,omitempty"`
+	PreviousMatchIds []string              `json:"previous_match_ids,omitempty"`
+	State            string                `json:"state,omitempty"`
+	Teams            []ModelLolesportsTeam `json:"teams,omitempty"`
+}
+
+type ModelLolesportsStandingSection struct {
+	Matches  []ModelLolesportsStandingMatch `json:"matches,omitempty"`
+	Name     string                         `json:"name,omitempty"`
+	Rankings []ModelLolesportsRanking       `json:"rankings,omitempty"`
+}
+
+type ModelLolesportsStandingStage struct {
+	Id       string                           `json:"id,omitempty"`
+	Name     string                           `json:"name,omitempty"`
+	Sections []ModelLolesportsStandingSection `json:"sections,omitempty"`
+	Slug     string                           `json:"slug,omitempty"`
+	Type     string                           `json:"type,omitempty"`
+}
+
+type ModelLolesportsStandingsResponse struct {
+	FetchedAt    string                         `json:"fetched_at,omitempty"`
+	SourceUrl    string                         `json:"source_url,omitempty"`
+	Stages       []ModelLolesportsStandingStage `json:"stages,omitempty"`
+	TournamentId string                         `json:"tournament_id,omitempty"`
+}
+
+type ModelLolesportsStrategy struct {
+	Count int    `json:"count,omitempty"`
+	Type  string `json:"type,omitempty"`
+}
+
+type ModelLolesportsStream struct {
+	Locale    string `json:"locale,omitempty"`
+	Parameter string `json:"parameter,omitempty"`
+	Provider  string `json:"provider,omitempty"`
+}
+
+type ModelLolesportsTeam struct {
+	Code     string                `json:"code,omitempty"`
+	GameWins int                   `json:"game_wins,omitempty"`
+	Id       string                `json:"id,omitempty"`
+	ImageUrl string                `json:"image_url,omitempty"`
+	Name     string                `json:"name,omitempty"`
+	Outcome  string                `json:"outcome,omitempty"`
+	Record   ModelLolesportsRecord `json:"record,omitempty"`
+	Slug     string                `json:"slug,omitempty"`
+}
+
+type ModelLolesportsTeamDetail struct {
+	Code       string                    `json:"code,omitempty"`
+	HomeLeague ModelLolesportsHomeLeague `json:"home_league,omitempty"`
+	Id         string                    `json:"id,omitempty"`
+	ImageUrl   string                    `json:"image_url,omitempty"`
+	Name       string                    `json:"name,omitempty"`
+	Players    []ModelLolesportsPlayer   `json:"players,omitempty"`
+	Slug       string                    `json:"slug,omitempty"`
+	Status     string                    `json:"status,omitempty"`
+}
+
+type ModelLolesportsTeamMetadata struct {
+	Participants []ModelLolesportsParticipantMetadata `json:"participants,omitempty"`
+	TeamId       string                               `json:"team_id,omitempty"`
+}
+
+type ModelLolesportsTeamTotals struct {
+	Barons       int                                `json:"barons,omitempty"`
+	Dragons      []string                           `json:"dragons,omitempty"`
+	Inhibitors   int                                `json:"inhibitors,omitempty"`
+	Participants []ModelLolesportsWindowParticipant `json:"participants,omitempty"`
+	TotalGold    int                                `json:"total_gold,omitempty"`
+	TotalKills   int                                `json:"total_kills,omitempty"`
+	Towers       int                                `json:"towers,omitempty"`
+}
+
+type ModelLolesportsTeamsResponse struct {
+	FetchedAt string                      `json:"fetched_at,omitempty"`
+	HasMore   bool                        `json:"has_more,omitempty"`
+	Limit     int                         `json:"limit,omitempty"`
+	Page      int                         `json:"page,omitempty"`
+	SourceUrl string                      `json:"source_url,omitempty"`
+	Teams     []ModelLolesportsTeamDetail `json:"teams,omitempty"`
+	Total     int                         `json:"total,omitempty"`
+}
+
+type ModelLolesportsTournament struct {
+	EndDate   string `json:"end_date,omitempty"`
+	Id        string `json:"id,omitempty"`
+	Slug      string `json:"slug,omitempty"`
+	StartDate string `json:"start_date,omitempty"`
+}
+
+type ModelLolesportsTournamentsResponse struct {
+	Count       int                         `json:"count,omitempty"`
+	FetchedAt   string                      `json:"fetched_at,omitempty"`
+	LeagueId    string                      `json:"league_id,omitempty"`
+	SourceUrl   string                      `json:"source_url,omitempty"`
+	Tournaments []ModelLolesportsTournament `json:"tournaments,omitempty"`
+}
+
+type ModelLolesportsVod struct {
+	EndMillis   int    `json:"end_millis,omitempty"`
+	Id          string `json:"id,omitempty"`
+	Locale      string `json:"locale,omitempty"`
+	Parameter   string `json:"parameter,omitempty"`
+	Provider    string `json:"provider,omitempty"`
+	StartMillis int    `json:"start_millis,omitempty"`
+}
+
+type ModelLolesportsWindowFrame struct {
+	Blue      ModelLolesportsTeamTotals `json:"blue,omitempty"`
+	GameState string                    `json:"game_state,omitempty"`
+	Red       ModelLolesportsTeamTotals `json:"red,omitempty"`
+	Timestamp string                    `json:"timestamp,omitempty"`
+}
+
+type ModelLolesportsWindowParticipant struct {
+	Assists       int `json:"assists,omitempty"`
+	CreepScore    int `json:"creep_score,omitempty"`
+	CurrentHealth int `json:"current_health,omitempty"`
+	Deaths        int `json:"deaths,omitempty"`
+	Kills         int `json:"kills,omitempty"`
+	Level         int `json:"level,omitempty"`
+	MaxHealth     int `json:"max_health,omitempty"`
+	ParticipantId int `json:"participant_id,omitempty"`
+	TotalGold     int `json:"total_gold,omitempty"`
+}
+
 type ModelLululemonCategoriesResponse struct {
 	Categories []ModelLululemonCategoryEntry `json:"categories,omitempty"`
 	Count      int                           `json:"count,omitempty"`
@@ -44175,6 +45881,551 @@ type ModelOldnavyStoresResponseDoc struct {
 	Code int                       `json:"code,omitempty"`
 	Data ModelOldnavyStoreResponse `json:"data,omitempty"`
 	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelOpendotaAbilitiesResponse struct {
+	Abilities []ModelOpendotaAbilitySummary `json:"abilities,omitempty"`
+	Count     int                           `json:"count,omitempty"`
+	FetchedAt string                        `json:"fetched_at,omitempty"`
+	SourceUrl string                        `json:"source_url,omitempty"`
+	Total     int                           `json:"total,omitempty"`
+}
+
+type ModelOpendotaAbilitySummary struct {
+	Behavior    []string `json:"behavior,omitempty"`
+	BkbPierce   string   `json:"bkb_pierce,omitempty"`
+	Cooldown    string   `json:"cooldown,omitempty"`
+	DamageType  string   `json:"damage_type,omitempty"`
+	Description string   `json:"description,omitempty"`
+	Dispellable string   `json:"dispellable,omitempty"`
+	Innate      bool     `json:"innate,omitempty"`
+	Key         string   `json:"key,omitempty"`
+	ManaCost    string   `json:"mana_cost,omitempty"`
+	Name        string   `json:"name,omitempty"`
+	TargetTeam  string   `json:"target_team,omitempty"`
+	TargetType  string   `json:"target_type,omitempty"`
+}
+
+type ModelOpendotaBenchmark struct {
+	Metric string                        `json:"metric,omitempty"`
+	Points []ModelOpendotaBenchmarkPoint `json:"points,omitempty"`
+}
+
+type ModelOpendotaBenchmarkPoint struct {
+	Percentile float64 `json:"percentile,omitempty"`
+	Value      float64 `json:"value,omitempty"`
+}
+
+type ModelOpendotaBenchmarksResponse struct {
+	Benchmarks []ModelOpendotaBenchmark `json:"benchmarks,omitempty"`
+	Count      int                      `json:"count,omitempty"`
+	FetchedAt  string                   `json:"fetched_at,omitempty"`
+	HeroId     int                      `json:"hero_id,omitempty"`
+	HeroName   string                   `json:"hero_name,omitempty"`
+	SourceUrl  string                   `json:"source_url,omitempty"`
+}
+
+type ModelOpendotaConstantEntry struct {
+	Balanced bool   `json:"balanced,omitempty"`
+	Date     string `json:"date,omitempty"`
+	Id       string `json:"id,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Value    int    `json:"value,omitempty"`
+}
+
+type ModelOpendotaConstantsResponse struct {
+	Count     int                          `json:"count,omitempty"`
+	Entries   []ModelOpendotaConstantEntry `json:"entries,omitempty"`
+	FetchedAt string                       `json:"fetched_at,omitempty"`
+	Resource  string                       `json:"resource,omitempty"`
+	SourceUrl string                       `json:"source_url,omitempty"`
+}
+
+type ModelOpendotaDistributionsResponse struct {
+	Count        int                        `json:"count,omitempty"`
+	FetchedAt    string                     `json:"fetched_at,omitempty"`
+	Ranks        []ModelOpendotaRankTierRow `json:"ranks,omitempty"`
+	SourceUrl    string                     `json:"source_url,omitempty"`
+	TotalPlayers int                        `json:"total_players,omitempty"`
+}
+
+type ModelOpendotaDurationBin struct {
+	Games          int     `json:"games,omitempty"`
+	StartMinute    int     `json:"start_minute,omitempty"`
+	WinRatePercent float64 `json:"win_rate_percent,omitempty"`
+	Wins           int     `json:"wins,omitempty"`
+}
+
+type ModelOpendotaHero struct {
+	AttackType    string `json:"attack_type,omitempty"`
+	Id            int    `json:"id,omitempty"`
+	LocalizedName string `json:"localized_name,omitempty"`
+	Name          string `json:"name,omitempty"`
+	PrimaryAttr   string `json:"primary_attr,omitempty"`
+}
+
+type ModelOpendotaHeroDurationsResponse struct {
+	Bins      []ModelOpendotaDurationBin `json:"bins,omitempty"`
+	Count     int                        `json:"count,omitempty"`
+	FetchedAt string                     `json:"fetched_at,omitempty"`
+	HeroId    int                        `json:"hero_id,omitempty"`
+	SourceUrl string                     `json:"source_url,omitempty"`
+}
+
+type ModelOpendotaHeroItemsResponse struct {
+	FetchedAt string                   `json:"fetched_at,omitempty"`
+	HeroId    int                      `json:"hero_id,omitempty"`
+	Phases    []ModelOpendotaItemPhase `json:"phases,omitempty"`
+	SourceUrl string                   `json:"source_url,omitempty"`
+}
+
+type ModelOpendotaHeroMatchupsResponse struct {
+	Count     int                       `json:"count,omitempty"`
+	FetchedAt string                    `json:"fetched_at,omitempty"`
+	HeroId    int                       `json:"hero_id,omitempty"`
+	Matchups  []ModelOpendotaHeroRecord `json:"matchups,omitempty"`
+	SourceUrl string                    `json:"source_url,omitempty"`
+}
+
+type ModelOpendotaHeroRecord struct {
+	Games          int     `json:"games,omitempty"`
+	HeroId         int     `json:"hero_id,omitempty"`
+	LocalizedName  string  `json:"localized_name,omitempty"`
+	WinRatePercent float64 `json:"win_rate_percent,omitempty"`
+	Wins           int     `json:"wins,omitempty"`
+}
+
+type ModelOpendotaHeroStat struct {
+	AttackRange   int                        `json:"attack_range,omitempty"`
+	AttackType    string                     `json:"attack_type,omitempty"`
+	BaseArmor     float64                    `json:"base_armor,omitempty"`
+	BaseAttackMax int                        `json:"base_attack_max,omitempty"`
+	BaseAttackMin int                        `json:"base_attack_min,omitempty"`
+	BaseHealth    int                        `json:"base_health,omitempty"`
+	BaseMana      int                        `json:"base_mana,omitempty"`
+	Id            int                        `json:"id,omitempty"`
+	LocalizedName string                     `json:"localized_name,omitempty"`
+	MoveSpeed     int                        `json:"move_speed,omitempty"`
+	Name          string                     `json:"name,omitempty"`
+	PrimaryAttr   string                     `json:"primary_attr,omitempty"`
+	Pro           ModelOpendotaPickWin       `json:"pro,omitempty"`
+	Public        ModelOpendotaPickWin       `json:"public,omitempty"`
+	RankBrackets  []ModelOpendotaRankBracket `json:"rank_brackets,omitempty"`
+	Roles         []string                   `json:"roles,omitempty"`
+	Turbo         ModelOpendotaPickWin       `json:"turbo,omitempty"`
+}
+
+type ModelOpendotaHeroStatsResponse struct {
+	Count     int                     `json:"count,omitempty"`
+	FetchedAt string                  `json:"fetched_at,omitempty"`
+	Heroes    []ModelOpendotaHeroStat `json:"heroes,omitempty"`
+	SourceUrl string                  `json:"source_url,omitempty"`
+}
+
+type ModelOpendotaHeroesResponse struct {
+	Count     int                 `json:"count,omitempty"`
+	FetchedAt string              `json:"fetched_at,omitempty"`
+	Heroes    []ModelOpendotaHero `json:"heroes,omitempty"`
+	SourceUrl string              `json:"source_url,omitempty"`
+}
+
+type ModelOpendotaItemAbility struct {
+	Description string `json:"description,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Type        string `json:"type,omitempty"`
+}
+
+type ModelOpendotaItemAttribute struct {
+	Key   string `json:"key,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type ModelOpendotaItemCount struct {
+	Count  int    `json:"count,omitempty"`
+	ItemId int    `json:"item_id,omitempty"`
+	Name   string `json:"name,omitempty"`
+}
+
+type ModelOpendotaItemPhase struct {
+	Items []ModelOpendotaItemCount `json:"items,omitempty"`
+	Phase string                   `json:"phase,omitempty"`
+}
+
+type ModelOpendotaItemSummary struct {
+	Abilities  []ModelOpendotaItemAbility   `json:"abilities,omitempty"`
+	Attributes []ModelOpendotaItemAttribute `json:"attributes,omitempty"`
+	Behavior   string                       `json:"behavior,omitempty"`
+	Components []string                     `json:"components,omitempty"`
+	Cooldown   string                       `json:"cooldown,omitempty"`
+	CostGold   int                          `json:"cost_gold,omitempty"`
+	Id         int                          `json:"id,omitempty"`
+	Key        string                       `json:"key,omitempty"`
+	ManaCost   string                       `json:"mana_cost,omitempty"`
+	Name       string                       `json:"name,omitempty"`
+	Quality    string                       `json:"quality,omitempty"`
+}
+
+type ModelOpendotaItemsResponse struct {
+	Count     int                        `json:"count,omitempty"`
+	FetchedAt string                     `json:"fetched_at,omitempty"`
+	Items     []ModelOpendotaItemSummary `json:"items,omitempty"`
+	Qualities []string                   `json:"qualities,omitempty"`
+	SourceUrl string                     `json:"source_url,omitempty"`
+	Total     int                        `json:"total,omitempty"`
+}
+
+type ModelOpendotaLeague struct {
+	Banner string `json:"banner,omitempty"`
+	Id     int    `json:"id,omitempty"`
+	Name   string `json:"name,omitempty"`
+	Ticket string `json:"ticket,omitempty"`
+	Tier   string `json:"tier,omitempty"`
+}
+
+type ModelOpendotaLeagueDetailResponse struct {
+	FetchedAt string              `json:"fetched_at,omitempty"`
+	League    ModelOpendotaLeague `json:"league,omitempty"`
+	SourceUrl string              `json:"source_url,omitempty"`
+	Teams     []ModelOpendotaTeam `json:"teams,omitempty"`
+}
+
+type ModelOpendotaLeagueMatch struct {
+	DireName        string `json:"dire_name,omitempty"`
+	DireScore       int    `json:"dire_score,omitempty"`
+	DireTeamId      int    `json:"dire_team_id,omitempty"`
+	DurationSeconds int    `json:"duration_seconds,omitempty"`
+	LeagueId        int    `json:"league_id,omitempty"`
+	MatchId         int    `json:"match_id,omitempty"`
+	RadiantName     string `json:"radiant_name,omitempty"`
+	RadiantScore    int    `json:"radiant_score,omitempty"`
+	RadiantTeamId   int    `json:"radiant_team_id,omitempty"`
+	RadiantWin      bool   `json:"radiant_win,omitempty"`
+	SeriesId        int    `json:"series_id,omitempty"`
+	SeriesType      int    `json:"series_type,omitempty"`
+	StartTime       string `json:"start_time,omitempty"`
+}
+
+type ModelOpendotaLeagueMatchIdsResponse struct {
+	Count     int    `json:"count,omitempty"`
+	FetchedAt string `json:"fetched_at,omitempty"`
+	LeagueId  int    `json:"league_id,omitempty"`
+	MatchIds  []int  `json:"match_ids,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+}
+
+type ModelOpendotaLeagueMatchesResponse struct {
+	Count     int                        `json:"count,omitempty"`
+	FetchedAt string                     `json:"fetched_at,omitempty"`
+	LeagueId  int                        `json:"league_id,omitempty"`
+	Matches   []ModelOpendotaLeagueMatch `json:"matches,omitempty"`
+	SourceUrl string                     `json:"source_url,omitempty"`
+	TeamId    int                        `json:"team_id,omitempty"`
+}
+
+type ModelOpendotaLeaguesResponse struct {
+	Count      int                   `json:"count,omitempty"`
+	FetchedAt  string                `json:"fetched_at,omitempty"`
+	Leagues    []ModelOpendotaLeague `json:"leagues,omitempty"`
+	SourceUrl  string                `json:"source_url,omitempty"`
+	TierFilter string                `json:"tier_filter,omitempty"`
+}
+
+type ModelOpendotaLiveMatch struct {
+	DelaySeconds    int                       `json:"delay_seconds,omitempty"`
+	DireName        string                    `json:"dire_name,omitempty"`
+	DireScore       int                       `json:"dire_score,omitempty"`
+	GameTimeSeconds int                       `json:"game_time_seconds,omitempty"`
+	LastUpdateTime  int                       `json:"last_update_time,omitempty"`
+	LeagueId        int                       `json:"league_id,omitempty"`
+	MatchId         int                       `json:"match_id,omitempty"`
+	Players         []ModelOpendotaLivePlayer `json:"players,omitempty"`
+	RadiantLead     int                       `json:"radiant_lead,omitempty"`
+	RadiantName     string                    `json:"radiant_name,omitempty"`
+	RadiantScore    int                       `json:"radiant_score,omitempty"`
+	Spectators      int                       `json:"spectators,omitempty"`
+}
+
+type ModelOpendotaLiveMatchesResponse struct {
+	Count     int                      `json:"count,omitempty"`
+	FetchedAt string                   `json:"fetched_at,omitempty"`
+	Matches   []ModelOpendotaLiveMatch `json:"matches,omitempty"`
+	SourceUrl string                   `json:"source_url,omitempty"`
+}
+
+type ModelOpendotaLivePlayer struct {
+	HeroId   int    `json:"hero_id,omitempty"`
+	Name     string `json:"name,omitempty"`
+	TeamCode int    `json:"team_code,omitempty"`
+	TeamSlot int    `json:"team_slot,omitempty"`
+}
+
+type ModelOpendotaMatchDetail struct {
+	Dire            ModelOpendotaMatchTeam     `json:"dire,omitempty"`
+	DireScore       int                        `json:"dire_score,omitempty"`
+	DurationSeconds int                        `json:"duration_seconds,omitempty"`
+	FetchedAt       string                     `json:"fetched_at,omitempty"`
+	LeagueId        int                        `json:"league_id,omitempty"`
+	LeagueName      string                     `json:"league_name,omitempty"`
+	MatchId         int                        `json:"match_id,omitempty"`
+	Patch           int                        `json:"patch,omitempty"`
+	Players         []ModelOpendotaMatchPlayer `json:"players,omitempty"`
+	Radiant         ModelOpendotaMatchTeam     `json:"radiant,omitempty"`
+	RadiantScore    int                        `json:"radiant_score,omitempty"`
+	RadiantWin      bool                       `json:"radiant_win,omitempty"`
+	SourceUrl       string                     `json:"source_url,omitempty"`
+	StartTime       string                     `json:"start_time,omitempty"`
+}
+
+type ModelOpendotaMatchPlayer struct {
+	Assists     int    `json:"assists,omitempty"`
+	Deaths      int    `json:"deaths,omitempty"`
+	Denies      int    `json:"denies,omitempty"`
+	GoldPerMin  int    `json:"gold_per_min,omitempty"`
+	HeroDamage  int    `json:"hero_damage,omitempty"`
+	HeroId      int    `json:"hero_id,omitempty"`
+	IsRadiant   bool   `json:"is_radiant,omitempty"`
+	Kills       int    `json:"kills,omitempty"`
+	LastHits    int    `json:"last_hits,omitempty"`
+	Level       int    `json:"level,omitempty"`
+	Name        string `json:"name,omitempty"`
+	NetWorth    int    `json:"net_worth,omitempty"`
+	TowerDamage int    `json:"tower_damage,omitempty"`
+	XpPerMin    int    `json:"xp_per_min,omitempty"`
+}
+
+type ModelOpendotaMatchTeam struct {
+	Id      int    `json:"id,omitempty"`
+	LogoUrl string `json:"logo_url,omitempty"`
+	Name    string `json:"name,omitempty"`
+	Tag     string `json:"tag,omitempty"`
+}
+
+type ModelOpendotaPatchAbilityChange struct {
+	Key   string   `json:"key,omitempty"`
+	Notes []string `json:"notes,omitempty"`
+}
+
+type ModelOpendotaPatchHeroChange struct {
+	Abilities []ModelOpendotaPatchAbilityChange `json:"abilities,omitempty"`
+	General   []string                          `json:"general,omitempty"`
+	HeroId    int                               `json:"hero_id,omitempty"`
+	Key       string                            `json:"key,omitempty"`
+	Name      string                            `json:"name,omitempty"`
+	Talents   []string                          `json:"talents,omitempty"`
+}
+
+type ModelOpendotaPatchIndexEntry struct {
+	HeroesChanged int    `json:"heroes_changed,omitempty"`
+	ItemsChanged  int    `json:"items_changed,omitempty"`
+	Patch         string `json:"patch,omitempty"`
+	Version       string `json:"version,omitempty"`
+}
+
+type ModelOpendotaPatchItemChange struct {
+	Key   string   `json:"key,omitempty"`
+	Notes []string `json:"notes,omitempty"`
+}
+
+type ModelOpendotaPatchNotesResponse struct {
+	Count     int                            `json:"count,omitempty"`
+	FetchedAt string                         `json:"fetched_at,omitempty"`
+	General   []string                       `json:"general,omitempty"`
+	Heroes    []ModelOpendotaPatchHeroChange `json:"heroes,omitempty"`
+	Items     []ModelOpendotaPatchItemChange `json:"items,omitempty"`
+	Misc      []string                       `json:"misc,omitempty"`
+	Patch     string                         `json:"patch,omitempty"`
+	Patches   []ModelOpendotaPatchIndexEntry `json:"patches,omitempty"`
+	SourceUrl string                         `json:"source_url,omitempty"`
+	Version   string                         `json:"version,omitempty"`
+}
+
+type ModelOpendotaPickWin struct {
+	Bans           int     `json:"bans,omitempty"`
+	Picks          int     `json:"picks,omitempty"`
+	WinRatePercent float64 `json:"win_rate_percent,omitempty"`
+	Wins           int     `json:"wins,omitempty"`
+}
+
+type ModelOpendotaProMatch struct {
+	DireName        string `json:"dire_name,omitempty"`
+	DireScore       int    `json:"dire_score,omitempty"`
+	DireTeamId      int    `json:"dire_team_id,omitempty"`
+	DurationSeconds int    `json:"duration_seconds,omitempty"`
+	LeagueId        int    `json:"league_id,omitempty"`
+	LeagueName      string `json:"league_name,omitempty"`
+	MatchId         int    `json:"match_id,omitempty"`
+	RadiantName     string `json:"radiant_name,omitempty"`
+	RadiantScore    int    `json:"radiant_score,omitempty"`
+	RadiantTeamId   int    `json:"radiant_team_id,omitempty"`
+	RadiantWin      bool   `json:"radiant_win,omitempty"`
+	SeriesId        int    `json:"series_id,omitempty"`
+	StartTime       string `json:"start_time,omitempty"`
+	Version         int    `json:"version,omitempty"`
+}
+
+type ModelOpendotaProMatchesResponse struct {
+	Count               int                     `json:"count,omitempty"`
+	FetchedAt           string                  `json:"fetched_at,omitempty"`
+	Matches             []ModelOpendotaProMatch `json:"matches,omitempty"`
+	NextLessThanMatchId int                     `json:"next_less_than_match_id,omitempty"`
+	SourceUrl           string                  `json:"source_url,omitempty"`
+}
+
+type ModelOpendotaProPlayer struct {
+	CountryCode string `json:"country_code,omitempty"`
+	IsPro       bool   `json:"is_pro,omitempty"`
+	Name        string `json:"name,omitempty"`
+	PersonaName string `json:"persona_name,omitempty"`
+	TeamId      int    `json:"team_id,omitempty"`
+	TeamName    string `json:"team_name,omitempty"`
+	TeamTag     string `json:"team_tag,omitempty"`
+}
+
+type ModelOpendotaProPlayersResponse struct {
+	Count      int                      `json:"count,omitempty"`
+	FetchedAt  string                   `json:"fetched_at,omitempty"`
+	Limit      int                      `json:"limit,omitempty"`
+	NextOffset int                      `json:"next_offset,omitempty"`
+	Offset     int                      `json:"offset,omitempty"`
+	Players    []ModelOpendotaProPlayer `json:"players,omitempty"`
+	Q          string                   `json:"q,omitempty"`
+	SourceUrl  string                   `json:"source_url,omitempty"`
+	TeamId     int                      `json:"team_id,omitempty"`
+	TotalCount int                      `json:"total_count,omitempty"`
+}
+
+type ModelOpendotaRankBracket struct {
+	Bracket        int     `json:"bracket,omitempty"`
+	Name           string  `json:"name,omitempty"`
+	Picks          int     `json:"picks,omitempty"`
+	WinRatePercent float64 `json:"win_rate_percent,omitempty"`
+	Wins           int     `json:"wins,omitempty"`
+}
+
+type ModelOpendotaRankTierRow struct {
+	CumulativePercent float64 `json:"cumulative_percent,omitempty"`
+	CumulativePlayers int     `json:"cumulative_players,omitempty"`
+	Medal             string  `json:"medal,omitempty"`
+	Players           int     `json:"players,omitempty"`
+	RankTier          int     `json:"rank_tier,omitempty"`
+	SharePercent      float64 `json:"share_percent,omitempty"`
+	Stars             int     `json:"stars,omitempty"`
+}
+
+type ModelOpendotaRecordRow struct {
+	HeroId    int    `json:"hero_id,omitempty"`
+	HeroName  string `json:"hero_name,omitempty"`
+	MatchId   int    `json:"match_id,omitempty"`
+	Rank      int    `json:"rank,omitempty"`
+	Score     int    `json:"score,omitempty"`
+	StartTime string `json:"start_time,omitempty"`
+}
+
+type ModelOpendotaRecordsResponse struct {
+	Count     int                      `json:"count,omitempty"`
+	FetchedAt string                   `json:"fetched_at,omitempty"`
+	Field     string                   `json:"field,omitempty"`
+	Rows      []ModelOpendotaRecordRow `json:"rows,omitempty"`
+	SourceUrl string                   `json:"source_url,omitempty"`
+}
+
+type ModelOpendotaScenarioRow struct {
+	Games          int     `json:"games,omitempty"`
+	HeroId         int     `json:"hero_id,omitempty"`
+	HeroName       string  `json:"hero_name,omitempty"`
+	IsRadiant      bool    `json:"is_radiant,omitempty"`
+	Item           string  `json:"item,omitempty"`
+	LaneRole       int     `json:"lane_role,omitempty"`
+	RegionId       int     `json:"region_id,omitempty"`
+	Scenario       string  `json:"scenario,omitempty"`
+	TimeSeconds    int     `json:"time_seconds,omitempty"`
+	WinRatePercent float64 `json:"win_rate_percent,omitempty"`
+	Wins           int     `json:"wins,omitempty"`
+}
+
+type ModelOpendotaScenariosResponse struct {
+	Count     int                        `json:"count,omitempty"`
+	FetchedAt string                     `json:"fetched_at,omitempty"`
+	Kind      string                     `json:"kind,omitempty"`
+	Rows      []ModelOpendotaScenarioRow `json:"rows,omitempty"`
+	SourceUrl string                     `json:"source_url,omitempty"`
+	Timings   []int                      `json:"timings,omitempty"`
+	Total     int                        `json:"total,omitempty"`
+}
+
+type ModelOpendotaTeam struct {
+	Delta         float64 `json:"delta,omitempty"`
+	Id            int     `json:"id,omitempty"`
+	LastMatchId   int     `json:"last_match_id,omitempty"`
+	LastMatchTime string  `json:"last_match_time,omitempty"`
+	LogoUrl       string  `json:"logo_url,omitempty"`
+	Losses        int     `json:"losses,omitempty"`
+	Name          string  `json:"name,omitempty"`
+	Rating        float64 `json:"rating,omitempty"`
+	Tag           string  `json:"tag,omitempty"`
+	Wins          int     `json:"wins,omitempty"`
+}
+
+type ModelOpendotaTeamHeroesResponse struct {
+	Count     int                       `json:"count,omitempty"`
+	FetchedAt string                    `json:"fetched_at,omitempty"`
+	Heroes    []ModelOpendotaHeroRecord `json:"heroes,omitempty"`
+	SourceUrl string                    `json:"source_url,omitempty"`
+	TeamId    int                       `json:"team_id,omitempty"`
+}
+
+type ModelOpendotaTeamMatch struct {
+	DireScore           int    `json:"dire_score,omitempty"`
+	DurationSeconds     int    `json:"duration_seconds,omitempty"`
+	LeagueId            int    `json:"league_id,omitempty"`
+	LeagueName          string `json:"league_name,omitempty"`
+	MatchId             int    `json:"match_id,omitempty"`
+	OpposingTeamId      int    `json:"opposing_team_id,omitempty"`
+	OpposingTeamLogoUrl string `json:"opposing_team_logo_url,omitempty"`
+	OpposingTeamName    string `json:"opposing_team_name,omitempty"`
+	Radiant             bool   `json:"radiant,omitempty"`
+	RadiantScore        int    `json:"radiant_score,omitempty"`
+	RadiantWin          bool   `json:"radiant_win,omitempty"`
+	StartTime           string `json:"start_time,omitempty"`
+	TeamWin             bool   `json:"team_win,omitempty"`
+}
+
+type ModelOpendotaTeamMatchesResponse struct {
+	Count     int                      `json:"count,omitempty"`
+	FetchedAt string                   `json:"fetched_at,omitempty"`
+	Matches   []ModelOpendotaTeamMatch `json:"matches,omitempty"`
+	SourceUrl string                   `json:"source_url,omitempty"`
+	TeamId    int                      `json:"team_id,omitempty"`
+}
+
+type ModelOpendotaTeamPlayer struct {
+	GamesPlayed         int    `json:"games_played,omitempty"`
+	IsCurrentTeamMember bool   `json:"is_current_team_member,omitempty"`
+	Name                string `json:"name,omitempty"`
+	Wins                int    `json:"wins,omitempty"`
+}
+
+type ModelOpendotaTeamPlayersResponse struct {
+	Count     int                       `json:"count,omitempty"`
+	FetchedAt string                    `json:"fetched_at,omitempty"`
+	Players   []ModelOpendotaTeamPlayer `json:"players,omitempty"`
+	SourceUrl string                    `json:"source_url,omitempty"`
+	TeamId    int                       `json:"team_id,omitempty"`
+}
+
+type ModelOpendotaTeamResponse struct {
+	FetchedAt string            `json:"fetched_at,omitempty"`
+	SourceUrl string            `json:"source_url,omitempty"`
+	Team      ModelOpendotaTeam `json:"team,omitempty"`
+}
+
+type ModelOpendotaTeamsResponse struct {
+	Count     int                 `json:"count,omitempty"`
+	FetchedAt string              `json:"fetched_at,omitempty"`
+	NextPage  int                 `json:"next_page,omitempty"`
+	Page      int                 `json:"page,omitempty"`
+	SourceUrl string              `json:"source_url,omitempty"`
+	Teams     []ModelOpendotaTeam `json:"teams,omitempty"`
 }
 
 type ModelOpenseaAccount struct {
@@ -52926,6 +55177,126 @@ type ModelRedfinSimilarResponse struct {
 	Results    []ModelRedfinPropertyItem `json:"results,omitempty"`
 }
 
+type ModelRednoteChannel struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelRednoteComment struct {
+	Author          ModelRednoteCommentAuthor `json:"author,omitempty"`
+	CommentId       string                    `json:"comment_id,omitempty"`
+	Content         string                    `json:"content,omitempty"`
+	CreatedAt       int                       `json:"created_at,omitempty"`
+	IpLocation      string                    `json:"ip_location,omitempty"`
+	LikeCount       int                       `json:"like_count,omitempty"`
+	SubCommentCount int                       `json:"sub_comment_count,omitempty"`
+	SubComments     []ModelRednoteComment     `json:"sub_comments,omitempty"`
+}
+
+type ModelRednoteCommentAuthor struct {
+	AvatarUrl string `json:"avatar_url,omitempty"`
+	Nickname  string `json:"nickname,omitempty"`
+	UserId    string `json:"user_id,omitempty"`
+}
+
+type ModelRednoteCommentsResponse struct {
+	Count   int                   `json:"count,omitempty"`
+	Cursor  string                `json:"cursor,omitempty"`
+	HasMore bool                  `json:"has_more,omitempty"`
+	Items   []ModelRednoteComment `json:"items,omitempty"`
+	NoteId  string                `json:"note_id,omitempty"`
+}
+
+type ModelRednoteExploreCard struct {
+	Author     ModelRednoteNoteAuthor `json:"author,omitempty"`
+	CoverUrl   string                 `json:"cover_url,omitempty"`
+	LikedCount int                    `json:"liked_count,omitempty"`
+	NoteId     string                 `json:"note_id,omitempty"`
+	NoteUrl    string                 `json:"note_url,omitempty"`
+	Title      string                 `json:"title,omitempty"`
+	Type       string                 `json:"type,omitempty"`
+	XsecToken  string                 `json:"xsec_token,omitempty"`
+}
+
+type ModelRednoteExploreResponse struct {
+	ChannelId string                    `json:"channel_id,omitempty"`
+	Channels  []ModelRednoteChannel     `json:"channels,omitempty"`
+	Count     int                       `json:"count,omitempty"`
+	Items     []ModelRednoteExploreCard `json:"items,omitempty"`
+}
+
+type ModelRednoteNoteAuthor struct {
+	AvatarUrl string `json:"avatar_url,omitempty"`
+	Nickname  string `json:"nickname,omitempty"`
+	UserId    string `json:"user_id,omitempty"`
+}
+
+type ModelRednoteNoteResponse struct {
+	Author               ModelRednoteNoteAuthor `json:"author,omitempty"`
+	Description          string                 `json:"description,omitempty"`
+	ImageUrls            []string               `json:"image_urls,omitempty"`
+	NoteId               string                 `json:"note_id,omitempty"`
+	PublishedAt          string                 `json:"published_at,omitempty"`
+	Stats                ModelRednoteNoteStats  `json:"stats,omitempty"`
+	Tags                 []ModelRednoteNoteTag  `json:"tags,omitempty"`
+	Title                string                 `json:"title,omitempty"`
+	Type                 string                 `json:"type,omitempty"`
+	Url                  string                 `json:"url,omitempty"`
+	VideoDurationSeconds float64                `json:"video_duration_seconds,omitempty"`
+	VideoUrl             string                 `json:"video_url,omitempty"`
+}
+
+type ModelRednoteNoteStats struct {
+	CollectedCount int `json:"collected_count,omitempty"`
+	CommentCount   int `json:"comment_count,omitempty"`
+	LikedCount     int `json:"liked_count,omitempty"`
+	ShareCount     int `json:"share_count,omitempty"`
+}
+
+type ModelRednoteNoteTag struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelRednoteSuggestItem struct {
+	HighlightFlags []bool `json:"highlight_flags,omitempty"`
+	SearchType     string `json:"search_type,omitempty"`
+	Text           string `json:"text,omitempty"`
+	Type           string `json:"type,omitempty"`
+}
+
+type ModelRednoteSuggestResponse struct {
+	Count         int                       `json:"count,omitempty"`
+	Items         []ModelRednoteSuggestItem `json:"items,omitempty"`
+	Keyword       string                    `json:"keyword,omitempty"`
+	SearchCplId   string                    `json:"search_cpl_id,omitempty"`
+	WordRequestId string                    `json:"word_request_id,omitempty"`
+}
+
+type ModelRednoteCommentsResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelRednoteCommentsResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelRednoteExploreResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelRednoteExploreResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelRednoteNoteResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelRednoteNoteResponse `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelRednoteSuggestResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelRednoteSuggestResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
 type ModelReelshortActor struct {
 	ImdbUrl  string `json:"imdb_url,omitempty"`
 	Name     string `json:"name,omitempty"`
@@ -58440,6 +60811,401 @@ type ModelShopappVariantsResponseDoc struct {
 	Code int                          `json:"code,omitempty"`
 	Data ModelShopappVariantsResponse `json:"data,omitempty"`
 	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelShopeeBanner struct {
+	BannerId       int    `json:"banner_id,omitempty"`
+	CampaignUnitId int    `json:"campaign_unit_id,omitempty"`
+	EndTime        int    `json:"end_time,omitempty"`
+	Image          string `json:"image,omitempty"`
+	SlotId         int    `json:"slot_id,omitempty"`
+	StartTime      int    `json:"start_time,omitempty"`
+	Url            string `json:"url,omitempty"`
+}
+
+type ModelShopeeBannersResponse struct {
+	Banners  []ModelShopeeBanner `json:"banners,omitempty"`
+	Ratio    float64             `json:"ratio,omitempty"`
+	Region   string              `json:"region,omitempty"`
+	Slot     string              `json:"slot,omitempty"`
+	SpaceKey string              `json:"space_key,omitempty"`
+}
+
+type ModelShopeeCategoriesResponse struct {
+	Categories []ModelShopeeCategoryNode `json:"categories,omitempty"`
+	Region     string                    `json:"region,omitempty"`
+	TotalRoots int                       `json:"total_roots,omitempty"`
+}
+
+type ModelShopeeCategoryDetail struct {
+	CategoryId        int                        `json:"category_id,omitempty"`
+	DisplayNames      []ModelShopeeLocalizedName `json:"display_names,omitempty"`
+	Image             string                     `json:"image,omitempty"`
+	Level             int                        `json:"level,omitempty"`
+	Name              string                     `json:"name,omitempty"`
+	ParentCategoryIds []int                      `json:"parent_category_ids,omitempty"`
+}
+
+type ModelShopeeCategoryDetailResponse struct {
+	Categories []ModelShopeeCategoryDetail `json:"categories,omitempty"`
+	Catids     []int                       `json:"catids,omitempty"`
+	Region     string                      `json:"region,omitempty"`
+}
+
+type ModelShopeeCategoryNode struct {
+	CategoryId       int                       `json:"category_id,omitempty"`
+	Children         []ModelShopeeCategoryNode `json:"children,omitempty"`
+	DisplayName      string                    `json:"display_name,omitempty"`
+	Image            string                    `json:"image,omitempty"`
+	Level            int                       `json:"level,omitempty"`
+	Name             string                    `json:"name,omitempty"`
+	ParentCategoryId int                       `json:"parent_category_id,omitempty"`
+}
+
+type ModelShopeeFlashSaleItem struct {
+	CategoryIds         []int    `json:"category_ids,omitempty"`
+	Discount            string   `json:"discount,omitempty"`
+	EndTime             int      `json:"end_time,omitempty"`
+	FlashSaleStock      int      `json:"flash_sale_stock,omitempty"`
+	HistoricalSold      int      `json:"historical_sold,omitempty"`
+	Image               string   `json:"image,omitempty"`
+	ItemId              int      `json:"item_id,omitempty"`
+	Name                string   `json:"name,omitempty"`
+	OfficialShop        bool     `json:"official_shop,omitempty"`
+	Price               float64  `json:"price,omitempty"`
+	PriceBeforeDiscount float64  `json:"price_before_discount,omitempty"`
+	PromoName           string   `json:"promo_name,omitempty"`
+	Rating              float64  `json:"rating,omitempty"`
+	RatingCount         int      `json:"rating_count,omitempty"`
+	ShopId              int      `json:"shop_id,omitempty"`
+	ShopeeChoice        bool     `json:"shopee_choice,omitempty"`
+	StartTime           int      `json:"start_time,omitempty"`
+	Stock               int      `json:"stock,omitempty"`
+	Tags                []string `json:"tags,omitempty"`
+	Url                 string   `json:"url,omitempty"`
+}
+
+type ModelShopeeFlashSaleResponse struct {
+	Items   []ModelShopeeFlashSaleItem  `json:"items,omitempty"`
+	Limit   int                         `json:"limit,omitempty"`
+	Offset  int                         `json:"offset,omitempty"`
+	Region  string                      `json:"region,omitempty"`
+	Session ModelShopeeFlashSaleSession `json:"session,omitempty"`
+}
+
+type ModelShopeeFlashSaleSession struct {
+	EndTime     int `json:"end_time,omitempty"`
+	PromotionId int `json:"promotion_id,omitempty"`
+	StartTime   int `json:"start_time,omitempty"`
+	Status      int `json:"status,omitempty"`
+}
+
+type ModelShopeeFooterBlock struct {
+	Sections []ModelShopeeFooterSection `json:"sections,omitempty"`
+}
+
+type ModelShopeeFooterLink struct {
+	Text string `json:"text,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelShopeeFooterMedia struct {
+	Image string `json:"image,omitempty"`
+	Text  string `json:"text,omitempty"`
+	Url   string `json:"url,omitempty"`
+}
+
+type ModelShopeeFooterQr struct {
+	ExtraImages []ModelShopeeFooterMedia `json:"extra_images,omitempty"`
+	Image       string                   `json:"image,omitempty"`
+	Url         string                   `json:"url,omitempty"`
+}
+
+type ModelShopeeFooterResponse struct {
+	Blocks       []ModelShopeeFooterBlock `json:"blocks,omitempty"`
+	LayoutId     int                      `json:"layout_id,omitempty"`
+	LayoutName   string                   `json:"layout_name,omitempty"`
+	MobileBlocks []ModelShopeeFooterBlock `json:"mobile_blocks,omitempty"`
+	Region       string                   `json:"region,omitempty"`
+}
+
+type ModelShopeeFooterSection struct {
+	Images      []ModelShopeeFooterMedia `json:"images,omitempty"`
+	Links       []ModelShopeeFooterLink  `json:"links,omitempty"`
+	Qr          ModelShopeeFooterQr      `json:"qr,omitempty"`
+	Simple      ModelShopeeFooterSimple  `json:"simple,omitempty"`
+	SocialMedia []ModelShopeeFooterMedia `json:"social_media,omitempty"`
+	Title       string                   `json:"title,omitempty"`
+	Type        int                      `json:"type,omitempty"`
+}
+
+type ModelShopeeFooterSimple struct {
+	Image string `json:"image,omitempty"`
+	Text  string `json:"text,omitempty"`
+	Url   string `json:"url,omitempty"`
+}
+
+type ModelShopeeHomeBanner struct {
+	Image string `json:"image,omitempty"`
+	Url   string `json:"url,omitempty"`
+}
+
+type ModelShopeeHomeCampaign struct {
+	Image string `json:"image,omitempty"`
+	Url   string `json:"url,omitempty"`
+}
+
+type ModelShopeeHomeCategoriesResponse struct {
+	Categories []ModelShopeeHomeCategory `json:"categories,omitempty"`
+	Region     string                    `json:"region,omitempty"`
+	Total      int                       `json:"total,omitempty"`
+}
+
+type ModelShopeeHomeCategory struct {
+	CategoryId       int    `json:"category_id,omitempty"`
+	DisplayName      string `json:"display_name,omitempty"`
+	Image            string `json:"image,omitempty"`
+	Level            int    `json:"level,omitempty"`
+	Name             string `json:"name,omitempty"`
+	ParentCategoryId int    `json:"parent_category_id,omitempty"`
+}
+
+type ModelShopeeHomeLiveSession struct {
+	Cover     string `json:"cover,omitempty"`
+	SessionId int    `json:"session_id,omitempty"`
+	ShopId    int    `json:"shop_id,omitempty"`
+	Title     string `json:"title,omitempty"`
+	ViewCount int    `json:"view_count,omitempty"`
+}
+
+type ModelShopeeHomeResponse struct {
+	Banners      []ModelShopeeHomeBanner      `json:"banners,omitempty"`
+	Campaigns    []ModelShopeeHomeCampaign    `json:"campaigns,omitempty"`
+	Components   []string                     `json:"components,omitempty"`
+	FlashSale    []ModelShopeeFlashSaleItem   `json:"flash_sale,omitempty"`
+	LiveSessions []ModelShopeeHomeLiveSession `json:"live_sessions,omitempty"`
+	Prefills     []string                     `json:"prefills,omitempty"`
+	Region       string                       `json:"region,omitempty"`
+	Squares      []ModelShopeeHomeSquare      `json:"squares,omitempty"`
+}
+
+type ModelShopeeHomeSquare struct {
+	Image string `json:"image,omitempty"`
+	Title string `json:"title,omitempty"`
+	Url   string `json:"url,omitempty"`
+}
+
+type ModelShopeeLocalizedName struct {
+	IsDefault bool   `json:"is_default,omitempty"`
+	Lang      string `json:"lang,omitempty"`
+	Value     string `json:"value,omitempty"`
+}
+
+type ModelShopeeLocationFiltersResponse struct {
+	Groups []ModelShopeeLocationGroup `json:"groups,omitempty"`
+	Region string                     `json:"region,omitempty"`
+}
+
+type ModelShopeeLocationGroup struct {
+	Group               string   `json:"group,omitempty"`
+	GroupName           string   `json:"group_name,omitempty"`
+	LocationTagIds      []string `json:"location_tag_ids,omitempty"`
+	Locations           []string `json:"locations,omitempty"`
+	TranslatedGroup     string   `json:"translated_group,omitempty"`
+	TranslatedLocations []string `json:"translated_locations,omitempty"`
+}
+
+type ModelShopeeMallCategoriesResponse struct {
+	Categories []ModelShopeeMallCategory `json:"categories,omitempty"`
+	Region     string                    `json:"region,omitempty"`
+	Total      int                       `json:"total,omitempty"`
+}
+
+type ModelShopeeMallCategory struct {
+	CategoryId int    `json:"category_id,omitempty"`
+	Image      string `json:"image,omitempty"`
+	Name       string `json:"name,omitempty"`
+}
+
+type ModelShopeeMallShop struct {
+	BrandName   string `json:"brand_name,omitempty"`
+	Ctime       int    `json:"ctime,omitempty"`
+	Logo        string `json:"logo,omitempty"`
+	LogoPc      string `json:"logo_pc,omitempty"`
+	Name        string `json:"name,omitempty"`
+	RedirectUrl string `json:"redirect_url,omitempty"`
+	ShopId      int    `json:"shop_id,omitempty"`
+	ShopType    int    `json:"shop_type,omitempty"`
+	UserId      int    `json:"user_id,omitempty"`
+	Username    string `json:"username,omitempty"`
+}
+
+type ModelShopeePrefillItem struct {
+	Hint  string `json:"hint,omitempty"`
+	Image string `json:"image,omitempty"`
+	Url   string `json:"url,omitempty"`
+}
+
+type ModelShopeePrefillsResponse struct {
+	Prefills []ModelShopeePrefillItem `json:"prefills,omitempty"`
+	Region   string                   `json:"region,omitempty"`
+}
+
+type ModelShopeeSearchFilterGroup struct {
+	DisplayName string                          `json:"display_name,omitempty"`
+	Dynamic     bool                            `json:"dynamic,omitempty"`
+	Name        string                          `json:"name,omitempty"`
+	Options     []ModelShopeeSearchFilterOption `json:"options,omitempty"`
+	UiType      int                             `json:"ui_type,omitempty"`
+}
+
+type ModelShopeeSearchFilterOption struct {
+	DisplayName string `json:"display_name,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Value       string `json:"value,omitempty"`
+}
+
+type ModelShopeeSearchFiltersResponse struct {
+	Category  string                          `json:"category,omitempty"`
+	Groups    []ModelShopeeSearchFilterGroup  `json:"groups,omitempty"`
+	Keyword   string                          `json:"keyword,omitempty"`
+	Region    string                          `json:"region,omitempty"`
+	Shortcuts []ModelShopeeSearchFilterOption `json:"shortcuts,omitempty"`
+}
+
+type ModelShopeeSearchHint struct {
+	CategoryId   int    `json:"category_id,omitempty"`
+	CategoryName string `json:"category_name,omitempty"`
+	ItemIds      []int  `json:"item_ids,omitempty"`
+	Keyword      string `json:"keyword,omitempty"`
+	Position     int    `json:"position,omitempty"`
+	RecordType   int    `json:"record_type,omitempty"`
+	SourceType   int    `json:"source_type,omitempty"`
+}
+
+type ModelShopeeSearchHintsResponse struct {
+	Algorithm         string                  `json:"algorithm,omitempty"`
+	Hints             []ModelShopeeSearchHint `json:"hints,omitempty"`
+	Keyword           string                  `json:"keyword,omitempty"`
+	Region            string                  `json:"region,omitempty"`
+	SearchKeywordType int                     `json:"search_keyword_type,omitempty"`
+	Version           int                     `json:"version,omitempty"`
+}
+
+type ModelShopeeShopInfoResponse struct {
+	Description    string `json:"description,omitempty"`
+	Images         string `json:"images,omitempty"`
+	Name           string `json:"name,omitempty"`
+	OfficialShop   bool   `json:"official_shop,omitempty"`
+	Region         string `json:"region,omitempty"`
+	ShopId         int    `json:"shop_id,omitempty"`
+	ShopeeVerified bool   `json:"shopee_verified,omitempty"`
+	Status         int    `json:"status,omitempty"`
+	UserId         int    `json:"user_id,omitempty"`
+}
+
+type ModelShopeeShopsResponse struct {
+	Limit  int                   `json:"limit,omitempty"`
+	Offset int                   `json:"offset,omitempty"`
+	Region string                `json:"region,omitempty"`
+	Shops  []ModelShopeeMallShop `json:"shops,omitempty"`
+	Total  int                   `json:"total,omitempty"`
+}
+
+type ModelShopeeSuggestResponse struct {
+	Keyword     string   `json:"keyword,omitempty"`
+	Region      string   `json:"region,omitempty"`
+	Suggestions []string `json:"suggestions,omitempty"`
+}
+
+type ModelShopeeBannersResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelShopeeBannersResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelShopeeCategoriesResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelShopeeCategoriesResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelShopeeCategoryDetailResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelShopeeCategoryDetailResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelShopeeFlashSaleResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelShopeeFlashSaleResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelShopeeFooterResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelShopeeFooterResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
+}
+
+type ModelShopeeHomeCategoriesResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelShopeeHomeCategoriesResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelShopeeHomeResponseDoc struct {
+	Code int                     `json:"code,omitempty"`
+	Data ModelShopeeHomeResponse `json:"data,omitempty"`
+	Msg  string                  `json:"msg,omitempty"`
+}
+
+type ModelShopeeLocationFiltersResponseDoc struct {
+	Code int                                `json:"code,omitempty"`
+	Data ModelShopeeLocationFiltersResponse `json:"data,omitempty"`
+	Msg  string                             `json:"msg,omitempty"`
+}
+
+type ModelShopeeMallCategoriesResponseDoc struct {
+	Code int                               `json:"code,omitempty"`
+	Data ModelShopeeMallCategoriesResponse `json:"data,omitempty"`
+	Msg  string                            `json:"msg,omitempty"`
+}
+
+type ModelShopeePrefillsResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelShopeePrefillsResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelShopeeSearchFiltersResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelShopeeSearchFiltersResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelShopeeSearchHintsResponseDoc struct {
+	Code int                            `json:"code,omitempty"`
+	Data ModelShopeeSearchHintsResponse `json:"data,omitempty"`
+	Msg  string                         `json:"msg,omitempty"`
+}
+
+type ModelShopeeShopInfoResponseDoc struct {
+	Code int                         `json:"code,omitempty"`
+	Data ModelShopeeShopInfoResponse `json:"data,omitempty"`
+	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelShopeeShopsResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelShopeeShopsResponse `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelShopeeSuggestResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelShopeeSuggestResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
 }
 
 type ModelShopifyCollectionItem struct {
@@ -75216,6 +77982,702 @@ type ModelVintedMemberResponseDoc struct {
 	Msg  string                    `json:"msg,omitempty"`
 }
 
+type ModelVlrAdvancedLine struct {
+	Agent        string               `json:"agent,omitempty"`
+	Clutches1v1  int                  `json:"clutches_1v1,omitempty"`
+	Clutches1v2  int                  `json:"clutches_1v2,omitempty"`
+	Clutches1v3  int                  `json:"clutches_1v3,omitempty"`
+	Clutches1v4  int                  `json:"clutches_1v4,omitempty"`
+	Clutches1v5  int                  `json:"clutches_1v5,omitempty"`
+	Defuses      int                  `json:"defuses,omitempty"`
+	EconRating   int                  `json:"econ_rating,omitempty"`
+	Multikills2k int                  `json:"multikills_2k,omitempty"`
+	Multikills3k int                  `json:"multikills_3k,omitempty"`
+	Multikills4k int                  `json:"multikills_4k,omitempty"`
+	Multikills5k int                  `json:"multikills_5k,omitempty"`
+	Plants       int                  `json:"plants,omitempty"`
+	Player       ModelVlrMatrixPlayer `json:"player,omitempty"`
+}
+
+type ModelVlrAgentPick struct {
+	Agent   string  `json:"agent,omitempty"`
+	Percent float64 `json:"percent,omitempty"`
+}
+
+type ModelVlrAgentUsage struct {
+	Acs                float64 `json:"acs,omitempty"`
+	Adr                float64 `json:"adr,omitempty"`
+	Agent              string  `json:"agent,omitempty"`
+	Assists            int     `json:"assists,omitempty"`
+	AssistsPerRound    float64 `json:"assists_per_round,omitempty"`
+	Deaths             int     `json:"deaths,omitempty"`
+	FirstDeaths        int     `json:"first_deaths,omitempty"`
+	FirstKills         int     `json:"first_kills,omitempty"`
+	FirstKillsPerRound float64 `json:"first_kills_per_round,omitempty"`
+	KastPercent        float64 `json:"kast_percent,omitempty"`
+	Kd                 float64 `json:"kd,omitempty"`
+	Kills              int     `json:"kills,omitempty"`
+	KillsPerRound      float64 `json:"kills_per_round,omitempty"`
+	Rating             float64 `json:"rating,omitempty"`
+	Rounds             int     `json:"rounds,omitempty"`
+	Use                string  `json:"use,omitempty"`
+}
+
+type ModelVlrArticleDetail struct {
+	Author        string               `json:"author,omitempty"`
+	ExternalLinks []string             `json:"external_links,omitempty"`
+	FetchedAt     string               `json:"fetched_at,omitempty"`
+	Id            string               `json:"id,omitempty"`
+	Images        []string             `json:"images,omitempty"`
+	Paragraphs    []string             `json:"paragraphs,omitempty"`
+	PublishedAt   string               `json:"published_at,omitempty"`
+	References    []ModelVlrArticleRef `json:"references,omitempty"`
+	SourceUrl     string               `json:"source_url,omitempty"`
+	Text          string               `json:"text,omitempty"`
+	Title         string               `json:"title,omitempty"`
+	Url           string               `json:"url,omitempty"`
+}
+
+type ModelVlrArticleRef struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Slug string `json:"slug,omitempty"`
+	Type string `json:"type,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type ModelVlrBuyBucket struct {
+	Buy   string               `json:"buy,omitempty"`
+	Label string               `json:"label,omitempty"`
+	Teams []ModelVlrBuyOutcome `json:"teams,omitempty"`
+}
+
+type ModelVlrBuyOutcome struct {
+	Team   string        `json:"team,omitempty"`
+	VsEco  ModelVlrRatio `json:"vs_eco,omitempty"`
+	VsFull ModelVlrRatio `json:"vs_full,omitempty"`
+	VsHalf ModelVlrRatio `json:"vs_half,omitempty"`
+}
+
+type ModelVlrCompositionMatch struct {
+	Agents   []string `json:"agents,omitempty"`
+	MatchId  string   `json:"match_id,omitempty"`
+	Opponent string   `json:"opponent,omitempty"`
+	Result   string   `json:"result,omitempty"`
+}
+
+type ModelVlrEconomyBlock struct {
+	BuyBuckets []ModelVlrBuyBucket    `json:"buy_buckets,omitempty"`
+	GameId     string                 `json:"game_id,omitempty"`
+	Map        string                 `json:"map,omitempty"`
+	MapNumber  int                    `json:"map_number,omitempty"`
+	Rounds     []ModelVlrEconomyRound `json:"rounds,omitempty"`
+	Teams      []ModelVlrTeamEconomy  `json:"teams,omitempty"`
+}
+
+type ModelVlrEconomyRound struct {
+	Pistol        bool    `json:"pistol,omitempty"`
+	Round         int     `json:"round,omitempty"`
+	Team1BankK    float64 `json:"team1_bank_k,omitempty"`
+	Team1Buy      string  `json:"team1_buy,omitempty"`
+	Team1LoadoutK float64 `json:"team1_loadout_k,omitempty"`
+	Team2BankK    float64 `json:"team2_bank_k,omitempty"`
+	Team2Buy      string  `json:"team2_buy,omitempty"`
+	Team2LoadoutK float64 `json:"team2_loadout_k,omitempty"`
+	WinnerSide    string  `json:"winner_side,omitempty"`
+	WinnerTeam    string  `json:"winner_team,omitempty"`
+}
+
+type ModelVlrEventAgentsResponse struct {
+	Agents       []string                  `json:"agents,omitempty"`
+	Compositions []ModelVlrMapCompositions `json:"compositions,omitempty"`
+	EventId      string                    `json:"event_id,omitempty"`
+	FetchedAt    string                    `json:"fetched_at,omitempty"`
+	Maps         []ModelVlrMapAgentRow     `json:"maps,omitempty"`
+	Overall      ModelVlrMapAgentRow       `json:"overall,omitempty"`
+	SourceUrl    string                    `json:"source_url,omitempty"`
+}
+
+type ModelVlrEventDetail struct {
+	Dates     string            `json:"dates,omitempty"`
+	FetchedAt string            `json:"fetched_at,omitempty"`
+	Id        string            `json:"id,omitempty"`
+	ImageUrl  string            `json:"image_url,omitempty"`
+	Location  string            `json:"location,omitempty"`
+	Name      string            `json:"name,omitempty"`
+	Prize     string            `json:"prize,omitempty"`
+	Series    string            `json:"series,omitempty"`
+	SourceUrl string            `json:"source_url,omitempty"`
+	Subtitle  string            `json:"subtitle,omitempty"`
+	Teams     []ModelVlrTeamRef `json:"teams,omitempty"`
+}
+
+type ModelVlrEventMatchesResponse struct {
+	Count     int                    `json:"count,omitempty"`
+	EventId   string                 `json:"event_id,omitempty"`
+	FetchedAt string                 `json:"fetched_at,omitempty"`
+	Matches   []ModelVlrMatchSummary `json:"matches,omitempty"`
+	SourceUrl string                 `json:"source_url,omitempty"`
+}
+
+type ModelVlrEventRef struct {
+	Id     string `json:"id,omitempty"`
+	Name   string `json:"name,omitempty"`
+	Series string `json:"series,omitempty"`
+	Url    string `json:"url,omitempty"`
+}
+
+type ModelVlrEventStatsResponse struct {
+	Count     int                `json:"count,omitempty"`
+	EventId   string             `json:"event_id,omitempty"`
+	FetchedAt string             `json:"fetched_at,omitempty"`
+	Players   []ModelVlrStatsRow `json:"players,omitempty"`
+	Side      string             `json:"side,omitempty"`
+	SourceUrl string             `json:"source_url,omitempty"`
+}
+
+type ModelVlrEventSummary struct {
+	CountryCode string `json:"country_code,omitempty"`
+	Dates       string `json:"dates,omitempty"`
+	Id          string `json:"id,omitempty"`
+	ImageUrl    string `json:"image_url,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Prize       string `json:"prize,omitempty"`
+	Status      string `json:"status,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelVlrEventsResponse struct {
+	Count     int                    `json:"count,omitempty"`
+	Events    []ModelVlrEventSummary `json:"events,omitempty"`
+	FetchedAt string                 `json:"fetched_at,omitempty"`
+	HasMore   bool                   `json:"has_more,omitempty"`
+	Page      int                    `json:"page,omitempty"`
+	Region    string                 `json:"region,omitempty"`
+	SourceUrl string                 `json:"source_url,omitempty"`
+	Tier      string                 `json:"tier,omitempty"`
+}
+
+type ModelVlrForumCategoriesResponse struct {
+	Categories []ModelVlrForumCategory `json:"categories,omitempty"`
+	Count      int                     `json:"count,omitempty"`
+	FetchedAt  string                  `json:"fetched_at,omitempty"`
+	SourceUrl  string                  `json:"source_url,omitempty"`
+}
+
+type ModelVlrForumCategory struct {
+	Description  string `json:"description,omitempty"`
+	Group        string `json:"group,omitempty"`
+	LastPostTime string `json:"last_post_time,omitempty"`
+	LastPoster   string `json:"last_poster,omitempty"`
+	LastThreadId string `json:"last_thread_id,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Posts        int    `json:"posts,omitempty"`
+	Slug         string `json:"slug,omitempty"`
+	Threads      int    `json:"threads,omitempty"`
+}
+
+type ModelVlrForumThread struct {
+	Author       string `json:"author,omitempty"`
+	Category     string `json:"category,omitempty"`
+	CategoryName string `json:"category_name,omitempty"`
+	Frags        int    `json:"frags,omitempty"`
+	Id           string `json:"id,omitempty"`
+	LastActive   string `json:"last_active,omitempty"`
+	LastPoster   string `json:"last_poster,omitempty"`
+	Pinned       bool   `json:"pinned,omitempty"`
+	Posted       string `json:"posted,omitempty"`
+	Replies      int    `json:"replies,omitempty"`
+	Title        string `json:"title,omitempty"`
+	Url          string `json:"url,omitempty"`
+}
+
+type ModelVlrForumThreadsResponse struct {
+	Category  string                `json:"category,omitempty"`
+	Count     int                   `json:"count,omitempty"`
+	FetchedAt string                `json:"fetched_at,omitempty"`
+	HasMore   bool                  `json:"has_more,omitempty"`
+	Page      int                   `json:"page,omitempty"`
+	SourceUrl string                `json:"source_url,omitempty"`
+	Threads   []ModelVlrForumThread `json:"threads,omitempty"`
+}
+
+type ModelVlrH2Hmatch struct {
+	Date       string `json:"date,omitempty"`
+	Event      string `json:"event,omitempty"`
+	Id         string `json:"id,omitempty"`
+	Stage      string `json:"stage,omitempty"`
+	Team1Score int    `json:"team1_score,omitempty"`
+	Team2Score int    `json:"team2_score,omitempty"`
+	Url        string `json:"url,omitempty"`
+	Winner     string `json:"winner,omitempty"`
+}
+
+type ModelVlrHeadToHead struct {
+	Matches []ModelVlrH2Hmatch `json:"matches,omitempty"`
+	Team1   string             `json:"team1,omitempty"`
+	Team2   string             `json:"team2,omitempty"`
+}
+
+type ModelVlrHistoryResponse struct {
+	Count     int                 `json:"count,omitempty"`
+	FetchedAt string              `json:"fetched_at,omitempty"`
+	HasMore   bool                `json:"has_more,omitempty"`
+	Id        string              `json:"id,omitempty"`
+	Matches   []ModelVlrTeamMatch `json:"matches,omitempty"`
+	Page      int                 `json:"page,omitempty"`
+	SourceUrl string              `json:"source_url,omitempty"`
+}
+
+type ModelVlrKillMatrix struct {
+	Mode string              `json:"mode,omitempty"`
+	Rows []ModelVlrMatrixRow `json:"rows,omitempty"`
+}
+
+type ModelVlrMapAgentRow struct {
+	AttackWinPercent  float64             `json:"attack_win_percent,omitempty"`
+	DefenseWinPercent float64             `json:"defense_win_percent,omitempty"`
+	Games             int                 `json:"games,omitempty"`
+	Map               string              `json:"map,omitempty"`
+	PickRates         []ModelVlrAgentPick `json:"pick_rates,omitempty"`
+}
+
+type ModelVlrMapCompositions struct {
+	Map   string                    `json:"map,omitempty"`
+	Teams []ModelVlrTeamComposition `json:"teams,omitempty"`
+}
+
+type ModelVlrMapResult struct {
+	Duration string                  `json:"duration,omitempty"`
+	Id       string                  `json:"id,omitempty"`
+	Name     string                  `json:"name,omitempty"`
+	Number   int                     `json:"number,omitempty"`
+	PickedBy string                  `json:"picked_by,omitempty"`
+	Players  []ModelVlrPlayerLine    `json:"players,omitempty"`
+	Teams    []ModelVlrMapTeamResult `json:"teams,omitempty"`
+}
+
+type ModelVlrMapSide struct {
+	FirstRounds     int     `json:"first_rounds,omitempty"`
+	RoundWinPercent float64 `json:"round_win_percent,omitempty"`
+	RoundsLost      int     `json:"rounds_lost,omitempty"`
+	RoundsWon       int     `json:"rounds_won,omitempty"`
+}
+
+type ModelVlrMapTeamResult struct {
+	Name   string             `json:"name,omitempty"`
+	Rounds ModelVlrRoundSplit `json:"rounds,omitempty"`
+	Score  int                `json:"score,omitempty"`
+}
+
+type ModelVlrMatchDetail struct {
+	AllMapsPlayers []ModelVlrPlayerLine  `json:"all_maps_players,omitempty"`
+	Event          ModelVlrEventRef      `json:"event,omitempty"`
+	FetchedAt      string                `json:"fetched_at,omitempty"`
+	Format         string                `json:"format,omitempty"`
+	HeadToHead     ModelVlrHeadToHead    `json:"head_to_head,omitempty"`
+	Id             string                `json:"id,omitempty"`
+	Maps           []ModelVlrMapResult   `json:"maps,omitempty"`
+	Note           string                `json:"note,omitempty"`
+	PastMatches    []ModelVlrPastMatches `json:"past_matches,omitempty"`
+	SourceUrl      string                `json:"source_url,omitempty"`
+	StartTimeUtc   string                `json:"start_time_utc,omitempty"`
+	Status         string                `json:"status,omitempty"`
+	Teams          []ModelVlrTeamScore   `json:"teams,omitempty"`
+	Url            string                `json:"url,omitempty"`
+}
+
+type ModelVlrMatchEconomy struct {
+	AllMaps   ModelVlrEconomyBlock   `json:"all_maps,omitempty"`
+	Available bool                   `json:"available,omitempty"`
+	FetchedAt string                 `json:"fetched_at,omitempty"`
+	Id        string                 `json:"id,omitempty"`
+	Maps      []ModelVlrEconomyBlock `json:"maps,omitempty"`
+	SourceUrl string                 `json:"source_url,omitempty"`
+}
+
+type ModelVlrMatchListResponse struct {
+	Count     int                    `json:"count,omitempty"`
+	FetchedAt string                 `json:"fetched_at,omitempty"`
+	HasMore   bool                   `json:"has_more,omitempty"`
+	Matches   []ModelVlrMatchSummary `json:"matches,omitempty"`
+	Page      int                    `json:"page,omitempty"`
+	SourceUrl string                 `json:"source_url,omitempty"`
+}
+
+type ModelVlrMatchPerformance struct {
+	AllMaps   ModelVlrPerformanceBlock   `json:"all_maps,omitempty"`
+	Available bool                       `json:"available,omitempty"`
+	FetchedAt string                     `json:"fetched_at,omitempty"`
+	Id        string                     `json:"id,omitempty"`
+	Maps      []ModelVlrPerformanceBlock `json:"maps,omitempty"`
+	SourceUrl string                     `json:"source_url,omitempty"`
+}
+
+type ModelVlrMatchRounds struct {
+	Available bool                  `json:"available,omitempty"`
+	FetchedAt string                `json:"fetched_at,omitempty"`
+	Id        string                `json:"id,omitempty"`
+	Maps      []ModelVlrRoundsBlock `json:"maps,omitempty"`
+	SourceUrl string                `json:"source_url,omitempty"`
+}
+
+type ModelVlrMatchSummary struct {
+	Date      string              `json:"date,omitempty"`
+	Eta       string              `json:"eta,omitempty"`
+	Event     string              `json:"event,omitempty"`
+	HasStats  bool                `json:"has_stats,omitempty"`
+	HasVods   bool                `json:"has_vods,omitempty"`
+	Id        string              `json:"id,omitempty"`
+	Note      string              `json:"note,omitempty"`
+	Series    string              `json:"series,omitempty"`
+	Status    string              `json:"status,omitempty"`
+	Teams     []ModelVlrMatchTeam `json:"teams,omitempty"`
+	TimeLabel string              `json:"time_label,omitempty"`
+	Url       string              `json:"url,omitempty"`
+}
+
+type ModelVlrMatchTeam struct {
+	CountryCode string `json:"country_code,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Score       int    `json:"score,omitempty"`
+	Winner      bool   `json:"winner,omitempty"`
+}
+
+type ModelVlrMatrixCell struct {
+	Deaths   int                  `json:"deaths,omitempty"`
+	Diff     int                  `json:"diff,omitempty"`
+	Kills    int                  `json:"kills,omitempty"`
+	Opponent ModelVlrMatrixPlayer `json:"opponent,omitempty"`
+}
+
+type ModelVlrMatrixPlayer struct {
+	Name string `json:"name,omitempty"`
+	Team string `json:"team,omitempty"`
+}
+
+type ModelVlrMatrixRow struct {
+	Player ModelVlrMatrixPlayer `json:"player,omitempty"`
+	Vs     []ModelVlrMatrixCell `json:"vs,omitempty"`
+}
+
+type ModelVlrNewsItem struct {
+	Author      string `json:"author,omitempty"`
+	CountryCode string `json:"country_code,omitempty"`
+	Date        string `json:"date,omitempty"`
+	Description string `json:"description,omitempty"`
+	Id          string `json:"id,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelVlrNewsResponse struct {
+	Count     int                `json:"count,omitempty"`
+	FetchedAt string             `json:"fetched_at,omitempty"`
+	HasMore   bool               `json:"has_more,omitempty"`
+	Items     []ModelVlrNewsItem `json:"items,omitempty"`
+	Page      int                `json:"page,omitempty"`
+	SourceUrl string             `json:"source_url,omitempty"`
+}
+
+type ModelVlrPastMatch struct {
+	Date     string `json:"date,omitempty"`
+	Id       string `json:"id,omitempty"`
+	Opponent string `json:"opponent,omitempty"`
+	Result   string `json:"result,omitempty"`
+	Score    string `json:"score,omitempty"`
+	Url      string `json:"url,omitempty"`
+}
+
+type ModelVlrPastMatches struct {
+	Matches []ModelVlrPastMatch `json:"matches,omitempty"`
+	Team    string              `json:"team,omitempty"`
+}
+
+type ModelVlrPerformanceBlock struct {
+	Advanced     []ModelVlrAdvancedLine `json:"advanced,omitempty"`
+	GameId       string                 `json:"game_id,omitempty"`
+	KillMatrices []ModelVlrKillMatrix   `json:"kill_matrices,omitempty"`
+	Map          string                 `json:"map,omitempty"`
+	MapNumber    int                    `json:"map_number,omitempty"`
+}
+
+type ModelVlrPlayerDetail struct {
+	AgentStats    []ModelVlrAgentUsage `json:"agent_stats,omitempty"`
+	Alias         string               `json:"alias,omitempty"`
+	Country       string               `json:"country,omitempty"`
+	CountryCode   string               `json:"country_code,omitempty"`
+	CurrentTeams  []ModelVlrPlayerTeam `json:"current_teams,omitempty"`
+	FetchedAt     string               `json:"fetched_at,omitempty"`
+	Id            string               `json:"id,omitempty"`
+	ImageUrl      string               `json:"image_url,omitempty"`
+	Links         []string             `json:"links,omitempty"`
+	PastTeams     []ModelVlrPlayerTeam `json:"past_teams,omitempty"`
+	RealName      string               `json:"real_name,omitempty"`
+	RecentMatches []ModelVlrTeamMatch  `json:"recent_matches,omitempty"`
+	SourceUrl     string               `json:"source_url,omitempty"`
+}
+
+type ModelVlrPlayerLine struct {
+	Acs             int      `json:"acs,omitempty"`
+	Adr             float64  `json:"adr,omitempty"`
+	Agents          []string `json:"agents,omitempty"`
+	Assists         int      `json:"assists,omitempty"`
+	CountryCode     string   `json:"country_code,omitempty"`
+	Deaths          int      `json:"deaths,omitempty"`
+	FirstDeaths     int      `json:"first_deaths,omitempty"`
+	FirstKills      int      `json:"first_kills,omitempty"`
+	FkDiff          int      `json:"fk_diff,omitempty"`
+	HeadshotPercent float64  `json:"headshot_percent,omitempty"`
+	Id              string   `json:"id,omitempty"`
+	KastPercent     float64  `json:"kast_percent,omitempty"`
+	KdDiff          int      `json:"kd_diff,omitempty"`
+	Kills           int      `json:"kills,omitempty"`
+	Name            string   `json:"name,omitempty"`
+	Rating          float64  `json:"rating,omitempty"`
+	Team            string   `json:"team,omitempty"`
+}
+
+type ModelVlrPlayerRef struct {
+	CountryCode string `json:"country_code,omitempty"`
+	Id          string `json:"id,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Team        string `json:"team,omitempty"`
+}
+
+type ModelVlrPlayerTeam struct {
+	Id      string `json:"id,omitempty"`
+	LogoUrl string `json:"logo_url,omitempty"`
+	Name    string `json:"name,omitempty"`
+	Period  string `json:"period,omitempty"`
+	Tag     string `json:"tag,omitempty"`
+	Url     string `json:"url,omitempty"`
+}
+
+type ModelVlrRankingRow struct {
+	Country     string          `json:"country,omitempty"`
+	Earnings    string          `json:"earnings,omitempty"`
+	LastMatchId string          `json:"last_match_id,omitempty"`
+	Rank        int             `json:"rank,omitempty"`
+	Rating      float64         `json:"rating,omitempty"`
+	Record      string          `json:"record,omitempty"`
+	Streak      string          `json:"streak,omitempty"`
+	Team        ModelVlrTeamRef `json:"team,omitempty"`
+}
+
+type ModelVlrRankingsResponse struct {
+	Count     int                  `json:"count,omitempty"`
+	FetchedAt string               `json:"fetched_at,omitempty"`
+	Region    string               `json:"region,omitempty"`
+	SourceUrl string               `json:"source_url,omitempty"`
+	Teams     []ModelVlrRankingRow `json:"teams,omitempty"`
+	Total     int                  `json:"total,omitempty"`
+}
+
+type ModelVlrRatio struct {
+	Played int `json:"played,omitempty"`
+	Won    int `json:"won,omitempty"`
+}
+
+type ModelVlrRosterMember struct {
+	Alias       string `json:"alias,omitempty"`
+	CountryCode string `json:"country_code,omitempty"`
+	Id          string `json:"id,omitempty"`
+	ImageUrl    string `json:"image_url,omitempty"`
+	RealName    string `json:"real_name,omitempty"`
+	Role        string `json:"role,omitempty"`
+}
+
+type ModelVlrRoundEvent struct {
+	Player     string `json:"player,omitempty"`
+	PlayerTeam string `json:"player_team,omitempty"`
+	Time       string `json:"time,omitempty"`
+	Type       string `json:"type,omitempty"`
+	Victim     string `json:"victim,omitempty"`
+	Weapon     string `json:"weapon,omitempty"`
+}
+
+type ModelVlrRoundLoadout struct {
+	Agent       string `json:"agent,omitempty"`
+	Armor       string `json:"armor,omitempty"`
+	CreditsLeft int    `json:"credits_left,omitempty"`
+	Player      string `json:"player,omitempty"`
+	Spent       int    `json:"spent,omitempty"`
+	Team        string `json:"team,omitempty"`
+	Weapon      string `json:"weapon,omitempty"`
+}
+
+type ModelVlrRoundLog struct {
+	AttackingTeam  string                 `json:"attacking_team,omitempty"`
+	Events         []ModelVlrRoundEvent   `json:"events,omitempty"`
+	Loadouts       []ModelVlrRoundLoadout `json:"loadouts,omitempty"`
+	Round          int                    `json:"round,omitempty"`
+	ScoreAfter     ModelVlrRoundScore     `json:"score_after,omitempty"`
+	SpikeDetonated bool                   `json:"spike_detonated,omitempty"`
+	WinnerTeam     string                 `json:"winner_team,omitempty"`
+}
+
+type ModelVlrRoundScore struct {
+	Team1 int `json:"team1,omitempty"`
+	Team2 int `json:"team2,omitempty"`
+}
+
+type ModelVlrRoundSplit struct {
+	Attack   int `json:"attack,omitempty"`
+	Defend   int `json:"defend,omitempty"`
+	Overtime int `json:"overtime,omitempty"`
+}
+
+type ModelVlrRoundsBlock struct {
+	GameId    string             `json:"game_id,omitempty"`
+	Map       string             `json:"map,omitempty"`
+	MapNumber int                `json:"map_number,omitempty"`
+	Rounds    []ModelVlrRoundLog `json:"rounds,omitempty"`
+}
+
+type ModelVlrSearchCounts struct {
+	Events  int `json:"events,omitempty"`
+	Players int `json:"players,omitempty"`
+	Teams   int `json:"teams,omitempty"`
+}
+
+type ModelVlrSearchResponse struct {
+	Count     int                    `json:"count,omitempty"`
+	Counts    ModelVlrSearchCounts   `json:"counts,omitempty"`
+	FetchedAt string                 `json:"fetched_at,omitempty"`
+	Query     string                 `json:"query,omitempty"`
+	Results   []ModelVlrSearchResult `json:"results,omitempty"`
+	SourceUrl string                 `json:"source_url,omitempty"`
+	Type      string                 `json:"type,omitempty"`
+}
+
+type ModelVlrSearchResult struct {
+	DateRange   string `json:"date_range,omitempty"`
+	Description string `json:"description,omitempty"`
+	Id          string `json:"id,omitempty"`
+	ImageUrl    string `json:"image_url,omitempty"`
+	Inactive    bool   `json:"inactive,omitempty"`
+	Kind        string `json:"kind,omitempty"`
+	Name        string `json:"name,omitempty"`
+	PrizePool   string `json:"prize_pool,omitempty"`
+	Successor   string `json:"successor,omitempty"`
+	Url         string `json:"url,omitempty"`
+}
+
+type ModelVlrStatsResponse struct {
+	Count     int                `json:"count,omitempty"`
+	FetchedAt string             `json:"fetched_at,omitempty"`
+	HasMore   bool               `json:"has_more,omitempty"`
+	Page      int                `json:"page,omitempty"`
+	Players   []ModelVlrStatsRow `json:"players,omitempty"`
+	SourceUrl string             `json:"source_url,omitempty"`
+}
+
+type ModelVlrStatsRow struct {
+	Acs               float64           `json:"acs,omitempty"`
+	Adr               float64           `json:"adr,omitempty"`
+	AgentUsage        []string          `json:"agent_usage,omitempty"`
+	Agents            []string          `json:"agents,omitempty"`
+	Assists           int               `json:"assists,omitempty"`
+	AssistsPerRound   float64           `json:"assists_per_round,omitempty"`
+	ClutchPercent     float64           `json:"clutch_percent,omitempty"`
+	ClutchesTotal     int               `json:"clutches_total,omitempty"`
+	ClutchesWon       int               `json:"clutches_won,omitempty"`
+	Deaths            int               `json:"deaths,omitempty"`
+	FirstDeathPercent float64           `json:"first_death_percent,omitempty"`
+	FirstDeaths       int               `json:"first_deaths,omitempty"`
+	FirstKillPercent  float64           `json:"first_kill_percent,omitempty"`
+	FirstKills        int               `json:"first_kills,omitempty"`
+	FkFdRatio         float64           `json:"fk_fd_ratio,omitempty"`
+	HeadshotPercent   float64           `json:"headshot_percent,omitempty"`
+	KastPercent       float64           `json:"kast_percent,omitempty"`
+	Kd                float64           `json:"kd,omitempty"`
+	Kills             int               `json:"kills,omitempty"`
+	KillsPerRound     float64           `json:"kills_per_round,omitempty"`
+	Maps              int               `json:"maps,omitempty"`
+	MaxKills          int               `json:"max_kills,omitempty"`
+	Player            ModelVlrPlayerRef `json:"player,omitempty"`
+	Rating            float64           `json:"rating,omitempty"`
+	Rounds            int               `json:"rounds,omitempty"`
+}
+
+type ModelVlrTeamComposition struct {
+	AgentsUsed []string                   `json:"agents_used,omitempty"`
+	Matches    []ModelVlrCompositionMatch `json:"matches,omitempty"`
+	Team       string                     `json:"team,omitempty"`
+	TeamId     string                     `json:"team_id,omitempty"`
+}
+
+type ModelVlrTeamDetail struct {
+	Country       string                 `json:"country,omitempty"`
+	CountryCode   string                 `json:"country_code,omitempty"`
+	FetchedAt     string                 `json:"fetched_at,omitempty"`
+	Id            string                 `json:"id,omitempty"`
+	Links         []string               `json:"links,omitempty"`
+	LogoUrl       string                 `json:"logo_url,omitempty"`
+	Name          string                 `json:"name,omitempty"`
+	News          []ModelVlrNewsItem     `json:"news,omitempty"`
+	RecentMatches []ModelVlrTeamMatch    `json:"recent_matches,omitempty"`
+	Roster        []ModelVlrRosterMember `json:"roster,omitempty"`
+	SourceUrl     string                 `json:"source_url,omitempty"`
+	Tag           string                 `json:"tag,omitempty"`
+}
+
+type ModelVlrTeamEconomy struct {
+	BonusRounds      ModelVlrRatio `json:"bonus_rounds,omitempty"`
+	PistolConversion ModelVlrRatio `json:"pistol_conversion,omitempty"`
+	PistolRounds     ModelVlrRatio `json:"pistol_rounds,omitempty"`
+	Team             string        `json:"team,omitempty"`
+}
+
+type ModelVlrTeamMapRow struct {
+	Attack     ModelVlrMapSide `json:"attack,omitempty"`
+	Defense    ModelVlrMapSide `json:"defense,omitempty"`
+	Losses     int             `json:"losses,omitempty"`
+	Map        string          `json:"map,omitempty"`
+	Played     int             `json:"played,omitempty"`
+	WinPercent float64         `json:"win_percent,omitempty"`
+	Wins       int             `json:"wins,omitempty"`
+}
+
+type ModelVlrTeamMapsResponse struct {
+	Count     int                  `json:"count,omitempty"`
+	FetchedAt string               `json:"fetched_at,omitempty"`
+	Maps      []ModelVlrTeamMapRow `json:"maps,omitempty"`
+	SourceUrl string               `json:"source_url,omitempty"`
+	TeamId    string               `json:"team_id,omitempty"`
+}
+
+type ModelVlrTeamMatch struct {
+	Date     string `json:"date,omitempty"`
+	Event    string `json:"event,omitempty"`
+	Id       string `json:"id,omitempty"`
+	Opponent string `json:"opponent,omitempty"`
+	Result   string `json:"result,omitempty"`
+	Score    string `json:"score,omitempty"`
+	Stage    string `json:"stage,omitempty"`
+	Team     string `json:"team,omitempty"`
+	Url      string `json:"url,omitempty"`
+}
+
+type ModelVlrTeamRef struct {
+	Id      string `json:"id,omitempty"`
+	LogoUrl string `json:"logo_url,omitempty"`
+	Name    string `json:"name,omitempty"`
+	Tag     string `json:"tag,omitempty"`
+	Url     string `json:"url,omitempty"`
+}
+
+type ModelVlrTeamScore struct {
+	Id      string `json:"id,omitempty"`
+	LogoUrl string `json:"logo_url,omitempty"`
+	Name    string `json:"name,omitempty"`
+	Score   int    `json:"score,omitempty"`
+	Tag     string `json:"tag,omitempty"`
+	Url     string `json:"url,omitempty"`
+	Winner  bool   `json:"winner,omitempty"`
+}
+
 type ModelVoxAuthorArticle struct {
 	Category    string `json:"category,omitempty"`
 	Excerpt     string `json:"excerpt,omitempty"`
@@ -78078,6 +81540,126 @@ type ModelXdaAuthorResponse struct {
 	SocialLinks []ModelValnetAuthorSocialLink   `json:"social_links,omitempty"`
 	Title       string                          `json:"title,omitempty"`
 	Url         string                          `json:"url,omitempty"`
+}
+
+type ModelXiaohongshuChannel struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelXiaohongshuComment struct {
+	Author          ModelXiaohongshuCommentAuthor `json:"author,omitempty"`
+	CommentId       string                        `json:"comment_id,omitempty"`
+	Content         string                        `json:"content,omitempty"`
+	CreatedAt       int                           `json:"created_at,omitempty"`
+	IpLocation      string                        `json:"ip_location,omitempty"`
+	LikeCount       int                           `json:"like_count,omitempty"`
+	SubCommentCount int                           `json:"sub_comment_count,omitempty"`
+	SubComments     []ModelXiaohongshuComment     `json:"sub_comments,omitempty"`
+}
+
+type ModelXiaohongshuCommentAuthor struct {
+	AvatarUrl string `json:"avatar_url,omitempty"`
+	Nickname  string `json:"nickname,omitempty"`
+	UserId    string `json:"user_id,omitempty"`
+}
+
+type ModelXiaohongshuCommentsResponse struct {
+	Count   int                       `json:"count,omitempty"`
+	Cursor  string                    `json:"cursor,omitempty"`
+	HasMore bool                      `json:"has_more,omitempty"`
+	Items   []ModelXiaohongshuComment `json:"items,omitempty"`
+	NoteId  string                    `json:"note_id,omitempty"`
+}
+
+type ModelXiaohongshuExploreCard struct {
+	Author     ModelXiaohongshuNoteAuthor `json:"author,omitempty"`
+	CoverUrl   string                     `json:"cover_url,omitempty"`
+	LikedCount int                        `json:"liked_count,omitempty"`
+	NoteId     string                     `json:"note_id,omitempty"`
+	NoteUrl    string                     `json:"note_url,omitempty"`
+	Title      string                     `json:"title,omitempty"`
+	Type       string                     `json:"type,omitempty"`
+	XsecToken  string                     `json:"xsec_token,omitempty"`
+}
+
+type ModelXiaohongshuExploreResponse struct {
+	ChannelId string                        `json:"channel_id,omitempty"`
+	Channels  []ModelXiaohongshuChannel     `json:"channels,omitempty"`
+	Count     int                           `json:"count,omitempty"`
+	Items     []ModelXiaohongshuExploreCard `json:"items,omitempty"`
+}
+
+type ModelXiaohongshuNoteAuthor struct {
+	AvatarUrl string `json:"avatar_url,omitempty"`
+	Nickname  string `json:"nickname,omitempty"`
+	UserId    string `json:"user_id,omitempty"`
+}
+
+type ModelXiaohongshuNoteResponse struct {
+	Author               ModelXiaohongshuNoteAuthor `json:"author,omitempty"`
+	Description          string                     `json:"description,omitempty"`
+	ImageUrls            []string                   `json:"image_urls,omitempty"`
+	NoteId               string                     `json:"note_id,omitempty"`
+	PublishedAt          string                     `json:"published_at,omitempty"`
+	Stats                ModelXiaohongshuNoteStats  `json:"stats,omitempty"`
+	Tags                 []ModelXiaohongshuNoteTag  `json:"tags,omitempty"`
+	Title                string                     `json:"title,omitempty"`
+	Type                 string                     `json:"type,omitempty"`
+	Url                  string                     `json:"url,omitempty"`
+	VideoDurationSeconds int                        `json:"video_duration_seconds,omitempty"`
+	VideoUrl             string                     `json:"video_url,omitempty"`
+}
+
+type ModelXiaohongshuNoteStats struct {
+	CollectedCount int `json:"collected_count,omitempty"`
+	CommentCount   int `json:"comment_count,omitempty"`
+	LikedCount     int `json:"liked_count,omitempty"`
+	ShareCount     int `json:"share_count,omitempty"`
+}
+
+type ModelXiaohongshuNoteTag struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+type ModelXiaohongshuSuggestItem struct {
+	HighlightFlags []bool `json:"highlight_flags,omitempty"`
+	SearchType     string `json:"search_type,omitempty"`
+	Text           string `json:"text,omitempty"`
+	Type           string `json:"type,omitempty"`
+}
+
+type ModelXiaohongshuSuggestResponse struct {
+	Count         int                           `json:"count,omitempty"`
+	Items         []ModelXiaohongshuSuggestItem `json:"items,omitempty"`
+	Keyword       string                        `json:"keyword,omitempty"`
+	SearchCplId   string                        `json:"search_cpl_id,omitempty"`
+	WordRequestId string                        `json:"word_request_id,omitempty"`
+}
+
+type ModelXiaohongshuCommentsResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelXiaohongshuCommentsResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
+type ModelXiaohongshuExploreResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelXiaohongshuExploreResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
+}
+
+type ModelXiaohongshuNoteResponseDoc struct {
+	Code int                          `json:"code,omitempty"`
+	Data ModelXiaohongshuNoteResponse `json:"data,omitempty"`
+	Msg  string                       `json:"msg,omitempty"`
+}
+
+type ModelXiaohongshuSuggestResponseDoc struct {
+	Code int                             `json:"code,omitempty"`
+	Data ModelXiaohongshuSuggestResponse `json:"data,omitempty"`
+	Msg  string                          `json:"msg,omitempty"`
 }
 
 type ModelYahooautosArticleResponse struct {
@@ -81528,7 +85110,7 @@ type ModelZomatoSearchResponseDoc struct {
 	Msg  any                       `json:"msg,omitempty"`
 }
 
-const operationCount = 4012
+const operationCount = 4140
 
 const (
 	OperationAbcNewsAbcnewsArticle                                                = "abcnews-article"
@@ -81843,6 +85425,34 @@ const (
 	OperationBlueskyProfile                                                       = "bluesky-profile"
 	OperationBlueskySearchActors                                                  = "bluesky-search-actors"
 	OperationBlueskyTrendingTopics                                                = "bluesky-trending-topics"
+	OperationBo3EconomyBaseline                                                   = "bo3-economy-baseline"
+	OperationBo3Forum                                                             = "bo3-forum"
+	OperationBo3ForumCategories                                                   = "bo3-forum-categories"
+	OperationBo3Match                                                             = "bo3-match"
+	OperationBo3MatchGames                                                        = "bo3-match-games"
+	OperationBo3MatchHistory                                                      = "bo3-match-history"
+	OperationBo3MatchPlayers                                                      = "bo3-match-players"
+	OperationBo3NewsCategories                                                    = "bo3-news-categories"
+	OperationBo3NewsFeed                                                          = "bo3-news-feed"
+	OperationBo3Player                                                            = "bo3-player"
+	OperationBo3PlayerLeaderboard                                                 = "bo3-player-leaderboard"
+	OperationBo3PlayerRecentMatches                                               = "bo3-player-recent-matches"
+	OperationBo3PlayerStats                                                       = "bo3-player-stats"
+	OperationBo3Records                                                           = "bo3-records"
+	OperationBo3Team                                                              = "bo3-team"
+	OperationBo3TeamPrizeMoney                                                    = "bo3-team-prize-money"
+	OperationBo3TeamRankingDates                                                  = "bo3-team-ranking-dates"
+	OperationBo3TeamRankings                                                      = "bo3-team-rankings"
+	OperationBo3TeamRecentMatches                                                 = "bo3-team-recent-matches"
+	OperationBo3TeamStats                                                         = "bo3-team-stats"
+	OperationBo3Tournament                                                        = "bo3-tournament"
+	OperationBo3TournamentMapPool                                                 = "bo3-tournament-map-pool"
+	OperationBo3TournamentMvps                                                    = "bo3-tournament-mvps"
+	OperationBo3TournamentSquads                                                  = "bo3-tournament-squads"
+	OperationBo3TournamentStages                                                  = "bo3-tournament-stages"
+	OperationBo3Tournaments                                                       = "bo3-tournaments"
+	OperationBo3Transfers                                                         = "bo3-transfers"
+	OperationBo3ValorantLeaderboard                                               = "bo3-valorant-leaderboard"
 	OperationBonhamsAuctionDetail                                                 = "bonhams-auction-detail"
 	OperationBonhamsAuctionLots                                                   = "bonhams-auction-lots"
 	OperationBonhamsAuctionSearch                                                 = "bonhams-auction-search"
@@ -82976,6 +86586,21 @@ const (
 	OperationGoogleTrendsTrending                                                 = "google-trends-trending"
 	OperationGoogleTrendsTrendingDetail                                           = "google-trends-trending-detail"
 	OperationGoogleVideos                                                         = "google-videos"
+	OperationGosuGamersGosugamersEncounters                                       = "gosugamers-encounters"
+	OperationGosuGamersGosugamersGames                                            = "gosugamers-games"
+	OperationGosuGamersGosugamersMatch                                            = "gosugamers-match"
+	OperationGosuGamersGosugamersMatchGame                                        = "gosugamers-match-game"
+	OperationGosuGamersGosugamersMatches                                          = "gosugamers-matches"
+	OperationGosuGamersGosugamersPlayer                                           = "gosugamers-player"
+	OperationGosuGamersGosugamersRankings                                         = "gosugamers-rankings"
+	OperationGosuGamersGosugamersResults                                          = "gosugamers-results"
+	OperationGosuGamersGosugamersStageGroups                                      = "gosugamers-stage-groups"
+	OperationGosuGamersGosugamersTeam                                             = "gosugamers-team"
+	OperationGosuGamersGosugamersTeamResults                                      = "gosugamers-team-results"
+	OperationGosuGamersGosugamersTournament                                       = "gosugamers-tournament"
+	OperationGosuGamersGosugamersTournamentParticipants                           = "gosugamers-tournament-participants"
+	OperationGosuGamersGosugamersTournamentTalents                                = "gosugamers-tournament-talents"
+	OperationGosuGamersGosugamersTournaments                                      = "gosugamers-tournaments"
 	OperationGqArticle                                                            = "gq-article"
 	OperationGqAuthor                                                             = "gq-author"
 	OperationGqHeadlines                                                          = "gq-headlines"
@@ -83420,6 +87045,19 @@ const (
 	OperationLiverpoolEchoLiverpoolechoHeadlines                                  = "liverpoolecho-headlines"
 	OperationLiverpoolEchoLiverpoolechoNews                                       = "liverpoolecho-news"
 	OperationLiverpoolEchoLiverpoolechoSections                                   = "liverpoolecho-sections"
+	OperationLoLEsportsLolesportsCompletedEvents                                  = "lolesports-completed-events"
+	OperationLoLEsportsLolesportsEvent                                            = "lolesports-event"
+	OperationLoLEsportsLolesportsGameDetails                                      = "lolesports-game-details"
+	OperationLoLEsportsLolesportsGameWindow                                       = "lolesports-game-window"
+	OperationLoLEsportsLolesportsGpr                                              = "lolesports-gpr"
+	OperationLoLEsportsLolesportsLeagues                                          = "lolesports-leagues"
+	OperationLoLEsportsLolesportsLive                                             = "lolesports-live"
+	OperationLoLEsportsLolesportsNews                                             = "lolesports-news"
+	OperationLoLEsportsLolesportsSchedule                                         = "lolesports-schedule"
+	OperationLoLEsportsLolesportsSeasons                                          = "lolesports-seasons"
+	OperationLoLEsportsLolesportsStandings                                        = "lolesports-standings"
+	OperationLoLEsportsLolesportsTeams                                            = "lolesports-teams"
+	OperationLoLEsportsLolesportsTournaments                                      = "lolesports-tournaments"
 	OperationLosAngelesTimesLatimesArticle                                        = "latimes-article"
 	OperationLosAngelesTimesLatimesAuthor                                         = "latimes-author"
 	OperationLosAngelesTimesLatimesHeadlines                                      = "latimes-headlines"
@@ -83764,6 +87402,32 @@ const (
 	OperationOldNavyOldnavyProductReviews                                         = "oldnavy-product-reviews"
 	OperationOldNavyOldnavySearch                                                 = "oldnavy-search"
 	OperationOldNavyOldnavyStores                                                 = "oldnavy-stores"
+	OperationOpenDotaOpendotaAbilities                                            = "opendota-abilities"
+	OperationOpenDotaOpendotaBenchmarks                                           = "opendota-benchmarks"
+	OperationOpenDotaOpendotaConstants                                            = "opendota-constants"
+	OperationOpenDotaOpendotaHeroDurations                                        = "opendota-hero-durations"
+	OperationOpenDotaOpendotaHeroItems                                            = "opendota-hero-items"
+	OperationOpenDotaOpendotaHeroMatchups                                         = "opendota-hero-matchups"
+	OperationOpenDotaOpendotaHeroStats                                            = "opendota-hero-stats"
+	OperationOpenDotaOpendotaHeroes                                               = "opendota-heroes"
+	OperationOpenDotaOpendotaItems                                                = "opendota-items"
+	OperationOpenDotaOpendotaLeague                                               = "opendota-league"
+	OperationOpenDotaOpendotaLeagueMatchIds                                       = "opendota-league-match-ids"
+	OperationOpenDotaOpendotaLeagueMatches                                        = "opendota-league-matches"
+	OperationOpenDotaOpendotaLeagues                                              = "opendota-leagues"
+	OperationOpenDotaOpendotaLive                                                 = "opendota-live"
+	OperationOpenDotaOpendotaMatch                                                = "opendota-match"
+	OperationOpenDotaOpendotaPatchNotes                                           = "opendota-patch-notes"
+	OperationOpenDotaOpendotaProMatches                                           = "opendota-pro-matches"
+	OperationOpenDotaOpendotaProPlayers                                           = "opendota-pro-players"
+	OperationOpenDotaOpendotaRankDistribution                                     = "opendota-rank-distribution"
+	OperationOpenDotaOpendotaRecords                                              = "opendota-records"
+	OperationOpenDotaOpendotaScenarios                                            = "opendota-scenarios"
+	OperationOpenDotaOpendotaTeam                                                 = "opendota-team"
+	OperationOpenDotaOpendotaTeamHeroes                                           = "opendota-team-heroes"
+	OperationOpenDotaOpendotaTeamMatches                                          = "opendota-team-matches"
+	OperationOpenDotaOpendotaTeamPlayers                                          = "opendota-team-players"
+	OperationOpenDotaOpendotaTeams                                                = "opendota-teams"
 	OperationOpenSeaOpenseaActivity                                               = "opensea-activity"
 	OperationOpenSeaOpenseaCategories                                             = "opensea-categories"
 	OperationOpenSeaOpenseaChains                                                 = "opensea-chains"
@@ -84160,6 +87824,10 @@ const (
 	OperationRedfinRegionTrends                                                   = "redfin-region-trends"
 	OperationRedfinSearch                                                         = "redfin-search"
 	OperationRedfinSimilar                                                        = "redfin-similar"
+	OperationRednoteExplore                                                       = "rednote-explore"
+	OperationRednoteNote                                                          = "rednote-note"
+	OperationRednoteNoteComments                                                  = "rednote-note-comments"
+	OperationRednoteSearchSuggest                                                 = "rednote-search-suggest"
 	OperationReelShortReelshortFandomCategories                                   = "reelshort-fandom-categories"
 	OperationReelShortReelshortFandomPost                                         = "reelshort-fandom-post"
 	OperationReelShortReelshortFandomPosts                                        = "reelshort-fandom-posts"
@@ -84412,6 +88080,21 @@ const (
 	OperationShopAppShopReviews                                                   = "shop-app-shop-reviews"
 	OperationShopAppShopTypeahead                                                 = "shop-app-shop-typeahead"
 	OperationShopAppSuggestions                                                   = "shop-app-suggestions"
+	OperationShopeeBanners                                                        = "shopee-banners"
+	OperationShopeeCategories                                                     = "shopee-categories"
+	OperationShopeeCategoryDetail                                                 = "shopee-category-detail"
+	OperationShopeeFlashSale                                                      = "shopee-flash-sale"
+	OperationShopeeFooter                                                         = "shopee-footer"
+	OperationShopeeHome                                                           = "shopee-home"
+	OperationShopeeHomeCategories                                                 = "shopee-home-categories"
+	OperationShopeeLocationFilters                                                = "shopee-location-filters"
+	OperationShopeeMallCategories                                                 = "shopee-mall-categories"
+	OperationShopeePrefills                                                       = "shopee-prefills"
+	OperationShopeeSearchFilters                                                  = "shopee-search-filters"
+	OperationShopeeSearchHints                                                    = "shopee-search-hints"
+	OperationShopeeShopInfo                                                       = "shopee-shop-info"
+	OperationShopeeShops                                                          = "shopee-shops"
+	OperationShopeeSuggest                                                        = "shopee-suggest"
 	OperationShopifyCollectionProducts                                            = "shopify-collection-products"
 	OperationShopifyCollections                                                   = "shopify-collections"
 	OperationShopifyPage                                                          = "shopify-page"
@@ -85272,6 +88955,29 @@ const (
 	OperationVintedCategory                                                       = "vinted-category"
 	OperationVintedItem                                                           = "vinted-item"
 	OperationVintedMember                                                         = "vinted-member"
+	OperationVlrEvent                                                             = "vlr-event"
+	OperationVlrEventAgents                                                       = "vlr-event-agents"
+	OperationVlrEventMatches                                                      = "vlr-event-matches"
+	OperationVlrEventStats                                                        = "vlr-event-stats"
+	OperationVlrEvents                                                            = "vlr-events"
+	OperationVlrForumCategories                                                   = "vlr-forum-categories"
+	OperationVlrForumThreads                                                      = "vlr-forum-threads"
+	OperationVlrMatch                                                             = "vlr-match"
+	OperationVlrMatchEconomy                                                      = "vlr-match-economy"
+	OperationVlrMatchPerformance                                                  = "vlr-match-performance"
+	OperationVlrMatchRounds                                                       = "vlr-match-rounds"
+	OperationVlrMatches                                                           = "vlr-matches"
+	OperationVlrNews                                                              = "vlr-news"
+	OperationVlrNewsArticle                                                       = "vlr-news-article"
+	OperationVlrPlayer                                                            = "vlr-player"
+	OperationVlrPlayerMatches                                                     = "vlr-player-matches"
+	OperationVlrRankings                                                          = "vlr-rankings"
+	OperationVlrResults                                                           = "vlr-results"
+	OperationVlrSearch                                                            = "vlr-search"
+	OperationVlrStats                                                             = "vlr-stats"
+	OperationVlrTeam                                                              = "vlr-team"
+	OperationVlrTeamMaps                                                          = "vlr-team-maps"
+	OperationVlrTeamMatches                                                       = "vlr-team-matches"
 	OperationVoxArticle                                                           = "vox-article"
 	OperationVoxAuthor                                                            = "vox-author"
 	OperationVoxHeadlines                                                         = "vox-headlines"
@@ -85384,6 +89090,10 @@ const (
 	OperationXdaHeadlines                                                         = "xda-headlines"
 	OperationXdaNews                                                              = "xda-news"
 	OperationXdaSections                                                          = "xda-sections"
+	OperationXiaohongshuExplore                                                   = "xiaohongshu-explore"
+	OperationXiaohongshuNote                                                      = "xiaohongshu-note"
+	OperationXiaohongshuNoteComments                                              = "xiaohongshu-note-comments"
+	OperationXiaohongshuSearchSuggest                                             = "xiaohongshu-search-suggest"
 	OperationYahooAutosArticle                                                    = "yahoo-autos-article"
 	OperationYahooAutosCategory                                                   = "yahoo-autos-category"
 	OperationYahooAutosHome                                                       = "yahoo-autos-home"
@@ -85872,6 +89582,34 @@ var operations = map[string]operationDefinition{
 	"bluesky-profile":                                 operationDefinition{Method: "GET", Path: "/bluesky/profile", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "actor", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"bluesky-search-actors":                           operationDefinition{Method: "GET", Path: "/bluesky/search-actors", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
 	"bluesky-trending-topics":                         operationDefinition{Method: "GET", Path: "/bluesky/trending-topics", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bo3-economy-baseline":                            operationDefinition{Method: "GET", Path: "/bo3/economy-baseline", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bo3-forum":                                       operationDefinition{Method: "GET", Path: "/bo3/forum", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs2", "valorant", "lol", "dota2", "r6siege", "mlbb"}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"activity", "newest", "comments", "rating"}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"bo3-forum-categories":                            operationDefinition{Method: "GET", Path: "/bo3/forum-categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs2", "valorant", "lol", "dota2", "r6siege", "mlbb"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bo3-match":                                       operationDefinition{Method: "GET", Path: "/bo3/match", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bo3-match-games":                                 operationDefinition{Method: "GET", Path: "/bo3/match-games", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "match_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bo3-match-history":                               operationDefinition{Method: "GET", Path: "/bo3/match-history", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs2", "valorant", "lol", "dota2", "r6siege", "mlbb"}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"finished", "defwin", "upcoming", "current"}}, parameterDefinition{Name: "tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"s", "a", "b", "c", "d"}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"newest", "oldest"}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"bo3-match-players":                               operationDefinition{Method: "GET", Path: "/bo3/match-players", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bo3-news-categories":                             operationDefinition{Method: "GET", Path: "/bo3/news-categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bo3-news-feed":                                   operationDefinition{Method: "GET", Path: "/bo3/news-feed", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs2", "valorant", "lol", "dota2", "r6siege", "mlbb"}}, parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"news", "article", "wiki", "predictions"}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"newest", "oldest"}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"bo3-player":                                      operationDefinition{Method: "GET", Path: "/bo3/player", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs2", "valorant", "lol", "dota2", "r6siege", "mlbb"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bo3-player-leaderboard":                          operationDefinition{Method: "GET", Path: "/bo3/player-leaderboard", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"s", "a", "b", "c", "d"}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"rating", "kd", "kills", "damage", "assists", "headshots", "games", "rounds"}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"desc", "asc"}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"bo3-player-recent-matches":                       operationDefinition{Method: "GET", Path: "/bo3/player-recent-matches", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "opponent", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tournament", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bo3-player-stats":                                operationDefinition{Method: "GET", Path: "/bo3/player-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "kind", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"general", "maps", "accuracy"}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bo3-records":                                     operationDefinition{Method: "GET", Path: "/bo3/records", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "record_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "match", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tournament", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "team", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "player", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"newest", "oldest"}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"bo3-team":                                        operationDefinition{Method: "GET", Path: "/bo3/team", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs2", "valorant", "lol", "dota2", "r6siege", "mlbb"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bo3-team-prize-money":                            operationDefinition{Method: "GET", Path: "/bo3/team-prize-money", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs2", "valorant", "lol", "dota2", "r6siege", "mlbb"}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"bo3-team-ranking-dates":                          operationDefinition{Method: "GET", Path: "/bo3/team-ranking-dates", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs2", "valorant", "lol", "dota2", "r6siege", "mlbb"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bo3-team-rankings":                               operationDefinition{Method: "GET", Path: "/bo3/team-rankings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs2", "valorant", "lol", "dota2", "r6siege", "mlbb"}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"bo3-team-recent-matches":                         operationDefinition{Method: "GET", Path: "/bo3/team-recent-matches", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "opponent", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tournament", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bo3-team-stats":                                  operationDefinition{Method: "GET", Path: "/bo3/team-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "kind", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"general", "advanced", "accuracy", "economy", "map-pool"}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bo3-tournament":                                  operationDefinition{Method: "GET", Path: "/bo3/tournament", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs2", "valorant", "lol", "dota2", "r6siege", "mlbb"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bo3-tournament-map-pool":                         operationDefinition{Method: "GET", Path: "/bo3/tournament-map-pool", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bo3-tournament-mvps":                             operationDefinition{Method: "GET", Path: "/bo3/tournament-mvps", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs2", "valorant", "lol", "dota2", "r6siege", "mlbb"}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"bo3-tournament-squads":                           operationDefinition{Method: "GET", Path: "/bo3/tournament-squads", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bo3-tournament-stages":                           operationDefinition{Method: "GET", Path: "/bo3/tournament-stages", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs2", "valorant", "lol", "dota2", "r6siege", "mlbb"}}, parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"bo3-tournaments":                                 operationDefinition{Method: "GET", Path: "/bo3/tournaments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs2", "valorant", "lol", "dota2", "r6siege", "mlbb"}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"current", "upcoming", "finished"}}, parameterDefinition{Name: "tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"s", "a", "b", "c", "d"}}, parameterDefinition{Name: "event_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"lan", "online"}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"newest", "oldest", "prize"}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"bo3-transfers":                                   operationDefinition{Method: "GET", Path: "/bo3/transfers", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "player_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "action", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"join", "change", "leave"}}, parameterDefinition{Name: "role", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"player", "coach"}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"newest", "oldest"}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"bo3-valorant-leaderboard":                        operationDefinition{Method: "GET", Path: "/bo3/valorant-leaderboard", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"acs", "kills", "deaths", "damage", "assists", "first_kills", "clutches", "first_duels", "games", "rounds"}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"desc", "asc"}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"bonhams-auction-search":                          operationDefinition{Method: "GET", Path: "/bonhams/auctions/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "month", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "auction_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"ONLINE", "PUBLIC", "EXHIBITION", "OTHER"}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"upcoming", "past", "all"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"bonhams-auction-detail":                          operationDefinition{Method: "GET", Path: "/bonhams/auctions/{id}", PathParams: []string{"id"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"bonhams-auction-lots":                            operationDefinition{Method: "GET", Path: "/bonhams/auctions/{id}/lots", PathParams: []string{"id"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "department", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "per_page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -87017,6 +90755,21 @@ var operations = map[string]operationDefinition{
 	"googleplay-search":                               operationDefinition{Method: "GET", Path: "/googleplay/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "term", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "full_detail", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "price", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "free", "paid"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"googleplay-similar":                              operationDefinition{Method: "GET", Path: "/googleplay/similar", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "app_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "num", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "full_detail", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"googleplay-suggest":                              operationDefinition{Method: "GET", Path: "/googleplay/suggest/{term}", PathParams: []string{"term"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lang", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"gosugamers-encounters":                           operationDefinition{Method: "GET", Path: "/gosugamers/encounters", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"dota2", "counterstrike", "lol", "valorant", "mobile-legends", "pubg-mobile", "wild-rift", "free-fire", "battlegrounds-mobile-india"}}, parameterDefinition{Name: "match_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "team1_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "team2_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"gosugamers-games":                                operationDefinition{Method: "GET", Path: "/gosugamers/games", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"gosugamers-match":                                operationDefinition{Method: "GET", Path: "/gosugamers/match", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"dota2", "counterstrike", "lol", "valorant", "mobile-legends", "pubg-mobile", "wild-rift", "free-fire", "battlegrounds-mobile-india"}}, parameterDefinition{Name: "tournament_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "match_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"gosugamers-match-game":                           operationDefinition{Method: "GET", Path: "/gosugamers/match-game", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"gosugamers-matches":                              operationDefinition{Method: "GET", Path: "/gosugamers/matches", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"dota2", "counterstrike", "lol", "valorant", "mobile-legends", "pubg-mobile", "wild-rift", "free-fire", "battlegrounds-mobile-india"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"gosugamers-player":                               operationDefinition{Method: "GET", Path: "/gosugamers/player", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"dota2", "counterstrike", "lol", "valorant", "mobile-legends", "pubg-mobile", "wild-rift", "free-fire", "battlegrounds-mobile-india"}}, parameterDefinition{Name: "player_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"gosugamers-rankings":                             operationDefinition{Method: "GET", Path: "/gosugamers/rankings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"dota2", "counterstrike", "lol", "valorant", "mobile-legends", "pubg-mobile", "wild-rift", "free-fire", "battlegrounds-mobile-india"}}, parameterDefinition{Name: "region_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"gosugamers-results":                              operationDefinition{Method: "GET", Path: "/gosugamers/results", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"dota2", "counterstrike", "lol", "valorant", "mobile-legends", "pubg-mobile", "wild-rift", "free-fire", "battlegrounds-mobile-india"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"gosugamers-stage-groups":                         operationDefinition{Method: "GET", Path: "/gosugamers/stage-groups", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "tournament_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "stage_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"gosugamers-team":                                 operationDefinition{Method: "GET", Path: "/gosugamers/team", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"dota2", "counterstrike", "lol", "valorant", "mobile-legends", "pubg-mobile", "wild-rift", "free-fire", "battlegrounds-mobile-india"}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"gosugamers-team-results":                         operationDefinition{Method: "GET", Path: "/gosugamers/team-results", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"gosugamers-tournament":                           operationDefinition{Method: "GET", Path: "/gosugamers/tournament", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"dota2", "counterstrike", "lol", "valorant", "mobile-legends", "pubg-mobile", "wild-rift", "free-fire", "battlegrounds-mobile-india"}}, parameterDefinition{Name: "tournament_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"gosugamers-tournament-participants":              operationDefinition{Method: "GET", Path: "/gosugamers/tournament-participants", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"dota2", "counterstrike", "lol", "valorant", "mobile-legends", "pubg-mobile", "wild-rift", "free-fire", "battlegrounds-mobile-india"}}, parameterDefinition{Name: "tournament_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"gosugamers-tournament-talents":                   operationDefinition{Method: "GET", Path: "/gosugamers/tournament-talents", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "tournament_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"gosugamers-tournaments":                          operationDefinition{Method: "GET", Path: "/gosugamers/tournaments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"dota2", "counterstrike", "lol", "valorant", "mobile-legends", "pubg-mobile", "wild-rift", "free-fire", "battlegrounds-mobile-india"}}, parameterDefinition{Name: "state", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "ongoing", "upcoming", "past"}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"gq-article":                                      operationDefinition{Method: "GET", Path: "/gq/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"gq-author":                                       operationDefinition{Method: "GET", Path: "/gq/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"gq-headlines":                                    operationDefinition{Method: "GET", Path: "/gq/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"culture", "entertainment", "fitness", "gq-hype", "gq-recommends", "gqsports", "grooming", "politics", "style", "watches", "wellness"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -87490,6 +91243,19 @@ var operations = map[string]operationDefinition{
 	"livescore-search":                                operationDefinition{Method: "GET", Path: "/livescore/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"soccer", "hockey", "basketball", "tennis", "cricket"}}, parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"livescore-sports":                                operationDefinition{Method: "GET", Path: "/livescore/sports", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"livescore-team":                                  operationDefinition{Method: "GET", Path: "/livescore/team", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "path", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"lolesports-completed-events":                     operationDefinition{Method: "GET", Path: "/lolesports/completed-events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "hl", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs-CZ", "de-DE", "en-US", "es-ES", "es-MX", "fr-FR", "hu-HU", "ja-JP", "ko-KR", "pl-PL", "pt-BR", "th-TH", "tr-TR", "vi-VN", "zh-TW"}}, parameterDefinition{Name: "tournament_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"lolesports-event":                                operationDefinition{Method: "GET", Path: "/lolesports/event", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "hl", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs-CZ", "de-DE", "en-US", "es-ES", "es-MX", "fr-FR", "hu-HU", "ja-JP", "ko-KR", "pl-PL", "pt-BR", "th-TH", "tr-TR", "vi-VN", "zh-TW"}}, parameterDefinition{Name: "match_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"lolesports-game-details":                         operationDefinition{Method: "GET", Path: "/lolesports/game-details", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "starting_time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "participant_ids", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"lolesports-game-window":                          operationDefinition{Method: "GET", Path: "/lolesports/game-window", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "starting_time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"lolesports-gpr":                                  operationDefinition{Method: "GET", Path: "/lolesports/gpr", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"current", "2025", "2024"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "history", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"lolesports-leagues":                              operationDefinition{Method: "GET", Path: "/lolesports/leagues", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "hl", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs-CZ", "de-DE", "en-US", "es-ES", "es-MX", "fr-FR", "hu-HU", "ja-JP", "ko-KR", "pl-PL", "pt-BR", "th-TH", "tr-TR", "vi-VN", "zh-TW"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"lolesports-live":                                 operationDefinition{Method: "GET", Path: "/lolesports/live", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "hl", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs-CZ", "de-DE", "en-US", "es-ES", "es-MX", "fr-FR", "hu-HU", "ja-JP", "ko-KR", "pl-PL", "pt-BR", "th-TH", "tr-TR", "vi-VN", "zh-TW"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"lolesports-news":                                 operationDefinition{Method: "GET", Path: "/lolesports/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "hl", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs-CZ", "de-DE", "el-GR", "en-AU", "en-GB", "en-PH", "en-SG", "en-US", "es-ES", "es-MX", "fr-FR", "hu-HU", "id-ID", "it-IT", "ja-JP", "ko-KR", "pl-PL", "pt-BR", "ro-RO", "ru-RU", "th-TH", "tr-TR", "vi-VN", "zh-TW"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"lolesports-schedule":                             operationDefinition{Method: "GET", Path: "/lolesports/schedule", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "hl", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs-CZ", "de-DE", "en-US", "es-ES", "es-MX", "fr-FR", "hu-HU", "ja-JP", "ko-KR", "pl-PL", "pt-BR", "th-TH", "tr-TR", "vi-VN", "zh-TW"}}, parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_token", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"page_token"}},
+	"lolesports-seasons":                              operationDefinition{Method: "GET", Path: "/lolesports/seasons", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "hl", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs-CZ", "de-DE", "en-US", "es-ES", "es-MX", "fr-FR", "hu-HU", "ja-JP", "ko-KR", "pl-PL", "pt-BR", "th-TH", "tr-TR", "vi-VN", "zh-TW"}}, parameterDefinition{Name: "season_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"lolesports-standings":                            operationDefinition{Method: "GET", Path: "/lolesports/standings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "hl", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs-CZ", "de-DE", "en-US", "es-ES", "es-MX", "fr-FR", "hu-HU", "ja-JP", "ko-KR", "pl-PL", "pt-BR", "th-TH", "tr-TR", "vi-VN", "zh-TW"}}, parameterDefinition{Name: "tournament_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"lolesports-teams":                                operationDefinition{Method: "GET", Path: "/lolesports/teams", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "hl", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs-CZ", "de-DE", "en-US", "es-ES", "es-MX", "fr-FR", "hu-HU", "ja-JP", "ko-KR", "pl-PL", "pt-BR", "th-TH", "tr-TR", "vi-VN", "zh-TW"}}, parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"active", "archived"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"lolesports-tournaments":                          operationDefinition{Method: "GET", Path: "/lolesports/tournaments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "hl", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"cs-CZ", "de-DE", "en-US", "es-ES", "es-MX", "fr-FR", "hu-HU", "ja-JP", "ko-KR", "pl-PL", "pt-BR", "th-TH", "tr-TR", "vi-VN", "zh-TW"}}, parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"lululemon-categories":                            operationDefinition{Method: "GET", Path: "/lululemon/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"new-featured", "women", "men", "accessories", "bags", "activity", "we-made-too-much"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"lululemon-category":                              operationDefinition{Method: "GET", Path: "/lululemon/category", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "cdp_hash", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"lululemon-outfit":                                operationDefinition{Method: "GET", Path: "/lululemon/outfit", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "unified_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "color_code", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -87832,6 +91598,32 @@ var operations = map[string]operationDefinition{
 	"oldnavy-product-reviews":                         operationDefinition{Method: "GET", Path: "/oldnavy/product/reviews", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "pid", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "brand", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"on", "gap", "br", "at"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"oldnavy-search":                                  operationDefinition{Method: "GET", Path: "/oldnavy/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "keyword", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "brand", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"on", "gap", "br", "at"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"oldnavy-stores":                                  operationDefinition{Method: "GET", Path: "/oldnavy/stores", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "search", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lat", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "lng", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "brand", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"on", "gap", "br", "at"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-abilities":                              operationDefinition{Method: "GET", Path: "/opendota/abilities", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-benchmarks":                             operationDefinition{Method: "GET", Path: "/opendota/benchmarks", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "hero_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-constants":                              operationDefinition{Method: "GET", Path: "/opendota/constants", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "resource", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"game_mode", "lobby_type", "patch", "region", "cluster", "item_ids", "ability_ids", "permanent_buffs", "xp_level", "countries", "order_types", "player_colors"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-hero-durations":                         operationDefinition{Method: "GET", Path: "/opendota/hero-durations", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "hero_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-hero-items":                             operationDefinition{Method: "GET", Path: "/opendota/hero-items", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "hero_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-hero-matchups":                          operationDefinition{Method: "GET", Path: "/opendota/hero-matchups", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "hero_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-hero-stats":                             operationDefinition{Method: "GET", Path: "/opendota/hero-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "primary_attr", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"agi", "all", "int", "str"}}, parameterDefinition{Name: "attack_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Melee", "Ranged"}}, parameterDefinition{Name: "role", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Carry", "Disabler", "Durable", "Escape", "Initiator", "Nuker", "Pusher", "Support"}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"id", "name", "pro_pick", "pro_win", "pro_ban", "pro_win_rate", "pub_pick", "pub_win", "pub_win_rate", "turbo_pick", "turbo_win_rate"}}, parameterDefinition{Name: "desc", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-heroes":                                 operationDefinition{Method: "GET", Path: "/opendota/heroes", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-items":                                  operationDefinition{Method: "GET", Path: "/opendota/items", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "quality", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-league":                                 operationDefinition{Method: "GET", Path: "/opendota/league", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-league-match-ids":                       operationDefinition{Method: "GET", Path: "/opendota/league-match-ids", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-league-matches":                         operationDefinition{Method: "GET", Path: "/opendota/league-matches", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-leagues":                                operationDefinition{Method: "GET", Path: "/opendota/leagues", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"amateur", "excluded", "premium", "professional", "unrated"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-live":                                   operationDefinition{Method: "GET", Path: "/opendota/live", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-match":                                  operationDefinition{Method: "GET", Path: "/opendota/match", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-patch-notes":                            operationDefinition{Method: "GET", Path: "/opendota/patch-notes", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "patch", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-pro-matches":                            operationDefinition{Method: "GET", Path: "/opendota/pro-matches", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "less_than_match_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-pro-players":                            operationDefinition{Method: "GET", Path: "/opendota/pro-players", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"opendota-rank-distribution":                      operationDefinition{Method: "GET", Path: "/opendota/rank-distribution", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-records":                                operationDefinition{Method: "GET", Path: "/opendota/records", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "field", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"kills", "deaths", "assists", "last_hits", "denies", "gold_per_min", "xp_per_min", "hero_damage", "tower_damage", "hero_healing", "duration"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-scenarios":                              operationDefinition{Method: "GET", Path: "/opendota/scenarios", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "kind", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"item-timings", "lane-roles", "misc"}}, parameterDefinition{Name: "hero_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "item", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "lane_role", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "scenario", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"courier_kill", "first_blood", "neg_chat_1min", "pos_chat_1min"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-team":                                   operationDefinition{Method: "GET", Path: "/opendota/team", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-team-heroes":                            operationDefinition{Method: "GET", Path: "/opendota/team-heroes", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-team-matches":                           operationDefinition{Method: "GET", Path: "/opendota/team-matches", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-team-players":                           operationDefinition{Method: "GET", Path: "/opendota/team-players", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"opendota-teams":                                  operationDefinition{Method: "GET", Path: "/opendota/teams", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"opensea-activity":                                operationDefinition{Method: "GET", Path: "/opensea/activity", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "event_types", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"SALE", "LISTING", "OFFER", "TRANSFER", "MINT", "COLLECTION_OFFER", "TRAIT_OFFER"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
 	"opensea-categories":                              operationDefinition{Method: "GET", Path: "/opensea/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"opensea-chains":                                  operationDefinition{Method: "GET", Path: "/opensea/chains", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -88225,6 +92017,10 @@ var operations = map[string]operationDefinition{
 	"redfin-region-trends":                            operationDefinition{Method: "GET", Path: "/redfin/region-trends", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "region_type", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"1", "2", "5", "6"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"redfin-search":                                   operationDefinition{Method: "GET", Path: "/redfin/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "location", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "region_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "region_type", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"1", "2", "5", "6"}}, parameterDefinition{Name: "status", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"for_sale", "sold"}}, parameterDefinition{Name: "min_price", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_beds", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_baths", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"redfin-similar":                                  operationDefinition{Method: "GET", Path: "/redfin/similar", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "property_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"rednote-explore":                                 operationDefinition{Method: "GET", Path: "/rednote/explore", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "channel_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"rednote-note":                                    operationDefinition{Method: "GET", Path: "/rednote/note", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "note_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"rednote-note-comments":                           operationDefinition{Method: "GET", Path: "/rednote/note-comments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "note_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
+	"rednote-search-suggest":                          operationDefinition{Method: "GET", Path: "/rednote/search-suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "keyword", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"reelshort-fandom-categories":                     operationDefinition{Method: "GET", Path: "/reelshort/fandom-categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"reelshort-fandom-post":                           operationDefinition{Method: "GET", Path: "/reelshort/fandom-post", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"reelshort-fandom-posts":                          operationDefinition{Method: "GET", Path: "/reelshort/fandom-posts", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "search", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"general-topic", "movie-cast-list", "top-movie-stories", "where-to-watch", "where-to-watch-2"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -88455,6 +92251,21 @@ var operations = map[string]operationDefinition{
 	"shop-app-shop-reviews":                           operationDefinition{Method: "GET", Path: "/shop-app/shops/{handle}/reviews", PathParams: []string{"handle"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"shop-app-shop-typeahead":                         operationDefinition{Method: "GET", Path: "/shop-app/shops/{handle}/typeahead", PathParams: []string{"handle"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"shop-app-suggestions":                            operationDefinition{Method: "GET", Path: "/shop-app/suggestions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopee-banners":                                  operationDefinition{Method: "GET", Path: "/shopee/banners", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"my", "sg", "id", "th", "vn", "ph", "tw", "br", "mx", "co", "cl"}}, parameterDefinition{Name: "slot", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"HOME_CAROUSEL_01", "HOME_SKINNY_01", "HOME_NUZ_CAROUSEL_01", "HOME_FLOATING", "HOME_POPUP_01", "HOME_MALL_01"}}, parameterDefinition{Name: "space_key", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopee-categories":                               operationDefinition{Method: "GET", Path: "/shopee/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"my", "sg", "id", "th", "vn", "ph", "tw", "br", "mx", "co", "cl"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopee-category-detail":                          operationDefinition{Method: "GET", Path: "/shopee/category-detail", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"my", "sg", "id", "th", "vn", "ph", "tw", "br", "mx", "co", "cl"}}, parameterDefinition{Name: "catids", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopee-flash-sale":                               operationDefinition{Method: "GET", Path: "/shopee/flash-sale", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"my", "sg", "id", "th", "vn", "ph", "tw", "br", "mx", "co", "cl"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"shopee-footer":                                   operationDefinition{Method: "GET", Path: "/shopee/footer", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"my", "sg", "id", "th", "vn", "ph", "tw", "br", "mx", "co", "cl"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopee-home":                                     operationDefinition{Method: "GET", Path: "/shopee/home", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"my", "sg", "id", "th", "vn", "ph", "tw", "br", "mx", "co", "cl"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopee-home-categories":                          operationDefinition{Method: "GET", Path: "/shopee/home-categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"my", "sg", "id", "th", "vn", "ph", "tw", "br", "mx", "co", "cl"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopee-location-filters":                         operationDefinition{Method: "GET", Path: "/shopee/location-filters", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"my", "sg", "id", "th", "vn", "ph", "tw", "br", "mx", "co", "cl"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopee-mall-categories":                          operationDefinition{Method: "GET", Path: "/shopee/mall-categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"my", "sg", "id", "th", "vn", "ph", "tw", "br", "mx", "co", "cl"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopee-prefills":                                 operationDefinition{Method: "GET", Path: "/shopee/prefills", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"my", "sg", "id", "th", "vn", "ph", "tw", "br", "mx", "co", "cl"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopee-search-filters":                           operationDefinition{Method: "GET", Path: "/shopee/search-filters", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"my", "sg", "id", "th", "vn", "ph", "tw", "br", "mx", "co", "cl"}}, parameterDefinition{Name: "keyword", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopee-search-hints":                             operationDefinition{Method: "GET", Path: "/shopee/search-hints", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"my", "sg", "id", "th", "vn", "ph", "tw", "br", "mx", "co", "cl"}}, parameterDefinition{Name: "keyword", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "version", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopee-shop-info":                                operationDefinition{Method: "GET", Path: "/shopee/shop-info", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"my", "sg", "id", "th", "vn", "ph", "tw", "br", "mx", "co", "cl"}}, parameterDefinition{Name: "shop_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"shopee-shops":                                    operationDefinition{Method: "GET", Path: "/shopee/shops", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"my", "sg", "id", "th", "vn", "ph", "tw", "br", "mx", "co", "cl"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"shopee-suggest":                                  operationDefinition{Method: "GET", Path: "/shopee/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"my", "sg", "id", "th", "vn", "ph", "tw", "br", "mx", "co", "cl"}}, parameterDefinition{Name: "keyword", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"shopify-collections":                             operationDefinition{Method: "GET", Path: "/shopify/collections", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"shopify-collection-products":                     operationDefinition{Method: "GET", Path: "/shopify/collections/{handle}/products", PathParams: []string{"handle"}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sortBy", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"sortLTH", "sortHTL", "newest"}}, parameterDefinition{Name: "sort_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"manual", "best-selling", "title-ascending", "title-descending", "price-ascending", "price-descending", "created-ascending", "created-descending"}}, parameterDefinition{Name: "min_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "max_price", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "product_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "in_stock_only", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "option_size", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"shopify-pages":                                   operationDefinition{Method: "GET", Path: "/shopify/pages", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
@@ -89284,6 +93095,29 @@ var operations = map[string]operationDefinition{
 	"vinted-category":                                 operationDefinition{Method: "GET", Path: "/vinted/category", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "price_from", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "price_to", In: "query", CollectionFormat: "", Type: "number", Required: false, Enum: []string{}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "newest_first", "price_high_to_low", "price_low_to_high"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"vinted-item":                                     operationDefinition{Method: "GET", Path: "/vinted/item", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"vinted-member":                                   operationDefinition{Method: "GET", Path: "/vinted/member", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"vlr-event":                                       operationDefinition{Method: "GET", Path: "/vlr/event", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"vlr-event-agents":                                operationDefinition{Method: "GET", Path: "/vlr/event-agents", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"vlr-event-matches":                               operationDefinition{Method: "GET", Path: "/vlr/event-matches", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"vlr-event-stats":                                 operationDefinition{Method: "GET", Path: "/vlr/event-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "side", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "t", "ct"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"vlr-events":                                      operationDefinition{Method: "GET", Path: "/vlr/events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "vct", "vcl", "t3", "gc", "cg", "off"}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "americas", "emea", "pacific", "china"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"vlr-forum-categories":                            operationDefinition{Method: "GET", Path: "/vlr/forum-categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"vlr-forum-threads":                               operationDefinition{Method: "GET", Path: "/vlr/forum-threads", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"valorant-discussion", "off-topic", "site-feedback"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"vlr-match":                                       operationDefinition{Method: "GET", Path: "/vlr/match", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"vlr-match-economy":                               operationDefinition{Method: "GET", Path: "/vlr/match-economy", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"vlr-match-performance":                           operationDefinition{Method: "GET", Path: "/vlr/match-performance", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"vlr-match-rounds":                                operationDefinition{Method: "GET", Path: "/vlr/match-rounds", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"vlr-matches":                                     operationDefinition{Method: "GET", Path: "/vlr/matches", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"vlr-news":                                        operationDefinition{Method: "GET", Path: "/vlr/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"vlr-news-article":                                operationDefinition{Method: "GET", Path: "/vlr/news-article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"vlr-player":                                      operationDefinition{Method: "GET", Path: "/vlr/player", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"vlr-player-matches":                              operationDefinition{Method: "GET", Path: "/vlr/player-matches", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"vlr-rankings":                                    operationDefinition{Method: "GET", Path: "/vlr/rankings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"north-america", "europe", "brazil", "asia-pacific", "korea", "china", "japan", "la-s", "la-n", "oceania", "mena", "gc", "collegiate"}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"vlr-results":                                     operationDefinition{Method: "GET", Path: "/vlr/results", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"vlr-search":                                      operationDefinition{Method: "GET", Path: "/vlr/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "q", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "teams", "events", "players"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"vlr-stats":                                       operationDefinition{Method: "GET", Path: "/vlr/stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "tier", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "region", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "timespan", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "30d", "60d", "90d", "2026", "2025", "2024", "2023", "2022", "2021", "2020"}}, parameterDefinition{Name: "side", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"all", "t", "ct"}}, parameterDefinition{Name: "role", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "agent", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "map", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rounds", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "from", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "to", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_rating", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"0", "1300", "1400", "1500", "1550", "1650", "1750", "1850"}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"rating", "maps", "rnd", "acs", "kd", "kast", "adr", "kpr", "apr", "fkfd", "fkpr", "fdpr", "hsp", "clp", "cl", "kmax", "k", "d", "a", "fk", "fd"}}, parameterDefinition{Name: "dir", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"vlr-team":                                        operationDefinition{Method: "GET", Path: "/vlr/team", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"vlr-team-maps":                                   operationDefinition{Method: "GET", Path: "/vlr/team-maps", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"vlr-team-matches":                                operationDefinition{Method: "GET", Path: "/vlr/team-matches", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"vox-article":                                     operationDefinition{Method: "GET", Path: "/vox/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"vox-author":                                      operationDefinition{Method: "GET", Path: "/vox/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"vox-headlines":                                   operationDefinition{Method: "GET", Path: "/vox/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"politics", "culture", "policy", "world", "money", "technology", "science-and-health", "climate", "future-perfect", "explainers"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -89399,6 +93233,10 @@ var operations = map[string]operationDefinition{
 	"xda-headlines":                                   operationDefinition{Method: "GET", Path: "/xda/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"news", "features", "reviews", "buying-guides", "tutorials", "editorials", "editor-columns", "deals", "commerce", "evergreen", "performance", "beats", "awards", "hardware", "processor", "gpu", "storage", "monitors", "input-devices", "laptops", "devices", "single-board-computers", "gaming-handhelds", "prebuilt-pc", "networking", "smart-home", "home", "other-hardware", "headset", "cpu-cooler", "printer", "home-internet", "other-computing-devices", "phone-reviews", "3d-printing", "esp32", "home-lab", "self-hosting", "software", "software-and-services", "apps", "ai-tools", "claude", "notebooklm", "productivity", "os", "windows", "windows-tutorials", "linux-hub", "linux-tutorials", "macos", "macos-tutorials", "chromeos-tutorials", "microsoft-edge", "opera", "spotify", "bing", "gaming", "gaming-news", "gaming-reviews", "entertainment", "entertainment-segment"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"xda-news":                                        operationDefinition{Method: "GET", Path: "/xda/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"xda-sections":                                    operationDefinition{Method: "GET", Path: "/xda/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"xiaohongshu-explore":                             operationDefinition{Method: "GET", Path: "/xiaohongshu/explore", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "channel_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"xiaohongshu-note":                                operationDefinition{Method: "GET", Path: "/xiaohongshu/note", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "note_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "xsec_token", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"xiaohongshu-note-comments":                       operationDefinition{Method: "GET", Path: "/xiaohongshu/note-comments", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "note_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "xsec_token", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cursor", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true, CursorParams: []string{"cursor"}},
+	"xiaohongshu-search-suggest":                      operationDefinition{Method: "GET", Path: "/xiaohongshu/search-suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "keyword", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"yahoo-autos-article":                             operationDefinition{Method: "GET", Path: "/yahoo-autos/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"yahoo-autos-category":                            operationDefinition{Method: "GET", Path: "/yahoo-autos/category", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"auto-shows", "classic-and-collector", "deals-and-buying-guides", "ev-and-future-tech", "general", "new-vehicles-and-reviews", "ownership", "people-and-culture", "policy-and-environment", "safety-and-recalls"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"yahoo-autos-home":                                operationDefinition{Method: "GET", Path: "/yahoo-autos/home", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -89607,6 +93445,7 @@ type Services struct {
 	BleacherReport               *BleacherReportService
 	Bloomberg                    *BloombergService
 	Bluesky                      *BlueskyService
+	Bo3                          *Bo3Service
 	Bonhams                      *BonhamsService
 	Booking                      *BookingService
 	Boots                        *BootsService
@@ -89733,6 +93572,7 @@ type Services struct {
 	Google                       *GoogleService
 	GooglePatents                *GooglePatentsService
 	GooglePlay                   *GooglePlayService
+	GosuGamers                   *GosuGamersService
 	Gq                           *GqService
 	Grailed                      *GrailedService
 	Greystar                     *GreystarService
@@ -89795,6 +93635,7 @@ type Services struct {
 	LiverpoolEcho                *LiverpoolEchoService
 	LiveScience                  *LiveScienceService
 	LiveScore                    *LiveScoreService
+	LoLEsports                   *LoLEsportsService
 	Lululemon                    *LululemonService
 	MacRumors                    *MacRumorsService
 	MacyS                        *MacySService
@@ -89845,6 +93686,7 @@ type Services struct {
 	NzHerald                     *NzHeraldService
 	OhPolly                      *OhPollyService
 	OldNavy                      *OldNavyService
+	OpenDota                     *OpenDotaService
 	OpenSea                      *OpenSeaService
 	OpenTable                    *OpenTableService
 	Otto                         *OttoService
@@ -89888,6 +93730,7 @@ type Services struct {
 	Rebag                        *RebagService
 	Reddit                       *RedditService
 	Redfin                       *RedfinService
+	Rednote                      *RednoteService
 	ReelShort                    *ReelShortService
 	Referrals                    *ReferralsService
 	ResearchJobs                 *ResearchJobsService
@@ -89919,6 +93762,7 @@ type Services struct {
 	ShakeShack                   *ShakeShackService
 	Shein                        *SheinService
 	ShopApp                      *ShopAppService
+	Shopee                       *ShopeeService
 	Shopify                      *ShopifyService
 	SimilarWeb                   *SimilarWebService
 	Skims                        *SkimsService
@@ -90011,6 +93855,7 @@ type Services struct {
 	Vestiaire                    *VestiaireService
 	Vice                         *ViceService
 	Vinted                       *VintedService
+	Vlr                          *VlrService
 	Vox                          *VoxService
 	Vrbo                         *VrboService
 	WalesOnline                  *WalesOnlineService
@@ -90032,6 +93877,7 @@ type Services struct {
 	X                            *XService
 	Xbox                         *XboxService
 	Xda                          *XdaService
+	Xiaohongshu                  *XiaohongshuService
 	YahooAutos                   *YahooAutosService
 	YahooEntertainment           *YahooEntertainmentService
 	YahooFinance                 *YahooFinanceService
@@ -90104,6 +93950,7 @@ func initServices(c *Client) Services {
 		BleacherReport:               &BleacherReportService{client: c},
 		Bloomberg:                    &BloombergService{client: c},
 		Bluesky:                      &BlueskyService{client: c},
+		Bo3:                          &Bo3Service{client: c},
 		Bonhams:                      &BonhamsService{client: c},
 		Booking:                      &BookingService{client: c},
 		Boots:                        &BootsService{client: c},
@@ -90230,6 +94077,7 @@ func initServices(c *Client) Services {
 		Google:                       &GoogleService{client: c},
 		GooglePatents:                &GooglePatentsService{client: c},
 		GooglePlay:                   &GooglePlayService{client: c},
+		GosuGamers:                   &GosuGamersService{client: c},
 		Gq:                           &GqService{client: c},
 		Grailed:                      &GrailedService{client: c},
 		Greystar:                     &GreystarService{client: c},
@@ -90292,6 +94140,7 @@ func initServices(c *Client) Services {
 		LiverpoolEcho:                &LiverpoolEchoService{client: c},
 		LiveScience:                  &LiveScienceService{client: c},
 		LiveScore:                    &LiveScoreService{client: c},
+		LoLEsports:                   &LoLEsportsService{client: c},
 		Lululemon:                    &LululemonService{client: c},
 		MacRumors:                    &MacRumorsService{client: c},
 		MacyS:                        &MacySService{client: c},
@@ -90342,6 +94191,7 @@ func initServices(c *Client) Services {
 		NzHerald:                     &NzHeraldService{client: c},
 		OhPolly:                      &OhPollyService{client: c},
 		OldNavy:                      &OldNavyService{client: c},
+		OpenDota:                     &OpenDotaService{client: c},
 		OpenSea:                      &OpenSeaService{client: c},
 		OpenTable:                    &OpenTableService{client: c},
 		Otto:                         &OttoService{client: c},
@@ -90385,6 +94235,7 @@ func initServices(c *Client) Services {
 		Rebag:                        &RebagService{client: c},
 		Reddit:                       &RedditService{client: c},
 		Redfin:                       &RedfinService{client: c},
+		Rednote:                      &RednoteService{client: c},
 		ReelShort:                    &ReelShortService{client: c},
 		Referrals:                    &ReferralsService{client: c},
 		ResearchJobs:                 &ResearchJobsService{client: c},
@@ -90416,6 +94267,7 @@ func initServices(c *Client) Services {
 		ShakeShack:                   &ShakeShackService{client: c},
 		Shein:                        &SheinService{client: c},
 		ShopApp:                      &ShopAppService{client: c},
+		Shopee:                       &ShopeeService{client: c},
 		Shopify:                      &ShopifyService{client: c},
 		SimilarWeb:                   &SimilarWebService{client: c},
 		Skims:                        &SkimsService{client: c},
@@ -90508,6 +94360,7 @@ func initServices(c *Client) Services {
 		Vestiaire:                    &VestiaireService{client: c},
 		Vice:                         &ViceService{client: c},
 		Vinted:                       &VintedService{client: c},
+		Vlr:                          &VlrService{client: c},
 		Vox:                          &VoxService{client: c},
 		Vrbo:                         &VrboService{client: c},
 		WalesOnline:                  &WalesOnlineService{client: c},
@@ -90529,6 +94382,7 @@ func initServices(c *Client) Services {
 		X:                            &XService{client: c},
 		Xbox:                         &XboxService{client: c},
 		Xda:                          &XdaService{client: c},
+		Xiaohongshu:                  &XiaohongshuService{client: c},
 		YahooAutos:                   &YahooAutosService{client: c},
 		YahooEntertainment:           &YahooEntertainmentService{client: c},
 		YahooFinance:                 &YahooFinanceService{client: c},
@@ -95661,6 +99515,472 @@ type BlueskyTrendingTopicsResponse = ModelBlueskyTrendingTopicsResponseDoc
 
 func (s *BlueskyService) TrendingTopicsTyped(ctx context.Context, params BlueskyTrendingTopicsParams, opts ...RequestOption) (BlueskyTrendingTopicsResponse, error) {
 	return requestTyped[BlueskyTrendingTopicsResponse](s.client, ctx, "bluesky-trending-topics", paramsFromStruct(params), opts...)
+}
+
+type Bo3Service struct{ client *Client }
+
+func (s *Bo3Service) EconomyBaseline(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-economy-baseline", params, opts...)
+}
+
+type Bo3EconomyBaselineParams struct {
+}
+
+type Bo3EconomyBaselineResponse = any
+
+func (s *Bo3Service) EconomyBaselineTyped(ctx context.Context, params Bo3EconomyBaselineParams, opts ...RequestOption) (Bo3EconomyBaselineResponse, error) {
+	return requestTyped[Bo3EconomyBaselineResponse](s.client, ctx, "bo3-economy-baseline", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) Forum(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-forum", params, opts...)
+}
+
+type Bo3ForumParams struct {
+	Game     *string `crawlora:"game,omitempty"`
+	Category *int    `crawlora:"category,omitempty"`
+	Sort     *string `crawlora:"sort,omitempty"`
+	Offset   *int    `crawlora:"offset,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+}
+
+type Bo3ForumResponse = any
+
+func (s *Bo3Service) ForumTyped(ctx context.Context, params Bo3ForumParams, opts ...RequestOption) (Bo3ForumResponse, error) {
+	return requestTyped[Bo3ForumResponse](s.client, ctx, "bo3-forum", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) ForumCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-forum-categories", params, opts...)
+}
+
+type Bo3ForumCategoriesParams struct {
+	Game *string `crawlora:"game,omitempty"`
+}
+
+type Bo3ForumCategoriesResponse = any
+
+func (s *Bo3Service) ForumCategoriesTyped(ctx context.Context, params Bo3ForumCategoriesParams, opts ...RequestOption) (Bo3ForumCategoriesResponse, error) {
+	return requestTyped[Bo3ForumCategoriesResponse](s.client, ctx, "bo3-forum-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) Match(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-match", params, opts...)
+}
+
+type Bo3MatchParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type Bo3MatchResponse = any
+
+func (s *Bo3Service) MatchTyped(ctx context.Context, params Bo3MatchParams, opts ...RequestOption) (Bo3MatchResponse, error) {
+	return requestTyped[Bo3MatchResponse](s.client, ctx, "bo3-match", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) MatchGames(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-match-games", params, opts...)
+}
+
+type Bo3MatchGamesParams struct {
+	MatchId int `crawlora:"match_id"`
+}
+
+type Bo3MatchGamesResponse = any
+
+func (s *Bo3Service) MatchGamesTyped(ctx context.Context, params Bo3MatchGamesParams, opts ...RequestOption) (Bo3MatchGamesResponse, error) {
+	return requestTyped[Bo3MatchGamesResponse](s.client, ctx, "bo3-match-games", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) MatchHistory(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-match-history", params, opts...)
+}
+
+type Bo3MatchHistoryParams struct {
+	Game   *string `crawlora:"game,omitempty"`
+	Status *string `crawlora:"status,omitempty"`
+	Tier   *string `crawlora:"tier,omitempty"`
+	From   *string `crawlora:"from,omitempty"`
+	To     *string `crawlora:"to,omitempty"`
+	Sort   *string `crawlora:"sort,omitempty"`
+	Offset *int    `crawlora:"offset,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+}
+
+type Bo3MatchHistoryResponse = any
+
+func (s *Bo3Service) MatchHistoryTyped(ctx context.Context, params Bo3MatchHistoryParams, opts ...RequestOption) (Bo3MatchHistoryResponse, error) {
+	return requestTyped[Bo3MatchHistoryResponse](s.client, ctx, "bo3-match-history", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) MatchPlayers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-match-players", params, opts...)
+}
+
+type Bo3MatchPlayersParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type Bo3MatchPlayersResponse = any
+
+func (s *Bo3Service) MatchPlayersTyped(ctx context.Context, params Bo3MatchPlayersParams, opts ...RequestOption) (Bo3MatchPlayersResponse, error) {
+	return requestTyped[Bo3MatchPlayersResponse](s.client, ctx, "bo3-match-players", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) NewsCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-news-categories", params, opts...)
+}
+
+type Bo3NewsCategoriesParams struct {
+}
+
+type Bo3NewsCategoriesResponse = any
+
+func (s *Bo3Service) NewsCategoriesTyped(ctx context.Context, params Bo3NewsCategoriesParams, opts ...RequestOption) (Bo3NewsCategoriesResponse, error) {
+	return requestTyped[Bo3NewsCategoriesResponse](s.client, ctx, "bo3-news-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) NewsFeed(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-news-feed", params, opts...)
+}
+
+type Bo3NewsFeedParams struct {
+	Game     *string `crawlora:"game,omitempty"`
+	Section  *string `crawlora:"section,omitempty"`
+	Category *int    `crawlora:"category,omitempty"`
+	Sort     *string `crawlora:"sort,omitempty"`
+	Offset   *int    `crawlora:"offset,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+}
+
+type Bo3NewsFeedResponse = any
+
+func (s *Bo3Service) NewsFeedTyped(ctx context.Context, params Bo3NewsFeedParams, opts ...RequestOption) (Bo3NewsFeedResponse, error) {
+	return requestTyped[Bo3NewsFeedResponse](s.client, ctx, "bo3-news-feed", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) Player(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-player", params, opts...)
+}
+
+type Bo3PlayerParams struct {
+	Slug string  `crawlora:"slug"`
+	Game *string `crawlora:"game,omitempty"`
+}
+
+type Bo3PlayerResponse = any
+
+func (s *Bo3Service) PlayerTyped(ctx context.Context, params Bo3PlayerParams, opts ...RequestOption) (Bo3PlayerResponse, error) {
+	return requestTyped[Bo3PlayerResponse](s.client, ctx, "bo3-player", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) PlayerLeaderboard(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-player-leaderboard", params, opts...)
+}
+
+type Bo3PlayerLeaderboardParams struct {
+	From   *string `crawlora:"from,omitempty"`
+	To     *string `crawlora:"to,omitempty"`
+	Tier   *string `crawlora:"tier,omitempty"`
+	Sort   *string `crawlora:"sort,omitempty"`
+	Order  *string `crawlora:"order,omitempty"`
+	Offset *int    `crawlora:"offset,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+}
+
+type Bo3PlayerLeaderboardResponse = any
+
+func (s *Bo3Service) PlayerLeaderboardTyped(ctx context.Context, params Bo3PlayerLeaderboardParams, opts ...RequestOption) (Bo3PlayerLeaderboardResponse, error) {
+	return requestTyped[Bo3PlayerLeaderboardResponse](s.client, ctx, "bo3-player-leaderboard", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) PlayerRecentMatches(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-player-recent-matches", params, opts...)
+}
+
+type Bo3PlayerRecentMatchesParams struct {
+	Slug       string  `crawlora:"slug"`
+	Opponent   *string `crawlora:"opponent,omitempty"`
+	Tournament *string `crawlora:"tournament,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+}
+
+type Bo3PlayerRecentMatchesResponse = any
+
+func (s *Bo3Service) PlayerRecentMatchesTyped(ctx context.Context, params Bo3PlayerRecentMatchesParams, opts ...RequestOption) (Bo3PlayerRecentMatchesResponse, error) {
+	return requestTyped[Bo3PlayerRecentMatchesResponse](s.client, ctx, "bo3-player-recent-matches", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) PlayerStats(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-player-stats", params, opts...)
+}
+
+type Bo3PlayerStatsParams struct {
+	Slug string  `crawlora:"slug"`
+	Kind *string `crawlora:"kind,omitempty"`
+	From *string `crawlora:"from,omitempty"`
+	To   *string `crawlora:"to,omitempty"`
+}
+
+type Bo3PlayerStatsResponse = any
+
+func (s *Bo3Service) PlayerStatsTyped(ctx context.Context, params Bo3PlayerStatsParams, opts ...RequestOption) (Bo3PlayerStatsResponse, error) {
+	return requestTyped[Bo3PlayerStatsResponse](s.client, ctx, "bo3-player-stats", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) Records(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-records", params, opts...)
+}
+
+type Bo3RecordsParams struct {
+	From       *string `crawlora:"from,omitempty"`
+	To         *string `crawlora:"to,omitempty"`
+	RecordType *string `crawlora:"record_type,omitempty"`
+	Match      *string `crawlora:"match,omitempty"`
+	Tournament *string `crawlora:"tournament,omitempty"`
+	Team       *string `crawlora:"team,omitempty"`
+	Player     *string `crawlora:"player,omitempty"`
+	Sort       *string `crawlora:"sort,omitempty"`
+	Offset     *int    `crawlora:"offset,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+}
+
+type Bo3RecordsResponse = any
+
+func (s *Bo3Service) RecordsTyped(ctx context.Context, params Bo3RecordsParams, opts ...RequestOption) (Bo3RecordsResponse, error) {
+	return requestTyped[Bo3RecordsResponse](s.client, ctx, "bo3-records", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) Team(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-team", params, opts...)
+}
+
+type Bo3TeamParams struct {
+	Slug string  `crawlora:"slug"`
+	Game *string `crawlora:"game,omitempty"`
+}
+
+type Bo3TeamResponse = any
+
+func (s *Bo3Service) TeamTyped(ctx context.Context, params Bo3TeamParams, opts ...RequestOption) (Bo3TeamResponse, error) {
+	return requestTyped[Bo3TeamResponse](s.client, ctx, "bo3-team", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) TeamPrizeMoney(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-team-prize-money", params, opts...)
+}
+
+type Bo3TeamPrizeMoneyParams struct {
+	Game   *string `crawlora:"game,omitempty"`
+	From   *string `crawlora:"from,omitempty"`
+	To     *string `crawlora:"to,omitempty"`
+	Offset *int    `crawlora:"offset,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+}
+
+type Bo3TeamPrizeMoneyResponse = any
+
+func (s *Bo3Service) TeamPrizeMoneyTyped(ctx context.Context, params Bo3TeamPrizeMoneyParams, opts ...RequestOption) (Bo3TeamPrizeMoneyResponse, error) {
+	return requestTyped[Bo3TeamPrizeMoneyResponse](s.client, ctx, "bo3-team-prize-money", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) TeamRankingDates(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-team-ranking-dates", params, opts...)
+}
+
+type Bo3TeamRankingDatesParams struct {
+	Game *string `crawlora:"game,omitempty"`
+}
+
+type Bo3TeamRankingDatesResponse = any
+
+func (s *Bo3Service) TeamRankingDatesTyped(ctx context.Context, params Bo3TeamRankingDatesParams, opts ...RequestOption) (Bo3TeamRankingDatesResponse, error) {
+	return requestTyped[Bo3TeamRankingDatesResponse](s.client, ctx, "bo3-team-ranking-dates", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) TeamRankings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-team-rankings", params, opts...)
+}
+
+type Bo3TeamRankingsParams struct {
+	Game    *string `crawlora:"game,omitempty"`
+	Region  *string `crawlora:"region,omitempty"`
+	Date    *string `crawlora:"date,omitempty"`
+	Page    *int    `crawlora:"page,omitempty"`
+	PerPage *int    `crawlora:"per_page,omitempty"`
+}
+
+type Bo3TeamRankingsResponse = any
+
+func (s *Bo3Service) TeamRankingsTyped(ctx context.Context, params Bo3TeamRankingsParams, opts ...RequestOption) (Bo3TeamRankingsResponse, error) {
+	return requestTyped[Bo3TeamRankingsResponse](s.client, ctx, "bo3-team-rankings", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) TeamRecentMatches(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-team-recent-matches", params, opts...)
+}
+
+type Bo3TeamRecentMatchesParams struct {
+	Slug       string  `crawlora:"slug"`
+	Opponent   *string `crawlora:"opponent,omitempty"`
+	Tournament *string `crawlora:"tournament,omitempty"`
+	Limit      *int    `crawlora:"limit,omitempty"`
+}
+
+type Bo3TeamRecentMatchesResponse = any
+
+func (s *Bo3Service) TeamRecentMatchesTyped(ctx context.Context, params Bo3TeamRecentMatchesParams, opts ...RequestOption) (Bo3TeamRecentMatchesResponse, error) {
+	return requestTyped[Bo3TeamRecentMatchesResponse](s.client, ctx, "bo3-team-recent-matches", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) TeamStats(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-team-stats", params, opts...)
+}
+
+type Bo3TeamStatsParams struct {
+	Slug string  `crawlora:"slug"`
+	Kind *string `crawlora:"kind,omitempty"`
+	From *string `crawlora:"from,omitempty"`
+	To   *string `crawlora:"to,omitempty"`
+}
+
+type Bo3TeamStatsResponse = any
+
+func (s *Bo3Service) TeamStatsTyped(ctx context.Context, params Bo3TeamStatsParams, opts ...RequestOption) (Bo3TeamStatsResponse, error) {
+	return requestTyped[Bo3TeamStatsResponse](s.client, ctx, "bo3-team-stats", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) Tournament(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-tournament", params, opts...)
+}
+
+type Bo3TournamentParams struct {
+	Slug string  `crawlora:"slug"`
+	Game *string `crawlora:"game,omitempty"`
+}
+
+type Bo3TournamentResponse = any
+
+func (s *Bo3Service) TournamentTyped(ctx context.Context, params Bo3TournamentParams, opts ...RequestOption) (Bo3TournamentResponse, error) {
+	return requestTyped[Bo3TournamentResponse](s.client, ctx, "bo3-tournament", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) TournamentMapPool(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-tournament-map-pool", params, opts...)
+}
+
+type Bo3TournamentMapPoolParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type Bo3TournamentMapPoolResponse = any
+
+func (s *Bo3Service) TournamentMapPoolTyped(ctx context.Context, params Bo3TournamentMapPoolParams, opts ...RequestOption) (Bo3TournamentMapPoolResponse, error) {
+	return requestTyped[Bo3TournamentMapPoolResponse](s.client, ctx, "bo3-tournament-map-pool", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) TournamentMvps(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-tournament-mvps", params, opts...)
+}
+
+type Bo3TournamentMvpsParams struct {
+	Game   *string `crawlora:"game,omitempty"`
+	Offset *int    `crawlora:"offset,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+}
+
+type Bo3TournamentMvpsResponse = any
+
+func (s *Bo3Service) TournamentMvpsTyped(ctx context.Context, params Bo3TournamentMvpsParams, opts ...RequestOption) (Bo3TournamentMvpsResponse, error) {
+	return requestTyped[Bo3TournamentMvpsResponse](s.client, ctx, "bo3-tournament-mvps", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) TournamentSquads(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-tournament-squads", params, opts...)
+}
+
+type Bo3TournamentSquadsParams struct {
+	Slug string `crawlora:"slug"`
+}
+
+type Bo3TournamentSquadsResponse = any
+
+func (s *Bo3Service) TournamentSquadsTyped(ctx context.Context, params Bo3TournamentSquadsParams, opts ...RequestOption) (Bo3TournamentSquadsResponse, error) {
+	return requestTyped[Bo3TournamentSquadsResponse](s.client, ctx, "bo3-tournament-squads", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) TournamentStages(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-tournament-stages", params, opts...)
+}
+
+type Bo3TournamentStagesParams struct {
+	Game *string `crawlora:"game,omitempty"`
+	Slug string  `crawlora:"slug"`
+}
+
+type Bo3TournamentStagesResponse = any
+
+func (s *Bo3Service) TournamentStagesTyped(ctx context.Context, params Bo3TournamentStagesParams, opts ...RequestOption) (Bo3TournamentStagesResponse, error) {
+	return requestTyped[Bo3TournamentStagesResponse](s.client, ctx, "bo3-tournament-stages", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) Tournaments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-tournaments", params, opts...)
+}
+
+type Bo3TournamentsParams struct {
+	Game      *string `crawlora:"game,omitempty"`
+	Status    *string `crawlora:"status,omitempty"`
+	Tier      *string `crawlora:"tier,omitempty"`
+	EventType *string `crawlora:"event_type,omitempty"`
+	Sort      *string `crawlora:"sort,omitempty"`
+	Offset    *int    `crawlora:"offset,omitempty"`
+	Limit     *int    `crawlora:"limit,omitempty"`
+}
+
+type Bo3TournamentsResponse = any
+
+func (s *Bo3Service) TournamentsTyped(ctx context.Context, params Bo3TournamentsParams, opts ...RequestOption) (Bo3TournamentsResponse, error) {
+	return requestTyped[Bo3TournamentsResponse](s.client, ctx, "bo3-tournaments", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) Transfers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-transfers", params, opts...)
+}
+
+type Bo3TransfersParams struct {
+	TeamId   *int    `crawlora:"team_id,omitempty"`
+	PlayerId *int    `crawlora:"player_id,omitempty"`
+	Action   *string `crawlora:"action,omitempty"`
+	Role     *string `crawlora:"role,omitempty"`
+	Sort     *string `crawlora:"sort,omitempty"`
+	Offset   *int    `crawlora:"offset,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+}
+
+type Bo3TransfersResponse = any
+
+func (s *Bo3Service) TransfersTyped(ctx context.Context, params Bo3TransfersParams, opts ...RequestOption) (Bo3TransfersResponse, error) {
+	return requestTyped[Bo3TransfersResponse](s.client, ctx, "bo3-transfers", paramsFromStruct(params), opts...)
+}
+
+func (s *Bo3Service) ValorantLeaderboard(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "bo3-valorant-leaderboard", params, opts...)
+}
+
+type Bo3ValorantLeaderboardParams struct {
+	From   *string `crawlora:"from,omitempty"`
+	To     *string `crawlora:"to,omitempty"`
+	Sort   *string `crawlora:"sort,omitempty"`
+	Order  *string `crawlora:"order,omitempty"`
+	Offset *int    `crawlora:"offset,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+}
+
+type Bo3ValorantLeaderboardResponse = any
+
+func (s *Bo3Service) ValorantLeaderboardTyped(ctx context.Context, params Bo3ValorantLeaderboardParams, opts ...RequestOption) (Bo3ValorantLeaderboardResponse, error) {
+	return requestTyped[Bo3ValorantLeaderboardResponse](s.client, ctx, "bo3-valorant-leaderboard", paramsFromStruct(params), opts...)
 }
 
 type BonhamsService struct{ client *Client }
@@ -114403,6 +118723,241 @@ func (s *GooglePlayService) SuggestTyped(ctx context.Context, params GooglePlayS
 	return requestTyped[GooglePlaySuggestResponse](s.client, ctx, "googleplay-suggest", paramsFromStruct(params), opts...)
 }
 
+type GosuGamersService struct{ client *Client }
+
+func (s *GosuGamersService) GosugamersEncounters(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "gosugamers-encounters", params, opts...)
+}
+
+type GosuGamersGosugamersEncountersParams struct {
+	Game    string `crawlora:"game"`
+	MatchId string `crawlora:"match_id"`
+	Team1Id string `crawlora:"team1_id"`
+	Team2Id string `crawlora:"team2_id"`
+}
+
+type GosuGamersGosugamersEncountersResponse = any
+
+func (s *GosuGamersService) GosugamersEncountersTyped(ctx context.Context, params GosuGamersGosugamersEncountersParams, opts ...RequestOption) (GosuGamersGosugamersEncountersResponse, error) {
+	return requestTyped[GosuGamersGosugamersEncountersResponse](s.client, ctx, "gosugamers-encounters", paramsFromStruct(params), opts...)
+}
+
+func (s *GosuGamersService) GosugamersGames(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "gosugamers-games", params, opts...)
+}
+
+type GosuGamersGosugamersGamesParams struct {
+}
+
+type GosuGamersGosugamersGamesResponse = any
+
+func (s *GosuGamersService) GosugamersGamesTyped(ctx context.Context, params GosuGamersGosugamersGamesParams, opts ...RequestOption) (GosuGamersGosugamersGamesResponse, error) {
+	return requestTyped[GosuGamersGosugamersGamesResponse](s.client, ctx, "gosugamers-games", paramsFromStruct(params), opts...)
+}
+
+func (s *GosuGamersService) GosugamersMatch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "gosugamers-match", params, opts...)
+}
+
+type GosuGamersGosugamersMatchParams struct {
+	Game         string `crawlora:"game"`
+	TournamentId string `crawlora:"tournament_id"`
+	MatchId      string `crawlora:"match_id"`
+}
+
+type GosuGamersGosugamersMatchResponse = any
+
+func (s *GosuGamersService) GosugamersMatchTyped(ctx context.Context, params GosuGamersGosugamersMatchParams, opts ...RequestOption) (GosuGamersGosugamersMatchResponse, error) {
+	return requestTyped[GosuGamersGosugamersMatchResponse](s.client, ctx, "gosugamers-match", paramsFromStruct(params), opts...)
+}
+
+func (s *GosuGamersService) GosugamersMatchGame(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "gosugamers-match-game", params, opts...)
+}
+
+type GosuGamersGosugamersMatchGameParams struct {
+	GameId string `crawlora:"game_id"`
+}
+
+type GosuGamersGosugamersMatchGameResponse = any
+
+func (s *GosuGamersService) GosugamersMatchGameTyped(ctx context.Context, params GosuGamersGosugamersMatchGameParams, opts ...RequestOption) (GosuGamersGosugamersMatchGameResponse, error) {
+	return requestTyped[GosuGamersGosugamersMatchGameResponse](s.client, ctx, "gosugamers-match-game", paramsFromStruct(params), opts...)
+}
+
+func (s *GosuGamersService) GosugamersMatches(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "gosugamers-matches", params, opts...)
+}
+
+type GosuGamersGosugamersMatchesParams struct {
+	Game     *string `crawlora:"game,omitempty"`
+	Page     *int    `crawlora:"page,omitempty"`
+	PageSize *int    `crawlora:"page_size,omitempty"`
+}
+
+type GosuGamersGosugamersMatchesResponse = any
+
+func (s *GosuGamersService) GosugamersMatchesTyped(ctx context.Context, params GosuGamersGosugamersMatchesParams, opts ...RequestOption) (GosuGamersGosugamersMatchesResponse, error) {
+	return requestTyped[GosuGamersGosugamersMatchesResponse](s.client, ctx, "gosugamers-matches", paramsFromStruct(params), opts...)
+}
+
+func (s *GosuGamersService) GosugamersPlayer(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "gosugamers-player", params, opts...)
+}
+
+type GosuGamersGosugamersPlayerParams struct {
+	Game     string `crawlora:"game"`
+	PlayerId string `crawlora:"player_id"`
+}
+
+type GosuGamersGosugamersPlayerResponse = any
+
+func (s *GosuGamersService) GosugamersPlayerTyped(ctx context.Context, params GosuGamersGosugamersPlayerParams, opts ...RequestOption) (GosuGamersGosugamersPlayerResponse, error) {
+	return requestTyped[GosuGamersGosugamersPlayerResponse](s.client, ctx, "gosugamers-player", paramsFromStruct(params), opts...)
+}
+
+func (s *GosuGamersService) GosugamersRankings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "gosugamers-rankings", params, opts...)
+}
+
+type GosuGamersGosugamersRankingsParams struct {
+	Game     string  `crawlora:"game"`
+	RegionId *int    `crawlora:"region_id,omitempty"`
+	Q        *string `crawlora:"q,omitempty"`
+	Page     *int    `crawlora:"page,omitempty"`
+	PageSize *int    `crawlora:"page_size,omitempty"`
+}
+
+type GosuGamersGosugamersRankingsResponse = any
+
+func (s *GosuGamersService) GosugamersRankingsTyped(ctx context.Context, params GosuGamersGosugamersRankingsParams, opts ...RequestOption) (GosuGamersGosugamersRankingsResponse, error) {
+	return requestTyped[GosuGamersGosugamersRankingsResponse](s.client, ctx, "gosugamers-rankings", paramsFromStruct(params), opts...)
+}
+
+func (s *GosuGamersService) GosugamersResults(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "gosugamers-results", params, opts...)
+}
+
+type GosuGamersGosugamersResultsParams struct {
+	Game     *string `crawlora:"game,omitempty"`
+	Page     *int    `crawlora:"page,omitempty"`
+	PageSize *int    `crawlora:"page_size,omitempty"`
+}
+
+type GosuGamersGosugamersResultsResponse = any
+
+func (s *GosuGamersService) GosugamersResultsTyped(ctx context.Context, params GosuGamersGosugamersResultsParams, opts ...RequestOption) (GosuGamersGosugamersResultsResponse, error) {
+	return requestTyped[GosuGamersGosugamersResultsResponse](s.client, ctx, "gosugamers-results", paramsFromStruct(params), opts...)
+}
+
+func (s *GosuGamersService) GosugamersStageGroups(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "gosugamers-stage-groups", params, opts...)
+}
+
+type GosuGamersGosugamersStageGroupsParams struct {
+	TournamentId string `crawlora:"tournament_id"`
+	StageId      string `crawlora:"stage_id"`
+}
+
+type GosuGamersGosugamersStageGroupsResponse = any
+
+func (s *GosuGamersService) GosugamersStageGroupsTyped(ctx context.Context, params GosuGamersGosugamersStageGroupsParams, opts ...RequestOption) (GosuGamersGosugamersStageGroupsResponse, error) {
+	return requestTyped[GosuGamersGosugamersStageGroupsResponse](s.client, ctx, "gosugamers-stage-groups", paramsFromStruct(params), opts...)
+}
+
+func (s *GosuGamersService) GosugamersTeam(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "gosugamers-team", params, opts...)
+}
+
+type GosuGamersGosugamersTeamParams struct {
+	Game   string `crawlora:"game"`
+	TeamId string `crawlora:"team_id"`
+}
+
+type GosuGamersGosugamersTeamResponse = any
+
+func (s *GosuGamersService) GosugamersTeamTyped(ctx context.Context, params GosuGamersGosugamersTeamParams, opts ...RequestOption) (GosuGamersGosugamersTeamResponse, error) {
+	return requestTyped[GosuGamersGosugamersTeamResponse](s.client, ctx, "gosugamers-team", paramsFromStruct(params), opts...)
+}
+
+func (s *GosuGamersService) GosugamersTeamResults(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "gosugamers-team-results", params, opts...)
+}
+
+type GosuGamersGosugamersTeamResultsParams struct {
+	TeamId   string `crawlora:"team_id"`
+	Page     *int   `crawlora:"page,omitempty"`
+	PageSize *int   `crawlora:"page_size,omitempty"`
+}
+
+type GosuGamersGosugamersTeamResultsResponse = any
+
+func (s *GosuGamersService) GosugamersTeamResultsTyped(ctx context.Context, params GosuGamersGosugamersTeamResultsParams, opts ...RequestOption) (GosuGamersGosugamersTeamResultsResponse, error) {
+	return requestTyped[GosuGamersGosugamersTeamResultsResponse](s.client, ctx, "gosugamers-team-results", paramsFromStruct(params), opts...)
+}
+
+func (s *GosuGamersService) GosugamersTournament(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "gosugamers-tournament", params, opts...)
+}
+
+type GosuGamersGosugamersTournamentParams struct {
+	Game         string `crawlora:"game"`
+	TournamentId string `crawlora:"tournament_id"`
+}
+
+type GosuGamersGosugamersTournamentResponse = any
+
+func (s *GosuGamersService) GosugamersTournamentTyped(ctx context.Context, params GosuGamersGosugamersTournamentParams, opts ...RequestOption) (GosuGamersGosugamersTournamentResponse, error) {
+	return requestTyped[GosuGamersGosugamersTournamentResponse](s.client, ctx, "gosugamers-tournament", paramsFromStruct(params), opts...)
+}
+
+func (s *GosuGamersService) GosugamersTournamentParticipants(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "gosugamers-tournament-participants", params, opts...)
+}
+
+type GosuGamersGosugamersTournamentParticipantsParams struct {
+	Game         string `crawlora:"game"`
+	TournamentId string `crawlora:"tournament_id"`
+}
+
+type GosuGamersGosugamersTournamentParticipantsResponse = any
+
+func (s *GosuGamersService) GosugamersTournamentParticipantsTyped(ctx context.Context, params GosuGamersGosugamersTournamentParticipantsParams, opts ...RequestOption) (GosuGamersGosugamersTournamentParticipantsResponse, error) {
+	return requestTyped[GosuGamersGosugamersTournamentParticipantsResponse](s.client, ctx, "gosugamers-tournament-participants", paramsFromStruct(params), opts...)
+}
+
+func (s *GosuGamersService) GosugamersTournamentTalents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "gosugamers-tournament-talents", params, opts...)
+}
+
+type GosuGamersGosugamersTournamentTalentsParams struct {
+	TournamentId string `crawlora:"tournament_id"`
+}
+
+type GosuGamersGosugamersTournamentTalentsResponse = any
+
+func (s *GosuGamersService) GosugamersTournamentTalentsTyped(ctx context.Context, params GosuGamersGosugamersTournamentTalentsParams, opts ...RequestOption) (GosuGamersGosugamersTournamentTalentsResponse, error) {
+	return requestTyped[GosuGamersGosugamersTournamentTalentsResponse](s.client, ctx, "gosugamers-tournament-talents", paramsFromStruct(params), opts...)
+}
+
+func (s *GosuGamersService) GosugamersTournaments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "gosugamers-tournaments", params, opts...)
+}
+
+type GosuGamersGosugamersTournamentsParams struct {
+	Game     *string `crawlora:"game,omitempty"`
+	State    *string `crawlora:"state,omitempty"`
+	Q        *string `crawlora:"q,omitempty"`
+	Page     *int    `crawlora:"page,omitempty"`
+	PageSize *int    `crawlora:"page_size,omitempty"`
+}
+
+type GosuGamersGosugamersTournamentsResponse = any
+
+func (s *GosuGamersService) GosugamersTournamentsTyped(ctx context.Context, params GosuGamersGosugamersTournamentsParams, opts ...RequestOption) (GosuGamersGosugamersTournamentsResponse, error) {
+	return requestTyped[GosuGamersGosugamersTournamentsResponse](s.client, ctx, "gosugamers-tournaments", paramsFromStruct(params), opts...)
+}
+
 type GqService struct{ client *Client }
 
 func (s *GqService) Article(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -121683,6 +126238,211 @@ func (s *LiveScoreService) LivescoreTeamTyped(ctx context.Context, params LiveSc
 	return requestTyped[LiveScoreLivescoreTeamResponse](s.client, ctx, "livescore-team", paramsFromStruct(params), opts...)
 }
 
+type LoLEsportsService struct{ client *Client }
+
+func (s *LoLEsportsService) LolesportsCompletedEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "lolesports-completed-events", params, opts...)
+}
+
+type LoLEsportsLolesportsCompletedEventsParams struct {
+	Hl           *string `crawlora:"hl,omitempty"`
+	TournamentId string  `crawlora:"tournament_id"`
+}
+
+type LoLEsportsLolesportsCompletedEventsResponse = any
+
+func (s *LoLEsportsService) LolesportsCompletedEventsTyped(ctx context.Context, params LoLEsportsLolesportsCompletedEventsParams, opts ...RequestOption) (LoLEsportsLolesportsCompletedEventsResponse, error) {
+	return requestTyped[LoLEsportsLolesportsCompletedEventsResponse](s.client, ctx, "lolesports-completed-events", paramsFromStruct(params), opts...)
+}
+
+func (s *LoLEsportsService) LolesportsEvent(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "lolesports-event", params, opts...)
+}
+
+type LoLEsportsLolesportsEventParams struct {
+	Hl      *string `crawlora:"hl,omitempty"`
+	MatchId string  `crawlora:"match_id"`
+}
+
+type LoLEsportsLolesportsEventResponse = any
+
+func (s *LoLEsportsService) LolesportsEventTyped(ctx context.Context, params LoLEsportsLolesportsEventParams, opts ...RequestOption) (LoLEsportsLolesportsEventResponse, error) {
+	return requestTyped[LoLEsportsLolesportsEventResponse](s.client, ctx, "lolesports-event", paramsFromStruct(params), opts...)
+}
+
+func (s *LoLEsportsService) LolesportsGameDetails(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "lolesports-game-details", params, opts...)
+}
+
+type LoLEsportsLolesportsGameDetailsParams struct {
+	GameId         string  `crawlora:"game_id"`
+	StartingTime   *string `crawlora:"starting_time,omitempty"`
+	ParticipantIds *string `crawlora:"participant_ids,omitempty"`
+}
+
+type LoLEsportsLolesportsGameDetailsResponse = any
+
+func (s *LoLEsportsService) LolesportsGameDetailsTyped(ctx context.Context, params LoLEsportsLolesportsGameDetailsParams, opts ...RequestOption) (LoLEsportsLolesportsGameDetailsResponse, error) {
+	return requestTyped[LoLEsportsLolesportsGameDetailsResponse](s.client, ctx, "lolesports-game-details", paramsFromStruct(params), opts...)
+}
+
+func (s *LoLEsportsService) LolesportsGameWindow(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "lolesports-game-window", params, opts...)
+}
+
+type LoLEsportsLolesportsGameWindowParams struct {
+	GameId       string  `crawlora:"game_id"`
+	StartingTime *string `crawlora:"starting_time,omitempty"`
+}
+
+type LoLEsportsLolesportsGameWindowResponse = any
+
+func (s *LoLEsportsService) LolesportsGameWindowTyped(ctx context.Context, params LoLEsportsLolesportsGameWindowParams, opts ...RequestOption) (LoLEsportsLolesportsGameWindowResponse, error) {
+	return requestTyped[LoLEsportsLolesportsGameWindowResponse](s.client, ctx, "lolesports-game-window", paramsFromStruct(params), opts...)
+}
+
+func (s *LoLEsportsService) LolesportsGpr(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "lolesports-gpr", params, opts...)
+}
+
+type LoLEsportsLolesportsGprParams struct {
+	Season  *string `crawlora:"season,omitempty"`
+	League  *string `crawlora:"league,omitempty"`
+	Limit   *int    `crawlora:"limit,omitempty"`
+	History *bool   `crawlora:"history,omitempty"`
+}
+
+type LoLEsportsLolesportsGprResponse = any
+
+func (s *LoLEsportsService) LolesportsGprTyped(ctx context.Context, params LoLEsportsLolesportsGprParams, opts ...RequestOption) (LoLEsportsLolesportsGprResponse, error) {
+	return requestTyped[LoLEsportsLolesportsGprResponse](s.client, ctx, "lolesports-gpr", paramsFromStruct(params), opts...)
+}
+
+func (s *LoLEsportsService) LolesportsLeagues(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "lolesports-leagues", params, opts...)
+}
+
+type LoLEsportsLolesportsLeaguesParams struct {
+	Hl *string `crawlora:"hl,omitempty"`
+}
+
+type LoLEsportsLolesportsLeaguesResponse = any
+
+func (s *LoLEsportsService) LolesportsLeaguesTyped(ctx context.Context, params LoLEsportsLolesportsLeaguesParams, opts ...RequestOption) (LoLEsportsLolesportsLeaguesResponse, error) {
+	return requestTyped[LoLEsportsLolesportsLeaguesResponse](s.client, ctx, "lolesports-leagues", paramsFromStruct(params), opts...)
+}
+
+func (s *LoLEsportsService) LolesportsLive(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "lolesports-live", params, opts...)
+}
+
+type LoLEsportsLolesportsLiveParams struct {
+	Hl *string `crawlora:"hl,omitempty"`
+}
+
+type LoLEsportsLolesportsLiveResponse = any
+
+func (s *LoLEsportsService) LolesportsLiveTyped(ctx context.Context, params LoLEsportsLolesportsLiveParams, opts ...RequestOption) (LoLEsportsLolesportsLiveResponse, error) {
+	return requestTyped[LoLEsportsLolesportsLiveResponse](s.client, ctx, "lolesports-live", paramsFromStruct(params), opts...)
+}
+
+func (s *LoLEsportsService) LolesportsNews(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "lolesports-news", params, opts...)
+}
+
+type LoLEsportsLolesportsNewsParams struct {
+	Hl    *string `crawlora:"hl,omitempty"`
+	Limit *int    `crawlora:"limit,omitempty"`
+}
+
+type LoLEsportsLolesportsNewsResponse = any
+
+func (s *LoLEsportsService) LolesportsNewsTyped(ctx context.Context, params LoLEsportsLolesportsNewsParams, opts ...RequestOption) (LoLEsportsLolesportsNewsResponse, error) {
+	return requestTyped[LoLEsportsLolesportsNewsResponse](s.client, ctx, "lolesports-news", paramsFromStruct(params), opts...)
+}
+
+func (s *LoLEsportsService) LolesportsSchedule(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "lolesports-schedule", params, opts...)
+}
+
+type LoLEsportsLolesportsScheduleParams struct {
+	Hl        *string `crawlora:"hl,omitempty"`
+	LeagueId  *string `crawlora:"league_id,omitempty"`
+	PageToken *string `crawlora:"page_token,omitempty"`
+}
+
+type LoLEsportsLolesportsScheduleResponse = any
+
+func (s *LoLEsportsService) LolesportsScheduleTyped(ctx context.Context, params LoLEsportsLolesportsScheduleParams, opts ...RequestOption) (LoLEsportsLolesportsScheduleResponse, error) {
+	return requestTyped[LoLEsportsLolesportsScheduleResponse](s.client, ctx, "lolesports-schedule", paramsFromStruct(params), opts...)
+}
+
+func (s *LoLEsportsService) LolesportsSeasons(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "lolesports-seasons", params, opts...)
+}
+
+type LoLEsportsLolesportsSeasonsParams struct {
+	Hl       *string `crawlora:"hl,omitempty"`
+	SeasonId *string `crawlora:"season_id,omitempty"`
+	Region   *string `crawlora:"region,omitempty"`
+	LeagueId *string `crawlora:"league_id,omitempty"`
+}
+
+type LoLEsportsLolesportsSeasonsResponse = any
+
+func (s *LoLEsportsService) LolesportsSeasonsTyped(ctx context.Context, params LoLEsportsLolesportsSeasonsParams, opts ...RequestOption) (LoLEsportsLolesportsSeasonsResponse, error) {
+	return requestTyped[LoLEsportsLolesportsSeasonsResponse](s.client, ctx, "lolesports-seasons", paramsFromStruct(params), opts...)
+}
+
+func (s *LoLEsportsService) LolesportsStandings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "lolesports-standings", params, opts...)
+}
+
+type LoLEsportsLolesportsStandingsParams struct {
+	Hl           *string `crawlora:"hl,omitempty"`
+	TournamentId string  `crawlora:"tournament_id"`
+}
+
+type LoLEsportsLolesportsStandingsResponse = any
+
+func (s *LoLEsportsService) LolesportsStandingsTyped(ctx context.Context, params LoLEsportsLolesportsStandingsParams, opts ...RequestOption) (LoLEsportsLolesportsStandingsResponse, error) {
+	return requestTyped[LoLEsportsLolesportsStandingsResponse](s.client, ctx, "lolesports-standings", paramsFromStruct(params), opts...)
+}
+
+func (s *LoLEsportsService) LolesportsTeams(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "lolesports-teams", params, opts...)
+}
+
+type LoLEsportsLolesportsTeamsParams struct {
+	Hl     *string `crawlora:"hl,omitempty"`
+	Slug   *string `crawlora:"slug,omitempty"`
+	Q      *string `crawlora:"q,omitempty"`
+	Status *string `crawlora:"status,omitempty"`
+	Page   *int    `crawlora:"page,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+}
+
+type LoLEsportsLolesportsTeamsResponse = any
+
+func (s *LoLEsportsService) LolesportsTeamsTyped(ctx context.Context, params LoLEsportsLolesportsTeamsParams, opts ...RequestOption) (LoLEsportsLolesportsTeamsResponse, error) {
+	return requestTyped[LoLEsportsLolesportsTeamsResponse](s.client, ctx, "lolesports-teams", paramsFromStruct(params), opts...)
+}
+
+func (s *LoLEsportsService) LolesportsTournaments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "lolesports-tournaments", params, opts...)
+}
+
+type LoLEsportsLolesportsTournamentsParams struct {
+	Hl       *string `crawlora:"hl,omitempty"`
+	LeagueId string  `crawlora:"league_id"`
+}
+
+type LoLEsportsLolesportsTournamentsResponse = any
+
+func (s *LoLEsportsService) LolesportsTournamentsTyped(ctx context.Context, params LoLEsportsLolesportsTournamentsParams, opts ...RequestOption) (LoLEsportsLolesportsTournamentsResponse, error) {
+	return requestTyped[LoLEsportsLolesportsTournamentsResponse](s.client, ctx, "lolesports-tournaments", paramsFromStruct(params), opts...)
+}
+
 type LululemonService struct{ client *Client }
 
 func (s *LululemonService) Categories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -127277,6 +132037,386 @@ type OldNavyOldnavyStoresResponse = ModelOldnavyStoresResponseDoc
 
 func (s *OldNavyService) OldnavyStoresTyped(ctx context.Context, params OldNavyOldnavyStoresParams, opts ...RequestOption) (OldNavyOldnavyStoresResponse, error) {
 	return requestTyped[OldNavyOldnavyStoresResponse](s.client, ctx, "oldnavy-stores", paramsFromStruct(params), opts...)
+}
+
+type OpenDotaService struct{ client *Client }
+
+func (s *OpenDotaService) OpendotaAbilities(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-abilities", params, opts...)
+}
+
+type OpenDotaOpendotaAbilitiesParams struct {
+	Q     *string `crawlora:"q,omitempty"`
+	Limit *int    `crawlora:"limit,omitempty"`
+}
+
+type OpenDotaOpendotaAbilitiesResponse = any
+
+func (s *OpenDotaService) OpendotaAbilitiesTyped(ctx context.Context, params OpenDotaOpendotaAbilitiesParams, opts ...RequestOption) (OpenDotaOpendotaAbilitiesResponse, error) {
+	return requestTyped[OpenDotaOpendotaAbilitiesResponse](s.client, ctx, "opendota-abilities", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaBenchmarks(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-benchmarks", params, opts...)
+}
+
+type OpenDotaOpendotaBenchmarksParams struct {
+	HeroId int `crawlora:"hero_id"`
+}
+
+type OpenDotaOpendotaBenchmarksResponse = any
+
+func (s *OpenDotaService) OpendotaBenchmarksTyped(ctx context.Context, params OpenDotaOpendotaBenchmarksParams, opts ...RequestOption) (OpenDotaOpendotaBenchmarksResponse, error) {
+	return requestTyped[OpenDotaOpendotaBenchmarksResponse](s.client, ctx, "opendota-benchmarks", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaConstants(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-constants", params, opts...)
+}
+
+type OpenDotaOpendotaConstantsParams struct {
+	Resource string `crawlora:"resource"`
+}
+
+type OpenDotaOpendotaConstantsResponse = any
+
+func (s *OpenDotaService) OpendotaConstantsTyped(ctx context.Context, params OpenDotaOpendotaConstantsParams, opts ...RequestOption) (OpenDotaOpendotaConstantsResponse, error) {
+	return requestTyped[OpenDotaOpendotaConstantsResponse](s.client, ctx, "opendota-constants", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaHeroDurations(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-hero-durations", params, opts...)
+}
+
+type OpenDotaOpendotaHeroDurationsParams struct {
+	HeroId int `crawlora:"hero_id"`
+}
+
+type OpenDotaOpendotaHeroDurationsResponse = any
+
+func (s *OpenDotaService) OpendotaHeroDurationsTyped(ctx context.Context, params OpenDotaOpendotaHeroDurationsParams, opts ...RequestOption) (OpenDotaOpendotaHeroDurationsResponse, error) {
+	return requestTyped[OpenDotaOpendotaHeroDurationsResponse](s.client, ctx, "opendota-hero-durations", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaHeroItems(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-hero-items", params, opts...)
+}
+
+type OpenDotaOpendotaHeroItemsParams struct {
+	HeroId int `crawlora:"hero_id"`
+}
+
+type OpenDotaOpendotaHeroItemsResponse = any
+
+func (s *OpenDotaService) OpendotaHeroItemsTyped(ctx context.Context, params OpenDotaOpendotaHeroItemsParams, opts ...RequestOption) (OpenDotaOpendotaHeroItemsResponse, error) {
+	return requestTyped[OpenDotaOpendotaHeroItemsResponse](s.client, ctx, "opendota-hero-items", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaHeroMatchups(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-hero-matchups", params, opts...)
+}
+
+type OpenDotaOpendotaHeroMatchupsParams struct {
+	HeroId int `crawlora:"hero_id"`
+}
+
+type OpenDotaOpendotaHeroMatchupsResponse = any
+
+func (s *OpenDotaService) OpendotaHeroMatchupsTyped(ctx context.Context, params OpenDotaOpendotaHeroMatchupsParams, opts ...RequestOption) (OpenDotaOpendotaHeroMatchupsResponse, error) {
+	return requestTyped[OpenDotaOpendotaHeroMatchupsResponse](s.client, ctx, "opendota-hero-matchups", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaHeroStats(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-hero-stats", params, opts...)
+}
+
+type OpenDotaOpendotaHeroStatsParams struct {
+	PrimaryAttr *string `crawlora:"primary_attr,omitempty"`
+	AttackType  *string `crawlora:"attack_type,omitempty"`
+	Role        *string `crawlora:"role,omitempty"`
+	Sort        *string `crawlora:"sort,omitempty"`
+	Desc        *bool   `crawlora:"desc,omitempty"`
+	Limit       *int    `crawlora:"limit,omitempty"`
+}
+
+type OpenDotaOpendotaHeroStatsResponse = any
+
+func (s *OpenDotaService) OpendotaHeroStatsTyped(ctx context.Context, params OpenDotaOpendotaHeroStatsParams, opts ...RequestOption) (OpenDotaOpendotaHeroStatsResponse, error) {
+	return requestTyped[OpenDotaOpendotaHeroStatsResponse](s.client, ctx, "opendota-hero-stats", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaHeroes(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-heroes", params, opts...)
+}
+
+type OpenDotaOpendotaHeroesParams struct {
+}
+
+type OpenDotaOpendotaHeroesResponse = any
+
+func (s *OpenDotaService) OpendotaHeroesTyped(ctx context.Context, params OpenDotaOpendotaHeroesParams, opts ...RequestOption) (OpenDotaOpendotaHeroesResponse, error) {
+	return requestTyped[OpenDotaOpendotaHeroesResponse](s.client, ctx, "opendota-heroes", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaItems(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-items", params, opts...)
+}
+
+type OpenDotaOpendotaItemsParams struct {
+	Q       *string `crawlora:"q,omitempty"`
+	Quality *string `crawlora:"quality,omitempty"`
+	Limit   *int    `crawlora:"limit,omitempty"`
+}
+
+type OpenDotaOpendotaItemsResponse = any
+
+func (s *OpenDotaService) OpendotaItemsTyped(ctx context.Context, params OpenDotaOpendotaItemsParams, opts ...RequestOption) (OpenDotaOpendotaItemsResponse, error) {
+	return requestTyped[OpenDotaOpendotaItemsResponse](s.client, ctx, "opendota-items", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaLeague(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-league", params, opts...)
+}
+
+type OpenDotaOpendotaLeagueParams struct {
+	LeagueId int `crawlora:"league_id"`
+}
+
+type OpenDotaOpendotaLeagueResponse = any
+
+func (s *OpenDotaService) OpendotaLeagueTyped(ctx context.Context, params OpenDotaOpendotaLeagueParams, opts ...RequestOption) (OpenDotaOpendotaLeagueResponse, error) {
+	return requestTyped[OpenDotaOpendotaLeagueResponse](s.client, ctx, "opendota-league", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaLeagueMatchIds(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-league-match-ids", params, opts...)
+}
+
+type OpenDotaOpendotaLeagueMatchIdsParams struct {
+	LeagueId int `crawlora:"league_id"`
+}
+
+type OpenDotaOpendotaLeagueMatchIdsResponse = any
+
+func (s *OpenDotaService) OpendotaLeagueMatchIdsTyped(ctx context.Context, params OpenDotaOpendotaLeagueMatchIdsParams, opts ...RequestOption) (OpenDotaOpendotaLeagueMatchIdsResponse, error) {
+	return requestTyped[OpenDotaOpendotaLeagueMatchIdsResponse](s.client, ctx, "opendota-league-match-ids", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaLeagueMatches(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-league-matches", params, opts...)
+}
+
+type OpenDotaOpendotaLeagueMatchesParams struct {
+	LeagueId int  `crawlora:"league_id"`
+	TeamId   *int `crawlora:"team_id,omitempty"`
+}
+
+type OpenDotaOpendotaLeagueMatchesResponse = any
+
+func (s *OpenDotaService) OpendotaLeagueMatchesTyped(ctx context.Context, params OpenDotaOpendotaLeagueMatchesParams, opts ...RequestOption) (OpenDotaOpendotaLeagueMatchesResponse, error) {
+	return requestTyped[OpenDotaOpendotaLeagueMatchesResponse](s.client, ctx, "opendota-league-matches", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaLeagues(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-leagues", params, opts...)
+}
+
+type OpenDotaOpendotaLeaguesParams struct {
+	Tier *string `crawlora:"tier,omitempty"`
+}
+
+type OpenDotaOpendotaLeaguesResponse = any
+
+func (s *OpenDotaService) OpendotaLeaguesTyped(ctx context.Context, params OpenDotaOpendotaLeaguesParams, opts ...RequestOption) (OpenDotaOpendotaLeaguesResponse, error) {
+	return requestTyped[OpenDotaOpendotaLeaguesResponse](s.client, ctx, "opendota-leagues", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaLive(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-live", params, opts...)
+}
+
+type OpenDotaOpendotaLiveParams struct {
+}
+
+type OpenDotaOpendotaLiveResponse = any
+
+func (s *OpenDotaService) OpendotaLiveTyped(ctx context.Context, params OpenDotaOpendotaLiveParams, opts ...RequestOption) (OpenDotaOpendotaLiveResponse, error) {
+	return requestTyped[OpenDotaOpendotaLiveResponse](s.client, ctx, "opendota-live", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaMatch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-match", params, opts...)
+}
+
+type OpenDotaOpendotaMatchParams struct {
+	Id int `crawlora:"id"`
+}
+
+type OpenDotaOpendotaMatchResponse = any
+
+func (s *OpenDotaService) OpendotaMatchTyped(ctx context.Context, params OpenDotaOpendotaMatchParams, opts ...RequestOption) (OpenDotaOpendotaMatchResponse, error) {
+	return requestTyped[OpenDotaOpendotaMatchResponse](s.client, ctx, "opendota-match", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaPatchNotes(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-patch-notes", params, opts...)
+}
+
+type OpenDotaOpendotaPatchNotesParams struct {
+	Patch *string `crawlora:"patch,omitempty"`
+}
+
+type OpenDotaOpendotaPatchNotesResponse = any
+
+func (s *OpenDotaService) OpendotaPatchNotesTyped(ctx context.Context, params OpenDotaOpendotaPatchNotesParams, opts ...RequestOption) (OpenDotaOpendotaPatchNotesResponse, error) {
+	return requestTyped[OpenDotaOpendotaPatchNotesResponse](s.client, ctx, "opendota-patch-notes", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaProMatches(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-pro-matches", params, opts...)
+}
+
+type OpenDotaOpendotaProMatchesParams struct {
+	LessThanMatchId *int `crawlora:"less_than_match_id,omitempty"`
+}
+
+type OpenDotaOpendotaProMatchesResponse = any
+
+func (s *OpenDotaService) OpendotaProMatchesTyped(ctx context.Context, params OpenDotaOpendotaProMatchesParams, opts ...RequestOption) (OpenDotaOpendotaProMatchesResponse, error) {
+	return requestTyped[OpenDotaOpendotaProMatchesResponse](s.client, ctx, "opendota-pro-matches", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaProPlayers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-pro-players", params, opts...)
+}
+
+type OpenDotaOpendotaProPlayersParams struct {
+	TeamId *int    `crawlora:"team_id,omitempty"`
+	Q      *string `crawlora:"q,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+	Offset *int    `crawlora:"offset,omitempty"`
+}
+
+type OpenDotaOpendotaProPlayersResponse = any
+
+func (s *OpenDotaService) OpendotaProPlayersTyped(ctx context.Context, params OpenDotaOpendotaProPlayersParams, opts ...RequestOption) (OpenDotaOpendotaProPlayersResponse, error) {
+	return requestTyped[OpenDotaOpendotaProPlayersResponse](s.client, ctx, "opendota-pro-players", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaRankDistribution(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-rank-distribution", params, opts...)
+}
+
+type OpenDotaOpendotaRankDistributionParams struct {
+}
+
+type OpenDotaOpendotaRankDistributionResponse = any
+
+func (s *OpenDotaService) OpendotaRankDistributionTyped(ctx context.Context, params OpenDotaOpendotaRankDistributionParams, opts ...RequestOption) (OpenDotaOpendotaRankDistributionResponse, error) {
+	return requestTyped[OpenDotaOpendotaRankDistributionResponse](s.client, ctx, "opendota-rank-distribution", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaRecords(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-records", params, opts...)
+}
+
+type OpenDotaOpendotaRecordsParams struct {
+	Field string `crawlora:"field"`
+}
+
+type OpenDotaOpendotaRecordsResponse = any
+
+func (s *OpenDotaService) OpendotaRecordsTyped(ctx context.Context, params OpenDotaOpendotaRecordsParams, opts ...RequestOption) (OpenDotaOpendotaRecordsResponse, error) {
+	return requestTyped[OpenDotaOpendotaRecordsResponse](s.client, ctx, "opendota-records", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaScenarios(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-scenarios", params, opts...)
+}
+
+type OpenDotaOpendotaScenariosParams struct {
+	Kind     string  `crawlora:"kind"`
+	HeroId   *int    `crawlora:"hero_id,omitempty"`
+	Item     *string `crawlora:"item,omitempty"`
+	LaneRole *int    `crawlora:"lane_role,omitempty"`
+	Scenario *string `crawlora:"scenario,omitempty"`
+	Limit    *int    `crawlora:"limit,omitempty"`
+}
+
+type OpenDotaOpendotaScenariosResponse = any
+
+func (s *OpenDotaService) OpendotaScenariosTyped(ctx context.Context, params OpenDotaOpendotaScenariosParams, opts ...RequestOption) (OpenDotaOpendotaScenariosResponse, error) {
+	return requestTyped[OpenDotaOpendotaScenariosResponse](s.client, ctx, "opendota-scenarios", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaTeam(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-team", params, opts...)
+}
+
+type OpenDotaOpendotaTeamParams struct {
+	TeamId int `crawlora:"team_id"`
+}
+
+type OpenDotaOpendotaTeamResponse = any
+
+func (s *OpenDotaService) OpendotaTeamTyped(ctx context.Context, params OpenDotaOpendotaTeamParams, opts ...RequestOption) (OpenDotaOpendotaTeamResponse, error) {
+	return requestTyped[OpenDotaOpendotaTeamResponse](s.client, ctx, "opendota-team", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaTeamHeroes(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-team-heroes", params, opts...)
+}
+
+type OpenDotaOpendotaTeamHeroesParams struct {
+	TeamId int `crawlora:"team_id"`
+}
+
+type OpenDotaOpendotaTeamHeroesResponse = any
+
+func (s *OpenDotaService) OpendotaTeamHeroesTyped(ctx context.Context, params OpenDotaOpendotaTeamHeroesParams, opts ...RequestOption) (OpenDotaOpendotaTeamHeroesResponse, error) {
+	return requestTyped[OpenDotaOpendotaTeamHeroesResponse](s.client, ctx, "opendota-team-heroes", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaTeamMatches(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-team-matches", params, opts...)
+}
+
+type OpenDotaOpendotaTeamMatchesParams struct {
+	TeamId int `crawlora:"team_id"`
+}
+
+type OpenDotaOpendotaTeamMatchesResponse = any
+
+func (s *OpenDotaService) OpendotaTeamMatchesTyped(ctx context.Context, params OpenDotaOpendotaTeamMatchesParams, opts ...RequestOption) (OpenDotaOpendotaTeamMatchesResponse, error) {
+	return requestTyped[OpenDotaOpendotaTeamMatchesResponse](s.client, ctx, "opendota-team-matches", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaTeamPlayers(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-team-players", params, opts...)
+}
+
+type OpenDotaOpendotaTeamPlayersParams struct {
+	TeamId int `crawlora:"team_id"`
+}
+
+type OpenDotaOpendotaTeamPlayersResponse = any
+
+func (s *OpenDotaService) OpendotaTeamPlayersTyped(ctx context.Context, params OpenDotaOpendotaTeamPlayersParams, opts ...RequestOption) (OpenDotaOpendotaTeamPlayersResponse, error) {
+	return requestTyped[OpenDotaOpendotaTeamPlayersResponse](s.client, ctx, "opendota-team-players", paramsFromStruct(params), opts...)
+}
+
+func (s *OpenDotaService) OpendotaTeams(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "opendota-teams", params, opts...)
+}
+
+type OpenDotaOpendotaTeamsParams struct {
+	Page *int `crawlora:"page,omitempty"`
+}
+
+type OpenDotaOpendotaTeamsResponse = any
+
+func (s *OpenDotaService) OpendotaTeamsTyped(ctx context.Context, params OpenDotaOpendotaTeamsParams, opts ...RequestOption) (OpenDotaOpendotaTeamsResponse, error) {
+	return requestTyped[OpenDotaOpendotaTeamsResponse](s.client, ctx, "opendota-teams", paramsFromStruct(params), opts...)
 }
 
 type OpenSeaService struct{ client *Client }
@@ -133346,6 +138486,67 @@ func (s *RedfinService) SimilarTyped(ctx context.Context, params RedfinSimilarPa
 	return requestTyped[RedfinSimilarResponse](s.client, ctx, "redfin-similar", paramsFromStruct(params), opts...)
 }
 
+type RednoteService struct{ client *Client }
+
+func (s *RednoteService) Explore(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "rednote-explore", params, opts...)
+}
+
+type RednoteExploreParams struct {
+	ChannelId *string `crawlora:"channel_id,omitempty"`
+}
+
+type RednoteExploreResponse = ModelRednoteExploreResponseDoc
+
+func (s *RednoteService) ExploreTyped(ctx context.Context, params RednoteExploreParams, opts ...RequestOption) (RednoteExploreResponse, error) {
+	return requestTyped[RednoteExploreResponse](s.client, ctx, "rednote-explore", paramsFromStruct(params), opts...)
+}
+
+func (s *RednoteService) Note(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "rednote-note", params, opts...)
+}
+
+type RednoteNoteParams struct {
+	Url    *string `crawlora:"url,omitempty"`
+	NoteId *string `crawlora:"note_id,omitempty"`
+}
+
+type RednoteNoteResponse = ModelRednoteNoteResponseDoc
+
+func (s *RednoteService) NoteTyped(ctx context.Context, params RednoteNoteParams, opts ...RequestOption) (RednoteNoteResponse, error) {
+	return requestTyped[RednoteNoteResponse](s.client, ctx, "rednote-note", paramsFromStruct(params), opts...)
+}
+
+func (s *RednoteService) NoteComments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "rednote-note-comments", params, opts...)
+}
+
+type RednoteNoteCommentsParams struct {
+	Url    *string `crawlora:"url,omitempty"`
+	NoteId *string `crawlora:"note_id,omitempty"`
+	Cursor *string `crawlora:"cursor,omitempty"`
+}
+
+type RednoteNoteCommentsResponse = ModelRednoteCommentsResponseDoc
+
+func (s *RednoteService) NoteCommentsTyped(ctx context.Context, params RednoteNoteCommentsParams, opts ...RequestOption) (RednoteNoteCommentsResponse, error) {
+	return requestTyped[RednoteNoteCommentsResponse](s.client, ctx, "rednote-note-comments", paramsFromStruct(params), opts...)
+}
+
+func (s *RednoteService) SearchSuggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "rednote-search-suggest", params, opts...)
+}
+
+type RednoteSearchSuggestParams struct {
+	Keyword string `crawlora:"keyword"`
+}
+
+type RednoteSearchSuggestResponse = ModelRednoteSuggestResponseDoc
+
+func (s *RednoteService) SearchSuggestTyped(ctx context.Context, params RednoteSearchSuggestParams, opts ...RequestOption) (RednoteSearchSuggestResponse, error) {
+	return requestTyped[RednoteSearchSuggestResponse](s.client, ctx, "rednote-search-suggest", paramsFromStruct(params), opts...)
+}
+
 type ReelShortService struct{ client *Client }
 
 func (s *ReelShortService) ReelshortFandomCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -136866,6 +142067,231 @@ type ShopAppSuggestionsResponse = ModelShopappSuggestionsResponseDoc
 
 func (s *ShopAppService) SuggestionsTyped(ctx context.Context, params ShopAppSuggestionsParams, opts ...RequestOption) (ShopAppSuggestionsResponse, error) {
 	return requestTyped[ShopAppSuggestionsResponse](s.client, ctx, "shop-app-suggestions", paramsFromStruct(params), opts...)
+}
+
+type ShopeeService struct{ client *Client }
+
+func (s *ShopeeService) Banners(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopee-banners", params, opts...)
+}
+
+type ShopeeBannersParams struct {
+	Region   *string `crawlora:"region,omitempty"`
+	Slot     *string `crawlora:"slot,omitempty"`
+	SpaceKey *string `crawlora:"space_key,omitempty"`
+}
+
+type ShopeeBannersResponse = ModelShopeeBannersResponseDoc
+
+func (s *ShopeeService) BannersTyped(ctx context.Context, params ShopeeBannersParams, opts ...RequestOption) (ShopeeBannersResponse, error) {
+	return requestTyped[ShopeeBannersResponse](s.client, ctx, "shopee-banners", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopeeService) Categories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopee-categories", params, opts...)
+}
+
+type ShopeeCategoriesParams struct {
+	Region *string `crawlora:"region,omitempty"`
+}
+
+type ShopeeCategoriesResponse = ModelShopeeCategoriesResponseDoc
+
+func (s *ShopeeService) CategoriesTyped(ctx context.Context, params ShopeeCategoriesParams, opts ...RequestOption) (ShopeeCategoriesResponse, error) {
+	return requestTyped[ShopeeCategoriesResponse](s.client, ctx, "shopee-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopeeService) CategoryDetail(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopee-category-detail", params, opts...)
+}
+
+type ShopeeCategoryDetailParams struct {
+	Region *string `crawlora:"region,omitempty"`
+	Catids string  `crawlora:"catids"`
+}
+
+type ShopeeCategoryDetailResponse = ModelShopeeCategoryDetailResponseDoc
+
+func (s *ShopeeService) CategoryDetailTyped(ctx context.Context, params ShopeeCategoryDetailParams, opts ...RequestOption) (ShopeeCategoryDetailResponse, error) {
+	return requestTyped[ShopeeCategoryDetailResponse](s.client, ctx, "shopee-category-detail", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopeeService) FlashSale(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopee-flash-sale", params, opts...)
+}
+
+type ShopeeFlashSaleParams struct {
+	Region *string `crawlora:"region,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+	Offset *int    `crawlora:"offset,omitempty"`
+}
+
+type ShopeeFlashSaleResponse = ModelShopeeFlashSaleResponseDoc
+
+func (s *ShopeeService) FlashSaleTyped(ctx context.Context, params ShopeeFlashSaleParams, opts ...RequestOption) (ShopeeFlashSaleResponse, error) {
+	return requestTyped[ShopeeFlashSaleResponse](s.client, ctx, "shopee-flash-sale", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopeeService) Footer(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopee-footer", params, opts...)
+}
+
+type ShopeeFooterParams struct {
+	Region *string `crawlora:"region,omitempty"`
+}
+
+type ShopeeFooterResponse = ModelShopeeFooterResponseDoc
+
+func (s *ShopeeService) FooterTyped(ctx context.Context, params ShopeeFooterParams, opts ...RequestOption) (ShopeeFooterResponse, error) {
+	return requestTyped[ShopeeFooterResponse](s.client, ctx, "shopee-footer", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopeeService) Home(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopee-home", params, opts...)
+}
+
+type ShopeeHomeParams struct {
+	Region *string `crawlora:"region,omitempty"`
+}
+
+type ShopeeHomeResponse = ModelShopeeHomeResponseDoc
+
+func (s *ShopeeService) HomeTyped(ctx context.Context, params ShopeeHomeParams, opts ...RequestOption) (ShopeeHomeResponse, error) {
+	return requestTyped[ShopeeHomeResponse](s.client, ctx, "shopee-home", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopeeService) HomeCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopee-home-categories", params, opts...)
+}
+
+type ShopeeHomeCategoriesParams struct {
+	Region *string `crawlora:"region,omitempty"`
+}
+
+type ShopeeHomeCategoriesResponse = ModelShopeeHomeCategoriesResponseDoc
+
+func (s *ShopeeService) HomeCategoriesTyped(ctx context.Context, params ShopeeHomeCategoriesParams, opts ...RequestOption) (ShopeeHomeCategoriesResponse, error) {
+	return requestTyped[ShopeeHomeCategoriesResponse](s.client, ctx, "shopee-home-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopeeService) LocationFilters(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopee-location-filters", params, opts...)
+}
+
+type ShopeeLocationFiltersParams struct {
+	Region *string `crawlora:"region,omitempty"`
+}
+
+type ShopeeLocationFiltersResponse = ModelShopeeLocationFiltersResponseDoc
+
+func (s *ShopeeService) LocationFiltersTyped(ctx context.Context, params ShopeeLocationFiltersParams, opts ...RequestOption) (ShopeeLocationFiltersResponse, error) {
+	return requestTyped[ShopeeLocationFiltersResponse](s.client, ctx, "shopee-location-filters", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopeeService) MallCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopee-mall-categories", params, opts...)
+}
+
+type ShopeeMallCategoriesParams struct {
+	Region *string `crawlora:"region,omitempty"`
+}
+
+type ShopeeMallCategoriesResponse = ModelShopeeMallCategoriesResponseDoc
+
+func (s *ShopeeService) MallCategoriesTyped(ctx context.Context, params ShopeeMallCategoriesParams, opts ...RequestOption) (ShopeeMallCategoriesResponse, error) {
+	return requestTyped[ShopeeMallCategoriesResponse](s.client, ctx, "shopee-mall-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopeeService) Prefills(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopee-prefills", params, opts...)
+}
+
+type ShopeePrefillsParams struct {
+	Region *string `crawlora:"region,omitempty"`
+}
+
+type ShopeePrefillsResponse = ModelShopeePrefillsResponseDoc
+
+func (s *ShopeeService) PrefillsTyped(ctx context.Context, params ShopeePrefillsParams, opts ...RequestOption) (ShopeePrefillsResponse, error) {
+	return requestTyped[ShopeePrefillsResponse](s.client, ctx, "shopee-prefills", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopeeService) SearchFilters(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopee-search-filters", params, opts...)
+}
+
+type ShopeeSearchFiltersParams struct {
+	Region   *string `crawlora:"region,omitempty"`
+	Keyword  *string `crawlora:"keyword,omitempty"`
+	Category *string `crawlora:"category,omitempty"`
+}
+
+type ShopeeSearchFiltersResponse = ModelShopeeSearchFiltersResponseDoc
+
+func (s *ShopeeService) SearchFiltersTyped(ctx context.Context, params ShopeeSearchFiltersParams, opts ...RequestOption) (ShopeeSearchFiltersResponse, error) {
+	return requestTyped[ShopeeSearchFiltersResponse](s.client, ctx, "shopee-search-filters", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopeeService) SearchHints(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopee-search-hints", params, opts...)
+}
+
+type ShopeeSearchHintsParams struct {
+	Region  *string `crawlora:"region,omitempty"`
+	Keyword string  `crawlora:"keyword"`
+	Version *int    `crawlora:"version,omitempty"`
+}
+
+type ShopeeSearchHintsResponse = ModelShopeeSearchHintsResponseDoc
+
+func (s *ShopeeService) SearchHintsTyped(ctx context.Context, params ShopeeSearchHintsParams, opts ...RequestOption) (ShopeeSearchHintsResponse, error) {
+	return requestTyped[ShopeeSearchHintsResponse](s.client, ctx, "shopee-search-hints", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopeeService) ShopInfo(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopee-shop-info", params, opts...)
+}
+
+type ShopeeShopInfoParams struct {
+	Region *string `crawlora:"region,omitempty"`
+	ShopId int     `crawlora:"shop_id"`
+}
+
+type ShopeeShopInfoResponse = ModelShopeeShopInfoResponseDoc
+
+func (s *ShopeeService) ShopInfoTyped(ctx context.Context, params ShopeeShopInfoParams, opts ...RequestOption) (ShopeeShopInfoResponse, error) {
+	return requestTyped[ShopeeShopInfoResponse](s.client, ctx, "shopee-shop-info", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopeeService) Shops(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopee-shops", params, opts...)
+}
+
+type ShopeeShopsParams struct {
+	Region *string `crawlora:"region,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+	Offset *int    `crawlora:"offset,omitempty"`
+}
+
+type ShopeeShopsResponse = ModelShopeeShopsResponseDoc
+
+func (s *ShopeeService) ShopsTyped(ctx context.Context, params ShopeeShopsParams, opts ...RequestOption) (ShopeeShopsResponse, error) {
+	return requestTyped[ShopeeShopsResponse](s.client, ctx, "shopee-shops", paramsFromStruct(params), opts...)
+}
+
+func (s *ShopeeService) Suggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "shopee-suggest", params, opts...)
+}
+
+type ShopeeSuggestParams struct {
+	Region  *string `crawlora:"region,omitempty"`
+	Keyword string  `crawlora:"keyword"`
+}
+
+type ShopeeSuggestResponse = ModelShopeeSuggestResponseDoc
+
+func (s *ShopeeService) SuggestTyped(ctx context.Context, params ShopeeSuggestParams, opts ...RequestOption) (ShopeeSuggestResponse, error) {
+	return requestTyped[ShopeeSuggestResponse](s.client, ctx, "shopee-suggest", paramsFromStruct(params), opts...)
 }
 
 type ShopifyService struct{ client *Client }
@@ -149567,6 +154993,350 @@ func (s *VintedService) MemberTyped(ctx context.Context, params VintedMemberPara
 	return requestTyped[VintedMemberResponse](s.client, ctx, "vinted-member", paramsFromStruct(params), opts...)
 }
 
+type VlrService struct{ client *Client }
+
+func (s *VlrService) Event(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-event", params, opts...)
+}
+
+type VlrEventParams struct {
+	Id string `crawlora:"id"`
+}
+
+type VlrEventResponse = any
+
+func (s *VlrService) EventTyped(ctx context.Context, params VlrEventParams, opts ...RequestOption) (VlrEventResponse, error) {
+	return requestTyped[VlrEventResponse](s.client, ctx, "vlr-event", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) EventAgents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-event-agents", params, opts...)
+}
+
+type VlrEventAgentsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type VlrEventAgentsResponse = any
+
+func (s *VlrService) EventAgentsTyped(ctx context.Context, params VlrEventAgentsParams, opts ...RequestOption) (VlrEventAgentsResponse, error) {
+	return requestTyped[VlrEventAgentsResponse](s.client, ctx, "vlr-event-agents", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) EventMatches(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-event-matches", params, opts...)
+}
+
+type VlrEventMatchesParams struct {
+	Id string `crawlora:"id"`
+}
+
+type VlrEventMatchesResponse = any
+
+func (s *VlrService) EventMatchesTyped(ctx context.Context, params VlrEventMatchesParams, opts ...RequestOption) (VlrEventMatchesResponse, error) {
+	return requestTyped[VlrEventMatchesResponse](s.client, ctx, "vlr-event-matches", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) EventStats(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-event-stats", params, opts...)
+}
+
+type VlrEventStatsParams struct {
+	Id   string  `crawlora:"id"`
+	Side *string `crawlora:"side,omitempty"`
+}
+
+type VlrEventStatsResponse = any
+
+func (s *VlrService) EventStatsTyped(ctx context.Context, params VlrEventStatsParams, opts ...RequestOption) (VlrEventStatsResponse, error) {
+	return requestTyped[VlrEventStatsResponse](s.client, ctx, "vlr-event-stats", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) Events(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-events", params, opts...)
+}
+
+type VlrEventsParams struct {
+	Tier   *string `crawlora:"tier,omitempty"`
+	Region *string `crawlora:"region,omitempty"`
+	Page   *int    `crawlora:"page,omitempty"`
+}
+
+type VlrEventsResponse = any
+
+func (s *VlrService) EventsTyped(ctx context.Context, params VlrEventsParams, opts ...RequestOption) (VlrEventsResponse, error) {
+	return requestTyped[VlrEventsResponse](s.client, ctx, "vlr-events", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) ForumCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-forum-categories", params, opts...)
+}
+
+type VlrForumCategoriesParams struct {
+}
+
+type VlrForumCategoriesResponse = any
+
+func (s *VlrService) ForumCategoriesTyped(ctx context.Context, params VlrForumCategoriesParams, opts ...RequestOption) (VlrForumCategoriesResponse, error) {
+	return requestTyped[VlrForumCategoriesResponse](s.client, ctx, "vlr-forum-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) ForumThreads(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-forum-threads", params, opts...)
+}
+
+type VlrForumThreadsParams struct {
+	Category *string `crawlora:"category,omitempty"`
+	Page     *int    `crawlora:"page,omitempty"`
+}
+
+type VlrForumThreadsResponse = any
+
+func (s *VlrService) ForumThreadsTyped(ctx context.Context, params VlrForumThreadsParams, opts ...RequestOption) (VlrForumThreadsResponse, error) {
+	return requestTyped[VlrForumThreadsResponse](s.client, ctx, "vlr-forum-threads", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) Match(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-match", params, opts...)
+}
+
+type VlrMatchParams struct {
+	Id string `crawlora:"id"`
+}
+
+type VlrMatchResponse = any
+
+func (s *VlrService) MatchTyped(ctx context.Context, params VlrMatchParams, opts ...RequestOption) (VlrMatchResponse, error) {
+	return requestTyped[VlrMatchResponse](s.client, ctx, "vlr-match", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) MatchEconomy(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-match-economy", params, opts...)
+}
+
+type VlrMatchEconomyParams struct {
+	Id string `crawlora:"id"`
+}
+
+type VlrMatchEconomyResponse = any
+
+func (s *VlrService) MatchEconomyTyped(ctx context.Context, params VlrMatchEconomyParams, opts ...RequestOption) (VlrMatchEconomyResponse, error) {
+	return requestTyped[VlrMatchEconomyResponse](s.client, ctx, "vlr-match-economy", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) MatchPerformance(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-match-performance", params, opts...)
+}
+
+type VlrMatchPerformanceParams struct {
+	Id string `crawlora:"id"`
+}
+
+type VlrMatchPerformanceResponse = any
+
+func (s *VlrService) MatchPerformanceTyped(ctx context.Context, params VlrMatchPerformanceParams, opts ...RequestOption) (VlrMatchPerformanceResponse, error) {
+	return requestTyped[VlrMatchPerformanceResponse](s.client, ctx, "vlr-match-performance", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) MatchRounds(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-match-rounds", params, opts...)
+}
+
+type VlrMatchRoundsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type VlrMatchRoundsResponse = any
+
+func (s *VlrService) MatchRoundsTyped(ctx context.Context, params VlrMatchRoundsParams, opts ...RequestOption) (VlrMatchRoundsResponse, error) {
+	return requestTyped[VlrMatchRoundsResponse](s.client, ctx, "vlr-match-rounds", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) Matches(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-matches", params, opts...)
+}
+
+type VlrMatchesParams struct {
+	Page *int `crawlora:"page,omitempty"`
+}
+
+type VlrMatchesResponse = any
+
+func (s *VlrService) MatchesTyped(ctx context.Context, params VlrMatchesParams, opts ...RequestOption) (VlrMatchesResponse, error) {
+	return requestTyped[VlrMatchesResponse](s.client, ctx, "vlr-matches", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) News(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-news", params, opts...)
+}
+
+type VlrNewsParams struct {
+	Page *int `crawlora:"page,omitempty"`
+}
+
+type VlrNewsResponse = any
+
+func (s *VlrService) NewsTyped(ctx context.Context, params VlrNewsParams, opts ...RequestOption) (VlrNewsResponse, error) {
+	return requestTyped[VlrNewsResponse](s.client, ctx, "vlr-news", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) NewsArticle(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-news-article", params, opts...)
+}
+
+type VlrNewsArticleParams struct {
+	Id string `crawlora:"id"`
+}
+
+type VlrNewsArticleResponse = any
+
+func (s *VlrService) NewsArticleTyped(ctx context.Context, params VlrNewsArticleParams, opts ...RequestOption) (VlrNewsArticleResponse, error) {
+	return requestTyped[VlrNewsArticleResponse](s.client, ctx, "vlr-news-article", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) Player(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-player", params, opts...)
+}
+
+type VlrPlayerParams struct {
+	Id string `crawlora:"id"`
+}
+
+type VlrPlayerResponse = any
+
+func (s *VlrService) PlayerTyped(ctx context.Context, params VlrPlayerParams, opts ...RequestOption) (VlrPlayerResponse, error) {
+	return requestTyped[VlrPlayerResponse](s.client, ctx, "vlr-player", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) PlayerMatches(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-player-matches", params, opts...)
+}
+
+type VlrPlayerMatchesParams struct {
+	Id   string `crawlora:"id"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type VlrPlayerMatchesResponse = any
+
+func (s *VlrService) PlayerMatchesTyped(ctx context.Context, params VlrPlayerMatchesParams, opts ...RequestOption) (VlrPlayerMatchesResponse, error) {
+	return requestTyped[VlrPlayerMatchesResponse](s.client, ctx, "vlr-player-matches", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) Rankings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-rankings", params, opts...)
+}
+
+type VlrRankingsParams struct {
+	Region *string `crawlora:"region,omitempty"`
+	Limit  *int    `crawlora:"limit,omitempty"`
+}
+
+type VlrRankingsResponse = any
+
+func (s *VlrService) RankingsTyped(ctx context.Context, params VlrRankingsParams, opts ...RequestOption) (VlrRankingsResponse, error) {
+	return requestTyped[VlrRankingsResponse](s.client, ctx, "vlr-rankings", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) Results(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-results", params, opts...)
+}
+
+type VlrResultsParams struct {
+	Page *int `crawlora:"page,omitempty"`
+}
+
+type VlrResultsResponse = any
+
+func (s *VlrService) ResultsTyped(ctx context.Context, params VlrResultsParams, opts ...RequestOption) (VlrResultsResponse, error) {
+	return requestTyped[VlrResultsResponse](s.client, ctx, "vlr-results", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) Search(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-search", params, opts...)
+}
+
+type VlrSearchParams struct {
+	Q    string  `crawlora:"q"`
+	Type *string `crawlora:"type,omitempty"`
+}
+
+type VlrSearchResponse = any
+
+func (s *VlrService) SearchTyped(ctx context.Context, params VlrSearchParams, opts ...RequestOption) (VlrSearchResponse, error) {
+	return requestTyped[VlrSearchResponse](s.client, ctx, "vlr-search", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) Stats(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-stats", params, opts...)
+}
+
+type VlrStatsParams struct {
+	Tier      *string `crawlora:"tier,omitempty"`
+	Region    *string `crawlora:"region,omitempty"`
+	Timespan  *string `crawlora:"timespan,omitempty"`
+	Side      *string `crawlora:"side,omitempty"`
+	Role      *string `crawlora:"role,omitempty"`
+	Agent     *string `crawlora:"agent,omitempty"`
+	Map       *string `crawlora:"map,omitempty"`
+	MinRounds *int    `crawlora:"min_rounds,omitempty"`
+	From      *string `crawlora:"from,omitempty"`
+	To        *string `crawlora:"to,omitempty"`
+	MinRating *int    `crawlora:"min_rating,omitempty"`
+	Sort      *string `crawlora:"sort,omitempty"`
+	Dir       *string `crawlora:"dir,omitempty"`
+	Page      *int    `crawlora:"page,omitempty"`
+}
+
+type VlrStatsResponse = any
+
+func (s *VlrService) StatsTyped(ctx context.Context, params VlrStatsParams, opts ...RequestOption) (VlrStatsResponse, error) {
+	return requestTyped[VlrStatsResponse](s.client, ctx, "vlr-stats", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) Team(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-team", params, opts...)
+}
+
+type VlrTeamParams struct {
+	Id string `crawlora:"id"`
+}
+
+type VlrTeamResponse = any
+
+func (s *VlrService) TeamTyped(ctx context.Context, params VlrTeamParams, opts ...RequestOption) (VlrTeamResponse, error) {
+	return requestTyped[VlrTeamResponse](s.client, ctx, "vlr-team", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) TeamMaps(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-team-maps", params, opts...)
+}
+
+type VlrTeamMapsParams struct {
+	Id string `crawlora:"id"`
+}
+
+type VlrTeamMapsResponse = any
+
+func (s *VlrService) TeamMapsTyped(ctx context.Context, params VlrTeamMapsParams, opts ...RequestOption) (VlrTeamMapsResponse, error) {
+	return requestTyped[VlrTeamMapsResponse](s.client, ctx, "vlr-team-maps", paramsFromStruct(params), opts...)
+}
+
+func (s *VlrService) TeamMatches(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "vlr-team-matches", params, opts...)
+}
+
+type VlrTeamMatchesParams struct {
+	Id   string `crawlora:"id"`
+	Page *int   `crawlora:"page,omitempty"`
+}
+
+type VlrTeamMatchesResponse = any
+
+func (s *VlrService) TeamMatchesTyped(ctx context.Context, params VlrTeamMatchesParams, opts ...RequestOption) (VlrTeamMatchesResponse, error) {
+	return requestTyped[VlrTeamMatchesResponse](s.client, ctx, "vlr-team-matches", paramsFromStruct(params), opts...)
+}
+
 type VoxService struct{ client *Client }
 
 func (s *VoxService) Article(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -151192,6 +156962,69 @@ type XdaSectionsResponse = ModelPublicnewsSectionsResponseDoc
 
 func (s *XdaService) SectionsTyped(ctx context.Context, params XdaSectionsParams, opts ...RequestOption) (XdaSectionsResponse, error) {
 	return requestTyped[XdaSectionsResponse](s.client, ctx, "xda-sections", paramsFromStruct(params), opts...)
+}
+
+type XiaohongshuService struct{ client *Client }
+
+func (s *XiaohongshuService) Explore(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "xiaohongshu-explore", params, opts...)
+}
+
+type XiaohongshuExploreParams struct {
+	ChannelId *string `crawlora:"channel_id,omitempty"`
+}
+
+type XiaohongshuExploreResponse = ModelXiaohongshuExploreResponseDoc
+
+func (s *XiaohongshuService) ExploreTyped(ctx context.Context, params XiaohongshuExploreParams, opts ...RequestOption) (XiaohongshuExploreResponse, error) {
+	return requestTyped[XiaohongshuExploreResponse](s.client, ctx, "xiaohongshu-explore", paramsFromStruct(params), opts...)
+}
+
+func (s *XiaohongshuService) Note(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "xiaohongshu-note", params, opts...)
+}
+
+type XiaohongshuNoteParams struct {
+	Url       *string `crawlora:"url,omitempty"`
+	NoteId    *string `crawlora:"note_id,omitempty"`
+	XsecToken *string `crawlora:"xsec_token,omitempty"`
+}
+
+type XiaohongshuNoteResponse = ModelXiaohongshuNoteResponseDoc
+
+func (s *XiaohongshuService) NoteTyped(ctx context.Context, params XiaohongshuNoteParams, opts ...RequestOption) (XiaohongshuNoteResponse, error) {
+	return requestTyped[XiaohongshuNoteResponse](s.client, ctx, "xiaohongshu-note", paramsFromStruct(params), opts...)
+}
+
+func (s *XiaohongshuService) NoteComments(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "xiaohongshu-note-comments", params, opts...)
+}
+
+type XiaohongshuNoteCommentsParams struct {
+	Url       *string `crawlora:"url,omitempty"`
+	NoteId    *string `crawlora:"note_id,omitempty"`
+	XsecToken *string `crawlora:"xsec_token,omitempty"`
+	Cursor    *string `crawlora:"cursor,omitempty"`
+}
+
+type XiaohongshuNoteCommentsResponse = ModelXiaohongshuCommentsResponseDoc
+
+func (s *XiaohongshuService) NoteCommentsTyped(ctx context.Context, params XiaohongshuNoteCommentsParams, opts ...RequestOption) (XiaohongshuNoteCommentsResponse, error) {
+	return requestTyped[XiaohongshuNoteCommentsResponse](s.client, ctx, "xiaohongshu-note-comments", paramsFromStruct(params), opts...)
+}
+
+func (s *XiaohongshuService) SearchSuggest(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "xiaohongshu-search-suggest", params, opts...)
+}
+
+type XiaohongshuSearchSuggestParams struct {
+	Keyword string `crawlora:"keyword"`
+}
+
+type XiaohongshuSearchSuggestResponse = ModelXiaohongshuSuggestResponseDoc
+
+func (s *XiaohongshuService) SearchSuggestTyped(ctx context.Context, params XiaohongshuSearchSuggestParams, opts ...RequestOption) (XiaohongshuSearchSuggestResponse, error) {
+	return requestTyped[XiaohongshuSearchSuggestResponse](s.client, ctx, "xiaohongshu-search-suggest", paramsFromStruct(params), opts...)
 }
 
 type YahooAutosService struct{ client *Client }
