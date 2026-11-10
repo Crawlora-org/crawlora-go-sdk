@@ -3,7 +3,7 @@
 ## v1.51.0
 
 - Stable release of the Crawlora SDKs.
-- Regenerated from the public API contract (4731 operations).
+- Regenerated from the public API contract (4769 operations).
 
 ## v1.50.0
 
