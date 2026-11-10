@@ -60,6 +60,29 @@ taxonomy, err := client.Request(ctx, "boardgamegeek-taxonomy", crawlora.Params{}
 navigation, err := client.Request(ctx, "cricbuzz-navigation", crawlora.Params{})
 ```
 
+## Epic Games, Hearthstone, NHL, and Serebii
+
+The contract now includes free-game promotions, card filters, NHL season discovery,
+and Pokémon GO event listings. See [`operations.md`](operations.md) for the full
+operation reference.
+
+```go
+promotions, err := client.Request(ctx, "epicgames-free-promotions", crawlora.Params{})
+filters, err := client.Request(ctx, "hearthstone-filters", crawlora.Params{})
+seasons, err := client.Request(ctx, "nhl-seasons", crawlora.Params{})
+events, err := client.Request(ctx, "serebii-pokemongo-events", crawlora.Params{"category": "events.shtml"})
+```
+
+## NBA and HLTV
+
+Use the new basketball catalog/standings endpoints alongside competitive Counter-Strike rankings.
+
+```go
+enums, err := client.Request(ctx, "nba-enums", crawlora.Params{})
+standings, err := client.Request(ctx, "nba-standings", crawlora.Params{})
+rankings, err := client.Request(ctx, "hltv-rankings", crawlora.Params{})
+```
+
 ## Company Job Searches
 
 Search public job listings directly from employer career sites:

@@ -70123,6 +70123,31 @@
       },
       "type": "object"
     },
+    "epicgames.PromotionsResponse": {
+      "properties": {
+        "Catalog": {
+          "additionalProperties": {},
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "epicgames.freePromotionsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/epicgames.PromotionsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "es.AirbnbDensityCell": {
       "properties": {
         "geohash": {
@@ -126804,6 +126829,116 @@
       },
       "type": "object"
     },
+    "hearthstone.CardFiltersResponse": {
+      "properties": {
+        "filters": {
+          "type": "object"
+        },
+        "query_options": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "type": "object"
+        },
+        "sort_groups": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sort_mappings": {
+          "items": {
+            "$ref": "#/definitions/hearthstone.CardSortMapping"
+          },
+          "type": "array"
+        },
+        "sort_options": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sort_source_url": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "hearthstone.CardSortMapping": {
+      "properties": {
+        "label_key": {
+          "type": "string"
+        },
+        "order": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "hearthstone.CardsResponse": {
+      "additionalProperties": {},
+      "type": "object"
+    },
+    "hearthstone.cardFiltersResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/hearthstone.CardFiltersResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "hearthstone.cardResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/hearthstone.CardsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "hearthstone.cardsListResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/hearthstone.CardsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "hermes.CatalogueProduct": {
       "properties": {
         "last_modified": {
@@ -127612,6 +127747,20 @@
       },
       "type": "object"
     },
+    "hltv.EventPlacement": {
+      "properties": {
+        "placement": {
+          "type": "string"
+        },
+        "prize": {
+          "type": "string"
+        },
+        "team": {
+          "$ref": "#/definitions/hltv.TeamRef"
+        }
+      },
+      "type": "object"
+    },
     "hltv.EventRef": {
       "properties": {
         "id": {
@@ -127639,6 +127788,12 @@
         },
         "name": {
           "type": "string"
+        },
+        "placements": {
+          "items": {
+            "$ref": "#/definitions/hltv.EventPlacement"
+          },
+          "type": "array"
         },
         "prize_pool": {
           "type": "string"
@@ -127959,6 +128114,35 @@
       },
       "type": "object"
     },
+    "hltv.PlayerMatch": {
+      "properties": {
+        "event": {
+          "type": "string"
+        },
+        "match_id": {
+          "type": "integer"
+        },
+        "opponent": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        },
+        "score": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "starts_at": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "hltv.PlayerResponse": {
       "properties": {
         "age": {
@@ -127979,6 +128163,12 @@
         "real_name": {
           "type": "string"
         },
+        "recent_matches": {
+          "items": {
+            "$ref": "#/definitions/hltv.PlayerMatch"
+          },
+          "type": "array"
+        },
         "role_stats": {
           "items": {
             "$ref": "#/definitions/hltv.PlayerRoleStat"
@@ -127987,6 +128177,12 @@
         },
         "team": {
           "$ref": "#/definitions/hltv.TeamRef"
+        },
+        "upcoming_matches": {
+          "items": {
+            "$ref": "#/definitions/hltv.PlayerMatch"
+          },
+          "type": "array"
         },
         "url": {
           "type": "string"
@@ -128212,6 +128408,38 @@
       },
       "type": "object"
     },
+    "hltv.TeamMatch": {
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "event": {
+          "$ref": "#/definitions/hltv.EventRef"
+        },
+        "match_id": {
+          "type": "integer"
+        },
+        "score": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "teams": {
+          "items": {
+            "$ref": "#/definitions/hltv.TeamRef"
+          },
+          "type": "array"
+        },
+        "url": {
+          "type": "string"
+        },
+        "winner": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "hltv.TeamRanking": {
       "properties": {
         "name": {
@@ -128260,9 +128488,61 @@
           },
           "type": "array"
         },
+        "recent_results": {
+          "items": {
+            "$ref": "#/definitions/hltv.TeamMatch"
+          },
+          "type": "array"
+        },
         "roster": {
           "items": {
             "$ref": "#/definitions/hltv.RosterMember"
+          },
+          "type": "array"
+        },
+        "stats": {
+          "$ref": "#/definitions/hltv.TeamStatsSummary"
+        },
+        "upcoming_matches": {
+          "items": {
+            "$ref": "#/definitions/hltv.TeamUpcomingMatch"
+          },
+          "type": "array"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "hltv.TeamStatsSummary": {
+      "properties": {
+        "timespan": {
+          "type": "string"
+        },
+        "win_rate": {
+          "type": "string"
+        },
+        "win_streak": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "hltv.TeamUpcomingMatch": {
+      "properties": {
+        "event": {
+          "$ref": "#/definitions/hltv.EventRef"
+        },
+        "match_id": {
+          "type": "integer"
+        },
+        "starts_at": {
+          "type": "string"
+        },
+        "teams": {
+          "items": {
+            "$ref": "#/definitions/hltv.TeamRef"
           },
           "type": "array"
         },
@@ -168842,7 +169122,19 @@
     },
     "nba.EnumsData": {
       "properties": {
+        "ahead_behinds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "blocked": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "clutch_times": {
           "items": {
             "type": "string"
           },
@@ -172620,6 +172912,66 @@
       "properties": {
         "tournament": {},
         "tournament_game": {}
+      },
+      "type": "object"
+    },
+    "nhl.GamecenterResponse": {
+      "additionalProperties": {},
+      "type": "object"
+    },
+    "nhl.ScheduleResponse": {
+      "additionalProperties": {},
+      "type": "object"
+    },
+    "nhl.StandingsResponse": {
+      "additionalProperties": {},
+      "type": "object"
+    },
+    "nhl.gamecenterResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/nhl.GamecenterResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "nhl.scheduleResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/nhl.ScheduleResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "nhl.standingsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/nhl.StandingsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
       },
       "type": "object"
     },
@@ -222512,6 +222864,276 @@
         },
         "msg": {
           "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "serebii.EventCategoriesResponse": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/definitions/serebii.EventCategory"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "serebii.EventCategory": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "serebii.EventOnlyMovesResponse": {
+      "properties": {
+        "page_title": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "tables": {
+          "items": {
+            "$ref": "#/definitions/serebii.NativeDataTable"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "serebii.EventOnlyResearchResponse": {
+      "properties": {
+        "page_title": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "table": {
+          "$ref": "#/definitions/serebii.NativeDataTable"
+        }
+      },
+      "type": "object"
+    },
+    "serebii.EventRecord": {
+      "properties": {
+        "dates": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "string"
+        },
+        "focus": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "source_links": {
+          "items": {
+            "$ref": "#/definitions/serebii.SourceLink"
+          },
+          "type": "array"
+        },
+        "special_move": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "serebii.EventsResponse": {
+      "properties": {
+        "category": {
+          "$ref": "#/definitions/serebii.EventCategory"
+        },
+        "records": {
+          "items": {
+            "$ref": "#/definitions/serebii.EventRecord"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "serebii.NativeDataCell": {
+      "properties": {
+        "column_span": {
+          "type": "integer"
+        },
+        "links": {
+          "items": {
+            "$ref": "#/definitions/serebii.SourceLink"
+          },
+          "type": "array"
+        },
+        "row_span": {
+          "type": "integer"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "serebii.NativeDataRow": {
+      "properties": {
+        "cells": {
+          "items": {
+            "$ref": "#/definitions/serebii.NativeDataCell"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "serebii.NativeDataTable": {
+      "properties": {
+        "column_labels": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "heading": {
+          "type": "string"
+        },
+        "rows": {
+          "items": {
+            "$ref": "#/definitions/serebii.NativeDataRow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "serebii.NativeEventDetailResponse": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "filename": {
+          "type": "string"
+        },
+        "overview": {
+          "type": "string"
+        },
+        "page_title": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "tables": {
+          "items": {
+            "$ref": "#/definitions/serebii.NativeDataTable"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "serebii.SourceLink": {
+      "properties": {
+        "column": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "serebii.SpotlightHourRecord": {
+      "properties": {
+        "date_label": {
+          "type": "string"
+        },
+        "extra_effects": {
+          "type": "string"
+        },
+        "pokemon_focus": {
+          "type": "string"
+        },
+        "pokemon_links": {
+          "items": {
+            "$ref": "#/definitions/serebii.SourceLink"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "serebii.SpotlightHoursResponse": {
+      "properties": {
+        "records": {
+          "items": {
+            "$ref": "#/definitions/serebii.SpotlightHourRecord"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "serebii.UnownEventRecord": {
+      "properties": {
+        "available_letters": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "event": {
+          "type": "string"
+        },
+        "event_links": {
+          "items": {
+            "$ref": "#/definitions/serebii.SourceLink"
+          },
+          "type": "array"
+        },
+        "locations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "restrictions": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "serebii.UnownEventsResponse": {
+      "properties": {
+        "records": {
+          "items": {
+            "$ref": "#/definitions/serebii.UnownEventRecord"
+          },
+          "type": "array"
+        },
+        "source_url": {
           "type": "string"
         }
       },
@@ -394441,6 +395063,70 @@
         ]
       }
     },
+    "/epicgames/free-promotions": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the store's current and upcoming promotion offers for the requested locale and country. The response preserves the upstream Catalog searchStore payload and its promotion windows; a zero price alone does not mean an offer is part of a limited-time promotion.",
+        "operationId": "epicgames-free-promotions",
+        "parameters": [
+          {
+            "default": "en-US",
+            "description": "Store locale",
+            "in": "query",
+            "name": "locale",
+            "type": "string"
+          },
+          {
+            "default": "US",
+            "description": "Two-letter country code",
+            "in": "query",
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "default": "US",
+            "description": "Comma-separated country codes accepted by the upstream promotion query; defaults to country",
+            "in": "query",
+            "name": "allowCountries",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/epicgames.freePromotionsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Epic Games Store free promotions",
+        "tags": [
+          "Epic Games Store"
+        ]
+      }
+    },
     "/espn/athlete": {
       "get": {
         "consumes": [
@@ -451329,6 +452015,413 @@
         "summary": "List popular Healthgrades searches",
         "tags": [
           "Healthgrades"
+        ]
+      }
+    },
+    "/hearthstone/card": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one card from the public Hearthstone card library. The card record and pagination metadata preserve the upstream response shape.",
+        "operationId": "hearthstone-card",
+        "parameters": [
+          {
+            "description": "Numeric card ID from the Hearthstone card library",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "80818"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/hearthstone.cardResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Hearthstone card by ID",
+        "tags": [
+          "Hearthstone"
+        ]
+      }
+    },
+    "/hearthstone/cards": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a card-gallery page with native constructed, Battlegrounds, Mercenaries, and card-back filters. Dynamic filter values are discoverable from hearthstone_filters; sort mappings are returned there as well. The default view is all-class Standard with page size 450.",
+        "operationId": "hearthstone-cards",
+        "parameters": [
+          {
+            "default": 1,
+            "description": "Upstream page number",
+            "in": "query",
+            "minimum": 1,
+            "name": "page",
+            "type": "integer"
+          },
+          {
+            "description": "Upstream page size",
+            "in": "query",
+            "minimum": 1,
+            "name": "pageSize",
+            "type": "integer"
+          },
+          {
+            "description": "Source card locale; defaults to en_US",
+            "in": "query",
+            "name": "locale",
+            "type": "string"
+          },
+          {
+            "description": "Source class selector; use hearthstone_filters to discover current classes",
+            "in": "query",
+            "name": "class",
+            "type": "string"
+          },
+          {
+            "description": "Source set selector; use hearthstone_filters to discover current sets",
+            "in": "query",
+            "name": "set",
+            "type": "string"
+          },
+          {
+            "description": "Native source sort expression; see sort_options from hearthstone_filters",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "Source sort direction",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "order",
+            "type": "string"
+          },
+          {
+            "description": "Source game mode; Arena and Duels select their matching set",
+            "in": "query",
+            "name": "gameMode",
+            "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable source collectible selector",
+            "in": "query",
+            "items": {
+              "enum": [
+                "0",
+                "1"
+              ],
+              "type": "string"
+            },
+            "name": "collectible",
+            "type": "array"
+          },
+          {
+            "description": "Source card text search",
+            "in": "query",
+            "name": "textFilter",
+            "type": "string"
+          },
+          {
+            "description": "Locale for textFilter; defaults to en-us",
+            "in": "query",
+            "name": "filterLocale",
+            "type": "string"
+          },
+          {
+            "description": "Optional source deck code filter",
+            "in": "query",
+            "name": "deckcode",
+            "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable card-set ID filter",
+            "in": "query",
+            "items": {
+              "type": "integer"
+            },
+            "name": "cardSetId",
+            "type": "array"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable spell-school ID filter",
+            "in": "query",
+            "items": {
+              "type": "integer"
+            },
+            "name": "spellSchoolId",
+            "type": "array"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable rarity ID filter",
+            "in": "query",
+            "items": {
+              "type": "integer"
+            },
+            "name": "rarityId",
+            "type": "array"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable card-type ID filter",
+            "in": "query",
+            "items": {
+              "type": "integer"
+            },
+            "name": "cardTypeId",
+            "type": "array"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable mana-cost filter",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "manaCost",
+            "type": "array"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable attack filter",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "attack",
+            "type": "array"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable health filter",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "health",
+            "type": "array"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable armor filter",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "armor",
+            "type": "array"
+          },
+          {
+            "description": "Source rarity filter; see hearthstone_filters",
+            "in": "query",
+            "name": "rarity",
+            "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable source type filter; see hearthstone_filters",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "type",
+            "type": "array"
+          },
+          {
+            "description": "Battlegrounds card-type selector from the source gallery",
+            "in": "query",
+            "name": "bgCardType",
+            "type": "string"
+          },
+          {
+            "description": "Source keyword filter; see hearthstone_filters",
+            "in": "query",
+            "name": "keyword",
+            "type": "string"
+          },
+          {
+            "description": "Source minion-type filter; see hearthstone_filters",
+            "in": "query",
+            "name": "minionType",
+            "type": "string"
+          },
+          {
+            "description": "Source deck-format selector",
+            "in": "query",
+            "name": "deckFormat",
+            "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "Repeatable Battlegrounds tavern-tier filter",
+            "in": "query",
+            "items": {
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7"
+              ],
+              "type": "string"
+            },
+            "name": "tier",
+            "type": "array"
+          },
+          {
+            "description": "Source Mercenary role filter; see hearthstone_filters",
+            "in": "query",
+            "name": "mercenaryRole",
+            "type": "string"
+          },
+          {
+            "description": "Source Mercenary faction filter; see hearthstone_filters",
+            "in": "query",
+            "name": "mercenaryFaction",
+            "type": "string"
+          },
+          {
+            "description": "Card-gallery view mode",
+            "enum": [
+              "grid",
+              "table"
+            ],
+            "in": "query",
+            "name": "viewMode",
+            "type": "string"
+          },
+          {
+            "description": "Source card-back category filter; see hearthstone_filters",
+            "in": "query",
+            "name": "cardBackCategory",
+            "type": "string"
+          },
+          {
+            "description": "Source spell-school filter; see hearthstone_filters",
+            "in": "query",
+            "name": "spellSchool",
+            "type": "string"
+          },
+          {
+            "description": "Source faction filter; see hearthstone_filters",
+            "in": "query",
+            "name": "faction",
+            "type": "string"
+          },
+          {
+            "description": "Battlegrounds mode filter; see hearthstone_filters",
+            "in": "query",
+            "name": "bgGameMode",
+            "type": "string"
+          },
+          {
+            "description": "Source Zilliax module filter",
+            "in": "query",
+            "name": "zilliaxMod",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/hearthstone.cardsListResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Hearthstone cards",
+        "tags": [
+          "Hearthstone"
+        ]
+      }
+    },
+    "/hearthstone/filters": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the card gallery's current filter collections and sort options. Filter values come from the gallery page configuration; sort slugs come from its current hashed card bundle.",
+        "operationId": "hearthstone-filters",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/hearthstone.cardFiltersResponseDoc"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Hearthstone card gallery filters",
+        "tags": [
+          "Hearthstone"
         ]
       }
     },
@@ -510878,6 +511971,115 @@
         ]
       }
     },
+    "/nba/hustle-team": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the league's team hustle table: contested shots, deflections, charges drawn, screen assists and points, loose balls recovered and box-outs.",
+        "operationId": "nba-hustle-team",
+        "parameters": [
+          {
+            "description": "Optional league id; only 00 (NBA) is verified.",
+            "enum": [
+              "00"
+            ],
+            "in": "query",
+            "name": "league_id",
+            "type": "string"
+          },
+          {
+            "description": "Optional season in YYYY-YY form; defaults to the current NBA season.",
+            "in": "query",
+            "name": "season",
+            "type": "string"
+          },
+          {
+            "description": "Optional season type.",
+            "enum": [
+              "Regular Season",
+              "Playoffs",
+              "Pre Season",
+              "All Star"
+            ],
+            "in": "query",
+            "name": "season_type",
+            "type": "string"
+          },
+          {
+            "description": "Optional aggregation.",
+            "enum": [
+              "PerGame",
+              "Totals",
+              "Per36",
+              "Per48",
+              "Per100Possessions",
+              "MinutesPer",
+              "PerPossession"
+            ],
+            "in": "query",
+            "name": "per_mode",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/nba.TablesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Returns the league's team hustle table: contested shots, deflections, charges drawn, screen assists and points, loose balls recovered and box-outs",
+        "tags": [
+          "NBA"
+        ]
+      }
+    },
     "/nba/league-game-log": {
       "get": {
         "consumes": [
@@ -511186,6 +512388,115 @@
           }
         ],
         "summary": "NBA news articles from nba.com",
+        "tags": [
+          "NBA"
+        ]
+      }
+    },
+    "/nba/opp-pt-shot": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the league's opponent shooting table: one row per team with the shooting it allows, split overall and from three.",
+        "operationId": "nba-opp-pt-shot",
+        "parameters": [
+          {
+            "description": "Optional league id; only 00 (NBA) is verified.",
+            "enum": [
+              "00"
+            ],
+            "in": "query",
+            "name": "league_id",
+            "type": "string"
+          },
+          {
+            "description": "Optional season in YYYY-YY form; defaults to the current NBA season.",
+            "in": "query",
+            "name": "season",
+            "type": "string"
+          },
+          {
+            "description": "Optional season type.",
+            "enum": [
+              "Regular Season",
+              "Playoffs",
+              "Pre Season",
+              "All Star"
+            ],
+            "in": "query",
+            "name": "season_type",
+            "type": "string"
+          },
+          {
+            "description": "Optional aggregation.",
+            "enum": [
+              "PerGame",
+              "Totals",
+              "Per36",
+              "Per48",
+              "Per100Possessions",
+              "MinutesPer",
+              "PerPossession"
+            ],
+            "in": "query",
+            "name": "per_mode",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/nba.TablesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Returns the league's opponent shooting table: one row per team with the shooting it allows, split overall and from three",
         "tags": [
           "NBA"
         ]
@@ -511554,6 +512865,156 @@
         ]
       }
     },
+    "/nba/player-clutch": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the league's clutch player table for one clutch window and score margin: the players' clutch shooting and counting stats.",
+        "operationId": "nba-player-clutch",
+        "parameters": [
+          {
+            "description": "Optional league id; only 00 (NBA) is verified.",
+            "enum": [
+              "00"
+            ],
+            "in": "query",
+            "name": "league_id",
+            "type": "string"
+          },
+          {
+            "description": "Optional season in YYYY-YY form; defaults to the current NBA season.",
+            "in": "query",
+            "name": "season",
+            "type": "string"
+          },
+          {
+            "description": "Optional season type.",
+            "enum": [
+              "Regular Season",
+              "Playoffs",
+              "Pre Season",
+              "All Star"
+            ],
+            "in": "query",
+            "name": "season_type",
+            "type": "string"
+          },
+          {
+            "description": "Optional aggregation.",
+            "enum": [
+              "PerGame",
+              "Totals",
+              "Per36",
+              "Per48",
+              "Per100Possessions",
+              "MinutesPer",
+              "PerPossession"
+            ],
+            "in": "query",
+            "name": "per_mode",
+            "type": "string"
+          },
+          {
+            "description": "Optional statistic family.",
+            "enum": [
+              "Base",
+              "Advanced",
+              "Misc",
+              "Scoring",
+              "Defense",
+              "Opponent"
+            ],
+            "in": "query",
+            "name": "measure_type",
+            "type": "string"
+          },
+          {
+            "description": "Optional clutch window; only 'Last 5 Minutes' is verified.",
+            "enum": [
+              "Last 5 Minutes"
+            ],
+            "in": "query",
+            "name": "clutch_time",
+            "type": "string"
+          },
+          {
+            "description": "Optional score-margin filter; only 'Ahead or Behind' is verified.",
+            "enum": [
+              "Ahead or Behind"
+            ],
+            "in": "query",
+            "name": "ahead_behind",
+            "type": "string"
+          },
+          {
+            "description": "Optional point margin; only 5 is verified.",
+            "enum": [
+              5
+            ],
+            "in": "query",
+            "name": "point_diff",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/nba.TablesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Returns the league's clutch player table for one clutch window and score margin: the players' clutch shooting and counting stats",
+        "tags": [
+          "NBA"
+        ]
+      }
+    },
     "/nba/player-dash-pt-shots": {
       "get": {
         "consumes": [
@@ -511666,6 +513127,107 @@
         ]
       }
     },
+    "/nba/player-game-logs": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one player's game log for a season, one row per game with the player's box-score line.",
+        "operationId": "nba-player-game-logs",
+        "parameters": [
+          {
+            "description": "Optional league id; only 00 (NBA) is verified.",
+            "enum": [
+              "00"
+            ],
+            "in": "query",
+            "name": "league_id",
+            "type": "string"
+          },
+          {
+            "description": "Optional season in YYYY-YY form; defaults to the current NBA season.",
+            "in": "query",
+            "name": "season",
+            "type": "string"
+          },
+          {
+            "description": "Optional season type.",
+            "enum": [
+              "Regular Season",
+              "Playoffs",
+              "Pre Season",
+              "All Star"
+            ],
+            "in": "query",
+            "name": "season_type",
+            "type": "string"
+          },
+          {
+            "description": "Required player id from nba-players or nba-team-roster.",
+            "in": "query",
+            "name": "player_id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/nba.TablesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Returns one player's game log for a season, one row per game with the player's box-score line",
+        "tags": [
+          "NBA"
+        ]
+      }
+    },
     "/nba/player-info": {
       "get": {
         "consumes": [
@@ -511746,6 +513308,204 @@
           }
         ],
         "summary": "NBA player profile",
+        "tags": [
+          "NBA"
+        ]
+      }
+    },
+    "/nba/player-profile-v2": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one player's full profile stat set: the season-by-season regular-season line, the career regular-season totals and the postseason equivalents.",
+        "operationId": "nba-player-profile-v2",
+        "parameters": [
+          {
+            "description": "Required player id from nba-players or nba-team-roster.",
+            "in": "query",
+            "name": "player_id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Optional aggregation.",
+            "enum": [
+              "PerGame",
+              "Totals",
+              "Per36",
+              "Per48",
+              "Per100Possessions",
+              "MinutesPer",
+              "PerPossession"
+            ],
+            "in": "query",
+            "name": "per_mode",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/nba.TablesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Returns one player's full profile stat set: the season-by-season regular-season line, the career regular-season totals and the postseason equivalents",
+        "tags": [
+          "NBA"
+        ]
+      }
+    },
+    "/nba/player-pt-shot": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the league's player shooting table: one row per player with the shooting line, split overall and from three.",
+        "operationId": "nba-player-pt-shot",
+        "parameters": [
+          {
+            "description": "Optional league id; only 00 (NBA) is verified.",
+            "enum": [
+              "00"
+            ],
+            "in": "query",
+            "name": "league_id",
+            "type": "string"
+          },
+          {
+            "description": "Optional season in YYYY-YY form; defaults to the current NBA season.",
+            "in": "query",
+            "name": "season",
+            "type": "string"
+          },
+          {
+            "description": "Optional season type.",
+            "enum": [
+              "Regular Season",
+              "Playoffs",
+              "Pre Season",
+              "All Star"
+            ],
+            "in": "query",
+            "name": "season_type",
+            "type": "string"
+          },
+          {
+            "description": "Optional aggregation.",
+            "enum": [
+              "PerGame",
+              "Totals",
+              "Per36",
+              "Per48",
+              "Per100Possessions",
+              "MinutesPer",
+              "PerPossession"
+            ],
+            "in": "query",
+            "name": "per_mode",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/nba.TablesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Returns the league's player shooting table: one row per player with the shooting line, split overall and from three",
         "tags": [
           "NBA"
         ]
@@ -511874,6 +513634,112 @@
           }
         ],
         "summary": "NBA league-wide player statistics table",
+        "tags": [
+          "NBA"
+        ]
+      }
+    },
+    "/nba/player-streak-finder": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns player game streaks for a season: the streak rows the upstream computes, one row per streak, with the player identity and streak totals.",
+        "operationId": "nba-player-streak-finder",
+        "parameters": [
+          {
+            "description": "Optional league id; only 00 (NBA) is verified.",
+            "enum": [
+              "00"
+            ],
+            "in": "query",
+            "name": "league_id",
+            "type": "string"
+          },
+          {
+            "description": "Optional season in YYYY-YY form; defaults to the current NBA season.",
+            "in": "query",
+            "name": "season",
+            "type": "string"
+          },
+          {
+            "description": "Optional season type.",
+            "enum": [
+              "Regular Season",
+              "Playoffs",
+              "Pre Season",
+              "All Star"
+            ],
+            "in": "query",
+            "name": "season_type",
+            "type": "string"
+          },
+          {
+            "description": "Optional player id from nba-players; narrows the streaks to one player.",
+            "in": "query",
+            "name": "player_id",
+            "type": "integer"
+          },
+          {
+            "description": "Optional minimum streak length in games.",
+            "in": "query",
+            "name": "min_games",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/nba.TablesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Returns player game streaks for a season: the streak rows the upstream computes, one row per streak, with the player identity and streak totals",
         "tags": [
           "NBA"
         ]
@@ -512611,6 +514477,238 @@
         ]
       }
     },
+    "/nba/team-dash-pt-pass": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one team's passing dashboard: the pass-type breakdowns the upstream computes for that team, as several result sets.",
+        "operationId": "nba-team-dash-pt-pass",
+        "parameters": [
+          {
+            "description": "Optional league id; only 00 (NBA) is verified.",
+            "enum": [
+              "00"
+            ],
+            "in": "query",
+            "name": "league_id",
+            "type": "string"
+          },
+          {
+            "description": "Optional season in YYYY-YY form; defaults to the current NBA season.",
+            "in": "query",
+            "name": "season",
+            "type": "string"
+          },
+          {
+            "description": "Optional season type.",
+            "enum": [
+              "Regular Season",
+              "Playoffs",
+              "Pre Season",
+              "All Star"
+            ],
+            "in": "query",
+            "name": "season_type",
+            "type": "string"
+          },
+          {
+            "description": "Optional aggregation.",
+            "enum": [
+              "PerGame",
+              "Totals",
+              "Per36",
+              "Per48",
+              "Per100Possessions",
+              "MinutesPer",
+              "PerPossession"
+            ],
+            "in": "query",
+            "name": "per_mode",
+            "type": "string"
+          },
+          {
+            "description": "Required team id from nba-standings.",
+            "in": "query",
+            "name": "team_id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/nba.TablesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Returns one team's passing dashboard: the pass-type breakdowns the upstream computes for that team, as several result sets",
+        "tags": [
+          "NBA"
+        ]
+      }
+    },
+    "/nba/team-dash-pt-shots": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one team's tracking shot dashboard: the shot breakdowns the upstream computes for that team (by touch time and shot type), as several result sets.",
+        "operationId": "nba-team-dash-pt-shots",
+        "parameters": [
+          {
+            "description": "Optional league id; only 00 (NBA) is verified.",
+            "enum": [
+              "00"
+            ],
+            "in": "query",
+            "name": "league_id",
+            "type": "string"
+          },
+          {
+            "description": "Optional season in YYYY-YY form; defaults to the current NBA season.",
+            "in": "query",
+            "name": "season",
+            "type": "string"
+          },
+          {
+            "description": "Optional season type.",
+            "enum": [
+              "Regular Season",
+              "Playoffs",
+              "Pre Season",
+              "All Star"
+            ],
+            "in": "query",
+            "name": "season_type",
+            "type": "string"
+          },
+          {
+            "description": "Optional aggregation.",
+            "enum": [
+              "PerGame",
+              "Totals",
+              "Per36",
+              "Per48",
+              "Per100Possessions",
+              "MinutesPer",
+              "PerPossession"
+            ],
+            "in": "query",
+            "name": "per_mode",
+            "type": "string"
+          },
+          {
+            "description": "Required team id from nba-standings.",
+            "in": "query",
+            "name": "team_id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/nba.TablesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Returns one team's tracking shot dashboard: the shot breakdowns the upstream computes for that team (by touch time and shot type), as several result sets",
+        "tags": [
+          "NBA"
+        ]
+      }
+    },
     "/nba/team-details": {
       "get": {
         "consumes": [
@@ -512691,6 +514789,447 @@
           }
         ],
         "summary": "NBA franchise background, season history and awards",
+        "tags": [
+          "NBA"
+        ]
+      }
+    },
+    "/nba/team-game-logs": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one team's game log for a season, one row per game with the team's box-score line (field goals, threes, rebounds, assists, steals, blocks, turnovers, points and plus-minus).",
+        "operationId": "nba-team-game-logs",
+        "parameters": [
+          {
+            "description": "Optional league id; only 00 (NBA) is verified.",
+            "enum": [
+              "00"
+            ],
+            "in": "query",
+            "name": "league_id",
+            "type": "string"
+          },
+          {
+            "description": "Optional season in YYYY-YY form; defaults to the current NBA season.",
+            "in": "query",
+            "name": "season",
+            "type": "string"
+          },
+          {
+            "description": "Optional season type.",
+            "enum": [
+              "Regular Season",
+              "Playoffs",
+              "Pre Season",
+              "All Star"
+            ],
+            "in": "query",
+            "name": "season_type",
+            "type": "string"
+          },
+          {
+            "description": "Required team id from nba-standings.",
+            "in": "query",
+            "name": "team_id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/nba.TablesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Returns one team's game log for a season, one row per game with the team's box-score line (field goals, threes, rebounds, assists, steals, blocks, turnovers, points and plus-minus)",
+        "tags": [
+          "NBA"
+        ]
+      }
+    },
+    "/nba/team-info-common": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one team's identity and season summary: city, name, abbreviation, code, conference and division, the win/loss record and per-game team averages, plus the team's available seasons.",
+        "operationId": "nba-team-info-common",
+        "parameters": [
+          {
+            "description": "Optional league id; only 00 (NBA) is verified.",
+            "enum": [
+              "00"
+            ],
+            "in": "query",
+            "name": "league_id",
+            "type": "string"
+          },
+          {
+            "description": "Optional season in YYYY-YY form; defaults to the current NBA season.",
+            "in": "query",
+            "name": "season",
+            "type": "string"
+          },
+          {
+            "description": "Optional season type.",
+            "enum": [
+              "Regular Season",
+              "Playoffs",
+              "Pre Season",
+              "All Star"
+            ],
+            "in": "query",
+            "name": "season_type",
+            "type": "string"
+          },
+          {
+            "description": "Required team id from nba-standings.",
+            "in": "query",
+            "name": "team_id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/nba.TablesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Returns one team's identity and season summary: city, name, abbreviation, code, conference and division, the win/loss record and per-game team averages, plus the team's available seasons",
+        "tags": [
+          "NBA"
+        ]
+      }
+    },
+    "/nba/team-on-off": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a team's on-court/off-court player splits: the on-court and off-court rows the upstream computes, with each player's minutes and rating impact.",
+        "operationId": "nba-team-on-off",
+        "parameters": [
+          {
+            "description": "Optional league id; only 00 (NBA) is verified.",
+            "enum": [
+              "00"
+            ],
+            "in": "query",
+            "name": "league_id",
+            "type": "string"
+          },
+          {
+            "description": "Optional season in YYYY-YY form; defaults to the current NBA season.",
+            "in": "query",
+            "name": "season",
+            "type": "string"
+          },
+          {
+            "description": "Optional season type.",
+            "enum": [
+              "Regular Season",
+              "Playoffs",
+              "Pre Season",
+              "All Star"
+            ],
+            "in": "query",
+            "name": "season_type",
+            "type": "string"
+          },
+          {
+            "description": "Optional aggregation.",
+            "enum": [
+              "PerGame",
+              "Totals",
+              "Per36",
+              "Per48",
+              "Per100Possessions",
+              "MinutesPer",
+              "PerPossession"
+            ],
+            "in": "query",
+            "name": "per_mode",
+            "type": "string"
+          },
+          {
+            "description": "Optional statistic family.",
+            "enum": [
+              "Base",
+              "Advanced",
+              "Misc",
+              "Scoring",
+              "Defense",
+              "Opponent"
+            ],
+            "in": "query",
+            "name": "measure_type",
+            "type": "string"
+          },
+          {
+            "description": "Required team id from nba-standings.",
+            "in": "query",
+            "name": "team_id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/nba.TablesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Returns a team's on-court/off-court player splits: the on-court and off-court rows the upstream computes, with each player's minutes and rating impact",
+        "tags": [
+          "NBA"
+        ]
+      }
+    },
+    "/nba/team-pt-shot": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the league's team shooting table: one row per team with the shooting line, split overall and from three.",
+        "operationId": "nba-team-pt-shot",
+        "parameters": [
+          {
+            "description": "Optional league id; only 00 (NBA) is verified.",
+            "enum": [
+              "00"
+            ],
+            "in": "query",
+            "name": "league_id",
+            "type": "string"
+          },
+          {
+            "description": "Optional season in YYYY-YY form; defaults to the current NBA season.",
+            "in": "query",
+            "name": "season",
+            "type": "string"
+          },
+          {
+            "description": "Optional season type.",
+            "enum": [
+              "Regular Season",
+              "Playoffs",
+              "Pre Season",
+              "All Star"
+            ],
+            "in": "query",
+            "name": "season_type",
+            "type": "string"
+          },
+          {
+            "description": "Optional aggregation.",
+            "enum": [
+              "PerGame",
+              "Totals",
+              "Per36",
+              "Per48",
+              "Per100Possessions",
+              "MinutesPer",
+              "PerPossession"
+            ],
+            "in": "query",
+            "name": "per_mode",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/nba.TablesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Returns the league's team shooting table: one row per team with the shooting line, split overall and from three",
         "tags": [
           "NBA"
         ]
@@ -513171,6 +515710,82 @@
           }
         ],
         "summary": "NBA league leaders for one statistical category",
+        "tags": [
+          "NBA"
+        ]
+      }
+    },
+    "/nba/team-years": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns every franchise and the range of seasons it has played, one row per team.",
+        "operationId": "nba-team-years",
+        "parameters": [
+          {
+            "description": "Optional league id; only 00 (NBA) is verified.",
+            "enum": [
+              "00"
+            ],
+            "in": "query",
+            "name": "league_id",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/nba.TablesResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Returns every franchise and the range of seasons it has played, one row per team",
         "tags": [
           "NBA"
         ]
@@ -517595,6 +520210,255 @@
         "summary": "Typeahead school and association suggestions",
         "tags": [
           "NFHS"
+        ]
+      }
+    },
+    "/nhl/gamecenter/boxscore": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the upstream gamecenter boxscore for one NHL game ID, preserving the source's team and player statistics.",
+        "operationId": "nhl-gamecenter-boxscore",
+        "parameters": [
+          {
+            "description": "10-digit NHL game ID",
+            "in": "query",
+            "name": "game_id",
+            "required": true,
+            "type": "string",
+            "x-example": "2026020262"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/nhl.gamecenterResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get NHL game boxscore",
+        "tags": [
+          "NHL"
+        ]
+      }
+    },
+    "/nhl/gamecenter/play-by-play": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the upstream gamecenter play-by-play for one NHL game ID, preserving the source event sequence and team/player fields.",
+        "operationId": "nhl-gamecenter-play-by-play",
+        "parameters": [
+          {
+            "description": "10-digit NHL game ID",
+            "in": "query",
+            "name": "game_id",
+            "required": true,
+            "type": "string",
+            "x-example": "2026020262"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/nhl.gamecenterResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get NHL game play by play",
+        "tags": [
+          "NHL"
+        ]
+      }
+    },
+    "/nhl/schedule": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the NHL schedule resource for the requested ISO date. Omitting date uses the upstream `now` resource. The response preserves game IDs, game state, and source schedule structure.",
+        "operationId": "nhl-schedule",
+        "parameters": [
+          {
+            "description": "ISO date (YYYY-MM-DD); defaults to now",
+            "in": "query",
+            "name": "date",
+            "type": "string",
+            "x-example": "2026-11-06"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/nhl.scheduleResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get NHL schedule",
+        "tags": [
+          "NHL"
+        ]
+      }
+    },
+    "/nhl/seasons": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the NHL API's native season catalog without additional filtering or derived fields.",
+        "operationId": "nhl-seasons",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List NHL seasons",
+        "tags": [
+          "NHL"
+        ]
+      }
+    },
+    "/nhl/standings": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the NHL standings resource for the requested ISO date. Omitting date uses the upstream `now` resource. The response preserves NHL team IDs, standings fields, and source dates.",
+        "operationId": "nhl-standings",
+        "parameters": [
+          {
+            "description": "ISO date (YYYY-MM-DD); defaults to now",
+            "in": "query",
+            "name": "date",
+            "type": "string",
+            "x-example": "2026-11-06"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/nhl.standingsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get NHL standings",
+        "tags": [
+          "NHL"
         ]
       }
     },
@@ -571542,6 +574406,707 @@
         "summary": "Sephora search suggestions",
         "tags": [
           "Sephora"
+        ]
+      }
+    },
+    "/serebii/pokemongo/communityday/{filename}": {
+      "get": {
+        "description": "Returns the public tables from one native Community Day detail page. Linked pages and media are not fetched.",
+        "operationId": "serebii-pokemongo-event-detail-community-day",
+        "parameters": [
+          {
+            "description": "Native event page filename returned by the Community Day list",
+            "in": "path",
+            "name": "filename",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/serebii.NativeEventDetailResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Serebii Pokémon GO Community Day page",
+        "tags": [
+          "Serebii"
+        ]
+      }
+    },
+    "/serebii/pokemongo/event-categories": {
+      "get": {
+        "description": "Returns the nine native event category pages linked from the Pokémon GO event index.",
+        "operationId": "serebii-pokemongo-event-categories",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/serebii.EventCategoriesResponse"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Serebii Pokémon GO event category pages",
+        "tags": [
+          "Serebii"
+        ]
+      }
+    },
+    "/serebii/pokemongo/event-only-moves": {
+      "get": {
+        "description": "Returns Serebii's Fast Attacks and Charge Attacks tables for moves identified as event-only.",
+        "operationId": "serebii-pokemongo-event-only-moves",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/serebii.EventOnlyMovesResponse"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Serebii Pokémon GO event-only move tables",
+        "tags": [
+          "Serebii"
+        ]
+      }
+    },
+    "/serebii/pokemongo/event-only-research": {
+      "get": {
+        "description": "Returns the rows from Serebii's Event Only Field Research table.",
+        "operationId": "serebii-pokemongo-event-only-research",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/serebii.EventOnlyResearchResponse"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Serebii Pokémon GO event-only field research",
+        "tags": [
+          "Serebii"
+        ]
+      }
+    },
+    "/serebii/pokemongo/events": {
+      "get": {
+        "description": "Returns the rows from one native Serebii Pokémon GO event category page, preserving source order and date labels.",
+        "operationId": "serebii-pokemongo-events",
+        "parameters": [
+          {
+            "description": "Native event page filename from event-categories",
+            "enum": [
+              "events.shtml",
+              "reallifeevents.shtml",
+              "ticketevents.shtml",
+              "communityday.shtml",
+              "raidday.shtml",
+              "maxbattleday.shtml",
+              "incenseday.shtml",
+              "limitedresearchday.shtml",
+              "hatchday.shtml"
+            ],
+            "in": "query",
+            "name": "category",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/serebii.EventsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List events from a Serebii Pokémon GO category page",
+        "tags": [
+          "Serebii"
+        ]
+      }
+    },
+    "/serebii/pokemongo/events/{filename}": {
+      "get": {
+        "description": "Returns the public tables from one native Global Events detail page. Linked pages and media are not fetched.",
+        "operationId": "serebii-pokemongo-event-detail-global",
+        "parameters": [
+          {
+            "description": "Native event page filename returned by the Global Events list",
+            "in": "path",
+            "name": "filename",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/serebii.NativeEventDetailResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Serebii Pokémon GO global event page",
+        "tags": [
+          "Serebii"
+        ]
+      }
+    },
+    "/serebii/pokemongo/hatchday/{filename}": {
+      "get": {
+        "description": "Returns the public tables from one native Hatch Day detail page. Linked pages and media are not fetched.",
+        "operationId": "serebii-pokemongo-event-detail-hatch-day",
+        "parameters": [
+          {
+            "description": "Native event page filename returned by the Hatch Day list",
+            "in": "path",
+            "name": "filename",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/serebii.NativeEventDetailResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Serebii Pokémon GO Hatch Day page",
+        "tags": [
+          "Serebii"
+        ]
+      }
+    },
+    "/serebii/pokemongo/incenseday/{filename}": {
+      "get": {
+        "description": "Returns the public tables from one native Incense Day detail page. Linked pages and media are not fetched.",
+        "operationId": "serebii-pokemongo-event-detail-incense-day",
+        "parameters": [
+          {
+            "description": "Native event page filename returned by the Incense Day list",
+            "in": "path",
+            "name": "filename",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/serebii.NativeEventDetailResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Serebii Pokémon GO Incense Day page",
+        "tags": [
+          "Serebii"
+        ]
+      }
+    },
+    "/serebii/pokemongo/limitedresearchday/{filename}": {
+      "get": {
+        "description": "Returns the public tables from one native Research Day detail page. Linked pages and media are not fetched.",
+        "operationId": "serebii-pokemongo-event-detail-research-day",
+        "parameters": [
+          {
+            "description": "Native event page filename returned by the Research Day list",
+            "in": "path",
+            "name": "filename",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/serebii.NativeEventDetailResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Serebii Pokémon GO Research Day page",
+        "tags": [
+          "Serebii"
+        ]
+      }
+    },
+    "/serebii/pokemongo/maxbattleday/{filename}": {
+      "get": {
+        "description": "Returns the public tables from one native Max Battle Day detail page. Linked pages and media are not fetched.",
+        "operationId": "serebii-pokemongo-event-detail-max-battle-day",
+        "parameters": [
+          {
+            "description": "Native event page filename returned by the Max Battle Day list",
+            "in": "path",
+            "name": "filename",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/serebii.NativeEventDetailResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Serebii Pokémon GO Max Battle Day page",
+        "tags": [
+          "Serebii"
+        ]
+      }
+    },
+    "/serebii/pokemongo/raidday/{filename}": {
+      "get": {
+        "description": "Returns the public tables from one native Raid Day detail page. Linked pages and media are not fetched.",
+        "operationId": "serebii-pokemongo-event-detail-raid-day",
+        "parameters": [
+          {
+            "description": "Native event page filename returned by the Raid Day list",
+            "in": "path",
+            "name": "filename",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/serebii.NativeEventDetailResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Serebii Pokémon GO Raid Day page",
+        "tags": [
+          "Serebii"
+        ]
+      }
+    },
+    "/serebii/pokemongo/reallifeevents/{filename}": {
+      "get": {
+        "description": "Returns the public tables from one native Real Life Events detail page. Linked pages and media are not fetched.",
+        "operationId": "serebii-pokemongo-event-detail-real-life",
+        "parameters": [
+          {
+            "description": "Native event page filename returned by the Real Life Events list",
+            "in": "path",
+            "name": "filename",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/serebii.NativeEventDetailResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Serebii Pokémon GO real-life event page",
+        "tags": [
+          "Serebii"
+        ]
+      }
+    },
+    "/serebii/pokemongo/spotlight-hours": {
+      "get": {
+        "description": "Returns rows from Serebii's historical Spotlight Hour table. The source dates are labels and do not represent a current or future schedule.",
+        "operationId": "serebii-pokemongo-spotlight-hours",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/serebii.SpotlightHoursResponse"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Serebii Pokémon GO Spotlight Hour archive rows",
+        "tags": [
+          "Serebii"
+        ]
+      }
+    },
+    "/serebii/pokemongo/ticketevents/{filename}": {
+      "get": {
+        "description": "Returns the public tables from one native Ticket Events detail page. Linked pages and media are not fetched.",
+        "operationId": "serebii-pokemongo-event-detail-ticket",
+        "parameters": [
+          {
+            "description": "Native event page filename returned by the Ticket Events list",
+            "in": "path",
+            "name": "filename",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/serebii.NativeEventDetailResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Serebii Pokémon GO ticket event page",
+        "tags": [
+          "Serebii"
+        ]
+      }
+    },
+    "/serebii/pokemongo/unown-events": {
+      "get": {
+        "description": "Returns the rows from Serebii's Unown Event Locations archive, including source date, event, locations, letters, and restrictions.",
+        "operationId": "serebii-pokemongo-unown-events",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/serebii.UnownEventsResponse"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Serebii Pokémon GO Unown event locations",
+        "tags": [
+          "Serebii"
         ]
       }
     },

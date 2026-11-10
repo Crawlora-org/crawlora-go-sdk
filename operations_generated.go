@@ -22195,6 +22195,16 @@ type ModelEonlineAuthorResponse struct {
 	Url      string                          `json:"url,omitempty"`
 }
 
+type ModelEpicgamesPromotionsResponse struct {
+	Catalog map[string]any `json:"Catalog,omitempty"`
+}
+
+type ModelEpicgamesFreePromotionsResponseDoc struct {
+	Code int                              `json:"code,omitempty"`
+	Data ModelEpicgamesPromotionsResponse `json:"data,omitempty"`
+	Msg  string                           `json:"msg,omitempty"`
+}
+
 type ModelEsAirbnbDensityCell struct {
 	Geohash           string  `json:"geohash,omitempty"`
 	Lat               float64 `json:"lat,omitempty"`
@@ -40125,6 +40135,43 @@ type ModelHealthgradesSuggestionsResponseDoc struct {
 	Data ModelHealthgradesSuggestionResponse `json:"data,omitempty"`
 }
 
+type ModelHearthstoneCardFiltersResponse struct {
+	Filters       map[string]any                    `json:"filters,omitempty"`
+	QueryOptions  map[string][]string               `json:"query_options,omitempty"`
+	SortGroups    []string                          `json:"sort_groups,omitempty"`
+	SortMappings  []ModelHearthstoneCardSortMapping `json:"sort_mappings,omitempty"`
+	SortOptions   []string                          `json:"sort_options,omitempty"`
+	SortSourceUrl string                            `json:"sort_source_url,omitempty"`
+	SourceUrl     string                            `json:"source_url,omitempty"`
+}
+
+type ModelHearthstoneCardSortMapping struct {
+	LabelKey string `json:"label_key,omitempty"`
+	Order    string `json:"order,omitempty"`
+	Slug     string `json:"slug,omitempty"`
+	Sort     string `json:"sort,omitempty"`
+}
+
+type ModelHearthstoneCardsResponse = map[string]any
+
+type ModelHearthstoneCardFiltersResponseDoc struct {
+	Code int                                 `json:"code,omitempty"`
+	Data ModelHearthstoneCardFiltersResponse `json:"data,omitempty"`
+	Msg  string                              `json:"msg,omitempty"`
+}
+
+type ModelHearthstoneCardResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelHearthstoneCardsResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
+type ModelHearthstoneCardsListResponseDoc struct {
+	Code int                           `json:"code,omitempty"`
+	Data ModelHearthstoneCardsResponse `json:"data,omitempty"`
+	Msg  string                        `json:"msg,omitempty"`
+}
+
 type ModelHermesCatalogueProduct struct {
 	LastModified string `json:"last_modified,omitempty"`
 	ProductId    string `json:"product_id,omitempty"`
@@ -40404,6 +40451,12 @@ type ModelHltvEvent struct {
 	Url       string             `json:"url,omitempty"`
 }
 
+type ModelHltvEventPlacement struct {
+	Placement string           `json:"placement,omitempty"`
+	Prize     string           `json:"prize,omitempty"`
+	Team      ModelHltvTeamRef `json:"team,omitempty"`
+}
+
 type ModelHltvEventRef struct {
 	Id   int    `json:"id,omitempty"`
 	Name string `json:"name,omitempty"`
@@ -40411,16 +40464,17 @@ type ModelHltvEventRef struct {
 }
 
 type ModelHltvEventResponse struct {
-	EndDate   string               `json:"end_date,omitempty"`
-	Id        int                  `json:"id,omitempty"`
-	Location  string               `json:"location,omitempty"`
-	Name      string               `json:"name,omitempty"`
-	PrizePool string               `json:"prize_pool,omitempty"`
-	StartDate string               `json:"start_date,omitempty"`
-	Status    string               `json:"status,omitempty"`
-	TeamCount int                  `json:"team_count,omitempty"`
-	Teams     []ModelHltvEventTeam `json:"teams,omitempty"`
-	Url       string               `json:"url,omitempty"`
+	EndDate    string                    `json:"end_date,omitempty"`
+	Id         int                       `json:"id,omitempty"`
+	Location   string                    `json:"location,omitempty"`
+	Name       string                    `json:"name,omitempty"`
+	Placements []ModelHltvEventPlacement `json:"placements,omitempty"`
+	PrizePool  string                    `json:"prize_pool,omitempty"`
+	StartDate  string                    `json:"start_date,omitempty"`
+	Status     string                    `json:"status,omitempty"`
+	TeamCount  int                       `json:"team_count,omitempty"`
+	Teams      []ModelHltvEventTeam      `json:"teams,omitempty"`
+	Url        string                    `json:"url,omitempty"`
 }
 
 type ModelHltvEventTeam struct {
@@ -40522,16 +40576,28 @@ type ModelHltvMatchesResponse struct {
 	Matches []ModelHltvMatch `json:"matches,omitempty"`
 }
 
+type ModelHltvPlayerMatch struct {
+	Event    string `json:"event,omitempty"`
+	MatchId  int    `json:"match_id,omitempty"`
+	Opponent string `json:"opponent,omitempty"`
+	Result   string `json:"result,omitempty"`
+	Score    []int  `json:"score,omitempty"`
+	StartsAt string `json:"starts_at,omitempty"`
+	Url      string `json:"url,omitempty"`
+}
+
 type ModelHltvPlayerResponse struct {
-	Age         string                    `json:"age,omitempty"`
-	Country     string                    `json:"country,omitempty"`
-	DateOfBirth string                    `json:"date_of_birth,omitempty"`
-	Id          int                       `json:"id,omitempty"`
-	Nickname    string                    `json:"nickname,omitempty"`
-	RealName    string                    `json:"real_name,omitempty"`
-	RoleStats   []ModelHltvPlayerRoleStat `json:"role_stats,omitempty"`
-	Team        ModelHltvTeamRef          `json:"team,omitempty"`
-	Url         string                    `json:"url,omitempty"`
+	Age             string                    `json:"age,omitempty"`
+	Country         string                    `json:"country,omitempty"`
+	DateOfBirth     string                    `json:"date_of_birth,omitempty"`
+	Id              int                       `json:"id,omitempty"`
+	Nickname        string                    `json:"nickname,omitempty"`
+	RealName        string                    `json:"real_name,omitempty"`
+	RecentMatches   []ModelHltvPlayerMatch    `json:"recent_matches,omitempty"`
+	RoleStats       []ModelHltvPlayerRoleStat `json:"role_stats,omitempty"`
+	Team            ModelHltvTeamRef          `json:"team,omitempty"`
+	UpcomingMatches []ModelHltvPlayerMatch    `json:"upcoming_matches,omitempty"`
+	Url             string                    `json:"url,omitempty"`
 }
 
 type ModelHltvPlayerRoleStat struct {
@@ -40612,6 +40678,16 @@ type ModelHltvSearchResponse struct {
 	Query  string                 `json:"query,omitempty"`
 }
 
+type ModelHltvTeamMatch struct {
+	Date    string             `json:"date,omitempty"`
+	Event   ModelHltvEventRef  `json:"event,omitempty"`
+	MatchId int                `json:"match_id,omitempty"`
+	Score   []int              `json:"score,omitempty"`
+	Teams   []ModelHltvTeamRef `json:"teams,omitempty"`
+	Url     string             `json:"url,omitempty"`
+	Winner  int                `json:"winner,omitempty"`
+}
+
 type ModelHltvTeamRanking struct {
 	Name   string `json:"name,omitempty"`
 	Rank   string `json:"rank,omitempty"`
@@ -40625,13 +40701,30 @@ type ModelHltvTeamRef struct {
 }
 
 type ModelHltvTeamResponse struct {
-	Country  string                  `json:"country,omitempty"`
-	Id       int                     `json:"id,omitempty"`
-	LogoUrl  string                  `json:"logo_url,omitempty"`
-	Name     string                  `json:"name,omitempty"`
-	Rankings []ModelHltvTeamRanking  `json:"rankings,omitempty"`
-	Roster   []ModelHltvRosterMember `json:"roster,omitempty"`
-	Url      string                  `json:"url,omitempty"`
+	Country         string                       `json:"country,omitempty"`
+	Id              int                          `json:"id,omitempty"`
+	LogoUrl         string                       `json:"logo_url,omitempty"`
+	Name            string                       `json:"name,omitempty"`
+	Rankings        []ModelHltvTeamRanking       `json:"rankings,omitempty"`
+	RecentResults   []ModelHltvTeamMatch         `json:"recent_results,omitempty"`
+	Roster          []ModelHltvRosterMember      `json:"roster,omitempty"`
+	Stats           ModelHltvTeamStatsSummary    `json:"stats,omitempty"`
+	UpcomingMatches []ModelHltvTeamUpcomingMatch `json:"upcoming_matches,omitempty"`
+	Url             string                       `json:"url,omitempty"`
+}
+
+type ModelHltvTeamStatsSummary struct {
+	Timespan  string `json:"timespan,omitempty"`
+	WinRate   string `json:"win_rate,omitempty"`
+	WinStreak int    `json:"win_streak,omitempty"`
+}
+
+type ModelHltvTeamUpcomingMatch struct {
+	Event    ModelHltvEventRef  `json:"event,omitempty"`
+	MatchId  int                `json:"match_id,omitempty"`
+	StartsAt string             `json:"starts_at,omitempty"`
+	Teams    []ModelHltvTeamRef `json:"teams,omitempty"`
+	Url      string             `json:"url,omitempty"`
 }
 
 type ModelHltvVetoEntry struct {
@@ -53235,7 +53328,9 @@ type ModelNbaDetailTeam struct {
 }
 
 type ModelNbaEnumsData struct {
+	AheadBehinds      []string `json:"ahead_behinds,omitempty"`
 	Blocked           []string `json:"blocked,omitempty"`
+	ClutchTimes       []string `json:"clutch_times,omitempty"`
 	DefenseCategories []string `json:"defense_categories,omitempty"`
 	GameDateFormat    string   `json:"game_date_format,omitempty"`
 	LeagueIds         []string `json:"league_ids,omitempty"`
@@ -54519,6 +54614,30 @@ type ModelNfhsTeam struct {
 type ModelNfhsTournamentInfo struct {
 	Tournament     any `json:"tournament,omitempty"`
 	TournamentGame any `json:"tournament_game,omitempty"`
+}
+
+type ModelNhlGamecenterResponse = map[string]any
+
+type ModelNhlScheduleResponse = map[string]any
+
+type ModelNhlStandingsResponse = map[string]any
+
+type ModelNhlGamecenterResponseDoc struct {
+	Code int                        `json:"code,omitempty"`
+	Data ModelNhlGamecenterResponse `json:"data,omitempty"`
+	Msg  string                     `json:"msg,omitempty"`
+}
+
+type ModelNhlScheduleResponseDoc struct {
+	Code int                      `json:"code,omitempty"`
+	Data ModelNhlScheduleResponse `json:"data,omitempty"`
+	Msg  string                   `json:"msg,omitempty"`
+}
+
+type ModelNhlStandingsResponseDoc struct {
+	Code int                       `json:"code,omitempty"`
+	Data ModelNhlStandingsResponse `json:"data,omitempty"`
+	Msg  string                    `json:"msg,omitempty"`
 }
 
 type ModelNikeAvailabilityResponse struct {
@@ -70222,6 +70341,102 @@ type ModelSephoraSuggestResponseDoc struct {
 	Code int                         `json:"code,omitempty"`
 	Data ModelSephoraSuggestResponse `json:"data,omitempty"`
 	Msg  string                      `json:"msg,omitempty"`
+}
+
+type ModelSerebiiEventCategoriesResponse struct {
+	Categories []ModelSerebiiEventCategory `json:"categories,omitempty"`
+}
+
+type ModelSerebiiEventCategory struct {
+	Category  string `json:"category,omitempty"`
+	Name      string `json:"name,omitempty"`
+	SourceUrl string `json:"source_url,omitempty"`
+}
+
+type ModelSerebiiEventOnlyMovesResponse struct {
+	PageTitle string                        `json:"page_title,omitempty"`
+	SourceUrl string                        `json:"source_url,omitempty"`
+	Tables    []ModelSerebiiNativeDataTable `json:"tables,omitempty"`
+}
+
+type ModelSerebiiEventOnlyResearchResponse struct {
+	PageTitle string                      `json:"page_title,omitempty"`
+	SourceUrl string                      `json:"source_url,omitempty"`
+	Table     ModelSerebiiNativeDataTable `json:"table,omitempty"`
+}
+
+type ModelSerebiiEventRecord struct {
+	Dates       string                   `json:"dates,omitempty"`
+	Duration    string                   `json:"duration,omitempty"`
+	Focus       string                   `json:"focus,omitempty"`
+	Location    string                   `json:"location,omitempty"`
+	Name        string                   `json:"name,omitempty"`
+	SourceLinks []ModelSerebiiSourceLink `json:"source_links,omitempty"`
+	SpecialMove string                   `json:"special_move,omitempty"`
+}
+
+type ModelSerebiiEventsResponse struct {
+	Category  ModelSerebiiEventCategory `json:"category,omitempty"`
+	Records   []ModelSerebiiEventRecord `json:"records,omitempty"`
+	SourceUrl string                    `json:"source_url,omitempty"`
+}
+
+type ModelSerebiiNativeDataCell struct {
+	ColumnSpan int                      `json:"column_span,omitempty"`
+	Links      []ModelSerebiiSourceLink `json:"links,omitempty"`
+	RowSpan    int                      `json:"row_span,omitempty"`
+	Text       string                   `json:"text,omitempty"`
+}
+
+type ModelSerebiiNativeDataRow struct {
+	Cells []ModelSerebiiNativeDataCell `json:"cells,omitempty"`
+}
+
+type ModelSerebiiNativeDataTable struct {
+	ColumnLabels []string                    `json:"column_labels,omitempty"`
+	Heading      string                      `json:"heading,omitempty"`
+	Rows         []ModelSerebiiNativeDataRow `json:"rows,omitempty"`
+}
+
+type ModelSerebiiNativeEventDetailResponse struct {
+	Category  string                        `json:"category,omitempty"`
+	Filename  string                        `json:"filename,omitempty"`
+	Overview  string                        `json:"overview,omitempty"`
+	PageTitle string                        `json:"page_title,omitempty"`
+	SourceUrl string                        `json:"source_url,omitempty"`
+	Tables    []ModelSerebiiNativeDataTable `json:"tables,omitempty"`
+}
+
+type ModelSerebiiSourceLink struct {
+	Column string `json:"column,omitempty"`
+	Text   string `json:"text,omitempty"`
+	Url    string `json:"url,omitempty"`
+}
+
+type ModelSerebiiSpotlightHourRecord struct {
+	DateLabel    string                   `json:"date_label,omitempty"`
+	ExtraEffects string                   `json:"extra_effects,omitempty"`
+	PokemonFocus string                   `json:"pokemon_focus,omitempty"`
+	PokemonLinks []ModelSerebiiSourceLink `json:"pokemon_links,omitempty"`
+}
+
+type ModelSerebiiSpotlightHoursResponse struct {
+	Records   []ModelSerebiiSpotlightHourRecord `json:"records,omitempty"`
+	SourceUrl string                            `json:"source_url,omitempty"`
+}
+
+type ModelSerebiiUnownEventRecord struct {
+	AvailableLetters string                   `json:"available_letters,omitempty"`
+	Date             string                   `json:"date,omitempty"`
+	Event            string                   `json:"event,omitempty"`
+	EventLinks       []ModelSerebiiSourceLink `json:"event_links,omitempty"`
+	Locations        []string                 `json:"locations,omitempty"`
+	Restrictions     string                   `json:"restrictions,omitempty"`
+}
+
+type ModelSerebiiUnownEventsResponse struct {
+	Records   []ModelSerebiiUnownEventRecord `json:"records,omitempty"`
+	SourceUrl string                         `json:"source_url,omitempty"`
 }
 
 type ModelSevennewsauAuthorResponse struct {
@@ -97296,7 +97511,7 @@ type ModelZomatoSearchResponseDoc struct {
 	Msg  any                       `json:"msg,omitempty"`
 }
 
-const operationCount = 4731
+const operationCount = 4769
 
 const (
 	OperationAbcNewsAbcnewsArticle                                                = "abcnews-article"
@@ -98359,6 +98574,7 @@ const (
 	OperationEntertainmentWeeklyEwHeadlines                                       = "ew-headlines"
 	OperationEntertainmentWeeklyEwNews                                            = "ew-news"
 	OperationEntertainmentWeeklyEwSections                                        = "ew-sections"
+	OperationEpicGamesStoreEpicgamesFreePromotions                                = "epicgames-free-promotions"
 	OperationEspnAthlete                                                          = "espn-athlete"
 	OperationEspnGameSummary                                                      = "espn-game-summary"
 	OperationEspnNews                                                             = "espn-news"
@@ -99124,6 +99340,9 @@ const (
 	OperationHealthgradesPhysiciansSearch                                         = "healthgrades-physicians-search"
 	OperationHealthgradesSpecialties                                              = "healthgrades-specialties"
 	OperationHealthgradesTopSearches                                              = "healthgrades-top-searches"
+	OperationHearthstoneCard                                                      = "hearthstone-card"
+	OperationHearthstoneCards                                                     = "hearthstone-cards"
+	OperationHearthstoneFilters                                                   = "hearthstone-filters"
 	OperationHermesCategories                                                     = "hermes-categories"
 	OperationHermesCategory                                                       = "hermes-category"
 	OperationHermesProduct                                                        = "hermes-product"
@@ -99861,16 +100080,23 @@ const (
 	OperationNbaGames                                                             = "nba-games"
 	OperationNbaHomepageLeaders                                                   = "nba-homepage-leaders"
 	OperationNbaHustleStats                                                       = "nba-hustle-stats"
+	OperationNbaHustleTeam                                                        = "nba-hustle-team"
 	OperationNbaLeagueGameLog                                                     = "nba-league-game-log"
 	OperationNbaLineups                                                           = "nba-lineups"
 	OperationNbaNews                                                              = "nba-news"
+	OperationNbaOppPtShot                                                         = "nba-opp-pt-shot"
 	OperationNbaPlayByPlay                                                        = "nba-play-by-play"
 	OperationNbaPlayerAwards                                                      = "nba-player-awards"
 	OperationNbaPlayerBioStats                                                    = "nba-player-bio-stats"
 	OperationNbaPlayerCareerStats                                                 = "nba-player-career-stats"
+	OperationNbaPlayerClutch                                                      = "nba-player-clutch"
 	OperationNbaPlayerDashPtShots                                                 = "nba-player-dash-pt-shots"
+	OperationNbaPlayerGameLogs                                                    = "nba-player-game-logs"
 	OperationNbaPlayerInfo                                                        = "nba-player-info"
+	OperationNbaPlayerProfileV2                                                   = "nba-player-profile-v2"
+	OperationNbaPlayerPtShot                                                      = "nba-player-pt-shot"
 	OperationNbaPlayerStats                                                       = "nba-player-stats"
+	OperationNbaPlayerStreakFinder                                                = "nba-player-streak-finder"
 	OperationNbaPlayers                                                           = "nba-players"
 	OperationNbaPlayoffPicture                                                    = "nba-playoff-picture"
 	OperationNbaPtDefend                                                          = "nba-pt-defend"
@@ -99878,11 +100104,18 @@ const (
 	OperationNbaScoreboard                                                        = "nba-scoreboard"
 	OperationNbaStandings                                                         = "nba-standings"
 	OperationNbaSynergyPlayTypes                                                  = "nba-synergy-play-types"
+	OperationNbaTeamDashPtPass                                                    = "nba-team-dash-pt-pass"
+	OperationNbaTeamDashPtShots                                                   = "nba-team-dash-pt-shots"
 	OperationNbaTeamDetails                                                       = "nba-team-details"
+	OperationNbaTeamGameLogs                                                      = "nba-team-game-logs"
+	OperationNbaTeamInfoCommon                                                    = "nba-team-info-common"
+	OperationNbaTeamOnOff                                                         = "nba-team-on-off"
+	OperationNbaTeamPtShot                                                        = "nba-team-pt-shot"
 	OperationNbaTeamRoster                                                        = "nba-team-roster"
 	OperationNbaTeamShotLocations                                                 = "nba-team-shot-locations"
 	OperationNbaTeamStats                                                         = "nba-team-stats"
 	OperationNbaTeamStatsLeaders                                                  = "nba-team-stats-leaders"
+	OperationNbaTeamYears                                                         = "nba-team-years"
 	OperationNbcNewsCall                                                          = "nbc-news"
 	OperationNbcNewsNbcArticle                                                    = "nbc-article"
 	OperationNbcNewsNbcAuthor                                                     = "nbc-author"
@@ -99969,6 +100202,11 @@ const (
 	OperationNfhsSports                                                           = "nfhs-sports"
 	OperationNfhsStates                                                           = "nfhs-states"
 	OperationNfhsSuggest                                                          = "nfhs-suggest"
+	OperationNhlGamecenterBoxscore                                                = "nhl-gamecenter-boxscore"
+	OperationNhlGamecenterPlayByPlay                                              = "nhl-gamecenter-play-by-play"
+	OperationNhlSchedule                                                          = "nhl-schedule"
+	OperationNhlSeasons                                                           = "nhl-seasons"
+	OperationNhlStandings                                                         = "nhl-standings"
 	OperationNikeCategories                                                       = "nike-categories"
 	OperationNikeProduct                                                          = "nike-product"
 	OperationNikeProductAvailability                                              = "nike-product-availability"
@@ -100722,6 +100960,21 @@ const (
 	OperationSephoraSearch                                                        = "sephora-search"
 	OperationSephoraStores                                                        = "sephora-stores"
 	OperationSephoraSuggest                                                       = "sephora-suggest"
+	OperationSerebiiPokemongoEventCategories                                      = "serebii-pokemongo-event-categories"
+	OperationSerebiiPokemongoEventDetailCommunityDay                              = "serebii-pokemongo-event-detail-community-day"
+	OperationSerebiiPokemongoEventDetailGlobal                                    = "serebii-pokemongo-event-detail-global"
+	OperationSerebiiPokemongoEventDetailHatchDay                                  = "serebii-pokemongo-event-detail-hatch-day"
+	OperationSerebiiPokemongoEventDetailIncenseDay                                = "serebii-pokemongo-event-detail-incense-day"
+	OperationSerebiiPokemongoEventDetailMaxBattleDay                              = "serebii-pokemongo-event-detail-max-battle-day"
+	OperationSerebiiPokemongoEventDetailRaidDay                                   = "serebii-pokemongo-event-detail-raid-day"
+	OperationSerebiiPokemongoEventDetailRealLife                                  = "serebii-pokemongo-event-detail-real-life"
+	OperationSerebiiPokemongoEventDetailResearchDay                               = "serebii-pokemongo-event-detail-research-day"
+	OperationSerebiiPokemongoEventDetailTicket                                    = "serebii-pokemongo-event-detail-ticket"
+	OperationSerebiiPokemongoEventOnlyMoves                                       = "serebii-pokemongo-event-only-moves"
+	OperationSerebiiPokemongoEventOnlyResearch                                    = "serebii-pokemongo-event-only-research"
+	OperationSerebiiPokemongoEvents                                               = "serebii-pokemongo-events"
+	OperationSerebiiPokemongoSpotlightHours                                       = "serebii-pokemongo-spotlight-hours"
+	OperationSerebiiPokemongoUnownEvents                                          = "serebii-pokemongo-unown-events"
 	OperationSevenNewsAustraliaArticle                                            = "sevennewsau-article"
 	OperationSevenNewsAustraliaAuthor                                             = "sevennewsau-author"
 	OperationSevenNewsAustraliaHeadlines                                          = "sevennewsau-headlines"
@@ -103117,6 +103370,7 @@ var operations = map[string]operationDefinition{
 	"eonline-headlines":                               operationDefinition{Method: "GET", Path: "/eonline/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"top_stories", "tv", "movies", "music", "celebrities", "couples", "royals", "red_carpet", "influencer", "style", "fashion", "shop"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"eonline-news":                                    operationDefinition{Method: "GET", Path: "/eonline/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"eonline-sections":                                operationDefinition{Method: "GET", Path: "/eonline/sections", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"epicgames-free-promotions":                       operationDefinition{Method: "GET", Path: "/epicgames/free-promotions", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "locale", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "country", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "allowCountries", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"espn-athlete":                                    operationDefinition{Method: "GET", Path: "/espn/athlete", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}, parameterDefinition{Name: "athlete", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"espn-game-summary":                               operationDefinition{Method: "GET", Path: "/espn/game-summary", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}, parameterDefinition{Name: "event", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"espn-news":                                       operationDefinition{Method: "GET", Path: "/espn/news", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sport", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"football", "basketball", "baseball", "hockey", "soccer"}}, parameterDefinition{Name: "league", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"nfl", "college-football", "nba", "wnba", "mens-college-basketball", "womens-college-basketball", "mlb", "nhl", "eng.1", "esp.1", "ita.1", "ger.1", "fra.1", "usa.1", "uefa.champions"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -103877,6 +104131,9 @@ var operations = map[string]operationDefinition{
 	"healthgrades-physicians-search":                  operationDefinition{Method: "GET", Path: "/healthgrades/physicians/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "where", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"bestmatch", "distance", "ratings"}}, parameterDefinition{Name: "gender", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"F", "M"}}, parameterDefinition{Name: "distance", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"1", "5", "10", "25", "50", "100", "national"}}, parameterDefinition{Name: "age", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"*-40", "41-50", "51-60", "61-70", "71-*"}}, parameterDefinition{Name: "availability", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"today", "tomorrow", "nextTwoWeeks", "online", "acceptsNewPatients", "telehealth"}}, parameterDefinition{Name: "rating", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"1", "2", "3", "4", "5"}}, parameterDefinition{Name: "insurance", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "insurance_plan", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "language", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "clinical_focus", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "affiliated_hospital", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "specialty", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "affirming_care", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"healthgrades-specialties":                        operationDefinition{Method: "GET", Path: "/healthgrades/specialties", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"healthgrades-top-searches":                       operationDefinition{Method: "GET", Path: "/healthgrades/top-searches", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"hearthstone-card":                                operationDefinition{Method: "GET", Path: "/hearthstone/card", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"hearthstone-cards":                               operationDefinition{Method: "GET", Path: "/hearthstone/cards", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "pageSize", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "locale", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "class", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "set", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "order", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"asc", "desc"}}, parameterDefinition{Name: "gameMode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "collectible", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{"0", "1"}}, parameterDefinition{Name: "textFilter", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "filterLocale", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "deckcode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "cardSetId", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "spellSchoolId", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "rarityId", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "cardTypeId", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "manaCost", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "attack", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "health", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "armor", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "rarity", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "type", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "bgCardType", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "keyword", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "minionType", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "deckFormat", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "tier", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{"1", "2", "3", "4", "5", "6", "7"}}, parameterDefinition{Name: "mercenaryRole", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "mercenaryFaction", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "viewMode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"grid", "table"}}, parameterDefinition{Name: "cardBackCategory", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "spellSchool", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "faction", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "bgGameMode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "zilliaxMod", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
+	"hearthstone-filters":                             operationDefinition{Method: "GET", Path: "/hearthstone/filters", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"hermes-categories":                               operationDefinition{Method: "GET", Path: "/hermes/categories", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "locale", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"at_de", "au_en", "be_en", "be_fr", "br_pt", "ca_en", "ca_fr", "ch_de", "ch_fr", "cz_en", "de_de", "dh_en", "dk_en", "es_es", "fi_en", "fr_fr", "gr_en", "hk_en", "ie_en", "it_it", "jp_ja", "kr_ko", "lu_fr", "mo_en", "mx_es", "my_en", "nl_en", "no_en", "pl_en", "pt_en", "ri_en", "se_en", "sg_en", "th_en", "tw_zh", "uk_en", "us_en"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"hermes-category":                                 operationDefinition{Method: "GET", Path: "/hermes/category", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "sort", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"relevance", "priceasc", "pricedsc"}}, parameterDefinition{Name: "locale", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"at_de", "au_en", "be_en", "be_fr", "br_pt", "ca_en", "ca_fr", "ch_de", "ch_fr", "cz_en", "de_de", "dh_en", "dk_en", "es_es", "fi_en", "fr_fr", "gr_en", "hk_en", "ie_en", "it_it", "jp_ja", "kr_ko", "lu_fr", "mo_en", "mx_es", "my_en", "nl_en", "no_en", "pl_en", "pt_en", "ri_en", "se_en", "sg_en", "th_en", "tw_zh", "uk_en", "us_en"}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"hermes-product":                                  operationDefinition{Method: "GET", Path: "/hermes/product", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "sku", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "locale", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"at_de", "au_en", "be_en", "be_fr", "br_pt", "ca_en", "ca_fr", "ch_de", "ch_fr", "cz_en", "de_de", "dh_en", "dk_en", "es_es", "fi_en", "fr_fr", "gr_en", "hk_en", "ie_en", "it_it", "jp_ja", "kr_ko", "lu_fr", "mo_en", "mx_es", "my_en", "nl_en", "no_en", "pl_en", "pt_en", "ri_en", "se_en", "sg_en", "th_en", "tw_zh", "uk_en", "us_en"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -104643,16 +104900,23 @@ var operations = map[string]operationDefinition{
 	"nba-games":                                       operationDefinition{Method: "GET", Path: "/nba/games", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-homepage-leaders":                            operationDefinition{Method: "GET", Path: "/nba/homepage-leaders", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "stat_category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Points", "Rebounds"}}, parameterDefinition{Name: "player_or_team", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Team"}}, parameterDefinition{Name: "player_scope", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "game_scope", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Season"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-hustle-stats":                                operationDefinition{Method: "GET", Path: "/nba/hustle-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nba-hustle-team":                                 operationDefinition{Method: "GET", Path: "/nba/hustle-team", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season", "Playoffs", "Pre Season", "All Star"}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame", "Totals", "Per36", "Per48", "Per100Possessions", "MinutesPer", "PerPossession"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-league-game-log":                             operationDefinition{Method: "GET", Path: "/nba/league-game-log", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season"}}, parameterDefinition{Name: "direction", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"DESC"}}, parameterDefinition{Name: "player_or_team", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"T"}}, parameterDefinition{Name: "sorter", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"DATE"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-lineups":                                     operationDefinition{Method: "GET", Path: "/nba/lineups", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season"}}, parameterDefinition{Name: "measure_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Base"}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame"}}, parameterDefinition{Name: "group_quantity", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"5"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-news":                                        operationDefinition{Method: "GET", Path: "/nba/news", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nba-opp-pt-shot":                                 operationDefinition{Method: "GET", Path: "/nba/opp-pt-shot", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season", "Playoffs", "Pre Season", "All Star"}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame", "Totals", "Per36", "Per48", "Per100Possessions", "MinutesPer", "PerPossession"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-play-by-play":                                operationDefinition{Method: "GET", Path: "/nba/play-by-play", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "start_period", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "end_period", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-player-awards":                               operationDefinition{Method: "GET", Path: "/nba/player-awards", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "player_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-player-bio-stats":                            operationDefinition{Method: "GET", Path: "/nba/player-bio-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season"}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-player-career-stats":                         operationDefinition{Method: "GET", Path: "/nba/player-career-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "player_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame"}}, parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nba-player-clutch":                               operationDefinition{Method: "GET", Path: "/nba/player-clutch", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season", "Playoffs", "Pre Season", "All Star"}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame", "Totals", "Per36", "Per48", "Per100Possessions", "MinutesPer", "PerPossession"}}, parameterDefinition{Name: "measure_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Base", "Advanced", "Misc", "Scoring", "Defense", "Opponent"}}, parameterDefinition{Name: "clutch_time", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Last 5 Minutes"}}, parameterDefinition{Name: "ahead_behind", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Ahead or Behind"}}, parameterDefinition{Name: "point_diff", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{"5"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-player-dash-pt-shots":                        operationDefinition{Method: "GET", Path: "/nba/player-dash-pt-shots", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "player_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season"}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nba-player-game-logs":                            operationDefinition{Method: "GET", Path: "/nba/player-game-logs", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season", "Playoffs", "Pre Season", "All Star"}}, parameterDefinition{Name: "player_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-player-info":                                 operationDefinition{Method: "GET", Path: "/nba/player-info", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "player_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nba-player-profile-v2":                           operationDefinition{Method: "GET", Path: "/nba/player-profile-v2", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "player_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame", "Totals", "Per36", "Per48", "Per100Possessions", "MinutesPer", "PerPossession"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nba-player-pt-shot":                              operationDefinition{Method: "GET", Path: "/nba/player-pt-shot", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season", "Playoffs", "Pre Season", "All Star"}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame", "Totals", "Per36", "Per48", "Per100Possessions", "MinutesPer", "PerPossession"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-player-stats":                                operationDefinition{Method: "GET", Path: "/nba/player-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season", "Playoffs", "Pre Season", "All Star"}}, parameterDefinition{Name: "measure_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Base", "Advanced", "Misc", "Scoring", "Defense", "Opponent"}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame", "Totals", "Per36", "Per48", "Per100Possessions", "MinutesPer", "PerPossession"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nba-player-streak-finder":                        operationDefinition{Method: "GET", Path: "/nba/player-streak-finder", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season", "Playoffs", "Pre Season", "All Star"}}, parameterDefinition{Name: "player_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "min_games", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-players":                                     operationDefinition{Method: "GET", Path: "/nba/players", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "active", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-playoff-picture":                             operationDefinition{Method: "GET", Path: "/nba/playoff-picture", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-pt-defend":                                   operationDefinition{Method: "GET", Path: "/nba/pt-defend", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season"}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame"}}, parameterDefinition{Name: "defense_category", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Overall", "3 Pointers"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -104660,11 +104924,18 @@ var operations = map[string]operationDefinition{
 	"nba-scoreboard":                                  operationDefinition{Method: "GET", Path: "/nba/scoreboard", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "game_date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "day_offset", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-standings":                                   operationDefinition{Method: "GET", Path: "/nba/standings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season", "Playoffs", "Pre Season", "All Star"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-synergy-play-types":                          operationDefinition{Method: "GET", Path: "/nba/synergy-play-types", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season_year", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season"}}, parameterDefinition{Name: "play_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Isolation"}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame"}}, parameterDefinition{Name: "player_or_team", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"T"}}, parameterDefinition{Name: "type_grouping", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"offensive"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nba-team-dash-pt-pass":                           operationDefinition{Method: "GET", Path: "/nba/team-dash-pt-pass", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season", "Playoffs", "Pre Season", "All Star"}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame", "Totals", "Per36", "Per48", "Per100Possessions", "MinutesPer", "PerPossession"}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nba-team-dash-pt-shots":                          operationDefinition{Method: "GET", Path: "/nba/team-dash-pt-shots", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season", "Playoffs", "Pre Season", "All Star"}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame", "Totals", "Per36", "Per48", "Per100Possessions", "MinutesPer", "PerPossession"}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-team-details":                                operationDefinition{Method: "GET", Path: "/nba/team-details", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nba-team-game-logs":                              operationDefinition{Method: "GET", Path: "/nba/team-game-logs", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season", "Playoffs", "Pre Season", "All Star"}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nba-team-info-common":                            operationDefinition{Method: "GET", Path: "/nba/team-info-common", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season", "Playoffs", "Pre Season", "All Star"}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nba-team-on-off":                                 operationDefinition{Method: "GET", Path: "/nba/team-on-off", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season", "Playoffs", "Pre Season", "All Star"}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame", "Totals", "Per36", "Per48", "Per100Possessions", "MinutesPer", "PerPossession"}}, parameterDefinition{Name: "measure_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Base", "Advanced", "Misc", "Scoring", "Defense", "Opponent"}}, parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nba-team-pt-shot":                                operationDefinition{Method: "GET", Path: "/nba/team-pt-shot", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season", "Playoffs", "Pre Season", "All Star"}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame", "Totals", "Per36", "Per48", "Per100Possessions", "MinutesPer", "PerPossession"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-team-roster":                                 operationDefinition{Method: "GET", Path: "/nba/team-roster", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "team_id", In: "query", CollectionFormat: "", Type: "integer", Required: true, Enum: []string{}}, parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-team-shot-locations":                         operationDefinition{Method: "GET", Path: "/nba/team-shot-locations", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season"}}, parameterDefinition{Name: "measure_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Base"}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame"}}, parameterDefinition{Name: "distance_range", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-team-stats":                                  operationDefinition{Method: "GET", Path: "/nba/team-stats", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season", "Playoffs", "Pre Season", "All Star"}}, parameterDefinition{Name: "measure_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Base", "Advanced", "Misc", "Scoring", "Defense", "Opponent"}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame", "Totals", "Per36", "Per48", "Per100Possessions", "MinutesPer", "PerPossession"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nba-team-stats-leaders":                          operationDefinition{Method: "GET", Path: "/nba/team-stats-leaders", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "stat_category", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"PTS", "REB", "AST", "BLK", "STL", "TOV"}}, parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}, parameterDefinition{Name: "season", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "season_type", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"Regular Season", "Playoffs", "Pre Season", "All Star"}}, parameterDefinition{Name: "per_mode", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"PerGame", "Totals", "Per36", "Per48", "Per100Possessions", "MinutesPer", "PerPossession"}}, parameterDefinition{Name: "scope", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"S"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nba-team-years":                                  operationDefinition{Method: "GET", Path: "/nba/team-years", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "league_id", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"00"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nbc-article":                                     operationDefinition{Method: "GET", Path: "/nbc/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nbc-author":                                      operationDefinition{Method: "GET", Path: "/nbc/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nbc-headlines":                                   operationDefinition{Method: "GET", Path: "/nbc/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"news", "world", "us-news", "politics", "business", "science", "health"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -104736,6 +105007,11 @@ var operations = map[string]operationDefinition{
 	"nfhs-sports":                                     operationDefinition{Method: "GET", Path: "/nfhs/sports", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nfhs-states":                                     operationDefinition{Method: "GET", Path: "/nfhs/states", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nfhs-suggest":                                    operationDefinition{Method: "GET", Path: "/nfhs/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "search_term", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "scope", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nhl-gamecenter-boxscore":                         operationDefinition{Method: "GET", Path: "/nhl/gamecenter/boxscore", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nhl-gamecenter-play-by-play":                     operationDefinition{Method: "GET", Path: "/nhl/gamecenter/play-by-play", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "game_id", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nhl-schedule":                                    operationDefinition{Method: "GET", Path: "/nhl/schedule", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nhl-seasons":                                     operationDefinition{Method: "GET", Path: "/nhl/seasons", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"nhl-standings":                                   operationDefinition{Method: "GET", Path: "/nhl/standings", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "date", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nike-categories":                                 operationDefinition{Method: "GET", Path: "/nike/categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nike-product":                                    operationDefinition{Method: "GET", Path: "/nike/product", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "style_color", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"nike-product-availability":                       operationDefinition{Method: "GET", Path: "/nike/product/availability", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "group_key", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -105497,6 +105773,21 @@ var operations = map[string]operationDefinition{
 	"sephora-search":                                  operationDefinition{Method: "GET", Path: "/sephora/search", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}, parameterDefinition{Name: "page", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "page_size", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "sort_by", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{"featured", "top_rated", "new", "best_selling", "price_low_to_high", "price_high_to_low"}}, parameterDefinition{Name: "price_min", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "price_max", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "brand", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}, parameterDefinition{Name: "rating_min", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "is_new", In: "query", CollectionFormat: "", Type: "boolean", Required: false, Enum: []string{}}, parameterDefinition{Name: "filter", In: "query", CollectionFormat: "csv", Type: "array", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}, Paginatable: true},
 	"sephora-stores":                                  operationDefinition{Method: "GET", Path: "/sephora/stores", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "latitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "longitude", In: "query", CollectionFormat: "", Type: "number", Required: true, Enum: []string{}}, parameterDefinition{Name: "radius", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}, parameterDefinition{Name: "limit", In: "query", CollectionFormat: "", Type: "integer", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sephora-suggest":                                 operationDefinition{Method: "GET", Path: "/sephora/suggest", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "query", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{"application/json"}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"serebii-pokemongo-event-detail-community-day":    operationDefinition{Method: "GET", Path: "/serebii/pokemongo/communityday/{filename}", PathParams: []string{"filename"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"serebii-pokemongo-event-categories":              operationDefinition{Method: "GET", Path: "/serebii/pokemongo/event-categories", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"serebii-pokemongo-event-only-moves":              operationDefinition{Method: "GET", Path: "/serebii/pokemongo/event-only-moves", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"serebii-pokemongo-event-only-research":           operationDefinition{Method: "GET", Path: "/serebii/pokemongo/event-only-research", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"serebii-pokemongo-events":                        operationDefinition{Method: "GET", Path: "/serebii/pokemongo/events", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "category", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"events.shtml", "reallifeevents.shtml", "ticketevents.shtml", "communityday.shtml", "raidday.shtml", "maxbattleday.shtml", "incenseday.shtml", "limitedresearchday.shtml", "hatchday.shtml"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"serebii-pokemongo-event-detail-global":           operationDefinition{Method: "GET", Path: "/serebii/pokemongo/events/{filename}", PathParams: []string{"filename"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"serebii-pokemongo-event-detail-hatch-day":        operationDefinition{Method: "GET", Path: "/serebii/pokemongo/hatchday/{filename}", PathParams: []string{"filename"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"serebii-pokemongo-event-detail-incense-day":      operationDefinition{Method: "GET", Path: "/serebii/pokemongo/incenseday/{filename}", PathParams: []string{"filename"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"serebii-pokemongo-event-detail-research-day":     operationDefinition{Method: "GET", Path: "/serebii/pokemongo/limitedresearchday/{filename}", PathParams: []string{"filename"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"serebii-pokemongo-event-detail-max-battle-day":   operationDefinition{Method: "GET", Path: "/serebii/pokemongo/maxbattleday/{filename}", PathParams: []string{"filename"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"serebii-pokemongo-event-detail-raid-day":         operationDefinition{Method: "GET", Path: "/serebii/pokemongo/raidday/{filename}", PathParams: []string{"filename"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"serebii-pokemongo-event-detail-real-life":        operationDefinition{Method: "GET", Path: "/serebii/pokemongo/reallifeevents/{filename}", PathParams: []string{"filename"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"serebii-pokemongo-spotlight-hours":               operationDefinition{Method: "GET", Path: "/serebii/pokemongo/spotlight-hours", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"serebii-pokemongo-event-detail-ticket":           operationDefinition{Method: "GET", Path: "/serebii/pokemongo/ticketevents/{filename}", PathParams: []string{"filename"}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
+	"serebii-pokemongo-unown-events":                  operationDefinition{Method: "GET", Path: "/serebii/pokemongo/unown-events", PathParams: []string{}, QueryParams: nil, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sevennewsau-article":                             operationDefinition{Method: "GET", Path: "/sevennewsau/article", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sevennewsau-author":                              operationDefinition{Method: "GET", Path: "/sevennewsau/author", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "slug", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}, parameterDefinition{Name: "url", In: "query", CollectionFormat: "", Type: "string", Required: false, Enum: []string{}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
 	"sevennewsau-headlines":                           operationDefinition{Method: "GET", Path: "/sevennewsau/headlines", PathParams: []string{}, QueryParams: []parameterDefinition{parameterDefinition{Name: "section", In: "query", CollectionFormat: "", Type: "string", Required: true, Enum: []string{"7you", "7you-beauty", "7you-books", "7you-fashion", "7you-health-fitness", "7you-home", "7you-tech", "7you-travel", "business", "business-economy", "business-energy", "business-property", "business-retail", "entertainment", "entertainment-australian-idol", "entertainment-celebrity", "entertainment-farmer-wants-a-wife", "entertainment-home-and-away", "entertainment-movies", "entertainment-music", "entertainment-my-kitchen-rules", "entertainment-the-voice-australia", "entertainment-tv", "lifestyle", "lifestyle-fashion", "lifestyle-food", "lifestyle-health-wellbeing", "lifestyle-parenting", "lifestyle-personal-finance", "lifestyle-pets", "lifestyle-real-estate", "lifestyle-recipes", "lifestyle-relationships", "lifestyle-shopping", "lifestyle-sponsored", "motoring", "news", "news-act", "news-adelaide", "news-asia", "news-australia", "news-brisbane", "news-canberra", "news-conflict", "news-crime", "news-darwin", "news-disaster-and-emergency", "news-education", "news-europe", "news-gold-coast", "news-hobart", "news-israel", "news-melbourne", "news-middle-east", "news-missing-person", "news-new-zealand", "news-newcastle", "news-nsw", "news-nsw-police", "news-nt", "news-perth", "news-protest", "news-qld", "news-russia", "news-sa", "news-sydney", "news-ukraine", "news-united-states", "news-vic", "news-wa", "news-weather", "news-world", "opinion", "politics", "politics-federal-politics", "politics-state-politics", "sport", "sport-afl", "sport-aflw", "sport-baseball", "sport-basketball", "sport-boxing", "sport-cricket", "sport-cycling", "sport-f1", "sport-golf", "sport-horse-racing", "sport-mixed-martial-arts", "sport-motorsport", "sport-netball", "sport-nfl", "sport-olympics", "sport-rugby-league", "sport-rugby-union", "sport-soccer", "sport-supercars", "sport-tennis", "sport-ufc", "spotlight", "sunrise", "sunrise-cooking", "sunrise-cooking-with-coles", "sunrise-entertainment", "technology", "technology-gaming", "the-morning-show", "travel", "travel-jetstar", "travel-qantas"}}}, FormParams: nil, BodyParam: "", BodyRequired: false, Consumes: []string{}, Produces: []string{"application/json"}, Security: []string{"ApiKeyAuth"}},
@@ -106898,6 +107189,7 @@ type Services struct {
 	EconomicTimes                *EconomicTimesService
 	Engadget                     *EngadgetService
 	ENews                        *ENewsService
+	EpicGamesStore               *EpicGamesStoreService
 	Espn                         *EspnService
 	Etsy                         *EtsyService
 	Euronews                     *EuronewsService
@@ -106966,6 +107258,7 @@ type Services struct {
 	Gymshark                     *GymsharkService
 	HarvardBusinessReview        *HarvardBusinessReviewService
 	Healthgrades                 *HealthgradesService
+	Hearthstone                  *HearthstoneService
 	Hermes                       *HermesService
 	HindustanTimes               *HindustanTimesService
 	Hltv                         *HltvService
@@ -107067,6 +107360,7 @@ type Services struct {
 	Newsweek                     *NewsweekService
 	TheNewYorker                 *TheNewYorkerService
 	Nfhs                         *NfhsService
+	Nhl                          *NhlService
 	Nike                         *NikeService
 	NineToFiveGoogle             *NineToFiveGoogleService
 	NineToFiveMac                *NineToFiveMacService
@@ -107156,6 +107450,7 @@ type Services struct {
 	SeattleTimes                 *SeattleTimesService
 	SecEdgar                     *SecEdgarService
 	Sephora                      *SephoraService
+	Serebii                      *SerebiiService
 	SevenNewsAustralia           *SevenNewsAustraliaService
 	Sfgate                       *SfgateService
 	ShakeShack                   *ShakeShackService
@@ -107437,6 +107732,7 @@ func initServices(c *Client) Services {
 		EconomicTimes:                &EconomicTimesService{client: c},
 		Engadget:                     &EngadgetService{client: c},
 		ENews:                        &ENewsService{client: c},
+		EpicGamesStore:               &EpicGamesStoreService{client: c},
 		Espn:                         &EspnService{client: c},
 		Etsy:                         &EtsyService{client: c},
 		Euronews:                     &EuronewsService{client: c},
@@ -107505,6 +107801,7 @@ func initServices(c *Client) Services {
 		Gymshark:                     &GymsharkService{client: c},
 		HarvardBusinessReview:        &HarvardBusinessReviewService{client: c},
 		Healthgrades:                 &HealthgradesService{client: c},
+		Hearthstone:                  &HearthstoneService{client: c},
 		Hermes:                       &HermesService{client: c},
 		HindustanTimes:               &HindustanTimesService{client: c},
 		Hltv:                         &HltvService{client: c},
@@ -107606,6 +107903,7 @@ func initServices(c *Client) Services {
 		Newsweek:                     &NewsweekService{client: c},
 		TheNewYorker:                 &TheNewYorkerService{client: c},
 		Nfhs:                         &NfhsService{client: c},
+		Nhl:                          &NhlService{client: c},
 		Nike:                         &NikeService{client: c},
 		NineToFiveGoogle:             &NineToFiveGoogleService{client: c},
 		NineToFiveMac:                &NineToFiveMacService{client: c},
@@ -107695,6 +107993,7 @@ func initServices(c *Client) Services {
 		SeattleTimes:                 &SeattleTimesService{client: c},
 		SecEdgar:                     &SecEdgarService{client: c},
 		Sephora:                      &SephoraService{client: c},
+		Serebii:                      &SerebiiService{client: c},
 		SevenNewsAustralia:           &SevenNewsAustraliaService{client: c},
 		Sfgate:                       &SfgateService{client: c},
 		ShakeShack:                   &ShakeShackService{client: c},
@@ -125941,6 +126240,24 @@ func (s *ENewsService) EonlineSectionsTyped(ctx context.Context, params ENewsEon
 	return requestTyped[ENewsEonlineSectionsResponse](s.client, ctx, "eonline-sections", paramsFromStruct(params), opts...)
 }
 
+type EpicGamesStoreService struct{ client *Client }
+
+func (s *EpicGamesStoreService) EpicgamesFreePromotions(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "epicgames-free-promotions", params, opts...)
+}
+
+type EpicGamesStoreEpicgamesFreePromotionsParams struct {
+	Locale         *string `crawlora:"locale,omitempty"`
+	Country        *string `crawlora:"country,omitempty"`
+	AllowCountries *string `crawlora:"allowCountries,omitempty"`
+}
+
+type EpicGamesStoreEpicgamesFreePromotionsResponse = ModelEpicgamesFreePromotionsResponseDoc
+
+func (s *EpicGamesStoreService) EpicgamesFreePromotionsTyped(ctx context.Context, params EpicGamesStoreEpicgamesFreePromotionsParams, opts ...RequestOption) (EpicGamesStoreEpicgamesFreePromotionsResponse, error) {
+	return requestTyped[EpicGamesStoreEpicgamesFreePromotionsResponse](s.client, ctx, "epicgames-free-promotions", paramsFromStruct(params), opts...)
+}
+
 type EspnService struct{ client *Client }
 
 func (s *EspnService) Athlete(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -137715,6 +138032,83 @@ type HealthgradesTopSearchesResponse = ModelHealthgradesSuggestionsResponseDoc
 
 func (s *HealthgradesService) TopSearchesTyped(ctx context.Context, params HealthgradesTopSearchesParams, opts ...RequestOption) (HealthgradesTopSearchesResponse, error) {
 	return requestTyped[HealthgradesTopSearchesResponse](s.client, ctx, "healthgrades-top-searches", paramsFromStruct(params), opts...)
+}
+
+type HearthstoneService struct{ client *Client }
+
+func (s *HearthstoneService) Card(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "hearthstone-card", params, opts...)
+}
+
+type HearthstoneCardParams struct {
+	Id string `crawlora:"id"`
+}
+
+type HearthstoneCardResponse = ModelHearthstoneCardResponseDoc
+
+func (s *HearthstoneService) CardTyped(ctx context.Context, params HearthstoneCardParams, opts ...RequestOption) (HearthstoneCardResponse, error) {
+	return requestTyped[HearthstoneCardResponse](s.client, ctx, "hearthstone-card", paramsFromStruct(params), opts...)
+}
+
+func (s *HearthstoneService) Cards(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "hearthstone-cards", params, opts...)
+}
+
+type HearthstoneCardsParams struct {
+	Page             *int     `crawlora:"page,omitempty"`
+	PageSize         *int     `crawlora:"pageSize,omitempty"`
+	Locale           *string  `crawlora:"locale,omitempty"`
+	Class            *string  `crawlora:"class,omitempty"`
+	Set              *string  `crawlora:"set,omitempty"`
+	Sort             *string  `crawlora:"sort,omitempty"`
+	Order            *string  `crawlora:"order,omitempty"`
+	GameMode         *string  `crawlora:"gameMode,omitempty"`
+	Collectible      []string `crawlora:"collectible"`
+	TextFilter       *string  `crawlora:"textFilter,omitempty"`
+	FilterLocale     *string  `crawlora:"filterLocale,omitempty"`
+	Deckcode         *string  `crawlora:"deckcode,omitempty"`
+	CardSetId        []int    `crawlora:"cardSetId"`
+	SpellSchoolId    []int    `crawlora:"spellSchoolId"`
+	RarityId         []int    `crawlora:"rarityId"`
+	CardTypeId       []int    `crawlora:"cardTypeId"`
+	ManaCost         []string `crawlora:"manaCost"`
+	Attack           []string `crawlora:"attack"`
+	Health           []string `crawlora:"health"`
+	Armor            []string `crawlora:"armor"`
+	Rarity           *string  `crawlora:"rarity,omitempty"`
+	Type             []string `crawlora:"type"`
+	BgCardType       *string  `crawlora:"bgCardType,omitempty"`
+	Keyword          *string  `crawlora:"keyword,omitempty"`
+	MinionType       *string  `crawlora:"minionType,omitempty"`
+	DeckFormat       *string  `crawlora:"deckFormat,omitempty"`
+	Tier             []string `crawlora:"tier"`
+	MercenaryRole    *string  `crawlora:"mercenaryRole,omitempty"`
+	MercenaryFaction *string  `crawlora:"mercenaryFaction,omitempty"`
+	ViewMode         *string  `crawlora:"viewMode,omitempty"`
+	CardBackCategory *string  `crawlora:"cardBackCategory,omitempty"`
+	SpellSchool      *string  `crawlora:"spellSchool,omitempty"`
+	Faction          *string  `crawlora:"faction,omitempty"`
+	BgGameMode       *string  `crawlora:"bgGameMode,omitempty"`
+	ZilliaxMod       *bool    `crawlora:"zilliaxMod,omitempty"`
+}
+
+type HearthstoneCardsResponse = ModelHearthstoneCardsListResponseDoc
+
+func (s *HearthstoneService) CardsTyped(ctx context.Context, params HearthstoneCardsParams, opts ...RequestOption) (HearthstoneCardsResponse, error) {
+	return requestTyped[HearthstoneCardsResponse](s.client, ctx, "hearthstone-cards", paramsFromStruct(params), opts...)
+}
+
+func (s *HearthstoneService) Filters(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "hearthstone-filters", params, opts...)
+}
+
+type HearthstoneFiltersParams struct {
+}
+
+type HearthstoneFiltersResponse = ModelHearthstoneCardFiltersResponseDoc
+
+func (s *HearthstoneService) FiltersTyped(ctx context.Context, params HearthstoneFiltersParams, opts ...RequestOption) (HearthstoneFiltersResponse, error) {
+	return requestTyped[HearthstoneFiltersResponse](s.client, ctx, "hearthstone-filters", paramsFromStruct(params), opts...)
 }
 
 type HermesService struct{ client *Client }
@@ -149892,6 +150286,23 @@ func (s *NbaService) HustleStatsTyped(ctx context.Context, params NbaHustleStats
 	return requestTyped[NbaHustleStatsResponse](s.client, ctx, "nba-hustle-stats", paramsFromStruct(params), opts...)
 }
 
+func (s *NbaService) HustleTeam(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nba-hustle-team", params, opts...)
+}
+
+type NbaHustleTeamParams struct {
+	LeagueId   *string `crawlora:"league_id,omitempty"`
+	Season     *string `crawlora:"season,omitempty"`
+	SeasonType *string `crawlora:"season_type,omitempty"`
+	PerMode    *string `crawlora:"per_mode,omitempty"`
+}
+
+type NbaHustleTeamResponse = any
+
+func (s *NbaService) HustleTeamTyped(ctx context.Context, params NbaHustleTeamParams, opts ...RequestOption) (NbaHustleTeamResponse, error) {
+	return requestTyped[NbaHustleTeamResponse](s.client, ctx, "nba-hustle-team", paramsFromStruct(params), opts...)
+}
+
 func (s *NbaService) LeagueGameLog(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "nba-league-game-log", params, opts...)
 }
@@ -149941,6 +150352,23 @@ type NbaNewsResponse = any
 
 func (s *NbaService) NewsTyped(ctx context.Context, params NbaNewsParams, opts ...RequestOption) (NbaNewsResponse, error) {
 	return requestTyped[NbaNewsResponse](s.client, ctx, "nba-news", paramsFromStruct(params), opts...)
+}
+
+func (s *NbaService) OppPtShot(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nba-opp-pt-shot", params, opts...)
+}
+
+type NbaOppPtShotParams struct {
+	LeagueId   *string `crawlora:"league_id,omitempty"`
+	Season     *string `crawlora:"season,omitempty"`
+	SeasonType *string `crawlora:"season_type,omitempty"`
+	PerMode    *string `crawlora:"per_mode,omitempty"`
+}
+
+type NbaOppPtShotResponse = any
+
+func (s *NbaService) OppPtShotTyped(ctx context.Context, params NbaOppPtShotParams, opts ...RequestOption) (NbaOppPtShotResponse, error) {
+	return requestTyped[NbaOppPtShotResponse](s.client, ctx, "nba-opp-pt-shot", paramsFromStruct(params), opts...)
 }
 
 func (s *NbaService) PlayByPlay(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -150006,6 +150434,27 @@ func (s *NbaService) PlayerCareerStatsTyped(ctx context.Context, params NbaPlaye
 	return requestTyped[NbaPlayerCareerStatsResponse](s.client, ctx, "nba-player-career-stats", paramsFromStruct(params), opts...)
 }
 
+func (s *NbaService) PlayerClutch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nba-player-clutch", params, opts...)
+}
+
+type NbaPlayerClutchParams struct {
+	LeagueId    *string `crawlora:"league_id,omitempty"`
+	Season      *string `crawlora:"season,omitempty"`
+	SeasonType  *string `crawlora:"season_type,omitempty"`
+	PerMode     *string `crawlora:"per_mode,omitempty"`
+	MeasureType *string `crawlora:"measure_type,omitempty"`
+	ClutchTime  *string `crawlora:"clutch_time,omitempty"`
+	AheadBehind *string `crawlora:"ahead_behind,omitempty"`
+	PointDiff   *int    `crawlora:"point_diff,omitempty"`
+}
+
+type NbaPlayerClutchResponse = any
+
+func (s *NbaService) PlayerClutchTyped(ctx context.Context, params NbaPlayerClutchParams, opts ...RequestOption) (NbaPlayerClutchResponse, error) {
+	return requestTyped[NbaPlayerClutchResponse](s.client, ctx, "nba-player-clutch", paramsFromStruct(params), opts...)
+}
+
 func (s *NbaService) PlayerDashPtShots(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "nba-player-dash-pt-shots", params, opts...)
 }
@@ -150024,6 +150473,23 @@ func (s *NbaService) PlayerDashPtShotsTyped(ctx context.Context, params NbaPlaye
 	return requestTyped[NbaPlayerDashPtShotsResponse](s.client, ctx, "nba-player-dash-pt-shots", paramsFromStruct(params), opts...)
 }
 
+func (s *NbaService) PlayerGameLogs(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nba-player-game-logs", params, opts...)
+}
+
+type NbaPlayerGameLogsParams struct {
+	LeagueId   *string `crawlora:"league_id,omitempty"`
+	Season     *string `crawlora:"season,omitempty"`
+	SeasonType *string `crawlora:"season_type,omitempty"`
+	PlayerId   int     `crawlora:"player_id"`
+}
+
+type NbaPlayerGameLogsResponse = any
+
+func (s *NbaService) PlayerGameLogsTyped(ctx context.Context, params NbaPlayerGameLogsParams, opts ...RequestOption) (NbaPlayerGameLogsResponse, error) {
+	return requestTyped[NbaPlayerGameLogsResponse](s.client, ctx, "nba-player-game-logs", paramsFromStruct(params), opts...)
+}
+
 func (s *NbaService) PlayerInfo(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "nba-player-info", params, opts...)
 }
@@ -150037,6 +150503,38 @@ type NbaPlayerInfoResponse = any
 
 func (s *NbaService) PlayerInfoTyped(ctx context.Context, params NbaPlayerInfoParams, opts ...RequestOption) (NbaPlayerInfoResponse, error) {
 	return requestTyped[NbaPlayerInfoResponse](s.client, ctx, "nba-player-info", paramsFromStruct(params), opts...)
+}
+
+func (s *NbaService) PlayerProfileV2(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nba-player-profile-v2", params, opts...)
+}
+
+type NbaPlayerProfileV2Params struct {
+	PlayerId int     `crawlora:"player_id"`
+	PerMode  *string `crawlora:"per_mode,omitempty"`
+}
+
+type NbaPlayerProfileV2Response = any
+
+func (s *NbaService) PlayerProfileV2Typed(ctx context.Context, params NbaPlayerProfileV2Params, opts ...RequestOption) (NbaPlayerProfileV2Response, error) {
+	return requestTyped[NbaPlayerProfileV2Response](s.client, ctx, "nba-player-profile-v2", paramsFromStruct(params), opts...)
+}
+
+func (s *NbaService) PlayerPtShot(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nba-player-pt-shot", params, opts...)
+}
+
+type NbaPlayerPtShotParams struct {
+	LeagueId   *string `crawlora:"league_id,omitempty"`
+	Season     *string `crawlora:"season,omitempty"`
+	SeasonType *string `crawlora:"season_type,omitempty"`
+	PerMode    *string `crawlora:"per_mode,omitempty"`
+}
+
+type NbaPlayerPtShotResponse = any
+
+func (s *NbaService) PlayerPtShotTyped(ctx context.Context, params NbaPlayerPtShotParams, opts ...RequestOption) (NbaPlayerPtShotResponse, error) {
+	return requestTyped[NbaPlayerPtShotResponse](s.client, ctx, "nba-player-pt-shot", paramsFromStruct(params), opts...)
 }
 
 func (s *NbaService) PlayerStats(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -150055,6 +150553,24 @@ type NbaPlayerStatsResponse = any
 
 func (s *NbaService) PlayerStatsTyped(ctx context.Context, params NbaPlayerStatsParams, opts ...RequestOption) (NbaPlayerStatsResponse, error) {
 	return requestTyped[NbaPlayerStatsResponse](s.client, ctx, "nba-player-stats", paramsFromStruct(params), opts...)
+}
+
+func (s *NbaService) PlayerStreakFinder(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nba-player-streak-finder", params, opts...)
+}
+
+type NbaPlayerStreakFinderParams struct {
+	LeagueId   *string `crawlora:"league_id,omitempty"`
+	Season     *string `crawlora:"season,omitempty"`
+	SeasonType *string `crawlora:"season_type,omitempty"`
+	PlayerId   *int    `crawlora:"player_id,omitempty"`
+	MinGames   *int    `crawlora:"min_games,omitempty"`
+}
+
+type NbaPlayerStreakFinderResponse = any
+
+func (s *NbaService) PlayerStreakFinderTyped(ctx context.Context, params NbaPlayerStreakFinderParams, opts ...RequestOption) (NbaPlayerStreakFinderResponse, error) {
+	return requestTyped[NbaPlayerStreakFinderResponse](s.client, ctx, "nba-player-streak-finder", paramsFromStruct(params), opts...)
 }
 
 func (s *NbaService) Players(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -150177,6 +150693,42 @@ func (s *NbaService) SynergyPlayTypesTyped(ctx context.Context, params NbaSynerg
 	return requestTyped[NbaSynergyPlayTypesResponse](s.client, ctx, "nba-synergy-play-types", paramsFromStruct(params), opts...)
 }
 
+func (s *NbaService) TeamDashPtPass(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nba-team-dash-pt-pass", params, opts...)
+}
+
+type NbaTeamDashPtPassParams struct {
+	LeagueId   *string `crawlora:"league_id,omitempty"`
+	Season     *string `crawlora:"season,omitempty"`
+	SeasonType *string `crawlora:"season_type,omitempty"`
+	PerMode    *string `crawlora:"per_mode,omitempty"`
+	TeamId     int     `crawlora:"team_id"`
+}
+
+type NbaTeamDashPtPassResponse = any
+
+func (s *NbaService) TeamDashPtPassTyped(ctx context.Context, params NbaTeamDashPtPassParams, opts ...RequestOption) (NbaTeamDashPtPassResponse, error) {
+	return requestTyped[NbaTeamDashPtPassResponse](s.client, ctx, "nba-team-dash-pt-pass", paramsFromStruct(params), opts...)
+}
+
+func (s *NbaService) TeamDashPtShots(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nba-team-dash-pt-shots", params, opts...)
+}
+
+type NbaTeamDashPtShotsParams struct {
+	LeagueId   *string `crawlora:"league_id,omitempty"`
+	Season     *string `crawlora:"season,omitempty"`
+	SeasonType *string `crawlora:"season_type,omitempty"`
+	PerMode    *string `crawlora:"per_mode,omitempty"`
+	TeamId     int     `crawlora:"team_id"`
+}
+
+type NbaTeamDashPtShotsResponse = any
+
+func (s *NbaService) TeamDashPtShotsTyped(ctx context.Context, params NbaTeamDashPtShotsParams, opts ...RequestOption) (NbaTeamDashPtShotsResponse, error) {
+	return requestTyped[NbaTeamDashPtShotsResponse](s.client, ctx, "nba-team-dash-pt-shots", paramsFromStruct(params), opts...)
+}
+
 func (s *NbaService) TeamDetails(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
 	return s.client.Request(ctx, "nba-team-details", params, opts...)
 }
@@ -150190,6 +150742,76 @@ type NbaTeamDetailsResponse = any
 
 func (s *NbaService) TeamDetailsTyped(ctx context.Context, params NbaTeamDetailsParams, opts ...RequestOption) (NbaTeamDetailsResponse, error) {
 	return requestTyped[NbaTeamDetailsResponse](s.client, ctx, "nba-team-details", paramsFromStruct(params), opts...)
+}
+
+func (s *NbaService) TeamGameLogs(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nba-team-game-logs", params, opts...)
+}
+
+type NbaTeamGameLogsParams struct {
+	LeagueId   *string `crawlora:"league_id,omitempty"`
+	Season     *string `crawlora:"season,omitempty"`
+	SeasonType *string `crawlora:"season_type,omitempty"`
+	TeamId     int     `crawlora:"team_id"`
+}
+
+type NbaTeamGameLogsResponse = any
+
+func (s *NbaService) TeamGameLogsTyped(ctx context.Context, params NbaTeamGameLogsParams, opts ...RequestOption) (NbaTeamGameLogsResponse, error) {
+	return requestTyped[NbaTeamGameLogsResponse](s.client, ctx, "nba-team-game-logs", paramsFromStruct(params), opts...)
+}
+
+func (s *NbaService) TeamInfoCommon(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nba-team-info-common", params, opts...)
+}
+
+type NbaTeamInfoCommonParams struct {
+	LeagueId   *string `crawlora:"league_id,omitempty"`
+	Season     *string `crawlora:"season,omitempty"`
+	SeasonType *string `crawlora:"season_type,omitempty"`
+	TeamId     int     `crawlora:"team_id"`
+}
+
+type NbaTeamInfoCommonResponse = any
+
+func (s *NbaService) TeamInfoCommonTyped(ctx context.Context, params NbaTeamInfoCommonParams, opts ...RequestOption) (NbaTeamInfoCommonResponse, error) {
+	return requestTyped[NbaTeamInfoCommonResponse](s.client, ctx, "nba-team-info-common", paramsFromStruct(params), opts...)
+}
+
+func (s *NbaService) TeamOnOff(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nba-team-on-off", params, opts...)
+}
+
+type NbaTeamOnOffParams struct {
+	LeagueId    *string `crawlora:"league_id,omitempty"`
+	Season      *string `crawlora:"season,omitempty"`
+	SeasonType  *string `crawlora:"season_type,omitempty"`
+	PerMode     *string `crawlora:"per_mode,omitempty"`
+	MeasureType *string `crawlora:"measure_type,omitempty"`
+	TeamId      int     `crawlora:"team_id"`
+}
+
+type NbaTeamOnOffResponse = any
+
+func (s *NbaService) TeamOnOffTyped(ctx context.Context, params NbaTeamOnOffParams, opts ...RequestOption) (NbaTeamOnOffResponse, error) {
+	return requestTyped[NbaTeamOnOffResponse](s.client, ctx, "nba-team-on-off", paramsFromStruct(params), opts...)
+}
+
+func (s *NbaService) TeamPtShot(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nba-team-pt-shot", params, opts...)
+}
+
+type NbaTeamPtShotParams struct {
+	LeagueId   *string `crawlora:"league_id,omitempty"`
+	Season     *string `crawlora:"season,omitempty"`
+	SeasonType *string `crawlora:"season_type,omitempty"`
+	PerMode    *string `crawlora:"per_mode,omitempty"`
+}
+
+type NbaTeamPtShotResponse = any
+
+func (s *NbaService) TeamPtShotTyped(ctx context.Context, params NbaTeamPtShotParams, opts ...RequestOption) (NbaTeamPtShotResponse, error) {
+	return requestTyped[NbaTeamPtShotResponse](s.client, ctx, "nba-team-pt-shot", paramsFromStruct(params), opts...)
 }
 
 func (s *NbaService) TeamRoster(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
@@ -150262,6 +150884,20 @@ type NbaTeamStatsLeadersResponse = any
 
 func (s *NbaService) TeamStatsLeadersTyped(ctx context.Context, params NbaTeamStatsLeadersParams, opts ...RequestOption) (NbaTeamStatsLeadersResponse, error) {
 	return requestTyped[NbaTeamStatsLeadersResponse](s.client, ctx, "nba-team-stats-leaders", paramsFromStruct(params), opts...)
+}
+
+func (s *NbaService) TeamYears(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nba-team-years", params, opts...)
+}
+
+type NbaTeamYearsParams struct {
+	LeagueId *string `crawlora:"league_id,omitempty"`
+}
+
+type NbaTeamYearsResponse = any
+
+func (s *NbaService) TeamYearsTyped(ctx context.Context, params NbaTeamYearsParams, opts ...RequestOption) (NbaTeamYearsResponse, error) {
+	return requestTyped[NbaTeamYearsResponse](s.client, ctx, "nba-team-years", paramsFromStruct(params), opts...)
 }
 
 type NbcNewsService struct{ client *Client }
@@ -151316,6 +151952,77 @@ type NfhsSuggestResponse = any
 
 func (s *NfhsService) SuggestTyped(ctx context.Context, params NfhsSuggestParams, opts ...RequestOption) (NfhsSuggestResponse, error) {
 	return requestTyped[NfhsSuggestResponse](s.client, ctx, "nfhs-suggest", paramsFromStruct(params), opts...)
+}
+
+type NhlService struct{ client *Client }
+
+func (s *NhlService) GamecenterBoxscore(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nhl-gamecenter-boxscore", params, opts...)
+}
+
+type NhlGamecenterBoxscoreParams struct {
+	GameId string `crawlora:"game_id"`
+}
+
+type NhlGamecenterBoxscoreResponse = ModelNhlGamecenterResponseDoc
+
+func (s *NhlService) GamecenterBoxscoreTyped(ctx context.Context, params NhlGamecenterBoxscoreParams, opts ...RequestOption) (NhlGamecenterBoxscoreResponse, error) {
+	return requestTyped[NhlGamecenterBoxscoreResponse](s.client, ctx, "nhl-gamecenter-boxscore", paramsFromStruct(params), opts...)
+}
+
+func (s *NhlService) GamecenterPlayByPlay(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nhl-gamecenter-play-by-play", params, opts...)
+}
+
+type NhlGamecenterPlayByPlayParams struct {
+	GameId string `crawlora:"game_id"`
+}
+
+type NhlGamecenterPlayByPlayResponse = ModelNhlGamecenterResponseDoc
+
+func (s *NhlService) GamecenterPlayByPlayTyped(ctx context.Context, params NhlGamecenterPlayByPlayParams, opts ...RequestOption) (NhlGamecenterPlayByPlayResponse, error) {
+	return requestTyped[NhlGamecenterPlayByPlayResponse](s.client, ctx, "nhl-gamecenter-play-by-play", paramsFromStruct(params), opts...)
+}
+
+func (s *NhlService) Schedule(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nhl-schedule", params, opts...)
+}
+
+type NhlScheduleParams struct {
+	Date *string `crawlora:"date,omitempty"`
+}
+
+type NhlScheduleResponse = ModelNhlScheduleResponseDoc
+
+func (s *NhlService) ScheduleTyped(ctx context.Context, params NhlScheduleParams, opts ...RequestOption) (NhlScheduleResponse, error) {
+	return requestTyped[NhlScheduleResponse](s.client, ctx, "nhl-schedule", paramsFromStruct(params), opts...)
+}
+
+func (s *NhlService) Seasons(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nhl-seasons", params, opts...)
+}
+
+type NhlSeasonsParams struct {
+}
+
+type NhlSeasonsResponse = ModelAppResponse
+
+func (s *NhlService) SeasonsTyped(ctx context.Context, params NhlSeasonsParams, opts ...RequestOption) (NhlSeasonsResponse, error) {
+	return requestTyped[NhlSeasonsResponse](s.client, ctx, "nhl-seasons", paramsFromStruct(params), opts...)
+}
+
+func (s *NhlService) Standings(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "nhl-standings", params, opts...)
+}
+
+type NhlStandingsParams struct {
+	Date *string `crawlora:"date,omitempty"`
+}
+
+type NhlStandingsResponse = ModelNhlStandingsResponseDoc
+
+func (s *NhlService) StandingsTyped(ctx context.Context, params NhlStandingsParams, opts ...RequestOption) (NhlStandingsResponse, error) {
+	return requestTyped[NhlStandingsResponse](s.client, ctx, "nhl-standings", paramsFromStruct(params), opts...)
 }
 
 type NikeService struct{ client *Client }
@@ -163115,6 +163822,213 @@ type SephoraSuggestResponse = ModelSephoraSuggestResponseDoc
 
 func (s *SephoraService) SuggestTyped(ctx context.Context, params SephoraSuggestParams, opts ...RequestOption) (SephoraSuggestResponse, error) {
 	return requestTyped[SephoraSuggestResponse](s.client, ctx, "sephora-suggest", paramsFromStruct(params), opts...)
+}
+
+type SerebiiService struct{ client *Client }
+
+func (s *SerebiiService) PokemongoEventDetailCommunityDay(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "serebii-pokemongo-event-detail-community-day", params, opts...)
+}
+
+type SerebiiPokemongoEventDetailCommunityDayParams struct {
+	Filename string `crawlora:"filename"`
+}
+
+type SerebiiPokemongoEventDetailCommunityDayResponse = ModelSerebiiNativeEventDetailResponse
+
+func (s *SerebiiService) PokemongoEventDetailCommunityDayTyped(ctx context.Context, params SerebiiPokemongoEventDetailCommunityDayParams, opts ...RequestOption) (SerebiiPokemongoEventDetailCommunityDayResponse, error) {
+	return requestTyped[SerebiiPokemongoEventDetailCommunityDayResponse](s.client, ctx, "serebii-pokemongo-event-detail-community-day", paramsFromStruct(params), opts...)
+}
+
+func (s *SerebiiService) PokemongoEventCategories(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "serebii-pokemongo-event-categories", params, opts...)
+}
+
+type SerebiiPokemongoEventCategoriesParams struct {
+}
+
+type SerebiiPokemongoEventCategoriesResponse = ModelSerebiiEventCategoriesResponse
+
+func (s *SerebiiService) PokemongoEventCategoriesTyped(ctx context.Context, params SerebiiPokemongoEventCategoriesParams, opts ...RequestOption) (SerebiiPokemongoEventCategoriesResponse, error) {
+	return requestTyped[SerebiiPokemongoEventCategoriesResponse](s.client, ctx, "serebii-pokemongo-event-categories", paramsFromStruct(params), opts...)
+}
+
+func (s *SerebiiService) PokemongoEventOnlyMoves(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "serebii-pokemongo-event-only-moves", params, opts...)
+}
+
+type SerebiiPokemongoEventOnlyMovesParams struct {
+}
+
+type SerebiiPokemongoEventOnlyMovesResponse = ModelSerebiiEventOnlyMovesResponse
+
+func (s *SerebiiService) PokemongoEventOnlyMovesTyped(ctx context.Context, params SerebiiPokemongoEventOnlyMovesParams, opts ...RequestOption) (SerebiiPokemongoEventOnlyMovesResponse, error) {
+	return requestTyped[SerebiiPokemongoEventOnlyMovesResponse](s.client, ctx, "serebii-pokemongo-event-only-moves", paramsFromStruct(params), opts...)
+}
+
+func (s *SerebiiService) PokemongoEventOnlyResearch(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "serebii-pokemongo-event-only-research", params, opts...)
+}
+
+type SerebiiPokemongoEventOnlyResearchParams struct {
+}
+
+type SerebiiPokemongoEventOnlyResearchResponse = ModelSerebiiEventOnlyResearchResponse
+
+func (s *SerebiiService) PokemongoEventOnlyResearchTyped(ctx context.Context, params SerebiiPokemongoEventOnlyResearchParams, opts ...RequestOption) (SerebiiPokemongoEventOnlyResearchResponse, error) {
+	return requestTyped[SerebiiPokemongoEventOnlyResearchResponse](s.client, ctx, "serebii-pokemongo-event-only-research", paramsFromStruct(params), opts...)
+}
+
+func (s *SerebiiService) PokemongoEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "serebii-pokemongo-events", params, opts...)
+}
+
+type SerebiiPokemongoEventsParams struct {
+	Category string `crawlora:"category"`
+}
+
+type SerebiiPokemongoEventsResponse = ModelSerebiiEventsResponse
+
+func (s *SerebiiService) PokemongoEventsTyped(ctx context.Context, params SerebiiPokemongoEventsParams, opts ...RequestOption) (SerebiiPokemongoEventsResponse, error) {
+	return requestTyped[SerebiiPokemongoEventsResponse](s.client, ctx, "serebii-pokemongo-events", paramsFromStruct(params), opts...)
+}
+
+func (s *SerebiiService) PokemongoEventDetailGlobal(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "serebii-pokemongo-event-detail-global", params, opts...)
+}
+
+type SerebiiPokemongoEventDetailGlobalParams struct {
+	Filename string `crawlora:"filename"`
+}
+
+type SerebiiPokemongoEventDetailGlobalResponse = ModelSerebiiNativeEventDetailResponse
+
+func (s *SerebiiService) PokemongoEventDetailGlobalTyped(ctx context.Context, params SerebiiPokemongoEventDetailGlobalParams, opts ...RequestOption) (SerebiiPokemongoEventDetailGlobalResponse, error) {
+	return requestTyped[SerebiiPokemongoEventDetailGlobalResponse](s.client, ctx, "serebii-pokemongo-event-detail-global", paramsFromStruct(params), opts...)
+}
+
+func (s *SerebiiService) PokemongoEventDetailHatchDay(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "serebii-pokemongo-event-detail-hatch-day", params, opts...)
+}
+
+type SerebiiPokemongoEventDetailHatchDayParams struct {
+	Filename string `crawlora:"filename"`
+}
+
+type SerebiiPokemongoEventDetailHatchDayResponse = ModelSerebiiNativeEventDetailResponse
+
+func (s *SerebiiService) PokemongoEventDetailHatchDayTyped(ctx context.Context, params SerebiiPokemongoEventDetailHatchDayParams, opts ...RequestOption) (SerebiiPokemongoEventDetailHatchDayResponse, error) {
+	return requestTyped[SerebiiPokemongoEventDetailHatchDayResponse](s.client, ctx, "serebii-pokemongo-event-detail-hatch-day", paramsFromStruct(params), opts...)
+}
+
+func (s *SerebiiService) PokemongoEventDetailIncenseDay(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "serebii-pokemongo-event-detail-incense-day", params, opts...)
+}
+
+type SerebiiPokemongoEventDetailIncenseDayParams struct {
+	Filename string `crawlora:"filename"`
+}
+
+type SerebiiPokemongoEventDetailIncenseDayResponse = ModelSerebiiNativeEventDetailResponse
+
+func (s *SerebiiService) PokemongoEventDetailIncenseDayTyped(ctx context.Context, params SerebiiPokemongoEventDetailIncenseDayParams, opts ...RequestOption) (SerebiiPokemongoEventDetailIncenseDayResponse, error) {
+	return requestTyped[SerebiiPokemongoEventDetailIncenseDayResponse](s.client, ctx, "serebii-pokemongo-event-detail-incense-day", paramsFromStruct(params), opts...)
+}
+
+func (s *SerebiiService) PokemongoEventDetailResearchDay(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "serebii-pokemongo-event-detail-research-day", params, opts...)
+}
+
+type SerebiiPokemongoEventDetailResearchDayParams struct {
+	Filename string `crawlora:"filename"`
+}
+
+type SerebiiPokemongoEventDetailResearchDayResponse = ModelSerebiiNativeEventDetailResponse
+
+func (s *SerebiiService) PokemongoEventDetailResearchDayTyped(ctx context.Context, params SerebiiPokemongoEventDetailResearchDayParams, opts ...RequestOption) (SerebiiPokemongoEventDetailResearchDayResponse, error) {
+	return requestTyped[SerebiiPokemongoEventDetailResearchDayResponse](s.client, ctx, "serebii-pokemongo-event-detail-research-day", paramsFromStruct(params), opts...)
+}
+
+func (s *SerebiiService) PokemongoEventDetailMaxBattleDay(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "serebii-pokemongo-event-detail-max-battle-day", params, opts...)
+}
+
+type SerebiiPokemongoEventDetailMaxBattleDayParams struct {
+	Filename string `crawlora:"filename"`
+}
+
+type SerebiiPokemongoEventDetailMaxBattleDayResponse = ModelSerebiiNativeEventDetailResponse
+
+func (s *SerebiiService) PokemongoEventDetailMaxBattleDayTyped(ctx context.Context, params SerebiiPokemongoEventDetailMaxBattleDayParams, opts ...RequestOption) (SerebiiPokemongoEventDetailMaxBattleDayResponse, error) {
+	return requestTyped[SerebiiPokemongoEventDetailMaxBattleDayResponse](s.client, ctx, "serebii-pokemongo-event-detail-max-battle-day", paramsFromStruct(params), opts...)
+}
+
+func (s *SerebiiService) PokemongoEventDetailRaidDay(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "serebii-pokemongo-event-detail-raid-day", params, opts...)
+}
+
+type SerebiiPokemongoEventDetailRaidDayParams struct {
+	Filename string `crawlora:"filename"`
+}
+
+type SerebiiPokemongoEventDetailRaidDayResponse = ModelSerebiiNativeEventDetailResponse
+
+func (s *SerebiiService) PokemongoEventDetailRaidDayTyped(ctx context.Context, params SerebiiPokemongoEventDetailRaidDayParams, opts ...RequestOption) (SerebiiPokemongoEventDetailRaidDayResponse, error) {
+	return requestTyped[SerebiiPokemongoEventDetailRaidDayResponse](s.client, ctx, "serebii-pokemongo-event-detail-raid-day", paramsFromStruct(params), opts...)
+}
+
+func (s *SerebiiService) PokemongoEventDetailRealLife(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "serebii-pokemongo-event-detail-real-life", params, opts...)
+}
+
+type SerebiiPokemongoEventDetailRealLifeParams struct {
+	Filename string `crawlora:"filename"`
+}
+
+type SerebiiPokemongoEventDetailRealLifeResponse = ModelSerebiiNativeEventDetailResponse
+
+func (s *SerebiiService) PokemongoEventDetailRealLifeTyped(ctx context.Context, params SerebiiPokemongoEventDetailRealLifeParams, opts ...RequestOption) (SerebiiPokemongoEventDetailRealLifeResponse, error) {
+	return requestTyped[SerebiiPokemongoEventDetailRealLifeResponse](s.client, ctx, "serebii-pokemongo-event-detail-real-life", paramsFromStruct(params), opts...)
+}
+
+func (s *SerebiiService) PokemongoSpotlightHours(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "serebii-pokemongo-spotlight-hours", params, opts...)
+}
+
+type SerebiiPokemongoSpotlightHoursParams struct {
+}
+
+type SerebiiPokemongoSpotlightHoursResponse = ModelSerebiiSpotlightHoursResponse
+
+func (s *SerebiiService) PokemongoSpotlightHoursTyped(ctx context.Context, params SerebiiPokemongoSpotlightHoursParams, opts ...RequestOption) (SerebiiPokemongoSpotlightHoursResponse, error) {
+	return requestTyped[SerebiiPokemongoSpotlightHoursResponse](s.client, ctx, "serebii-pokemongo-spotlight-hours", paramsFromStruct(params), opts...)
+}
+
+func (s *SerebiiService) PokemongoEventDetailTicket(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "serebii-pokemongo-event-detail-ticket", params, opts...)
+}
+
+type SerebiiPokemongoEventDetailTicketParams struct {
+	Filename string `crawlora:"filename"`
+}
+
+type SerebiiPokemongoEventDetailTicketResponse = ModelSerebiiNativeEventDetailResponse
+
+func (s *SerebiiService) PokemongoEventDetailTicketTyped(ctx context.Context, params SerebiiPokemongoEventDetailTicketParams, opts ...RequestOption) (SerebiiPokemongoEventDetailTicketResponse, error) {
+	return requestTyped[SerebiiPokemongoEventDetailTicketResponse](s.client, ctx, "serebii-pokemongo-event-detail-ticket", paramsFromStruct(params), opts...)
+}
+
+func (s *SerebiiService) PokemongoUnownEvents(ctx context.Context, params Params, opts ...RequestOption) (any, error) {
+	return s.client.Request(ctx, "serebii-pokemongo-unown-events", params, opts...)
+}
+
+type SerebiiPokemongoUnownEventsParams struct {
+}
+
+type SerebiiPokemongoUnownEventsResponse = ModelSerebiiUnownEventsResponse
+
+func (s *SerebiiService) PokemongoUnownEventsTyped(ctx context.Context, params SerebiiPokemongoUnownEventsParams, opts ...RequestOption) (SerebiiPokemongoUnownEventsResponse, error) {
+	return requestTyped[SerebiiPokemongoUnownEventsResponse](s.client, ctx, "serebii-pokemongo-unown-events", paramsFromStruct(params), opts...)
 }
 
 type SevenNewsAustraliaService struct{ client *Client }
