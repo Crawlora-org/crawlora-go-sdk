@@ -49,6 +49,17 @@ brand, err := client.Brand.Retrieve(ctx, crawlora.Params{"domain": "stripe.com"}
 Omit `include_metrics` for the 1-credit feed mode. Set it to `true` for the
 3-credit anonymous HTML mode with public post and comment engagement metrics.
 
+## Formula 1, BoardGameGeek, and Cricbuzz
+
+The 1.51.0 contract adds these public platform groups. The full generated
+reference is in [`operations.md`](operations.md).
+
+```go
+seasons, err := client.Request(ctx, "formula1-seasons", crawlora.Params{})
+taxonomy, err := client.Request(ctx, "boardgamegeek-taxonomy", crawlora.Params{})
+navigation, err := client.Request(ctx, "cricbuzz-navigation", crawlora.Params{})
+```
+
 ## Company Job Searches
 
 Search public job listings directly from employer career sites:
