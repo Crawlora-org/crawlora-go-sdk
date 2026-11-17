@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.52.0
+
+- Stable release of the Crawlora SDKs.
+- Regenerated from the public API contract (5106 operations).
+
 ## v1.51.0
 
 - Stable release of the Crawlora SDKs.
