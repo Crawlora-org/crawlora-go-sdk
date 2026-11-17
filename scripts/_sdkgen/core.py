@@ -50,6 +50,7 @@ def words(value: str) -> list[str]:
     Handles camelCase, PascalCase, snake_case, kebab-case, and digits.
     """
     value = re.sub(r"([a-z0-9])([A-Z])", r"\1-\2", value)
+    value = re.sub(r"(?<=\d)(?=[A-Za-z])", "-", value)
     return [part for part in re.split(r"[^A-Za-z0-9]+", value.lower()) if part]
 
 
@@ -57,6 +58,8 @@ def type_name(*parts: str) -> str:
     """PascalCase type base shared by all languages, e.g. ('google_play',
     'search') -> 'GooglePlaySearch'. Returns 'Operation' for empty input."""
     raw = "".join(part[:1].upper() + part[1:] for part in words("-".join(parts)))
+    if raw and raw[0].isdigit():
+        raw = "Platform" + raw
     return raw or "Operation"
 
 
@@ -107,7 +110,8 @@ class NamingPolicy:
     type_base_fn: Callable[[str, str], str] | None = None
 
     def group_name(self, tag: str) -> str:
-        return self.tag_group_overrides.get(tag, self.case_fn(words(tag)))
+        name = self.tag_group_overrides.get(tag, self.case_fn(words(tag)))
+        return "Platform" + name if name and name[0].isdigit() else name
 
     def type_base(self, group: str, method: str) -> str:
         if self.type_base_fn is not None:
@@ -122,6 +126,8 @@ class NamingPolicy:
         name = self.case_fn(op_words)
         if not name or name in used:
             name = self.case_fn(words(operation_id))
+        if name and name[0].isdigit():
+            name = "Operation" + name
         if name in self.keywords:
             name += "_"
         base = name
